@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17F96B36-7CAE-4692-8B1F-B802482ECD09}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Sunny.UI.Demo</RootNamespace>
+    <AssemblyName>SunnyUI.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SunnyUI.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SunnyUI">
+      <HintPath>..\Bin\SunnyUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\FAvatar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FAvatar.Designer.cs">
+      <DependentUpon>FAvatar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FButton.Designer.cs">
+      <DependentUpon>FButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FCheckBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FCheckBox.Designer.cs">
+      <DependentUpon>FCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FDataGridView.Designer.cs">
+      <DependentUpon>FDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FLabel.Designer.cs">
+      <DependentUpon>FLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FLine.Designer.cs">
+      <DependentUpon>FLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FMeter.Designer.cs">
+      <DependentUpon>FMeter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTextBox.Designer.cs">
+      <DependentUpon>FTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FListBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FListBox.Designer.cs">
+      <DependentUpon>FListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FContextMenuStrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FContextMenuStrip.Designer.cs">
+      <DependentUpon>FContextMenuStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FEdit.Designer.cs">
+      <DependentUpon>FEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FEditor.Designer.cs">
+      <DependentUpon>FEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideHeaderMainFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideHeaderMainFooter.Designer.cs">
+      <DependentUpon>FAsideHeaderMainFooter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideHeaderMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideHeaderMain.Designer.cs">
+      <DependentUpon>FAsideHeaderMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FAsideMain.Designer.cs">
+      <DependentUpon>FAsideMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderAsideMainFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderAsideMainFooter.Designer.cs">
+      <DependentUpon>FHeaderAsideMainFooter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderAsideMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderAsideMain.Designer.cs">
+      <DependentUpon>FHeaderAsideMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderMain.Designer.cs">
+      <DependentUpon>FHeaderMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FMain.Designer.cs">
+      <DependentUpon>FMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FFrames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FFrames.Designer.cs">
+      <DependentUpon>FFrames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FDialogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FDialogs.Designer.cs">
+      <DependentUpon>FDialogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FNavigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FNavigation.Designer.cs">
+      <DependentUpon>FNavigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FPanel.Designer.cs">
+      <DependentUpon>FPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FRadioButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FRadioButton.Designer.cs">
+      <DependentUpon>FRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTransfer.Designer.cs">
+      <DependentUpon>FTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTreeView.Designer.cs">
+      <DependentUpon>FTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FOther.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FOther.Designer.cs">
+      <DependentUpon>FOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTabControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTabControl.Designer.cs">
+      <DependentUpon>FTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderMainFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FHeaderMainFooter.Designer.cs">
+      <DependentUpon>FHeaderMainFooter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage1.Designer.cs">
+      <DependentUpon>FPage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage2.Designer.cs">
+      <DependentUpon>FPage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FPage3.Designer.cs">
+      <DependentUpon>FPage3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage1.Designer.cs">
+      <DependentUpon>FTitlePage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage2.Designer.cs">
+      <DependentUpon>FTitlePage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pages\FTitlePage3.Designer.cs">
+      <DependentUpon>FTitlePage3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\FAvatar.resx">
+      <DependentUpon>FAvatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FButton.resx">
+      <DependentUpon>FButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FCheckBox.resx">
+      <DependentUpon>FCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FMeter.resx">
+      <DependentUpon>FMeter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTabControl.resx">
+      <DependentUpon>FTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTextBox.resx">
+      <DependentUpon>FTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FDataGridView.resx">
+      <DependentUpon>FDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FLabel.resx">
+      <DependentUpon>FLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FLine.resx">
+      <DependentUpon>FLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FListBox.resx">
+      <DependentUpon>FListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
+      <DependentUpon>FContextMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FEdit.resx">
+      <DependentUpon>FEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FEditor.resx">
+      <DependentUpon>FEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FAsideHeaderMainFooter.resx">
+      <DependentUpon>FAsideHeaderMainFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FAsideHeaderMain.resx">
+      <DependentUpon>FAsideHeaderMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FAsideMain.resx">
+      <DependentUpon>FAsideMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FHeaderAsideMainFooter.resx">
+      <DependentUpon>FHeaderAsideMainFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMain.resx">
+      <DependentUpon>FMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FFrames.resx">
+      <DependentUpon>FFrames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FDialogs.resx">
+      <DependentUpon>FDialogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FNavigation.resx">
+      <DependentUpon>FNavigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FPanel.resx">
+      <DependentUpon>FPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FRadioButton.resx">
+      <DependentUpon>FRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTransfer.resx">
+      <DependentUpon>FTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTreeView.resx">
+      <DependentUpon>FTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FOther.resx">
+      <DependentUpon>FOther.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FHeaderAsideMain.resx">
+      <DependentUpon>FHeaderAsideMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FHeaderMain.resx">
+      <DependentUpon>FHeaderMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FHeaderMainFooter.resx">
+      <DependentUpon>FHeaderMainFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FPage1.resx">
+      <DependentUpon>FPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FPage2.resx">
+      <DependentUpon>FPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FPage3.resx">
+      <DependentUpon>FPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FTitlePage1.resx">
+      <DependentUpon>FTitlePage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FTitlePage2.resx">
+      <DependentUpon>FTitlePage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pages\FTitlePage3.resx">
+      <DependentUpon>FTitlePage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SunnyUISmall.png" />
+    <None Include="Resources\SunnyUI.png" />
+    <None Include="Resources\off_b.png" />
+    <None Include="Resources\off_g.png" />
+    <None Include="Resources\off_y.png" />
+    <None Include="Resources\on_b.png" />
+    <None Include="Resources\on_g.png" />
+    <None Include="Resources\on_y.png" />
+    <None Include="Resources\dashboard0.png" />
+    <None Include="Resources\relationship.png" />
+    <None Include="Resources\relationship0.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\save0.png" />
+    <None Include="Resources\dashboard.png" />
+    <None Include="Resources\AHM.png" />
+    <None Include="Resources\AHM1.png" />
+    <None Include="Resources\AHMF.png" />
+    <None Include="Resources\AHMF1.png" />
+    <None Include="Resources\AM.png" />
+    <None Include="Resources\AM1.png" />
+    <None Include="Resources\HAM.png" />
+    <None Include="Resources\HAM1.png" />
+    <None Include="Resources\HAMF.png" />
+    <None Include="Resources\HAMF1.png" />
+    <None Include="Resources\HM.png" />
+    <None Include="Resources\HM1.png" />
+    <None Include="Resources\HMF.png" />
+    <None Include="Resources\HMF1.png" />
+    <Content Include="SunnyUI.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
