@@ -385,12 +385,6 @@
   <ItemGroup>
     <None Include="Resources\SunnyUISmall.png" />
     <None Include="Resources\SunnyUI.png" />
-    <None Include="Resources\off_b.png" />
-    <None Include="Resources\off_g.png" />
-    <None Include="Resources\off_y.png" />
-    <None Include="Resources\on_b.png" />
-    <None Include="Resources\on_g.png" />
-    <None Include="Resources\on_y.png" />
     <None Include="Resources\dashboard0.png" />
     <None Include="Resources\relationship.png" />
     <None Include="Resources\relationship0.png" />

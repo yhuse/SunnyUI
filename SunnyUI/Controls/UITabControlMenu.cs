@@ -249,7 +249,7 @@ namespace Sunny.UI
             base.OnControlAdded(e);
             if (e.Control is TabPage)
             {
-                e.Control.BackColor = FillColor;
+                //e.Control.BackColor = FillColor;
                 e.Control.Padding = new Padding(0);
             }
         }
@@ -333,13 +333,25 @@ namespace Sunny.UI
 
     public static class UITabControlHelper
     {
-        public static void AddPage(this TabControl tabControl, UIPage page)
+        public static UIPage AddPage(this TabControl tabControl, int pageIndex, UIPage page)
         {
-            if (page.PageIndex < 0) return;
+            page.PageIndex = pageIndex;
+            return tabControl.AddPage(page);
+        }
+
+        public static UIPage AddPage(this TabControl tabControl, UIPage page)
+        {
+            if (page.PageIndex < 0)
+            {
+                page.PageIndex = RandomEx.RandomNumber(8).ToInt();
+            }
+
             TabPage tagPage = tabControl.CreateTabIfNotExists(page.PageIndex);
             tagPage.Controls.Add(page);
             tagPage.Text = page.Text;
             page.Show();
+
+            return page;
         }
 
         public static void AddPages(this TabControl tabControl, params UIPage[] pages)
@@ -354,6 +366,7 @@ namespace Sunny.UI
         {
             tabControl.CreateTabIfNotExists(index);
             tabControl.TabPages[index].Controls.Add(page);
+            page.Show();
             page.Dock = DockStyle.Fill;
         }
 
@@ -361,6 +374,7 @@ namespace Sunny.UI
         {
             tabControl.CreateTabIfNotExists(index);
             tabControl.TabPages[index].Controls.Add(page);
+            page.Show();
             page.Dock = DockStyle.Fill;
         }
 
@@ -369,12 +383,22 @@ namespace Sunny.UI
             if (index < 0) return null;
             for (int i = 0; i < tabControl.TabPages.Count; i++)
             {
-                if (tabControl.TabPages[i].Tag == null)
+                TabPage existPage = tabControl.TabPages[i];
+
+                if (existPage.Tag == null)
                 {
-                    continue;
+                    if (existPage.Controls.Count > 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        existPage.Tag = index;
+                        return existPage;
+                    }
                 }
 
-                if (tabControl.TabPages[i].Tag.ToString() == i.ToString())
+                if (tabControl.TabPages[i].Tag.ToString() == index.ToString())
                 {
                     return tabControl.TabPages[i];
                 }
@@ -383,7 +407,7 @@ namespace Sunny.UI
             TabPage page = new TabPage();
             page.SuspendLayout();
             page.Tag = index;
-            page.Text = "TabPage" + tabControl.TabPages.Count;
+            page.Text = "tabPage" + tabControl.TabPages.Count;
             tabControl.Controls.Add(page);
             page.ResumeLayout();
             return page;

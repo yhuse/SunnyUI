@@ -283,7 +283,7 @@ namespace Sunny.UI
             base.OnControlAdded(e);
             if (e.Control is TabPage)
             {
-                e.Control.BackColor = FillColor;
+                //e.Control.BackColor = FillColor;
                 e.Control.Padding = new Padding(0);
             }
         }
