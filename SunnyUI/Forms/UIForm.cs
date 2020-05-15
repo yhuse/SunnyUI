@@ -613,7 +613,7 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIGlobal.SetChildUIStyle(this, style);
+            this.SetChildUIStyle(style);
             btn.SetStyle(style);
 
             SetStyleColor(UIStyles.GetStyleColor(style));

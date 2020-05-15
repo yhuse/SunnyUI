@@ -37,6 +37,12 @@ namespace Sunny.UI
     /// </summary>
     public static class ControlEx
     {
+        public static void ReStart(this Timer timer)
+        {
+            timer.Stop();
+            timer.Start();
+        }
+
         public static Form GetParentForm(this Control ctrl)
         {
             while (!IsForm(ctrl.Parent))

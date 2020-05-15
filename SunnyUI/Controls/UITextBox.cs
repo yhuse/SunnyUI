@@ -56,21 +56,17 @@ namespace Sunny.UI
             edit.SelectAll();
         }
 
-        protected override void OnTextChanged(EventArgs e)
-        {
-            base.OnTextChanged(e);
-            edit.Text = Text;
-            Invalidate();
-        }
-
         public void CheckMaxMin()
         {
             edit.CheckMaxMin();
         }
 
+        [Browsable(true)]
+        public new event EventHandler TextChanged;
+
         private void EditTextChanged(object s, EventArgs e)
         {
-            Text = edit.Text;
+            TextChanged?.Invoke(this, e);
         }
 
         protected override void OnFontChanged(EventArgs e)

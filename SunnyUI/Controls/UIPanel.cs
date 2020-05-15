@@ -442,7 +442,7 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIGlobal.SetChildUIStyle(this, style);
+            this.SetChildUIStyle(style);
 
             SetStyleColor(UIStyles.GetStyleColor(style));
             _style = style;
