@@ -146,6 +146,18 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnRowsAdded(DataGridViewRowsAddedEventArgs e)
+        {
+            base.OnRowsAdded(e);
+            SetScrollInfo();
+        }
+
+        protected override void OnRowsRemoved(DataGridViewRowsRemovedEventArgs e)
+        {
+            base.OnRowsRemoved(e);
+            SetScrollInfo();
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -353,12 +365,6 @@ namespace Sunny.UI
                 selectedIndex = e.RowIndex;
                 SelectIndexChange?.Invoke(this, e.RowIndex);
             }
-        }
-
-        protected override void OnAllowUserToAddRowsChanged(EventArgs e)
-        {
-            base.OnAllowUserToAddRowsChanged(e);
-            SetScrollInfo();
         }
 
         protected override void OnGridColorChanged(EventArgs e)

@@ -125,6 +125,7 @@ namespace Sunny.UI
             }
 
             string text = char.ConvertFromUtf32(symbol);
+            graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
             graphics.DrawString(text, font, color, left + xOffset, top + yOffSet);
         }
 
