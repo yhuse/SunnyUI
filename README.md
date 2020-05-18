@@ -14,8 +14,6 @@
 #### 软件框架
 ![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png "中心主题.png")
 
-#### 1、开源控件库
-
 1、开源控件库
 
     基于 framework4.0，原生控件开发，参考 Element、DotNetBar 主题风格，包含 Button、Panel、TextBox、CheckBox、RadioButton、TabControl、NavBar、DataGridView在内的常用控件超过 40 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
@@ -32,19 +30,13 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224502_07596d21_416720.png "10.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224511_2cddb447_416720.png "11.png")
 
-#### 2、工具库
-
 2、工具库
 
     收集整理开发过程中经常用到的工具类库。
 
-#### 3、扩展库
-
 3、扩展库
 
     收集整理开发过程中经常用到的扩展类库。
-
-#### 4、多页面框架
 
 4、多页面框架
 
