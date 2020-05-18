@@ -1,40 +1,46 @@
-# SunnyUI
+# SunnyUI.Net
+![SunnyUI.Net](https://images.gitee.com/uploads/images/2020/0518/223316_45bda072_416720.png "SunnyUI.png")
 
+- Blog:   https://www.cnblogs.com/yhuse
+- Gitee:  https://gitee.com/yhuse/SunnyUI
+- GitHub: https://github.com/yhuse/SunnyUI
+
+欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
 #### 介绍
-{**以下是码云平台说明，您可以替换此简介**
-码云是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+  - SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
 
-#### 软件架构
-软件架构说明
+#### 软件框架
+![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png "中心主题.png")
 
+1、开源控件库
 
-#### 安装教程
+  - 基于 framework4.0，原生控件开发，参考 Element、DotNetBar 主题风格，包含 Button、Panel、TextBox、CheckBox、RadioButton、TabControl、NavBar、DataGridView在内的常用控件超过 40 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
+  - 包含 Element 风格主题 11 个，DotNetBar 主题 3 个，其他主题 2 个，包含主题管理组件 UIStyleManager，可自由切换主题。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224339_7cf2caf3_416720.png "1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224356_b9127fed_416720.png "2.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224403_e925a674_416720.png "3.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224411_df011de9_416720.png "4.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224421_deca8b8a_416720.png "5.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224430_8e28b972_416720.png "6.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224447_5bb8b095_416720.png "8.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224455_9f05ef13_416720.png "9.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224502_07596d21_416720.png "10.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224511_2cddb447_416720.png "11.png")
 
-#### 使用说明
+2、工具库
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+  - 收集整理开发过程中经常用到的工具类库。
 
-#### 参与贡献
+3、扩展库
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+  - 收集整理开发过程中经常用到的扩展类库。
 
+4、多页面框架
 
-#### 码云特技
+  - 参考Element，包括7种常用框架风格，只需几行简单的代码即可创建多页面程序，其支撑组件包括UIForm，UIPage，UIFrame，集合常用控件库即可快速开发WinForm应用程序。
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![多页面框架](https://images.gitee.com/uploads/images/2020/0518/224650_6b8984f2_416720.png "12.png")
+    
+    
