@@ -5,8 +5,7 @@
 - Gitee:  https://gitee.com/yhuse/SunnyUI
 - GitHub: https://github.com/yhuse/SunnyUI
 
-欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)
-请给源码项目点个Star吧！！！
+欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
 #### 介绍
   - SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
