@@ -1,4 +1,4 @@
-# SunnyUI
+# SunnyUI.Net
 ![SunnyUI.Net](https://images.gitee.com/uploads/images/2020/0518/223316_45bda072_416720.png "SunnyUI.png")
 
 
@@ -6,7 +6,7 @@
 SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
 
 #### 软件架构
-软件架构说明
+![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png "中心主题.png")
 
 
 #### 安装教程
