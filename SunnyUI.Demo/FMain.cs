@@ -24,6 +24,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FTabControl(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FLine(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FPanel(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTransfer(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FAvatar(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FContextMenuStrip(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FMeter(), ++pageIndex));

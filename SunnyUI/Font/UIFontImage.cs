@@ -156,10 +156,11 @@ namespace Sunny.UI
         public static Image CreateImage(int symbol, int size, Color color)
         {
             Bitmap image = new Bitmap(size, size);
-            Graphics g = image.Graphics();
-            SizeF ImageSize = g.GetFontImageSize(symbol, size);
-            Font font = GetFont(symbol, size);
-            g.DrawString(char.ConvertFromUtf32(symbol), font, color, (size - ImageSize.Width) / 2.0f, (size - ImageSize.Height) / 2.0f);
+            using (Graphics g = image.Graphics())
+            {
+                g.DrawFontImage(symbol, size, color, image.Bounds());
+            }
+
             return image;
         }
 
