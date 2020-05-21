@@ -152,11 +152,6 @@ namespace Sunny.UI
 
             //字体图标
             Color color = GetForeColor();
-            Font font = FontImageHelper.GetFont(Symbol, SymbolSize);
-            if (font == null)
-            {
-                return;
-            }
 
             float left = 0;
             float top = 0;
@@ -195,9 +190,9 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawString(char.ConvertFromUtf32(Symbol), font, color, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
             else
-                e.Graphics.DrawString(char.ConvertFromUtf32(Symbol), font, color, left, top);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, left, top);
         }
     }
 }

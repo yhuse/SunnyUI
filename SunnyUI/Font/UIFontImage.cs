@@ -17,6 +17,8 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2020-05-21: V2.2.5 调整从资源文件中加载字体，不用另存为文件。
+ *                    感谢：麦壳饼 https://gitee.com/maikebing 
 ******************************************************************************/
 
 using System;
@@ -26,6 +28,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -50,13 +53,8 @@ namespace Sunny.UI
         /// </summary>
         static FontImageHelper()
         {
-            string font = DirEx.CurrentDir() + "FontAwesome.ttf";
-            CreateFontFile(font, "Sunny.UI.Font.FontAwesome.ttf");
-            AwesomeFont = new FontImages(DirEx.CurrentDir() + "FontAwesome.ttf");
-
-            font = DirEx.CurrentDir() + "ElegantIcons.ttf";
-            CreateFontFile(font, "Sunny.UI.Font.ElegantIcons.ttf");
-            ElegantFont = new FontImages(DirEx.CurrentDir() + "ElegantIcons.ttf");
+            AwesomeFont = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.FontAwesome.ttf"));
+            ElegantFont = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.ElegantIcons.ttf"));
         }
 
         /// <summary>
@@ -78,6 +76,19 @@ namespace Sunny.UI
                     File.WriteAllBytes(file, buffer);
                 }
             }
+        }
+
+        private static byte[] ReadFontFileFromResource(string name)
+        {
+            byte[] buffer = null;
+            Stream fontStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
+            if (fontStream != null)
+            {
+                buffer = new byte[fontStream.Length];
+                fontStream.Read(buffer, 0, (int)fontStream.Length);
+                fontStream.Close();
+            }
+            return buffer;
         }
 
         /// <summary>
@@ -188,6 +199,7 @@ namespace Sunny.UI
         private readonly Dictionary<int, Font> Fonts = new Dictionary<int, Font>();
         private const int MinFontSize = 8;
         private const int MaxFontSize = 43;
+        private readonly IntPtr memoryFont = IntPtr.Zero;
 
         /// <summary>
         /// 大小
@@ -203,6 +215,16 @@ namespace Sunny.UI
         /// 前景色
         /// </summary>
         public Color ForeColor { get; set; } = Color.Black;
+
+        public FontImages(byte[] buffer)
+        {
+            ImageFont = new PrivateFontCollection();
+            memoryFont = Marshal.AllocCoTaskMem(buffer.Length);
+            Marshal.Copy(buffer, 0, memoryFont, buffer.Length);
+            ImageFont.AddMemoryFont(memoryFont, buffer.Length);
+            Loaded = true;
+            LoadDictionary();
+        }
 
         /// <summary>
         /// 构造函数
@@ -244,6 +266,11 @@ namespace Sunny.UI
                 font.Dispose();
             }
 
+            if (memoryFont != IntPtr.Zero)
+            {
+                Marshal.FreeCoTaskMem(memoryFont);
+            }
+
             Fonts.Clear();
         }
 
@@ -267,7 +294,13 @@ namespace Sunny.UI
         /// <returns>字体</returns>
         public Font GetFont(int iconText, int imageSize)
         {
-            return Fonts[GetFontSize(iconText, imageSize)];
+            int item = GetFontSize(iconText, imageSize);
+            if (Fonts.ContainsKey(item))
+            {
+                return Fonts[GetFontSize(iconText, imageSize)];
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -279,10 +312,11 @@ namespace Sunny.UI
         public int GetFontSize(int iconText, int imageSize)
         {
             int size = MaxFontSize;
+            int interval = MaxFontSize - MinFontSize;
             using (Bitmap bitmap = new Bitmap(48, 48))
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
-                for (int i = 0; i <= (MaxFontSize - MinFontSize); i++)
+                for (int i = 0; i <= interval; i++)
                 {
                     Font font = Fonts[size];
                     SizeF sf = GetIconSize(iconText, graphics, font);

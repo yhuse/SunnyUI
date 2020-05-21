@@ -18,6 +18,8 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2020-05-21: V2.2.5 增加鼠标滑过高亮
+ *                    开发日志：https://www.cnblogs.com/yhuse/p/12933885.html
 ******************************************************************************/
 
 using System;
@@ -140,7 +142,12 @@ namespace Sunny.UI
                 panel.FillColor = Color.White;
             }
 
-            listbox?.SetStyleColor(uiColor);
+            hoverColor = uiColor.TreeViewHoverColor;
+            if (listbox != null)
+            {
+                listbox.HoverColor = hoverColor;
+                listbox.SetStyleColor(uiColor);
+            }
         }
 
         private int LastCount;
@@ -215,6 +222,20 @@ namespace Sunny.UI
             get => listbox.SelectedValue;
             set => listbox.SelectedValue = value;
         }
+
+        private Color hoverColor = Color.FromArgb(155, 200, 255);
+
+        [DefaultValue(typeof(Color), "155, 200, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                hoverColor = value;
+                listbox.HoverColor = hoverColor;
+                _style = UIStyle.Custom;
+            }
+        }
     }
 
     /// <summary>
@@ -249,6 +270,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             UpdateStyles();
+            this.DoubleBuffered();
 
             BorderStyle = BorderStyle.None;
             ForeColor = UIFontColor.Primary;
@@ -409,20 +431,27 @@ namespace Sunny.UI
             }
         }
 
-        public delegate void OnBeforeDrawItem(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e);
+        public delegate void OnBeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e);
 
         public event OnBeforeDrawItem BeforeDrawItem;
+
+        public event OnBeforeDrawItem AfterDrawItem;
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             base.OnDrawItem(e);
+
             BeforeDrawItem?.Invoke(this, Items, e);
             if (Items.Count == 0)
             {
                 return;
             }
 
-            e.DrawBackground();
+            bool otherState = e.State == DrawItemState.Grayed || e.State == DrawItemState.HotLight;
+            if (!otherState)
+            {
+                e.DrawBackground();
+            }
 
             if (e.Index < 0 || e.Index >= Items.Count)
             {
@@ -432,13 +461,50 @@ namespace Sunny.UI
             StringFormat sStringFormat = new StringFormat();
             sStringFormat.LineAlignment = StringAlignment.Center;
 
-            Color backColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? ItemSelectBackColor : BackColor;
-            Color foreColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? ItemSelectForeColor : ForeColor;
+            bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+            Color backColor = isSelected ? ItemSelectBackColor : BackColor;
+            Color foreColor = isSelected ? ItemSelectForeColor : ForeColor;
 
             Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1);
-            e.Graphics.FillRectangle(BackColor, e.Bounds);
-            e.Graphics.FillRoundRectangle(backColor, rect, 5);
-            e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, foreColor, e.Bounds, sStringFormat);
+            if (!otherState)
+            {
+                e.Graphics.FillRectangle(BackColor, e.Bounds);
+                e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, foreColor, e.Bounds, sStringFormat);
+            }
+            else
+            {
+                if (e.State == DrawItemState.Grayed)
+                {
+                    backColor = BackColor;
+                    foreColor = ForeColor;
+                }
+
+                if (e.State == DrawItemState.HotLight)
+                {
+                    backColor = HoverColor;
+                    foreColor = ForeColor;
+                }
+
+                e.Graphics.FillRectangle(BackColor, e.Bounds);
+                e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, foreColor, e.Bounds, sStringFormat);
+            }
+
+            AfterDrawItem?.Invoke(this, Items, e);
+        }
+
+        private Color hoverColor = Color.FromArgb(155, 200, 255);
+
+        [DefaultValue(typeof(Color), "155, 200, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                hoverColor = value;
+                _style = UIStyle.Custom;
+            }
         }
 
         protected override void OnMeasureItem(MeasureItemEventArgs e)
@@ -453,6 +519,45 @@ namespace Sunny.UI
             {
                 SelectedIndex = 0;
             }
+        }
+
+        private int lastIndex = -1;
+        private int mouseIndex = -1;
+
+        [Browsable(false)]
+        public int MouseIndex
+        {
+            get => mouseIndex;
+            set
+            {
+                if (mouseIndex != value)
+                {
+                    if (lastIndex >= 0 && lastIndex != SelectedIndex)
+                    {
+                        OnDrawItem(new DrawItemEventArgs(this.CreateGraphics(), Font, GetItemRectangle(lastIndex), lastIndex, DrawItemState.Grayed));
+                    }
+
+                    mouseIndex = value;
+                    if (mouseIndex >= 0 && mouseIndex != SelectedIndex)
+                    {
+                        OnDrawItem(new DrawItemEventArgs(this.CreateGraphics(), Font, GetItemRectangle(value), value, DrawItemState.HotLight));
+                    }
+
+                    lastIndex = mouseIndex;
+                }
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            MouseIndex = IndexFromPoint(e.Location);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            MouseIndex = -1;
         }
     }
 }

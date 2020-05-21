@@ -268,13 +268,6 @@ namespace Sunny.UI
             //重绘父类
             base.OnPaint(e);
 
-            //字体图标
-            Font font = FontImageHelper.GetFont(Symbol, SymbolSize);
-            if (font == null)
-            {
-                return;
-            }
-
             float left = 0;
             float top = 0;
             SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
@@ -318,9 +311,9 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawString(char.ConvertFromUtf32(Symbol), font, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
             else
-                e.Graphics.DrawString(char.ConvertFromUtf32(Symbol), font, symbolColor, left, top);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, left, top);
         }
     }
 

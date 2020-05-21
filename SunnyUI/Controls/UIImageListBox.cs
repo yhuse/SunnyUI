@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2020-05-21: V2.2.5 增加鼠标滑过高亮
 ******************************************************************************/
 
 using System;
@@ -158,16 +159,26 @@ namespace Sunny.UI
                 bar.FillColor = Color.White;
             }
 
-            listbox?.SetStyleColor(uiColor);
+            hoverColor = uiColor.TreeViewHoverColor;
+            if (listbox != null)
+            {
+                listbox.HoverColor = hoverColor;
+                listbox.SetStyleColor(uiColor);
+            }
         }
 
         private int LastCount;
 
+        private int lastBarValue = -1;
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
             if (listbox != null)
             {
-                ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                if (bar.Value != lastBarValue)
+                {
+                    ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                    lastBarValue = bar.Value;
+                }
             }
         }
 
@@ -249,6 +260,20 @@ namespace Sunny.UI
         {
             get => listbox.SelectedValue;
             set => listbox.SelectedValue = value;
+        }
+
+        private Color hoverColor = Color.FromArgb(155, 200, 255);
+
+        [DefaultValue(typeof(Color), "155, 200, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                hoverColor = value;
+                listbox.HoverColor = hoverColor;
+                _style = UIStyle.Custom;
+            }
         }
 
         private sealed class ImageListBox : ListBox, IStyleInterface
@@ -494,18 +519,44 @@ namespace Sunny.UI
                     return;
                 }
 
-                e.DrawBackground();
+                bool otherState = e.State == DrawItemState.Grayed || e.State == DrawItemState.HotLight;
+                if (!otherState)
+                {
+                    e.DrawBackground();
+                }
+
                 if (e.Index < 0 || e.Index >= Items.Count)
                 {
                     return;
                 }
 
-                Color backColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? ItemSelectBackColor : BackColor;
-                Color foreColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? ItemSelectForeColor : ForeColor;
+                bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+                Color backColor = isSelected ? ItemSelectBackColor : BackColor;
+                Color foreColor = isSelected ? ItemSelectForeColor : ForeColor;
                 Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1);
 
-                e.Graphics.FillRectangle(BackColor, e.Bounds);
-                e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                if (!otherState)
+                {
+                    e.Graphics.FillRectangle(BackColor, e.Bounds);
+                    e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                }
+                else
+                {
+                    if (e.State == DrawItemState.Grayed)
+                    {
+                        backColor = BackColor;
+                        foreColor = ForeColor;
+                    }
+
+                    if (e.State == DrawItemState.HotLight)
+                    {
+                        backColor = HoverColor;
+                        foreColor = ForeColor;
+                    }
+
+                    e.Graphics.FillRectangle(BackColor, e.Bounds);
+                    e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                }
 
                 Graphics g = e.Graphics;
                 Matrix oldTransform = g.Transform;
@@ -539,6 +590,58 @@ namespace Sunny.UI
                 }
 
                 g.Transform = oldTransform;
+            }
+
+            private Color hoverColor = Color.FromArgb(155, 200, 255);
+
+            [DefaultValue(typeof(Color), "155, 200, 255")]
+            public Color HoverColor
+            {
+                get => hoverColor;
+                set
+                {
+                    hoverColor = value;
+                    _style = UIStyle.Custom;
+                }
+            }
+
+            private int lastIndex = -1;
+            private int mouseIndex = -1;
+
+            [Browsable(false)]
+            public int MouseIndex
+            {
+                get => mouseIndex;
+                set
+                {
+                    if (mouseIndex != value)
+                    {
+                        if (lastIndex >= 0 && lastIndex != SelectedIndex)
+                        {
+                            OnDrawItem(new DrawItemEventArgs(this.CreateGraphics(), Font, GetItemRectangle(lastIndex), lastIndex, DrawItemState.Grayed));
+                        }
+
+                        mouseIndex = value;
+                        if (mouseIndex >= 0 && mouseIndex != SelectedIndex)
+                        {
+                            OnDrawItem(new DrawItemEventArgs(this.CreateGraphics(), Font, GetItemRectangle(value), value, DrawItemState.HotLight));
+                        }
+
+                        lastIndex = mouseIndex;
+                    }
+                }
+            }
+
+            protected override void OnMouseMove(MouseEventArgs e)
+            {
+                base.OnMouseMove(e);
+                MouseIndex = IndexFromPoint(e.Location);
+            }
+
+            protected override void OnMouseLeave(EventArgs e)
+            {
+                base.OnMouseLeave(e);
+                MouseIndex = -1;
             }
         }
 
