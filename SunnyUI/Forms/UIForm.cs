@@ -456,9 +456,14 @@ namespace Sunny.UI
                     {
                         if (windowState == FormWindowState.Maximized)
                         {
+                            // 记录最大化时窗体宽度
                             int pWidth = Width;
+                            // 计算鼠标X与当前最大化左侧的位置差
+                            int dMx = Mx - Left;
+                            // 还原窗体
                             ShowMaximize(false);
-                            Fx = Mx - Width * Math.Abs(Mx) / pWidth;
+                            // 计算缩放后，窗体宽度等比变化的情况下，窗体的实际左边距
+                            Fx = Mx - Width * dMx / pWidth;
                         }
                         isMouseMoved = true;
                         Left = Fx + MvX;
