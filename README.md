@@ -14,6 +14,9 @@
 #### 软件框架
 ![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png)
 
+#### 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有你更精彩！
+![感谢您的支持](https://images.gitee.com/uploads/images/2020/0524/233620_6685fbbf_416720.png)
+
 1、开源控件库
 
   - 基于 framework4.0，原生控件开发，参考 Element、DotNetBar 主题风格，包含 Button、Panel、TextBox、CheckBox、RadioButton、TabControl、NavBar、DataGridView在内的常用控件超过 40 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
