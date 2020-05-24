@@ -85,7 +85,7 @@ namespace Sunny.UI
 
         private static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
         {
-            UIMessageForm frm = new UIMessageForm();
+            UIMessageForm frm = new UIMessageForm() { FormSizeable = false };
             frm.ShowMessage(message, title, isShowCancel, style);
             frm.ShowDialog();
             bool isOk = frm.IsOK;

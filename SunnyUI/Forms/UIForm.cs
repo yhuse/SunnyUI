@@ -383,44 +383,47 @@ namespace Sunny.UI
                 }
             }
         }
-
+        public bool FormSizeable = true;
         private Size memorizedSize;
         private Point memorizedLocation;
         private void ShowMaximize(bool MoveAtNormalize = true)
         {
-            if (windowState == FormWindowState.Normal)
+            if (FormSizeable)
             {
-                memorizedSize = Size;
-                memorizedLocation = Location;
-                var formWorkingArea = Screen.GetWorkingArea(this);
-                var formBounds = Screen.GetBounds(formWorkingArea.Location);
-                Width = ShowFullScreen ? formBounds.Width : formWorkingArea.Width;
-                Height = ShowFullScreen ? formBounds.Height : formWorkingArea.Height;
-                Left = ShowFullScreen ? formBounds.Left : formWorkingArea.Left;
-                Top = ShowFullScreen ? formBounds.Top : formWorkingArea.Top;
-                StartPosition = FormStartPosition.Manual;
-                SetFormRoundRectRegion(this, 0);
-
-                windowState = FormWindowState.Maximized;
-            }
-            else if (windowState == FormWindowState.Maximized)
-            {
-                if (memorizedSize.Width == 0 || memorizedSize.Height == 0)
+                if (windowState == FormWindowState.Normal)
                 {
-                    memorizedSize = new Size(800, 600);
+                    memorizedSize = Size;
+                    memorizedLocation = Location;
+                    var formWorkingArea = Screen.GetWorkingArea(this);
+                    var formBounds = Screen.GetBounds(formWorkingArea.Location);
+                    Width = ShowFullScreen ? formBounds.Width : formWorkingArea.Width;
+                    Height = ShowFullScreen ? formBounds.Height : formWorkingArea.Height;
+                    Left = ShowFullScreen ? formBounds.Left : formWorkingArea.Left;
+                    Top = ShowFullScreen ? formBounds.Top : formWorkingArea.Top;
+                    StartPosition = FormStartPosition.Manual;
+                    SetFormRoundRectRegion(this, 0);
+
+                    windowState = FormWindowState.Maximized;
+                }
+                else if (windowState == FormWindowState.Maximized)
+                {
+                    if (memorizedSize.Width == 0 || memorizedSize.Height == 0)
+                    {
+                        memorizedSize = new Size(800, 600);
+                    }
+
+                    Size = memorizedSize;
+                    if (MoveAtNormalize)
+                    {
+                        Location = memorizedLocation;
+                    }
+                    StartPosition = FormStartPosition.CenterScreen;
+                    SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+                    windowState = FormWindowState.Normal;
                 }
 
-                Size = memorizedSize;
-                if (MoveAtNormalize)
-                {
-                    Location = memorizedLocation;
-                }
-                StartPosition = FormStartPosition.CenterScreen;
-                SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
-                windowState = FormWindowState.Normal;
+                Invalidate();
             }
-
-            Invalidate();
         }
 
         private bool isMouseMoved = false;
