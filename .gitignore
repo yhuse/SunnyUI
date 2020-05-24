@@ -4,7 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
-*.rsuser
 *.suo
 *.user
 *.userosscache
@@ -20,9 +19,8 @@
 [Rr]eleases/
 x64/
 x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
 bld/
+[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -63,8 +61,10 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
+*.lastbuildstate
 *.meta
 *.obj
+*.idb
 *.iobj
 *.pch
 *.pdb
@@ -75,10 +75,10 @@ StyleCopReport.xml
 *.sbr
 *.tlb
 *.tli
+*.tlog
 *.tlh
 *.tmp
 *.tmp_proj
-*_wpftmp.csproj
 *.log
 *.vspscc
 *.vssscc
@@ -210,7 +210,7 @@ _pkginfo.txt
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
-!?*.[Cc]ache/
+!*.[Cc]ache/
 
 # Others
 ClientBin/
@@ -254,7 +254,6 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
-*- Backup*.rdl
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -294,8 +293,8 @@ paket-files/
 .idea/
 *.sln.iml
 
-# CodeRush personal settings
-.cr/personal
+# CodeRush
+.cr/
 
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
@@ -334,6 +333,3 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
-
-# BeatPulse healthcheck temp database
-healthchecksdb
