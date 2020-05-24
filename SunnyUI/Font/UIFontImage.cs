@@ -18,7 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-05-21: V2.2.5 调整从资源文件中加载字体，不用另存为文件。
- *                    感谢：麦壳饼 https://gitee.com/maikebing 
+ *                    感谢：麦壳饼 https://gitee.com/maikebing
 ******************************************************************************/
 
 using System;
@@ -29,7 +29,6 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -106,13 +105,7 @@ namespace Sunny.UI
                 return new SizeF(0, 0);
             }
 
-            Label Image = new Label();
-            Image.AutoSize = true;
-            Image.Font = font;
-            Image.Text = char.ConvertFromUtf32(symbol);
-            Size ImageSize = Image.PreferredSize;
-            Image.Dispose();
-            return ImageSize;
+            return graphics.MeasureString(char.ConvertFromUtf32(symbol), font);
         }
 
         /// <summary>
@@ -153,8 +146,8 @@ namespace Sunny.UI
         public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color, Rectangle rect, int xOffset = 0, int yOffSet = 0)
         {
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + (rect.Width - sf.Width) / 2.0f,
-                rect.Top + (rect.Height - sf.Height) / 2.0f, xOffset, yOffSet);
+            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
+                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
         }
 
         /// <summary>
@@ -167,9 +160,11 @@ namespace Sunny.UI
         public static Image CreateImage(int symbol, int size, Color color)
         {
             Bitmap image = new Bitmap(size, size);
+
             using (Graphics g = image.Graphics())
             {
-                g.DrawFontImage(symbol, size, color, image.Bounds());
+                SizeF sf = g.GetFontImageSize(symbol, size);
+                g.DrawFontImage(symbol, size, color, (image.Width - sf.Width) / 2.0f, (image.Height - sf.Height) / 2.0f);
             }
 
             return image;

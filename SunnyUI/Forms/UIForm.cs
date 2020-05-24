@@ -554,7 +554,7 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 2);
+                e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
             }
 
             if (MaximizeBox)
@@ -567,7 +567,7 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(
                     windowState == FormWindowState.Maximized
                         ? FontAwesomeIcons.fa_window_restore
-                        : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 2);
+                        : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
             }
 
             if (MinimizeBox)
@@ -577,7 +577,7 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(new SolidBrush(btn.FillHoverColor), MinimizeBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 2);
+                e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
             }
 
             e.Graphics.SetDefaultQuality();
