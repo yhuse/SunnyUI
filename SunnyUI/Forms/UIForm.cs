@@ -392,10 +392,12 @@ namespace Sunny.UI
             {
                 memorizedSize = Size;
                 memorizedLocation = Location;
-                Width = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Width : Screen.PrimaryScreen.WorkingArea.Width;
-                Height = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Height : Screen.PrimaryScreen.WorkingArea.Height;
-                Left = 0;
-                Top = 0;
+                var formWorkingArea = Screen.GetWorkingArea(this);
+                var formBounds = Screen.GetBounds(formWorkingArea.Location);
+                Width = ShowFullScreen ? formBounds.Width : formWorkingArea.Width;
+                Height = ShowFullScreen ? formBounds.Height : formWorkingArea.Height;
+                Left = ShowFullScreen ? formBounds.Left : formWorkingArea.Left;
+                Top = ShowFullScreen ? formBounds.Top : formWorkingArea.Top;
                 StartPosition = FormStartPosition.Manual;
                 SetFormRoundRectRegion(this, 0);
 
@@ -452,11 +454,11 @@ namespace Sunny.UI
                     int MvY = MousePosition.Y - My;
                     if (MvX != 0 || MvY != 0)
                     {
-                        if (windowState == FormWindowState.Maximized) 
+                        if (windowState == FormWindowState.Maximized)
                         {
-                            float alignProportion = Mx / (float)Width;
+                            int pWidth = Width;
                             ShowMaximize(false);
-                            Fx = Mx - (int)(Width * alignProportion);
+                            Fx = Mx - Width * Math.Abs(Mx) / pWidth;
                         }
                         isMouseMoved = true;
                         Left = Fx + MvX;
@@ -471,18 +473,20 @@ namespace Sunny.UI
         }
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            if(isMouseMoved && MousePosition.Y == 0)
+            if (isMouseMoved && MousePosition.Y == 0)
             {
                 ShowMaximize();
                 isMouseMoved = false;
             }
+
+            var formWorkingArea = Screen.GetWorkingArea(this);
             if (Top < 0)
             {
                 Top = 0;
             }
-            else if (Top > Screen.PrimaryScreen.WorkingArea.Bottom)
+            else if (Top > formWorkingArea.Bottom)
             {
-                Top = Screen.PrimaryScreen.WorkingArea.Bottom - 20;
+                Top = formWorkingArea.Bottom - 20;
             }
         }
         protected override void OnDoubleClick(EventArgs e)
@@ -871,7 +875,7 @@ namespace Sunny.UI
         }
         private void ctrlMouseMove(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 Left = Fx + (MousePosition.X - Mx);
                 Top = Fy + (MousePosition.Y - My);
