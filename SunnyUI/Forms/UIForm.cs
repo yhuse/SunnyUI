@@ -384,14 +384,14 @@ namespace Sunny.UI
             }
         }
 
-        private Size size;
-
-        private void ShowMaximize()
+        private Size memorizedSize;
+        private Point memorizedLocation;
+        private void ShowMaximize(bool MoveAtNormalize = true)
         {
             if (windowState == FormWindowState.Normal)
             {
-                size = Size;
-
+                memorizedSize = Size;
+                memorizedLocation = Location;
                 Width = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Width : Screen.PrimaryScreen.WorkingArea.Width;
                 Height = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Height : Screen.PrimaryScreen.WorkingArea.Height;
                 Left = 0;
@@ -403,14 +403,16 @@ namespace Sunny.UI
             }
             else if (windowState == FormWindowState.Maximized)
             {
-                if (size.Width == 0 || size.Height == 0)
+                if (memorizedSize.Width == 0 || memorizedSize.Height == 0)
                 {
-                    size = new Size(800, 600);
+                    memorizedSize = new Size(800, 600);
                 }
 
-                Size = size;
-                Left = Screen.PrimaryScreen.WorkingArea.Width / 2 - Size.Width / 2;
-                Top = Screen.PrimaryScreen.WorkingArea.Height / 2 - Size.Height / 2;
+                Size = memorizedSize;
+                if (MoveAtNormalize)
+                {
+                    Location = memorizedLocation;
+                }
                 StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
@@ -419,6 +421,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private bool isMouseMoved = false;
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (FormBorderStyle == FormBorderStyle.None)
@@ -443,13 +446,49 @@ namespace Sunny.UI
                     InMinBox = inMinBox;
                     Invalidate();
                 }
+                if (e.Button == MouseButtons.Left)
+                {
+                    int MvX = MousePosition.X - Mx;
+                    int MvY = MousePosition.Y - My;
+                    if (MvX != 0 || MvY != 0)
+                    {
+                        if (windowState == FormWindowState.Maximized) 
+                        {
+                            float alignProportion = Mx / (float)Width;
+                            ShowMaximize(false);
+                            Fx = Mx - (int)(Width * alignProportion);
+                        }
+                        isMouseMoved = true;
+                        Left = Fx + MvX;
+                        Top = Fy + MvY;
+                    }
+                }
             }
             else
             {
                 InControlBox = InMaxBox = InMinBox = false;
             }
         }
-
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            if(isMouseMoved && MousePosition.Y == 0)
+            {
+                ShowMaximize();
+                isMouseMoved = false;
+            }
+            if (Top < 0)
+            {
+                Top = 0;
+            }
+            else if (Top > Screen.PrimaryScreen.WorkingArea.Bottom)
+            {
+                Top = Screen.PrimaryScreen.WorkingArea.Bottom - 20;
+            }
+        }
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            ShowMaximize();
+        }
         private bool InControlBox, InMaxBox, InMinBox;
 
         /// <summary>
@@ -798,6 +837,10 @@ namespace Sunny.UI
             }
         }
 
+        int Mx;
+        int My;
+        int Fx;
+        int Fy;
         /// <summary>
         /// Handles the MouseDown event of the c control.
         /// </summary>
@@ -805,24 +848,35 @@ namespace Sunny.UI
         /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
         private void ctrlMouseDown(object sender, MouseEventArgs e)
         {
-            if (windowState == FormWindowState.Maximized)
-            {
-                return;
-            }
+            //if (windowState == FormWindowState.Maximized)
+            //{
+            //    return;
+            //}
 
-            if (sender == this)
+            //if (sender == this)
+            //{
+            //    if (FormBorderStyle == FormBorderStyle.None && e.Y <= titleHeight && e.X < ControlBoxLeft)
+            //    {
+            //        MousePressMove(Handle);
+            //    }
+            //}
+            //else
+            //{
+            //    MousePressMove(Handle);
+            //}
+            Mx = MousePosition.X;
+            My = MousePosition.Y;
+            Fx = Left;
+            Fy = Top;
+        }
+        private void ctrlMouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
             {
-                if (FormBorderStyle == FormBorderStyle.None && e.Y <= titleHeight && e.X < ControlBoxLeft)
-                {
-                    MousePressMove(Handle);
-                }
-            }
-            else
-            {
-                MousePressMove(Handle);
+                Left = Fx + (MousePosition.X - Mx);
+                Top = Fy + (MousePosition.Y - My);
             }
         }
-
         private void SetRadius()
         {
             if (DesignMode)
