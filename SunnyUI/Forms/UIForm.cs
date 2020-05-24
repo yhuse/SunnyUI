@@ -478,20 +478,23 @@ namespace Sunny.UI
         }
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            if (isMouseMoved && MousePosition.Y == 0)
+            if (!IsDisposed)
             {
-                ShowMaximize();
-                isMouseMoved = false;
-            }
+                if (isMouseMoved && MousePosition.Y == 0)
+                {
+                    ShowMaximize();
+                    isMouseMoved = false;
+                }
 
-            var formWorkingArea = Screen.GetWorkingArea(this);
-            if (Top < 0)
-            {
-                Top = 0;
-            }
-            else if (Top > formWorkingArea.Bottom)
-            {
-                Top = formWorkingArea.Bottom - 20;
+                var formWorkingArea = Screen.GetWorkingArea(this);
+                if (Top < 0)
+                {
+                    Top = 0;
+                }
+                else if (Top > formWorkingArea.Bottom)
+                {
+                    Top = formWorkingArea.Bottom - 20;
+                }
             }
         }
         protected override void OnDoubleClick(EventArgs e)
