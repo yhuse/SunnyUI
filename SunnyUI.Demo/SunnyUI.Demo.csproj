@@ -409,4 +409,8 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir Team
+xcopy /e /y /d $(ProjectDir)Team Team</PostBuildEvent>
+  </PropertyGroup>
 </Project>
