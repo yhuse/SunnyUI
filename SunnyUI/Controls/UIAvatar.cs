@@ -232,6 +232,16 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
+            if (Height != Width)
+            {
+                Height = Width;
+            }
+
+            if (Width <= 0 || Height <= 0)
+            {
+                return;
+            }
+
             int size = Math.Min(Width, Height) - 3;
             if (Icon == UIIcon.Image)
             {
@@ -270,8 +280,7 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Symbol)
             {
-                SizeF sf = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, foreColor, 2 + (size - 4 - sf.Width + 7) / 2.0f, 2 + (size - 4 - sf.Height + 2) / 2.0f);
+                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle(0, 0, Width, Height));
             }
 
             if (Icon == UIIcon.Text)
