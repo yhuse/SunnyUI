@@ -314,7 +314,7 @@ namespace Sunny.UI
     {
         public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style = UIStyle.Blue)
         {
-            UISelectForm frm = new UISelectForm();
+            UISelectForm frm = new UISelectForm() { FormSizeable = false };
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
