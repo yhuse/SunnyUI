@@ -51,6 +51,13 @@ namespace Sunny.UI
             Width = 150;
         }
 
+        [DefaultValue(null)]
+        public string Watermark
+        {
+            get => edit.Watermark;
+            set => edit.Watermark = value;
+        }
+
         public void SelectAll()
         {
             edit.SelectAll();

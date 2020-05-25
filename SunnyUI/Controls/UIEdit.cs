@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -26,6 +27,22 @@ namespace Sunny.UI
             Width = 150;
             MaxLength = 255;
         }
+
+        private string watermark;
+
+        [DefaultValue(null)]
+        public string Watermark
+        {
+            get => watermark;
+            set
+            {
+                watermark = value;
+                SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+            }
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
         protected override void OnKeyDown(KeyEventArgs e)
         {

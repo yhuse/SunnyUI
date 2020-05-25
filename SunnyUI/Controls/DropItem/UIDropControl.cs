@@ -24,6 +24,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -61,6 +62,13 @@ namespace Sunny.UI
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
             edit.BackColor = Color.White;
+        }
+
+        [DefaultValue(null)]
+        public string Watermark
+        {
+            get => edit.Watermark;
+            set => edit.Watermark = value;
         }
 
         private UIDropDown itemForm;
@@ -132,7 +140,7 @@ namespace Sunny.UI
 
         public event EventHandler ButtonClick;
 
-        private readonly TextBox edit = new TextBox();
+        private readonly TextBoxEx edit = new TextBoxEx();
 
         protected override void OnTextChanged(EventArgs e)
         {
@@ -299,6 +307,26 @@ namespace Sunny.UI
                 }
 
                 ButtonClick?.Invoke(this, e);
+            }
+        }
+
+        private class TextBoxEx : TextBox
+        {
+            private string watermark;
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
+
+
+            [DefaultValue(null)]
+            public string Watermark
+            {
+                get => watermark;
+                set
+                {
+                    watermark = value;
+                    SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+                }
             }
         }
     }

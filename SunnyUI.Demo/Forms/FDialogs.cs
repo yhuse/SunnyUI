@@ -122,5 +122,15 @@ namespace Sunny.UI.Demo
         {
             this.ShowErrorNotifier("Error");
         }
+
+        private void btnCH_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetCH();
+        }
+
+        private void btnEN_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetEN();
+        }
     }
 }

@@ -91,7 +91,7 @@
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 3;
-            this.uiTextBox1.Text = "uiTextBox1";
+            this.uiTextBox1.Watermark = "水印文字";
             // 
             // uiLabel1
             // 
@@ -175,6 +175,7 @@
             this.uiComboBox1.Size = new System.Drawing.Size(150, 29);
             this.uiComboBox1.TabIndex = 11;
             this.uiComboBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboBox1.Watermark = "水印文字";
             // 
             // uiComboBox2
             // 
@@ -209,6 +210,7 @@
             this._uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this._uiDatePicker1.Size = new System.Drawing.Size(150, 29);
             this._uiDatePicker1.TabIndex = 13;
+            this._uiDatePicker1.Text = "2020-04-16";
             this._uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this._uiDatePicker1.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
             // 
