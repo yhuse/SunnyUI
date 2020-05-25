@@ -439,10 +439,23 @@ namespace Sunny.UI
                 }
                 else // 若鼠标没有按下
                 {
-                    InControlBox = e.Location.InRect(ControlBoxRect);
-                    InMaxBox = e.Location.InRect(MaximizeBoxRect);
-                    InMinBox = e.Location.InRect(MinimizeBoxRect);
-                    Invalidate();
+                    // 如果鼠标经过控制按钮且焦点改变，刷新窗体
+                    bool tmpStatus = e.Location.InRect(ControlBoxRect);
+                    if ((tmpStatus = e.Location.InRect(ControlBoxRect)) != InControlBox)
+                    {
+                        InControlBox = tmpStatus;
+                        Invalidate();
+                    }
+                    else if ((tmpStatus = e.Location.InRect(MaximizeBoxRect)) != InMaxBox)
+                    {
+                        InMaxBox = tmpStatus;
+                        Invalidate();
+                    }
+                    else if ((tmpStatus = e.Location.InRect(MinimizeBoxRect)) != InMinBox)
+                    {
+                        InMinBox = tmpStatus;
+                        Invalidate();
+                    }
                 }
             }
             else
