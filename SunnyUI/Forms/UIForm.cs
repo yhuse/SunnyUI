@@ -362,26 +362,7 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            if (FormBorderStyle == FormBorderStyle.None)
-            {
-                if (InControlBox)
-                {
-                    Close();
-                    InControlBox = false;
-                }
 
-                if (InMinBox)
-                {
-                    base.WindowState = FormWindowState.Minimized;
-                    InMinBox = false;
-                }
-
-                if (InMaxBox)
-                {
-                    ShowMaximize();
-                    InMaxBox = false;
-                }
-            }
         }
         public bool FormSizeable = true;
         private Size memorizedSize;
@@ -431,47 +412,37 @@ namespace Sunny.UI
         {
             if (FormBorderStyle == FormBorderStyle.None)
             {
-                bool inControlBox = e.Location.InRect(ControlBoxRect);
-                if (inControlBox != InControlBox)
+                if (isMouseDown) // 若鼠标按下时触发事件
                 {
-                    InControlBox = inControlBox;
-                    Invalidate();
-                }
-
-                bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
-                if (inMaxBox != InMaxBox)
-                {
-                    InMaxBox = inMaxBox;
-                    Invalidate();
-                }
-
-                bool inMinBox = e.Location.InRect(MinimizeBoxRect);
-                if (inMinBox != InMinBox)
-                {
-                    InMinBox = inMinBox;
-                    Invalidate();
-                }
-                if (e.Button == MouseButtons.Left)
-                {
-                    int MvX = MousePosition.X - Mx;
-                    int MvY = MousePosition.Y - My;
-                    if (MvX != 0 || MvY != 0)
+                    if (isMoveAtMouseDown) // 若鼠标按下时触发移动
                     {
-                        if (windowState == FormWindowState.Maximized)
+                        int MvX = MousePosition.X - Mx;
+                        int MvY = MousePosition.Y - My;
+                        if (MvX != 0 || MvY != 0)
                         {
-                            // 记录最大化时窗体宽度
-                            int pWidth = Width;
-                            // 计算鼠标X与当前最大化左侧的位置差
-                            int dMx = Mx - Left;
-                            // 还原窗体
-                            ShowMaximize(false);
-                            // 计算缩放后，窗体宽度等比变化的情况下，窗体的实际左边距
-                            Fx = Mx - Width * dMx / pWidth;
+                            if (windowState == FormWindowState.Maximized)
+                            {
+                                // 记录最大化时窗体宽度
+                                int pWidth = Width;
+                                // 计算鼠标X与当前最大化左侧的位置差
+                                int dMx = Mx - Left;
+                                // 还原窗体
+                                ShowMaximize(false);
+                                // 计算缩放后，窗体宽度等比变化的情况下，窗体的实际左边距
+                                Fx = Mx - Width * dMx / pWidth;
+                            }
+                            isMouseMoved = true;
+                            Left = Fx + MvX;
+                            Top = Fy + MvY;
                         }
-                        isMouseMoved = true;
-                        Left = Fx + MvX;
-                        Top = Fy + MvY;
                     }
+                }
+                else // 若鼠标没有按下
+                {
+                    InControlBox = e.Location.InRect(ControlBoxRect);
+                    InMaxBox = e.Location.InRect(MaximizeBoxRect);
+                    InMinBox = e.Location.InRect(MinimizeBoxRect);
+                    Invalidate();
                 }
             }
             else
@@ -479,10 +450,52 @@ namespace Sunny.UI
                 InControlBox = InMaxBox = InMinBox = false;
             }
         }
+        private int Mx;
+        private int My;
+        private int Fx;
+        private int Fy;
+        private bool MouseDownAtClose = false;
+        private bool MouseDownAtMaximum = false;
+        private bool MouseDownAtMinimum = false;
+        private bool isMouseDown = false;
+        private bool isMoveAtMouseDown = false;
+        /// <summary>
+        /// Handles the MouseDown event of the c control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
+        private void ctrlMouseDown(object sender, MouseEventArgs e)
+        {
+            Mx = MousePosition.X;
+            My = MousePosition.Y;
+            Fx = Left;
+            Fy = Top;
+            // 按下鼠标时针对窗体控制按钮检测并重绘
+            if (MouseDownAtClose = e.Location.InRect(ControlBoxRect))
+            {
+                InControlBox = true;
+                Invalidate();
+            }
+            else if (MouseDownAtMaximum = e.Location.InRect(MaximizeBoxRect))
+            {
+                InMaxBox = true;
+                Invalidate();
+            }
+            else if (MouseDownAtMinimum = e.Location.InRect(MinimizeBoxRect))
+            {
+                InMinBox = true;
+                Invalidate();
+            }
+            // 若控制键被按下，则不允许响应移动
+            isMoveAtMouseDown = !(MouseDownAtClose || MouseDownAtMinimum || MouseDownAtMaximum);
+            isMouseDown = true;
+        }
         protected override void OnMouseUp(MouseEventArgs e)
         {
             if (!IsDisposed)
             {
+                isMouseDown = false;
+                isMoveAtMouseDown = false;
                 if (isMouseMoved && MousePosition.Y == 0)
                 {
                     ShowMaximize();
@@ -497,6 +510,29 @@ namespace Sunny.UI
                 else if (Top > formWorkingArea.Bottom)
                 {
                     Top = formWorkingArea.Bottom - 20;
+                }
+
+                if (FormBorderStyle == FormBorderStyle.None)
+                {
+                    // 鼠标键抬起时，再次检测鼠标是否活动在控制按钮区域，若按下与抬起均相同，则响应事件
+                    if (MouseDownAtClose && e.Location.InRect(ControlBoxRect))
+                    {
+                        Close();
+                    }
+
+                    if (MouseDownAtMinimum && e.Location.InRect(MinimizeBoxRect))
+                    {
+                        base.WindowState = FormWindowState.Minimized;
+                    }
+
+                    if (MouseDownAtMaximum && e.Location.InRect(MaximizeBoxRect))
+                    {
+                        ShowMaximize();
+                    }
+
+                    InControlBox = InMinBox = InMaxBox = false;
+                    MouseDownAtClose = MouseDownAtMinimum = MouseDownAtMaximum = false;
+                    Invalidate();
                 }
             }
         }
@@ -852,46 +888,14 @@ namespace Sunny.UI
             }
         }
 
-        int Mx;
-        int My;
-        int Fx;
-        int Fy;
-        /// <summary>
-        /// Handles the MouseDown event of the c control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
-        private void ctrlMouseDown(object sender, MouseEventArgs e)
-        {
-            //if (windowState == FormWindowState.Maximized)
-            //{
-            //    return;
-            //}
-
-            //if (sender == this)
-            //{
-            //    if (FormBorderStyle == FormBorderStyle.None && e.Y <= titleHeight && e.X < ControlBoxLeft)
-            //    {
-            //        MousePressMove(Handle);
-            //    }
-            //}
-            //else
-            //{
-            //    MousePressMove(Handle);
-            //}
-            Mx = MousePosition.X;
-            My = MousePosition.Y;
-            Fx = Left;
-            Fy = Top;
-        }
-        private void ctrlMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Left = Fx + (MousePosition.X - Mx);
-                Top = Fy + (MousePosition.Y - My);
-            }
-        }
+        //private void ctrlMouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        Left = Fx + (MousePosition.X - Mx);
+        //        Top = Fy + (MousePosition.Y - My);
+        //    }
+        //}
         private void SetRadius()
         {
             if (DesignMode)
