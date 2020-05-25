@@ -364,12 +364,12 @@ namespace Sunny.UI
         {
 
         }
-        public bool FormSizeable = true;
+        public bool FormResizeable = true;
         private Size memorizedSize;
         private Point memorizedLocation;
         private void ShowMaximize(bool MoveAtNormalize = true)
         {
-            if (FormSizeable)
+            if (FormResizeable)
             {
                 if (windowState == FormWindowState.Normal)
                 {

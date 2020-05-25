@@ -85,7 +85,7 @@ namespace Sunny.UI
 
         private static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
         {
-            UIMessageForm frm = new UIMessageForm() { FormSizeable = false };
+            UIMessageForm frm = new UIMessageForm() { FormResizeable = false };
             frm.ShowMessage(message, title, isShowCancel, style);
             frm.ShowDialog();
             bool isOk = frm.IsOK;
@@ -98,7 +98,7 @@ namespace Sunny.UI
     {
         private static bool InputStringDialog(ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
         {
-            UIInputForm frm = new UIInputForm() { FormSizeable = false };
+            UIInputForm frm = new UIInputForm() { FormResizeable = false };
             frm.Style = style;
             frm.Editor.Text = value;
             frm.Text = UILocalize.InputTitle;
@@ -314,7 +314,7 @@ namespace Sunny.UI
     {
         public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style = UIStyle.Blue)
         {
-            UISelectForm frm = new UISelectForm() { FormSizeable = false };
+            UISelectForm frm = new UISelectForm() { FormResizeable = false };
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
