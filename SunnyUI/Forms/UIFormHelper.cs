@@ -98,7 +98,7 @@ namespace Sunny.UI
     {
         private static bool InputStringDialog(ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
         {
-            UIInputForm frm = new UIInputForm();
+            UIInputForm frm = new UIInputForm() { FormSizeable = false };
             frm.Style = style;
             frm.Editor.Text = value;
             frm.Text = UILocalize.InputTitle;
