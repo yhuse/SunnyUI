@@ -18,7 +18,7 @@ namespace Sunny.UI.Demo.Forms
             person.Department = "研发部";
             person.Birthday = new DateTime(2002, 1, 1);
 
-            FEdit frm = new FEdit();
+            FEdit frm = new FEdit() { FormResizeable = false };
             frm.Person = person;
             frm.ShowDialog();
             if (frm.IsOK)
@@ -31,7 +31,7 @@ namespace Sunny.UI.Demo.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            FEdit frm = new FEdit();
+            FEdit frm = new FEdit() { FormResizeable = false };
             frm.ShowDialog();
             if (frm.IsOK)
             {

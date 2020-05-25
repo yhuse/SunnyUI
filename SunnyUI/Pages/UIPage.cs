@@ -61,7 +61,7 @@ namespace Sunny.UI
         {
             if (StatusForm == null)
             {
-                StatusForm = new UIStatusForm() { FormSizeable = false };
+                StatusForm = new UIStatusForm() { FormResizeable = false };
             }
 
             StatusForm.Style = Style;
