@@ -26,6 +26,7 @@ namespace Sunny.UI
         public UIMainFrame()
         {
             InitializeComponent();
+            Main.BringToFront();
         }
 
         public UIPage AddPage(UIPage page, int index)

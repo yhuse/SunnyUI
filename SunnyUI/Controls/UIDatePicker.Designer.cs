@@ -33,7 +33,7 @@
             // UIDatePicker
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             Name = "UIDatePicker";
             Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);

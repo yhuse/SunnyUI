@@ -268,7 +268,7 @@ namespace Sunny.UI
                 Controls.Add(tableLayoutPanel1);
                 Padding = new Padding(1, 1, 1, 1);
                 AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                AutoScaleMode = AutoScaleMode.Font;
+                AutoScaleMode = AutoScaleMode.None;
                 AutoScaleDimensions = new SizeF(6f, 13f);
                 tableLayoutPanel1.ResumeLayout(false);
                 tableLayoutPanel1.PerformLayout();

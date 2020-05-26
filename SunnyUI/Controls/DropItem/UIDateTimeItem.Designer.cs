@@ -45,7 +45,7 @@
             // UIDateTimeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.monthCalendar);
             this.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
             this.Name = "UIDateTimeControl";

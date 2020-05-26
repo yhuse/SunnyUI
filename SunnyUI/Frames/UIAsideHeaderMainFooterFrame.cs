@@ -26,6 +26,9 @@ namespace Sunny.UI
         public UIAsideHeaderMainFooterFrame()
         {
             InitializeComponent();
+            Header.BringToFront();
+            Footer.BringToFront();
+            Main.BringToFront();
         }
     }
 }

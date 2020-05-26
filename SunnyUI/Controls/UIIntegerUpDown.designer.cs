@@ -120,7 +120,7 @@
             // UIIntegerUpDown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pnlValue);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDec);

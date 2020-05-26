@@ -33,7 +33,7 @@
             // UIComboBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Name = "UIComboBox";
             this.ButtonClick += new System.EventHandler(this.UIComboBox_ButtonClick);
             this.FontChanged += new System.EventHandler(this.UIComboBox_FontChanged);
