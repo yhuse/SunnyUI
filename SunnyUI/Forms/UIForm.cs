@@ -388,14 +388,25 @@ namespace Sunny.UI
 
         private void ShowMaximize()
         {
+            int screenIndex = 0;
+            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            {
+                if (MousePos.InRect(Screen.AllScreens[i].Bounds))
+                {
+                    screenIndex = i;
+                    break;
+                }
+            }
+
+            Screen screen = Screen.AllScreens[screenIndex];
             if (windowState == FormWindowState.Normal)
             {
                 size = Size;
 
-                Width = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Width : Screen.PrimaryScreen.WorkingArea.Width;
-                Height = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Height : Screen.PrimaryScreen.WorkingArea.Height;
-                Left = 0;
-                Top = 0;
+                Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
+                Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
+                Left = screen.Bounds.Left;
+                Top = screen.Bounds.Top;
                 StartPosition = FormStartPosition.Manual;
                 SetFormRoundRectRegion(this, 0);
 
@@ -409,8 +420,8 @@ namespace Sunny.UI
                 }
 
                 Size = size;
-                Left = Screen.PrimaryScreen.WorkingArea.Width / 2 - Size.Width / 2;
-                Top = Screen.PrimaryScreen.WorkingArea.Height / 2 - Size.Height / 2;
+                Left = screen.Bounds.Left + screen.WorkingArea.Width / 2 - Size.Width / 2;
+                Top = screen.Bounds.Top + screen.WorkingArea.Height / 2 - Size.Height / 2;
                 StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
@@ -419,8 +430,12 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private Point MousePos;
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
+            MousePos = PointToScreen(e.Location);
+
             if (FormBorderStyle == FormBorderStyle.None)
             {
                 bool inControlBox = e.Location.InRect(ControlBoxRect);

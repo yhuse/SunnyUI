@@ -447,5 +447,11 @@ namespace Sunny.UI
             column.Width = width;
             return column;
         }
+
+        public static DataGridViewColumn SetSortMode(this DataGridViewColumn column, DataGridViewColumnSortMode sortMode = DataGridViewColumnSortMode.Automatic)
+        {
+            column.SortMode = sortMode;
+            return column;
+        }
     }
 }
