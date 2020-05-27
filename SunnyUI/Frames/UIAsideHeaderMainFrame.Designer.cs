@@ -34,12 +34,6 @@
             // Aside
             // 
             this.Aside.LineColor = System.Drawing.Color.Black;
-            this.Aside.TabControl = this.Main;
-            // 
-            // Main
-            // 
-            this.Main.Location = new System.Drawing.Point(250, 92);
-            this.Main.Size = new System.Drawing.Size(550, 358);
             // 
             // Header
             // 
@@ -64,7 +58,6 @@
             this.Text = "UIAsideHeaderMainFrame";
             this.Controls.SetChildIndex(this.Aside, 0);
             this.Controls.SetChildIndex(this.Header, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

@@ -26,8 +26,13 @@ namespace Sunny.UI
         public UIAsideHeaderMainFrame()
         {
             InitializeComponent();
+            Controls.SetChildIndex(MainTabControl, 0);
+            Header.Parent = this;
+            Aside.Parent = this;
+            MainTabControl.Parent = this;
             Header.BringToFront();
-            Main.BringToFront();
+            MainTabControl.BringToFront();
+            Aside.TabControl = MainTabControl;
         }
     }
 }

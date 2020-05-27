@@ -36,11 +36,6 @@
             this.Aside.Size = new System.Drawing.Size(250, 685);
             this.Aside.Style = Sunny.UI.UIStyle.Blue;
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(774, 685);
-            this.Main.Style = Sunny.UI.UIStyle.Blue;
-            // 
             // FAsideMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);

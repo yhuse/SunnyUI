@@ -297,7 +297,7 @@ namespace Sunny.UI
         /// <param name="rgnRadius">圆角矩形的半径</param>
         public static void SetFormRoundRectRegion(Form form, int rgnRadius)
         {
-            if (form.FormBorderStyle == FormBorderStyle.None)
+            if (form != null && form.FormBorderStyle == FormBorderStyle.None)
             {
                 int region = CreateRoundRectRgn(0, 0, form.Width + 1, form.Height + 1, rgnRadius, rgnRadius);
                 SetWindowRgn(form.Handle, region, true);

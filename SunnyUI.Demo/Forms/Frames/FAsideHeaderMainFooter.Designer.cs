@@ -51,10 +51,6 @@
             this.Aside.Size = new System.Drawing.Size(250, 685);
             this.Aside.MenuItemClick += new Sunny.UI.UINavMenu.OnMenuItemClick(this.Aside_MenuItemClick);
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(774, 572);
-            // 
             // FAsideHeaderMainFooter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);

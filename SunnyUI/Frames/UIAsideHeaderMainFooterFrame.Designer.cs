@@ -31,10 +31,6 @@
             this.Footer = new Sunny.UI.UIPanel();
             this.SuspendLayout();
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(550, 302);
-            // 
             // Footer
             // 
             this.Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -59,7 +55,6 @@
             this.Controls.SetChildIndex(this.Aside, 0);
             this.Controls.SetChildIndex(this.Header, 0);
             this.Controls.SetChildIndex(this.Footer, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

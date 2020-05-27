@@ -48,11 +48,6 @@
             this.Header.Style = Sunny.UI.UIStyle.Blue;
             this.Header.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.Header_MenuItemClick);
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(1024, 519);
-            this.Main.Style = Sunny.UI.UIStyle.Blue;
-            // 
             // uiLogo1
             // 
             this.uiLogo1.Font = new System.Drawing.Font("微软雅黑", 12F);

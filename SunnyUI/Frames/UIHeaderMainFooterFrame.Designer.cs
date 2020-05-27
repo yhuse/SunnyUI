@@ -36,10 +36,6 @@
             this.Header.Location = new System.Drawing.Point(0, 35);
             this.Header.Size = new System.Drawing.Size(800, 110);
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(800, 249);
-            // 
             // Footer
             // 
             this.Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -65,7 +61,6 @@
             this.Text = "UIHeaderMainFooterFrame";
             this.Controls.SetChildIndex(this.Footer, 0);
             this.Controls.SetChildIndex(this.Header, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

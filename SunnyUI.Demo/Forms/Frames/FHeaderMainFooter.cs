@@ -7,7 +7,7 @@
             InitializeComponent();
 
             //设置关联
-            Header.TabControl = Main;
+            Header.TabControl = MainTabControl;
 
             //增加页面到Main
             AddPage(new FTitlePage1(), 1001);

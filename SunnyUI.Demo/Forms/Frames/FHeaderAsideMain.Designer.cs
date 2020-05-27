@@ -44,11 +44,6 @@
             this.Header.Size = new System.Drawing.Size(1024, 110);
             this.Header.Style = Sunny.UI.UIStyle.Blue;
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(774, 575);
-            this.Main.Style = Sunny.UI.UIStyle.Blue;
-            // 
             // uiLogo1
             // 
             this.uiLogo1.Font = new System.Drawing.Font("微软雅黑", 12F);

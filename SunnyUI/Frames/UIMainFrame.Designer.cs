@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Main = new Sunny.UI.UITabControl();
+            this.MainContainer = new Sunny.UI.UITabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Main.SuspendLayout();
+            this.MainContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Main
+            // MainContainer
             // 
-            this.Main.Controls.Add(this.tabPage1);
-            this.Main.Controls.Add(this.tabPage2);
-            this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Main.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.Main.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.Main.ItemSize = new System.Drawing.Size(150, 40);
-            this.Main.Location = new System.Drawing.Point(0, 35);
-            this.Main.Name = "Main";
-            this.Main.SelectedIndex = 0;
-            this.Main.Size = new System.Drawing.Size(800, 415);
-            this.Main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.Main.TabIndex = 0;
+            this.MainContainer.Controls.Add(this.tabPage1);
+            this.MainContainer.Controls.Add(this.tabPage2);
+            this.MainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainContainer.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.MainContainer.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.MainContainer.ItemSize = new System.Drawing.Size(150, 40);
+            this.MainContainer.Location = new System.Drawing.Point(0, 35);
+            this.MainContainer.Name = "MainContainer";
+            this.MainContainer.SelectedIndex = 0;
+            this.MainContainer.Size = new System.Drawing.Size(800, 415);
+            this.MainContainer.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.MainContainer.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -69,14 +69,12 @@
             // 
             // UIMainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Main);
+            this.Controls.Add(this.MainContainer);
             this.Name = "UIMainFrame";
-            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.Text = "UIMainFrame";
-            this.Main.ResumeLayout(false);
+            this.MainContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -84,6 +82,6 @@
         #endregion
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        protected UITabControl Main;
+        private UITabControl MainContainer;
     }
 }

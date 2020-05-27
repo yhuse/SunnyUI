@@ -31,13 +31,6 @@
             this.Header = new Sunny.UI.UINavBar();
             this.SuspendLayout();
             // 
-            // Main
-            // 
-            this.Main.ItemSize = new System.Drawing.Size(0, 1);
-            this.Main.Location = new System.Drawing.Point(1, 145);
-            this.Main.Size = new System.Drawing.Size(798, 304);
-            this.Main.TabVisible = false;
-            // 
             // Header
             // 
             this.Header.Dock = System.Windows.Forms.DockStyle.Top;
@@ -60,7 +53,6 @@
             this.Name = "UIHeaderMainFrame";
             this.Text = "UIHeaderMainFrame";
             this.Controls.SetChildIndex(this.Header, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

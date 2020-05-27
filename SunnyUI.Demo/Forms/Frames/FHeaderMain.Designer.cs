@@ -50,11 +50,6 @@
             treeNode2,
             treeNode3});
             this.Header.Size = new System.Drawing.Size(1024, 110);
-            this.Header.TabControl = this.Main;
-            // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(1024, 575);
             // 
             // uiLogo1
             // 

@@ -26,25 +26,28 @@ namespace Sunny.UI
         public UIMainFrame()
         {
             InitializeComponent();
-            Main.BringToFront();
+            MainContainer.TabVisible = false;
+            MainContainer.BringToFront();
         }
 
         public UIPage AddPage(UIPage page, int index)
         {
             page.PageIndex = index;
-            Main.AddPage(page);
+            MainContainer.AddPage(page);
             return page;
         }
 
         public UIPage AddPage(UIPage page)
         {
-            Main.AddPage(page);
+            MainContainer.AddPage(page);
             return page;
         }
 
         public void SelectPage(int pageIndex)
         {
-            Main.SelectPage(pageIndex);
+            MainContainer.SelectPage(pageIndex);
         }
+
+        protected UITabControl MainTabControl => MainContainer;
     }
 }
