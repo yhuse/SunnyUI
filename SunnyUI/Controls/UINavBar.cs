@@ -69,6 +69,16 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
+        public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
+        {
+            MenuHelper.SetSymbol(node, symbol, symbolSize);
+        }
+
+        public void SetNodeImageIndex(TreeNode node, int imageIndex)
+        {
+            node.ImageIndex = imageIndex;
+        }
+
         [DefaultValue(null)]
         public string TagString { get; set; }
 

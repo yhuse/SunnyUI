@@ -3,6 +3,7 @@
 2020.05.27
 * 更新UIListBox消息处理Bug
 * 更新页面框架Main命名，继承关系为Private。继承后编译时删除Design.cs里面Main部分
++ UINavMenu增加字体图标显示
 
 2020.05.26
 * 更新页面框架Main叠放次序

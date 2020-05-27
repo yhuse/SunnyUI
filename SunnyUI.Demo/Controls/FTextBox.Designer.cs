@@ -117,6 +117,7 @@
             // 
             // uiTextBox2
             // 
+            this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.FillColor = System.Drawing.Color.White;
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -128,8 +129,8 @@
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 5;
-            this.uiTextBox2.Text = "0";
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
+            this.uiTextBox2.Watermark = "水印文字";
             // 
             // uiLabel3
             // 

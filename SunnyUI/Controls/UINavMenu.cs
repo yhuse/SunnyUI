@@ -353,6 +353,11 @@ namespace Sunny.UI
             MenuHelper.SetSymbol(node, symbol, symbolSize);
         }
 
+        public void SetNodeImageIndex(TreeNode node, int imageIndex)
+        {
+            node.ImageIndex = imageIndex;
+        }
+
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
             if (BorderStyle != BorderStyle.None)

@@ -38,6 +38,7 @@
             this.lpElegant = new System.Windows.Forms.FlowLayoutPanel();
             this.bg = new System.ComponentModel.BackgroundWorker();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -129,7 +130,6 @@
             // 
             // UIFontImages
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(497, 450);
             this.Controls.Add(this.tabControl1);
@@ -156,5 +156,6 @@
         private System.Windows.Forms.FlowLayoutPanel lpElegant;
         private System.ComponentModel.BackgroundWorker bg;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

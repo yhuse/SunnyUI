@@ -83,7 +83,7 @@ namespace Sunny.UI
             return ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
         }
 
-        private static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
+        public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
         {
             UIMessageForm frm = new UIMessageForm();
             frm.ShowMessage(message, title, isShowCancel, style);

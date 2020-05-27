@@ -81,7 +81,7 @@
             this.uiAvatar.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar.Location = new System.Drawing.Point(943, 25);
             this.uiAvatar.Name = "uiAvatar";
-            this.uiAvatar.Size = new System.Drawing.Size(65, 61);
+            this.uiAvatar.Size = new System.Drawing.Size(65, 65);
             this.uiAvatar.TabIndex = 4;
             this.uiAvatar.Text = "uiAvatar1";
             // 

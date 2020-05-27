@@ -59,13 +59,21 @@ namespace Sunny.UI
             while (AwesomeLabels.Count > 0)
             {
                 if (AwesomeLabels.TryDequeue(out Label lbl))
+                {
                     lpAwesome.Controls.Add(lbl);
+                    int symbol = (int)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
             }
 
             while (ElegantLabels.Count > 0)
             {
                 if (ElegantLabels.TryDequeue(out Label lbl))
+                {
                     lpElegant.Controls.Add(lbl);
+                    int symbol = (int)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
             }
 
             timer.Start();
@@ -192,22 +200,14 @@ namespace Sunny.UI
 
         private void AddLabel(int icon)
         {
-            lpCustom.Controls.Add(CreateLabel(icon));
+            Label lbl = CreateLabel(icon);
+            lpCustom.Controls.Add(lbl);
+            int symbol = (int)lbl.Tag;
+            toolTip.SetToolTip(lbl, symbol.ToString());
         }
-
-        //        public readonly KeyScopes AwesomeScore = new KeyScopes();
-        //        public readonly KeyScopes ElegantScore = new KeyScopes();
-        //
-        //        private int scoreStep = 0;
 
         private Label CreateLabel(int icon)
         {
-            //            if (scoreStep == 0)
-            //                AwesomeScore.Add(icon);
-            //            if (scoreStep == 1)
-            //                ElegantScore.Add(icon);
-
-
             Label lbl = new Label();
             lbl.AutoSize = false;
             lbl.Size = new Size(32, 32);
