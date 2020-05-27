@@ -95,15 +95,32 @@ namespace Sunny.UI
 
         private void ItemForm_VisibleChanged(object sender, EventArgs e)
         {
-            dropSymbol = 61703;
+            dropSymbol = SymbolNormal;
 
             if (itemForm != null && itemForm.Visible)
             {
-                dropSymbol = 61702;
+                dropSymbol = SymbolDropDown;
             }
 
             Invalidate();
         }
+
+        private int symbolNormal = 61703;
+        private int dropSymbol = 61703;
+
+        [DefaultValue(61703)]
+        public int SymbolNormal
+        {
+            get => symbolNormal;
+            set
+            {
+                symbolNormal = value;
+                dropSymbol = value;
+            }
+        }
+
+        [DefaultValue(61702)]
+        public int SymbolDropDown { get; set; } = 61702;
 
         protected virtual void CreateInstance()
         {
@@ -188,8 +205,6 @@ namespace Sunny.UI
                 base.OnPaintFore(g, path);
             }
         }
-
-        private int dropSymbol = 61703;
 
         protected override void OnPaint(PaintEventArgs e)
         {

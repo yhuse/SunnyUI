@@ -132,5 +132,20 @@ namespace Sunny.UI.Demo
         {
             UILocalizeHelper.SetEN();
         }
+
+        private void uiSymbolButton9_Click(object sender, EventArgs e)
+        {
+            MessageTip.ShowOk("轻便消息提示框 - 成功");
+        }
+
+        private void uiSymbolButton8_Click(object sender, EventArgs e)
+        {
+            MessageTip.ShowWarning("轻便消息提示框 - 警告", 1000, true);
+        }
+
+        private void uiSymbolButton7_Click(object sender, EventArgs e)
+        {
+            MessageTip.ShowError("轻便消息提示框 - 错误");
+        }
     }
 }

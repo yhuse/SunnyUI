@@ -129,6 +129,7 @@
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 5;
+            this.uiTextBox2.Text = "0";
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
             this.uiTextBox2.Watermark = "水印文字";
             // 
@@ -210,6 +211,8 @@
             this._uiDatePicker1.Name = "_uiDatePicker1";
             this._uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this._uiDatePicker1.Size = new System.Drawing.Size(150, 29);
+            this._uiDatePicker1.SymbolDropDown = 61555;
+            this._uiDatePicker1.SymbolNormal = 61555;
             this._uiDatePicker1.TabIndex = 13;
             this._uiDatePicker1.Text = "2020-04-16";
             this._uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;

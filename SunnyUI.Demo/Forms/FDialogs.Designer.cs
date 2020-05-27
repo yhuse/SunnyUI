@@ -52,11 +52,19 @@
             this.uiLine6 = new Sunny.UI.UILine();
             this.btnEN = new Sunny.UI.UISymbolButton();
             this.btnCH = new Sunny.UI.UISymbolButton();
+            this.uiLine7 = new Sunny.UI.UILine();
+            this.uiSymbolButton7 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton8 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton9 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine7);
+            this.PagePanel.Controls.Add(this.uiSymbolButton7);
+            this.PagePanel.Controls.Add(this.uiSymbolButton8);
+            this.PagePanel.Controls.Add(this.uiSymbolButton9);
             this.PagePanel.Controls.Add(this.btnEN);
             this.PagePanel.Controls.Add(this.btnCH);
             this.PagePanel.Controls.Add(this.uiLine6);
@@ -150,7 +158,7 @@
             // 
             this.btnAsk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAsk.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnAsk.Location = new System.Drawing.Point(30, 53);
+            this.btnAsk.Location = new System.Drawing.Point(30, 52);
             this.btnAsk.Name = "btnAsk";
             this.btnAsk.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnAsk.Size = new System.Drawing.Size(100, 35);
@@ -177,7 +185,7 @@
             // 
             this.btnStatus2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStatus2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnStatus2.Location = new System.Drawing.Point(30, 263);
+            this.btnStatus2.Location = new System.Drawing.Point(30, 210);
             this.btnStatus2.Name = "btnStatus2";
             this.btnStatus2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnStatus2.Size = new System.Drawing.Size(214, 35);
@@ -211,10 +219,10 @@
             // 
             this.btnPasswordInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPasswordInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnPasswordInput.Location = new System.Drawing.Point(30, 182);
+            this.btnPasswordInput.Location = new System.Drawing.Point(543, 131);
             this.btnPasswordInput.Name = "btnPasswordInput";
             this.btnPasswordInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnPasswordInput.Size = new System.Drawing.Size(214, 35);
+            this.btnPasswordInput.Size = new System.Drawing.Size(155, 35);
             this.btnPasswordInput.Symbol = 61545;
             this.btnPasswordInput.TabIndex = 46;
             this.btnPasswordInput.Text = "密码输入框";
@@ -224,10 +232,10 @@
             // 
             this.btnDoubleInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDoubleInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnDoubleInput.Location = new System.Drawing.Point(486, 134);
+            this.btnDoubleInput.Location = new System.Drawing.Point(372, 131);
             this.btnDoubleInput.Name = "btnDoubleInput";
             this.btnDoubleInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnDoubleInput.Size = new System.Drawing.Size(214, 35);
+            this.btnDoubleInput.Size = new System.Drawing.Size(155, 35);
             this.btnDoubleInput.Symbol = 62022;
             this.btnDoubleInput.TabIndex = 45;
             this.btnDoubleInput.Text = "浮点数输入框";
@@ -237,10 +245,10 @@
             // 
             this.btnIntInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIntInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnIntInput.Location = new System.Drawing.Point(258, 134);
+            this.btnIntInput.Location = new System.Drawing.Point(201, 131);
             this.btnIntInput.Name = "btnIntInput";
             this.btnIntInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnIntInput.Size = new System.Drawing.Size(214, 35);
+            this.btnIntInput.Size = new System.Drawing.Size(155, 35);
             this.btnIntInput.Symbol = 62022;
             this.btnIntInput.TabIndex = 44;
             this.btnIntInput.Text = "整数输入框";
@@ -250,10 +258,10 @@
             // 
             this.btnStringInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStringInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnStringInput.Location = new System.Drawing.Point(30, 134);
+            this.btnStringInput.Location = new System.Drawing.Point(30, 131);
             this.btnStringInput.Name = "btnStringInput";
             this.btnStringInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnStringInput.Size = new System.Drawing.Size(214, 35);
+            this.btnStringInput.Size = new System.Drawing.Size(155, 35);
             this.btnStringInput.Symbol = 62022;
             this.btnStringInput.TabIndex = 43;
             this.btnStringInput.Text = "字符串输入框";
@@ -273,7 +281,7 @@
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 101);
+            this.uiLine2.Location = new System.Drawing.Point(30, 99);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(670, 20);
@@ -284,7 +292,7 @@
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.Location = new System.Drawing.Point(30, 230);
+            this.uiLine3.Location = new System.Drawing.Point(30, 178);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(328, 20);
@@ -295,7 +303,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(372, 230);
+            this.uiLine4.Location = new System.Drawing.Point(372, 178);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(328, 20);
@@ -307,7 +315,7 @@
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(372, 256);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(372, 210);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton1.Size = new System.Drawing.Size(214, 35);
@@ -319,7 +327,7 @@
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.Location = new System.Drawing.Point(30, 312);
+            this.uiLine5.Location = new System.Drawing.Point(30, 257);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
             this.uiLine5.Size = new System.Drawing.Size(670, 20);
@@ -331,7 +339,7 @@
             // 
             this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton2.Location = new System.Drawing.Point(30, 345);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(30, 289);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
             this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
@@ -348,7 +356,7 @@
             this.uiSymbolButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton4.Location = new System.Drawing.Point(372, 345);
+            this.uiSymbolButton4.Location = new System.Drawing.Point(372, 289);
             this.uiSymbolButton4.Name = "uiSymbolButton4";
             this.uiSymbolButton4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton4.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
@@ -369,7 +377,7 @@
             this.uiSymbolButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiSymbolButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton5.Location = new System.Drawing.Point(258, 345);
+            this.uiSymbolButton5.Location = new System.Drawing.Point(258, 289);
             this.uiSymbolButton5.Name = "uiSymbolButton5";
             this.uiSymbolButton5.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
@@ -390,7 +398,7 @@
             this.uiSymbolButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiSymbolButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton6.Location = new System.Drawing.Point(144, 345);
+            this.uiSymbolButton6.Location = new System.Drawing.Point(144, 289);
             this.uiSymbolButton6.Name = "uiSymbolButton6";
             this.uiSymbolButton6.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
@@ -407,7 +415,7 @@
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.Location = new System.Drawing.Point(30, 397);
+            this.uiLine6.Location = new System.Drawing.Point(30, 415);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
             this.uiLine6.Size = new System.Drawing.Size(670, 20);
@@ -419,7 +427,7 @@
             // 
             this.btnEN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEN.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnEN.Location = new System.Drawing.Point(144, 432);
+            this.btnEN.Location = new System.Drawing.Point(144, 447);
             this.btnEN.Name = "btnEN";
             this.btnEN.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnEN.Size = new System.Drawing.Size(100, 35);
@@ -432,7 +440,7 @@
             // 
             this.btnCH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCH.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCH.Location = new System.Drawing.Point(30, 432);
+            this.btnCH.Location = new System.Drawing.Point(30, 447);
             this.btnCH.Name = "btnCH";
             this.btnCH.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnCH.Size = new System.Drawing.Size(100, 35);
@@ -441,6 +449,80 @@
             this.btnCH.TabIndex = 60;
             this.btnCH.Text = "CH";
             this.btnCH.Click += new System.EventHandler(this.btnCH_Click);
+            // 
+            // uiLine7
+            // 
+            this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.Location = new System.Drawing.Point(30, 336);
+            this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine7.Name = "uiLine7";
+            this.uiLine7.Size = new System.Drawing.Size(670, 20);
+            this.uiLine7.TabIndex = 66;
+            this.uiLine7.Text = "MessageTip";
+            this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSymbolButton7
+            // 
+            this.uiSymbolButton7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.uiSymbolButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
+            this.uiSymbolButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton7.Location = new System.Drawing.Point(258, 368);
+            this.uiSymbolButton7.Name = "uiSymbolButton7";
+            this.uiSymbolButton7.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton7.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.uiSymbolButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
+            this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton7.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton7.StyleCustomMode = true;
+            this.uiSymbolButton7.Symbol = 61532;
+            this.uiSymbolButton7.TabIndex = 64;
+            this.uiSymbolButton7.Text = "Error";
+            this.uiSymbolButton7.Click += new System.EventHandler(this.uiSymbolButton7_Click);
+            // 
+            // uiSymbolButton8
+            // 
+            this.uiSymbolButton8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
+            this.uiSymbolButton8.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
+            this.uiSymbolButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton8.Location = new System.Drawing.Point(144, 368);
+            this.uiSymbolButton8.Name = "uiSymbolButton8";
+            this.uiSymbolButton8.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton8.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
+            this.uiSymbolButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
+            this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton8.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Orange;
+            this.uiSymbolButton8.StyleCustomMode = true;
+            this.uiSymbolButton8.Symbol = 61553;
+            this.uiSymbolButton8.TabIndex = 63;
+            this.uiSymbolButton8.Text = "Warn";
+            this.uiSymbolButton8.Click += new System.EventHandler(this.uiSymbolButton8_Click);
+            // 
+            // uiSymbolButton9
+            // 
+            this.uiSymbolButton9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiSymbolButton9.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
+            this.uiSymbolButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton9.Location = new System.Drawing.Point(30, 368);
+            this.uiSymbolButton9.Name = "uiSymbolButton9";
+            this.uiSymbolButton9.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton9.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiSymbolButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
+            this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton9.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Green;
+            this.uiSymbolButton9.StyleCustomMode = true;
+            this.uiSymbolButton9.Symbol = 61528;
+            this.uiSymbolButton9.TabIndex = 62;
+            this.uiSymbolButton9.Text = "Success";
+            this.uiSymbolButton9.Click += new System.EventHandler(this.uiSymbolButton9_Click);
             // 
             // FDialogs
             // 
@@ -481,5 +563,9 @@
         private UISymbolButton btnEN;
         private UISymbolButton btnCH;
         private UILine uiLine6;
+        private UILine uiLine7;
+        private UISymbolButton uiSymbolButton7;
+        private UISymbolButton uiSymbolButton8;
+        private UISymbolButton uiSymbolButton9;
     }
 }

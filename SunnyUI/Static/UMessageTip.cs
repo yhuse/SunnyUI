@@ -120,7 +120,7 @@ namespace Sunny.UI
         /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowWarning(Component controlOrItem, string text = null, int delay = 1000, bool? floating = false, bool? centerInControl = null) =>
+        public static void ShowWarning(Component controlOrItem, string text = null, int delay = 1000, bool? floating = null, bool? centerInControl = null) =>
             Show(controlOrItem, text, WarningStyle ?? TipStyle.Orange, delay, floating, centerInControl);
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Sunny.UI
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
         /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowWarning(string text = null, int delay = 1000, bool? floating = false, Point? point = null, bool centerByPoint = false) =>
+        public static void ShowWarning(string text = null, int delay = 1000, bool? floating = null, Point? point = null, bool centerByPoint = false) =>
             Show(text, WarningStyle ?? TipStyle.Orange, delay, floating, point, centerByPoint);
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Sunny.UI
         /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowError(Component controlOrItem, string text = null, int delay = 1000, bool? floating = false, bool? centerInControl = null) =>
+        public static void ShowError(Component controlOrItem, string text = null, int delay = 1000, bool? floating = null, bool? centerInControl = null) =>
             Show(controlOrItem, text, ErrorStyle ?? TipStyle.Red, delay, floating, centerInControl);
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Sunny.UI
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
         /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowError(string text = null, int delay = 1000, bool? floating = false, Point? point = null, bool centerByPoint = false) =>
+        public static void ShowError(string text = null, int delay = 1000, bool? floating = null, Point? point = null, bool centerByPoint = false) =>
             Show(text, ErrorStyle ?? TipStyle.Red, delay, floating, point, centerByPoint);
 
         /// <summary>
