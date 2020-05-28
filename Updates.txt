@@ -1,17 +1,23 @@
 + 增加； - 删除； * 修改 
 
+2020.05.28
+* UIForm：更新了点击标题栏移动的方法，以及双击最大化/正常
+
 2020.05.27
-* 更新UIListBox消息处理Bug
-* 更新页面框架Main命名，继承关系为Private。继承后编译时删除Design.cs里面Main部分
-+ UINavMenu增加字体图标显示
-* UIForm最大化支持多屏
+* UIListBox：更新消息处理Bug
+* UIMainFrame：更新页面框架Main命名，继承关系为Private。继承后编译时删除Design.cs里面Main部分
++ UINavMenu：增加字体图标显示
+* UIForm：最大化支持多屏
++ UITextbox：增加keypress keydown keyup事件
+* UIDatePicker：更改图标
++ MessageTip：增加Demo
 
 2020.05.26
 * 更新页面框架Main叠放次序
 
 2020.05.25
-+ UITextBox增加Watermark水印属性
-+ ULocalize.cs增加多语帮助类
++ UITextBox：增加Watermark水印属性
++ ULocalize.cs：增加多语帮助类
 
 2020.05.23 V2.2.5
 * 修复字体图标一处Bug

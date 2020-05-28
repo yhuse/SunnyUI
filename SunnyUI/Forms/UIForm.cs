@@ -58,7 +58,6 @@ namespace Sunny.UI
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.CenterScreen;
             Version = UIGlobal.Version;
-            AddMousePressMove(this);
         }
 
         public void ShowStatus(string title, string desc, int max = 100, int value = 0)
@@ -431,37 +430,85 @@ namespace Sunny.UI
         }
 
         private Point MousePos;
+        private bool FormMoveMouseDown;
+        private Point FormLocation;     //form的location
+        private Point mouseOffset;      //鼠标的按下位置
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (InControlBox || InMaxBox || InMinBox) return;
+            if (!ShowTitle) return;
+            if (e.Y > Padding.Top) return;
+            if (windowState == FormWindowState.Maximized) return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                FormMoveMouseDown = true;
+                FormLocation = Location;
+                mouseOffset = MousePosition;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+
+            if (!MaximizeBox) return;
+            if (InControlBox || InMaxBox || InMinBox) return;
+            if (!ShowTitle) return;
+            if (e.Y > Padding.Top) return;
+
+            ShowMaximize();
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            FormMoveMouseDown = false;
+        }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             MousePos = PointToScreen(e.Location);
 
-            if (FormBorderStyle == FormBorderStyle.None)
+            if (FormMoveMouseDown)
             {
-                bool inControlBox = e.Location.InRect(ControlBoxRect);
-                if (inControlBox != InControlBox)
-                {
-                    InControlBox = inControlBox;
-                    Invalidate();
-                }
-
-                bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
-                if (inMaxBox != InMaxBox)
-                {
-                    InMaxBox = inMaxBox;
-                    Invalidate();
-                }
-
-                bool inMinBox = e.Location.InRect(MinimizeBoxRect);
-                if (inMinBox != InMinBox)
-                {
-                    InMinBox = inMinBox;
-                    Invalidate();
-                }
+                Point pt = MousePosition;
+                int offsetX = mouseOffset.X - pt.X;
+                int offsetY = mouseOffset.Y - pt.Y;
+                Location = new Point(FormLocation.X - offsetX, FormLocation.Y - offsetY);
             }
             else
             {
-                InControlBox = InMaxBox = InMinBox = false;
+                if (FormBorderStyle == FormBorderStyle.None)
+                {
+                    bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    if (inControlBox != InControlBox)
+                    {
+                        InControlBox = inControlBox;
+                        Invalidate();
+                    }
+
+                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
+                    if (inMaxBox != InMaxBox)
+                    {
+                        InMaxBox = inMaxBox;
+                        Invalidate();
+                    }
+
+                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
+                    if (inMinBox != InMinBox)
+                    {
+                        InMinBox = inMinBox;
+                        Invalidate();
+                    }
+                }
+                else
+                {
+                    InControlBox = InMaxBox = InMinBox = false;
+                }
             }
         }
 

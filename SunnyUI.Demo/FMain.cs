@@ -11,7 +11,7 @@ namespace Sunny.UI.Demo
 
             int pageIndex = 1000;
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
-            Header.SetNodeSymbol(Header.Nodes[0], 61451, 24);
+            Header.SetNodeSymbol(Header.Nodes[0], 61451);
             TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
@@ -33,7 +33,7 @@ namespace Sunny.UI.Demo
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
-            Header.SetNodeSymbol(Header.Nodes[1], 61818, 24);
+            Header.SetNodeSymbol(Header.Nodes[1], 61818);
             parent = Aside.CreateNode("Forms", 61818, 24, pageIndex);
             Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), ++pageIndex));
             Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), ++pageIndex));
