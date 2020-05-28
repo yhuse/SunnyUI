@@ -384,6 +384,7 @@ namespace Sunny.UI
         }
 
         private Size size;
+        private Point mLocation; // 缩放前的窗体位置
 
         private void ShowMaximize()
         {
@@ -401,6 +402,7 @@ namespace Sunny.UI
             if (windowState == FormWindowState.Normal)
             {
                 size = Size;
+                mLocation = Location;
 
                 Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
                 Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
@@ -417,10 +419,12 @@ namespace Sunny.UI
                 {
                     size = new Size(800, 600);
                 }
-
+                if (mLocation.IsEmpty)
+                {
+                    mLocation = screen.WorkingArea.Location;
+                }
                 Size = size;
-                Left = screen.Bounds.Left + screen.WorkingArea.Width / 2 - Size.Width / 2;
-                Top = screen.Bounds.Top + screen.WorkingArea.Height / 2 - Size.Height / 2;
+                Location = mLocation;
                 StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
@@ -441,7 +445,6 @@ namespace Sunny.UI
             if (InControlBox || InMaxBox || InMinBox) return;
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
-            if (windowState == FormWindowState.Maximized) return;
 
             if (e.Button == MouseButtons.Left)
             {
@@ -466,6 +469,33 @@ namespace Sunny.UI
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
+            
+            if (FormMoveMouseDown)
+            {
+                int screenIndex = 0;
+                for (int i = 0; i < Screen.AllScreens.Length; i++)
+                {
+                    if (MousePos.InRect(Screen.AllScreens[i].Bounds))
+                    {
+                        screenIndex = i;
+                        break;
+                    }
+                }
+                Screen screen = Screen.AllScreens[screenIndex];
+                if (MousePosition.Y == 0 && MaximizeBox)
+                {
+                    ShowMaximize();
+                }
+                if(Top < screen.WorkingArea.Top) // 防止窗体上移时标题栏超出容器，导致后续无法移动
+                {
+                    Top = screen.WorkingArea.Top;
+                }
+                else if(Top > screen.WorkingArea.Bottom) // 防止窗体下移时标题栏超出容器，导致后续无法移动
+                {
+                    Top = screen.WorkingArea.Bottom - 10;
+                }
+            }
+
             FormMoveMouseDown = false;
         }
 
@@ -475,10 +505,25 @@ namespace Sunny.UI
 
             if (FormMoveMouseDown)
             {
-                Point pt = MousePosition;
-                int offsetX = mouseOffset.X - pt.X;
-                int offsetY = mouseOffset.Y - pt.Y;
-                Location = new Point(FormLocation.X - offsetX, FormLocation.Y - offsetY);
+                if (this.windowState == FormWindowState.Maximized)
+                {
+                    Point pt = MousePosition;
+                    int MaximizedWidth = Width;
+                    int LocationX = Left;
+                    ShowMaximize();
+                    // 计算等比例缩放后，鼠标与原位置的相对位移
+                    mouseOffset.X -= Math.Abs(mouseOffset.X) - (mouseOffset.X - LocationX) * Width / MaximizedWidth;
+                    int offsetX = mouseOffset.X - pt.X;
+                    int offsetY = mouseOffset.Y - pt.Y;
+                    Location = new Point(offsetX, offsetY);
+                }
+                else
+                {
+                    Point pt = MousePosition;
+                    int offsetX = mouseOffset.X - pt.X;
+                    int offsetY = mouseOffset.Y - pt.Y;
+                    Location = new Point(FormLocation.X - offsetX, FormLocation.Y - offsetY);
+                }
             }
             else
             {
