@@ -54,7 +54,6 @@ namespace Sunny.UI
             edit.Text = String.Empty;
             edit.ForeColor = UIFontColor.Primary;
             edit.BorderStyle = BorderStyle.None;
-            edit.KeyDown += EditOnKeyDown;
             edit.TextChanged += EditTextChanged;
             edit.Invalidate();
             Controls.Add(edit);
@@ -216,27 +215,6 @@ namespace Sunny.UI
             e.Graphics.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
         }
 
-        private void EditOnKeyDown(object Obj, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.A)
-            {
-                edit.SelectAll();
-                e.SuppressKeyPress = true;
-            }
-
-            if (e.Control && e.KeyCode == Keys.C)
-            {
-                edit.Copy();
-                e.SuppressKeyPress = true;
-            }
-
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                edit.Paste();
-                e.SuppressKeyPress = true;
-            }
-        }
-
         protected override void OnGotFocus(EventArgs e)
         {
             base.OnGotFocus(e);
@@ -331,7 +309,6 @@ namespace Sunny.UI
 
             [DllImport("user32.dll", CharSet = CharSet.Auto)]
             private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
-
 
             [DefaultValue(null)]
             public string Watermark

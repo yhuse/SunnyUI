@@ -584,12 +584,11 @@ namespace Sunny.UI
                 return;
             }
 
-            //Color titleColor = rectColor;// IsDesignMode ? rectColor : IsActive ? rectColor : Color.From
-            //Argb(173, 178, 181);
+            Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
 
             if (ShowTitle)
             {
-                e.Graphics.FillRectangle(new SolidBrush(titleColor), 0, 0, Width, TitleHeight);
+                e.Graphics.FillRectangle(showTitleColor, 0, 0, Width, TitleHeight);
             }
 
             if (ShowRect)
@@ -626,14 +625,14 @@ namespace Sunny.UI
                         };
                 }
 
-                e.Graphics.DrawLines(rectColor, points);
+                e.Graphics.DrawLines(showTitleColor, points);
 
                 if (!unShowRadius)
                 {
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, 1), new Point(1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, 1), new Point(1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
                 }
             }
 

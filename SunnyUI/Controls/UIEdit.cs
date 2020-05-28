@@ -71,17 +71,6 @@ namespace Sunny.UI
                 e.Handled = true;
             }
 
-            base.OnKeyDown(e);
-
-            EditOnKeyDown(e);
-        }
-
-        public bool EnterAsTab { get; set; }
-
-        public event EventHandler EnterKeyPress;
-
-        private void EditOnKeyDown(KeyEventArgs e)
-        {
             if (e.Control && e.KeyCode == Keys.A)
             {
                 SelectAll();
@@ -99,13 +88,21 @@ namespace Sunny.UI
                 Paste();
                 e.SuppressKeyPress = true;
             }
+
+            if (e.Control && e.KeyCode == Keys.X)
+            {
+                Cut();
+                e.SuppressKeyPress = true;
+            }
+
+            base.OnKeyDown(e);
         }
 
-        [
-            DefaultValue(typeof(bool), "false"),
-            Category("Appearance"),
-            Description("整型、浮点型可以为空")
-        ]
+        public bool EnterAsTab { get; set; }
+
+        public event EventHandler EnterKeyPress;
+
+        [DefaultValue(false), Category("Appearance"), Description("整型、浮点型可以为空")]
         public bool CanEmpty
         {
             get => canEmpty;

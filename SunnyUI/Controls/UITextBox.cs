@@ -129,23 +129,23 @@ namespace Sunny.UI
         {
             KeyDown?.Invoke(sender, e);
 
-            if (e.Control && e.KeyCode == Keys.A)
-            {
-                edit.SelectAll();
-                e.SuppressKeyPress = true;
-            }
-
-            if (e.Control && e.KeyCode == Keys.C)
-            {
-                edit.Copy();
-                e.SuppressKeyPress = true;
-            }
-
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                edit.Paste();
-                e.SuppressKeyPress = true;
-            }
+            //            if (e.Control && e.KeyCode == Keys.A)
+            //            {
+            //                edit.SelectAll();
+            //                e.SuppressKeyPress = true;
+            //            }
+            //
+            //            if (e.Control && e.KeyCode == Keys.C)
+            //            {
+            //                edit.Copy();
+            //                e.SuppressKeyPress = true;
+            //            }
+            //
+            //            if (e.Control && e.KeyCode == Keys.V)
+            //            {
+            //                edit.Paste();
+            //                e.SuppressKeyPress = true;
+            //            }
         }
 
         protected override void OnGotFocus(EventArgs e)
