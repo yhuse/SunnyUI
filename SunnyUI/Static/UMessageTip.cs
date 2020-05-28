@@ -12,9 +12,9 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UMessageTip.cs
- * 文件说明: MessageTip，轻快型消息提示窗
+ * 文件说明: UIMessageTip，轻快型消息提示窗
  * 文件作者: AhDung
- * 引用地址: https://www.cnblogs.com/ahdung/p/MessageTip.html
+ * 引用地址: https://www.cnblogs.com/ahdung/p/UIMessageTip.html
  * 当前版本: V2.0.0.2
 ******************************************************************************/
 
@@ -36,7 +36,7 @@ namespace Sunny.UI
     /// <summary>
     /// 轻便消息窗
     /// </summary>
-    public static class MessageTip
+    public static class UIMessageTip
     {
         //默认字体。当样式中的Font==null时用该字体替换
         private static readonly Font DefaultFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12);
@@ -79,7 +79,7 @@ namespace Sunny.UI
         /// </summary>
         public static int Delay { get; set; }
 
-        static MessageTip()
+        static UIMessageTip()
         {
             Fade = 100;
             Floating = true;

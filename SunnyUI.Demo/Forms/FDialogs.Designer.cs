@@ -458,7 +458,7 @@
             this.uiLine7.Name = "uiLine7";
             this.uiLine7.Size = new System.Drawing.Size(670, 20);
             this.uiLine7.TabIndex = 66;
-            this.uiLine7.Text = "MessageTip";
+            this.uiLine7.Text = "UIMessageTip";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiSymbolButton7
