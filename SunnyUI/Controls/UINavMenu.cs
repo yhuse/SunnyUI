@@ -348,6 +348,16 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
+        public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
+        {
+            MenuHelper.SetSymbol(node, symbol, symbolSize);
+        }
+
+        public void SetNodeImageIndex(TreeNode node, int imageIndex)
+        {
+            node.ImageIndex = imageIndex;
+        }
+
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
             if (BorderStyle != BorderStyle.None)
@@ -411,7 +421,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        if (e.Selected() && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
+                        if (TreeNodeSelected(e) && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
                             e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
                         else
                             e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
@@ -434,6 +444,12 @@ namespace Sunny.UI
                     e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Brushes.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + sfMax / 2.0f - tipsSize.Height / 2.0f);
                 }
             }
+        }
+
+        private bool TreeNodeSelected(DrawTreeNodeEventArgs e)
+        {
+            return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
+                   e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
         }
 
         [Description("展开节点后选中第一个子节点"), DefaultValue(true)]
@@ -596,85 +612,116 @@ namespace Sunny.UI
             //隐藏滚动条
             ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
         }
-    }
 
-    public static class TreeViewHelper
-    {
-        public static bool Selected(this DrawTreeNodeEventArgs e)
+        public TreeNode CreateNode(string text, int pageIndex)
         {
-            return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
-                   e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
+            return CreateNode(new NavMenuItem(text, pageIndex));
         }
 
-        public static TreeNode CreateNode(this UINavMenu navMenu, string text, int pageIndex)
+        public TreeNode CreateNode(UIPage page)
         {
-            return navMenu.CreateNode(new NavMenuItem(text, pageIndex));
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex));
         }
 
-        public static TreeNode CreateNode(this UINavMenu navMenu, UIPage page)
-        {
-            return navMenu.CreateNode(new NavMenuItem(page.Text, page.PageIndex));
-        }
-
-        public static TreeNode CreateNode(this UINavMenu navMenu, NavMenuItem item)
+        public TreeNode CreateNode(NavMenuItem item)
         {
             TreeNode node = new TreeNode(item.Text);
-            navMenu.Nodes.Add(node);
-            navMenu.SetNodeItem(node, item);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
             return node;
         }
 
-        public static TreeNode CreateNode(this UINavBar navBar, string text, int pageIndex)
+        public TreeNode CreateNode(string text, int imageIndex, int pageIndex)
         {
-            return navBar.CreateNode(new NavMenuItem(text, pageIndex));
+            return CreateNode(new NavMenuItem(text, pageIndex), imageIndex);
         }
 
-        public static TreeNode CreateNode(this UINavBar navBar, UIPage page)
+        public TreeNode CreateNode(UIPage page, int imageIndex)
         {
-            return navBar.CreateNode(new NavMenuItem(page.Text, page.PageIndex));
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), imageIndex);
         }
 
-        public static TreeNode CreateNode(this UINavBar navBar, NavMenuItem item)
+        public TreeNode CreateNode(NavMenuItem item, int imageIndex)
         {
             TreeNode node = new TreeNode(item.Text);
-            navBar.Nodes.Add(node);
-            navBar.SetNodeItem(node, item);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
+            node.ImageIndex = imageIndex;
             return node;
         }
 
-        public static TreeNode CreateChildNode(this UINavMenu navMenu, TreeNode parent, string text, int pageIndex)
+        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex)
         {
-            return navMenu.CreateChildNode(parent, new NavMenuItem(text, pageIndex));
+            return CreateNode(new NavMenuItem(text, pageIndex), symbol, symbolSize);
         }
 
-        public static TreeNode CreateChildNode(this UINavMenu navMenu, TreeNode parent, UIPage page)
+        public TreeNode CreateNode(UIPage page, int symbol, int symbolSize)
         {
-            return navMenu.CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), symbol, symbolSize);
         }
 
-        public static TreeNode CreateChildNode(this UINavMenu navMenu, TreeNode parent, NavMenuItem item)
+        public TreeNode CreateNode(NavMenuItem item, int symbol, int symbolSize)
+        {
+            TreeNode node = new TreeNode(item.Text);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
+            MenuHelper.SetSymbol(node, symbol, symbolSize);
+            return node;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, string text, int pageIndex)
+        {
+            return CreateChildNode(parent, new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, UIPage page)
+        {
+            return CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)
         {
             TreeNode childNode = new TreeNode(item.Text);
             parent.Nodes.Add(childNode);
-            navMenu.SetNodeItem(childNode, item);
+            SetNodeItem(childNode, item);
             return childNode;
         }
 
-        public static TreeNode CreateChildNode(this UINavBar navBar, TreeNode parent, string text, int pageIndex)
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, string text, int pageIndex)
         {
-            return navBar.CreateChildNode(parent, new NavMenuItem(text, pageIndex));
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(text, pageIndex));
         }
 
-        public static TreeNode CreateChildNode(this UINavBar navBar, TreeNode parent, UIPage page)
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, UIPage page)
         {
-            return navBar.CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(page.Text, page.PageIndex));
         }
 
-        public static TreeNode CreateChildNode(this UINavBar navBar, TreeNode parent, NavMenuItem item)
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, NavMenuItem item)
         {
             TreeNode childNode = new TreeNode(item.Text);
             parent.Nodes.Add(childNode);
-            navBar.SetNodeItem(childNode, item);
+            SetNodeItem(childNode, item);
+            childNode.ImageIndex = imageIndex;
+            return childNode;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, string text, int pageIndex)
+        {
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, UIPage page)
+        {
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, NavMenuItem item)
+        {
+            TreeNode childNode = new TreeNode(item.Text);
+            parent.Nodes.Add(childNode);
+            SetNodeItem(childNode, item);
+            MenuHelper.SetSymbol(childNode, symbol, symbolSize);
             return childNode;
         }
     }

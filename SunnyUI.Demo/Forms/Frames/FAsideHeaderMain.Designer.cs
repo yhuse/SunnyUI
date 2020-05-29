@@ -44,11 +44,6 @@
             this.Aside.Style = Sunny.UI.UIStyle.Blue;
             this.Aside.MenuItemClick += new Sunny.UI.UINavMenu.OnMenuItemClick(this.Aside_MenuItemClick);
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(774, 628);
-            this.Main.Style = Sunny.UI.UIStyle.Blue;
-            // 
             // FAsideHeaderMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);

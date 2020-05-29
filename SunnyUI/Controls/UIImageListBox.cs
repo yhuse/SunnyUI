@@ -35,7 +35,6 @@ namespace Sunny.UI
     public sealed partial class UIImageListBox : UIPanel
     {
         private readonly ImageListBox listbox = new ImageListBox();
-        private readonly UIPanel panel = new UIPanel();
         private readonly UIScrollBar bar = new UIScrollBar();
 
         public UIImageListBox()
@@ -45,33 +44,31 @@ namespace Sunny.UI
 
             Padding = new Padding(2);
 
-            panel.Radius = 0;
-            panel.RadiusSides = UICornerRadiusSides.None;
-            panel.RectSides = ToolStripStatusLabelBorderSides.None;
-            panel.Parent = this;
-            panel.Width = 0;
-            panel.Dock = DockStyle.Right;
-            panel.Show();
-
             bar.ValueChanged += Bar_ValueChanged;
-            bar.Parent = panel;
-            bar.Dock = DockStyle.Fill;
+            bar.Width = SystemInformation.VerticalScrollBarWidth + 2;
+            bar.Parent = this;
+            bar.Dock = DockStyle.None;
             bar.Style = UIStyle.Custom;
-            bar.Show();
+            bar.Visible = false;
 
             listbox.Parent = this;
             listbox.Dock = DockStyle.Fill;
             listbox.Show();
-            listbox.panel = panel;
             listbox.Bar = bar;
-
-            panel.SendToBack();
 
             listbox.SelectedIndexChanged += Listbox_SelectedIndexChanged;
             listbox.SelectedValueChanged += Listbox_SelectedValueChanged;
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            bar.Top = 2;
+            bar.Height = Height - 4;
+            bar.Left = Width - bar.Width - 2;
         }
 
         private void Listbox_BeforeDrawItem(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
@@ -145,11 +142,6 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
-
-            if (panel != null)
-            {
-                panel.FillColor = Color.White;
-            }
 
             if (bar != null)
             {
@@ -283,8 +275,6 @@ namespace Sunny.UI
             [DefaultValue(null)]
             public string TagString { get; set; }
 
-            public UIPanel panel { get; set; }
-
             public UIScrollBar Bar
             {
                 get => bar;
@@ -312,37 +302,28 @@ namespace Sunny.UI
 
             protected override void OnSizeChanged(EventArgs e)
             {
-                if (!PanelVisible)
-                {
-                    SetScrollInfo();
-                }
+                SetScrollInfo();
             }
 
             public void SetScrollInfo()
             {
-                if (Bar == null || panel == null)
+                if (Bar == null)
                 {
                     return;
                 }
 
-                PanelVisible = true;
                 var si = ScrollBarInfo.GetInfo(Handle);
                 if (si.ScrollMax > 0)
                 {
                     Bar.Maximum = si.ScrollMax;
-                    panel.Width = (si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0) ? SystemInformation.VerticalScrollBarWidth + 2 : 0;
-                    panel.SendToBack();
+                    Bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
                     Bar.Value = si.nPos;
                 }
                 else
                 {
-                    panel.Width = 0;
+                    Bar.Visible = false;
                 }
-
-                PanelVisible = false;
             }
-
-            private bool PanelVisible;
 
             protected override void OnMeasureItem(MeasureItemEventArgs e)
             {
@@ -363,13 +344,6 @@ namespace Sunny.UI
             [Browsable(false)]
             public int Count => Items.Count;
 
-            protected override void WndProc(ref Message m)
-            {
-                base.WndProc(ref m);
-                //隐藏滚动条
-                ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
-            }
-
             public void SelectedFirst()
             {
                 if (Count > 0 && SelectedIndex < 0)
@@ -382,7 +356,7 @@ namespace Sunny.UI
             {
                 base.OnMouseWheel(e);
 
-                if (panel.Width > 0)
+                if (Bar.Visible)
                 {
                     var si = ScrollBarInfo.GetInfo(Handle);
                     if (e.Delta > 10)

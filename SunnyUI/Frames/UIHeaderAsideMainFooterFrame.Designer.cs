@@ -35,10 +35,6 @@
             // 
             this.Aside.LineColor = System.Drawing.Color.Black;
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(550, 249);
-            // 
             // Footer
             // 
             this.Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -55,7 +51,7 @@
             // UIHeaderAsideMainFooterFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Footer);
             this.Name = "UIHeaderAsideMainFooterFrame";
@@ -63,7 +59,6 @@
             this.Controls.SetChildIndex(this.Header, 0);
             this.Controls.SetChildIndex(this.Aside, 0);
             this.Controls.SetChildIndex(this.Footer, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

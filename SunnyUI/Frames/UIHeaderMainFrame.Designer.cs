@@ -31,13 +31,6 @@
             this.Header = new Sunny.UI.UINavBar();
             this.SuspendLayout();
             // 
-            // Main
-            // 
-            this.Main.ItemSize = new System.Drawing.Size(0, 1);
-            this.Main.Location = new System.Drawing.Point(1, 145);
-            this.Main.Size = new System.Drawing.Size(798, 304);
-            this.Main.TabVisible = false;
-            // 
             // Header
             // 
             this.Header.Dock = System.Windows.Forms.DockStyle.Top;
@@ -54,13 +47,12 @@
             // UIHeaderMainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Header);
             this.Name = "UIHeaderMainFrame";
             this.Text = "UIHeaderMainFrame";
             this.Controls.SetChildIndex(this.Header, 0);
-            this.Controls.SetChildIndex(this.Main, 0);
             this.ResumeLayout(false);
 
         }

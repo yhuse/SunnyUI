@@ -1,6 +1,28 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIEdit.cs
+ * 文件说明: 文本输入框
+ * 当前版本: V2.2
+ * 创建日期: 2020-01-01
+ *
+ * 2020-01-01: V2.2.0 增加文件说明
+******************************************************************************/
+
+using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -26,6 +48,22 @@ namespace Sunny.UI
             Width = 150;
             MaxLength = 255;
         }
+
+        private string watermark;
+
+        [DefaultValue(null)]
+        public string Watermark
+        {
+            get => watermark;
+            set
+            {
+                watermark = value;
+                SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+            }
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
@@ -54,17 +92,6 @@ namespace Sunny.UI
                 e.Handled = true;
             }
 
-            base.OnKeyDown(e);
-
-            EditOnKeyDown(e);
-        }
-
-        public bool EnterAsTab { get; set; }
-
-        public event EventHandler EnterKeyPress;
-
-        private void EditOnKeyDown(KeyEventArgs e)
-        {
             if (e.Control && e.KeyCode == Keys.A)
             {
                 SelectAll();
@@ -82,13 +109,21 @@ namespace Sunny.UI
                 Paste();
                 e.SuppressKeyPress = true;
             }
+
+            if (e.Control && e.KeyCode == Keys.X)
+            {
+                Cut();
+                e.SuppressKeyPress = true;
+            }
+
+            base.OnKeyDown(e);
         }
 
-        [
-            DefaultValue(typeof(bool), "false"),
-            Category("Appearance"),
-            Description("整型、浮点型可以为空")
-        ]
+        public bool EnterAsTab { get; set; }
+
+        public event EventHandler EnterKeyPress;
+
+        [DefaultValue(false), Category("Appearance"), Description("整型、浮点型可以为空")]
         public bool CanEmpty
         {
             get => canEmpty;

@@ -132,6 +132,8 @@ namespace Sunny.UI
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
+            if (Text.IsNullOrEmpty()) return;
+
             SizeF sf = g.MeasureString(Text, Font);
 
             if (Direction == LineDirection.Horizontal)

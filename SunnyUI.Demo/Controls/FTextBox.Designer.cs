@@ -37,25 +37,29 @@
             this.uiTextBox3 = new Sunny.UI.UITextBox();
             this.uiComboBox1 = new Sunny.UI.UIComboBox();
             this.uiComboBox2 = new Sunny.UI.UIComboBox();
-            this._uiDatePicker1 = new Sunny.UI.UIDatePicker();
+            this.uiDatePicker1 = new Sunny.UI.UIDatePicker();
             this.uiDoubleUpDown1 = new Sunny.UI.UIDoubleUpDown();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiLine4 = new Sunny.UI.UILine();
             this.uiLine5 = new Sunny.UI.UILine();
+            this.uiTimePicker1 = new Sunny.UI.UITimePicker();
+            this.uiLine6 = new Sunny.UI.UILine();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine6);
+            this.PagePanel.Controls.Add(this.uiTimePicker1);
             this.PagePanel.Controls.Add(this.uiLine5);
             this.PagePanel.Controls.Add(this.uiLine4);
             this.PagePanel.Controls.Add(this.uiLine3);
             this.PagePanel.Controls.Add(this.uiLine2);
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiDoubleUpDown1);
-            this.PagePanel.Controls.Add(this._uiDatePicker1);
+            this.PagePanel.Controls.Add(this.uiDatePicker1);
             this.PagePanel.Controls.Add(this.uiComboBox2);
             this.PagePanel.Controls.Add(this.uiComboBox1);
             this.PagePanel.Controls.Add(this.uiLabel3);
@@ -91,7 +95,7 @@
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 3;
-            this.uiTextBox1.Text = "uiTextBox1";
+            this.uiTextBox1.Watermark = "水印文字";
             // 
             // uiLabel1
             // 
@@ -117,6 +121,7 @@
             // 
             // uiTextBox2
             // 
+            this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.FillColor = System.Drawing.Color.White;
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -130,6 +135,7 @@
             this.uiTextBox2.TabIndex = 5;
             this.uiTextBox2.Text = "0";
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
+            this.uiTextBox2.Watermark = "水印文字";
             // 
             // uiLabel3
             // 
@@ -175,6 +181,7 @@
             this.uiComboBox1.Size = new System.Drawing.Size(150, 29);
             this.uiComboBox1.TabIndex = 11;
             this.uiComboBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboBox1.Watermark = "水印文字";
             // 
             // uiComboBox2
             // 
@@ -197,20 +204,23 @@
             this.uiComboBox2.TabIndex = 12;
             this.uiComboBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // _uiDatePicker1
+            // uiDatePicker1
             // 
-            this._uiDatePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this._uiDatePicker1.FillColor = System.Drawing.Color.White;
-            this._uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this._uiDatePicker1.Location = new System.Drawing.Point(30, 294);
-            this._uiDatePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this._uiDatePicker1.MinimumSize = new System.Drawing.Size(63, 0);
-            this._uiDatePicker1.Name = "_uiDatePicker1";
-            this._uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this._uiDatePicker1.Size = new System.Drawing.Size(150, 29);
-            this._uiDatePicker1.TabIndex = 13;
-            this._uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this._uiDatePicker1.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
+            this.uiDatePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.uiDatePicker1.FillColor = System.Drawing.Color.White;
+            this.uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiDatePicker1.Location = new System.Drawing.Point(30, 294);
+            this.uiDatePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatePicker1.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiDatePicker1.Name = "uiDatePicker1";
+            this.uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.uiDatePicker1.Size = new System.Drawing.Size(150, 29);
+            this.uiDatePicker1.SymbolDropDown = 61555;
+            this.uiDatePicker1.SymbolNormal = 61555;
+            this.uiDatePicker1.TabIndex = 13;
+            this.uiDatePicker1.Text = "2020-04-16";
+            this.uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiDatePicker1.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
             // 
             // uiDoubleUpDown1
             // 
@@ -252,7 +262,7 @@
             this.uiLine3.Location = new System.Drawing.Point(30, 260);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
-            this.uiLine3.Size = new System.Drawing.Size(306, 20);
+            this.uiLine3.Size = new System.Drawing.Size(150, 20);
             this.uiLine3.TabIndex = 22;
             this.uiLine3.Text = "UIDatePicker";
             this.uiLine3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -279,6 +289,34 @@
             this.uiLine5.Text = "UIDoubleUpDown";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiTimePicker1
+            // 
+            this.uiTimePicker1.FillColor = System.Drawing.Color.White;
+            this.uiTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTimePicker1.Location = new System.Drawing.Point(188, 294);
+            this.uiTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTimePicker1.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiTimePicker1.Name = "uiTimePicker1";
+            this.uiTimePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.uiTimePicker1.Size = new System.Drawing.Size(150, 29);
+            this.uiTimePicker1.SymbolDropDown = 61555;
+            this.uiTimePicker1.SymbolNormal = 61555;
+            this.uiTimePicker1.TabIndex = 25;
+            this.uiTimePicker1.Text = "uiTimePicker1";
+            this.uiTimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiTimePicker1.Value = new System.DateTime(2020, 5, 29, 23, 41, 39, 684);
+            // 
+            // uiLine6
+            // 
+            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Location = new System.Drawing.Point(188, 260);
+            this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine6.Name = "uiLine6";
+            this.uiLine6.Size = new System.Drawing.Size(150, 20);
+            this.uiLine6.TabIndex = 26;
+            this.uiLine6.Text = "UITimePicker";
+            this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -301,7 +339,7 @@
         private UILabel uiLabel1;
         private UITextBox uiTextBox1;
         private UIIntegerUpDown uiIntegerUpDown1;
-        private UIDatePicker _uiDatePicker1;
+        private UIDatePicker uiDatePicker1;
         private UIComboBox uiComboBox2;
         private UIComboBox uiComboBox1;
         private UIDoubleUpDown uiDoubleUpDown1;
@@ -310,5 +348,7 @@
         private UILine uiLine2;
         private UILine uiLine1;
         private UILine uiLine5;
+        private UITimePicker uiTimePicker1;
+        private UILine uiLine6;
     }
 }

@@ -122,5 +122,30 @@ namespace Sunny.UI.Demo
         {
             this.ShowErrorNotifier("Error");
         }
+
+        private void btnCH_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetCH();
+        }
+
+        private void btnEN_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetEN();
+        }
+
+        private void uiSymbolButton9_Click(object sender, EventArgs e)
+        {
+            UIMessageTip.ShowOk("轻便消息提示框 - 成功");
+        }
+
+        private void uiSymbolButton8_Click(object sender, EventArgs e)
+        {
+            UIMessageTip.ShowWarning("轻便消息提示框 - 警告", 1000, true);
+        }
+
+        private void uiSymbolButton7_Click(object sender, EventArgs e)
+        {
+            UIMessageTip.ShowError("轻便消息提示框 - 错误");
+        }
     }
 }

@@ -1,22 +1,22 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UIForm.cs
- * 文件说明: 窗体基类
- * 当前版本: V2.2
- * 创建日期: 2020-01-01
- *
- * 2020-01-01: V2.2.0 增加文件说明
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UIForm.cs
+* 文件说明: 窗体基类
+* 当前版本: V2.2
+* 创建日期: 2020-01-01
+*
+* 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
 using System;
@@ -58,7 +58,6 @@ namespace Sunny.UI
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.CenterScreen;
             Version = UIGlobal.Version;
-            AddMousePressMove(this);
         }
 
         public void ShowStatus(string title, string desc, int max = 100, int value = 0)
@@ -297,7 +296,7 @@ namespace Sunny.UI
         /// <param name="rgnRadius">圆角矩形的半径</param>
         public static void SetFormRoundRectRegion(Form form, int rgnRadius)
         {
-            if (form.FormBorderStyle == FormBorderStyle.None)
+            if (form != null && form.FormBorderStyle == FormBorderStyle.None)
             {
                 int region = CreateRoundRectRgn(0, 0, form.Width + 1, form.Height + 1, rgnRadius, rgnRadius);
                 SetWindowRgn(form.Handle, region, true);
@@ -385,18 +384,37 @@ namespace Sunny.UI
         }
 
         private Size size;
+        private Point location;
+
+        private int GetMouseInScreen(Point mousePos)
+        {
+            int screenIndex = 0;
+            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            {
+                if (mousePos.InRect(Screen.AllScreens[i].Bounds))
+                {
+                    screenIndex = i;
+                    break;
+                }
+            }
+
+            return screenIndex;
+        }
 
         private void ShowMaximize()
         {
+            int screenIndex = GetMouseInScreen(MousePosition);
+            Screen screen = Screen.AllScreens[screenIndex];
             if (windowState == FormWindowState.Normal)
             {
                 size = Size;
+                location = Location;
 
-                Width = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Width : Screen.PrimaryScreen.WorkingArea.Width;
-                Height = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Height : Screen.PrimaryScreen.WorkingArea.Height;
-                Left = 0;
-                Top = 0;
-                StartPosition = FormStartPosition.Manual;
+                Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
+                Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
+                Left = screen.Bounds.Left;
+                Top = screen.Bounds.Top;
+                //StartPosition = FormStartPosition.Manual;
                 SetFormRoundRectRegion(this, 0);
 
                 windowState = FormWindowState.Maximized;
@@ -409,8 +427,11 @@ namespace Sunny.UI
                 }
 
                 Size = size;
-                Left = Screen.PrimaryScreen.WorkingArea.Width / 2 - Size.Width / 2;
-                Top = Screen.PrimaryScreen.WorkingArea.Height / 2 - Size.Height / 2;
+                Point center = new Point(screen.Bounds.Left + screen.WorkingArea.Width / 2 - Size.Width / 2,
+                    screen.Bounds.Top + screen.WorkingArea.Height / 2 - Size.Height / 2);
+
+                if (location.X == 0 && location.Y == 0) location = center;
+                Location = StartPosition == FormStartPosition.CenterScreen ? center : location;
                 StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
@@ -419,34 +440,108 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private bool FormMoveMouseDown;
+        private Point FormLocation;     //form的location
+        private Point mouseOffset;      //鼠标的按下位置
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (InControlBox || InMaxBox || InMinBox) return;
+            if (!ShowTitle) return;
+            if (e.Y > Padding.Top) return;
+            if (windowState == FormWindowState.Maximized) return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                FormMoveMouseDown = true;
+                FormLocation = Location;
+                mouseOffset = MousePosition;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+
+            if (!MaximizeBox) return;
+            if (InControlBox || InMaxBox || InMinBox) return;
+            if (!ShowTitle) return;
+            if (e.Y > Padding.Top) return;
+
+            ShowMaximize();
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+
+            if (FormMoveMouseDown)
+            {
+                if (MousePosition.Y <= 0 && MaximizeBox)
+                {
+                    if (windowState == FormWindowState.Normal)
+                    {
+                        ShowMaximize();
+                    }
+                }
+                else
+                {
+                    int screenIndex = GetMouseInScreen(MousePosition);
+                    Screen screen = Screen.AllScreens[screenIndex];
+                    if (Top < screen.WorkingArea.Top) // 防止窗体上移时标题栏超出容器，导致后续无法移动
+                    {
+                        Top = screen.WorkingArea.Top;
+                    }
+                    if (Top > screen.WorkingArea.Bottom - TitleHeight) // 防止窗体下移时标题栏超出容器，导致后续无法移动
+                    {
+                        Top = screen.WorkingArea.Bottom - TitleHeight;
+                    }
+                }
+            }
+
+            FormMoveMouseDown = false;
+        }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (FormBorderStyle == FormBorderStyle.None)
+            if (FormMoveMouseDown)
             {
-                bool inControlBox = e.Location.InRect(ControlBoxRect);
-                if (inControlBox != InControlBox)
-                {
-                    InControlBox = inControlBox;
-                    Invalidate();
-                }
-
-                bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
-                if (inMaxBox != InMaxBox)
-                {
-                    InMaxBox = inMaxBox;
-                    Invalidate();
-                }
-
-                bool inMinBox = e.Location.InRect(MinimizeBoxRect);
-                if (inMinBox != InMinBox)
-                {
-                    InMinBox = inMinBox;
-                    Invalidate();
-                }
+                Point pt = MousePosition;
+                int offsetX = mouseOffset.X - pt.X;
+                int offsetY = mouseOffset.Y - pt.Y;
+                Location = new Point(FormLocation.X - offsetX, FormLocation.Y - offsetY);
             }
             else
             {
-                InControlBox = InMaxBox = InMinBox = false;
+                if (FormBorderStyle == FormBorderStyle.None)
+                {
+                    bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    if (inControlBox != InControlBox)
+                    {
+                        InControlBox = inControlBox;
+                        Invalidate();
+                    }
+
+                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
+                    if (inMaxBox != InMaxBox)
+                    {
+                        InMaxBox = inMaxBox;
+                        Invalidate();
+                    }
+
+                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
+                    if (inMinBox != InMinBox)
+                    {
+                        InMinBox = inMinBox;
+                        Invalidate();
+                    }
+                }
+                else
+                {
+                    InControlBox = InMaxBox = InMinBox = false;
+                }
             }
         }
 
@@ -489,11 +584,11 @@ namespace Sunny.UI
                 return;
             }
 
-            //Color titleColor = rectColor;// IsDesignMode ? rectColor : IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
 
             if (ShowTitle)
             {
-                e.Graphics.FillRectangle(new SolidBrush(titleColor), 0, 0, Width, TitleHeight);
+                e.Graphics.FillRectangle(showTitleColor, 0, 0, Width, TitleHeight);
             }
 
             if (ShowRect)
@@ -530,14 +625,14 @@ namespace Sunny.UI
                         };
                 }
 
-                e.Graphics.DrawLines(rectColor, points);
+                e.Graphics.DrawLines(showTitleColor, points);
 
                 if (!unShowRadius)
                 {
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, 1), new Point(1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, 1), new Point(1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
                 }
             }
 

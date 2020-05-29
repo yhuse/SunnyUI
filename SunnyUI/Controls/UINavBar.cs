@@ -69,6 +69,16 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
+        public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
+        {
+            MenuHelper.SetSymbol(node, symbol, symbolSize);
+        }
+
+        public void SetNodeImageIndex(TreeNode node, int imageIndex)
+        {
+            node.ImageIndex = imageIndex;
+        }
+
         [DefaultValue(null)]
         public string TagString { get; set; }
 
@@ -477,5 +487,117 @@ namespace Sunny.UI
         public bool StyleCustomMode { get; set; }
 
         public string Version { get; }
+
+        public TreeNode CreateNode(string text, int pageIndex)
+        {
+            return CreateNode(new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateNode(UIPage page)
+        {
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateNode(NavMenuItem item)
+        {
+            TreeNode node = new TreeNode(item.Text);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
+            return node;
+        }
+
+        public TreeNode CreateNode(string text, int imageIndex, int pageIndex)
+        {
+            return CreateNode(new NavMenuItem(text, pageIndex), imageIndex);
+        }
+
+        public TreeNode CreateNode(UIPage page, int imageIndex)
+        {
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), imageIndex);
+        }
+
+        public TreeNode CreateNode(NavMenuItem item, int imageIndex)
+        {
+            TreeNode node = new TreeNode(item.Text);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
+            node.ImageIndex = imageIndex;
+            return node;
+        }
+
+        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex)
+        {
+            return CreateNode(new NavMenuItem(text, pageIndex), symbol, symbolSize);
+        }
+
+        public TreeNode CreateNode(UIPage page, int symbol, int symbolSize)
+        {
+            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), symbol, symbolSize);
+        }
+
+        public TreeNode CreateNode(NavMenuItem item, int symbol, int symbolSize)
+        {
+            TreeNode node = new TreeNode(item.Text);
+            Nodes.Add(node);
+            SetNodeItem(node, item);
+            MenuHelper.SetSymbol(node, symbol, symbolSize);
+            return node;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, string text, int pageIndex)
+        {
+            return CreateChildNode(parent, new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, UIPage page)
+        {
+            return CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)
+        {
+            TreeNode childNode = new TreeNode(item.Text);
+            parent.Nodes.Add(childNode);
+            SetNodeItem(childNode, item);
+            return childNode;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, string text, int pageIndex)
+        {
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, UIPage page)
+        {
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int imageIndex, NavMenuItem item)
+        {
+            TreeNode childNode = new TreeNode(item.Text);
+            parent.Nodes.Add(childNode);
+            SetNodeItem(childNode, item);
+            childNode.ImageIndex = imageIndex;
+            return childNode;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, string text, int pageIndex)
+        {
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(text, pageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, UIPage page)
+        {
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page.Text, page.PageIndex));
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, NavMenuItem item)
+        {
+            TreeNode childNode = new TreeNode(item.Text);
+            parent.Nodes.Add(childNode);
+            SetNodeItem(childNode, item);
+            MenuHelper.SetSymbol(childNode, symbol, symbolSize);
+            return childNode;
+        }
     }
 }

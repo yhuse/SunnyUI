@@ -63,10 +63,6 @@
             this.Header.Size = new System.Drawing.Size(1024, 110);
             this.Header.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.Header_MenuItemClick);
             // 
-            // Main
-            // 
-            this.Main.Size = new System.Drawing.Size(774, 575);
-            // 
             // uiLogo1
             // 
             this.uiLogo1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -85,7 +81,7 @@
             this.uiAvatar.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar.Location = new System.Drawing.Point(943, 25);
             this.uiAvatar.Name = "uiAvatar";
-            this.uiAvatar.Size = new System.Drawing.Size(65, 61);
+            this.uiAvatar.Size = new System.Drawing.Size(65, 65);
             this.uiAvatar.TabIndex = 4;
             this.uiAvatar.Text = "uiAvatar1";
             // 

@@ -26,6 +26,11 @@ namespace Sunny.UI
         public UIHeaderMainFooterFrame()
         {
             InitializeComponent();
+            Controls.SetChildIndex(MainTabControl, 0);
+            Header.Parent = this;
+            Footer.Parent = this;
+            MainTabControl.Parent = this;
+            MainTabControl.BringToFront();
         }
     }
 }

@@ -45,10 +45,30 @@ namespace Sunny.UI
             edit.BorderStyle = BorderStyle.None;
             edit.KeyDown += EditOnKeyDown;
             edit.TextChanged += EditTextChanged;
+            edit.KeyUp += EditOnKeyUp;
+            edit.KeyPress += EditOnKeyPress;
+
             edit.Invalidate();
             Controls.Add(edit);
             fillColor = Color.White;
             Width = 150;
+        }
+
+        private void EditOnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPress?.Invoke(sender, e);
+        }
+
+        private void EditOnKeyUp(object sender, KeyEventArgs e)
+        {
+            KeyUp?.Invoke(sender, e);
+        }
+
+        [DefaultValue(null)]
+        public string Watermark
+        {
+            get => edit.Watermark;
+            set => edit.Watermark = value;
         }
 
         public void SelectAll()
@@ -63,6 +83,12 @@ namespace Sunny.UI
 
         [Browsable(true)]
         public new event EventHandler TextChanged;
+
+        public new event KeyEventHandler KeyDown;
+
+        public new event KeyEventHandler KeyUp;
+
+        public new event KeyPressEventHandler KeyPress;
 
         private void EditTextChanged(object s, EventArgs e)
         {
@@ -99,25 +125,27 @@ namespace Sunny.UI
             edit.Width = Width - 6;
         }
 
-        private void EditOnKeyDown(object Obj, KeyEventArgs e)
+        private void EditOnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.A)
-            {
-                edit.SelectAll();
-                e.SuppressKeyPress = true;
-            }
+            KeyDown?.Invoke(sender, e);
 
-            if (e.Control && e.KeyCode == Keys.C)
-            {
-                edit.Copy();
-                e.SuppressKeyPress = true;
-            }
-
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                edit.Paste();
-                e.SuppressKeyPress = true;
-            }
+            //            if (e.Control && e.KeyCode == Keys.A)
+            //            {
+            //                edit.SelectAll();
+            //                e.SuppressKeyPress = true;
+            //            }
+            //
+            //            if (e.Control && e.KeyCode == Keys.C)
+            //            {
+            //                edit.Copy();
+            //                e.SuppressKeyPress = true;
+            //            }
+            //
+            //            if (e.Control && e.KeyCode == Keys.V)
+            //            {
+            //                edit.Paste();
+            //                e.SuppressKeyPress = true;
+            //            }
         }
 
         protected override void OnGotFocus(EventArgs e)

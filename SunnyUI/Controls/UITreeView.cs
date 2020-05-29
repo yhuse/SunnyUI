@@ -393,7 +393,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        if (e.Selected() && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
+                        if (TreeNodeSelected(e) && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
                             e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
                         else
                             e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
@@ -480,6 +480,12 @@ namespace Sunny.UI
                     e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Brushes.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + sfMax / 2.0f - tipsSize.Height / 2.0f);
                 }
             }
+        }
+
+        private bool TreeNodeSelected(DrawTreeNodeEventArgs e)
+        {
+            return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
+                   e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
         }
 
         public string Version { get; }
