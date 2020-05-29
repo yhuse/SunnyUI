@@ -60,9 +60,6 @@
     <Compile Include="Controls\DropItem\UIDateTimeItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DropItem\UIDateTimeItem.Designer.cs">
-      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\DropItem\UIDropDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -71,6 +68,12 @@
     </Compile>
     <Compile Include="Controls\DropItem\UIDropDownItem.Designer.cs">
       <DependentUpon>UIDropDownItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DropItem\UITimeItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UITimePicker.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\UINotifier.cs">
       <SubType>Form</SubType>
@@ -420,6 +423,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\DropItem\UIComboBoxItem.resx">
       <DependentUpon>UIComboBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropItem\UITimeItem.resx">
+      <DependentUpon>UITimeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UITimePicker.resx">
+      <DependentUpon>UITimePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>

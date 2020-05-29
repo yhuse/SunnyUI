@@ -14,6 +14,9 @@ namespace Sunny.UI.Demo
         public FTextBox()
         {
             InitializeComponent();
+
+            uiDatePicker1.Value = DateTime.Today;
+            uiTimePicker1.Value = DateTime.Now;
         }
     }
 }

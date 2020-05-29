@@ -46,33 +46,27 @@ namespace Sunny.UI
             ValueChanged?.Invoke(this, Value);
         }
 
-        private readonly UIDateTimeControl item = new UIDateTimeControl();
+        private readonly UIDateTimeItem item = new UIDateTimeItem();
 
         protected override void CreateInstance()
         {
             ItemForm = new UIDropDown(item);
         }
 
-        private MonthCalendar MonthCalendar
-        {
-            get
-            {
-                return item.MonthCalendar;
-            }
-        }
-
         public DateTime Value
         {
-            get => MonthCalendar.SelectionStart.Date;
+            get => item.Date;
             set
             {
                 Text = value.ToString(dateFormat);
-                MonthCalendar.SelectionStart = value;
+                item.Date = value;
             }
         }
 
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
+            item.Date = Value;
+            Application.DoEvents();
             ItemForm.Show(this);
         }
 
