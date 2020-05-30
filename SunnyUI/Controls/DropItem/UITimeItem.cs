@@ -53,6 +53,41 @@ namespace Sunny.UI
         public UITimeItem()
         {
             InitializeComponent();
+            this.MouseWheel += UITimeItem_MouseWheel;
+        }
+
+        private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                if (new Rectangle(hc.Location, h1.Size).Contains(e.X, e.Y))
+                {
+                    h1_Click(null, null);
+                }
+                else if (new Rectangle(mc.Location, m1.Size).Contains(e.X, e.Y))
+                {
+                    m1_Click(null, null);
+                }
+                else if (new Rectangle(sc.Location, s1.Size).Contains(e.X, e.Y))
+                {
+                    s1_Click(null, null);
+                }
+            }
+            else if (e.Delta > 0)
+            {
+                if (new Rectangle(hc.Location, h1.Size).Contains(e.X, e.Y))
+                {
+                    h2_Click(null, null);
+                }
+                else if (new Rectangle(mc.Location, m1.Size).Contains(e.X, e.Y))
+                {
+                    m2_Click(null, null);
+                }
+                else if (new Rectangle(sc.Location, s1.Size).Contains(e.X, e.Y))
+                {
+                    s2_Click(null, null);
+                }
+            }
         }
 
         private DateTime time;
