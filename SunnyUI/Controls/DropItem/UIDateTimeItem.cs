@@ -1616,13 +1616,13 @@ namespace Sunny.UI
             switch (TabControl.SelectedIndex)
             {
                 case 0:
-                    int iy = year / 10 * 10;
-                    iy -= 10;
-                    TopPanel.Text = iy + "年 - " + (iy + 9) + "年";
+                    Year = year / 10 * 10;
+                    Year -= 10;
+                    TopPanel.Text = Year + "年 - " + (Year + 9) + "年";
                     for (int i = 1; i <= 10; i++)
                     {
                         UILabel label = tabPage1.GetControl<UILabel>("y" + i);
-                        label.Text = (iy + i - 1).ToString();
+                        label.Text = (Year + i - 1).ToString();
                     }
                     break;
 
@@ -1661,13 +1661,13 @@ namespace Sunny.UI
             switch (TabControl.SelectedIndex)
             {
                 case 0:
-                    int iy = year / 10 * 10;
-                    iy += 10;
-                    TopPanel.Text = iy + "年 - " + (iy + 9) + "年";
+                    Year = year / 10 * 10;
+                    Year += 10;
+                    TopPanel.Text = Year + "年 - " + (Year + 9) + "年";
                     for (int i = 1; i <= 10; i++)
                     {
                         UILabel label = tabPage1.GetControl<UILabel>("y" + i);
-                        label.Text = (iy + i - 1).ToString();
+                        label.Text = (Year + i - 1).ToString();
                     }
                     break;
 
