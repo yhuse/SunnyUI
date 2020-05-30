@@ -479,8 +479,8 @@ namespace Sunny.UI
 
         private void ShowMaximize(bool IsOnMoving = false)
         {
-            //int screenIndex = GetMouseInScreen(MousePosition);
-            Screen screen = Screen.FromControl(this);
+            int screenIndex = GetMouseInScreen(MousePosition);
+            Screen screen = Screen.AllScreens[screenIndex];
             if (windowState == FormWindowState.Normal)
             {
                 size = Size;
@@ -585,8 +585,8 @@ namespace Sunny.UI
 
             if (!IsDisposed && FormMoveMouseDown)
             {
-                //int screenIndex = GetMouseInScreen(PointToScreen(e.Location));
-                Screen screen = Screen.FromControl(this);
+                int screenIndex = GetMouseInScreen(PointToScreen(e.Location));
+                Screen screen = Screen.AllScreens[screenIndex];
                 if (MousePosition.Y == screen.WorkingArea.Top && MaximizeBox)
                 {
                     ShowMaximize(true);
