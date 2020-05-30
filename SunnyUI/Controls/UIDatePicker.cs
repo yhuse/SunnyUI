@@ -66,7 +66,6 @@ namespace Sunny.UI
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
             item.Date = Value;
-            Application.DoEvents();
             ItemForm.Show(this);
         }
 

@@ -31,9 +31,9 @@ namespace Sunny.UI
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
+            //
             // UITimePicker
-            // 
+            //
             this.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.Name = "UITimePicker";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
@@ -42,7 +42,6 @@ namespace Sunny.UI
             this.ButtonClick += new System.EventHandler(this.UITimePicker_ButtonClick);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         public UITimePicker()
@@ -97,7 +96,6 @@ namespace Sunny.UI
         private void UITimePicker_ButtonClick(object sender, EventArgs e)
         {
             item.Time = Value;
-            Application.DoEvents();
             ItemForm.Show(this);
         }
     }
