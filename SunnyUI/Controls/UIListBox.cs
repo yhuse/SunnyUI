@@ -63,6 +63,12 @@ namespace Sunny.UI
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
         }
 
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            listbox.Font = Font;
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
