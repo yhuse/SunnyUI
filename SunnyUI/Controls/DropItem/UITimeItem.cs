@@ -79,7 +79,7 @@ namespace Sunny.UI
                 {
                     h2_Click(null, null);
                 }
-                else if (new Rectangle(mc.Location, hc.Size).Contains(e.X, e.Y))
+                else if (new Rectangle(mc.Location, mc.Size).Contains(e.X, e.Y))
                 {
                     m2_Click(null, null);
                 }
