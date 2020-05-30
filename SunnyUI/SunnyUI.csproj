@@ -424,6 +424,9 @@
     <EmbeddedResource Include="Controls\DropItem\UIComboBoxItem.resx">
       <DependentUpon>UIComboBoxItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
+      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DropItem\UITimeItem.resx">
       <DependentUpon>UITimeItem.cs</DependentUpon>
     </EmbeddedResource>

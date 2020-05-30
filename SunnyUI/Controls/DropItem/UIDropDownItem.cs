@@ -92,5 +92,9 @@ namespace Sunny.UI
             UIDropDown parent = (UIDropDown)Parent;
             parent?.Close();
         }
+
+        public virtual void SetStyle(UIBaseStyle style)
+        {
+        }
     }
 }

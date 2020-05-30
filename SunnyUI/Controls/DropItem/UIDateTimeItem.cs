@@ -21,6 +21,7 @@
 ******************************************************************************/
 
 using System;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -29,14 +30,14 @@ namespace Sunny.UI
         private UITabControl TabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private UIPanel uiPanel2;
+        private UIPanel p1;
         private UISymbolButton b4;
         private UISymbolButton b3;
         private UISymbolButton b2;
         private UISymbolButton b1;
-        private UIPanel uiPanel4;
+        private UIPanel p2;
         private System.Windows.Forms.TabPage tabPage3;
-        private UIPanel uiPanel5;
+        private UIPanel p3;
         private UILabel m12;
         private UILabel m11;
         private UILabel m10;
@@ -120,7 +121,7 @@ namespace Sunny.UI
             this.b1 = new Sunny.UI.UISymbolButton();
             this.TabControl = new Sunny.UI.UITabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.uiPanel2 = new Sunny.UI.UIPanel();
+            this.p1 = new Sunny.UI.UIPanel();
             this.y10 = new Sunny.UI.UILabel();
             this.y9 = new Sunny.UI.UILabel();
             this.y8 = new Sunny.UI.UILabel();
@@ -132,7 +133,7 @@ namespace Sunny.UI
             this.y2 = new Sunny.UI.UILabel();
             this.y1 = new Sunny.UI.UILabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.uiPanel4 = new Sunny.UI.UIPanel();
+            this.p2 = new Sunny.UI.UIPanel();
             this.m12 = new Sunny.UI.UILabel();
             this.m11 = new Sunny.UI.UILabel();
             this.m10 = new Sunny.UI.UILabel();
@@ -146,7 +147,7 @@ namespace Sunny.UI
             this.m2 = new Sunny.UI.UILabel();
             this.m1 = new Sunny.UI.UILabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.uiPanel5 = new Sunny.UI.UIPanel();
+            this.p3 = new Sunny.UI.UIPanel();
             this.d42 = new Sunny.UI.UILabel();
             this.d35 = new Sunny.UI.UILabel();
             this.d28 = new Sunny.UI.UILabel();
@@ -200,81 +201,86 @@ namespace Sunny.UI
             this.TopPanel.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.uiPanel2.SuspendLayout();
+            this.p1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.uiPanel4.SuspendLayout();
+            this.p2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.uiPanel5.SuspendLayout();
+            this.p3.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // TopPanel
-            // 
+            //
             this.TopPanel.Controls.Add(this.b4);
             this.TopPanel.Controls.Add(this.b3);
             this.TopPanel.Controls.Add(this.b2);
             this.TopPanel.Controls.Add(this.b1);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanel.FillColor = System.Drawing.Color.White;
             this.TopPanel.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.TopPanel.Size = new System.Drawing.Size(312, 31);
+            this.TopPanel.Size = new System.Drawing.Size(461, 31);
+            this.TopPanel.Style = Sunny.UI.UIStyle.Custom;
+            this.TopPanel.StyleCustomMode = true;
             this.TopPanel.TabIndex = 0;
             this.TopPanel.Text = "2020-05-05";
             this.TopPanel.Click += new System.EventHandler(this.TopPanel_Click);
-            // 
+            //
             // b4
-            // 
+            //
             this.b4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b4.BackColor = System.Drawing.Color.Transparent;
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.b4.FillColor = System.Drawing.Color.White;
             this.b4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b4.ImageInterval = 0;
-            this.b4.Location = new System.Drawing.Point(278, 4);
+            this.b4.Location = new System.Drawing.Point(427, 4);
             this.b4.Name = "b4";
             this.b4.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.b4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.b4.Size = new System.Drawing.Size(30, 24);
-            this.b4.Style = Sunny.UI.UIStyle.LightBlue;
+            this.b4.Style = Sunny.UI.UIStyle.Custom;
+            this.b4.StyleCustomMode = true;
             this.b4.Symbol = 61697;
             this.b4.TabIndex = 3;
             this.b4.Click += new System.EventHandler(this.b4_Click);
-            // 
+            //
             // b3
-            // 
+            //
             this.b3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b3.BackColor = System.Drawing.Color.Transparent;
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.b3.FillColor = System.Drawing.Color.White;
             this.b3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b3.ImageInterval = 0;
-            this.b3.Location = new System.Drawing.Point(242, 4);
+            this.b3.Location = new System.Drawing.Point(391, 4);
             this.b3.Name = "b3";
             this.b3.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.b3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.b3.Size = new System.Drawing.Size(30, 24);
-            this.b3.Style = Sunny.UI.UIStyle.LightBlue;
+            this.b3.Style = Sunny.UI.UIStyle.Custom;
+            this.b3.StyleCustomMode = true;
             this.b3.Symbol = 61701;
             this.b3.TabIndex = 2;
             this.b3.Click += new System.EventHandler(this.b3_Click);
-            // 
+            //
             // b2
-            // 
+            //
             this.b2.BackColor = System.Drawing.Color.Transparent;
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.b2.FillColor = System.Drawing.Color.White;
             this.b2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -286,16 +292,17 @@ namespace Sunny.UI
             this.b2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.b2.Size = new System.Drawing.Size(30, 24);
-            this.b2.Style = Sunny.UI.UIStyle.LightBlue;
+            this.b2.Style = Sunny.UI.UIStyle.Custom;
+            this.b2.StyleCustomMode = true;
             this.b2.Symbol = 61700;
             this.b2.TabIndex = 1;
             this.b2.Click += new System.EventHandler(this.b2_Click);
-            // 
+            //
             // b1
-            // 
+            //
             this.b1.BackColor = System.Drawing.Color.Transparent;
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.b1.FillColor = System.Drawing.Color.White;
             this.b1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -307,63 +314,66 @@ namespace Sunny.UI
             this.b1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.b1.Size = new System.Drawing.Size(30, 24);
-            this.b1.Style = Sunny.UI.UIStyle.LightBlue;
+            this.b1.Style = Sunny.UI.UIStyle.Custom;
+            this.b1.StyleCustomMode = true;
             this.b1.Symbol = 61696;
             this.b1.TabIndex = 0;
             this.b1.Click += new System.EventHandler(this.b1_Click);
-            // 
+            //
             // TabControl
-            // 
+            //
             this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Controls.Add(this.tabPage2);
             this.TabControl.Controls.Add(this.tabPage3);
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.TabControl.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.TabControl.ItemSize = new System.Drawing.Size(0, 1);
+            this.TabControl.ItemSize = new System.Drawing.Size(150, 40);
             this.TabControl.Location = new System.Drawing.Point(0, 31);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(312, 169);
+            this.TabControl.Size = new System.Drawing.Size(461, 317);
             this.TabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.TabControl.Style = Sunny.UI.UIStyle.Custom;
             this.TabControl.TabIndex = 1;
-            this.TabControl.TabVisible = false;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
-            // 
+            //
             // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.uiPanel2);
+            //
+            this.tabPage1.Controls.Add(this.p1);
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(312, 129);
+            this.tabPage1.Size = new System.Drawing.Size(461, 277);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // uiPanel2
-            // 
-            this.uiPanel2.Controls.Add(this.y10);
-            this.uiPanel2.Controls.Add(this.y9);
-            this.uiPanel2.Controls.Add(this.y8);
-            this.uiPanel2.Controls.Add(this.y7);
-            this.uiPanel2.Controls.Add(this.y6);
-            this.uiPanel2.Controls.Add(this.y5);
-            this.uiPanel2.Controls.Add(this.y4);
-            this.uiPanel2.Controls.Add(this.y3);
-            this.uiPanel2.Controls.Add(this.y2);
-            this.uiPanel2.Controls.Add(this.y1);
-            this.uiPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPanel2.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPanel2.Size = new System.Drawing.Size(312, 129);
-            this.uiPanel2.TabIndex = 0;
-            this.uiPanel2.Text = null;
-            // 
+            //
+            // p1
+            //
+            this.p1.Controls.Add(this.y10);
+            this.p1.Controls.Add(this.y9);
+            this.p1.Controls.Add(this.y8);
+            this.p1.Controls.Add(this.y7);
+            this.p1.Controls.Add(this.y6);
+            this.p1.Controls.Add(this.y5);
+            this.p1.Controls.Add(this.y4);
+            this.p1.Controls.Add(this.y3);
+            this.p1.Controls.Add(this.y2);
+            this.p1.Controls.Add(this.y1);
+            this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p1.FillColor = System.Drawing.Color.White;
+            this.p1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p1.Location = new System.Drawing.Point(0, 0);
+            this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p1.Name = "p1";
+            this.p1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.p1.Size = new System.Drawing.Size(461, 277);
+            this.p1.Style = Sunny.UI.UIStyle.Custom;
+            this.p1.TabIndex = 0;
+            this.p1.Text = null;
+            //
             // y10
-            // 
+            //
             this.y10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y10.Location = new System.Drawing.Point(83, 112);
             this.y10.Name = "y10";
@@ -375,9 +385,9 @@ namespace Sunny.UI
             this.y10.Text = "十月";
             this.y10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y10.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y9
-            // 
+            //
             this.y9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y9.Location = new System.Drawing.Point(7, 112);
             this.y9.Name = "y9";
@@ -389,9 +399,9 @@ namespace Sunny.UI
             this.y9.Text = "九月";
             this.y9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y9.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y8
-            // 
+            //
             this.y8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y8.Location = new System.Drawing.Point(235, 58);
             this.y8.Name = "y8";
@@ -403,9 +413,9 @@ namespace Sunny.UI
             this.y8.Text = "八月";
             this.y8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y8.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y7
-            // 
+            //
             this.y7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y7.Location = new System.Drawing.Point(159, 58);
             this.y7.Name = "y7";
@@ -417,9 +427,9 @@ namespace Sunny.UI
             this.y7.Text = "七月";
             this.y7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y7.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y6
-            // 
+            //
             this.y6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y6.Location = new System.Drawing.Point(83, 58);
             this.y6.Name = "y6";
@@ -431,9 +441,9 @@ namespace Sunny.UI
             this.y6.Text = "六月";
             this.y6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y6.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y5
-            // 
+            //
             this.y5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y5.Location = new System.Drawing.Point(7, 58);
             this.y5.Name = "y5";
@@ -445,9 +455,9 @@ namespace Sunny.UI
             this.y5.Text = "五月";
             this.y5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y5.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y4
-            // 
+            //
             this.y4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y4.Location = new System.Drawing.Point(235, 4);
             this.y4.Name = "y4";
@@ -459,9 +469,9 @@ namespace Sunny.UI
             this.y4.Text = "四月";
             this.y4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y4.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y3
-            // 
+            //
             this.y3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y3.Location = new System.Drawing.Point(159, 4);
             this.y3.Name = "y3";
@@ -473,9 +483,9 @@ namespace Sunny.UI
             this.y3.Text = "三月";
             this.y3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y3.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y2
-            // 
+            //
             this.y2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y2.Location = new System.Drawing.Point(83, 4);
             this.y2.Name = "y2";
@@ -487,9 +497,9 @@ namespace Sunny.UI
             this.y2.Text = "二月";
             this.y2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y2.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // y1
-            // 
+            //
             this.y1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.y1.Location = new System.Drawing.Point(7, 4);
             this.y1.Name = "y1";
@@ -501,43 +511,45 @@ namespace Sunny.UI
             this.y1.Text = "一月";
             this.y1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.y1.Click += new System.EventHandler(this.y1_Click);
-            // 
+            //
             // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.uiPanel4);
-            this.tabPage2.Location = new System.Drawing.Point(0, 0);
+            //
+            this.tabPage2.Controls.Add(this.p2);
+            this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(312, 169);
+            this.tabPage2.Size = new System.Drawing.Size(461, 277);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // uiPanel4
-            // 
-            this.uiPanel4.Controls.Add(this.m12);
-            this.uiPanel4.Controls.Add(this.m11);
-            this.uiPanel4.Controls.Add(this.m10);
-            this.uiPanel4.Controls.Add(this.m9);
-            this.uiPanel4.Controls.Add(this.m8);
-            this.uiPanel4.Controls.Add(this.m7);
-            this.uiPanel4.Controls.Add(this.m6);
-            this.uiPanel4.Controls.Add(this.m5);
-            this.uiPanel4.Controls.Add(this.m4);
-            this.uiPanel4.Controls.Add(this.m3);
-            this.uiPanel4.Controls.Add(this.m2);
-            this.uiPanel4.Controls.Add(this.m1);
-            this.uiPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPanel4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPanel4.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel4.Name = "uiPanel4";
-            this.uiPanel4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPanel4.Size = new System.Drawing.Size(312, 169);
-            this.uiPanel4.TabIndex = 1;
-            this.uiPanel4.Text = null;
-            // 
+            //
+            // p2
+            //
+            this.p2.Controls.Add(this.m12);
+            this.p2.Controls.Add(this.m11);
+            this.p2.Controls.Add(this.m10);
+            this.p2.Controls.Add(this.m9);
+            this.p2.Controls.Add(this.m8);
+            this.p2.Controls.Add(this.m7);
+            this.p2.Controls.Add(this.m6);
+            this.p2.Controls.Add(this.m5);
+            this.p2.Controls.Add(this.m4);
+            this.p2.Controls.Add(this.m3);
+            this.p2.Controls.Add(this.m2);
+            this.p2.Controls.Add(this.m1);
+            this.p2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p2.FillColor = System.Drawing.Color.White;
+            this.p2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p2.Location = new System.Drawing.Point(0, 0);
+            this.p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p2.Name = "p2";
+            this.p2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.p2.Size = new System.Drawing.Size(461, 277);
+            this.p2.Style = Sunny.UI.UIStyle.Custom;
+            this.p2.TabIndex = 1;
+            this.p2.Text = null;
+            //
             // m12
-            // 
+            //
             this.m12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m12.Location = new System.Drawing.Point(235, 112);
             this.m12.Name = "m12";
@@ -549,9 +561,9 @@ namespace Sunny.UI
             this.m12.Text = "十二月";
             this.m12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m12.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m11
-            // 
+            //
             this.m11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m11.Location = new System.Drawing.Point(159, 112);
             this.m11.Name = "m11";
@@ -563,9 +575,9 @@ namespace Sunny.UI
             this.m11.Text = "十一月";
             this.m11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m11.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m10
-            // 
+            //
             this.m10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m10.Location = new System.Drawing.Point(83, 112);
             this.m10.Name = "m10";
@@ -577,9 +589,9 @@ namespace Sunny.UI
             this.m10.Text = "十月";
             this.m10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m10.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m9
-            // 
+            //
             this.m9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m9.Location = new System.Drawing.Point(7, 112);
             this.m9.Name = "m9";
@@ -591,9 +603,9 @@ namespace Sunny.UI
             this.m9.Text = "九月";
             this.m9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m9.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m8
-            // 
+            //
             this.m8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m8.Location = new System.Drawing.Point(235, 58);
             this.m8.Name = "m8";
@@ -605,9 +617,9 @@ namespace Sunny.UI
             this.m8.Text = "八月";
             this.m8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m8.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m7
-            // 
+            //
             this.m7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m7.Location = new System.Drawing.Point(159, 58);
             this.m7.Name = "m7";
@@ -619,9 +631,9 @@ namespace Sunny.UI
             this.m7.Text = "七月";
             this.m7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m7.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m6
-            // 
+            //
             this.m6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m6.Location = new System.Drawing.Point(83, 58);
             this.m6.Name = "m6";
@@ -633,9 +645,9 @@ namespace Sunny.UI
             this.m6.Text = "六月";
             this.m6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m6.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m5
-            // 
+            //
             this.m5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m5.Location = new System.Drawing.Point(7, 58);
             this.m5.Name = "m5";
@@ -647,9 +659,9 @@ namespace Sunny.UI
             this.m5.Text = "五月";
             this.m5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m5.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m4
-            // 
+            //
             this.m4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m4.Location = new System.Drawing.Point(235, 4);
             this.m4.Name = "m4";
@@ -661,9 +673,9 @@ namespace Sunny.UI
             this.m4.Text = "四月";
             this.m4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m4.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m3
-            // 
+            //
             this.m3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m3.Location = new System.Drawing.Point(159, 4);
             this.m3.Name = "m3";
@@ -675,9 +687,9 @@ namespace Sunny.UI
             this.m3.Text = "三月";
             this.m3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m3.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m2
-            // 
+            //
             this.m2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m2.Location = new System.Drawing.Point(83, 4);
             this.m2.Name = "m2";
@@ -689,9 +701,9 @@ namespace Sunny.UI
             this.m2.Text = "二月";
             this.m2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m2.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // m1
-            // 
+            //
             this.m1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m1.Location = new System.Drawing.Point(7, 4);
             this.m1.Name = "m1";
@@ -703,81 +715,83 @@ namespace Sunny.UI
             this.m1.Text = "一月";
             this.m1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.m1.Click += new System.EventHandler(this.m1_Click);
-            // 
+            //
             // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.uiPanel5);
+            //
+            this.tabPage3.Controls.Add(this.p3);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(312, 129);
+            this.tabPage3.Size = new System.Drawing.Size(461, 277);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // uiPanel5
-            // 
-            this.uiPanel5.Controls.Add(this.d42);
-            this.uiPanel5.Controls.Add(this.d35);
-            this.uiPanel5.Controls.Add(this.d28);
-            this.uiPanel5.Controls.Add(this.d21);
-            this.uiPanel5.Controls.Add(this.d14);
-            this.uiPanel5.Controls.Add(this.d7);
-            this.uiPanel5.Controls.Add(this.d41);
-            this.uiPanel5.Controls.Add(this.d34);
-            this.uiPanel5.Controls.Add(this.d27);
-            this.uiPanel5.Controls.Add(this.d20);
-            this.uiPanel5.Controls.Add(this.d13);
-            this.uiPanel5.Controls.Add(this.d6);
-            this.uiPanel5.Controls.Add(this.d40);
-            this.uiPanel5.Controls.Add(this.d33);
-            this.uiPanel5.Controls.Add(this.d26);
-            this.uiPanel5.Controls.Add(this.d19);
-            this.uiPanel5.Controls.Add(this.d12);
-            this.uiPanel5.Controls.Add(this.d5);
-            this.uiPanel5.Controls.Add(this.d39);
-            this.uiPanel5.Controls.Add(this.d32);
-            this.uiPanel5.Controls.Add(this.d25);
-            this.uiPanel5.Controls.Add(this.d18);
-            this.uiPanel5.Controls.Add(this.d11);
-            this.uiPanel5.Controls.Add(this.d4);
-            this.uiPanel5.Controls.Add(this.d38);
-            this.uiPanel5.Controls.Add(this.d31);
-            this.uiPanel5.Controls.Add(this.d24);
-            this.uiPanel5.Controls.Add(this.d17);
-            this.uiPanel5.Controls.Add(this.d10);
-            this.uiPanel5.Controls.Add(this.d3);
-            this.uiPanel5.Controls.Add(this.d37);
-            this.uiPanel5.Controls.Add(this.d30);
-            this.uiPanel5.Controls.Add(this.d23);
-            this.uiPanel5.Controls.Add(this.d16);
-            this.uiPanel5.Controls.Add(this.d9);
-            this.uiPanel5.Controls.Add(this.d2);
-            this.uiPanel5.Controls.Add(this.uiLabel13);
-            this.uiPanel5.Controls.Add(this.uiLabel12);
-            this.uiPanel5.Controls.Add(this.uiLabel11);
-            this.uiPanel5.Controls.Add(this.uiLabel10);
-            this.uiPanel5.Controls.Add(this.uiLabel9);
-            this.uiPanel5.Controls.Add(this.uiLabel7);
-            this.uiPanel5.Controls.Add(this.d36);
-            this.uiPanel5.Controls.Add(this.d29);
-            this.uiPanel5.Controls.Add(this.d22);
-            this.uiPanel5.Controls.Add(this.d15);
-            this.uiPanel5.Controls.Add(this.d8);
-            this.uiPanel5.Controls.Add(this.d1);
-            this.uiPanel5.Controls.Add(this.uiLabel1);
-            this.uiPanel5.Controls.Add(this.uiLine1);
-            this.uiPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPanel5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPanel5.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel5.Name = "uiPanel5";
-            this.uiPanel5.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPanel5.Size = new System.Drawing.Size(312, 129);
-            this.uiPanel5.TabIndex = 2;
-            this.uiPanel5.Text = null;
-            // 
+            //
+            // p3
+            //
+            this.p3.Controls.Add(this.d42);
+            this.p3.Controls.Add(this.d35);
+            this.p3.Controls.Add(this.d28);
+            this.p3.Controls.Add(this.d21);
+            this.p3.Controls.Add(this.d14);
+            this.p3.Controls.Add(this.d7);
+            this.p3.Controls.Add(this.d41);
+            this.p3.Controls.Add(this.d34);
+            this.p3.Controls.Add(this.d27);
+            this.p3.Controls.Add(this.d20);
+            this.p3.Controls.Add(this.d13);
+            this.p3.Controls.Add(this.d6);
+            this.p3.Controls.Add(this.d40);
+            this.p3.Controls.Add(this.d33);
+            this.p3.Controls.Add(this.d26);
+            this.p3.Controls.Add(this.d19);
+            this.p3.Controls.Add(this.d12);
+            this.p3.Controls.Add(this.d5);
+            this.p3.Controls.Add(this.d39);
+            this.p3.Controls.Add(this.d32);
+            this.p3.Controls.Add(this.d25);
+            this.p3.Controls.Add(this.d18);
+            this.p3.Controls.Add(this.d11);
+            this.p3.Controls.Add(this.d4);
+            this.p3.Controls.Add(this.d38);
+            this.p3.Controls.Add(this.d31);
+            this.p3.Controls.Add(this.d24);
+            this.p3.Controls.Add(this.d17);
+            this.p3.Controls.Add(this.d10);
+            this.p3.Controls.Add(this.d3);
+            this.p3.Controls.Add(this.d37);
+            this.p3.Controls.Add(this.d30);
+            this.p3.Controls.Add(this.d23);
+            this.p3.Controls.Add(this.d16);
+            this.p3.Controls.Add(this.d9);
+            this.p3.Controls.Add(this.d2);
+            this.p3.Controls.Add(this.uiLabel13);
+            this.p3.Controls.Add(this.uiLabel12);
+            this.p3.Controls.Add(this.uiLabel11);
+            this.p3.Controls.Add(this.uiLabel10);
+            this.p3.Controls.Add(this.uiLabel9);
+            this.p3.Controls.Add(this.uiLabel7);
+            this.p3.Controls.Add(this.d36);
+            this.p3.Controls.Add(this.d29);
+            this.p3.Controls.Add(this.d22);
+            this.p3.Controls.Add(this.d15);
+            this.p3.Controls.Add(this.d8);
+            this.p3.Controls.Add(this.d1);
+            this.p3.Controls.Add(this.uiLabel1);
+            this.p3.Controls.Add(this.uiLine1);
+            this.p3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p3.FillColor = System.Drawing.Color.White;
+            this.p3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p3.Location = new System.Drawing.Point(0, 0);
+            this.p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p3.Name = "p3";
+            this.p3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.p3.Size = new System.Drawing.Size(461, 277);
+            this.p3.Style = Sunny.UI.UIStyle.Custom;
+            this.p3.TabIndex = 2;
+            this.p3.Text = null;
+            //
             // d42
-            // 
+            //
             this.d42.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d42.Location = new System.Drawing.Point(268, 145);
             this.d42.Name = "d42";
@@ -788,9 +802,9 @@ namespace Sunny.UI
             this.d42.Text = "uiLabel44";
             this.d42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d42.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d35
-            // 
+            //
             this.d35.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d35.Location = new System.Drawing.Point(268, 122);
             this.d35.Name = "d35";
@@ -801,9 +815,9 @@ namespace Sunny.UI
             this.d35.Text = "uiLabel45";
             this.d35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d35.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d28
-            // 
+            //
             this.d28.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d28.Location = new System.Drawing.Point(268, 99);
             this.d28.Name = "d28";
@@ -814,9 +828,9 @@ namespace Sunny.UI
             this.d28.Text = "uiLabel46";
             this.d28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d28.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d21
-            // 
+            //
             this.d21.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d21.Location = new System.Drawing.Point(268, 76);
             this.d21.Name = "d21";
@@ -827,9 +841,9 @@ namespace Sunny.UI
             this.d21.Text = "uiLabel47";
             this.d21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d21.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d14
-            // 
+            //
             this.d14.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d14.Location = new System.Drawing.Point(268, 53);
             this.d14.Name = "d14";
@@ -840,9 +854,9 @@ namespace Sunny.UI
             this.d14.Text = "uiLabel48";
             this.d14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d14.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d7
-            // 
+            //
             this.d7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d7.Location = new System.Drawing.Point(268, 30);
             this.d7.Name = "d7";
@@ -853,9 +867,9 @@ namespace Sunny.UI
             this.d7.Text = "uiLabel49";
             this.d7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d7.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d41
-            // 
+            //
             this.d41.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d41.Location = new System.Drawing.Point(224, 145);
             this.d41.Name = "d41";
@@ -866,9 +880,9 @@ namespace Sunny.UI
             this.d41.Text = "uiLabel38";
             this.d41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d41.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d34
-            // 
+            //
             this.d34.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d34.Location = new System.Drawing.Point(224, 122);
             this.d34.Name = "d34";
@@ -879,9 +893,9 @@ namespace Sunny.UI
             this.d34.Text = "uiLabel39";
             this.d34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d34.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d27
-            // 
+            //
             this.d27.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d27.Location = new System.Drawing.Point(224, 99);
             this.d27.Name = "d27";
@@ -892,9 +906,9 @@ namespace Sunny.UI
             this.d27.Text = "uiLabel40";
             this.d27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d27.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d20
-            // 
+            //
             this.d20.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d20.Location = new System.Drawing.Point(224, 76);
             this.d20.Name = "d20";
@@ -905,9 +919,9 @@ namespace Sunny.UI
             this.d20.Text = "uiLabel41";
             this.d20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d20.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d13
-            // 
+            //
             this.d13.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d13.Location = new System.Drawing.Point(224, 53);
             this.d13.Name = "d13";
@@ -918,9 +932,9 @@ namespace Sunny.UI
             this.d13.Text = "uiLabel42";
             this.d13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d13.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d6
-            // 
+            //
             this.d6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d6.Location = new System.Drawing.Point(224, 30);
             this.d6.Name = "d6";
@@ -931,9 +945,9 @@ namespace Sunny.UI
             this.d6.Text = "uiLabel43";
             this.d6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d6.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d40
-            // 
+            //
             this.d40.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d40.Location = new System.Drawing.Point(180, 145);
             this.d40.Name = "d40";
@@ -944,9 +958,9 @@ namespace Sunny.UI
             this.d40.Text = "uiLabel32";
             this.d40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d40.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d33
-            // 
+            //
             this.d33.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d33.Location = new System.Drawing.Point(180, 122);
             this.d33.Name = "d33";
@@ -957,9 +971,9 @@ namespace Sunny.UI
             this.d33.Text = "uiLabel33";
             this.d33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d33.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d26
-            // 
+            //
             this.d26.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d26.Location = new System.Drawing.Point(180, 99);
             this.d26.Name = "d26";
@@ -970,9 +984,9 @@ namespace Sunny.UI
             this.d26.Text = "uiLabel34";
             this.d26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d26.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d19
-            // 
+            //
             this.d19.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d19.Location = new System.Drawing.Point(180, 76);
             this.d19.Name = "d19";
@@ -983,9 +997,9 @@ namespace Sunny.UI
             this.d19.Text = "uiLabel35";
             this.d19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d19.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d12
-            // 
+            //
             this.d12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d12.Location = new System.Drawing.Point(180, 53);
             this.d12.Name = "d12";
@@ -996,9 +1010,9 @@ namespace Sunny.UI
             this.d12.Text = "uiLabel36";
             this.d12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d12.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d5
-            // 
+            //
             this.d5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d5.Location = new System.Drawing.Point(180, 30);
             this.d5.Name = "d5";
@@ -1009,9 +1023,9 @@ namespace Sunny.UI
             this.d5.Text = "uiLabel37";
             this.d5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d5.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d39
-            // 
+            //
             this.d39.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d39.Location = new System.Drawing.Point(136, 145);
             this.d39.Name = "d39";
@@ -1022,9 +1036,9 @@ namespace Sunny.UI
             this.d39.Text = "uiLabel26";
             this.d39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d39.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d32
-            // 
+            //
             this.d32.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d32.Location = new System.Drawing.Point(136, 122);
             this.d32.Name = "d32";
@@ -1035,9 +1049,9 @@ namespace Sunny.UI
             this.d32.Text = "uiLabel27";
             this.d32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d32.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d25
-            // 
+            //
             this.d25.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d25.Location = new System.Drawing.Point(136, 99);
             this.d25.Name = "d25";
@@ -1048,9 +1062,9 @@ namespace Sunny.UI
             this.d25.Text = "uiLabel28";
             this.d25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d25.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d18
-            // 
+            //
             this.d18.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d18.Location = new System.Drawing.Point(136, 76);
             this.d18.Name = "d18";
@@ -1061,9 +1075,9 @@ namespace Sunny.UI
             this.d18.Text = "uiLabel29";
             this.d18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d18.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d11
-            // 
+            //
             this.d11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d11.Location = new System.Drawing.Point(136, 53);
             this.d11.Name = "d11";
@@ -1074,9 +1088,9 @@ namespace Sunny.UI
             this.d11.Text = "uiLabel30";
             this.d11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d11.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d4
-            // 
+            //
             this.d4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d4.Location = new System.Drawing.Point(136, 30);
             this.d4.Name = "d4";
@@ -1087,9 +1101,9 @@ namespace Sunny.UI
             this.d4.Text = "uiLabel31";
             this.d4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d4.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d38
-            // 
+            //
             this.d38.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d38.Location = new System.Drawing.Point(92, 145);
             this.d38.Name = "d38";
@@ -1100,9 +1114,9 @@ namespace Sunny.UI
             this.d38.Text = "uiLabel20";
             this.d38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d38.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d31
-            // 
+            //
             this.d31.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d31.Location = new System.Drawing.Point(92, 122);
             this.d31.Name = "d31";
@@ -1113,9 +1127,9 @@ namespace Sunny.UI
             this.d31.Text = "uiLabel21";
             this.d31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d31.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d24
-            // 
+            //
             this.d24.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d24.Location = new System.Drawing.Point(92, 99);
             this.d24.Name = "d24";
@@ -1126,9 +1140,9 @@ namespace Sunny.UI
             this.d24.Text = "uiLabel22";
             this.d24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d24.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d17
-            // 
+            //
             this.d17.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d17.Location = new System.Drawing.Point(92, 76);
             this.d17.Name = "d17";
@@ -1139,9 +1153,9 @@ namespace Sunny.UI
             this.d17.Text = "uiLabel23";
             this.d17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d17.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d10
-            // 
+            //
             this.d10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d10.Location = new System.Drawing.Point(92, 53);
             this.d10.Name = "d10";
@@ -1152,9 +1166,9 @@ namespace Sunny.UI
             this.d10.Text = "uiLabel24";
             this.d10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d10.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d3
-            // 
+            //
             this.d3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d3.Location = new System.Drawing.Point(92, 30);
             this.d3.Name = "d3";
@@ -1165,9 +1179,9 @@ namespace Sunny.UI
             this.d3.Text = "uiLabel25";
             this.d3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d3.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d37
-            // 
+            //
             this.d37.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d37.Location = new System.Drawing.Point(48, 145);
             this.d37.Name = "d37";
@@ -1178,9 +1192,9 @@ namespace Sunny.UI
             this.d37.Text = "uiLabel14";
             this.d37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d37.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d30
-            // 
+            //
             this.d30.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d30.Location = new System.Drawing.Point(48, 122);
             this.d30.Name = "d30";
@@ -1191,9 +1205,9 @@ namespace Sunny.UI
             this.d30.Text = "uiLabel15";
             this.d30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d30.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d23
-            // 
+            //
             this.d23.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d23.Location = new System.Drawing.Point(48, 99);
             this.d23.Name = "d23";
@@ -1204,9 +1218,9 @@ namespace Sunny.UI
             this.d23.Text = "uiLabel16";
             this.d23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d23.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d16
-            // 
+            //
             this.d16.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d16.Location = new System.Drawing.Point(48, 76);
             this.d16.Name = "d16";
@@ -1217,9 +1231,9 @@ namespace Sunny.UI
             this.d16.Text = "uiLabel17";
             this.d16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d16.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d9
-            // 
+            //
             this.d9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d9.Location = new System.Drawing.Point(48, 53);
             this.d9.Name = "d9";
@@ -1230,9 +1244,9 @@ namespace Sunny.UI
             this.d9.Text = "uiLabel18";
             this.d9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d9.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d2
-            // 
+            //
             this.d2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d2.Location = new System.Drawing.Point(48, 30);
             this.d2.Name = "d2";
@@ -1243,9 +1257,9 @@ namespace Sunny.UI
             this.d2.Text = "uiLabel19";
             this.d2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d2.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // uiLabel13
-            // 
+            //
             this.uiLabel13.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel13.Location = new System.Drawing.Point(268, 4);
             this.uiLabel13.Name = "uiLabel13";
@@ -1254,9 +1268,9 @@ namespace Sunny.UI
             this.uiLabel13.TabIndex = 13;
             this.uiLabel13.Text = "六";
             this.uiLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLabel12
-            // 
+            //
             this.uiLabel12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel12.Location = new System.Drawing.Point(224, 4);
             this.uiLabel12.Name = "uiLabel12";
@@ -1265,9 +1279,9 @@ namespace Sunny.UI
             this.uiLabel12.TabIndex = 12;
             this.uiLabel12.Text = "五";
             this.uiLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLabel11
-            // 
+            //
             this.uiLabel11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel11.Location = new System.Drawing.Point(180, 4);
             this.uiLabel11.Name = "uiLabel11";
@@ -1276,9 +1290,9 @@ namespace Sunny.UI
             this.uiLabel11.TabIndex = 11;
             this.uiLabel11.Text = "四";
             this.uiLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLabel10
-            // 
+            //
             this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel10.Location = new System.Drawing.Point(136, 4);
             this.uiLabel10.Name = "uiLabel10";
@@ -1287,9 +1301,9 @@ namespace Sunny.UI
             this.uiLabel10.TabIndex = 10;
             this.uiLabel10.Text = "三";
             this.uiLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLabel9
-            // 
+            //
             this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel9.Location = new System.Drawing.Point(92, 4);
             this.uiLabel9.Name = "uiLabel9";
@@ -1298,9 +1312,9 @@ namespace Sunny.UI
             this.uiLabel9.TabIndex = 9;
             this.uiLabel9.Text = "二";
             this.uiLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLabel7
-            // 
+            //
             this.uiLabel7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel7.Location = new System.Drawing.Point(48, 4);
             this.uiLabel7.Name = "uiLabel7";
@@ -1309,9 +1323,9 @@ namespace Sunny.UI
             this.uiLabel7.TabIndex = 8;
             this.uiLabel7.Text = "一";
             this.uiLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // d36
-            // 
+            //
             this.d36.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d36.Location = new System.Drawing.Point(4, 145);
             this.d36.Name = "d36";
@@ -1322,9 +1336,9 @@ namespace Sunny.UI
             this.d36.Text = "uiLabel8";
             this.d36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d36.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d29
-            // 
+            //
             this.d29.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d29.Location = new System.Drawing.Point(4, 122);
             this.d29.Name = "d29";
@@ -1335,9 +1349,9 @@ namespace Sunny.UI
             this.d29.Text = "uiLabel5";
             this.d29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d29.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d22
-            // 
+            //
             this.d22.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d22.Location = new System.Drawing.Point(4, 99);
             this.d22.Name = "d22";
@@ -1348,9 +1362,9 @@ namespace Sunny.UI
             this.d22.Text = "uiLabel6";
             this.d22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d22.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d15
-            // 
+            //
             this.d15.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d15.Location = new System.Drawing.Point(4, 76);
             this.d15.Name = "d15";
@@ -1361,9 +1375,9 @@ namespace Sunny.UI
             this.d15.Text = "uiLabel3";
             this.d15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d15.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d8
-            // 
+            //
             this.d8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d8.Location = new System.Drawing.Point(4, 53);
             this.d8.Name = "d8";
@@ -1374,9 +1388,9 @@ namespace Sunny.UI
             this.d8.Text = "uiLabel4";
             this.d8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d8.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // d1
-            // 
+            //
             this.d1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.d1.Location = new System.Drawing.Point(4, 30);
             this.d1.Name = "d1";
@@ -1387,9 +1401,9 @@ namespace Sunny.UI
             this.d1.Text = "uiLabel2";
             this.d1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.d1.Click += new System.EventHandler(this.d1_Click);
-            // 
+            //
             // uiLabel1
-            // 
+            //
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel1.Location = new System.Drawing.Point(4, 4);
             this.uiLabel1.Name = "uiLabel1";
@@ -1398,9 +1412,10 @@ namespace Sunny.UI
             this.uiLabel1.TabIndex = 0;
             this.uiLabel1.Text = "日";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // uiLine1
-            // 
+            //
+            this.uiLine1.FillColor = System.Drawing.Color.White;
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine1.LineColor = System.Drawing.Color.Silver;
             this.uiLine1.Location = new System.Drawing.Point(4, 19);
@@ -1410,23 +1425,24 @@ namespace Sunny.UI
             this.uiLine1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLine1.StyleCustomMode = true;
             this.uiLine1.TabIndex = 7;
-            // 
+            //
             // UIDateTimeItem
-            // 
+            //
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.TopPanel);
+            this.FillColor = System.Drawing.Color.White;
             this.Name = "UIDateTimeItem";
-            this.Size = new System.Drawing.Size(312, 200);
+            this.Size = new System.Drawing.Size(461, 348);
+            this.Style = Sunny.UI.UIStyle.Custom;
             this.TopPanel.ResumeLayout(false);
             this.TabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.uiPanel2.ResumeLayout(false);
+            this.p1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.uiPanel4.ResumeLayout(false);
+            this.p2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.uiPanel5.ResumeLayout(false);
+            this.p3.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         public UIDateTimeItem()
@@ -1470,7 +1486,7 @@ namespace Sunny.UI
                 DateTime lblDate = (DateTime)label.Tag;
                 label.ForeColor = (lblDate.Year == Year && lblDate.Month == Month)
                     ? UIFontColor.Primary
-                    : UIFontColor.Plain;
+                    : Color.DarkGray;
 
                 if (lblDate.DateString().Equals(date.DateString()))
                 {
@@ -1479,13 +1495,11 @@ namespace Sunny.UI
             }
         }
 
-
         private void Label_MouseEnter(object sender, EventArgs e)
         {
             UILabel label = (UILabel)sender;
             label.ForeColor = UIColor.Blue;
         }
-
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
@@ -1548,7 +1562,7 @@ namespace Sunny.UI
                 label.Tag = lblDate;
                 label.ForeColor = (lblDate.Year == iYear && lblDate.Month == iMonth)
                     ? UIFontColor.Primary
-                    : UIFontColor.Plain;
+                    : Color.DarkGray;
 
                 if (lblDate.DateString().Equals(date.DateString()))
                 {
@@ -1573,9 +1587,11 @@ namespace Sunny.UI
                         label.Text = (iy + i - 1).ToString();
                     }
                     break;
+
                 case 1:
                     TopPanel.Text = Year + "年";
                     break;
+
                 case 2:
                     TopPanel.Text = Year + "年" + Month + "月";
                     break;
@@ -1609,10 +1625,12 @@ namespace Sunny.UI
                         label.Text = (iy + i - 1).ToString();
                     }
                     break;
+
                 case 1:
                     Year -= 1;
                     TopPanel.Text = Year + "年";
                     break;
+
                 case 2:
                     Year -= 1;
                     SetYearMonth(Year, Month);
@@ -1652,15 +1670,25 @@ namespace Sunny.UI
                         label.Text = (iy + i - 1).ToString();
                     }
                     break;
+
                 case 1:
                     Year += 1;
                     TopPanel.Text = Year + "年";
                     break;
+
                 case 2:
                     Year += 1;
                     SetYearMonth(Year, Month);
                     break;
             }
+        }
+
+        public override void SetRectColor(Color color)
+        {
+            base.SetRectColor(color);
+            RectColor = color;
+            b1.ForeColor = b2.ForeColor = b3.ForeColor = b4.ForeColor = color;
+            TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = color;
         }
     }
 }

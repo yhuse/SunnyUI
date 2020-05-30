@@ -39,7 +39,6 @@ namespace Sunny.UI
             {
                 if (UIStyles.Style != value && value != UIStyle.Custom)
                 {
-
                     UIStyles.SetStyle(value);
                 }
             }

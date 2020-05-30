@@ -20,6 +20,8 @@
 ******************************************************************************/
 
 using System;
+using System.Diagnostics.SymbolStore;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -43,6 +45,9 @@ namespace Sunny.UI
         private UILabel sb;
         private UILabel mb;
         private UILabel hb;
+        private System.Windows.Forms.Timer timer1;
+        private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.Timer timer2;
         private UILine uiLine2;
 
         public UITimeItem()
@@ -111,6 +116,7 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
             this.s1 = new Sunny.UI.UISymbolButton();
@@ -130,10 +136,13 @@ namespace Sunny.UI
             this.sb = new Sunny.UI.UILabel();
             this.mb = new Sunny.UI.UILabel();
             this.hb = new Sunny.UI.UILabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             //
             // uiLine1
             //
+            this.uiLine1.FillColor = System.Drawing.Color.White;
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine1.LineColor = System.Drawing.Color.Silver;
             this.uiLine1.Location = new System.Drawing.Point(11, 60);
@@ -146,6 +155,7 @@ namespace Sunny.UI
             //
             // uiLine2
             //
+            this.uiLine2.FillColor = System.Drawing.Color.White;
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine2.LineColor = System.Drawing.Color.Silver;
             this.uiLine2.Location = new System.Drawing.Point(11, 94);
@@ -160,7 +170,7 @@ namespace Sunny.UI
             //
             this.s1.BackColor = System.Drawing.Color.Transparent;
             this.s1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.s1.FillColor = System.Drawing.Color.White;
             this.s1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.s1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -172,17 +182,20 @@ namespace Sunny.UI
             this.s1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.s1.Size = new System.Drawing.Size(30, 24);
-            this.s1.Style = Sunny.UI.UIStyle.LightBlue;
+            this.s1.Style = Sunny.UI.UIStyle.Custom;
             this.s1.StyleCustomMode = true;
             this.s1.Symbol = 61702;
             this.s1.TabIndex = 6;
+            this.s1.Tag = "3";
             this.s1.Click += new System.EventHandler(this.s1_Click);
+            this.s1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.s1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // m1
             //
             this.m1.BackColor = System.Drawing.Color.Transparent;
             this.m1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.m1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.m1.FillColor = System.Drawing.Color.White;
             this.m1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -194,17 +207,20 @@ namespace Sunny.UI
             this.m1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.m1.Size = new System.Drawing.Size(30, 24);
-            this.m1.Style = Sunny.UI.UIStyle.LightBlue;
+            this.m1.Style = Sunny.UI.UIStyle.Custom;
             this.m1.StyleCustomMode = true;
             this.m1.Symbol = 61702;
             this.m1.TabIndex = 5;
+            this.m1.Tag = "2";
             this.m1.Click += new System.EventHandler(this.m1_Click);
+            this.m1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.m1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // h1
             //
             this.h1.BackColor = System.Drawing.Color.Transparent;
             this.h1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.h1.FillColor = System.Drawing.Color.White;
             this.h1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.h1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -216,17 +232,20 @@ namespace Sunny.UI
             this.h1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.h1.Size = new System.Drawing.Size(30, 24);
-            this.h1.Style = Sunny.UI.UIStyle.LightBlue;
+            this.h1.Style = Sunny.UI.UIStyle.Custom;
             this.h1.StyleCustomMode = true;
             this.h1.Symbol = 61702;
             this.h1.TabIndex = 4;
+            this.h1.Tag = "1";
             this.h1.Click += new System.EventHandler(this.h1_Click);
+            this.h1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.h1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // s2
             //
             this.s2.BackColor = System.Drawing.Color.Transparent;
             this.s2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.s2.FillColor = System.Drawing.Color.White;
             this.s2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.s2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -238,17 +257,20 @@ namespace Sunny.UI
             this.s2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.s2.Size = new System.Drawing.Size(30, 24);
-            this.s2.Style = Sunny.UI.UIStyle.LightBlue;
+            this.s2.Style = Sunny.UI.UIStyle.Custom;
             this.s2.StyleCustomMode = true;
             this.s2.Symbol = 61703;
             this.s2.TabIndex = 9;
+            this.s2.Tag = "6";
             this.s2.Click += new System.EventHandler(this.s2_Click);
+            this.s2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.s2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // m2
             //
             this.m2.BackColor = System.Drawing.Color.Transparent;
             this.m2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.m2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.m2.FillColor = System.Drawing.Color.White;
             this.m2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.m2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -260,17 +282,20 @@ namespace Sunny.UI
             this.m2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.m2.Size = new System.Drawing.Size(30, 24);
-            this.m2.Style = Sunny.UI.UIStyle.LightBlue;
+            this.m2.Style = Sunny.UI.UIStyle.Custom;
             this.m2.StyleCustomMode = true;
             this.m2.Symbol = 61703;
             this.m2.TabIndex = 8;
+            this.m2.Tag = "5";
             this.m2.Click += new System.EventHandler(this.m2_Click);
+            this.m2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.m2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // h2
             //
             this.h2.BackColor = System.Drawing.Color.Transparent;
             this.h2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.h2.FillColor = System.Drawing.Color.White;
             this.h2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.h2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -282,11 +307,14 @@ namespace Sunny.UI
             this.h2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.h2.Size = new System.Drawing.Size(30, 24);
-            this.h2.Style = Sunny.UI.UIStyle.LightBlue;
+            this.h2.Style = Sunny.UI.UIStyle.Custom;
             this.h2.StyleCustomMode = true;
             this.h2.Symbol = 61703;
             this.h2.TabIndex = 7;
+            this.h2.Tag = "4";
             this.h2.Click += new System.EventHandler(this.h2_Click);
+            this.h2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.h1_MouseDown);
+            this.h2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.h1_MouseUp);
             //
             // btnOK
             //
@@ -353,7 +381,7 @@ namespace Sunny.UI
             //
             this.st.BackColor = System.Drawing.Color.Transparent;
             this.st.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.st.ForeColor = System.Drawing.Color.Gray;
+            this.st.ForeColor = System.Drawing.Color.DarkGray;
             this.st.Location = new System.Drawing.Point(126, 40);
             this.st.Name = "st";
             this.st.Size = new System.Drawing.Size(35, 22);
@@ -366,7 +394,7 @@ namespace Sunny.UI
             //
             this.mt.BackColor = System.Drawing.Color.Transparent;
             this.mt.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mt.ForeColor = System.Drawing.Color.Gray;
+            this.mt.ForeColor = System.Drawing.Color.DarkGray;
             this.mt.Location = new System.Drawing.Point(73, 40);
             this.mt.Name = "mt";
             this.mt.Size = new System.Drawing.Size(35, 22);
@@ -379,7 +407,7 @@ namespace Sunny.UI
             //
             this.ht.BackColor = System.Drawing.Color.Transparent;
             this.ht.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ht.ForeColor = System.Drawing.Color.Gray;
+            this.ht.ForeColor = System.Drawing.Color.DarkGray;
             this.ht.Location = new System.Drawing.Point(20, 40);
             this.ht.Name = "ht";
             this.ht.Size = new System.Drawing.Size(35, 22);
@@ -392,7 +420,7 @@ namespace Sunny.UI
             //
             this.sb.BackColor = System.Drawing.Color.Transparent;
             this.sb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.sb.ForeColor = System.Drawing.Color.Gray;
+            this.sb.ForeColor = System.Drawing.Color.DarkGray;
             this.sb.Location = new System.Drawing.Point(126, 106);
             this.sb.Name = "sb";
             this.sb.Size = new System.Drawing.Size(35, 22);
@@ -405,7 +433,7 @@ namespace Sunny.UI
             //
             this.mb.BackColor = System.Drawing.Color.Transparent;
             this.mb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mb.ForeColor = System.Drawing.Color.Gray;
+            this.mb.ForeColor = System.Drawing.Color.DarkGray;
             this.mb.Location = new System.Drawing.Point(73, 106);
             this.mb.Name = "mb";
             this.mb.Size = new System.Drawing.Size(35, 22);
@@ -418,7 +446,7 @@ namespace Sunny.UI
             //
             this.hb.BackColor = System.Drawing.Color.Transparent;
             this.hb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.hb.ForeColor = System.Drawing.Color.Gray;
+            this.hb.ForeColor = System.Drawing.Color.DarkGray;
             this.hb.Location = new System.Drawing.Point(20, 106);
             this.hb.Name = "hb";
             this.hb.Size = new System.Drawing.Size(35, 22);
@@ -426,6 +454,15 @@ namespace Sunny.UI
             this.hb.TabIndex = 18;
             this.hb.Text = "00";
             this.hb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
+            // timer1
+            //
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer_Tick);
+            //
+            // timer2
+            //
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             //
             // UITimeItem
             //
@@ -448,14 +485,16 @@ namespace Sunny.UI
             this.Controls.Add(this.h1);
             this.Controls.Add(this.uiLine2);
             this.Controls.Add(this.uiLine1);
+            this.FillColor = System.Drawing.Color.White;
             this.Name = "UITimeItem";
             this.Size = new System.Drawing.Size(179, 200);
+            this.Style = Sunny.UI.UIStyle.Custom;
             this.ResumeLayout(false);
         }
 
         private void h1_Click(object sender, EventArgs e)
         {
-            Hour = (hour - 1 + 24).Mod(24);
+            Hour = (Hour - 1 + 24).Mod(24);
             ShowOther();
         }
 
@@ -473,7 +512,7 @@ namespace Sunny.UI
 
         private void h2_Click(object sender, EventArgs e)
         {
-            Hour = (hour + 1 + 24).Mod(24);
+            Hour = (Hour + 1 + 24).Mod(24);
             ShowOther();
         }
 
@@ -499,6 +538,59 @@ namespace Sunny.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             CloseParent();
+        }
+
+        private int buttonIndex;
+        private bool isEnd;
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            switch (buttonIndex)
+            {
+                case 1: h1_Click(null, null); break;
+                case 2: m1_Click(null, null); break;
+                case 3: s1_Click(null, null); break;
+                case 4: h2_Click(null, null); break;
+                case 5: m2_Click(null, null); break;
+                case 6: s2_Click(null, null); break;
+            }
+
+            if (isEnd) timer2.Stop();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            if (!isEnd) timer2.Start();
+        }
+
+        private void h1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            isEnd = false;
+            buttonIndex = ((UISymbolButton)sender).Tag.ToString().ToInt();
+            timer1.Start();
+        }
+
+        private void h1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            timer1.Stop();
+            isEnd = true;
+        }
+
+        public override void SetStyle(UIBaseStyle style)
+        {
+            base.SetStyle(style);
+            btnOK.SetStyleColor(style);
+            btnCancel.SetStyleColor(style);
+        }
+
+        public override void SetRectColor(Color color)
+        {
+            base.SetRectColor(color);
+            RectColor = color;
+            h1.ForeColor = h2.ForeColor = color;
+            m1.ForeColor = m2.ForeColor = color;
+            s1.ForeColor = s2.ForeColor = color;
         }
     }
 }
