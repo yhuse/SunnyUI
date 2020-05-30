@@ -60,30 +60,30 @@ namespace Sunny.UI
         {
             if (e.Delta < 0)
             {
-                if (new Rectangle(hc.Location, h1.Size).Contains(e.X, e.Y))
+                if (new Rectangle(hc.Location, hc.Size).Contains(e.X, e.Y))
                 {
                     h1_Click(null, null);
                 }
-                else if (new Rectangle(mc.Location, m1.Size).Contains(e.X, e.Y))
+                else if (new Rectangle(mc.Location, mc.Size).Contains(e.X, e.Y))
                 {
                     m1_Click(null, null);
                 }
-                else if (new Rectangle(sc.Location, s1.Size).Contains(e.X, e.Y))
+                else if (new Rectangle(sc.Location, sc.Size).Contains(e.X, e.Y))
                 {
                     s1_Click(null, null);
                 }
             }
             else if (e.Delta > 0)
             {
-                if (new Rectangle(hc.Location, h1.Size).Contains(e.X, e.Y))
+                if (new Rectangle(hc.Location, hc.Size).Contains(e.X, e.Y))
                 {
                     h2_Click(null, null);
                 }
-                else if (new Rectangle(mc.Location, m1.Size).Contains(e.X, e.Y))
+                else if (new Rectangle(mc.Location, hc.Size).Contains(e.X, e.Y))
                 {
                     m2_Click(null, null);
                 }
-                else if (new Rectangle(sc.Location, s1.Size).Contains(e.X, e.Y))
+                else if (new Rectangle(sc.Location, sc.Size).Contains(e.X, e.Y))
                 {
                     s2_Click(null, null);
                 }
