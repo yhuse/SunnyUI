@@ -1,22 +1,22 @@
 ﻿/******************************************************************************
-* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
-* CopyRight (C) 2012-2020 ShenYongHua(沈永华).
-* QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
-*
-* Blog:   https://www.cnblogs.com/yhuse
-* Gitee:  https://gitee.com/yhuse/SunnyUI
-* GitHub: https://github.com/yhuse/SunnyUI
-*
-* SunnyUI.dll can be used for free under the GPL-3.0 license.
-* If you use this code, please keep this note.
-* 如果您使用此代码，请保留此说明。
-******************************************************************************
-* 文件名称: UIForm.cs
-* 文件说明: 窗体基类
-* 当前版本: V2.2
-* 创建日期: 2020-01-01
-*
-* 2020-01-01: V2.2.0 增加文件说明
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIForm.cs
+ * 文件说明: 窗体基类
+ * 当前版本: V2.2
+ * 创建日期: 2020-01-01
+ *
+ * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
 using System;
@@ -30,11 +30,6 @@ namespace Sunny.UI
 {
     public partial class UIForm : Form, IStyleInterface
     {
-        private readonly UIButton btn = new UIButton();
-
-        public readonly Guid Guid = Guid.NewGuid();
-
-        public UIStatusForm StatusForm;
 
         public UIForm()
         {
@@ -60,62 +55,15 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
-        public void ShowStatus(string title, string desc, int max = 100, int value = 0)
-        {
-            if (StatusForm == null)
-            {
-                StatusForm = new UIStatusForm();
-            }
 
-            StatusForm.Style = Style;
-            StatusForm.Show(title, desc, max, value);
-        }
-
-        public void HideStatus()
-        {
-            StatusForm.Hide();
-        }
-
-        public void StatusStepIt()
-        {
-            StatusForm.StepIt();
-        }
-
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            AfterSetFillColor(BackColor);
-            _style = UIStyle.Custom;
-        }
-
-        protected virtual void AfterSetFillColor(Color color)
-        {
-        }
-
-        protected override void OnControlAdded(ControlEventArgs e)
-        {
-            base.OnControlAdded(e);
-
-            if (e.Control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode)
-                {
-                    ctrl.Style = Style;
-                }
-            }
-
-            if (ShowTitle && e.Control.Top < TitleHeight)
-            {
-                e.Control.Top = TitleHeight;
-            }
-        }
-
+        #region Public Attributes
         [DefaultValue(null)]
         public string TagString { get; set; }
 
-        private bool showTitle = true;
-
-        [DefaultValue(true)]
+        /// <summary>
+        /// 是否显示窗体的标题栏
+        /// </summary>
+        [Description("是否显示窗体的标题栏"), Category("WindowStyle"), DefaultValue(true)]
         public bool ShowTitle
         {
             get => showTitle;
@@ -127,9 +75,10 @@ namespace Sunny.UI
             }
         }
 
-        private bool controlBox = true;
-
-        [DefaultValue(true)]
+        /// <summary>
+        /// 是否显示窗体的控制按钮
+        /// </summary>
+        [Description("是否显示窗体的控制按钮"), Category("WindowStyle"), DefaultValue(true)]
         public new bool ControlBox
         {
             get => controlBox;
@@ -146,9 +95,10 @@ namespace Sunny.UI
             }
         }
 
-        private bool maximizeBox = true;
-
-        [DefaultValue(true)]
+        /// <summary>
+        /// 是否显示窗体的最大化按钮
+        /// </summary>
+        [Description("是否显示窗体的最大化按钮"), Category("WindowStyle"), DefaultValue(true)]
         public new bool MaximizeBox
         {
             get => maximizeBox;
@@ -162,9 +112,10 @@ namespace Sunny.UI
             }
         }
 
-        private bool minimizeBox = true;
-
-        [DefaultValue(true)]
+        /// <summary>
+        /// 是否显示窗体的最小化按钮
+        /// </summary>
+        [Description("是否显示窗体的最小化按钮"), Category("WindowStyle"), DefaultValue(true)]
         public new bool MinimizeBox
         {
             get => minimizeBox;
@@ -178,24 +129,23 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 当前控件的版本
+        /// </summary>
+        [Description("控件版本"), Category("SunnyUI"), DefaultValue(true)]
         public string Version { get; }
 
-        public virtual void Init()
-        {
-        }
-
-        public virtual void Final()
-        {
-        }
 
         /// <summary>
-        /// 最大化时全屏
+        /// 是否以全屏模式进入最大化
         /// </summary>
-        [DefaultValue(false)]
+        [Description("是否以全屏模式进入最大化"), Category("WindowStyle"), DefaultValue(false)]
         public bool ShowFullScreen { get; set; }
 
-        private int titleHeight = 35;
-
+        /// <summary>
+        /// 标题栏高度
+        /// </summary>
+        [Description("标题栏高度"), Category("Appearance"), DefaultValue(35)]
         public int TitleHeight
         {
             get => titleHeight;
@@ -207,9 +157,10 @@ namespace Sunny.UI
             }
         }
 
-        private Color titleColor = UIColor.Blue;
-
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏颜色"), Category("Appearance"), DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TitleColor
         {
             get => titleColor;
@@ -221,9 +172,10 @@ namespace Sunny.UI
             }
         }
 
-        private Color titleForeColor = Color.White;
-
-        [DefaultValue(typeof(Color), "White")]
+        /// <summary>
+        /// 标题颜色
+        /// </summary>
+        [Description("标题前景色（标题颜色）"), Category("Appearance"), DefaultValue(typeof(Color), "White")]
         public Color TitleForeColor
         {
             get => titleForeColor;
@@ -235,6 +187,180 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("背景颜色"), Category("Appearance")]
+        [DefaultValue(typeof(Color), "48, 48, 48")]
+        public override Color ForeColor
+        {
+            get => foreColor;
+            set
+            {
+                if (foreColor != value)
+                {
+                    foreColor = value;
+                    _style = UIStyle.Custom;
+                    AfterSetForeColor(ForeColor);
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        /// <value>The color of the border style.</value>
+        [Description("边框颜色"), Category("Appearance")]
+        public Color RectColor
+        {
+            get => rectColor;
+            set
+            {
+                rectColor = value;
+                AfterSetRectColor(value);
+                RectColorChanged?.Invoke(this, null);
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 设置或获取显示器边缘停留的最大时间(ms)，默认500ms
+        /// </summary>
+        [Description("设置或获取在显示器边缘停留的最大时间(ms)"), Category("SunnyUI")]
+        [DefaultValue(500)]
+        public long StickyBorderTime
+        {
+            get { return _StickyBorderTime / 10000; }
+            set { _StickyBorderTime = value / 10000; }
+        }
+
+        /// <summary>
+        /// 是否显示圆角
+        /// </summary>
+        [Description("是否显示圆角"), Category("Appearance")]
+        [DefaultValue(true)]
+        public bool ShowRadius
+        {
+            get => _showRadius;
+            set
+            {
+                _showRadius = value;
+                SetRadius();
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 是否显示边框
+        /// </summary>
+        [Description("是否显示边框"), Category("Appearance")]
+        [DefaultValue(true)]
+        public bool ShowRect
+        {
+            get => _showRect;
+            set
+            {
+                _showRect = value;
+                Invalidate();
+            }
+        }
+
+        
+        [Description("使用Esc键关闭窗口"), Category("Key")]
+        [DefaultValue(true)]
+        public bool EscClose { get; set; } = true;
+
+        /// <summary>
+        /// 是否屏蔽Alt+F4
+        /// </summary>
+        [Description("是否屏蔽Alt+F4"), Category("Key")]
+        [DefaultValue(false)]
+        public bool IsForbidAltF4 { get; set; }
+
+        /// <summary>
+        /// 配色主题
+        /// </summary>
+        [Description("配色主题"), Category("Appearance")]
+        [DefaultValue(UIStyle.Blue)]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("Appearance")]
+        [DefaultValue(false)]
+        public bool StyleCustomMode { get; set; }
+
+        [Description("文字对齐方式"), Category("Appearance")]
+        public StringAlignment TextAlignment
+        {
+            get => textAlignment;
+            set
+            {
+                textAlignment = value;
+                Invalidate();
+            }
+        }
+
+        public string CloseAskString { get; set; }
+
+        #endregion
+
+
+        #region Private Attributes
+
+        /// <summary>
+        /// 是否显示窗体的标题栏
+        /// </summary>
+        private bool showTitle = true;
+
+        /// <summary>
+        /// 是否显示窗体的控制按钮
+        /// </summary>
+        private bool controlBox = true;
+
+        /// <summary>
+        /// 是否显示窗体的最大化按钮
+        /// </summary>
+        private bool maximizeBox = true;
+
+        /// <summary>
+        /// 是否显示窗体的最小化按钮
+        /// </summary>
+        private bool minimizeBox = true;
+
+        /// <summary>
+        /// 标题栏高度
+        /// </summary>
+        private int titleHeight = 35;
+
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        private Color titleColor = UIColor.Blue;
+
+        /// <summary>
+        /// 标题颜色
+        /// </summary>
+        private Color titleForeColor = Color.White;
+
+        protected Color foreColor = UIFontColor.Primary;
+
+        protected Color rectColor = UIColor.Blue;
+
+        /// <summary>
+        /// 是否显示圆角
+        /// </summary>
+        private bool _showRadius = true;
+
+        /// <summary>
+        /// 是否重绘边框样式
+        /// </summary>
+        private bool _showRect = true;
+
         private Rectangle ControlBoxRect;
 
         private Rectangle MaximizeBoxRect;
@@ -242,6 +368,191 @@ namespace Sunny.UI
         private Rectangle MinimizeBoxRect;
 
         private int ControlBoxLeft;
+
+        private StringAlignment textAlignment = StringAlignment.Near;
+
+        private long _StickyBorderTime = 5000000;
+
+        #endregion
+
+
+        #region Public Variables
+
+        public event EventHandler RectColorChanged;
+
+        public new FormWindowState WindowState
+        {
+            get => windowState;
+            set
+            {
+                if (value == FormWindowState.Minimized)
+                {
+                    base.WindowState = FormWindowState.Minimized;
+                    return;
+                }
+
+                ShowMaximize();
+                windowState = value;
+            }
+        }
+
+        public readonly Guid Guid = Guid.NewGuid();
+
+        public UIStatusForm StatusForm;
+
+        private FormWindowState windowState = FormWindowState.Normal;
+
+        #endregion
+
+
+        #region Private Variables
+
+        /// <summary>
+        /// 窗体最大化前的大小
+        /// </summary>
+        private Size size;
+
+        /// <summary>
+        /// 窗体最大化前所处的位置
+        /// </summary>
+        private Point mLocation;
+
+
+        /// <summary>
+        /// 是否触发在显示器边缘停留事件
+        /// </summary>
+        private bool IsStayAtTopBorder = false;
+
+        /// <summary>
+        /// 显示器边缘停留事件被触发的时间
+        /// </summary>
+        private long TopBorderStayTicks;
+
+        private bool InControlBox, InMaxBox, InMinBox;
+
+        private bool isShow;
+
+        /// <summary>
+        /// 鼠标在窗体上移动时，鼠标的位置
+        /// </summary>
+        private Point MousePos;
+
+        /// <summary>
+        /// 鼠标左键按下时，窗体的位置
+        /// </summary>
+        private Point FormLocation;
+
+        /// <summary>
+        /// 鼠标左键按下时，鼠标的位置
+        /// </summary>
+        private Point mouseOffset;
+
+        private readonly UIButton btn = new UIButton();
+
+        private bool TitleMouseDown = false;
+
+        #endregion
+
+
+        #region Public Methods
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public virtual void Init()
+        {
+        }
+        /// <summary>
+        /// 结束
+        /// </summary>
+        public virtual void Final()
+        {
+
+        }
+
+        [DllImport("gdi32.dll")]
+        public static extern int CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowRgn(IntPtr wnd, int hRgn, Boolean bRedraw);
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject", CharSet = CharSet.Ansi)]
+        public static extern int DeleteObject(int hObject);
+
+        /// <summary>
+        /// 设置窗体的圆角矩形
+        /// </summary>
+        /// <param name="form">需要设置的窗体</param>
+        /// <param name="rgnRadius">圆角矩形的半径</param>
+        public static void SetFormRoundRectRegion(Form form, int rgnRadius)
+        {
+            if (form != null && form.FormBorderStyle == FormBorderStyle.None)
+            {
+                int region = CreateRoundRectRgn(0, 0, form.Width + 1, form.Height + 1, rgnRadius, rgnRadius);
+                SetWindowRgn(form.Handle, region, true);
+                DeleteObject(region);
+            }
+        }
+
+        public void SetStyle(UIStyle style)
+        {
+            this.SetChildUIStyle(style);
+            btn.SetStyle(style);
+
+            SetStyleColor(UIStyles.GetStyleColor(style));
+            _style = style;
+        }
+
+        public virtual void SetStyleColor(UIBaseStyle uiColor)
+        {
+            if (uiColor.IsCustom()) return;
+
+            rectColor = uiColor.RectColor;
+            foreColor = UIFontColor.Primary;
+            BackColor = uiColor.PlainColor;
+            titleColor = uiColor.TitleColor;
+            titleForeColor = uiColor.TitleForeColor;
+            Invalidate();
+        }
+
+        /// <summary>
+        /// 显示进度窗口
+        /// </summary>
+        /// <param name="title">进度窗口的标题</param>
+        /// <param name="desc">进度窗口的描述</param>
+        /// <param name="max">最大进度值</param>
+        /// <param name="value">当前进度值</param>
+        public void ShowStatus(string title, string desc, int max = 100, int value = 0)
+        {
+            if (StatusForm == null)
+            {
+                StatusForm = new UIStatusForm();
+            }
+
+            StatusForm.Style = Style;
+            StatusForm.Show(title, desc, max, value);
+        }
+
+        /// <summary>
+        /// 隐藏进度窗口
+        /// </summary>
+        public void HideStatus()
+        {
+            StatusForm.Hide();
+        }
+
+        /// <summary>
+        /// 使进度条按步长自增一次
+        /// </summary>
+        public void StatusStepIt()
+        {
+            StatusForm.StepIt();
+        }
+
+        #endregion
+
+
+        #region Private Methods
 
         private void CalcSystemBoxPos()
         {
@@ -280,29 +591,109 @@ namespace Sunny.UI
             }
         }
 
-        [DllImport("gdi32.dll")]
-        public static extern int CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3);
+        /// <summary>
+        /// 获取当前鼠标活动区域所属的监视器
+        /// </summary>
+        /// <returns>Screen</returns>
+        private Screen GetMouseActiveScreen(Point mPnt)
+        {
+            int screenIndex = 0;
+            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            {
+                if (mPnt.InRect(Screen.AllScreens[i].Bounds))
+                {
+                    screenIndex = i;
+                    break;
+                }
+            }
+            return Screen.AllScreens[screenIndex];
+        }
+
+        private void ShowMaximize(bool IsOnMoving = false)
+        {
+            Screen screen = GetMouseActiveScreen(MousePos);
+
+            if (windowState == FormWindowState.Normal)
+            {
+                size = Size;
+                if (IsOnMoving)
+                {
+                    mLocation = FormLocation;
+                }
+                else
+                {
+                    mLocation = Location;
+                }
+
+                Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
+                Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
+                Left = screen.Bounds.Left;
+                Top = screen.Bounds.Top;
+                StartPosition = FormStartPosition.Manual;
+                SetFormRoundRectRegion(this, 0);
+
+                windowState = FormWindowState.Maximized;
+            }
+            else if (windowState == FormWindowState.Maximized)
+            {
+                if (size.Width == 0 || size.Height == 0)
+                {
+                    size = new Size(800, 600);
+                }
+                if (mLocation.IsEmpty)
+                {
+                    mLocation = screen.WorkingArea.Location;
+                }
+                Size = size;
+                Location = mLocation;
+                StartPosition = FormStartPosition.CenterScreen;
+                SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+                windowState = FormWindowState.Normal;
+            }
+
+            Invalidate();
+        }
 
         [DllImport("user32.dll")]
-        public static extern int SetWindowRgn(IntPtr wnd, int hRgn, Boolean bRedraw);
+        private static extern bool ReleaseCapture();
 
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject", CharSet = CharSet.Ansi)]
-        public static extern int DeleteObject(int hObject);
+        [DllImport("user32.dll")]
+        private static extern bool SendMessage(IntPtr handle, int wMsg, int wParam, int lParam);
 
-        /// <summary>
-        /// 设置窗体的圆角矩形
-        /// </summary>
-        /// <param name="form">需要设置的窗体</param>
-        /// <param name="rgnRadius">圆角矩形的半径</param>
-        public static void SetFormRoundRectRegion(Form form, int rgnRadius)
+        private void SetRadius()
         {
-            if (form != null && form.FormBorderStyle == FormBorderStyle.None)
+            if (DesignMode)
             {
-                int region = CreateRoundRectRgn(0, 0, form.Width + 1, form.Height + 1, rgnRadius, rgnRadius);
-                SetWindowRgn(form.Handle, region, true);
-                DeleteObject(region);
+                return;
+            }
+
+            if (windowState == FormWindowState.Maximized)
+            {
+                SetFormRoundRectRegion(this, 0);
+            }
+            else
+            {
+                SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+            }
+
+            Invalidate();
+        }
+
+        private void UIForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (CloseAskString.IsValid())
+            {
+                if (!this.ShowAskDialog(CloseAskString))
+                {
+                    e.Cancel = true;
+                }
             }
         }
+
+        #endregion
+
+
+        #region Protected Methods
 
         protected bool IsDesignMode
         {
@@ -315,47 +706,6 @@ namespace Sunny.UI
                     ReturnFlag = true;
 
                 return ReturnFlag;
-            }
-        }
-
-        protected Color foreColor = UIFontColor.Primary;
-        protected Color rectColor = UIColor.Blue;
-
-        /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
-        /// </summary>
-        [Description("背景颜色"), Category("自定义")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set
-            {
-                if (foreColor != value)
-                {
-                    foreColor = value;
-                    _style = UIStyle.Custom;
-                    AfterSetForeColor(ForeColor);
-                    Invalidate();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 边框颜色
-        /// </summary>
-        /// <value>The color of the border style.</value>
-        [Description("边框颜色")]
-        public Color RectColor
-        {
-            get => rectColor;
-            set
-            {
-                rectColor = value;
-                AfterSetRectColor(value);
-                RectColorChanged?.Invoke(this, null);
-                _style = UIStyle.Custom;
-                Invalidate();
             }
         }
 
@@ -383,66 +733,68 @@ namespace Sunny.UI
             }
         }
 
-        private Size size;
-        private Point location;
+        protected UIStyle _style = UIStyle.Blue;
 
-        private int GetMouseInScreen(Point mousePos)
+        protected virtual void AfterSetBackColor(Color color)
         {
-            int screenIndex = 0;
-            for (int i = 0; i < Screen.AllScreens.Length; i++)
+        }
+
+        protected virtual void AfterSetRectColor(Color color)
+        {
+        }
+
+        protected virtual void AfterSetForeColor(Color color)
+        {
+
+        }
+
+        /// <summary>
+        /// Does the escape.
+        /// </summary>
+        protected virtual void DoEsc()
+        {
+            if (EscClose)
+                Close();
+        }
+
+        protected virtual void DoEnter()
+        {
+
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+
+            if (e.Control is IStyleInterface ctrl)
             {
-                if (mousePos.InRect(Screen.AllScreens[i].Bounds))
+                if (!ctrl.StyleCustomMode)
                 {
-                    screenIndex = i;
-                    break;
+                    ctrl.Style = Style;
                 }
             }
 
-            return screenIndex;
+            if (ShowTitle && e.Control.Top < TitleHeight)
+            {
+                e.Control.Top = TitleHeight;
+            }
         }
 
-        private void ShowMaximize()
+        protected override void OnBackColorChanged(EventArgs e)
         {
-            int screenIndex = GetMouseInScreen(MousePosition);
-            Screen screen = Screen.AllScreens[screenIndex];
-            if (windowState == FormWindowState.Normal)
-            {
-                size = Size;
-                location = Location;
-
-                Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
-                Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
-                Left = screen.Bounds.Left;
-                Top = screen.Bounds.Top;
-                //StartPosition = FormStartPosition.Manual;
-                SetFormRoundRectRegion(this, 0);
-
-                windowState = FormWindowState.Maximized;
-            }
-            else if (windowState == FormWindowState.Maximized)
-            {
-                if (size.Width == 0 || size.Height == 0)
-                {
-                    size = new Size(800, 600);
-                }
-
-                Size = size;
-                Point center = new Point(screen.Bounds.Left + screen.WorkingArea.Width / 2 - Size.Width / 2,
-                    screen.Bounds.Top + screen.WorkingArea.Height / 2 - Size.Height / 2);
-
-                if (location.X == 0 && location.Y == 0) location = center;
-                Location = StartPosition == FormStartPosition.CenterScreen ? center : location;
-                StartPosition = FormStartPosition.CenterScreen;
-                SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
-                windowState = FormWindowState.Normal;
-            }
-
-            Invalidate();
+            base.OnBackColorChanged(e);
+            AfterSetFillColor(BackColor);
+            _style = UIStyle.Custom;
         }
 
-        private bool FormMoveMouseDown;
-        private Point FormLocation;     //form的location
-        private Point mouseOffset;      //鼠标的按下位置
+        protected virtual void AfterSetFillColor(Color color)
+        {
+
+        }
+        #endregion
+
+
+        #region override functions
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -451,11 +803,10 @@ namespace Sunny.UI
             if (InControlBox || InMaxBox || InMinBox) return;
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
-            if (windowState == FormWindowState.Maximized) return;
 
             if (e.Button == MouseButtons.Left)
             {
-                FormMoveMouseDown = true;
+                TitleMouseDown = true;
                 FormLocation = Location;
                 mouseOffset = MousePosition;
             }
@@ -476,41 +827,67 @@ namespace Sunny.UI
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-
-            if (FormMoveMouseDown)
+            
+            if (!IsDisposed && TitleMouseDown)
             {
-                if (MousePosition.Y <= 0 && MaximizeBox)
+                Screen screen = GetMouseActiveScreen(PointToScreen(e.Location));
+                if (MousePos.Y == screen.WorkingArea.Top && MaximizeBox)
                 {
-                    if (windowState == FormWindowState.Normal)
-                    {
-                        ShowMaximize();
-                    }
+                    ShowMaximize(true);
                 }
-                else
+                if(Top < screen.WorkingArea.Top) // 防止窗体上移时标题栏超出容器，导致后续无法移动
                 {
-                    int screenIndex = GetMouseInScreen(MousePosition);
-                    Screen screen = Screen.AllScreens[screenIndex];
-                    if (Top < screen.WorkingArea.Top) // 防止窗体上移时标题栏超出容器，导致后续无法移动
-                    {
-                        Top = screen.WorkingArea.Top;
-                    }
-                    if (Top > screen.WorkingArea.Bottom - TitleHeight) // 防止窗体下移时标题栏超出容器，导致后续无法移动
-                    {
-                        Top = screen.WorkingArea.Bottom - TitleHeight;
-                    }
+                    Top = screen.WorkingArea.Top;
+                }
+                else if(screen.WorkingArea.Bottom - Top < 10) // 防止窗体下移时标题栏超出容器，导致后续无法移动
+                {
+                    Top = screen.WorkingArea.Bottom - 10;
                 }
             }
-
-            FormMoveMouseDown = false;
+            // 鼠标抬起后强行关闭粘滞并恢复鼠标移动区域
+            IsStayAtTopBorder = false;
+            Cursor.Clip = new Rectangle();
+            TitleMouseDown = false;
         }
+
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (FormMoveMouseDown)
+            MousePos = PointToScreen(e.Location);
+
+            Point pt = MousePosition;
+
+            if (TitleMouseDown && !pt.Equals(mouseOffset))
             {
-                Point pt = MousePosition;
+                if (this.windowState == FormWindowState.Maximized)
+                {
+                    int MaximizedWidth = Width;
+                    int LocationX = Left;
+                    ShowMaximize();
+                    // 计算等比例缩放后，鼠标与原位置的相对位移
+                    float offsetXRatio = 1 - (float)Width / MaximizedWidth;
+                    mouseOffset.X -= (int)((mouseOffset.X - LocationX) * offsetXRatio);
+                }
                 int offsetX = mouseOffset.X - pt.X;
                 int offsetY = mouseOffset.Y - pt.Y;
+                Rectangle WorkingArea = Screen.GetWorkingArea(this);
+                /// 若当前鼠标停留在容器上边缘，将会触发一个时间为MaximumBorderInterval(ms)的边缘等待，
+                /// 若此时结束移动，窗口将自动最大化，该功能为上下排列的多监视器提供
+                /// 此处判断设置为特定值的好处是，若快速移动窗体跨越监视器，很难触发停留事件
+                if (MousePos.Y - WorkingArea.Top == 0)
+                {
+                    if (!IsStayAtTopBorder)
+                    {
+                        Cursor.Clip = WorkingArea;
+                        TopBorderStayTicks = DateTime.Now.Ticks;
+                        IsStayAtTopBorder = true;
+                    }
+                    else if (DateTime.Now.Ticks - TopBorderStayTicks > _StickyBorderTime)
+                    {
+                        Cursor.Clip = new Rectangle();
+                    }
+
+                }
                 Location = new Point(FormLocation.X - offsetX, FormLocation.Y - offsetY);
             }
             else
@@ -545,15 +922,6 @@ namespace Sunny.UI
             }
         }
 
-        private bool InControlBox, InMaxBox, InMinBox;
-
-        /// <summary>
-        /// 是否屏蔽Alt+F4
-        /// </summary>
-        [Description("是否屏蔽Alt+F4")]
-        [DefaultValue(false)]
-        public bool IsForbidAltF4 { get; set; }
-
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
@@ -584,11 +952,11 @@ namespace Sunny.UI
                 return;
             }
 
-            Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            //Color titleColor = rectColor;// IsDesignMode ? rectColor : IsActive ? rectColor : Color.FromArgb(173, 178, 181);
 
             if (ShowTitle)
             {
-                e.Graphics.FillRectangle(showTitleColor, 0, 0, Width, TitleHeight);
+                e.Graphics.FillRectangle(new SolidBrush(titleColor), 0, 0, Width, TitleHeight);
             }
 
             if (ShowRect)
@@ -625,14 +993,14 @@ namespace Sunny.UI
                         };
                 }
 
-                e.Graphics.DrawLines(showTitleColor, points);
+                e.Graphics.DrawLines(rectColor, points);
 
                 if (!unShowRadius)
                 {
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, 1), new Point(1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, 1), new Point(1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
                 }
             }
 
@@ -694,38 +1062,6 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        protected UIStyle _style = UIStyle.Blue;
-
-        [DefaultValue(UIStyle.Blue)]
-        public UIStyle Style
-        {
-            get => _style;
-            set => SetStyle(value);
-        }
-
-        [DefaultValue(false)]
-        public bool StyleCustomMode { get; set; }
-
-        public void SetStyle(UIStyle style)
-        {
-            this.SetChildUIStyle(style);
-            btn.SetStyle(style);
-
-            SetStyleColor(UIStyles.GetStyleColor(style));
-            _style = style;
-        }
-
-        public virtual void SetStyleColor(UIBaseStyle uiColor)
-        {
-            if (uiColor.IsCustom()) return;
-
-            rectColor = uiColor.RectColor;
-            foreColor = UIFontColor.Primary;
-            BackColor = uiColor.PlainColor;
-            titleColor = uiColor.TitleColor;
-            titleForeColor = uiColor.TitleForeColor;
-            Invalidate();
-        }
 
         protected override void OnLocationChanged(EventArgs e)
         {
@@ -749,22 +1085,6 @@ namespace Sunny.UI
             }
         }
 
-        protected virtual void AfterSetBackColor(Color color)
-        {
-        }
-
-        protected virtual void AfterSetRectColor(Color color)
-        {
-        }
-
-        protected virtual void AfterSetForeColor(Color color)
-        {
-        }
-
-        public event EventHandler RectColorChanged;
-
-        private bool isShow;
-
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -772,61 +1092,6 @@ namespace Sunny.UI
             CalcSystemBoxPos();
             SetRadius();
             isShow = true;
-        }
-
-        private bool _showRadius = true;
-
-        /// <summary>
-        /// 是否重绘边框样式
-        /// </summary>
-        private bool _showRect = true;
-
-        /// <summary>
-        /// 是否显示圆角
-        /// </summary>
-        [Description("是否显示圆角")]
-        [DefaultValue(true)]
-        public bool ShowRadius
-        {
-            get => _showRadius;
-            set
-            {
-                _showRadius = value;
-                SetRadius();
-                Invalidate();
-            }
-        }
-
-        /// <summary>
-        /// 是否显示边框
-        /// </summary>
-        [Description("是否显示边框")]
-        [DefaultValue(true)]
-        public bool ShowRect
-        {
-            get => _showRect;
-            set
-            {
-                _showRect = value;
-                Invalidate();
-            }
-        }
-
-        [DefaultValue(true)]
-        [Description("Esc键关闭窗口")]
-        public bool EscClose { get; set; } = true;
-
-        /// <summary>
-        /// Does the escape.
-        /// </summary>
-        protected virtual void DoEsc()
-        {
-            if (EscClose)
-                Close();
-        }
-
-        protected virtual void DoEnter()
-        {
         }
 
         /// <summary>
@@ -862,122 +1127,8 @@ namespace Sunny.UI
 
             return base.ProcessCmdKey(ref msg, keyData);   //其他键按默认处理
         }
+        #endregion
 
-        [DllImport("user32.dll")]
-        private static extern bool ReleaseCapture();
 
-        [DllImport("user32.dll")]
-        private static extern bool SendMessage(IntPtr handle, int wMsg, int wParam, int lParam);
-
-        /// <summary>
-        /// 通过Windows的API控制窗体的拖动
-        /// </summary>
-        public static void MousePressMove(IntPtr handle)
-        {
-            ReleaseCapture();
-            SendMessage(handle, 0x0112, 0xF010 + 0x0002, 0);
-        }
-
-        /// <summary>
-        /// 在构造函数中调用设置窗体移动
-        /// </summary>
-        /// <param name="cs">The cs.</param>
-        protected void AddMousePressMove(params Control[] cs)
-        {
-            foreach (Control ctrl in cs)
-            {
-                if (ctrl != null && !ctrl.IsDisposed)
-                {
-                    ctrl.MouseDown += ctrlMouseDown;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseDown event of the c control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
-        private void ctrlMouseDown(object sender, MouseEventArgs e)
-        {
-            if (windowState == FormWindowState.Maximized)
-            {
-                return;
-            }
-
-            if (sender == this)
-            {
-                if (FormBorderStyle == FormBorderStyle.None && e.Y <= titleHeight && e.X < ControlBoxLeft)
-                {
-                    MousePressMove(Handle);
-                }
-            }
-            else
-            {
-                MousePressMove(Handle);
-            }
-        }
-
-        private void SetRadius()
-        {
-            if (DesignMode)
-            {
-                return;
-            }
-
-            if (windowState == FormWindowState.Maximized)
-            {
-                SetFormRoundRectRegion(this, 0);
-            }
-            else
-            {
-                SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
-            }
-
-            Invalidate();
-        }
-
-        private StringAlignment textAlignment = StringAlignment.Near;
-
-        private void UIForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (CloseAskString.IsValid())
-            {
-                if (!this.ShowAskDialog(CloseAskString))
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
-
-        public StringAlignment TextAlignment
-        {
-            get => textAlignment;
-            set
-            {
-                textAlignment = value;
-                Invalidate();
-            }
-        }
-
-        public string CloseAskString { get; set; }
-
-        private FormWindowState windowState = FormWindowState.Normal;
-
-        public new FormWindowState WindowState
-        {
-            get => windowState;
-            set
-            {
-                if (value == FormWindowState.Minimized)
-                {
-                    base.WindowState = FormWindowState.Minimized;
-                    return;
-                }
-
-                ShowMaximize();
-                windowState = value;
-            }
-        }
     }
 }
