@@ -51,11 +51,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Color\UIColorBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Color\UIColorTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Color\UIColorWheel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Color\UIHSLColor.cs" />
+    <Compile Include="Controls\Color\UILabelRotate.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DropItem\UIComboBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DropItem\UIComboBoxItem.Designer.cs">
       <DependentUpon>UIComboBoxItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DropItem\UIDateItem.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DropItem\UIDateTimeItem.cs">
       <SubType>UserControl</SubType>
@@ -70,6 +86,9 @@
       <DependentUpon>UIDropDownItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DropItem\UITimeItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DropItem\UIColorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UITimePicker.cs">
@@ -337,6 +356,9 @@
     <Compile Include="Static\UDataReader.cs" />
     <Compile Include="Static\UAttribute.cs" />
     <Compile Include="Static\USyncTime.cs" />
+    <Compile Include="Controls\UIColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
       <SubType>Component</SubType>
@@ -421,8 +443,17 @@
     <Compile Include="Units\UXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DropItem\UIColorItem.resx">
+      <DependentUpon>UIColorItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Color\UIColorTable.resx">
+      <DependentUpon>UIColorTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DropItem\UIComboBoxItem.resx">
       <DependentUpon>UIComboBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropItem\UIDateItem.resx">
+      <DependentUpon>UIDateItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
       <DependentUpon>UIDateTimeItem.cs</DependentUpon>
@@ -522,6 +553,9 @@
     <EmbeddedResource Include="Forms\UISelectForm.resx">
       <DependentUpon>UISelectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIColorPicker.resx">
+      <DependentUpon>UIColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Font\FontAwesome.ttf" />
@@ -562,6 +596,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colorbarIndicators.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

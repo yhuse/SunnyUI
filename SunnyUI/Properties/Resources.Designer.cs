@@ -73,6 +73,16 @@ namespace Sunny.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap colorbarIndicators {
+            get {
+                object obj = ResourceManager.GetObject("colorbarIndicators", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap gps_postion {
             get {
                 object obj = ResourceManager.GetObject("gps_postion", resourceCulture);

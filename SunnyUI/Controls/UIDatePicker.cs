@@ -21,7 +21,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -46,7 +45,7 @@ namespace Sunny.UI
             ValueChanged?.Invoke(this, Value);
         }
 
-        private readonly UIDateTimeItem item = new UIDateTimeItem();
+        private readonly UIDateItem item = new UIDateItem();
 
         protected override void CreateInstance()
         {

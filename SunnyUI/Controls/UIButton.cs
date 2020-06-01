@@ -52,6 +52,19 @@ namespace Sunny.UI
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
         }
 
+        private bool isClick;
+
+        public void PerformClick()
+        {
+            if (isClick) return;
+            if (CanSelect && Enabled)
+            {
+                isClick = true;
+                OnClick(EventArgs.Empty);
+                isClick = false;
+            }
+        }
+
         private bool showTips = false;
 
         [Description("是否显示角标"), Category("自定义")]

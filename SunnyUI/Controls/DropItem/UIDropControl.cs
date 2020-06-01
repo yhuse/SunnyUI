@@ -297,7 +297,7 @@ namespace Sunny.UI
                     ItemForm.SetRectColor(rectColor);
                     ItemForm.SetFillColor(fillColor);
                     ItemForm.SetForeColor(foreColor);
-                    ItemForm.SetStyle(UIStyles.GetStyleColor(UIStyles.Style));
+                    ItemForm.SetStyle(UIStyles.ActiveStyleColor);
                 }
 
                 ButtonClick?.Invoke(this, e);

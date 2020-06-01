@@ -458,28 +458,8 @@ namespace Sunny.UI
         /// </summary>
         private Point location;
 
-        /// <summary>
-        /// 获取当前鼠标活动区域所属的监视器
-        /// </summary>
-        /// <returns>Screen</returns>
-        private int GetMouseInScreen(Point mPnt)
-        {
-            int screenIndex = 0;
-            for (int i = 0; i < Screen.AllScreens.Length; i++)
-            {
-                if (mPnt.InRect(Screen.AllScreens[i].Bounds))
-                {
-                    screenIndex = i;
-                    break;
-                }
-            }
-
-            return screenIndex;
-        }
-
         private void ShowMaximize(bool IsOnMoving = false)
         {
-            //int screenIndex = GetMouseInScreen(MousePosition);
             Screen screen = Screen.FromPoint(MousePosition);
             if (windowState == FormWindowState.Normal)
             {
@@ -613,9 +593,7 @@ namespace Sunny.UI
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            Point pt = MousePosition;
-
-            if (FormMoveMouseDown && !pt.Equals(mouseOffset))
+            if (FormMoveMouseDown && !MousePosition.Equals(mouseOffset))
             {
                 if (this.windowState == FormWindowState.Maximized)
                 {
@@ -627,8 +605,8 @@ namespace Sunny.UI
                     mouseOffset.X -= (int)((mouseOffset.X - LocationX) * offsetXRatio);
                 }
 
-                int offsetX = mouseOffset.X - pt.X;
-                int offsetY = mouseOffset.Y - pt.Y;
+                int offsetX = mouseOffset.X - MousePosition.X;
+                int offsetY = mouseOffset.Y - MousePosition.Y;
                 Rectangle WorkingArea = Screen.GetWorkingArea(this);
 
                 // 若当前鼠标停留在容器上边缘，将会触发一个时间为MaximumBorderInterval(ms)的边缘等待，
@@ -731,7 +709,6 @@ namespace Sunny.UI
             if (ShowRect)
             {
                 Point[] points;
-
                 bool unShowRadius = !ShowRadius || windowState == FormWindowState.Maximized ||
                                     (Width == Screen.PrimaryScreen.WorkingArea.Width &&
                                      Height == Screen.PrimaryScreen.WorkingArea.Height);
@@ -1033,7 +1010,7 @@ namespace Sunny.UI
             {
                 if (ctrl != null && !ctrl.IsDisposed)
                 {
-                    ctrl.MouseDown += ctrlMouseDown;
+                    ctrl.MouseDown += CtrlMouseDown;
                 }
             }
         }
@@ -1043,7 +1020,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
-        private void ctrlMouseDown(object sender, MouseEventArgs e)
+        private void CtrlMouseDown(object sender, MouseEventArgs e)
         {
             if (windowState == FormWindowState.Maximized)
             {

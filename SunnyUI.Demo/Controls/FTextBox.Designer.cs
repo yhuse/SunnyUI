@@ -46,11 +46,15 @@
             this.uiLine5 = new Sunny.UI.UILine();
             this.uiTimePicker1 = new Sunny.UI.UITimePicker();
             this.uiLine6 = new Sunny.UI.UILine();
+            this.uiLine7 = new Sunny.UI.UILine();
+            this.uiColorPicker1 = new Sunny.UI.UIColorPicker();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiColorPicker1);
+            this.PagePanel.Controls.Add(this.uiLine7);
             this.PagePanel.Controls.Add(this.uiLine6);
             this.PagePanel.Controls.Add(this.uiTimePicker1);
             this.PagePanel.Controls.Add(this.uiLine5);
@@ -94,6 +98,7 @@
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
+            this.uiTextBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox1.TabIndex = 3;
             this.uiTextBox1.Watermark = "水印文字";
             // 
@@ -291,6 +296,7 @@
             // 
             // uiTimePicker1
             // 
+            this.uiTimePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiTimePicker1.FillColor = System.Drawing.Color.White;
             this.uiTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTimePicker1.Location = new System.Drawing.Point(188, 294);
@@ -302,7 +308,7 @@
             this.uiTimePicker1.SymbolDropDown = 61555;
             this.uiTimePicker1.SymbolNormal = 61555;
             this.uiTimePicker1.TabIndex = 25;
-            this.uiTimePicker1.Text = "uiTimePicker1";
+            this.uiTimePicker1.Text = "23:41:39";
             this.uiTimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTimePicker1.Value = new System.DateTime(2020, 5, 29, 23, 41, 39, 684);
             // 
@@ -316,6 +322,33 @@
             this.uiLine6.TabIndex = 26;
             this.uiLine6.Text = "UITimePicker";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLine7
+            // 
+            this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.Location = new System.Drawing.Point(30, 342);
+            this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine7.Name = "uiLine7";
+            this.uiLine7.Size = new System.Drawing.Size(150, 20);
+            this.uiLine7.TabIndex = 28;
+            this.uiLine7.Text = "UIColorPicker";
+            this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiColorPicker1
+            // 
+            this.uiColorPicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.uiColorPicker1.FillColor = System.Drawing.Color.White;
+            this.uiColorPicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiColorPicker1.Location = new System.Drawing.Point(30, 376);
+            this.uiColorPicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiColorPicker1.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiColorPicker1.Name = "uiColorPicker1";
+            this.uiColorPicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.uiColorPicker1.Size = new System.Drawing.Size(150, 29);
+            this.uiColorPicker1.TabIndex = 29;
+            this.uiColorPicker1.Text = "uiColorPicker1";
+            this.uiColorPicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiColorPicker1.Value = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(159)))), ((int)(((byte)(254)))));
             // 
             // FTextBox
             // 
@@ -350,5 +383,7 @@
         private UILine uiLine5;
         private UITimePicker uiTimePicker1;
         private UILine uiLine6;
+        private UILine uiLine7;
+        private UIColorPicker uiColorPicker1;
     }
 }

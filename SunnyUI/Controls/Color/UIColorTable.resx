@@ -117,40 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="colorbarIndicators" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\colorbarIndicators.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gps1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gps1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gps_postion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gps_postion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_notifier" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_notifier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>SunnyUI.Net</value>
-    <comment>基于GPL-3.0的开源控件库、工具类库、扩展类库、多页面开发框架。</comment>
-  </data>
-  <data name="notifier" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\notifier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>V2.2.5</value>
-    <comment>更新主题风格类</comment>
-  </data>
-  <data name="wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wind_postion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wind_postion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>
