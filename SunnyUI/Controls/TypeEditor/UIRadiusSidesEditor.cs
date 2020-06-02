@@ -234,32 +234,32 @@ namespace Sunny.UI
                 noneCheckBox.Name = "noneCheckBox";
                 noneCheckBox.Margin = new Padding(3, 3, 3, 1);
                 noneCheckBox.Text = "无(&N)";
-                noneCheckBox.Height = 16;
+                noneCheckBox.Height = 20;
 
                 allCheckBox.Name = "allCheckBox";
                 allCheckBox.Margin = new Padding(3, 3, 3, 1);
                 allCheckBox.Text = "全部(&A)";
-                allCheckBox.Height = 16;
+                allCheckBox.Height = 20;
 
                 leftTopCheckBox.Margin = new Padding(20, 1, 3, 1);
                 leftTopCheckBox.Name = "leftTopCheckBox";
                 leftTopCheckBox.Text = "左上角(&LT)";
-                leftTopCheckBox.Height = 16;
+                leftTopCheckBox.Height = 20;
 
                 rightTopCheckBox.Margin = new Padding(20, 1, 3, 1);
                 rightTopCheckBox.Name = "rightTopCheckBox";
                 rightTopCheckBox.Text = "右上角(&RT)";
-                rightTopCheckBox.Height = 16;
+                rightTopCheckBox.Height = 20;
 
                 leftBottomCheckBox.Margin = new Padding(20, 1, 3, 1);
                 leftBottomCheckBox.Name = "leftBottomCheckBox";
                 leftBottomCheckBox.Text = "左下角(&LB)";
-                leftBottomCheckBox.Height = 16;
+                leftBottomCheckBox.Height = 20;
 
                 rightBottomCheckBox.Margin = new Padding(20, 1, 3, 1);
                 rightBottomCheckBox.Name = "rightBottomCheckBox";
                 rightBottomCheckBox.Text = "右下角(&RB)";
-                rightBottomCheckBox.Height = 16;
+                rightBottomCheckBox.Height = 20;
 
                 splitterLabel.BackColor = SystemColors.ControlDark;
                 splitterLabel.Name = "splitterLabel";

@@ -288,6 +288,32 @@ namespace Sunny.UI
             }
         }
 
+        private bool showCloseButton;
+
+        [DefaultValue(false)]
+        public bool ShowCloseButton
+        {
+            get => showCloseButton;
+            set
+            {
+                showCloseButton = value;
+                Invalidate();
+            }
+        }
+
+        private bool showActiveCloseButton;
+
+        [DefaultValue(false)]
+        public bool ShowActiveCloseButton
+        {
+            get => showActiveCloseButton;
+            set
+            {
+                showActiveCloseButton = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -324,6 +350,10 @@ namespace Sunny.UI
                 }
 
                 g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
+                if (ShowCloseButton || (ShowActiveCloseButton && index == SelectedIndex))
+                {
+                    g.DrawFontImage(61453, 20, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, TabRect.Top, 24, TabRect.Height));
+                }
 
                 // 绘制图标
                 if (ImageList != null)
@@ -343,6 +373,56 @@ namespace Sunny.UI
                 e.Graphics.DrawImage(bmp, TabRect.Left, TabRect.Top);
                 bmp.Dispose();
             }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            int removeIndex = -1;
+            for (int index = 0; index <= TabCount - 1; index++)
+            {
+                Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, ItemSize.Width, ItemSize.Height);
+                Rectangle rect = new Rectangle(TabRect.Right - 28, TabRect.Top, 24, TabRect.Height);
+                if (e.Location.InRect(rect))
+                {
+                    removeIndex = index;
+                    break;
+                }
+            }
+
+            if (removeIndex < 0 || removeIndex >= TabCount)
+            {
+                return;
+            }
+
+            if (ShowCloseButton || (ShowActiveCloseButton && removeIndex == SelectedIndex))
+            {
+                if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                {
+                    RemoveTabPage(removeIndex);
+                }
+            }
+        }
+
+        public delegate bool OnBeforeRemoveTabPage(object sender, int index);
+        public delegate void OnAfterRemoveTabPage(object sender, int index);
+
+        public event OnBeforeRemoveTabPage BeforeRemoveTabPage;
+        public event OnAfterRemoveTabPage AfterRemoveTabPage;
+
+        internal void RemoveTabPage(int index)
+        {
+            if (index < 0 || index >= TabCount)
+            {
+                return;
+            }
+
+            TabPages.Remove(TabPages[index]);
+            AfterRemoveTabPage?.Invoke(this, index);
+
+            if (TabCount == 0) return;
+            if (index == 0) SelectedIndex = 0;
+            if (index > 0) SelectedIndex = index - 1;
         }
 
         public enum UITabPosition

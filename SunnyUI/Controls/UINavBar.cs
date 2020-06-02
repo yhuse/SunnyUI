@@ -239,6 +239,7 @@ namespace Sunny.UI
                 if (Nodes.Count > 0 && value >= 0 && value < Nodes.Count)
                 {
                     selectedIndex = value;
+                    NodeMouseClick?.Invoke(Nodes[SelectedIndex], selectedIndex, MenuHelper.GetPageIndex(Nodes[SelectedIndex]));
 
                     if (Nodes[value].Nodes.Count == 0)
                     {
@@ -283,7 +284,7 @@ namespace Sunny.UI
                     break;
 
                 case StringAlignment.Center:
-                    NodeX = (Width - Nodes.Count * NodeSize.Width) * 2;
+                    NodeX = (Width - Nodes.Count * NodeSize.Width) / 2;
                     break;
 
                 case StringAlignment.Far:
@@ -295,7 +296,11 @@ namespace Sunny.UI
             {
                 Rectangle rect = new Rectangle(NodeX + i * NodeSize.Width, NodeY, NodeSize.Width, NodeSize.Height);
 
-                SizeF sf = e.Graphics.MeasureString(Nodes[i].Text, Font);
+                TreeNode node = Nodes[i];
+                int symbol = MenuHelper.GetSymbol(node);
+                int symbolSize = MenuHelper.GetSymbolSize(node);
+
+                SizeF sf = e.Graphics.MeasureString(node.Text, Font);
                 Color textColor = ForeColor;
 
                 if (i == ActiveIndex)
@@ -308,14 +313,23 @@ namespace Sunny.UI
                 {
                     if (!NavBarMenu.Visible)
                     {
-                        e.Graphics.FillRectangle(new SolidBrush(SelectedHighColor), rect.X, Height - 4, rect.Width, 4);
+                        e.Graphics.FillRectangle(SelectedHighColor, rect.X, Height - 4, rect.Width, 4);
                     }
 
                     textColor = SelectedForeColor;
                 }
 
-                e.Graphics.DrawString(Nodes[i].Text, Font, new SolidBrush(textColor), NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
-                if (Nodes[i].Nodes.Count > 0)
+                if (symbol > 0)
+                {
+                    e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new RectangleF(NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY, symbolSize, NodeSize.Height));
+                    e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width + symbolSize) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                }
+                else
+                {
+                    e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                }
+
+                if (node.Nodes.Count > 0)
                 {
                     SizeF imageSize = e.Graphics.GetFontImageSize(61703, 24);
                     if (i != SelectedIndex)
@@ -414,7 +428,7 @@ namespace Sunny.UI
             NavBarMenu.Items.Clear();
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {
-                ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node.Tag };
+                ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };
                 item.Click += Item_Click;
                 NavBarMenu.Items.Add(item);
 
@@ -444,22 +458,28 @@ namespace Sunny.UI
         private void Item_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            if (item.Tag != null && item.Tag is NavMenuItem mi)
+            if (item.Tag != null && item.Tag is TreeNode node)
             {
-                TabControl?.SelectPage(mi.PageIndex);
-                MenuItemClick?.Invoke(item.Text, selectedIndex, mi.PageIndex);
+                TabControl?.SelectPage(MenuHelper.GetPageIndex(node));
+                MenuItemClick?.Invoke(item.Text, selectedIndex, MenuHelper.GetPageIndex(node));
+                NodeMouseClick?.Invoke(node, selectedIndex, MenuHelper.GetPageIndex(node));
             }
         }
 
-        public delegate void OnMenuItemClick(string text, int menuIndex, int pageIndex);
+        public delegate void OnMenuItemClick(string itemText, int menuIndex, int pageIndex);
 
         public event OnMenuItemClick MenuItemClick;
+
+        public delegate void OnNodeMouseClick(TreeNode node, int menuIndex, int pageIndex);
+
+        public event OnNodeMouseClick NodeMouseClick;
 
         private void AddMenu(ToolStripMenuItem item, TreeNode node)
         {
             foreach (TreeNode childNode in node.Nodes)
             {
-                ToolStripMenuItem childItem = new ToolStripMenuItem(childNode.Text) { Tag = childNode.Tag };
+                ToolStripMenuItem childItem = new ToolStripMenuItem(childNode.Text) { Tag = childNode };
+                childItem.Click += Item_Click;
                 item.DropDownItems.Add(childItem);
 
                 if (childNode.Nodes.Count > 0)

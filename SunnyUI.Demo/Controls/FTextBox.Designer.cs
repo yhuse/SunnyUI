@@ -48,11 +48,15 @@
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiLine7 = new Sunny.UI.UILine();
             this.uiColorPicker1 = new Sunny.UI.UIColorPicker();
+            this.uiDatetimePicker1 = new Sunny.UI.UIDatetimePicker();
+            this.uiLine8 = new Sunny.UI.UILine();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine8);
+            this.PagePanel.Controls.Add(this.uiDatetimePicker1);
             this.PagePanel.Controls.Add(this.uiColorPicker1);
             this.PagePanel.Controls.Add(this.uiLine7);
             this.PagePanel.Controls.Add(this.uiLine6);
@@ -78,7 +82,7 @@
             // uiIntegerUpDown1
             // 
             this.uiIntegerUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiIntegerUpDown1.Location = new System.Drawing.Point(394, 212);
+            this.uiIntegerUpDown1.Location = new System.Drawing.Point(388, 54);
             this.uiIntegerUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiIntegerUpDown1.Maximum = 100;
             this.uiIntegerUpDown1.Minimum = -100;
@@ -230,7 +234,7 @@
             // uiDoubleUpDown1
             // 
             this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiDoubleUpDown1.Location = new System.Drawing.Point(394, 294);
+            this.uiDoubleUpDown1.Location = new System.Drawing.Point(388, 132);
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
             this.uiDoubleUpDown1.Name = "uiDoubleUpDown1";
@@ -245,7 +249,7 @@
             this.uiLine1.Location = new System.Drawing.Point(30, 20);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(670, 20);
+            this.uiLine1.Size = new System.Drawing.Size(308, 20);
             this.uiLine1.TabIndex = 20;
             this.uiLine1.Text = "UITextBox";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -275,7 +279,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(394, 178);
+            this.uiLine4.Location = new System.Drawing.Point(388, 20);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(306, 20);
@@ -286,7 +290,7 @@
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.Location = new System.Drawing.Point(394, 260);
+            this.uiLine5.Location = new System.Drawing.Point(388, 97);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
             this.uiLine5.Size = new System.Drawing.Size(306, 20);
@@ -350,6 +354,32 @@
             this.uiColorPicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiColorPicker1.Value = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(159)))), ((int)(((byte)(254)))));
             // 
+            // uiDatetimePicker1
+            // 
+            this.uiDatetimePicker1.FillColor = System.Drawing.Color.White;
+            this.uiDatetimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiDatetimePicker1.Location = new System.Drawing.Point(388, 294);
+            this.uiDatetimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatetimePicker1.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiDatetimePicker1.Name = "uiDatetimePicker1";
+            this.uiDatetimePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.uiDatetimePicker1.Size = new System.Drawing.Size(306, 29);
+            this.uiDatetimePicker1.TabIndex = 30;
+            this.uiDatetimePicker1.Text = "uiDatetimePicker1";
+            this.uiDatetimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiDatetimePicker1.Value = new System.DateTime(2020, 6, 2, 17, 57, 28, 203);
+            // 
+            // uiLine8
+            // 
+            this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine8.Location = new System.Drawing.Point(388, 260);
+            this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine8.Name = "uiLine8";
+            this.uiLine8.Size = new System.Drawing.Size(306, 20);
+            this.uiLine8.TabIndex = 31;
+            this.uiLine8.Text = "UIDatetimePicker";
+            this.uiLine8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -385,5 +415,7 @@
         private UILine uiLine6;
         private UILine uiLine7;
         private UIColorPicker uiColorPicker1;
+        private UILine uiLine8;
+        private UIDatetimePicker uiDatetimePicker1;
     }
 }

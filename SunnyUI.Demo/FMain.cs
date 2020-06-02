@@ -39,6 +39,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), ++pageIndex));
             Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), ++pageIndex));
 
+            Header.SetNodeSymbol(Header.Nodes[2], 61502);
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {

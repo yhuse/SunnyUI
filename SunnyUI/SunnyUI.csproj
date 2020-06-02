@@ -91,6 +91,9 @@
     <Compile Include="Controls\DropItem\UIColorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIDatetimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\UITimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -460,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DropItem\UITimeItem.resx">
       <DependentUpon>UITimeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIDatetimePicker.resx">
+      <DependentUpon>UIDatetimePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UITimePicker.resx">
       <DependentUpon>UITimePicker.cs</DependentUpon>

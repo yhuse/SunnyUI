@@ -55,9 +55,7 @@
             System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("节点2", new System.Windows.Forms.TreeNode[] {
             treeNode55,
             treeNode56});
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("节点9");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("节点3", new System.Windows.Forms.TreeNode[] {
-            treeNode58});
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("节点3");
             System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("节点14");
             System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("节点15");
             System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("节点16");
@@ -129,7 +127,7 @@
             this.PagePanel.Controls.Add(this.uiNavMenu2);
             this.PagePanel.Controls.Add(this.uiNavMenu1);
             this.PagePanel.Controls.Add(this.uiNavBar1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 545);
+            this.PagePanel.Size = new System.Drawing.Size(1107, 626);
             // 
             // uiNavBar1
             // 
@@ -138,6 +136,7 @@
             this.uiNavBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiNavBar1.Location = new System.Drawing.Point(0, 0);
             this.uiNavBar1.Name = "uiNavBar1";
+            this.uiNavBar1.NodeAlignment = System.Drawing.StringAlignment.Near;
             treeNode43.Name = "节点0";
             treeNode43.Text = "节点0";
             treeNode44.Name = "节点1";
@@ -168,18 +167,18 @@
             treeNode56.Text = "节点8";
             treeNode57.Name = "节点2";
             treeNode57.Text = "节点2";
-            treeNode58.Name = "节点9";
-            treeNode58.Text = "节点9";
-            treeNode59.Name = "节点3";
-            treeNode59.Text = "节点3";
+            treeNode58.Name = "节点3";
+            treeNode58.Text = "节点3";
             this.uiNavBar1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode50,
             treeNode54,
             treeNode57,
-            treeNode59});
-            this.uiNavBar1.Size = new System.Drawing.Size(800, 110);
+            treeNode58});
+            this.uiNavBar1.Size = new System.Drawing.Size(1107, 110);
             this.uiNavBar1.TabIndex = 0;
             this.uiNavBar1.Text = "uiNavBar1";
+            this.uiNavBar1.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.uiNavBar1_MenuItemClick);
+            this.uiNavBar1.NodeMouseClick += new Sunny.UI.UINavBar.OnNodeMouseClick(this.uiNavBar1_NodeMouseClick);
             // 
             // uiLine1
             // 
@@ -264,6 +263,7 @@
             treeNode42});
             this.uiNavMenu1.Size = new System.Drawing.Size(253, 353);
             this.uiNavMenu1.TabIndex = 1;
+            this.uiNavMenu1.MenuItemClick += new Sunny.UI.UINavMenu.OnMenuItemClick(this.uiNavMenu1_MenuItemClick);
             // 
             // uiNavMenu2
             // 
@@ -354,7 +354,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 580);
+            this.ClientSize = new System.Drawing.Size(1107, 661);
             this.Name = "FNavigation";
             this.Text = "NavBar";
             this.PagePanel.ResumeLayout(false);
