@@ -1,7 +1,7 @@
 + 增加； - 删除； * 修改 
 
 2020.06.03
-* UITextBox：增加Multiline属性
+* UITextBox：增加Multiline属性，增加滚动条
 
 2020.06.02
 + UIDatetimePicker：新增
