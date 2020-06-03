@@ -1474,7 +1474,7 @@ namespace Sunny.UI
             this.sb.BackColor = System.Drawing.Color.Transparent;
             this.sb.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.sb.ForeColor = System.Drawing.Color.DarkGray;
-            this.sb.Location = new System.Drawing.Point(402, 103);
+            this.sb.Location = new System.Drawing.Point(398, 103);
             this.sb.Name = "sb";
             this.sb.Size = new System.Drawing.Size(46, 22);
             this.sb.StyleCustomMode = true;
@@ -1487,7 +1487,7 @@ namespace Sunny.UI
             this.mb.BackColor = System.Drawing.Color.Transparent;
             this.mb.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.mb.ForeColor = System.Drawing.Color.DarkGray;
-            this.mb.Location = new System.Drawing.Point(349, 103);
+            this.mb.Location = new System.Drawing.Point(345, 103);
             this.mb.Name = "mb";
             this.mb.Size = new System.Drawing.Size(46, 22);
             this.mb.StyleCustomMode = true;
@@ -1500,7 +1500,7 @@ namespace Sunny.UI
             this.hb.BackColor = System.Drawing.Color.Transparent;
             this.hb.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.hb.ForeColor = System.Drawing.Color.DarkGray;
-            this.hb.Location = new System.Drawing.Point(296, 103);
+            this.hb.Location = new System.Drawing.Point(292, 103);
             this.hb.Name = "hb";
             this.hb.Size = new System.Drawing.Size(46, 22);
             this.hb.StyleCustomMode = true;
@@ -1513,7 +1513,7 @@ namespace Sunny.UI
             this.st.BackColor = System.Drawing.Color.Transparent;
             this.st.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.st.ForeColor = System.Drawing.Color.DarkGray;
-            this.st.Location = new System.Drawing.Point(402, 31);
+            this.st.Location = new System.Drawing.Point(398, 31);
             this.st.Name = "st";
             this.st.Size = new System.Drawing.Size(46, 22);
             this.st.StyleCustomMode = true;
@@ -1526,7 +1526,7 @@ namespace Sunny.UI
             this.mt.BackColor = System.Drawing.Color.Transparent;
             this.mt.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.mt.ForeColor = System.Drawing.Color.DarkGray;
-            this.mt.Location = new System.Drawing.Point(349, 31);
+            this.mt.Location = new System.Drawing.Point(345, 31);
             this.mt.Name = "mt";
             this.mt.Size = new System.Drawing.Size(46, 22);
             this.mt.StyleCustomMode = true;
@@ -1539,7 +1539,7 @@ namespace Sunny.UI
             this.ht.BackColor = System.Drawing.Color.Transparent;
             this.ht.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.ht.ForeColor = System.Drawing.Color.DarkGray;
-            this.ht.Location = new System.Drawing.Point(296, 31);
+            this.ht.Location = new System.Drawing.Point(292, 31);
             this.ht.Name = "ht";
             this.ht.Size = new System.Drawing.Size(46, 22);
             this.ht.StyleCustomMode = true;
@@ -1551,7 +1551,7 @@ namespace Sunny.UI
             // 
             this.sc.BackColor = System.Drawing.Color.Transparent;
             this.sc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.sc.Location = new System.Drawing.Point(402, 65);
+            this.sc.Location = new System.Drawing.Point(398, 65);
             this.sc.Name = "sc";
             this.sc.Size = new System.Drawing.Size(46, 27);
             this.sc.StyleCustomMode = true;
@@ -1564,7 +1564,7 @@ namespace Sunny.UI
             // 
             this.mc.BackColor = System.Drawing.Color.Transparent;
             this.mc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mc.Location = new System.Drawing.Point(349, 65);
+            this.mc.Location = new System.Drawing.Point(345, 65);
             this.mc.Name = "mc";
             this.mc.Size = new System.Drawing.Size(46, 27);
             this.mc.StyleCustomMode = true;
@@ -1577,7 +1577,7 @@ namespace Sunny.UI
             // 
             this.hc.BackColor = System.Drawing.Color.Transparent;
             this.hc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.hc.Location = new System.Drawing.Point(296, 65);
+            this.hc.Location = new System.Drawing.Point(292, 65);
             this.hc.Name = "hc";
             this.hc.Size = new System.Drawing.Size(46, 27);
             this.hc.StyleCustomMode = true;
@@ -1590,7 +1590,7 @@ namespace Sunny.UI
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCancel.Location = new System.Drawing.Point(374, 162);
+            this.btnCancel.Location = new System.Drawing.Point(370, 162);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnCancel.Size = new System.Drawing.Size(74, 27);
@@ -1604,7 +1604,7 @@ namespace Sunny.UI
             // 
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnOK.Location = new System.Drawing.Point(295, 162);
+            this.btnOK.Location = new System.Drawing.Point(291, 162);
             this.btnOK.Name = "btnOK";
             this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnOK.Size = new System.Drawing.Size(74, 27);
@@ -1622,7 +1622,7 @@ namespace Sunny.UI
             this.s2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.s2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s2.ImageInterval = 0;
-            this.s2.Location = new System.Drawing.Point(409, 129);
+            this.s2.Location = new System.Drawing.Point(405, 129);
             this.s2.Name = "s2";
             this.s2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.s2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1645,7 +1645,7 @@ namespace Sunny.UI
             this.mm2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.mm2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.mm2.ImageInterval = 0;
-            this.mm2.Location = new System.Drawing.Point(356, 129);
+            this.mm2.Location = new System.Drawing.Point(352, 129);
             this.mm2.Name = "mm2";
             this.mm2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.mm2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1668,7 +1668,7 @@ namespace Sunny.UI
             this.h2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.h2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h2.ImageInterval = 0;
-            this.h2.Location = new System.Drawing.Point(303, 128);
+            this.h2.Location = new System.Drawing.Point(299, 128);
             this.h2.Name = "h2";
             this.h2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.h2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1691,7 +1691,7 @@ namespace Sunny.UI
             this.s1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.s1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.s1.ImageInterval = 0;
-            this.s1.Location = new System.Drawing.Point(409, 4);
+            this.s1.Location = new System.Drawing.Point(405, 4);
             this.s1.Name = "s1";
             this.s1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.s1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1714,7 +1714,7 @@ namespace Sunny.UI
             this.mm1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.mm1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.mm1.ImageInterval = 0;
-            this.mm1.Location = new System.Drawing.Point(356, 4);
+            this.mm1.Location = new System.Drawing.Point(352, 4);
             this.mm1.Name = "mm1";
             this.mm1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.mm1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1737,7 +1737,7 @@ namespace Sunny.UI
             this.h1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.h1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.h1.ImageInterval = 0;
-            this.h1.Location = new System.Drawing.Point(303, 4);
+            this.h1.Location = new System.Drawing.Point(299, 4);
             this.h1.Name = "h1";
             this.h1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.h1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -1756,7 +1756,7 @@ namespace Sunny.UI
             this.uiLine2.FillColor = System.Drawing.Color.White;
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine2.LineColor = System.Drawing.Color.Silver;
-            this.uiLine2.Location = new System.Drawing.Point(293, 88);
+            this.uiLine2.Location = new System.Drawing.Point(289, 88);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(157, 16);
@@ -1769,7 +1769,7 @@ namespace Sunny.UI
             this.uiLine3.FillColor = System.Drawing.Color.White;
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine3.LineColor = System.Drawing.Color.Silver;
-            this.uiLine3.Location = new System.Drawing.Point(293, 54);
+            this.uiLine3.Location = new System.Drawing.Point(289, 54);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(157, 16);
@@ -1819,7 +1819,7 @@ namespace Sunny.UI
             this.Controls.Add(this.btnOK);
             this.FillColor = System.Drawing.Color.White;
             this.Name = "UIDateTimeItem";
-            this.Size = new System.Drawing.Size(460, 235);
+            this.Size = new System.Drawing.Size(452, 235);
             this.Style = Sunny.UI.UIStyle.Custom;
             this.TopPanel.ResumeLayout(false);
             this.TabControl.ResumeLayout(false);

@@ -1,9 +1,12 @@
 + 增加； - 删除； * 修改 
 
+2020.06.03
+* UITextBox：增加Multiline属性
+
 2020.06.02
 + UIDatetimePicker：新增
 * UITabControl：新增关闭按钮
-* UINavBar：修改未设置PageIndex不相应按钮事件
+* UINavBar：修改未设置PageIndex不相应按钮事件，增加按钮字体图标
 
 2020.05.31
 + UIColorPicker：新增

@@ -54,6 +54,20 @@ namespace Sunny.UI
             Width = 150;
         }
 
+        private bool multiline;
+
+        [DefaultValue(false)]
+        public bool Multiline
+        {
+            get => multiline;
+            set
+            {
+                multiline = value;
+                edit.Multiline = value;
+                SizeChange();
+            }
+        }
+
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
             KeyPress?.Invoke(sender, e);
@@ -112,17 +126,35 @@ namespace Sunny.UI
             SizeChange();
         }
 
+        private int MiniHeight;
+
         private void SizeChange()
         {
             UIEdit edt = new UIEdit();
             edt.Font = edit.Font;
             edt.Invalidate();
-            Height = edt.Height;
+            MiniHeight = edt.Height;
             edt.Dispose();
 
-            edit.Top = (Height - edit.Height) / 2;
-            edit.Left = 3;
-            edit.Width = Width - 6;
+            if (!multiline)
+            {
+                Height = MiniHeight;
+                edit.Top = (Height - edit.Height) / 2;
+                edit.Left = 4;
+                edit.Width = Width - 8;
+            }
+            else
+            {
+                if (Height < MiniHeight)
+                {
+                    Height = MiniHeight;
+                }
+
+                edit.Top = 3;
+                edit.Height = Height - 6;
+                edit.Left = 1;
+                edit.Width = Width - 2;
+            }
         }
 
         private void EditOnKeyDown(object sender, KeyEventArgs e)
