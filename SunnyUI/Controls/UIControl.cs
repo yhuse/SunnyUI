@@ -479,6 +479,12 @@ namespace Sunny.UI
             g.DrawString(Text, Font, color, Size, Padding, TextAlign);
         }
 
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            Invalidate();
+        }
+
         /// <summary>
         /// 选中颜色
         /// </summary>
