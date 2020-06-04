@@ -14,7 +14,9 @@
 #### 软件框架
 ![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png)
 
-#### 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有你更精彩！
+#### 开源支持
+  - 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有你更精彩！
+  - **个人学习交流免费，商业应用需要授权**
 ![感谢您的支持](https://images.gitee.com/uploads/images/2020/0524/233620_6685fbbf_416720.png)
 
 1、开源控件库
