@@ -83,7 +83,6 @@
             // 
             // UIEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(600, 450);
             this.Controls.Add(this.pnlBtm);
@@ -91,6 +90,7 @@
             this.MinimizeBox = false;
             this.Name = "UIEditForm";
             this.Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
+            this.ShowInTaskbar = false;
             this.Text = "UIEditForm";
             this.pnlBtm.ResumeLayout(false);
             this.ResumeLayout(false);

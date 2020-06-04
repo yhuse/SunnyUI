@@ -151,6 +151,23 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 绘制字体图片
+        /// </summary>
+        /// <param name="graphics">GDI绘图</param>
+        /// <param name="symbol">字符</param>
+        /// <param name="symbolSize">大小</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="xOffset">左右偏移</param>
+        /// <param name="yOffSet">上下偏移</param>
+        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color, RectangleF rect, int xOffset = 0, int yOffSet = 0)
+        {
+            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
+            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
+                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
+        }
+
+        /// <summary>
         /// 创建图片
         /// </summary>
         /// <param name="symbol">字符</param>

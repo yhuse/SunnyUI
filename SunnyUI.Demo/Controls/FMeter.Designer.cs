@@ -40,11 +40,25 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.uiRoundMeter2 = new Sunny.UI.UIRoundMeter();
             this.uiRoundMeter1 = new Sunny.UI.UIRoundMeter();
+            this.uiLine2 = new Sunny.UI.UILine();
+            this.uiBattery1 = new Sunny.UI.UIBattery();
+            this.uiBattery2 = new Sunny.UI.UIBattery();
+            this.uiBattery3 = new Sunny.UI.UIBattery();
+            this.uiBattery4 = new Sunny.UI.UIBattery();
+            this.uiBattery5 = new Sunny.UI.UIBattery();
+            this.uiBattery6 = new Sunny.UI.UIBattery();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiBattery6);
+            this.PagePanel.Controls.Add(this.uiBattery5);
+            this.PagePanel.Controls.Add(this.uiBattery4);
+            this.PagePanel.Controls.Add(this.uiBattery3);
+            this.PagePanel.Controls.Add(this.uiBattery2);
+            this.PagePanel.Controls.Add(this.uiBattery1);
+            this.PagePanel.Controls.Add(this.uiLine2);
             this.PagePanel.Controls.Add(this.uiAnalogMeter1);
             this.PagePanel.Controls.Add(this.uiLine9);
             this.PagePanel.Controls.Add(this.uiLine7);
@@ -121,7 +135,7 @@
             this.uiLedStopwatch1.Name = "uiLedStopwatch1";
             this.uiLedStopwatch1.Size = new System.Drawing.Size(190, 34);
             this.uiLedStopwatch1.TabIndex = 45;
-            this.uiLedStopwatch1.Text = "01:18";
+            this.uiLedStopwatch1.Text = "00:54";
             // 
             // uiLedDisplay1
             // 
@@ -164,6 +178,75 @@
             this.uiRoundMeter1.TabIndex = 47;
             this.uiRoundMeter1.Text = "uiRoundMeter1";
             // 
+            // uiLine2
+            // 
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Location = new System.Drawing.Point(30, 292);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(319, 20);
+            this.uiLine2.TabIndex = 53;
+            this.uiLine2.Text = "UIBattery";
+            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiBattery1
+            // 
+            this.uiBattery1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery1.Location = new System.Drawing.Point(30, 328);
+            this.uiBattery1.Name = "uiBattery1";
+            this.uiBattery1.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery1.TabIndex = 54;
+            this.uiBattery1.Text = "uiBattery1";
+            // 
+            // uiBattery2
+            // 
+            this.uiBattery2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery2.Location = new System.Drawing.Point(84, 328);
+            this.uiBattery2.Name = "uiBattery2";
+            this.uiBattery2.Power = 1;
+            this.uiBattery2.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery2.TabIndex = 55;
+            this.uiBattery2.Text = "uiBattery2";
+            // 
+            // uiBattery3
+            // 
+            this.uiBattery3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery3.Location = new System.Drawing.Point(138, 328);
+            this.uiBattery3.Name = "uiBattery3";
+            this.uiBattery3.Power = 25;
+            this.uiBattery3.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery3.TabIndex = 56;
+            this.uiBattery3.Text = "uiBattery3";
+            // 
+            // uiBattery4
+            // 
+            this.uiBattery4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery4.Location = new System.Drawing.Point(192, 328);
+            this.uiBattery4.Name = "uiBattery4";
+            this.uiBattery4.Power = 50;
+            this.uiBattery4.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery4.TabIndex = 57;
+            this.uiBattery4.Text = "uiBattery4";
+            // 
+            // uiBattery5
+            // 
+            this.uiBattery5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery5.Location = new System.Drawing.Point(246, 328);
+            this.uiBattery5.Name = "uiBattery5";
+            this.uiBattery5.Power = 75;
+            this.uiBattery5.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery5.TabIndex = 58;
+            this.uiBattery5.Text = "uiBattery5";
+            // 
+            // uiBattery6
+            // 
+            this.uiBattery6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiBattery6.Location = new System.Drawing.Point(301, 328);
+            this.uiBattery6.Name = "uiBattery6";
+            this.uiBattery6.Size = new System.Drawing.Size(48, 24);
+            this.uiBattery6.TabIndex = 59;
+            this.uiBattery6.Text = "uiBattery6";
+            // 
             // FMeter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -188,5 +271,12 @@
         private UILedStopwatch uiLedStopwatch1;
         private UILedDisplay uiLedDisplay1;
         private System.Windows.Forms.Timer timer1;
+        private UIBattery uiBattery6;
+        private UIBattery uiBattery5;
+        private UIBattery uiBattery4;
+        private UIBattery uiBattery3;
+        private UIBattery uiBattery2;
+        private UIBattery uiBattery1;
+        private UILine uiLine2;
     }
 }

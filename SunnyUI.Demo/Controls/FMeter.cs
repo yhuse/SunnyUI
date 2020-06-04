@@ -22,6 +22,7 @@
             uiRoundMeter1.Angle = value * 10;
             uiRoundMeter2.Angle = value * 10;
             uiAnalogMeter1.Value = value;
+            uiBattery1.Power = value;
         }
     }
 }

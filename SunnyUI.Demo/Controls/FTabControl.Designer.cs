@@ -31,9 +31,12 @@
             this.uiTabControl1 = new Sunny.UI.UITabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.uiLine1 = new Sunny.UI.UILine();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiTabControlMenu1 = new Sunny.UI.UITabControlMenu();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -58,16 +61,20 @@
             this.uiTabControl1.Controls.Add(this.tabPage1);
             this.uiTabControl1.Controls.Add(this.tabPage2);
             this.uiTabControl1.Controls.Add(this.tabPage3);
-            this.uiTabControl1.Controls.Add(this.tabPage4);
+            this.uiTabControl1.Controls.Add(this.tabPage9);
+            this.uiTabControl1.Controls.Add(this.tabPage10);
+            this.uiTabControl1.Controls.Add(this.tabPage11);
             this.uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
             this.uiTabControl1.Location = new System.Drawing.Point(30, 52);
             this.uiTabControl1.Name = "uiTabControl1";
             this.uiTabControl1.SelectedIndex = 0;
+            this.uiTabControl1.ShowActiveCloseButton = true;
             this.uiTabControl1.Size = new System.Drawing.Size(670, 183);
             this.uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControl1.TabIndex = 0;
+            this.uiTabControl1.BeforeRemoveTabPage += new Sunny.UI.UITabControl.OnBeforeRemoveTabPage(this.uiTabControl1_BeforeRemoveTabPage);
             // 
             // tabPage1
             // 
@@ -87,6 +94,51 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabPage3.Location = new System.Drawing.Point(0, 40);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(670, 143);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(0, 40);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(670, 143);
+            this.tabPage9.TabIndex = 4;
+            this.tabPage9.Text = "tabPage9";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Location = new System.Drawing.Point(0, 40);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(670, 143);
+            this.tabPage10.TabIndex = 5;
+            this.tabPage10.Text = "tabPage10";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Location = new System.Drawing.Point(0, 40);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(670, 143);
+            this.tabPage11.TabIndex = 6;
+            this.tabPage11.Text = "tabPage11";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabPage4.Location = new System.Drawing.Point(0, 40);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(670, 143);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            // 
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -97,24 +149,6 @@
             this.uiLine1.TabIndex = 19;
             this.uiLine1.Text = "UITabControl";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tabPage3.Location = new System.Drawing.Point(0, 40);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(670, 143);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tabPage4.Location = new System.Drawing.Point(0, 40);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(670, 143);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
             // 
             // uiLine2
             // 
@@ -210,5 +244,8 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.TabPage tabPage11;
     }
 }

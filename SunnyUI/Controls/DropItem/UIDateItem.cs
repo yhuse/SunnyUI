@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIDateTimeItem.cs
+ * 文件名称: UIDateItem.cs
  * 文件说明: 日期选择框弹出窗体
  * 当前版本: V2.2
  * 创建日期: 2020-01-01
@@ -25,10 +25,9 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public sealed class UIDateTimeItem : UIDropDownItem
+    public sealed class UIDateItem : UIDropDownItem
     {
         #region InitializeComponent
-
         private UITabControl TabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -112,26 +111,6 @@ namespace Sunny.UI
         private UILabel y3;
         private UILabel y2;
         private UILabel y1;
-        private UILabel sb;
-        private UILabel mb;
-        private UILabel hb;
-        private UILabel st;
-        private UILabel mt;
-        private UILabel ht;
-        private UILabel sc;
-        private UILabel mc;
-        private UILabel hc;
-        private UISymbolButton btnCancel;
-        private UISymbolButton btnOK;
-        private UISymbolButton s2;
-        private UISymbolButton mm2;
-        private UISymbolButton h2;
-        private UISymbolButton s1;
-        private UISymbolButton mm1;
-        private UISymbolButton h1;
-        private UILine uiLine2;
-        private UILine uiLine3;
-        private UIPanel uiPanel1;
         private UIPanel TopPanel;
 
         private void InitializeComponent()
@@ -220,26 +199,6 @@ namespace Sunny.UI
             this.d1 = new Sunny.UI.UILabel();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiLine1 = new Sunny.UI.UILine();
-            this.sb = new Sunny.UI.UILabel();
-            this.mb = new Sunny.UI.UILabel();
-            this.hb = new Sunny.UI.UILabel();
-            this.st = new Sunny.UI.UILabel();
-            this.mt = new Sunny.UI.UILabel();
-            this.ht = new Sunny.UI.UILabel();
-            this.sc = new Sunny.UI.UILabel();
-            this.mc = new Sunny.UI.UILabel();
-            this.hc = new Sunny.UI.UILabel();
-            this.btnCancel = new Sunny.UI.UISymbolButton();
-            this.btnOK = new Sunny.UI.UISymbolButton();
-            this.s2 = new Sunny.UI.UISymbolButton();
-            this.mm2 = new Sunny.UI.UISymbolButton();
-            this.h2 = new Sunny.UI.UISymbolButton();
-            this.s1 = new Sunny.UI.UISymbolButton();
-            this.mm1 = new Sunny.UI.UISymbolButton();
-            this.h1 = new Sunny.UI.UISymbolButton();
-            this.uiLine2 = new Sunny.UI.UILine();
-            this.uiLine3 = new Sunny.UI.UILine();
-            this.uiPanel1 = new Sunny.UI.UIPanel();
             this.TopPanel.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -248,7 +207,6 @@ namespace Sunny.UI
             this.p2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.p3.SuspendLayout();
-            this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -266,7 +224,7 @@ namespace Sunny.UI
             this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.TopPanel.Size = new System.Drawing.Size(284, 31);
+            this.TopPanel.Size = new System.Drawing.Size(461, 31);
             this.TopPanel.Style = Sunny.UI.UIStyle.Custom;
             this.TopPanel.StyleCustomMode = true;
             this.TopPanel.TabIndex = 0;
@@ -283,7 +241,7 @@ namespace Sunny.UI
             this.b4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b4.ImageInterval = 0;
-            this.b4.Location = new System.Drawing.Point(250, 4);
+            this.b4.Location = new System.Drawing.Point(427, 4);
             this.b4.Name = "b4";
             this.b4.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -306,7 +264,7 @@ namespace Sunny.UI
             this.b3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b3.ImageInterval = 0;
-            this.b3.Location = new System.Drawing.Point(214, 4);
+            this.b3.Location = new System.Drawing.Point(391, 4);
             this.b3.Name = "b3";
             this.b3.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -375,7 +333,7 @@ namespace Sunny.UI
             this.TabControl.Location = new System.Drawing.Point(0, 31);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(284, 204);
+            this.TabControl.Size = new System.Drawing.Size(461, 317);
             this.TabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TabControl.Style = Sunny.UI.UIStyle.Custom;
             this.TabControl.TabIndex = 1;
@@ -386,7 +344,7 @@ namespace Sunny.UI
             this.tabPage1.Controls.Add(this.p1);
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(284, 164);
+            this.tabPage1.Size = new System.Drawing.Size(461, 277);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -410,7 +368,7 @@ namespace Sunny.UI
             this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p1.Name = "p1";
             this.p1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p1.Size = new System.Drawing.Size(284, 164);
+            this.p1.Size = new System.Drawing.Size(461, 277);
             this.p1.Style = Sunny.UI.UIStyle.Custom;
             this.p1.TabIndex = 0;
             this.p1.Text = null;
@@ -560,7 +518,7 @@ namespace Sunny.UI
             this.tabPage2.Controls.Add(this.p2);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(284, 164);
+            this.tabPage2.Size = new System.Drawing.Size(461, 277);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -586,7 +544,7 @@ namespace Sunny.UI
             this.p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p2.Name = "p2";
             this.p2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p2.Size = new System.Drawing.Size(284, 164);
+            this.p2.Size = new System.Drawing.Size(461, 277);
             this.p2.Style = Sunny.UI.UIStyle.Custom;
             this.p2.TabIndex = 1;
             this.p2.Text = null;
@@ -594,7 +552,7 @@ namespace Sunny.UI
             // m12
             // 
             this.m12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m12.Location = new System.Drawing.Point(217, 112);
+            this.m12.Location = new System.Drawing.Point(216, 112);
             this.m12.Name = "m12";
             this.m12.Size = new System.Drawing.Size(64, 51);
             this.m12.Style = Sunny.UI.UIStyle.Custom;
@@ -608,7 +566,7 @@ namespace Sunny.UI
             // m11
             // 
             this.m11.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m11.Location = new System.Drawing.Point(146, 112);
+            this.m11.Location = new System.Drawing.Point(147, 112);
             this.m11.Name = "m11";
             this.m11.Size = new System.Drawing.Size(64, 51);
             this.m11.Style = Sunny.UI.UIStyle.Custom;
@@ -650,7 +608,7 @@ namespace Sunny.UI
             // m8
             // 
             this.m8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m8.Location = new System.Drawing.Point(217, 58);
+            this.m8.Location = new System.Drawing.Point(216, 58);
             this.m8.Name = "m8";
             this.m8.Size = new System.Drawing.Size(64, 51);
             this.m8.Style = Sunny.UI.UIStyle.Custom;
@@ -664,7 +622,7 @@ namespace Sunny.UI
             // m7
             // 
             this.m7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m7.Location = new System.Drawing.Point(146, 58);
+            this.m7.Location = new System.Drawing.Point(147, 58);
             this.m7.Name = "m7";
             this.m7.Size = new System.Drawing.Size(64, 51);
             this.m7.Style = Sunny.UI.UIStyle.Custom;
@@ -706,7 +664,7 @@ namespace Sunny.UI
             // m4
             // 
             this.m4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m4.Location = new System.Drawing.Point(217, 4);
+            this.m4.Location = new System.Drawing.Point(216, 4);
             this.m4.Name = "m4";
             this.m4.Size = new System.Drawing.Size(64, 51);
             this.m4.Style = Sunny.UI.UIStyle.Custom;
@@ -720,7 +678,7 @@ namespace Sunny.UI
             // m3
             // 
             this.m3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.m3.Location = new System.Drawing.Point(146, 4);
+            this.m3.Location = new System.Drawing.Point(147, 4);
             this.m3.Name = "m3";
             this.m3.Size = new System.Drawing.Size(64, 51);
             this.m3.Style = Sunny.UI.UIStyle.Custom;
@@ -764,7 +722,7 @@ namespace Sunny.UI
             this.tabPage3.Controls.Add(this.p3);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(284, 164);
+            this.tabPage3.Size = new System.Drawing.Size(461, 277);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -828,7 +786,7 @@ namespace Sunny.UI
             this.p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p3.Name = "p3";
             this.p3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p3.Size = new System.Drawing.Size(284, 164);
+            this.p3.Size = new System.Drawing.Size(461, 277);
             this.p3.Style = Sunny.UI.UIStyle.Custom;
             this.p3.TabIndex = 2;
             this.p3.Text = null;
@@ -1469,357 +1427,13 @@ namespace Sunny.UI
             this.uiLine1.StyleCustomMode = true;
             this.uiLine1.TabIndex = 7;
             // 
-            // sb
+            // UIDateItem
             // 
-            this.sb.BackColor = System.Drawing.Color.Transparent;
-            this.sb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.sb.ForeColor = System.Drawing.Color.DarkGray;
-            this.sb.Location = new System.Drawing.Point(398, 103);
-            this.sb.Name = "sb";
-            this.sb.Size = new System.Drawing.Size(46, 22);
-            this.sb.StyleCustomMode = true;
-            this.sb.TabIndex = 39;
-            this.sb.Text = "00";
-            this.sb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // mb
-            // 
-            this.mb.BackColor = System.Drawing.Color.Transparent;
-            this.mb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mb.ForeColor = System.Drawing.Color.DarkGray;
-            this.mb.Location = new System.Drawing.Point(345, 103);
-            this.mb.Name = "mb";
-            this.mb.Size = new System.Drawing.Size(46, 22);
-            this.mb.StyleCustomMode = true;
-            this.mb.TabIndex = 38;
-            this.mb.Text = "00";
-            this.mb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // hb
-            // 
-            this.hb.BackColor = System.Drawing.Color.Transparent;
-            this.hb.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.hb.ForeColor = System.Drawing.Color.DarkGray;
-            this.hb.Location = new System.Drawing.Point(292, 103);
-            this.hb.Name = "hb";
-            this.hb.Size = new System.Drawing.Size(46, 22);
-            this.hb.StyleCustomMode = true;
-            this.hb.TabIndex = 37;
-            this.hb.Text = "00";
-            this.hb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // st
-            // 
-            this.st.BackColor = System.Drawing.Color.Transparent;
-            this.st.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.st.ForeColor = System.Drawing.Color.DarkGray;
-            this.st.Location = new System.Drawing.Point(398, 31);
-            this.st.Name = "st";
-            this.st.Size = new System.Drawing.Size(46, 22);
-            this.st.StyleCustomMode = true;
-            this.st.TabIndex = 36;
-            this.st.Text = "00";
-            this.st.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // mt
-            // 
-            this.mt.BackColor = System.Drawing.Color.Transparent;
-            this.mt.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mt.ForeColor = System.Drawing.Color.DarkGray;
-            this.mt.Location = new System.Drawing.Point(345, 31);
-            this.mt.Name = "mt";
-            this.mt.Size = new System.Drawing.Size(46, 22);
-            this.mt.StyleCustomMode = true;
-            this.mt.TabIndex = 35;
-            this.mt.Text = "00";
-            this.mt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ht
-            // 
-            this.ht.BackColor = System.Drawing.Color.Transparent;
-            this.ht.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ht.ForeColor = System.Drawing.Color.DarkGray;
-            this.ht.Location = new System.Drawing.Point(292, 31);
-            this.ht.Name = "ht";
-            this.ht.Size = new System.Drawing.Size(46, 22);
-            this.ht.StyleCustomMode = true;
-            this.ht.TabIndex = 34;
-            this.ht.Text = "00";
-            this.ht.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // sc
-            // 
-            this.sc.BackColor = System.Drawing.Color.Transparent;
-            this.sc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.sc.Location = new System.Drawing.Point(398, 65);
-            this.sc.Name = "sc";
-            this.sc.Size = new System.Drawing.Size(46, 27);
-            this.sc.StyleCustomMode = true;
-            this.sc.TabIndex = 33;
-            this.sc.Text = "00";
-            this.sc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sc.DoubleClick += new System.EventHandler(this.sc_DoubleClick);
-            // 
-            // mc
-            // 
-            this.mc.BackColor = System.Drawing.Color.Transparent;
-            this.mc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mc.Location = new System.Drawing.Point(345, 65);
-            this.mc.Name = "mc";
-            this.mc.Size = new System.Drawing.Size(46, 27);
-            this.mc.StyleCustomMode = true;
-            this.mc.TabIndex = 32;
-            this.mc.Text = "00";
-            this.mc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mc.DoubleClick += new System.EventHandler(this.mc_DoubleClick);
-            // 
-            // hc
-            // 
-            this.hc.BackColor = System.Drawing.Color.Transparent;
-            this.hc.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.hc.Location = new System.Drawing.Point(292, 65);
-            this.hc.Name = "hc";
-            this.hc.Size = new System.Drawing.Size(46, 27);
-            this.hc.StyleCustomMode = true;
-            this.hc.TabIndex = 31;
-            this.hc.Text = "00";
-            this.hc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.hc.DoubleClick += new System.EventHandler(this.hc_DoubleClick);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCancel.Location = new System.Drawing.Point(370, 162);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnCancel.Size = new System.Drawing.Size(74, 27);
-            this.btnCancel.Style = Sunny.UI.UIStyle.Custom;
-            this.btnCancel.Symbol = 61453;
-            this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnOK
-            // 
-            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnOK.Location = new System.Drawing.Point(291, 162);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnOK.Size = new System.Drawing.Size(74, 27);
-            this.btnOK.Style = Sunny.UI.UIStyle.Custom;
-            this.btnOK.TabIndex = 29;
-            this.btnOK.Text = "确定";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // s2
-            // 
-            this.s2.BackColor = System.Drawing.Color.Transparent;
-            this.s2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s2.FillColor = System.Drawing.Color.White;
-            this.s2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.s2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.ImageInterval = 0;
-            this.s2.Location = new System.Drawing.Point(405, 129);
-            this.s2.Name = "s2";
-            this.s2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.s2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.s2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.s2.Size = new System.Drawing.Size(30, 24);
-            this.s2.Style = Sunny.UI.UIStyle.Custom;
-            this.s2.StyleCustomMode = true;
-            this.s2.Symbol = 61703;
-            this.s2.TabIndex = 28;
-            this.s2.Tag = "6";
-            this.s2.Click += new System.EventHandler(this.s2_Click);
-            // 
-            // mm2
-            // 
-            this.mm2.BackColor = System.Drawing.Color.Transparent;
-            this.mm2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mm2.FillColor = System.Drawing.Color.White;
-            this.mm2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mm2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm2.ImageInterval = 0;
-            this.mm2.Location = new System.Drawing.Point(352, 129);
-            this.mm2.Name = "mm2";
-            this.mm2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.mm2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.mm2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.mm2.Size = new System.Drawing.Size(30, 24);
-            this.mm2.Style = Sunny.UI.UIStyle.Custom;
-            this.mm2.StyleCustomMode = true;
-            this.mm2.Symbol = 61703;
-            this.mm2.TabIndex = 27;
-            this.mm2.Tag = "5";
-            this.mm2.Click += new System.EventHandler(this.mm1_Click);
-            // 
-            // h2
-            // 
-            this.h2.BackColor = System.Drawing.Color.Transparent;
-            this.h2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h2.FillColor = System.Drawing.Color.White;
-            this.h2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.h2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.ImageInterval = 0;
-            this.h2.Location = new System.Drawing.Point(299, 128);
-            this.h2.Name = "h2";
-            this.h2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.h2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.h2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.h2.Size = new System.Drawing.Size(30, 24);
-            this.h2.Style = Sunny.UI.UIStyle.Custom;
-            this.h2.StyleCustomMode = true;
-            this.h2.Symbol = 61703;
-            this.h2.TabIndex = 26;
-            this.h2.Tag = "4";
-            this.h2.Click += new System.EventHandler(this.h2_Click);
-            // 
-            // s1
-            // 
-            this.s1.BackColor = System.Drawing.Color.Transparent;
-            this.s1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s1.FillColor = System.Drawing.Color.White;
-            this.s1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.s1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.ImageInterval = 0;
-            this.s1.Location = new System.Drawing.Point(405, 4);
-            this.s1.Name = "s1";
-            this.s1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.s1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.s1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.s1.Size = new System.Drawing.Size(30, 24);
-            this.s1.Style = Sunny.UI.UIStyle.Custom;
-            this.s1.StyleCustomMode = true;
-            this.s1.Symbol = 61702;
-            this.s1.TabIndex = 25;
-            this.s1.Tag = "3";
-            this.s1.Click += new System.EventHandler(this.s1_Click);
-            // 
-            // mm1
-            // 
-            this.mm1.BackColor = System.Drawing.Color.Transparent;
-            this.mm1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mm1.FillColor = System.Drawing.Color.White;
-            this.mm1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mm1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm1.ImageInterval = 0;
-            this.mm1.Location = new System.Drawing.Point(352, 4);
-            this.mm1.Name = "mm1";
-            this.mm1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.mm1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.mm1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.mm1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.mm1.Size = new System.Drawing.Size(30, 24);
-            this.mm1.Style = Sunny.UI.UIStyle.Custom;
-            this.mm1.StyleCustomMode = true;
-            this.mm1.Symbol = 61702;
-            this.mm1.TabIndex = 24;
-            this.mm1.Tag = "2";
-            this.mm1.Click += new System.EventHandler(this.mm2_Click);
-            // 
-            // h1
-            // 
-            this.h1.BackColor = System.Drawing.Color.Transparent;
-            this.h1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h1.FillColor = System.Drawing.Color.White;
-            this.h1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.h1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.ImageInterval = 0;
-            this.h1.Location = new System.Drawing.Point(299, 4);
-            this.h1.Name = "h1";
-            this.h1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.h1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.h1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.h1.Size = new System.Drawing.Size(30, 24);
-            this.h1.Style = Sunny.UI.UIStyle.Custom;
-            this.h1.StyleCustomMode = true;
-            this.h1.Symbol = 61702;
-            this.h1.TabIndex = 23;
-            this.h1.Tag = "1";
-            this.h1.Click += new System.EventHandler(this.h1_Click);
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.FillColor = System.Drawing.Color.White;
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.LineColor = System.Drawing.Color.Silver;
-            this.uiLine2.Location = new System.Drawing.Point(289, 88);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(157, 16);
-            this.uiLine2.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine2.StyleCustomMode = true;
-            this.uiLine2.TabIndex = 22;
-            // 
-            // uiLine3
-            // 
-            this.uiLine3.FillColor = System.Drawing.Color.White;
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.LineColor = System.Drawing.Color.Silver;
-            this.uiLine3.Location = new System.Drawing.Point(289, 54);
-            this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine3.Name = "uiLine3";
-            this.uiLine3.Size = new System.Drawing.Size(157, 16);
-            this.uiLine3.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine3.StyleCustomMode = true;
-            this.uiLine3.TabIndex = 21;
-            // 
-            // uiPanel1
-            // 
-            this.uiPanel1.BackColor = System.Drawing.Color.White;
-            this.uiPanel1.Controls.Add(this.TabControl);
-            this.uiPanel1.Controls.Add(this.TopPanel);
-            this.uiPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.uiPanel1.FillColor = System.Drawing.Color.White;
-            this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPanel1.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPanel1.Size = new System.Drawing.Size(284, 235);
-            this.uiPanel1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiPanel1.StyleCustomMode = true;
-            this.uiPanel1.TabIndex = 3;
-            this.uiPanel1.Text = null;
-            // 
-            // UIDateTimeItem
-            // 
-            this.Controls.Add(this.sb);
-            this.Controls.Add(this.uiPanel1);
-            this.Controls.Add(this.mb);
-            this.Controls.Add(this.hb);
-            this.Controls.Add(this.h1);
-            this.Controls.Add(this.st);
-            this.Controls.Add(this.uiLine3);
-            this.Controls.Add(this.mt);
-            this.Controls.Add(this.uiLine2);
-            this.Controls.Add(this.ht);
-            this.Controls.Add(this.mm1);
-            this.Controls.Add(this.sc);
-            this.Controls.Add(this.s1);
-            this.Controls.Add(this.mc);
-            this.Controls.Add(this.h2);
-            this.Controls.Add(this.hc);
-            this.Controls.Add(this.mm2);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.s2);
-            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.TabControl);
+            this.Controls.Add(this.TopPanel);
             this.FillColor = System.Drawing.Color.White;
-            this.Name = "UIDateTimeItem";
-            this.Size = new System.Drawing.Size(452, 235);
+            this.Name = "UIDateItem";
+            this.Size = new System.Drawing.Size(461, 348);
             this.Style = Sunny.UI.UIStyle.Custom;
             this.TopPanel.ResumeLayout(false);
             this.TabControl.ResumeLayout(false);
@@ -1829,18 +1443,14 @@ namespace Sunny.UI
             this.p2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.p3.ResumeLayout(false);
-            this.uiPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
+        #endregion
 
-        #endregion InitializeComponent
-
-        public UIDateTimeItem()
+        public UIDateItem()
         {
             InitializeComponent();
-            this.MouseWheel += UITimeItem_MouseWheel;
-            Width = 452;
+            Width = 284;
             Height = 200;
             TabControl.TabVisible = false;
 
@@ -1900,10 +1510,9 @@ namespace Sunny.UI
 
         private void d1_Click(object sender, EventArgs e)
         {
-            DateTime dt = (DateTime)((UILabel)sender).Tag;
-            date = new DateTime(dt.Year,dt.Month,dt.Day,Hour,Minute,Second);
-            DoValueChanged(this, date);
-            SetYearMonth(date.Year, date.Month);
+            date = (DateTime)((UILabel)sender).Tag;
+            DoValueChanged(this, Date);
+            CloseParent();
         }
 
         private DateTime date;
@@ -1919,11 +1528,6 @@ namespace Sunny.UI
                 Month = date.Month;
                 SetYearMonth(Year, Month);
                 TabControl.SelectedTab = tabPage3;
-
-                Hour = date.Hour;
-                Minute = date.Minute;
-                Second = date.Second;
-                ShowOther();
             }
         }
 
@@ -2087,163 +1691,6 @@ namespace Sunny.UI
             RectColor = color;
             b1.ForeColor = b2.ForeColor = b3.ForeColor = b4.ForeColor = color;
             TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = color;
-            h1.ForeColor = h2.ForeColor = color;
-            mm1.ForeColor = mm2.ForeColor = color;
-            s1.ForeColor = s2.ForeColor = color;
-        }
-
-        public override void SetStyle(UIBaseStyle style)
-        {
-            base.SetStyle(style);
-            btnOK.SetStyleColor(style);
-            btnCancel.SetStyleColor(style);
-        }
-
-        private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Delta < 0)
-            {
-                if (new Rectangle(ht.Left,ht.Top,ht.Width,hb.Bottom-ht.Top).Contains(e.X, e.Y))
-                {
-                    h1.PerformClick();
-                }
-                else if (new Rectangle(mt.Left, mt.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    mm1.PerformClick();
-                }
-                else if (new Rectangle(st.Left, st.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    s1.PerformClick();
-                }
-            }
-            else if (e.Delta > 0)
-            {
-                if (new Rectangle(ht.Left, ht.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    h2.PerformClick();
-                }
-                else if (new Rectangle(mt.Left, mt.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    mm2.PerformClick();
-                }
-                else if (new Rectangle(st.Left, st.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    s2.PerformClick();
-                }
-            }
-        }
-
-        private void h1_Click(object sender, EventArgs e)
-        {
-            Hour = (Hour - 1 + 24).Mod(24);
-            ShowOther();
-        }
-
-        private void mm1_Click(object sender, EventArgs e)
-        {
-            Minute = (Minute - 1 + 60).Mod(60);
-            ShowOther();
-        }
-
-        private void s1_Click(object sender, EventArgs e)
-        {
-            Second = (Second - 1 + 60).Mod(60);
-            ShowOther();
-        }
-
-        private void h2_Click(object sender, EventArgs e)
-        {
-            Hour = (Hour + 1 + 24).Mod(24);
-            ShowOther();
-        }
-
-        private void mm2_Click(object sender, EventArgs e)
-        {
-            Minute = (Minute + 1 + 60).Mod(60);
-            ShowOther();
-        }
-
-        private void s2_Click(object sender, EventArgs e)
-        {
-            Second = (Second + 1 + 60).Mod(60);
-            ShowOther();
-        }
-
-        private int hour;
-        private int minute;
-        private int second;
-
-        public int Hour
-        {
-            get => hour;
-            set
-            {
-                hour = value;
-                hc.Text = hour.ToString();
-            }
-        }
-
-        public int Minute
-        {
-            get => minute;
-            set
-            {
-                minute = value;
-                mc.Text = minute.ToString();
-            }
-        }
-
-        public int Second
-        {
-            get => second;
-            set
-            {
-                second = value;
-                sc.Text = second.ToString();
-            }
-        }
-
-        private void ShowOther()
-        {
-            ht.Text = (hour - 1 + 24).Mod(24).ToString();
-            hb.Text = (hour + 1 + 24).Mod(24).ToString();
-            mt.Text = (minute - 1 + 60).Mod(60).ToString();
-            mb.Text = (minute + 1 + 60).Mod(60).ToString();
-            st.Text = (second - 1 + 60).Mod(60).ToString();
-            sb.Text = (second + 1 + 60).Mod(60).ToString();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            CloseParent();
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            DateTime  time = new DateTime(Date.Year, Date.Month, Date.Day, Hour, Minute, Second);
-            DoValueChanged(this, time);
-            CloseParent();
-        }
-
-        private void hc_DoubleClick(object sender, EventArgs e)
-        {
-            Hour = 0;
-            Minute = 0;
-            Second = 0;
-            ShowOther();
-        }
-
-        private void mc_DoubleClick(object sender, EventArgs e)
-        {
-            Minute = 0;
-            Second = 0;
-            ShowOther();
-        }
-
-        private void sc_DoubleClick(object sender, EventArgs e)
-        {
-            Second = 0;
-            ShowOther();
         }
     }
 }

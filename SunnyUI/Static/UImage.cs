@@ -25,6 +25,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -39,6 +40,16 @@ namespace Sunny.UI
     /// </summary>
     public static class ImageEx
     {
+        public static ImageList GetToolbarImageList(Type type, Bitmap bitmap, Size imageSize, Color transparentColor)
+        {
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = imageSize;
+            imageList.TransparentColor = transparentColor;
+            imageList.Images.AddStrip(bitmap);
+            imageList.ColorDepth = ColorDepth.Depth24Bit;
+            return imageList;
+        }
+
         public static Bitmap Split(this Bitmap image, int size, UIShape shape)
         {
             //截图画板

@@ -21,7 +21,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -153,11 +152,15 @@ namespace Sunny.UI
                 switch (_uiEditType)
                 {
                     case UITextBox.UIEditType.Double:
-                        Text = mask;
+                        if (!CanEmpty)
+                            if (!Text.IsDouble())
+                                Text = mask;
                         break;
 
                     case UITextBox.UIEditType.Integer:
-                        Text = @"0";
+                        if (!CanEmpty)
+                            if (!Text.IsInt())
+                                Text = @"0";
                         break;
 
                     case UITextBox.UIEditType.String:
@@ -235,14 +238,8 @@ namespace Sunny.UI
             }
             set
             {
-                if (_uiEditType == UITextBox.UIEditType.Double)
-                {
-                    if (Text != value.ToString(CultureInfo.InvariantCulture))
-                    {
-                        CheckMaxMin();
-                        Text = value.ToString("f" + decLength);
-                    }
-                }
+                CheckMaxMin();
+                Text = value.ToString("f" + decLength);
             }
         }
 
@@ -256,8 +253,6 @@ namespace Sunny.UI
             }
             set
             {
-                if (_uiEditType != UITextBox.UIEditType.Integer) return;
-                if (Text == value.ToString()) return;
                 CheckMaxMin();
                 Text = value.ToString();
             }

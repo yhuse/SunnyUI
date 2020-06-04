@@ -320,5 +320,10 @@ namespace Sunny.UI
         {
             Item?.SetForeColor(color);
         }
+
+        public void SetStyle(UIBaseStyle style)
+        {
+            Item?.SetStyle(style);
+        }
     }
 }

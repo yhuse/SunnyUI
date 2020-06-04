@@ -413,6 +413,11 @@ namespace Sunny.UI
             }
         }
 
+        public static UIBaseStyle ActiveStyleColor
+        {
+            get => GetStyleColor(Style);
+        }
+
         private static void AddStyle(UIBaseStyle uiColor)
         {
             if (Styles.ContainsKey(uiColor.Name))
