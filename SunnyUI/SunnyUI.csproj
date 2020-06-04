@@ -91,6 +91,9 @@
     <Compile Include="Controls\DropItem\UIColorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIBattery.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UIDatetimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -132,8 +132,10 @@
             // 
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.uiTextBox2.DoubleValue = 5D;
             this.uiTextBox2.FillColor = System.Drawing.Color.White;
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTextBox2.IntValue = 5;
             this.uiTextBox2.Location = new System.Drawing.Point(117, 93);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox2.Maximum = 9D;
@@ -142,7 +144,7 @@
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 5;
-            this.uiTextBox2.Text = "0";
+            this.uiTextBox2.Text = "5";
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
             this.uiTextBox2.Watermark = "水印文字";
             // 
@@ -159,6 +161,7 @@
             // 
             // uiTextBox3
             // 
+            this.uiTextBox3.CanEmpty = true;
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox3.FillColor = System.Drawing.Color.White;
             this.uiTextBox3.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -168,8 +171,8 @@
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox3.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox3.TabIndex = 7;
-            this.uiTextBox3.Text = "0.00";
             this.uiTextBox3.Type = Sunny.UI.UITextBox.UIEditType.Double;
+            this.uiTextBox3.Watermark = "水印文字";
             // 
             // uiComboBox1
             // 
@@ -365,7 +368,7 @@
             this.uiDatetimePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.uiDatetimePicker1.Size = new System.Drawing.Size(306, 29);
             this.uiDatetimePicker1.TabIndex = 30;
-            this.uiDatetimePicker1.Text = "uiDatetimePicker1";
+            this.uiDatetimePicker1.Text = "2020-06-02 17:57:28";
             this.uiDatetimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiDatetimePicker1.Value = new System.DateTime(2020, 6, 2, 17, 57, 28, 203);
             // 

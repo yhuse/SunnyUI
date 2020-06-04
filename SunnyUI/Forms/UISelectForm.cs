@@ -50,6 +50,18 @@ namespace Sunny.UI
             }
         }
 
+        public string Description
+        {
+            get => label.Text;
+            set => label.Text = value;
+        }
+
+        public string Title
+        {
+            get => Text;
+            set => Text = value;
+        }
+
         /// <summary>
         /// 选择框索引
         /// </summary>

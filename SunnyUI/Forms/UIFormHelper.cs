@@ -83,6 +83,67 @@ namespace Sunny.UI
             return ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
         }
 
+        /// <summary>
+        /// 正确信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green)
+        {
+            ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
+        {
+            ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange)
+        {
+            ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red)
+        {
+            ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style"></param>
+        /// <returns>结果</returns>
+        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
+        {
+            return ShowMessageDialog(msg, title, true, style);
+        }
+
         public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
         {
             UIMessageForm frm = new UIMessageForm();
@@ -312,12 +373,18 @@ namespace Sunny.UI
 
     public static class UISelectDialog
     {
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style = UIStyle.Blue)
+        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, string title, string description, UIStyle style = UIStyle.Blue)
         {
             UISelectForm frm = new UISelectForm();
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
+            if (title.IsValid())
+            {
+                frm.Title = title;
+            }
+
+            frm.Description = description;
             frm.ShowDialog();
 
             bool result = frm.IsOK;
@@ -330,6 +397,11 @@ namespace Sunny.UI
             return result;
         }
 
+        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style = UIStyle.Blue)
+        {
+            return form.ShowSelectDialog(ref selectIndex, items, UILocalize.SelectTitle, "", style);
+        }
+
         public static bool ShowSelectDialog(this UIForm form, ref int selectIndex, IList items)
         {
             return form.ShowSelectDialog(ref selectIndex, items, form.Style);
@@ -338,6 +410,16 @@ namespace Sunny.UI
         public static bool ShowSelectDialog(this UIPage form, ref int selectIndex, IList items)
         {
             return form.ShowSelectDialog(ref selectIndex, items, form.Style);
+        }
+
+        public static bool ShowSelectDialog(this UIForm form, ref int selectIndex, IList items, string title, string description)
+        {
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style);
+        }
+
+        public static bool ShowSelectDialog(this UIPage form, ref int selectIndex, IList items, string title, string description)
+        {
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style);
         }
     }
 

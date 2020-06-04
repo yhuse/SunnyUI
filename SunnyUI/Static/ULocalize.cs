@@ -29,6 +29,7 @@ namespace Sunny.UI
         public static string ErrorTitle = "错误";
         public static string AskTitle = "提示";
         public static string InputTitle = "输入";
+        public static string SelectTitle = "选择";
         public static string CloseAll = "全部关闭";
         public static string OK = "确定";
         public static string Cancel = "取消";
@@ -47,6 +48,7 @@ namespace Sunny.UI
             UILocalize.ErrorTitle = "Error";
             UILocalize.AskTitle = "Query";
             UILocalize.InputTitle = "Input";
+            UILocalize.SelectTitle = "Select";
             UILocalize.CloseAll = "Close all";
             UILocalize.OK = "OK";
             UILocalize.Cancel = "Cancel";
@@ -63,6 +65,7 @@ namespace Sunny.UI
             UILocalize.ErrorTitle = "错误";
             UILocalize.AskTitle = "提示";
             UILocalize.InputTitle = "输入";
+            UILocalize.SelectTitle = "选择";
             UILocalize.CloseAll = "全部关闭";
             UILocalize.OK = "确定";
             UILocalize.Cancel = "取消";
