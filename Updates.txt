@@ -1,5 +1,24 @@
 + 增加； - 删除； * 修改 
 
+2020.06.04
++ UIBattery 新增
+* UITextBox：Int和Double时可设置为空，设置默认值可不为0
++ UIFormHelper：增加了一些窗体扩展
+
+2020.06.03
+* UITextBox：增加Multiline属性，增加滚动条
+
+2020.06.02
++ UIDatetimePicker：新增
+* UITabControl：新增关闭按钮
+* UINavBar：修改未设置PageIndex不相应按钮事件，增加按钮字体图标
+
+2020.05.31
++ UIColorPicker：新增
+
+2020.05.30
+* UIForm：更新标题移动、双击最大化/正常、到顶最大化、最大化后拖拽正常
+
 2020.05.29
 * UIDatePicker：重写日期选择界面
 + UITimePicker：新增
