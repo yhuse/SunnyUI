@@ -50,11 +50,13 @@
             this.uiColorPicker1 = new Sunny.UI.UIColorPicker();
             this.uiDatetimePicker1 = new Sunny.UI.UIDatetimePicker();
             this.uiLine8 = new Sunny.UI.UILine();
+            this.uiDatetimePicker2 = new Sunny.UI.UIDatetimePicker();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiDatetimePicker2);
             this.PagePanel.Controls.Add(this.uiLine8);
             this.PagePanel.Controls.Add(this.uiDatetimePicker1);
             this.PagePanel.Controls.Add(this.uiColorPicker1);
@@ -383,6 +385,21 @@
             this.uiLine8.Text = "UIDatetimePicker";
             this.uiLine8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiDatetimePicker2
+            // 
+            this.uiDatetimePicker2.FillColor = System.Drawing.Color.White;
+            this.uiDatetimePicker2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiDatetimePicker2.Location = new System.Drawing.Point(355, 361);
+            this.uiDatetimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatetimePicker2.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiDatetimePicker2.Name = "uiDatetimePicker2";
+            this.uiDatetimePicker2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.uiDatetimePicker2.Size = new System.Drawing.Size(249, 29);
+            this.uiDatetimePicker2.TabIndex = 32;
+            this.uiDatetimePicker2.Text = "uiDatetimePicker2";
+            this.uiDatetimePicker2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiDatetimePicker2.Value = new System.DateTime(2020, 6, 4, 21, 41, 10, 904);
+            // 
             // FTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -420,5 +437,6 @@
         private UIColorPicker uiColorPicker1;
         private UILine uiLine8;
         private UIDatetimePicker uiDatetimePicker1;
+        private UIDatetimePicker uiDatetimePicker2;
     }
 }

@@ -1,8 +1,7 @@
 + 增加； - 删除； * 修改 
 
-2020.06.03
+2020.06.04
 + UIBattery 新增
-* UINAVMenu：修复鼠标滚动有时失效的问题
 * UITextBox：Int和Double时可设置为空，设置默认值可不为0
 + UIFormHelper：增加了一些窗体扩展
 

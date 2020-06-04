@@ -43,7 +43,7 @@ namespace Sunny.UI
             BorderStyle = BorderStyle.None;
             //HideSelection = false;
             DrawMode = TreeViewDrawMode.OwnerDrawAll;
-            FullRowSelect = true;
+            //FullRowSelect = true;
             //ShowLines = false;
             //ShowPlusMinus = false;
             //ShowRootLines = false;
