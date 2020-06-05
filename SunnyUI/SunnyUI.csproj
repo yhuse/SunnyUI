@@ -97,6 +97,9 @@
     <Compile Include="Controls\UIDatetimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIRichTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\UITimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>

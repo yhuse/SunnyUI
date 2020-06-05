@@ -21,8 +21,10 @@
 ******************************************************************************/
 
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -39,14 +41,15 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
+            ShowText = false;
             Font = UIFontColor.Font;
 
             edit.Left = 3;
             edit.Top = 3;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
-            edit.KeyDown += EditOnKeyDown;
             edit.TextChanged += EditTextChanged;
+            edit.KeyDown += EditOnKeyDown;
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
             edit.MouseEnter += Edit_MouseEnter;
@@ -146,6 +149,11 @@ namespace Sunny.UI
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
             KeyPress?.Invoke(sender, e);
+        }
+
+        private void EditOnKeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(sender, e);
         }
 
         private void EditOnKeyUp(object sender, KeyEventArgs e)
@@ -261,29 +269,6 @@ namespace Sunny.UI
             }
         }
 
-        private void EditOnKeyDown(object sender, KeyEventArgs e)
-        {
-            KeyDown?.Invoke(sender, e);
-
-            //            if (e.Control && e.KeyCode == Keys.A)
-            //            {
-            //                edit.SelectAll();
-            //                e.SuppressKeyPress = true;
-            //            }
-            //
-            //            if (e.Control && e.KeyCode == Keys.C)
-            //            {
-            //                edit.Copy();
-            //                e.SuppressKeyPress = true;
-            //            }
-            //
-            //            if (e.Control && e.KeyCode == Keys.V)
-            //            {
-            //                edit.Paste();
-            //                e.SuppressKeyPress = true;
-            //            }
-        }
-
         protected override void OnGotFocus(EventArgs e)
         {
             base.OnGotFocus(e);
@@ -325,7 +310,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最大值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最大值。")]
-        [DefaultValue(double.MaxValue)]
+        [DefaultValue(int.MaxValue)]
         public double Maximum
         {
             get => edit.MaxValue;
@@ -336,7 +321,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最小值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最小值。")]
-        [DefaultValue(double.MinValue)]
+        [DefaultValue(int.MinValue)]
         public double Minimum
         {
             get => edit.MinValue;
@@ -410,7 +395,7 @@ namespace Sunny.UI
             ActiveControl = edit;
         }
 
-        [DefaultValue(255)]
+        [DefaultValue(32767)]
         public int MaxLength
         {
             get => edit.MaxLength;
@@ -464,6 +449,229 @@ namespace Sunny.UI
             /// 浮点数
             /// </summary>
             Double
+        }
+
+        [DefaultValue(false)]
+        public bool AcceptsReturn
+        {
+            get => edit.AcceptsReturn;
+            set => edit.AcceptsReturn = value;
+        }
+
+        [DefaultValue(AutoCompleteMode.None), Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        public AutoCompleteMode AutoCompleteMode
+        {
+            get => edit.AutoCompleteMode;
+            set => edit.AutoCompleteMode = value;
+        }
+
+        [
+            DefaultValue(AutoCompleteSource.None),
+            TypeConverterAttribute(typeof(TextBoxAutoCompleteSourceConverter)),
+            Browsable(true),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
+        public AutoCompleteSource AutoCompleteSource
+        {
+            get => edit.AutoCompleteSource;
+            set => edit.AutoCompleteSource = value;
+        }
+
+        [
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+            Localizable(true),
+            Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor)),
+            Browsable(true),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
+        public AutoCompleteStringCollection AutoCompleteCustomSource
+        {
+            get => edit.AutoCompleteCustomSource;
+            set => edit.AutoCompleteCustomSource = value;
+        }
+
+        [DefaultValue(CharacterCasing.Normal)]
+        public CharacterCasing CharacterCasing
+        {
+            get => edit.CharacterCasing;
+            set => edit.CharacterCasing = value;
+        }
+
+        public void Paste(string text)
+        {
+            edit.Paste(text);
+        }
+
+
+        internal class TextBoxAutoCompleteSourceConverter : EnumConverter
+        {
+            public TextBoxAutoCompleteSourceConverter(Type type) : base(type)
+            {
+            }
+
+            public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+            {
+                StandardValuesCollection values = base.GetStandardValues(context);
+                ArrayList list = new ArrayList();
+                int count = values.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    string currentItemText = values[i].ToString();
+                    if (!currentItemText.Equals("ListItems"))
+                    {
+                        list.Add(values[i]);
+                    }
+                }
+
+                return new StandardValuesCollection(list);
+            }
+        }
+
+        [DefaultValue(false)]
+        public bool AcceptsTab
+        {
+            get => edit.AcceptsTab;
+            set => edit.AcceptsTab = value;
+        }
+
+        [DefaultValue(true)]
+        public bool ShortcutsEnabled
+        {
+            get => edit.ShortcutsEnabled;
+            set => edit.ShortcutsEnabled = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool CanUndo
+        {
+            get => edit.CanUndo;
+        }
+
+        [DefaultValue(true)]
+        public bool HideSelection
+        {
+            get => edit.HideSelection;
+            set => edit.HideSelection = value;
+        }
+
+        [
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+            MergableProperty(false),
+            Localizable(true),
+            Editor("System.Windows.Forms.Design.StringArrayEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))
+        ]
+        public string[] Lines
+        {
+            get => edit.Lines;
+            set => edit.Lines = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool Modified
+        {
+            get => edit.Modified;
+            set => edit.Modified = value;
+        }
+
+        [
+            Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+        ]
+        public int PreferredHeight
+        {
+            get => edit.PreferredHeight;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string SelectedText
+        {
+            get => edit.SelectedText;
+            set => edit.SelectedText = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionLength
+        {
+            get => edit.SelectionLength;
+            set => edit.SelectionLength = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionStart
+        {
+            get => edit.SelectionStart;
+            set => edit.SelectionStart = value;
+        }
+
+        [Browsable(false)]
+        public int TextLength
+        {
+            get => edit.TextLength;
+        }
+
+        public void AppendText(string text)
+        {
+            edit.AppendText(text);
+        }
+
+        public void ClearUndo()
+        {
+            edit.ClearUndo();
+        }
+
+        public void Copy()
+        {
+            edit.Copy();
+        }
+
+        public void Cut()
+        {
+            edit.Cut();
+        }
+
+        public void Paste()
+        {
+            edit.Paste();
+        }
+
+        public char GetCharFromPosition(Point pt)
+        {
+            return edit.GetCharFromPosition(pt);
+        }
+
+        public int GetCharIndexFromPosition(Point pt)
+        {
+            return edit.GetCharIndexFromPosition(pt);
+        }
+
+        public int GetLineFromCharIndex(int index)
+        {
+            return edit.GetLineFromCharIndex(index);
+        }
+
+        public Point GetPositionFromCharIndex(int index)
+        {
+            return edit.GetPositionFromCharIndex(index);
+        }
+
+        public int GetFirstCharIndexFromLine(int lineNumber)
+        {
+            return edit.GetFirstCharIndexFromLine(lineNumber);
+        }
+
+        public int GetFirstCharIndexOfCurrentLine()
+        {
+            return edit.GetFirstCharIndexOfCurrentLine();
+        }
+
+        public void DeselectAll()
+        {
+            edit.DeselectAll();
+        }
+
+        public void Undo()
+        {
+            edit.Undo();
         }
     }
 }

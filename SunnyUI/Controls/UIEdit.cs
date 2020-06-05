@@ -34,8 +34,8 @@ namespace Sunny.UI
         private bool hasMaxValue;
         private bool hasMinValue;
         private string mask = "0.00";
-        private double maxValue = double.MaxValue;
-        private double minValue = double.MinValue;
+        private double maxValue = int.MaxValue;
+        private double minValue = int.MinValue;
         private UITextBox.UIEditType _uiEditType = UITextBox.UIEditType.String;
 
         public UIEdit()
@@ -45,7 +45,7 @@ namespace Sunny.UI
             Font = UIFontColor.Font;
             ForeColor = UIFontColor.Primary;
             Width = 150;
-            MaxLength = 255;
+            MaxLength = 32767;
         }
 
         private string watermark;

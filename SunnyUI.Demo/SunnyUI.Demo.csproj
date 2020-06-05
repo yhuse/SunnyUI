@@ -105,6 +105,12 @@
     <Compile Include="Controls\FContextMenuStrip.Designer.cs">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FCombobox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FCombobox.Designer.cs">
+      <DependentUpon>FCombobox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FCheckBox.resx">
       <DependentUpon>FCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FCombobox.resx">
+      <DependentUpon>FCombobox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>

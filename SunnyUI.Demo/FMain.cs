@@ -18,6 +18,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61842, 24, AddPage(new FRadioButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61962, 24, AddPage(new FTextBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, 61776, 24, AddPage(new FCombobox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61646, 24, AddPage(new FDataGridView(), ++pageIndex));
             Aside.CreateChildNode(parent, 61474, 24, AddPage(new FListBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61499, 24, AddPage(new FTreeView(), ++pageIndex));
