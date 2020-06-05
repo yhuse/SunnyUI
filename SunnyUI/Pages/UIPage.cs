@@ -220,7 +220,7 @@ namespace Sunny.UI
 
         private void UIPage_Shown(object sender, EventArgs e)
         {
-            //SetStyle(UIStyles.Style);
+            SetStyle(UIStyles.Style);
         }
     }
 }
