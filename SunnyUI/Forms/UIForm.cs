@@ -1085,6 +1085,11 @@ namespace Sunny.UI
 
         public string CloseAskString { get; set; }
 
+        private void UIForm_Shown(object sender, EventArgs e)
+        {
+            SetStyle(UIStyles.Style);
+        }
+
         private FormWindowState windowState = FormWindowState.Normal;
 
         public new FormWindowState WindowState

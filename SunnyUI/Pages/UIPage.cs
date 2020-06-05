@@ -234,5 +234,10 @@ namespace Sunny.UI
             AfterSetForeColor(ForeColor);
             _style = UIStyle.Custom;
         }
+
+        private void UIPage_Shown(object sender, EventArgs e)
+        {
+            SetStyle(UIStyles.Style);
+        }
     }
 }

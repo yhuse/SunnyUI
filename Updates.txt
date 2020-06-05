@@ -3,6 +3,7 @@
 2020.06.04
 + UIRichTextBox：新增
 * UITextBox：完善TextBox的基本方法和函数
+* UIForm,UIPage：更改新建窗体时主题未设置的问题
 
 2020.06.04
 + UIBattery 新增
