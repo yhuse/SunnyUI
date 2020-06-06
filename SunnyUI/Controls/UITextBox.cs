@@ -41,11 +41,14 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
+            CalcEditHeight();
+            Height = MiniHeight;
             ShowText = false;
             Font = UIFontColor.Font;
 
-            edit.Left = 3;
-            edit.Top = 3;
+            edit.Top = (Height - edit.Height) / 2;
+            edit.Left = 4;
+            edit.Width = Width - 8;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += EditTextChanged;
@@ -66,6 +69,8 @@ namespace Sunny.UI
             bar.ValueChanged += Bar_ValueChanged;
             edit.MouseWheel += OnMouseWheel;
             bar.MouseEnter += Bar_MouseEnter;
+
+            SizeChange();
         }
 
         private void Bar_MouseEnter(object sender, EventArgs e)
@@ -81,21 +86,21 @@ namespace Sunny.UI
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (bar.Visible)
+            if (bar!=null && bar.Visible && edit!=null)
             {
-                var si = ScrollBarInfo.GetInfo(Handle);
+                var si = ScrollBarInfo.GetInfo(edit.Handle);
                 if (e.Delta > 10)
                 {
                     if (si.nPos > 0)
                     {
-                        ScrollBarInfo.ScrollUp(Handle);
+                        ScrollBarInfo.ScrollUp(edit.Handle);
                     }
                 }
                 else if (e.Delta < -10)
                 {
                     if (si.nPos < si.ScrollMax)
                     {
-                        ScrollBarInfo.ScrollDown(Handle);
+                        ScrollBarInfo.ScrollDown(edit.Handle);
                     }
                 }
             }
@@ -197,12 +202,9 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
             edit.Font = Font;
-            Invalidate();
-        }
-
-        protected override void OnPaintFore(Graphics g, GraphicsPath path)
-        {
+            CalcEditHeight();
             SizeChange();
+            Invalidate();
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -221,38 +223,43 @@ namespace Sunny.UI
             if (si.ScrollMax > 0)
             {
                 bar.Maximum = si.ScrollMax;
-                //bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
                 bar.Value = si.nPos;
             }
             else
             {
                 bar.Maximum = si.ScrollMax;
-                //bar.Visible = false;
             }
         }
 
         private int MiniHeight;
 
-        private void SizeChange()
+        private void CalcEditHeight()
         {
             UIEdit edt = new UIEdit();
             edt.Font = edit.Font;
             edt.Invalidate();
             MiniHeight = edt.Height;
             edt.Dispose();
+        }
 
+        private void SizeChange()
+        {
             if (!multiline)
             {
-                Height = MiniHeight;
+                if (Height != MiniHeight)
+                {
+                    Height = MiniHeight;
+                }
+
                 edit.Top = (Height - edit.Height) / 2;
                 edit.Left = 4;
                 edit.Width = Width - 8;
             }
             else
             {
-                if (Height < MiniHeight)
+                if (Height < 69)
                 {
-                    Height = MiniHeight;
+                    Height = 69;
                 }
 
                 edit.Top = 3;

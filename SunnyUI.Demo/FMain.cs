@@ -1,5 +1,6 @@
 ﻿using Sunny.UI.Demo.Forms;
 using System.Windows.Forms;
+using Sunny.UI.Demo.Controls;
 
 namespace Sunny.UI.Demo
 {
@@ -40,11 +41,17 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), ++pageIndex));
             Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), ++pageIndex));
 
-            Header.SetNodeSymbol(Header.Nodes[2], 61502);
+            pageIndex = 3000;
+            Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
+            Header.SetNodeSymbol(Header.Nodes[2], 61950);
+            parent = Aside.CreateNode("Forms", 61950, 24, pageIndex);
+            Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart(), ++pageIndex));
+
+            Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {
-                Header.CreateChildNode(Header.Nodes[2], style.DisplayText(), style.Value());
+                Header.CreateChildNode(Header.Nodes[3], style.DisplayText(), style.Value());
             }
 
             Aside.SelectFirst();
@@ -56,10 +63,11 @@ namespace Sunny.UI.Demo
             {
                 case 0:
                 case 1:
+                case 2:
                     Aside.SelectPage(pageIndex);
                     break;
 
-                case 2:
+                case 3:
                     UIStyle style = (UIStyle)pageIndex;
                     StyleManager.Style = style;
                     break;

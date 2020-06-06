@@ -520,7 +520,7 @@ namespace Sunny.UI
             }
 
             CheckMaxMin();
-            Invalidate();
+            //Invalidate();
         }
     }
 }

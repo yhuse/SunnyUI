@@ -35,7 +35,8 @@
     <ApplicationIcon>SunnyUI.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SunnyUI">
+    <Reference Include="SunnyUI, Version=2.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Bin\SunnyUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -86,6 +87,12 @@
     </Compile>
     <Compile Include="Controls\FMeter.Designer.cs">
       <DependentUpon>FMeter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\FPieChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FPieChart.Designer.cs">
+      <DependentUpon>FPieChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FTextBox.cs">
       <SubType>Form</SubType>
@@ -278,6 +285,9 @@
     <EmbeddedResource Include="Controls\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Charts\FPieChart.resx">
+      <DependentUpon>FPieChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FTabControl.resx">
       <DependentUpon>FTabControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -414,6 +424,9 @@
     <None Include="Resources\HM1.png" />
     <None Include="Resources\HMF.png" />
     <None Include="Resources\HMF1.png" />
+    <None Include="Resources\ChartDarkStyle.png" />
+    <None Include="Resources\ChartDefaultStyle.png" />
+    <None Include="Resources\ChartPlainStyle.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <ItemGroup />

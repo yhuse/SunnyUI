@@ -1,6 +1,10 @@
 + 增加； - 删除； * 修改 
 
-2020.06.04
+2020.06.06
++ UIPieChart：新增
+* UITextBox：修复设置为MultiLine时刷新问题
+
+2020.06.05
 + UIRichTextBox：新增
 * UITextBox：完善TextBox的基本方法和函数
 * UIForm,UIPage：更改新建窗体时主题未设置的问题

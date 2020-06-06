@@ -82,7 +82,7 @@
             // 
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox1.FillColor = System.Drawing.Color.White;
-            this.uiTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox1.Location = new System.Drawing.Point(117, 54);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.Maximum = 2147483647D;
@@ -90,7 +90,6 @@
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
-            this.uiTextBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox1.TabIndex = 3;
             this.uiTextBox1.Watermark = "水印文字";
             // 
@@ -219,7 +218,6 @@
             this.uiRichTextBox1.Name = "uiRichTextBox1";
             this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
             this.uiRichTextBox1.Size = new System.Drawing.Size(308, 226);
-            this.uiRichTextBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiRichTextBox1.TabIndex = 32;
             this.uiRichTextBox1.Text = "Blog: https://www.cnblogs.com/yhuse\nGitee: https://gitee.com/yhuse/SunnyUI\nGitHub" +
     ": https://github.com/yhuse/SunnyUI\nSunnyUI.Net 系列文章目录\n欢迎交流，QQ群： 56829229 (SunnyU" +
@@ -251,7 +249,7 @@
             // 
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox4.FillColor = System.Drawing.Color.White;
-            this.uiTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox4.Location = new System.Drawing.Point(30, 219);
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox4.Maximum = 2147483647D;
@@ -260,7 +258,6 @@
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox4.Size = new System.Drawing.Size(308, 226);
-            this.uiTextBox4.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox4.TabIndex = 35;
             this.uiTextBox4.Text = "Blog: https://www.cnblogs.com/yhuse\r\nGitee: https://gitee.com/yhuse/SunnyUI\r\nGitH" +
     "ub: https://github.com/yhuse/SunnyUI\r\nSunnyUI.Net 系列文章目录\r\n欢迎交流，QQ群： 56829229 (Su" +

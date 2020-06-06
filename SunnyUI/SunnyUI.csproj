@@ -51,6 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\UIChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Charts\UIOption.cs" />
     <Compile Include="Controls\Color\UIColorBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -96,6 +100,9 @@
     </Compile>
     <Compile Include="Controls\UIDatetimePicker.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\UIPieChart.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
@@ -612,6 +619,7 @@
   <ItemGroup>
     <None Include="Resources\colorbarIndicators.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

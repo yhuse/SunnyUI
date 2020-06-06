@@ -202,21 +202,21 @@ namespace Sunny.UI
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (bar.Visible)
+            if (bar!=null && bar.Visible && edit!=null)
             {
-                var si = ScrollBarInfo.GetInfo(Handle);
+                var si = ScrollBarInfo.GetInfo(edit.Handle);
                 if (e.Delta > 10)
                 {
                     if (si.nPos > 0)
                     {
-                        ScrollBarInfo.ScrollUp(Handle);
+                        ScrollBarInfo.ScrollUp(edit.Handle);
                     }
                 }
                 else if (e.Delta < -10)
                 {
                     if (si.nPos < si.ScrollMax)
                     {
-                        ScrollBarInfo.ScrollDown(Handle);
+                        ScrollBarInfo.ScrollDown(edit.Handle);
                     }
                 }
             }

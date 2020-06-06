@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("控件");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("窗体");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("主题");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("图表");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("主题");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.uiLogo1 = new Sunny.UI.UILogo();
             this.uiAvatar = new Sunny.UI.UIAvatar();
@@ -49,16 +50,20 @@
             // 
             this.Header.Controls.Add(this.uiAvatar);
             this.Header.Controls.Add(this.uiLogo1);
+            this.Header.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             treeNode1.Name = "节点0";
             treeNode1.Text = "控件";
             treeNode2.Name = "节点1";
             treeNode2.Text = "窗体";
             treeNode3.Name = "节点2";
-            treeNode3.Text = "主题";
+            treeNode3.Text = "图表";
+            treeNode4.Name = "节点2";
+            treeNode4.Text = "主题";
             this.Header.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
-            treeNode3});
+            treeNode3,
+            treeNode4});
             this.Header.SelectedIndex = 0;
             this.Header.Size = new System.Drawing.Size(1024, 110);
             this.Header.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.Header_MenuItemClick);
@@ -71,7 +76,6 @@
             this.uiLogo1.MinimumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.Name = "uiLogo1";
             this.uiLogo1.Size = new System.Drawing.Size(300, 80);
-            this.uiLogo1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLogo1.TabIndex = 3;
             this.uiLogo1.Text = "uiLogo1";
             // 

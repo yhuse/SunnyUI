@@ -484,6 +484,70 @@ namespace Sunny.UI
             path.Dispose();
         }
 
+        public static void FillPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.Smooth(smooth);
+            using (Brush br = new SolidBrush(color))
+            {
+                g.FillPie(br, x, y, width, height, startAngle, sweepAngle);
+            }
+
+            g.Smooth(false);
+        }
+
+        public static void FillPie(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.FillPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
+        }
+
+        public static void FillPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.Smooth(smooth);
+            using (Brush br = new SolidBrush(color))
+            {
+                g.FillPie(br, x, y, width, height, startAngle, sweepAngle);
+            }
+
+            g.Smooth(false);
+        }
+
+        public static void FillPie(this Graphics g, Color color, RectangleF rect, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.FillPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
+        }
+
+        public static void DrawPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.Smooth(smooth);
+            using (Pen pen = new Pen(color))
+            {
+                g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+            }
+
+            g.Smooth(false);
+        }
+
+        public static void DrawPie(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.DrawPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
+        }
+
+        public static void DrawPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.Smooth(smooth);
+            using (Pen pen = new Pen(color))
+            {
+                g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+            }
+
+            g.Smooth(false);
+        }
+
+        public static void DrawPie(this Graphics g, Color color, RectangleF rect, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            g.DrawPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
+        }
+
         public static GraphicsPath CreateRoundedRectanglePath(this Rectangle rect, int radius, bool cornerLeftTop = true, bool cornerRightTop = true, bool cornerRightBottom = true, bool cornerLeftBottom = true)
         {
             GraphicsPath path = new GraphicsPath();
