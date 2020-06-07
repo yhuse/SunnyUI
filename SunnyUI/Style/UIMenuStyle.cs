@@ -52,7 +52,7 @@ namespace Sunny.UI
         public abstract UIMenuStyle Style { get; }
         public virtual Color BackColor => Color.FromArgb(56, 56, 56);
         public virtual Color SelectedColor => Color.FromArgb(36, 36, 36);
-        public virtual Color UnSelectedForeColor => Color.Silver;
+        public virtual Color UnSelectedForeColor => Color.FromArgb(240, 240, 240);
         public virtual Color HoverColor => Color.FromArgb(76, 76, 76);
 
         public override string ToString()

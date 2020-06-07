@@ -1,5 +1,8 @@
 + 增加； - 删除； * 修改 
 
+2020.06.07
+* UITabControl：重绘了页面左右控制按钮
+
 2020.06.06
 + UIPieChart：新增
 * UITextBox：修复设置为MultiLine时刷新问题
