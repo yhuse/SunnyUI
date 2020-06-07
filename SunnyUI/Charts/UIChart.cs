@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Sunny.UI.Charts
+namespace Sunny.UI
 {
     public class UIChart : UIControl
     {
@@ -65,17 +65,22 @@ namespace Sunny.UI.Charts
             g.FillPath(fillColor, path);
         }
 
-        private UIOption option;
+        private UIOption _option;
 
         [Browsable(false)]
         public UIOption Option
         {
-            get => option;
+            get => _option;
             set
             {
-                option = value;
+                _option = value;
                 Invalidate();
             }
+        }
+
+        public void SetOption(UIOption option)
+        {
+            Option = option;
         }
 
         protected UIOption emptyOption;
@@ -128,6 +133,35 @@ namespace Sunny.UI.Charts
             base.SetStyleColor(uiColor);
             fillColor = ChartStyle.BackColor;
             foreColor = ChartStyle.ForeColor;
+        }
+
+        [DefaultValue(8)]
+        public int TextInterval { get; set; } = 8;
+
+        public Font subFont = UIFontColor.SubFont;
+
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
+        public Font SubFont
+        {
+            get => subFont;
+            set
+            {
+                subFont = value;
+                Invalidate();
+            }
+        }
+
+        public Font legendFont = UIFontColor.SubFont;
+
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
+        public Font LegendFont
+        {
+            get => legendFont;
+            set
+            {
+                legendFont = value;
+                Invalidate();
+            }
         }
     }
 }

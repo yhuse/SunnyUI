@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiLine1 = new Sunny.UI.UILine();
             this.PieChart = new Sunny.UI.UIPieChart();
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
+            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -41,12 +44,13 @@
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSymbolButton1);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
             this.PagePanel.Controls.Add(this.uiImageButton1);
             this.PagePanel.Controls.Add(this.PieChart);
             this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 461);
+            this.PagePanel.Size = new System.Drawing.Size(828, 517);
             // 
             // uiLine1
             // 
@@ -64,11 +68,11 @@
             this.PieChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.PieChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.PieChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.PieChart.Location = new System.Drawing.Point(26, 59);
+            this.PieChart.Location = new System.Drawing.Point(26, 46);
             this.PieChart.Name = "PieChart";
             this.PieChart.Option = null;
             this.PieChart.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.PieChart.Size = new System.Drawing.Size(566, 358);
+            this.PieChart.Size = new System.Drawing.Size(687, 399);
             this.PieChart.TabIndex = 20;
             this.PieChart.Text = "uiPieChart1";
             // 
@@ -76,9 +80,9 @@
             // 
             this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDefaultStyle;
-            this.uiImageButton1.Location = new System.Drawing.Point(604, 60);
+            this.uiImageButton1.Location = new System.Drawing.Point(26, 470);
             this.uiImageButton1.Name = "uiImageButton1";
-            this.uiImageButton1.Size = new System.Drawing.Size(95, 27);
+            this.uiImageButton1.Size = new System.Drawing.Size(100, 27);
             this.uiImageButton1.TabIndex = 21;
             this.uiImageButton1.TabStop = false;
             this.uiImageButton1.Text = "      Default";
@@ -89,9 +93,9 @@
             // 
             this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.ChartPlainStyle;
-            this.uiImageButton2.Location = new System.Drawing.Point(604, 93);
+            this.uiImageButton2.Location = new System.Drawing.Point(132, 470);
             this.uiImageButton2.Name = "uiImageButton2";
-            this.uiImageButton2.Size = new System.Drawing.Size(95, 27);
+            this.uiImageButton2.Size = new System.Drawing.Size(100, 27);
             this.uiImageButton2.TabIndex = 22;
             this.uiImageButton2.TabStop = false;
             this.uiImageButton2.Text = "      Plain";
@@ -102,20 +106,33 @@
             // 
             this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDarkStyle;
-            this.uiImageButton3.Location = new System.Drawing.Point(604, 126);
+            this.uiImageButton3.Location = new System.Drawing.Point(238, 470);
             this.uiImageButton3.Name = "uiImageButton3";
-            this.uiImageButton3.Size = new System.Drawing.Size(95, 27);
+            this.uiImageButton3.Size = new System.Drawing.Size(100, 27);
             this.uiImageButton3.TabIndex = 23;
             this.uiImageButton3.TabStop = false;
             this.uiImageButton3.Text = "      Dark";
             this.uiImageButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiImageButton3.Click += new System.EventHandler(this.uiImageButton3_Click);
             // 
+            // uiSymbolButton1
+            // 
+            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(344, 470);
+            this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton1.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton1.Symbol = 61952;
+            this.uiSymbolButton1.TabIndex = 24;
+            this.uiSymbolButton1.Text = "数据";
+            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            // 
             // FPieChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 496);
+            this.ClientSize = new System.Drawing.Size(828, 552);
             this.Name = "FPieChart";
             this.Text = "PieChart";
             this.PagePanel.ResumeLayout(false);
@@ -132,5 +149,7 @@
         private UIImageButton uiImageButton1;
         private UIImageButton uiImageButton3;
         private UIImageButton uiImageButton2;
+        private UISymbolButton uiSymbolButton1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

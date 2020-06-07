@@ -32,23 +32,51 @@ namespace Sunny.UI
 
     public class UILegend
     {
+        public UILeftAlignment Left { get; set; } = UILeftAlignment.Center;
 
+        public UITopAlignment Top { get; set; } = UITopAlignment.Top;
+
+        public Orient Orient { get; set; } = Orient.Vertical;
+
+        public readonly List<string> Data = new List<string>();
+
+        public int DataCount => Data.Count;
+
+        public void AddData(string data)
+        {
+            Data.Add(data);
+        }
+    }
+
+    public enum Orient
+    {
+        Vertical,
+        Horizontal
     }
 
    public class UITitle
-    {
-        public string Text { get; set; }
+   {
+       public string Text { get; set; } = "UIPieChart";
 
-        public string SubText { get; set; }
+       public string SubText { get; set; } = "";
 
-        public UITextAlignment Left { get; set; }
+        public UILeftAlignment Left { get; set; } = UILeftAlignment.Center;
+
+        public UITopAlignment Top { get; set; } = UITopAlignment.Top;
     }
 
-    public enum UITextAlignment
+    public enum UILeftAlignment
     {
         Left,
         Center,
         Right
+    }
+
+    public enum UITopAlignment
+    {
+        Top,
+        Center,
+        Bottom
     }
 
     public class UISeries : IDisposable

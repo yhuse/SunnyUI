@@ -480,8 +480,14 @@
     <EmbeddedResource Include="Controls\UIDatetimePicker.resx">
       <DependentUpon>UIDatetimePicker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIGroupBox.resx">
+      <DependentUpon>UIGroupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UITimePicker.resx">
       <DependentUpon>UITimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UITitlePanel.resx">
+      <DependentUpon>UITitlePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>

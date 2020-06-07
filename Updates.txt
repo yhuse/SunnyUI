@@ -2,6 +2,7 @@
 
 2020.06.07
 * UITabControl：重绘了页面左右控制按钮
+* UIPieChart：增加Title，Legend，Tip
 
 2020.06.06
 + UIPieChart：新增

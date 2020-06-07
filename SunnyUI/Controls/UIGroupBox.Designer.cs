@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
+            this.SuspendLayout();
             // 
             // UIGroupBox
             // 
-            Name = "UIGroupBox";
-            ResumeLayout(false);
+            this.Name = "UIGroupBox";
+            this.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.ResumeLayout(false);
 
         }
 
