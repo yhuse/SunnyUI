@@ -15,8 +15,47 @@ namespace Sunny.UI
             foreColor = UIChartStyles.Plain.ForeColor;
             Width = 400;
             Height = 300;
+
+            tip.Parent = this;
+            tip.Height = 32;
+            tip.Width = 200;
+            tip.Left = 1;
+            tip.Top = 1;
+            tip.StyleCustomMode = true;
+            tip.Style = UIStyle.Custom;
+            tip.Font = UIFontColor.SubFont;
+            tip.RadiusSides = UICornerRadiusSides.None;
+            tip.Visible = false;
+
+            tip.FillColor = UIChartStyles.Plain.BackColor;
+            tip.RectColor = UIChartStyles.Plain.ForeColor;
+            tip.ForeColor = UIChartStyles.Plain.ForeColor;
+            tip.Visible = false;
+            tip.MouseEnter += Tip_MouseEnter;
         }
 
+        private void Tip_MouseEnter(object sender, System.EventArgs e)
+        {
+            tip.Visible = false;
+        }
+
+        private int decimalNumber;
+
+        [DefaultValue(0),Description("显示数据格式化小数点后位数")]
+        public int DecimalNumber
+        {
+            get => decimalNumber;
+            set
+            {
+                if (decimalNumber != value)
+                {
+                    decimalNumber = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        protected readonly UITransparentPanel tip = new UITransparentPanel();
         private UIChartStyleType chartStyleType = UIChartStyleType.Plain;
 
         [DefaultValue(UIChartStyleType.Plain)]
@@ -31,6 +70,10 @@ namespace Sunny.UI
                     fillColor = ChartStyle.BackColor;
                     foreColor = ChartStyle.ForeColor;
                 }
+
+                tip.FillColor = ChartStyle.BackColor;
+                tip.RectColor = ChartStyle.ForeColor;
+                tip.ForeColor = ChartStyle.ForeColor;
 
                 Invalidate();
             }
@@ -81,6 +124,11 @@ namespace Sunny.UI
         public void SetOption(UIOption option)
         {
             Option = option;
+            CalcData(option);
+        }
+
+        protected virtual void CalcData(UIOption o)
+        {
         }
 
         protected UIOption emptyOption;
@@ -90,7 +138,10 @@ namespace Sunny.UI
             get
             {
                 if (emptyOption == null)
+                {
                     CreateEmptyOption();
+                    CalcData(emptyOption);
+                }
 
                 return emptyOption;
             }
@@ -112,7 +163,7 @@ namespace Sunny.UI
         {
             if (o == null) return;
             if (o.Title != null) DrawTitle(g, o.Title);
-            if (o.Series.Count > 0) DrawSeries(g, o.Series);
+            if (o.Series.Count > 0) DrawSeries(g,o, o.Series);
             if (o.Legend != null) DrawLegend(g, o.Legend);
         }
 
@@ -120,7 +171,7 @@ namespace Sunny.UI
         {
         }
 
-        protected virtual void DrawSeries(Graphics g, List<UISeries> series)
+        protected virtual void DrawSeries(Graphics g,UIOption o, List<UISeries> series)
         {
         }
 

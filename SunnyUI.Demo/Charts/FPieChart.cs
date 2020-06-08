@@ -32,6 +32,9 @@
             option.Title.SubText = "Star";
             option.Title.Left = UILeftAlignment.Center;
 
+            //设置ToolTip
+            option.ToolTip = new UIToolTip();
+
             //设置Legend
             option.Legend = new UILegend();
             option.Legend.Orient = Orient.Vertical;

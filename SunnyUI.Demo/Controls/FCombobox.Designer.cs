@@ -69,6 +69,7 @@
             // 
             // uiDatetimePicker1
             // 
+            this.uiDatetimePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiDatetimePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatetimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatetimePicker1.Location = new System.Drawing.Point(388, 136);

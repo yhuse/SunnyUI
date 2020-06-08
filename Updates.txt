@@ -1,5 +1,9 @@
 + 增加； - 删除； * 修改 
 
+2020.06.08
+* UINAVMenu：修改一处消息引起的Bug
+* UIPieChart：增加ToolTip设置，显示配色调整
+
 2020.06.07
 * UITabControl：重绘了页面左右控制按钮
 * UIPieChart：增加Title，Legend，Tip

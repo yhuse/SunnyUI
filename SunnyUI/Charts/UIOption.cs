@@ -12,6 +12,8 @@ namespace Sunny.UI
 
         public UILegend Legend;
 
+        public UIToolTip ToolTip;
+
         public void AddSeries(UISeries series)
         {
             Series.Add(series);
@@ -28,6 +30,11 @@ namespace Sunny.UI
         }
 
         public int SeriesCount => Series.Count;
+    }
+
+    public class UIToolTip
+    {
+        public string formatter { get; set; } = "{0}"+'\n'+"{1} : {2:f0} ({3:f2}%)";
     }
 
     public class UILegend

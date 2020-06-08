@@ -60,7 +60,7 @@ namespace Sunny.UI
             Bar.Style = UIStyle.Custom;
             Bar.StyleCustomMode = true;
             Bar.FillColor = fillColor;
-
+      
             Bar.ForeColor = Color.Silver;
             Bar.HoverColor = Color.Silver;
             Bar.PressColor = Color.Silver;
@@ -609,8 +609,8 @@ namespace Sunny.UI
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
-            //隐藏滚动条
-            ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
+            if (IsDisposed || Disposing) return;
+            ScrollBarInfo.ShowScrollBar(Handle, 3, false);
         }
 
         public TreeNode CreateNode(string text, int pageIndex)

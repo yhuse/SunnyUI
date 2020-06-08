@@ -110,6 +110,9 @@
     <Compile Include="Controls\UITimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UITransparentPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\UINotifier.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -339,13 +339,6 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        //        protected override void WndProc(ref Message m)
-        //        {
-        //            base.WndProc(ref m);
-        //            //隐藏滚动条
-        //            ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
-        //        }
-
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);

@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -11,56 +10,6 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UIPieChart : UIChart
     {
-        public UIPieChart()
-        {
-            tip.Parent = this;
-            tip.Height = 32;
-            tip.Width = 200;
-            tip.Left = 1;
-            tip.Top = 1;
-            tip.BackColor = Color.FromArgb(80, Color.Black);
-            tip.Font = UIFontColor.SubFont;
-            tip.Style = UIStyle.Custom;
-            tip.StyleCustomMode = true;
-            tip.FillColor = Color.Black;
-            tip.RectColor = Color.FromArgb(100, Color.Black);
-            tip.Visible = false;
-        }
-
-        private readonly UIAlphaPanel tip = new UIAlphaPanel();
-
-        public class UIAlphaPanel : UIPanel
-        {
-            private int _opacity = 50;
-
-            [Bindable(true), Category("Custom"), DefaultValue(125), Description("背景的透明度. 有效值0-255")]
-            public int Opacity
-            {
-                get { return _opacity; }
-                set
-                {
-                    if (value > 255) value = 255;
-                    else if (value < 0) value = 0;
-                    _opacity = value;
-                    this.Invalidate();
-                }
-            }
-
-            protected override CreateParams CreateParams
-            {
-                get
-                {
-                    CreateParams cp = base.CreateParams;
-                    cp.ExStyle |= 0x00000020; //WS_EX_TRANSPARENT
-                    return cp;
-                }
-            }
-
-            protected override void OnPaintFill(Graphics g, GraphicsPath path)
-            {
-            }
-        }
-
         protected override void CreateEmptyOption()
         {
             if (emptyOption != null) return;
@@ -123,19 +72,16 @@ namespace Sunny.UI
             g.DrawString(title.SubText, subFont, ChartStyle.ForeColor, left, top);
         }
 
-        protected override void DrawSeries(Graphics g, List<UISeries> series)
+        protected override void CalcData(UIOption o)
         {
-            if (series == null || series.Count == 0) return;
+            Angles.Clear();
+            if (o == null || o.Series == null || o.Series.Count == 0) return;
 
-            for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
+            for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
             {
-                var pie = series[pieIndex];
-                if (!Angles.ContainsKey(pieIndex))
-                {
-                    Angles.TryAdd(pieIndex, new ConcurrentDictionary<int, Angle>());
-                }
+                var pie = o.Series[pieIndex];
+                Angles.TryAdd(pieIndex, new ConcurrentDictionary<int, Angle>());
 
-                RectangleF rect = GetSeriesRect(pie);
                 double all = 0;
                 foreach (var data in pie.Data)
                 {
@@ -147,17 +93,41 @@ namespace Sunny.UI
                 for (int i = 0; i < pie.Data.Count; i++)
                 {
                     float angle = (float)(pie.Data[i].Value * 360.0f / all);
-                    string text = pie.Data[i].Name + ": " + pie.Data[i].Value.ToString("F0");
-                    SizeF sf = g.MeasureString(text, legendFont);
-                    Angles[pieIndex].AddOrUpdate(i, new Angle(start, angle, text, sf));
+                    float percent = (float)(pie.Data[i].Value * 100.0f / all);
+                    string text = "";
+                    if (o.ToolTip != null)
+                    {
+                        try
+                        {
+                            text = string.Format(o.ToolTip.formatter, pie.Name, pie.Data[i].Name, pie.Data[i].Value, percent);
+                        }
+                        catch
+                        {
+                            text = pie.Data[i].Name + " : " + pie.Data[i].Value.ToString("F" + DecimalNumber) + "(" + percent.ToString("F2") + "%)";
+                            if (pie.Name.IsValid()) text = pie.Name + '\n' + text;
+                        }
+                    }
+
+                    Angles[pieIndex].AddOrUpdate(i, new Angle(start, angle, text));
                     start += angle;
                 }
+            }
+        }
 
+        protected override void DrawSeries(Graphics g, UIOption o, List<UISeries> series)
+        {
+            if (series == null || series.Count == 0) return;
+
+            for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
+            {
+                var pie = series[pieIndex];
+                RectangleF rect = GetSeriesRect(pie);
                 for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                 {
                     Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
                     RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
                     g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
+                    Angles[pieIndex][azIndex].Size = g.MeasureString(Angles[pieIndex][azIndex].Text, legendFont);
                 }
             }
         }
@@ -257,11 +227,34 @@ namespace Sunny.UI
                     if (az >= Angles[pieIndex][azIndex].Start && az <= Angles[pieIndex][azIndex].Start + Angles[pieIndex][azIndex].Sweep)
                     {
                         SetPieAndAzIndex(pieIndex, azIndex);
-                        tip.Size = new Size((int)Angles[pieIndex][azIndex].Size.Width + 4, (int)Angles[pieIndex][azIndex].Size.Height + 4);
-                        tip.Text = Angles[pieIndex][azIndex].Text;
-                        tip.Left = e.Location.X + 15;
-                        tip.Top = e.Location.Y + 20;
-                        tip.Visible = true;
+                        if (tip.Text != Angles[pieIndex][azIndex].Text)
+                        {
+                            tip.Text = Angles[pieIndex][azIndex].Text;
+                            tip.Size = new Size((int)Angles[pieIndex][azIndex].Size.Width + 4, (int)Angles[pieIndex][azIndex].Size.Height + 4);
+                        }
+
+                        if (az >= 0 && az < 90)
+                        {
+                            tip.Top = e.Location.Y + 20;
+                            tip.Left = e.Location.X - tip.Width;
+                        }
+                        else if (az >= 90 && az < 180)
+                        {
+                            tip.Left = e.Location.X  - tip.Width;
+                            tip.Top = e.Location.Y - tip.Height - 2;
+                        }
+                        else if (az >= 180 && az < 270)
+                        {
+                            tip.Left = e.Location.X ;
+                            tip.Top = e.Location.Y - tip.Height - 2;
+                        }
+                        else if (az >= 270 && az < 360)
+                        {
+                            tip.Left = e.Location.X + 15;
+                            tip.Top = e.Location.Y + 20;
+                        }
+
+                        if (!tip.Visible) tip.Visible = Angles[pieIndex][azIndex].Text.IsValid();
                         return;
                     }
                 }
@@ -294,22 +287,21 @@ namespace Sunny.UI
             return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
         }
 
-        public struct Angle
+        public class Angle
         {
             public float Start { get; set; }
             public float Sweep { get; set; }
 
-            public Angle(float start, float sweep, string text, SizeF size)
+            public Angle(float start, float sweep, string text)
             {
                 Start = start;
                 Sweep = sweep;
                 Text = text;
-                Size = size;
             }
 
-            public SizeF Size { get; set; }
-
             public string Text { get; set; }
+
+            public SizeF Size { get; set; }
         }
     }
 }

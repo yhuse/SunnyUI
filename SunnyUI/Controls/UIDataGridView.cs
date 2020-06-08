@@ -263,7 +263,7 @@ namespace Sunny.UI
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
-
+            if (IsDisposed || Disposing) return;
             if (ShowRect)
             {
                 if (m.Msg == 0xf || m.Msg == 0x133)
