@@ -1,4 +1,25 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIPieChart.cs
+ * 文件说明: 饼状图
+ * 当前版本: V2.2
+ * 创建日期: 2020-06-06
+ *
+ * 2020-06-06: V2.2.5 增加文件说明
+******************************************************************************/
+
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,6 +97,12 @@ namespace Sunny.UI
         {
             Angles.Clear();
             if (o == null || o.Series == null || o.Series.Count == 0) return;
+            UITemplate template = null;
+            if (o.ToolTip != null)
+            {
+                template = new UITemplate(o.ToolTip.formatter);
+            }
+
 
             for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
             {
@@ -99,7 +126,14 @@ namespace Sunny.UI
                     {
                         try
                         {
-                            text = string.Format(o.ToolTip.formatter, pie.Name, pie.Data[i].Name, pie.Data[i].Value, percent);
+                            if (template != null)
+                            {
+                                template.Set("a", pie.Name);
+                                template.Set("b", pie.Data[i].Name);
+                                template.Set("c", pie.Data[i].Value.ToString("F" + DecimalNumber));
+                                template.Set("d", percent.ToString("F2"));
+                                text = template.Render();
+                            }
                         }
                         catch
                         {
@@ -240,12 +274,12 @@ namespace Sunny.UI
                         }
                         else if (az >= 90 && az < 180)
                         {
-                            tip.Left = e.Location.X  - tip.Width;
+                            tip.Left = e.Location.X - tip.Width;
                             tip.Top = e.Location.Y - tip.Height - 2;
                         }
                         else if (az >= 180 && az < 270)
                         {
-                            tip.Left = e.Location.X ;
+                            tip.Left = e.Location.X;
                             tip.Top = e.Location.Y - tip.Height - 2;
                         }
                         else if (az >= 270 && az < 360)

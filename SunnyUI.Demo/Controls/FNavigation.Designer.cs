@@ -356,6 +356,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 661);
             this.Name = "FNavigation";
+            this.Symbol = 61912;
             this.Text = "NavBar";
             this.PagePanel.ResumeLayout(false);
             this.uiNavBar1.ResumeLayout(false);

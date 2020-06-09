@@ -86,6 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FTransfer";
+            this.Symbol = 61516;
             this.Text = "Transfer";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

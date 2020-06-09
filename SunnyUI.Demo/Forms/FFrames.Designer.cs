@@ -57,7 +57,6 @@
             this.PagePanel.Controls.Add(this.btnHMF);
             this.PagePanel.Controls.Add(this.btnHM);
             this.PagePanel.Size = new System.Drawing.Size(892, 592);
-            this.PagePanel.Style = Sunny.UI.UIStyle.Blue;
             // 
             // uiLine1
             // 
@@ -175,7 +174,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 627);
             this.Name = "FFrames";
-            this.Style = Sunny.UI.UIStyle.Blue;
+            this.Symbol = 61674;
             this.Text = "Frames";
             this.PagePanel.ResumeLayout(false);
             this.PagePanel.PerformLayout();

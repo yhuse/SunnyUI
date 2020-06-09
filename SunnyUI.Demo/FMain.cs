@@ -1,6 +1,7 @@
-﻿using Sunny.UI.Demo.Forms;
+﻿using Sunny.UI.Demo.Controls;
+using Sunny.UI.Demo.Forms;
+using System;
 using System.Windows.Forms;
-using Sunny.UI.Demo.Controls;
 
 namespace Sunny.UI.Demo
 {
@@ -14,6 +15,7 @@ namespace Sunny.UI.Demo
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[0], 61451);
             TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
+            //通过设置PageIndex关联
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
             Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
@@ -37,15 +39,17 @@ namespace Sunny.UI.Demo
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[1], 61818);
             parent = Aside.CreateNode("Forms", 61818, 24, pageIndex);
-            Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), ++pageIndex));
+            //通过设置GUID关联
+            Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), Guid.NewGuid()));
 
             pageIndex = 3000;
             Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[2], 61950);
             parent = Aside.CreateNode("Forms", 61950, 24, pageIndex);
-            Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart(), ++pageIndex));
+            //直接关联（默认自动生成GUID）
+            Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart()));
 
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();

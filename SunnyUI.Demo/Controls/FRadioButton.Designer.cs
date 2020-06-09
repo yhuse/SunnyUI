@@ -307,6 +307,7 @@
             this.uiRadioButtonGroup1.Location = new System.Drawing.Point(30, 253);
             this.uiRadioButtonGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiRadioButtonGroup1.Name = "uiRadioButtonGroup1";
+            this.uiRadioButtonGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.uiRadioButtonGroup1.Size = new System.Drawing.Size(670, 173);
             this.uiRadioButtonGroup1.TabIndex = 63;
             this.uiRadioButtonGroup1.Text = "UIRadioButtonGroup";
@@ -318,6 +319,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 598);
             this.Name = "FRadioButton";
+            this.Symbol = 61842;
             this.Text = "RadioButton";
             this.PagePanel.ResumeLayout(false);
             this.PagePanel.PerformLayout();

@@ -530,10 +530,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 549);
             this.Name = "FDialogs";
-            this.PageIndex = 2001;
+            this.Symbol = 62160;
             this.Text = "Dialogs";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
+
 
         }
 

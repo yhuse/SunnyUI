@@ -134,6 +134,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 552);
             this.Name = "FPieChart";
+            this.Symbol = 61952;
             this.Text = "PieChart";
             this.PagePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();

@@ -20,9 +20,11 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -57,9 +59,53 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        private int _symbolSize = 24;
+
+        [DefaultValue(24)]
+        public int SymbolSize
+        {
+            get => _symbolSize;
+            set
+            {
+                _symbolSize = Math.Max(value, 16);
+                _symbolSize = Math.Min(value, 64);
+                SymbolChange();
+                Invalidate();
+            }
+        }
+
+        private int _symbol;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        public int Symbol
+        {
+            get => _symbol;
+            set
+            {
+                _symbol = value;
+                SymbolChange();
+                Invalidate();
+            }
+        }
+
+        protected virtual void SymbolChange()
+        {
+
+        }
+
         [Browsable(false)] public Point ParentLocation { get; set; } = new Point(0, 0);
 
+        [Browsable(false)]
+        [DefaultValue(-1)]
         public int PageIndex { get; set; } = -1;
+
+        [Browsable(false)]
+        public Guid PageGuid { get; set; } = Guid.Empty;
+
+        [Browsable(false), DefaultValue(null)]
+        public TabPage TabPage { get; set; } = null;
 
         /// <summary>
         ///     边框颜色
@@ -142,8 +188,27 @@ namespace Sunny.UI
             base.OnControlAdded(e);
 
             if (e.Control is IStyleInterface ctrl)
+            {
                 if (!ctrl.StyleCustomMode)
+                {
                     ctrl.Style = Style;
+                }
+            }
+
+            if (e.Control is Panel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        if (!item.StyleCustomMode)
+                        {
+                            item.Style = Style;
+                        }
+                    }
+                }
+            }
         }
 
         public virtual void Init()
@@ -220,7 +285,7 @@ namespace Sunny.UI
 
         private void UIPage_Shown(object sender, EventArgs e)
         {
-            SetStyle(UIStyles.Style);
+            //SetStyle(UIStyles.Style);
         }
     }
 }

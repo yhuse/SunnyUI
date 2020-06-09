@@ -31,6 +31,8 @@ namespace Sunny.UI
 {
     public sealed class UITabControl : TabControl, IStyleInterface
     {
+        private readonly UITabControlHelper Helper;
+
         public UITabControl()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.DoubleBuffer, true);
@@ -41,7 +43,45 @@ namespace Sunny.UI
             AfterSetFillColor(FillColor);
             Size = new Size(450, 270);
             Version = UIGlobal.Version;
+
+            Helper = new UITabControlHelper(this);
         }
+
+        public void SelectPage(int pageIndex)
+        {
+            Helper.SelectPage(pageIndex);
+        }
+
+        public void SelectPage(Guid pageGuid)
+        {
+            Helper.SelectPage(pageGuid);
+        }
+
+        public void AddPage(UIPage page)
+        {
+            Helper.AddPage(page);
+        }
+
+        public void AddPage(int pageIndex, UITabControl page)
+        {
+            Helper.AddPage(pageIndex, page);
+        }
+
+        public void AddPage(int pageIndex, UITabControlMenu page)
+        {
+            Helper.AddPage(pageIndex, page);
+        }
+
+        public void AddPage(Guid guid, UITabControl page)
+        {
+            Helper.AddPage(guid, page);
+        }
+
+        public void AddPage(Guid guid, UITabControlMenu page)
+        {
+            Helper.AddPage(guid, page);
+        }
+
 
         public string Version { get; }
 
@@ -571,7 +611,7 @@ namespace Sunny.UI
                     break;
 
                 case ArrowDirection.Right:
-                    g.DrawFontImage(61701, 24, arrowColor, rect,1);
+                    g.DrawFontImage(61701, 24, arrowColor, rect, 1);
                     break;
             }
         }

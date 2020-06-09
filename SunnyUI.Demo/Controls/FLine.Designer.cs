@@ -192,7 +192,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 556);
             this.Name = "FLine";
-            this.PageIndex = 1004;
+            this.Symbol = 61544;
             this.Text = "Line";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

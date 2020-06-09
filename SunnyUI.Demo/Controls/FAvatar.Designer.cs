@@ -81,24 +81,20 @@
             // 
             // uiAvatar3
             // 
-            this.uiAvatar3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.uiAvatar3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar3.Icon = Sunny.UI.UIAvatar.UIIcon.Text;
             this.uiAvatar3.Location = new System.Drawing.Point(174, 50);
             this.uiAvatar3.Name = "uiAvatar3";
             this.uiAvatar3.Size = new System.Drawing.Size(60, 60);
-            this.uiAvatar3.Style = Sunny.UI.UIStyle.Custom;
             this.uiAvatar3.TabIndex = 2;
             this.uiAvatar3.Text = "Avatar";
             // 
             // uiAvatar4
             // 
             this.uiAvatar4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiAvatar4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.uiAvatar4.Location = new System.Drawing.Point(362, 50);
             this.uiAvatar4.Name = "uiAvatar4";
             this.uiAvatar4.Size = new System.Drawing.Size(60, 60);
-            this.uiAvatar4.Style = Sunny.UI.UIStyle.Custom;
             this.uiAvatar4.Symbol = 61715;
             this.uiAvatar4.TabIndex = 3;
             this.uiAvatar4.Text = "uiAvatar4";
@@ -199,6 +195,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FAvatar";
+            this.Symbol = 61447;
             this.Text = "Avatar";
             this.Controls.SetChildIndex(this.PagePanel, 0);
             this.PagePanel.ResumeLayout(false);

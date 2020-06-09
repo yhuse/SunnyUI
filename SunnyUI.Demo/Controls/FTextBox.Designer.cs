@@ -270,7 +270,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 565);
             this.Name = "FTextBox";
-            this.PageIndex = 1003;
+            this.Symbol = 61962;
             this.Text = "TextBox";
             this.PagePanel.ResumeLayout(false);
             this.PagePanel.PerformLayout();

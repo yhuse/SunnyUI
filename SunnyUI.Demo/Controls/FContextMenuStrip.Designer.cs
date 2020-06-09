@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.uiButton1 = new Sunny.UI.UIButton();
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
             this.uiButton2 = new Sunny.UI.UIButton();
             this.uiLine1 = new Sunny.UI.UILine();
-            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +51,12 @@
             this.uiButton1.Size = new System.Drawing.Size(232, 35);
             this.uiButton1.TabIndex = 0;
             this.uiButton1.Text = "右键菜单";
+            // 
+            // uiContextMenuStrip1
+            // 
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // uiButton2
             // 
@@ -74,18 +80,13 @@
             this.uiLine1.Text = "UIContextMenuStrip";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // uiContextMenuStrip1
-            // 
-            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // FContextMenuStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FContextMenuStrip";
+            this.Symbol = 62104;
             this.Text = "ContextMenuStrip";
             this.Controls.SetChildIndex(this.PagePanel, 0);
             this.PagePanel.ResumeLayout(false);

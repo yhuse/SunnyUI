@@ -57,7 +57,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(null)]
-        public TabControl TabControl { get; set; }
+        public UITabControl TabControl { get; set; }
 
         public void SetNodeItem(TreeNode node, NavMenuItem item)
         {
@@ -515,7 +515,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex));
+            return CreateNode(new NavMenuItem(page));
         }
 
         public TreeNode CreateNode(NavMenuItem item)
@@ -533,7 +533,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page, int imageIndex)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), imageIndex);
+            return CreateNode(new NavMenuItem(page), imageIndex);
         }
 
         public TreeNode CreateNode(NavMenuItem item, int imageIndex)
@@ -552,7 +552,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page, int symbol, int symbolSize)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), symbol, symbolSize);
+            return CreateNode(new NavMenuItem(page), symbol, symbolSize);
         }
 
         public TreeNode CreateNode(NavMenuItem item, int symbol, int symbolSize)
@@ -571,7 +571,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, UIPage page)
         {
-            return CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)
@@ -589,7 +589,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, int imageIndex, UIPage page)
         {
-            return CreateChildNode(parent, imageIndex, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, int imageIndex, NavMenuItem item)
@@ -608,7 +608,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, UIPage page)
         {
-            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, NavMenuItem item)

@@ -168,6 +168,7 @@ namespace Sunny.UI
         private void EditTextChanged(object s, EventArgs e)
         {
             Text = edit.Text;
+            Invalidate();
         }
 
         protected override void OnFontChanged(EventArgs e)

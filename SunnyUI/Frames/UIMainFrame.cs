@@ -19,6 +19,8 @@
  * 2020-05-05: V2.2.5 页面框架基类
 ******************************************************************************/
 
+using System;
+
 namespace Sunny.UI
 {
     public partial class UIMainFrame : UIForm
@@ -33,6 +35,13 @@ namespace Sunny.UI
         public UIPage AddPage(UIPage page, int index)
         {
             page.PageIndex = index;
+            MainContainer.AddPage(page);
+            return page;
+        }
+
+        public UIPage AddPage(UIPage page, Guid guid)
+        {
+            page.PageGuid = guid;
             MainContainer.AddPage(page);
             return page;
         }

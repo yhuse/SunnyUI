@@ -123,6 +123,7 @@
             this.uiCheckBoxGroup1.Location = new System.Drawing.Point(30, 91);
             this.uiCheckBoxGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
+            this.uiCheckBoxGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.uiCheckBoxGroup1.Size = new System.Drawing.Size(670, 211);
             this.uiCheckBoxGroup1.TabIndex = 41;
             this.uiCheckBoxGroup1.Text = "UICheckBoxGroup";
@@ -134,7 +135,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 556);
             this.Name = "FCheckBox";
-            this.PageIndex = 1002;
+            this.Symbol = 61770;
             this.Text = "CheckBox";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

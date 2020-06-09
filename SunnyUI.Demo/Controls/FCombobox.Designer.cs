@@ -227,6 +227,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FCombobox";
+            this.Symbol = 61776;
             this.Text = "Combobox";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

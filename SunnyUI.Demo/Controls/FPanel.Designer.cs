@@ -80,7 +80,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 488);
             this.Name = "FPanel";
-            this.PageIndex = 1005;
+            this.Symbol = 61590;
             this.Text = "Panel";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -70,7 +70,6 @@
             this.uiLinkLabel1.Location = new System.Drawing.Point(42, 127);
             this.uiLinkLabel1.Name = "uiLinkLabel1";
             this.uiLinkLabel1.Size = new System.Drawing.Size(146, 21);
-            this.uiLinkLabel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLinkLabel1.TabIndex = 1;
             this.uiLinkLabel1.TabStop = true;
             this.uiLinkLabel1.Text = "www.SunnyUI.net";
@@ -113,7 +112,6 @@
             // uiSymbolLabel1
             // 
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiSymbolLabel1.Location = new System.Drawing.Point(42, 209);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
             this.uiSymbolLabel1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -125,7 +123,6 @@
             // uiSymbolLabel2
             // 
             this.uiSymbolLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiSymbolLabel2.Location = new System.Drawing.Point(139, 209);
             this.uiSymbolLabel2.Name = "uiSymbolLabel2";
             this.uiSymbolLabel2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -142,6 +139,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FLabel";
             this.StyleCustomMode = true;
+            this.Symbol = 61490;
             this.Text = "Label";
             this.PagePanel.ResumeLayout(false);
             this.PagePanel.PerformLayout();

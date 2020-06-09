@@ -21,6 +21,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -120,6 +121,34 @@ namespace Sunny.UI
 
         protected virtual void OnRectSidesChange()
         {
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+
+            if (e.Control is IStyleInterface ctrl)
+            {
+                if (!ctrl.StyleCustomMode)
+                {
+                    ctrl.Style = Style;
+                }
+            }
+
+            if (e.Control is Panel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        if (!item.StyleCustomMode)
+                        {
+                            item.Style = Style;
+                        }
+                    }
+                }
+            }
         }
 
         private UICornerRadiusSides _radiusSides = UICornerRadiusSides.All;

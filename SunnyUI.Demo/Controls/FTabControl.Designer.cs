@@ -224,6 +224,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 654);
             this.Name = "FTabControl";
+            this.Symbol = 61716;
             this.Text = "TabControl";
             this.PagePanel.ResumeLayout(false);
             this.uiTabControl1.ResumeLayout(false);

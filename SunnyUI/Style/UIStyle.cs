@@ -724,7 +724,7 @@ namespace Sunny.UI
         /// <param name="ctrl">容器</param>
         /// <param name="interfaceName">接口名称</param>
         /// <returns>控件列表</returns>
-        private static List<Control> GetUIStyleControls(this Control ctrl, string interfaceName)
+        public static List<Control> GetUIStyleControls(this Control ctrl, string interfaceName)
         {
             List<Control> values = new List<Control>();
 

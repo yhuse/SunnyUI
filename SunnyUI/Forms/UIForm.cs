@@ -118,6 +118,21 @@ namespace Sunny.UI
                 }
             }
 
+            if (e.Control is Panel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        if (!item.StyleCustomMode)
+                        {
+                            item.Style = Style;
+                        }
+                    }
+                }
+            }
+
             if (ShowTitle && e.Control.Top < TitleHeight)
             {
                 e.Control.Top = TitleHeight;
@@ -595,7 +610,7 @@ namespace Sunny.UI
         {
             if (FormMoveMouseDown && !MousePosition.Equals(mouseOffset))
             {
-                if (this.windowState == FormWindowState.Maximized)
+                if (windowState == FormWindowState.Maximized)
                 {
                     int MaximizedWidth = Width;
                     int LocationX = Left;
@@ -1087,7 +1102,7 @@ namespace Sunny.UI
 
         private void UIForm_Shown(object sender, EventArgs e)
         {
-            SetStyle(UIStyles.Style);
+            //SetStyle(UIStyles.Style);
         }
 
         private FormWindowState windowState = FormWindowState.Normal;

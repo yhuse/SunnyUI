@@ -104,6 +104,7 @@
     <Compile Include="Charts\UIPieChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UINavMenuHelper.cs" />
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
