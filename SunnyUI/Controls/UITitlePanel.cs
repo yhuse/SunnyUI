@@ -39,7 +39,7 @@ namespace Sunny.UI
             set
             {
                 _titleHeight = value;
-                Padding = new Padding(1, value, 1, 1);
+                Padding = new Padding(0, value, 0, 0);
                 Invalidate();
             }
         }

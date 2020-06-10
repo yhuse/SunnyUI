@@ -581,6 +581,11 @@ namespace Sunny.UI
         public static readonly Font Font = new Font("微软雅黑", 12);
 
         /// <summary>
+        /// 默认字体
+        /// </summary>
+        public static readonly Font SubFont = new Font("微软雅黑", 9);
+
+        /// <summary>
         /// 主要颜色
         /// </summary>
         public static readonly Color Primary = Color.FromArgb(48, 48, 48);
@@ -719,7 +724,7 @@ namespace Sunny.UI
         /// <param name="ctrl">容器</param>
         /// <param name="interfaceName">接口名称</param>
         /// <returns>控件列表</returns>
-        private static List<Control> GetUIStyleControls(this Control ctrl, string interfaceName)
+        public static List<Control> GetUIStyleControls(this Control ctrl, string interfaceName)
         {
             List<Control> values = new List<Control>();
 

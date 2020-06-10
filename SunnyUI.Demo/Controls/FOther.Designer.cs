@@ -173,7 +173,6 @@
             this.uiTrackBar1.Location = new System.Drawing.Point(381, 136);
             this.uiTrackBar1.Name = "uiTrackBar1";
             this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
-            this.uiTrackBar1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTrackBar1.TabIndex = 30;
             this.uiTrackBar1.Text = "uiTrackBar1";
             // 
@@ -323,6 +322,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 507);
             this.Name = "FOther";
+            this.Symbol = 62173;
             this.Text = "Other";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

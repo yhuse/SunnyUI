@@ -39,6 +39,7 @@
             this.Name = "UIForm";
             this.Text = "UIForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIForm_FormClosing);
+            this.Shown += new System.EventHandler(this.UIForm_Shown);
             this.ResumeLayout(false);
 
         }

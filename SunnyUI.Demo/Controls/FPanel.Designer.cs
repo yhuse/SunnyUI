@@ -48,9 +48,8 @@
             this.uiTitlePanel1.Location = new System.Drawing.Point(30, 230);
             this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
-            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
+            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.uiTitlePanel1.Size = new System.Drawing.Size(270, 180);
-            this.uiTitlePanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel1.TabIndex = 1;
             this.uiTitlePanel1.Text = "uiTitlePanel1";
             // 
@@ -70,6 +69,7 @@
             this.uiGroupBox1.Location = new System.Drawing.Point(331, 4);
             this.uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiGroupBox1.Name = "uiGroupBox1";
+            this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.uiGroupBox1.Size = new System.Drawing.Size(270, 196);
             this.uiGroupBox1.TabIndex = 4;
             this.uiGroupBox1.Text = "uiGroupBox1";
@@ -80,7 +80,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 488);
             this.Name = "FPanel";
-            this.PageIndex = 1005;
+            this.Symbol = 61590;
             this.Text = "Panel";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

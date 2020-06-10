@@ -27,7 +27,7 @@ namespace Sunny.UI
     /// <summary>
     /// 模版引擎
     /// </summary>
-    public class Template
+    public class UITemplate
     {
         private string Content { get; set; }
 
@@ -35,7 +35,7 @@ namespace Sunny.UI
         /// 模版引擎
         /// </summary>
         /// <param name="content"></param>
-        public Template(string content)
+        public UITemplate(string content)
         {
             Content = content;
         }
@@ -46,7 +46,7 @@ namespace Sunny.UI
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public Template Set(string key, string value)
+        public UITemplate Set(string key, string value)
         {
             Content = Content.Replace("{{" + key + "}}", value);
             return this;

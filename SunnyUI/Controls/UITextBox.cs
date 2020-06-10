@@ -21,8 +21,10 @@
 ******************************************************************************/
 
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -39,14 +41,18 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
+            CalcEditHeight();
+            Height = MiniHeight;
+            ShowText = false;
             Font = UIFontColor.Font;
 
-            edit.Left = 3;
-            edit.Top = 3;
+            edit.Top = (Height - edit.Height) / 2;
+            edit.Left = 4;
+            edit.Width = Width - 8;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
-            edit.KeyDown += EditOnKeyDown;
             edit.TextChanged += EditTextChanged;
+            edit.KeyDown += EditOnKeyDown;
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
             edit.MouseEnter += Edit_MouseEnter;
@@ -63,6 +69,8 @@ namespace Sunny.UI
             bar.ValueChanged += Bar_ValueChanged;
             edit.MouseWheel += OnMouseWheel;
             bar.MouseEnter += Bar_MouseEnter;
+
+            SizeChange();
         }
 
         private void Bar_MouseEnter(object sender, EventArgs e)
@@ -78,21 +86,21 @@ namespace Sunny.UI
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (bar.Visible)
+            if (bar!=null && bar.Visible && edit!=null)
             {
-                var si = ScrollBarInfo.GetInfo(Handle);
+                var si = ScrollBarInfo.GetInfo(edit.Handle);
                 if (e.Delta > 10)
                 {
                     if (si.nPos > 0)
                     {
-                        ScrollBarInfo.ScrollUp(Handle);
+                        ScrollBarInfo.ScrollUp(edit.Handle);
                     }
                 }
                 else if (e.Delta < -10)
                 {
                     if (si.nPos < si.ScrollMax)
                     {
-                        ScrollBarInfo.ScrollDown(Handle);
+                        ScrollBarInfo.ScrollDown(edit.Handle);
                     }
                 }
             }
@@ -148,6 +156,11 @@ namespace Sunny.UI
             KeyPress?.Invoke(sender, e);
         }
 
+        private void EditOnKeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(sender, e);
+        }
+
         private void EditOnKeyUp(object sender, KeyEventArgs e)
         {
             KeyUp?.Invoke(sender, e);
@@ -189,12 +202,9 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
             edit.Font = Font;
-            Invalidate();
-        }
-
-        protected override void OnPaintFore(Graphics g, GraphicsPath path)
-        {
+            CalcEditHeight();
             SizeChange();
+            Invalidate();
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -213,38 +223,43 @@ namespace Sunny.UI
             if (si.ScrollMax > 0)
             {
                 bar.Maximum = si.ScrollMax;
-                //bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
                 bar.Value = si.nPos;
             }
             else
             {
                 bar.Maximum = si.ScrollMax;
-                //bar.Visible = false;
             }
         }
 
         private int MiniHeight;
 
-        private void SizeChange()
+        private void CalcEditHeight()
         {
             UIEdit edt = new UIEdit();
             edt.Font = edit.Font;
             edt.Invalidate();
             MiniHeight = edt.Height;
             edt.Dispose();
+        }
 
+        private void SizeChange()
+        {
             if (!multiline)
             {
-                Height = MiniHeight;
+                if (Height != MiniHeight)
+                {
+                    Height = MiniHeight;
+                }
+
                 edit.Top = (Height - edit.Height) / 2;
                 edit.Left = 4;
                 edit.Width = Width - 8;
             }
             else
             {
-                if (Height < MiniHeight)
+                if (Height < 69)
                 {
-                    Height = MiniHeight;
+                    Height = 69;
                 }
 
                 edit.Top = 3;
@@ -259,29 +274,6 @@ namespace Sunny.UI
 
                 SetScrollInfo();
             }
-        }
-
-        private void EditOnKeyDown(object sender, KeyEventArgs e)
-        {
-            KeyDown?.Invoke(sender, e);
-
-            //            if (e.Control && e.KeyCode == Keys.A)
-            //            {
-            //                edit.SelectAll();
-            //                e.SuppressKeyPress = true;
-            //            }
-            //
-            //            if (e.Control && e.KeyCode == Keys.C)
-            //            {
-            //                edit.Copy();
-            //                e.SuppressKeyPress = true;
-            //            }
-            //
-            //            if (e.Control && e.KeyCode == Keys.V)
-            //            {
-            //                edit.Paste();
-            //                e.SuppressKeyPress = true;
-            //            }
         }
 
         protected override void OnGotFocus(EventArgs e)
@@ -325,7 +317,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最大值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最大值。")]
-        [DefaultValue(double.MaxValue)]
+        [DefaultValue(int.MaxValue)]
         public double Maximum
         {
             get => edit.MaxValue;
@@ -336,7 +328,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最小值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最小值。")]
-        [DefaultValue(double.MinValue)]
+        [DefaultValue(int.MinValue)]
         public double Minimum
         {
             get => edit.MinValue;
@@ -410,7 +402,7 @@ namespace Sunny.UI
             ActiveControl = edit;
         }
 
-        [DefaultValue(255)]
+        [DefaultValue(32767)]
         public int MaxLength
         {
             get => edit.MaxLength;
@@ -464,6 +456,229 @@ namespace Sunny.UI
             /// 浮点数
             /// </summary>
             Double
+        }
+
+        [DefaultValue(false)]
+        public bool AcceptsReturn
+        {
+            get => edit.AcceptsReturn;
+            set => edit.AcceptsReturn = value;
+        }
+
+        [DefaultValue(AutoCompleteMode.None), Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        public AutoCompleteMode AutoCompleteMode
+        {
+            get => edit.AutoCompleteMode;
+            set => edit.AutoCompleteMode = value;
+        }
+
+        [
+            DefaultValue(AutoCompleteSource.None),
+            TypeConverterAttribute(typeof(TextBoxAutoCompleteSourceConverter)),
+            Browsable(true),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
+        public AutoCompleteSource AutoCompleteSource
+        {
+            get => edit.AutoCompleteSource;
+            set => edit.AutoCompleteSource = value;
+        }
+
+        [
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+            Localizable(true),
+            Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor)),
+            Browsable(true),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
+        public AutoCompleteStringCollection AutoCompleteCustomSource
+        {
+            get => edit.AutoCompleteCustomSource;
+            set => edit.AutoCompleteCustomSource = value;
+        }
+
+        [DefaultValue(CharacterCasing.Normal)]
+        public CharacterCasing CharacterCasing
+        {
+            get => edit.CharacterCasing;
+            set => edit.CharacterCasing = value;
+        }
+
+        public void Paste(string text)
+        {
+            edit.Paste(text);
+        }
+
+
+        internal class TextBoxAutoCompleteSourceConverter : EnumConverter
+        {
+            public TextBoxAutoCompleteSourceConverter(Type type) : base(type)
+            {
+            }
+
+            public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+            {
+                StandardValuesCollection values = base.GetStandardValues(context);
+                ArrayList list = new ArrayList();
+                int count = values.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    string currentItemText = values[i].ToString();
+                    if (!currentItemText.Equals("ListItems"))
+                    {
+                        list.Add(values[i]);
+                    }
+                }
+
+                return new StandardValuesCollection(list);
+            }
+        }
+
+        [DefaultValue(false)]
+        public bool AcceptsTab
+        {
+            get => edit.AcceptsTab;
+            set => edit.AcceptsTab = value;
+        }
+
+        [DefaultValue(true)]
+        public bool ShortcutsEnabled
+        {
+            get => edit.ShortcutsEnabled;
+            set => edit.ShortcutsEnabled = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool CanUndo
+        {
+            get => edit.CanUndo;
+        }
+
+        [DefaultValue(true)]
+        public bool HideSelection
+        {
+            get => edit.HideSelection;
+            set => edit.HideSelection = value;
+        }
+
+        [
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+            MergableProperty(false),
+            Localizable(true),
+            Editor("System.Windows.Forms.Design.StringArrayEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))
+        ]
+        public string[] Lines
+        {
+            get => edit.Lines;
+            set => edit.Lines = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool Modified
+        {
+            get => edit.Modified;
+            set => edit.Modified = value;
+        }
+
+        [
+            Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+        ]
+        public int PreferredHeight
+        {
+            get => edit.PreferredHeight;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string SelectedText
+        {
+            get => edit.SelectedText;
+            set => edit.SelectedText = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionLength
+        {
+            get => edit.SelectionLength;
+            set => edit.SelectionLength = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionStart
+        {
+            get => edit.SelectionStart;
+            set => edit.SelectionStart = value;
+        }
+
+        [Browsable(false)]
+        public int TextLength
+        {
+            get => edit.TextLength;
+        }
+
+        public void AppendText(string text)
+        {
+            edit.AppendText(text);
+        }
+
+        public void ClearUndo()
+        {
+            edit.ClearUndo();
+        }
+
+        public void Copy()
+        {
+            edit.Copy();
+        }
+
+        public void Cut()
+        {
+            edit.Cut();
+        }
+
+        public void Paste()
+        {
+            edit.Paste();
+        }
+
+        public char GetCharFromPosition(Point pt)
+        {
+            return edit.GetCharFromPosition(pt);
+        }
+
+        public int GetCharIndexFromPosition(Point pt)
+        {
+            return edit.GetCharIndexFromPosition(pt);
+        }
+
+        public int GetLineFromCharIndex(int index)
+        {
+            return edit.GetLineFromCharIndex(index);
+        }
+
+        public Point GetPositionFromCharIndex(int index)
+        {
+            return edit.GetPositionFromCharIndex(index);
+        }
+
+        public int GetFirstCharIndexFromLine(int lineNumber)
+        {
+            return edit.GetFirstCharIndexFromLine(lineNumber);
+        }
+
+        public int GetFirstCharIndexOfCurrentLine()
+        {
+            return edit.GetFirstCharIndexOfCurrentLine();
+        }
+
+        public void DeselectAll()
+        {
+            edit.DeselectAll();
+        }
+
+        public void Undo()
+        {
+            edit.Undo();
         }
     }
 }

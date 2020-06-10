@@ -18,6 +18,8 @@ namespace Sunny.UI
             this.ButtonClick += new System.EventHandler(this.UIDatetimePicker_ButtonClick);
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            DropDownStyle = UIDropDownStyle.DropDownList;
         }
 
         public UIDatetimePicker()

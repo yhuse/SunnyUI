@@ -34,7 +34,6 @@
             // 
             // UIPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(802, 460);
             this.DoubleBuffered = true;
@@ -46,7 +45,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "UIPage";
-            this.TopLevel = false;
+            this.Shown += new System.EventHandler(this.UIPage_Shown);
             this.ResumeLayout(false);
 
         }

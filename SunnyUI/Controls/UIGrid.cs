@@ -1018,6 +1018,7 @@ namespace Sunny.UI
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
+            if (IsDisposed || Disposing) return;
             ScrollBarInfo.ShowScrollBar(Handle, 0, false);//0:horizontal,1:vertical,3:both
         }
     }

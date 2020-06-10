@@ -79,6 +79,7 @@ namespace Sunny.UI
                 if (_titleTop != value)
                 {
                     _titleTop = value;
+                    Padding = new Padding(0, value+16, 0, 0);
                     Invalidate();
                 }
             }

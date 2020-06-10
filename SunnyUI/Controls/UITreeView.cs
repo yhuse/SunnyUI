@@ -565,9 +565,8 @@ namespace Sunny.UI
         {
             base.WndProc(ref m);
 
-            //隐藏滚动条
-            ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
-
+            if (IsDisposed || Disposing) return;
+            ScrollBarInfo.ShowScrollBar(Handle, 3, false);
             if (m.Msg == 0xf || m.Msg == 0x133)
             {
                 if (BorderStyle == BorderStyle.FixedSingle)

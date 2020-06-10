@@ -1,4 +1,6 @@
-﻿using Sunny.UI.Demo.Forms;
+﻿using Sunny.UI.Demo.Controls;
+using Sunny.UI.Demo.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
@@ -13,11 +15,13 @@ namespace Sunny.UI.Demo
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[0], 61451);
             TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
+            //通过设置PageIndex关联
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
             Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61842, 24, AddPage(new FRadioButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61962, 24, AddPage(new FTextBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, 61776, 24, AddPage(new FCombobox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61646, 24, AddPage(new FDataGridView(), ++pageIndex));
             Aside.CreateChildNode(parent, 61474, 24, AddPage(new FListBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61499, 24, AddPage(new FTreeView(), ++pageIndex));
@@ -35,15 +39,23 @@ namespace Sunny.UI.Demo
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[1], 61818);
             parent = Aside.CreateNode("Forms", 61818, 24, pageIndex);
-            Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), ++pageIndex));
+            //通过设置GUID关联
+            Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), Guid.NewGuid()));
 
-            Header.SetNodeSymbol(Header.Nodes[2], 61502);
+            pageIndex = 3000;
+            Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
+            Header.SetNodeSymbol(Header.Nodes[2], 61950);
+            parent = Aside.CreateNode("Forms", 61950, 24, pageIndex);
+            //直接关联（默认自动生成GUID）
+            Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart()));
+
+            Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {
-                Header.CreateChildNode(Header.Nodes[2], style.DisplayText(), style.Value());
+                Header.CreateChildNode(Header.Nodes[3], style.DisplayText(), style.Value());
             }
 
             Aside.SelectFirst();
@@ -55,10 +67,11 @@ namespace Sunny.UI.Demo
             {
                 case 0:
                 case 1:
+                case 2:
                     Aside.SelectPage(pageIndex);
                     break;
 
-                case 2:
+                case 3:
                     UIStyle style = (UIStyle)pageIndex;
                     StyleManager.Style = style;
                     break;

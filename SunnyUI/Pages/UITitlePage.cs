@@ -21,6 +21,8 @@
 
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -44,6 +46,16 @@ namespace Sunny.UI
                     PageTitle.Text = value;
                 }
             }
+        }
+
+        protected override void SymbolChange()
+        {
+            base.SymbolChange();
+            int left = Symbol > 0 ? (6 * 2 + SymbolSize) : 6;
+            PageTitle.Padding = new Padding(left, 0, 0, 0);
+            PageTitle.Symbol = Symbol;
+            PageTitle.SymbolSize = SymbolSize;
+            PageTitle.Invalidate();
         }
 
         /// <summary>
@@ -114,6 +126,37 @@ namespace Sunny.UI
 
                 FillColor = uiColor.PageTitleFillColor;
                 ForeColor = uiColor.PageTitleForeColor;
+            }
+
+            private int symbol = 0;
+            public int Symbol
+            {
+                get => symbol;
+                set
+                {
+                    symbol = value;
+                    Invalidate();
+                }
+            }
+
+            private int symbolSize = 24;
+            public int SymbolSize
+            {
+                get => symbolSize;
+                set
+                {
+                    symbolSize = value;
+                    Invalidate();
+                }
+            }
+
+            protected override void OnPaintFore(Graphics g, GraphicsPath path)
+            {
+                base.OnPaintFore(g, path);
+                if (Symbol > 0)
+                {
+                    g.DrawFontImage(Symbol, SymbolSize, ForeColor, new Rectangle(6, 0, SymbolSize, Height));
+                }
             }
         }
     }

@@ -32,6 +32,34 @@ namespace Sunny.UI
     /// </summary>
     public static class MathEx
     {
+        public static double CalcDistance(PointF pt1, PointF pt2)
+        {
+            float xx = pt1.X - pt2.X;
+            float yy = pt1.Y - pt2.Y;
+            return Math.Sqrt(xx * xx + yy * yy);
+        }
+
+        public static double CalcDistance(Point pt1, Point pt2)
+        {
+            int xx = pt1.X - pt2.X;
+            int yy = pt1.Y - pt2.Y;
+            return Math.Sqrt(xx * xx + yy * yy);
+        }
+
+        public static double CalcAngle(Point thisPoint,Point toPoint)
+        {
+            double az = Math.Atan2(thisPoint.Y - toPoint.Y, thisPoint.X - toPoint.X) * 180 / Math.PI;
+            az = (az - 270 + 720) % 360;
+            return az;
+        }
+
+        public static double CalcAngle(PointF thisPoint, PointF toPoint)
+        {
+            double az = Math.Atan2(thisPoint.Y - toPoint.Y, thisPoint.X - toPoint.X) * 180 / Math.PI;
+            az = (az - 270 + 720) % 360;
+            return az;
+        }
+
         /// <summary>
         /// 二分查找与最近值序号
         /// </summary>

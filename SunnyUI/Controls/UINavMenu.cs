@@ -130,7 +130,7 @@ namespace Sunny.UI
         public bool StyleCustomMode { get; set; }
 
         [DefaultValue(null)]
-        public TabControl TabControl { get; set; }
+        public UITabControl TabControl { get; set; }
 
         private Color selectedColor = Color.FromArgb(36, 36, 36);
 
@@ -537,9 +537,23 @@ namespace Sunny.UI
 
         private void ShowSelectedNode()
         {
-            int index = MenuHelper.GetPageIndex(SelectedNode);
-            TabControl?.SelectPage(index);
-            MenuItemClick?.Invoke(SelectedNode, MenuHelper[SelectedNode], index);
+            NavMenuItem item = MenuHelper[SelectedNode];
+            if (item != null)
+            {
+                if (item.PageGuid != Guid.Empty)
+                {
+                    TabControl?.SelectPage(item.PageGuid);
+                }
+                else
+                {
+                    if (item.PageIndex >= 0)
+                    {
+                        TabControl?.SelectPage(item.PageIndex);
+                    }
+                }
+            }
+
+            MenuItemClick?.Invoke(SelectedNode, MenuHelper[SelectedNode], MenuHelper.GetPageIndex(SelectedNode));
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -609,8 +623,8 @@ namespace Sunny.UI
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
-            //隐藏滚动条
-            ScrollBarInfo.ShowScrollBar(Handle, 3, false);//0:horizontal,1:vertical,3:both
+            if (IsDisposed || Disposing) return;
+            ScrollBarInfo.ShowScrollBar(Handle, 3, false);
         }
 
         public TreeNode CreateNode(string text, int pageIndex)
@@ -620,7 +634,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex));
+            return CreateNode(new NavMenuItem(page));
         }
 
         public TreeNode CreateNode(NavMenuItem item)
@@ -638,7 +652,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page, int imageIndex)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), imageIndex);
+            return CreateNode(new NavMenuItem(page), imageIndex);
         }
 
         public TreeNode CreateNode(NavMenuItem item, int imageIndex)
@@ -657,7 +671,7 @@ namespace Sunny.UI
 
         public TreeNode CreateNode(UIPage page, int symbol, int symbolSize)
         {
-            return CreateNode(new NavMenuItem(page.Text, page.PageIndex), symbol, symbolSize);
+            return CreateNode(new NavMenuItem(page), symbol, symbolSize);
         }
 
         public TreeNode CreateNode(NavMenuItem item, int symbol, int symbolSize)
@@ -676,7 +690,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, UIPage page)
         {
-            return CreateChildNode(parent, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)
@@ -694,7 +708,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, int imageIndex, UIPage page)
         {
-            return CreateChildNode(parent, imageIndex, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, imageIndex, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, int imageIndex, NavMenuItem item)
@@ -713,7 +727,7 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, UIPage page)
         {
-            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page.Text, page.PageIndex));
+            return CreateChildNode(parent, symbol, symbolSize, new NavMenuItem(page));
         }
 
         public TreeNode CreateChildNode(TreeNode parent, int symbol, int symbolSize, NavMenuItem item)
@@ -726,144 +740,5 @@ namespace Sunny.UI
         }
     }
 
-    public class NavMenuHelper
-    {
-        public NavMenuItem this[TreeNode node]
-        {
-            get
-            {
-                if (node == null) return null;
 
-                if (Items.ContainsKey(node))
-                    return Items[node];
-                else
-                    return null;
-            }
-        }
-
-        private readonly ConcurrentDictionary<TreeNode, NavMenuItem> Items = new ConcurrentDictionary<TreeNode, NavMenuItem>();
-
-        public string GetTipsText(TreeNode node)
-        {
-            return this[node] == null ? string.Empty : Items[node].TipsText;
-        }
-
-        public int GetSymbol(TreeNode node)
-        {
-            return this[node] == null ? 0 : Items[node].Symbol;
-        }
-
-        public int GetSymbolSize(TreeNode node)
-        {
-            return this[node] == null ? 0 : Items[node].SymbolSize;
-        }
-
-        public int GetPageIndex(TreeNode node)
-        {
-            return this[node] == null ? -1 : Items[node].PageIndex;
-        }
-
-        public object GetTag(TreeNode node)
-        {
-            return this[node] == null ? null : Items[node].Tag;
-        }
-
-        public void SetTipsText(TreeNode node, string tips)
-        {
-            if (node == null) return;
-
-            CreateIfNotExist(node);
-            Items[node].TipsText = tips;
-            node.TreeView.Invalidate();
-        }
-
-        public void SetPageIndex(TreeNode node, int index)
-        {
-            if (node == null) return;
-
-            CreateIfNotExist(node);
-            Items[node].PageIndex = index;
-        }
-
-        public void SetSymbol(TreeNode node, int symbol, int symbolSize = 32)
-        {
-            if (node == null) return;
-
-            CreateIfNotExist(node);
-            Items[node].Symbol = symbol;
-            Items[node].SymbolSize = symbolSize;
-            node.TreeView.Invalidate();
-        }
-
-        private void CreateIfNotExist(TreeNode node)
-        {
-            if (node == null) return;
-
-            if (!Items.ContainsKey(node))
-            {
-                NavMenuItem menuItem = new NavMenuItem();
-                Items.TryAdd(node, menuItem);
-            }
-        }
-
-        public void Add(TreeNode node, NavMenuItem item)
-        {
-            if (node == null || item == null) return;
-
-            if (this[node] == null)
-            {
-                Items.TryAdd(node, item);
-            }
-            else
-            {
-                Items[node] = item;
-            }
-
-            node.ImageIndex = item.ImageIndex;
-            node.SelectedImageIndex = item.SelectedImageIndex;
-            node.Tag = item;
-        }
-    }
-
-    public class NavMenuItem
-    {
-        public string Text { get; set; }
-
-        public int ImageIndex { get; set; } = -1;
-
-        public int SelectedImageIndex { get; set; } = -1;
-
-        public int Symbol { get; set; }
-
-        public int SymbolSize { get; set; } = 24;
-
-        public int PageIndex { get; set; }
-
-        public string TipsText { get; set; }
-
-        public bool Enabled { get; set; } = true;
-
-        public object Tag { get; set; }
-
-        public NavMenuItem()
-        {
-        }
-
-        public NavMenuItem(UIPage page)
-        {
-            Text = page.Text;
-            PageIndex = page.PageIndex;
-        }
-
-        public NavMenuItem(string text, int pageIndex)
-        {
-            PageIndex = pageIndex;
-            Text = text;
-        }
-
-        public NavMenuItem(int pageIndex)
-        {
-            PageIndex = pageIndex;
-        }
-    }
 }

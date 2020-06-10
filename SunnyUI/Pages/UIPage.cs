@@ -20,8 +20,11 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -29,47 +32,146 @@ namespace Sunny.UI
     [DefaultEvent("Initialize")]
     public partial class UIPage : Form, IStyleInterface
     {
-        public event EventHandler Initialize;
+        public readonly Guid Guid = Guid.NewGuid();
+        private Color _rectColor = UIColor.Blue;
+
+        private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.None;
+
+        protected UIStyle _style = UIStyle.Blue;
+
+        public UIStatusForm StatusForm;
 
         public UIPage()
         {
             InitializeComponent();
 
             base.BackColor = UIColor.LightBlue;
-
-            if (this.Register())
-            {
-                SetStyle(UIStyles.Style);
-            }
+            TopLevel = false;
+            if (this.Register()) SetStyle(UIStyles.Style);
 
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             UpdateStyles();
 
-            if (!IsDesignMode)
-            {
-                base.Dock = DockStyle.Fill;
-            }
+            if (!IsDesignMode) base.Dock = DockStyle.Fill;
 
             Version = UIGlobal.Version;
         }
 
-        public UIStatusForm StatusForm;
+        private int _symbolSize = 24;
+
+        [DefaultValue(24)]
+        public int SymbolSize
+        {
+            get => _symbolSize;
+            set
+            {
+                _symbolSize = Math.Max(value, 16);
+                _symbolSize = Math.Min(value, 64);
+                SymbolChange();
+                Invalidate();
+            }
+        }
+
+        private int _symbol;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        public int Symbol
+        {
+            get => _symbol;
+            set
+            {
+                _symbol = value;
+                SymbolChange();
+                Invalidate();
+            }
+        }
+
+        protected virtual void SymbolChange()
+        {
+
+        }
+
+        [Browsable(false)] public Point ParentLocation { get; set; } = new Point(0, 0);
+
+        [Browsable(false)]
+        [DefaultValue(-1)]
+        public int PageIndex { get; set; } = -1;
+
+        [Browsable(false)]
+        public Guid PageGuid { get; set; } = Guid.Empty;
+
+        [Browsable(false), DefaultValue(null)]
+        public TabPage TabPage { get; set; } = null;
+
+        /// <summary>
+        ///     边框颜色
+        /// </summary>
+        /// <value>The color of the border style.</value>
+        [Description("边框颜色")]
+        public Color RectColor
+        {
+            get => _rectColor;
+            set
+            {
+                _rectColor = value;
+                AfterSetRectColor(value);
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        protected bool IsDesignMode
+        {
+            get
+            {
+                var ReturnFlag = false;
+                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                    ReturnFlag = true;
+                else if (Process.GetCurrentProcess().ProcessName == "devenv")
+                    ReturnFlag = true;
+
+                return ReturnFlag;
+            }
+        }
+
+        [DefaultValue(ToolStripStatusLabelBorderSides.None)]
+        [Description("边框显示位置")]
+        public ToolStripStatusLabelBorderSides RectSides
+        {
+            get => _rectSides;
+            set
+            {
+                _rectSides = value;
+                Invalidate();
+            }
+        }
+
+        [DefaultValue(null)] public string TagString { get; set; }
+
+        public string Version { get; }
+
+        [DefaultValue(UIStyle.Blue)]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        [DefaultValue(false)] public bool StyleCustomMode { get; set; }
+
+        public event EventHandler Initialize;
 
         public void ShowStatus(string title, string desc, int max = 100, int value = 0)
         {
-            if (StatusForm == null)
-            {
-                StatusForm = new UIStatusForm();
-            }
+            if (StatusForm == null) StatusForm = new UIStatusForm();
 
             StatusForm.Style = Style;
             StatusForm.Show(title, desc, max, value);
         }
-
-        [Browsable(false)]
-        public Point ParentLocation { get; set; } = new Point(0, 0);
 
         public void HideStatus()
         {
@@ -92,14 +194,22 @@ namespace Sunny.UI
                     ctrl.Style = Style;
                 }
             }
+
+            if (e.Control is Panel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        if (!item.StyleCustomMode)
+                        {
+                            item.Style = Style;
+                        }
+                    }
+                }
+            }
         }
-
-        public int PageIndex { get; set; } = -1;
-
-        [DefaultValue(null)]
-        public string TagString { get; set; }
-
-        public string Version { get; }
 
         public virtual void Init()
         {
@@ -108,16 +218,6 @@ namespace Sunny.UI
 
         public virtual void Final()
         {
-        }
-
-        protected UIStyle _style = UIStyle.Blue;
-        private Color _rectColor = UIColor.Blue;
-
-        [DefaultValue(UIStyle.Blue)]
-        public UIStyle Style
-        {
-            get => _style;
-            set => SetStyle(value);
         }
 
         public void SetStyle(UIStyle style)
@@ -138,26 +238,6 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        [DefaultValue(false)]
-        public bool StyleCustomMode { get; set; }
-
-        /// <summary>
-        /// 边框颜色
-        /// </summary>
-        /// <value>The color of the border style.</value>
-        [Description("边框颜色")]
-        public Color RectColor
-        {
-            get => _rectColor;
-            set
-            {
-                _rectColor = value;
-                AfterSetRectColor(value);
-                _style = UIStyle.Custom;
-                Invalidate();
-            }
-        }
-
         protected virtual void AfterSetFillColor(Color color)
         {
         }
@@ -170,30 +250,11 @@ namespace Sunny.UI
         {
         }
 
-        protected bool IsDesignMode
-        {
-            get
-            {
-                bool ReturnFlag = false;
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                    ReturnFlag = true;
-                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-                    ReturnFlag = true;
-
-                return ReturnFlag;
-            }
-        }
-
-        public readonly Guid Guid = Guid.NewGuid();
-
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            if (Width <= 0 || Height <= 0)
-            {
-                return;
-            }
+            if (Width <= 0 || Height <= 0) return;
 
             if (RectSides != ToolStripStatusLabelBorderSides.None)
             {
@@ -205,19 +266,6 @@ namespace Sunny.UI
                     e.Graphics.DrawLine(RectColor, Width - 1, 0, Width - 1, Height - 1);
                 if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Bottom))
                     e.Graphics.DrawLine(RectColor, 0, Height - 1, Width - 1, Height - 1);
-            }
-        }
-
-        private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.None;
-
-        [DefaultValue(ToolStripStatusLabelBorderSides.None), Description("边框显示位置")]
-        public ToolStripStatusLabelBorderSides RectSides
-        {
-            get => _rectSides;
-            set
-            {
-                _rectSides = value;
-                Invalidate();
             }
         }
 
@@ -233,6 +281,11 @@ namespace Sunny.UI
             base.OnForeColorChanged(e);
             AfterSetForeColor(ForeColor);
             _style = UIStyle.Custom;
+        }
+
+        private void UIPage_Shown(object sender, EventArgs e)
+        {
+            //SetStyle(UIStyles.Style);
         }
     }
 }

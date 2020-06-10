@@ -148,6 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FTreeView";
+            this.Symbol = 61499;
             this.Text = "TreeView";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -135,7 +135,7 @@
             this.uiLedStopwatch1.Name = "uiLedStopwatch1";
             this.uiLedStopwatch1.Size = new System.Drawing.Size(190, 34);
             this.uiLedStopwatch1.TabIndex = 45;
-            this.uiLedStopwatch1.Text = "00:54";
+            this.uiLedStopwatch1.Text = "00:06";
             // 
             // uiLedDisplay1
             // 
@@ -253,6 +253,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FMeter";
+            this.Symbol = 61668;
             this.Text = "Meter";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
