@@ -44,6 +44,7 @@
             // 
             this.Aside.ItemHeight = 36;
             this.Aside.LineColor = System.Drawing.Color.Black;
+            this.Aside.ShowOneNode = true;
             this.Aside.Size = new System.Drawing.Size(250, 575);
             // 
             // Header
@@ -76,6 +77,7 @@
             this.uiLogo1.MinimumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.Name = "uiLogo1";
             this.uiLogo1.Size = new System.Drawing.Size(300, 80);
+            this.uiLogo1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLogo1.TabIndex = 3;
             this.uiLogo1.Text = "uiLogo1";
             // 

@@ -47,7 +47,7 @@ namespace Sunny.UI.Demo
             pageIndex = 3000;
             Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[2], 61950);
-            parent = Aside.CreateNode("Forms", 61950, 24, pageIndex);
+            parent = Aside.CreateNode("Charts", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
             Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart()));
 

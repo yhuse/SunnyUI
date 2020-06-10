@@ -70,6 +70,9 @@ namespace Sunny.UI
             SetScrollInfo();
         }
 
+        [DefaultValue(false)]
+        public bool ShowOneNode { get; set; }
+
         [DefaultValue(null)]
         public string TagString { get; set; }
 
@@ -596,6 +599,23 @@ namespace Sunny.UI
         protected override void OnAfterSelect(TreeViewEventArgs e)
         {
             base.OnAfterSelect(e);
+
+            if (ShowOneNode)
+            {
+                TreeNode node = e.Node.PrevNode;
+                while (node != null)
+                {
+                    node.Collapse();
+                    node = node.PrevNode;
+                }
+
+                node = e.Node.NextNode;
+                while (node != null)
+                {
+                    node.Collapse();
+                    node = node.NextNode;
+                }
+            }
 
             if (e.Node != null && ExpandSelectFirst && e.Node.Nodes.Count > 0)
             {
