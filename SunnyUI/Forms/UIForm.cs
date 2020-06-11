@@ -61,6 +61,11 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        public void Render()
+        {
+            SetStyle(UIStyles.Style);
+        }
+
         /// <summary>
         /// 显示进度窗口
         /// </summary>

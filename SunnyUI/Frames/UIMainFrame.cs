@@ -32,6 +32,12 @@ namespace Sunny.UI
             MainContainer.BringToFront();
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            MainContainer.BringToFront();
+            base.OnShown(e);
+        }
+
         public UIPage AddPage(UIPage page, int index)
         {
             page.PageIndex = index;

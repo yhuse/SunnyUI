@@ -1,5 +1,10 @@
 + 增加； - 删除； * 修改 
 
+2020.06.11
++ 增加到Nuget
+* UIFrame：修复框架页面放置UIContextMenuStrip时显示错位
+* UIAvatar：修复Dock为Right时刷新问题
+
 2020.06.10
 + UINaveMenu：增加ShowOneNode，同一层只显示一个打开的节点
 

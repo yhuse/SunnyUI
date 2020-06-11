@@ -59,6 +59,11 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        public void Render()
+        {
+            SetStyle(UIStyles.Style);
+        }
+
         private int _symbolSize = 24;
 
         [DefaultValue(24)]

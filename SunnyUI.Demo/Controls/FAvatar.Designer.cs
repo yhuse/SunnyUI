@@ -61,15 +61,18 @@
             // 
             // uiAvatar1
             // 
+            this.uiAvatar1.AvatarSize = 55;
             this.uiAvatar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar1.Location = new System.Drawing.Point(102, 50);
             this.uiAvatar1.Name = "uiAvatar1";
             this.uiAvatar1.Size = new System.Drawing.Size(60, 60);
+            this.uiAvatar1.SymbolSize = 48;
             this.uiAvatar1.TabIndex = 0;
             this.uiAvatar1.Text = "uiAvatar1";
             // 
             // uiAvatar2
             // 
+            this.uiAvatar2.AvatarSize = 55;
             this.uiAvatar2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar2.Icon = Sunny.UI.UIAvatar.UIIcon.Image;
             this.uiAvatar2.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyUISmall;
@@ -81,6 +84,7 @@
             // 
             // uiAvatar3
             // 
+            this.uiAvatar3.AvatarSize = 55;
             this.uiAvatar3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar3.Icon = Sunny.UI.UIAvatar.UIIcon.Text;
             this.uiAvatar3.Location = new System.Drawing.Point(174, 50);
@@ -91,6 +95,7 @@
             // 
             // uiAvatar4
             // 
+            this.uiAvatar4.AvatarSize = 55;
             this.uiAvatar4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar4.Location = new System.Drawing.Point(362, 50);
             this.uiAvatar4.Name = "uiAvatar4";
