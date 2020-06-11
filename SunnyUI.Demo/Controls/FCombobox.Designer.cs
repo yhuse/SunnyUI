@@ -182,6 +182,7 @@
             // uiComboBox2
             // 
             this.uiComboBox2.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.uiComboBox2.DropDownWidth = 0;
             this.uiComboBox2.FillColor = System.Drawing.Color.White;
             this.uiComboBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboBox2.Items.AddRange(new object[] {
@@ -202,6 +203,7 @@
             // 
             // uiComboBox1
             // 
+            this.uiComboBox1.DropDownWidth = 0;
             this.uiComboBox1.FillColor = System.Drawing.Color.White;
             this.uiComboBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboBox1.Items.AddRange(new object[] {
