@@ -96,7 +96,7 @@ namespace Sunny.UI
         {
             dropSymbol = SymbolNormal;
 
-            if (itemForm != null && itemForm.Visible)
+            if (DroppedDown)
             {
                 dropSymbol = SymbolDropDown;
             }
@@ -105,7 +105,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool DroppedDown=> itemForm != null && itemForm.Visible;
+        public bool DroppedDown => itemForm != null && itemForm.Visible;
 
         private int symbolNormal = 61703;
         private int dropSymbol = 61703;
@@ -159,7 +159,7 @@ namespace Sunny.UI
 
         public event EventHandler ButtonClick;
 
-        private readonly TextBoxEx edit = new TextBoxEx();
+        protected readonly TextBoxEx edit = new TextBoxEx();
 
         protected override void OnTextChanged(EventArgs e)
         {
@@ -270,14 +270,14 @@ namespace Sunny.UI
             set => edit.MaxLength = Math.Max(value, 1);
         }
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectionLength
         {
             get => edit.SelectionLength;
             set => edit.SelectionLength = value;
         }
 
-        [  Browsable(false),  DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)  ]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectionStart
         {
             get => edit.SelectionStart;
@@ -319,7 +319,7 @@ namespace Sunny.UI
                 }
 
                 ButtonClick?.Invoke(this, e);
-            }   
+            }
         }
 
         //public event EventHandler DropDown;
@@ -336,7 +336,7 @@ namespace Sunny.UI
             edit.SelectAll();
         }
 
-        private class TextBoxEx : TextBox
+        protected class TextBoxEx : TextBox
         {
             private string watermark;
 

@@ -1,5 +1,8 @@
 + 增加； - 删除； * 修改 
 
+2020.06.12
++ UIComboBox：增加数据绑定，可设置DataSource，DisplayMember，ValueMember
+
 2020.06.11
 + 增加到Nuget
 * UIFrame：修复框架页面放置UIContextMenuStrip时显示错位

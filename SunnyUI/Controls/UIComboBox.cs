@@ -17,7 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
- * 2020-06-11: V2.2.5 增加DataSource
+ * 2020-06-11: V2.2.5 增加DataSource，支持数据绑定
 ******************************************************************************/
 
 using System;
@@ -40,46 +40,14 @@ namespace Sunny.UI
             InitializeComponent();
 
             box.SelectedIndexChanged += Box_SelectedIndexChanged;
-            box.SelectionChangeCommitted += Box_SelectionChangeCommitted;
-            box.TextUpdate += Box_TextUpdate;
             box.DataSourceChanged += Box_DataSourceChanged;
             box.DisplayMemberChanged += Box_DisplayMemberChanged;
-            box.Format += Box_Format;
-            box.FormatInfoChanged += Box_FormatInfoChanged;
-            box.FormatStringChanged += Box_FormatStringChanged;
-            box.FormattingEnabledChanged += Box_FormattingEnabledChanged;
             box.ValueMemberChanged += Box_ValueMemberChanged;
-            box.SelectedValueChanged += Box_SelectedValueChanged;
-        }
-
-        private void Box_SelectedValueChanged(object sender, EventArgs e)
-        {
-            SelectedValueChanged?.Invoke(sender, e);
         }
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)
         {
             ValueMemberChanged?.Invoke(sender, e);
-        }
-
-        private void Box_FormattingEnabledChanged(object sender, EventArgs e)
-        {
-            FormattingEnabledChanged?.Invoke(sender, e);
-        }
-
-        private void Box_FormatStringChanged(object sender, EventArgs e)
-        {
-            FormatStringChanged?.Invoke(sender, e);
-        }
-
-        private void Box_FormatInfoChanged(object sender, EventArgs e)
-        {
-            FormatInfoChanged?.Invoke(sender, e);
-        }
-
-        private void Box_Format(object sender, ListControlConvertEventArgs e)
-        {
-            Format?.Invoke(sender, e);
         }
 
         private void Box_DisplayMemberChanged(object sender, EventArgs e)
@@ -92,72 +60,48 @@ namespace Sunny.UI
             DataSourceChanged?.Invoke(sender, e);
         }
 
-        private void Box_TextUpdate(object sender, EventArgs e)
-        {
-            TextUpdate?.Invoke(sender, e);
-        }
-
-        private void Box_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            SelectionChangeCommitted?.Invoke(sender, e);
-        }
-
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Text = box.GetItemText(box.SelectedItem);
+            GetSelectedValue();
+            SelectedValueChanged?.Invoke(this, e);
             SelectedIndexChanged?.Invoke(sender, e);
         }
 
-        public event EventHandler TextUpdate;
-
         public event EventHandler SelectedIndexChanged;
-
-        public event EventHandler SelectionChangeCommitted;
 
         public event EventHandler DataSourceChanged;
 
         public event EventHandler DisplayMemberChanged;
 
-        public event ListControlConvertEventHandler Format;
-
-        public event EventHandler FormatStringChanged;
-
-        public event EventHandler FormattingEnabledChanged;
-
         public event EventHandler ValueMemberChanged;
 
         public event EventHandler SelectedValueChanged;
 
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
-        public event EventHandler FormatInfoChanged;
-
-        private readonly ComboBox box = new ComboBox();
+        public readonly ComboBox box = new ComboBox();
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            //selectedItem = ListBox.SelectedItem;
-            //selectedIndex = ListBox.SelectedIndex;
-            box.SelectedIndex = ListBox.SelectedIndex;
-            Text = ListBox.Text;
+            SelectedIndex = ListBox.SelectedIndex;
             Invalidate();
-            //SelectedIndexChanged?.Invoke(this, null);
         }
 
-        private readonly UIComboBoxItem item = new UIComboBoxItem();
+        private readonly UIComboBoxItem dropForm = new UIComboBoxItem();
 
         protected override void CreateInstance()
         {
-            ItemForm = new UIDropDown(item);
+            ItemForm = new UIDropDown(dropForm);
         }
 
         protected override int CalcItemFormHeight()
         {
             int interval = ItemForm.Height - ItemForm.ClientRectangle.Height;
-            return 4 + Math.Min(Items.Count, MaxDropDownItems) * ItemHeight + interval;
+            return 4 + Math.Min(ListBox.Items.Count, MaxDropDownItems) * ItemHeight + interval;
         }
 
         private UIListBox ListBox
         {
-            get => item.ListBox;
+            get => dropForm.ListBox;
         }
 
         [DefaultValue(25)]
@@ -170,12 +114,6 @@ namespace Sunny.UI
         [DefaultValue(8)]
         public int MaxDropDownItems { get; set; } = 8;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //[Localizable(true)]
-        //[Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
-        //[MergableProperty(false)]
-        //public ListBox.ObjectCollection Items => ListBox?.Items;
-
         private void UIComboBox_FontChanged(object sender, EventArgs e)
         {
             if (ItemForm != null)
@@ -186,16 +124,15 @@ namespace Sunny.UI
 
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
+            ListBox.Items.Clear();
             if (Items.Count == 0 || ItemForm.Visible)
             {
                 return;
             }
 
-            ListBox.Items.Clear();
-
-            foreach (var item in Items)
+            foreach (var data in Items)
             {
-                ListBox.Items.Add(GetItemText(item));                
+                ListBox.Items.Add(GetItemText(data));
             }
 
             ListBox.SelectedIndex = SelectedIndex;
@@ -210,52 +147,58 @@ namespace Sunny.UI
             ListBox.SetStyleColor(uiColor);
         }
 
-        [
-        DefaultValue(AutoCompleteMode.None),
-        Browsable(true), EditorBrowsable(EditorBrowsableState.Always)
-        ]
-        public AutoCompleteMode AutoCompleteMode
-        {
-            get => box.AutoCompleteMode;
-            set => box.AutoCompleteMode = value;
-        }
-
-        [
-       DefaultValue(AutoCompleteSource.None),
-       Browsable(true), EditorBrowsable(EditorBrowsableState.Always)
-       ]
-        public AutoCompleteSource AutoCompleteSource
-        {
-            get => box.AutoCompleteSource;
-            set => box.AutoCompleteSource = value;
-        }
-
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
-        [EditorBrowsable(EditorBrowsableState.Always)]
-        [Localizable(true)]
-        public AutoCompleteStringCollection AutoCompleteCustomSource
-        {
-            get => box.AutoCompleteCustomSource;
-            set => box.AutoCompleteCustomSource = value;
-        }
+        private object dataSource;
 
         [DefaultValue(null), RefreshProperties(RefreshProperties.Repaint), AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => box.DataSource;
-            set => box.DataSource = value;
+            get => dataSource;
+            set
+            {
+                SetDataConnection(value, new BindingMemberInfo(DisplayMember));
+                dataSource = value;
+                box.Items.Clear();
+
+                foreach (var obj in dataManager.List)
+                {
+                    box.Items.Add(obj);
+                }
+            }
         }
 
-        [DefaultValue(DrawMode.Normal), RefreshProperties(RefreshProperties.Repaint)]
-        public DrawMode DrawMode
+        private bool inSetDataConnection;
+        private CurrencyManager dataManager;
+
+        private void SetDataConnection(object newDataSource, BindingMemberInfo newDisplayMember)
         {
-            get => box.DrawMode;
-            set => box.DrawMode = value;
+            bool dataSourceChanged = dataSource != newDataSource;
+            bool displayMemberChanged = !DisplayMember.Equals(newDisplayMember.BindingPath);
+
+            if (inSetDataConnection)
+            {
+                return;
+            }
+
+            try
+            {
+                if (dataSourceChanged || displayMemberChanged)
+                {
+                    CurrencyManager newDataManager = null;
+                    if (newDataSource != null && newDataSource != Convert.DBNull)
+                    {
+                        newDataManager = (CurrencyManager)BindingContext[newDataSource, newDisplayMember.BindingPath];
+                    }
+
+                    dataManager = newDataManager;
+                }
+            }
+            finally
+            {
+                inSetDataConnection = false;
+            }
         }
 
-        public int DropDownWidth { get; set; }
+        //public int DropDownWidth { get; set; }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
@@ -283,50 +226,22 @@ namespace Sunny.UI
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SelectedText
         {
-            get => box.SelectedText;
-            set => box.SelectedText = value;
-        }
-
-        [DefaultValue(false)]
-        public bool Sorted
-        {
-            get => box.Sorted;
-            set => box.Sorted = value;
-        }
-
-        public void BeginUpdate()
-        {
-            box.BeginUpdate();
-        }
-
-        public void EndUpdate()
-        {
-            box.EndUpdate();
-        }
-
-        public int FindString(string s)
-        {
-            return box.FindString(s, -1);
-        }
-
-        public int FindString(string s, int startIndex)
-        {
-            return box.FindString(s, startIndex);
-        }
-
-        public int FindStringExact(string s)
-        {
-            return box.FindStringExact(s);
-        }
-
-        public int FindStringExact(string s, int startIndex)
-        {
-            return box.FindStringExact(s, startIndex);
+            get
+            {
+                if (DropDownStyle == UIDropDownStyle.DropDown)
+                {
+                    return edit.SelectedText;
+                }
+                else
+                {
+                    return Text;
+                }
+            }
         }
 
         public override void ResetText()
         {
-            box.ResetText();
+            Clear();
         }
 
         [DefaultValue("")]
@@ -335,24 +250,17 @@ namespace Sunny.UI
         public string DisplayMember
         {
             get => box.DisplayMember;
-            set => box.DisplayMember = value;
+            set
+            {
+                SetDataConnection(dataSource, new BindingMemberInfo(value));
+                box.DisplayMember = value;
+            }
         }
 
-        [
-         Browsable(false),
-         EditorBrowsable(EditorBrowsableState.Advanced),
-         DefaultValue(null)
-     ]
-        public IFormatProvider FormatInfo
-        {
-            get => box.FormatInfo;
-            set => box.FormatInfo = value;
-        }
 
         [DefaultValue("")]
         [Editor("System.Windows.Forms.Design.FormatStringEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
-        /// <include file='doc\ListControl.uex' path='docs/doc[@for="ListControl.FormatString"]/*' />
         public string FormatString
         {
             get => box.FormatString;
@@ -374,61 +282,95 @@ namespace Sunny.UI
             set => box.ValueMember = value;
         }
 
+        private object selectedValue;
+
+        private void GetSelectedValue()
+        {
+            if (SelectedIndex != -1 && dataManager != null)
+            {
+                selectedValue = FilterItemOnProperty(SelectedItem, ValueMember);
+            }
+            else
+            {
+                selectedValue = null;
+            }
+        }
+
         [
-DefaultValue(null),
-Browsable(false),
-DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-Bindable(true)
-]
+            DefaultValue(null),
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+            Bindable(true)
+        ]
         public object SelectedValue
         {
-            get => box.SelectedValue;
-            set => box.SelectedValue = value;
+            get
+            {
+                GetSelectedValue();
+                return selectedValue;
+            }
+            set
+            {
+                selectedValue = value;
+
+                if (value == null)
+                {
+                    return;
+                }
+
+                if (dataManager != null)
+                {
+                    int index = DataManagerFind(value);
+                    SelectedIndex = index;
+                }
+            }
+        }
+
+        private int DataManagerFind(object value)
+        {
+            if (dataManager == null) return -1;
+            for (int i = 0; i < dataManager.List.Count; i++)
+            {
+                var item = dataManager.List[i];
+                if (FilterItemOnProperty(item, ValueMember).Equals(value))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private object FilterItemOnProperty(object item, string field)
+        {
+            if (item != null && field.Length > 0)
+            {
+                try
+                {
+                    // if we have a dataSource, then use that to display the string
+                    PropertyDescriptor descriptor;
+                    if (dataManager != null)
+                        descriptor = dataManager.GetItemProperties().Find(field, true);
+                    else
+                        descriptor = TypeDescriptor.GetProperties(item).Find(field, true);
+
+                    if (descriptor != null)
+                    {
+                        item = descriptor.GetValue(item);
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            return item;
         }
 
         public string GetItemText(object item)
         {
             return box.GetItemText(item);
         }
-
-        //private int selectedIndex = -1;
-
-        //[Browsable(false)]
-        //[DefaultValue(-1)]
-        //public int SelectedIndex
-        //{
-        //    get => selectedIndex;
-        //    set
-        //    {
-        //        if (value.InRange(-1, ListBox.Items.Count - 1))
-        //        {
-        //            ListBox.SelectedIndex = value;
-        //            selectedIndex = value;
-
-        //            if (value >= 0)
-        //            {
-        //                Text = ListBox.Items[value].ToString();
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private object selectedItem;
-
-        //[Browsable(false)]
-        //[DefaultValue(null)]
-        //public object SelectedItem
-        //{
-        //    get => selectedItem;
-        //    set
-        //    {
-        //        if (value != null)
-        //        {
-        //            int idx = ListBox.Items.IndexOf(value);
-        //            SelectedIndex = idx;
-        //            selectedItem = idx >= 0 ? value : null;
-        //        }
-        //    }
-        //}
     }
 }
