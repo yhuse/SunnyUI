@@ -25,7 +25,7 @@
   - 基于 framework4.0，原生控件开发，参考 Element、DotNetBar 主题风格，包含 Button、Panel、TextBox、CheckBox、RadioButton、TabControl、NavBar、DataGridView在内的常用控件超过 40 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
   - 包含 Element 风格主题 11 个，DotNetBar 主题 3 个，其他主题 2 个，包含主题管理组件 UIStyleManager，可自由切换主题。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224339_7cf2caf3_416720.png "1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0614/103252_5521fbbf_416720.png "main.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224356_b9127fed_416720.png "2.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224403_e925a674_416720.png "3.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0518/224411_df011de9_416720.png "4.png")
