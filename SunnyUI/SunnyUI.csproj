@@ -51,10 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\UIBarChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Charts\UIBarChartOption.cs" />
     <Compile Include="Charts\UIChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Charts\UIChartStyle.cs" />
     <Compile Include="Charts\UIOption.cs" />
+    <Compile Include="Charts\UIPieChartOption.cs" />
     <Compile Include="Controls\Color\UIColorBar.cs">
       <SubType>Component</SubType>
     </Compile>

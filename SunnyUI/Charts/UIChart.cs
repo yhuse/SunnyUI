@@ -19,7 +19,6 @@
  * 2020-06-06: V2.2.5 增加文件说明
 ******************************************************************************/
 
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -58,22 +57,6 @@ namespace Sunny.UI
         private void Tip_MouseEnter(object sender, System.EventArgs e)
         {
             tip.Visible = false;
-        }
-
-        private int decimalNumber;
-
-        [DefaultValue(0),Description("显示数据格式化小数点后位数")]
-        public int DecimalNumber
-        {
-            get => decimalNumber;
-            set
-            {
-                if (decimalNumber != value)
-                {
-                    decimalNumber = value;
-                    Invalidate();
-                }
-            }
         }
 
         protected readonly UITransparentPanel tip = new UITransparentPanel();
@@ -154,6 +137,7 @@ namespace Sunny.UI
 
         protected UIOption emptyOption;
 
+        [Browsable(false)]
         protected UIOption EmptyOption
         {
             get
@@ -171,7 +155,11 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            DrawOption(e.Graphics, Option ?? EmptyOption);
+            DrawOption(e.Graphics);
+        }
+
+        protected virtual void DrawOption(Graphics g)
+        {
         }
 
         protected virtual void CreateEmptyOption()
@@ -179,26 +167,6 @@ namespace Sunny.UI
         }
 
         protected UIChartStyle ChartStyle => UIChartStyles.GetChartStyle(ChartStyleType);
-
-        private void DrawOption(Graphics g, UIOption o)
-        {
-            if (o == null) return;
-            if (o.Title != null) DrawTitle(g, o.Title);
-            if (o.Series.Count > 0) DrawSeries(g,o, o.Series);
-            if (o.Legend != null) DrawLegend(g, o.Legend);
-        }
-
-        protected virtual void DrawTitle(Graphics g, UITitle title)
-        {
-        }
-
-        protected virtual void DrawSeries(Graphics g,UIOption o, List<UISeries> series)
-        {
-        }
-
-        protected virtual void DrawLegend(Graphics g, UILegend legend)
-        {
-        }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {

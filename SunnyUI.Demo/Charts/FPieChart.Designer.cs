@@ -70,7 +70,6 @@
             this.PieChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.PieChart.Location = new System.Drawing.Point(26, 46);
             this.PieChart.Name = "PieChart";
-            this.PieChart.Option = null;
             this.PieChart.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.PieChart.Size = new System.Drawing.Size(687, 399);
             this.PieChart.TabIndex = 20;

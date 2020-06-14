@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI.Demo.Controls
+﻿using System;
+
+namespace Sunny.UI.Demo.Controls
 {
     public partial class FPieChart : UITitlePage
     {
@@ -22,9 +24,11 @@
             PieChart.ChartStyleType = UIChartStyleType.Dark;
         }
 
+        
+
         private void uiSymbolButton1_Click(object sender, System.EventArgs e)
         {
-            var option = new UIOption();
+            var option = new UIPieOption();
 
             //设置Title
             option.Title = new UITitle();
@@ -33,11 +37,11 @@
             option.Title.Left = UILeftAlignment.Center;
 
             //设置ToolTip
-            option.ToolTip = new UIToolTip();
+            option.ToolTip = new UIPieToolTip();
 
             //设置Legend
-            option.Legend = new UILegend();
-            option.Legend.Orient = Orient.Vertical;
+            option.Legend = new UIPieLegend();
+            option.Legend.Orient = UIOrient.Vertical;
             option.Legend.Top = UITopAlignment.Top;
             option.Legend.Left = UILeftAlignment.Left;
 
@@ -50,9 +54,8 @@
             option.Legend.AddData("2020-05-25");
 
             //设置Series
-            var series = new UISeries();
+            var series = new UIPieSeries();
             series.Name = "Star count";
-            series.Type = UISeriesType.Pie;
             series.Center = new UICenter(50, 55);
             series.Radius = 70;
 

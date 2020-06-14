@@ -25,7 +25,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -86,7 +85,7 @@ namespace Sunny.UI
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (bar!=null && bar.Visible && edit!=null)
+            if (bar != null && bar.Visible && edit != null)
             {
                 var si = ScrollBarInfo.GetInfo(edit.Handle);
                 if (e.Delta > 10)
@@ -509,7 +508,6 @@ namespace Sunny.UI
             edit.Paste(text);
         }
 
-
         internal class TextBoxAutoCompleteSourceConverter : EnumConverter
         {
             public TextBoxAutoCompleteSourceConverter(Type type) : base(type)
@@ -539,6 +537,13 @@ namespace Sunny.UI
         {
             get => edit.AcceptsTab;
             set => edit.AcceptsTab = value;
+        }
+
+        [DefaultValue(false)]
+        public bool EnterAsTab
+        {
+            get => edit.EnterAsTab;
+            set => edit.EnterAsTab = value;
         }
 
         [DefaultValue(true)]

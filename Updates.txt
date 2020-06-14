@@ -1,5 +1,9 @@
 + 增加； - 删除； * 修改 
 
+2020.06.14
+* 重构图表控件，准备开发UIBarChart
+* UITextBox：增加EnterAsTab
+
 2020.06.12
 + UIComboBox：增加数据绑定，可设置DataSource，DisplayMember，ValueMember
 

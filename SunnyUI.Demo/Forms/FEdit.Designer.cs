@@ -52,10 +52,13 @@
             // edtName
             // 
             this.edtName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.edtName.EnterAsTab = true;
             this.edtName.FillColor = System.Drawing.Color.White;
             this.edtName.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtName.Location = new System.Drawing.Point(150, 55);
             this.edtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edtName.Maximum = 2147483647D;
+            this.edtName.Minimum = -2147483648D;
             this.edtName.Name = "edtName";
             this.edtName.Padding = new System.Windows.Forms.Padding(5);
             this.edtName.Size = new System.Drawing.Size(340, 29);
@@ -113,6 +116,8 @@
             this.edtAge.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtAge.Location = new System.Drawing.Point(150, 135);
             this.edtAge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edtAge.Maximum = 2147483647D;
+            this.edtAge.Minimum = -2147483648D;
             this.edtAge.Name = "edtAge";
             this.edtAge.Padding = new System.Windows.Forms.Padding(5);
             this.edtAge.Size = new System.Drawing.Size(170, 29);
@@ -187,6 +192,8 @@
             this.edtDate.Name = "edtDate";
             this.edtDate.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.edtDate.Size = new System.Drawing.Size(170, 29);
+            this.edtDate.SymbolDropDown = 61555;
+            this.edtDate.SymbolNormal = 61555;
             this.edtDate.TabIndex = 5;
             this.edtDate.Text = "2020-05-08";
             this.edtDate.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,6 +206,8 @@
             this.edtAddress.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtAddress.Location = new System.Drawing.Point(150, 254);
             this.edtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edtAddress.Maximum = 2147483647D;
+            this.edtAddress.Minimum = -2147483648D;
             this.edtAddress.Name = "edtAddress";
             this.edtAddress.Padding = new System.Windows.Forms.Padding(5);
             this.edtAddress.Size = new System.Drawing.Size(340, 29);
