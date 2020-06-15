@@ -35,7 +35,7 @@ namespace Sunny.UI
 
         public readonly Guid Guid = Guid.NewGuid();
 
-        public UIStatusForm StatusForm;
+        private UIStatusForm statusForm;
 
         public UIForm()
         {
@@ -75,14 +75,11 @@ namespace Sunny.UI
         /// <param name="value">当前进度值</param>
         public void ShowStatus(string title, string desc, int max = 100, int value = 0)
         {
-            if (StatusForm == null)
-            {
-                StatusForm = new UIStatusForm();
-            }
-
             StatusForm.Style = Style;
             StatusForm.Show(title, desc, max, value);
         }
+
+        public UIStatusForm StatusForm => statusForm ?? (statusForm = new UIStatusForm());
 
         /// <summary>
         /// 隐藏进度窗口
@@ -98,6 +95,14 @@ namespace Sunny.UI
         public void StatusStepIt()
         {
             StatusForm.StepIt();
+        }
+
+        [DefaultValue(null)]
+        [Browsable(false)]
+        public string StatusDescription
+        {
+            get => StatusForm?.Description;
+            set => StatusForm.Description = value;
         }
 
         protected override void OnBackColorChanged(EventArgs e)

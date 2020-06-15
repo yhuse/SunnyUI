@@ -5,11 +5,7 @@ namespace Sunny.UI
 {
     public class UIPieOption : UIOption, IDisposable
     {
-        public UITitle Title;
-
         public List<UIPieSeries> Series = new List<UIPieSeries>();
-
-        public UIPieLegend Legend;
 
         public UIPieToolTip ToolTip;
 
@@ -34,11 +30,7 @@ namespace Sunny.UI
 
     public class UIDoughnutPieOption : UIOption, IDisposable
     {
-        public UITitle Title;
-
         public List<UIDoughnutPieSeries> Series = new List<UIDoughnutPieSeries>();
-
-        public UIPieLegend Legend;
 
         public UIPieToolTip ToolTip;
 
@@ -66,24 +58,6 @@ namespace Sunny.UI
         public string Formatter { get; set; } = "{{a}}" + '\n' + "{{b}} : {{c}} ({{d}}%)";
 
         public string ValueFormat { get; set; } = "F0";
-    }
-
-    public class UIPieLegend
-    {
-        public UILeftAlignment Left { get; set; } = UILeftAlignment.Center;
-
-        public UITopAlignment Top { get; set; } = UITopAlignment.Top;
-
-        public UIOrient Orient { get; set; } = UIOrient.Vertical;
-
-        public readonly List<string> Data = new List<string>();
-
-        public int DataCount => Data.Count;
-
-        public void AddData(string data)
-        {
-            Data.Add(data);
-        }
     }
 
     public class UIPieSeries : IDisposable

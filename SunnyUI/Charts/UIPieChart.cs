@@ -54,51 +54,18 @@ namespace Sunny.UI
             emptyOption = option;
         }
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            CalcData(PieOption);
+        }
+
         protected override void DrawOption(Graphics g)
         {
             if (PieOption == null) return;
-            if (PieOption.Title != null) DrawTitle(g, PieOption.Title);
-            if (PieOption.Series.Count > 0) DrawSeries(g, PieOption.Series);
-            if (PieOption.Legend != null) DrawLegend(g, PieOption.Legend);
-        }
-
-        private void DrawTitle(Graphics g, UITitle title)
-        {
-            if (title == null) return;
-            SizeF sf = g.MeasureString(title.Text, Font);
-            float left = 0;
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sf.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-
-            float top = 0;
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = TextInterval; break;
-                case UITopAlignment.Center: top = (Height - sf.Height) / 2.0f; break;
-                case UITopAlignment.Bottom: top = Height - TextInterval - sf.Height; break;
-            }
-
-            g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
-
-            SizeF sfs = g.MeasureString(title.SubText, SubFont);
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sfs.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = top + sf.Height; break;
-                case UITopAlignment.Center: top = top + sf.Height; break;
-                case UITopAlignment.Bottom: top = top - sf.Height; break;
-            }
-
-            g.DrawString(title.SubText, subFont, ChartStyle.ForeColor, left, top);
+             DrawTitle(g, PieOption.Title);
+             DrawSeries(g, PieOption.Series);
+             DrawLegend(g, PieOption.Legend);
         }
 
         protected override void CalcData(UIOption option)
@@ -176,73 +143,7 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
 
-        private void DrawLegend(Graphics g, UIPieLegend legend)
-        {
-            if (legend == null) return;
 
-            float totalHeight = 0;
-            float totalWidth = 0;
-            float maxWidth = 0;
-            float oneHeight = 0;
-
-            foreach (var data in legend.Data)
-            {
-                SizeF sf = g.MeasureString(data, LegendFont);
-                totalHeight += sf.Height;
-                totalWidth += sf.Width;
-                totalWidth += 20;
-
-                maxWidth = Math.Max(sf.Width, maxWidth);
-                oneHeight = sf.Height;
-            }
-
-            float top = 0;
-            float left = 0;
-
-            if (legend.Orient == UIOrient.Horizontal)
-            {
-                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
-                if (legend.Left == UILeftAlignment.Center) left = (Width - totalWidth) / 2.0f;
-                if (legend.Left == UILeftAlignment.Right) left = Width - totalWidth - TextInterval;
-
-                if (legend.Top == UITopAlignment.Top) top = TextInterval;
-                if (legend.Top == UITopAlignment.Center) top = (Height - oneHeight) / 2.0f;
-                if (legend.Top == UITopAlignment.Bottom) top = Height - oneHeight - TextInterval;
-            }
-
-            if (legend.Orient == UIOrient.Vertical)
-            {
-                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
-                if (legend.Left == UILeftAlignment.Center) left = (Width - maxWidth) / 2.0f - 10;
-                if (legend.Left == UILeftAlignment.Right) left = Width - maxWidth - TextInterval - 20;
-
-                if (legend.Top == UITopAlignment.Top) top = TextInterval;
-                if (legend.Top == UITopAlignment.Center) top = (Height - totalHeight) / 2.0f;
-                if (legend.Top == UITopAlignment.Bottom) top = Height - totalHeight - TextInterval;
-            }
-
-            float startleft = left;
-            float starttop = top;
-            for (int i = 0; i < legend.DataCount; i++)
-            {
-                var data = legend.Data[i];
-                SizeF sf = g.MeasureString(data, LegendFont);
-                if (legend.Orient == UIOrient.Horizontal)
-                {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, startleft + 20, top);
-                    startleft += 20;
-                    startleft += sf.Width;
-                }
-
-                if (legend.Orient == UIOrient.Vertical)
-                {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, left + 20, starttop);
-                    starttop += oneHeight;
-                }
-            }
-        }
 
         [Browsable(false)]
         private UIPieOption PieOption

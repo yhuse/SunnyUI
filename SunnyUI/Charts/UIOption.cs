@@ -20,18 +20,39 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 
 namespace Sunny.UI
 {
     public abstract class UIOption
     {
+        public UITitle Title;
+        public UILegend Legend;
+    }
+
+    public class UILegend
+    {
+        public UILeftAlignment Left { get; set; } = UILeftAlignment.Center;
+
+        public UITopAlignment Top { get; set; } = UITopAlignment.Top;
+
+        public UIOrient Orient { get; set; } = UIOrient.Vertical;
+
+        public readonly List<string> Data = new List<string>();
+
+        public int DataCount => Data.Count;
+
+        public void AddData(string data)
+        {
+            Data.Add(data);
+        }
     }
 
     public class UIChartGrid
     {
-        public int Left { get; set; } = 80;
-        public int Right { get; set; } = 80;
-        public int Top { get; set; } = 40;
+        public int Left { get; set; } = 60;
+        public int Right { get; set; } = 60;
+        public int Top { get; set; } = 60;
         public int Bottom { get; set; } = 40;
     }
 

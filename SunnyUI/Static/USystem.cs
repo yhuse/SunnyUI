@@ -36,6 +36,14 @@ namespace Sunny.UI
     /// </summary>
     public static class SystemEx
     {
+        public static void ConsoleWriteLine(this object obj, string preText = "")
+        {
+            if (preText != "")
+                Console.WriteLine(preText + ": " + obj);
+            else
+                Console.WriteLine(obj.ToString());
+        }
+
         /// <summary>
         /// Delays the specified ms.
         /// </summary>
@@ -67,6 +75,7 @@ namespace Sunny.UI
 
             using (Process process = Process.Start(startInfo))
             {
+                if (process == null) return string.Empty;
                 using (StreamReader reader = process.StandardOutput)
                 {
                     str = reader.ReadToEnd();
@@ -81,41 +90,41 @@ namespace Sunny.UI
         /// <summary>
         /// Byte To KB
         /// </summary>
-        /// <param name="bytevalue">Byte value</param>
+        /// <param name="byteValue">Byte value</param>
         /// <returns>KB</returns>
-        public static long ToKB(this long bytevalue)
+        public static long ToKB(this long byteValue)
         {
-            return (long)(bytevalue / 1024.0);
+            return (long)(byteValue / 1024.0);
         }
 
         /// <summary>
         /// Byte To MB
         /// </summary>
-        /// <param name="bytevalue">Byte value</param>
+        /// <param name="byteValue">Byte value</param>
         /// <returns>MB</returns>
-        public static long ToMB(this long bytevalue)
+        public static long ToMB(this long byteValue)
         {
-            return (long)(bytevalue / 1024.0 / 1024.0);
+            return (long)(byteValue / 1024.0 / 1024.0);
         }
 
         /// <summary>
         /// Byte To GB
         /// </summary>
-        /// <param name="bytevalue">Byte value</param>
+        /// <param name="byteValue">Byte value</param>
         /// <returns>GB</returns>
-        public static long ToGB(this long bytevalue)
+        public static long ToGB(this long byteValue)
         {
-            return (long)(bytevalue / 1024.0 / 1024.0 / 1024.0);
+            return (long)(byteValue / 1024.0 / 1024.0 / 1024.0);
         }
 
         /// <summary>
         /// Byte To TB
         /// </summary>
-        /// <param name="bytevalue">Byte value</param>
+        /// <param name="byteValue">Byte value</param>
         /// <returns>TB</returns>
-        public static long ToTB(this long bytevalue)
+        public static long ToTB(this long byteValue)
         {
-            return (long)(bytevalue / 1024.0 / 1024.0 / 1024.0 / 1024.0);
+            return (long)(byteValue / 1024.0 / 1024.0 / 1024.0 / 1024.0);
         }
 
         /// <summary>
@@ -130,22 +139,22 @@ namespace Sunny.UI
         /// <summary>
         /// 根据文件名或者磁盘名获取磁盘信息
         /// </summary>
-        /// <param name="diskname">文件名或者磁盘名（取第一个字符）</param>
+        /// <param name="diskName">文件名或者磁盘名（取第一个字符）</param>
         /// <returns>磁盘信息</returns>
-        public static DriveInfo Disk(string diskname)
+        public static DriveInfo Disk(string diskName)
         {
-            if (diskname.IsNullOrEmpty())
+            if (diskName.IsNullOrEmpty())
             {
                 return null;
             }
 
-            diskname = (diskname.Left(1) + ":\\").ToUpper();
-            DriveInfo[] diInfos = DriveInfo.GetDrives();
-            for (int i = 0; i < diInfos.Count(); i++)
+            diskName = (diskName.Left(1) + ":\\").ToUpper();
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            foreach (var drive in drives)
             {
-                if (diInfos[i].Name.ToUpper() == diskname)
+                if (drive.Name.ToUpper() == diskName)
                 {
-                    return diInfos[i];
+                    return drive;
                 }
             }
 
@@ -155,11 +164,11 @@ namespace Sunny.UI
         /// <summary>
         /// 根据文件名或者磁盘名判断磁盘是否存在
         /// </summary>
-        /// <param name="diskname">文件名或者磁盘名（取第一个字符）</param>
+        /// <param name="diskName">文件名或者磁盘名（取第一个字符）</param>
         /// <returns>磁盘是否存在</returns>
-        public static bool DiskExist(this string diskname)
+        public static bool DiskExist(this string diskName)
         {
-            return Disk(diskname) != null;
+            return Disk(diskName) != null;
         }
 
         /// <summary>
@@ -216,19 +225,21 @@ namespace Sunny.UI
         /// <summary>
         /// 将程序调至前台
         /// </summary>
-        /// <param name="showstyle">显示风格</param>
+        /// <param name="showStyle">显示风格</param>
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-        public static void BringToFront(int showstyle = SW_SHOW)
+        public static void BringToFront(int showStyle = SW_SHOW)
         {
             Process instance = RunningInstance();
-            HandleRunningInstance(instance, showstyle);
+            HandleRunningInstance(instance, showStyle);
         }
 
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-        private static Process RunningInstance()
+        public static Process RunningInstance()
         {
             Process currentProcess = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(currentProcess.ProcessName);
+            if (currentProcess.MainModule == null) return null;
+
             //遍历与当前进程名称相同的进程列表
             return processes.Where(process => process.Id != currentProcess.Id).FirstOrDefault(
                 process => string.Equals(
@@ -258,9 +269,9 @@ namespace Sunny.UI
         }
 
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-        private static void HandleRunningInstance(Process instance, int showstyle)
+        private static void HandleRunningInstance(Process instance, int showStyle)
         {
-            ShowWindowAsync(instance.MainWindowHandle, showstyle); //调用api函数，正常显示窗口
+            ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口
             SetForegroundWindow(instance.MainWindowHandle); //将窗口放置最前端。
         }
 
@@ -278,10 +289,10 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="frm">窗体</param>
         /// <param name="monitor">显示器序号</param>
-        /// <param name="showmax">最大化</param>
-        /// <param name="frmleft">左边距离</param>
-        /// <param name="frmtop">顶部距离</param>
-        public static void ShowOnMonitor(this Form frm, int monitor, bool showmax = true, int frmleft = 0, int frmtop = 0)
+        /// <param name="showMax">最大化</param>
+        /// <param name="left">左边距离</param>
+        /// <param name="top">顶部距离</param>
+        public static void ShowOnMonitor(this Form frm, int monitor, bool showMax = true, int left = 0, int top = 0)
         {
             Screen[] sc = Screen.AllScreens;
             if (monitor >= sc.Length)
@@ -290,8 +301,8 @@ namespace Sunny.UI
             }
 
             frm.StartPosition = FormStartPosition.Manual;
-            frm.Location = new Point(sc[monitor].Bounds.Left + frmleft, sc[monitor].Bounds.Top + frmtop);
-            frm.WindowState = showmax ? FormWindowState.Maximized : FormWindowState.Normal;
+            frm.Location = new Point(sc[monitor].Bounds.Left + left, sc[monitor].Bounds.Top + top);
+            frm.WindowState = showMax ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
         [DllImport("User32.dll")]

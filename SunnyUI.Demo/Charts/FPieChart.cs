@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sunny.UI.Demo.Controls
+﻿namespace Sunny.UI.Demo.Controls
 {
     public partial class FPieChart : UITitlePage
     {
@@ -24,8 +22,6 @@ namespace Sunny.UI.Demo.Controls
             PieChart.ChartStyleType = UIChartStyleType.Dark;
         }
 
-        
-
         private void uiSymbolButton1_Click(object sender, System.EventArgs e)
         {
             var option = new UIPieOption();
@@ -40,7 +36,7 @@ namespace Sunny.UI.Demo.Controls
             option.ToolTip = new UIPieToolTip();
 
             //设置Legend
-            option.Legend = new UIPieLegend();
+            option.Legend = new UILegend();
             option.Legend.Orient = UIOrient.Vertical;
             option.Legend.Top = UITopAlignment.Top;
             option.Legend.Left = UILeftAlignment.Left;

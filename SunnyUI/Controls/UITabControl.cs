@@ -47,6 +47,25 @@ namespace Sunny.UI
             Helper = new UITabControlHelper(this);
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (ForbidCtrlTab)
+            {
+                switch (keyData)
+                {
+                    case (Keys.Tab | Keys.Control):
+                        //组合键在调试时，不容易捕获；可以先按住Ctrl键（此时在断点处已经捕获），然后按下Tab键，都释放后，再进入断点处单步向下执行；
+                        //此时会分两次进入断点，第一次（好像）是处理Ctrl键，第二次处理组合键
+                        return true;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        [DefaultValue(true)]
+        public bool ForbidCtrlTab { get; set; } = true;
+
         public void SelectPage(int pageIndex)
         {
             Helper.SelectPage(pageIndex);

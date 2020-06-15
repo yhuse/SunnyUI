@@ -85,5 +85,12 @@ namespace Sunny.UI
             processBar.Value = value;
             Show();
         }
+
+        public string Description
+        {
+            get => labelDescription.Text;
+            set => labelDescription.Text = value;
+        }
+
     }
 }

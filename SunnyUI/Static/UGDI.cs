@@ -199,6 +199,26 @@ namespace Sunny.UI
             }
         }
 
+        public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false)
+        {
+            using (Pen pen = new Pen(color))
+            {
+                g.Smooth(smooth);
+                g.DrawLine(pen, x1, y1, x2, y2);
+                g.Smooth(false);
+            }
+        }
+
+        public static void DrawLine(this Graphics g, Color color, PointF pt1, PointF pt2, bool smooth = false)
+        {
+            using (Pen pen = new Pen(color))
+            {
+                g.Smooth(smooth);
+                g.DrawLine(pen, pt1, pt2);
+                g.Smooth(false);
+            }
+        }
+
         public static void DrawArc(this Graphics g, Color color, int x, int y, int width, int height, int startAngle, int sweepAngle, bool smooth = true)
         {
             using (Pen pen = new Pen(color))

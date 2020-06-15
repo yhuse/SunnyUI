@@ -2,6 +2,7 @@
 using Sunny.UI.Demo.Forms;
 using System;
 using System.Windows.Forms;
+using Sunny.UI.Demo.Charts;
 
 namespace Sunny.UI.Demo
 {
@@ -50,6 +51,7 @@ namespace Sunny.UI.Demo
             parent = Aside.CreateNode("Charts", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
             Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart()));
+            Aside.CreateChildNode(parent, 61568, 24, AddPage(new FBarChart()));
 
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();
