@@ -133,8 +133,8 @@ namespace Sunny.UI
                 float sfMax = Math.Max(sf.Width, sf.Height);
                 float x = Width - 1 - 2 - sfMax;
                 float y = 1 + 1;
-                e.Graphics.FillEllipse(Brushes.Red, x, y, sfMax, sfMax);
-                e.Graphics.DrawString(TipsText, TipsFont, Brushes.White, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+                e.Graphics.FillEllipse(UIColor.Red, x, y, sfMax, sfMax);
+                e.Graphics.DrawString(TipsText, TipsFont, Color.White, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
             }
         }
 

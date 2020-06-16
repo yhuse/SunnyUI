@@ -101,7 +101,6 @@ namespace Sunny.UI
             Helper.AddPage(guid, page);
         }
 
-
         public string Version { get; }
 
         private Color _fillColor = UIColor.LightBlue;
@@ -607,11 +606,8 @@ namespace Sunny.UI
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
             Color color = Enabled ? BackColor : SystemColors.Control;
-            using (SolidBrush brush = new SolidBrush(color))
-            {
-                rect.Inflate(1, 1);
-                g.FillRectangle(brush, rect);
-            }
+            rect.Inflate(1, 1);
+            g.FillRectangle(color, rect);
 
             RenderButton(g, upButtonRect, upButtonBaseColor, upButtonBorderColor, upButtonArrowColor, ArrowDirection.Left);
             RenderButton(g, downButtonRect, downButtonBaseColor, downButtonBorderColor, downButtonArrowColor, ArrowDirection.Right);

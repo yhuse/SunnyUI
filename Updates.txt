@@ -1,5 +1,9 @@
 + 增加； - 删除； * 修改 
 
+2020.06.16
++ UIBarChart：新增ToolTip显示
++ UINavMenu：新增TipsText气泡数字显示
+
 2020.06.15
 +UIBarChart：新增UIBarChart控件
 

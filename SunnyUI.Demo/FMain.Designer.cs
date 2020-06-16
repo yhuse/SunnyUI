@@ -45,6 +45,7 @@
             this.Aside.ItemHeight = 36;
             this.Aside.LineColor = System.Drawing.Color.Black;
             this.Aside.ShowOneNode = true;
+            this.Aside.ShowTips = true;
             this.Aside.Size = new System.Drawing.Size(250, 575);
             // 
             // Header

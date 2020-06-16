@@ -7,6 +7,8 @@ namespace Sunny.UI
     {
         public UICategoryAxis XAxis { get; set; } = new UICategoryAxis();
 
+        public UIBarToolTip ToolTip { get; set; }
+
         public UIValueAxis YAxis { get; set; } = new UIValueAxis();
 
         public List<UIBarSeries> Series = new List<UIBarSeries>();
@@ -33,6 +35,25 @@ namespace Sunny.UI
         }
 
         public int SeriesCount => Series.Count;
+    }
+
+    public class UIBarToolTip
+    {
+        public string Formatter { get; set; } = "{{b}} : {{c}}";
+
+        public string ValueFormat { get; set; } = "F0";
+
+        public UIAxisPointer AxisPointer= new UIAxisPointer();
+    }
+
+    public class UIAxisPointer
+    {
+        public UIAxisPointerType Type { get; set; } = UIAxisPointerType.Line;
+    }
+
+    public enum UIAxisPointerType
+    {
+        Line,Shadow
     }
 
     public class UIAxis

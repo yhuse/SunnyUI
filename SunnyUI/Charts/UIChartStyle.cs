@@ -8,6 +8,8 @@ namespace Sunny.UI
 
         public virtual Color ForeColor => Color.FromArgb(54, 54, 54);
 
+        public virtual Color ToolTipShadowColor => Color.FromArgb(215, 215, 215);
+
         public int ColorCount => 11;
 
         public virtual Color[] SeriesColor
@@ -65,6 +67,8 @@ namespace Sunny.UI
         public override Color BackColor => Color.FromArgb(54, 54, 54);
 
         public override Color ForeColor => Color.FromArgb(239, 239, 239);
+
+        public override Color ToolTipShadowColor => Color.FromArgb(81, 81, 81);
 
         public override Color[] SeriesColor
         {

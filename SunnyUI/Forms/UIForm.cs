@@ -795,7 +795,7 @@ namespace Sunny.UI
             {
                 if (InMaxBox)
                 {
-                    e.Graphics.FillRoundRectangle(new SolidBrush(btn.FillHoverColor), MaximizeBoxRect, 5);
+                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
                 }
 
                 e.Graphics.DrawFontImage(
@@ -808,7 +808,7 @@ namespace Sunny.UI
             {
                 if (InMinBox)
                 {
-                    e.Graphics.FillRoundRectangle(new SolidBrush(btn.FillHoverColor), MinimizeBoxRect, 5);
+                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
                 }
 
                 e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);

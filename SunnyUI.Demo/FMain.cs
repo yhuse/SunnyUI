@@ -35,6 +35,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 62104, 24, AddPage(new FContextMenuStrip(), ++pageIndex));
             Aside.CreateChildNode(parent, 61668, 24, AddPage(new FMeter(), ++pageIndex));
             Aside.CreateChildNode(parent, 62173, 24, AddPage(new FOther(), ++pageIndex));
+            Aside.SetNodeTipsText(parent.Nodes[0],"1");
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);

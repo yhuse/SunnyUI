@@ -74,10 +74,7 @@ namespace Sunny.UI
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            using (SolidBrush b = new SolidBrush(BackColor))
-            {
-                e.Graphics.FillRectangle(b, ClientRectangle);
-            }
+            e.Graphics.FillRectangle(BackColor, ClientRectangle);
 
             RectangleF lr = ClientRectangleF;
             UIColorUtil.DrawFrame(e.Graphics, lr, 6, m_frameColor);
@@ -112,9 +109,9 @@ namespace Sunny.UI
 
                 using (SolidBrush b = new SolidBrush(ForeColor))
                 {
-                    if (TextAngle == 0)
+                    if (TextAngle.EqualsFloat(0))
                     {
-                        e.Graphics.DrawString(Text, Font, b, r, format);
+                        e.Graphics.DrawString(Text, Font, ForeColor, r, format);
                     }
                     else
                     {

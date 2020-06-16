@@ -351,6 +351,11 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
+        public void SetNodeTipsText(TreeNode node, string tipsText)
+        {
+            MenuHelper.SetTipsText(node,tipsText);
+        }
+
         public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
         {
             MenuHelper.SetSymbol(node, symbol, symbolSize);
@@ -443,8 +448,8 @@ namespace Sunny.UI
                     float tipsLeft = Width - (ScrollBarVisible ? 50 : 30) - 6 - sfMax;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
-                    e.Graphics.FillEllipse(Brushes.Red, tipsLeft, tipsTop, sfMax, sfMax);
-                    e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Brushes.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                    e.Graphics.FillEllipse(UIColor.Red, tipsLeft, tipsTop, sfMax, sfMax);
+                    e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Color.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
                 }
             }
         }

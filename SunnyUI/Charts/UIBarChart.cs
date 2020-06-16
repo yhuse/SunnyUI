@@ -3,7 +3,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -64,8 +66,7 @@ namespace Sunny.UI
             YAxisEnd = end;
             YAxisInterval = interval;
 
-            float x1 = 100.0f / ((o.XAxis.Data.Count * 2) + o.XAxis.Data.Count + 1);
-            x1 = DrawSize.Width * x1 / 100.0f / o.SeriesCount;
+            float x1 = DrawBarWidth / ((o.SeriesCount * 2) + o.SeriesCount + 1);
             float x2 = x1 * 2;
 
             for (int i = 0; i < o.SeriesCount; i++)
@@ -97,8 +98,21 @@ namespace Sunny.UI
                     barX += DrawBarWidth;
                 }
             }
+
+            for (int i = 0; i < BarOption.XAxis.Data.Count; i++)
+            {
+                string str = BarOption.XAxis.Data[i];
+                foreach (var series in BarOption.Series)
+                {
+                    str += '\n';
+                    str += series.Name + " : " + series.Data[i].ToString(BarOption.ToolTip.ValueFormat);
+                }
+
+                Bars[0][i].Tips = str;
+            }
         }
 
+        private int selectIndex = -1;
         private Point DrawOrigin;
         private Size DrawSize;
         private float DrawBarWidth;
@@ -106,6 +120,52 @@ namespace Sunny.UI
         private int YAxisEnd;
         private double YAxisInterval;
         private readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
+
+        [DefaultValue(-1), Browsable(false)]
+        private int SelectIndex
+        {
+            get => selectIndex;
+            set
+            {
+                if (BarOption.ToolTip != null && selectIndex != value)
+                {
+                    selectIndex = value;
+                    Invalidate();
+                }
+
+                if (selectIndex < 0) tip.Visible = false;
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (BarOption.ToolTip == null) return;
+            if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
+                                                   && e.Location.Y > BarOption.Grid.Top &&
+                                                   e.Location.Y < Height - BarOption.Grid.Bottom)
+            {
+                SelectIndex = (int)((e.Location.X - BarOption.Grid.Left) / DrawBarWidth);
+            }
+            else
+            {
+                SelectIndex = -1;
+            }
+
+            if (SelectIndex >= 0)
+            {
+                if (tip.Text != Bars[0][selectIndex].Tips)
+                {
+                    tip.Text = Bars[0][selectIndex].Tips;
+                    tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                }
+
+                tip.Left = e.Location.X + 15;
+                tip.Top = e.Location.Y + 20;
+                if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
+            }
+        }
 
         [Browsable(false)]
         private UIBarOption BarOption
@@ -158,6 +218,9 @@ namespace Sunny.UI
             option.XAxis.Data.Add("Thu");
             option.XAxis.Data.Add("Fri");
 
+            option.ToolTip = new UIBarToolTip();
+            option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
+
             emptyOption = option;
         }
 
@@ -165,10 +228,29 @@ namespace Sunny.UI
         {
             if (BarOption == null) return;
             if (!NeedDraw) return;
+
+            if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow) DrawToolTip(g);
             DrawAxis(g);
             DrawTitle(g, BarOption.Title);
             DrawSeries(g, BarOption.Series);
+            if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, BarOption.Legend);
+        }
+
+        private void DrawToolTip(Graphics g)
+        {
+            if (selectIndex < 0) return;
+            if (BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line)
+            {
+                float x = DrawOrigin.X + SelectIndex * DrawBarWidth + DrawBarWidth / 2.0f;
+                g.DrawLine(ChartStyle.ToolTipShadowColor, x, DrawOrigin.Y, x, BarOption.Grid.Top);
+            }
+
+            if (BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow)
+            {
+                float x = DrawOrigin.X + SelectIndex * DrawBarWidth;
+                g.FillRectangle(ChartStyle.ToolTipShadowColor, x, BarOption.Grid.Top, DrawBarWidth, Height - BarOption.Grid.Top - BarOption.Grid.Bottom);
+            }
         }
 
         private void DrawAxis(Graphics g)
@@ -206,7 +288,7 @@ namespace Sunny.UI
                 foreach (var data in BarOption.XAxis.Data)
                 {
                     SizeF sf = g.MeasureString(data, SubFont);
-                    g.DrawString(data, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length);
+                    g.DrawString(data, SubFont, Color.FromArgb(150, ChartStyle.ForeColor), start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length);
                     start += DrawBarWidth;
                 }
             }
@@ -218,6 +300,17 @@ namespace Sunny.UI
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
                     g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, DrawOrigin.X - BarOption.YAxis.AxisTick.Length, start);
+
+                    if (i != 0)
+                    {
+                        using (Pen pn = new Pen(ChartStyle.ForeColor))
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                            g.DrawLine(pn, DrawOrigin.X, start, Width - BarOption.Grid.Right, start);
+                        }
+                    }
+
                     start -= DrawBarHeight;
                 }
             }
@@ -249,11 +342,20 @@ namespace Sunny.UI
                     g.FillRectangle(ChartStyle.SeriesColor[i], info.Rect);
                 }
             }
+
+            for (int i = 0; i < BarOption.XAxis.Data.Count; i++)
+            {
+                Bars[0][i].Size = g.MeasureString(Bars[0][i].Tips, SubFont);
+            }
         }
 
         internal class BarInfo
         {
             public RectangleF Rect { get; set; }
+
+            public string Tips { get; set; }
+
+            public SizeF Size { get; set; }
         }
     }
 }
