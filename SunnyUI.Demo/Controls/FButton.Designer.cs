@@ -80,14 +80,17 @@
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
+            this.uiImageButton4 = new Sunny.UI.UIImageButton();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).BeginInit();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiImageButton4);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
             this.PagePanel.Controls.Add(this.uiImageButton1);
@@ -953,6 +956,21 @@
             this.uiImageButton3.TabStop = false;
             this.uiImageButton3.Text = null;
             // 
+            // uiImageButton4
+            // 
+            this.uiImageButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton4.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton4.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
+            this.uiImageButton4.ImageOffset = new System.Drawing.Point(12, 5);
+            this.uiImageButton4.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton4.Location = new System.Drawing.Point(630, 435);
+            this.uiImageButton4.Name = "uiImageButton4";
+            this.uiImageButton4.Size = new System.Drawing.Size(70, 61);
+            this.uiImageButton4.TabIndex = 52;
+            this.uiImageButton4.TabStop = false;
+            this.uiImageButton4.Text = "Home";
+            this.uiImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -965,6 +983,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1023,5 +1042,6 @@
         private UIImageButton uiImageButton3;
         private UIImageButton uiImageButton2;
         private UIImageButton uiImageButton1;
+        private UIImageButton uiImageButton4;
     }
 }

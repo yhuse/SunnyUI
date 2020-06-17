@@ -24,20 +24,20 @@
 
             var series = new UIBarSeries();
             series.Name = "Bar1";
-            series.AddData(11);
-            series.AddData(15);
-            series.AddData(12);
-            series.AddData(14);
-            series.AddData(13);
+            series.AddData(+11);
+            series.AddData(+15);
+            series.AddData(+12);
+            series.AddData(+14);
+            series.AddData(+13);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar2";
-            series.AddData(22);
-            series.AddData(21);
-            series.AddData(25);
-            series.AddData(23);
-            series.AddData(24);
+            series.AddData(-22);
+            series.AddData(0);
+            series.AddData(-25);
+            series.AddData(-23);
+            series.AddData(-24);
             option.Series.Add(series);
 
             option.XAxis.Data.Add("Mon");
@@ -45,6 +45,8 @@
             option.XAxis.Data.Add("Wed");
             option.XAxis.Data.Add("Thu");
             option.XAxis.Data.Add("Fri");
+
+            option.ToolTip = new UIBarToolTip();
 
             BarChart.SetOption(option);
         }

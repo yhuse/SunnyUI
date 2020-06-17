@@ -282,6 +282,19 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        public Point imageOffset;
+
+        [DefaultValue(typeof(Point),"0, 0")]
+        public Point ImageOffset
+        {
+            get => imageOffset;
+            set
+            {
+                imageOffset = value;
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// 绘制按钮
         /// </summary>
@@ -319,7 +332,7 @@ namespace Sunny.UI
             if (img != null)
             {
                 if (SizeMode == PictureBoxSizeMode.Normal)
-                    pe.Graphics.DrawImage(img, new Rectangle(0, 0, img.Width, img.Height));
+                    pe.Graphics.DrawImage(img, new Rectangle(ImageOffset.X, ImageOffset.Y, img.Width, img.Height));
 
                 if (SizeMode == PictureBoxSizeMode.StretchImage)
                     pe.Graphics.DrawImage(img, new Rectangle(0, 0, Width, Height));
