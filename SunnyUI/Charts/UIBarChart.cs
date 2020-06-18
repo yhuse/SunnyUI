@@ -37,7 +37,7 @@ namespace Sunny.UI
             NeedDraw = true;
             DrawBarWidth = DrawSize.Width * 1.0f / o.XAxis.Data.Count;
 
-            double min = Double.MaxValue;
+            double min = double.MaxValue;
             double max = double.MinValue;
             foreach (var series in o.Series)
             {
@@ -45,18 +45,14 @@ namespace Sunny.UI
                 max = Math.Max(max, series.Data.Max());
             }
 
-            bool minZero = false;
-            bool maxZero = false;
             if (min > 0 && max > 0 && !o.YAxis.Scale)
             {
                 min = 0;
-                minZero = true;
             }
 
             if (min < 0 && max < 0 && !o.YAxis.Scale)
             {
                 max = 0;
-                maxZero = true;
             }
 
             UIChartHelper.CalcDegreeScale(min, max, o.YAxis.SplitNumber,
@@ -77,20 +73,21 @@ namespace Sunny.UI
 
                 for (int j = 0; j < series.Data.Count; j++)
                 {
-                    if (minZero)
+                    if (YAxisStart >= 0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height * series.Data[j] / (end * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height *  (series.Data[j]- start *interval) / ((end -start) * interval)));
+
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(
-                            barX + x1 * (i + 1) + x2 * i,
-                            DrawOrigin.Y - h,
-                            x2, h)
+                                barX + x1 * (i + 1) + x2 * i,
+                                DrawOrigin.Y - h,
+                                x2, h)
                         });
                     }
-                    else if (maxZero)
+                    else if (YAxisEnd<=0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height * series.Data[j] / (start * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height * (end * interval-series.Data[j]) / ((end - start) * interval)));
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(
@@ -119,24 +116,24 @@ namespace Sunny.UI
 
                         if (series.Data[j] >= 0)
                         {
-                            float h = Math.Abs((float)(highH *series.Data[j] /highV ));
+                            float h = Math.Abs((float)(highH * series.Data[j] / highV));
                             Bars[i].Add(new BarInfo()
                             {
                                 Rect = new RectangleF(
                                     barX + x1 * (i + 1) + x2 * i,
-                                    DrawOrigin.Y - lowH- h,
+                                    DrawOrigin.Y - lowH - h,
                                     x2, h)
                             });
                         }
                         else
                         {
-                            float h = Math.Abs((float)(lowH*series.Data[j] /lowV ));
+                            float h = Math.Abs((float)(lowH * series.Data[j] / lowV));
                             Bars[i].Add(new BarInfo()
                             {
                                 Rect = new RectangleF(
                                     barX + x1 * (i + 1) + x2 * i,
-                                    DrawOrigin.Y - lowH+1,
-                                    x2, h-1)
+                                    DrawOrigin.Y - lowH + 1,
+                                    x2, h - 1)
                             });
                         }
                     }
@@ -210,8 +207,15 @@ namespace Sunny.UI
                     tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
                 }
 
-                tip.Left = e.Location.X + 15;
-                tip.Top = e.Location.Y + 20;
+                int x = e.Location.X + 15;
+                int y = e.Location.Y + 20;
+                if (e.Location.X + 15 + tip.Width > Width - BarOption.Grid.Right)
+                    x = e.Location.X - tip.Width - 2;
+                if (e.Location.Y + 20 + tip.Height > Height - BarOption.Grid.Bottom)
+                    y = e.Location.Y - tip.Height - 2;
+
+                tip.Left = x;
+                tip.Top = y;
                 if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
             }
         }
@@ -304,7 +308,9 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            //g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
+            if (YAxisStart>=0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
+            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top),  new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
+
             g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
 
             if (BarOption.XAxis.AxisTick.Show)
@@ -350,9 +356,12 @@ namespace Sunny.UI
                 foreach (var data in BarOption.XAxis.Data)
                 {
                     SizeF sf = g.MeasureString(data, SubFont);
-                    g.DrawString(data, SubFont, Color.FromArgb(150, ChartStyle.ForeColor), start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length);
+                    g.DrawString(data, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length);
                     start += DrawBarWidth;
                 }
+
+                SizeF sfname = g.MeasureString(BarOption.XAxis.Name, SubFont);
+                g.DrawString(BarOption.XAxis.Name,SubFont,ChartStyle.ForeColor, DrawOrigin.X +(DrawSize.Width-sfname.Width)/2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length +sfname.Height);
             }
 
             if (BarOption.YAxis.AxisTick.Show)
@@ -393,13 +402,21 @@ namespace Sunny.UI
                 float start = DrawOrigin.Y;
                 float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
                 int idx = 0;
+                float wmax = 0;
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
                     string label = BarOption.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);
                     SizeF sf = g.MeasureString(label, SubFont);
+                    wmax = Math.Max(wmax, sf.Width);
                     g.DrawString(label, SubFont, ChartStyle.ForeColor, DrawOrigin.X - BarOption.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
                     start -= DrawBarHeight;
                 }
+
+                SizeF sfname = g.MeasureString(BarOption.YAxis.Name, SubFont);
+                int x = (int)(DrawOrigin.X - BarOption.YAxis.AxisTick.Length - wmax - sfname.Height);
+                int y = (int) (BarOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
+                g.DrawString(BarOption.YAxis.Name,SubFont,ChartStyle.ForeColor, new Point(x,y), 
+                    new StringFormat(){Alignment = StringAlignment.Center}, 270);
             }
         }
 

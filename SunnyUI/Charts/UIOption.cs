@@ -53,7 +53,7 @@ namespace Sunny.UI
         public int Left { get; set; } = 60;
         public int Right { get; set; } = 60;
         public int Top { get; set; } = 60;
-        public int Bottom { get; set; } = 40;
+        public int Bottom { get; set; } = 60;
     }
 
     public enum UIOrient

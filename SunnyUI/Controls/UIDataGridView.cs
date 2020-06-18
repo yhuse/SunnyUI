@@ -71,7 +71,7 @@ namespace Sunny.UI
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //禁止调整数据行行高
-            AllowUserToResizeRows = false;
+            //AllowUserToResizeRows = false;
 
             //允许调整标题行行宽
             AllowUserToResizeColumns = true;
@@ -80,7 +80,7 @@ namespace Sunny.UI
             RowHeadersVisible = false;
 
             //禁止行多选
-            MultiSelect = false;
+            //MultiSelect = false;
 
             //自动生成行
             AutoGenerateColumns = true;
