@@ -68,6 +68,19 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.AvatarForeColor;
         }
 
+        private int avatarSize = 60;
+
+        [DefaultValue(60)]
+        public int AvatarSize
+        {
+            get => avatarSize;
+            set
+            {
+                avatarSize = value;
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
@@ -210,7 +223,7 @@ namespace Sunny.UI
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             int size = Math.Min(Width, Height) - 3;
-            Rectangle rect = new Rectangle(2, 2, size - 2, size - 2);
+            Rectangle rect = new Rectangle((Width-avatarSize)/2, (Height - avatarSize) / 2, avatarSize, avatarSize);
 
             switch (Shape)
             {
@@ -231,11 +244,6 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            if (Height != Width)
-            {
-                Height = Width;
-            }
 
             if (Width <= 0 || Height <= 0)
             {
@@ -280,13 +288,13 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Symbol)
             {
-                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle(0, 0, Width, Height));
+                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle((Width - avatarSize) / 2+1, (Height - avatarSize) / 2+1, avatarSize, avatarSize));
             }
 
             if (Icon == UIIcon.Text)
             {
                 SizeF sf = e.Graphics.MeasureString(Text, Font);
-                e.Graphics.DrawString(Text, Font, foreColor, 2 + (size - 4 - sf.Width + 7) / 2.0f, 2 + (size - 4 - sf.Height + 2) / 2.0f);
+                e.Graphics.DrawString(Text, Font, foreColor, 2 + (Width - sf.Width ) / 2.0f, (Height- sf.Height ) / 2.0f);
             }
         }
     }

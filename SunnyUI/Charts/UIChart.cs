@@ -19,7 +19,7 @@
  * 2020-06-06: V2.2.5 增加文件说明
 ******************************************************************************/
 
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -55,25 +55,9 @@ namespace Sunny.UI
             tip.MouseEnter += Tip_MouseEnter;
         }
 
-        private void Tip_MouseEnter(object sender, System.EventArgs e)
+        private void Tip_MouseEnter(object sender, EventArgs e)
         {
             tip.Visible = false;
-        }
-
-        private int decimalNumber;
-
-        [DefaultValue(0),Description("显示数据格式化小数点后位数")]
-        public int DecimalNumber
-        {
-            get => decimalNumber;
-            set
-            {
-                if (decimalNumber != value)
-                {
-                    decimalNumber = value;
-                    Invalidate();
-                }
-            }
         }
 
         protected readonly UITransparentPanel tip = new UITransparentPanel();
@@ -154,6 +138,7 @@ namespace Sunny.UI
 
         protected UIOption emptyOption;
 
+        [Browsable(false)]
         protected UIOption EmptyOption
         {
             get
@@ -171,7 +156,11 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            DrawOption(e.Graphics, Option ?? EmptyOption);
+            DrawOption(e.Graphics);
+        }
+
+        protected virtual void DrawOption(Graphics g)
+        {
         }
 
         protected virtual void CreateEmptyOption()
@@ -179,26 +168,6 @@ namespace Sunny.UI
         }
 
         protected UIChartStyle ChartStyle => UIChartStyles.GetChartStyle(ChartStyleType);
-
-        private void DrawOption(Graphics g, UIOption o)
-        {
-            if (o == null) return;
-            if (o.Title != null) DrawTitle(g, o.Title);
-            if (o.Series.Count > 0) DrawSeries(g,o, o.Series);
-            if (o.Legend != null) DrawLegend(g, o.Legend);
-        }
-
-        protected virtual void DrawTitle(Graphics g, UITitle title)
-        {
-        }
-
-        protected virtual void DrawSeries(Graphics g,UIOption o, List<UISeries> series)
-        {
-        }
-
-        protected virtual void DrawLegend(Graphics g, UILegend legend)
-        {
-        }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
@@ -210,7 +179,7 @@ namespace Sunny.UI
         [DefaultValue(8)]
         public int TextInterval { get; set; } = 8;
 
-        public Font subFont = UIFontColor.SubFont;
+        private Font subFont = UIFontColor.SubFont;
 
         [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
         public Font SubFont
@@ -233,6 +202,113 @@ namespace Sunny.UI
             {
                 legendFont = value;
                 Invalidate();
+            }
+        }
+
+        protected void DrawTitle(Graphics g, UITitle title)
+        {
+            if (title == null) return;
+            SizeF sf = g.MeasureString(title.Text, Font);
+            float left = 0;
+            switch (title.Left)
+            {
+                case UILeftAlignment.Left: left = TextInterval; break;
+                case UILeftAlignment.Center: left = (Width - sf.Width) / 2.0f; break;
+                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
+            }
+
+            float top = 0;
+            switch (title.Top)
+            {
+                case UITopAlignment.Top: top = TextInterval; break;
+                case UITopAlignment.Center: top = (Height - sf.Height) / 2.0f; break;
+                case UITopAlignment.Bottom: top = Height - TextInterval - sf.Height; break;
+            }
+
+            g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
+
+            SizeF sfs = g.MeasureString(title.SubText, SubFont);
+            switch (title.Left)
+            {
+                case UILeftAlignment.Left: left = TextInterval; break;
+                case UILeftAlignment.Center: left = (Width - sfs.Width) / 2.0f; break;
+                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
+            }
+            switch (title.Top)
+            {
+                case UITopAlignment.Top: top = top + sf.Height; break;
+                case UITopAlignment.Center: top = top + sf.Height; break;
+                case UITopAlignment.Bottom: top = top - sf.Height; break;
+            }
+
+            g.DrawString(title.SubText, SubFont, ChartStyle.ForeColor, left, top);
+        }
+
+        protected void DrawLegend(Graphics g, UILegend legend)
+        {
+            if (legend == null) return;
+
+            float totalHeight = 0;
+            float totalWidth = 0;
+            float maxWidth = 0;
+            float oneHeight = 0;
+
+            foreach (var data in legend.Data)
+            {
+                SizeF sf = g.MeasureString(data, LegendFont);
+                totalHeight += sf.Height;
+                totalWidth += sf.Width;
+                totalWidth += 20;
+
+                maxWidth = Math.Max(sf.Width, maxWidth);
+                oneHeight = sf.Height;
+            }
+
+            float top = 0;
+            float left = 0;
+
+            if (legend.Orient == UIOrient.Horizontal)
+            {
+                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
+                if (legend.Left == UILeftAlignment.Center) left = (Width - totalWidth) / 2.0f;
+                if (legend.Left == UILeftAlignment.Right) left = Width - totalWidth - TextInterval;
+
+                if (legend.Top == UITopAlignment.Top) top = TextInterval;
+                if (legend.Top == UITopAlignment.Center) top = (Height - oneHeight) / 2.0f;
+                if (legend.Top == UITopAlignment.Bottom) top = Height - oneHeight - TextInterval;
+            }
+
+            if (legend.Orient == UIOrient.Vertical)
+            {
+                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
+                if (legend.Left == UILeftAlignment.Center) left = (Width - maxWidth) / 2.0f - 10;
+                if (legend.Left == UILeftAlignment.Right) left = Width - maxWidth - TextInterval - 20;
+
+                if (legend.Top == UITopAlignment.Top) top = TextInterval;
+                if (legend.Top == UITopAlignment.Center) top = (Height - totalHeight) / 2.0f;
+                if (legend.Top == UITopAlignment.Bottom) top = Height - totalHeight - TextInterval;
+            }
+
+            float startleft = left;
+            float starttop = top;
+            for (int i = 0; i < legend.DataCount; i++)
+            {
+                var data = legend.Data[i];
+                SizeF sf = g.MeasureString(data, LegendFont);
+                if (legend.Orient == UIOrient.Horizontal)
+                {
+                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, startleft + 20, top);
+                    startleft += 20;
+                    startleft += sf.Width;
+                }
+
+                if (legend.Orient == UIOrient.Vertical)
+                {
+                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, left + 20, starttop);
+                    starttop += oneHeight;
+                }
             }
         }
     }

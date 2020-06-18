@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>ShenYongHua</authors>
+    <owners>$owners$</owners>
+    <license type="file">gpl-3.0.txt</license>
+    <iconUrl>https://files-cdn.cnblogs.com/files/yhuse/SunnyUISmall.bmp</iconUrl>
+    <projectUrl>https://gitee.com/yhuse/SunnyUI</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>$releaseNotes$</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>C# Winform SunnyUI Custom Control Frame Class</tags>
+  </metadata>
+  <files>
+    <file src="gpl-3.0.txt" target="" />
+  </files>
+</package>

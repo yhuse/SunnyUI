@@ -39,7 +39,9 @@ namespace Sunny.UI
 
         protected UIStyle _style = UIStyle.Blue;
 
-        public UIStatusForm StatusForm;
+        private UIStatusForm statusForm;
+
+        public UIStatusForm StatusForm => statusForm ?? (statusForm = new UIStatusForm());
 
         public UIPage()
         {
@@ -57,6 +59,11 @@ namespace Sunny.UI
             if (!IsDesignMode) base.Dock = DockStyle.Fill;
 
             Version = UIGlobal.Version;
+        }
+
+        public void Render()
+        {
+            SetStyle(UIStyles.Style);
         }
 
         private int _symbolSize = 24;
@@ -167,8 +174,6 @@ namespace Sunny.UI
 
         public void ShowStatus(string title, string desc, int max = 100, int value = 0)
         {
-            if (StatusForm == null) StatusForm = new UIStatusForm();
-
             StatusForm.Style = Style;
             StatusForm.Show(title, desc, max, value);
         }
@@ -181,6 +186,14 @@ namespace Sunny.UI
         public void StatusStepIt()
         {
             StatusForm.StepIt();
+        }
+
+        [DefaultValue(null)]
+        [Browsable(false)]
+        public string StatusDescription
+        {
+            get => StatusForm?.Description;
+            set => StatusForm.Description = value;
         }
 
         protected override void OnControlAdded(ControlEventArgs e)

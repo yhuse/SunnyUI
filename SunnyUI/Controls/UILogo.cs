@@ -55,12 +55,12 @@ namespace Sunny.UI
             int n1 = 66;
             int n3 = -20;
 
-            g.FillPie(new SolidBrush(UIColor.Blue), x, y, n1, n1, -30, 60);
-            g.FillPie(new SolidBrush(UIColor.Gray), x, y, n1, n1, 30, 60);
-            g.FillPie(new SolidBrush(UIColor.Red), x, y, n1, n1, 90, 60);
-            g.FillPie(new SolidBrush(UIColor.Orange), x, y, n1, n1, 150, 60);
-            g.FillPie(new SolidBrush(Color.FromArgb(255, 196, 0)), x, y, n1, n1, 210, 60);
-            g.FillPie(new SolidBrush(UIColor.Green), x, y, n1, n1, 270, 60);
+            g.FillPie(UIColor.Blue, x, y, n1, n1, -30, 60);
+            g.FillPie(UIColor.Gray, x, y, n1, n1, 30, 60);
+            g.FillPie(UIColor.Red, x, y, n1, n1, 90, 60);
+            g.FillPie(UIColor.Orange, x, y, n1, n1, 150, 60);
+            g.FillPie(Color.FromArgb(255, 196, 0), x, y, n1, n1, 210, 60);
+            g.FillPie(UIColor.Green, x, y, n1, n1, 270, 60);
 
             g.FillEllipse(BackColor, x - n3, y - n3, n1 + n3 * 2, n1 + n3 * 2);
             g.SetHighQuality();

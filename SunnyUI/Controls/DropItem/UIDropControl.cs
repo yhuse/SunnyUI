@@ -96,13 +96,16 @@ namespace Sunny.UI
         {
             dropSymbol = SymbolNormal;
 
-            if (itemForm != null && itemForm.Visible)
+            if (DroppedDown)
             {
                 dropSymbol = SymbolDropDown;
             }
 
             Invalidate();
         }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool DroppedDown => itemForm != null && itemForm.Visible;
 
         private int symbolNormal = 61703;
         private int dropSymbol = 61703;
@@ -156,7 +159,7 @@ namespace Sunny.UI
 
         public event EventHandler ButtonClick;
 
-        private readonly TextBoxEx edit = new TextBoxEx();
+        protected readonly TextBoxEx edit = new TextBoxEx();
 
         protected override void OnTextChanged(EventArgs e)
         {
@@ -267,6 +270,20 @@ namespace Sunny.UI
             set => edit.MaxLength = Math.Max(value, 1);
         }
 
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionLength
+        {
+            get => edit.SelectionLength;
+            set => edit.SelectionLength = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectionStart
+        {
+            get => edit.SelectionStart;
+            set => edit.SelectionStart = value;
+        }
+
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
@@ -305,7 +322,21 @@ namespace Sunny.UI
             }
         }
 
-        private class TextBoxEx : TextBox
+        //public event EventHandler DropDown;
+
+        //public event EventHandler DropDownClosed;
+
+        public void Select(int start, int length)
+        {
+            edit.Select(start, length);
+        }
+
+        public void SelectAll()
+        {
+            edit.SelectAll();
+        }
+
+        protected class TextBoxEx : TextBox
         {
             private string watermark;
 

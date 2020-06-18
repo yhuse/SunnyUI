@@ -35,15 +35,14 @@ namespace Sunny.UI
         {
             if (emptyOption != null) return;
 
-            emptyOption = new UIOption();
+            UIPieOption option = new UIPieOption();
 
-            emptyOption.Title = new UITitle();
-            emptyOption.Title.Text = "SunnyUI";
-            emptyOption.Title.SubText = "PieChart";
+            option.Title = new UITitle();
+            option.Title.Text = "SunnyUI";
+            option.Title.SubText = "PieChart";
 
-            var series = new UISeries();
+            var series = new UIPieSeries();
             series.Name = "饼状图";
-            series.Type = UISeriesType.Pie;
             series.Center = new UICenter(50, 55);
             series.Radius = 70;
             for (int i = 0; i < 5; i++)
@@ -51,58 +50,34 @@ namespace Sunny.UI
                 series.AddData("Data" + i, (i + 1) * 20);
             }
 
-            emptyOption.Series.Add(series);
+            option.Series.Add(series);
+            emptyOption = option;
         }
 
-        protected override void DrawTitle(Graphics g, UITitle title)
+        protected override void OnSizeChanged(EventArgs e)
         {
-            if (title == null) return;
-            SizeF sf = g.MeasureString(title.Text, Font);
-            float left = 0;
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sf.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-
-            float top = 0;
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = TextInterval; break;
-                case UITopAlignment.Center: top = (Height - sf.Height) / 2.0f; break;
-                case UITopAlignment.Bottom: top = Height - TextInterval - sf.Height; break;
-            }
-
-            g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
-
-            SizeF sfs = g.MeasureString(title.SubText, SubFont);
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sfs.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = top + sf.Height; break;
-                case UITopAlignment.Center: top = top + sf.Height; break;
-                case UITopAlignment.Bottom: top = top - sf.Height; break;
-            }
-
-            g.DrawString(title.SubText, subFont, ChartStyle.ForeColor, left, top);
+            base.OnSizeChanged(e);
+            CalcData(PieOption);
         }
 
-        protected override void CalcData(UIOption o)
+        protected override void DrawOption(Graphics g)
+        {
+            if (PieOption == null) return;
+             DrawTitle(g, PieOption.Title);
+             DrawSeries(g, PieOption.Series);
+             DrawLegend(g, PieOption.Legend);
+        }
+
+        protected override void CalcData(UIOption option)
         {
             Angles.Clear();
+            UIPieOption o = (UIPieOption)option;
             if (o == null || o.Series == null || o.Series.Count == 0) return;
             UITemplate template = null;
             if (o.ToolTip != null)
             {
-                template = new UITemplate(o.ToolTip.formatter);
+                template = new UITemplate(o.ToolTip.Formatter);
             }
-
 
             for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
             {
@@ -130,14 +105,14 @@ namespace Sunny.UI
                             {
                                 template.Set("a", pie.Name);
                                 template.Set("b", pie.Data[i].Name);
-                                template.Set("c", pie.Data[i].Value.ToString("F" + DecimalNumber));
+                                template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
                                 template.Set("d", percent.ToString("F2"));
                                 text = template.Render();
                             }
                         }
                         catch
                         {
-                            text = pie.Data[i].Name + " : " + pie.Data[i].Value.ToString("F" + DecimalNumber) + "(" + percent.ToString("F2") + "%)";
+                            text = pie.Data[i].Name + " : " + pie.Data[i].Value.ToString("F2") + "(" + percent.ToString("F2") + "%)";
                             if (pie.Name.IsValid()) text = pie.Name + '\n' + text;
                         }
                     }
@@ -148,7 +123,7 @@ namespace Sunny.UI
             }
         }
 
-        protected override void DrawSeries(Graphics g, UIOption o, List<UISeries> series)
+        private void DrawSeries(Graphics g, List<UIPieSeries> series)
         {
             if (series == null || series.Count == 0) return;
 
@@ -168,95 +143,39 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
 
-        protected override void DrawLegend(Graphics g, UILegend legend)
+
+
+        [Browsable(false)]
+        private UIPieOption PieOption
         {
-            if (legend == null) return;
-
-            float totalHeight = 0;
-            float totalWidth = 0;
-            float maxWidth = 0;
-            float oneHeight = 0;
-
-            foreach (var data in legend.Data)
+            get
             {
-                SizeF sf = g.MeasureString(data, LegendFont);
-                totalHeight += sf.Height;
-                totalWidth += sf.Width;
-                totalWidth += 20;
-
-                maxWidth = Math.Max(sf.Width, maxWidth);
-                oneHeight = sf.Height;
-            }
-
-            float top = 0;
-            float left = 0;
-
-            if (legend.Orient == Orient.Horizontal)
-            {
-                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
-                if (legend.Left == UILeftAlignment.Center) left = (Width - totalWidth) / 2.0f;
-                if (legend.Left == UILeftAlignment.Right) left = Width - totalWidth - TextInterval;
-
-                if (legend.Top == UITopAlignment.Top) top = TextInterval;
-                if (legend.Top == UITopAlignment.Center) top = (Height - oneHeight) / 2.0f;
-                if (legend.Top == UITopAlignment.Bottom) top = Height - oneHeight - TextInterval;
-            }
-
-            if (legend.Orient == Orient.Vertical)
-            {
-                if (legend.Left == UILeftAlignment.Left) left = TextInterval;
-                if (legend.Left == UILeftAlignment.Center) left = (Width - maxWidth) / 2.0f - 10;
-                if (legend.Left == UILeftAlignment.Right) left = Width - maxWidth - TextInterval - 20;
-
-                if (legend.Top == UITopAlignment.Top) top = TextInterval;
-                if (legend.Top == UITopAlignment.Center) top = (Height - totalHeight) / 2.0f;
-                if (legend.Top == UITopAlignment.Bottom) top = Height - totalHeight - TextInterval;
-            }
-
-            float startleft = left;
-            float starttop = top;
-            for (int i = 0; i < legend.DataCount; i++)
-            {
-                var data = legend.Data[i];
-                SizeF sf = g.MeasureString(data, LegendFont);
-                if (legend.Orient == Orient.Horizontal)
-                {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, startleft + 20, top);
-                    startleft += 20;
-                    startleft += sf.Width;
-                }
-
-                if (legend.Orient == Orient.Vertical)
-                {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, left + 20, starttop);
-                    starttop += oneHeight;
-                }
+                UIOption option = Option ?? EmptyOption;
+                UIPieOption o = (UIPieOption)option;
+                return o;
             }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            UIOption option = Option ?? EmptyOption;
 
-            if (option.SeriesCount == 0)
+            if (PieOption.SeriesCount == 0)
             {
                 SetPieAndAzIndex(-1, -1);
                 return;
             }
 
-            for (int pieIndex = 0; pieIndex < option.SeriesCount; pieIndex++)
+            for (int pieIndex = 0; pieIndex < PieOption.SeriesCount; pieIndex++)
             {
-                RectangleF rect = GetSeriesRect(option.Series[pieIndex]);
+                RectangleF rect = GetSeriesRect(PieOption.Series[pieIndex]);
                 if (!e.Location.InRect(rect)) continue;
 
                 PointF pf = new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
                 if (MathEx.CalcDistance(e.Location, pf) * 2 > rect.Width) continue;
 
                 double az = MathEx.CalcAngle(e.Location, pf);
-                for (int azIndex = 0; azIndex < option.Series[pieIndex].Data.Count; azIndex++)
+                for (int azIndex = 0; azIndex < PieOption.Series[pieIndex].Data.Count; azIndex++)
                 {
                     if (az >= Angles[pieIndex][azIndex].Start && az <= Angles[pieIndex][azIndex].Start + Angles[pieIndex][azIndex].Sweep)
                     {
@@ -311,7 +230,7 @@ namespace Sunny.UI
             }
         }
 
-        private RectangleF GetSeriesRect(UISeries series)
+        private RectangleF GetSeriesRect(UIPieSeries series)
         {
             int left = series.Center.Left;
             int top = series.Center.Top;
@@ -321,7 +240,7 @@ namespace Sunny.UI
             return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
         }
 
-        public class Angle
+        internal class Angle
         {
             public float Start { get; set; }
             public float Sweep { get; set; }

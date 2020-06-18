@@ -143,7 +143,7 @@ namespace Sunny.UI
 
             // Draw the background ellipse
             var rectangle = new Rectangle(Padding.Left, Padding.Top, diameter, diameter);
-            g.FillEllipse(new SolidBrush(darkColor), rectangle);
+            g.FillEllipse(darkColor, rectangle);
 
             // Draw the glow gradient
             var path = new GraphicsPath();
@@ -152,6 +152,7 @@ namespace Sunny.UI
             pathBrush.CenterColor = lightColor;
             pathBrush.SurroundColors = new[] { Color.FromArgb(0, lightColor) };
             g.FillEllipse(pathBrush, rectangle);
+            pathBrush.Dispose();
 
             // Draw the white reflection gradient
             var offset = Convert.ToInt32(diameter * .15F);
@@ -163,6 +164,7 @@ namespace Sunny.UI
             pathBrush1.CenterColor = _reflectionColor;
             pathBrush1.SurroundColors = _surroundColor;
             g.FillEllipse(pathBrush1, whiteRect);
+            pathBrush1.Dispose();
 
             // Draw the border
             g.SetClip(ClientRectangle);

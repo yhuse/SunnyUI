@@ -1,6 +1,32 @@
 + 增加； - 删除； * 修改 
 
-2020.06.08
+2020.06.18
+* UIBarChart：完成开发
+
+2020.06.16
++ UIBarChart：新增ToolTip显示
++ UINavMenu：新增TipsText气泡数字显示
+
+2020.06.15
++UIBarChart：新增UIBarChart控件
+
+2020.06.14
+* 重构图表控件，准备开发UIBarChart
+* UITextBox：增加EnterAsTab
+
+2020.06.12
++ UIComboBox：增加数据绑定，可设置DataSource，DisplayMember，ValueMember
+
+2020.06.11
++ 增加到Nuget
+* UIFrame：修复框架页面放置UIContextMenuStrip时显示错位
+* UIAvatar：修复Dock为Right时刷新问题
++ UIComboBox：增加DataSource
+
+2020.06.10
++ UINaveMenu：增加ShowOneNode，同一层只显示一个打开的节点
+
+2020.06.09
 * 页面框架支持通过PageIndex和PageGuid关联
 
 2020.06.08

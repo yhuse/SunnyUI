@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\FBarChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FBarChart.Designer.cs">
+      <DependentUpon>FBarChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FAvatar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Charts\FBarChart.resx">
+      <DependentUpon>FBarChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FAvatar.resx">
       <DependentUpon>FAvatar.cs</DependentUpon>
     </EmbeddedResource>

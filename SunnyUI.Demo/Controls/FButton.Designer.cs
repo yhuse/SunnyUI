@@ -80,14 +80,17 @@
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
+            this.uiImageButton4 = new Sunny.UI.UIImageButton();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).BeginInit();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiImageButton4);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
             this.PagePanel.Controls.Add(this.uiImageButton1);
@@ -713,7 +716,7 @@
             this.uiSymbolButton13.Name = "uiSymbolButton13";
             this.uiSymbolButton13.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton13.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton13.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton13.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton13.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton13.Symbol = 61518;
@@ -727,7 +730,7 @@
             this.uiSymbolButton14.Name = "uiSymbolButton14";
             this.uiSymbolButton14.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton14.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton14.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton14.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton14.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton14.Symbol = 61514;
@@ -741,7 +744,7 @@
             this.uiSymbolButton15.Name = "uiSymbolButton15";
             this.uiSymbolButton15.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton15.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton15.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton15.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton15.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton15.Symbol = 61513;
@@ -755,7 +758,7 @@
             this.uiSymbolButton16.Name = "uiSymbolButton16";
             this.uiSymbolButton16.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton16.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton16.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton16.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton16.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton16.Symbol = 61517;
@@ -769,7 +772,7 @@
             this.uiSymbolButton17.Name = "uiSymbolButton17";
             this.uiSymbolButton17.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton17.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton17.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton17.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton17.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton17.Symbol = 61516;
@@ -807,7 +810,7 @@
             this.uiSymbolButton20.Name = "uiSymbolButton20";
             this.uiSymbolButton20.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton20.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
-            this.uiSymbolButton20.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton20.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton20.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton20.Symbol = 61522;
@@ -821,7 +824,7 @@
             this.uiSymbolButton21.Name = "uiSymbolButton21";
             this.uiSymbolButton21.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton21.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton21.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton21.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton21.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton21.Symbol = 61520;
@@ -835,7 +838,7 @@
             this.uiSymbolButton22.Name = "uiSymbolButton22";
             this.uiSymbolButton22.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton22.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton22.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton22.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton22.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton22.Symbol = 61508;
@@ -849,7 +852,7 @@
             this.uiSymbolButton23.Name = "uiSymbolButton23";
             this.uiSymbolButton23.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton23.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiSymbolButton23.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton23.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton23.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton23.Symbol = 61544;
@@ -863,7 +866,7 @@
             this.uiSymbolButton24.Name = "uiSymbolButton24";
             this.uiSymbolButton24.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton24.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
-            this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton24.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton24.Symbol = 61473;
@@ -921,7 +924,7 @@
             this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton1.Location = new System.Drawing.Point(395, 438);
             this.uiImageButton1.Name = "uiImageButton1";
-            this.uiImageButton1.Size = new System.Drawing.Size(92, 35);
+            this.uiImageButton1.Size = new System.Drawing.Size(94, 35);
             this.uiImageButton1.TabIndex = 49;
             this.uiImageButton1.TabStop = false;
             this.uiImageButton1.Text = "Home";
@@ -953,6 +956,21 @@
             this.uiImageButton3.TabStop = false;
             this.uiImageButton3.Text = null;
             // 
+            // uiImageButton4
+            // 
+            this.uiImageButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton4.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton4.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
+            this.uiImageButton4.ImageOffset = new System.Drawing.Point(12, 5);
+            this.uiImageButton4.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton4.Location = new System.Drawing.Point(630, 435);
+            this.uiImageButton4.Name = "uiImageButton4";
+            this.uiImageButton4.Size = new System.Drawing.Size(70, 61);
+            this.uiImageButton4.TabIndex = 52;
+            this.uiImageButton4.TabStop = false;
+            this.uiImageButton4.Text = "Home";
+            this.uiImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -965,6 +983,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1023,5 +1042,6 @@
         private UIImageButton uiImageButton3;
         private UIImageButton uiImageButton2;
         private UIImageButton uiImageButton1;
+        private UIImageButton uiImageButton4;
     }
 }

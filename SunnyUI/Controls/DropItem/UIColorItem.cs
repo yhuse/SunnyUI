@@ -44,9 +44,9 @@ namespace Sunny.UI
             this.btnOK = new Sunny.UI.UISymbolButton();
             this.btnCancel = new Sunny.UI.UISymbolButton();
             this.SuspendLayout();
-            // 
+            //
             // m_colorTable
-            // 
+            //
             this.m_colorTable.BackColor = System.Drawing.Color.Transparent;
             this.m_colorTable.Colors = new System.Drawing.Color[] {
         System.Drawing.Color.Black,
@@ -206,9 +206,9 @@ namespace Sunny.UI
             this.m_colorTable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_colorTable.TextAngle = 0F;
             this.m_colorTable.SelectedIndexChanged += new System.EventHandler(this.m_colorTable_SelectedIndexChanged);
-            // 
+            //
             // m_colorSample
-            // 
+            //
             this.m_colorSample.FrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m_colorSample.Location = new System.Drawing.Point(10, 163);
             this.m_colorSample.Name = "m_colorSample";
@@ -222,9 +222,9 @@ namespace Sunny.UI
             this.m_colorSample.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_colorSample.TextAngle = 0F;
             this.m_colorSample.Paint += new System.Windows.Forms.PaintEventHandler(this.m_colorSample_Paint);
-            // 
+            //
             // edtA
-            // 
+            //
             this.edtA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtA.FillColor = System.Drawing.Color.White;
             this.edtA.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -241,9 +241,9 @@ namespace Sunny.UI
             this.edtA.TabIndex = 2;
             this.edtA.Text = "0";
             this.edtA.Type = Sunny.UI.UITextBox.UIEditType.Integer;
-            // 
+            //
             // edtR
-            // 
+            //
             this.edtR.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtR.FillColor = System.Drawing.Color.White;
             this.edtR.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -260,9 +260,9 @@ namespace Sunny.UI
             this.edtR.TabIndex = 3;
             this.edtR.Text = "0";
             this.edtR.Type = Sunny.UI.UITextBox.UIEditType.Integer;
-            // 
+            //
             // edtG
-            // 
+            //
             this.edtG.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtG.FillColor = System.Drawing.Color.White;
             this.edtG.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -279,9 +279,9 @@ namespace Sunny.UI
             this.edtG.TabIndex = 4;
             this.edtG.Text = "0";
             this.edtG.Type = Sunny.UI.UITextBox.UIEditType.Integer;
-            // 
+            //
             // edtB
-            // 
+            //
             this.edtB.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtB.FillColor = System.Drawing.Color.White;
             this.edtB.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -298,9 +298,9 @@ namespace Sunny.UI
             this.edtB.TabIndex = 5;
             this.edtB.Text = "0";
             this.edtB.Type = Sunny.UI.UITextBox.UIEditType.Integer;
-            // 
+            //
             // lblA
-            // 
+            //
             this.lblA.AutoSize = true;
             this.lblA.BackColor = System.Drawing.Color.Transparent;
             this.lblA.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -311,9 +311,9 @@ namespace Sunny.UI
             this.lblA.TabIndex = 6;
             this.lblA.Text = "A";
             this.lblA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // lblR
-            // 
+            //
             this.lblR.AutoSize = true;
             this.lblR.BackColor = System.Drawing.Color.Transparent;
             this.lblR.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -324,9 +324,9 @@ namespace Sunny.UI
             this.lblR.TabIndex = 7;
             this.lblR.Text = "R";
             this.lblR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // lblG
-            // 
+            //
             this.lblG.AutoSize = true;
             this.lblG.BackColor = System.Drawing.Color.Transparent;
             this.lblG.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -337,9 +337,9 @@ namespace Sunny.UI
             this.lblG.TabIndex = 8;
             this.lblG.Text = "G";
             this.lblG.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // lblB
-            // 
+            //
             this.lblB.AutoSize = true;
             this.lblB.BackColor = System.Drawing.Color.Transparent;
             this.lblB.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -350,9 +350,9 @@ namespace Sunny.UI
             this.lblB.TabIndex = 9;
             this.lblB.Text = "B";
             this.lblB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // m_colorWheel
-            // 
+            //
             this.m_colorWheel.BackColor = System.Drawing.Color.Transparent;
             this.m_colorWheel.FrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m_colorWheel.Location = new System.Drawing.Point(269, 8);
@@ -365,9 +365,9 @@ namespace Sunny.UI
             this.m_colorWheel.TagString = null;
             this.m_colorWheel.Text = "colorWheel1";
             this.m_colorWheel.SelectedColorChanged += new System.EventHandler(this.m_colorWheel_SelectedColorChanged);
-            // 
+            //
             // m_colorBar
-            // 
+            //
             this.m_colorBar.BackColor = System.Drawing.Color.Transparent;
             this.m_colorBar.BarPadding = new System.Windows.Forms.Padding(12, 5, 32, 10);
             this.m_colorBar.Color1 = System.Drawing.Color.Black;
@@ -392,9 +392,9 @@ namespace Sunny.UI
             this.m_colorBar.TextAngle = 270F;
             this.m_colorBar.ValueOrientation = Sunny.UI.ColorSlider.eValueOrientation.MaxToMin;
             this.m_colorBar.SelectedValueChanged += new System.EventHandler(this.m_colorBar_SelectedValueChanged);
-            // 
+            //
             // m_opacitySlider
-            // 
+            //
             this.m_opacitySlider.BackColor = System.Drawing.Color.Transparent;
             this.m_opacitySlider.BarPadding = new System.Windows.Forms.Padding(60, 12, 80, 25);
             this.m_opacitySlider.Color1 = System.Drawing.Color.White;
@@ -420,9 +420,9 @@ namespace Sunny.UI
             this.m_opacitySlider.TextAngle = 0F;
             this.m_opacitySlider.ValueOrientation = Sunny.UI.ColorSlider.eValueOrientation.MinToMax;
             this.m_opacitySlider.SelectedValueChanged += new System.EventHandler(this.m_opacitySlider_SelectedValueChanged);
-            // 
+            //
             // btnOK
-            // 
+            //
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnOK.Location = new System.Drawing.Point(269, 197);
@@ -433,9 +433,9 @@ namespace Sunny.UI
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
+            //
             // btnCancel
-            // 
+            //
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnCancel.Location = new System.Drawing.Point(372, 197);
@@ -447,9 +447,9 @@ namespace Sunny.UI
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
+            //
             // UIColorItem
-            // 
+            //
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.m_opacitySlider);
@@ -471,7 +471,6 @@ namespace Sunny.UI
             this.Style = Sunny.UI.UIStyle.Custom;
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private void m_colorTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -566,15 +565,13 @@ namespace Sunny.UI
             r.Width /= 2;
 
             Color c = Color.FromArgb((int)Math.Floor(255f * m_opacity), m_selectedColor);
-            SolidBrush b = new SolidBrush(c);
-            e.Graphics.FillRectangle(b, r);
+            e.Graphics.FillRectangle(c, r);
 
             r.X += r.Width;
 
-            e.Graphics.FillRectangle(Brushes.White, r);
+            e.Graphics.FillRectangle(Color.White, r);
             c = Color.FromArgb(255, m_selectedColor);
-            b = new SolidBrush(c);
-            e.Graphics.FillRectangle(b, r);
+            e.Graphics.FillRectangle(c, r);
         }
 
         public override void SetStyle(UIBaseStyle uiColor)
