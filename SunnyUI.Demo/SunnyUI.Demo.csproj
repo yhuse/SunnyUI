@@ -445,6 +445,7 @@
     <None Include="Resources\ChartDarkStyle.png" />
     <None Include="Resources\ChartDefaultStyle.png" />
     <None Include="Resources\ChartPlainStyle.png" />
+    <None Include="Resources\SunnyLogin.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sunny.UI.Demo.Forms
+﻿namespace Sunny.UI.Demo.Forms
 {
     public partial class FLogin : UILoginForm
     {
@@ -9,7 +7,7 @@ namespace Sunny.UI.Demo.Forms
             InitializeComponent();
         }
 
-        private void FLogin_ButtonLoginClick(object sender, EventArgs e)
+        private void FLogin_ButtonLoginClick(object sender, System.EventArgs e)
         {
             if (UserName == "admin" && Password == "admin")
             {
