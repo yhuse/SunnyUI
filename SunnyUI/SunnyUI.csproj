@@ -120,6 +120,12 @@
     <Compile Include="Controls\UITransparentPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Forms\UILoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UILoginForm.Designer.cs">
+      <DependentUpon>UILoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UINotifier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +505,9 @@
     <EmbeddedResource Include="Controls\UITitlePanel.resx">
       <DependentUpon>UITitlePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UILoginForm.resx">
+      <DependentUpon>UILoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
@@ -634,6 +643,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\colorbarIndicators.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

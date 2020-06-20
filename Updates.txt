@@ -1,5 +1,11 @@
 + 增加； - 删除； * 修改 
 
+2020.06.20
++ UILoginForm：增加登录窗体
+
+2020.06.18
+* UIBarChart：完成开发
+
 2020.06.16
 + UIBarChart：新增ToolTip显示
 + UINavMenu：新增TipsText气泡数字显示
