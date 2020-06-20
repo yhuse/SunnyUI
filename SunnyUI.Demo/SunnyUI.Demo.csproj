@@ -34,6 +34,7 @@
   <PropertyGroup>
     <ApplicationIcon>SunnyUI.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="SunnyUI, Version=2.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
