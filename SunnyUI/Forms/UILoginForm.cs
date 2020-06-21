@@ -42,6 +42,12 @@ namespace Sunny.UI
 
                     if (loginImage == UILoginImage.Login2)
                         BackgroundImage = Resources.Login2;
+
+                    if (loginImage == UILoginImage.Login3)
+                        BackgroundImage = Resources.Login3;
+
+                    if (loginImage == UILoginImage.Login4)
+                        BackgroundImage = Resources.Login4;
                 }
             }
         }
@@ -49,7 +55,9 @@ namespace Sunny.UI
         public enum UILoginImage
         {
             Login1,
-            Login2
+            Login2,
+            Login3,
+            Login4
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
