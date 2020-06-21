@@ -15,11 +15,11 @@ namespace Sunny.UI.Demo
         {
             if (this.ShowAskDialog("确认信息提示框"))
             {
-               UIMessageTip.ShowOk("您点击了确定按钮");
+                this.ShowSuccessTip("您点击了确定按钮");
             }
             else
             {
-                UIMessageTip.ShowError("您点击了取消按钮");
+                this.ShowErrorTip("您点击了取消按钮");
             }
         }
 
@@ -49,6 +49,7 @@ namespace Sunny.UI.Demo
             for (int i = 0; i < 100; i++)
             {
                 SystemEx.Delay(50);
+                StatusDescription = "数据加载中(" + i + "%)......";
                 StatusStepIt();
             }
         }

@@ -1,6 +1,7 @@
 + 增加； - 删除； * 修改 
 
 2020.06.21
++ UIMessageTipHelper：增加MessageTip扩展方法
 + UILoginForm：登录窗体增加两张图片
 * UIMessageForm：解决了Demo消息窗口弹出，界面刷新闪烁的Bug
 
