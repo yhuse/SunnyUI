@@ -12,7 +12,7 @@
 #### 介绍
 - SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
 - 源码编译环境：VS2019
-- 动态库应用环境：VS2010，.Net Framework 4.0及以上
+- 动态库应用环境：VS2010及以上，.Net Framework 4.0及以上
 
 #### 软件框架
 ![思维导图](https://images.gitee.com/uploads/images/2020/0518/223455_88a12732_416720.png "中心主题.png")
