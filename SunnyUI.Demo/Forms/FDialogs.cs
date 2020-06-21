@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sunny.UI.Demo.Forms;
+using System;
 using System.Collections.Generic;
-using Sunny.UI.Demo.Forms;
 
 namespace Sunny.UI.Demo
 {
@@ -15,11 +15,11 @@ namespace Sunny.UI.Demo
         {
             if (this.ShowAskDialog("确认信息提示框"))
             {
-                this.ShowInfoDialog("您点击了确定按钮");
+               UIMessageTip.ShowOk("您点击了确定按钮");
             }
             else
             {
-                this.ShowErrorDialog("您点击了取消按钮");
+                UIMessageTip.ShowError("您点击了取消按钮");
             }
         }
 

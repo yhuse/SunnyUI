@@ -41,7 +41,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(208)))), ((int)(((byte)(250)))));
             this.pictureBox1.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyLogin;
-            this.pictureBox1.Location = new System.Drawing.Point(183, 212);
+            this.pictureBox1.Location = new System.Drawing.Point(180, 208);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(71, 71);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

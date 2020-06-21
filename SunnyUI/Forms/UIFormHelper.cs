@@ -379,12 +379,8 @@ namespace Sunny.UI
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
-            if (title.IsValid())
-            {
-                frm.Title = title;
-            }
-
-            frm.Description = description;
+            if (title.IsValid()) frm.Title = title;
+            if (description.IsValid()) frm.Description = description;
             frm.ShowDialog();
 
             bool result = frm.IsOK;

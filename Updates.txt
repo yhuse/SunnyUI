@@ -2,6 +2,7 @@
 
 2020.06.21
 + UILoginForm：登录窗体增加两张图片
+* UIMessageForm：解决了Demo消息窗口弹出，界面刷新闪烁的Bug
 
 2020.06.20
 + UILoginForm：增加登录窗体
