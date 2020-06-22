@@ -80,5 +80,10 @@ namespace Sunny.UI.Demo
                     break;
             }
         }
+
+        private void FMain_WindowStateChange(object sender, FormWindowState state)
+        {
+            state.ConsoleWriteLine("WindowState");
+        }
     }
 }
