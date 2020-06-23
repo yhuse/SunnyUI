@@ -1,5 +1,8 @@
 + 增加； - 删除； * 修改 
 
+2020.06.23
+* UIButton：增加ShowFocusLine，可获得焦点并显示
+
 2020.06.22
 * UIForm：增加WindowStateChange事件判断WindowState状态，调整ShowFullScreen全屏显示
 
