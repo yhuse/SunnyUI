@@ -7,9 +7,21 @@ namespace Sunny.UI.Demo
         public FCombobox()
         {
             InitializeComponent();
-            uiDatePicker1.Value = DateTime.Today;
-            uiTimePicker1.Value = DateTime.Now;
-            uiDatetimePicker1.Value = DateTime.Now;
+        }
+
+        private void uiDatePicker1_ValueChanged(object sender, DateTime value)
+        {
+            uiDatePicker1.Value.ConsoleWriteLine();
+        }
+
+        private void uiDatetimePicker1_ValueChanged(object sender, DateTime value)
+        {
+            uiDatetimePicker1.Value.ConsoleWriteLine();
+        }
+
+        private void uiTimePicker1_ValueChanged(object sender, DateTime value)
+        {
+            uiTimePicker1.Value.ConsoleWriteLine();
         }
     }
 }
