@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
@@ -8,11 +9,6 @@ namespace Sunny.UI.Demo
         public FCheckBox()
         {
             InitializeComponent();
-        }
-
-        private void uiRadioButtonGroup1_ValueChanged(object sender, int index, string text)
-        {
-            MessageBox.Show(index.ToString());
         }
 
         private void uiCheckBoxGroup1_ValueChanged(object sender, int index, string text, bool isChecked)
@@ -25,7 +21,22 @@ namespace Sunny.UI.Demo
                 sb.Append(", ");
             }
 
-            this.ShowInfoDialog("SelectedIndex: " + index + ", SelectedText: " + text + "\n" + sb.ToString());
+           this.ShowSuccessTip("SelectedIndex: " + index + ", SelectedText: " + text + "\n" + sb.ToString());
+        }
+
+        private void uiButton1_Click(object sender, System.EventArgs e)
+        {
+            uiCheckBoxGroup1.SelectAll();
+        }
+
+        private void uiButton2_Click(object sender, System.EventArgs e)
+        {
+            uiCheckBoxGroup1.UnSelectAll();
+        }
+
+        private void uiButton3_Click(object sender, System.EventArgs e)
+        {
+            uiCheckBoxGroup1.ReverseSelected();
         }
     }
 }

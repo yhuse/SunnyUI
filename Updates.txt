@@ -1,5 +1,8 @@
 + 增加； - 删除； * 修改 
 
+2020.06.24
++ UICheckBoxGroup：增加全选、全不选、反选
+
 2020.06.23
 * UIButton：增加ShowFocusLine，可获得焦点并显示
 

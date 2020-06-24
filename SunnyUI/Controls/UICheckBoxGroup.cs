@@ -139,7 +139,11 @@ namespace Sunny.UI
         private void Box_ValueChanged(object sender, bool value)
         {
             UICheckBox checkBox = (UICheckBox)sender;
-            ValueChanged?.Invoke(this, checkBox.Tag.ToString().ToInt(), checkBox.Text, checkBox.Checked);
+
+            if (!multiChange)
+            {
+                ValueChanged?.Invoke(this, checkBox.Tag.ToString().ToInt(), checkBox.Text, checkBox.Checked);
+            }
         }
 
         [Browsable(false)]
@@ -251,5 +255,49 @@ namespace Sunny.UI
                 box.Font = Font;
             }
         }
+
+        /// <summary>
+        /// 全部选择
+        /// </summary>
+        public void SelectAll()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = true;
+            }
+
+            multiChange = false;
+        }
+
+        /// <summary>
+        /// 全部不选
+        /// </summary>
+        public void UnSelectAll()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = false;
+            }
+
+            multiChange = false;
+        }
+
+        /// <summary>
+        /// 反转选择
+        /// </summary>
+        public void ReverseSelected()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = !box.Checked;
+            }
+
+            multiChange = false;
+        }
+
+        private bool multiChange;
     }
 }
