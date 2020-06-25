@@ -1,5 +1,8 @@
 + 增加； - 删除； * 修改 
 
+2020.06.25
++ UIScrollingText：增加控件
+
 2020.06.24
 + UICheckBoxGroup：增加全选、全不选、反选
 

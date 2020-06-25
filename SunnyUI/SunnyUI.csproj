@@ -114,6 +114,9 @@
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIScrollingText.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UITimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
