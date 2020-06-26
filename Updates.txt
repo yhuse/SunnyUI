@@ -1,7 +1,11 @@
 + 增加； - 删除； * 修改 
 
+2020.06.26
++ UIDoughnutChart：增加控件：环状图
++ UILoginForm：新增两张背景图
+
 2020.06.25
-+ UIScrollingText：增加控件
++ UIScrollingText：增加控件：滚动文字
 
 2020.06.24
 + UICheckBoxGroup：增加全选、全不选、反选

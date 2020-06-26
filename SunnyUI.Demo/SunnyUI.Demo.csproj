@@ -131,6 +131,12 @@
     <Compile Include="Controls\FCombobox.Designer.cs">
       <DependentUpon>FCombobox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FLogin.Designer.cs">
+      <DependentUpon>FLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,12 +148,6 @@
     </Compile>
     <Compile Include="Forms\FEditor.Designer.cs">
       <DependentUpon>FEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FLogin.Designer.cs">
-      <DependentUpon>FLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Frames\FAsideHeaderMainFooter.cs">
       <SubType>Form</SubType>
@@ -334,14 +334,14 @@
     <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FLogin.resx">
+      <DependentUpon>FLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FEdit.resx">
       <DependentUpon>FEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FEditor.resx">
       <DependentUpon>FEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FLogin.resx">
-      <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frames\FAsideHeaderMainFooter.resx">
       <DependentUpon>FAsideHeaderMainFooter.cs</DependentUpon>

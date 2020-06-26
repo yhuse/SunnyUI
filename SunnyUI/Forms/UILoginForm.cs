@@ -37,18 +37,13 @@ namespace Sunny.UI
                 {
                     loginImage = value;
 
-                    if (loginImage == UILoginImage.Login1)
-                        BackgroundImage = Resources.Login1;
-
-                    if (loginImage == UILoginImage.Login2)
-                        BackgroundImage = Resources.Login2;
-
-                    if (loginImage == UILoginImage.Login3)
-                        BackgroundImage = Resources.Login3;
-
-                    if (loginImage == UILoginImage.Login4)
-                        BackgroundImage = Resources.Login4;
-                }
+                    if (loginImage == UILoginImage.Login1) BackgroundImage = Resources.Login1;
+                    if (loginImage == UILoginImage.Login2) BackgroundImage = Resources.Login2;
+                    if (loginImage == UILoginImage.Login3) BackgroundImage = Resources.Login3;
+                    if (loginImage == UILoginImage.Login4) BackgroundImage = Resources.Login4;
+                    if (loginImage == UILoginImage.Login5) BackgroundImage = Resources.Login5;
+                    if (loginImage == UILoginImage.Login6) BackgroundImage = Resources.Login6;
+ }
             }
         }
 
@@ -57,7 +52,9 @@ namespace Sunny.UI
             Login1,
             Login2,
             Login3,
-            Login4
+            Login4,
+            Login5,
+            Login6
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

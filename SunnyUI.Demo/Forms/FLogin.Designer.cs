@@ -1,4 +1,4 @@
-﻿namespace Sunny.UI.Demo.Forms
+﻿namespace Sunny.UI.Demo
 {
     partial class FLogin
     {
@@ -29,24 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FLogin));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
-            this.lblTitle.Text = "SunnyUI.Net Login Form";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(208)))), ((int)(((byte)(250)))));
-            this.pictureBox1.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyLogin;
-            this.pictureBox1.Location = new System.Drawing.Point(180, 208);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 71);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
+            this.lblTitle.Text = "FLogin";
             // 
             // FLogin
             // 
@@ -54,20 +41,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(750, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login5;
             this.Name = "FLogin";
-            this.Text = "SunnyUI.Net Login Form";
+            this.Text = "FLogin";
             this.ButtonLoginClick += new System.EventHandler(this.FLogin_ButtonLoginClick);
-            this.Controls.SetChildIndex(this.lblTitle, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
