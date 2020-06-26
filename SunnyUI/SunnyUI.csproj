@@ -59,6 +59,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Charts\UIChartStyle.cs" />
+    <Compile Include="Charts\UIDoughnutChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Charts\UIOption.cs" />
     <Compile Include="Charts\UIPieChartOption.cs" />
     <Compile Include="Controls\Color\UIColorBar.cs">

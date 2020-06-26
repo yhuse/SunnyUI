@@ -53,6 +53,12 @@
     <Compile Include="Charts\FBarChart.Designer.cs">
       <DependentUpon>FBarChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\FDoughnutChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FDoughnutChart.Designer.cs">
+      <DependentUpon>FDoughnutChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FAvatar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Charts\FBarChart.resx">
       <DependentUpon>FBarChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\FDoughnutChart.resx">
+      <DependentUpon>FDoughnutChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FAvatar.resx">
       <DependentUpon>FAvatar.cs</DependentUpon>

@@ -715,7 +715,13 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, UIPage page)
         {
-            return CreateChildNode(parent, new NavMenuItem(page));
+            var childNode = CreateChildNode(parent, new NavMenuItem(page));
+            if (page.Symbol > 0)
+            {
+                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolSize);
+            }
+
+            return childNode;
         }
 
         public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)

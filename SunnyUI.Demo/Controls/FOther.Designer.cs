@@ -155,7 +155,7 @@
             // uiProgressIndicator1
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 217);
+            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 209);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(119, 132);
             this.uiProgressIndicator1.TabIndex = 26;
