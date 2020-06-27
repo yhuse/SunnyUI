@@ -1,8 +1,12 @@
 + 增加； - 删除； * 修改 
 
+2020.06.27
+* UITabControl：重绘左右按钮
+
 2020.06.26
 + UIDoughnutChart：增加控件：环状图
 + UILoginForm：新增两张背景图
+* 对PNG图片进行了压缩，减少了SunnyUI.Dll的大小
 
 2020.06.25
 + UIScrollingText：增加控件：滚动文字

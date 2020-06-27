@@ -33,7 +33,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Text = "FLogin";
+            this.lblTitle.Text = "SunnyUI.Net Login Form";
             // 
             // FLogin
             // 
@@ -41,9 +41,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(750, 450);
-            this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login5;
+            this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login6;
             this.Name = "FLogin";
-            this.Text = "FLogin";
+            this.Text = "SunnyUI.Net Login Form";
             this.ButtonLoginClick += new System.EventHandler(this.FLogin_ButtonLoginClick);
             this.ResumeLayout(false);
             this.PerformLayout();

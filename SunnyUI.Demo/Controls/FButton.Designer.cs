@@ -925,6 +925,7 @@
             // uiImageButton1
             // 
             this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton1.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
@@ -939,6 +940,7 @@
             // uiImageButton2
             // 
             this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.relationship0;
             this.uiImageButton2.ImageHover = global::Sunny.UI.Demo.Properties.Resources.relationship;
             this.uiImageButton2.ImagePress = global::Sunny.UI.Demo.Properties.Resources.relationship0;
@@ -952,6 +954,7 @@
             // uiImageButton3
             // 
             this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.save0;
             this.uiImageButton3.ImageHover = global::Sunny.UI.Demo.Properties.Resources.save;
             this.uiImageButton3.ImagePress = global::Sunny.UI.Demo.Properties.Resources.save0;
@@ -965,6 +968,8 @@
             // uiImageButton4
             // 
             this.uiImageButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiImageButton4.ForeColor = System.Drawing.Color.Red;
             this.uiImageButton4.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton4.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton4.ImageOffset = new System.Drawing.Point(12, 5);

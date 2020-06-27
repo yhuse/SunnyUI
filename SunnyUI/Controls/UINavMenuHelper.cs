@@ -149,6 +149,20 @@ namespace Sunny.UI
             tabControl = ctrl;
         }
 
+        public NavMenuItem this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= tabControl.TabPages.Count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                TabPage page = tabControl.TabPages[index];
+                return PageItems.ContainsKey(page) ? PageItems[page] : null;
+            }
+        }
+
         public UIPage AddPage(int pageIndex, UIPage page)
         {
             page.PageIndex = pageIndex;
@@ -313,6 +327,8 @@ namespace Sunny.UI
 
         public Guid PageGuid { get; set; } = Guid.Empty;
 
+        public bool AlwaysOpen { get; set; } = false;
+
         public NavMenuItem()
         {
         }
@@ -322,6 +338,7 @@ namespace Sunny.UI
             Text = page.Text;
             PageIndex = page.PageIndex;
             PageGuid = page.PageGuid;
+            AlwaysOpen = page.AlwaysOpen;
         }
 
         public NavMenuItem(string text, int pageIndex)

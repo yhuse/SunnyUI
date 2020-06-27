@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2020-06-27: V2.2.5 重绘左右选择按钮
 ******************************************************************************/
 
 using System;
@@ -66,41 +67,20 @@ namespace Sunny.UI
         [DefaultValue(true)]
         public bool ForbidCtrlTab { get; set; } = true;
 
-        public void SelectPage(int pageIndex)
-        {
-            Helper.SelectPage(pageIndex);
-        }
+        public void SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
 
-        public void SelectPage(Guid pageGuid)
-        {
-            Helper.SelectPage(pageGuid);
-        }
+        public void SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
+   
+        public void AddPage(UIPage page) => Helper.AddPage(page);
+   
+        public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
+    
+        public void AddPage(int pageIndex, UITabControlMenu page) => Helper.AddPage(pageIndex, page);
 
-        public void AddPage(UIPage page)
-        {
-            Helper.AddPage(page);
-        }
-
-        public void AddPage(int pageIndex, UITabControl page)
-        {
-            Helper.AddPage(pageIndex, page);
-        }
-
-        public void AddPage(int pageIndex, UITabControlMenu page)
-        {
-            Helper.AddPage(pageIndex, page);
-        }
-
-        public void AddPage(Guid guid, UITabControl page)
-        {
-            Helper.AddPage(guid, page);
-        }
-
-        public void AddPage(Guid guid, UITabControlMenu page)
-        {
-            Helper.AddPage(guid, page);
-        }
-
+        public void AddPage(Guid guid, UITabControl page) => Helper.AddPage(guid, page);
+ 
+        public void AddPage(Guid guid, UITabControlMenu page) => Helper.AddPage(guid, page);
+    
         public string Version { get; }
 
         private Color _fillColor = UIColor.LightBlue;
@@ -401,9 +381,16 @@ namespace Sunny.UI
                 }
 
                 g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
-                if (ShowCloseButton || (ShowActiveCloseButton && index == SelectedIndex))
+
+                var menuItem = Helper[index];
+                bool showButton = menuItem == null || !menuItem.AlwaysOpen;
+
+                if (showButton)
                 {
-                    g.DrawFontImage(61453, 20, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, TabRect.Top, 24, TabRect.Height));
+                    if (ShowCloseButton || (ShowActiveCloseButton && index == SelectedIndex))
+                    {
+                        g.DrawFontImage(77, 28, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, TabRect.Top, 24, TabRect.Height));
+                    }
                 }
 
                 // 绘制图标
@@ -543,13 +530,7 @@ namespace Sunny.UI
         {
             Graphics g = e.Graphics;
             Rectangle rect = e.ClipRectangle;
-
-            Color upButtonBaseColor = tabBackColor;
-            Color upButtonBorderColor = tabBackColor;
             Color upButtonArrowColor = tabUnSelectedForeColor;
-
-            Color downButtonBaseColor = tabBackColor;
-            Color downButtonBorderColor = tabBackColor;
             Color downButtonArrowColor = tabUnSelectedForeColor;
 
             Rectangle upButtonRect = rect;
@@ -573,122 +554,44 @@ namespace Sunny.UI
                     {
                         //鼠标按下
                         if (e.MouseInUpButton)
-                        {
-                            upButtonArrowColor = GetColor(tabBackColor, 0, -35, -24, -9);
-                        }
+                            upButtonArrowColor = Color.FromArgb(200, TabSelectedHighColor);
                         else
-                        {
-                            downButtonArrowColor = GetColor(tabBackColor, 0, -35, -24, -9);
-                        }
+                            downButtonArrowColor = Color.FromArgb(200, TabSelectedHighColor);
                     }
                     else
                     {
                         //鼠标移动
                         if (e.MouseInUpButton)
-                        {
-                            upButtonArrowColor = GetColor(tabBackColor, 0, 35, 24, 9);
-                        }
+                            upButtonArrowColor = TabSelectedHighColor;
                         else
-                        {
-                            downButtonArrowColor = GetColor(tabBackColor, 0, 35, 24, 9);
-                        }
+                            downButtonArrowColor = TabSelectedHighColor;
                     }
                 }
             }
             else
             {
-                upButtonBaseColor = SystemColors.Control;
-                upButtonBorderColor = SystemColors.ControlDark;
                 upButtonArrowColor = SystemColors.ControlDark;
-
-                downButtonBaseColor = SystemColors.Control;
-                downButtonBorderColor = SystemColors.ControlDark;
                 downButtonArrowColor = SystemColors.ControlDark;
             }
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
-
-            //Color color = Enabled ? BackColor : SystemColors.Control;
-            //rect.Inflate(1, 1);
-            //g.FillRectangle(color, rect);
-
-
-            RenderButton(g, upButtonRect, upButtonBaseColor, upButtonBorderColor, upButtonArrowColor, ArrowDirection.Left);
-            RenderButton(g, downButtonRect, downButtonBaseColor, downButtonBorderColor, downButtonArrowColor, ArrowDirection.Right);
-
+            RenderButton(g, upButtonRect, upButtonArrowColor, ArrowDirection.Left);
+            RenderButton(g, downButtonRect, downButtonArrowColor, ArrowDirection.Right);
             UpDownButtonPaintEventHandler handler = Events[EventPaintUpDownButton] as UpDownButtonPaintEventHandler;
             handler?.Invoke(this, e);
         }
 
-        internal void RenderButton(Graphics g, Rectangle rect, Color baseColor, Color borderColor, Color arrowColor, ArrowDirection direction)
+        internal void RenderButton(Graphics g, Rectangle rect, Color arrowColor, ArrowDirection direction)
         {
-            //RenderBackgroundInternal(g, rect, baseColor, borderColor, 0.45f, true, LinearGradientMode.Vertical);
             switch (direction)
             {
                 case ArrowDirection.Left:
-                    g.DrawFontImage(61700, (int)(30 * this.ItemSize.Height / 40), arrowColor, rect);
+                    g.DrawFontImage(61700, 24, arrowColor, rect);
                     break;
 
                 case ArrowDirection.Right:
-                    g.DrawFontImage(61701, (int)(30 * this.ItemSize.Height / 40), arrowColor, rect, 1);
+                    g.DrawFontImage(61701, 24, arrowColor, rect, 1);
                     break;
-            }
-        }
-
-        private Color GetColor(Color colorBase, int a, int r, int g, int b)
-        {
-            int a0 = colorBase.A;
-            int r0 = colorBase.R;
-            int g0 = colorBase.G;
-            int b0 = colorBase.B;
-
-            if (a + a0 > 255) { a = 255; } else { a = Math.Max(a + a0, 0); }
-            if (r + r0 > 255) { r = 255; } else { r = Math.Max(r + r0, 0); }
-            if (g + g0 > 255) { g = 255; } else { g = Math.Max(g + g0, 0); }
-            if (b + b0 > 255) { b = 255; } else { b = Math.Max(b + b0, 0); }
-
-            return Color.FromArgb(a, r, g, b);
-        }
-
-        internal void RenderBackgroundInternal(Graphics g, Rectangle rect, Color baseColor, Color borderColor, float basePosition, bool drawBorder, LinearGradientMode mode)
-        {
-            using (LinearGradientBrush brush = new LinearGradientBrush(rect, Color.Transparent, Color.Transparent, mode))
-            {
-                Color[] colors = new Color[4];
-                colors[0] = GetColor(baseColor, 0, 35, 24, 9);
-                colors[1] = GetColor(baseColor, 0, 13, 8, 3);
-                colors[2] = baseColor;
-                colors[3] = GetColor(baseColor, 0, 68, 69, 54);
-
-                ColorBlend blend = new ColorBlend();
-                blend.Positions = new[] { 0.0f, basePosition, basePosition + 0.05f, 1.0f };
-                blend.Colors = colors;
-                brush.InterpolationColors = blend;
-                g.FillRectangle(brush, rect);
-            }
-            if (baseColor.A > 80)
-            {
-                Rectangle rectTop = rect;
-                if (mode == LinearGradientMode.Vertical)
-                {
-                    rectTop.Height = (int)(rectTop.Height * basePosition);
-                }
-                else
-                {
-                    rectTop.Width = (int)(rect.Width * basePosition);
-                }
-                using (SolidBrush brushAlpha = new SolidBrush(Color.FromArgb(80, 255, 255, 255)))
-                {
-                    g.FillRectangle(brushAlpha, rectTop);
-                }
-            }
-
-            if (drawBorder)
-            {
-                using (Pen pen = new Pen(borderColor))
-                {
-                    g.DrawRectangle(pen, rect);
-                }
             }
         }
 
@@ -765,13 +668,12 @@ namespace Sunny.UI
         {
             private UITabControl _owner;
             private bool _bPainting;
-            private Rectangle clipRect = new Rectangle();
+            private Rectangle clipRect;
 
             public UpDownButtonNativeWindow(UITabControl owner)
             {
                 _owner = owner;
                 AssignHandle(owner.UpDownButtonHandle);
-
             }
 
             private bool LeftKeyPressed()
@@ -811,8 +713,8 @@ namespace Sunny.UI
                     case NativeMethods.WM_PAINT:
                         if (!_bPainting)
                         {
-                            Point UpDownButtonLocation = new Point((int)(_owner.Size.Width - _owner.ItemSize.Height * 1.5), 0);
-                            Size UpDownButtonSize = new Size((int)(_owner.ItemSize.Height * 1.5), _owner.ItemSize.Height);
+                            Point UpDownButtonLocation = new Point(_owner.Size.Width - 52, 0);
+                            Size UpDownButtonSize = new Size(52, _owner.ItemSize.Height);
                             clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
                             NativeMethods.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
 
@@ -829,6 +731,7 @@ namespace Sunny.UI
                             base.WndProc(ref m);
                         }
                         break;
+
                     default:
                         base.WndProc(ref m);
                         break;
@@ -852,10 +755,6 @@ namespace Sunny.UI
 
             public const int VK_LBUTTON = 0x1;
             public const int VK_RBUTTON = 0x2;
-
-            private const int TCM_FIRST = 0x1300;
-            public const int TCM_GETITEMRECT = (TCM_FIRST + 10);
-
             public static readonly IntPtr TRUE = new IntPtr(1);
 
             [StructLayout(LayoutKind.Sequential)]
@@ -911,14 +810,8 @@ namespace Sunny.UI
             public static extern short GetKeyState(int nVirtKey);
 
             [DllImport("user32.dll")]
-            public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, ref RECT lParam);
-
-            [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool GetCursorPos(ref Point lpPoint);
-
-            [DllImport("user32.dll")]
-            public extern static int OffsetRect(ref RECT lpRect, int x, int y);
 
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
@@ -930,24 +823,13 @@ namespace Sunny.UI
 
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetClientRect(IntPtr hWnd, ref RECT r);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool MoveWindow(IntPtr hWnd, int x, int y, int nWidth, int nHeight, bool bRepaint = true);
-
-            [DllImport("User32.dll", CharSet = CharSet.Auto)]
-            public static extern bool IsWindowVisible(IntPtr hwnd);
         }
 
         public delegate void UpDownButtonPaintEventHandler(object sender, UpDownButtonPaintEventArgs e);
 
         public class UpDownButtonPaintEventArgs : PaintEventArgs
         {
-            private bool _mouseOver;
-            private bool _mousePress;
-            private bool _mouseInUpButton;
-
             public UpDownButtonPaintEventArgs(
                 Graphics graphics,
                 Rectangle clipRect,
@@ -956,25 +838,16 @@ namespace Sunny.UI
                 bool mouseInUpButton)
                 : base(graphics, clipRect)
             {
-                _mouseOver = mouseOver;
-                _mousePress = mousePress;
-                _mouseInUpButton = mouseInUpButton;
+                MouseOver = mouseOver;
+                MousePress = mousePress;
+                MouseInUpButton = mouseInUpButton;
             }
 
-            public bool MouseOver
-            {
-                get { return _mouseOver; }
-            }
+            public bool MouseOver { get; }
+    
+            public bool MousePress { get; }
 
-            public bool MousePress
-            {
-                get { return _mousePress; }
-            }
-
-            public bool MouseInUpButton
-            {
-                get { return _mouseInUpButton; }
-            }
+            public bool MouseInUpButton { get; }
         }
     }
 }
