@@ -553,16 +553,17 @@ namespace Sunny.UI
             Color downButtonArrowColor = tabUnSelectedForeColor;
 
             Rectangle upButtonRect = rect;
-            upButtonRect.X += 0;
-            upButtonRect.Y += 0;
+            upButtonRect.X = 0;
+            upButtonRect.Y = 0;
             upButtonRect.Width = rect.Width / 2 - 1;
             upButtonRect.Height -= 1;
 
             Rectangle downButtonRect = rect;
             downButtonRect.X = upButtonRect.Right + 1;
-            downButtonRect.Y += 0;
+            downButtonRect.Y = 0;
             downButtonRect.Width = rect.Width / 2 - 1;
             downButtonRect.Height -= 1;
+            g.Clear(tabBackColor);
 
             if (Enabled)
             {
@@ -570,24 +571,26 @@ namespace Sunny.UI
                 {
                     if (e.MousePress)
                     {
+                        //鼠标按下
                         if (e.MouseInUpButton)
                         {
-                            upButtonBaseColor = GetColor(tabBackColor, 0, -35, -24, -9);
+                            upButtonArrowColor = GetColor(tabBackColor, 0, -35, -24, -9);
                         }
                         else
                         {
-                            downButtonBaseColor = GetColor(tabBackColor, 0, -35, -24, -9);
+                            downButtonArrowColor = GetColor(tabBackColor, 0, -35, -24, -9);
                         }
                     }
                     else
                     {
+                        //鼠标移动
                         if (e.MouseInUpButton)
                         {
-                            upButtonBaseColor = GetColor(tabBackColor, 0, 35, 24, 9);
+                            upButtonArrowColor = GetColor(tabBackColor, 0, 35, 24, 9);
                         }
                         else
                         {
-                            downButtonBaseColor = GetColor(tabBackColor, 0, 35, 24, 9);
+                            downButtonArrowColor = GetColor(tabBackColor, 0, 35, 24, 9);
                         }
                     }
                 }
@@ -605,28 +608,29 @@ namespace Sunny.UI
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            Color color = Enabled ? BackColor : SystemColors.Control;
-            rect.Inflate(1, 1);
-            g.FillRectangle(color, rect);
+            //Color color = Enabled ? BackColor : SystemColors.Control;
+            //rect.Inflate(1, 1);
+            //g.FillRectangle(color, rect);
+
 
             RenderButton(g, upButtonRect, upButtonBaseColor, upButtonBorderColor, upButtonArrowColor, ArrowDirection.Left);
             RenderButton(g, downButtonRect, downButtonBaseColor, downButtonBorderColor, downButtonArrowColor, ArrowDirection.Right);
+
             UpDownButtonPaintEventHandler handler = Events[EventPaintUpDownButton] as UpDownButtonPaintEventHandler;
             handler?.Invoke(this, e);
         }
 
         internal void RenderButton(Graphics g, Rectangle rect, Color baseColor, Color borderColor, Color arrowColor, ArrowDirection direction)
         {
-            RenderBackgroundInternal(g, rect, baseColor, borderColor, 0.45f, true, LinearGradientMode.Vertical);
-
+            //RenderBackgroundInternal(g, rect, baseColor, borderColor, 0.45f, true, LinearGradientMode.Vertical);
             switch (direction)
             {
                 case ArrowDirection.Left:
-                    g.DrawFontImage(61700, 24, arrowColor, rect);
+                    g.DrawFontImage(61700, (int)(30 * this.ItemSize.Height / 40), arrowColor, rect);
                     break;
 
                 case ArrowDirection.Right:
-                    g.DrawFontImage(61701, 24, arrowColor, rect, 1);
+                    g.DrawFontImage(61701, (int)(30 * this.ItemSize.Height / 40), arrowColor, rect, 1);
                     break;
             }
         }
@@ -761,11 +765,15 @@ namespace Sunny.UI
         {
             private UITabControl _owner;
             private bool _bPainting;
+            private NativeMethods.RECT rect = new NativeMethods.RECT();
+            private Point UpDownButtonLocation;
+            private Rectangle clipRect = new Rectangle();
 
             public UpDownButtonNativeWindow(UITabControl owner)
             {
                 _owner = owner;
                 AssignHandle(owner.UpDownButtonHandle);
+
             }
 
             private bool LeftKeyPressed()
@@ -783,9 +791,6 @@ namespace Sunny.UI
             private void DrawUpDownButton()
             {
                 bool mousePress = LeftKeyPressed();
-                NativeMethods.RECT rect = new NativeMethods.RECT();
-                NativeMethods.GetClientRect(Handle, ref rect);
-                Rectangle clipRect = Rectangle.FromLTRB(rect.Top, rect.Left, rect.Right, rect.Bottom);
                 Point cursorPoint = new Point();
                 NativeMethods.GetCursorPos(ref cursorPoint);
                 NativeMethods.GetWindowRect(Handle, ref rect);
@@ -807,6 +812,12 @@ namespace Sunny.UI
                     case NativeMethods.WM_PAINT:
                         if (!_bPainting)
                         {
+                            UpDownButtonLocation.X = (int)(_owner.Size.Width - _owner.ItemSize.Height * 1.5);
+                            UpDownButtonLocation.Y = 0;
+                            Size UpDownButtonSize = new Size((int)(_owner.ItemSize.Height * 1.5), _owner.ItemSize.Height);
+                            clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
+                            NativeMethods.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
+
                             NativeMethods.PAINTSTRUCT ps = new NativeMethods.PAINTSTRUCT();
                             _bPainting = true;
                             NativeMethods.BeginPaint(m.HWnd, ref ps);
@@ -820,7 +831,6 @@ namespace Sunny.UI
                             base.WndProc(ref m);
                         }
                         break;
-
                     default:
                         base.WndProc(ref m);
                         break;
@@ -923,6 +933,10 @@ namespace Sunny.UI
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool GetClientRect(IntPtr hWnd, ref RECT r);
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool MoveWindow(IntPtr hWnd, int x, int y, int nWidth, int nHeight, bool bRepaint = true);
 
             [DllImport("User32.dll", CharSet = CharSet.Auto)]
             public static extern bool IsWindowVisible(IntPtr hwnd);
