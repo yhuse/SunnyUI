@@ -765,8 +765,6 @@ namespace Sunny.UI
         {
             private UITabControl _owner;
             private bool _bPainting;
-            private NativeMethods.RECT rect = new NativeMethods.RECT();
-            private Point UpDownButtonLocation;
             private Rectangle clipRect = new Rectangle();
 
             public UpDownButtonNativeWindow(UITabControl owner)
@@ -790,6 +788,7 @@ namespace Sunny.UI
 
             private void DrawUpDownButton()
             {
+                NativeMethods.RECT rect = new NativeMethods.RECT();
                 bool mousePress = LeftKeyPressed();
                 Point cursorPoint = new Point();
                 NativeMethods.GetCursorPos(ref cursorPoint);
@@ -812,8 +811,7 @@ namespace Sunny.UI
                     case NativeMethods.WM_PAINT:
                         if (!_bPainting)
                         {
-                            UpDownButtonLocation.X = (int)(_owner.Size.Width - _owner.ItemSize.Height * 1.5);
-                            UpDownButtonLocation.Y = 0;
+                            Point UpDownButtonLocation = new Point((int)(_owner.Size.Width - _owner.ItemSize.Height * 1.5), 0);
                             Size UpDownButtonSize = new Size((int)(_owner.ItemSize.Height * 1.5), _owner.ItemSize.Height);
                             clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
                             NativeMethods.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
