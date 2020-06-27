@@ -19,7 +19,7 @@
 
 #### 支持开源
 - 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有你更精彩！
-- **个人学习交流免费，商业应用需要授权，联系QQ：17612584咨询授权事宜** 
+- **个人学习交流免费，商业应用需要授权，联系QQ：17612584咨询授权事宜。** 
 ![感谢您的支持](https://images.gitee.com/uploads/images/2020/0524/233620_6685fbbf_416720.png "SunnyUISupport.png")
 
 1、开源控件库
@@ -50,7 +50,6 @@
 4、多页面框架
 
   - 参考Element，包括7种常用框架风格，只需几行简单的代码即可创建多页面程序，其支撑组件包括UIForm，UIPage，UIFrame，集合常用控件库即可快速开发WinForm应用程序。
+![多页面框架](https://images.gitee.com/uploads/images/2020/0627/210832_a1a766ac_416720.png "21.png")
 
-![多页面框架](https://images.gitee.com/uploads/images/2020/0518/224650_6b8984f2_416720.png "12.png")
-    
     
