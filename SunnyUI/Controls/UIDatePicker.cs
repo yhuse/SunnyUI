@@ -25,6 +25,8 @@ using System.ComponentModel;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [DefaultProperty("Value")]
+    [DefaultEvent("ValueChanged")]
     public sealed partial class UIDatePicker : UIDropControl
     {
         public delegate void OnDateTimeChanged(object sender, DateTime value);

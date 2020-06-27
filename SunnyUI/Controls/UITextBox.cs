@@ -157,8 +157,15 @@ namespace Sunny.UI
 
         private void EditOnKeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DoEnter?.Invoke(sender,e);
+            }
+
             KeyDown?.Invoke(sender, e);
         }
+
+        public event EventHandler DoEnter;
 
         private void EditOnKeyUp(object sender, KeyEventArgs e)
         {

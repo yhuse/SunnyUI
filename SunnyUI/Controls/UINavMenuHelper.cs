@@ -149,6 +149,20 @@ namespace Sunny.UI
             tabControl = ctrl;
         }
 
+        public NavMenuItem this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= tabControl.TabPages.Count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                TabPage page = tabControl.TabPages[index];
+                return PageItems.ContainsKey(page) ? PageItems[page] : null;
+            }
+        }
+
         public UIPage AddPage(int pageIndex, UIPage page)
         {
             page.PageIndex = pageIndex;
@@ -271,8 +285,9 @@ namespace Sunny.UI
             if (pageIndex < 0) return;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageIndex == pageIndex)
+                if (item.Value.PageIndex == pageIndex && item.Key!=null)
                 {
+                   if (tabControl.TabPages.Contains(item.Key))
                     tabControl.SelectTab(item.Key);
                 }
             }
@@ -283,9 +298,10 @@ namespace Sunny.UI
             if (guid == Guid.Empty) return;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageGuid == guid)
+                if (item.Value.PageGuid == guid && item.Key != null)
                 {
-                    tabControl.SelectTab(item.Key);
+                    if (tabControl.TabPages.Contains(item.Key))
+                        tabControl.SelectTab(item.Key);
                 }
             }
         }
@@ -313,6 +329,8 @@ namespace Sunny.UI
 
         public Guid PageGuid { get; set; } = Guid.Empty;
 
+        public bool AlwaysOpen { get; set; } = false;
+
         public NavMenuItem()
         {
         }
@@ -322,6 +340,7 @@ namespace Sunny.UI
             Text = page.Text;
             PageIndex = page.PageIndex;
             PageGuid = page.PageGuid;
+            AlwaysOpen = page.AlwaysOpen;
         }
 
         public NavMenuItem(string text, int pageIndex)

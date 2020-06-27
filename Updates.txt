@@ -1,5 +1,34 @@
 + 增加； - 删除； * 修改 
 
+2020.06.27
+* UITabControl：重绘左右按钮
++ UITabControl：增加只显示激活窗体关闭按钮
+
+2020.06.26
++ UIDoughnutChart：增加控件：环状图
++ UILoginForm：新增两张背景图
+* 对PNG图片进行了压缩，减少了SunnyUI.Dll的大小
+
+2020.06.25
++ UIScrollingText：增加控件：滚动文字
+
+2020.06.24
++ UICheckBoxGroup：增加全选、全不选、反选
+
+2020.06.23
+* UIButton：增加ShowFocusLine，可获得焦点并显示
+
+2020.06.22
+* UIForm：增加WindowStateChange事件判断WindowState状态，调整ShowFullScreen全屏显示
+
+2020.06.21
++ UIMessageTipHelper：增加MessageTip扩展方法
++ UILoginForm：登录窗体增加两张图片
+* UIMessageForm：解决了Demo消息窗口弹出，界面刷新闪烁的Bug
+
+2020.06.20
++ UILoginForm：增加登录窗体
+
 2020.06.18
 * UIBarChart：完成开发
 

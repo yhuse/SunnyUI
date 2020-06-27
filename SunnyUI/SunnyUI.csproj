@@ -59,6 +59,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Charts\UIChartStyle.cs" />
+    <Compile Include="Charts\UIDoughnutChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Charts\UIOption.cs" />
     <Compile Include="Charts\UIPieChartOption.cs" />
     <Compile Include="Controls\Color\UIColorBar.cs">
@@ -114,11 +117,20 @@
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIScrollingText.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UITimePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UITransparentPanel.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UILoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UILoginForm.Designer.cs">
+      <DependentUpon>UILoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UINotifier.cs">
       <SubType>Form</SubType>
@@ -499,6 +511,9 @@
     <EmbeddedResource Include="Controls\UITitlePanel.resx">
       <DependentUpon>UITitlePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UILoginForm.resx">
+      <DependentUpon>UILoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
@@ -634,6 +649,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\colorbarIndicators.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

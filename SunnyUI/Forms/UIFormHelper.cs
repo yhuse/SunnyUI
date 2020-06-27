@@ -21,6 +21,8 @@
 ******************************************************************************/
 
 using System.Collections;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -379,12 +381,8 @@ namespace Sunny.UI
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
-            if (title.IsValid())
-            {
-                frm.Title = title;
-            }
-
-            frm.Description = description;
+            if (title.IsValid()) frm.Title = title;
+            if (description.IsValid()) frm.Description = description;
             frm.ShowDialog();
 
             bool result = frm.IsOK;
@@ -449,5 +447,116 @@ namespace Sunny.UI
         {
             ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, false, timeout);
         }
+    }
+
+    public static class UIMessageTipHelper
+    {
+        /// <summary>
+        /// 显示消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="style">消息样式。不指定则使用默认样式</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowInfoTip(this Form form, string text, TipStyle style = null, int delay = -1, bool? floating = null,
+            Point? point = null, bool centerByPoint = false)
+            => UIMessageTip.Show(text, style, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="style">消息样式。不指定则使用默认样式</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowInfoTip(this Form form, Component controlOrItem, string text, TipStyle style = null, int delay = -1,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.Show(controlOrItem, text, style, delay, floating, centerInControl);
+
+
+        /// <summary>
+        /// 在指定控件附近显示出错消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowErrorTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.ShowError(controlOrItem, text, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 显示出错消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowErrorTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowError(text, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示良好消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowSuccessTip(this Form form, Component controlOrItem, string text = null, int delay = -1, bool? floating = null,
+            bool? centerInControl = null)
+            => UIMessageTip.ShowOk(controlOrItem, text, delay, floating, centerInControl);
+
+
+        /// <summary>
+        /// 显示良好消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowSuccessTip(this Form form, string text = null, int delay = -1, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowOk(text, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示警告消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowWarningTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.ShowWarning(controlOrItem, text, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 显示警告消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowWarningTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowWarning(text, delay, floating, point, centerByPoint);
     }
 }

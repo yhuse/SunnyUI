@@ -160,6 +160,7 @@
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
             this.uiButton1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
+            this.uiButton1.ShowFocusLine = true;
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
             this.uiButton1.Style = Sunny.UI.UIStyle.White;
             this.uiButton1.StyleCustomMode = true;
@@ -172,6 +173,7 @@
             this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton2.Location = new System.Drawing.Point(144, 50);
             this.uiButton2.Name = "uiButton2";
+            this.uiButton2.ShowFocusLine = true;
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 1;
@@ -189,6 +191,7 @@
             this.uiButton3.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiButton3.ShowFocusLine = true;
             this.uiButton3.Size = new System.Drawing.Size(100, 35);
             this.uiButton3.Style = Sunny.UI.UIStyle.Green;
             this.uiButton3.StyleCustomMode = true;
@@ -207,6 +210,7 @@
             this.uiButton4.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiButton4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiButton4.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiButton4.ShowFocusLine = true;
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
             this.uiButton4.Style = Sunny.UI.UIStyle.Red;
             this.uiButton4.StyleCustomMode = true;
@@ -225,6 +229,7 @@
             this.uiButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiButton5.ShowFocusLine = true;
             this.uiButton5.Size = new System.Drawing.Size(100, 35);
             this.uiButton5.Style = Sunny.UI.UIStyle.Orange;
             this.uiButton5.StyleCustomMode = true;
@@ -243,6 +248,7 @@
             this.uiButton6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.uiButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(160)))), ((int)(((byte)(165)))));
             this.uiButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
+            this.uiButton6.ShowFocusLine = true;
             this.uiButton6.Size = new System.Drawing.Size(100, 35);
             this.uiButton6.Style = Sunny.UI.UIStyle.Gray;
             this.uiButton6.StyleCustomMode = true;
@@ -919,6 +925,7 @@
             // uiImageButton1
             // 
             this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton1.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
@@ -933,6 +940,7 @@
             // uiImageButton2
             // 
             this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.relationship0;
             this.uiImageButton2.ImageHover = global::Sunny.UI.Demo.Properties.Resources.relationship;
             this.uiImageButton2.ImagePress = global::Sunny.UI.Demo.Properties.Resources.relationship0;
@@ -946,6 +954,7 @@
             // uiImageButton3
             // 
             this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.save0;
             this.uiImageButton3.ImageHover = global::Sunny.UI.Demo.Properties.Resources.save;
             this.uiImageButton3.ImagePress = global::Sunny.UI.Demo.Properties.Resources.save0;
@@ -959,6 +968,8 @@
             // uiImageButton4
             // 
             this.uiImageButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiImageButton4.ForeColor = System.Drawing.Color.Red;
             this.uiImageButton4.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton4.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton4.ImageOffset = new System.Drawing.Point(12, 5);
@@ -973,6 +984,7 @@
             // 
             // FButton
             // 
+            this.AlwaysOpen = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 534);

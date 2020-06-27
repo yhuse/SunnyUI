@@ -1,25 +1,4 @@
-﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UIPieChart.cs
- * 文件说明: 饼状图
- * 当前版本: V2.2
- * 创建日期: 2020-06-06
- *
- * 2020-06-06: V2.2.5 增加文件说明
-******************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,23 +7,24 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    [ToolboxItem(true)]
-    public sealed class UIPieChart : UIChart
+    [ToolboxItem(true), Description("甜甜圈图")]
+    public class UIDoughnutChart : UIChart
     {
         protected override void CreateEmptyOption()
         {
             if (emptyOption != null) return;
 
-            UIPieOption option = new UIPieOption();
+            UIDoughnutOption option = new UIDoughnutOption();
 
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
-            option.Title.SubText = "PieChart";
+            option.Title.SubText = "DoughnutChart";
 
-            var series = new UIPieSeries();
+            var series = new UIDoughnutSeries();
             series.Name = "饼状图";
             series.Center = new UICenter(50, 55);
-            series.Radius = 70;
+            series.Radius.Inner = 40;
+            series.Radius.Outer = 70;
             for (int i = 0; i < 5; i++)
             {
                 series.AddData("Data" + i, (i + 1) * 20);
@@ -57,21 +37,21 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            CalcData(PieOption);
+            CalcData(DoughnutOption);
         }
 
         protected override void DrawOption(Graphics g)
         {
-            if (PieOption == null) return;
-             DrawTitle(g, PieOption.Title);
-             DrawSeries(g, PieOption.Series);
-             DrawLegend(g, PieOption.Legend);
+            if (DoughnutOption == null) return;
+            DrawTitle(g, DoughnutOption.Title);
+            DrawSeries(g, DoughnutOption.Series);
+            DrawLegend(g, DoughnutOption.Legend);
         }
 
         protected override void CalcData(UIOption option)
         {
             Angles.Clear();
-            UIPieOption o = (UIPieOption)option;
+            UIDoughnutOption o = (UIDoughnutOption)option;
             if (o == null || o.Series == null || o.Series.Count == 0) return;
             UITemplate template = null;
             if (o.ToolTip != null)
@@ -117,41 +97,57 @@ namespace Sunny.UI
                         }
                     }
 
-                    Angles[pieIndex].AddOrUpdate(i, new Angle(start, angle, text));
+                    Angle pieAngle = new Angle(start, angle, text);
+                    GetSeriesRect(pie, ref pieAngle);
+                    Angles[pieIndex].AddOrUpdate(i, pieAngle);
                     start += angle;
                 }
             }
         }
 
-        private void DrawSeries(Graphics g, List<UIPieSeries> series)
+        private void DrawSeries(Graphics g, List<UIDoughnutSeries> series)
         {
             if (series == null || series.Count == 0) return;
 
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];
-                RectangleF rect = GetSeriesRect(pie);
+
                 for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                 {
+                    Angle angle = Angles[pieIndex][azIndex];
                     Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
-                    RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
-                    g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
+
+                    if (ActiveAzIndex == azIndex)
+                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer+5, angle.Start-90, angle.Sweep);
+                    else
+                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
+
                     Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, legendFont);
+
+                    if (pie.Label.Show && ActiveAzIndex == azIndex)
+                    {
+                        if (pie.Label.Position == UIPieSeriesLabelPosition.Center)
+                        {
+                            SizeF sf = g.MeasureString(pie.Data[azIndex].Name, Font);
+                            g.DrawString(pie.Data[azIndex].Name, Font, color, angle.Center.X- sf.Width/2.0f,angle.Center.Y-sf.Height/2.0f);
+                        }
+                    }
                 }
+
+               
             }
         }
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
 
-
-
         [Browsable(false)]
-        private UIPieOption PieOption
+        private UIDoughnutOption DoughnutOption
         {
             get
             {
                 UIOption option = Option ?? EmptyOption;
-                UIPieOption o = (UIPieOption)option;
+                UIDoughnutOption o = (UIDoughnutOption)option;
                 return o;
             }
         }
@@ -160,24 +156,21 @@ namespace Sunny.UI
         {
             base.OnMouseMove(e);
 
-            if (PieOption.SeriesCount == 0)
+            if (DoughnutOption.SeriesCount == 0)
             {
                 SetPieAndAzIndex(-1, -1);
                 return;
             }
 
-            for (int pieIndex = 0; pieIndex < PieOption.SeriesCount; pieIndex++)
+            for (int pieIndex = 0; pieIndex < DoughnutOption.SeriesCount; pieIndex++)
             {
-                RectangleF rect = GetSeriesRect(PieOption.Series[pieIndex]);
-                if (!e.Location.InRect(rect)) continue;
-
-                PointF pf = new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
-                if (MathEx.CalcDistance(e.Location, pf) * 2 > rect.Width) continue;
-
-                double az = MathEx.CalcAngle(e.Location, pf);
-                for (int azIndex = 0; azIndex < PieOption.Series[pieIndex].Data.Count; azIndex++)
+                for (int azIndex = 0; azIndex < DoughnutOption.Series[pieIndex].Data.Count; azIndex++)
                 {
                     Angle angle = Angles[pieIndex][azIndex];
+                    PointF pf = angle.Center;
+                    if (MathEx.CalcDistance(e.Location, pf) > angle.Outer) continue;
+                    if (MathEx.CalcDistance(e.Location, pf) < angle.Inner) continue;
+                    double az = MathEx.CalcAngle(e.Location, pf);
                     if (az >= angle.Start && az <= angle.Start + angle.Sweep)
                     {
                         SetPieAndAzIndex(pieIndex, azIndex);
@@ -186,7 +179,7 @@ namespace Sunny.UI
                             tip.Text = angle.Text;
                             tip.Size = new Size((int)angle.TextSize.Width + 4, (int)angle.TextSize.Height + 4);
                         }
-
+                
                         if (az >= 0 && az < 90)
                         {
                             tip.Top = e.Location.Y + 20;
@@ -207,7 +200,7 @@ namespace Sunny.UI
                             tip.Left = e.Location.X + 15;
                             tip.Top = e.Location.Y + 20;
                         }
-
+                
                         if (!tip.Visible) tip.Visible = angle.Text.IsValid();
                         return;
                     }
@@ -231,20 +224,29 @@ namespace Sunny.UI
             }
         }
 
-        private RectangleF GetSeriesRect(UIPieSeries series)
+        private void GetSeriesRect(UIDoughnutSeries series, ref Angle angle)
         {
             int left = series.Center.Left;
             int top = series.Center.Top;
             left = Width * left / 100;
             top = Height * top / 100;
-            float halfRadius = Math.Min(Width, Height) * series.Radius / 200.0f;
-            return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
+
+            angle.Center = new PointF(left, top);
+            angle.Inner = Math.Min(Width, Height) * series.Radius.Inner / 200.0f;
+            angle.Outer = Math.Min(Width, Height) * series.Radius.Outer / 200.0f;
         }
 
         private class Angle
         {
             public float Start { get; set; }
+
             public float Sweep { get; set; }
+
+            public float Inner { get; set; }
+
+            public float Outer { get; set; }
+
+            public PointF Center { get; set; }
 
             public Angle(float start, float sweep, string text)
             {

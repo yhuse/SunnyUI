@@ -97,6 +97,9 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(false),Description("在Frame框架中不被关闭")]
+        public bool AlwaysOpen { get; set; }
+
         protected virtual void SymbolChange()
         {
 

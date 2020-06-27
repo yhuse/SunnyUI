@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sunny.UI.Demo.Forms;
+using System;
 using System.Collections.Generic;
 
 namespace Sunny.UI.Demo
@@ -14,11 +15,11 @@ namespace Sunny.UI.Demo
         {
             if (this.ShowAskDialog("确认信息提示框"))
             {
-                this.ShowInfoDialog("您点击了确定按钮");
+                this.ShowSuccessTip("您点击了确定按钮");
             }
             else
             {
-                this.ShowErrorDialog("您点击了取消按钮");
+                this.ShowErrorTip("您点击了取消按钮");
             }
         }
 
@@ -48,6 +49,7 @@ namespace Sunny.UI.Demo
             for (int i = 0; i < 100; i++)
             {
                 SystemEx.Delay(50);
+                StatusDescription = "数据加载中(" + i + "%)......";
                 StatusStepIt();
             }
         }
@@ -146,6 +148,39 @@ namespace Sunny.UI.Demo
         private void uiSymbolButton7_Click(object sender, EventArgs e)
         {
             UIMessageTip.ShowError("轻便消息提示框 - 错误");
+        }
+
+        private void uiSymbolButton10_Click(object sender, EventArgs e)
+        {
+            FLogin frm = new FLogin();
+            frm.ShowDialog();
+            if (frm.IsLogin)
+            {
+                UIMessageTip.ShowOk("登录成功");
+            }
+
+            frm.Dispose();
+        }
+
+        private void uiSymbolButton3_Click(object sender, EventArgs e)
+        {
+            UILoginForm frm = new UILoginForm();
+            frm.Text = "SunnyUI.Net Login Form";
+            frm.SubText = "SunnyUI.Net V2.2.5";
+            frm.OnLogin += Frm_OnLogin;
+            frm.LoginImage = UILoginForm.UILoginImage.Login2;
+            frm.ShowDialog();
+            if (frm.IsLogin)
+            {
+                UIMessageTip.ShowOk("登录成功");
+            }
+
+            frm.Dispose();
+        }
+
+        private bool Frm_OnLogin(string userName, string password)
+        {
+            return userName == "admin" && password == "admin";
         }
     }
 }

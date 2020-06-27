@@ -37,6 +37,10 @@ namespace Sunny.UI
 
         private UIStatusForm statusForm;
 
+        public delegate void OnWindowStateChange(object sender, FormWindowState state);
+
+        public event OnWindowStateChange WindowStateChange;
+
         public UIForm()
         {
             InitializeComponent();
@@ -462,6 +466,7 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     base.WindowState = FormWindowState.Minimized;
+                    WindowStateChange?.Invoke(this,FormWindowState.Minimized);
                     InMinBox = false;
                 }
 
@@ -495,10 +500,10 @@ namespace Sunny.UI
                 Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
                 Left = screen.Bounds.Left;
                 Top = screen.Bounds.Top;
-                //StartPosition = FormStartPosition.Manual;
                 SetFormRoundRectRegion(this, 0);
-
+                TopMost = ShowFullScreen;
                 windowState = FormWindowState.Maximized;
+                WindowStateChange?.Invoke(this, FormWindowState.Maximized);
             }
             else if (windowState == FormWindowState.Maximized)
             {
@@ -513,9 +518,9 @@ namespace Sunny.UI
 
                 if (location.X == 0 && location.Y == 0) location = center;
                 Location = StartPosition == FormStartPosition.CenterScreen ? center : location;
-                //StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
+                WindowStateChange?.Invoke(this, FormWindowState.Normal);
             }
 
             Invalidate();
@@ -1109,11 +1114,6 @@ namespace Sunny.UI
         }
 
         public string CloseAskString { get; set; }
-
-        private void UIForm_Shown(object sender, EventArgs e)
-        {
-            //SetStyle(UIStyles.Style);
-        }
 
         private FormWindowState windowState = FormWindowState.Normal;
 

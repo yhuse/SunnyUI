@@ -1,6 +1,6 @@
-﻿namespace Sunny.UI
+﻿namespace Sunny.UI.Demo
 {
-    partial class UIForm
+    partial class FLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -13,8 +13,6 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            this.UnRegister();
-
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -30,16 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FLogin));
             this.SuspendLayout();
             // 
-            // UIForm
+            // lblTitle
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 480);
-            this.Name = "UIForm";
-            this.Text = "UIForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIForm_FormClosing);
+            this.lblTitle.Text = "SunnyUI.Net Login Form";
+            // 
+            // FLogin
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(750, 450);
+            this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login6;
+            this.Name = "FLogin";
+            this.Text = "SunnyUI.Net Login Form";
+            this.ButtonLoginClick += new System.EventHandler(this.FLogin_ButtonLoginClick);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

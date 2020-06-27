@@ -1,8 +1,8 @@
-﻿using Sunny.UI.Demo.Controls;
+﻿using Sunny.UI.Demo.Charts;
+using Sunny.UI.Demo.Controls;
 using Sunny.UI.Demo.Forms;
 using System;
 using System.Windows.Forms;
-using Sunny.UI.Demo.Charts;
 
 namespace Sunny.UI.Demo
 {
@@ -35,24 +35,25 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 62104, 24, AddPage(new FContextMenuStrip(), ++pageIndex));
             Aside.CreateChildNode(parent, 61668, 24, AddPage(new FMeter(), ++pageIndex));
             Aside.CreateChildNode(parent, 62173, 24, AddPage(new FOther(), ++pageIndex));
-            Aside.SetNodeTipsText(parent.Nodes[0],"1");
+            Aside.SetNodeTipsText(parent.Nodes[0], "1");
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[1], 61818);
             parent = Aside.CreateNode("Forms", 61818, 24, pageIndex);
-            //通过设置GUID关联
-            Aside.CreateChildNode(parent, 62160, 24, AddPage(new FDialogs(), Guid.NewGuid()));
-            Aside.CreateChildNode(parent, 61508, 24, AddPage(new FEditor(), Guid.NewGuid()));
-            Aside.CreateChildNode(parent, 61674, 24, AddPage(new FFrames(), Guid.NewGuid()));
+            //通过设置GUID关联，节点字体图标和大小由UIPage设置
+            Aside.CreateChildNode(parent, AddPage(new FDialogs(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, AddPage(new FEditor(), Guid.NewGuid()));
+            Aside.CreateChildNode(parent, AddPage(new FFrames(), Guid.NewGuid()));
 
             pageIndex = 3000;
             Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[2], 61950);
             parent = Aside.CreateNode("Charts", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
-            Aside.CreateChildNode(parent, 61952, 24, AddPage(new FPieChart()));
-            Aside.CreateChildNode(parent, 61568, 24, AddPage(new FBarChart()));
+            Aside.CreateChildNode(parent, AddPage(new FPieChart()));
+            Aside.CreateChildNode(parent, AddPage(new FBarChart()));
+            Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
 
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();
@@ -79,6 +80,11 @@ namespace Sunny.UI.Demo
                     StyleManager.Style = style;
                     break;
             }
+        }
+
+        private void FMain_WindowStateChange(object sender, FormWindowState state)
+        {
+            state.ConsoleWriteLine("WindowState");
         }
     }
 }
