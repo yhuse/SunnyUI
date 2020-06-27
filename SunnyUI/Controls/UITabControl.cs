@@ -33,6 +33,8 @@ namespace Sunny.UI
     public sealed class UITabControl : TabControl, IStyleInterface
     {
         private readonly UITabControlHelper Helper;
+        private int DrawedIndex = -1;
+        private readonly Timer timer = new Timer();
 
         public UITabControl()
         {
@@ -46,6 +48,24 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
 
             Helper = new UITabControlHelper(this);
+            timer.Interval = 500;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+            DrawedIndex = SelectedIndex;
+        }
+
+        protected override void OnSelected(TabControlEventArgs e)
+        {
+            base.OnSelected(e);
+
+            if (ShowActiveCloseButton && !ShowCloseButton)
+            {
+                timer.Start();
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -70,17 +90,17 @@ namespace Sunny.UI
         public void SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
 
         public void SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
-   
+
         public void AddPage(UIPage page) => Helper.AddPage(page);
-   
+
         public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
-    
+
         public void AddPage(int pageIndex, UITabControlMenu page) => Helper.AddPage(pageIndex, page);
 
         public void AddPage(Guid guid, UITabControl page) => Helper.AddPage(guid, page);
- 
+
         public void AddPage(Guid guid, UITabControlMenu page) => Helper.AddPage(guid, page);
-    
+
         public string Version { get; }
 
         private Color _fillColor = UIColor.LightBlue;
@@ -320,27 +340,28 @@ namespace Sunny.UI
 
         private bool showCloseButton;
 
-        [DefaultValue(false)]
+        [DefaultValue(false),Description("所有Tab页面标题显示关闭按钮")]
         public bool ShowCloseButton
         {
             get => showCloseButton;
             set
             {
                 showCloseButton = value;
+                if (showActiveCloseButton) showActiveCloseButton = false;
                 Invalidate();
             }
         }
 
         private bool showActiveCloseButton;
 
-        [DefaultValue(false)]
-        [Browsable(false)]
+        [DefaultValue(false), Description("当前激活的Tab页面标题显示关闭按钮")]
         public bool ShowActiveCloseButton
         {
             get => showActiveCloseButton;
             set
             {
                 showActiveCloseButton = value;
+                if (showCloseButton) showCloseButton = false;
                 Invalidate();
             }
         }
@@ -413,9 +434,10 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnMouseClick(MouseEventArgs e)
+        protected override void OnMouseDown(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
+            base.OnMouseDown(e);
+
             int removeIndex = -1;
             for (int index = 0; index <= TabCount - 1; index++)
             {
@@ -433,11 +455,27 @@ namespace Sunny.UI
                 return;
             }
 
-            if (ShowCloseButton || (ShowActiveCloseButton && removeIndex == SelectedIndex))
+            removeIndex.ConsoleWriteLine("removeIndex");
+            var menuItem = Helper[removeIndex];
+            bool showButton = menuItem == null || !menuItem.AlwaysOpen;
+            if (showButton)
             {
-                if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                if (ShowCloseButton)
                 {
-                    RemoveTabPage(removeIndex);
+                    if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                    {
+                        RemoveTabPage(removeIndex);
+                    }
+                }
+                else if (ShowActiveCloseButton && removeIndex == SelectedIndex)
+                {
+                    if (DrawedIndex == removeIndex)
+                    {
+                        if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                        {
+                            RemoveTabPage(removeIndex);
+                        }
+                    }
                 }
             }
         }
@@ -844,7 +882,7 @@ namespace Sunny.UI
             }
 
             public bool MouseOver { get; }
-    
+
             public bool MousePress { get; }
 
             public bool MouseInUpButton { get; }

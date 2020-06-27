@@ -2,6 +2,7 @@
 
 2020.06.27
 * UITabControl：重绘左右按钮
++ UITabControl：增加只显示激活窗体关闭按钮
 
 2020.06.26
 + UIDoughnutChart：增加控件：环状图

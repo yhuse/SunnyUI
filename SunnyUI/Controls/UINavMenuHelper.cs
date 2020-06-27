@@ -285,8 +285,9 @@ namespace Sunny.UI
             if (pageIndex < 0) return;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageIndex == pageIndex)
+                if (item.Value.PageIndex == pageIndex && item.Key!=null)
                 {
+                   if (tabControl.TabPages.Contains(item.Key))
                     tabControl.SelectTab(item.Key);
                 }
             }
@@ -297,9 +298,10 @@ namespace Sunny.UI
             if (guid == Guid.Empty) return;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageGuid == guid)
+                if (item.Value.PageGuid == guid && item.Key != null)
                 {
-                    tabControl.SelectTab(item.Key);
+                    if (tabControl.TabPages.Contains(item.Key))
+                        tabControl.SelectTab(item.Key);
                 }
             }
         }

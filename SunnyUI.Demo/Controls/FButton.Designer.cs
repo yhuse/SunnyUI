@@ -984,6 +984,7 @@
             // 
             // FButton
             // 
+            this.AlwaysOpen = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 534);

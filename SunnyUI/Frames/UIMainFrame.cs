@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 
 namespace Sunny.UI
 {
@@ -64,5 +65,23 @@ namespace Sunny.UI
         }
 
         protected UITabControl MainTabControl => MainContainer;
+
+        public bool TabVisible
+        {
+            get => MainContainer.TabVisible;
+            set => MainContainer.TabVisible = value;
+        }
+
+        public bool TabShowCloseButton
+        {
+            get => MainContainer.ShowCloseButton;
+            set => MainContainer.ShowCloseButton = value;
+        }
+
+        public bool TabShowActiveCloseButton
+        {
+            get => MainContainer.ShowActiveCloseButton;
+            set => MainContainer.ShowActiveCloseButton = value;
+        }
     }
 }
