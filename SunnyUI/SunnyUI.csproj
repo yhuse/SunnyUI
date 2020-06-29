@@ -149,13 +149,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UIGlobal.cs" />
-    <Compile Include="Controls\UIGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIGridColumn.cs" />
-    <Compile Include="Controls\UIGridRow.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Controls\UIDoubleUpDown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -519,12 +512,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIComboBox.resx">
       <DependentUpon>UIComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UIGrid.resx">
-      <DependentUpon>UIGrid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UIGridRow.resx">
-      <DependentUpon>UIGridRow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIDoubleUpDown.resx">
       <DependentUpon>UIDoubleUpDown.cs</DependentUpon>
