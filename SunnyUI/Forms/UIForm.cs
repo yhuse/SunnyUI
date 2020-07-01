@@ -466,7 +466,7 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     base.WindowState = FormWindowState.Minimized;
-                    WindowStateChange?.Invoke(this,FormWindowState.Minimized);
+                    WindowStateChange?.Invoke(this, FormWindowState.Minimized);
                     InMinBox = false;
                 }
 
@@ -794,7 +794,18 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
+                //e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
+
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5);
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5);
             }
 
             if (MaximizeBox)
@@ -804,10 +815,50 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(
-                    windowState == FormWindowState.Maximized
-                        ? FontAwesomeIcons.fa_window_restore
-                        : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
+                // e.Graphics.DrawFontImage(
+                //     windowState == FormWindowState.Maximized
+                //         ? FontAwesomeIcons.fa_window_restore
+                //         : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
+
+                if (windowState == FormWindowState.Maximized)
+                {
+                    e.Graphics.DrawRectangle(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
+                        7, 7);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 +5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 3,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3);
+                }
+
+                if (windowState == FormWindowState.Normal)
+                {
+                    e.Graphics.DrawRectangle(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        10, 9);
+                }
             }
 
             if (MinimizeBox)
@@ -817,7 +868,12 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
+                e.Graphics.DrawLine(Color.White,
+                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 - 6,
+                    MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2,
+                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 + 6,
+                    MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2);
+                //e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
             }
 
             e.Graphics.SetDefaultQuality();
