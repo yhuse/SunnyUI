@@ -664,23 +664,30 @@ namespace Sunny.UI
                 if (FormBorderStyle == FormBorderStyle.None)
                 {
                     bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
+                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
+                    bool isChange = false;
+
                     if (inControlBox != InControlBox)
                     {
                         InControlBox = inControlBox;
-                        Invalidate();
+                        isChange = true;
                     }
 
-                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
                     if (inMaxBox != InMaxBox)
                     {
                         InMaxBox = inMaxBox;
-                        Invalidate();
+                        isChange = true;
                     }
 
-                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
                     if (inMinBox != InMinBox)
                     {
                         InMinBox = inMinBox;
+                        isChange = true;
+                    }
+
+                    if (isChange)
+                    {
                         Invalidate();
                     }
                 }
@@ -689,6 +696,13 @@ namespace Sunny.UI
                     InControlBox = InMaxBox = InMinBox = false;
                 }
             }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            InControlBox = InMaxBox = InMinBox = false;
+            Invalidate();
         }
 
         private bool InControlBox, InMaxBox, InMinBox;
