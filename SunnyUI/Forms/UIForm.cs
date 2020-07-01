@@ -147,10 +147,10 @@ namespace Sunny.UI
                 }
             }
 
-            if (ShowTitle && e.Control.Top < TitleHeight)
-            {
-                e.Control.Top = TitleHeight;
-            }
+            // if (ShowTitle && e.Control.Top < TitleHeight)
+            // {
+            //     e.Control.Top = TitleHeight;
+            // }
         }
 
         [DefaultValue(null)]
