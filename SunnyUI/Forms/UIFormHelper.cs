@@ -37,7 +37,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string msg, UIStyle style = UIStyle.Green)
         {
-            ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
         {
-            ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
         {
-            ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
         {
-            ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue)
         {
-            return ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
+            return form.ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -143,7 +143,18 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
         {
-            return ShowMessageDialog(msg, title, true, style);
+            return form.ShowMessageDialog(msg, title, true, style);
+        }
+
+        public static bool ShowMessageDialog(this Form form, string message, string title, bool isShowCancel, UIStyle style)
+        {
+            UIMessageForm frm = new UIMessageForm();
+            frm.TopMost = form.TopMost; 
+            frm.ShowMessage(message, title, isShowCancel, style);
+            frm.ShowDialog();
+            bool isOk = frm.IsOK;
+            frm.Dispose();
+            return isOk;
         }
 
         public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)

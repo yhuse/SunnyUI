@@ -501,7 +501,7 @@ namespace Sunny.UI
                 Left = screen.Bounds.Left;
                 Top = screen.Bounds.Top;
                 SetFormRoundRectRegion(this, 0);
-                TopMost = ShowFullScreen;
+                if (ShowFullScreen) base.WindowState = FormWindowState.Maximized;
                 windowState = FormWindowState.Maximized;
                 WindowStateChange?.Invoke(this, FormWindowState.Maximized);
             }
@@ -520,6 +520,7 @@ namespace Sunny.UI
                 Location = StartPosition == FormStartPosition.CenterScreen ? center : location;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
+                base.WindowState = FormWindowState.Normal;
                 WindowStateChange?.Invoke(this, FormWindowState.Normal);
             }
 
