@@ -45,8 +45,6 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
-            base.BackColor = UIColor.LightBlue;
-
             if (this.Register())
             {
                 SetStyle(UIStyles.Style);
@@ -55,13 +53,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            base.DoubleBuffered = true;
-            Padding = new Padding(0, titleHeight, 0, 0);
             UpdateStyles();
-
-            base.Font = UIFontColor.Font;
-            FormBorderStyle = FormBorderStyle.None;
-            StartPosition = FormStartPosition.CenterScreen;
             Version = UIGlobal.Version;
         }
 
@@ -147,10 +139,10 @@ namespace Sunny.UI
                 }
             }
 
-            // if (ShowTitle && e.Control.Top < TitleHeight)
-            // {
-            //     e.Control.Top = TitleHeight;
-            // }
+            if (e.Control.Top < TitleHeight)
+            {
+                e.Control.Top = Padding.Top;
+            }
         }
 
         [DefaultValue(null)]
@@ -283,9 +275,10 @@ namespace Sunny.UI
             get => titleHeight;
             set
             {
-                titleHeight = Math.Max(value, 0);
-                CalcSystemBoxPos();
+                titleHeight = Math.Max(value, 31);
+                Padding = new Padding(0, showTitle ? titleHeight : 0, 0, 0);
                 Invalidate();
+                CalcSystemBoxPos();
             }
         }
 
@@ -850,7 +843,7 @@ namespace Sunny.UI
                     e.Graphics.DrawLine(Color.White,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
-                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 +5,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
 
                     e.Graphics.DrawLine(Color.White,
