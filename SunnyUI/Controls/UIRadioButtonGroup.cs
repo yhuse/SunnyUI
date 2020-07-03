@@ -94,6 +94,7 @@ namespace Sunny.UI
                 {
                     UIRadioButton button = new UIRadioButton
                     {
+                        BackColor = Color.Transparent,
                         Font = Font,
                         Parent = this,
                         Tag = i,
@@ -116,6 +117,7 @@ namespace Sunny.UI
 
                 buttons[i].Left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 buttons[i].Top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                buttons[i].Size = ItemSize;
                 buttons[i].Show();
             }
         }

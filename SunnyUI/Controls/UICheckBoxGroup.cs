@@ -110,6 +110,7 @@ namespace Sunny.UI
                 {
                     UICheckBox box = new UICheckBox
                     {
+                        BackColor = Color.Transparent,
                         Font = Font,
                         Parent = this,
                         Tag = i,
@@ -132,6 +133,7 @@ namespace Sunny.UI
 
                 boxes[i].Left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 boxes[i].Top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                boxes[i].Size = ItemSize;
                 boxes[i].Show();
             }
         }
