@@ -168,7 +168,17 @@ namespace Sunny.UI
 
             // Draw the border
             g.SetClip(ClientRectangle);
-            if (On) g.DrawEllipse(new Pen(Color.FromArgb(85, Color.Black), 1F), rectangle);
+            g.SetHighQuality();
+
+            if (On)
+            {
+                using (Pen pn = new Pen(Color.FromArgb(85, Color.Black), 1F))
+                {
+                    g.DrawEllipse(pn, rectangle);
+                }
+            }
+
+            g.SetDefaultQuality();
         }
 
         private int blinkInterval = 1000;
