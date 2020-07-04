@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
@@ -37,6 +38,16 @@ namespace Sunny.UI.Demo
         private void uiButton3_Click(object sender, System.EventArgs e)
         {
             uiCheckBoxGroup1.ReverseSelected();
+        }
+
+        private void FCheckBox_Shown(object sender, EventArgs e)
+        {
+            uiCheckBoxGroup1.SelectedIndexes = new List<int>() { 2, 4 };
+        }
+
+        private void uiButton4_Click(object sender, EventArgs e)
+        {
+            uiCheckBoxGroup1.SelectedIndexes = new List<int>() { 2, 4 };
         }
     }
 }

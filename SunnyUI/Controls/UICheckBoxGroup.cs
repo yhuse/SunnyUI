@@ -97,10 +97,8 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void CreateBoxes()
         {
-            base.OnPaint(e);
-
             if (Items.Count == 0) return;
             if (Items.Count != boxes.Count)
             {
@@ -121,7 +119,15 @@ namespace Sunny.UI
                     boxes.Add(box);
                 }
             }
+        }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            CreateBoxes();
+
+            if (Items.Count == 0) return;
             int startX = StartPos.X;
             int startY = TitleTop + StartPos.Y;
             for (int i = 0; i < Items.Count; i++)
@@ -162,6 +168,17 @@ namespace Sunny.UI
                 }
 
                 return indexes;
+            }
+            set
+            {
+                if (boxes.Count==0) return;
+                foreach (int i in value)
+                {
+                    if (i >= 0 && i < boxes.Count)
+                    {
+                        boxes[i].Checked = true;
+                    }
+                }
             }
         }
 

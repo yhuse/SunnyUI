@@ -769,5 +769,23 @@ namespace Sunny.UI
         public event EventHandler SelectionChanged;
 
         #endregion RichTextBox
+
+        #region TextBoxBase
+        public void ScrollToCaret()
+        {
+            edit.ScrollToCaret();
+        }
+
+        public void Select(int start, int length)
+        {
+            edit.Select(start,length);
+        }
+
+        public void SelectAll()
+        {
+            edit.SelectAll();
+        }
+
+        #endregion
     }
 }

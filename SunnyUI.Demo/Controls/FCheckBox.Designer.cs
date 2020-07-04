@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FCheckBox));
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiCheckBox3 = new Sunny.UI.UICheckBox();
@@ -37,11 +38,13 @@
             this.uiButton1 = new Sunny.UI.UIButton();
             this.uiButton2 = new Sunny.UI.UIButton();
             this.uiButton3 = new Sunny.UI.UIButton();
+            this.uiButton4 = new Sunny.UI.UIButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiButton4);
             this.PagePanel.Controls.Add(this.uiButton3);
             this.PagePanel.Controls.Add(this.uiButton2);
             this.PagePanel.Controls.Add(this.uiButton1);
@@ -130,6 +133,7 @@
             this.uiCheckBoxGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
             this.uiCheckBoxGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiCheckBoxGroup1.SelectedIndexes = ((System.Collections.Generic.List<int>)(resources.GetObject("uiCheckBoxGroup1.SelectedIndexes")));
             this.uiCheckBoxGroup1.Size = new System.Drawing.Size(670, 211);
             this.uiCheckBoxGroup1.TabIndex = 41;
             this.uiCheckBoxGroup1.Text = "UICheckBoxGroup";
@@ -168,6 +172,17 @@
             this.uiButton3.Text = "反选";
             this.uiButton3.Click += new System.EventHandler(this.uiButton3_Click);
             // 
+            // uiButton4
+            // 
+            this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton4.Location = new System.Drawing.Point(348, 310);
+            this.uiButton4.Name = "uiButton4";
+            this.uiButton4.Size = new System.Drawing.Size(100, 35);
+            this.uiButton4.TabIndex = 45;
+            this.uiButton4.Text = "选择";
+            this.uiButton4.Click += new System.EventHandler(this.uiButton4_Click);
+            // 
             // FCheckBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -176,6 +191,7 @@
             this.Name = "FCheckBox";
             this.Symbol = 61770;
             this.Text = "CheckBox";
+            this.Shown += new System.EventHandler(this.FCheckBox_Shown);
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -192,5 +208,6 @@
         private UIButton uiButton3;
         private UIButton uiButton2;
         private UIButton uiButton1;
+        private UIButton uiButton4;
     }
 }
