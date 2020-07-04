@@ -1,23 +1,23 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UICheckBoxGroup.cs
- * 文件说明: 多选框组
- * 当前版本: V2.2
- * 创建日期: 2020-01-01
- *
- * 2020-04-19: V2.2.3 增加单元
- * 2020-04-25: V2.2.4 更新主题配置类
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UICheckBoxGroup.cs
+* 文件说明: 多选框组
+* 当前版本: V2.2
+* 创建日期: 2020-01-01
+*
+* 2020-04-19: V2.2.3 增加单元
+* 2020-04-25: V2.2.4 更新主题配置类
 ******************************************************************************/
 
 using System;
@@ -70,31 +70,31 @@ namespace Sunny.UI
             boxes.Clear();
         }
 
-        private void Listbox_DrawItemEx(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
-        {
-            Invalidate();
-        }
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         public ListBox.ObjectCollection Items => ListBox.Items;
 
-        private ListBoxEx listbox;
+        private CheckedListBoxEx listbox;
 
-        private ListBoxEx ListBox
+        private CheckedListBoxEx ListBox
         {
             get
             {
                 if (listbox == null)
                 {
-                    listbox = new ListBoxEx();
-                    listbox.BeforeDrawItem += Listbox_DrawItemEx;
+                    listbox = new CheckedListBoxEx();
+                    listbox.OnItemsCountChange += Listbox_OnItemsCountChange;
                 }
 
                 return listbox;
             }
+        }
+
+        private void Listbox_OnItemsCountChange(object sender, EventArgs e)
+        {
+            Invalidate();
         }
 
         private void CreateBoxes()
@@ -171,7 +171,11 @@ namespace Sunny.UI
             }
             set
             {
-                if (boxes.Count==0) return;
+                if (boxes.Count != Items.Count)
+                {
+                    CreateBoxes();
+                }
+
                 foreach (int i in value)
                 {
                     if (i >= 0 && i < boxes.Count)
@@ -318,5 +322,24 @@ namespace Sunny.UI
         }
 
         private bool multiChange;
+
+        [ToolboxItem(false)]
+        internal class CheckedListBoxEx : CheckedListBox
+        {
+            public event EventHandler OnItemsCountChange;
+
+            private int count = -1;
+
+            protected override void OnDrawItem(DrawItemEventArgs e)
+            {
+                base.OnDrawItem(e);
+
+                if (count != Items.Count)
+                {
+                    OnItemsCountChange?.Invoke(this, e);
+                    count = Items.Count;
+                }
+            }
+        }
     }
 }

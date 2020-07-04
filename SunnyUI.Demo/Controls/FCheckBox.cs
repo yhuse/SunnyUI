@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
@@ -10,6 +9,7 @@ namespace Sunny.UI.Demo
         public FCheckBox()
         {
             InitializeComponent();
+            uiCheckBoxGroup1.SelectedIndexes = new List<int>() { 2, 4 };
         }
 
         private void uiCheckBoxGroup1_ValueChanged(object sender, int index, string text, bool isChecked)
@@ -22,7 +22,7 @@ namespace Sunny.UI.Demo
                 sb.Append(", ");
             }
 
-           this.ShowSuccessTip("SelectedIndex: " + index + ", SelectedText: " + text + "\n" + sb.ToString());
+            Console.WriteLine("SelectedIndex: " + index + ", SelectedText: " + text + "\n" + sb.ToString());
         }
 
         private void uiButton1_Click(object sender, System.EventArgs e)
@@ -38,11 +38,6 @@ namespace Sunny.UI.Demo
         private void uiButton3_Click(object sender, System.EventArgs e)
         {
             uiCheckBoxGroup1.ReverseSelected();
-        }
-
-        private void FCheckBox_Shown(object sender, EventArgs e)
-        {
-            uiCheckBoxGroup1.SelectedIndexes = new List<int>() { 2, 4 };
         }
 
         private void uiButton4_Click(object sender, EventArgs e)

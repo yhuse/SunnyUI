@@ -144,6 +144,7 @@
             this.PagePanel.Controls.Add(this.uiButton2);
             this.PagePanel.Controls.Add(this.uiButton1);
             this.PagePanel.Size = new System.Drawing.Size(800, 499);
+            this.PagePanel.Style = Sunny.UI.UIStyle.Blue;
             this.PagePanel.Text = "";
             // 
             // uiButton1

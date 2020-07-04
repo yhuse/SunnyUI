@@ -128,7 +128,9 @@
             "5",
             "6",
             "7",
-            "8"});
+            "8",
+            "9"});
+            this.uiCheckBoxGroup1.ItemSize = new System.Drawing.Size(110, 35);
             this.uiCheckBoxGroup1.Location = new System.Drawing.Point(30, 91);
             this.uiCheckBoxGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
@@ -191,7 +193,6 @@
             this.Name = "FCheckBox";
             this.Symbol = 61770;
             this.Text = "CheckBox";
-            this.Shown += new System.EventHandler(this.FCheckBox_Shown);
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

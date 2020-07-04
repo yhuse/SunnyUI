@@ -28,7 +28,7 @@ namespace Sunny.UI
     /// 支持事件的List
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ListEx<T> : List<T> where T : new()
+    public class ListEx<T> : List<T>
     {
         public delegate void OnListChange(object sender, T item, int index);
 
