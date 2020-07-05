@@ -381,20 +381,38 @@ namespace Sunny.UI
 
         public static void DrawRoundRectangle(this Graphics g, Pen pen, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
+            {
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.Smooth(smooth);
+                    g.DrawPath(pen, path);
+                    g.Smooth(false);
+                }
+            }
+            else
             {
                 g.Smooth(smooth);
-                g.DrawPath(pen, path);
+                g.DrawRectangle(pen, rect);
                 g.Smooth(false);
             }
         }
 
         public static void FillRoundRectangle(this Graphics g, Brush brush, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
+            {
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.Smooth(smooth);
+                    g.FillPath(brush, path);
+                    g.Smooth(false);
+                }
+            }
+            else
             {
                 g.Smooth(smooth);
-                g.FillPath(brush, path);
+                g.FillRectangle(brush, rect);
                 g.Smooth(false);
             }
         }
@@ -411,17 +429,31 @@ namespace Sunny.UI
 
         public static void DrawRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
             {
-                g.DrawPath(color, path, smooth);
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.DrawPath(color, path, smooth);
+                }
+            }
+            else
+            {
+                g.DrawRectangle(color, rect, smooth);
             }
         }
 
         public static void FillRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
             {
-                g.FillPath(color, path, smooth);
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.FillPath(color, path, smooth);
+                }
+            }
+            else
+            {
+                g.FillRectangle(color, rect, smooth);
             }
         }
 
@@ -482,7 +514,7 @@ namespace Sunny.UI
 
         public static GraphicsPath CreateFanPath(this Point center, float d1, float d2, float startAngle, float sweepAngle)
         {
-            return new PointF(center.X,center.Y).CreateFanPath(d1,d2,startAngle,sweepAngle);
+            return new PointF(center.X, center.Y).CreateFanPath(d1, d2, startAngle, sweepAngle);
         }
 
         public static GraphicsPath CreateFanPath(this PointF center, float d1, float d2, float startAngle, float sweepAngle)
@@ -666,12 +698,12 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawString(this Graphics g, string s, Font font, Color color, 
+        public static void DrawString(this Graphics g, string s, Font font, Color color,
             RectangleF layoutRectangle, StringFormat format, float angle)
         {
-            using (Brush br= new SolidBrush(color))
+            using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s,font,br,layoutRectangle,format,angle);
+                g.DrawString(s, font, br, layoutRectangle, format, angle);
             }
         }
 
@@ -680,7 +712,7 @@ namespace Sunny.UI
         {
             using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s,font,br,point,format,angle);
+                g.DrawString(s, font, br, point, format, angle);
             }
         }
 

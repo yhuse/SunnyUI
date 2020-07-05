@@ -798,7 +798,10 @@ namespace Sunny.UI
             {
                 if (InControlBox)
                 {
-                    e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(UIColor.Red, ControlBoxRect);
                 }
 
                 //e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
@@ -819,7 +822,10 @@ namespace Sunny.UI
             {
                 if (InMaxBox)
                 {
-                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(btn.FillHoverColor, MaximizeBoxRect);
                 }
 
                 // e.Graphics.DrawFontImage(
@@ -872,7 +878,10 @@ namespace Sunny.UI
             {
                 if (InMinBox)
                 {
-                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(btn.FillHoverColor, MinimizeBoxRect);
                 }
 
                 e.Graphics.DrawLine(Color.White,
