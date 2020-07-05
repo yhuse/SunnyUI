@@ -63,9 +63,9 @@ namespace Sunny.UI
         protected override void DrawOption(Graphics g)
         {
             if (PieOption == null) return;
-             DrawTitle(g, PieOption.Title);
-             DrawSeries(g, PieOption.Series);
-             DrawLegend(g, PieOption.Legend);
+            DrawTitle(g, PieOption.Title);
+            DrawSeries(g, PieOption.Series);
+            DrawLegend(g, PieOption.Legend);
         }
 
         protected override void CalcData(UIOption option)
@@ -73,11 +73,6 @@ namespace Sunny.UI
             Angles.Clear();
             UIPieOption o = (UIPieOption)option;
             if (o == null || o.Series == null || o.Series.Count == 0) return;
-            UITemplate template = null;
-            if (o.ToolTip != null)
-            {
-                template = new UITemplate(o.ToolTip.Formatter);
-            }
 
             for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
             {
@@ -101,14 +96,12 @@ namespace Sunny.UI
                     {
                         try
                         {
-                            if (template != null)
-                            {
-                                template.Set("a", pie.Name);
-                                template.Set("b", pie.Data[i].Name);
-                                template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
-                                template.Set("d", percent.ToString("F2"));
-                                text = template.Render();
-                            }
+                            UITemplate template = new UITemplate(o.ToolTip.Formatter);
+                            template.Set("a", pie.Name);
+                            template.Set("b", pie.Data[i].Name);
+                            template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
+                            template.Set("d", percent.ToString("F2"));
+                            text = template.Render();
                         }
                         catch
                         {
@@ -142,8 +135,6 @@ namespace Sunny.UI
         }
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
-
-
 
         [Browsable(false)]
         private UIPieOption PieOption
