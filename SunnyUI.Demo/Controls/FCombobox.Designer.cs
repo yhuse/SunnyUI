@@ -82,6 +82,7 @@
             this.uiDatetimePicker1.Text = "2020-06-02 17:57:28";
             this.uiDatetimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiDatetimePicker1.Value = new System.DateTime(2020, 6, 2, 17, 57, 28, 203);
+            this.uiDatetimePicker1.ValueChanged += new Sunny.UI.UIDatetimePicker.OnDateTimeChanged(this.uiDatetimePicker1_ValueChanged);
             // 
             // uiColorPicker1
             // 
@@ -138,6 +139,7 @@
             this.uiTimePicker1.Text = "23:41:39";
             this.uiTimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTimePicker1.Value = new System.DateTime(2020, 5, 29, 23, 41, 39, 684);
+            this.uiTimePicker1.ValueChanged += new Sunny.UI.UITimePicker.OnDateTimeChanged(this.uiTimePicker1_ValueChanged);
             // 
             // uiLine3
             // 
@@ -178,6 +180,7 @@
             this.uiDatePicker1.Text = "2020-04-16";
             this.uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiDatePicker1.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
+            this.uiDatePicker1.ValueChanged += new Sunny.UI.UIDatePicker.OnDateTimeChanged(this.uiDatePicker1_ValueChanged);
             // 
             // uiComboBox2
             // 

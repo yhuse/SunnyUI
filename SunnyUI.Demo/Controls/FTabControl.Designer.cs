@@ -35,6 +35,8 @@
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
@@ -64,6 +66,8 @@
             this.uiTabControl1.Controls.Add(this.tabPage9);
             this.uiTabControl1.Controls.Add(this.tabPage10);
             this.uiTabControl1.Controls.Add(this.tabPage11);
+            this.uiTabControl1.Controls.Add(this.tabPage12);
+            this.uiTabControl1.Controls.Add(this.tabPage13);
             this.uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
@@ -72,7 +76,6 @@
             this.uiTabControl1.Name = "uiTabControl1";
             this.uiTabControl1.SelectedIndex = 0;
             this.uiTabControl1.ShowActiveCloseButton = true;
-            this.uiTabControl1.ShowCloseButton = true;
             this.uiTabControl1.Size = new System.Drawing.Size(670, 183);
             this.uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControl1.TabIndex = 0;
@@ -131,6 +134,24 @@
             this.tabPage11.TabIndex = 6;
             this.tabPage11.Text = "tabPage11";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Location = new System.Drawing.Point(0, 40);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(670, 143);
+            this.tabPage12.TabIndex = 7;
+            this.tabPage12.Text = "tabPage12";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Location = new System.Drawing.Point(0, 40);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(670, 143);
+            this.tabPage13.TabIndex = 8;
+            this.tabPage13.Text = "tabPage13";
+            this.tabPage13.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -250,5 +271,7 @@
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPage13;
     }
 }

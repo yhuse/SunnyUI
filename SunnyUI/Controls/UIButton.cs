@@ -23,6 +23,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 // ReSharper disable All
@@ -33,7 +34,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
     [ToolboxItem(true)]
-    public class UIButton : UIControl
+    public class UIButton : UIControl, IButtonControl
     {
         public UIButton()
         {
@@ -63,6 +64,12 @@ namespace Sunny.UI
                 OnClick(EventArgs.Empty);
                 isClick = false;
             }
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            Focus();
+            base.OnClick(e);
         }
 
         private bool showTips = false;
@@ -135,6 +142,19 @@ namespace Sunny.UI
                 float y = 1 + 1;
                 e.Graphics.FillEllipse(UIColor.Red, x, y, sfMax, sfMax);
                 e.Graphics.DrawString(TipsText, TipsFont, Color.White, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+            }
+
+            if (Focused && ShowFocusLine)
+            {
+                Rectangle rect = new Rectangle(2, 2, Width - 5, Height - 5);
+                var path = rect.CreateRoundedRectanglePath(Radius);
+                using (Pen pn = new Pen(ForeColor))
+                {
+                    pn.DashStyle = DashStyle.Dot;
+                    e.Graphics.DrawPath(pn, path);
+                }
+
+                path.Dispose();
             }
         }
 
@@ -304,5 +324,25 @@ namespace Sunny.UI
             IsHover = true;
             Invalidate();
         }
+
+        public void NotifyDefault(bool value)
+        {
+        }
+
+        [DefaultValue(DialogResult.None)]
+        public DialogResult DialogResult { get; set; } = DialogResult.None;
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (Focused && e.KeyCode == Keys.Space)
+            {
+                PerformClick();
+            }
+
+            base.OnKeyDown(e);
+        }
+
+        [DefaultValue(false)]
+        public bool ShowFocusLine { get; set; }
     }
 }

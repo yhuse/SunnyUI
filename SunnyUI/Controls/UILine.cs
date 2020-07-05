@@ -32,8 +32,7 @@ namespace Sunny.UI
         public UILine()
         {
             Size = new Size(360, 29);
-            MinimumSize = new Size(16, 16);
-            ShowRect = false;
+            MinimumSize = new Size(2, 2);
             foreColor = UIStyles.Blue.LineForeColor;
             fillColor = UIStyles.Blue.PlainColor;
         }
@@ -100,7 +99,7 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
-        protected override void OnPaintFill(Graphics g, GraphicsPath path)
+        protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
             g.Clear(fillColor);
             if (Direction == LineDirection.Horizontal)

@@ -51,11 +51,17 @@
             this.uiScrollBar2 = new Sunny.UI.UIScrollBar();
             this.uiScrollBar3 = new Sunny.UI.UIScrollBar();
             this.uiScrollBar4 = new Sunny.UI.UIScrollBar();
+            this.uiLine6 = new Sunny.UI.UILine();
+            this.uiScrollingText1 = new Sunny.UI.UIScrollingText();
+            this.uiScrollingText2 = new Sunny.UI.UIScrollingText();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiScrollingText2);
+            this.PagePanel.Controls.Add(this.uiScrollingText1);
+            this.PagePanel.Controls.Add(this.uiLine6);
             this.PagePanel.Controls.Add(this.uiScrollBar4);
             this.PagePanel.Controls.Add(this.uiScrollBar3);
             this.PagePanel.Controls.Add(this.uiScrollBar2);
@@ -149,7 +155,7 @@
             // uiProgressIndicator1
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 217);
+            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 209);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(119, 132);
             this.uiProgressIndicator1.TabIndex = 26;
@@ -316,6 +322,42 @@
             this.uiScrollBar4.TabIndex = 45;
             this.uiScrollBar4.Text = "uiScrollBar4";
             // 
+            // uiLine6
+            // 
+            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Location = new System.Drawing.Point(30, 346);
+            this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine6.Name = "uiLine6";
+            this.uiLine6.Size = new System.Drawing.Size(319, 20);
+            this.uiLine6.TabIndex = 47;
+            this.uiLine6.Text = "UIScrollingText";
+            this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiScrollingText1
+            // 
+            this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
+            this.uiScrollingText1.Location = new System.Drawing.Point(27, 372);
+            this.uiScrollingText1.Name = "uiScrollingText1";
+            this.uiScrollingText1.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
+            this.uiScrollingText1.Size = new System.Drawing.Size(322, 35);
+            this.uiScrollingText1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiScrollingText1.StyleCustomMode = true;
+            this.uiScrollingText1.TabIndex = 48;
+            this.uiScrollingText1.Text = "赠人玫瑰手有余香";
+            // 
+            // uiScrollingText2
+            // 
+            this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiScrollingText2.Location = new System.Drawing.Point(27, 413);
+            this.uiScrollingText2.Name = "uiScrollingText2";
+            this.uiScrollingText2.Size = new System.Drawing.Size(322, 35);
+            this.uiScrollingText2.TabIndex = 49;
+            this.uiScrollingText2.Text = "赠人玫瑰手有余香";
+            // 
             // FOther
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -352,5 +394,8 @@
         private UILine uiLine1;
         private UIScrollBar uiScrollBar4;
         private UIScrollBar uiScrollBar3;
+        private UILine uiLine6;
+        private UIScrollingText uiScrollingText1;
+        private UIScrollingText uiScrollingText2;
     }
 }

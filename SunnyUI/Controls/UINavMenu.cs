@@ -43,8 +43,8 @@ namespace Sunny.UI
             BorderStyle = BorderStyle.None;
             //HideSelection = false;
             DrawMode = TreeViewDrawMode.OwnerDrawAll;
-            //FullRowSelect = true;
-            //ShowLines = false;
+            FullRowSelect = true;
+            ShowLines = false;
             //ShowPlusMinus = false;
             //ShowRootLines = false;
 
@@ -353,7 +353,7 @@ namespace Sunny.UI
 
         public void SetNodeTipsText(TreeNode node, string tipsText)
         {
-            MenuHelper.SetTipsText(node,tipsText);
+            MenuHelper.SetTipsText(node, tipsText);
         }
 
         public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
@@ -610,14 +610,20 @@ namespace Sunny.UI
                 TreeNode node = e.Node.PrevNode;
                 while (node != null)
                 {
-                    node.Collapse();
+                    if (node.IsExpanded)
+                    {
+                        node.Collapse();
+                    }
                     node = node.PrevNode;
                 }
 
                 node = e.Node.NextNode;
                 while (node != null)
                 {
-                    node.Collapse();
+                    if (node.IsExpanded)
+                    {
+                        node.Collapse();
+                    }
                     node = node.NextNode;
                 }
             }
@@ -715,7 +721,13 @@ namespace Sunny.UI
 
         public TreeNode CreateChildNode(TreeNode parent, UIPage page)
         {
-            return CreateChildNode(parent, new NavMenuItem(page));
+            var childNode = CreateChildNode(parent, new NavMenuItem(page));
+            if (page.Symbol > 0)
+            {
+                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolSize);
+            }
+
+            return childNode;
         }
 
         public TreeNode CreateChildNode(TreeNode parent, NavMenuItem item)

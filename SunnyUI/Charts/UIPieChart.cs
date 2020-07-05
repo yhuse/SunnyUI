@@ -136,7 +136,7 @@ namespace Sunny.UI
                     Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
                     RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
                     g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
-                    Angles[pieIndex][azIndex].Size = g.MeasureString(Angles[pieIndex][azIndex].Text, legendFont);
+                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, legendFont);
                 }
             }
         }
@@ -177,13 +177,14 @@ namespace Sunny.UI
                 double az = MathEx.CalcAngle(e.Location, pf);
                 for (int azIndex = 0; azIndex < PieOption.Series[pieIndex].Data.Count; azIndex++)
                 {
-                    if (az >= Angles[pieIndex][azIndex].Start && az <= Angles[pieIndex][azIndex].Start + Angles[pieIndex][azIndex].Sweep)
+                    Angle angle = Angles[pieIndex][azIndex];
+                    if (az >= angle.Start && az <= angle.Start + angle.Sweep)
                     {
                         SetPieAndAzIndex(pieIndex, azIndex);
-                        if (tip.Text != Angles[pieIndex][azIndex].Text)
+                        if (tip.Text != angle.Text)
                         {
-                            tip.Text = Angles[pieIndex][azIndex].Text;
-                            tip.Size = new Size((int)Angles[pieIndex][azIndex].Size.Width + 4, (int)Angles[pieIndex][azIndex].Size.Height + 4);
+                            tip.Text = angle.Text;
+                            tip.Size = new Size((int)angle.TextSize.Width + 4, (int)angle.TextSize.Height + 4);
                         }
 
                         if (az >= 0 && az < 90)
@@ -207,7 +208,7 @@ namespace Sunny.UI
                             tip.Top = e.Location.Y + 20;
                         }
 
-                        if (!tip.Visible) tip.Visible = Angles[pieIndex][azIndex].Text.IsValid();
+                        if (!tip.Visible) tip.Visible = angle.Text.IsValid();
                         return;
                     }
                 }
@@ -240,7 +241,7 @@ namespace Sunny.UI
             return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
         }
 
-        internal class Angle
+        private class Angle
         {
             public float Start { get; set; }
             public float Sweep { get; set; }
@@ -254,7 +255,7 @@ namespace Sunny.UI
 
             public string Text { get; set; }
 
-            public SizeF Size { get; set; }
+            public SizeF TextSize { get; set; }
         }
     }
 }

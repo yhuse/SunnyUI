@@ -56,11 +56,17 @@
             this.uiSymbolButton7 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton8 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton9 = new Sunny.UI.UISymbolButton();
+            this.uiLine8 = new Sunny.UI.UILine();
+            this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton10 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine8);
+            this.PagePanel.Controls.Add(this.uiSymbolButton3);
+            this.PagePanel.Controls.Add(this.uiSymbolButton10);
             this.PagePanel.Controls.Add(this.uiLine7);
             this.PagePanel.Controls.Add(this.uiSymbolButton7);
             this.PagePanel.Controls.Add(this.uiSymbolButton8);
@@ -90,6 +96,7 @@
             this.PagePanel.Controls.Add(this.btnSuccess);
             this.PagePanel.Controls.Add(this.btnAsk);
             this.PagePanel.Size = new System.Drawing.Size(800, 514);
+            this.PagePanel.Style = Sunny.UI.UIStyle.Blue;
             // 
             // btnError
             // 
@@ -418,7 +425,7 @@
             this.uiLine6.Location = new System.Drawing.Point(30, 415);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
-            this.uiLine6.Size = new System.Drawing.Size(670, 20);
+            this.uiLine6.Size = new System.Drawing.Size(328, 20);
             this.uiLine6.TabIndex = 59;
             this.uiLine6.Text = "ULocalize";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -456,7 +463,7 @@
             this.uiLine7.Location = new System.Drawing.Point(30, 336);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
-            this.uiLine7.Size = new System.Drawing.Size(670, 20);
+            this.uiLine7.Size = new System.Drawing.Size(328, 20);
             this.uiLine7.TabIndex = 66;
             this.uiLine7.Text = "UIMessageTip";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -524,6 +531,43 @@
             this.uiSymbolButton9.Text = "Success";
             this.uiSymbolButton9.Click += new System.EventHandler(this.uiSymbolButton9_Click);
             // 
+            // uiLine8
+            // 
+            this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine8.Location = new System.Drawing.Point(372, 336);
+            this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine8.Name = "uiLine8";
+            this.uiLine8.Size = new System.Drawing.Size(328, 20);
+            this.uiLine8.TabIndex = 69;
+            this.uiLine8.Text = "UILoginForm";
+            this.uiLine8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSymbolButton3
+            // 
+            this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton3.Location = new System.Drawing.Point(486, 368);
+            this.uiSymbolButton3.Name = "uiSymbolButton3";
+            this.uiSymbolButton3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton3.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton3.Symbol = 62144;
+            this.uiSymbolButton3.TabIndex = 68;
+            this.uiSymbolButton3.Text = "Login";
+            this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click);
+            // 
+            // uiSymbolButton10
+            // 
+            this.uiSymbolButton10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton10.Location = new System.Drawing.Point(372, 368);
+            this.uiSymbolButton10.Name = "uiSymbolButton10";
+            this.uiSymbolButton10.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton10.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton10.Symbol = 61447;
+            this.uiSymbolButton10.TabIndex = 67;
+            this.uiSymbolButton10.Text = "Login";
+            this.uiSymbolButton10.Click += new System.EventHandler(this.uiSymbolButton10_Click);
+            // 
             // FDialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -534,7 +578,6 @@
             this.Text = "Dialogs";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
-
 
         }
 
@@ -568,5 +611,8 @@
         private UISymbolButton uiSymbolButton7;
         private UISymbolButton uiSymbolButton8;
         private UISymbolButton uiSymbolButton9;
+        private UILine uiLine8;
+        private UISymbolButton uiSymbolButton3;
+        private UISymbolButton uiSymbolButton10;
     }
 }

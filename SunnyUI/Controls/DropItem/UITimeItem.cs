@@ -547,7 +547,7 @@ namespace Sunny.UI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Hour, Minute, Second);
+            time = new DateTime(DateTime.MinValue.Year, DateTime.MinValue.Month, DateTime.MinValue.Day, Hour, Minute, Second);
             DoValueChanged(this, time);
             CloseParent();
         }

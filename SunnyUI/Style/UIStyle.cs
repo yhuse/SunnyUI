@@ -152,9 +152,9 @@ namespace Sunny.UI
     /// </summary>
     public static class UIStyles
     {
-        public static ListEx<UIStyle> PopularStyles()
+        public static List<UIStyle> PopularStyles()
         {
-            ListEx<UIStyle> styles = new ListEx<UIStyle>();
+            List<UIStyle> styles = new List<UIStyle>();
             foreach (UIStyle style in Enum.GetValues(typeof(UIStyle)))
             {
                 if (style.Value() >= UIStyle.Blue.Value() && style.Value() <= UIStyle.Office2010Black.Value())

@@ -470,12 +470,22 @@ namespace Sunny.UI
             return path;
         }
 
-        public static GraphicsPath CreateFanPath(this Graphics g, Point center, int d1, int d2, float startAngle, float sweepAngle)
+        public static GraphicsPath CreateFanPath(this Graphics g, Point center, float d1, float d2, float startAngle, float sweepAngle)
         {
             return center.CreateFanPath(d1, d2, startAngle, sweepAngle);
         }
 
-        public static GraphicsPath CreateFanPath(this Point center, int d1, int d2, float startAngle, float sweepAngle)
+        public static GraphicsPath CreateFanPath(this Graphics g, PointF center, float d1, float d2, float startAngle, float sweepAngle)
+        {
+            return center.CreateFanPath(d1, d2, startAngle, sweepAngle);
+        }
+
+        public static GraphicsPath CreateFanPath(this Point center, float d1, float d2, float startAngle, float sweepAngle)
+        {
+            return new PointF(center.X,center.Y).CreateFanPath(d1,d2,startAngle,sweepAngle);
+        }
+
+        public static GraphicsPath CreateFanPath(this PointF center, float d1, float d2, float startAngle, float sweepAngle)
         {
             GraphicsPath path = new GraphicsPath();
             path.AddArc(center.X - d1, center.Y - d1, d1 * 2, d1 * 2, startAngle, sweepAngle);
@@ -490,14 +500,28 @@ namespace Sunny.UI
             g.DrawLine(color, center.X, center.Y - size, center.X, center.Y + size);
         }
 
-        public static void DrawFan(this Graphics g, Color color, Point center, int d1, int d2, float startAngle, float sweepAngle, bool smooth = true)
+        public static void DrawFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
             GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
             g.DrawPath(color, path, smooth);
             path.Dispose();
         }
 
-        public static void FillFan(this Graphics g, Color color, Point center, int d1, int d2, float startAngle, float sweepAngle, bool smooth = true)
+        public static void DrawFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+            g.DrawPath(color, path, smooth);
+            path.Dispose();
+        }
+
+        public static void FillFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
+        {
+            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+            g.FillPath(color, path, smooth);
+            path.Dispose();
+        }
+
+        public static void FillFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
             GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
             g.FillPath(color, path, smooth);

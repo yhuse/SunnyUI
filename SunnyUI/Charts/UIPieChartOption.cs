@@ -28,13 +28,13 @@ namespace Sunny.UI
         public int SeriesCount => Series.Count;
     }
 
-    public class UIDoughnutPieOption : UIOption, IDisposable
+    public class UIDoughnutOption : UIOption, IDisposable
     {
-        public List<UIDoughnutPieSeries> Series = new List<UIDoughnutPieSeries>();
+        public List<UIDoughnutSeries> Series = new List<UIDoughnutSeries>();
 
         public UIPieToolTip ToolTip;
 
-        public void AddSeries(UIDoughnutPieSeries series)
+        public void AddSeries(UIDoughnutSeries series)
         {
             Series.Clear();
             Series.Add(series);
@@ -72,6 +72,8 @@ namespace Sunny.UI
 
         public readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
 
+        public UIPieSeriesLabel Label = new UIPieSeriesLabel();
+
         public void AddData(string name, double value)
         {
             Data.Add(new UIPieSeriesData(name, value));
@@ -96,7 +98,7 @@ namespace Sunny.UI
         }
     }
 
-    public class UIDoughnutPieSeries : IDisposable
+    public class UIDoughnutSeries : IDisposable
     {
         public string Name { get; set; }
 
@@ -107,6 +109,8 @@ namespace Sunny.UI
         public UICenter Center { get; set; } = new UICenter(50, 50);
 
         public readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
+
+        public UIPieSeriesLabel Label = new UIPieSeriesLabel();
 
         public void AddData(string name, double value)
         {
@@ -134,5 +138,21 @@ namespace Sunny.UI
             Name = name;
             Value = value;
         }
+    }
+
+    public class UIPieSeriesLabel
+    {
+        public bool Show { get; set; } = false;
+
+        public UIPieSeriesLabelPosition Position { get; set; } = UIPieSeriesLabelPosition.Center;
+
+        public string Formatter { get; set; } = "{{b}}";
+    }
+
+    public enum UIPieSeriesLabelPosition
+    {
+        Outside,
+        Inside,
+        Center
     }
 }

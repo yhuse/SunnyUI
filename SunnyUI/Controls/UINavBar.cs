@@ -438,6 +438,7 @@ namespace Sunny.UI
                 }
             }
 
+            NavBarMenu.AutoSize = true;
             if (NavBarMenu.Width < NodeSize.Width)
             {
                 NavBarMenu.AutoSize = false;

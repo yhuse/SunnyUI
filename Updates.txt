@@ -1,99 +1,47 @@
 + 增加； - 删除； * 修改 
 
-2020.06.18
-* UIBarChart：完成开发
+2020-07-04
+* UICheckBoxGroup,UIRadioButtonGroup：可以设置初始选中值
+* UILedBulb：边缘平滑
+* UIRichTextBox：增加一些函数
 
-2020.06.16
-+ UIBarChart：新增ToolTip显示
-+ UINavMenu：新增TipsText气泡数字显示
+2020-07-03
+* UIRadioButtonGroup,UICheckBoxGroup：修正调整ItemSize无效的Bug
 
-2020.06.15
-+UIBarChart：新增UIBarChart控件
+2020-07-02
+* UIForm：修正控件位置在标题栏下方
 
-2020.06.14
-* 重构图表控件，准备开发UIBarChart
-* UITextBox：增加EnterAsTab
+2020-07-01
+* UIForm：修改标题栏按钮背景色刷新
+* UIForm：仿照QQ，重绘标题栏按钮。
+* UINavMenu：OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；设置FullRowSelect ShowLin…  
+* OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；设置FullRowSelect ShowLines 属性，解决滚轮失效问题。  
+* UIForm：修改不显示标题时的控件在顶部的位置Bug
+* 修改最大化全屏时消息窗体弹出在窗体后的BUG
+* 修改最大化全屏时消息窗体弹出在窗体后的BUG
 
-2020.06.12
-+ UIComboBox：增加数据绑定，可设置DataSource，DisplayMember，ValueMember
-
-2020.06.11
-+ 增加到Nuget
-* UIFrame：修复框架页面放置UIContextMenuStrip时显示错位
-* UIAvatar：修复Dock为Right时刷新问题
-+ UIComboBox：增加DataSource
-
-2020.06.10
-+ UINaveMenu：增加ShowOneNode，同一层只显示一个打开的节点
-
-2020.06.09
+2020.06.29 V2.2.5->V2.2.6
++ UIDoughnutChart：环状图
++ UILoginForm：登录窗体
++ UIScrollingText：滚动文字
++ UIBarChart：柱状图
++ UIPieChart：饼状图
++ UIRichTextBox：富文本框
++ UIBattery：电池电量显示
++ UIDatetimePicker：日期时间选择框
++ UIColorPicker：颜色选择框
++ UITimePicker：时间选择框
++ UIMessageTipHelper：增加MessageTip扩展方法
+* UIComboBox：增加数据绑定
 * 页面框架支持通过PageIndex和PageGuid关联
-
-2020.06.08
-* UINAVMenu：修改一处消息引起的Bug
-* UIPieChart：增加ToolTip设置，显示配色调整
-
-2020.06.07
-* UITabControl：重绘了页面左右控制按钮
-* UIPieChart：增加Title，Legend，Tip
-
-2020.06.06
-+ UIPieChart：新增
-* UITextBox：修复设置为MultiLine时刷新问题
-
-2020.06.05
-+ UIRichTextBox：新增
-* UITextBox：完善TextBox的基本方法和函数
-* UIForm,UIPage：更改新建窗体时主题未设置的问题
-
-2020.06.04
-+ UIBattery 新增
-* UITextBox：Int和Double时可设置为空，设置默认值可不为0
-+ UIFormHelper：增加了一些窗体扩展
-
-2020.06.03
 * UITextBox：增加Multiline属性，增加滚动条
-
-2020.06.02
-+ UIDatetimePicker：新增
-* UITabControl：新增关闭按钮
-* UINavBar：修改未设置PageIndex不相应按钮事件，增加按钮字体图标
-
-2020.05.31
-+ UIColorPicker：新增
-
-2020.05.30
+* UITabControl：新增关闭按钮，重绘左右移动按钮
 * UIForm：更新标题移动、双击最大化/正常、到顶最大化、最大化后拖拽正常
-
-2020.05.29
-* UIDatePicker：重写日期选择界面
-+ UITimePicker：新增
-
-2020.05.28
-* UIForm：更新了点击标题栏移动的方法，以及双击最大化/正常
-
-2020.05.27
-* UIListBox：更新消息处理Bug
-* UIMainFrame：更新页面框架Main命名，继承关系为Private。继承后编译时删除Design.cs里面Main部分
-+ UINavMenu：增加字体图标显示
-* UIForm：最大化支持多屏
-+ UITextbox：增加keypress keydown keyup事件
-* UIDatePicker：更改图标
-+ MessageTip：增加Demo
-
-2020.05.26
-* 更新页面框架Main叠放次序
-
-2020.05.25
-+ UITextBox：增加Watermark水印属性
-+ ULocalize.cs：增加多语帮助类
-
-2020.05.23 V2.2.5
-* 修复字体图标一处Bug
-
-2020.05.21 V2.2.5
-* 字体图标字体调整从资源文件中加载字体，不用另存为文件。
+* UINavMenu：增加字体图标显示
+* 字体图标字体调整从资源文件中加载字体，不用另存为文件
 * UIListBox 增加跟随鼠标滑过高亮
+* UIDatePicker：重写日期选择界面
+* UIButton：增加ShowFocusLine，可获得焦点并显示
 
 2020.05.05 V2.2.5
 + 增加页面框架

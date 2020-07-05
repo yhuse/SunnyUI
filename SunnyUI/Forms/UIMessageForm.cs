@@ -120,8 +120,6 @@ namespace Sunny.UI
                 lbMsg.BackColor = BackColor;
                 lbMsg.SelectionColor = RectColor;
             }
-
-            Invalidate();
         }
 
         private void btnOK_MouseEnter(object sender, EventArgs e)

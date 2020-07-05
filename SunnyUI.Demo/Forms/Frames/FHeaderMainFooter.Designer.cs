@@ -45,7 +45,6 @@
             // 
             this.Header.Controls.Add(this.uiLogo1);
             this.Header.Size = new System.Drawing.Size(1024, 110);
-            this.Header.Style = Sunny.UI.UIStyle.Blue;
             this.Header.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.Header_MenuItemClick);
             // 
             // uiLogo1
@@ -56,7 +55,6 @@
             this.uiLogo1.MinimumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.Name = "uiLogo1";
             this.uiLogo1.Size = new System.Drawing.Size(300, 80);
-            this.uiLogo1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLogo1.TabIndex = 1;
             this.uiLogo1.Text = "uiLogo1";
             // 
@@ -66,7 +64,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 720);
             this.Name = "FHeaderMainFooter";
-            this.Style = Sunny.UI.UIStyle.Blue;
             this.Text = "FHeaderMainFooter";
             this.Header.ResumeLayout(false);
             this.ResumeLayout(false);

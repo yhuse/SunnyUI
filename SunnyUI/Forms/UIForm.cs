@@ -37,11 +37,13 @@ namespace Sunny.UI
 
         private UIStatusForm statusForm;
 
+        public delegate void OnWindowStateChange(object sender, FormWindowState state);
+
+        public event OnWindowStateChange WindowStateChange;
+
         public UIForm()
         {
             InitializeComponent();
-
-            base.BackColor = UIColor.LightBlue;
 
             if (this.Register())
             {
@@ -51,13 +53,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            base.DoubleBuffered = true;
-            Padding = new Padding(0, titleHeight, 0, 0);
             UpdateStyles();
-
-            base.Font = UIFontColor.Font;
-            FormBorderStyle = FormBorderStyle.None;
-            StartPosition = FormStartPosition.CenterScreen;
             Version = UIGlobal.Version;
         }
 
@@ -143,9 +139,9 @@ namespace Sunny.UI
                 }
             }
 
-            if (ShowTitle && e.Control.Top < TitleHeight)
+            if (e.Control.Top < TitleHeight)
             {
-                e.Control.Top = TitleHeight;
+                e.Control.Top = Padding.Top;
             }
         }
 
@@ -279,9 +275,10 @@ namespace Sunny.UI
             get => titleHeight;
             set
             {
-                titleHeight = Math.Max(value, 0);
-                CalcSystemBoxPos();
+                titleHeight = Math.Max(value, 31);
+                Padding = new Padding(0, showTitle ? titleHeight : 0, 0, 0);
                 Invalidate();
+                CalcSystemBoxPos();
             }
         }
 
@@ -462,6 +459,7 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     base.WindowState = FormWindowState.Minimized;
+                    WindowStateChange?.Invoke(this, FormWindowState.Minimized);
                     InMinBox = false;
                 }
 
@@ -495,10 +493,10 @@ namespace Sunny.UI
                 Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
                 Left = screen.Bounds.Left;
                 Top = screen.Bounds.Top;
-                //StartPosition = FormStartPosition.Manual;
                 SetFormRoundRectRegion(this, 0);
-
+                if (ShowFullScreen) base.WindowState = FormWindowState.Maximized;
                 windowState = FormWindowState.Maximized;
+                WindowStateChange?.Invoke(this, FormWindowState.Maximized);
             }
             else if (windowState == FormWindowState.Maximized)
             {
@@ -513,9 +511,10 @@ namespace Sunny.UI
 
                 if (location.X == 0 && location.Y == 0) location = center;
                 Location = StartPosition == FormStartPosition.CenterScreen ? center : location;
-                //StartPosition = FormStartPosition.CenterScreen;
                 SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 windowState = FormWindowState.Normal;
+                base.WindowState = FormWindowState.Normal;
+                WindowStateChange?.Invoke(this, FormWindowState.Normal);
             }
 
             Invalidate();
@@ -658,23 +657,30 @@ namespace Sunny.UI
                 if (FormBorderStyle == FormBorderStyle.None)
                 {
                     bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
+                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
+                    bool isChange = false;
+
                     if (inControlBox != InControlBox)
                     {
                         InControlBox = inControlBox;
-                        Invalidate();
+                        isChange = true;
                     }
 
-                    bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
                     if (inMaxBox != InMaxBox)
                     {
                         InMaxBox = inMaxBox;
-                        Invalidate();
+                        isChange = true;
                     }
 
-                    bool inMinBox = e.Location.InRect(MinimizeBoxRect);
                     if (inMinBox != InMinBox)
                     {
                         InMinBox = inMinBox;
+                        isChange = true;
+                    }
+
+                    if (isChange)
+                    {
                         Invalidate();
                     }
                 }
@@ -683,6 +689,13 @@ namespace Sunny.UI
                     InControlBox = InMaxBox = InMinBox = false;
                 }
             }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            InControlBox = InMaxBox = InMinBox = false;
+            Invalidate();
         }
 
         private bool InControlBox, InMaxBox, InMinBox;
@@ -788,7 +801,18 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
+                //e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
+
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5);
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5);
             }
 
             if (MaximizeBox)
@@ -798,10 +822,50 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(
-                    windowState == FormWindowState.Maximized
-                        ? FontAwesomeIcons.fa_window_restore
-                        : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
+                // e.Graphics.DrawFontImage(
+                //     windowState == FormWindowState.Maximized
+                //         ? FontAwesomeIcons.fa_window_restore
+                //         : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
+
+                if (windowState == FormWindowState.Maximized)
+                {
+                    e.Graphics.DrawRectangle(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
+                        7, 7);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3);
+
+                    e.Graphics.DrawLine(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 3,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3);
+                }
+
+                if (windowState == FormWindowState.Normal)
+                {
+                    e.Graphics.DrawRectangle(Color.White,
+                        MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
+                        MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
+                        10, 9);
+                }
             }
 
             if (MinimizeBox)
@@ -811,7 +875,12 @@ namespace Sunny.UI
                     e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
                 }
 
-                e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
+                e.Graphics.DrawLine(Color.White,
+                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 - 6,
+                    MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2,
+                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 + 6,
+                    MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2);
+                //e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
             }
 
             e.Graphics.SetDefaultQuality();
@@ -1109,11 +1178,6 @@ namespace Sunny.UI
         }
 
         public string CloseAskString { get; set; }
-
-        private void UIForm_Shown(object sender, EventArgs e)
-        {
-            //SetStyle(UIStyles.Style);
-        }
 
         private FormWindowState windowState = FormWindowState.Normal;
 

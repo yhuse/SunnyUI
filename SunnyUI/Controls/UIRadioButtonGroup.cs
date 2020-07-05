@@ -54,37 +54,35 @@ namespace Sunny.UI
             buttons.Clear();
         }
 
-        private void Listbox_DrawItemEx(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
-        {
-            Invalidate();
-        }
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         public ListBox.ObjectCollection Items => ListBox.Items;
 
-        private ListBoxEx listbox;
+        private CheckedListBoxEx listbox;
 
-        private ListBoxEx ListBox
+        private CheckedListBoxEx ListBox
         {
             get
             {
                 if (listbox == null)
                 {
-                    listbox = new ListBoxEx();
-                    listbox.BeforeDrawItem += Listbox_DrawItemEx;
+                    listbox = new CheckedListBoxEx();
+                    listbox.OnItemsCountChange += Listbox_OnItemsCountChange;
                 }
 
                 return listbox;
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void Listbox_OnItemsCountChange(object sender, EventArgs e)
         {
-            base.OnPaint(e);
+            Invalidate();
+        }
 
+        private void CreateBoxes()
+        {
             if (Items.Count == 0) return;
             if (Items.Count != buttons.Count)
             {
@@ -94,6 +92,7 @@ namespace Sunny.UI
                 {
                     UIRadioButton button = new UIRadioButton
                     {
+                        BackColor = Color.Transparent,
                         Font = Font,
                         Parent = this,
                         Tag = i,
@@ -104,6 +103,13 @@ namespace Sunny.UI
                     buttons.Add(button);
                 }
             }
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            CreateBoxes();
 
             int startX = StartPos.X;
             int startY = TitleTop + StartPos.Y;
@@ -116,6 +122,7 @@ namespace Sunny.UI
 
                 buttons[i].Left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 buttons[i].Top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                buttons[i].Size = ItemSize;
                 buttons[i].Show();
             }
         }
@@ -136,7 +143,12 @@ namespace Sunny.UI
             get => ListBox.SelectedIndex;
             set
             {
-                if (ListBox.Count == 0)
+                if (buttons.Count != Items.Count)
+                {
+                    CreateBoxes();
+                }
+
+                if (Items.Count == 0)
                 {
                     ListBox.SelectedIndex = -1;
                     return;
@@ -227,6 +239,25 @@ namespace Sunny.UI
             foreach (var button in buttons)
             {
                 button.Font = Font;
+            }
+        }
+
+        [ToolboxItem(false)]
+        internal class CheckedListBoxEx : CheckedListBox
+        {
+            public event EventHandler OnItemsCountChange;
+
+            private int count = -1;
+
+            protected override void OnDrawItem(DrawItemEventArgs e)
+            {
+                base.OnDrawItem(e);
+
+                if (count != Items.Count)
+                {
+                    OnItemsCountChange?.Invoke(this, e);
+                    count = Items.Count;
+                }
             }
         }
     }

@@ -5,6 +5,8 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [DefaultProperty("Value")]
+    [DefaultEvent("ValueChanged")]
     public sealed partial class UIDatetimePicker : UIDropControl
     {
         private void InitializeComponent()

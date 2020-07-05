@@ -1,23 +1,23 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UICheckBoxGroup.cs
- * 文件说明: 多选框组
- * 当前版本: V2.2
- * 创建日期: 2020-01-01
- *
- * 2020-04-19: V2.2.3 增加单元
- * 2020-04-25: V2.2.4 更新主题配置类
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UICheckBoxGroup.cs
+* 文件说明: 多选框组
+* 当前版本: V2.2
+* 创建日期: 2020-01-01
+*
+* 2020-04-19: V2.2.3 增加单元
+* 2020-04-25: V2.2.4 更新主题配置类
 ******************************************************************************/
 
 using System;
@@ -70,37 +70,35 @@ namespace Sunny.UI
             boxes.Clear();
         }
 
-        private void Listbox_DrawItemEx(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
-        {
-            Invalidate();
-        }
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         public ListBox.ObjectCollection Items => ListBox.Items;
 
-        private ListBoxEx listbox;
+        private CheckedListBoxEx listbox;
 
-        private ListBoxEx ListBox
+        private CheckedListBoxEx ListBox
         {
             get
             {
                 if (listbox == null)
                 {
-                    listbox = new ListBoxEx();
-                    listbox.BeforeDrawItem += Listbox_DrawItemEx;
+                    listbox = new CheckedListBoxEx();
+                    listbox.OnItemsCountChange += Listbox_OnItemsCountChange;
                 }
 
                 return listbox;
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void Listbox_OnItemsCountChange(object sender, EventArgs e)
         {
-            base.OnPaint(e);
+            Invalidate();
+        }
 
+        private void CreateBoxes()
+        {
             if (Items.Count == 0) return;
             if (Items.Count != boxes.Count)
             {
@@ -110,6 +108,7 @@ namespace Sunny.UI
                 {
                     UICheckBox box = new UICheckBox
                     {
+                        BackColor = Color.Transparent,
                         Font = Font,
                         Parent = this,
                         Tag = i,
@@ -120,7 +119,15 @@ namespace Sunny.UI
                     boxes.Add(box);
                 }
             }
+        }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            CreateBoxes();
+
+            if (Items.Count == 0) return;
             int startX = StartPos.X;
             int startY = TitleTop + StartPos.Y;
             for (int i = 0; i < Items.Count; i++)
@@ -132,6 +139,7 @@ namespace Sunny.UI
 
                 boxes[i].Left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 boxes[i].Top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                boxes[i].Size = ItemSize;
                 boxes[i].Show();
             }
         }
@@ -139,7 +147,11 @@ namespace Sunny.UI
         private void Box_ValueChanged(object sender, bool value)
         {
             UICheckBox checkBox = (UICheckBox)sender;
-            ValueChanged?.Invoke(this, checkBox.Tag.ToString().ToInt(), checkBox.Text, checkBox.Checked);
+
+            if (!multiChange)
+            {
+                ValueChanged?.Invoke(this, checkBox.Tag.ToString().ToInt(), checkBox.Text, checkBox.Checked);
+            }
         }
 
         [Browsable(false)]
@@ -156,6 +168,21 @@ namespace Sunny.UI
                 }
 
                 return indexes;
+            }
+            set
+            {
+                if (boxes.Count != Items.Count)
+                {
+                    CreateBoxes();
+                }
+
+                foreach (int i in value)
+                {
+                    if (i >= 0 && i < boxes.Count)
+                    {
+                        boxes[i].Checked = true;
+                    }
+                }
             }
         }
 
@@ -249,6 +276,69 @@ namespace Sunny.UI
             foreach (var box in boxes)
             {
                 box.Font = Font;
+            }
+        }
+
+        /// <summary>
+        /// 全部选择
+        /// </summary>
+        public void SelectAll()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = true;
+            }
+
+            multiChange = false;
+        }
+
+        /// <summary>
+        /// 全部不选
+        /// </summary>
+        public void UnSelectAll()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = false;
+            }
+
+            multiChange = false;
+        }
+
+        /// <summary>
+        /// 反转选择
+        /// </summary>
+        public void ReverseSelected()
+        {
+            multiChange = true;
+            foreach (var box in boxes)
+            {
+                box.Checked = !box.Checked;
+            }
+
+            multiChange = false;
+        }
+
+        private bool multiChange;
+
+        [ToolboxItem(false)]
+        internal class CheckedListBoxEx : CheckedListBox
+        {
+            public event EventHandler OnItemsCountChange;
+
+            private int count = -1;
+
+            protected override void OnDrawItem(DrawItemEventArgs e)
+            {
+                base.OnDrawItem(e);
+
+                if (count != Items.Count)
+                {
+                    OnItemsCountChange?.Invoke(this, e);
+                    count = Items.Count;
+                }
             }
         }
     }

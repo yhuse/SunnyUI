@@ -21,6 +21,8 @@
 ******************************************************************************/
 
 using System.Collections;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -35,7 +37,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string msg, UIStyle style = UIStyle.Green)
         {
-            ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
         {
-            ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
         {
-            ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
         }
 
         /// <summary>
@@ -68,7 +70,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
         {
-            ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
+            form.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
         }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue)
         {
-            return ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
+            return form.ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red)
         {
-            ShowMessageDialog(msg, title, false, style);
+            form.ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -141,7 +143,18 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
         {
-            return ShowMessageDialog(msg, title, true, style);
+            return form.ShowMessageDialog(msg, title, true, style);
+        }
+
+        public static bool ShowMessageDialog(this Form form, string message, string title, bool isShowCancel, UIStyle style)
+        {
+            UIMessageForm frm = new UIMessageForm();
+            frm.TopMost = form.TopMost;
+            frm.ShowMessage(message, title, isShowCancel, style);
+            frm.ShowDialog();
+            bool isOk = frm.IsOK;
+            frm.Dispose();
+            return isOk;
         }
 
         public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
@@ -157,9 +170,10 @@ namespace Sunny.UI
 
     public static class UIInputDialog
     {
-        private static bool InputStringDialog(ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
+        private static bool InputStringDialog(ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Text = value;
             frm.Text = UILocalize.InputTitle;
@@ -177,22 +191,23 @@ namespace Sunny.UI
 
         public static bool InputStringDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form.Style);
+            return InputStringDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputStringDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form.Style);
+            return InputStringDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputStringDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
         {
-            return InputStringDialog(ref value, checkEmpty, desc, style);
+            return InputStringDialog(ref value, checkEmpty, desc, style, form.TopMost);
         }
 
-        private static bool InputPasswordDialog(ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue)
+        private static bool InputPasswordDialog(ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;
@@ -210,22 +225,23 @@ namespace Sunny.UI
 
         public static bool InputPasswordDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputPasswordDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputPasswordDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue)
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, style);
+            return InputPasswordDialog(ref value, checkEmpty, desc, style, form.TopMost);
         }
 
-        private static bool InputIntegerDialog(ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        private static bool InputIntegerDialog(ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Integer;
             frm.Editor.IntValue = value;
@@ -242,9 +258,10 @@ namespace Sunny.UI
             return false;
         }
 
-        private static bool InputIntegerDialog(ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        private static bool InputIntegerDialog(ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Integer;
             frm.Editor.IntValue = value;
@@ -268,37 +285,38 @@ namespace Sunny.UI
 
         public static bool InputIntegerDialog(this UIForm form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputIntegerDialog(this UIPage form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputIntegerDialog(this Form form, ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, style);
+            return InputIntegerDialog(ref value, checkEmpty, desc, style, form.TopMost);
         }
 
         public static bool InputIntegerDialog(this UIForm form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputIntegerDialog(this UIPage form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputIntegerDialog(this Form form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, style);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, style, form.TopMost);
         }
 
-        private static bool InputDoubleDialog(ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        private static bool InputDoubleDialog(ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Double;
             frm.Editor.DecLength = decimals;
@@ -316,9 +334,10 @@ namespace Sunny.UI
             return false;
         }
 
-        private static bool InputDoubleDialog(ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        private static bool InputDoubleDialog(ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UIInputForm frm = new UIInputForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Double;
             frm.Editor.DecLength = decimals;
@@ -342,49 +361,46 @@ namespace Sunny.UI
 
         public static bool InputDoubleDialog(this UIForm form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputDoubleDialog(this UIPage form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputDoubleDialog(this Form form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, style);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, style, form.TopMost);
         }
 
         public static bool InputDoubleDialog(this UIForm form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputDoubleDialog(this UIPage form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style, form.TopMost);
         }
 
         public static bool InputDoubleDialog(this Form form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, style);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, style, form.TopMost);
         }
     }
 
     public static class UISelectDialog
     {
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, string title, string description, UIStyle style = UIStyle.Blue)
+        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, string title, string description, UIStyle style = UIStyle.Blue, bool topMost = false)
         {
             UISelectForm frm = new UISelectForm();
+            frm.TopMost = topMost;
             frm.Style = style;
             frm.SetItems(items);
             frm.SelectedIndex = selectIndex;
-            if (title.IsValid())
-            {
-                frm.Title = title;
-            }
-
-            frm.Description = description;
+            if (title.IsValid()) frm.Title = title;
+            if (description.IsValid()) frm.Description = description;
             frm.ShowDialog();
 
             bool result = frm.IsOK;
@@ -399,7 +415,7 @@ namespace Sunny.UI
 
         public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style = UIStyle.Blue)
         {
-            return form.ShowSelectDialog(ref selectIndex, items, UILocalize.SelectTitle, "", style);
+            return form.ShowSelectDialog(ref selectIndex, items, UILocalize.SelectTitle, "", style, form.TopMost);
         }
 
         public static bool ShowSelectDialog(this UIForm form, ref int selectIndex, IList items)
@@ -414,12 +430,12 @@ namespace Sunny.UI
 
         public static bool ShowSelectDialog(this UIForm form, ref int selectIndex, IList items, string title, string description)
         {
-            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style);
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style, form.TopMost);
         }
 
         public static bool ShowSelectDialog(this UIPage form, ref int selectIndex, IList items, string title, string description)
         {
-            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style);
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style, form.TopMost);
         }
     }
 
@@ -449,5 +465,114 @@ namespace Sunny.UI
         {
             ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, false, timeout);
         }
+    }
+
+    public static class UIMessageTipHelper
+    {
+        /// <summary>
+        /// 显示消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="style">消息样式。不指定则使用默认样式</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowInfoTip(this Form form, string text, TipStyle style = null, int delay = -1, bool? floating = null,
+            Point? point = null, bool centerByPoint = false)
+            => UIMessageTip.Show(text, style, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="style">消息样式。不指定则使用默认样式</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowInfoTip(this Form form, Component controlOrItem, string text, TipStyle style = null, int delay = -1,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.Show(controlOrItem, text, style, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 在指定控件附近显示出错消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowErrorTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.ShowError(controlOrItem, text, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 显示出错消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowErrorTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowError(text, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示良好消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowSuccessTip(this Form form, Component controlOrItem, string text = null, int delay = -1, bool? floating = null,
+            bool? centerInControl = null)
+            => UIMessageTip.ShowOk(controlOrItem, text, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 显示良好消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
+        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowSuccessTip(this Form form, string text = null, int delay = -1, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowOk(text, delay, floating, point, centerByPoint);
+
+        /// <summary>
+        /// 在指定控件附近显示警告消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
+        public static void ShowWarningTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
+            bool? floating = null, bool? centerInControl = null)
+            => UIMessageTip.ShowWarning(controlOrItem, text, delay, floating, centerInControl);
+
+        /// <summary>
+        /// 显示警告消息
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
+        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
+        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
+        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
+        public static void ShowWarningTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
+            bool centerByPoint = false)
+            => UIMessageTip.ShowWarning(text, delay, floating, point, centerByPoint);
     }
 }
