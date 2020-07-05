@@ -55,12 +55,43 @@ namespace Sunny.UI
             edit.ForeColor = UIFontColor.Primary;
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += EditTextChanged;
+            edit.KeyDown += EditOnKeyDown;
+            edit.KeyUp += EditOnKeyUp;
+            edit.KeyPress += EditOnKeyPress;
             edit.Invalidate();
             Controls.Add(edit);
 
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
             edit.BackColor = Color.White;
+        }
+
+        public new event KeyEventHandler KeyDown;
+
+        public new event KeyEventHandler KeyUp;
+
+        public new event KeyPressEventHandler KeyPress;
+
+        private void EditOnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPress?.Invoke(sender, e);
+        }
+
+        public event EventHandler DoEnter;
+
+        private void EditOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DoEnter?.Invoke(sender, e);
+            }
+
+            KeyDown?.Invoke(sender, e);
+        }
+
+        private void EditOnKeyUp(object sender, KeyEventArgs e)
+        {
+            KeyUp?.Invoke(sender, e);
         }
 
         [DefaultValue(null)]
