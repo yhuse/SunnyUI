@@ -474,23 +474,8 @@
     <Compile Include="Units\UXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DropItem\UIColorItem.resx">
-      <DependentUpon>UIColorItem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Color\UIColorTable.resx">
       <DependentUpon>UIColorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UIComboBoxItem.resx">
-      <DependentUpon>UIComboBoxItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UIDateItem.resx">
-      <DependentUpon>UIDateItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
-      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UITimeItem.resx">
-      <DependentUpon>UITimeItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIDatetimePicker.resx">
       <DependentUpon>UIDatetimePicker.cs</DependentUpon>
@@ -554,9 +539,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UIEditForm.resx">
       <DependentUpon>UIEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UIDropControl.resx">
-      <DependentUpon>UIDropControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIDatePicker.resx">
       <DependentUpon>UIDatePicker.cs</DependentUpon>
