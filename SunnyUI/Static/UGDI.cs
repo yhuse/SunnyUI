@@ -48,18 +48,45 @@ namespace Sunny.UI
             g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Bottom - angleSize, angleSize, angleSize),
                 new Rectangle(img.Width - angleSize, img.Height - angleSize, angleSize, angleSize), GraphicsUnit.Pixel);
             //四边
-            g.DrawImage(img, new Rectangle(rect.X, rect.Y + angleSize, angleSize, rect.Height - 10),
-                new Rectangle(0, angleSize, angleSize, img.Height - 10), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Y, rect.Width - 10, angleSize),
-                new Rectangle(angleSize, 0, img.Width - 10, angleSize), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Y + angleSize, angleSize, rect.Height - 10),
-                new Rectangle(img.Width - angleSize, angleSize, angleSize, img.Height - 10), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Bottom - angleSize, rect.Width - 10, angleSize),
-                new Rectangle(angleSize, img.Height - angleSize, img.Width - 10, angleSize), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X, rect.Y + angleSize, angleSize, rect.Height - angleSize * 2),
+                new Rectangle(0, angleSize, angleSize, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Y, rect.Width - angleSize * 2, angleSize),
+                new Rectangle(angleSize, 0, img.Width - angleSize * 2, angleSize), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Y + angleSize, angleSize, rect.Height - angleSize * 2),
+                new Rectangle(img.Width - angleSize, angleSize, angleSize, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Bottom - angleSize, rect.Width - angleSize * 2, angleSize),
+                new Rectangle(angleSize, img.Height - angleSize, img.Width - angleSize * 2, angleSize), GraphicsUnit.Pixel);
             //中间
             g.DrawImage(img,
-                new Rectangle(rect.X + angleSize, rect.Y + angleSize, rect.Width - 10, rect.Height - 10),
-                new Rectangle(angleSize, angleSize, img.Width - 10, img.Height - 10), GraphicsUnit.Pixel);
+                new Rectangle(rect.X + angleSize, rect.Y + angleSize, rect.Width - angleSize * 2, rect.Height - angleSize * 2),
+                new Rectangle(angleSize, angleSize, img.Width - angleSize * 2, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+        }
+
+        public static void DrawImageWithNineCut(Graphics g, Image img, Rectangle rect, int left, int right, int top, int bottom)
+        {
+            //填充四个角
+            g.DrawImage(img, new Rectangle(rect.X, rect.Y, left, top),
+                new Rectangle(0, 0, left, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.Right - right, rect.Y, right, top),
+                new Rectangle(img.Width - right, 0, right, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X, rect.Bottom - bottom, left, bottom),
+                new Rectangle(0, img.Height - bottom, left, bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.Right - right, rect.Bottom - bottom, right, bottom),
+                new Rectangle(img.Width - right, img.Height - bottom, right, bottom), GraphicsUnit.Pixel);
+
+            //四边
+            g.DrawImage(img, new Rectangle(rect.X + left, rect.Y, rect.Width - left - right, top),
+                new Rectangle(left, 0, img.Width - left - right, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X, top, left, rect.Height - top - bottom),
+                new Rectangle(0, top, left, img.Height - top - bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.Right - right, top, right, rect.Height - top - bottom),
+                new Rectangle(img.Width - right, top, right, img.Height - top - bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X + left, rect.Bottom - bottom, rect.Width - left - right, bottom),
+                new Rectangle(left, img.Height - bottom, img.Width - left - right, bottom), GraphicsUnit.Pixel);
+
+            //中间
+            g.DrawImage(img, new Rectangle(rect.X + left, rect.Y + top, rect.Width - left - right, rect.Height - top - bottom),
+                new Rectangle(left, top, img.Width - left - right, img.Height - top - bottom), GraphicsUnit.Pixel);
         }
 
         public static Color[] GradientColors(Color startColor, Color endColor, int count)
