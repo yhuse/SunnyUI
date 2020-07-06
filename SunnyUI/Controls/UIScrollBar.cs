@@ -408,7 +408,7 @@ namespace Sunny.UI
                 return 1;
             else if (rect_down.Contains(x, y))
                 return 3;
-            else if (rect_value.Contains(x, y))
+            else if (rect_value.Contains(x, y) || value_state == DrawItemState.Selected)
                 return 2;
             else if (rect_value_up.Contains(x, y))
                 return 4;

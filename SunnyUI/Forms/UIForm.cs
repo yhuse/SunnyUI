@@ -737,7 +737,8 @@ namespace Sunny.UI
                 return;
             }
 
-            Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            //Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            Color showTitleColor = rectColor;
 
             if (ShowTitle)
             {
