@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -28,6 +29,13 @@ namespace Sunny.UI
 {
     public static class GDIEx
     {
+        public static Color Alpha(this Color color, int alpha)
+        {
+            alpha = Math.Max(0, alpha);
+            alpha = Math.Min(255, alpha);
+            return Color.FromArgb(alpha, color);
+        }
+        
         /// <summary>
         /// 九宫切图背景填充，#，http://st233.com/blog.php?id=24
         /// 例如按钮是图片分成九个区域 然后只需要将四角填充到目标区域 其余的拉伸就可以了
@@ -62,30 +70,32 @@ namespace Sunny.UI
                 new Rectangle(angleSize, angleSize, img.Width - angleSize * 2, img.Height - angleSize * 2), GraphicsUnit.Pixel);
         }
 
-        public static void DrawImageWithNineCut(Graphics g, Image img, Rectangle rect, int left, int right, int top, int bottom)
+        public static void DrawImageWithNineCut(this Graphics g, Image img, Rectangle rect, int left, int right, int top, int bottom,int zoom=1)
         {
+            zoom = Math.Max(1, zoom);
+
             //填充四个角
-            g.DrawImage(img, new Rectangle(rect.X, rect.Y, left, top),
+            g.DrawImage(img, new Rectangle(rect.X*zoom, rect.Y * zoom, left * zoom, top * zoom),
                 new Rectangle(0, 0, left, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.Right - right, rect.Y, right, top),
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, rect.Y * zoom, right * zoom, top * zoom),
                 new Rectangle(img.Width - right, 0, right, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X, rect.Bottom - bottom, left, bottom),
+            g.DrawImage(img, new Rectangle(rect.X * zoom, (rect.Bottom - bottom) * zoom, left * zoom, bottom * zoom),
                 new Rectangle(0, img.Height - bottom, left, bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.Right - right, rect.Bottom - bottom, right, bottom),
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, (rect.Bottom - bottom) * zoom, right * zoom, bottom * zoom),
                 new Rectangle(img.Width - right, img.Height - bottom, right, bottom), GraphicsUnit.Pixel);
 
             //四边
-            g.DrawImage(img, new Rectangle(rect.X + left, rect.Y, rect.Width - left - right, top),
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, rect.Y * zoom, (rect.Width - left - right) * zoom, top * zoom),
                 new Rectangle(left, 0, img.Width - left - right, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X, top, left, rect.Height - top - bottom),
+            g.DrawImage(img, new Rectangle(rect.X * zoom, top * zoom, left * zoom, (rect.Height - top - bottom) * zoom),
                 new Rectangle(0, top, left, img.Height - top - bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.Right - right, top, right, rect.Height - top - bottom),
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, top * zoom, right * zoom, (rect.Height - top - bottom) * zoom),
                 new Rectangle(img.Width - right, top, right, img.Height - top - bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X + left, rect.Bottom - bottom, rect.Width - left - right, bottom),
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Bottom - bottom) * zoom, (rect.Width - left - right) * zoom, bottom * zoom),
                 new Rectangle(left, img.Height - bottom, img.Width - left - right, bottom), GraphicsUnit.Pixel);
 
             //中间
-            g.DrawImage(img, new Rectangle(rect.X + left, rect.Y + top, rect.Width - left - right, rect.Height - top - bottom),
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Y + top) * zoom, (rect.Width - left - right) * zoom, (rect.Height - top - bottom) * zoom),
                 new Rectangle(left, top, img.Width - left - right, img.Height - top - bottom), GraphicsUnit.Pixel);
         }
 

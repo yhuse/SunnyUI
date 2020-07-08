@@ -159,7 +159,7 @@ namespace Sunny.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DoEnter?.Invoke(sender,e);
+                DoEnter?.Invoke(sender, e);
             }
 
             KeyDown?.Invoke(sender, e);

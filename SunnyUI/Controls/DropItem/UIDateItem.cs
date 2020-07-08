@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-05-29: V2.2.5 重写
+ * 2020-07-04: V2.2.6 重写下拉窗体，缩短创建时间
 ******************************************************************************/
 
 using System;
@@ -605,7 +606,6 @@ namespace Sunny.UI
                 activeDay = iy;
                 p3.Invalidate();
             }
-
         }
 
         private void p3_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
