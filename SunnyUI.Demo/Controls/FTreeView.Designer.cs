@@ -73,11 +73,10 @@
             // uiTreeView1
             // 
             this.uiTreeView1.BackColor = System.Drawing.Color.White;
-            this.uiTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uiTreeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
+            this.uiTreeView1.CheckBoxes = true;
             this.uiTreeView1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTreeView1.ItemHeight = 28;
             this.uiTreeView1.Location = new System.Drawing.Point(33, 54);
+            this.uiTreeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTreeView1.Name = "uiTreeView1";
             treeNode1.Name = "节点8";
             treeNode1.Text = "节点8";
@@ -128,8 +127,11 @@
             treeNode15,
             treeNode16,
             treeNode20});
+            this.uiTreeView1.SelectedNode = null;
+            this.uiTreeView1.ShowLines = true;
             this.uiTreeView1.Size = new System.Drawing.Size(266, 313);
             this.uiTreeView1.TabIndex = 0;
+            this.uiTreeView1.Text = null;
             // 
             // uiLine1
             // 

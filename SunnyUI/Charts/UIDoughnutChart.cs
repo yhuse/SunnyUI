@@ -53,11 +53,6 @@ namespace Sunny.UI
             Angles.Clear();
             UIDoughnutOption o = (UIDoughnutOption)option;
             if (o == null || o.Series == null || o.Series.Count == 0) return;
-            UITemplate template = null;
-            if (o.ToolTip != null)
-            {
-                template = new UITemplate(o.ToolTip.Formatter);
-            }
 
             for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
             {
@@ -81,14 +76,12 @@ namespace Sunny.UI
                     {
                         try
                         {
-                            if (template != null)
-                            {
-                                template.Set("a", pie.Name);
-                                template.Set("b", pie.Data[i].Name);
-                                template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
-                                template.Set("d", percent.ToString("F2"));
-                                text = template.Render();
-                            }
+                            UITemplate template = new UITemplate(o.ToolTip.Formatter);
+                            template.Set("a", pie.Name);
+                            template.Set("b", pie.Data[i].Name);
+                            template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
+                            template.Set("d", percent.ToString("F2"));
+                            text = template.Render();
                         }
                         catch
                         {
@@ -119,7 +112,7 @@ namespace Sunny.UI
                     Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
 
                     if (ActiveAzIndex == azIndex)
-                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer+5, angle.Start-90, angle.Sweep);
+                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer + 5, angle.Start - 90, angle.Sweep);
                     else
                         g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
 
@@ -130,12 +123,10 @@ namespace Sunny.UI
                         if (pie.Label.Position == UIPieSeriesLabelPosition.Center)
                         {
                             SizeF sf = g.MeasureString(pie.Data[azIndex].Name, Font);
-                            g.DrawString(pie.Data[azIndex].Name, Font, color, angle.Center.X- sf.Width/2.0f,angle.Center.Y-sf.Height/2.0f);
+                            g.DrawString(pie.Data[azIndex].Name, Font, color, angle.Center.X - sf.Width / 2.0f, angle.Center.Y - sf.Height / 2.0f);
                         }
                     }
                 }
-
-               
             }
         }
 
@@ -179,7 +170,7 @@ namespace Sunny.UI
                             tip.Text = angle.Text;
                             tip.Size = new Size((int)angle.TextSize.Width + 4, (int)angle.TextSize.Height + 4);
                         }
-                
+
                         if (az >= 0 && az < 90)
                         {
                             tip.Top = e.Location.Y + 20;
@@ -200,7 +191,7 @@ namespace Sunny.UI
                             tip.Left = e.Location.X + 15;
                             tip.Top = e.Location.Y + 20;
                         }
-                
+
                         if (!tip.Visible) tip.Visible = angle.Text.IsValid();
                         return;
                     }

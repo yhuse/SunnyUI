@@ -1,5 +1,19 @@
 + 增加； - 删除； * 修改 
 
+2020-07-08
+* UIDateTimePicker：重写下拉窗体，缩短创建时间
+
+2020-07-07
+* UITreeView：全部重写，增加圆角，CheckBoxes等
+
+2020-07-06
+* UIDatePicker：重写下拉窗体，缩短创建时间
+
+2020-07-05
+* UICombobox：更新KeyDown、KeyUp、KeyPress事件。
+* UIForm：更新窗体控制按钮圆角和跟随窗体圆角变化。
+* UIPieChart：更改Tips显示不正确的Bug
+
 2020-07-04
 * UICheckBoxGroup,UIRadioButtonGroup：可以设置初始选中值
 * UILedBulb：边缘平滑
@@ -14,8 +28,7 @@
 2020-07-01
 * UIForm：修改标题栏按钮背景色刷新
 * UIForm：仿照QQ，重绘标题栏按钮。
-* UINavMenu：OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；设置FullRowSelect ShowLin…  
-* OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；设置FullRowSelect ShowLines 属性，解决滚轮失效问题。  
+* UINavMenu：OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。  
 * UIForm：修改不显示标题时的控件在顶部的位置Bug
 * 修改最大化全屏时消息窗体弹出在窗体后的BUG
 * 修改最大化全屏时消息窗体弹出在窗体后的BUG

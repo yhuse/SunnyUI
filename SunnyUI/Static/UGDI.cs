@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -28,6 +29,13 @@ namespace Sunny.UI
 {
     public static class GDIEx
     {
+        public static Color Alpha(this Color color, int alpha)
+        {
+            alpha = Math.Max(0, alpha);
+            alpha = Math.Min(255, alpha);
+            return Color.FromArgb(alpha, color);
+        }
+        
         /// <summary>
         /// 九宫切图背景填充，#，http://st233.com/blog.php?id=24
         /// 例如按钮是图片分成九个区域 然后只需要将四角填充到目标区域 其余的拉伸就可以了
@@ -48,18 +56,47 @@ namespace Sunny.UI
             g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Bottom - angleSize, angleSize, angleSize),
                 new Rectangle(img.Width - angleSize, img.Height - angleSize, angleSize, angleSize), GraphicsUnit.Pixel);
             //四边
-            g.DrawImage(img, new Rectangle(rect.X, rect.Y + angleSize, angleSize, rect.Height - 10),
-                new Rectangle(0, angleSize, angleSize, img.Height - 10), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Y, rect.Width - 10, angleSize),
-                new Rectangle(angleSize, 0, img.Width - 10, angleSize), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Y + angleSize, angleSize, rect.Height - 10),
-                new Rectangle(img.Width - angleSize, angleSize, angleSize, img.Height - 10), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Bottom - angleSize, rect.Width - 10, angleSize),
-                new Rectangle(angleSize, img.Height - angleSize, img.Width - 10, angleSize), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X, rect.Y + angleSize, angleSize, rect.Height - angleSize * 2),
+                new Rectangle(0, angleSize, angleSize, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Y, rect.Width - angleSize * 2, angleSize),
+                new Rectangle(angleSize, 0, img.Width - angleSize * 2, angleSize), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.Right - angleSize, rect.Y + angleSize, angleSize, rect.Height - angleSize * 2),
+                new Rectangle(img.Width - angleSize, angleSize, angleSize, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X + angleSize, rect.Bottom - angleSize, rect.Width - angleSize * 2, angleSize),
+                new Rectangle(angleSize, img.Height - angleSize, img.Width - angleSize * 2, angleSize), GraphicsUnit.Pixel);
             //中间
             g.DrawImage(img,
-                new Rectangle(rect.X + angleSize, rect.Y + angleSize, rect.Width - 10, rect.Height - 10),
-                new Rectangle(angleSize, angleSize, img.Width - 10, img.Height - 10), GraphicsUnit.Pixel);
+                new Rectangle(rect.X + angleSize, rect.Y + angleSize, rect.Width - angleSize * 2, rect.Height - angleSize * 2),
+                new Rectangle(angleSize, angleSize, img.Width - angleSize * 2, img.Height - angleSize * 2), GraphicsUnit.Pixel);
+        }
+
+        public static void DrawImageWithNineCut(this Graphics g, Image img, Rectangle rect, int left, int right, int top, int bottom,int zoom=1)
+        {
+            zoom = Math.Max(1, zoom);
+
+            //填充四个角
+            g.DrawImage(img, new Rectangle(rect.X*zoom, rect.Y * zoom, left * zoom, top * zoom),
+                new Rectangle(0, 0, left, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, rect.Y * zoom, right * zoom, top * zoom),
+                new Rectangle(img.Width - right, 0, right, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X * zoom, (rect.Bottom - bottom) * zoom, left * zoom, bottom * zoom),
+                new Rectangle(0, img.Height - bottom, left, bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, (rect.Bottom - bottom) * zoom, right * zoom, bottom * zoom),
+                new Rectangle(img.Width - right, img.Height - bottom, right, bottom), GraphicsUnit.Pixel);
+
+            //四边
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, rect.Y * zoom, (rect.Width - left - right) * zoom, top * zoom),
+                new Rectangle(left, 0, img.Width - left - right, top), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(rect.X * zoom, top * zoom, left * zoom, (rect.Height - top - bottom) * zoom),
+                new Rectangle(0, top, left, img.Height - top - bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, top * zoom, right * zoom, (rect.Height - top - bottom) * zoom),
+                new Rectangle(img.Width - right, top, right, img.Height - top - bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Bottom - bottom) * zoom, (rect.Width - left - right) * zoom, bottom * zoom),
+                new Rectangle(left, img.Height - bottom, img.Width - left - right, bottom), GraphicsUnit.Pixel);
+
+            //中间
+            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Y + top) * zoom, (rect.Width - left - right) * zoom, (rect.Height - top - bottom) * zoom),
+                new Rectangle(left, top, img.Width - left - right, img.Height - top - bottom), GraphicsUnit.Pixel);
         }
 
         public static Color[] GradientColors(Color startColor, Color endColor, int count)
@@ -381,20 +418,38 @@ namespace Sunny.UI
 
         public static void DrawRoundRectangle(this Graphics g, Pen pen, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
+            {
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.Smooth(smooth);
+                    g.DrawPath(pen, path);
+                    g.Smooth(false);
+                }
+            }
+            else
             {
                 g.Smooth(smooth);
-                g.DrawPath(pen, path);
+                g.DrawRectangle(pen, rect);
                 g.Smooth(false);
             }
         }
 
         public static void FillRoundRectangle(this Graphics g, Brush brush, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
+            {
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.Smooth(smooth);
+                    g.FillPath(brush, path);
+                    g.Smooth(false);
+                }
+            }
+            else
             {
                 g.Smooth(smooth);
-                g.FillPath(brush, path);
+                g.FillRectangle(brush, rect);
                 g.Smooth(false);
             }
         }
@@ -411,17 +466,31 @@ namespace Sunny.UI
 
         public static void DrawRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
             {
-                g.DrawPath(color, path, smooth);
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.DrawPath(color, path, smooth);
+                }
+            }
+            else
+            {
+                g.DrawRectangle(color, rect, smooth);
             }
         }
 
         public static void FillRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+            if (cornerRadius > 0)
             {
-                g.FillPath(color, path, smooth);
+                using (GraphicsPath path = CreateRoundedRectanglePath(rect, cornerRadius))
+                {
+                    g.FillPath(color, path, smooth);
+                }
+            }
+            else
+            {
+                g.FillRectangle(color, rect, smooth);
             }
         }
 
@@ -482,7 +551,7 @@ namespace Sunny.UI
 
         public static GraphicsPath CreateFanPath(this Point center, float d1, float d2, float startAngle, float sweepAngle)
         {
-            return new PointF(center.X,center.Y).CreateFanPath(d1,d2,startAngle,sweepAngle);
+            return new PointF(center.X, center.Y).CreateFanPath(d1, d2, startAngle, sweepAngle);
         }
 
         public static GraphicsPath CreateFanPath(this PointF center, float d1, float d2, float startAngle, float sweepAngle)
@@ -666,12 +735,12 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawString(this Graphics g, string s, Font font, Color color, 
+        public static void DrawString(this Graphics g, string s, Font font, Color color,
             RectangleF layoutRectangle, StringFormat format, float angle)
         {
-            using (Brush br= new SolidBrush(color))
+            using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s,font,br,layoutRectangle,format,angle);
+                g.DrawString(s, font, br, layoutRectangle, format, angle);
             }
         }
 
@@ -680,7 +749,7 @@ namespace Sunny.UI
         {
             using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s,font,br,point,format,angle);
+                g.DrawString(s, font, br, point, format, angle);
             }
         }
 

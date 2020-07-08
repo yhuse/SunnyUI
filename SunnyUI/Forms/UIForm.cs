@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-05-30: V2.2.5 更新标题移动、双击最大化/正常、到顶最大化、最大化后拖拽正常
+ * 2020-07-01: V2.2.6 仿照QQ，重绘标题栏按钮。
 ******************************************************************************/
 
 using System;
@@ -737,7 +738,8 @@ namespace Sunny.UI
                 return;
             }
 
-            Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            //Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
+            Color showTitleColor = rectColor;
 
             if (ShowTitle)
             {
@@ -798,7 +800,10 @@ namespace Sunny.UI
             {
                 if (InControlBox)
                 {
-                    e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(UIColor.Red, ControlBoxRect);
                 }
 
                 //e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
@@ -819,7 +824,10 @@ namespace Sunny.UI
             {
                 if (InMaxBox)
                 {
-                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(btn.FillHoverColor, MaximizeBoxRect);
                 }
 
                 // e.Graphics.DrawFontImage(
@@ -872,7 +880,10 @@ namespace Sunny.UI
             {
                 if (InMinBox)
                 {
-                    e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(btn.FillHoverColor, MinimizeBoxRect);
                 }
 
                 e.Graphics.DrawLine(Color.White,
