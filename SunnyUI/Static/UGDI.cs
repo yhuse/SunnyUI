@@ -70,33 +70,33 @@ namespace Sunny.UI
                 new Rectangle(angleSize, angleSize, img.Width - angleSize * 2, img.Height - angleSize * 2), GraphicsUnit.Pixel);
         }
 
-        public static void DrawImageWithNineCut(this Graphics g, Image img, Rectangle rect, int left, int right, int top, int bottom,int zoom=1)
+        public static void DrawImageWithNineCut(this Graphics g, Image img, int destWidth, int destHeight, int cutLeft, int cutRight, int cutTop, int cutBottom, int iZoom = 1)
         {
-            zoom = Math.Max(1, zoom);
+            iZoom = Math.Max(1, iZoom);
 
             //填充四个角
-            g.DrawImage(img, new Rectangle(rect.X*zoom, rect.Y * zoom, left * zoom, top * zoom),
-                new Rectangle(0, 0, left, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, rect.Y * zoom, right * zoom, top * zoom),
-                new Rectangle(img.Width - right, 0, right, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X * zoom, (rect.Bottom - bottom) * zoom, left * zoom, bottom * zoom),
-                new Rectangle(0, img.Height - bottom, left, bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, (rect.Bottom - bottom) * zoom, right * zoom, bottom * zoom),
-                new Rectangle(img.Width - right, img.Height - bottom, right, bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(0, 0, cutLeft * iZoom, cutTop * iZoom),
+                new Rectangle(0, 0, cutLeft, cutTop), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(destWidth - cutRight * iZoom, 0, cutRight * iZoom, cutTop * iZoom),
+                new Rectangle(img.Width - cutRight, 0, cutRight, cutTop), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(0, destHeight - cutBottom * iZoom, cutLeft * iZoom, cutBottom * iZoom),
+                new Rectangle(0, img.Height - cutBottom, cutLeft, cutBottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(destWidth - cutRight * iZoom, destHeight - cutBottom * iZoom, cutRight * iZoom, cutBottom * iZoom),
+                new Rectangle(img.Width - cutRight, img.Height - cutBottom, cutRight, cutBottom), GraphicsUnit.Pixel);
 
             //四边
-            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, rect.Y * zoom, (rect.Width - left - right) * zoom, top * zoom),
-                new Rectangle(left, 0, img.Width - left - right, top), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle(rect.X * zoom, top * zoom, left * zoom, (rect.Height - top - bottom) * zoom),
-                new Rectangle(0, top, left, img.Height - top - bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle((rect.Right - right) * zoom, top * zoom, right * zoom, (rect.Height - top - bottom) * zoom),
-                new Rectangle(img.Width - right, top, right, img.Height - top - bottom), GraphicsUnit.Pixel);
-            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Bottom - bottom) * zoom, (rect.Width - left - right) * zoom, bottom * zoom),
-                new Rectangle(left, img.Height - bottom, img.Width - left - right, bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(cutLeft * iZoom, 0, destWidth - (cutLeft + cutRight) * iZoom, cutTop * iZoom),
+                new Rectangle(cutLeft, 0, img.Width - cutLeft - cutRight, cutTop), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(0, cutTop * iZoom, cutLeft * iZoom, destHeight - (cutTop + cutBottom) * iZoom),
+                new Rectangle(0, cutTop, cutLeft, img.Height - cutTop - cutBottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(destWidth - cutRight * iZoom, cutTop * iZoom, cutRight * iZoom, destHeight - (cutTop + cutBottom) * iZoom),
+                new Rectangle(img.Width - cutRight, cutTop, cutRight, img.Height - cutTop - cutBottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(cutLeft * iZoom, destHeight - cutBottom * iZoom, destWidth - (cutLeft + cutRight) * iZoom, cutBottom * iZoom),
+                new Rectangle(cutLeft, img.Height - cutBottom, img.Width - cutLeft - cutRight, cutBottom), GraphicsUnit.Pixel);
 
             //中间
-            g.DrawImage(img, new Rectangle((rect.X + left) * zoom, (rect.Y + top) * zoom, (rect.Width - left - right) * zoom, (rect.Height - top - bottom) * zoom),
-                new Rectangle(left, top, img.Width - left - right, img.Height - top - bottom), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(cutLeft * iZoom, cutTop * iZoom, destWidth - (cutLeft + cutRight) * iZoom, destHeight - (cutTop + cutBottom) * iZoom),
+               new Rectangle(cutLeft, cutTop, img.Width - cutLeft - cutRight, img.Height - cutTop - cutBottom), GraphicsUnit.Pixel);
         }
 
         public static Color[] GradientColors(Color startColor, Color endColor, int count)
