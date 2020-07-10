@@ -480,6 +480,9 @@
     <EmbeddedResource Include="Forms\UIEditForm.resx">
       <DependentUpon>UIEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIForm.resx">
+      <DependentUpon>UIForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>

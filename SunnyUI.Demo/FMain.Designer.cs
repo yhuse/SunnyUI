@@ -99,7 +99,6 @@
             this.ClientSize = new System.Drawing.Size(1024, 720);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FMain";
-            this.ShowRadius = false;
             this.Text = "SunnyUI.Net";
             this.WindowStateChange += new Sunny.UI.UIForm.OnWindowStateChange(this.FMain_WindowStateChange);
             this.Header.ResumeLayout(false);
