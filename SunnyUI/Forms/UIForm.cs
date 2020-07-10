@@ -896,7 +896,7 @@ namespace Sunny.UI
 
             e.Graphics.SetDefaultQuality();
 
-            if (Icon != null)
+            if (ShowIcon && Icon != null)
             {
                 e.Graphics.DrawImage(Icon.ToBitmap(), 6, (TitleHeight - 24) / 2, 24, 24);
             }
@@ -908,7 +908,7 @@ namespace Sunny.UI
             }
             else
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor,6 + (Icon == null ? 0 : 26), (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, Font, titleForeColor,6 + (ShowIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
             }
         }
 

@@ -90,6 +90,7 @@
             this.MinimizeBox = false;
             this.Name = "UIEditForm";
             this.Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "UIEditForm";
             this.pnlBtm.ResumeLayout(false);

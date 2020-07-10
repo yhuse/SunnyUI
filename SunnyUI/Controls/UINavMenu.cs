@@ -342,6 +342,11 @@ namespace Sunny.UI
 
         private readonly NavMenuHelper MenuHelper = new NavMenuHelper();
 
+        public int GetPageIndex(TreeNode node)
+        {
+            return MenuHelper.GetPageIndex(node);
+        }
+
         public void SetNodeItem(TreeNode node, NavMenuItem item)
         {
             MenuHelper.Add(node, item);
