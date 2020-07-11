@@ -116,7 +116,7 @@ namespace Sunny.UI
             Bitmap offScreenBmp = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
             using (var g = Graphics.FromImage(offScreenBmp))
             {
-                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.SetHighQuality();
                 // Draw the control
                 drawControl(g, On);
                 // Draw the image to the screen
@@ -129,7 +129,7 @@ namespace Sunny.UI
         /// </summary>
         private void drawControl(Graphics g, bool on)
         {
-            // Is the bulb on or off
+  // Is the bulb on or off
             Color lightColor = (on) ? Color : Color.FromArgb(150, DarkColor);
             Color darkColor = (on) ? DarkColor : DarkDarkColor;
 
@@ -143,7 +143,7 @@ namespace Sunny.UI
 
             // Draw the background ellipse
             var rectangle = new Rectangle(Padding.Left, Padding.Top, diameter, diameter);
-            g.FillEllipse(darkColor, rectangle);
+            g.FillEllipse(darkColor, rectangle,true);
 
             // Draw the glow gradient
             var path = new GraphicsPath();
@@ -151,6 +151,7 @@ namespace Sunny.UI
             var pathBrush = new PathGradientBrush(path);
             pathBrush.CenterColor = lightColor;
             pathBrush.SurroundColors = new[] { Color.FromArgb(0, lightColor) };
+            g.SetHighQuality();
             g.FillEllipse(pathBrush, rectangle);
             pathBrush.Dispose();
 
@@ -163,6 +164,7 @@ namespace Sunny.UI
             var pathBrush1 = new PathGradientBrush(path);
             pathBrush1.CenterColor = _reflectionColor;
             pathBrush1.SurroundColors = _surroundColor;
+            g.SetHighQuality();
             g.FillEllipse(pathBrush1, whiteRect);
             pathBrush1.Dispose();
 
