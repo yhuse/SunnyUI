@@ -91,7 +91,7 @@ namespace Sunny.UI
 
         private void UILoginForm_Enter(object sender, EventArgs e)
         {
-            btnLogin.PerformClick();
+            //btnLogin.PerformClick();
         }
 
         public string UserName

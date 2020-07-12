@@ -68,17 +68,20 @@
             this.PieChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.PieChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.PieChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.PieChart.LegendFont = new System.Drawing.Font("微软雅黑", 12F);
             this.PieChart.Location = new System.Drawing.Point(30, 48);
             this.PieChart.Name = "PieChart";
             this.PieChart.Option = null;
             this.PieChart.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.PieChart.Size = new System.Drawing.Size(670, 400);
+            this.PieChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PieChart.TabIndex = 20;
             this.PieChart.Text = "uiPieChart1";
             // 
             // uiImageButton1
             // 
             this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDefaultStyle;
             this.uiImageButton1.Location = new System.Drawing.Point(30, 466);
             this.uiImageButton1.Name = "uiImageButton1";
@@ -92,6 +95,7 @@
             // uiImageButton2
             // 
             this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.ChartPlainStyle;
             this.uiImageButton2.Location = new System.Drawing.Point(136, 466);
             this.uiImageButton2.Name = "uiImageButton2";
@@ -105,6 +109,7 @@
             // uiImageButton3
             // 
             this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDarkStyle;
             this.uiImageButton3.Location = new System.Drawing.Point(242, 466);
             this.uiImageButton3.Name = "uiImageButton3";

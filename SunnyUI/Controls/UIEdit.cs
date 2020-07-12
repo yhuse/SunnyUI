@@ -70,7 +70,6 @@ namespace Sunny.UI
             {
                 if (e.KeyData == Keys.Enter)
                 {
-                    base.OnKeyDown(e);
                     EnterKeyPress?.Invoke(this, e);
                 }
             
