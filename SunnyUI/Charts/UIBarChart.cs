@@ -55,6 +55,12 @@ namespace Sunny.UI
                 max = 0;
             }
 
+            if ((max - min).IsZero())
+            {
+                max = 100;
+                min = 0;
+            }
+
             UIChartHelper.CalcDegreeScale(min, max, o.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 

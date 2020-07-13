@@ -36,6 +36,9 @@ namespace Sunny.UI
 
         public bool IsOK { get; private set; }
 
+        public event EventHandler ButtonOkClick;
+        public event EventHandler ButtonCancelClick;
+
         protected void btnOK_Click(object sender, EventArgs e)
         {
             if (!CheckData())
@@ -43,16 +46,30 @@ namespace Sunny.UI
                 return;
             }
 
-            DialogResult = DialogResult.OK;
-            IsOK = true;
-            Close();
+            if (ButtonOkClick != null)
+            {
+                ButtonOkClick.Invoke(sender,e);
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                IsOK = true;
+                Close();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            IsOK = false;
-            Close();
+            if (ButtonCancelClick != null)
+            {
+                ButtonCancelClick.Invoke(sender,e);
+            }
+            else
+            {
+                DialogResult = DialogResult.Cancel;
+                IsOK = false;
+                Close();
+            }
         }
 
         protected virtual bool CheckData()
