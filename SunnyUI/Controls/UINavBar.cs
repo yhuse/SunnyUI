@@ -130,6 +130,7 @@ namespace Sunny.UI
 
         private Color backColor = Color.FromArgb(56, 56, 56);
 
+        [DefaultValue(typeof(Color), "56, 56, 56")]
         public override Color BackColor
         {
             get => backColor;
@@ -137,6 +138,19 @@ namespace Sunny.UI
             {
                 backColor = value;
                 _menuStyle = UIMenuStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color fillColor = Color.FromArgb(56, 56, 56);
+
+        [DefaultValue(typeof(Color), "56, 56, 56")]
+        public Color FillColor
+        {
+            get => fillColor;
+            set
+            {
+                fillColor = value;
                 Invalidate();
             }
         }
@@ -279,6 +293,8 @@ namespace Sunny.UI
             base.OnPaint(e);
 
             e.Graphics.Clear(BackColor);
+            if (StyleCustomMode) e.Graphics.Clear(FillColor);
+
             NodeX = 0;
             NodeY = Height - NodeSize.Height;
 

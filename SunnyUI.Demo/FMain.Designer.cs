@@ -52,7 +52,7 @@
             // 
             this.Header.Controls.Add(this.uiAvatar);
             this.Header.Controls.Add(this.uiLogo1);
-            this.Header.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
+            this.Header.FillColor = System.Drawing.Color.Navy;
             treeNode1.Name = "节点0";
             treeNode1.Text = "控件";
             treeNode2.Name = "节点1";
