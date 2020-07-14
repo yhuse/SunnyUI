@@ -23,12 +23,15 @@
   - **个人学习交流免费，商业应用需要授权，联系QQ：17612584 咨询授权事宜。** 
 ![感谢您的支持](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_200627131211SunnyUISupport.png)
 
+#### 感谢 [JetBrains](https://www.jetbrains.com/?from=SunnyUI) 的支持
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0714/114152_d335c2f1_416720.png)
+
 1、开源控件库
 
   - 基于 framework4.0，原生控件开发，参考 Element、DotNetBar 主题风格，包含 Button、Panel、TextBox、CheckBox、RadioButton、TabControl、NavBar、DataGridView在内的常用控件超过 40 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
   - 包含 Element 风格主题 11 个，DotNetBar 主题 3 个，其他主题 2 个，包含主题管理组件 UIStyleManager，可自由切换主题。
 
-![输入图片说明](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_2006271311151.png)
+
 ![输入图片说明](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_2006271311212.png)
 ![输入图片说明](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_2006271311273.png)
 ![输入图片说明](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_2006271311386.png)
