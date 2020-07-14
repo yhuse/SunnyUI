@@ -23,7 +23,7 @@
   - **个人学习交流免费，商业应用需要授权，联系QQ：17612584 咨询授权事宜。** 
 ![感谢您的支持](https://images.cnblogs.com/cnblogs_com/yhuse/1794676/o_200627131211SunnyUISupport.png)
 
-#### 感谢 [JetBrains](https://www.jetbrains.com/?from=SunnyUI) 的支持
+#### 感谢 [JetBrains](https://www.jetbrains.com/?from=SunnyUI) 对开源项目的支持
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0714/114152_d335c2f1_416720.png)
 
 1、开源控件库
