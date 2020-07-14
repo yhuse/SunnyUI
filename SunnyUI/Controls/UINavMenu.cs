@@ -77,6 +77,28 @@ namespace Sunny.UI
         [DefaultValue(null)]
         public string TagString { get; set; }
 
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            base.OnBackColorChanged(e);
+            menuStyle = UIMenuStyle.Custom;
+            _style = UIStyle.Custom;
+        }
+
+        private Color backColor = Color.FromArgb(56, 56, 56);
+
+        [DefaultValue(typeof(Color), "56, 56, 56")]
+        public override Color BackColor
+        {
+            get => backColor;
+            set
+            {
+                backColor = value;
+                menuStyle = UIMenuStyle.Custom;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
         private Color fillColor = Color.FromArgb(56, 56, 56);
 
         /// <summary>

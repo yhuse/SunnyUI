@@ -118,6 +118,7 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 _menuStyle = UIMenuStyle.Custom;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -126,6 +127,7 @@ namespace Sunny.UI
         {
             base.OnBackColorChanged(e);
             _menuStyle = UIMenuStyle.Custom;
+            _style = UIStyle.Custom;
         }
 
         private Color backColor = Color.FromArgb(56, 56, 56);
@@ -138,19 +140,7 @@ namespace Sunny.UI
             {
                 backColor = value;
                 _menuStyle = UIMenuStyle.Custom;
-                Invalidate();
-            }
-        }
-
-        private Color fillColor = Color.FromArgb(56, 56, 56);
-
-        [DefaultValue(typeof(Color), "56, 56, 56")]
-        public Color FillColor
-        {
-            get => fillColor;
-            set
-            {
-                fillColor = value;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -293,8 +283,6 @@ namespace Sunny.UI
             base.OnPaint(e);
 
             e.Graphics.Clear(BackColor);
-            if (StyleCustomMode) e.Graphics.Clear(FillColor);
-
             NodeX = 0;
             NodeY = Height - NodeSize.Height;
 

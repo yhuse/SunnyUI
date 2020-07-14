@@ -10,12 +10,9 @@ namespace Sunny.UI.Demo
             InitializeComponent();
 
             uiDataGridView1.AddColumn("Column1", "Column1", 100);
-            uiDataGridView1.AddColumn("Column2", "Column2").SetFixedMode(1000);
+            uiDataGridView1.AddColumn("Column2", "Column2").SetFixedMode(100);
             uiDataGridView1.AddColumn("Column3", "Column3").SetFixedMode(100);
-            //uiDataGridView1.AddColumn("Column4", "Column4", 20);
-
             uiDataGridView1.ReadOnly = true;
-            uiDataGridView1.ScrollBars = ScrollBars.Both;
         }
 
         public override void Init()
