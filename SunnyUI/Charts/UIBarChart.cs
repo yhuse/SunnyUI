@@ -81,7 +81,7 @@ namespace Sunny.UI
                 {
                     if (YAxisStart >= 0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height *  (series.Data[j]- start *interval) / ((end -start) * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
 
                         Bars[i].Add(new BarInfo()
                         {
@@ -91,9 +91,9 @@ namespace Sunny.UI
                                 x2, h)
                         });
                     }
-                    else if (YAxisEnd<=0)
+                    else if (YAxisEnd <= 0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height * (end * interval-series.Data[j]) / ((end - start) * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(
@@ -294,6 +294,7 @@ namespace Sunny.UI
             DrawSeries(g, BarOption.Series);
             if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, BarOption.Legend);
+            DrawAxisScales(g);
         }
 
         private void DrawToolTip(Graphics g)
@@ -314,8 +315,8 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            if (YAxisStart>=0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
-            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top),  new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
+            if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
+            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
 
             g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
 
@@ -367,7 +368,7 @@ namespace Sunny.UI
                 }
 
                 SizeF sfname = g.MeasureString(BarOption.XAxis.Name, SubFont);
-                g.DrawString(BarOption.XAxis.Name,SubFont,ChartStyle.ForeColor, DrawOrigin.X +(DrawSize.Width-sfname.Width)/2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length +sfname.Height);
+                g.DrawString(BarOption.XAxis.Name, SubFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length + sfname.Height);
             }
 
             if (BarOption.YAxis.AxisTick.Show)
@@ -420,9 +421,23 @@ namespace Sunny.UI
 
                 SizeF sfname = g.MeasureString(BarOption.YAxis.Name, SubFont);
                 int x = (int)(DrawOrigin.X - BarOption.YAxis.AxisTick.Length - wmax - sfname.Height);
-                int y = (int) (BarOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(BarOption.YAxis.Name,SubFont,ChartStyle.ForeColor, new Point(x,y), 
-                    new StringFormat(){Alignment = StringAlignment.Center}, 270);
+                int y = (int)(BarOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
+                g.DrawString(BarOption.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(x, y),
+                    new StringFormat() { Alignment = StringAlignment.Center }, 270);
+            }
+        }
+
+        private void DrawAxisScales(Graphics g)
+        {
+            foreach (var line in BarOption.YAxisScaleLines)
+            {
+                double ymin = YAxisStart * YAxisInterval;
+                double ymax = YAxisEnd * YAxisInterval;
+                float pos = (float)((line.Value - ymin) * (Height - BarOption.Grid.Top - BarOption.Grid.Bottom) / (ymax - ymin));
+                pos = (Height - BarOption.Grid.Bottom - pos);
+                g.DrawLine(line.Color, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
+                SizeF sf = g.MeasureString(line.Name, SubFont);
+                g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
             }
         }
 

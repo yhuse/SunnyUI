@@ -130,6 +130,26 @@ namespace Sunny.UI
                     RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
                     g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
                     Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, LegendFont);
+
+                    if (pie.Label.Show)
+                    {
+                        double az = Angles[pieIndex][azIndex].Start + Angles[pieIndex][azIndex].Sweep / 2;
+                        double x = Math.Abs(Math.Sin(az * Math.PI / 180));
+                        double y = Math.Abs(Math.Cos(az * Math.PI / 180));
+
+                        SizeF sf = g.MeasureString(pie.Data[0].Value.ToString("F0"), SubFont);
+                        PointF pf;
+                        if (az >= 0 && az < 90)
+                            pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + 6), (float)(DrawCenter(pie).Y - RadiusSize(pie) * y - sf.Height - 6));
+                        else if (az >= 90 && az < 180)
+                            pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + 6), (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + 6));
+                        else if (az >= 180 && az < 270)
+                            pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - 6) - sf.Width, (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + 6));
+                        else
+                            pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - 6) - sf.Width, (float)(DrawCenter(pie).Y - RadiusSize(pie) * y) - sf.Height - 6);
+
+                        g.DrawString(pie.Data[azIndex].Value.ToString("F0"), SubFont, color, pf.X, pf.Y);
+                    }
                 }
             }
         }
@@ -230,6 +250,24 @@ namespace Sunny.UI
             top = Height * top / 100;
             float halfRadius = Math.Min(Width, Height) * series.Radius / 200.0f;
             return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
+        }
+
+        private Point DrawCenter(UIPieSeries series)
+        {
+            int left = series.Center.Left;
+            int top = series.Center.Top;
+            left = Width * left / 100;
+            top = Height * top / 100;
+            return new Point(left, top);
+        }
+
+        private float RadiusSize(UIPieSeries series)
+        {
+            int left = series.Center.Left;
+            int top = series.Center.Top;
+            left = Width * left / 100;
+            top = Height * top / 100;
+            return Math.Min(Width, Height) * series.Radius / 200.0f;
         }
 
         private class Angle

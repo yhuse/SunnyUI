@@ -15,9 +15,9 @@ namespace Sunny.UI
 
         public UIChartGrid Grid = new UIChartGrid();
 
-        //public UIPieLegend Legend;
+        public readonly List<UIScaleLine> XAxisScaleLines = new List<UIScaleLine>();
 
-        //public UIPieToolTip ToolTip;
+        public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
         public void AddSeries(UIBarSeries series)
         {
@@ -43,7 +43,7 @@ namespace Sunny.UI
 
         public string ValueFormat { get; set; } = "F0";
 
-        public UIAxisPointer AxisPointer= new UIAxisPointer();
+        public UIAxisPointer AxisPointer = new UIAxisPointer();
     }
 
     public class UIAxisPointer
@@ -53,7 +53,7 @@ namespace Sunny.UI
 
     public enum UIAxisPointerType
     {
-        Line,Shadow
+        Line, Shadow
     }
 
     public class UIAxis
@@ -111,13 +111,13 @@ namespace Sunny.UI
         /// </summary>
         public int Interval { get; set; } = 0;
 
-        public delegate string DoFormatter(double value,int index);
+        public delegate string DoFormatter(double value, int index);
 
         public event DoFormatter Formatter;
 
         public string GetLabel(double value, int index)
         {
-            return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F"+ DecimalCount);
+            return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F" + DecimalCount);
         }
 
         /// <summary>

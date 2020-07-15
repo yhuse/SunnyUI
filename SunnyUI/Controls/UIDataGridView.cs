@@ -17,7 +17,8 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
- * 2020-04-25: V2.2.4 功能增强、美化 
+ * 2020-04-25: V2.2.4 功能增强、美化
+ * 2020-07-15: V2.2.6 更改默认配置为原生
 ******************************************************************************/
 
 using System;
@@ -29,26 +30,23 @@ namespace Sunny.UI
 {
     public sealed class UIDataGridView : DataGridView, IStyleInterface
     {
-        private readonly UIScrollBar Bar = new UIScrollBar();
+        private readonly UIScrollBar VBar = new UIScrollBar();
 
         public UIDataGridView()
         {
             BackgroundColor = UIColor.White;
             GridColor = UIColor.Blue;
             Font = UIFontColor.Font;
-            ScrollBars = ScrollBars.Vertical;
             DoubleBuffered = true;
-            Bar.Parent = this;
-            Bar.Visible = false;
-            Bar.FillColor = UIColor.LightBlue;
-            Bar.ForeColor = UIColor.Blue;
-            Bar.StyleCustomMode = true;
-            Bar.ValueChanged += Bar_ValueChanged;
+
+            VBar.Parent = this;
+            VBar.Visible = false;
+            VBar.FillColor = UIColor.LightBlue;
+            VBar.ForeColor = UIColor.Blue;
+            VBar.StyleCustomMode = true;
+            VBar.ValueChanged += VBarValueChanged;
             SetBarPosition();
-
-            //列占满行
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            
             //支持自定义标题行风格
             EnableHeadersVisualStyles = false;
 
@@ -66,12 +64,26 @@ namespace Sunny.UI
             RowTemplate.Height = 29;
             RowTemplate.MinimumHeight = 29;
             AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            
+            //设置奇偶数行颜色
+            StripeEvenColor = UIColor.White;
+            StripeOddColor = UIColor.LightBlue;
+
+            VerticalScrollBar.ValueChanged += VerticalScrollBar_ValueChanged;
+
+            Style = UIStyle.Blue;
+        }
+
+        public void Init()
+        {
+            //列占满行
+            //AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             //行选
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //禁止调整数据行行高
-            //AllowUserToResizeRows = false;
+            AllowUserToResizeRows = false;
 
             //允许调整标题行行宽
             AllowUserToResizeColumns = true;
@@ -83,36 +95,44 @@ namespace Sunny.UI
             //MultiSelect = false;
 
             //自动生成行
-            AutoGenerateColumns = true;
+            //AutoGenerateColumns = true;
 
             //禁用最后一行空白，自动新增行
             AllowUserToAddRows = false;
+            AllowUserToDeleteRows = false;
 
             //禁止只读
-            ReadOnly = false;
+            //ReadOnly = false;
 
             //不显示表格线
             CellBorderStyle = DataGridViewCellBorderStyle.None;
+        }
 
-            StripeEvenColor = UIColor.White;
-            StripeOddColor = UIColor.LightBlue;
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
 
-            VerticalScrollBar.ValueChanged += VerticalScrollBar_ValueChanged;
+            if (ShowRect)
+            {
+                Color color = RectColor;
+                color = Enabled ? color : UIDisableColor.Fill;
+                e.Graphics.DrawRectangle(color, new Rectangle(0, 0, Width - 1, Height - 1));
+            }
         }
 
         private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
         {
-            Bar.Value = FirstDisplayedScrollingRowIndex;
+            VBar.Value = FirstDisplayedScrollingRowIndex;
         }
 
-        private void Bar_ValueChanged(object sender, EventArgs e)
+        private void VBarValueChanged(object sender, EventArgs e)
         {
-            FirstDisplayedScrollingRowIndex = Bar.Value;
+            FirstDisplayedScrollingRowIndex = VBar.Value;
         }
 
         public void SetScrollInfo()
         {
-            if (Bar == null)
+            if (VBar == null)
             {
                 return;
             }
@@ -120,28 +140,28 @@ namespace Sunny.UI
             if (VerticalScrollBar.Visible)
             {
                 SetBarPosition();
-                Bar.Maximum = RowCount - 1;
-                Bar.Value = FirstDisplayedScrollingRowIndex;
-                Bar.Visible = true;
+                VBar.Maximum = RowCount - 1;
+                VBar.Value = FirstDisplayedScrollingRowIndex;
+                VBar.Visible = true;
             }
             else
             {
-                Bar.Visible = false;
+                VBar.Visible = false;
             }
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (Bar.Visible)
+            if (VBar.Visible)
             {
                 if (e.Delta > 10)
                 {
-                    Bar.SetValue(Bar.Value - Bar.Maximum / 20);
+                    VBar.SetValue(VBar.Value - VBar.Maximum / 20);
                 }
                 else if (e.Delta < -10)
                 {
-                    Bar.SetValue(Bar.Value + Bar.Maximum / 20);
+                    VBar.SetValue(VBar.Value + VBar.Maximum / 20);
                 }
             }
         }
@@ -167,11 +187,11 @@ namespace Sunny.UI
 
         private void SetBarPosition()
         {
-            Bar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
-            Bar.Top = 0;
-            Bar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
-            Bar.Height = Height;
-            Bar.BringToFront();
+            VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
+            VBar.Top = 1;
+            VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+            VBar.Height = Height - 2;
+            VBar.BringToFront();
         }
 
         protected override void OnColumnAdded(DataGridViewColumnEventArgs e)
@@ -243,8 +263,8 @@ namespace Sunny.UI
             StripeEvenColor = uiColor.GridStripeEvenColor;
             StripeOddColor = uiColor.GridStripeOddColor;
 
-            Bar.FillColor = uiColor.GridStripeOddColor;
-            Bar.ForeColor = uiColor.PrimaryColor;
+            VBar.FillColor = uiColor.GridStripeOddColor;
+            VBar.ForeColor = uiColor.PrimaryColor;
 
             Invalidate();
         }
@@ -255,25 +275,6 @@ namespace Sunny.UI
         public string Version => UIGlobal.Version;
 
         public string TagString { get; set; }
-
-        /// <summary>
-        ///     重新设置边框
-        /// </summary>
-        /// <param name="m">当前的Windows消息</param>
-        protected override void WndProc(ref Message m)
-        {
-            base.WndProc(ref m);
-            if (IsDisposed || Disposing) return;
-            if (ShowRect)
-            {
-                if (m.Msg == 0xf || m.Msg == 0x133)
-                {
-                    Color color = RectColor;
-                    color = Enabled ? color : UIDisableColor.Fill;
-                    ControlEx.ResetBorderColor(m, this, 1, color);
-                }
-            }
-        }
 
         /// <summary>
         /// 是否显示边框

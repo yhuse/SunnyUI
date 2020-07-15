@@ -92,7 +92,7 @@ namespace Sunny.UI
         }
     }
 
-    public class UILiveChartStyle:UIChartStyle
+    public class UILiveChartStyle : UIChartStyle
     {
         public override Color BackColor => Color.FromArgb(16, 36, 71);
 
@@ -106,10 +106,10 @@ namespace Sunny.UI
             {
                 return new[]
                 {
-                Color.FromArgb(33, 149, 242),
-                Color.FromArgb(254, 192, 7),
-                Color.FromArgb(243, 67, 54),
-                Color.FromArgb(96, 125, 138),
+                    Color.FromArgb(33, 149, 242),
+                    Color.FromArgb(254, 192, 7),
+                    Color.FromArgb(243, 67, 54),
+                    Color.FromArgb(96, 125, 138),
                     Color.FromArgb(0,187,211),
                     Color.FromArgb(232,30,99),
                     Color.FromArgb(254,87,34),

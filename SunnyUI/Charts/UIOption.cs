@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -28,6 +29,13 @@ namespace Sunny.UI
     {
         public UITitle Title;
         public UILegend Legend;
+    }
+
+    public class UIScaleLine
+    {
+        public double Value { get; set; }
+        public string Name { get; set; }
+        public Color Color { get; set; }
     }
 
     public class UILegend
