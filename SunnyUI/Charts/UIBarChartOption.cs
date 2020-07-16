@@ -77,6 +77,13 @@ namespace Sunny.UI
         public UIAxisTick AxisTick = new UIAxisTick();
 
         public UIAxisLabel AxisLabel = new UIAxisLabel();
+
+        public bool MaxAuto { get; set; } = true;
+        public bool MinAuto { get; set; } = true;
+
+        public double Max { get; set; } = 100;
+        public double Min { get; set; } = 0;
+
     }
 
     public class UICategoryAxis : UIAxis
@@ -92,8 +99,6 @@ namespace Sunny.UI
         {
             Data.Clear();
         }
-
-
     }
 
     public class UIAxisLabel

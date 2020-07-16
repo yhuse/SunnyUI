@@ -433,7 +433,7 @@ namespace Sunny.UI
                 return;
             }
 
-            NavBarMenu.Style = Style;
+            NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {

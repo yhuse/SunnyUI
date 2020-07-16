@@ -137,18 +137,25 @@ namespace Sunny.UI
                         double x = Math.Abs(Math.Sin(az * Math.PI / 180));
                         double y = Math.Abs(Math.Cos(az * Math.PI / 180));
 
-                        SizeF sf = g.MeasureString(pie.Data[0].Value.ToString("F0"), SubFont);
-                        PointF pf;
-                        if (az >= 0 && az < 90)
-                            pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + 6), (float)(DrawCenter(pie).Y - RadiusSize(pie) * y - sf.Height - 6));
-                        else if (az >= 90 && az < 180)
-                            pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + 6), (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + 6));
-                        else if (az >= 180 && az < 270)
-                            pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - 6) - sf.Width, (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + 6));
-                        else
-                            pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - 6) - sf.Width, (float)(DrawCenter(pie).Y - RadiusSize(pie) * y) - sf.Height - 6);
+                        string name = Option.Legend != null ? Option.Legend.Data[azIndex] + " : " : "";
+                        if (pie.Data[azIndex].Value > 0)
+                        {
+                            string text = name + pie.Data[azIndex].Value.ToString("F0");
+                            SizeF sf = g.MeasureString(text, SubFont);
+                            PointF pf;
+                            int added = 9;
+                            if (az >= 0 && az < 90)
+                                pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + added), (float)(DrawCenter(pie).Y - RadiusSize(pie) * y - sf.Height - added));
+                            else if (az >= 90 && az < 180)
+                                pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + added), (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + added));
+                            else if (az >= 180 && az < 270)
+                                pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - added) - sf.Width, (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + added));
+                            else
+                                pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - added) - sf.Width, (float)(DrawCenter(pie).Y - RadiusSize(pie) * y) - sf.Height - added);
 
-                        g.DrawString(pie.Data[azIndex].Value.ToString("F0"), SubFont, color, pf.X, pf.Y);
+                            if (pie.Data[azIndex].Value > 0)
+                                g.DrawString(text, SubFont, color, pf.X, pf.Y);
+                        }
                     }
                 }
             }

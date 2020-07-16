@@ -55,6 +55,9 @@ namespace Sunny.UI
                 max = 0;
             }
 
+            if (!o.YAxis.MaxAuto) max = o.YAxis.Max;
+            if (!o.YAxis.MinAuto) min = o.YAxis.Min;
+
             if ((max - min).IsZero())
             {
                 max = 100;
