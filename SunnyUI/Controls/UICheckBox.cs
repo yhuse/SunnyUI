@@ -152,11 +152,12 @@ namespace Sunny.UI
 
         protected override void OnClick(EventArgs e)
         {
-            base.OnClick(e);
             if (!ReadOnly)
             {
                 Checked = !Checked;
             }
+
+            base.OnClick(e);
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
