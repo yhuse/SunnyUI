@@ -447,7 +447,13 @@ namespace Sunny.UI
                 pos = (Height - BarOption.Grid.Bottom - pos);
                 g.DrawLine(line.Color, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
                 SizeF sf = g.MeasureString(line.Name, SubFont);
-                g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+
+                if (line.Left == UILeftAlignment.Left)
+                    g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+                if (line.Left == UILeftAlignment.Center)
+                    g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + (Width - BarOption.Grid.Left - BarOption.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
+                if (line.Left == UILeftAlignment.Right)
+                    g.DrawString(line.Name, SubFont, line.Color, Width - sf.Width - 4, pos - 2 - sf.Height);
             }
         }
 

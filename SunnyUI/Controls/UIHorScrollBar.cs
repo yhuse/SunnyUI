@@ -12,12 +12,11 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UIScrollBar.cs
- * 文件说明: 滚动条
+ * 文件说明: 水平滚动条
  * 当前版本: V2.2
  * 创建日期: 2020-01-01
  *
- * 2020-01-01: V2.2.0 增加文件说明
- * 2020-04-25: V2.2.4 更新主题配置类
+ * 2020-07-18: V2.2.6 新增水平滚动条
 ******************************************************************************/
 
 using System;
@@ -30,16 +29,16 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
     [ToolboxItem(true)]
-    public sealed class UIScrollBar : UIControl
+    public sealed class UIHorScrollBar : UIControl
     {
-        public UIScrollBar()
+        public UIHorScrollBar()
         {
             Maximum = 100;
-            up_state = value_state = down_state = DrawItemState.None;
+            left_state = value_state = right_state = DrawItemState.None;
             timer.Interval = 150;
             timer.Tick += TimerTick;
-            Width = SystemInformation.VerticalScrollBarWidth + 2;
-            Height = 300;
+            Width = 300;
+            Height = SystemInformation.HorizontalScrollBarHeight + 2;
             ShowText = false;
 
             fillColor = UIColor.LightBlue;
@@ -52,11 +51,11 @@ namespace Sunny.UI
         private int SmallChange = 1;
         private int LargeChange = 10;
         private int maximum;
-        private DrawItemState up_state, value_state, down_state;
-        private DrawItemState up_state1, value_state1, down_state1;
+        private DrawItemState left_state, value_state, right_state;
+        private DrawItemState left_state1, value_state1, right_state1;
         private bool dragMove;
         private int dragOffset;
-        private int barHeight;
+        private int barWidth;
         private double percentValue;
         private readonly Timer timer = new Timer();
         private bool isScrollUp = true;
@@ -102,29 +101,28 @@ namespace Sunny.UI
         private void TimerTick(object sender, EventArgs e)
         {
             if (isScrollUp)
-                ScrollUp(largeChange);
+                ScrollLeft(largeChange);
             else
-                ScrollDown(largeChange);
+                ScrollRight(largeChange);
         }
 
         private Rectangle GetUpRect()
         {
-            var rect = new Rectangle(1, 1, Width - 2, 16);
+            var rect = new Rectangle(1, 1, 16, Height - 2);
             return rect;
         }
 
         private void CalcValueArea()
         {
-            var centerHeight = GetValueClipRect().Height;
-
-            barHeight = centerHeight / (maximum + 1);
-            barHeight = Math.Max(30, barHeight);
-            percentValue = ((double)centerHeight - barHeight) / maximum;
+            var centerWidth = GetValueClipRect().Width;
+            barWidth = centerWidth / (maximum + 1);
+            barWidth = Math.Max(30, barWidth);
+            percentValue = ((double)centerWidth - barWidth) / maximum;
         }
 
         private Rectangle GetValueRect()
         {
-            return new Rectangle(Width / 2 - 3, ValueToPos(scrollValue), 6, barHeight);
+            return new Rectangle(ValueToPos(scrollValue), Height / 2 - 3, barWidth, 6);
         }
 
         private int ValueToPos(int value)
@@ -144,21 +142,19 @@ namespace Sunny.UI
 
         private Rectangle GetDownRect()
         {
-            var rect = new Rectangle(1, Height - 17, Width - 2, 16);
-            return rect;
+            return new Rectangle(Width - 17, 1, 16, Height - 2);
         }
 
         private Rectangle GetValueClipRect()
         {
-            var clip = new Rectangle(1, 17, Width - 2, Height - 17 * 2);
-            return clip;
+            return new Rectangle(17, 1, Width - 17 * 2, Height - 2);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(fillColor);
-            DrawUpDownArrow(e.Graphics, up_state, GetUpRect(), true);
-            DrawUpDownArrow(e.Graphics, down_state, GetDownRect(), false);
+            DrawUpDownArrow(e.Graphics, left_state, GetUpRect(), true);
+            DrawUpDownArrow(e.Graphics, right_state, GetDownRect(), false);
             DrawValueBar(e.Graphics, value_state);
         }
 
@@ -179,15 +175,15 @@ namespace Sunny.UI
 
             if (dragMove)
             {
-                rect = new Rectangle(rect.Left, MousePos - barHeight / 2, rect.Width, barHeight);
-                if (rect.Top < 17)
+                rect = new Rectangle(MousePos - barWidth / 2, rect.Top, barWidth, rect.Height);
+                if (rect.Left < 17)
                 {
-                    rect = new Rectangle(rect.Left, 17, rect.Width, barHeight);
+                    rect = new Rectangle(17, rect.Top, barWidth, rect.Height);
                 }
 
-                if (rect.Bottom > Height - 17)
+                if (rect.Right > Width - 17)
                 {
-                    rect = new Rectangle(rect.Left, Height - 17 - barHeight, rect.Width, barHeight);
+                    rect = new Rectangle(Width - 17 - barWidth, rect.Top, barWidth, rect.Height);
                 }
             }
 
@@ -217,15 +213,15 @@ namespace Sunny.UI
                 Point pt1, pt2, pt3;
                 if (!isUp)
                 {
-                    pt1 = new Point(Width / 2 - 4, Height - 16 / 2 - 4);
-                    pt2 = new Point(Width / 2, Height - 16 / 2);
-                    pt3 = new Point(Width / 2 + 4, Height - 16 / 2 - 4);
+                    pt1 = new Point(Width - 16 / 2 - 4, Height / 2 - 4);
+                    pt2 = new Point(Width - 16 / 2, Height / 2);
+                    pt3 = new Point(Width - 16 / 2 - 4, Height / 2 + 4);
                 }
                 else
                 {
-                    pt1 = new Point(Width / 2 - 4, 16 / 2 + 4 - 1);
-                    pt2 = new Point(Width / 2, 16 / 2 - 1);
-                    pt3 = new Point(Width / 2 + 4, 16 / 2 + 4 - 1);
+                    pt1 = new Point(16 / 2 + 4 - 1, Height / 2 - 4);
+                    pt2 = new Point(16 / 2 - 1, Height / 2);
+                    pt3 = new Point(16 / 2 + 4 - 1, Height / 2 + 4);
                 }
 
                 g.DrawLines(pen, new[] { pt1, pt2, pt3 });
@@ -251,12 +247,12 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        public void ScrollUp(bool large)
+        public void ScrollLeft(bool large)
         {
             SetValue(scrollValue - (large ? LargeChange : SmallChange));
         }
 
-        public void ScrollDown(bool large)
+        public void ScrollRight(bool large)
         {
             SetValue(scrollValue + (large ? LargeChange : SmallChange));
         }
@@ -280,7 +276,7 @@ namespace Sunny.UI
                 return;
             }
 
-            up_state = value_state = down_state = DrawItemState.None;
+            left_state = value_state = right_state = DrawItemState.None;
             IsPress = true;
             var hit = HitState(e.X, e.Y);
             switch (hit)
@@ -288,8 +284,8 @@ namespace Sunny.UI
                 case 1:
                     if (Value > 0)
                     {
-                        up_state = DrawItemState.Selected;
-                        ScrollUp(false);
+                        left_state = DrawItemState.Selected;
+                        ScrollLeft(false);
                         StartScroll(true, false);
                     }
                     break;
@@ -303,8 +299,8 @@ namespace Sunny.UI
                 case 3:
                     if (Value < Maximum)
                     {
-                        down_state = DrawItemState.Selected;
-                        ScrollDown(false);
+                        right_state = DrawItemState.Selected;
+                        ScrollRight(false);
                         StartScroll(false, false);
                     }
                     break;
@@ -312,7 +308,7 @@ namespace Sunny.UI
                 case 4:
                     if (Value > 0)
                     {
-                        ScrollUp(true);
+                        ScrollLeft(true);
                         if (IsPress)
                         {
                             StartScroll(true, true);
@@ -323,7 +319,7 @@ namespace Sunny.UI
                 case 5:
                     if (Value < Maximum)
                     {
-                        ScrollDown(false);
+                        ScrollRight(false);
                         if (IsPress)
                         {
                             StartScroll(false, true);
@@ -350,13 +346,13 @@ namespace Sunny.UI
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            MousePos = e.Y;
+            MousePos = e.X;
             var hit = HitState(e.X, e.Y);
-            up_state = value_state = down_state = DrawItemState.None;
+            left_state = value_state = right_state = DrawItemState.None;
             switch (hit)
             {
                 case 1:
-                    up_state = IsPress ? DrawItemState.Selected : DrawItemState.HotLight;
+                    left_state = IsPress ? DrawItemState.Selected : DrawItemState.HotLight;
                     break;
 
                 case 2:
@@ -364,13 +360,13 @@ namespace Sunny.UI
                     break;
 
                 case 3:
-                    down_state = IsPress ? DrawItemState.Selected : DrawItemState.HotLight;
+                    right_state = IsPress ? DrawItemState.Selected : DrawItemState.HotLight;
                     break;
             }
 
             if (dragMove)
             {
-                var value = PosToValue(e.Y + dragOffset);
+                var value = PosToValue(e.X + dragOffset);
                 SetValue(value);
                 return;
             }
@@ -384,35 +380,35 @@ namespace Sunny.UI
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            up_state = down_state = value_state = DrawItemState.None;
+            left_state = right_state = value_state = DrawItemState.None;
             Invalidate();
         }
 
         private bool StateChange()
         {
-            var change = up_state != up_state1 || down_state != down_state1 || value_state != value_state1;
-            up_state1 = up_state;
+            var change = left_state != left_state1 || right_state != right_state1 || value_state != value_state1;
+            left_state1 = left_state;
             value_state1 = value_state;
-            down_state1 = down_state;
+            right_state1 = right_state;
             return change;
         }
 
         private int HitState(int x, int y)
         {
-            var rect_up = GetUpRect();
-            var rect_down = GetDownRect();
+            var rect_left = GetUpRect();
+            var rect_right = GetDownRect();
             var rect_value = GetValueRect();
-            var rect_value_up = new Rectangle(0, rect_up.Bottom, Width, rect_value.Top - rect_up.Bottom);
-            var rect_value_down = new Rectangle(0, rect_value.Bottom, Width, rect_down.Top - rect_value.Bottom);
-            if (rect_up.Contains(x, y))
+            var rect_value_left = new Rectangle(rect_left.Right, 0,  rect_value.Left - rect_left.Right, Height);
+            var rect_value_right= new Rectangle(rect_value.Left, 0, rect_right.Left - rect_value.Right, Height);
+            if (rect_left.Contains(x, y))
                 return 1;
-            else if (rect_down.Contains(x, y))
+            else if (rect_right.Contains(x, y))
                 return 3;
             else if (rect_value.Contains(x, y) || value_state == DrawItemState.Selected)
                 return 2;
-            else if (rect_value_up.Contains(x, y))
+            else if (rect_value_left.Contains(x, y))
                 return 4;
-            else if (rect_value_down.Contains(x, y))
+            else if (rect_value_right.Contains(x, y))
                 return 5;
             else
                 return -1;

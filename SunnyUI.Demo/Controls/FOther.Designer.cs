@@ -40,17 +40,12 @@
             this.uiTrackBar1 = new Sunny.UI.UITrackBar();
             this.uiLine5 = new Sunny.UI.UILine();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.uiScrollBar1 = new Sunny.UI.UIScrollBar();
             this.uiLight4 = new Sunny.UI.UILight();
             this.uiLedBulb1 = new Sunny.UI.UILedBulb();
             this.uiLine8 = new Sunny.UI.UILine();
             this.uiLedBulb2 = new Sunny.UI.UILedBulb();
             this.uiLedBulb3 = new Sunny.UI.UILedBulb();
             this.uiLedBulb4 = new Sunny.UI.UILedBulb();
-            this.uiLine1 = new Sunny.UI.UILine();
-            this.uiScrollBar2 = new Sunny.UI.UIScrollBar();
-            this.uiScrollBar3 = new Sunny.UI.UIScrollBar();
-            this.uiScrollBar4 = new Sunny.UI.UIScrollBar();
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiScrollingText1 = new Sunny.UI.UIScrollingText();
             this.uiScrollingText2 = new Sunny.UI.UIScrollingText();
@@ -62,17 +57,12 @@
             this.PagePanel.Controls.Add(this.uiScrollingText2);
             this.PagePanel.Controls.Add(this.uiScrollingText1);
             this.PagePanel.Controls.Add(this.uiLine6);
-            this.PagePanel.Controls.Add(this.uiScrollBar4);
-            this.PagePanel.Controls.Add(this.uiScrollBar3);
-            this.PagePanel.Controls.Add(this.uiScrollBar2);
-            this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiLedBulb4);
             this.PagePanel.Controls.Add(this.uiLedBulb3);
             this.PagePanel.Controls.Add(this.uiLedBulb2);
             this.PagePanel.Controls.Add(this.uiLine8);
             this.PagePanel.Controls.Add(this.uiLedBulb1);
             this.PagePanel.Controls.Add(this.uiLight4);
-            this.PagePanel.Controls.Add(this.uiScrollBar1);
             this.PagePanel.Controls.Add(this.uiLine5);
             this.PagePanel.Controls.Add(this.uiTrackBar1);
             this.PagePanel.Controls.Add(this.uiLine4);
@@ -197,15 +187,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // uiScrollBar1
-            // 
-            this.uiScrollBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiScrollBar1.Location = new System.Drawing.Point(381, 217);
-            this.uiScrollBar1.Name = "uiScrollBar1";
-            this.uiScrollBar1.Size = new System.Drawing.Size(23, 163);
-            this.uiScrollBar1.TabIndex = 35;
-            this.uiScrollBar1.Text = "uiScrollBar1";
-            // 
             // uiLight4
             // 
             this.uiLight4.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
@@ -262,70 +243,15 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
+            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
             // 
-            // uiLine1
-            // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(381, 182);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(319, 20);
-            this.uiLine1.TabIndex = 42;
-            this.uiLine1.Text = "UIScrollBar";
-            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiScrollBar2
-            // 
-            this.uiScrollBar2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiScrollBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiScrollBar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiScrollBar2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiScrollBar2.Location = new System.Drawing.Point(423, 217);
-            this.uiScrollBar2.Name = "uiScrollBar2";
-            this.uiScrollBar2.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiScrollBar2.Size = new System.Drawing.Size(23, 163);
-            this.uiScrollBar2.Style = Sunny.UI.UIStyle.Green;
-            this.uiScrollBar2.StyleCustomMode = true;
-            this.uiScrollBar2.TabIndex = 43;
-            this.uiScrollBar2.Text = "uiScrollBar2";
-            // 
-            // uiScrollBar3
-            // 
-            this.uiScrollBar3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.uiScrollBar3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiScrollBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiScrollBar3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiScrollBar3.Location = new System.Drawing.Point(465, 217);
-            this.uiScrollBar3.Name = "uiScrollBar3";
-            this.uiScrollBar3.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiScrollBar3.Size = new System.Drawing.Size(23, 163);
-            this.uiScrollBar3.Style = Sunny.UI.UIStyle.Orange;
-            this.uiScrollBar3.StyleCustomMode = true;
-            this.uiScrollBar3.TabIndex = 44;
-            this.uiScrollBar3.Text = "uiScrollBar3";
-            // 
-            // uiScrollBar4
-            // 
-            this.uiScrollBar4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.uiScrollBar4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiScrollBar4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiScrollBar4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiScrollBar4.Location = new System.Drawing.Point(507, 217);
-            this.uiScrollBar4.Name = "uiScrollBar4";
-            this.uiScrollBar4.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiScrollBar4.Size = new System.Drawing.Size(23, 163);
-            this.uiScrollBar4.Style = Sunny.UI.UIStyle.Red;
-            this.uiScrollBar4.StyleCustomMode = true;
-            this.uiScrollBar4.TabIndex = 45;
-            this.uiScrollBar4.Text = "uiScrollBar4";
-            // 
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.Location = new System.Drawing.Point(30, 346);
+            this.uiLine6.Location = new System.Drawing.Point(381, 182);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
             this.uiLine6.Size = new System.Drawing.Size(319, 20);
@@ -338,10 +264,10 @@
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
-            this.uiScrollingText1.Location = new System.Drawing.Point(27, 372);
+            this.uiScrollingText1.Location = new System.Drawing.Point(381, 208);
             this.uiScrollingText1.Name = "uiScrollingText1";
             this.uiScrollingText1.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
-            this.uiScrollingText1.Size = new System.Drawing.Size(322, 35);
+            this.uiScrollingText1.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText1.Style = Sunny.UI.UIStyle.Custom;
             this.uiScrollingText1.StyleCustomMode = true;
             this.uiScrollingText1.TabIndex = 48;
@@ -352,9 +278,9 @@
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiScrollingText2.Location = new System.Drawing.Point(27, 413);
+            this.uiScrollingText2.Location = new System.Drawing.Point(381, 249);
             this.uiScrollingText2.Name = "uiScrollingText2";
-            this.uiScrollingText2.Size = new System.Drawing.Size(322, 35);
+            this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 49;
             this.uiScrollingText2.Text = "赠人玫瑰手有余香";
             // 
@@ -383,17 +309,12 @@
         private UIProcessBar uiProcessBar1;
         private UILine uiLine5;
         private System.Windows.Forms.Timer timer1;
-        private UIScrollBar uiScrollBar1;
         private UILight uiLight4;
         private UILedBulb uiLedBulb2;
         private UILine uiLine8;
         private UILedBulb uiLedBulb1;
         private UILedBulb uiLedBulb4;
         private UILedBulb uiLedBulb3;
-        private UIScrollBar uiScrollBar2;
-        private UILine uiLine1;
-        private UIScrollBar uiScrollBar4;
-        private UIScrollBar uiScrollBar3;
         private UILine uiLine6;
         private UIScrollingText uiScrollingText1;
         private UIScrollingText uiScrollingText2;

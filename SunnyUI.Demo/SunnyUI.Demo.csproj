@@ -287,6 +287,12 @@
     <Compile Include="Forms\Pages\FTitlePage3.Designer.cs">
       <DependentUpon>FTitlePage3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FScrollBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FScrollBar.Designer.cs">
+      <DependentUpon>FScrollBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Charts\FBarChart.resx">
@@ -312,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\FPieChart.resx">
       <DependentUpon>FPieChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FScrollBar.resx">
+      <DependentUpon>FScrollBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FTabControl.resx">
       <DependentUpon>FTabControl.cs</DependentUpon>
