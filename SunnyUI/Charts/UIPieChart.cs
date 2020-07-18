@@ -68,6 +68,8 @@ namespace Sunny.UI
             DrawLegend(g, PieOption.Legend);
         }
 
+        private bool AllIsZero;
+
         protected override void CalcData(UIOption option)
         {
             Angles.Clear();
@@ -85,6 +87,7 @@ namespace Sunny.UI
                     all += data.Value;
                 }
 
+                AllIsZero = all.IsZero();
                 if (all.IsZero()) return;
                 float start = 0;
                 for (int i = 0; i < pie.Data.Count; i++)
@@ -119,6 +122,17 @@ namespace Sunny.UI
         private void DrawSeries(Graphics g, List<UIPieSeries> series)
         {
             if (series == null || series.Count == 0) return;
+
+            if (AllIsZero)
+            {
+                if (series.Count > 0)
+                {
+                    RectangleF rect = GetSeriesRect(series[0]);
+                    g.DrawEllipse(Color.Red, rect);
+                }
+
+                return;
+            }
 
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
@@ -183,6 +197,8 @@ namespace Sunny.UI
                 SetPieAndAzIndex(-1, -1);
                 return;
             }
+
+            if (AllIsZero) return;
 
             for (int pieIndex = 0; pieIndex < PieOption.SeriesCount; pieIndex++)
             {

@@ -36,6 +36,7 @@ namespace Sunny.UI
         public double Value { get; set; }
         public string Name { get; set; }
         public Color Color { get; set; }
+        public UILeftAlignment Left { get; set; }
     }
 
     public class UILegend

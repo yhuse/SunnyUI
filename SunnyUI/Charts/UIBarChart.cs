@@ -196,36 +196,43 @@ namespace Sunny.UI
         {
             base.OnMouseMove(e);
 
-            if (BarOption.ToolTip == null) return;
-            if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
-                                                   && e.Location.Y > BarOption.Grid.Top &&
-                                                   e.Location.Y < Height - BarOption.Grid.Bottom)
+            try
             {
-                SelectIndex = (int)((e.Location.X - BarOption.Grid.Left) / DrawBarWidth);
-            }
-            else
-            {
-                SelectIndex = -1;
-            }
-
-            if (SelectIndex >= 0)
-            {
-                if (tip.Text != Bars[0][selectIndex].Tips)
+                if (BarOption.ToolTip == null) return;
+                if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
+                                                       && e.Location.Y > BarOption.Grid.Top &&
+                                                       e.Location.Y < Height - BarOption.Grid.Bottom)
                 {
-                    tip.Text = Bars[0][selectIndex].Tips;
-                    tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                    SelectIndex = (int)((e.Location.X - BarOption.Grid.Left) / DrawBarWidth);
+                }
+                else
+                {
+                    SelectIndex = -1;
                 }
 
-                int x = e.Location.X + 15;
-                int y = e.Location.Y + 20;
-                if (e.Location.X + 15 + tip.Width > Width - BarOption.Grid.Right)
-                    x = e.Location.X - tip.Width - 2;
-                if (e.Location.Y + 20 + tip.Height > Height - BarOption.Grid.Bottom)
-                    y = e.Location.Y - tip.Height - 2;
+                if (SelectIndex >= 0 && Bars.Count > 0)
+                {
+                    if (tip.Text != Bars[0][selectIndex].Tips)
+                    {
+                        tip.Text = Bars[0][selectIndex].Tips;
+                        tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                    }
 
-                tip.Left = x;
-                tip.Top = y;
-                if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
+                    int x = e.Location.X + 15;
+                    int y = e.Location.Y + 20;
+                    if (e.Location.X + 15 + tip.Width > Width - BarOption.Grid.Right)
+                        x = e.Location.X - tip.Width - 2;
+                    if (e.Location.Y + 20 + tip.Height > Height - BarOption.Grid.Bottom)
+                        y = e.Location.Y - tip.Height - 2;
+
+                    tip.Left = x;
+                    tip.Top = y;
+                    if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
             }
         }
 

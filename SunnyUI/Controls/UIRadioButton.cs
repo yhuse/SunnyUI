@@ -179,6 +179,8 @@ namespace Sunny.UI
             {
                 Checked = true;
             }
+
+            base.OnClick(e);
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
