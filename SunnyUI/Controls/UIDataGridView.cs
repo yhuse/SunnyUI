@@ -31,6 +31,7 @@ namespace Sunny.UI
     public sealed class UIDataGridView : DataGridView, IStyleInterface
     {
         private readonly UIScrollBar VBar = new UIScrollBar();
+        private readonly UIHorScrollBar HBar = new UIHorScrollBar();
 
         public UIDataGridView()
         {
@@ -45,8 +46,16 @@ namespace Sunny.UI
             VBar.ForeColor = UIColor.Blue;
             VBar.StyleCustomMode = true;
             VBar.ValueChanged += VBarValueChanged;
+
+            HBar.Parent = this;
+            HBar.Visible = false;
+            HBar.FillColor = UIColor.LightBlue;
+            HBar.ForeColor = UIColor.Blue;
+            HBar.StyleCustomMode = true;
+            HBar.ValueChanged += HBar_ValueChanged;
+
             SetBarPosition();
-            
+
             //支持自定义标题行风格
             EnableHeadersVisualStyles = false;
 
@@ -64,14 +73,23 @@ namespace Sunny.UI
             RowTemplate.Height = 29;
             RowTemplate.MinimumHeight = 29;
             AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            
+
             //设置奇偶数行颜色
             StripeEvenColor = UIColor.White;
             StripeOddColor = UIColor.LightBlue;
 
             VerticalScrollBar.ValueChanged += VerticalScrollBar_ValueChanged;
+            HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
+        }
 
-            Style = UIStyle.Blue;
+        private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
+        {
+            HBar.Value = FirstDisplayedScrollingColumnIndex;
+        }
+
+        private void HBar_ValueChanged(object sender, EventArgs e)
+        {
+            FirstDisplayedScrollingColumnIndex = HBar.Value;
         }
 
         public void Init()
@@ -132,14 +150,13 @@ namespace Sunny.UI
 
         public void SetScrollInfo()
         {
-            if (VBar == null)
+            if (VBar == null || HBar == null)
             {
                 return;
             }
 
             if (VerticalScrollBar.Visible)
             {
-                SetBarPosition();
                 VBar.Maximum = RowCount - 1;
                 VBar.Value = FirstDisplayedScrollingRowIndex;
                 VBar.Visible = true;
@@ -148,6 +165,19 @@ namespace Sunny.UI
             {
                 VBar.Visible = false;
             }
+
+            if (HorizontalScrollBar.Visible)
+            {
+                HBar.Maximum = ColumnCount - 1;
+                HBar.Value = FirstDisplayedScrollingColumnIndex;
+                HBar.Visible = true;
+            }
+            else
+            {
+                HBar.Visible = false;
+            }
+
+            SetBarPosition();
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -192,6 +222,12 @@ namespace Sunny.UI
             VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
             VBar.Height = Height - 2;
             VBar.BringToFront();
+
+            HBar.Left = 2;
+            HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
+            HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
+            HBar.Top = Height - HBar.Height - 2;
+            HBar.BringToFront();
         }
 
         protected override void OnColumnAdded(DataGridViewColumnEventArgs e)
@@ -263,8 +299,8 @@ namespace Sunny.UI
             StripeEvenColor = uiColor.GridStripeEvenColor;
             StripeOddColor = uiColor.GridStripeOddColor;
 
-            VBar.FillColor = uiColor.GridStripeOddColor;
-            VBar.ForeColor = uiColor.PrimaryColor;
+            HBar.FillColor = VBar.FillColor = uiColor.GridStripeOddColor;
+            HBar.ForeColor = VBar.ForeColor = uiColor.PrimaryColor;
 
             Invalidate();
         }

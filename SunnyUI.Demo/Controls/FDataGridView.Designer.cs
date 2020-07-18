@@ -81,7 +81,6 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.uiDataGridView1.RowTemplate.Height = 29;
-            this.uiDataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uiDataGridView1.ShowRect = false;
