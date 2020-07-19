@@ -89,7 +89,20 @@ namespace Sunny.UI
 
         private void HBar_ValueChanged(object sender, EventArgs e)
         {
-            FirstDisplayedScrollingColumnIndex = HBar.Value;
+            int idx = 0;
+            for (int i = 0; i < ColumnCount; i++)
+            {
+                if (Columns[i].Visible && idx == HBar.Value)
+                {
+                    FirstDisplayedScrollingColumnIndex = i;
+                    break;
+                }
+
+                if (Columns[i].Visible)
+                {
+                    idx++;
+                }
+            }
         }
 
         public void Init()
@@ -168,7 +181,7 @@ namespace Sunny.UI
 
             if (HorizontalScrollBar.Visible)
             {
-                HBar.Maximum = ColumnCount - 1;
+                HBar.Maximum = VisibleColumnCount() - 1;
                 HBar.Value = FirstDisplayedScrollingColumnIndex;
                 HBar.Visible = true;
             }
@@ -178,6 +191,17 @@ namespace Sunny.UI
             }
 
             SetBarPosition();
+        }
+
+        private int VisibleColumnCount()
+        {
+            int cnt = 0;
+            foreach (DataGridViewColumn column in Columns)
+            {
+                if (column.Visible) cnt++;
+            }
+
+            return cnt;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
