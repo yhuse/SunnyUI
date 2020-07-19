@@ -617,6 +617,8 @@ namespace Sunny.UI
             {
                 base.OnDrawNode(e);
 
+                if (e.Node==null) return;
+
                 if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
 
                 if (e.Node == null || e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 &&

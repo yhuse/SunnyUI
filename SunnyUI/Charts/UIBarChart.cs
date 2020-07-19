@@ -445,7 +445,11 @@ namespace Sunny.UI
                 double ymax = YAxisEnd * YAxisInterval;
                 float pos = (float)((line.Value - ymin) * (Height - BarOption.Grid.Top - BarOption.Grid.Bottom) / (ymax - ymin));
                 pos = (Height - BarOption.Grid.Bottom - pos);
-                g.DrawLine(line.Color, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
+                using (Pen pn = new Pen(line.Color,line.Size))
+                {
+                    g.DrawLine(pn, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
+                }
+               
                 SizeF sf = g.MeasureString(line.Name, SubFont);
 
                 if (line.Left == UILeftAlignment.Left)
