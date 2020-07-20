@@ -55,6 +55,8 @@ namespace Sunny.UI
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
             edit.MouseEnter += Edit_MouseEnter;
+            edit.Click += Edit_Click;
+            edit.DoubleClick += Edit_DoubleClick;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -70,16 +72,40 @@ namespace Sunny.UI
             bar.MouseEnter += Bar_MouseEnter;
 
             SizeChange();
+
+            editCursor = Cursor;
         }
+
+        private void Edit_DoubleClick(object sender, EventArgs e)
+        {
+            DoubleClick?.Invoke(this,e);
+        }
+
+        public new event EventHandler DoubleClick;
+        public new event EventHandler Click;
+
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            Click?.Invoke(this,e);
+        }
+
+        protected override void OnCursorChanged(EventArgs e)
+        {
+            base.OnCursorChanged(e);
+            edit.Cursor = Cursor;
+        }
+
+        private Cursor editCursor;
 
         private void Bar_MouseEnter(object sender, EventArgs e)
         {
+            editCursor = Cursor;
             Cursor = Cursors.Default;
         }
 
         private void Edit_MouseEnter(object sender, EventArgs e)
         {
-            Cursor = Cursors.IBeam;
+            Cursor = editCursor;
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
