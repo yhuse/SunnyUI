@@ -129,6 +129,9 @@
     <Compile Include="Controls\UITransparentPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIWaitingBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

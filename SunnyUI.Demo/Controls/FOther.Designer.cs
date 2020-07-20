@@ -49,11 +49,15 @@
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiScrollingText1 = new Sunny.UI.UIScrollingText();
             this.uiScrollingText2 = new Sunny.UI.UIScrollingText();
+            this.uiWaitingBar1 = new Sunny.UI.UIWaitingBar();
+            this.uiLine1 = new Sunny.UI.UILine();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine1);
+            this.PagePanel.Controls.Add(this.uiWaitingBar1);
             this.PagePanel.Controls.Add(this.uiScrollingText2);
             this.PagePanel.Controls.Add(this.uiScrollingText1);
             this.PagePanel.Controls.Add(this.uiLine6);
@@ -145,7 +149,7 @@
             // uiProgressIndicator1
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 209);
+            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 298);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(119, 132);
             this.uiProgressIndicator1.TabIndex = 26;
@@ -154,7 +158,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(30, 182);
+            this.uiLine4.Location = new System.Drawing.Point(30, 271);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(319, 20);
@@ -264,7 +268,7 @@
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
-            this.uiScrollingText1.Location = new System.Drawing.Point(381, 208);
+            this.uiScrollingText1.Location = new System.Drawing.Point(381, 215);
             this.uiScrollingText1.Name = "uiScrollingText1";
             this.uiScrollingText1.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
             this.uiScrollingText1.Size = new System.Drawing.Size(319, 35);
@@ -278,11 +282,32 @@
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiScrollingText2.Location = new System.Drawing.Point(381, 249);
+            this.uiScrollingText2.Location = new System.Drawing.Point(381, 256);
             this.uiScrollingText2.Name = "uiScrollingText2";
             this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 49;
             this.uiScrollingText2.Text = "赠人玫瑰手有余香";
+            // 
+            // uiWaitingBar1
+            // 
+            this.uiWaitingBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiWaitingBar1.Location = new System.Drawing.Point(30, 215);
+            this.uiWaitingBar1.MinimumSize = new System.Drawing.Size(70, 23);
+            this.uiWaitingBar1.Name = "uiWaitingBar1";
+            this.uiWaitingBar1.Size = new System.Drawing.Size(319, 29);
+            this.uiWaitingBar1.TabIndex = 50;
+            this.uiWaitingBar1.Text = "uiWaitingBar1";
+            // 
+            // uiLine1
+            // 
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Location = new System.Drawing.Point(30, 182);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(319, 20);
+            this.uiLine1.TabIndex = 51;
+            this.uiLine1.Text = "UIWaitingBar";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FOther
             // 
@@ -318,5 +343,7 @@
         private UILine uiLine6;
         private UIScrollingText uiScrollingText1;
         private UIScrollingText uiScrollingText2;
+        private UIWaitingBar uiWaitingBar1;
+        private UILine uiLine1;
     }
 }

@@ -296,7 +296,11 @@ namespace Sunny.UI
             }
 
             path.Dispose();
+
+            PaintOther?.Invoke(this, e);
         }
+
+        public event PaintEventHandler PaintOther;
 
         /// <summary>
         /// 获取边框颜色
