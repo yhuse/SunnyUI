@@ -1212,5 +1212,25 @@ namespace Sunny.UI
                 windowState = value;
             }
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                if (this.FormBorderStyle == FormBorderStyle.None)
+                {
+                    // 当边框样式为FormBorderStyle.None时
+                    // 点击窗体任务栏图标，可以进行最小化
+                    const int WS_MINIMIZEBOX = 0x00020000;
+                    CreateParams cp = base.CreateParams;
+                    cp.Style = cp.Style | WS_MINIMIZEBOX;
+                    return cp;
+                }
+                else
+                {
+                    return base.CreateParams;
+                }
+            }
+        }
     }
 }
