@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiButton1 = new Sunny.UI.UIButton();
             this.uiButton2 = new Sunny.UI.UIButton();
             this.uiButton3 = new Sunny.UI.UIButton();
@@ -81,6 +82,7 @@
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
             this.uiImageButton4 = new Sunny.UI.UIImageButton();
+            this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -144,7 +146,6 @@
             this.PagePanel.Controls.Add(this.uiButton2);
             this.PagePanel.Controls.Add(this.uiButton1);
             this.PagePanel.Size = new System.Drawing.Size(800, 499);
-            this.PagePanel.Style = Sunny.UI.UIStyle.Blue;
             this.PagePanel.Text = "";
             // 
             // uiButton1
@@ -167,6 +168,7 @@
             this.uiButton1.StyleCustomMode = true;
             this.uiButton1.TabIndex = 0;
             this.uiButton1.Text = "White";
+            this.uiButton1.TipsText = "White";
             // 
             // uiButton2
             // 
@@ -179,6 +181,7 @@
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 1;
             this.uiButton2.Text = "Blue";
+            this.uiButton2.TipsText = "Blue";
             // 
             // uiButton3
             // 
@@ -983,6 +986,13 @@
             this.uiImageButton4.Text = "Home";
             this.uiImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // uiToolTip1
+            // 
+            this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.uiToolTip1.OwnerDraw = true;
+            this.uiToolTip1.ToolTipTitle = "ToolTip title";
+            // 
             // FButton
             // 
             this.AlwaysOpen = true;
@@ -1056,5 +1066,6 @@
         private UIImageButton uiImageButton2;
         private UIImageButton uiImageButton1;
         private UIImageButton uiImageButton4;
+        private UIToolTip uiToolTip1;
     }
 }

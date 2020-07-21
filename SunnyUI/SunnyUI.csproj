@@ -396,6 +396,9 @@
     <Compile Include="Controls\UIColorPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
       <SubType>Component</SubType>
