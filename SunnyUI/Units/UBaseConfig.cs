@@ -268,7 +268,7 @@ namespace Sunny.UI
                 if (type == typeof(string))
                 {
                     object value = idents[info.Name].Value;
-                    info.SetValue(config, Convert.ChangeType(value, type), null);
+                    info.SetValue(config, Convert.ChangeType(value==null? defaultobj: value, type), null);
                     continue;
                 }
 
