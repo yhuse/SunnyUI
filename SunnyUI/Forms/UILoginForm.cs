@@ -13,7 +13,7 @@ namespace Sunny.UI
             InitializeComponent();
         }
 
-        public new string Text
+        public string Title
         {
             get => lblTitle.Text;
             set => lblTitle.Text = value;
