@@ -61,6 +61,13 @@ namespace Sunny.UI
         //            }
         //        }
 
+        [DefaultValue(false)]
+        public bool ReadOnly
+        {
+            get => edit.ReadOnly;
+            set => edit.ReadOnly = value;
+        }
+
         private void Edit_SelectionChanged(object sender, EventArgs e)
         {
             SelectionChanged?.Invoke(sender, e);

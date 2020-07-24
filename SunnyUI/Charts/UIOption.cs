@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -28,6 +29,16 @@ namespace Sunny.UI
     {
         public UITitle Title;
         public UILegend Legend;
+    }
+
+    public class UIScaleLine
+    {
+        public double Value { get; set; }
+        public string Name { get; set; }
+        public Color Color { get; set; }
+        public UILeftAlignment Left { get; set; } = UILeftAlignment.Left;
+
+        public float Size { get; set; } = 1.0f;
     }
 
     public class UILegend
@@ -123,7 +134,8 @@ namespace Sunny.UI
     {
         Default,
         Plain,
-        Dark
+        Dark,
+        LiveChart
     }
 
     public static class UIChartStyles
@@ -134,10 +146,13 @@ namespace Sunny.UI
 
         public static UIChartStyle Dark = new UIDarkChartStyle();
 
+        public static UIChartStyle LiveChart = new UILiveChartStyle();
+
         public static UIChartStyle GetChartStyle(UIChartStyleType style)
         {
             if (style == UIChartStyleType.Default) return Default;
             if (style == UIChartStyleType.Dark) return Dark;
+            if (style == UIChartStyleType.LiveChart) return LiveChart;
             return Plain;
         }
     }

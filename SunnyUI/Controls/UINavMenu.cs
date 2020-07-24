@@ -77,6 +77,28 @@ namespace Sunny.UI
         [DefaultValue(null)]
         public string TagString { get; set; }
 
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            base.OnBackColorChanged(e);
+            menuStyle = UIMenuStyle.Custom;
+            _style = UIStyle.Custom;
+        }
+
+        private Color backColor = Color.FromArgb(56, 56, 56);
+
+        [DefaultValue(typeof(Color), "56, 56, 56")]
+        public override Color BackColor
+        {
+            get => backColor;
+            set
+            {
+                backColor = value;
+                menuStyle = UIMenuStyle.Custom;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
         private Color fillColor = Color.FromArgb(56, 56, 56);
 
         /// <summary>
@@ -342,6 +364,11 @@ namespace Sunny.UI
 
         private readonly NavMenuHelper MenuHelper = new NavMenuHelper();
 
+        public int GetPageIndex(TreeNode node)
+        {
+            return MenuHelper.GetPageIndex(node);
+        }
+
         public void SetNodeItem(TreeNode node, NavMenuItem item)
         {
             MenuHelper.Add(node, item);
@@ -426,7 +453,7 @@ namespace Sunny.UI
                     if (MenuHelper.GetSymbol(e.Node) > 0)
                     {
                         SizeF fiSize = e.Graphics.GetFontImageSize(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node));
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), Color.White, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), ForeColor, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
                     }
                     else
                     {

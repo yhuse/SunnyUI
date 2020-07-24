@@ -9,11 +9,12 @@
 
         private void FLogin_ButtonLoginClick(object sender, System.EventArgs e)
         {
-            if (UserName == "admin" && Password == "admin")
-            {
-                IsLogin = true;
-                Close();
-            }
+            this.ShowInfoTip("DSFSDF");
+            // if (UserName == "admin" && Password == "admin")
+            // {
+            //     IsLogin = true;
+            //     Close();
+            // }
         }
     }
 }

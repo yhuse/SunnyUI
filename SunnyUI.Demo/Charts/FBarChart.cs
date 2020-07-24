@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI.Demo.Charts
+﻿using System.Drawing;
+
+namespace Sunny.UI.Demo.Charts
 {
     public partial class FBarChart : UITitlePage
     {
@@ -51,6 +53,9 @@
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
+
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
 
             BarChart.SetOption(option);
         }

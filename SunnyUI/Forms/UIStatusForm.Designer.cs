@@ -58,7 +58,6 @@
             // 
             // UIStatusForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(473, 153);
             this.ControlBox = false;
@@ -68,6 +67,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UIStatusForm";
+            this.ShowIcon = false;
             this.Text = "进度";
             this.TopMost = true;
             this.ResumeLayout(false);

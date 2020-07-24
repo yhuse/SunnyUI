@@ -60,7 +60,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.uiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uiDataGridView1.ColumnHeadersHeight = 32;
+            this.uiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -81,7 +82,6 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.uiDataGridView1.RowTemplate.Height = 29;
-            this.uiDataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uiDataGridView1.ShowRect = false;

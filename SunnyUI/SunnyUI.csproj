@@ -113,6 +113,9 @@
     <Compile Include="Charts\UIPieChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UIHorScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UINavMenuHelper.cs" />
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
@@ -125,6 +128,9 @@
     </Compile>
     <Compile Include="Controls\UITransparentPanel.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UIWaitingBar.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>
@@ -390,6 +396,10 @@
     <Compile Include="Controls\UIColorPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\UIToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
       <SubType>Component</SubType>
@@ -477,11 +487,20 @@
     <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
       <DependentUpon>UIDateTimeItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIEditForm.resx">
+      <DependentUpon>UIEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIForm.resx">
+      <DependentUpon>UIForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Font\UIFontImages.resx">
       <DependentUpon>UIFontImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIStatusForm.resx">
+      <DependentUpon>UIStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -164,7 +164,9 @@ namespace Sunny.UI.Demo
         private void uiSymbolButton3_Click(object sender, EventArgs e)
         {
             UILoginForm frm = new UILoginForm();
-            frm.Text = "SunnyUI.Net Login Form";
+            frm.ShowInTaskbar = true;
+            frm.Text = "Login";
+            frm.Title = "SunnyUI.Net Login Form";
             frm.SubText = "SunnyUI.Net V2.2.5";
             frm.OnLogin += Frm_OnLogin;
             frm.LoginImage = UILoginForm.UILoginImage.Login2;

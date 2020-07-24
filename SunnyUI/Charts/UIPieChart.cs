@@ -68,6 +68,8 @@ namespace Sunny.UI
             DrawLegend(g, PieOption.Legend);
         }
 
+        private bool AllIsZero;
+
         protected override void CalcData(UIOption option)
         {
             Angles.Clear();
@@ -85,6 +87,7 @@ namespace Sunny.UI
                     all += data.Value;
                 }
 
+                AllIsZero = all.IsZero();
                 if (all.IsZero()) return;
                 float start = 0;
                 for (int i = 0; i < pie.Data.Count; i++)
@@ -120,6 +123,17 @@ namespace Sunny.UI
         {
             if (series == null || series.Count == 0) return;
 
+            if (AllIsZero)
+            {
+                if (series.Count > 0)
+                {
+                    RectangleF rect = GetSeriesRect(series[0]);
+                    g.DrawEllipse(Color.Red, rect);
+                }
+
+                return;
+            }
+
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];
@@ -129,7 +143,34 @@ namespace Sunny.UI
                     Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
                     RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
                     g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
-                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, legendFont);
+                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, LegendFont);
+
+                    if (pie.Label.Show)
+                    {
+                        double az = Angles[pieIndex][azIndex].Start + Angles[pieIndex][azIndex].Sweep / 2;
+                        double x = Math.Abs(Math.Sin(az * Math.PI / 180));
+                        double y = Math.Abs(Math.Cos(az * Math.PI / 180));
+
+                        string name = Option.Legend != null ? Option.Legend.Data[azIndex] + " : " : "";
+                        if (pie.Data[azIndex].Value > 0)
+                        {
+                            string text = name + pie.Data[azIndex].Value.ToString("F0");
+                            SizeF sf = g.MeasureString(text, SubFont);
+                            PointF pf;
+                            int added = 9;
+                            if (az >= 0 && az < 90)
+                                pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + added), (float)(DrawCenter(pie).Y - RadiusSize(pie) * y - sf.Height - added));
+                            else if (az >= 90 && az < 180)
+                                pf = new PointF((float)(DrawCenter(pie).X + RadiusSize(pie) * x + added), (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + added));
+                            else if (az >= 180 && az < 270)
+                                pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - added) - sf.Width, (float)(DrawCenter(pie).Y + RadiusSize(pie) * y + added));
+                            else
+                                pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - added) - sf.Width, (float)(DrawCenter(pie).Y - RadiusSize(pie) * y) - sf.Height - added);
+
+                            if (pie.Data[azIndex].Value > 0)
+                                g.DrawString(text, SubFont, color, pf.X, pf.Y);
+                        }
+                    }
                 }
             }
         }
@@ -156,6 +197,8 @@ namespace Sunny.UI
                 SetPieAndAzIndex(-1, -1);
                 return;
             }
+
+            if (AllIsZero) return;
 
             for (int pieIndex = 0; pieIndex < PieOption.SeriesCount; pieIndex++)
             {
@@ -230,6 +273,24 @@ namespace Sunny.UI
             top = Height * top / 100;
             float halfRadius = Math.Min(Width, Height) * series.Radius / 200.0f;
             return new RectangleF(left - halfRadius, top - halfRadius, halfRadius * 2, halfRadius * 2);
+        }
+
+        private Point DrawCenter(UIPieSeries series)
+        {
+            int left = series.Center.Left;
+            int top = series.Center.Top;
+            left = Width * left / 100;
+            top = Height * top / 100;
+            return new Point(left, top);
+        }
+
+        private float RadiusSize(UIPieSeries series)
+        {
+            int left = series.Center.Left;
+            int top = series.Center.Top;
+            left = Width * left / 100;
+            top = Height * top / 100;
+            return Math.Min(Width, Height) * series.Radius / 200.0f;
         }
 
         private class Angle

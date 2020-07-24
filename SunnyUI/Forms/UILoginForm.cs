@@ -13,7 +13,7 @@ namespace Sunny.UI
             InitializeComponent();
         }
 
-        public new string Text
+        public string Title
         {
             get => lblTitle.Text;
             set => lblTitle.Text = value;
@@ -91,7 +91,7 @@ namespace Sunny.UI
 
         private void UILoginForm_Enter(object sender, EventArgs e)
         {
-            btnLogin.PerformClick();
+            //btnLogin.PerformClick();
         }
 
         public string UserName

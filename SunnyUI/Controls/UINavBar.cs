@@ -69,6 +69,11 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
+        public int GetPageIndex(TreeNode node)
+        {
+            return MenuHelper.GetPageIndex(node);
+        }
+
         public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
         {
             MenuHelper.SetSymbol(node, symbol, symbolSize);
@@ -113,6 +118,7 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 _menuStyle = UIMenuStyle.Custom;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -121,10 +127,12 @@ namespace Sunny.UI
         {
             base.OnBackColorChanged(e);
             _menuStyle = UIMenuStyle.Custom;
+            _style = UIStyle.Custom;
         }
 
         private Color backColor = Color.FromArgb(56, 56, 56);
 
+        [DefaultValue(typeof(Color), "56, 56, 56")]
         public override Color BackColor
         {
             get => backColor;
@@ -132,6 +140,7 @@ namespace Sunny.UI
             {
                 backColor = value;
                 _menuStyle = UIMenuStyle.Custom;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -424,7 +433,7 @@ namespace Sunny.UI
                 return;
             }
 
-            NavBarMenu.Style = Style;
+            NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {

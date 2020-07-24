@@ -896,6 +896,11 @@ namespace Sunny.UI
 
             e.Graphics.SetDefaultQuality();
 
+            if (ShowIcon && Icon != null)
+            {
+                e.Graphics.DrawImage(Icon.ToBitmap(), 6, (TitleHeight - 24) / 2, 24, 24);
+            }
+
             SizeF sf = e.Graphics.MeasureString(Text, Font);
             if (TextAlignment == StringAlignment.Center)
             {
@@ -903,7 +908,7 @@ namespace Sunny.UI
             }
             else
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor, 6, (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, Font, titleForeColor,6 + (ShowIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
             }
         }
 
@@ -1205,6 +1210,49 @@ namespace Sunny.UI
 
                 ShowMaximize();
                 windowState = value;
+            }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                if (this.FormBorderStyle == FormBorderStyle.None)
+                {
+                    // 当边框样式为FormBorderStyle.None时
+                    // 点击窗体任务栏图标，可以进行最小化
+                    const int WS_MINIMIZEBOX = 0x00020000;
+                    CreateParams cp = base.CreateParams;
+                    cp.Style = cp.Style | WS_MINIMIZEBOX;
+                    return cp;
+                }
+                else
+                {
+                    return base.CreateParams;
+                }
+            }
+        }
+
+        public void Show(FormWindowState state)
+        {
+            ShowFullScreen = false;
+
+            switch (state)
+            {
+                case FormWindowState.Minimized:
+                    WindowState = FormWindowState.Minimized;
+                    base.WindowState = FormWindowState.Minimized;
+                    break;
+                case FormWindowState.Maximized:
+                    base.WindowState = FormWindowState.Normal;
+                    WindowState = FormWindowState.Normal;
+                    ShowMaximize();
+                    break;
+                case FormWindowState.Normal:
+                    base.WindowState = FormWindowState.Normal;
+                    WindowState = FormWindowState.Maximized;
+                    ShowMaximize();
+                    break;
             }
         }
     }

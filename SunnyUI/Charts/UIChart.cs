@@ -156,6 +156,11 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            if (tip != null && !tip.Font.Equals(legendFont))
+            {
+                tip.Font = legendFont;
+            }
+
             DrawOption(e.Graphics);
         }
 
@@ -192,7 +197,7 @@ namespace Sunny.UI
             }
         }
 
-        public Font legendFont = UIFontColor.SubFont;
+        private Font legendFont = UIFontColor.SubFont;
 
         [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
         public Font LegendFont
@@ -201,6 +206,7 @@ namespace Sunny.UI
             set
             {
                 legendFont = value;
+                if (tip != null) tip.Font = subFont;
                 Invalidate();
             }
         }
@@ -299,7 +305,7 @@ namespace Sunny.UI
                 {
                     g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
                     g.DrawString(data, LegendFont, ChartStyle.ForeColor, startleft + 20, top);
-                    startleft += 20;
+                    startleft += 22;
                     startleft += sf.Width;
                 }
 

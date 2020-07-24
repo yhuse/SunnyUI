@@ -42,17 +42,19 @@
             // 
             // Aside
             // 
+            this.Aside.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Aside.ItemHeight = 36;
             this.Aside.LineColor = System.Drawing.Color.Black;
+            this.Aside.MenuStyle = Sunny.UI.UIMenuStyle.Black;
             this.Aside.ShowOneNode = true;
             this.Aside.ShowTips = true;
             this.Aside.Size = new System.Drawing.Size(250, 575);
+            this.Aside.Style = Sunny.UI.UIStyle.Custom;
             // 
             // Header
             // 
             this.Header.Controls.Add(this.uiAvatar);
             this.Header.Controls.Add(this.uiLogo1);
-            this.Header.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             treeNode1.Name = "节点0";
             treeNode1.Text = "控件";
             treeNode2.Name = "节点1";
@@ -68,6 +70,7 @@
             treeNode4});
             this.Header.SelectedIndex = 0;
             this.Header.Size = new System.Drawing.Size(1024, 110);
+            this.Header.Style = Sunny.UI.UIStyle.Custom;
             this.Header.MenuItemClick += new Sunny.UI.UINavBar.OnMenuItemClick(this.Header_MenuItemClick);
             // 
             // uiLogo1
@@ -99,7 +102,6 @@
             this.ClientSize = new System.Drawing.Size(1024, 720);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FMain";
-            this.ShowRadius = false;
             this.Text = "SunnyUI.Net";
             this.WindowStateChange += new Sunny.UI.UIForm.OnWindowStateChange(this.FMain_WindowStateChange);
             this.Header.ResumeLayout(false);

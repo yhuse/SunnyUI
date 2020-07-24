@@ -54,6 +54,7 @@
             series.Name = "Star count";
             series.Center = new UICenter(50, 55);
             series.Radius = 70;
+            series.Label.Show = true;
 
             //增加数据
             series.AddData("2020-05-19", 38);

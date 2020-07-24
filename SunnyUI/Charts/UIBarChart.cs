@@ -55,6 +55,15 @@ namespace Sunny.UI
                 max = 0;
             }
 
+            if (!o.YAxis.MaxAuto) max = o.YAxis.Max;
+            if (!o.YAxis.MinAuto) min = o.YAxis.Min;
+
+            if ((max - min).IsZero())
+            {
+                max = 100;
+                min = 0;
+            }
+
             UIChartHelper.CalcDegreeScale(min, max, o.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 
@@ -75,7 +84,7 @@ namespace Sunny.UI
                 {
                     if (YAxisStart >= 0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height *  (series.Data[j]- start *interval) / ((end -start) * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
 
                         Bars[i].Add(new BarInfo()
                         {
@@ -85,9 +94,9 @@ namespace Sunny.UI
                                 x2, h)
                         });
                     }
-                    else if (YAxisEnd<=0)
+                    else if (YAxisEnd <= 0)
                     {
-                        float h = Math.Abs((float)(DrawSize.Height * (end * interval-series.Data[j]) / ((end - start) * interval)));
+                        float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(
@@ -187,36 +196,43 @@ namespace Sunny.UI
         {
             base.OnMouseMove(e);
 
-            if (BarOption.ToolTip == null) return;
-            if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
-                                                   && e.Location.Y > BarOption.Grid.Top &&
-                                                   e.Location.Y < Height - BarOption.Grid.Bottom)
+            try
             {
-                SelectIndex = (int)((e.Location.X - BarOption.Grid.Left) / DrawBarWidth);
-            }
-            else
-            {
-                SelectIndex = -1;
-            }
-
-            if (SelectIndex >= 0)
-            {
-                if (tip.Text != Bars[0][selectIndex].Tips)
+                if (BarOption.ToolTip == null) return;
+                if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
+                                                       && e.Location.Y > BarOption.Grid.Top &&
+                                                       e.Location.Y < Height - BarOption.Grid.Bottom)
                 {
-                    tip.Text = Bars[0][selectIndex].Tips;
-                    tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                    SelectIndex = (int)((e.Location.X - BarOption.Grid.Left) / DrawBarWidth);
+                }
+                else
+                {
+                    SelectIndex = -1;
                 }
 
-                int x = e.Location.X + 15;
-                int y = e.Location.Y + 20;
-                if (e.Location.X + 15 + tip.Width > Width - BarOption.Grid.Right)
-                    x = e.Location.X - tip.Width - 2;
-                if (e.Location.Y + 20 + tip.Height > Height - BarOption.Grid.Bottom)
-                    y = e.Location.Y - tip.Height - 2;
+                if (SelectIndex >= 0 && Bars.Count > 0)
+                {
+                    if (tip.Text != Bars[0][selectIndex].Tips)
+                    {
+                        tip.Text = Bars[0][selectIndex].Tips;
+                        tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                    }
 
-                tip.Left = x;
-                tip.Top = y;
-                if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
+                    int x = e.Location.X + 15;
+                    int y = e.Location.Y + 20;
+                    if (e.Location.X + 15 + tip.Width > Width - BarOption.Grid.Right)
+                        x = e.Location.X - tip.Width - 2;
+                    if (e.Location.Y + 20 + tip.Height > Height - BarOption.Grid.Bottom)
+                        y = e.Location.Y - tip.Height - 2;
+
+                    tip.Left = x;
+                    tip.Top = y;
+                    if (!tip.Visible) tip.Visible = Bars[0][selectIndex].Tips.IsValid();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
             }
         }
 
@@ -288,6 +304,7 @@ namespace Sunny.UI
             DrawSeries(g, BarOption.Series);
             if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, BarOption.Legend);
+            DrawAxisScales(g);
         }
 
         private void DrawToolTip(Graphics g)
@@ -308,8 +325,8 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            if (YAxisStart>=0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
-            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top),  new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
+            if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
+            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
 
             g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
 
@@ -361,7 +378,7 @@ namespace Sunny.UI
                 }
 
                 SizeF sfname = g.MeasureString(BarOption.XAxis.Name, SubFont);
-                g.DrawString(BarOption.XAxis.Name,SubFont,ChartStyle.ForeColor, DrawOrigin.X +(DrawSize.Width-sfname.Width)/2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length +sfname.Height);
+                g.DrawString(BarOption.XAxis.Name, SubFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length + sfname.Height);
             }
 
             if (BarOption.YAxis.AxisTick.Show)
@@ -414,9 +431,33 @@ namespace Sunny.UI
 
                 SizeF sfname = g.MeasureString(BarOption.YAxis.Name, SubFont);
                 int x = (int)(DrawOrigin.X - BarOption.YAxis.AxisTick.Length - wmax - sfname.Height);
-                int y = (int) (BarOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(BarOption.YAxis.Name,SubFont,ChartStyle.ForeColor, new Point(x,y), 
-                    new StringFormat(){Alignment = StringAlignment.Center}, 270);
+                int y = (int)(BarOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
+                g.DrawString(BarOption.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(x, y),
+                    new StringFormat() { Alignment = StringAlignment.Center }, 270);
+            }
+        }
+
+        private void DrawAxisScales(Graphics g)
+        {
+            foreach (var line in BarOption.YAxisScaleLines)
+            {
+                double ymin = YAxisStart * YAxisInterval;
+                double ymax = YAxisEnd * YAxisInterval;
+                float pos = (float)((line.Value - ymin) * (Height - BarOption.Grid.Top - BarOption.Grid.Bottom) / (ymax - ymin));
+                pos = (Height - BarOption.Grid.Bottom - pos);
+                using (Pen pn = new Pen(line.Color,line.Size))
+                {
+                    g.DrawLine(pn, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
+                }
+               
+                SizeF sf = g.MeasureString(line.Name, SubFont);
+
+                if (line.Left == UILeftAlignment.Left)
+                    g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+                if (line.Left == UILeftAlignment.Center)
+                    g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + (Width - BarOption.Grid.Left - BarOption.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
+                if (line.Left == UILeftAlignment.Right)
+                    g.DrawString(line.Name, SubFont, line.Color, Width - sf.Width - 4, pos - 2 - sf.Height);
             }
         }
 

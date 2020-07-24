@@ -20,7 +20,6 @@
             value++;
             uiTrackBar1.Value = value;
             uiProcessBar1.Value = value;
-            uiScrollBar1.Value = value;
         }
     }
 }

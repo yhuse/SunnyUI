@@ -91,4 +91,34 @@ namespace Sunny.UI
             }
         }
     }
+
+    public class UILiveChartStyle : UIChartStyle
+    {
+        public override Color BackColor => Color.FromArgb(16, 36, 71);
+
+        public override Color ForeColor => Color.FromArgb(170, 170, 170);
+
+        public override Color ToolTipShadowColor => Color.FromArgb(81, 81, 81);
+
+        public override Color[] SeriesColor
+        {
+            get
+            {
+                return new[]
+                {
+                    Color.FromArgb(33, 149, 242),
+                    Color.FromArgb(254, 192, 7),
+                    Color.FromArgb(243, 67, 54),
+                    Color.FromArgb(96, 125, 138),
+                    Color.FromArgb(0,187,211),
+                    Color.FromArgb(232,30,99),
+                    Color.FromArgb(254,87,34),
+                    Color.FromArgb(63,81,180),
+                    Color.FromArgb(204,219,57),
+                    Color.FromArgb(0,149,135),
+                    Color.FromArgb(255,154,59)
+                };
+            }
+        }
+    }
 }

@@ -33,6 +33,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, 61516, 24, AddPage(new FTransfer(), ++pageIndex));
             Aside.CreateChildNode(parent, 61447, 24, AddPage(new FAvatar(), ++pageIndex));
             Aside.CreateChildNode(parent, 62104, 24, AddPage(new FContextMenuStrip(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FScrollBar(), ++pageIndex));
             Aside.CreateChildNode(parent, 61668, 24, AddPage(new FMeter(), ++pageIndex));
             Aside.CreateChildNode(parent, 62173, 24, AddPage(new FOther(), ++pageIndex));
             Aside.SetNodeTipsText(parent.Nodes[0], "1");
