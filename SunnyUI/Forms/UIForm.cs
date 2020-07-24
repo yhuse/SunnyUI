@@ -1232,5 +1232,28 @@ namespace Sunny.UI
                 }
             }
         }
+
+        public void Show(FormWindowState state)
+        {
+            ShowFullScreen = false;
+
+            switch (state)
+            {
+                case FormWindowState.Minimized:
+                    WindowState = FormWindowState.Minimized;
+                    base.WindowState = FormWindowState.Minimized;
+                    break;
+                case FormWindowState.Maximized:
+                    base.WindowState = FormWindowState.Normal;
+                    WindowState = FormWindowState.Normal;
+                    ShowMaximize();
+                    break;
+                case FormWindowState.Normal:
+                    base.WindowState = FormWindowState.Normal;
+                    WindowState = FormWindowState.Maximized;
+                    ShowMaximize();
+                    break;
+            }
+        }
     }
 }

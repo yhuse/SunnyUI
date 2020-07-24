@@ -453,7 +453,7 @@ namespace Sunny.UI
                     if (MenuHelper.GetSymbol(e.Node) > 0)
                     {
                         SizeF fiSize = e.Graphics.GetFontImageSize(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node));
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), Color.White, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), ForeColor, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
                     }
                     else
                     {
