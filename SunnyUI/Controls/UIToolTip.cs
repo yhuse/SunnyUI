@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [ProvideProperty("ToolTip", typeof(Control))]
+    [DefaultEvent("Popup")]
+    [ToolboxItemFilter("System.Windows.Forms")]
     public class UIToolTip : ToolTip
     {
         private readonly ConcurrentDictionary<Control, ToolTipControl> ToolTipControls =
@@ -121,9 +124,9 @@ namespace Sunny.UI
                 ToolTipControls.TryRemove(control, out _);
         }
 
-        public new ToolTipControl GetToolTip(Control control)
+        public new string GetToolTip(Control control)
         {
-            return ToolTipControls.ContainsKey(control) ? ToolTipControls[control] : new ToolTipControl();
+            return ToolTipControls.ContainsKey(control) ? ToolTipControls[control].Description : "";
         }
 
         private void InitOwnerDraw()

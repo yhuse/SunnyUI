@@ -168,7 +168,7 @@
             this.uiButton1.StyleCustomMode = true;
             this.uiButton1.TabIndex = 0;
             this.uiButton1.Text = "White";
-            this.uiButton1.TipsText = "White";
+            this.uiToolTip1.SetToolTip(this.uiButton1, "White");
             // 
             // uiButton2
             // 
@@ -181,7 +181,7 @@
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 1;
             this.uiButton2.Text = "Blue";
-            this.uiButton2.TipsText = "Blue";
+            this.uiToolTip1.SetToolTip(this.uiButton2, "Blue");
             // 
             // uiButton3
             // 
@@ -989,6 +989,7 @@
             // uiToolTip1
             // 
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             this.uiToolTip1.ToolTipTitle = "ToolTip title";
