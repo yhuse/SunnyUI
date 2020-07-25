@@ -1,24 +1,24 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UICheckBox.cs
- * 文件说明: 复选框
- * 当前版本: V2.2
- * 创建日期: 2020-01-01
- *
- * 2020-01-01: V2.2.0 增加文件说明
- * 2020-04-16: V2.2.1 增加ReadOnly属性
- * 2020-04-25: V2.2.4 更新主题配置类
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UICheckBox.cs
+* 文件说明: 复选框
+* 当前版本: V2.2
+* 创建日期: 2020-01-01
+*
+* 2020-01-01: V2.2.0 增加文件说明
+* 2020-04-16: V2.2.1 增加ReadOnly属性
+* 2020-04-25: V2.2.4 更新主题配置类
 ******************************************************************************/
 
 using System;
@@ -106,28 +106,14 @@ namespace Sunny.UI
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            if (RightToLeft == RightToLeft.Yes)
-            {
-                //设置按钮标题位置
-                Padding = new Padding(Padding.Left, Padding.Top, Padding.Right- _imageSize - _imageInterval * 2, Padding.Bottom);
+            //设置按钮标题位置
+            Padding = new Padding(_imageSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
 
-                //填充文字
-                Color color = foreColor;
-                color = Enabled ? color : UIDisableColor.Fore;
+            //填充文字
+            Color color = foreColor;
+            color = Enabled ? color : UIDisableColor.Fore;
 
-                g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
-            }
-            else
-            {
-                //设置按钮标题位置
-                Padding = new Padding(_imageSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
-
-                //填充文字
-                Color color = foreColor;
-                color = Enabled ? color : UIDisableColor.Fore;
-
-                g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
-            }
+            g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
