@@ -164,38 +164,57 @@ namespace Sunny.UI
                         }
 
                         SizeF textSize = g.MeasureString(tooltip.Description, Font);
-
-                        TitleHeight = (int)Math.Max(symbolHeight, titleSize.Height);
-
-                        e.ToolTipSize = new Size((int)Math.Max(textSize.Width, symbolWidth + titleSize.Width) + 10, (int)textSize.Height + TitleHeight + 10);
+                        int allWidth = (int) Math.Max(textSize.Width, titleSize.Width) + 10;
+                        if (symbolWidth > 0) allWidth = allWidth + symbolWidth + 5;
+                        int allHeight = titleSize.Height > 0 ? 
+                            (int)titleSize.Height + (int)textSize.Height + 15 : 
+                            (int)textSize.Height + 10;
+                        e.ToolTipSize = new Size(allWidth, allHeight);
                         bmp.Dispose();
                     }
                 }
             }
         }
 
-        private int TitleHeight;
-
         private void ToolTipExDraw(object sender, DrawToolTipEventArgs e)
         {
             if (ToolTipControls.ContainsKey(e.AssociatedControl))
             {
                 var tooltip = ToolTipControls[e.AssociatedControl];
-
                 var bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width - 1, e.Bounds.Height - 1);
 
                 e.Graphics.FillRectangle(BackColor, bounds);
                 e.Graphics.DrawRectangle(RectColor, bounds);
 
                 if (tooltip.Symbol > 0)
+                {
                     e.Graphics.DrawFontImage(tooltip.Symbol, tooltip.SymbolSize, tooltip.SymbolColor, new Rectangle(5, 5, tooltip.SymbolSize, tooltip.SymbolSize));
+                }
+
+                int symbolWidth = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
+                int symbolHeight = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
+                SizeF titleSize = new SizeF(0, 0);
                 if (tooltip.Title.IsValid())
                 {
-                    SizeF sf = e.Graphics.MeasureString(tooltip.Title, TitleFont);
-                    e.Graphics.DrawString(tooltip.Title,TitleFont,ForeColor, tooltip.Symbol>0?tooltip.SymbolSize+5:5, (TitleHeight-sf.Height)/2);
+                    if (tooltip.Title.IsValid())
+                    {
+                        titleSize = e.Graphics.MeasureString(tooltip.Title, TitleFont);
+                    }
+
+                    e.Graphics.DrawString(tooltip.Title,TitleFont,ForeColor, 
+                        tooltip.Symbol>0?tooltip.SymbolSize+5:5, 5);
                 }
-                
-                e.Graphics.DrawString(e.ToolTipText, Font, ForeColor, 6, TitleHeight + 6);
+
+                if (titleSize.Height > 0)
+                {
+                    e.Graphics.DrawLine(ForeColor, 
+                        symbolWidth==0?5:symbolWidth+5, 5+ titleSize.Height + 3, 
+                        e.Bounds.Width - 5, 5 + titleSize.Height + 3);
+                }
+
+                e.Graphics.DrawString(e.ToolTipText, Font, ForeColor, 
+                    tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5,
+                    titleSize.Height > 0? 10+ titleSize.Height : 5);
             }
             else
             {

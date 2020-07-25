@@ -1,5 +1,22 @@
 + 增加； - 删除； * 修改 
 
+2020-07-21
++ UIToolTip：新增控件，可修改字体
+* UIForm.cs 支持点击窗体任务栏图标，可以进行最小化
+
+2020-07-20
++ UIWaitingBar：新增等待滚动条控件
+
+2020-07-18
+* UIDataGridView：重绘水平滚动条
++ UIHorScrollBar：新增水平滚动条
+
+2020-07-15
+* UIDataGridView：更新默认设置为原生控件设置
+
+2020-07-10
+* UIForm：增加标题栏ICON图标绘制
+
 2020-07-08
 * UIDateTimePicker：重写下拉窗体，缩短创建时间
 

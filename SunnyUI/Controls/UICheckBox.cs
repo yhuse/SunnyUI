@@ -106,14 +106,28 @@ namespace Sunny.UI
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            //设置按钮标题位置
-            Padding = new Padding(_imageSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
+            if (RightToLeft == RightToLeft.Yes)
+            {
+                //设置按钮标题位置
+                Padding = new Padding(Padding.Left, Padding.Top, Padding.Right- _imageSize - _imageInterval * 2, Padding.Bottom);
 
-            //填充文字
-            Color color = foreColor;
-            color = Enabled ? color : UIDisableColor.Fore;
+                //填充文字
+                Color color = foreColor;
+                color = Enabled ? color : UIDisableColor.Fore;
 
-            g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
+                g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
+            }
+            else
+            {
+                //设置按钮标题位置
+                Padding = new Padding(_imageSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
+
+                //填充文字
+                Color color = foreColor;
+                color = Enabled ? color : UIDisableColor.Fore;
+
+                g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
+            }
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
