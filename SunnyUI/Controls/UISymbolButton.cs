@@ -47,6 +47,9 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(null)]
+        public Image Image { get; set; }
+
         [DefaultValue(2)]
         public int ImageInterval
         {
@@ -150,12 +153,20 @@ namespace Sunny.UI
             //重绘父类
             base.OnPaint(e);
 
+            SizeF ImageSize = new SizeF(0, 0);
+            if (Symbol > 0)
+                ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
+            if (Image != null)
+                ImageSize = Image.Size;
+
             //字体图标
             Color color = GetForeColor();
+            if (Symbol > 0 && Image == null)
+            {
+            }
 
             float left = 0;
             float top = 0;
-            SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
             SizeF TextSize = e.Graphics.MeasureString(Text, Font);
 
             if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.TopRight)
@@ -190,9 +201,21 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+            {
+                if (Symbol > 0 && Image == null)
+                    e.Graphics.DrawFontImage(Symbol, SymbolSize, color, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+
+                if (Image != null)
+                    e.Graphics.DrawImage(Image, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+            }
             else
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, left, top);
+            {
+                if (Symbol > 0 && Image == null)
+                    e.Graphics.DrawFontImage(Symbol, SymbolSize, color, left, top);
+
+                if (Image != null)
+                    e.Graphics.DrawImage(Image, left, top);
+            }
         }
     }
 }

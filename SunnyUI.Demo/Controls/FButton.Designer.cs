@@ -49,8 +49,6 @@
             this.uiButton18 = new Sunny.UI.UIButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
-            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
-            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton4 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton5 = new Sunny.UI.UISymbolButton();
@@ -78,20 +76,26 @@
             this.uiLine4 = new Sunny.UI.UILine();
             this.uiSwitch2 = new Sunny.UI.UISwitch();
             this.uiLine5 = new Sunny.UI.UILine();
-            this.uiImageButton1 = new Sunny.UI.UIImageButton();
-            this.uiImageButton2 = new Sunny.UI.UIImageButton();
-            this.uiImageButton3 = new Sunny.UI.UIImageButton();
-            this.uiImageButton4 = new Sunny.UI.UIImageButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton25 = new Sunny.UI.UISymbolButton();
+            this.uiImageButton4 = new Sunny.UI.UIImageButton();
+            this.uiImageButton3 = new Sunny.UI.UIImageButton();
+            this.uiImageButton2 = new Sunny.UI.UIImageButton();
+            this.uiImageButton1 = new Sunny.UI.UIImageButton();
+            this.uiSymbolButton26 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSymbolButton26);
+            this.PagePanel.Controls.Add(this.uiSymbolButton25);
             this.PagePanel.Controls.Add(this.uiImageButton4);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
@@ -486,38 +490,6 @@
             this.uiLine2.TabIndex = 19;
             this.uiLine2.Text = "UISymbolButton";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiSymbolButton1
-            // 
-            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 230);
-            this.uiSymbolButton1.Name = "uiSymbolButton1";
-            this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.uiSymbolButton1.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton1.StyleCustomMode = true;
-            this.uiSymbolButton1.TabIndex = 20;
-            this.uiSymbolButton1.Text = "OK";
-            // 
-            // uiSymbolButton2
-            // 
-            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton2.Location = new System.Drawing.Point(144, 230);
-            this.uiSymbolButton2.Name = "uiSymbolButton2";
-            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.uiSymbolButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Red;
-            this.uiSymbolButton2.StyleCustomMode = true;
-            this.uiSymbolButton2.Symbol = 61453;
-            this.uiSymbolButton2.TabIndex = 21;
-            this.uiSymbolButton2.Text = "Cancel";
             // 
             // uiSymbolButton3
             // 
@@ -926,48 +898,64 @@
             this.uiLine5.Text = "UIImageButton";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // uiImageButton1
+            // uiToolTip1
             // 
-            this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
-            this.uiImageButton1.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
-            this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
-            this.uiImageButton1.Location = new System.Drawing.Point(395, 438);
-            this.uiImageButton1.Name = "uiImageButton1";
-            this.uiImageButton1.Size = new System.Drawing.Size(94, 35);
-            this.uiImageButton1.TabIndex = 49;
-            this.uiImageButton1.TabStop = false;
-            this.uiImageButton1.Text = "Home";
-            this.uiImageButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.uiToolTip1.OwnerDraw = true;
+            this.uiToolTip1.ToolTipTitle = "ToolTip title";
             // 
-            // uiImageButton2
+            // uiSymbolButton1
             // 
-            this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.relationship0;
-            this.uiImageButton2.ImageHover = global::Sunny.UI.Demo.Properties.Resources.relationship;
-            this.uiImageButton2.ImagePress = global::Sunny.UI.Demo.Properties.Resources.relationship0;
-            this.uiImageButton2.Location = new System.Drawing.Point(495, 438);
-            this.uiImageButton2.Name = "uiImageButton2";
-            this.uiImageButton2.Size = new System.Drawing.Size(43, 35);
-            this.uiImageButton2.TabIndex = 50;
-            this.uiImageButton2.TabStop = false;
-            this.uiImageButton2.Text = null;
+            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 230);
+            this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton1.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton1.StyleCustomMode = true;
+            this.uiSymbolButton1.TabIndex = 20;
+            this.uiSymbolButton1.Text = "OK";
             // 
-            // uiImageButton3
+            // uiSymbolButton2
             // 
-            this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.save0;
-            this.uiImageButton3.ImageHover = global::Sunny.UI.Demo.Properties.Resources.save;
-            this.uiImageButton3.ImagePress = global::Sunny.UI.Demo.Properties.Resources.save0;
-            this.uiImageButton3.Location = new System.Drawing.Point(546, 438);
-            this.uiImageButton3.Name = "uiImageButton3";
-            this.uiImageButton3.Size = new System.Drawing.Size(43, 35);
-            this.uiImageButton3.TabIndex = 51;
-            this.uiImageButton3.TabStop = false;
-            this.uiImageButton3.Text = null;
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.uiSymbolButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
+            this.uiSymbolButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(144, 230);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.uiSymbolButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
+            this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton2.StyleCustomMode = true;
+            this.uiSymbolButton2.Symbol = 61453;
+            this.uiSymbolButton2.TabIndex = 21;
+            this.uiSymbolButton2.Text = "Cancel";
+            // 
+            // uiSymbolButton25
+            // 
+            this.uiSymbolButton25.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton25.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.Image = global::Sunny.UI.Demo.Properties.Resources.relationship;
+            this.uiSymbolButton25.Location = new System.Drawing.Point(600, 280);
+            this.uiSymbolButton25.Name = "uiSymbolButton25";
+            this.uiSymbolButton25.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton25.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton25.Style = Sunny.UI.UIStyle.LightBlue;
+            this.uiSymbolButton25.StyleCustomMode = true;
+            this.uiSymbolButton25.Symbol = 61453;
+            this.uiSymbolButton25.TabIndex = 55;
+            this.uiSymbolButton25.Text = "Link";
             // 
             // uiImageButton4
             // 
@@ -986,13 +974,67 @@
             this.uiImageButton4.Text = "Home";
             this.uiImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // uiToolTip1
+            // uiImageButton3
             // 
-            this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.uiToolTip1.OwnerDraw = true;
-            this.uiToolTip1.ToolTipTitle = "ToolTip title";
+            this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.save0;
+            this.uiImageButton3.ImageHover = global::Sunny.UI.Demo.Properties.Resources.save;
+            this.uiImageButton3.ImagePress = global::Sunny.UI.Demo.Properties.Resources.save0;
+            this.uiImageButton3.Location = new System.Drawing.Point(546, 438);
+            this.uiImageButton3.Name = "uiImageButton3";
+            this.uiImageButton3.Size = new System.Drawing.Size(43, 35);
+            this.uiImageButton3.TabIndex = 51;
+            this.uiImageButton3.TabStop = false;
+            this.uiImageButton3.Text = null;
+            // 
+            // uiImageButton2
+            // 
+            this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.relationship0;
+            this.uiImageButton2.ImageHover = global::Sunny.UI.Demo.Properties.Resources.relationship;
+            this.uiImageButton2.ImagePress = global::Sunny.UI.Demo.Properties.Resources.relationship0;
+            this.uiImageButton2.Location = new System.Drawing.Point(495, 438);
+            this.uiImageButton2.Name = "uiImageButton2";
+            this.uiImageButton2.Size = new System.Drawing.Size(43, 35);
+            this.uiImageButton2.TabIndex = 50;
+            this.uiImageButton2.TabStop = false;
+            this.uiImageButton2.Text = null;
+            // 
+            // uiImageButton1
+            // 
+            this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton1.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
+            this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
+            this.uiImageButton1.Location = new System.Drawing.Point(395, 438);
+            this.uiImageButton1.Name = "uiImageButton1";
+            this.uiImageButton1.Size = new System.Drawing.Size(94, 35);
+            this.uiImageButton1.TabIndex = 49;
+            this.uiImageButton1.TabStop = false;
+            this.uiImageButton1.Text = "Home";
+            this.uiImageButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // uiSymbolButton26
+            // 
+            this.uiSymbolButton26.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton26.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.Image = global::Sunny.UI.Demo.Properties.Resources.save;
+            this.uiSymbolButton26.Location = new System.Drawing.Point(486, 280);
+            this.uiSymbolButton26.Name = "uiSymbolButton26";
+            this.uiSymbolButton26.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton26.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton26.Style = Sunny.UI.UIStyle.LightBlue;
+            this.uiSymbolButton26.StyleCustomMode = true;
+            this.uiSymbolButton26.Symbol = 61530;
+            this.uiSymbolButton26.TabIndex = 56;
+            this.uiSymbolButton26.Text = "Save";
             // 
             // FButton
             // 
@@ -1004,10 +1046,10 @@
             this.Symbol = 61640;
             this.Text = "Button";
             this.PagePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1033,8 +1075,6 @@
         private UIButton uiButton2;
         private UIButton uiButton1;
         private UILine uiLine1;
-        private UISymbolButton uiSymbolButton2;
-        private UISymbolButton uiSymbolButton1;
         private UILine uiLine2;
         private UISymbolButton uiSymbolButton3;
         private UISymbolButton uiSymbolButton4;
@@ -1068,5 +1108,9 @@
         private UIImageButton uiImageButton1;
         private UIImageButton uiImageButton4;
         private UIToolTip uiToolTip1;
+        private UISymbolButton uiSymbolButton25;
+        private UISymbolButton uiSymbolButton2;
+        private UISymbolButton uiSymbolButton1;
+        private UISymbolButton uiSymbolButton26;
     }
 }

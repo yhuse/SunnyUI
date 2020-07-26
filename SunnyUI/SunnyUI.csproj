@@ -399,6 +399,9 @@
     <Compile Include="Controls\UIToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UIDataGridPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
@@ -531,22 +534,10 @@
     <None Include="Resources\img_notifier.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ko.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\notifier.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ok.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\colorbarIndicators.bmp" />
@@ -568,9 +559,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Login6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
