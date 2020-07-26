@@ -129,6 +129,18 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnPaintFill(Graphics g, GraphicsPath path)
+        {
+            if (!selected)
+            {
+                base.OnPaintFill(g, path);
+            }
+            else
+            {
+                g.FillPath(FillSelectedColor,path);
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -157,9 +169,7 @@ namespace Sunny.UI
                 path.Dispose();
             }
         }
-
-        private bool selected;
-
+        
         /// <summary>
         /// 是否选中
         /// </summary>
@@ -189,6 +199,10 @@ namespace Sunny.UI
             fillPressColor = uiColor.ButtonFillPressColor;
             rectPressColor = uiColor.RectPressColor;
             forePressColor = uiColor.ButtonForePressColor;
+
+            fillSelectedColor = uiColor.ButtonFillSelectedColor;
+            foreSelectedColor = uiColor.ButtonForeSelectedColor;
+            rectSelectedColor = uiColor.RectSelectedColor;
 
             Invalidate();
         }
@@ -289,11 +303,25 @@ namespace Sunny.UI
             set => SetRectPressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "64, 105, 225")]
-        public Color SelectedColor
+        [DefaultValue(typeof(Color), "74, 131, 229")]
+        public Color FillSelectedColor
         {
-            get => selectedColor;
-            set => SetSelectedColor(value);
+            get => fillSelectedColor;
+            set => SetFillSelectedColor(value);
+        }
+
+        [DefaultValue(typeof(Color), "White")]
+        public Color ForeSelectedColor
+        {
+            get => foreSelectedColor;
+            set => SetForeSelectedColor(value);
+        }
+
+        [DefaultValue(typeof(Color), "74, 131, 229")]
+        public Color RectSelectedColor
+        {
+            get => rectSelectedColor;
+            set => SetRectSelectedColor(value);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

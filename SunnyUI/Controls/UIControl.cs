@@ -215,7 +215,7 @@ namespace Sunny.UI
             rectPressColor = rectHoverColor = rectColor;
             forePressColor = foreHoverColor = foreColor;
 
-            selectedColor = uiColor.ButtonSelectedColor;
+            fillSelectedColor = uiColor.ButtonFillSelectedColor;
 
             Invalidate();
         }
@@ -314,6 +314,8 @@ namespace Sunny.UI
                 color = rectHoverColor;
             if (IsPress)
                 color = rectPressColor;
+            if (selected)
+                color = rectSelectedColor;
             return Enabled ? color : rectDisableColor;
         }
 
@@ -329,6 +331,8 @@ namespace Sunny.UI
                 color = foreHoverColor;
             if (IsPress)
                 color = forePressColor;
+            if (selected)
+                color = foreSelectedColor;
             return Enabled ? color : foreDisableColor;
         }
 
@@ -344,6 +348,8 @@ namespace Sunny.UI
                 color = fillHoverColor;
             if (IsPress)
                 color = fillPressColor;
+            if (selected)
+                color = fillSelectedColor;
             return Enabled ? color : fillDisableColor;
         }
 
@@ -492,7 +498,7 @@ namespace Sunny.UI
         /// <summary>
         /// 选中颜色
         /// </summary>
-        protected Color selectedColor = UIStyles.Blue.ButtonSelectedColor;
+        protected Color fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
 
         /// <summary>
         /// 边框颜色
@@ -558,11 +564,42 @@ namespace Sunny.UI
         /// 设置选中颜色
         /// </summary>
         /// <param name="value">颜色</param>
-        protected void SetSelectedColor(Color value)
+        protected void SetFillSelectedColor(Color value)
         {
-            if (selectedColor != value)
+            if (fillSelectedColor != value)
             {
-                selectedColor = value;
+                fillSelectedColor = value;
+                Invalidate();
+            }
+        }
+
+        protected bool selected;
+        protected Color foreSelectedColor;
+
+        /// <summary>
+        /// 设置选中颜色
+        /// </summary>
+        /// <param name="value">颜色</param>
+        protected void SetForeSelectedColor(Color value)
+        {
+            if (foreSelectedColor != value)
+            {
+                foreSelectedColor = value;
+                Invalidate();
+            }
+        }
+        
+        protected Color rectSelectedColor;
+
+        /// <summary>
+        /// 设置选中颜色
+        /// </summary>
+        /// <param name="value">颜色</param>
+        protected void SetRectSelectedColor(Color value)
+        {
+            if (rectSelectedColor != value)
+            {
+                rectSelectedColor = value;
                 Invalidate();
             }
         }

@@ -23,7 +23,7 @@
 using System.Drawing;
 
 #pragma warning disable 1591
-//ButtonSelectedColor
+//ButtonFillSelectedColor
 
 namespace Sunny.UI
 {
@@ -40,6 +40,10 @@ namespace Sunny.UI
         public abstract Color RectHoverColor { get; }
         public abstract Color RectPressColor { get; }
 
+        public abstract Color RectSelectedColor { get; } 
+        public abstract Color ButtonForeSelectedColor { get; }
+        public abstract Color ButtonFillSelectedColor { get; }
+
         public abstract Color ButtonFillColor { get; }
         public abstract Color ButtonFillHoverColor { get; }
         public abstract Color ButtonFillPressColor { get; }
@@ -47,7 +51,6 @@ namespace Sunny.UI
         public abstract Color ButtonForeColor { get; }
         public abstract Color ButtonForeHoverColor { get; }
         public abstract Color ButtonForePressColor { get; }
-        public abstract Color ButtonSelectedColor { get; }
 
         public virtual Color FillDisableColor => Color.FromArgb(244, 244, 244);
         public virtual Color RectDisableColor => Color.FromArgb(173, 178, 181);
@@ -144,12 +147,14 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.FromArgb(30, 57, 91);
         public override Color ButtonForeHoverColor => Color.FromArgb(30, 57, 91);
         public override Color ButtonForePressColor => Color.FromArgb(30, 57, 91);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
         public override Color RectColor => Color.FromArgb(180, 192, 211);
         public override Color RectHoverColor => Color.FromArgb(238, 201, 88);
         public override Color RectPressColor => Color.FromArgb(194, 118, 43);
         public override Color TitleColor => Color.FromArgb(191, 210, 233);
         public override Color TitleForeColor => Color.FromArgb(30, 57, 91);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
     }
 
     public class UIOffice2010SilverStyle : UIBaseStyle
@@ -165,7 +170,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.FromArgb(46, 46, 46);
         public override Color ButtonForeHoverColor => Color.FromArgb(46, 46, 46);
         public override Color ButtonForePressColor => Color.FromArgb(46, 46, 46);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => Color.FromArgb(139, 144, 151);
         public override Color RectHoverColor => Color.FromArgb(238, 201, 88);
         public override Color RectPressColor => Color.FromArgb(194, 118, 43);
@@ -186,7 +193,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.Black;
         public override Color ButtonForeHoverColor => Color.FromArgb(70, 70, 70);
         public override Color ButtonForePressColor => Color.FromArgb(70, 70, 70);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => Color.FromArgb(145, 145, 145);
         public override Color RectHoverColor => Color.FromArgb(238, 201, 88);
         public override Color RectPressColor => Color.FromArgb(194, 118, 43);
@@ -208,7 +217,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Blue;
         public override Color RectHoverColor => Color.FromArgb(111, 168, 255);
         public override Color RectPressColor => Color.FromArgb(74, 131, 229);
@@ -229,7 +240,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => UIColor.Blue;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Blue;
         public override Color RectHoverColor => UIColor.Blue;
         public override Color RectPressColor => Color.FromArgb(74, 131, 229);
@@ -250,7 +263,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Green;
         public override Color RectHoverColor => Color.FromArgb(136, 202, 81);
         public override Color RectPressColor => Color.FromArgb(100, 168, 35);
@@ -273,7 +288,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => UIColor.Green;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Green;
         public override Color RectHoverColor => UIColor.Green;
         public override Color RectPressColor => Color.FromArgb(100, 168, 35);
@@ -296,7 +313,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Red;
         public override Color RectHoverColor => Color.FromArgb(232, 127, 128);
         public override Color RectPressColor => Color.FromArgb(202, 87, 89);
@@ -319,7 +338,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => UIColor.Red;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Red;
         public override Color RectHoverColor => UIColor.Red;
         public override Color RectPressColor => Color.FromArgb(202, 87, 89);
@@ -342,7 +363,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Orange;
         public override Color RectHoverColor => Color.FromArgb(223, 174, 86);
         public override Color RectPressColor => Color.FromArgb(192, 137, 43);
@@ -364,7 +387,9 @@ namespace Sunny.UI
         public override Color ButtonFillPressColor => Color.FromArgb(192, 137, 43);
         public override Color ButtonForeColor => UIColor.Orange;
         public override Color ButtonForeHoverColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color ButtonForePressColor => Color.White;
         public override Color RectColor => UIColor.Orange;
         public override Color RectHoverColor => UIColor.Orange;
@@ -388,7 +413,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Gray;
         public override Color RectHoverColor => Color.FromArgb(158, 160, 165);
         public override Color RectPressColor => Color.FromArgb(121, 123, 129);
@@ -410,7 +437,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => UIColor.Gray;
         public override Color ButtonForeHoverColor => Color.White;
         public override Color ButtonForePressColor => Color.White;
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => UIColor.Gray;
         public override Color RectHoverColor => UIColor.Gray;
         public override Color RectPressColor => Color.FromArgb(121, 123, 129);
@@ -432,7 +461,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.FromArgb(0x60, 0x62, 0x66);
         public override Color ButtonForeHoverColor => UIColor.Blue;
         public override Color ButtonForePressColor => Color.FromArgb(74, 131, 229);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => Color.FromArgb(216, 219, 227);
         public override Color RectHoverColor => Color.FromArgb(197, 222, 255);
         public override Color RectPressColor => Color.FromArgb(74, 131, 229);
@@ -454,7 +485,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.FromArgb(130, 130, 130);
         public override Color ButtonForeHoverColor => Color.FromArgb(130, 130, 130);
         public override Color ButtonForePressColor => Color.FromArgb(130, 130, 130);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => Color.FromArgb(130, 130, 130);
         public override Color RectHoverColor => Color.FromArgb(130, 130, 130);
         public override Color RectPressColor => Color.FromArgb(130, 130, 130);
@@ -475,7 +508,9 @@ namespace Sunny.UI
         public override Color ButtonForeColor => Color.White;
         public override Color ButtonForeHoverColor => Color.FromArgb(130, 130, 130);
         public override Color ButtonForePressColor => Color.FromArgb(130, 130, 130);
-        public override Color ButtonSelectedColor => Color.FromArgb(64, 105, 225);
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
         public override Color RectColor => Color.FromArgb(130, 130, 130);
         public override Color RectHoverColor => Color.FromArgb(130, 130, 130);
         public override Color RectPressColor => Color.FromArgb(130, 130, 130);
