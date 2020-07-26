@@ -13,5 +13,10 @@ namespace Sunny.UI.Demo
             uiToolTip1.SetToolTip(uiSymbolButton2, uiSymbolButton2.Text, "SunnyUI",
                 uiSymbolButton2.Symbol, 32,UIColor.Red);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

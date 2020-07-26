@@ -500,7 +500,6 @@
             this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton3.Location = new System.Drawing.Point(372, 230);
             this.uiSymbolButton3.Name = "uiSymbolButton3";
-            this.uiSymbolButton3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton3.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiSymbolButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
@@ -517,7 +516,6 @@
             this.uiSymbolButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton4.Location = new System.Drawing.Point(258, 230);
             this.uiSymbolButton4.Name = "uiSymbolButton4";
-            this.uiSymbolButton4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton4.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton4.StyleCustomMode = true;
             this.uiSymbolButton4.Symbol = 61529;
@@ -533,7 +531,6 @@
             this.uiSymbolButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton5.Location = new System.Drawing.Point(486, 230);
             this.uiSymbolButton5.Name = "uiSymbolButton5";
-            this.uiSymbolButton5.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiSymbolButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiSymbolButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
@@ -553,7 +550,6 @@
             this.uiSymbolButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton6.Location = new System.Drawing.Point(600, 230);
             this.uiSymbolButton6.Name = "uiSymbolButton6";
-            this.uiSymbolButton6.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
@@ -574,7 +570,6 @@
             this.uiSymbolButton7.IsCircle = true;
             this.uiSymbolButton7.Location = new System.Drawing.Point(235, 280);
             this.uiSymbolButton7.Name = "uiSymbolButton7";
-            this.uiSymbolButton7.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton7.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
@@ -594,7 +589,6 @@
             this.uiSymbolButton8.IsCircle = true;
             this.uiSymbolButton8.Location = new System.Drawing.Point(194, 280);
             this.uiSymbolButton8.Name = "uiSymbolButton8";
-            this.uiSymbolButton8.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton8.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiSymbolButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
@@ -614,7 +608,6 @@
             this.uiSymbolButton9.IsCircle = true;
             this.uiSymbolButton9.Location = new System.Drawing.Point(153, 280);
             this.uiSymbolButton9.Name = "uiSymbolButton9";
-            this.uiSymbolButton9.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton9.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
@@ -631,7 +624,6 @@
             this.uiSymbolButton10.IsCircle = true;
             this.uiSymbolButton10.Location = new System.Drawing.Point(112, 280);
             this.uiSymbolButton10.Name = "uiSymbolButton10";
-            this.uiSymbolButton10.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton10.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton10.StyleCustomMode = true;
             this.uiSymbolButton10.TabIndex = 28;
@@ -646,7 +638,6 @@
             this.uiSymbolButton11.IsCircle = true;
             this.uiSymbolButton11.Location = new System.Drawing.Point(71, 280);
             this.uiSymbolButton11.Name = "uiSymbolButton11";
-            this.uiSymbolButton11.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton11.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton11.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton11.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
@@ -670,7 +661,6 @@
             this.uiSymbolButton12.IsCircle = true;
             this.uiSymbolButton12.Location = new System.Drawing.Point(30, 280);
             this.uiSymbolButton12.Name = "uiSymbolButton12";
-            this.uiSymbolButton12.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton12.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
             this.uiSymbolButton12.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
             this.uiSymbolButton12.Size = new System.Drawing.Size(35, 35);
@@ -696,7 +686,6 @@
             this.uiSymbolButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton13.Location = new System.Drawing.Point(260, 360);
             this.uiSymbolButton13.Name = "uiSymbolButton13";
-            this.uiSymbolButton13.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton13.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton13.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -710,7 +699,6 @@
             this.uiSymbolButton14.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton14.Location = new System.Drawing.Point(214, 360);
             this.uiSymbolButton14.Name = "uiSymbolButton14";
-            this.uiSymbolButton14.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton14.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton14.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -724,7 +712,6 @@
             this.uiSymbolButton15.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton15.Location = new System.Drawing.Point(168, 360);
             this.uiSymbolButton15.Name = "uiSymbolButton15";
-            this.uiSymbolButton15.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton15.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton15.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -738,7 +725,6 @@
             this.uiSymbolButton16.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton16.Location = new System.Drawing.Point(122, 360);
             this.uiSymbolButton16.Name = "uiSymbolButton16";
-            this.uiSymbolButton16.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton16.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton16.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -752,7 +738,6 @@
             this.uiSymbolButton17.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton17.Location = new System.Drawing.Point(76, 360);
             this.uiSymbolButton17.Name = "uiSymbolButton17";
-            this.uiSymbolButton17.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton17.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton17.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -766,7 +751,6 @@
             this.uiSymbolButton18.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton18.Location = new System.Drawing.Point(30, 360);
             this.uiSymbolButton18.Name = "uiSymbolButton18";
-            this.uiSymbolButton18.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton18.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
             this.uiSymbolButton18.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton18.Symbol = 61515;
@@ -778,7 +762,6 @@
             this.uiSymbolButton19.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton19.Location = new System.Drawing.Point(516, 360);
             this.uiSymbolButton19.Name = "uiSymbolButton19";
-            this.uiSymbolButton19.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton19.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
             this.uiSymbolButton19.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton19.Symbol = 61543;
@@ -790,7 +773,6 @@
             this.uiSymbolButton20.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton20.Location = new System.Drawing.Point(352, 360);
             this.uiSymbolButton20.Name = "uiSymbolButton20";
-            this.uiSymbolButton20.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton20.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
             this.uiSymbolButton20.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -804,7 +786,6 @@
             this.uiSymbolButton21.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton21.Location = new System.Drawing.Point(306, 360);
             this.uiSymbolButton21.Name = "uiSymbolButton21";
-            this.uiSymbolButton21.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton21.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton21.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -818,7 +799,6 @@
             this.uiSymbolButton22.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton22.Location = new System.Drawing.Point(562, 360);
             this.uiSymbolButton22.Name = "uiSymbolButton22";
-            this.uiSymbolButton22.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton22.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton22.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -832,7 +812,6 @@
             this.uiSymbolButton23.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton23.Location = new System.Drawing.Point(608, 360);
             this.uiSymbolButton23.Name = "uiSymbolButton23";
-            this.uiSymbolButton23.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton23.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton23.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -846,7 +825,6 @@
             this.uiSymbolButton24.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton24.Location = new System.Drawing.Point(654, 360);
             this.uiSymbolButton24.Name = "uiSymbolButton24";
-            this.uiSymbolButton24.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton24.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
             this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -912,7 +890,6 @@
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton1.Location = new System.Drawing.Point(30, 230);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
-            this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton1.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton1.StyleCustomMode = true;
             this.uiSymbolButton1.TabIndex = 20;
@@ -927,7 +904,6 @@
             this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton2.Location = new System.Drawing.Point(144, 230);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
-            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
@@ -946,9 +922,10 @@
             this.uiSymbolButton25.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton25.Image = global::Sunny.UI.Demo.Properties.Resources.relationship;
+            this.uiSymbolButton25.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.uiSymbolButton25.Location = new System.Drawing.Point(600, 280);
             this.uiSymbolButton25.Name = "uiSymbolButton25";
-            this.uiSymbolButton25.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton25.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.uiSymbolButton25.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton25.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton25.Style = Sunny.UI.UIStyle.LightBlue;
@@ -956,6 +933,7 @@
             this.uiSymbolButton25.Symbol = 61453;
             this.uiSymbolButton25.TabIndex = 55;
             this.uiSymbolButton25.Text = "Link";
+            this.uiSymbolButton25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiImageButton4
             // 
@@ -1025,9 +1003,10 @@
             this.uiSymbolButton26.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton26.Image = global::Sunny.UI.Demo.Properties.Resources.save;
+            this.uiSymbolButton26.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiSymbolButton26.Location = new System.Drawing.Point(486, 280);
             this.uiSymbolButton26.Name = "uiSymbolButton26";
-            this.uiSymbolButton26.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton26.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.uiSymbolButton26.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton26.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton26.Style = Sunny.UI.UIStyle.LightBlue;
@@ -1035,6 +1014,7 @@
             this.uiSymbolButton26.Symbol = 61530;
             this.uiSymbolButton26.TabIndex = 56;
             this.uiSymbolButton26.Text = "Save";
+            this.uiSymbolButton26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FButton
             // 
