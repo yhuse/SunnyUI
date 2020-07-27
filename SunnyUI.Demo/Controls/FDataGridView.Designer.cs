@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
+            this.uiDataGridPage1 = new Sunny.UI.UIDataGridPage();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -40,6 +41,7 @@
             // PagePanel
             // 
             this.PagePanel.Controls.Add(this.uiDataGridView1);
+            this.PagePanel.Controls.Add(this.uiDataGridPage1);
             // 
             // uiDataGridView1
             // 
@@ -85,9 +87,23 @@
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uiDataGridView1.ShowRect = false;
-            this.uiDataGridView1.Size = new System.Drawing.Size(800, 415);
+            this.uiDataGridView1.Size = new System.Drawing.Size(800, 380);
             this.uiDataGridView1.TabIndex = 0;
             this.uiDataGridView1.TagString = null;
+            // 
+            // uiDataGridPage1
+            // 
+            this.uiDataGridPage1.ActivePage = 6;
+            this.uiDataGridPage1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiDataGridPage1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiDataGridPage1.Location = new System.Drawing.Point(0, 380);
+            this.uiDataGridPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDataGridPage1.Name = "uiDataGridPage1";
+            this.uiDataGridPage1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiDataGridPage1.Size = new System.Drawing.Size(800, 35);
+            this.uiDataGridPage1.TabIndex = 1;
+            this.uiDataGridPage1.Text = "uiDataGridPage1";
+            this.uiDataGridPage1.TotalCount = 800;
             // 
             // FDataGridView
             // 
@@ -107,5 +123,6 @@
         #endregion
 
         private UIDataGridView uiDataGridView1;
+        private UIDataGridPage uiDataGridPage1;
     }
 }

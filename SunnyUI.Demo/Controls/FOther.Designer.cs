@@ -51,11 +51,20 @@
             this.uiScrollingText2 = new Sunny.UI.UIScrollingText();
             this.uiWaitingBar1 = new Sunny.UI.UIWaitingBar();
             this.uiLine1 = new Sunny.UI.UILine();
+            this.uiLine7 = new Sunny.UI.UILine();
+            this.uiLabel1 = new Sunny.UI.UILabel();
+            this.uiLabel2 = new Sunny.UI.UILabel();
+            this.uiLabel3 = new Sunny.UI.UILabel();
+            this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLabel3);
+            this.PagePanel.Controls.Add(this.uiLabel2);
+            this.PagePanel.Controls.Add(this.uiLabel1);
+            this.PagePanel.Controls.Add(this.uiLine7);
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiWaitingBar1);
             this.PagePanel.Controls.Add(this.uiScrollingText2);
@@ -247,7 +256,6 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
-            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -309,6 +317,59 @@
             this.uiLine1.Text = "UIWaitingBar";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLine7
+            // 
+            this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.Location = new System.Drawing.Point(381, 313);
+            this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine7.Name = "uiLine7";
+            this.uiLine7.Size = new System.Drawing.Size(319, 20);
+            this.uiLine7.TabIndex = 52;
+            this.uiLine7.Text = "UIToolTip";
+            this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel1
+            // 
+            this.uiLabel1.AutoSize = true;
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Location = new System.Drawing.Point(382, 350);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel1.TabIndex = 53;
+            this.uiLabel1.Text = "鼠标移过来看提示";
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiToolTip1.SetToolTip(this.uiLabel1, "赠人玫瑰手有余香");
+            // 
+            // uiLabel2
+            // 
+            this.uiLabel2.AutoSize = true;
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Location = new System.Drawing.Point(562, 350);
+            this.uiLabel2.Name = "uiLabel2";
+            this.uiLabel2.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel2.TabIndex = 54;
+            this.uiLabel2.Text = "鼠标移过来看提示";
+            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel3
+            // 
+            this.uiLabel3.AutoSize = true;
+            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Location = new System.Drawing.Point(382, 388);
+            this.uiLabel3.Name = "uiLabel3";
+            this.uiLabel3.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel3.TabIndex = 55;
+            this.uiLabel3.Text = "鼠标移过来看提示";
+            this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiToolTip1
+            // 
+            this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.uiToolTip1.OwnerDraw = true;
+            this.uiToolTip1.ToolTipTitle = "ToolTip title";
+            // 
             // FOther
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -318,6 +379,7 @@
             this.Symbol = 62173;
             this.Text = "Other";
             this.PagePanel.ResumeLayout(false);
+            this.PagePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -345,5 +407,10 @@
         private UIScrollingText uiScrollingText2;
         private UIWaitingBar uiWaitingBar1;
         private UILine uiLine1;
+        private UILine uiLine7;
+        private UILabel uiLabel3;
+        private UILabel uiLabel2;
+        private UILabel uiLabel1;
+        private UIToolTip uiToolTip1;
     }
 }

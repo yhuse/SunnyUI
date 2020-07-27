@@ -45,12 +45,15 @@ namespace Sunny.UI
 
             foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
             forePressColor = UIStyles.Blue.ButtonForePressColor;
+            foreSelectedColor = UIStyles.Blue.ButtonForeSelectedColor;
 
             rectHoverColor = UIStyles.Blue.RectHoverColor;
             rectPressColor = UIStyles.Blue.RectPressColor;
+            rectSelectedColor = UIStyles.Blue.RectSelectedColor;
 
             fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
+            fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
         }
 
         private bool isClick;

@@ -131,6 +131,7 @@ namespace Sunny.UI
             string text = char.ConvertFromUtf32(symbol);
             graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
             graphics.DrawString(text, font, color, left + xOffset, top + yOffSet);
+            graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
         }
 
         /// <summary>
@@ -385,6 +386,8 @@ namespace Sunny.UI
                 //graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 //graphics.SmoothingMode = SmoothingMode.HighQuality;
                 graphics.DrawString(s, imageFont, ForeColor, new PointF(0.0f, 0.0f));
+                graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
+                graphics.InterpolationMode = InterpolationMode.Default;
             }
 
             Bitmap result = new Bitmap(imageSize, imageSize);
