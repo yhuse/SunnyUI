@@ -117,6 +117,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\UINavMenuHelper.cs" />
+    <Compile Include="Controls\UIPagination.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\UIRichTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -398,9 +401,6 @@
     </Compile>
     <Compile Include="Controls\UIToolTip.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIDataGridPage.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\UThunder.cs" />

@@ -20,7 +20,7 @@ namespace Sunny.UI.Demo
             base.Init();
 
             List<Data> datas = new List<Data>();
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 365; i++)
             {
                 Data data = new Data();
                 data.Column1 = "Data" + i.ToString("D2");
@@ -30,8 +30,8 @@ namespace Sunny.UI.Demo
                 datas.Add(data);
             }
 
-            uiDataGridView1.DataSource = datas;
-            uiDataGridView1.SelectedIndex = 160;
+            uiPagination1.DataSource = datas;
+            uiPagination1.ActivePage = 1;
         }
 
         public class Data
@@ -48,6 +48,11 @@ namespace Sunny.UI.Demo
             {
                 return Column1;
             }
+        }
+
+        private void uiPagination1_PageChanged(object sender, object pagingSource, int pageIndex, int count)
+        {
+            uiDataGridView1.DataSource = pagingSource;
         }
     }
 }

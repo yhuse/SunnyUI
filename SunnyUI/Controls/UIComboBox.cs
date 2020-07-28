@@ -181,6 +181,7 @@ namespace Sunny.UI
 
             try
             {
+                inSetDataConnection = true;
                 if (dataSourceChanged || displayMemberChanged)
                 {
                     CurrencyManager newDataManager = null;

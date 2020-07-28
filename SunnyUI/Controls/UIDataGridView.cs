@@ -473,6 +473,19 @@ namespace Sunny.UI
             return column;
         }
 
+        public DataGridViewColumn AddButtonColumn(string columnName, string dataPropertyName, int fillWeight = 100, bool readOnly = true)
+        {
+            DataGridViewColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = columnName;
+            column.DataPropertyName = dataPropertyName;
+            column.Name = columnName;
+            column.ReadOnly = readOnly;
+            column.FillWeight = fillWeight;
+            column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Columns.Add(column);
+            return column;
+        }
+
         public void ClearRows()
         {
             if (DataSource != null)
