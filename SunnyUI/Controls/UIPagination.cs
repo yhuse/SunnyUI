@@ -65,7 +65,11 @@ namespace Sunny.UI
         private bool inSetDataConnection;
         private UIPanel p1;
 
-        private int PageCount;
+        /// <summary>
+        /// 总页数
+        /// </summary>
+        [Browsable(false)]
+        public int PageCount { get; private set; }
 
         private int pagerCount = 7;
 
@@ -215,6 +219,8 @@ namespace Sunny.UI
             set => p1.Visible = value;
         }
 
+        public event EventHandler DataSourceChanged;
+
         [DefaultValue(null)]
         [RefreshProperties(RefreshProperties.Repaint)]
         [AttributeProvider(typeof(IListSource))]
@@ -235,6 +241,7 @@ namespace Sunny.UI
                 dataSource = value;
                 activePage = 1;
                 TotalCount = dataManager?.List.Count ?? 0;
+                DataSourceChanged?.Invoke(this,null);
             }
         }
 

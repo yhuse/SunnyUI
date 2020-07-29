@@ -75,9 +75,21 @@ namespace Sunny.UI
 
         public UIPieSeriesLabel Label = new UIPieSeriesLabel();
 
+        public delegate Color OnDataColorChangeEventHandler(double data);
+
+        public event OnDataColorChangeEventHandler DataColorChange;
+
         public void AddData(string name, double value)
         {
-            Data.Add(new UIPieSeriesData(name, value));
+            if (DataColorChange != null)
+            {
+                 Color color = DataColorChange.Invoke(value);
+                 Data.Add(new UIPieSeriesData(name, value,color));
+            }
+            else
+            {
+                Data.Add(new UIPieSeriesData(name, value));
+            }
         }
 
         public void AddData(string name, double value, Color color)
