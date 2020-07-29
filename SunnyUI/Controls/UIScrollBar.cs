@@ -51,7 +51,7 @@ namespace Sunny.UI
         private int scrollValue;
         private int SmallChange = 1;
         private int LargeChange = 10;
-        private int maximum;
+        private int maximum = 100;
         private DrawItemState up_state, value_state, down_state;
         private DrawItemState up_state1, value_state1, down_state1;
         private bool dragMove;
@@ -119,6 +119,7 @@ namespace Sunny.UI
 
             barHeight = centerHeight / (maximum + 1);
             barHeight = Math.Max(30, barHeight);
+            if (maximum == 0) maximum = 1;
             percentValue = ((double)centerHeight - barHeight) / maximum;
         }
 

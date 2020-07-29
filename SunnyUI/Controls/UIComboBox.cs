@@ -65,7 +65,7 @@ namespace Sunny.UI
             Text = box.GetItemText(box.SelectedItem);
             GetSelectedValue();
             SelectedValueChanged?.Invoke(this, e);
-            SelectedIndexChanged?.Invoke(sender, e);
+            SelectedIndexChanged?.Invoke(this, e);
         }
 
         public event EventHandler SelectedIndexChanged;
@@ -159,9 +159,12 @@ namespace Sunny.UI
                 dataSource = value;
                 box.Items.Clear();
 
-                foreach (var obj in dataManager.List)
+                if (dataManager != null)
                 {
-                    box.Items.Add(obj);
+                    foreach (var obj in dataManager.List)
+                    {
+                        box.Items.Add(obj);
+                    }
                 }
             }
         }

@@ -20,7 +20,7 @@ namespace Sunny.UI.Demo
             base.Init();
 
             List<Data> datas = new List<Data>();
-            for (int i = 0; i < 365; i++)
+            for (int i = 0; i < 3650; i++)
             {
                 Data data = new Data();
                 data.Column1 = "Data" + i.ToString("D2");

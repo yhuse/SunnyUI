@@ -109,7 +109,9 @@ namespace Sunny.UI
                 for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                 {
                     Angle angle = Angles[pieIndex][azIndex];
-                    Color color = ChartStyle.SeriesColor[azIndex % ChartStyle.ColorCount];
+                    Color color = ChartStyle.GetColor(azIndex);
+                    UIPieSeriesData data = pie.Data[azIndex];
+                    if (data.StyleCustomMode) color = data.Color;
 
                     if (ActiveAzIndex == azIndex)
                         g.FillFan(color, angle.Center, angle.Inner, angle.Outer + 5, angle.Start - 90, angle.Sweep);

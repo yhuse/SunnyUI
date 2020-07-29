@@ -25,8 +25,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -104,6 +103,22 @@ namespace Sunny.UI
                 buttons[i].MouseEnter += UIDataGridPage_MouseEnter;
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
+            }
+        }
+
+        private int buttonInterval = 4;
+
+        [DefaultValue(4)]
+        [Description("按钮间隔")]
+        [Category("SunnyUI")]
+        public int ButtonInterval
+        {
+            get => buttonInterval;
+            set
+            {
+                buttonInterval = Math.Max(0, value);
+                buttonInterval = Math.Min(5, value);
+                SetShowButtons();
             }
         }
 
@@ -209,8 +224,12 @@ namespace Sunny.UI
             set
             {
                 if (value != null)
+                {
                     if (!(value is DataTable || value is IList))
+                    {
                         throw new Exception(UILocalize.GridDataSourceException);
+                    }
+                }
 
                 SetDataConnection(value, new BindingMemberInfo(""));
                 dataSource = value;
@@ -261,368 +280,366 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            b0 = new UISymbolButton();
-            b1 = new UISymbolButton();
-            b3 = new UISymbolButton();
-            b2 = new UISymbolButton();
-            b7 = new UISymbolButton();
-            b6 = new UISymbolButton();
-            b5 = new UISymbolButton();
-            b4 = new UISymbolButton();
-            b15 = new UISymbolButton();
-            b14 = new UISymbolButton();
-            b13 = new UISymbolButton();
-            b12 = new UISymbolButton();
-            b11 = new UISymbolButton();
-            b10 = new UISymbolButton();
-            b9 = new UISymbolButton();
-            b8 = new UISymbolButton();
-            b16 = new UISymbolButton();
-            p1 = new UIPanel();
-            btnSelect = new UISymbolButton();
-            uiLabel2 = new UILabel();
-            edtPage = new UITextBox();
-            uiLabel1 = new UILabel();
-            cb1 = new UIComboBox();
-            p1.SuspendLayout();
-            SuspendLayout();
+            this.b0 = new Sunny.UI.UISymbolButton();
+            this.b1 = new Sunny.UI.UISymbolButton();
+            this.b3 = new Sunny.UI.UISymbolButton();
+            this.b2 = new Sunny.UI.UISymbolButton();
+            this.b7 = new Sunny.UI.UISymbolButton();
+            this.b6 = new Sunny.UI.UISymbolButton();
+            this.b5 = new Sunny.UI.UISymbolButton();
+            this.b4 = new Sunny.UI.UISymbolButton();
+            this.b15 = new Sunny.UI.UISymbolButton();
+            this.b14 = new Sunny.UI.UISymbolButton();
+            this.b13 = new Sunny.UI.UISymbolButton();
+            this.b12 = new Sunny.UI.UISymbolButton();
+            this.b11 = new Sunny.UI.UISymbolButton();
+            this.b10 = new Sunny.UI.UISymbolButton();
+            this.b9 = new Sunny.UI.UISymbolButton();
+            this.b8 = new Sunny.UI.UISymbolButton();
+            this.b16 = new Sunny.UI.UISymbolButton();
+            this.p1 = new Sunny.UI.UIPanel();
+            this.edtPage = new Sunny.UI.UITextBox();
+            this.btnSelect = new Sunny.UI.UISymbolButton();
+            this.uiLabel2 = new Sunny.UI.UILabel();
+            this.uiLabel1 = new Sunny.UI.UILabel();
+            this.cb1 = new Sunny.UI.UIComboBox();
+            this.p1.SuspendLayout();
+            this.SuspendLayout();
             //
             // b0
             //
-            b0.Cursor = Cursors.Hand;
-            b0.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            b0.ImageAlign = ContentAlignment.MiddleLeft;
-            b0.Location = new Point(3, 3);
-            b0.Name = "b0";
-            b0.Padding = new Padding(5, 0, 5, 0);
-            b0.RadiusSides = UICornerRadiusSides.LeftTop | UICornerRadiusSides.LeftBottom;
-            b0.Size = new Size(75, 29);
-            b0.Symbol = 61700;
-            b0.TabIndex = 0;
-            b0.Tag = "-1";
-            b0.TagString = "<";
-            b0.Text = "上一页";
-            b0.TextAlign = ContentAlignment.MiddleRight;
+            this.b0.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b0.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b0.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.b0.Location = new System.Drawing.Point(3, 3);
+            this.b0.Name = "b0";
+            this.b0.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.b0.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
+            this.b0.Size = new System.Drawing.Size(75, 29);
+            this.b0.Symbol = 61700;
+            this.b0.TabIndex = 0;
+            this.b0.Tag = "-1";
+            this.b0.TagString = "<";
+            this.b0.Text = "上一页";
+            this.b0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             //
             // b1
             //
-            b1.Cursor = Cursors.Hand;
-            b1.Font = new Font("微软雅黑", 12F);
-            b1.Location = new Point(77, 3);
-            b1.Name = "b1";
-            b1.RadiusSides = UICornerRadiusSides.None;
-            b1.Size = new Size(29, 29);
-            b1.Symbol = 0;
-            b1.TabIndex = 1;
-            b1.Text = "0";
+            this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b1.Location = new System.Drawing.Point(81, 3);
+            this.b1.Name = "b1";
+            this.b1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b1.Size = new System.Drawing.Size(29, 29);
+            this.b1.Symbol = 0;
+            this.b1.TabIndex = 1;
+            this.b1.Text = "0";
             //
             // b3
             //
-            b3.Cursor = Cursors.Hand;
-            b3.Font = new Font("微软雅黑", 12F);
-            b3.Location = new Point(133, 3);
-            b3.Name = "b3";
-            b3.RadiusSides = UICornerRadiusSides.None;
-            b3.Size = new Size(29, 29);
-            b3.Symbol = 0;
-            b3.TabIndex = 3;
-            b3.Text = "0";
+            this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b3.Location = new System.Drawing.Point(145, 3);
+            this.b3.Name = "b3";
+            this.b3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b3.Size = new System.Drawing.Size(29, 29);
+            this.b3.Symbol = 0;
+            this.b3.TabIndex = 3;
+            this.b3.Text = "0";
             //
             // b2
             //
-            b2.Cursor = Cursors.Hand;
-            b2.Font = new Font("微软雅黑", 12F);
-            b2.Location = new Point(105, 3);
-            b2.Name = "b2";
-            b2.RadiusSides = UICornerRadiusSides.None;
-            b2.Size = new Size(29, 29);
-            b2.Symbol = 0;
-            b2.TabIndex = 2;
-            b2.Text = "0";
+            this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b2.Location = new System.Drawing.Point(113, 3);
+            this.b2.Name = "b2";
+            this.b2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b2.Size = new System.Drawing.Size(29, 29);
+            this.b2.Symbol = 0;
+            this.b2.TabIndex = 2;
+            this.b2.Text = "0";
             //
             // b7
             //
-            b7.Cursor = Cursors.Hand;
-            b7.Font = new Font("微软雅黑", 12F);
-            b7.Location = new Point(245, 3);
-            b7.Name = "b7";
-            b7.RadiusSides = UICornerRadiusSides.None;
-            b7.Size = new Size(29, 29);
-            b7.Symbol = 0;
-            b7.TabIndex = 7;
-            b7.Text = "0";
+            this.b7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b7.Location = new System.Drawing.Point(273, 3);
+            this.b7.Name = "b7";
+            this.b7.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b7.Size = new System.Drawing.Size(29, 29);
+            this.b7.Symbol = 0;
+            this.b7.TabIndex = 7;
+            this.b7.Text = "0";
             //
             // b6
             //
-            b6.Cursor = Cursors.Hand;
-            b6.Font = new Font("微软雅黑", 12F);
-            b6.Location = new Point(217, 3);
-            b6.Name = "b6";
-            b6.RadiusSides = UICornerRadiusSides.None;
-            b6.Size = new Size(29, 29);
-            b6.Symbol = 0;
-            b6.TabIndex = 6;
-            b6.Text = "0";
+            this.b6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b6.Location = new System.Drawing.Point(241, 3);
+            this.b6.Name = "b6";
+            this.b6.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b6.Size = new System.Drawing.Size(29, 29);
+            this.b6.Symbol = 0;
+            this.b6.TabIndex = 6;
+            this.b6.Text = "0";
             //
             // b5
             //
-            b5.Cursor = Cursors.Hand;
-            b5.Font = new Font("微软雅黑", 12F);
-            b5.Location = new Point(189, 3);
-            b5.Name = "b5";
-            b5.RadiusSides = UICornerRadiusSides.None;
-            b5.Size = new Size(29, 29);
-            b5.Symbol = 0;
-            b5.TabIndex = 5;
-            b5.Text = "0";
+            this.b5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b5.Location = new System.Drawing.Point(209, 3);
+            this.b5.Name = "b5";
+            this.b5.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b5.Size = new System.Drawing.Size(29, 29);
+            this.b5.Symbol = 0;
+            this.b5.TabIndex = 5;
+            this.b5.Text = "0";
             //
             // b4
             //
-            b4.Cursor = Cursors.Hand;
-            b4.Font = new Font("微软雅黑", 12F);
-            b4.Location = new Point(161, 3);
-            b4.Name = "b4";
-            b4.RadiusSides = UICornerRadiusSides.None;
-            b4.Size = new Size(29, 29);
-            b4.Symbol = 0;
-            b4.TabIndex = 4;
-            b4.Text = "0";
+            this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b4.Location = new System.Drawing.Point(177, 3);
+            this.b4.Name = "b4";
+            this.b4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b4.Size = new System.Drawing.Size(29, 29);
+            this.b4.Symbol = 0;
+            this.b4.TabIndex = 4;
+            this.b4.Text = "0";
             //
             // b15
             //
-            b15.Cursor = Cursors.Hand;
-            b15.Font = new Font("微软雅黑", 12F);
-            b15.Location = new Point(469, 3);
-            b15.Name = "b15";
-            b15.RadiusSides = UICornerRadiusSides.None;
-            b15.Size = new Size(29, 29);
-            b15.Symbol = 0;
-            b15.TabIndex = 15;
-            b15.Text = "0";
+            this.b15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b15.Location = new System.Drawing.Point(529, 3);
+            this.b15.Name = "b15";
+            this.b15.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b15.Size = new System.Drawing.Size(29, 29);
+            this.b15.Symbol = 0;
+            this.b15.TabIndex = 15;
+            this.b15.Text = "0";
             //
             // b14
             //
-            b14.Cursor = Cursors.Hand;
-            b14.Font = new Font("微软雅黑", 12F);
-            b14.Location = new Point(441, 3);
-            b14.Name = "b14";
-            b14.RadiusSides = UICornerRadiusSides.None;
-            b14.Size = new Size(29, 29);
-            b14.Symbol = 0;
-            b14.TabIndex = 14;
-            b14.Text = "0";
+            this.b14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b14.Location = new System.Drawing.Point(497, 3);
+            this.b14.Name = "b14";
+            this.b14.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b14.Size = new System.Drawing.Size(29, 29);
+            this.b14.Symbol = 0;
+            this.b14.TabIndex = 14;
+            this.b14.Text = "0";
             //
             // b13
             //
-            b13.Cursor = Cursors.Hand;
-            b13.Font = new Font("微软雅黑", 12F);
-            b13.Location = new Point(413, 3);
-            b13.Name = "b13";
-            b13.RadiusSides = UICornerRadiusSides.None;
-            b13.Size = new Size(29, 29);
-            b13.Symbol = 0;
-            b13.TabIndex = 13;
-            b13.Text = "0";
+            this.b13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b13.Location = new System.Drawing.Point(465, 3);
+            this.b13.Name = "b13";
+            this.b13.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b13.Size = new System.Drawing.Size(29, 29);
+            this.b13.Symbol = 0;
+            this.b13.TabIndex = 13;
+            this.b13.Text = "0";
             //
             // b12
             //
-            b12.Cursor = Cursors.Hand;
-            b12.Font = new Font("微软雅黑", 12F);
-            b12.Location = new Point(385, 3);
-            b12.Name = "b12";
-            b12.RadiusSides = UICornerRadiusSides.None;
-            b12.Size = new Size(29, 29);
-            b12.Symbol = 0;
-            b12.TabIndex = 12;
-            b12.Text = "0";
+            this.b12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b12.Location = new System.Drawing.Point(433, 3);
+            this.b12.Name = "b12";
+            this.b12.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b12.Size = new System.Drawing.Size(29, 29);
+            this.b12.Symbol = 0;
+            this.b12.TabIndex = 12;
+            this.b12.Text = "0";
             //
             // b11
             //
-            b11.Cursor = Cursors.Hand;
-            b11.Font = new Font("微软雅黑", 12F);
-            b11.Location = new Point(357, 3);
-            b11.Name = "b11";
-            b11.RadiusSides = UICornerRadiusSides.None;
-            b11.Size = new Size(29, 29);
-            b11.Symbol = 0;
-            b11.TabIndex = 11;
-            b11.Text = "0";
+            this.b11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b11.Location = new System.Drawing.Point(401, 3);
+            this.b11.Name = "b11";
+            this.b11.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b11.Size = new System.Drawing.Size(29, 29);
+            this.b11.Symbol = 0;
+            this.b11.TabIndex = 11;
+            this.b11.Text = "0";
             //
             // b10
             //
-            b10.Cursor = Cursors.Hand;
-            b10.Font = new Font("微软雅黑", 12F);
-            b10.Location = new Point(329, 3);
-            b10.Name = "b10";
-            b10.RadiusSides = UICornerRadiusSides.None;
-            b10.Size = new Size(29, 29);
-            b10.Symbol = 0;
-            b10.TabIndex = 10;
-            b10.Text = "0";
+            this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b10.Location = new System.Drawing.Point(369, 3);
+            this.b10.Name = "b10";
+            this.b10.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b10.Size = new System.Drawing.Size(29, 29);
+            this.b10.Symbol = 0;
+            this.b10.TabIndex = 10;
+            this.b10.Text = "0";
             //
             // b9
             //
-            b9.Cursor = Cursors.Hand;
-            b9.Font = new Font("微软雅黑", 12F);
-            b9.Location = new Point(301, 3);
-            b9.Name = "b9";
-            b9.RadiusSides = UICornerRadiusSides.None;
-            b9.Size = new Size(29, 29);
-            b9.Symbol = 0;
-            b9.TabIndex = 9;
-            b9.Text = "0";
+            this.b9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b9.Location = new System.Drawing.Point(337, 3);
+            this.b9.Name = "b9";
+            this.b9.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b9.Size = new System.Drawing.Size(29, 29);
+            this.b9.Symbol = 0;
+            this.b9.TabIndex = 9;
+            this.b9.Text = "0";
             //
             // b8
             //
-            b8.Cursor = Cursors.Hand;
-            b8.Font = new Font("微软雅黑", 12F);
-            b8.Location = new Point(273, 3);
-            b8.Name = "b8";
-            b8.RadiusSides = UICornerRadiusSides.None;
-            b8.Size = new Size(29, 29);
-            b8.Symbol = 0;
-            b8.TabIndex = 8;
-            b8.Text = "0";
+            this.b8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b8.Location = new System.Drawing.Point(305, 3);
+            this.b8.Name = "b8";
+            this.b8.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.b8.Size = new System.Drawing.Size(29, 29);
+            this.b8.Symbol = 0;
+            this.b8.TabIndex = 8;
+            this.b8.Text = "0";
             //
             // b16
             //
-            b16.Cursor = Cursors.Hand;
-            b16.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            b16.ImageAlign = ContentAlignment.MiddleRight;
-            b16.Location = new Point(497, 3);
-            b16.Name = "b16";
-            b16.Padding = new Padding(5, 0, 5, 0);
-            b16.RadiusSides = UICornerRadiusSides.RightTop | UICornerRadiusSides.RightBottom;
-            b16.Size = new Size(75, 29);
-            b16.Symbol = 61701;
-            b16.TabIndex = 16;
-            b16.Tag = "1";
-            b16.TagString = ">";
-            b16.Text = "下一页";
-            b16.TextAlign = ContentAlignment.MiddleLeft;
-            b16.LocationChanged += b16_LocationChanged;
+            this.b16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b16.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.b16.Location = new System.Drawing.Point(561, 3);
+            this.b16.Name = "b16";
+            this.b16.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.b16.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
+            this.b16.Size = new System.Drawing.Size(75, 29);
+            this.b16.Symbol = 61701;
+            this.b16.TabIndex = 16;
+            this.b16.Tag = "1";
+            this.b16.TagString = ">";
+            this.b16.Text = "下一页";
+            this.b16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.b16.LocationChanged += new System.EventHandler(this.b16_LocationChanged);
             //
             // p1
             //
-            p1.Controls.Add(btnSelect);
-            p1.Controls.Add(uiLabel2);
-            p1.Controls.Add(edtPage);
-            p1.Controls.Add(uiLabel1);
-            p1.Font = new Font("微软雅黑", 12F);
-            p1.Location = new Point(579, 3);
-            p1.Margin = new Padding(4, 5, 4, 5);
-            p1.Name = "p1";
-            p1.RectSides = ToolStripStatusLabelBorderSides.None;
-            p1.Size = new Size(191, 29);
-            p1.TabIndex = 17;
-            p1.Text = null;
-            p1.LocationChanged += p1_LocationChanged;
-            //
-            // btnSelect
-            //
-            btnSelect.Cursor = Cursors.Hand;
-            btnSelect.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnSelect.Location = new Point(127, 0);
-            btnSelect.Name = "btnSelect";
-            btnSelect.Size = new Size(61, 29);
-            btnSelect.Symbol = 0;
-            btnSelect.TabIndex = 3;
-            btnSelect.Text = "确定";
-            btnSelect.Click += btnSelect_Click;
-            //
-            // uiLabel2
-            //
-            uiLabel2.AutoSize = true;
-            uiLabel2.BackColor = Color.Transparent;
-            uiLabel2.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel2.Location = new Point(100, 4);
-            uiLabel2.Name = "uiLabel2";
-            uiLabel2.Size = new Size(23, 20);
-            uiLabel2.TabIndex = 2;
-            uiLabel2.Text = "页";
-            uiLabel2.TextAlign = ContentAlignment.MiddleLeft;
+            this.p1.Controls.Add(this.edtPage);
+            this.p1.Controls.Add(this.btnSelect);
+            this.p1.Controls.Add(this.uiLabel2);
+            this.p1.Controls.Add(this.uiLabel1);
+            this.p1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p1.Location = new System.Drawing.Point(727, 3);
+            this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p1.Name = "p1";
+            this.p1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.p1.Size = new System.Drawing.Size(176, 29);
+            this.p1.TabIndex = 17;
+            this.p1.Text = null;
+            this.p1.LocationChanged += new System.EventHandler(this.p1_LocationChanged);
             //
             // edtPage
             //
-            edtPage.Cursor = Cursors.IBeam;
-            edtPage.DoubleValue = 10D;
-            edtPage.FillColor = Color.White;
-            edtPage.Font = new Font("微软雅黑", 12F);
-            edtPage.HasMinimum = true;
-            edtPage.IntValue = 10;
-            edtPage.Location = new Point(43, 0);
-            edtPage.Margin = new Padding(4, 5, 4, 5);
-            edtPage.Maximum = 2147483647D;
-            edtPage.Minimum = 1D;
-            edtPage.Name = "edtPage";
-            edtPage.Padding = new Padding(5);
-            edtPage.Size = new Size(53, 29);
-            edtPage.TabIndex = 1;
-            edtPage.Text = "10";
-            edtPage.TextAlignment = ContentAlignment.BottomCenter;
-            edtPage.Type = UITextBox.UIEditType.Integer;
+            this.edtPage.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.edtPage.DoubleValue = 10D;
+            this.edtPage.FillColor = System.Drawing.Color.White;
+            this.edtPage.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtPage.HasMinimum = true;
+            this.edtPage.IntValue = 10;
+            this.edtPage.Location = new System.Drawing.Point(28, 0);
+            this.edtPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edtPage.Maximum = 2147483647D;
+            this.edtPage.Minimum = 1D;
+            this.edtPage.Name = "edtPage";
+            this.edtPage.Padding = new System.Windows.Forms.Padding(5);
+            this.edtPage.Size = new System.Drawing.Size(53, 29);
+            this.edtPage.TabIndex = 1;
+            this.edtPage.Text = "10";
+            this.edtPage.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            this.edtPage.Type = Sunny.UI.UITextBox.UIEditType.Integer;
+            //
+            // btnSelect
+            //
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelect.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSelect.Location = new System.Drawing.Point(111, 0);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(61, 29);
+            this.btnSelect.Symbol = 0;
+            this.btnSelect.TabIndex = 3;
+            this.btnSelect.Text = "确定";
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            //
+            // uiLabel2
+            //
+            this.uiLabel2.AutoSize = true;
+            this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel2.Location = new System.Drawing.Point(81, 4);
+            this.uiLabel2.Name = "uiLabel2";
+            this.uiLabel2.Size = new System.Drawing.Size(23, 20);
+            this.uiLabel2.TabIndex = 2;
+            this.uiLabel2.Text = "页";
+            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             //
             // uiLabel1
             //
-            uiLabel1.AutoSize = true;
-            uiLabel1.BackColor = Color.Transparent;
-            uiLabel1.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel1.Location = new Point(3, 4);
-            uiLabel1.Name = "uiLabel1";
-            uiLabel1.Size = new Size(37, 20);
-            uiLabel1.TabIndex = 0;
-            uiLabel1.Text = "到第";
-            uiLabel1.TextAlign = ContentAlignment.MiddleLeft;
+            this.uiLabel1.AutoSize = true;
+            this.uiLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel1.Location = new System.Drawing.Point(5, 4);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(23, 20);
+            this.uiLabel1.TabIndex = 0;
+            this.uiLabel1.Text = "第";
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             //
             // cb1
             //
-            cb1.DropDownStyle = UIDropDownStyle.DropDownList;
-            cb1.FillColor = Color.White;
-            cb1.Font = new Font("微软雅黑", 12F);
-            cb1.Items.AddRange(new object[]
-            {
-                "20条/页",
-                "50条/页",
-                "100条/页",
-                "200条/页"
-            });
-            cb1.Location = new Point(906, 3);
-            cb1.Margin = new Padding(4, 5, 4, 5);
-            cb1.MinimumSize = new Size(63, 0);
-            cb1.Name = "cb1";
-            cb1.Padding = new Padding(0, 0, 30, 0);
-            cb1.Size = new Size(103, 29);
-            cb1.TabIndex = 19;
-            cb1.TextAlignment = ContentAlignment.MiddleLeft;
-            cb1.Visible = false;
+            this.cb1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.cb1.FillColor = System.Drawing.Color.White;
+            this.cb1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cb1.Items.AddRange(new object[] {
+            "20条/页",
+            "50条/页",
+            "100条/页",
+            "200条/页"});
+            this.cb1.Location = new System.Drawing.Point(951, 3);
+            this.cb1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb1.MinimumSize = new System.Drawing.Size(63, 0);
+            this.cb1.Name = "cb1";
+            this.cb1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.cb1.Size = new System.Drawing.Size(103, 29);
+            this.cb1.TabIndex = 19;
+            this.cb1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cb1.Visible = false;
             //
             // UIPagination
             //
-            Controls.Add(cb1);
-            Controls.Add(p1);
-            Controls.Add(b16);
-            Controls.Add(b15);
-            Controls.Add(b14);
-            Controls.Add(b13);
-            Controls.Add(b12);
-            Controls.Add(b11);
-            Controls.Add(b10);
-            Controls.Add(b9);
-            Controls.Add(b8);
-            Controls.Add(b7);
-            Controls.Add(b6);
-            Controls.Add(b5);
-            Controls.Add(b4);
-            Controls.Add(b3);
-            Controls.Add(b2);
-            Controls.Add(b1);
-            Controls.Add(b0);
-            Name = "UIPagination";
-            RectSides = ToolStripStatusLabelBorderSides.None;
-            Size = new Size(1100, 35);
-            p1.ResumeLayout(false);
-            p1.PerformLayout();
-            ResumeLayout(false);
+            this.Controls.Add(this.cb1);
+            this.Controls.Add(this.p1);
+            this.Controls.Add(this.b16);
+            this.Controls.Add(this.b15);
+            this.Controls.Add(this.b14);
+            this.Controls.Add(this.b13);
+            this.Controls.Add(this.b12);
+            this.Controls.Add(this.b11);
+            this.Controls.Add(this.b10);
+            this.Controls.Add(this.b9);
+            this.Controls.Add(this.b8);
+            this.Controls.Add(this.b7);
+            this.Controls.Add(this.b6);
+            this.Controls.Add(this.b5);
+            this.Controls.Add(this.b4);
+            this.Controls.Add(this.b3);
+            this.Controls.Add(this.b2);
+            this.Controls.Add(this.b1);
+            this.Controls.Add(this.b0);
+            this.Name = "UIPagination";
+            this.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.Size = new System.Drawing.Size(1139, 35);
+            this.p1.ResumeLayout(false);
+            this.p1.PerformLayout();
+            this.ResumeLayout(false);
         }
 
         #endregion InitializeComponent
@@ -630,11 +647,12 @@ namespace Sunny.UI
         private void SetShowButton(int buttonIdx, int pageIdx, int activeIdx)
         {
             buttons[buttonIdx].Symbol = 0;
-            buttons[buttonIdx].Text = pageIdx.ToString();
             buttons[buttonIdx].Tag = pageIdx;
             buttons[buttonIdx].Visible = true;
             buttons[buttonIdx].TagString = "";
             buttons[buttonIdx].Selected = activeIdx == pageIdx;
+            SetButtonWidth(buttons[buttonIdx], pageIdx.ToString());
+            buttons[buttonIdx].Left = buttons[buttonIdx - 1].Right + buttonInterval - 1;
             if (buttons[buttonIdx].Selected) buttons[buttonIdx].BringToFront();
         }
 
@@ -646,6 +664,18 @@ namespace Sunny.UI
             buttons[buttonIdx].Visible = true;
             buttons[buttonIdx].TagString = tagString;
             buttons[buttonIdx].Selected = false;
+            buttons[buttonIdx].Left = buttons[buttonIdx - 1].Right + buttonInterval - 1;
+            if (buttons[buttonIdx].Width != 29) buttons[buttonIdx].Width = 29;
+        }
+
+        private void SetButtonWidth(UISymbolButton button, string text)
+        {
+            if (button.Text != text) button.Text = text;
+            int len = 29;
+            if (button.Text.Length >= 3) len = 36;
+            if (button.Text.Length >= 4) len = 44;
+            if (button.Text.Length >= 4) len = 52;
+            if (button.Width != len) button.Width = len;
         }
 
         private void SetHideButton(int beginIdx)
@@ -672,7 +702,7 @@ namespace Sunny.UI
                 activePage = 1;
                 SetShowButton(1, 1, 1);
                 SetHideButton(2);
-                b16.Left = b1.Right - 1;
+                b16.Left = b1.Right + buttonInterval - 1;
                 return;
             }
 
@@ -680,7 +710,7 @@ namespace Sunny.UI
             {
                 for (var i = 1; i <= PageCount; i++) SetShowButton(i, i, activePage);
 
-                b16.Left = buttons[PageCount].Right - 1;
+                b16.Left = buttons[PageCount].Right + buttonInterval - 1;
                 SetHideButton(PageCount + 1);
             }
             else
@@ -694,7 +724,7 @@ namespace Sunny.UI
                     SetShowButton(leftShow + 1, PagerCount - 2, ">>");
                     SetShowButton(leftShow + 2, PageCount, activePage);
                     SetHideButton(leftShow + 3);
-                    b16.Left = buttons[leftShow + 2].Right - 1;
+                    b16.Left = buttons[leftShow + 2].Right + buttonInterval - 1;
                     return;
                 }
 
@@ -712,7 +742,7 @@ namespace Sunny.UI
                         idx++;
                     }
 
-                    b16.Left = buttons[idx - 1].Right - 1;
+                    b16.Left = buttons[idx - 1].Right + buttonInterval - 1;
                     SetHideButton(idx);
                     return;
                 }
@@ -730,7 +760,7 @@ namespace Sunny.UI
 
                 SetShowButton(cIdx, PagerCount - 2, ">>");
                 SetShowButton(cIdx + 1, PageCount, activePage);
-                b16.Left = buttons[cIdx + 1].Right - 1;
+                b16.Left = buttons[cIdx + 1].Right + buttonInterval - 1;
                 SetHideButton(cIdx + 2);
             }
         }

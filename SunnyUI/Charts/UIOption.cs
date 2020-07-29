@@ -51,11 +51,18 @@ namespace Sunny.UI
 
         public readonly List<string> Data = new List<string>();
 
+        public readonly List<Color> Colors = new List<Color>();
+
         public int DataCount => Data.Count;
 
         public void AddData(string data)
         {
             Data.Add(data);
+        }
+
+        public void AddColor(Color color)
+        {
+            Colors.Add(color);
         }
     }
 

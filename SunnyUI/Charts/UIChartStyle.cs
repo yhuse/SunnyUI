@@ -32,6 +32,11 @@ namespace Sunny.UI
                 };
             }
         }
+
+        public Color GetColor(int index)
+        {
+            return SeriesColor[index % ColorCount];
+        }
     }
 
     public class UIDefaultChartStyle : UIChartStyle

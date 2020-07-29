@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -79,6 +80,11 @@ namespace Sunny.UI
             Data.Add(new UIPieSeriesData(name, value));
         }
 
+        public void AddData(string name, double value, Color color)
+        {
+            Data.Add(new UIPieSeriesData(name, value, color));
+        }
+
         public void Dispose()
         {
             Data.Clear();
@@ -91,7 +97,7 @@ namespace Sunny.UI
 
         public int Outer { get; set; }
 
-        public RadiusInOut(int inner,int outer)
+        public RadiusInOut(int inner, int outer)
         {
             Inner = inner;
             Outer = outer;
@@ -104,7 +110,7 @@ namespace Sunny.UI
 
         public UISeriesType Type { get; set; }
 
-        public RadiusInOut Radius { get; set; } = new RadiusInOut(50,70);
+        public RadiusInOut Radius { get; set; } = new RadiusInOut(50, 70);
 
         public UICenter Center { get; set; } = new UICenter(50, 50);
 
@@ -129,6 +135,10 @@ namespace Sunny.UI
 
         public double Value { get; set; }
 
+        public Color Color { get; set; }
+
+        public bool StyleCustomMode { get; set; }
+
         public UIPieSeriesData()
         {
         }
@@ -137,6 +147,14 @@ namespace Sunny.UI
         {
             Name = name;
             Value = value;
+        }
+
+        public UIPieSeriesData(string name, double value, Color color)
+        {
+            Name = name;
+            Value = value;
+            Color = color;
+            StyleCustomMode = true;
         }
     }
 
