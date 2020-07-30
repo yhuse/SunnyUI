@@ -31,11 +31,13 @@
             this.uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.uiGroupBox1 = new Sunny.UI.UIGroupBox();
+            this.uiTitlePanel2 = new Sunny.UI.UITitlePanel();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiTitlePanel2);
             this.PagePanel.Controls.Add(this.uiGroupBox1);
             this.PagePanel.Controls.Add(this.uiPanel1);
             this.PagePanel.Controls.Add(this.uiTitlePanel1);
@@ -74,6 +76,19 @@
             this.uiGroupBox1.TabIndex = 4;
             this.uiGroupBox1.Text = "uiGroupBox1";
             // 
+            // uiTitlePanel2
+            // 
+            this.uiTitlePanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTitlePanel2.ForeColor = System.Drawing.Color.White;
+            this.uiTitlePanel2.Location = new System.Drawing.Point(331, 230);
+            this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel2.Name = "uiTitlePanel2";
+            this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel2.ShowCollapse = true;
+            this.uiTitlePanel2.Size = new System.Drawing.Size(270, 180);
+            this.uiTitlePanel2.TabIndex = 5;
+            this.uiTitlePanel2.Text = "uiTitlePanel2";
+            // 
             // FPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -91,5 +106,6 @@
         private UITitlePanel uiTitlePanel1;
         private UIPanel uiPanel1;
         private UIGroupBox uiGroupBox1;
+        private UITitlePanel uiTitlePanel2;
     }
 }

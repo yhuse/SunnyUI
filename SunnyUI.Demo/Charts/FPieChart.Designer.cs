@@ -68,7 +68,7 @@
             this.PieChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.PieChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.PieChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.PieChart.LegendFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.PieChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PieChart.Location = new System.Drawing.Point(30, 48);
             this.PieChart.Name = "PieChart";
             this.PieChart.Option = null;

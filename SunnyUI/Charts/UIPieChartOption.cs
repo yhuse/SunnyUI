@@ -83,8 +83,8 @@ namespace Sunny.UI
         {
             if (DataColorChange != null)
             {
-                 Color color = DataColorChange.Invoke(value);
-                 Data.Add(new UIPieSeriesData(name, value,color));
+                Color color = DataColorChange.Invoke(value);
+                Data.Add(new UIPieSeriesData(name, value, color));
             }
             else
             {
@@ -149,7 +149,7 @@ namespace Sunny.UI
 
         public Color Color { get; set; }
 
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode { get; private set; }
 
         public UIPieSeriesData()
         {
@@ -159,6 +159,7 @@ namespace Sunny.UI
         {
             Name = name;
             Value = value;
+            StyleCustomMode = false;
         }
 
         public UIPieSeriesData(string name, double value, Color color)

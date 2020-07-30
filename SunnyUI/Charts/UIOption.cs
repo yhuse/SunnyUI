@@ -60,9 +60,21 @@ namespace Sunny.UI
             Data.Add(data);
         }
 
-        public void AddColor(Color color)
+        public void AddData(string data, Color color)
         {
+            Data.Add(data);
             Colors.Add(color);
+        }
+
+        public bool HaveCustomColor(int index)
+        {
+            return Colors.Count > 0 && index >= 0 && index < Colors.Count;
+        }
+
+        public void Clear()
+        {
+            Data.Clear();
+            Colors.Clear();
         }
     }
 

@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -40,7 +41,18 @@ namespace Sunny.UI
             {
                 _titleHeight = value;
                 Padding = new Padding(0, value, 0, 0);
+                CalcSystemBoxPos();
                 Invalidate();
+            }
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+
+            if (e.Control.Top < TitleHeight)
+            {
+                e.Control.Top = TitleHeight + 1;
             }
         }
 
@@ -49,6 +61,7 @@ namespace Sunny.UI
             InitializeComponent();
             ShowText = false;
             foreColor = Color.White;
+            CalcSystemBoxPos();
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
@@ -119,6 +132,39 @@ namespace Sunny.UI
                     g.DrawString(Text, Font, color, Width - _titleInterval - sf.Width, (TitleHeight - sf.Height) / 2.0f);
                     break;
             }
+
+            if (ShowCollapse)
+            {
+                if (InControlBox)
+                {
+                    if (ShowRadius)
+                        g.FillRoundRectangle(UIStyles.ActiveStyleColor.ButtonFillHoverColor, ControlBoxRect, 5);
+                    else
+                        g.FillRectangle(UIStyles.ActiveStyleColor.ButtonFillHoverColor, ControlBoxRect);
+                }
+
+                g.DrawFontImage(Collapsed ? 61703 : 61702, 24, color,
+                    new Rectangle(ControlBoxRect.Left + 2, ControlBoxRect.Top, ControlBoxRect.Width, ControlBoxRect.Height));
+            }
+        }
+
+        private bool InControlBox;
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            bool inControlBox = e.Location.InRect(ControlBoxRect);
+            if (inControlBox != InControlBox)
+            {
+                InControlBox = inControlBox;
+                if (ShowCollapse) Invalidate();
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            InControlBox = false;
+            Invalidate();
         }
 
         private int _titleInterval = 10;
@@ -162,6 +208,60 @@ namespace Sunny.UI
             }
 
             return graphicsPath;
+        }
+
+        private Rectangle ControlBoxRect;
+
+        private void CalcSystemBoxPos()
+        {
+            ControlBoxRect = new Rectangle(Width - 6 - 28, TitleHeight / 2 - 14, 28, 28);
+        }
+
+        private bool showCollapse;
+
+        [Description("是否打开缩放按钮"), Category("SunnyUI"), DefaultValue(false)]
+        public bool ShowCollapse
+        {
+            get => showCollapse;
+            set
+            {
+                showCollapse = value;
+                Invalidate();
+            }
+        }
+
+        private bool collapsed;
+        private int rowHeight = 180;
+
+        [Description("是否缩放"), Category("SunnyUI"), DefaultValue(false)]
+        public bool Collapsed
+        {
+            get => collapsed;
+            set
+            {
+                if (value)
+                {
+                    rowHeight = Height;
+                    Height = TitleHeight;
+                }
+                else
+                {
+                    Height = rowHeight;
+                }
+
+                collapsed = value;
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            if (ShowCollapse && e.Location.InRect(ControlBoxRect))
+            {
+                Collapsed = !Collapsed;
+            }
         }
     }
 }

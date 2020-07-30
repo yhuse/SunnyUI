@@ -201,5 +201,16 @@ namespace Sunny.UI
         public delegate Color OnDataColorChangeEventHandler(double data);
 
         public event OnDataColorChangeEventHandler DataColorChange;
+
+        public bool HaveCustomColor(int index)
+        {
+            return Colors.Count > 0 && index >= 0 && index < Colors.Count;
+        }
+
+        public void Clear()
+        {
+            Data.Clear();
+            Colors.Clear();
+        }
     }
 }
