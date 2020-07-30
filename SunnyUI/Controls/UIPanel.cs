@@ -581,9 +581,14 @@ namespace Sunny.UI
                 if (_textAlignment != value)
                 {
                     _textAlignment = value;
+                    TextAlignmentChange?.Invoke(this,value);
                     Invalidate();
                 }
             }
         }
+
+        public delegate void OnTextAlignmentChange(object sender, ContentAlignment alignment);
+
+        public event OnTextAlignmentChange TextAlignmentChange;
     }
 }

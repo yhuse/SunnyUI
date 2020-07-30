@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
+            this.uiPagination1 = new Sunny.UI.UIPagination();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -40,6 +41,8 @@
             // PagePanel
             // 
             this.PagePanel.Controls.Add(this.uiDataGridView1);
+            this.PagePanel.Controls.Add(this.uiPagination1);
+            this.PagePanel.Size = new System.Drawing.Size(861, 415);
             // 
             // uiDataGridView1
             // 
@@ -85,15 +88,32 @@
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uiDataGridView1.ShowRect = false;
-            this.uiDataGridView1.Size = new System.Drawing.Size(800, 415);
+            this.uiDataGridView1.Size = new System.Drawing.Size(861, 380);
             this.uiDataGridView1.TabIndex = 0;
             this.uiDataGridView1.TagString = null;
+            // 
+            // uiPagination1
+            // 
+            this.uiPagination1.ActivePage = 500;
+            this.uiPagination1.CausesValidation = false;
+            this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiPagination1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPagination1.Location = new System.Drawing.Point(0, 380);
+            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPagination1.Name = "uiPagination1";
+            this.uiPagination1.PagerCount = 11;
+            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiPagination1.Size = new System.Drawing.Size(861, 35);
+            this.uiPagination1.TabIndex = 1;
+            this.uiPagination1.Text = "uiDataGridPage1";
+            this.uiPagination1.TotalCount = 40000;
+            this.uiPagination1.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.uiPagination1_PageChanged);
             // 
             // FDataGridView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(861, 450);
             this.Name = "FDataGridView";
             this.Symbol = 61646;
             this.Text = "DataGridView";
@@ -107,5 +127,6 @@
         #endregion
 
         private UIDataGridView uiDataGridView1;
+        private UIPagination uiPagination1;
     }
 }

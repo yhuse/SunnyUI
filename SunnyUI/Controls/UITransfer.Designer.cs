@@ -47,7 +47,6 @@ namespace Sunny.UI
             this.b1.Margin = new System.Windows.Forms.Padding(0);
             this.b1.Name = "b1";
             this.b1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.b1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.b1.Size = new System.Drawing.Size(44, 32);
             this.b1.Symbol = 61697;
             this.b1.TabIndex = 3;
@@ -63,7 +62,6 @@ namespace Sunny.UI
             this.b2.Margin = new System.Windows.Forms.Padding(0);
             this.b2.Name = "b2";
             this.b2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.b2.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.b2.Size = new System.Drawing.Size(44, 32);
             this.b2.Symbol = 61701;
             this.b2.TabIndex = 4;
@@ -79,7 +77,6 @@ namespace Sunny.UI
             this.b3.Margin = new System.Windows.Forms.Padding(0);
             this.b3.Name = "b3";
             this.b3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.b3.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.b3.Size = new System.Drawing.Size(44, 32);
             this.b3.Symbol = 61700;
             this.b3.TabIndex = 5;
@@ -95,7 +92,6 @@ namespace Sunny.UI
             this.b4.Margin = new System.Windows.Forms.Padding(0);
             this.b4.Name = "b4";
             this.b4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.b4.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.b4.Size = new System.Drawing.Size(44, 32);
             this.b4.Symbol = 61696;
             this.b4.TabIndex = 6;

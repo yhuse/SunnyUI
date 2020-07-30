@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2020-07-26: V2.2.6 增加Selected及选中颜色配置
 ******************************************************************************/
 
 using System;
@@ -45,12 +46,15 @@ namespace Sunny.UI
 
             foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
             forePressColor = UIStyles.Blue.ButtonForePressColor;
+            foreSelectedColor = UIStyles.Blue.ButtonForeSelectedColor;
 
             rectHoverColor = UIStyles.Blue.RectHoverColor;
             rectPressColor = UIStyles.Blue.RectPressColor;
+            rectSelectedColor = UIStyles.Blue.RectSelectedColor;
 
             fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
+            fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
         }
 
         private bool isClick;
@@ -129,6 +133,18 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnPaintFill(Graphics g, GraphicsPath path)
+        {
+            if (!selected)
+            {
+                base.OnPaintFill(g, path);
+            }
+            else
+            {
+                g.FillPath(FillSelectedColor,path);
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -157,9 +173,7 @@ namespace Sunny.UI
                 path.Dispose();
             }
         }
-
-        private bool selected;
-
+        
         /// <summary>
         /// 是否选中
         /// </summary>
@@ -189,6 +203,10 @@ namespace Sunny.UI
             fillPressColor = uiColor.ButtonFillPressColor;
             rectPressColor = uiColor.RectPressColor;
             forePressColor = uiColor.ButtonForePressColor;
+
+            fillSelectedColor = uiColor.ButtonFillSelectedColor;
+            foreSelectedColor = uiColor.ButtonForeSelectedColor;
+            rectSelectedColor = uiColor.RectSelectedColor;
 
             Invalidate();
         }
@@ -289,11 +307,25 @@ namespace Sunny.UI
             set => SetRectPressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "64, 105, 225")]
-        public Color SelectedColor
+        [DefaultValue(typeof(Color), "74, 131, 229")]
+        public Color FillSelectedColor
         {
-            get => selectedColor;
-            set => SetSelectedColor(value);
+            get => fillSelectedColor;
+            set => SetFillSelectedColor(value);
+        }
+
+        [DefaultValue(typeof(Color), "White")]
+        public Color ForeSelectedColor
+        {
+            get => foreSelectedColor;
+            set => SetForeSelectedColor(value);
+        }
+
+        [DefaultValue(typeof(Color), "74, 131, 229")]
+        public Color RectSelectedColor
+        {
+            get => rectSelectedColor;
+            set => SetRectSelectedColor(value);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

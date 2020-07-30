@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2020-07-26: V2.2.6 增加Image属性，增加图片和文字的摆放位置
 ******************************************************************************/
 
 using System;
@@ -35,6 +36,11 @@ namespace Sunny.UI
         private int _symbolSize = 24;
         private int _imageInterval = 2;
 
+        public UISymbolButton()
+        {
+            ShowText = false;
+        }
+
         [DefaultValue(24)]
         public int SymbolSize
         {
@@ -43,6 +49,22 @@ namespace Sunny.UI
             {
                 _symbolSize = Math.Max(value, 16);
                 _symbolSize = Math.Min(value, 64);
+                Invalidate();
+            }
+        }
+
+        [DefaultValue(null)]
+        public Image Image { get; set; }
+
+        private ContentAlignment imageAlign = ContentAlignment.MiddleCenter;
+
+        [DefaultValue(ContentAlignment.MiddleCenter)]
+        public ContentAlignment ImageAlign
+        {
+            get => imageAlign;
+            set
+            {
+                imageAlign = value;
                 Invalidate();
             }
         }
@@ -137,62 +159,188 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnPaintFore(Graphics g, GraphicsPath path)
-        {
-            Padding = new Padding(_symbolSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
-            //填充文字
-            Color color = GetForeColor();
-            g.DrawString(Text, Font, color, Size, Padding, TextAlign);
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             //重绘父类
             base.OnPaint(e);
 
+            SizeF ImageSize = new SizeF(0, 0);
+            if (Symbol > 0)
+                ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
+            if (Image != null)
+                ImageSize = Image.Size;
+
             //字体图标
             Color color = GetForeColor();
-
-            float left = 0;
-            float top = 0;
-            SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
             SizeF TextSize = e.Graphics.MeasureString(Text, Font);
 
-            if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.TopRight)
+            if (ImageAlign == ContentAlignment.MiddleCenter && TextAlign == ContentAlignment.MiddleCenter)
             {
-                top = Padding.Top;
-            }
+                if (ImageSize.Width.Equals(0))
+                {
+                    if (TextSize.Width > 0)
+                        e.Graphics.DrawString(Text, Font, color, (Width - TextSize.Width) / 2.0f, (Height - TextSize.Height) / 2.0f);
+                }
+                else if (TextSize.Width.Equals(0))
+                {
+                    if (ImageSize.Width > 0)
+                    {
+                        if (Symbol > 0 && Image == null)
+                        {
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                                new RectangleF((Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f,
+                                    ImageSize.Width, ImageSize.Height));
+                        }
 
-            if (TextAlign == ContentAlignment.MiddleCenter || TextAlign == ContentAlignment.MiddleLeft || TextAlign == ContentAlignment.MiddleRight)
-            {
-                top = Padding.Top + (Height - Padding.Top - Padding.Bottom - ImageSize.Height) / 2.0f;
-            }
+                        if (Image != null)
+                        {
+                            e.Graphics.DrawImage(Image, (Width - Image.Width) / 2.0f, (Height - Image.Height) / 2.0f,
+                                ImageSize.Width, ImageSize.Height);
+                        }
+                    }
+                }
+                else
+                {
+                    float allWidth = ImageSize.Width + ImageInterval + TextSize.Width;
 
-            if (TextAlign == ContentAlignment.BottomCenter || TextAlign == ContentAlignment.BottomLeft || TextAlign == ContentAlignment.BottomRight)
-            {
-                top = Height - Padding.Bottom - ImageSize.Height;
-            }
+                    if (Symbol > 0 && Image == null)
+                    {
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                            new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height));
+                    }
 
-            if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.MiddleCenter || TextAlign == ContentAlignment.BottomCenter)
-            {
-                left = Padding.Left + (Width - TextSize.Width - Padding.Left - Padding.Right) / 2.0f;
-                left = left - ImageInterval - ImageSize.Width;
-            }
+                    if (Image != null)
+                    {
+                        e.Graphics.DrawImage(Image, (Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f,
+                            ImageSize.Width, ImageSize.Height);
+                    }
 
-            if (TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.MiddleLeft || TextAlign == ContentAlignment.BottomLeft)
-            {
-                left = ImageInterval;
+                    e.Graphics.DrawString(Text, Font, color, (Width - allWidth) / 2.0f + ImageSize.Width + ImageInterval,
+                        (Height - TextSize.Height) / 2.0f);
+                }
             }
-
-            if (TextAlign == ContentAlignment.TopRight || TextAlign == ContentAlignment.MiddleRight || TextAlign == ContentAlignment.BottomRight)
-            {
-                left = Width - Padding.Right - TextSize.Width - ImageInterval - ImageSize.Width;
-            }
-
-            if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
             else
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, color, left, top);
+            {
+                float left = 0;
+                float top = 0;
+
+                if (ImageSize.Width > 0)
+                {
+                    switch (ImageAlign)
+                    {
+                        case ContentAlignment.TopLeft:
+                            left = Padding.Left;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.TopCenter:
+                            left = (Width - ImageSize.Width) / 2.0f;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.TopRight:
+                            left = Width - Padding.Right - ImageSize.Width;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.MiddleLeft:
+                            left = Padding.Left;
+                            top = (Height - ImageSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.MiddleCenter:
+                            left = (Width - ImageSize.Width) / 2.0f;
+                            top = (Height - ImageSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.MiddleRight:
+                            left = Width - Padding.Right - ImageSize.Width;
+                            top = (Height - ImageSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.BottomLeft:
+                            left = Padding.Left;
+                            top = Height - Padding.Bottom - ImageSize.Height;
+                            break;
+
+                        case ContentAlignment.BottomCenter:
+                            left = (Width - ImageSize.Width) / 2.0f;
+                            top = Height - Padding.Bottom - ImageSize.Height;
+                            break;
+
+                        case ContentAlignment.BottomRight:
+                            left = Width - Padding.Right - ImageSize.Width;
+                            top = Height - Padding.Bottom - ImageSize.Height;
+                            break;
+                    }
+
+                    if (Symbol > 0 && Image == null)
+                    {
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                            new RectangleF(left, top, ImageSize.Width, ImageSize.Height));
+                    }
+
+                    if (Image != null)
+                    {
+                        e.Graphics.DrawImage(Image, left, top, ImageSize.Width, ImageSize.Height);
+                    }
+                }
+
+                left = 0;
+                top = 0;
+                if (TextSize.Width > 0)
+                {
+                    switch (TextAlign)
+                    {
+                        case ContentAlignment.TopLeft:
+                            left = Padding.Left;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.TopCenter:
+                            left = (Width - TextSize.Width) / 2.0f;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.TopRight:
+                            left = Width - Padding.Right - TextSize.Width;
+                            top = Padding.Top;
+                            break;
+
+                        case ContentAlignment.MiddleLeft:
+                            left = Padding.Left;
+                            top = (Height - TextSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.MiddleCenter:
+                            left = (Width - TextSize.Width) / 2.0f;
+                            top = (Height - TextSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.MiddleRight:
+                            left = Width - Padding.Right - TextSize.Width;
+                            top = (Height - TextSize.Height) / 2.0f;
+                            break;
+
+                        case ContentAlignment.BottomLeft:
+                            left = Padding.Left;
+                            top = Height - Padding.Bottom - TextSize.Height;
+                            break;
+
+                        case ContentAlignment.BottomCenter:
+                            left = (Width - TextSize.Width) / 2.0f;
+                            top = Height - Padding.Bottom - TextSize.Height;
+                            break;
+
+                        case ContentAlignment.BottomRight:
+                            left = Width - Padding.Right - TextSize.Width;
+                            top = Height - Padding.Bottom - TextSize.Height;
+                            break;
+                    }
+
+                    e.Graphics.DrawString(Text, Font, color, left, top);
+                }
+            }
         }
     }
 }

@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 功能增强、美化
  * 2020-07-15: V2.2.6 更改默认配置为原生
+ * 2020-07-18: V2.2.6 重绘水平滚动条
 ******************************************************************************/
 
 using System;
@@ -463,6 +464,19 @@ namespace Sunny.UI
         public DataGridViewColumn AddCheckBoxColumn(string columnName, string dataPropertyName, int fillWeight = 100, bool readOnly = true)
         {
             DataGridViewColumn column = new DataGridViewCheckBoxColumn();
+            column.HeaderText = columnName;
+            column.DataPropertyName = dataPropertyName;
+            column.Name = columnName;
+            column.ReadOnly = readOnly;
+            column.FillWeight = fillWeight;
+            column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Columns.Add(column);
+            return column;
+        }
+
+        public DataGridViewColumn AddButtonColumn(string columnName, string dataPropertyName, int fillWeight = 100, bool readOnly = true)
+        {
+            DataGridViewColumn column = new DataGridViewButtonColumn();
             column.HeaderText = columnName;
             column.DataPropertyName = dataPropertyName;
             column.Name = columnName;

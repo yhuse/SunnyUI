@@ -82,6 +82,10 @@ namespace Sunny.UI
 
                 for (int j = 0; j < series.Data.Count; j++)
                 {
+                    Color color = ChartStyle.GetColor(i);
+                    if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
+                        color = series.Colors[j];
+
                     if (YAxisStart >= 0)
                     {
                         float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
@@ -91,7 +95,8 @@ namespace Sunny.UI
                             Rect = new RectangleF(
                                 barX + x1 * (i + 1) + x2 * i,
                                 DrawOrigin.Y - h,
-                                x2, h)
+                                x2, h),
+                            Color = color
                         });
                     }
                     else if (YAxisEnd <= 0)
@@ -102,7 +107,8 @@ namespace Sunny.UI
                             Rect = new RectangleF(
                                 barX + x1 * (i + 1) + x2 * i,
                                 BarOption.Grid.Top + 1,
-                                x2, h - 1)
+                                x2, h - 1),
+                            Color = color
                         });
                     }
                     else
@@ -131,7 +137,8 @@ namespace Sunny.UI
                                 Rect = new RectangleF(
                                     barX + x1 * (i + 1) + x2 * i,
                                     DrawOrigin.Y - lowH - h,
-                                    x2, h)
+                                    x2, h),
+                                Color = color
                             });
                         }
                         else
@@ -142,7 +149,8 @@ namespace Sunny.UI
                                 Rect = new RectangleF(
                                     barX + x1 * (i + 1) + x2 * i,
                                     DrawOrigin.Y - lowH + 1,
-                                    x2, h - 1)
+                                    x2, h - 1),
+                                Color = color
                             });
                         }
                     }
@@ -445,11 +453,11 @@ namespace Sunny.UI
                 double ymax = YAxisEnd * YAxisInterval;
                 float pos = (float)((line.Value - ymin) * (Height - BarOption.Grid.Top - BarOption.Grid.Bottom) / (ymax - ymin));
                 pos = (Height - BarOption.Grid.Bottom - pos);
-                using (Pen pn = new Pen(line.Color,line.Size))
+                using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - BarOption.Grid.Right, pos);
                 }
-               
+
                 SizeF sf = g.MeasureString(line.Name, SubFont);
 
                 if (line.Left == UILeftAlignment.Left)
@@ -470,7 +478,7 @@ namespace Sunny.UI
                 var bars = Bars[i];
                 foreach (var info in bars)
                 {
-                    g.FillRectangle(ChartStyle.SeriesColor[i], info.Rect);
+                    g.FillRectangle(info.Color, info.Rect);
                 }
             }
 
@@ -487,6 +495,8 @@ namespace Sunny.UI
             public string Tips { get; set; }
 
             public SizeF Size { get; set; }
+
+            public Color Color { get; set; }
         }
     }
 }

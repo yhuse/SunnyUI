@@ -57,6 +57,7 @@ namespace Sunny.UI
             edit.MouseEnter += Edit_MouseEnter;
             edit.Click += Edit_Click;
             edit.DoubleClick += Edit_DoubleClick;
+            edit.Leave += Edit_Leave;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -74,6 +75,28 @@ namespace Sunny.UI
             SizeChange();
 
             editCursor = Cursor;
+            TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private void Edit_Leave(object sender, EventArgs e)
+        {
+            Leave?.Invoke(sender,e);
+        }
+
+        private void UITextBox_TextAlignmentChange(object sender, ContentAlignment alignment)
+        {
+            if (edit==null) return;
+            if (alignment == ContentAlignment.TopLeft || alignment == ContentAlignment.MiddleLeft ||
+                alignment == ContentAlignment.BottomLeft)
+                edit.TextAlign = HorizontalAlignment.Left;
+
+            if (alignment == ContentAlignment.TopCenter || alignment == ContentAlignment.MiddleCenter ||
+                alignment == ContentAlignment.BottomCenter)
+                edit.TextAlign = HorizontalAlignment.Center;
+
+            if (alignment == ContentAlignment.TopRight || alignment == ContentAlignment.MiddleRight ||
+                alignment == ContentAlignment.BottomRight)
+                edit.TextAlign = HorizontalAlignment.Right;
         }
 
         private void Edit_DoubleClick(object sender, EventArgs e)
@@ -223,6 +246,8 @@ namespace Sunny.UI
         public new event KeyEventHandler KeyUp;
 
         public new event KeyPressEventHandler KeyPress;
+
+        public new event EventHandler Leave; 
 
         private void EditTextChanged(object s, EventArgs e)
         {

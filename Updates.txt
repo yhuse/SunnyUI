@@ -1,5 +1,22 @@
 + 增加； - 删除； * 修改 
 
+2020-07-30 
+* UITitlePanel：增加可收缩选项
+
+2020-07-29
+* UIPagination：增加DataSource切换事件，TotalCount总数，PageCount总页数，ActivePage选中页码  
+* UIPieChart,UIBarChart：增加序列自定义颜色
+
+2020-07-28
++ UIPagination：新增分页控件
+
+2020-07-26 
+* UISymbolButton：增加Image属性，增加图片和文字的摆放位置
+* UIButton：增加Selected及选中颜色配置
+
+2020-07-25
+* UIToolTip：更新绘制
+
 2020-07-21
 + UIToolTip：新增控件，可修改字体
 * UIForm.cs 支持点击窗体任务栏图标，可以进行最小化

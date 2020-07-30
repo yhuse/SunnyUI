@@ -327,7 +327,7 @@ namespace Sunny.UI
             frm.ShowDialog();
             if (frm.IsOK)
             {
-                value = frm.Editor.IntValue;
+                value = frm.Editor.DoubleValue;
                 return true;
             }
 
@@ -352,7 +352,7 @@ namespace Sunny.UI
             frm.ShowDialog();
             if (frm.IsOK)
             {
-                value = frm.Editor.IntValue;
+                value = frm.Editor.DoubleValue;
                 return true;
             }
 

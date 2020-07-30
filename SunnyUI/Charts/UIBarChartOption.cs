@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -171,16 +172,45 @@ namespace Sunny.UI
 
         public UISeriesType Type => UISeriesType.Bar;
 
-        public List<double> Data = new List<double>();
+        public readonly List<double> Data = new List<double>();
+
+        public readonly List<Color> Colors = new List<Color>();
 
         public void AddData(double value)
         {
             Data.Add(value);
+
+            if (DataColorChange != null)
+            {
+                Colors.Add(DataColorChange.Invoke(value));
+            }
+        }
+
+        public void AddData(double value, Color color)
+        {
+            Data.Add(value);
+            Colors.Add(color);
         }
 
         public void Dispose()
         {
             Data.Clear();
+            Colors.Clear();
+        }
+
+        public delegate Color OnDataColorChangeEventHandler(double data);
+
+        public event OnDataColorChangeEventHandler DataColorChange;
+
+        public bool HaveCustomColor(int index)
+        {
+            return Colors.Count > 0 && index >= 0 && index < Colors.Count;
+        }
+
+        public void Clear()
+        {
+            Data.Clear();
+            Colors.Clear();
         }
     }
 }

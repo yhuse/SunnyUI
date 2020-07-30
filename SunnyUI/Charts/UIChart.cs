@@ -301,18 +301,23 @@ namespace Sunny.UI
             {
                 var data = legend.Data[i];
                 SizeF sf = g.MeasureString(data, LegendFont);
+                Color color = ChartStyle.GetColor(i);
+
+                if (legend.Colors.Count > 0 && i >= 0 && i < legend.Colors.Count)
+                    color = legend.Colors[i];
+
                 if (legend.Orient == UIOrient.Horizontal)
                 {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, startleft + 20, top);
+                    g.FillRoundRectangle(color, (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, color, startleft + 20, top);
                     startleft += 22;
                     startleft += sf.Width;
                 }
 
                 if (legend.Orient == UIOrient.Vertical)
                 {
-                    g.FillRoundRectangle(ChartStyle.SeriesColor[i % ChartStyle.ColorCount], (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, ChartStyle.ForeColor, left + 20, starttop);
+                    g.FillRoundRectangle(color, (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, color, left + 20, starttop);
                     starttop += oneHeight;
                 }
             }
