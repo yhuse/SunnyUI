@@ -93,6 +93,11 @@ namespace Sunny.UI
 
         public void AddPage(UIPage page) => Helper.AddPage(page);
 
+        public void AddPages(params UIPage[] pages)
+        {
+            foreach (var page in pages) AddPage(page);
+        }
+
         public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
 
         public void AddPage(int pageIndex, UITabControlMenu page) => Helper.AddPage(pageIndex, page);
