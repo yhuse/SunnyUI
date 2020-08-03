@@ -233,6 +233,8 @@ namespace Sunny.UI
 
         private bool collapsed;
         private int rowHeight = 180;
+        private bool resizing;
+
 
         [Description("是否缩放"), Category("SunnyUI"), DefaultValue(false)]
         public bool Collapsed
@@ -242,8 +244,9 @@ namespace Sunny.UI
             {
                 if (value)
                 {
-                    rowHeight = Height;
+                    resizing = true;
                     Height = TitleHeight;
+                    resizing = false;
                 }
                 else
                 {
@@ -257,12 +260,32 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
-
             if (ShowCollapse && e.Location.InRect(ControlBoxRect))
             {
                 Collapsed = !Collapsed;
             }
+
+            base.OnMouseClick(e);
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            CalcSystemBoxPos();
+            if (!resizing)
+            {
+                rowHeight = Height;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            if (ShowCollapse && e.Location.Y <= TitleHeight)
+            {
+                Collapsed = !Collapsed;
+            }
+
+            base.OnMouseDoubleClick(e);
         }
     }
 }

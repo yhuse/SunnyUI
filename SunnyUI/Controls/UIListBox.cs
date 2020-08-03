@@ -341,7 +341,7 @@ namespace Sunny.UI
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            base.OnMouseWheel(e);
+/*            base.OnMouseWheel(e);
             if (Bar.Visible)
             {
                 var si = ScrollBarInfo.GetInfo(Handle);
@@ -359,7 +359,7 @@ namespace Sunny.UI
                         ScrollBarInfo.ScrollDown(Handle);
                     }
                 }
-            }
+            }*/
 
             SetScrollInfo();
         }
