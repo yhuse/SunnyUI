@@ -188,17 +188,34 @@ namespace Sunny.UI
             }
         }
 
+        //[Browsable(false)]
+        //public List<string> SelectedItems
+        //{
+        //    get
+        //    {
+        //        List<string> items = new List<string>();
+
+        //        foreach (var checkBox in boxes)
+        //        {
+        //            if (checkBox.Checked)
+        //                items.Add(checkBox.Text);
+        //        }
+
+        //        return items;
+        //    }
+        //}
+
         [Browsable(false)]
-        public List<string> SelectedItems
+        public List<object> SelectedItems
         {
             get
             {
-                List<string> items = new List<string>();
+                List<object> items = new List<object>();
 
-                foreach (var checkBox in boxes)
+                for (int i = 0; i < boxes.Count; i++)
                 {
-                    if (checkBox.Checked)
-                        items.Add(checkBox.Text);
+                    if (boxes[i].Checked)
+                        items.Add(Items[i]);
                 }
 
                 return items;

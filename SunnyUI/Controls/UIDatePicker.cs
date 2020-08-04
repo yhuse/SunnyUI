@@ -59,6 +59,8 @@ namespace Sunny.UI
             get => item.Date;
             set
             {
+                if (value< new DateTime(1753,1,1))
+                    value = new DateTime(1753,1,1);
                 Text = value.ToString(dateFormat);
                 item.Date = value;
             }
