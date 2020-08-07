@@ -588,11 +588,8 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int iy = x + y * 4;
-            if (iy<0 ||iy>=12) return;
-            if (years[iy] > 9999)
-                Year = 9999;
-            else
-                Year = years[iy];
+            if (iy < 0 || iy >= 12) return;
+            Year = years[iy] > 9999 ? 9999 : years[iy];
             activeYear = -1;
             TabControl.SelectedTab = tabPage2;
             p2.Invalidate();
@@ -614,7 +611,7 @@ namespace Sunny.UI
 
             e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
 
-            bool maxDrawed = false;
+            bool maxDrawer = false;
             for (int i = 0; i < 42; i++)
             {
                 int left = width * (i % 7);
@@ -624,14 +621,14 @@ namespace Sunny.UI
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
                 color = (days[i].DateString() == date.DateString()) ? UIColor.Blue : color;
 
-                if (!maxDrawed)
+                if (!maxDrawer)
                 {
                     e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
                 }
 
-                if (!maxDrawed && days[i].Date.Equals(DateTime.MaxValue.Date))
+                if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
                 {
-                    maxDrawed = true;
+                    maxDrawer = true;
                 }
             }
         }
@@ -659,7 +656,6 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = (e.Location.Y - 30) / height;
             int id = x + y * 7;
-
             if (id < 0 || id >= 42) return;
             date = days[id].Date;
             DoValueChanged(this, Date);

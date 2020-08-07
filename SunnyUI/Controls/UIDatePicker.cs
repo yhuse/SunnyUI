@@ -35,6 +35,38 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Value = DateTime.Now;
+            MaxLength = 10;
+            EditorLostFocus += UIDatePicker_LostFocus;
+            TextChanged += UIDatePicker_TextChanged;
+        }
+
+        private void UIDatePicker_TextChanged(object sender, EventArgs e)
+        {
+            if (Text.Length == MaxLength)
+            {
+                try
+                {
+                    DateTime dt = Text.ToDateTime(DateFormat);
+                    Value = dt;
+                }
+                catch
+                {
+                    Value = DateTime.Now.Date;
+                }
+            }
+        }
+
+        private void UIDatePicker_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt = Text.ToDateTime(DateFormat);
+                Value = dt;
+            }
+            catch
+            {
+                Value = DateTime.Now.Date;
+            }
         }
 
         public event OnDateTimeChanged ValueChanged;
@@ -59,8 +91,8 @@ namespace Sunny.UI
             get => item.Date;
             set
             {
-                if (value< new DateTime(1753,1,1))
-                    value = new DateTime(1753,1,1);
+                if (value < new DateTime(1753, 1, 1))
+                    value = new DateTime(1753, 1, 1);
                 Text = value.ToString(dateFormat);
                 item.Date = value;
             }
@@ -83,6 +115,7 @@ namespace Sunny.UI
             {
                 dateFormat = value;
                 Text = Value.ToString(dateFormat);
+                MaxLength = dateFormat.Length;
             }
         }
     }

@@ -59,6 +59,7 @@ namespace Sunny.UI
             edit.KeyDown += EditOnKeyDown;
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
+            edit.LostFocus += Edit_LostFocus;
             edit.Invalidate();
             Controls.Add(edit);
 
@@ -67,11 +68,20 @@ namespace Sunny.UI
             edit.BackColor = Color.White;
         }
 
+        private void Edit_LostFocus(object sender, EventArgs e)
+        {
+            EditorLostFocus?.Invoke(sender, e);
+        }
+
+        public event EventHandler EditorLostFocus;
+
         public new event KeyEventHandler KeyDown;
 
         public new event KeyEventHandler KeyUp;
 
         public new event KeyPressEventHandler KeyPress;
+
+        public new event EventHandler TextChanged;
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
@@ -203,6 +213,7 @@ namespace Sunny.UI
         private void EditTextChanged(object s, EventArgs e)
         {
             Text = edit.Text;
+            TextChanged?.Invoke(s, e);
             Invalidate();
         }
 

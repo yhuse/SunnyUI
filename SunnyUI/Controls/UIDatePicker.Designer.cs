@@ -33,7 +33,6 @@
             // UIDatePicker
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.Name = "UIDatePicker";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.SymbolDropDown = 61555;

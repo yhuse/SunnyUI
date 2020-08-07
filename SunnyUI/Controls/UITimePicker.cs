@@ -21,7 +21,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -36,7 +35,6 @@ namespace Sunny.UI
             //
             // UITimePicker
             //
-            this.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.Name = "UITimePicker";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.SymbolDropDown = 61555;
@@ -50,6 +48,39 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Value = DateTime.Now;
+
+            EditorLostFocus += UIDatePicker_LostFocus;
+            TextChanged += UIDatePicker_TextChanged;
+            MaxLength = 8;
+        }
+
+        private void UIDatePicker_TextChanged(object sender, EventArgs e)
+        {
+            if (Text.Length == MaxLength)
+            {
+                try
+                {
+                    DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
+                    Value = dt;
+                }
+                catch
+                {
+                    Value = DateTime.Now.Date;
+                }
+            }
+        }
+
+        private void UIDatePicker_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
+                Value = dt;
+            }
+            catch
+            {
+                Value = DateTime.Now.Date;
+            }
         }
 
         public delegate void OnDateTimeChanged(object sender, DateTime value);
@@ -92,6 +123,7 @@ namespace Sunny.UI
             {
                 timeFormat = value;
                 Text = Value.ToString(timeFormat);
+                MaxLength = timeFormat.Length;
             }
         }
 

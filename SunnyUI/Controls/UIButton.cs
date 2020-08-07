@@ -78,7 +78,7 @@ namespace Sunny.UI
 
         private bool showTips = false;
 
-        [Description("是否显示角标"), Category("自定义")]
+        [Description("是否显示角标"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool ShowTips
         {
@@ -98,7 +98,7 @@ namespace Sunny.UI
 
         private string tipsText = "";
 
-        [Description("角标文字"), Category("自定义")]
+        [Description("角标文字"), Category("SunnyUI")]
         [DefaultValue("")]
         public string TipsText
         {
@@ -118,7 +118,7 @@ namespace Sunny.UI
 
         private Font tipsFont = new Font("Microsoft Sans Serif", 9);
 
-        [Description("角标文字字体"), Category("自定义")]
+        [Description("角标文字字体"), Category("SunnyUI")]
         [DefaultValue(typeof(Font), "Microsoft Sans Serif, 9pt")]
         public Font TipsFont
         {
@@ -141,7 +141,7 @@ namespace Sunny.UI
             }
             else
             {
-                g.FillPath(FillSelectedColor,path);
+                g.FillPath(FillSelectedColor, path);
             }
         }
 
@@ -173,7 +173,7 @@ namespace Sunny.UI
                 path.Dispose();
             }
         }
-        
+
         /// <summary>
         /// 是否选中
         /// </summary>
@@ -214,7 +214,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color FillColor
         {
@@ -225,7 +225,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {
@@ -236,7 +236,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public override Color ForeColor
         {
@@ -244,84 +244,84 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
-        [DefaultValue(typeof(Color), "244, 244, 244")]
+        [DefaultValue(typeof(Color), "244, 244, 244"), Category("SunnyUI")]
         public Color FillDisableColor
         {
             get => fillDisableColor;
             set => SetFillDisableColor(value);
         }
 
-        [DefaultValue(typeof(Color), "173, 178, 181")]
+        [DefaultValue(typeof(Color), "173, 178, 181"), Category("SunnyUI")]
         public Color RectDisableColor
         {
             get => rectDisableColor;
             set => SetRectDisableColor(value);
         }
 
-        [DefaultValue(typeof(Color), "109, 109, 103")]
+        [DefaultValue(typeof(Color), "109, 109, 103"), Category("SunnyUI")]
         public Color ForeDisableColor
         {
             get => foreDisableColor;
             set => SetForeDisableColor(value);
         }
 
-        [DefaultValue(typeof(Color), "111, 168, 255")]
+        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
         public Color FillHoverColor
         {
             get => fillHoverColor;
             set => SetFillHoveColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229")]
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
         public Color FillPressColor
         {
             get => fillPressColor;
             set => SetFillPressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         public Color ForeHoverColor
         {
             get => foreHoverColor;
             set => SetForeHoveColor(value);
         }
 
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         public Color ForePressColor
         {
             get => forePressColor;
             set => SetForePressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "111, 168, 255")]
+        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
         public Color RectHoverColor
         {
             get => rectHoverColor;
             set => SetRectHoveColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229")]
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
         public Color RectPressColor
         {
             get => rectPressColor;
             set => SetRectPressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229")]
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
         public Color FillSelectedColor
         {
             get => fillSelectedColor;
             set => SetFillSelectedColor(value);
         }
 
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         public Color ForeSelectedColor
         {
             get => foreSelectedColor;
             set => SetForeSelectedColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229")]
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
         public Color RectSelectedColor
         {
             get => rectSelectedColor;
