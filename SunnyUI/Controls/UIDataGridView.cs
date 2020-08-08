@@ -108,11 +108,11 @@ namespace Sunny.UI
 
         public void Init()
         {
-            //列占满行
-            //AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //自动生成行
+            AutoGenerateColumns = false;
 
-            //行选
-            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //列占满行
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             //禁止调整数据行行高
             AllowUserToResizeRows = false;
@@ -120,24 +120,24 @@ namespace Sunny.UI
             //允许调整标题行行宽
             AllowUserToResizeColumns = true;
 
-            //不显示数据行标题
-            RowHeadersVisible = false;
-
-            //禁止行多选
-            //MultiSelect = false;
-
-            //自动生成行
-            //AutoGenerateColumns = true;
-
             //禁用最后一行空白，自动新增行
             AllowUserToAddRows = false;
             AllowUserToDeleteRows = false;
 
+            //不显示表格线
+            CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+            //禁止行多选
+            MultiSelect = false;
+
+            //不显示数据行标题
+            RowHeadersVisible = false;
+
             //禁止只读
             //ReadOnly = false;
 
-            //不显示表格线
-            CellBorderStyle = DataGridViewCellBorderStyle.None;
+            //行选
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -268,7 +268,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -276,6 +279,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White")]
+        [Description("偶数行显示颜色"), Category("SunnyUI")]
         public Color StripeEvenColor
         {
             get => RowsDefaultCellStyle.BackColor;
@@ -287,6 +291,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "235, 243, 255")]
+        [Description("奇数行显示颜色"), Category("SunnyUI")]
         public Color StripeOddColor
         {
             get => AlternatingRowsDefaultCellStyle.BackColor;
@@ -330,17 +335,26 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public string Version => UIGlobal.Version;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         /// <summary>
         /// 是否显示边框
         /// </summary>
-        [Description("是否显示边框"), Category("自定义")]
+        [Description("是否显示边框"), Category("SunnyUI")]
         [DefaultValue(true)]
         public bool ShowRect
         {
@@ -355,7 +369,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示表格线
         /// </summary>
-        [Description("是否显示表格线"), Category("自定义")]
+        [Description("是否显示表格线"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool ShowGridLine
         {
@@ -365,7 +379,8 @@ namespace Sunny.UI
 
         private Color _rectColor = UIColor.Blue;
 
-        [Category("Appearance"), Description("The border color used to paint the control.")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("边框颜色"), Category("SunnyUI")]
         public Color RectColor
         {
             get => _rectColor;

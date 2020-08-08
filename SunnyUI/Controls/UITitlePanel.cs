@@ -33,7 +33,7 @@ namespace Sunny.UI
     {
         private int _titleHeight = 35;
 
-        [Description("面板高度"), Category("自定义")]
+        [Description("面板高度"), Category("SunnyUI")]
         [DefaultValue(35)]
         public int TitleHeight
         {

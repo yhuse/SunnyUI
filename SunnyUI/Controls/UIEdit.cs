@@ -72,12 +72,12 @@ namespace Sunny.UI
                 {
                     EnterKeyPress?.Invoke(this, e);
                 }
-            
+
                 if (EnterAsTab)
                 {
                     SendKeys.Send("{tab}");
                 }
-            
+
                 e.Handled = true;
             }
 
@@ -122,7 +122,7 @@ namespace Sunny.UI
 
         public event EventHandler EnterKeyPress;
 
-        [DefaultValue(false), Category("Appearance"), Description("整型、浮点型可以为空")]
+        [DefaultValue(false), Category("SunnyUI"), Description("整型、浮点型可以为空")]
         public bool CanEmpty
         {
             get => canEmpty;
@@ -138,7 +138,7 @@ namespace Sunny.UI
 
         [
             DefaultValue(UITextBox.UIEditType.String),
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("设置编辑框输入内容属性")
         ]
         public UITextBox.UIEditType Type

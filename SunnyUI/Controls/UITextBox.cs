@@ -80,12 +80,12 @@ namespace Sunny.UI
 
         private void Edit_Leave(object sender, EventArgs e)
         {
-            Leave?.Invoke(sender,e);
+            Leave?.Invoke(sender, e);
         }
 
         private void UITextBox_TextAlignmentChange(object sender, ContentAlignment alignment)
         {
-            if (edit==null) return;
+            if (edit == null) return;
             if (alignment == ContentAlignment.TopLeft || alignment == ContentAlignment.MiddleLeft ||
                 alignment == ContentAlignment.BottomLeft)
                 edit.TextAlign = HorizontalAlignment.Left;
@@ -101,7 +101,7 @@ namespace Sunny.UI
 
         private void Edit_DoubleClick(object sender, EventArgs e)
         {
-            DoubleClick?.Invoke(this,e);
+            DoubleClick?.Invoke(this, e);
         }
 
         public new event EventHandler DoubleClick;
@@ -109,7 +109,7 @@ namespace Sunny.UI
 
         private void Edit_Click(object sender, EventArgs e)
         {
-            Click?.Invoke(this,e);
+            Click?.Invoke(this, e);
         }
 
         protected override void OnCursorChanged(EventArgs e)
@@ -247,7 +247,7 @@ namespace Sunny.UI
 
         public new event KeyPressEventHandler KeyPress;
 
-        public new event EventHandler Leave; 
+        public new event EventHandler Leave;
 
         private void EditTextChanged(object s, EventArgs e)
         {
@@ -362,7 +362,7 @@ namespace Sunny.UI
             }
         }
 
-        [Description("输入类型"), Category("自定义")]
+        [Description("输入类型"), Category("SunnyUI")]
         [DefaultValue(UIEditType.String)]
         public UIEditType Type
         {

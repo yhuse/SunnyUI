@@ -86,6 +86,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        [Description("选中日期"), Category("SunnyUI")]
         public DateTime Value
         {
             get => item.Date;
@@ -106,7 +107,7 @@ namespace Sunny.UI
 
         private string dateFormat = "yyyy-MM-dd";
 
-        [Description("日期格式化掩码"), Category("自定义")]
+        [Description("日期格式化掩码"), Category("SunnyUI")]
         [DefaultValue("yyyy-MM-dd")]
         public string DateFormat
         {

@@ -37,13 +37,13 @@ namespace Sunny.UI
             timer.Stop();
         }
 
-        [DefaultValue(200),Description("刷新间隔")]
+        [DefaultValue(200), Description("刷新间隔")]
         public int Interval
         {
             get => interval;
             set
             {
-                interval = Math.Max(value,50);
+                interval = Math.Max(value, 50);
                 timer.Stop();
                 timer.Interval = interval;
                 timer.Start();
@@ -52,12 +52,12 @@ namespace Sunny.UI
 
         private int offset = 10;
 
-        [DefaultValue(10),Description("偏移量")]
+        [DefaultValue(10), Description("偏移量")]
         public int Offset
         {
             get => offset;
             set => offset = Math.Max(2, value);
-        } 
+        }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -204,7 +204,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color FillColor
         {
@@ -215,7 +215,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public override Color ForeColor
         {
@@ -247,7 +247,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {

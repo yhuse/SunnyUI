@@ -398,8 +398,8 @@ namespace Sunny.UI
             var rect_left = GetUpRect();
             var rect_right = GetDownRect();
             var rect_value = GetValueRect();
-            var rect_value_left = new Rectangle(rect_left.Right, 0,  rect_value.Left - rect_left.Right, Height);
-            var rect_value_right= new Rectangle(rect_value.Left, 0, rect_right.Left - rect_value.Right, Height);
+            var rect_value_left = new Rectangle(rect_left.Right, 0, rect_value.Left - rect_left.Right, Height);
+            var rect_value_right = new Rectangle(rect_value.Left, 0, rect_right.Left - rect_value.Right, Height);
             if (rect_left.Contains(x, y))
                 return 1;
             else if (rect_right.Contains(x, y))
@@ -429,7 +429,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
@@ -440,7 +440,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {

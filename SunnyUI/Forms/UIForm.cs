@@ -147,7 +147,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         /// <summary>
@@ -271,7 +275,7 @@ namespace Sunny.UI
         /// <summary>
         /// 标题栏高度
         /// </summary>
-        [Description("标题栏高度"), Category("Appearance"), DefaultValue(35)]
+        [Description("标题栏高度"), Category("SunnyUI"), DefaultValue(35)]
         public int TitleHeight
         {
             get => titleHeight;
@@ -292,7 +296,7 @@ namespace Sunny.UI
         /// <summary>
         /// 标题栏颜色
         /// </summary>
-        [Description("标题栏颜色"), Category("Appearance"), DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("标题栏颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TitleColor
         {
             get => titleColor;
@@ -312,7 +316,7 @@ namespace Sunny.UI
         /// <summary>
         /// 标题颜色
         /// </summary>
-        [Description("标题前景色（标题颜色）"), Category("Appearance"), DefaultValue(typeof(Color), "White")]
+        [Description("标题前景色（标题颜色）"), Category("SunnyUI"), DefaultValue(typeof(Color), "White")]
         public Color TitleForeColor
         {
             get => titleForeColor;
@@ -413,7 +417,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("背景颜色"), Category("Appearance")]
+        [Description("背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -434,7 +438,7 @@ namespace Sunny.UI
         /// 边框颜色
         /// </summary>
         /// <value>The color of the border style.</value>
-        [Description("边框颜色"), Category("Appearance")]
+        [Description("边框颜色"), Category("SunnyUI")]
         public Color RectColor
         {
             get => rectColor;
@@ -909,7 +913,7 @@ namespace Sunny.UI
             }
             else
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor,6 + (ShowIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, Font, titleForeColor, 6 + (ShowIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
             }
         }
 
@@ -924,7 +928,7 @@ namespace Sunny.UI
         /// <summary>
         /// 配色主题
         /// </summary>
-        [Description("配色主题"), Category("Appearance")]
+        [Description("配色主题"), Category("SunnyUI")]
         [DefaultValue(UIStyle.Blue)]
         public UIStyle Style
         {
@@ -932,7 +936,7 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("Appearance")]
+        [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool StyleCustomMode { get; set; }
 
@@ -1012,7 +1016,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示圆角
         /// </summary>
-        [Description("是否显示圆角"), Category("Appearance")]
+        [Description("是否显示圆角"), Category("SunnyUI")]
         [DefaultValue(true)]
         public bool ShowRadius
         {
@@ -1033,7 +1037,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示边框
         /// </summary>
-        [Description("是否显示边框"), Category("Appearance")]
+        [Description("是否显示边框"), Category("SunnyUI")]
         [DefaultValue(true)]
         public bool ShowRect
         {
@@ -1183,7 +1187,7 @@ namespace Sunny.UI
             }
         }
 
-        [Description("文字对齐方式"), Category("Appearance")]
+        [Description("文字对齐方式"), Category("SunnyUI")]
         public StringAlignment TextAlignment
         {
             get => textAlignment;

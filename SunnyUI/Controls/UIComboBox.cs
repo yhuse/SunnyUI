@@ -105,6 +105,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(25)]
+        [Description("列表项高度"), Category("SunnyUI")]
         public int ItemHeight
         {
             get => ListBox.ItemHeight;
@@ -112,6 +113,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(8)]
+        [Description("列表下拉最大个数"), Category("SunnyUI")]
         public int MaxDropDownItems { get; set; } = 8;
 
         private void UIComboBox_FontChanged(object sender, EventArgs e)
@@ -150,6 +152,7 @@ namespace Sunny.UI
         private object dataSource;
 
         [DefaultValue(null), RefreshProperties(RefreshProperties.Repaint), AttributeProvider(typeof(IListSource))]
+        [Description("数据源"), Category("SunnyUI")]
         public object DataSource
         {
             get => dataSource;
@@ -208,12 +211,14 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [Localizable(true)]
         [MergableProperty(false)]
+        [Description("下拉显示项"), Category("SunnyUI")]
         public ObjectCollection Items
         {
             get => box.Items;
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("选中索引"), Category("SunnyUI")]
         public int SelectedIndex
         {
             get => box.SelectedIndex;
@@ -221,6 +226,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false), Bindable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("选中项"), Category("SunnyUI")]
         public object SelectedItem
         {
             get => box.SelectedItem;
@@ -228,6 +234,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("选中文字"), Category("SunnyUI")]
         public string SelectedText
         {
             get
@@ -248,6 +255,7 @@ namespace Sunny.UI
             Clear();
         }
 
+        [Description("获取或设置要为此列表框显示的属性。"), Category("SunnyUI")]
         [DefaultValue("")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [TypeConverter("System.Windows.Forms.Design.DataMemberFieldConverter, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
@@ -261,7 +269,7 @@ namespace Sunny.UI
             }
         }
 
-
+        [Description("获取或设置指示显示值的方式的格式说明符字符。"), Category("SunnyUI")]
         [DefaultValue("")]
         [Editor("System.Windows.Forms.Design.FormatStringEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
@@ -271,6 +279,7 @@ namespace Sunny.UI
             set => box.FormatString = value;
         }
 
+        [Description("获取或设置指示显示值是否可以进行格式化操作。"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool FormattingEnabled
         {
@@ -278,6 +287,7 @@ namespace Sunny.UI
             set => box.FormattingEnabled = value;
         }
 
+        [Description("获取或设置要为此列表框实际值的属性。"), Category("SunnyUI")]
         [DefaultValue("")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         public string ValueMember

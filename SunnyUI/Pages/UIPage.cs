@@ -97,7 +97,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false),Description("在Frame框架中不被关闭")]
+        [DefaultValue(false), Description("在Frame框架中不被关闭")]
         public bool AlwaysOpen { get; set; }
 
         protected virtual void SymbolChange()
@@ -160,18 +160,31 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(null)] public string TagString { get; set; }
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString { get; set; }
 
         public string Version { get; }
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
             set => SetStyle(value);
         }
 
-        [DefaultValue(false)] public bool StyleCustomMode { get; set; }
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
+        public bool StyleCustomMode { get; set; }
 
         public event EventHandler Initialize;
 

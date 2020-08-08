@@ -84,7 +84,11 @@ namespace Sunny.UI
             node.ImageIndex = imageIndex;
         }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
@@ -109,7 +113,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public override Color ForeColor
         {
@@ -171,7 +175,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页高亮"), Category("自定义")]
+        [Description("选中Tab页高亮"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color SelectedHighColor
 
@@ -187,7 +191,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -513,7 +520,11 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public string Version { get; }

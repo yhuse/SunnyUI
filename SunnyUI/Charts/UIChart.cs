@@ -88,7 +88,7 @@ namespace Sunny.UI
         ///     字体颜色
         /// </summary>
         [Description("字体颜色")]
-        [Category("自定义")]
+        [Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public override Color ForeColor
         {
@@ -100,7 +100,7 @@ namespace Sunny.UI
         ///     填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色")]
-        [Category("自定义")]
+        [Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {

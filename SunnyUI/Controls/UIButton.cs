@@ -178,6 +178,7 @@ namespace Sunny.UI
         /// 是否选中
         /// </summary>
         [DefaultValue(false)]
+        [Description("是否选中"), Category("SunnyUI")]
         public bool Selected
         {
             get => selected;
@@ -245,6 +246,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "244, 244, 244"), Category("SunnyUI")]
+        [Description("不可用时填充颜色")]
         public Color FillDisableColor
         {
             get => fillDisableColor;
@@ -252,6 +254,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181"), Category("SunnyUI")]
+        [Description("不可用时边框颜色")]
         public Color RectDisableColor
         {
             get => rectDisableColor;
@@ -259,6 +262,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "109, 109, 103"), Category("SunnyUI")]
+        [Description("不可用时字体颜色")]
         public Color ForeDisableColor
         {
             get => foreDisableColor;
@@ -266,6 +270,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [Description("鼠标移上时填充颜色")]
         public Color FillHoverColor
         {
             get => fillHoverColor;
@@ -273,6 +278,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("鼠标按下时填充颜色")]
         public Color FillPressColor
         {
             get => fillPressColor;
@@ -280,6 +286,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("鼠标移上时字体颜色")]
         public Color ForeHoverColor
         {
             get => foreHoverColor;
@@ -287,6 +294,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("鼠标按下时字体颜色")]
         public Color ForePressColor
         {
             get => forePressColor;
@@ -294,6 +302,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [Description("鼠标移上时边框颜色")]
         public Color RectHoverColor
         {
             get => rectHoverColor;
@@ -301,6 +310,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("鼠标按下时边框颜色")]
         public Color RectPressColor
         {
             get => rectPressColor;
@@ -308,6 +318,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("选中时填充颜色")]
         public Color FillSelectedColor
         {
             get => fillSelectedColor;
@@ -315,6 +326,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("选中时字体颜色")]
         public Color ForeSelectedColor
         {
             get => foreSelectedColor;
@@ -322,6 +334,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("选中时边框颜色")]
         public Color RectSelectedColor
         {
             get => rectSelectedColor;
@@ -362,6 +375,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(DialogResult.None)]
+        [Description("指定标识符以指示对话框的返回值"), Category("SunnyUI")]
         public DialogResult DialogResult { get; set; } = DialogResult.None;
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -375,6 +389,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("显示激活时边框线"), Category("SunnyUI")]
         public bool ShowFocusLine { get; set; }
     }
 }

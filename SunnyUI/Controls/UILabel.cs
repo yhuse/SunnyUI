@@ -47,13 +47,17 @@ namespace Sunny.UI
 
         private Color foreColor = UIStyles.Blue.LabelForeColor;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -73,7 +77,11 @@ namespace Sunny.UI
             _style = style;
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public void SetStyleColor(UIBaseStyle uiColor)
@@ -86,7 +94,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -132,7 +143,7 @@ namespace Sunny.UI
             }
         }
 
-        [Description("图标颜色"), Category("自定义")]
+        [Description("图标颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public Color SymbolColor
         {
@@ -147,7 +158,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -335,12 +346,20 @@ namespace Sunny.UI
             _style = UIStyle.Custom;
         }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         public string Version { get; }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public void SetStyle(UIStyle style)
@@ -360,7 +379,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;

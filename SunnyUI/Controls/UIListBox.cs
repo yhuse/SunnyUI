@@ -244,7 +244,11 @@ namespace Sunny.UI
     {
         private UIScrollBar bar;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         public UIScrollBar Bar
@@ -302,7 +306,11 @@ namespace Sunny.UI
 
         public string Version { get; }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         #region 组件设计器生成的代码
@@ -332,7 +340,10 @@ namespace Sunny.UI
         private Color _itemSelectBackColor = UIColor.Blue;
         private Color _itemSelectForeColor = Color.White;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -341,25 +352,25 @@ namespace Sunny.UI
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-/*            base.OnMouseWheel(e);
-            if (Bar.Visible)
-            {
-                var si = ScrollBarInfo.GetInfo(Handle);
-                if (e.Delta > 10)
-                {
-                    if (si.nPos > 0)
-                    {
-                        ScrollBarInfo.ScrollUp(Handle);
-                    }
-                }
-                else if (e.Delta < -10)
-                {
-                    if (si.nPos < si.ScrollMax)
-                    {
-                        ScrollBarInfo.ScrollDown(Handle);
-                    }
-                }
-            }*/
+            /*            base.OnMouseWheel(e);
+                        if (Bar.Visible)
+                        {
+                            var si = ScrollBarInfo.GetInfo(Handle);
+                            if (e.Delta > 10)
+                            {
+                                if (si.nPos > 0)
+                                {
+                                    ScrollBarInfo.ScrollUp(Handle);
+                                }
+                            }
+                            else if (e.Delta < -10)
+                            {
+                                if (si.nPos < si.ScrollMax)
+                                {
+                                    ScrollBarInfo.ScrollDown(Handle);
+                                }
+                            }
+                        }*/
 
             SetScrollInfo();
         }
@@ -379,7 +390,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        [Category("Appearance"), Description("The border color used to paint the control.")]
+        [Category("SunnyUI"), Description("The border color used to paint the control.")]
         public Color ItemSelectBackColor
         {
             get => _itemSelectBackColor;
@@ -395,7 +406,7 @@ namespace Sunny.UI
             }
         }
 
-        [Category("Appearance"), Description("The border color used to paint the control.")]
+        [Category("SunnyUI"), Description("The border color used to paint the control.")]
         public Color ItemSelectForeColor
         {
             get => _itemSelectForeColor;

@@ -105,6 +105,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        [Description("选中日期时间"), Category("SunnyUI")]
         public DateTime Value
         {
             get => item.Date;

@@ -58,7 +58,11 @@ namespace Sunny.UI
             base.Font = UIFontColor.Font;
         }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         private string text;
@@ -168,11 +172,11 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示圆角
         /// </summary>
-        [Description("是否显示圆角"), Category("自定义")]
+        [Description("是否显示圆角"), Category("SunnyUI")]
         protected bool ShowRadius => (int)RadiusSides > 0;
 
         //圆角角度
-        [Description("圆角角度"), Category("自定义")]
+        [Description("圆角角度"), Category("SunnyUI")]
         [DefaultValue(5)]
         public int Radius
         {
@@ -194,14 +198,14 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示边框
         /// </summary>
-        [Description("是否显示边框"), Category("自定义")]
+        [Description("是否显示边框"), Category("SunnyUI")]
         [DefaultValue(true)]
         protected bool ShowRect => (int)RectSides > 0;
 
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {
@@ -225,7 +229,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("自定义")]
+        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -457,12 +461,19 @@ namespace Sunny.UI
         {
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         protected UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -494,7 +505,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -581,7 +592,7 @@ namespace Sunny.UI
                 if (_textAlignment != value)
                 {
                     _textAlignment = value;
-                    TextAlignmentChange?.Invoke(this,value);
+                    TextAlignmentChange?.Invoke(this, value);
                     Invalidate();
                 }
             }

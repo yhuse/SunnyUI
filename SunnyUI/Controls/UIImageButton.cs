@@ -43,6 +43,13 @@ namespace Sunny.UI
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
         private Color foreColor = UIFontColor.Primary;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString { get; set; }
+
         [Category("外观")]
         [Description("按钮文字")]
         [Browsable(true)]
@@ -264,7 +271,7 @@ namespace Sunny.UI
 
         public Point imageOffset;
 
-        [DefaultValue(typeof(Point),"0, 0")]
+        [DefaultValue(typeof(Point), "0, 0")]
         public Point ImageOffset
         {
             get => imageOffset;

@@ -74,7 +74,11 @@ namespace Sunny.UI
         [DefaultValue(false)]
         public bool ShowOneNode { get; set; }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         protected override void OnBackColorChanged(EventArgs e)
@@ -104,7 +108,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("背景颜色"), Category("自定义")]
+        [Description("背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color FillColor
         {
@@ -125,7 +129,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("背景颜色"), Category("自定义")]
+        [Description("背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public override Color ForeColor
         {
@@ -152,7 +156,11 @@ namespace Sunny.UI
             ScrollBarInfo.SetScrollValue(Handle, Bar.Value);
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         [DefaultValue(null)]
@@ -162,7 +170,7 @@ namespace Sunny.UI
 
         private bool showTips;
 
-        [Description("是否显示角标"), Category("自定义")]
+        [Description("是否显示角标"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool ShowTips
         {
@@ -179,7 +187,7 @@ namespace Sunny.UI
 
         private Font tipsFont = new Font("Microsoft Sans Serif", 9);
 
-        [Description("角标文字字体"), Category("自定义")]
+        [Description("角标文字字体"), Category("SunnyUI")]
         [DefaultValue(typeof(Font), "Microsoft Sans Serif, 9pt")]
         public Font TipsFont
         {
@@ -214,7 +222,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页高亮"), Category("自定义")]
+        [Description("选中Tab页高亮"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color SelectedHighColor
 
@@ -243,7 +251,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;

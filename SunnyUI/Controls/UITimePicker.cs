@@ -102,6 +102,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        [Description("选中时间"), Category("SunnyUI")]
         public DateTime Value
         {
             get => item.Time;
@@ -114,7 +115,7 @@ namespace Sunny.UI
 
         private string timeFormat = "HH:mm:ss";
 
-        [Description("时间格式化掩码"), Category("自定义")]
+        [Description("时间格式化掩码"), Category("SunnyUI")]
         [DefaultValue("HH:mm:ss")]
         public string TimeFormat
         {

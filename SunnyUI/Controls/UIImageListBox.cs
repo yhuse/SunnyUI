@@ -279,7 +279,11 @@ namespace Sunny.UI
         {
             private UIScrollBar bar;
 
+            /// <summary>
+            /// Tag字符串
+            /// </summary>
             [DefaultValue(null)]
+            [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
             public string TagString { get; set; }
 
             public UIScrollBar Bar
@@ -337,7 +341,11 @@ namespace Sunny.UI
                 e.ItemHeight = e.ItemHeight + ItemHeight;
             }
 
+            /// <summary>
+            /// 自定义主题风格
+            /// </summary>
             [DefaultValue(false)]
+            [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
             public bool StyleCustomMode { get; set; }
 
             public string Version { get; }
@@ -413,7 +421,10 @@ namespace Sunny.UI
                 }
             }
 
-            [DefaultValue(UIStyle.Blue)]
+            /// <summary>
+            /// 主题样式
+            /// </summary>
+            [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
             public UIStyle Style
             {
                 get => _style;
@@ -436,7 +447,7 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            [Category("Appearance"), Description("The border color used to paint the control.")]
+            [Category("SunnyUI"), Description("The border color used to paint the control.")]
             public Color ItemSelectBackColor
             {
                 get => _itemSelectBackColor;
@@ -452,7 +463,7 @@ namespace Sunny.UI
                 }
             }
 
-            [Category("Appearance"), Description("The border color used to paint the control.")]
+            [Category("SunnyUI"), Description("The border color used to paint the control.")]
             public Color ItemSelectForeColor
             {
                 get => _itemSelectForeColor;

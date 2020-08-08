@@ -32,14 +32,14 @@ namespace Sunny.UI
 {
     public enum UIDropDownStyle
     {
+        /// <summary>
+        /// 通过单击下箭头指定显示列表，并指定文本部分可编辑。 这表示用户可以输入新的值，而不仅限于选择列表中现有的值。
+        /// </summary>
         DropDown,
+        /// <summary>
+        /// 通过单击下箭头指定显示列表，并指定文本部分不可编辑。 这表示用户不能输入新的值。 只能选择列表中已有的值。
+        /// </summary>
         DropDownList
-    }
-
-    public enum UIDropItemPos
-    {
-        Top,
-        Bottom
     }
 
     [ToolboxItem(false)]
@@ -106,6 +106,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(null)]
+        [Description("水印文字"), Category("SunnyUI")]
         public string Watermark
         {
             get => edit.Watermark;
@@ -153,6 +154,7 @@ namespace Sunny.UI
         private int dropSymbol = 61703;
 
         [DefaultValue(61703)]
+        [Description("正常显示时字体图标"), Category("SunnyUI")]
         public int SymbolNormal
         {
             get => symbolNormal;
@@ -164,6 +166,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(61702)]
+        [Description("下拉框显示时字体图标"), Category("SunnyUI")]
         public int SymbolDropDown { get; set; } = 61702;
 
         protected virtual void CreateInstance()
@@ -182,6 +185,7 @@ namespace Sunny.UI
         private UIDropDownStyle _dropDownStyle = UIDropDownStyle.DropDown;
 
         [DefaultValue(UIDropDownStyle.DropDown)]
+        [Description("下拉框显示样式"), Category("SunnyUI")]
         public UIDropDownStyle DropDownStyle
         {
             get => _dropDownStyle;
@@ -195,9 +199,6 @@ namespace Sunny.UI
                 }
             }
         }
-
-        [DefaultValue(UIDropItemPos.Bottom)]
-        public UIDropItemPos DropItemPos { get; set; } = UIDropItemPos.Bottom;
 
         public event EventHandler ButtonClick;
 
@@ -274,6 +275,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue('\0')]
+        [Description("m"), Category("SunnyUI")]
         public char PasswordChar
         {
             get => edit.PasswordChar;
