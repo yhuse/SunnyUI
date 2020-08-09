@@ -100,6 +100,7 @@ namespace Sunny.UI
         /// 旋转方式
         /// </summary>
         [DefaultValue(TRunType.ClockWise)]
+        [Description("旋转方式"), Category("SunnyUI")]
         public TRunType RunType
         {
             get => _runType;
@@ -116,6 +117,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(TMeterType.Gps)]
+        [Description("显示类型"), Category("SunnyUI")]
         public TMeterType MeterType
         {
             get => _meterType;
@@ -147,6 +149,7 @@ namespace Sunny.UI
         /// <summary>
         /// 背景图片
         /// </summary>
+        [Description("背景图片"), Category("SunnyUI")]
         public new Image BackgroundImage
         {
             get => _backImage;
@@ -172,6 +175,7 @@ namespace Sunny.UI
         /// <summary>
         /// 箭头图片
         /// </summary>
+        [Description("箭头图片"), Category("SunnyUI")]
         public Image AngleImage
         {
             get => _angleImage;
@@ -186,6 +190,7 @@ namespace Sunny.UI
         /// 角度
         /// </summary>
         [DefaultValue(0)]
+        [Description("角度"), Category("SunnyUI")]
         public double Angle
         {
             get => _angle;

@@ -59,6 +59,8 @@ namespace Sunny.UI
 
         private HorizontalAlignment textAlignment = HorizontalAlignment.Center;
 
+        [Description("文字显示方向"), Category("SunnyUI")]
+        [DefaultValue(HorizontalAlignment.Center)]
         public HorizontalAlignment TextAlignment
         {
             get => textAlignment;
@@ -225,6 +227,7 @@ namespace Sunny.UI
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
 
         [DefaultValue(UIMenuStyle.Black)]
+        [Description("主题风格"), Category("SunnyUI")]
         public UIMenuStyle MenuStyle
         {
             get => _menuStyle;

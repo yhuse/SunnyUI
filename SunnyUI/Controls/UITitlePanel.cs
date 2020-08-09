@@ -81,6 +81,7 @@ namespace Sunny.UI
         /// 文字对齐方向
         /// </summary>
         [DefaultValue(HorizontalAlignment.Center)]
+        [Description("文字对齐方向"), Category("SunnyUI")]
         public HorizontalAlignment TextAlign
         {
             get => textAlign;
@@ -94,6 +95,7 @@ namespace Sunny.UI
         private Color titleColor = UIColor.Blue;
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("标题颜色"), Category("SunnyUI")]
         public Color TitleColor
         {
             get => titleColor;
@@ -171,6 +173,7 @@ namespace Sunny.UI
         private int _titleInterval = 10;
 
         [DefaultValue(10)]
+        [Description("标题文字局左或者局右时与边框距离"), Category("SunnyUI")]
         public int TitleInterval
         {
             get => _titleInterval;

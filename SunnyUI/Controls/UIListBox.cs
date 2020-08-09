@@ -121,6 +121,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(25)]
+        [Description("列表项高度"), Category("SunnyUI")]
         public int ItemHeight
         {
             get => listbox.ItemHeight;
@@ -173,6 +174,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
+        [Description("列表项"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => listbox.Items;
 
         [Browsable(false)]
@@ -184,6 +186,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("列表项选中背景颜色"), Category("SunnyUI")]
         public Color ItemSelectBackColor
         {
             get => listbox.ItemSelectBackColor;
@@ -191,6 +194,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White")]
+        [Description("列表项选中字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
             get => listbox.ItemSelectForeColor;
@@ -224,6 +228,7 @@ namespace Sunny.UI
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
         [DefaultValue(typeof(Color), "155, 200, 255")]
+        [Description("列表项鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
             get => hoverColor;

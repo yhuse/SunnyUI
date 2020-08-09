@@ -52,9 +52,11 @@ namespace Sunny.UI
         private int trackBarValue;
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
 
         [DefaultValue(100)]
+        [Description("最大值"), Category("SunnyUI")]
         public int Maximum
         {
             get => _maximum;
@@ -69,6 +71,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
+        [Description("最小值"), Category("SunnyUI")]
         public int Minimum
         {
             get => _minimum;
@@ -83,6 +86,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
+        [Description("当前值"), Category("SunnyUI")]
         public int Value
         {
             get => trackBarValue;
@@ -202,6 +206,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181")]
+        [Description("不可用时颜色"), Category("SunnyUI")]
         public Color DisableColor
         {
             get => rectDisableColor;

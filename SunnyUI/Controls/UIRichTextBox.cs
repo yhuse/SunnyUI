@@ -62,6 +62,7 @@ namespace Sunny.UI
         //        }
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly
         {
             get => edit.ReadOnly;
@@ -176,8 +177,7 @@ namespace Sunny.UI
             KeyUp?.Invoke(sender, e);
         }
 
-        [CategoryAttribute("文字"), Browsable(true)]
-        [DefaultValue("")]
+        [Category("SunnyUI"), Browsable(true), DefaultValue(""), Description("文字")]
         public override string Text
         {
             get => edit.Text;
@@ -209,7 +209,7 @@ namespace Sunny.UI
         private void OnMouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (bar!=null && bar.Visible && edit!=null)
+            if (bar != null && bar.Visible && edit != null)
             {
                 var si = ScrollBarInfo.GetInfo(edit.Handle);
                 if (e.Delta > 10)
@@ -785,7 +785,7 @@ namespace Sunny.UI
 
         public void Select(int start, int length)
         {
-            edit.Select(start,length);
+            edit.Select(start, length);
         }
 
         public void SelectAll()

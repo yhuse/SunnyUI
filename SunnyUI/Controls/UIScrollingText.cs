@@ -1,4 +1,25 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIScrollingText.cs
+ * 文件说明: 滚动文字
+ * 当前版本: V2.2
+ * 创建日期: 2020-06-29
+ *
+ * 2020-06-29: V2.2.6 新增控件
+******************************************************************************/
+
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -37,7 +58,7 @@ namespace Sunny.UI
             timer.Stop();
         }
 
-        [DefaultValue(200), Description("刷新间隔")]
+        [DefaultValue(200), Description("刷新间隔"), Category("SunnyUI")]
         public int Interval
         {
             get => interval;
@@ -52,7 +73,7 @@ namespace Sunny.UI
 
         private int offset = 10;
 
-        [DefaultValue(10), Description("偏移量")]
+        [DefaultValue(10), Description("偏移量"), Category("SunnyUI")]
         public int Offset
         {
             get => offset;
@@ -167,7 +188,7 @@ namespace Sunny.UI
 
         private UIScrollingType scrollingType;
 
-        [DefaultValue(UIScrollingType.RightToLeft), Description("滚动方向")]
+        [DefaultValue(UIScrollingType.RightToLeft), Description("滚动方向"), Category("SunnyUI")]
         public UIScrollingType ScrollingType
         {
             get => scrollingType;
@@ -224,6 +245,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "244, 244, 244")]
+        [Description("不可用时填充颜色"), Category("SunnyUI")]
         public Color FillDisableColor
         {
             get => fillDisableColor;
@@ -231,6 +253,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181")]
+        [Description("不可用时边框颜色"), Category("SunnyUI")]
         public Color RectDisableColor
         {
             get => rectDisableColor;
@@ -238,6 +261,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "109, 109, 103")]
+        [Description("不可用时字体颜色"), Category("SunnyUI")]
         public Color ForeDisableColor
         {
             get => foreDisableColor;

@@ -124,6 +124,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(100)]
+        [Description("列表项高度"), Category("SunnyUI")]
         public int ItemHeight
         {
             get => listbox.ItemHeight;
@@ -131,6 +132,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(4)]
+        [Description("图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => listbox.ImageInterval;
@@ -138,6 +140,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true)]
+        [Description("显示说明文字"), Category("SunnyUI")]
         public bool ShowDescription
         {
             get => listbox.ShowDescription;
@@ -197,6 +200,7 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Browsable(false)]
+        [Description("列表项"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => listbox.Items;
 
         /// <summary>
@@ -224,6 +228,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("选中项背景颜色"), Category("SunnyUI")]
         public Color ItemSelectBackColor
         {
             get => listbox.ItemSelectBackColor;
@@ -231,6 +236,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White")]
+        [Description("选中项字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
             get => listbox.ItemSelectForeColor;
@@ -264,6 +270,7 @@ namespace Sunny.UI
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
         [DefaultValue(typeof(Color), "155, 200, 255")]
+        [Description("鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
             get => hoverColor;
@@ -275,6 +282,7 @@ namespace Sunny.UI
             }
         }
 
+        [ToolboxItem(false)]
         private sealed class ImageListBox : ListBox, IStyleInterface
         {
             private UIScrollBar bar;

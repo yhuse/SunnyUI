@@ -30,6 +30,9 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [ToolboxItem(true)]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public class UILabel : Label, IStyleInterface
     {
         public UILabel()
@@ -133,6 +136,7 @@ namespace Sunny.UI
         private bool autoSize;
 
         [Browsable(true)]
+        [Description("自动大小"), Category("SunnyUI")]
         public override bool AutoSize
         {
             get => autoSize;
@@ -167,6 +171,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(24)]
+        [Description("字体大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => _symbolSize;
@@ -179,6 +184,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(2)]
+        [Description("图标和文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -192,6 +198,7 @@ namespace Sunny.UI
         private bool _isCircle;
 
         [DefaultValue(false)]
+        [Description("显示为圆形"), Category("SunnyUI")]
         public bool IsCircle
         {
             get => _isCircle;
@@ -214,6 +221,7 @@ namespace Sunny.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
         [DefaultValue(61452)]
+        [Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => _symbol;
@@ -232,6 +240,7 @@ namespace Sunny.UI
         private int circleRectWidth = 1;
 
         [DefaultValue(1)]
+        [Description("圆形边框大小"), Category("SunnyUI")]
         public int CircleRectWidth
         {
             get => circleRectWidth;
@@ -328,6 +337,9 @@ namespace Sunny.UI
         }
     }
 
+    [ToolboxItem(true)]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public sealed class UILinkLabel : LinkLabel, IStyleInterface
     {
         public UILinkLabel()
@@ -339,11 +351,6 @@ namespace Sunny.UI
             ActiveLinkColor = UIColor.Orange;
             VisitedLinkColor = UIColor.Red;
             LinkColor = UIColor.Blue;
-        }
-
-        private void UILabel_ForeColorChanged(object sender, EventArgs e)
-        {
-            _style = UIStyle.Custom;
         }
 
         /// <summary>

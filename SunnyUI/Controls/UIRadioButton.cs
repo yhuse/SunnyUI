@@ -49,6 +49,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Sunny.UI
         private int _imageInterval = 3;
 
         [DefaultValue(16)]
+        [Description("按钮图片大小"), Category("SunnyUI")]
         public int ImageSize
         {
             get => _imageSize;
@@ -78,6 +80,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(3)]
+        [Description("按钮图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -91,6 +94,7 @@ namespace Sunny.UI
         private bool _checked;
 
         [DefaultValue(false)]
+        [Description("是否选中"), Category("SunnyUI")]
         public bool Checked
         {
             get => _checked;

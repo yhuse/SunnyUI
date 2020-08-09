@@ -53,6 +53,7 @@ namespace Sunny.UI
         private LineDirection direction = LineDirection.Horizontal;
 
         [DefaultValue(LineDirection.Horizontal)]
+        [Description("线条方向"), Category("SunnyUI")]
         public LineDirection Direction
         {
             get => direction;
@@ -65,7 +66,7 @@ namespace Sunny.UI
 
         private int lineSize = 1;
 
-        [Description("线宽")]
+        [Description("线条宽度"), Category("SunnyUI")]
         [DefaultValue(1)]
         public int LineSize
         {
@@ -119,6 +120,7 @@ namespace Sunny.UI
         private int textInterval = 10;
 
         [DefaultValue(10)]
+        [Description("文字边距间隔"), Category("SunnyUI")]
         public int TextInterval
         {
             get => textInterval;

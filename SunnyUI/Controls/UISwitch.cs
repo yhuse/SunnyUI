@@ -61,6 +61,7 @@ namespace Sunny.UI
         private bool activeValue;
 
         [DefaultValue(false)]
+        [Description("是否打开"), Category("SunnyUI")]
         public bool Active
         {
             get => activeValue;
@@ -75,6 +76,7 @@ namespace Sunny.UI
         private string activeText = "开";
 
         [DefaultValue("开")]
+        [Description("打开文字"), Category("SunnyUI")]
         public string ActiveText
         {
             get => activeText;
@@ -88,6 +90,7 @@ namespace Sunny.UI
         private string inActiveText = "关";
 
         [DefaultValue("关")]
+        [Description("关闭文字"), Category("SunnyUI")]
         public string InActiveText
         {
             get => inActiveText;
@@ -101,6 +104,7 @@ namespace Sunny.UI
         private Color inActiveColor;
 
         [DefaultValue(typeof(Color), "Silver")]
+        [Description("关闭颜色"), Category("SunnyUI")]
         public Color InActiveColor
         {
             get => inActiveColor;
@@ -125,7 +129,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中颜色"), Category("SunnyUI")]
+        [Description("打开颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color ActiveColor
         {

@@ -69,6 +69,7 @@ namespace Sunny.UI
         /// 总页数
         /// </summary>
         [Browsable(false)]
+        [Description("总页数"), Category("SunnyUI")]
         public int PageCount { get; private set; }
 
         private int pagerCount = 7;
@@ -213,6 +214,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true)]
+        [Description("显示页面跳转按钮"), Category("SunnyUI")]
         public bool ShowJumpButton
         {
             get => p1.Visible;
@@ -224,6 +226,7 @@ namespace Sunny.UI
         [DefaultValue(null)]
         [RefreshProperties(RefreshProperties.Repaint)]
         [AttributeProvider(typeof(IListSource))]
+        [Description("数据源"), Category("SunnyUI")]
         public object DataSource
         {
             get => dataSource;
@@ -241,11 +244,12 @@ namespace Sunny.UI
                 dataSource = value;
                 activePage = 1;
                 TotalCount = dataManager?.List.Count ?? 0;
-                DataSourceChanged?.Invoke(this,null);
+                DataSourceChanged?.Invoke(this, null);
             }
         }
 
-        [Browsable(false)] public object PageDataSource { get; private set; }
+        [Browsable(false)]
+        public object PageDataSource { get; private set; }
 
         private void UIDataGridPage_Click(object sender, EventArgs e)
         {

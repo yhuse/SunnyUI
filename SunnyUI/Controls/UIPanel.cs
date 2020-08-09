@@ -67,7 +67,7 @@ namespace Sunny.UI
 
         private string text;
 
-        [Category("外观")]
+        [Category("SunnyUI")]
         [Description("按钮文字")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -107,7 +107,7 @@ namespace Sunny.UI
 
         private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.All;
 
-        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置")]
+        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置"), Category("SunnyUI")]
         public ToolStripStatusLabelBorderSides RectSides
         {
             get => _rectSides;
@@ -157,7 +157,7 @@ namespace Sunny.UI
 
         private UICornerRadiusSides _radiusSides = UICornerRadiusSides.All;
 
-        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置")]
+        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置"), Category("SunnyUI")]
         public UICornerRadiusSides RadiusSides
         {
             get => _radiusSides;
@@ -270,7 +270,7 @@ namespace Sunny.UI
 
         private bool showText = true;
 
-        [Description("是否显示文字")]
+        [Description("是否显示文字"), Category("SunnyUI")]
         [Browsable(false)]
         protected bool ShowText
         {
@@ -520,6 +520,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "244, 244, 244")]
+        [Description("不可用时填充颜色"), Category("SunnyUI")]
         public Color FillDisableColor
         {
             get => fillDisableColor;
@@ -527,6 +528,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181")]
+        [Description("不可用时边框颜色"), Category("SunnyUI")]
         public Color RectDisableColor
         {
             get => rectDisableColor;
@@ -534,6 +536,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "109, 109, 103")]
+        [Description("不可用时字体颜色"), Category("SunnyUI")]
         public Color ForeDisableColor
         {
             get => foreDisableColor;
@@ -582,7 +585,7 @@ namespace Sunny.UI
         /// <summary>
         /// 文字对齐方向
         /// </summary>
-        [Description("文字对齐方向")]
+        [Description("文字对齐方向"), Category("SunnyUI")]
         [DefaultValue(ContentAlignment.MiddleCenter)]
         public ContentAlignment TextAlignment
         {

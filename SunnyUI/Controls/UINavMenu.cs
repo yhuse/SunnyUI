@@ -17,7 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
- * 2020-07-01: V2.2.6 解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。  
+ * 2020-07-01: V2.2.6 解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。
 ******************************************************************************/
 
 using System;
@@ -72,6 +72,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("只显示一个打开的节点"), Category("SunnyUI")]
         public bool ShowOneNode { get; set; }
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace Sunny.UI
         private Color backColor = Color.FromArgb(56, 56, 56);
 
         [DefaultValue(typeof(Color), "56, 56, 56")]
+        [Description("背景颜色"), Category("SunnyUI")]
         public override Color BackColor
         {
             get => backColor;
@@ -108,7 +110,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("背景颜色"), Category("SunnyUI")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color FillColor
         {
@@ -129,7 +131,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("背景颜色"), Category("SunnyUI")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public override Color ForeColor
         {
@@ -164,6 +166,7 @@ namespace Sunny.UI
         public bool StyleCustomMode { get; set; }
 
         [DefaultValue(null)]
+        [Description("关联的TabControl"), Category("SunnyUI")]
         public UITabControl TabControl { get; set; }
 
         private Color selectedColor = Color.FromArgb(36, 36, 36);
@@ -203,6 +206,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "36, 36, 36")]
+        [Description("选中节点颜色"), Category("SunnyUI")]
         public Color SelectedColor
         {
             get => selectedColor;
@@ -222,7 +226,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页高亮"), Category("SunnyUI")]
+        [Description("选中节点高亮颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color SelectedHighColor
 
@@ -239,6 +243,7 @@ namespace Sunny.UI
         private Color hoverColor = Color.FromArgb(76, 76, 76);
 
         [DefaultValue(typeof(Color), "76, 76, 76")]
+        [Description("鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
             get => hoverColor;
@@ -278,6 +283,7 @@ namespace Sunny.UI
         private UIMenuStyle menuStyle = UIMenuStyle.Black;
 
         [DefaultValue(UIMenuStyle.Black)]
+        [Description("导航菜单主题风格"), Category("SunnyUI")]
         public UIMenuStyle MenuStyle
         {
             get => menuStyle;
@@ -314,6 +320,7 @@ namespace Sunny.UI
         private Color selectedForeColor = UIColor.Blue;
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("选中节点字体颜色"), Category("SunnyUI")]
         public Color SelectedForeColor
         {
             get => selectedForeColor;
@@ -499,7 +506,7 @@ namespace Sunny.UI
                    e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
         }
 
-        [Description("展开节点后选中第一个子节点"), DefaultValue(true)]
+        [Description("展开节点后选中第一个子节点"), DefaultValue(true), Category("SunnyUI")]
         public bool ExpandSelectFirst { get; set; } = true;
 
         public string Version { get; }
@@ -815,6 +822,4 @@ namespace Sunny.UI
             return childNode;
         }
     }
-
-
 }

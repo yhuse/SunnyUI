@@ -48,7 +48,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
-        [Description("左侧列表")]
+        [Description("左侧列表"), Category("SunnyUI")]
         public ListBox.ObjectCollection ItemsLeft => l1.Items;
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
-        [Description("右侧列表")]
+        [Description("右侧列表"), Category("SunnyUI")]
         public ListBox.ObjectCollection ItemsRight => l2.Items;
 
         private void b1_Click(object sender, EventArgs e)

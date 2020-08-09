@@ -94,7 +94,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "0, 0, 0")]
         public Color BorderColor
         {
@@ -109,7 +109,7 @@ namespace Sunny.UI
         /// <summary>
         /// 内线颜色
         /// </summary>
-        [Description("内线颜色")]
+        [Description("内线颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "0xC0, 0xC0, 0xC0")]
         public Color BorderInColor
         {
@@ -124,7 +124,7 @@ namespace Sunny.UI
         /// <summary>
         /// LED背景色
         /// </summary>
-        [Description("LED背景色")]
+        [Description("LED背景色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "0, 0x33, 0")]
         public Color LedBackColor
         {
@@ -147,7 +147,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框宽度
         /// </summary>
-        [DefaultValue(1), Description("边框宽度")]
+        [DefaultValue(1), Description("边框宽度"), Category("SunnyUI")]
         public int BorderWidth
         {
             get => borderWidth;
@@ -165,7 +165,7 @@ namespace Sunny.UI
         /// <summary>
         /// 内线宽度
         /// </summary>
-        [DefaultValue(1), Description("内线宽度")]
+        [DefaultValue(1), Description("内线宽度"), Category("SunnyUI")]
         public int BorderInWidth
         {
             get => borderInWidth;
@@ -183,7 +183,7 @@ namespace Sunny.UI
         /// <summary>
         /// 左右边距
         /// </summary>
-        [DefaultValue(2), Description("左右边距")]
+        [DefaultValue(2), Description("左右边距"), Category("SunnyUI")]
         public int IntervalH
         {
             get => intervalH;
@@ -201,7 +201,7 @@ namespace Sunny.UI
         /// <summary>
         /// 上下边距
         /// </summary>
-        [DefaultValue(5), Description("上下边距")]
+        [DefaultValue(5), Description("上下边距"), Category("SunnyUI")]
         public int IntervalV
         {
             get => intervalV;
@@ -219,7 +219,7 @@ namespace Sunny.UI
         /// <summary>
         /// LED亮块间距
         /// </summary>
-        [DefaultValue(1), Description("LED亮块间距")]
+        [DefaultValue(1), Description("LED亮块间距"), Category("SunnyUI")]
         public int IntervalIn
         {
             get => intervalIn;
@@ -237,7 +237,7 @@ namespace Sunny.UI
         /// <summary>
         /// LED亮块大小
         /// </summary>
-        [DefaultValue(2), Description("LED亮块大小")]
+        [DefaultValue(2), Description("LED亮块大小"), Category("SunnyUI")]
         public int IntervalOn
         {
             get => intervalOn;
@@ -255,7 +255,7 @@ namespace Sunny.UI
         /// <summary>
         /// 显示字符个数
         /// </summary>
-        [DefaultValue(10), Description("显示字符个数")]
+        [DefaultValue(10), Description("显示字符个数"), Category("SunnyUI")]
         public int CharCount
         {
             get => charCount;

@@ -50,6 +50,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(100)]
+        [Description("最大值"), Category("SunnyUI")]
         public int Maximum
         {
             get => maximum;
@@ -63,6 +64,7 @@ namespace Sunny.UI
         private int posValue;
 
         [DefaultValue(0)]
+        [Description("当前位置"), Category("SunnyUI")]
         public int Value
         {
             get => posValue;
@@ -84,6 +86,7 @@ namespace Sunny.UI
         private bool showValue = true;
 
         [DefaultValue(true)]
+        [Description("显示进度值"), Category("SunnyUI")]
         public bool ShowValue
         {
             get => showValue;
@@ -95,6 +98,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(1)]
+        [Description("步进值"), Category("SunnyUI")]
         public int Step { get; set; } = 1;
 
         public void StepIt()

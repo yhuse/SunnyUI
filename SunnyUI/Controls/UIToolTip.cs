@@ -47,20 +47,22 @@ namespace Sunny.UI
             InitOwnerDraw();
         }
 
+        [DefaultValue("ToolTip title"), Category("SunnyUI"), Description("标题")]
         public new string ToolTipTitle { get; set; } = "ToolTip title";
 
-        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt"), Description("字体"), Category("SunnyUI")]
         public Font Font { get; set; } = new Font("微软雅黑", 9);
 
-        [DefaultValue(typeof(Font), "微软雅黑, 12pt")]
+        [DefaultValue(typeof(Font), "微软雅黑, 12pt"), Description("标题字体"), Category("SunnyUI")]
         public Font TitleFont { get; set; } = new Font("微软雅黑", 12);
 
-        [DefaultValue(typeof(Color), "239, 239, 239")]
+        [DefaultValue(typeof(Color), "239, 239, 239"), Description("边框颜色"), Category("SunnyUI")]
         public Color RectColor { get; set; } = UIChartStyles.Dark.ForeColor;
 
-        [DefaultValue(true)] public bool AutoSize { get; set; } = true;
+        [DefaultValue(true), Description("自动大小"), Category("SunnyUI")]
+        public bool AutoSize { get; set; } = true;
 
-        [DefaultValue(typeof(Size), "100, 70")]
+        [DefaultValue(typeof(Size), "100, 70"), Description("不自动缩放时大小"), Category("SunnyUI")]
         public Size Size { get; set; } = new Size(100, 70);
 
         public void SetToolTip(Control control, string description, string title, int symbol, int symbolSize,
@@ -86,7 +88,7 @@ namespace Sunny.UI
                     Symbol = symbol,
                     SymbolSize = symbolSize,
                     SymbolColor = symbolColor
-            };
+                };
 
                 ToolTipControls.TryAdd(control, ctrl);
             }
@@ -189,10 +191,10 @@ namespace Sunny.UI
                         }
 
                         SizeF textSize = g.MeasureString(tooltip.Description, Font);
-                        int allWidth = (int) Math.Max(textSize.Width, titleSize.Width) + 10;
+                        int allWidth = (int)Math.Max(textSize.Width, titleSize.Width) + 10;
                         if (symbolWidth > 0) allWidth = allWidth + symbolWidth + 5;
-                        int allHeight = titleSize.Height > 0 ? 
-                            (int)titleSize.Height + (int)textSize.Height + 15 : 
+                        int allHeight = titleSize.Height > 0 ?
+                            (int)titleSize.Height + (int)textSize.Height + 15 :
                             (int)textSize.Height + 10;
                         e.ToolTipSize = new Size(allWidth, allHeight);
                         bmp.Dispose();
@@ -226,20 +228,20 @@ namespace Sunny.UI
                         titleSize = e.Graphics.MeasureString(tooltip.Title, TitleFont);
                     }
 
-                    e.Graphics.DrawString(tooltip.Title,TitleFont,ForeColor, 
-                        tooltip.Symbol>0?tooltip.SymbolSize+5:5, 5);
+                    e.Graphics.DrawString(tooltip.Title, TitleFont, ForeColor,
+                        tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5, 5);
                 }
 
                 if (titleSize.Height > 0)
                 {
-                    e.Graphics.DrawLine(ForeColor, 
-                        symbolWidth==0?5:symbolWidth+5, 5+ titleSize.Height + 3, 
+                    e.Graphics.DrawLine(ForeColor,
+                        symbolWidth == 0 ? 5 : symbolWidth + 5, 5 + titleSize.Height + 3,
                         e.Bounds.Width - 5, 5 + titleSize.Height + 3);
                 }
 
-                e.Graphics.DrawString(e.ToolTipText, Font, ForeColor, 
+                e.Graphics.DrawString(e.ToolTipText, Font, ForeColor,
                     tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5,
-                    titleSize.Height > 0? 10+ titleSize.Height : 5);
+                    titleSize.Height > 0 ? 10 + titleSize.Height : 5);
             }
             else
             {

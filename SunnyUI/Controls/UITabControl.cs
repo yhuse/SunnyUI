@@ -85,6 +85,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true)]
+        [Description("是否禁用Ctrl+Tab"), Category("SunnyUI")]
         public bool ForbidCtrlTab { get; set; } = true;
 
         public void SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
@@ -128,6 +129,7 @@ namespace Sunny.UI
         private HorizontalAlignment textAlignment = HorizontalAlignment.Center;
 
         [DefaultValue(HorizontalAlignment.Center)]
+        [Description("文字显示方向"), Category("SunnyUI")]
         public HorizontalAlignment TextAlignment
         {
             get => textAlignment;
@@ -141,6 +143,7 @@ namespace Sunny.UI
         private bool tabVisible = true;
 
         [DefaultValue(true)]
+        [Description("标签页是否显示"), Category("SunnyUI")]
         public bool TabVisible
         {
             get => tabVisible;
@@ -281,6 +284,7 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
+        [Browsable(false)]
         public override Rectangle DisplayRectangle
         {
             get
@@ -323,6 +327,7 @@ namespace Sunny.UI
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
 
         [DefaultValue(UIMenuStyle.Black)]
+        [Description("主题风格"), Category("SunnyUI")]
         public UIMenuStyle MenuStyle
         {
             get => _menuStyle;
@@ -356,7 +361,7 @@ namespace Sunny.UI
 
         private bool showCloseButton;
 
-        [DefaultValue(false), Description("所有Tab页面标题显示关闭按钮")]
+        [DefaultValue(false), Description("所有Tab页面标题显示关闭按钮"), Category("SunnyUI")]
         public bool ShowCloseButton
         {
             get => showCloseButton;
@@ -370,7 +375,7 @@ namespace Sunny.UI
 
         private bool showActiveCloseButton;
 
-        [DefaultValue(false), Description("当前激活的Tab页面标题显示关闭按钮")]
+        [DefaultValue(false), Description("当前激活的Tab页面标题显示关闭按钮"), Category("SunnyUI")]
         public bool ShowActiveCloseButton
         {
             get => showActiveCloseButton;
@@ -526,6 +531,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(UITabPosition.Left)]
+        [Description("标签页显示位置"), Category("SunnyUI")]
         public UITabPosition TabPosition
         {
             get => (RightToLeftLayout && RightToLeft == RightToLeft.Yes)

@@ -63,6 +63,7 @@ namespace Sunny.UI
 
         public event EventHandler ValueChanged;
 
+        [Description("滚动条当前值"), Category("SunnyUI")]
         [DefaultValue(0)]
         public int Value
         {
@@ -75,6 +76,7 @@ namespace Sunny.UI
             }
         }
 
+        [Description("滚动条最大值"), Category("SunnyUI")]
         [DefaultValue(100)]
         public int Maximum
         {
@@ -448,6 +450,7 @@ namespace Sunny.UI
             set => SetFillColor(value);
         }
 
+        [Description("鼠标移上颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "111, 168, 255")]
         public Color HoverColor
         {
@@ -455,6 +458,7 @@ namespace Sunny.UI
             set => SetFillHoveColor(value);
         }
 
+        [Description("鼠标按下颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "74, 131, 229")]
         public Color PressColor
         {
