@@ -422,7 +422,7 @@ namespace Sunny.UI
                     g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - 4, bmp.Width, 4);
                 }
 
-                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
+                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
 
                 var menuItem = Helper[index];
                 bool showButton = menuItem == null || !menuItem.AlwaysOpen;
