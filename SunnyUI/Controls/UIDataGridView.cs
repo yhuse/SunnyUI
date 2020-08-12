@@ -248,10 +248,10 @@ namespace Sunny.UI
             VBar.Height = Height - 2;
             VBar.BringToFront();
 
-            HBar.Left = 2;
+            HBar.Left = 0;
             HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
-            HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
-            HBar.Top = Height - HBar.Height - 2;
+            HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
+            HBar.Top = Height - HBar.Height;
             HBar.BringToFront();
         }
 
@@ -298,6 +298,7 @@ namespace Sunny.UI
             set
             {
                 AlternatingRowsDefaultCellStyle.BackColor = value;
+                HBar.FillColor = VBar.FillColor = value;
                 Invalidate();
             }
         }

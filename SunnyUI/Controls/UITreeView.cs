@@ -89,7 +89,14 @@ namespace Sunny.UI
             if (view != null)
             {
                 view.FillColor = color;
+                view.BackColor = color;
             }
+        }
+
+        protected override void AfterSetForeColor(Color color)
+        {
+            base.AfterSetForeColor(color);
+            view.ForeColor = color;
         }
 
         [DefaultValue(TreeViewDrawMode.OwnerDrawAll)]
@@ -617,7 +624,7 @@ namespace Sunny.UI
             {
                 base.OnDrawNode(e);
 
-                if (e.Node==null) return;
+                if (e.Node == null) return;
 
                 if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
 
@@ -629,7 +636,7 @@ namespace Sunny.UI
                 else
                 {
                     var drawLeft = (e.Node.Level + 1) * Indent + 3;
-                    var checkBoxLeft = (e.Node.Level + 1) * Indent + 3;
+                    var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
                     var imageLeft = drawLeft;
                     var haveImage = false;
                     var sf = e.Graphics.MeasureString(e.Node.Text, Font);

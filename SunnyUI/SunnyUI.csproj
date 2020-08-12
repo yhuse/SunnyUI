@@ -487,9 +487,6 @@
     <Compile Include="Units\UXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
-      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UIEditForm.resx">
       <DependentUpon>UIEditForm.cs</DependentUpon>
     </EmbeddedResource>
