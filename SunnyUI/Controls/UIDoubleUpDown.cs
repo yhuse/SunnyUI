@@ -37,6 +37,12 @@ namespace Sunny.UI
             ShowText = false;
         }
 
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (pnlValue != null) pnlValue.Font = Font;
+        }
+
         public event OnValueChanged ValueChanged;
 
         private double _value = 0;
