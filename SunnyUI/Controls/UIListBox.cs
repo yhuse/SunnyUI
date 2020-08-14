@@ -37,6 +37,7 @@ namespace Sunny.UI
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
+        private readonly Timer timer = new Timer();
 
         public UIListBox()
         {
@@ -61,6 +62,25 @@ namespace Sunny.UI
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        ~UIListBox()
+        {
+            timer.Stop();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (Items.Count == 0 && LastCount != 0)
+            {
+                LastCount = 0;
+                timer.Stop();
+                ItemsCountChange?.Invoke(sender, e);
+                timer.Start();
+            }
         }
 
         protected override void OnFontChanged(EventArgs e)

@@ -39,8 +39,23 @@ namespace Sunny.UI
         {
             InitializeComponent();
             ShowText = false;
+
+            l1.ItemsCountChange += L1_ItemsCountChange;
+            l2.ItemsCountChange += L2_ItemsCountChange;
         }
 
+        private void L2_ItemsCountChange(object sender, EventArgs e)
+        {
+            ItemsRightCountChange?.Invoke(sender, e);
+        }
+
+        private void L1_ItemsCountChange(object sender, EventArgs e)
+        {
+            ItemsLeftCountChange?.Invoke(sender, e);
+        }
+
+        public event EventHandler ItemsLeftCountChange;
+        public event EventHandler ItemsRightCountChange;
         /// <summary>
         /// 左侧列表
         /// </summary>
