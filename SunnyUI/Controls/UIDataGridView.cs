@@ -171,7 +171,7 @@ namespace Sunny.UI
 
             if (VerticalScrollBar.Visible)
             {
-                VBar.Maximum = RowCount - 1;
+                VBar.Maximum = RowCount - this.Rows.GetRowCount(DataGridViewElementStates.Displayed) + 1;
                 VBar.Value = FirstDisplayedScrollingRowIndex;
                 VBar.Visible = true;
             }
