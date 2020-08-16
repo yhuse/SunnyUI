@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Sunny.UI.Demo
 {
@@ -40,6 +41,13 @@ namespace Sunny.UI.Demo
         private void uiListBox1_ItemDoubleClick(object sender, System.EventArgs e)
         {
             this.ShowInfoDialog(uiListBox1.SelectedItem.ToString());
+        }
+
+        private int num = 0;
+        private void uiButton1_Click(object sender, System.EventArgs e)
+        {
+            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
+            num++;
         }
     }
 }

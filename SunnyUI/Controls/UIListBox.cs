@@ -171,11 +171,17 @@ namespace Sunny.UI
 
         private int LastCount;
 
+        private int lastBarValue = -1;
+
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
             if (listbox != null)
             {
-                ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                if (bar.Value != lastBarValue)
+                {
+                    ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                    lastBarValue = bar.Value;
+                }
             }
         }
 
@@ -306,7 +312,14 @@ namespace Sunny.UI
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            SetScrollInfo();
+            if (Bar != null && Bar.Visible)
+            {
+                if (Bar.Value != 0)
+                {
+                    ScrollBarInfo.SetScrollValue(Handle, Bar.Value);
+                }
+            }
+            //SetScrollInfo();
         }
 
         public void SetScrollInfo()
@@ -377,25 +390,20 @@ namespace Sunny.UI
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            /*            base.OnMouseWheel(e);
-                        if (Bar.Visible)
-                        {
-                            var si = ScrollBarInfo.GetInfo(Handle);
-                            if (e.Delta > 10)
-                            {
-                                if (si.nPos > 0)
-                                {
-                                    ScrollBarInfo.ScrollUp(Handle);
-                                }
-                            }
-                            else if (e.Delta < -10)
-                            {
-                                if (si.nPos < si.ScrollMax)
-                                {
-                                    ScrollBarInfo.ScrollDown(Handle);
-                                }
-                            }
-                        }*/
+            base.OnMouseWheel(e);
+
+            if (Bar != null && Bar.Visible)
+            {
+                var si = ScrollBarInfo.GetInfo(Handle);
+                if (e.Delta > 10)
+                {
+                    ScrollBarInfo.SetScrollValue(Handle, (si.nPos - SystemInformation.MouseWheelScrollLines) >= si.nMin ? si.nPos - SystemInformation.MouseWheelScrollLines : 0);
+                }
+                else if (e.Delta < -10)
+                {
+                    ScrollBarInfo.SetScrollValue(Handle, (si.nPos + SystemInformation.MouseWheelScrollLines) <= si.nMax ? (si.nPos + SystemInformation.MouseWheelScrollLines) : si.nMax);
+                }
+            }
 
             SetScrollInfo();
         }
