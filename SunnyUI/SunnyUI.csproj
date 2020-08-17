@@ -402,6 +402,7 @@
     <Compile Include="Controls\UIToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
