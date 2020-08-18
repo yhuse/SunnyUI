@@ -497,7 +497,6 @@ namespace Sunny.UI
             //
             view.BackColor = Color.White;
             view.BorderStyle = BorderStyle.None;
-            view.CheckBoxes = true;
             view.DrawMode = TreeViewDrawMode.OwnerDrawAll;
             view.ForeColor = Color.FromArgb(48, 48, 48);
             view.FullRowSelect = true;
