@@ -79,12 +79,15 @@ namespace Sunny.UI
                 float barX = DrawOrigin.X;
                 var series = o.Series[i];
                 Bars.TryAdd(i, new List<BarInfo>());
-
                 for (int j = 0; j < series.Data.Count; j++)
                 {
                     Color color = ChartStyle.GetColor(i);
                     if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
                         color = series.Colors[j];
+
+                    float xx = barX + x1 * (i + 1) + x2 * i + x1;
+                    float ww = Math.Min(x2, series.MaxWidth);
+                    xx = xx - ww / 2.0f;
 
                     if (YAxisStart >= 0)
                     {
@@ -92,10 +95,7 @@ namespace Sunny.UI
 
                         Bars[i].Add(new BarInfo()
                         {
-                            Rect = new RectangleF(
-                                barX + x1 * (i + 1) + x2 * i,
-                                DrawOrigin.Y - h,
-                                x2, h),
+                            Rect = new RectangleF(xx, DrawOrigin.Y - h, ww, h),
                             Color = color
                         });
                     }
@@ -104,10 +104,7 @@ namespace Sunny.UI
                         float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
                         Bars[i].Add(new BarInfo()
                         {
-                            Rect = new RectangleF(
-                                barX + x1 * (i + 1) + x2 * i,
-                                BarOption.Grid.Top + 1,
-                                x2, h - 1),
+                            Rect = new RectangleF(xx, BarOption.Grid.Top + 1, ww, h - 1),
                             Color = color
                         });
                     }
@@ -134,10 +131,7 @@ namespace Sunny.UI
                             float h = Math.Abs((float)(highH * series.Data[j] / highV));
                             Bars[i].Add(new BarInfo()
                             {
-                                Rect = new RectangleF(
-                                    barX + x1 * (i + 1) + x2 * i,
-                                    DrawOrigin.Y - lowH - h,
-                                    x2, h),
+                                Rect = new RectangleF(xx, DrawOrigin.Y - lowH - h, ww, h),
                                 Color = color
                             });
                         }
@@ -146,10 +140,7 @@ namespace Sunny.UI
                             float h = Math.Abs((float)(lowH * series.Data[j] / lowV));
                             Bars[i].Add(new BarInfo()
                             {
-                                Rect = new RectangleF(
-                                    barX + x1 * (i + 1) + x2 * i,
-                                    DrawOrigin.Y - lowH + 1,
-                                    x2, h - 1),
+                                Rect = new RectangleF(xx, DrawOrigin.Y - lowH + 1, ww, h - 1),
                                 Color = color
                             });
                         }
