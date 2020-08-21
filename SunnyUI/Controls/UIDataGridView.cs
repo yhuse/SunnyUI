@@ -242,10 +242,10 @@ namespace Sunny.UI
 
         private void SetBarPosition()
         {
-            VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
-            VBar.Top = 1;
+            VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 1;
+            VBar.Top = 0;
             VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
-            VBar.Height = Height - 2;
+            VBar.Height = Height;
             VBar.BringToFront();
 
             HBar.Left = 0;
