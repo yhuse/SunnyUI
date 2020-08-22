@@ -180,9 +180,9 @@ namespace Sunny.UI
                 VBar.Visible = false;
             }
 
-            if (ColumnCount > DisplayedColumnCount(false))
+            if (HorizontalScrollBar.Visible)
             {
-                HBar.Maximum = ColumnCount - DisplayedColumnCount(false);
+                HBar.Maximum = VisibleColumnCount();
                 HBar.Value = FirstDisplayedScrollingColumnIndex;
                 HBar.Visible = true;
             }
