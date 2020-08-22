@@ -13,7 +13,7 @@ namespace Sunny.UI.Demo
         public override void Init()
         {
             uiListBox1.Items.Clear();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 uiListBox1.Items.Add(i);
             }

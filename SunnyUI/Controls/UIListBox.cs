@@ -395,13 +395,16 @@ namespace Sunny.UI
             if (Bar != null && Bar.Visible)
             {
                 var si = ScrollBarInfo.GetInfo(Handle);
+                int temp = Math.Abs(e.Delta / 120);
                 if (e.Delta > 10)
                 {
-                    ScrollBarInfo.SetScrollValue(Handle, (si.nPos - SystemInformation.MouseWheelScrollLines) >= si.nMin ? si.nPos - SystemInformation.MouseWheelScrollLines : 0);
+                    int nposnum = si.nPos - temp * SystemInformation.MouseWheelScrollLines;
+                    ScrollBarInfo.SetScrollValue(Handle, nposnum >= si.nMin ? nposnum : 0);
                 }
                 else if (e.Delta < -10)
                 {
-                    ScrollBarInfo.SetScrollValue(Handle, (si.nPos + SystemInformation.MouseWheelScrollLines) <= si.nMax ? (si.nPos + SystemInformation.MouseWheelScrollLines) : si.nMax);
+                    int nposnum = si.nPos + temp * SystemInformation.MouseWheelScrollLines;
+                    ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.nMax ? nposnum : si.nMax);
                 }
             }
 
