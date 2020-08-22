@@ -29,7 +29,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UIDataGridView : DataGridView, IStyleInterface
+    public class UIDataGridView : DataGridView, IStyleInterface
     {
         private readonly UIScrollBar VBar = new UIScrollBar();
         private readonly UIHorScrollBar HBar = new UIHorScrollBar();
@@ -38,8 +38,8 @@ namespace Sunny.UI
         {
             BackgroundColor = UIColor.White;
             GridColor = UIColor.Blue;
-            Font = UIFontColor.Font;
-            DoubleBuffered = true;
+            base.Font = UIFontColor.Font;
+            base.DoubleBuffered = true;
 
             VBar.Parent = this;
             VBar.Visible = false;
@@ -169,9 +169,9 @@ namespace Sunny.UI
                 return;
             }
 
-            if (VerticalScrollBar.Visible)
+            if (RowCount > DisplayedRowCount(false))
             {
-                VBar.Maximum = RowCount - this.Rows.GetRowCount(DataGridViewElementStates.Displayed) + 1;
+                VBar.Maximum = RowCount - DisplayedRowCount(false);
                 VBar.Value = FirstDisplayedScrollingRowIndex;
                 VBar.Visible = true;
             }
@@ -180,9 +180,9 @@ namespace Sunny.UI
                 VBar.Visible = false;
             }
 
-            if (HorizontalScrollBar.Visible)
+            if (ColumnCount > DisplayedColumnCount(false))
             {
-                HBar.Maximum = VisibleColumnCount() - 1;
+                HBar.Maximum = ColumnCount - DisplayedColumnCount(false);
                 HBar.Value = FirstDisplayedScrollingColumnIndex;
                 HBar.Visible = true;
             }
@@ -242,17 +242,34 @@ namespace Sunny.UI
 
         private void SetBarPosition()
         {
-            VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 1;
-            VBar.Top = 0;
-            VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
-            VBar.Height = Height;
-            VBar.BringToFront();
+            if (ShowRect)
+            {
+                VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
+                VBar.Top = 1;
+                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+                VBar.Height = Height - 2;
+                VBar.BringToFront();
 
-            HBar.Left = 0;
-            HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
-            HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
-            HBar.Top = Height - HBar.Height;
-            HBar.BringToFront();
+                HBar.Left = 2;
+                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
+                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
+                HBar.Top = Height - HBar.Height - 2;
+                HBar.BringToFront();
+            }
+            else
+            {
+                VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 1;
+                VBar.Top = 0;
+                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+                VBar.Height = Height;
+                VBar.BringToFront();
+
+                HBar.Left = 0;
+                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
+                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
+                HBar.Top = Height - HBar.Height;
+                HBar.BringToFront();
+            }
         }
 
         protected override void OnColumnAdded(DataGridViewColumnEventArgs e)
