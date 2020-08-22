@@ -382,10 +382,20 @@ namespace Sunny.UI
         {
             if (Focused && e.KeyCode == Keys.Space)
             {
+                IsPress = true;
+                Invalidate();
                 PerformClick();
             }
 
             base.OnKeyDown(e);
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            IsPress = false;
+            Invalidate();
+
+            base.OnKeyUp(e);
         }
 
         [DefaultValue(false)]

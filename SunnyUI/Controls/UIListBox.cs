@@ -404,11 +404,10 @@ namespace Sunny.UI
                 else if (e.Delta < -10)
                 {
                     int nposnum = si.nPos + temp * SystemInformation.MouseWheelScrollLines;
-                    ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.nMax ? nposnum : si.nMax);
+                    ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.ScrollMax ? nposnum : si.ScrollMax);
                 }
+                SetScrollInfo();
             }
-
-            SetScrollInfo();
         }
 
         public void SetStyle(UIStyle style)
