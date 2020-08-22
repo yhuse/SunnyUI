@@ -13,10 +13,10 @@ namespace Sunny.UI.Demo
         public override void Init()
         {
             uiListBox1.Items.Clear();
-            for (int i = 0; i < 50; i++)
-            {
-                uiListBox1.Items.Add(i);
-            }
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    uiListBox1.Items.Add(i);
+            //}
 
             uiImageListBox1.Items.Clear();
             string[] files = System.IO.Directory.GetFiles(DirEx.CurrentDir() + "Team",
@@ -44,10 +44,27 @@ namespace Sunny.UI.Demo
         }
 
         private int num = 0;
+        private int num2 = 0;
         private void uiButton1_Click(object sender, System.EventArgs e)
         {
+            listBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num2);
+            num2++;
             uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
             num++;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num2);
+            num2++;
+            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
+            num++;
+        }
+
+        private void uiButton2_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            uiListBox1.Items.Clear();
         }
     }
 }

@@ -34,11 +34,17 @@
             this.uiListBox1 = new Sunny.UI.UIListBox();
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.uiButton1 = new Sunny.UI.UIButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.uiButton2 = new Sunny.UI.UIButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiButton2);
+            this.PagePanel.Controls.Add(this.listBox1);
+            this.PagePanel.Controls.Add(this.button1);
             this.PagePanel.Controls.Add(this.uiButton1);
             this.PagePanel.Controls.Add(this.uiCheckBox1);
             this.PagePanel.Controls.Add(this.uiListBox1);
@@ -120,6 +126,36 @@
             this.uiButton1.Text = "Add Item";
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(637, 400);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 35);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Add Item";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 21;
+            this.listBox1.Location = new System.Drawing.Point(629, 48);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(138, 340);
+            this.listBox1.TabIndex = 25;
+            // 
+            // uiButton2
+            // 
+            this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton2.Location = new System.Drawing.Point(188, 400);
+            this.uiButton2.Name = "uiButton2";
+            this.uiButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiButton2.TabIndex = 26;
+            this.uiButton2.Text = "Clear Item";
+            this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
+            // 
             // FListBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -140,5 +176,8 @@
         private UIListBox uiListBox1;
         private UICheckBox uiCheckBox1;
         private UIButton uiButton1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button1;
+        private UIButton uiButton2;
     }
 }
