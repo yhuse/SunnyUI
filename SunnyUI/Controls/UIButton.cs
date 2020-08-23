@@ -76,12 +76,6 @@ namespace Sunny.UI
             base.OnClick(e);
         }
 
-        protected override void OnDoubleClick(EventArgs e)
-        {
-            Focus();
-            base.OnClick(e);
-        }
-
         private bool showTips = false;
 
         [Description("是否显示角标"), Category("SunnyUI")]
