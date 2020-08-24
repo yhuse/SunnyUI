@@ -55,6 +55,7 @@ namespace Sunny.UI
             fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
             fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
+            SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 
         private bool isClick;
@@ -74,6 +75,27 @@ namespace Sunny.UI
         {
             Focus();
             base.OnClick(e);
+        }
+
+        private bool useDoubleClick = false;
+
+        [Description("是否启用双击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool UseDoubleClick
+        {
+            get
+            {
+                return useDoubleClick;
+            }
+            set
+            {
+                if (useDoubleClick != value)
+                {
+                    useDoubleClick = value;
+                    SetStyle(ControlStyles.StandardDoubleClick, value);
+                    Invalidate();
+                }
+            }
         }
 
         private bool showTips = false;

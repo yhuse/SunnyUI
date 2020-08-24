@@ -49,5 +49,11 @@ namespace Sunny.UI.Demo
             uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
             num++;
         }
+
+        private void uiButton1_DoubleClick(object sender, EventArgs e)
+        {
+            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_double_" + num);
+            num++;
+        }
     }
 }
