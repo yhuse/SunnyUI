@@ -703,8 +703,24 @@ namespace Sunny.UI
             edtPage.HasMaximum = true;
             edtPage.Maximum = PageCount;
 
-            if (activePage > PageCount) activePage = PageCount;
-            if (activePage < 1) activePage = 1;
+            if (activePage >= PageCount)
+            {
+                activePage = PageCount;
+                b16.Enabled = false;
+            }
+            else
+            {
+                b16.Enabled = true;
+            }
+            if (activePage <= 1)
+            {
+                activePage = 1;
+                b0.Enabled = false;
+            }
+            else
+            {
+                b0.Enabled = true;
+            }
             edtPage.IntValue = activePage;
 
             if (TotalCount == 0)

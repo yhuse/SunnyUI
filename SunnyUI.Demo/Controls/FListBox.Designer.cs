@@ -119,6 +119,7 @@
             this.uiButton1.TabIndex = 23;
             this.uiButton1.Text = "Add Item";
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
+            this.uiButton1.DoubleClick += new System.EventHandler(this.uiButton1_DoubleClick);
             // 
             // FListBox
             // 

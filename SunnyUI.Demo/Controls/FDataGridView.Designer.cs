@@ -80,7 +80,6 @@
             this.uiDataGridView1.Location = new System.Drawing.Point(0, 0);
             this.uiDataGridView1.MultiSelect = false;
             this.uiDataGridView1.Name = "uiDataGridView1";
-            this.uiDataGridView1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
@@ -90,11 +89,10 @@
             this.uiDataGridView1.ShowRect = false;
             this.uiDataGridView1.Size = new System.Drawing.Size(861, 380);
             this.uiDataGridView1.TabIndex = 0;
-            this.uiDataGridView1.TagString = null;
             // 
             // uiPagination1
             // 
-            this.uiPagination1.ActivePage = 500;
+            this.uiPagination1.ActivePage = 50;
             this.uiPagination1.CausesValidation = false;
             this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPagination1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -102,6 +100,7 @@
             this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPagination1.Name = "uiPagination1";
             this.uiPagination1.PagerCount = 11;
+            this.uiPagination1.PageSize = 50;
             this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiPagination1.Size = new System.Drawing.Size(861, 35);
             this.uiPagination1.TabIndex = 1;

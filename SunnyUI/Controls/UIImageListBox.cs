@@ -321,7 +321,14 @@ namespace Sunny.UI
 
             protected override void OnSizeChanged(EventArgs e)
             {
-                SetScrollInfo();
+                if (Bar != null && Bar.Visible)
+                {
+                    if (Bar.Value != 0)
+                    {
+                        ScrollBarInfo.SetScrollValue(Handle, Bar.Value);
+                    }
+                }
+                //SetScrollInfo();
             }
 
             public void SetScrollInfo()
@@ -379,22 +386,19 @@ namespace Sunny.UI
             {
                 base.OnMouseWheel(e);
 
-                if (Bar.Visible)
+                if (Bar != null && Bar.Visible)
                 {
                     var si = ScrollBarInfo.GetInfo(Handle);
+                    int temp = Math.Abs(e.Delta / 120);
                     if (e.Delta > 10)
                     {
-                        if (si.nPos > 0)
-                        {
-                            ScrollBarInfo.ScrollUp(Handle);
-                        }
+                        int nposnum = si.nPos - temp * SystemInformation.MouseWheelScrollLines;
+                        ScrollBarInfo.SetScrollValue(Handle, nposnum >= si.nMin ? nposnum : 0);
                     }
                     else if (e.Delta < -10)
                     {
-                        if (si.nPos < si.ScrollMax)
-                        {
-                            ScrollBarInfo.ScrollDown(Handle);
-                        }
+                        int nposnum = si.nPos + temp * SystemInformation.MouseWheelScrollLines;
+                        ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.nMax ? nposnum : si.nMax);
                     }
                 }
 
