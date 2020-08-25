@@ -41,6 +41,7 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
+            SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 
         public delegate void OnValueChanged(object sender, bool value);
@@ -101,6 +102,27 @@ namespace Sunny.UI
                 _checked = value;
                 ValueChanged?.Invoke(this, _checked);
                 Invalidate();
+            }
+        }
+
+        private bool _useDoubleClick = false;
+
+        [Description("是否启用双击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool UseDoubleClick
+        {
+            get
+            {
+                return _useDoubleClick;
+            }
+            set
+            {
+                if (_useDoubleClick != value)
+                {
+                    _useDoubleClick = value;
+                    SetStyle(ControlStyles.StandardDoubleClick, _useDoubleClick);
+                    Invalidate();
+                }
             }
         }
 
