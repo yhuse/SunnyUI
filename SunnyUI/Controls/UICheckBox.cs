@@ -105,27 +105,6 @@ namespace Sunny.UI
             }
         }
 
-        private bool _useDoubleClick = false;
-
-        [Description("是否启用双击事件"), Category("SunnyUI")]
-        [DefaultValue(false)]
-        public bool UseDoubleClick
-        {
-            get
-            {
-                return _useDoubleClick;
-            }
-            set
-            {
-                if (_useDoubleClick != value)
-                {
-                    _useDoubleClick = value;
-                    SetStyle(ControlStyles.StandardDoubleClick, _useDoubleClick);
-                    Invalidate();
-                }
-            }
-        }
-
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             //设置按钮标题位置

@@ -137,26 +137,6 @@ namespace Sunny.UI
             set => SetRectColor(value);
         }
 
-        private bool useDoubleClick = false;
-
-        [Description("是否启用双击事件"), Category("SunnyUI")]
-        [DefaultValue(false)]
-        public bool UseDoubleClick
-        {
-            get
-            {
-                return useDoubleClick;
-            }
-            set
-            {
-                if (useDoubleClick != value)
-                {
-                    useDoubleClick = value;
-                    Invalidate();
-                }
-            }
-        }
-
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
@@ -165,7 +145,7 @@ namespace Sunny.UI
 
         protected override void OnDoubleClick(EventArgs e)
         {
-            if (!useDoubleClick)
+            if (!UseDoubleClick)
             {
                 base.OnClick(e);
                 Active = !Active;
