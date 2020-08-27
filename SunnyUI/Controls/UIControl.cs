@@ -266,6 +266,27 @@ namespace Sunny.UI
             }
         }
 
+        private bool useDoubleClick = false;
+
+        [Description("是否启用双击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool UseDoubleClick
+        {
+            get
+            {
+                return useDoubleClick;
+            }
+            set
+            {
+                if (useDoubleClick != value)
+                {
+                    useDoubleClick = value;
+                    //SetStyle(ControlStyles.StandardDoubleClick, useDoubleClick);
+                    //Invalidate();
+                }
+            }
+        }
+
         /// <summary>
         /// OnPaint
         /// </summary>

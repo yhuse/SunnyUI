@@ -41,6 +41,7 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
+            SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 
         public delegate void OnValueChanged(object sender, bool value);

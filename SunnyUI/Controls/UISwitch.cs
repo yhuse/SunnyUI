@@ -143,6 +143,19 @@ namespace Sunny.UI
             Active = !Active;
         }
 
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            if (!UseDoubleClick)
+            {
+                base.OnClick(e);
+                Active = !Active;
+            }
+            else
+            {
+                base.OnDoubleClick(e);
+            }
+        }
+
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
