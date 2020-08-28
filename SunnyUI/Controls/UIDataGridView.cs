@@ -83,6 +83,16 @@ namespace Sunny.UI
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
         }
 
+        private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            VBar.Value = FirstDisplayedScrollingRowIndex;
+        }
+
+        private void VBarValueChanged(object sender, EventArgs e)
+        {
+            FirstDisplayedScrollingRowIndex = VBar.Value;
+        }
+
         private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
         {
             HBar.Value = FirstDisplayedScrollingColumnIndex;
@@ -90,20 +100,21 @@ namespace Sunny.UI
 
         private void HBar_ValueChanged(object sender, EventArgs e)
         {
-            int idx = 0;
-            for (int i = 0; i < ColumnCount; i++)
-            {
-                if (Columns[i].Visible && idx == HBar.Value)
-                {
-                    FirstDisplayedScrollingColumnIndex = i;
-                    break;
-                }
-
-                if (Columns[i].Visible)
-                {
-                    idx++;
-                }
-            }
+            FirstDisplayedScrollingColumnIndex = HBar.Value;
+            // int idx = 0;
+            // for (int i = 0; i < ColumnCount; i++)
+            // {
+            //     if (Columns[i].Visible && idx == HBar.Value)
+            //     {
+            //         FirstDisplayedScrollingColumnIndex = i;
+            //         break;
+            //     }
+            //
+            //     if (Columns[i].Visible)
+            //     {
+            //         idx++;
+            //     }
+            // }
         }
 
         public void Init()
@@ -152,15 +163,7 @@ namespace Sunny.UI
             }
         }
 
-        private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            VBar.Value = FirstDisplayedScrollingRowIndex;
-        }
 
-        private void VBarValueChanged(object sender, EventArgs e)
-        {
-            FirstDisplayedScrollingRowIndex = VBar.Value;
-        }
 
         public void SetScrollInfo()
         {
@@ -180,9 +183,15 @@ namespace Sunny.UI
                 VBar.Visible = false;
             }
 
-            if (HorizontalScrollBar.Visible)
+            // if (HorizontalScrollBar.Visible)
+            // {
+            //     HBar.Maximum = VisibleColumnCount();
+            //     HBar.Value = FirstDisplayedScrollingColumnIndex;
+            //     HBar.Visible = true;
+            // }
+            if (ColumnCount > DisplayedColumnCount(false))
             {
-                HBar.Maximum = VisibleColumnCount();
+                HBar.Maximum = ColumnCount - DisplayedColumnCount(false);
                 HBar.Value = FirstDisplayedScrollingColumnIndex;
                 HBar.Visible = true;
             }
