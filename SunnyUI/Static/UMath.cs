@@ -166,7 +166,7 @@ namespace Sunny.UI
 
         public static T CheckLowerLimit<T>(this T obj, T lowerLimit) where T : IComparable
         {
-            return obj.CompareTo(lowerLimit) == -1 ? lowerLimit : obj;
+            return  obj.CompareTo(lowerLimit) == -1 ? lowerLimit : obj;
         }
 
         public static T CheckUpperLimit<T>(this T obj, T upperLimit) where T : IComparable

@@ -32,7 +32,7 @@ namespace Sunny.UI
     public class UIDataGridView : DataGridView, IStyleInterface
     {
         private readonly UIScrollBar VBar = new UIScrollBar();
-        private readonly UIHorScrollBar HBar = new UIHorScrollBar();
+        private readonly UIHorScrollBarEx HBar = new UIHorScrollBarEx();
 
         public UIDataGridView()
         {
@@ -43,14 +43,13 @@ namespace Sunny.UI
 
             VBar.Parent = this;
             VBar.Visible = false;
-            VBar.FillColor = UIColor.LightBlue;
+            HBar.FillColor = VBar.FillColor = UIColor.LightBlue;
             VBar.ForeColor = UIColor.Blue;
             VBar.StyleCustomMode = true;
             VBar.ValueChanged += VBarValueChanged;
 
             HBar.Parent = this;
             HBar.Visible = false;
-            HBar.FillColor = UIColor.LightBlue;
             HBar.ForeColor = UIColor.Blue;
             HBar.StyleCustomMode = true;
             HBar.ValueChanged += HBar_ValueChanged;
@@ -80,41 +79,7 @@ namespace Sunny.UI
             StripeOddColor = UIColor.LightBlue;
 
             VerticalScrollBar.ValueChanged += VerticalScrollBar_ValueChanged;
-            HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
-        }
-
-        private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            VBar.Value = FirstDisplayedScrollingRowIndex;
-        }
-
-        private void VBarValueChanged(object sender, EventArgs e)
-        {
-            FirstDisplayedScrollingRowIndex = VBar.Value;
-        }
-
-        private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
-        {
-            HBar.Value = FirstDisplayedScrollingColumnIndex;
-        }
-
-        private void HBar_ValueChanged(object sender, EventArgs e)
-        {
-            FirstDisplayedScrollingColumnIndex = HBar.Value;
-            // int idx = 0;
-            // for (int i = 0; i < ColumnCount; i++)
-            // {
-            //     if (Columns[i].Visible && idx == HBar.Value)
-            //     {
-            //         FirstDisplayedScrollingColumnIndex = i;
-            //         break;
-            //     }
-            //
-            //     if (Columns[i].Visible)
-            //     {
-            //         idx++;
-            //     }
-            // }
+            HorizontalScrollBar.ValueChanged += HorizontalScrollBar_ValueChanged;
         }
 
         public void Init()
@@ -151,19 +116,26 @@ namespace Sunny.UI
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
         {
-            base.OnPaint(e);
-
-            if (ShowRect)
-            {
-                Color color = RectColor;
-                color = Enabled ? color : UIDisableColor.Fill;
-                e.Graphics.DrawRectangle(color, new Rectangle(0, 0, Width - 1, Height - 1));
-            }
+            VBar.Value = FirstDisplayedScrollingRowIndex;
         }
 
+        private void VBarValueChanged(object sender, EventArgs e)
+        {
+            FirstDisplayedScrollingRowIndex = VBar.Value;
+        }
 
+        private void HorizontalScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            HBar.Value = HorizontalScrollBar.Value;
+        }
+
+        private void HBar_ValueChanged(object sender, EventArgs e)
+        {
+            HorizontalScrollBar.Value = HBar.Value;
+            HorizontalScrollingOffset = HBar.Value;
+        }
 
         public void SetScrollInfo()
         {
@@ -183,16 +155,12 @@ namespace Sunny.UI
                 VBar.Visible = false;
             }
 
-            // if (HorizontalScrollBar.Visible)
-            // {
-            //     HBar.Maximum = VisibleColumnCount();
-            //     HBar.Value = FirstDisplayedScrollingColumnIndex;
-            //     HBar.Visible = true;
-            // }
-            if (ColumnCount > DisplayedColumnCount(false))
+            if (HorizontalScrollBar.Visible)
             {
-                HBar.Maximum = ColumnCount - DisplayedColumnCount(false);
-                HBar.Value = FirstDisplayedScrollingColumnIndex;
+                HBar.Maximum = HorizontalScrollBar.Maximum;
+                HBar.Value = HorizontalScrollBar.Value;
+                HBar.BoundsWidth = HorizontalScrollBar.Bounds.Width;
+                HBar.LargeChange = HorizontalScrollBar.Maximum / VisibleColumnCount();
                 HBar.Visible = true;
             }
             else
@@ -212,6 +180,18 @@ namespace Sunny.UI
             }
 
             return cnt;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            if (ShowRect)
+            {
+                Color color = RectColor;
+                color = Enabled ? color : UIDisableColor.Fill;
+                e.Graphics.DrawRectangle(color, new Rectangle(0, 0, Width - 1, Height - 1));
+            }
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -550,10 +530,10 @@ namespace Sunny.UI
             ClearColumns();
         }
 
-        public void AddRow(params object[] values)
-        {
-            Rows.Add(values);
-        }
+        // public void AddRow(params object[] values)
+        // {
+        //     Rows.Add(values);
+        // }
     }
 
     public static class UIDataGridViewHelper
