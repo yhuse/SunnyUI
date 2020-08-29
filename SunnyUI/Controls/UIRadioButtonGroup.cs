@@ -60,6 +60,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
+        [Description("列表项"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => ListBox.Items;
 
         private CheckedListBoxEx listbox;
@@ -173,6 +174,7 @@ namespace Sunny.UI
         private int columnCount = 1;
 
         [DefaultValue(1)]
+        [Description("显示列个数"), Category("SunnyUI")]
         public int ColumnCount
         {
             get => columnCount;
@@ -186,6 +188,7 @@ namespace Sunny.UI
         private Size itemSize = new Size(150, 35);
 
         [DefaultValue(typeof(Size), "150, 35")]
+        [Description("列表项大小"), Category("SunnyUI")]
         public Size ItemSize
         {
             get => itemSize;
@@ -199,6 +202,7 @@ namespace Sunny.UI
         private Point startPos = new Point(12, 12);
 
         [DefaultValue(typeof(Point), "12, 12")]
+        [Description("列表项起始位置"), Category("SunnyUI")]
         public Point StartPos
         {
             get => startPos;
@@ -212,6 +216,7 @@ namespace Sunny.UI
         public int columnInterval;
 
         [DefaultValue(0)]
+        [Description("显示列间隔"), Category("SunnyUI")]
         public int ColumnInterval
         {
             get => columnInterval;
@@ -225,6 +230,7 @@ namespace Sunny.UI
         private int rowInterval;
 
         [DefaultValue(0)]
+        [Description("显示行间隔"), Category("SunnyUI")]
         public int RowInterval
         {
             get => rowInterval;

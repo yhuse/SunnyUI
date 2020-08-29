@@ -50,6 +50,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(100)]
+        [Description("最大值"), Category("SunnyUI")]
         public int Maximum
         {
             get => maximum;
@@ -63,6 +64,7 @@ namespace Sunny.UI
         private int posValue;
 
         [DefaultValue(0)]
+        [Description("当前位置"), Category("SunnyUI")]
         public int Value
         {
             get => posValue;
@@ -84,6 +86,7 @@ namespace Sunny.UI
         private bool showValue = true;
 
         [DefaultValue(true)]
+        [Description("显示进度值"), Category("SunnyUI")]
         public bool ShowValue
         {
             get => showValue;
@@ -95,6 +98,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(1)]
+        [Description("步进值"), Category("SunnyUI")]
         public int Step { get; set; } = 1;
 
         public void StepIt()
@@ -166,7 +170,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -177,7 +181,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
@@ -188,7 +192,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {

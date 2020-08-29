@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Sunny.UI.Demo
 {
@@ -12,7 +13,7 @@ namespace Sunny.UI.Demo
         public override void Init()
         {
             uiListBox1.Items.Clear();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 uiListBox1.Items.Add(i);
             }
@@ -40,6 +41,19 @@ namespace Sunny.UI.Demo
         private void uiListBox1_ItemDoubleClick(object sender, System.EventArgs e)
         {
             this.ShowInfoDialog(uiListBox1.SelectedItem.ToString());
+        }
+
+        private int num = 0;
+        private void uiButton1_Click(object sender, System.EventArgs e)
+        {
+            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
+            num++;
+        }
+
+        private void uiButton1_DoubleClick(object sender, EventArgs e)
+        {
+            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_double_" + num);
+            num++;
         }
     }
 }

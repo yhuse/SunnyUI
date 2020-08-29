@@ -71,6 +71,7 @@ namespace Sunny.UI
         private int _titleTop = 16;
 
         [DefaultValue(16)]
+        [Description("标题高度"), Category("SunnyUI")]
         public int TitleTop
         {
             get => _titleTop;
@@ -79,7 +80,7 @@ namespace Sunny.UI
                 if (_titleTop != value)
                 {
                     _titleTop = value;
-                    Padding = new Padding(0, value+16, 0, 0);
+                    Padding = new Padding(0, value + 16, 0, 0);
                     Invalidate();
                 }
             }
@@ -88,6 +89,7 @@ namespace Sunny.UI
         private int _titleInterval = 10;
 
         [DefaultValue(10)]
+        [Description("标题显示间隔"), Category("SunnyUI")]
         public int TitleInterval
         {
             get => _titleInterval;
@@ -104,6 +106,7 @@ namespace Sunny.UI
         public HorizontalAlignment titleAlignment = HorizontalAlignment.Left;
 
         [DefaultValue(HorizontalAlignment.Left)]
+        [Description("文字显示位置"), Category("SunnyUI")]
         public HorizontalAlignment TitleAlignment
         {
             get => titleAlignment;

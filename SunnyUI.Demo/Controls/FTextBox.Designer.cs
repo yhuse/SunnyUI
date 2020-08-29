@@ -166,7 +166,7 @@
             // 
             // uiDoubleUpDown1
             // 
-            this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiDoubleUpDown1.Location = new System.Drawing.Point(388, 132);
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);

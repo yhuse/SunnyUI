@@ -30,6 +30,7 @@ namespace Sunny.UI
     public sealed class UIDateItem : UIDropDownItem
     {
         #region InitializeComponent
+
         private UITabControl TabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -63,9 +64,9 @@ namespace Sunny.UI
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // TopPanel
-            // 
+            //
             this.TopPanel.Controls.Add(this.b4);
             this.TopPanel.Controls.Add(this.b3);
             this.TopPanel.Controls.Add(this.b2);
@@ -77,7 +78,7 @@ namespace Sunny.UI
             this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.TopPanel.Size = new System.Drawing.Size(461, 31);
             this.TopPanel.Style = Sunny.UI.UIStyle.Custom;
@@ -85,9 +86,9 @@ namespace Sunny.UI
             this.TopPanel.TabIndex = 0;
             this.TopPanel.Text = "2020-05-05";
             this.TopPanel.Click += new System.EventHandler(this.TopPanel_Click);
-            // 
+            //
             // b4
-            // 
+            //
             this.b4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b4.BackColor = System.Drawing.Color.Transparent;
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -108,9 +109,9 @@ namespace Sunny.UI
             this.b4.Symbol = 61697;
             this.b4.TabIndex = 3;
             this.b4.Click += new System.EventHandler(this.b4_Click);
-            // 
+            //
             // b3
-            // 
+            //
             this.b3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b3.BackColor = System.Drawing.Color.Transparent;
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -131,9 +132,9 @@ namespace Sunny.UI
             this.b3.Symbol = 61701;
             this.b3.TabIndex = 2;
             this.b3.Click += new System.EventHandler(this.b3_Click);
-            // 
+            //
             // b2
-            // 
+            //
             this.b2.BackColor = System.Drawing.Color.Transparent;
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b2.FillColor = System.Drawing.Color.White;
@@ -153,9 +154,9 @@ namespace Sunny.UI
             this.b2.Symbol = 61700;
             this.b2.TabIndex = 1;
             this.b2.Click += new System.EventHandler(this.b2_Click);
-            // 
+            //
             // b1
-            // 
+            //
             this.b1.BackColor = System.Drawing.Color.Transparent;
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b1.FillColor = System.Drawing.Color.White;
@@ -175,9 +176,9 @@ namespace Sunny.UI
             this.b1.Symbol = 61696;
             this.b1.TabIndex = 0;
             this.b1.Click += new System.EventHandler(this.b1_Click);
-            // 
+            //
             // TabControl
-            // 
+            //
             this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Controls.Add(this.tabPage2);
             this.TabControl.Controls.Add(this.tabPage3);
@@ -193,9 +194,9 @@ namespace Sunny.UI
             this.TabControl.Style = Sunny.UI.UIStyle.Custom;
             this.TabControl.TabIndex = 1;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
-            // 
+            //
             // tabPage1
-            // 
+            //
             this.tabPage1.Controls.Add(this.p1);
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
             this.tabPage1.Name = "tabPage1";
@@ -203,9 +204,9 @@ namespace Sunny.UI
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
+            //
             // p1
-            // 
+            //
             this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p1.FillColor = System.Drawing.Color.White;
             this.p1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -220,9 +221,9 @@ namespace Sunny.UI
             this.p1.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p1_PaintOther);
             this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
             this.p1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p1_MouseMove);
-            // 
+            //
             // tabPage2
-            // 
+            //
             this.tabPage2.Controls.Add(this.p2);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
@@ -230,9 +231,9 @@ namespace Sunny.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
+            //
             // p2
-            // 
+            //
             this.p2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p2.FillColor = System.Drawing.Color.White;
             this.p2.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -247,9 +248,9 @@ namespace Sunny.UI
             this.p2.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p2_PaintOther);
             this.p2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p2_MouseClick);
             this.p2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p2_MouseMove);
-            // 
+            //
             // tabPage3
-            // 
+            //
             this.tabPage3.Controls.Add(this.p3);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
             this.tabPage3.Name = "tabPage3";
@@ -257,9 +258,9 @@ namespace Sunny.UI
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
+            //
             // p3
-            // 
+            //
             this.p3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p3.FillColor = System.Drawing.Color.White;
             this.p3.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -274,9 +275,9 @@ namespace Sunny.UI
             this.p3.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p3_PaintOther);
             this.p3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p3_MouseClick);
             this.p3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p3_MouseMove);
-            // 
+            //
             // UIDateItem
-            // 
+            //
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.TopPanel);
             this.FillColor = System.Drawing.Color.White;
@@ -289,9 +290,9 @@ namespace Sunny.UI
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
-        #endregion
+
+        #endregion InitializeComponent
 
         private readonly List<string> months = new List<string>();
         private readonly List<int> years = new List<int>();
@@ -362,11 +363,31 @@ namespace Sunny.UI
             DateTime dt = new DateTime(iYear, iMonth, 1);
             int week = (int)dt.DayOfWeek;
 
+            bool maxToEnd = false;
             DateTime dtBegin = week == 0 ? dt.AddDays(-7) : dt.AddDays(-week);
             for (int i = 1; i <= 42; i++)
             {
-                DateTime lblDate = dtBegin.AddDays(i - 1);
-                days.Add(lblDate);
+                try
+                {
+                    if (!maxToEnd && dtBegin.AddDays(i - 1).Date.Equals(DateTime.MaxValue.Date))
+                    {
+                        maxToEnd = true;
+                    }
+
+                    if (!maxToEnd)
+                    {
+                        DateTime lblDate = dtBegin.AddDays(i - 1);
+                        days.Add(lblDate);
+                    }
+                    else
+                    {
+                        days.Add(DateTime.MaxValue.Date);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             p3.Invalidate();
@@ -443,6 +464,7 @@ namespace Sunny.UI
         private void b3_Click(object sender, EventArgs e)
         {
             DateTime dt = new DateTime(Year, Month, 1);
+            if (dt.Year == DateTime.MaxValue.Year && dt.Month == DateTime.MaxValue.Month) return;
             dt = dt.AddMonths(1);
             Year = dt.Year;
             Month = dt.Month;
@@ -455,16 +477,19 @@ namespace Sunny.UI
             {
                 case 0:
                     Year = year / 10 * 10;
+                    if (year == 9990) return;
                     Year += 10;
                     SetYears(Year);
                     break;
 
                 case 1:
+                    if (Year == DateTime.MaxValue.Year) return;
                     Year += 1;
                     TopPanel.Text = Year + "年";
                     break;
 
                 case 2:
+                    if (Year == DateTime.MaxValue.Year) return;
                     Year += 1;
                     SetYearMonth(Year, Month);
                     break;
@@ -500,13 +525,14 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             Month = x + y * 4 + 1;
-
+            if (Month <= 0 || Month > 12) return;
             SetYearMonth(Year, Month);
             activeMonth = -1;
             TabControl.SelectedTab = tabPage3;
         }
 
         private int activeMonth = -1;
+
         private void p2_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             int width = p2.Width / 4;
@@ -522,6 +548,7 @@ namespace Sunny.UI
         }
 
         private int activeYear = -1;
+
         private void p1_PaintOther(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
@@ -533,7 +560,10 @@ namespace Sunny.UI
 
                 SizeF sf = e.Graphics.MeasureString(years[i].ToString(), Font);
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
-                e.Graphics.DrawString(years[i].ToString(), Font, i == activeYear ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                if (years[i] != 10000)
+                {
+                    e.Graphics.DrawString(years[i].ToString(), Font, i == activeYear ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                }
             }
         }
 
@@ -558,8 +588,8 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int iy = x + y * 4;
-
-            Year = years[iy];
+            if (iy < 0 || iy >= 12) return;
+            Year = years[iy] > 9999 ? 9999 : years[iy];
             activeYear = -1;
             TabControl.SelectedTab = tabPage2;
             p2.Invalidate();
@@ -581,6 +611,7 @@ namespace Sunny.UI
 
             e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
 
+            bool maxDrawer = false;
             for (int i = 0; i < 42; i++)
             {
                 int left = width * (i % 7);
@@ -589,11 +620,21 @@ namespace Sunny.UI
                 sf = e.Graphics.MeasureString(days[i].Day.ToString(), Font);
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
                 color = (days[i].DateString() == date.DateString()) ? UIColor.Blue : color;
-                e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
+
+                if (!maxDrawer)
+                {
+                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
+                }
+
+                if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
+                {
+                    maxDrawer = true;
+                }
             }
         }
 
         private int activeDay = -1;
+
         private void p3_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             int width = p3.Width / 7;
@@ -615,7 +656,7 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = (e.Location.Y - 30) / height;
             int id = x + y * 7;
-
+            if (id < 0 || id >= 42) return;
             date = days[id].Date;
             DoValueChanged(this, Date);
             CloseParent();

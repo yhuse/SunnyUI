@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIScrollBar.cs
+ * 文件名称: UIHorScrollBar.cs
  * 文件说明: 水平滚动条
  * 当前版本: V2.2
  * 创建日期: 2020-01-01
@@ -63,6 +63,7 @@ namespace Sunny.UI
 
         public event EventHandler ValueChanged;
 
+        [Description("滚动条当前值"), Category("SunnyUI")]
         [DefaultValue(0)]
         public int Value
         {
@@ -75,6 +76,7 @@ namespace Sunny.UI
             }
         }
 
+        [Description("滚动条最大值"), Category("SunnyUI")]
         [DefaultValue(100)]
         public int Maximum
         {
@@ -398,8 +400,8 @@ namespace Sunny.UI
             var rect_left = GetUpRect();
             var rect_right = GetDownRect();
             var rect_value = GetValueRect();
-            var rect_value_left = new Rectangle(rect_left.Right, 0,  rect_value.Left - rect_left.Right, Height);
-            var rect_value_right= new Rectangle(rect_value.Left, 0, rect_right.Left - rect_value.Right, Height);
+            var rect_value_left = new Rectangle(rect_left.Right, 0, rect_value.Left - rect_left.Right, Height);
+            var rect_value_right = new Rectangle(rect_value.Left, 0, rect_right.Left - rect_value.Right, Height);
             if (rect_left.Contains(x, y))
                 return 1;
             else if (rect_right.Contains(x, y))
@@ -429,7 +431,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
@@ -440,7 +442,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -448,6 +450,7 @@ namespace Sunny.UI
             set => SetFillColor(value);
         }
 
+        [Description("鼠标移上颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "111, 168, 255")]
         public Color HoverColor
         {
@@ -455,6 +458,7 @@ namespace Sunny.UI
             set => SetFillHoveColor(value);
         }
 
+        [Description("鼠标按下颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "74, 131, 229")]
         public Color PressColor
         {

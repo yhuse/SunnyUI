@@ -69,7 +69,7 @@
             this.uiTabControl1.Controls.Add(this.tabPage12);
             this.uiTabControl1.Controls.Add(this.tabPage13);
             this.uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
             this.uiTabControl1.Location = new System.Drawing.Point(30, 52);
             this.uiTabControl1.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
@@ -201,7 +201,6 @@
             this.uiTabControlMenu1.Size = new System.Drawing.Size(670, 239);
             this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControlMenu1.TabIndex = 21;
-            this.uiTabControlMenu1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPage5
             // 

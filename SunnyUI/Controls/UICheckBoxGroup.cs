@@ -76,6 +76,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
+        [Description("获取该多选框组中项的集合"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => ListBox.Items;
 
         private CheckedListBoxEx listbox;
@@ -188,17 +189,34 @@ namespace Sunny.UI
             }
         }
 
+        //[Browsable(false)]
+        //public List<string> SelectedItems
+        //{
+        //    get
+        //    {
+        //        List<string> items = new List<string>();
+
+        //        foreach (var checkBox in boxes)
+        //        {
+        //            if (checkBox.Checked)
+        //                items.Add(checkBox.Text);
+        //        }
+
+        //        return items;
+        //    }
+        //}
+
         [Browsable(false)]
-        public List<string> SelectedItems
+        public List<object> SelectedItems
         {
             get
             {
-                List<string> items = new List<string>();
+                List<object> items = new List<object>();
 
-                foreach (var checkBox in boxes)
+                for (int i = 0; i < boxes.Count; i++)
                 {
-                    if (checkBox.Checked)
-                        items.Add(checkBox.Text);
+                    if (boxes[i].Checked)
+                        items.Add(Items[i]);
                 }
 
                 return items;
@@ -210,6 +228,7 @@ namespace Sunny.UI
         private int columnCount = 1;
 
         [DefaultValue(1)]
+        [Description("显示列的个数"), Category("SunnyUI")]
         public int ColumnCount
         {
             get => columnCount;
@@ -223,6 +242,7 @@ namespace Sunny.UI
         private Size _itemSize = new Size(150, 35);
 
         [DefaultValue(typeof(Size), "150, 35")]
+        [Description("显示项的大小"), Category("SunnyUI")]
         public Size ItemSize
         {
             get => _itemSize;
@@ -236,6 +256,7 @@ namespace Sunny.UI
         private Point startPos = new Point(12, 12);
 
         [DefaultValue(typeof(Point), "12, 12")]
+        [Description("显示项的起始位置"), Category("SunnyUI")]
         public Point StartPos
         {
             get => startPos;
@@ -249,6 +270,7 @@ namespace Sunny.UI
         public int columnInterval;
 
         [DefaultValue(0)]
+        [Description("显示项列之间的间隔"), Category("SunnyUI")]
         public int ColumnInterval
         {
             get => columnInterval;
@@ -262,6 +284,7 @@ namespace Sunny.UI
         private int rowInterval;
 
         [DefaultValue(0)]
+        [Description("显示项行之间的间隔"), Category("SunnyUI")]
         public int RowInterval
         {
             get => rowInterval;

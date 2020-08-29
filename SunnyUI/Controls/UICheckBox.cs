@@ -41,6 +41,7 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
+            SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 
         public delegate void OnValueChanged(object sender, bool value);
@@ -51,7 +52,7 @@ namespace Sunny.UI
         private int _imageInterval = 3;
 
         [DefaultValue(16)]
-        [Description("图标大小"), Category("自定义")]
+        [Description("图标大小"), Category("SunnyUI")]
         public int ImageSize
         {
             get => _imageSize;
@@ -69,7 +70,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -78,7 +79,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(3)]
-        [Description("图标与文字之间间隔"), Category("自定义")]
+        [Description("图标与文字之间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -91,7 +92,7 @@ namespace Sunny.UI
 
         private bool _checked;
 
-        [Description("是否选中"), Category("自定义")]
+        [Description("是否选中"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool Checked
         {
@@ -173,7 +174,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color CheckBoxColor
         {

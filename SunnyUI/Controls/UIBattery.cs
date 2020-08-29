@@ -49,7 +49,7 @@ namespace Sunny.UI
             Height = 24;
         }
 
-        [DefaultValue(100)]
+        [DefaultValue(100), Description("电量"), Category("SunnyUI")]
         public int Power
         {
             get => power;
@@ -61,7 +61,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(36)]
+        [DefaultValue(36), Description("图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => symbolSize;
@@ -73,7 +73,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(true)]
+        [DefaultValue(true), Description("多种颜色"), Category("SunnyUI")]
         public bool MultiColor
         {
             get => multiColor;
@@ -84,7 +84,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "230, 80, 80")]
+        [DefaultValue(typeof(Color), "230, 80, 80"), Description("电量为空颜色"), Category("SunnyUI")]
         public Color ColorEmpty
         {
             get => colorEmpty;
@@ -95,7 +95,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "220, 155, 40")]
+        [DefaultValue(typeof(Color), "220, 155, 40"), Description("电量少时颜色"), Category("SunnyUI")]
         public Color ColorDanger
         {
             get => colorDanger;
@@ -106,7 +106,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "110, 190, 40")]
+        [DefaultValue(typeof(Color), "110, 190, 40"), Description("电量安全颜色"), Category("SunnyUI")]
         public Color ColorSafe
         {
             get => colorSafe;
@@ -121,7 +121,7 @@ namespace Sunny.UI
         ///     字体颜色
         /// </summary>
         [Description("字体颜色")]
-        [Category("自定义")]
+        [Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public override Color ForeColor
         {
@@ -133,7 +133,7 @@ namespace Sunny.UI
         ///     填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色")]
-        [Category("自定义")]
+        [Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {

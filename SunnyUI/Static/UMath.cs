@@ -46,7 +46,7 @@ namespace Sunny.UI
             return Math.Sqrt(xx * xx + yy * yy);
         }
 
-        public static double CalcAngle(Point thisPoint,Point toPoint)
+        public static double CalcAngle(Point thisPoint, Point toPoint)
         {
             double az = Math.Atan2(thisPoint.Y - toPoint.Y, thisPoint.X - toPoint.X) * 180 / Math.PI;
             az = (az - 270 + 720) % 360;
@@ -60,6 +60,74 @@ namespace Sunny.UI
             return az;
         }
 
+        /// <summary>
+        /// 二分查找与最近值序号
+        /// </summary>
+        /// <param name="list">列表</param>
+        /// <param name="target">值</param>
+        /// <returns>最近值序号</returns>
+        public static int BinarySearchNearIndex<T>(this IList<T> list, T target) where T : IComparable
+        {
+            int i = 0, j = list.Count - 1;
+
+            if (target.CompareTo(list[0]) == -1) return 0;
+            if (target.CompareTo(list[j]) == 1) return list.Count - 1;
+            while (i <= j)
+            {
+                var mid = (i + j) / 2;
+                if (target.CompareTo(list[mid]) == 1) i = mid + 1;
+                if (target.CompareTo(list[mid]) == -1) j = mid - 1;
+                if (target.CompareTo(list[mid]) == 0) return mid;
+            }
+
+            if (i - 1 < 0) return i;
+
+            TypeCode typeCode = Type.GetTypeCode(target.GetType());
+            switch (typeCode)
+            {
+                case TypeCode.SByte:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                    return target.ToString().ToLong() - list[i - 1].ToString().ToLong() >
+                          list[i].ToString().ToLong() - target.ToString().ToLong() ? i : i - 1;
+
+                case TypeCode.Byte:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                    return target.ToString().ToULong() - list[i - 1].ToString().ToULong() >
+                           list[i].ToString().ToULong() - target.ToString().ToULong() ? i : i - 1;
+
+                case TypeCode.Single:
+                case TypeCode.Double:
+                    return target.ToString().ToDouble() - list[i - 1].ToString().ToDouble() >
+                           list[i].ToString().ToDouble() - target.ToString().ToDouble() ? i : i - 1;
+
+                case TypeCode.Decimal:
+                    return target.ToString().ToDecimal() - list[i - 1].ToString().ToDecimal() >
+                           list[i].ToString().ToDecimal() - target.ToString().ToDecimal() ? i : i - 1;
+
+                case TypeCode.DateTime:
+                    return target.ToString().ToDateTime() - list[i - 1].ToString().ToDateTime() >
+                           list[i].ToString().ToDateTime() - target.ToString().ToDateTime() ? i : i - 1;
+
+                default: return i - 1;
+            }
+        }
+
+        /// <summary>
+        /// 二分查找与最近值序号
+        /// </summary>
+        /// <param name="list">列表</param>
+        /// <param name="target">值</param>
+        /// <returns>最近值序号</returns>
+        public static int BinarySearchNearIndex<T>(this T[] list, T target) where T : IComparable
+        {
+            return BinarySearchNearIndex(list.ToList(), target);
+        }
+
+        /*
         /// <summary>
         /// 二分查找与最近值序号
         /// </summary>
@@ -93,6 +161,27 @@ namespace Sunny.UI
         public static int BinarySearch(int[] list, int target)
         {
             return BinarySearch(list.ToList(), target);
+        }
+        */
+
+        public static T CheckLowerLimit<T>(this T obj, T lowerLimit) where T : IComparable
+        {
+            return  obj.CompareTo(lowerLimit) == -1 ? lowerLimit : obj;
+        }
+
+        public static T CheckUpperLimit<T>(this T obj, T upperLimit) where T : IComparable
+        {
+            return obj.CompareTo(upperLimit) == 1 ? upperLimit : obj;
+        }
+
+        public static T CheckRange<T>(this T obj, T lowerLimit, T upperLimit) where T : IComparable
+        {
+            if (lowerLimit.CompareTo(upperLimit) == -1)
+                return obj.CheckLowerLimit(lowerLimit).CheckUpperLimit(upperLimit);
+            else if (lowerLimit.CompareTo(upperLimit) == 1)
+                return obj.CheckLowerLimit(upperLimit).CheckUpperLimit(lowerLimit);
+            else
+                return lowerLimit;
         }
 
         /// <summary>
@@ -691,7 +780,7 @@ namespace Sunny.UI
         /// <param name="characters">进制格式</param>
         /// <param name="customCharacter">自定义进制字符串</param>
         /// <returns>结果</returns>
-        public static string ToNumberString(this long number, Characters characters = Characters.DECIMAL, string customCharacter = CHARS_PUREUPPERCHAR)
+        public static string ToNumberString(this ulong number, Characters characters = Characters.DECIMAL, string customCharacter = CHARS_PUREUPPERCHAR)
         {
             string DisplayText = characters.DisplayText();
             if (characters == Characters.Custom && !customCharacter.IsNullOrEmpty())
@@ -700,7 +789,7 @@ namespace Sunny.UI
             }
 
             List<string> result = new List<string>();
-            long t = number;
+            ulong t = number;
             if (t == 0)
             {
                 return DisplayText[0].ToString();
@@ -708,13 +797,31 @@ namespace Sunny.UI
 
             while (t > 0)
             {
-                long mod = t % DisplayText.Length;
-                t = Math.Abs(t / DisplayText.Length);
+                ulong mod = t % ((ulong)DisplayText.Length);
+                t /= ((ulong)DisplayText.Length);
                 string character = DisplayText[Convert.ToInt32(mod)].ToString();
                 result.Insert(0, character);
             }
 
             return string.Join("", result.ToArray());
+        }
+
+        public static string ToNumberString(this uint number, Characters characters = Characters.DECIMAL,
+            string customCharacter = CHARS_PUREUPPERCHAR)
+        {
+            return ((ulong)number).ToNumberString(characters, customCharacter);
+        }
+
+        public static string ToNumberString(this ushort number, Characters characters = Characters.DECIMAL,
+            string customCharacter = CHARS_PUREUPPERCHAR)
+        {
+            return ((ulong)number).ToNumberString(characters, customCharacter);
+        }
+
+        public static string ToNumberString(this byte number, Characters characters = Characters.DECIMAL,
+            string customCharacter = CHARS_PUREUPPERCHAR)
+        {
+            return ((ulong)number).ToNumberString(characters, customCharacter);
         }
 
         /// <summary>

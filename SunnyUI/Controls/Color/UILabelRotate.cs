@@ -190,7 +190,7 @@ namespace Sunny.UI
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue)]
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -219,10 +219,20 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public string Version { get; }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
     }
 }

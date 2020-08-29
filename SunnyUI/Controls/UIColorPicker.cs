@@ -82,6 +82,8 @@ namespace Sunny.UI
 
         private Color selectColor;
 
+        [DefaultValue(typeof(Color), "80, 159, 254")]
+        [Description("选中颜色"), Category("SunnyUI")]
         public Color Value
         {
             get => selectColor;

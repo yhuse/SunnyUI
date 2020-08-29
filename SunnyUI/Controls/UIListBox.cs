@@ -37,6 +37,7 @@ namespace Sunny.UI
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
+        private readonly Timer timer = new Timer();
 
         public UIListBox()
         {
@@ -61,6 +62,25 @@ namespace Sunny.UI
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        ~UIListBox()
+        {
+            timer.Stop();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (Items.Count == 0 && LastCount != 0)
+            {
+                LastCount = 0;
+                timer.Stop();
+                ItemsCountChange?.Invoke(sender, e);
+                timer.Start();
+            }
         }
 
         protected override void OnFontChanged(EventArgs e)
@@ -121,6 +141,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(25)]
+        [Description("列表项高度"), Category("SunnyUI")]
         public int ItemHeight
         {
             get => listbox.ItemHeight;
@@ -150,11 +171,17 @@ namespace Sunny.UI
 
         private int LastCount;
 
+        private int lastBarValue = -1;
+
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
             if (listbox != null)
             {
-                ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                if (bar.Value != lastBarValue)
+                {
+                    ScrollBarInfo.SetScrollValue(listbox.Handle, bar.Value);
+                    lastBarValue = bar.Value;
+                }
             }
         }
 
@@ -173,6 +200,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
+        [Description("列表项"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => listbox.Items;
 
         [Browsable(false)]
@@ -184,6 +212,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("列表项选中背景颜色"), Category("SunnyUI")]
         public Color ItemSelectBackColor
         {
             get => listbox.ItemSelectBackColor;
@@ -191,6 +220,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White")]
+        [Description("列表项选中字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
             get => listbox.ItemSelectForeColor;
@@ -224,6 +254,7 @@ namespace Sunny.UI
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
         [DefaultValue(typeof(Color), "155, 200, 255")]
+        [Description("列表项鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
             get => hoverColor;
@@ -244,7 +275,11 @@ namespace Sunny.UI
     {
         private UIScrollBar bar;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         public UIScrollBar Bar
@@ -277,7 +312,14 @@ namespace Sunny.UI
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            SetScrollInfo();
+            if (Bar != null && Bar.Visible)
+            {
+                if (Bar.Value != 0)
+                {
+                    ScrollBarInfo.SetScrollValue(Handle, Bar.Value);
+                }
+            }
+            //SetScrollInfo();
         }
 
         public void SetScrollInfo()
@@ -302,7 +344,11 @@ namespace Sunny.UI
 
         public string Version { get; }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         #region 组件设计器生成的代码
@@ -332,7 +378,10 @@ namespace Sunny.UI
         private Color _itemSelectBackColor = UIColor.Blue;
         private Color _itemSelectForeColor = Color.White;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -342,26 +391,23 @@ namespace Sunny.UI
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (Bar.Visible)
+
+            if (Bar != null && Bar.Visible)
             {
                 var si = ScrollBarInfo.GetInfo(Handle);
+                int temp = Math.Abs(e.Delta / 120);
                 if (e.Delta > 10)
                 {
-                    if (si.nPos > 0)
-                    {
-                        ScrollBarInfo.ScrollUp(Handle);
-                    }
+                    int nposnum = si.nPos - temp * SystemInformation.MouseWheelScrollLines;
+                    ScrollBarInfo.SetScrollValue(Handle, nposnum >= si.nMin ? nposnum : 0);
                 }
                 else if (e.Delta < -10)
                 {
-                    if (si.nPos < si.ScrollMax)
-                    {
-                        ScrollBarInfo.ScrollDown(Handle);
-                    }
+                    int nposnum = si.nPos + temp * SystemInformation.MouseWheelScrollLines;
+                    ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.ScrollMax ? nposnum : si.ScrollMax);
                 }
+                SetScrollInfo();
             }
-
-            SetScrollInfo();
         }
 
         public void SetStyle(UIStyle style)
@@ -379,7 +425,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        [Category("Appearance"), Description("The border color used to paint the control.")]
+        [Category("SunnyUI"), Description("The border color used to paint the control.")]
         public Color ItemSelectBackColor
         {
             get => _itemSelectBackColor;
@@ -395,7 +441,7 @@ namespace Sunny.UI
             }
         }
 
-        [Category("Appearance"), Description("The border color used to paint the control.")]
+        [Category("SunnyUI"), Description("The border color used to paint the control.")]
         public Color ItemSelectForeColor
         {
             get => _itemSelectForeColor;

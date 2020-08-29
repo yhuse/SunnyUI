@@ -94,6 +94,7 @@ namespace Sunny.UI
         /// <summary>
         /// 计时
         /// </summary>
+        [Browsable(false)]
         public TimeSpan TimeSpan { get; private set; }
 
         private DateTime StartTime;
@@ -119,11 +120,12 @@ namespace Sunny.UI
         /// <summary>
         /// 是否开始工作
         /// </summary>
+        [Browsable(false)]
         public bool IsWorking => timer.Enabled;
 
         private bool _active;
 
-        [DefaultValue(false)]
+        [DefaultValue(false), Description("是否开始工作"), Category("SunnyUI")]
         public bool Active
         {
             get => _active;

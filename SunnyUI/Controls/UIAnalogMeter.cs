@@ -117,7 +117,7 @@ namespace Sunny.UI
         #region Properties
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Style of the control"),
             DefaultValue(AnalogMeterStyle.Circular)
         ]
@@ -132,7 +132,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Color of the body of the control"),
             DefaultValue(typeof(Color), "80, 160, 255")
         ]
@@ -143,7 +143,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Color of the needle"),
             DefaultValue(typeof(Color), "Yellow")
         ]
@@ -158,7 +158,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Show or hide the glass effect"),
             DefaultValue(false)
         ]
@@ -173,7 +173,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Color of the scale of the control"),
             DefaultValue(typeof(Color), "White")
         ]
@@ -240,7 +240,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Number of the scale divisions"),
             DefaultValue(11)
         ]
@@ -256,7 +256,7 @@ namespace Sunny.UI
         }
 
         [
-            Category("Appearance"),
+            Category("SunnyUI"),
             Description("Number of the scale subdivisions"),
             DefaultValue(4)
         ]

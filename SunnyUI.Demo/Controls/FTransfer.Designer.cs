@@ -37,6 +37,7 @@
             // 
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiTransfer1);
+            this.PagePanel.Size = new System.Drawing.Size(800, 480);
             // 
             // uiTransfer1
             // 
@@ -68,6 +69,8 @@
             this.uiTransfer1.Size = new System.Drawing.Size(427, 370);
             this.uiTransfer1.TabIndex = 3;
             this.uiTransfer1.Text = "uiTransfer1";
+            this.uiTransfer1.ItemsLeftCountChange += new System.EventHandler(this.uiTransfer1_ItemsLeftCountChange);
+            this.uiTransfer1.ItemsRightCountChange += new System.EventHandler(this.uiTransfer1_ItemsRightCountChange);
             // 
             // uiLine1
             // 
@@ -84,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 515);
             this.Name = "FTransfer";
             this.Symbol = 61516;
             this.Text = "Transfer";

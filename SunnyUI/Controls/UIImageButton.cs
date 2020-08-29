@@ -43,7 +43,14 @@ namespace Sunny.UI
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
         private Color foreColor = UIFontColor.Primary;
 
-        [Category("外观")]
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString { get; set; }
+
+        [Category("SunnyUI")]
         [Description("按钮文字")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -60,6 +67,7 @@ namespace Sunny.UI
             }
         }
 
+        [Description("文字对齐方式"), Category("SunnyUI")]
         [DefaultValue(ContentAlignment.MiddleCenter)]
         public ContentAlignment TextAlign
         {
@@ -71,7 +79,7 @@ namespace Sunny.UI
             }
         }
 
-        [Category("外观")]
+        [Category("SunnyUI")]
         [Description("文字字体")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -85,7 +93,7 @@ namespace Sunny.UI
             }
         }
 
-        [Category("外观")]
+        [Category("SunnyUI")]
         [Description("文字颜色")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -102,10 +110,12 @@ namespace Sunny.UI
 
         [Browsable(false)]
         [DefaultValue(typeof(Image), "null")]
+        [Description("初始化图片"), Category("SunnyUI")]
         public new Image InitialImage { get; set; }
 
         [Browsable(false)]
         [DefaultValue(typeof(Image), "null")]
+        [Description("出错图片"), Category("SunnyUI")]
         public new Image ErrorImage { get; set; }
 
         /// <summary>
@@ -130,6 +140,7 @@ namespace Sunny.UI
         /// 鼠标移上图片
         /// </summary>
         [DefaultValue(typeof(Image), "null")]
+        [Description("鼠标移上图片"), Category("SunnyUI")]
         public Image ImageHover
         {
             get => imageHover;
@@ -145,6 +156,7 @@ namespace Sunny.UI
         /// 鼠标按下图片
         /// </summary>
         [DefaultValue(typeof(Image), "null")]
+        [Description("鼠标按下图片"), Category("SunnyUI")]
         public Image ImagePress
         {
             get => imagePress;
@@ -160,6 +172,7 @@ namespace Sunny.UI
         /// 不可用时图片
         /// </summary>
         [DefaultValue(typeof(Image), "null")]
+        [Description("不可用时图片"), Category("SunnyUI")]
         public Image ImageDisabled
         {
             get => imageDisabled;
@@ -171,9 +184,10 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 不可用时图片
+        /// 选中时图片
         /// </summary>
         [DefaultValue(typeof(Image), "null")]
+        [Description("选中时图片"), Category("SunnyUI")]
         public Image ImageSelected
         {
             get => imageSelected;
@@ -188,6 +202,7 @@ namespace Sunny.UI
         /// 是否选中
         /// </summary>
         [DefaultValue(typeof(bool), "false")]
+        [Description("是否选中"), Category("SunnyUI")]
         public bool Selected
         {
             get => selected;
@@ -264,7 +279,8 @@ namespace Sunny.UI
 
         public Point imageOffset;
 
-        [DefaultValue(typeof(Point),"0, 0")]
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("图片偏移位置"), Category("SunnyUI")]
         public Point ImageOffset
         {
             get => imageOffset;

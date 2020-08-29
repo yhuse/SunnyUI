@@ -124,6 +124,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(100)]
+        [Description("列表项高度"), Category("SunnyUI")]
         public int ItemHeight
         {
             get => listbox.ItemHeight;
@@ -131,6 +132,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(4)]
+        [Description("图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => listbox.ImageInterval;
@@ -138,6 +140,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true)]
+        [Description("显示说明文字"), Category("SunnyUI")]
         public bool ShowDescription
         {
             get => listbox.ShowDescription;
@@ -197,6 +200,7 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Browsable(false)]
+        [Description("列表项"), Category("SunnyUI")]
         public ListBox.ObjectCollection Items => listbox.Items;
 
         /// <summary>
@@ -224,6 +228,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("选中项背景颜色"), Category("SunnyUI")]
         public Color ItemSelectBackColor
         {
             get => listbox.ItemSelectBackColor;
@@ -231,6 +236,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "White")]
+        [Description("选中项字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
             get => listbox.ItemSelectForeColor;
@@ -264,6 +270,7 @@ namespace Sunny.UI
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
         [DefaultValue(typeof(Color), "155, 200, 255")]
+        [Description("鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
             get => hoverColor;
@@ -275,11 +282,16 @@ namespace Sunny.UI
             }
         }
 
+        [ToolboxItem(false)]
         private sealed class ImageListBox : ListBox, IStyleInterface
         {
             private UIScrollBar bar;
 
+            /// <summary>
+            /// Tag字符串
+            /// </summary>
             [DefaultValue(null)]
+            [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
             public string TagString { get; set; }
 
             public UIScrollBar Bar
@@ -309,7 +321,14 @@ namespace Sunny.UI
 
             protected override void OnSizeChanged(EventArgs e)
             {
-                SetScrollInfo();
+                if (Bar != null && Bar.Visible)
+                {
+                    if (Bar.Value != 0)
+                    {
+                        ScrollBarInfo.SetScrollValue(Handle, Bar.Value);
+                    }
+                }
+                //SetScrollInfo();
             }
 
             public void SetScrollInfo()
@@ -337,7 +356,11 @@ namespace Sunny.UI
                 e.ItemHeight = e.ItemHeight + ItemHeight;
             }
 
+            /// <summary>
+            /// 自定义主题风格
+            /// </summary>
             [DefaultValue(false)]
+            [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
             public bool StyleCustomMode { get; set; }
 
             public string Version { get; }
@@ -363,22 +386,19 @@ namespace Sunny.UI
             {
                 base.OnMouseWheel(e);
 
-                if (Bar.Visible)
+                if (Bar != null && Bar.Visible)
                 {
                     var si = ScrollBarInfo.GetInfo(Handle);
+                    int temp = Math.Abs(e.Delta / 120);
                     if (e.Delta > 10)
                     {
-                        if (si.nPos > 0)
-                        {
-                            ScrollBarInfo.ScrollUp(Handle);
-                        }
+                        int nposnum = si.nPos - temp * SystemInformation.MouseWheelScrollLines;
+                        ScrollBarInfo.SetScrollValue(Handle, nposnum >= si.nMin ? nposnum : 0);
                     }
                     else if (e.Delta < -10)
                     {
-                        if (si.nPos < si.ScrollMax)
-                        {
-                            ScrollBarInfo.ScrollDown(Handle);
-                        }
+                        int nposnum = si.nPos + temp * SystemInformation.MouseWheelScrollLines;
+                        ScrollBarInfo.SetScrollValue(Handle, nposnum <= si.ScrollMax ? nposnum : si.ScrollMax);
                     }
                 }
 
@@ -413,7 +433,10 @@ namespace Sunny.UI
                 }
             }
 
-            [DefaultValue(UIStyle.Blue)]
+            /// <summary>
+            /// 主题样式
+            /// </summary>
+            [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
             public UIStyle Style
             {
                 get => _style;
@@ -436,7 +459,7 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            [Category("Appearance"), Description("The border color used to paint the control.")]
+            [Category("SunnyUI"), Description("The border color used to paint the control.")]
             public Color ItemSelectBackColor
             {
                 get => _itemSelectBackColor;
@@ -452,7 +475,7 @@ namespace Sunny.UI
                 }
             }
 
-            [Category("Appearance"), Description("The border color used to paint the control.")]
+            [Category("SunnyUI"), Description("The border color used to paint the control.")]
             public Color ItemSelectForeColor
             {
                 get => _itemSelectForeColor;

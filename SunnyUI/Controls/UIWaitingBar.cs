@@ -59,6 +59,7 @@ namespace Sunny.UI
         private int blockCount = 20;
 
         [DefaultValue(20)]
+        [Description("显示块个数，此数越大，移动速度越快"), Category("SunnyUI")]
         public int BlockCount
         {
             get => blockCount;
@@ -88,6 +89,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(200)]
+        [Description("移动显示时间间隔"), Category("SunnyUI")]
         public int Interval
         {
             get => timer.Interval;
@@ -102,6 +104,7 @@ namespace Sunny.UI
         private int sliderWidth = 60;
 
         [DefaultValue(60)]
+        [Description("滑块宽度"), Category("SunnyUI")]
         public int SliderWidth
         {
             get => sliderWidth;

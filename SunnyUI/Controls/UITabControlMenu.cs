@@ -20,7 +20,6 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -42,16 +41,26 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         public string Version { get; }
 
         private HorizontalAlignment textAlignment = HorizontalAlignment.Center;
 
+        [Description("文字显示方向"), Category("SunnyUI")]
+        [DefaultValue(HorizontalAlignment.Center)]
         public HorizontalAlignment TextAlignment
         {
             get => textAlignment;
@@ -68,7 +77,7 @@ namespace Sunny.UI
         /// <summary>
         /// 当使用边框时填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("当使用边框时填充颜色，当值为背景色或透明色或空值则不填充"), Category("自定义")]
+        [Description("当使用边框时填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -85,7 +94,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color TabBackColor
         {
@@ -103,7 +112,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页背景色"), Category("自定义")]
+        [Description("选中Tab页背景色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "36, 36, 36")]
         public Color TabSelectedColor
         {
@@ -121,7 +130,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页字体色"), Category("自定义")]
+        [Description("选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TabSelectedForeColor
         {
@@ -139,7 +148,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("未选中Tab页字体色"), Category("自定义")]
+        [Description("未选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public Color TabUnSelectedForeColor
         {
@@ -157,7 +166,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页高亮"), Category("自定义")]
+        [Description("选中Tab页高亮"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TabSelectedHighColor
 
@@ -173,7 +182,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -215,6 +227,7 @@ namespace Sunny.UI
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
 
         [DefaultValue(UIMenuStyle.Black)]
+        [Description("主题风格"), Category("SunnyUI")]
         public UIMenuStyle MenuStyle
         {
             get => _menuStyle;

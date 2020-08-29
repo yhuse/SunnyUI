@@ -30,6 +30,9 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [ToolboxItem(true)]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public class UILabel : Label, IStyleInterface
     {
         public UILabel()
@@ -47,13 +50,17 @@ namespace Sunny.UI
 
         private Color foreColor = UIStyles.Blue.LabelForeColor;
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -73,7 +80,11 @@ namespace Sunny.UI
             _style = style;
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public void SetStyleColor(UIBaseStyle uiColor)
@@ -86,7 +97,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -122,6 +136,7 @@ namespace Sunny.UI
         private bool autoSize;
 
         [Browsable(true)]
+        [Description("自动大小"), Category("SunnyUI")]
         public override bool AutoSize
         {
             get => autoSize;
@@ -132,7 +147,7 @@ namespace Sunny.UI
             }
         }
 
-        [Description("图标颜色"), Category("自定义")]
+        [Description("图标颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public Color SymbolColor
         {
@@ -147,7 +162,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -156,6 +171,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(24)]
+        [Description("字体大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => _symbolSize;
@@ -168,6 +184,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(2)]
+        [Description("图标和文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -181,6 +198,7 @@ namespace Sunny.UI
         private bool _isCircle;
 
         [DefaultValue(false)]
+        [Description("显示为圆形"), Category("SunnyUI")]
         public bool IsCircle
         {
             get => _isCircle;
@@ -203,6 +221,7 @@ namespace Sunny.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
         [DefaultValue(61452)]
+        [Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => _symbol;
@@ -221,6 +240,7 @@ namespace Sunny.UI
         private int circleRectWidth = 1;
 
         [DefaultValue(1)]
+        [Description("圆形边框大小"), Category("SunnyUI")]
         public int CircleRectWidth
         {
             get => circleRectWidth;
@@ -317,6 +337,9 @@ namespace Sunny.UI
         }
     }
 
+    [ToolboxItem(true)]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public sealed class UILinkLabel : LinkLabel, IStyleInterface
     {
         public UILinkLabel()
@@ -330,17 +353,20 @@ namespace Sunny.UI
             LinkColor = UIColor.Blue;
         }
 
-        private void UILabel_ForeColorChanged(object sender, EventArgs e)
-        {
-            _style = UIStyle.Custom;
-        }
-
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         public string Version { get; }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         public void SetStyle(UIStyle style)
@@ -360,7 +386,10 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;

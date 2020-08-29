@@ -85,6 +85,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true)]
+        [Description("是否禁用Ctrl+Tab"), Category("SunnyUI")]
         public bool ForbidCtrlTab { get; set; } = true;
 
         public void SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
@@ -92,6 +93,11 @@ namespace Sunny.UI
         public void SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
 
         public void AddPage(UIPage page) => Helper.AddPage(page);
+
+        public void AddPages(params UIPage[] pages)
+        {
+            foreach (var page in pages) AddPage(page);
+        }
 
         public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
 
@@ -106,15 +112,24 @@ namespace Sunny.UI
         private Color _fillColor = UIColor.LightBlue;
         private Color tabBackColor = Color.FromArgb(56, 56, 56);
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         private HorizontalAlignment textAlignment = HorizontalAlignment.Center;
 
         [DefaultValue(HorizontalAlignment.Center)]
+        [Description("文字显示方向"), Category("SunnyUI")]
         public HorizontalAlignment TextAlignment
         {
             get => textAlignment;
@@ -128,6 +143,7 @@ namespace Sunny.UI
         private bool tabVisible = true;
 
         [DefaultValue(true)]
+        [Description("标签页是否显示"), Category("SunnyUI")]
         public bool TabVisible
         {
             get => tabVisible;
@@ -153,7 +169,7 @@ namespace Sunny.UI
         /// <summary>
         /// 当使用边框时填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("当使用边框时填充颜色，当值为背景色或透明色或空值则不填充"), Category("自定义")]
+        [Description("当使用边框时填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -170,7 +186,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color TabBackColor
         {
@@ -188,7 +204,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页背景色"), Category("自定义")]
+        [Description("选中Tab页背景色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "36, 36, 36")]
         public Color TabSelectedColor
         {
@@ -206,7 +222,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页字体色"), Category("自定义")]
+        [Description("选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TabSelectedForeColor
         {
@@ -224,7 +240,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("未选中Tab页字体色"), Category("自定义")]
+        [Description("未选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "240, 240, 240")]
         public Color TabUnSelectedForeColor
         {
@@ -242,7 +258,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("选中Tab页高亮"), Category("自定义")]
+        [Description("选中Tab页高亮"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TabSelectedHighColor
 
@@ -258,13 +274,17 @@ namespace Sunny.UI
 
         private UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
             set => SetStyle(value);
         }
 
+        [Browsable(false)]
         public override Rectangle DisplayRectangle
         {
             get
@@ -307,6 +327,7 @@ namespace Sunny.UI
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
 
         [DefaultValue(UIMenuStyle.Black)]
+        [Description("主题风格"), Category("SunnyUI")]
         public UIMenuStyle MenuStyle
         {
             get => _menuStyle;
@@ -340,7 +361,7 @@ namespace Sunny.UI
 
         private bool showCloseButton;
 
-        [DefaultValue(false),Description("所有Tab页面标题显示关闭按钮")]
+        [DefaultValue(false), Description("所有Tab页面标题显示关闭按钮"), Category("SunnyUI")]
         public bool ShowCloseButton
         {
             get => showCloseButton;
@@ -354,7 +375,7 @@ namespace Sunny.UI
 
         private bool showActiveCloseButton;
 
-        [DefaultValue(false), Description("当前激活的Tab页面标题显示关闭按钮")]
+        [DefaultValue(false), Description("当前激活的Tab页面标题显示关闭按钮"), Category("SunnyUI")]
         public bool ShowActiveCloseButton
         {
             get => showActiveCloseButton;
@@ -401,7 +422,7 @@ namespace Sunny.UI
                     g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - 4, bmp.Width, 4);
                 }
 
-                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
+                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
 
                 var menuItem = Helper[index];
                 bool showButton = menuItem == null || !menuItem.AlwaysOpen;
@@ -510,6 +531,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(UITabPosition.Left)]
+        [Description("标签页显示位置"), Category("SunnyUI")]
         public UITabPosition TabPosition
         {
             get => (RightToLeftLayout && RightToLeft == RightToLeft.Yes)

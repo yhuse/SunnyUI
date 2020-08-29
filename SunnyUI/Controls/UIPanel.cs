@@ -58,12 +58,16 @@ namespace Sunny.UI
             base.Font = UIFontColor.Font;
         }
 
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         private string text;
 
-        [Category("外观")]
+        [Category("SunnyUI")]
         [Description("按钮文字")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -103,7 +107,7 @@ namespace Sunny.UI
 
         private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.All;
 
-        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置")]
+        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置"), Category("SunnyUI")]
         public ToolStripStatusLabelBorderSides RectSides
         {
             get => _rectSides;
@@ -153,7 +157,7 @@ namespace Sunny.UI
 
         private UICornerRadiusSides _radiusSides = UICornerRadiusSides.All;
 
-        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置")]
+        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置"), Category("SunnyUI")]
         public UICornerRadiusSides RadiusSides
         {
             get => _radiusSides;
@@ -168,11 +172,11 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示圆角
         /// </summary>
-        [Description("是否显示圆角"), Category("自定义")]
+        [Description("是否显示圆角"), Category("SunnyUI")]
         protected bool ShowRadius => (int)RadiusSides > 0;
 
         //圆角角度
-        [Description("圆角角度"), Category("自定义")]
+        [Description("圆角角度"), Category("SunnyUI")]
         [DefaultValue(5)]
         public int Radius
         {
@@ -194,14 +198,14 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示边框
         /// </summary>
-        [Description("是否显示边框"), Category("自定义")]
+        [Description("是否显示边框"), Category("SunnyUI")]
         [DefaultValue(true)]
         protected bool ShowRect => (int)RectSides > 0;
 
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {
@@ -225,7 +229,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("自定义")]
+        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -266,7 +270,7 @@ namespace Sunny.UI
 
         private bool showText = true;
 
-        [Description("是否显示文字")]
+        [Description("是否显示文字"), Category("SunnyUI")]
         [Browsable(false)]
         protected bool ShowText
         {
@@ -457,12 +461,19 @@ namespace Sunny.UI
         {
         }
 
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         protected UIStyle _style = UIStyle.Blue;
 
-        [DefaultValue(UIStyle.Blue)]
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -494,7 +505,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -509,6 +520,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "244, 244, 244")]
+        [Description("不可用时填充颜色"), Category("SunnyUI")]
         public Color FillDisableColor
         {
             get => fillDisableColor;
@@ -516,6 +528,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181")]
+        [Description("不可用时边框颜色"), Category("SunnyUI")]
         public Color RectDisableColor
         {
             get => rectDisableColor;
@@ -523,6 +536,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "109, 109, 103")]
+        [Description("不可用时字体颜色"), Category("SunnyUI")]
         public Color ForeDisableColor
         {
             get => foreDisableColor;
@@ -571,7 +585,7 @@ namespace Sunny.UI
         /// <summary>
         /// 文字对齐方向
         /// </summary>
-        [Description("文字对齐方向")]
+        [Description("文字对齐方向"), Category("SunnyUI")]
         [DefaultValue(ContentAlignment.MiddleCenter)]
         public ContentAlignment TextAlignment
         {
@@ -581,7 +595,7 @@ namespace Sunny.UI
                 if (_textAlignment != value)
                 {
                     _textAlignment = value;
-                    TextAlignmentChange?.Invoke(this,value);
+                    TextAlignmentChange?.Invoke(this, value);
                     Invalidate();
                 }
             }

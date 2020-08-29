@@ -170,6 +170,8 @@ namespace Sunny.UI
     {
         public string Name { get; set; }
 
+        public int MaxWidth { get; set; } = int.MaxValue;
+
         public UISeriesType Type => UISeriesType.Bar;
 
         public readonly List<double> Data = new List<double>();

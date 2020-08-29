@@ -40,11 +40,13 @@
             this.uiHorScrollBar3 = new Sunny.UI.UIHorScrollBar();
             this.uiHorScrollBar4 = new Sunny.UI.UIHorScrollBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uiVerScrollBarEx1 = new Sunny.UI.UIVerScrollBarEx();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiVerScrollBarEx1);
             this.PagePanel.Controls.Add(this.uiHorScrollBar4);
             this.PagePanel.Controls.Add(this.uiHorScrollBar3);
             this.PagePanel.Controls.Add(this.uiHorScrollBar2);
@@ -190,6 +192,19 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // uiVerScrollBarEx1
+            // 
+            this.uiVerScrollBarEx1.BoundsHeight = 10;
+            this.uiVerScrollBarEx1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiVerScrollBarEx1.LargeChange = 10;
+            this.uiVerScrollBarEx1.Location = new System.Drawing.Point(219, 61);
+            this.uiVerScrollBarEx1.Maximum = 100;
+            this.uiVerScrollBarEx1.Name = "uiVerScrollBarEx1";
+            this.uiVerScrollBarEx1.Size = new System.Drawing.Size(18, 147);
+            this.uiVerScrollBarEx1.TabIndex = 62;
+            this.uiVerScrollBarEx1.Text = "uiVerScrollBarEx1";
+            this.uiVerScrollBarEx1.Value = 0;
+            // 
             // FScrollBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -216,5 +231,6 @@
         private UIHorScrollBar uiHorScrollBar3;
         private UIHorScrollBar uiHorScrollBar2;
         private System.Windows.Forms.Timer timer1;
+        private UIVerScrollBarEx uiVerScrollBarEx1;
     }
 }

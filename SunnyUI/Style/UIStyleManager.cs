@@ -31,7 +31,7 @@ namespace Sunny.UI
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue)]
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => UIStyles.Style;

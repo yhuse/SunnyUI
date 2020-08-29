@@ -33,7 +33,7 @@ namespace Sunny.UI
     {
         private int _titleHeight = 35;
 
-        [Description("面板高度"), Category("自定义")]
+        [Description("面板高度"), Category("SunnyUI")]
         [DefaultValue(35)]
         public int TitleHeight
         {
@@ -81,6 +81,7 @@ namespace Sunny.UI
         /// 文字对齐方向
         /// </summary>
         [DefaultValue(HorizontalAlignment.Center)]
+        [Description("文字对齐方向"), Category("SunnyUI")]
         public HorizontalAlignment TextAlign
         {
             get => textAlign;
@@ -94,6 +95,7 @@ namespace Sunny.UI
         private Color titleColor = UIColor.Blue;
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
+        [Description("标题颜色"), Category("SunnyUI")]
         public Color TitleColor
         {
             get => titleColor;
@@ -171,6 +173,7 @@ namespace Sunny.UI
         private int _titleInterval = 10;
 
         [DefaultValue(10)]
+        [Description("标题文字局左或者局右时与边框距离"), Category("SunnyUI")]
         public int TitleInterval
         {
             get => _titleInterval;
@@ -233,6 +236,8 @@ namespace Sunny.UI
 
         private bool collapsed;
         private int rowHeight = 180;
+        private bool resizing;
+
 
         [Description("是否缩放"), Category("SunnyUI"), DefaultValue(false)]
         public bool Collapsed
@@ -242,8 +247,9 @@ namespace Sunny.UI
             {
                 if (value)
                 {
-                    rowHeight = Height;
+                    resizing = true;
                     Height = TitleHeight;
+                    resizing = false;
                 }
                 else
                 {
@@ -257,12 +263,32 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
-
             if (ShowCollapse && e.Location.InRect(ControlBoxRect))
             {
                 Collapsed = !Collapsed;
             }
+
+            base.OnMouseClick(e);
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            CalcSystemBoxPos();
+            if (!resizing)
+            {
+                rowHeight = Height;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            if (ShowCollapse && e.Location.Y <= TitleHeight)
+            {
+                Collapsed = !Collapsed;
+            }
+
+            base.OnMouseDoubleClick(e);
         }
     }
 }

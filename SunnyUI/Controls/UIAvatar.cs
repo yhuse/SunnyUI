@@ -70,7 +70,7 @@ namespace Sunny.UI
 
         private int avatarSize = 60;
 
-        [DefaultValue(60)]
+        [DefaultValue(60), Description("头像大小"), Category("SunnyUI")]
         public int AvatarSize
         {
             get => avatarSize;
@@ -84,7 +84,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public Color FillColor
         {
@@ -95,7 +95,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("前景颜色"), Category("自定义")]
+        [Description("前景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
@@ -122,7 +122,7 @@ namespace Sunny.UI
         /// <summary>
         /// 显示方式：图像（Image）、符号（Symbol）、文字（Text）
         /// </summary>
-        [DefaultValue(UIIcon.Symbol), Description("显示方式：图像（Image）、符号（Symbol）、文字（Text）")]
+        [DefaultValue(UIIcon.Symbol), Description("显示方式：图像（Image）、符号（Symbol）、文字（Text）"), Category("SunnyUI")]
         public UIIcon Icon
         {
             get => icon;
@@ -141,7 +141,7 @@ namespace Sunny.UI
         /// <summary>
         /// 显示形状：圆形，正方形
         /// </summary>
-        [DefaultValue(UIShape.Circle), Description("显示形状：圆形，正方形")]
+        [DefaultValue(UIShape.Circle), Description("显示形状：圆形，正方形"), Category("SunnyUI")]
         public UIShape Shape
         {
             get => sharpType;
@@ -160,7 +160,7 @@ namespace Sunny.UI
         /// <summary>
         /// 图片
         /// </summary>
-        [DefaultValue(typeof(Image), "null")]
+        [DefaultValue(typeof(Image), "null"), Description("图片"), Category("SunnyUI")]
         public Image Image
         {
             get => image;
@@ -179,7 +179,7 @@ namespace Sunny.UI
         /// <summary>
         /// 图标大小
         /// </summary>
-        [DefaultValue(45)]
+        [DefaultValue(45), Description("图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => symbolSize;
@@ -201,7 +201,7 @@ namespace Sunny.UI
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
-        [DefaultValue(61447)]
+        [DefaultValue(61447), Description("图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => symbol;
@@ -223,7 +223,7 @@ namespace Sunny.UI
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             int size = Math.Min(Width, Height) - 3;
-            Rectangle rect = new Rectangle((Width-avatarSize)/2, (Height - avatarSize) / 2, avatarSize, avatarSize);
+            Rectangle rect = new Rectangle((Width - avatarSize) / 2, (Height - avatarSize) / 2, avatarSize, avatarSize);
 
             switch (Shape)
             {
@@ -288,13 +288,13 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Symbol)
             {
-                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle((Width - avatarSize) / 2+1, (Height - avatarSize) / 2+1, avatarSize, avatarSize));
+                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle((Width - avatarSize) / 2 + 1, (Height - avatarSize) / 2 + 1, avatarSize, avatarSize));
             }
 
             if (Icon == UIIcon.Text)
             {
                 SizeF sf = e.Graphics.MeasureString(Text, Font);
-                e.Graphics.DrawString(Text, Font, foreColor, 2 + (Width - sf.Width ) / 2.0f, (Height- sf.Height ) / 2.0f);
+                e.Graphics.DrawString(Text, Font, foreColor, 2 + (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
             }
         }
     }

@@ -48,7 +48,7 @@ namespace Sunny.UI
 
         private int interval = 500;
 
-        [DefaultValue(500)]
+        [DefaultValue(500), Description("显示间隔"), Category("SunnyUI")]
         public int Interval
         {
             get => interval;
@@ -72,6 +72,7 @@ namespace Sunny.UI
         private UILightState state = UILightState.On;
 
         [DefaultValue(UILightState.On)]
+        [Description("显示状态"), Category("SunnyUI")]
         public UILightState State
         {
             get => state;
@@ -162,6 +163,7 @@ namespace Sunny.UI
         private bool showCenterColor = true;
 
         [DefaultValue(true)]
+        [Description("是否显示中心颜色"), Category("SunnyUI")]
         public bool ShowCenterColor
         {
             get => showCenterColor;
@@ -175,6 +177,7 @@ namespace Sunny.UI
         private bool showLightLine = true;
 
         [DefaultValue(true)]
+        [Description("显示灯光亮线"), Category("SunnyUI")]
         public bool ShowLightLine
         {
             get => showLightLine;
@@ -188,6 +191,7 @@ namespace Sunny.UI
         private Color onColor = UIColor.Green;
 
         [DefaultValue(typeof(Color), "110, 190, 40")]
+        [Description("打开状态颜色"), Category("SunnyUI")]
         public Color OnColor
         {
             get => onColor;
@@ -201,6 +205,7 @@ namespace Sunny.UI
         private Color centerColor = UIColor.LightGreen;
 
         [DefaultValue(typeof(Color), "110, 190, 40")]
+        [Description("中心颜色"), Category("SunnyUI")]
         public Color CenterColor
         {
             get => centerColor;
@@ -214,6 +219,7 @@ namespace Sunny.UI
         private Color offColor = UIColor.Gray;
 
         [DefaultValue(typeof(Color), "140, 140, 140")]
+        [Description("关闭状态颜色"), Category("SunnyUI")]
         public Color OffColor
         {
             get => offColor;

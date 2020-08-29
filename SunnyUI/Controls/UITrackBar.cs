@@ -52,9 +52,11 @@ namespace Sunny.UI
         private int trackBarValue;
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
 
         [DefaultValue(100)]
+        [Description("最大值"), Category("SunnyUI")]
         public int Maximum
         {
             get => _maximum;
@@ -69,6 +71,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
+        [Description("最小值"), Category("SunnyUI")]
         public int Minimum
         {
             get => _minimum;
@@ -83,6 +86,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
+        [Description("当前值"), Category("SunnyUI")]
         public int Value
         {
             get => trackBarValue;
@@ -171,7 +175,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
@@ -182,7 +186,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
@@ -193,7 +197,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("自定义")]
+        [Description("边框颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {
@@ -202,6 +206,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Color), "173, 178, 181")]
+        [Description("不可用时颜色"), Category("SunnyUI")]
         public Color DisableColor
         {
             get => rectDisableColor;

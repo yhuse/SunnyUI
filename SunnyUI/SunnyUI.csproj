@@ -116,6 +116,12 @@
     <Compile Include="Controls\UIHorScrollBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UIVerScrollBarEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UIHorScrollBarEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UINavMenuHelper.cs" />
     <Compile Include="Controls\UIPagination.cs">
       <SubType>UserControl</SubType>
@@ -189,7 +195,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\UITreeView.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\UIStatusForm.cs">
       <SubType>Form</SubType>
@@ -402,6 +408,8 @@
     <Compile Include="Controls\UIToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
+    <Compile Include="Units\UConcurrentGroupDictionary.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
@@ -487,9 +495,6 @@
     <Compile Include="Units\UXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
-      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UIEditForm.resx">
       <DependentUpon>UIEditForm.cs</DependentUpon>
     </EmbeddedResource>

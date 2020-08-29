@@ -42,6 +42,7 @@ namespace Sunny.UI
         private int _value;
 
         [DefaultValue(0)]
+        [Description("选中数值"), Category("SunnyUI")]
         public int Value
         {
             get => _value;
@@ -54,9 +55,16 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (pnlValue != null) pnlValue.Font = Font;
+        }
+
         private int step = 1;
 
         [DefaultValue(1)]
+        [Description("步进值"), Category("SunnyUI")]
         public int Step
         {
             get => step;
@@ -76,6 +84,7 @@ namespace Sunny.UI
         private int _maximum = int.MaxValue;
         private int _minimum = int.MinValue;
 
+        [Description("最大值"), Category("SunnyUI")]
         [DefaultValue(int.MaxValue)]
         public int Maximum
         {
@@ -91,6 +100,7 @@ namespace Sunny.UI
             }
         }
 
+        [Description("最小值"), Category("SunnyUI")]
         [DefaultValue(int.MinValue)]
         public int Minimum
         {
@@ -127,6 +137,7 @@ namespace Sunny.UI
         private bool hasMinimum;
 
         [DefaultValue(false)]
+        [Description("检查最大值"), Category("SunnyUI")]
         public bool HasMaximum
         {
             get => hasMaximum;
@@ -142,6 +153,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("检查最小值"), Category("SunnyUI")]
         public bool HasMinimum
         {
             get => hasMinimum;

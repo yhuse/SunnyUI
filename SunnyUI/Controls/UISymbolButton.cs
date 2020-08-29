@@ -42,6 +42,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(24)]
+        [Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => _symbolSize;
@@ -54,11 +55,13 @@ namespace Sunny.UI
         }
 
         [DefaultValue(null)]
+        [Description("图片"), Category("SunnyUI")]
         public Image Image { get; set; }
 
         private ContentAlignment imageAlign = ContentAlignment.MiddleCenter;
 
         [DefaultValue(ContentAlignment.MiddleCenter)]
+        [Description("图片放置位置"), Category("SunnyUI")]
         public ContentAlignment ImageAlign
         {
             get => imageAlign;
@@ -70,6 +73,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(2)]
+        [Description("图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -83,6 +87,7 @@ namespace Sunny.UI
         private bool _isCircle;
 
         [DefaultValue(false)]
+        [Description("是否是圆形"), Category("SunnyUI")]
         public bool IsCircle
         {
             get => _isCircle;
@@ -105,6 +110,7 @@ namespace Sunny.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
         [DefaultValue(61452)]
+        [Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => _symbol;
@@ -131,6 +137,7 @@ namespace Sunny.UI
         private int circleRectWidth = 1;
 
         [DefaultValue(1)]
+        [Description("圆形边框大小"), Category("SunnyUI")]
         public int CircleRectWidth
         {
             get => circleRectWidth;

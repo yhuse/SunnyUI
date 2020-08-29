@@ -22,7 +22,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -35,21 +34,55 @@ namespace Sunny.UI
         {
             this.SuspendLayout();
             // 
-            // UIDateTimePicker
+            // UIDatetimePicker
             // 
             this.Name = "UIDatetimePicker";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.SymbolDropDown = 61555;
+            this.SymbolNormal = 61555;
             this.ButtonClick += new System.EventHandler(this.UIDatetimePicker_ButtonClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            DropDownStyle = UIDropDownStyle.DropDownList;
         }
 
         public UIDatetimePicker()
         {
             InitializeComponent();
+            Width = 200;
             Value = DateTime.Now;
+            EditorLostFocus += UIDatePicker_LostFocus;
+            TextChanged += UIDatePicker_TextChanged;
+            MaxLength = 19;
+        }
+
+        private void UIDatePicker_TextChanged(object sender, EventArgs e)
+        {
+            if (Text.Length == MaxLength)
+            {
+                try
+                {
+                    DateTime dt = Text.ToDateTime(DateFormat);
+                    Value = dt;
+                }
+                catch
+                {
+                    Value = DateTime.Now.Date;
+                }
+            }
+        }
+
+        private void UIDatePicker_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt = Text.ToDateTime(DateFormat);
+                Value = dt;
+            }
+            catch
+            {
+                Value = DateTime.Now.Date;
+            }
         }
 
         public delegate void OnDateTimeChanged(object sender, DateTime value);
@@ -72,11 +105,14 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        [Description("选中日期时间"), Category("SunnyUI")]
         public DateTime Value
         {
             get => item.Date;
             set
             {
+                if (value < new DateTime(1753, 1, 1))
+                    value = new DateTime(1753, 1, 1);
                 Text = value.ToString(dateFormat);
                 item.Date = value;
             }
@@ -90,7 +126,7 @@ namespace Sunny.UI
 
         private string dateFormat = "yyyy-MM-dd HH:mm:ss";
 
-        [Description("日期格式化掩码"), Category("自定义")]
+        [Description("日期格式化掩码"), Category("SunnyUI")]
         [DefaultValue("yyyy-MM-dd HH:mm:ss")]
         public string DateFormat
         {
@@ -99,6 +135,7 @@ namespace Sunny.UI
             {
                 dateFormat = value;
                 Text = Value.ToString(dateFormat);
+                MaxLength = dateFormat.Length;
             }
         }
     }

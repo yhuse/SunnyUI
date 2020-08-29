@@ -52,12 +52,14 @@ namespace Sunny.UI
         /// Tag字符串
         /// </summary>
         [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
         /// <summary>
-        /// 自定义主题样式
+        /// 自定义主题风格
         /// </summary>
         [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
         /// <summary>
@@ -85,7 +87,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框显示位置
         /// </summary>
-        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置")]
+        [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置"), Category("SunnyUI")]
         public ToolStripStatusLabelBorderSides RectSides
         {
             get => _rectSides;
@@ -110,7 +112,7 @@ namespace Sunny.UI
         /// <summary>
         /// 圆角显示位置
         /// </summary>
-        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置")]
+        [DefaultValue(UICornerRadiusSides.All), Description("圆角显示位置"), Category("SunnyUI")]
         public UICornerRadiusSides RadiusSides
         {
             get => _radiusSides;
@@ -127,7 +129,7 @@ namespace Sunny.UI
         /// <summary>
         /// 圆角角度
         /// </summary>
-        [Description("圆角角度"), Category("自定义")]
+        [Description("圆角角度"), Category("SunnyUI")]
         [DefaultValue(5)]
         public int Radius
         {
@@ -147,7 +149,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示文字
         /// </summary>
-        [Description("是否显示文字")]
+        [Description("是否显示文字"), Category("SunnyUI")]
         [DefaultValue(true)]
         protected bool ShowText
         {
@@ -225,7 +227,7 @@ namespace Sunny.UI
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue)]
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -249,7 +251,7 @@ namespace Sunny.UI
         /// <summary>
         /// 文字对齐方向
         /// </summary>
-        [Description("文字对齐方向")]
+        [Description("文字对齐方向"), Category("SunnyUI")]
         [DefaultValue(ContentAlignment.MiddleCenter)]
         public ContentAlignment TextAlign
         {
@@ -260,6 +262,27 @@ namespace Sunny.UI
                 {
                     textAlign = value;
                     Invalidate();
+                }
+            }
+        }
+
+        private bool useDoubleClick = false;
+
+        [Description("是否启用双击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool UseDoubleClick
+        {
+            get
+            {
+                return useDoubleClick;
+            }
+            set
+            {
+                if (useDoubleClick != value)
+                {
+                    useDoubleClick = value;
+                    //SetStyle(ControlStyles.StandardDoubleClick, useDoubleClick);
+                    //Invalidate();
                 }
             }
         }
@@ -588,7 +611,7 @@ namespace Sunny.UI
                 Invalidate();
             }
         }
-        
+
         protected Color rectSelectedColor;
 
         /// <summary>

@@ -221,7 +221,7 @@ namespace Sunny.UI
                 bool[] bts = new bool[len];
                 for (int i = 0; i < b.Length; i++)
                 {
-                    string str = ((long)b[i]).ToNumberString(MathEx.Characters.BINARY).PadLeft(8, '0');
+                    string str = b[i].ToNumberString(MathEx.Characters.BINARY).PadLeft(8, '0');
                     for (int j = 0; j < 8; j++)
                     {
                         bts[i * 8 + j] = str[j] == '1';

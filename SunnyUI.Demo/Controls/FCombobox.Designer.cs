@@ -69,15 +69,17 @@
             // 
             // uiDatetimePicker1
             // 
-            this.uiDatetimePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiDatetimePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatetimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatetimePicker1.Location = new System.Drawing.Point(388, 136);
             this.uiDatetimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatetimePicker1.MaxLength = 19;
             this.uiDatetimePicker1.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiDatetimePicker1.Name = "uiDatetimePicker1";
             this.uiDatetimePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.uiDatetimePicker1.Size = new System.Drawing.Size(306, 29);
+            this.uiDatetimePicker1.SymbolDropDown = 61555;
+            this.uiDatetimePicker1.SymbolNormal = 61555;
             this.uiDatetimePicker1.TabIndex = 41;
             this.uiDatetimePicker1.Text = "2020-06-02 17:57:28";
             this.uiDatetimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,11 +126,11 @@
             // 
             // uiTimePicker1
             // 
-            this.uiTimePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiTimePicker1.FillColor = System.Drawing.Color.White;
             this.uiTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTimePicker1.Location = new System.Drawing.Point(188, 136);
             this.uiTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTimePicker1.MaxLength = 8;
             this.uiTimePicker1.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiTimePicker1.Name = "uiTimePicker1";
             this.uiTimePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
@@ -165,11 +167,11 @@
             // 
             // uiDatePicker1
             // 
-            this.uiDatePicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiDatePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker1.Location = new System.Drawing.Point(30, 136);
             this.uiDatePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatePicker1.MaxLength = 10;
             this.uiDatePicker1.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiDatePicker1.Name = "uiDatePicker1";
             this.uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);

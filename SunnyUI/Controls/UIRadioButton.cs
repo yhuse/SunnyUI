@@ -49,12 +49,13 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
 
         /// <summary>
         /// 字体颜色
         /// </summary>
-        [Description("字体颜色"), Category("自定义")]
+        [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
@@ -66,6 +67,7 @@ namespace Sunny.UI
         private int _imageInterval = 3;
 
         [DefaultValue(16)]
+        [Description("按钮图片大小"), Category("SunnyUI")]
         public int ImageSize
         {
             get => _imageSize;
@@ -78,6 +80,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(3)]
+        [Description("按钮图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
             get => _imageInterval;
@@ -91,6 +94,7 @@ namespace Sunny.UI
         private bool _checked;
 
         [DefaultValue(false)]
+        [Description("是否选中"), Category("SunnyUI")]
         public bool Checked
         {
             get => _checked;
@@ -199,7 +203,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("自定义")]
+        [Description("填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RadioButtonColor
         {

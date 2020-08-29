@@ -33,11 +33,13 @@
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiListBox1 = new Sunny.UI.UIListBox();
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
+            this.uiButton1 = new Sunny.UI.UIButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiButton1);
             this.PagePanel.Controls.Add(this.uiCheckBox1);
             this.PagePanel.Controls.Add(this.uiListBox1);
             this.PagePanel.Controls.Add(this.uiLine2);
@@ -84,26 +86,6 @@
             // uiListBox1
             // 
             this.uiListBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiListBox1.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18"});
             this.uiListBox1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiListBox1.Location = new System.Drawing.Point(33, 48);
             this.uiListBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -127,6 +109,18 @@
             this.uiCheckBox1.Text = "ShowDescription";
             this.uiCheckBox1.ValueChanged += new Sunny.UI.UICheckBox.OnValueChanged(this.uiCheckBox1_ValueChanged);
             // 
+            // uiButton1
+            // 
+            this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton1.Location = new System.Drawing.Point(33, 400);
+            this.uiButton1.Name = "uiButton1";
+            this.uiButton1.Size = new System.Drawing.Size(100, 35);
+            this.uiButton1.TabIndex = 23;
+            this.uiButton1.Text = "Add Item";
+            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
+            this.uiButton1.DoubleClick += new System.EventHandler(this.uiButton1_DoubleClick);
+            // 
             // FListBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -146,5 +140,6 @@
         private UILine uiLine1;
         private UIListBox uiListBox1;
         private UICheckBox uiCheckBox1;
+        private UIButton uiButton1;
     }
 }

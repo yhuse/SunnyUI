@@ -53,6 +53,7 @@ namespace Sunny.UI
             int start = Environment.TickCount;
             while (Environment.TickCount - start < ms)
             {
+                System.Threading.Thread.Sleep(1);
                 Application.DoEvents();
             }
         }
