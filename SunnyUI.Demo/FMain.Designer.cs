@@ -37,6 +37,7 @@
             this.uiLogo1 = new Sunny.UI.UILogo();
             this.uiAvatar = new Sunny.UI.UIAvatar();
             this.StyleManager = new Sunny.UI.UIStyleManager(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Header.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,8 @@
             // 
             this.Header.Controls.Add(this.uiAvatar);
             this.Header.Controls.Add(this.uiLogo1);
+            this.Header.ImageList = this.imageList1;
+            treeNode1.ImageIndex = 1;
             treeNode1.Name = "节点0";
             treeNode1.Text = "控件";
             treeNode2.Name = "节点1";
@@ -95,6 +98,13 @@
             this.uiAvatar.TabIndex = 4;
             this.uiAvatar.Text = "uiAvatar1";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "002.png");
+            this.imageList1.Images.SetKeyName(1, "025.png");
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -114,5 +124,6 @@
         private UILogo uiLogo1;
         private UIAvatar uiAvatar;
         private UIStyleManager StyleManager;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

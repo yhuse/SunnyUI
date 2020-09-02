@@ -323,8 +323,14 @@ namespace Sunny.UI
                 Rectangle rect = new Rectangle(NodeX + i * NodeSize.Width, NodeY, NodeSize.Width, NodeSize.Height);
 
                 TreeNode node = Nodes[i];
+
+                int symbolSize = 0;
+                if (ImageList != null && ImageList.Images.Count > 0 && node.ImageIndex >= 0 && node.ImageIndex >= 0 && node.ImageIndex < ImageList.Images.Count)
+                    symbolSize = ImageList.ImageSize.Width;
+
                 int symbol = MenuHelper.GetSymbol(node);
-                int symbolSize = MenuHelper.GetSymbolSize(node);
+                if (symbol > 0)
+                    symbolSize = MenuHelper.GetSymbolSize(node);
 
                 SizeF sf = e.Graphics.MeasureString(node.Text, Font);
                 Color textColor = ForeColor;
@@ -345,9 +351,19 @@ namespace Sunny.UI
                     textColor = SelectedForeColor;
                 }
 
-                if (symbol > 0)
+                if (symbolSize > 0)
                 {
-                    e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new RectangleF(NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY, symbolSize, NodeSize.Height));
+                    if (symbol > 0)
+                    {
+                        e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new RectangleF(NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY, symbolSize, NodeSize.Height));
+
+                    }
+                    else
+                    {
+                        if (ImageList != null)
+                            e.Graphics.DrawImage((Bitmap)ImageList.Images[node.ImageIndex], NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY + (NodeSize.Height - ImageList.ImageSize.Height) / 2);
+                    }
+
                     e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width + symbolSize) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
                 }
                 else
