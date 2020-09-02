@@ -80,6 +80,18 @@ namespace Sunny.UI
 
             VerticalScrollBar.ValueChanged += VerticalScrollBar_ValueChanged;
             HorizontalScrollBar.ValueChanged += HorizontalScrollBar_ValueChanged;
+            VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
+            HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
+        }
+
+        private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
+        {
+            SetScrollInfo();
+        }
+
+        private void VerticalScrollBar_VisibleChanged(object sender, EventArgs e)
+        {
+            SetScrollInfo();
         }
 
         public void Init()
