@@ -141,7 +141,7 @@ namespace Sunny.UI
                 }
             }
 
-            if (e.Control.Top < TitleHeight)
+            if (ShowTitle && e.Control.Top < TitleHeight)
             {
                 e.Control.Top = Padding.Top;
             }

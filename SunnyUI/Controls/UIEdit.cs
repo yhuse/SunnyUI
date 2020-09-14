@@ -478,9 +478,20 @@ namespace Sunny.UI
         protected override void OnGotFocus(EventArgs e)
         {
             base.OnGotFocus(e);
-            SelectionStart = Text.Length;
-            SelectionLength = 0;
+
+            if (FocusedSelectAll)
+            {
+                SelectAll();
+            }
+            else
+            {
+                SelectionStart = Text.Length;
+                SelectionLength = 0;
+            }
         }
+
+        [DefaultValue(false)]
+        public bool FocusedSelectAll { get; set; }
 
         protected override void OnLeave(EventArgs e)
         {

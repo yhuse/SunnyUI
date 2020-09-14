@@ -188,6 +188,7 @@
             this.edtDate.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtDate.Location = new System.Drawing.Point(150, 215);
             this.edtDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edtDate.MaxLength = 10;
             this.edtDate.MinimumSize = new System.Drawing.Size(63, 0);
             this.edtDate.Name = "edtDate";
             this.edtDate.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);

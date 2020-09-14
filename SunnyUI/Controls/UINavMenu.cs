@@ -494,9 +494,22 @@ namespace Sunny.UI
                     float tipsLeft = Width - (ScrollBarVisible ? 50 : 30) - 6 - sfMax;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
-                    e.Graphics.FillEllipse(UIColor.Red, tipsLeft, tipsTop, sfMax, sfMax);
+                    e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
                     e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Color.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
                 }
+            }
+        }
+
+        private Color tipsColor = Color.Red;
+
+        [DefaultValue(typeof(Color), "Red")]
+        public Color TipsColor
+        {
+            get => tipsColor;
+            set
+            {
+                tipsColor = value;
+                Invalidate();
             }
         }
 

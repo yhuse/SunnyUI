@@ -174,6 +174,7 @@
             this.uiButton1.StyleCustomMode = true;
             this.uiButton1.TabIndex = 0;
             this.uiButton1.Text = "White";
+            this.uiButton1.TipsText = "1";
             this.uiToolTip1.SetToolTip(this.uiButton1, "White");
             // 
             // uiButton2
