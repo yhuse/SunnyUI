@@ -54,7 +54,7 @@ namespace Sunny.UI
                 ControlStyles.DoubleBuffer |
                 ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.ResizeRedraw |
+                //ControlStyles.ResizeRedraw |
                 ControlStyles.SupportsTransparentBackColor, true);
             UpdateStyles();
 
