@@ -411,6 +411,7 @@
     <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
     <Compile Include="Units\UConcurrentGroupDictionary.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
+    <Compile Include="Units\USuspendCtrlAltDel.cs" />
     <Compile Include="Units\UThunder.cs" />
     <Compile Include="Controls\UILine.cs">
       <SubType>Component</SubType>

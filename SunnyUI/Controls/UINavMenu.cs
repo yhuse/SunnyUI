@@ -40,7 +40,12 @@ namespace Sunny.UI
 
         public UINavMenu()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor | ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer |
+                     ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.OptimizedDoubleBuffer, true);
+
+            base.UpdateStyles();
+
             BorderStyle = BorderStyle.None;
             //HideSelection = false;
             DrawMode = TreeViewDrawMode.OwnerDrawAll;
