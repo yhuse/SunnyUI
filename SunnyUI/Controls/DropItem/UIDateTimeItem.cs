@@ -268,7 +268,7 @@ namespace Sunny.UI
             this.tabPage2.Controls.Add(this.p2);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(284, 164);
+            this.tabPage2.Size = new System.Drawing.Size(450, 230);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -282,7 +282,7 @@ namespace Sunny.UI
             this.p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p2.Name = "p2";
             this.p2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p2.Size = new System.Drawing.Size(284, 164);
+            this.p2.Size = new System.Drawing.Size(450, 230);
             this.p2.Style = Sunny.UI.UIStyle.Custom;
             this.p2.TabIndex = 1;
             this.p2.Text = null;
@@ -295,7 +295,7 @@ namespace Sunny.UI
             this.tabPage3.Controls.Add(this.p3);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(284, 164);
+            this.tabPage3.Size = new System.Drawing.Size(450, 230);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@ namespace Sunny.UI
             this.p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p3.Name = "p3";
             this.p3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p3.Size = new System.Drawing.Size(284, 164);
+            this.p3.Size = new System.Drawing.Size(450, 230);
             this.p3.Style = Sunny.UI.UIStyle.Custom;
             this.p3.TabIndex = 2;
             this.p3.Text = null;
@@ -505,7 +505,7 @@ namespace Sunny.UI
             this.mm2.Symbol = 61703;
             this.mm2.TabIndex = 27;
             this.mm2.Tag = "5";
-            this.mm2.Click += new System.EventHandler(this.mm1_Click);
+            this.mm2.Click += new System.EventHandler(this.mm2_Click);
             // 
             // h2
             // 
@@ -574,7 +574,7 @@ namespace Sunny.UI
             this.mm1.Symbol = 61702;
             this.mm1.TabIndex = 24;
             this.mm1.Tag = "2";
-            this.mm1.Click += new System.EventHandler(this.mm2_Click);
+            this.mm1.Click += new System.EventHandler(this.mm1_Click);
             // 
             // h1
             // 
@@ -916,21 +916,6 @@ namespace Sunny.UI
             {
                 if (new Rectangle(ht.Left, ht.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
                 {
-                    h1.PerformClick();
-                }
-                else if (new Rectangle(mt.Left, mt.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    mm1.PerformClick();
-                }
-                else if (new Rectangle(st.Left, st.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
-                    s1.PerformClick();
-                }
-            }
-            else if (e.Delta > 0)
-            {
-                if (new Rectangle(ht.Left, ht.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
-                {
                     h2.PerformClick();
                 }
                 else if (new Rectangle(mt.Left, mt.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
@@ -940,6 +925,21 @@ namespace Sunny.UI
                 else if (new Rectangle(st.Left, st.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
                 {
                     s2.PerformClick();
+                }
+            }
+            else if (e.Delta > 0)
+            {
+                if (new Rectangle(ht.Left, ht.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
+                {
+                    h1.PerformClick();
+                }
+                else if (new Rectangle(mt.Left, mt.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
+                {
+                    mm1.PerformClick();
+                }
+                else if (new Rectangle(st.Left, st.Top, ht.Width, hb.Bottom - ht.Top).Contains(e.X, e.Y))
+                {
+                    s1.PerformClick();
                 }
             }
         }
@@ -1202,6 +1202,7 @@ namespace Sunny.UI
             int id = x + y * 7;
             if (id < 0 || id >= 42) return;
             date = days[id].Date;
+            date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
             DoValueChanged(this, Date);
             CloseParent();
         }

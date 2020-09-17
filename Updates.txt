@@ -1,73 +1,48 @@
 + 增加； - 删除； * 修改 
 
-2020-07-30 
-* UITitlePanel：增加可收缩选项
+2020-09-17 V2.2.7
++ 新增双主键线程安全字典，分组线程安全字典
++ UIHorScrollBarEx，UIVerScrollBarEx：重写了两个滚动条
+* UIForm：恢复了WindowState，增加了窗体可拉拽调整大小
+* 增加控件属性显示值及Sunny UI分类
+* UIDateTimePicker,UITimePicker：更改滚轮选择时间的方向
+* UIButton：Tips颜色可设置
+* UIChart：增加图表的边框线颜色设置
+* UITextBox：增加FocusedSelectAll属性，激活时全选。
+* UINavBar：增加节点的Image绘制
+* UIDataGridView：调整水平滚动条
+* UIButton：添加'是否启用双击事件'属性，解决连续点击效率问题
+* UIDataGridView：更新了水平和垂直滚动条的显示，优化滚动效果。
+* UIBbutton：空格键按下press背景效果
+* UIListBox优化滚轮快速滚动流畅性
+* UIBarChart：可设置柱状图最小宽度
+* UIIntegerUpDown, UIDoubleUpDown：增加字体调整
+* UITabControl：标题垂直居中
+* UITreeView：更新可设置背景色
+* UIDatePicker，UITimePicker，UIDateTimePicker：可编辑输入，日期范围控制
+* UIDatePicker：更改日期范围最小值和最大值
+* UITitlePanel：更新大小调整后的按钮位置
 
-2020-07-29
-* UIPagination：增加DataSource切换事件，TotalCount总数，PageCount总页数，ActivePage选中页码  
-* UIPieChart,UIBarChart：增加序列自定义颜色
-
-2020-07-28
+2020-07-30 V2.2.6
 + UIPagination：新增分页控件
-
-2020-07-26 
++ UIToolTip：新增控件，可修改字体
++ UIHorScrollBar：新增水平滚动条
++ UIWaitingBar：新增等待滚动条控件
+* UIDataGridView：重绘水平滚动条，更新默认设置为原生控件设置
+* UITitlePanel：增加可收缩选项
+* UIPieChart,UIBarChart：增加序列自定义颜色
 * UISymbolButton：增加Image属性，增加图片和文字的摆放位置
 * UIButton：增加Selected及选中颜色配置
-
-2020-07-25
-* UIToolTip：更新绘制
-
-2020-07-21
-+ UIToolTip：新增控件，可修改字体
-* UIForm.cs 支持点击窗体任务栏图标，可以进行最小化
-
-2020-07-20
-+ UIWaitingBar：新增等待滚动条控件
-
-2020-07-18
-* UIDataGridView：重绘水平滚动条
-+ UIHorScrollBar：新增水平滚动条
-
-2020-07-15
-* UIDataGridView：更新默认设置为原生控件设置
-
-2020-07-10
+* UIForm：支持点击窗体任务栏图标，可以进行最小化
 * UIForm：增加标题栏ICON图标绘制
-
-2020-07-08
 * UIDateTimePicker：重写下拉窗体，缩短创建时间
-
-2020-07-07
 * UITreeView：全部重写，增加圆角，CheckBoxes等
-
-2020-07-06
 * UIDatePicker：重写下拉窗体，缩短创建时间
-
-2020-07-05
-* UICombobox：更新KeyDown、KeyUp、KeyPress事件。
-* UIForm：更新窗体控制按钮圆角和跟随窗体圆角变化。
-* UIPieChart：更改Tips显示不正确的Bug
-
-2020-07-04
 * UICheckBoxGroup,UIRadioButtonGroup：可以设置初始选中值
 * UILedBulb：边缘平滑
-* UIRichTextBox：增加一些函数
-
-2020-07-03
-* UIRadioButtonGroup,UICheckBoxGroup：修正调整ItemSize无效的Bug
-
-2020-07-02
-* UIForm：修正控件位置在标题栏下方
-
-2020-07-01
-* UIForm：修改标题栏按钮背景色刷新
 * UIForm：仿照QQ，重绘标题栏按钮。
-* UINavMenu：OnAfterSelect增加判断，解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。  
-* UIForm：修改不显示标题时的控件在顶部的位置Bug
-* 修改最大化全屏时消息窗体弹出在窗体后的BUG
-* 修改最大化全屏时消息窗体弹出在窗体后的BUG
 
-2020.06.29 V2.2.5->V2.2.6
+2020-06-29 V2.2.5
 + UIDoughnutChart：环状图
 + UILoginForm：登录窗体
 + UIScrollingText：滚动文字
