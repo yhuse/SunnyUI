@@ -154,19 +154,27 @@ namespace Sunny.UI
         /// <summary>
         /// SizeChange导致treeNode闪屏
         /// </summary>
-        protected override CreateParams CreateParams
+        const int TVM_SETEXTENDEDSTYLE = 0x112C;
+        const int TVS_EX_DOUBLEBUFFER = 0x0004;
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+        private void UpdateExtendedStyles()
         {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                if (!DesignMode)
-                {
-                    cp.ExStyle |= 0x02000000;
-                }
-                return cp;
+            int Style = 0;
 
-            }
+            if (DoubleBuffered)
+                Style |= TVS_EX_DOUBLEBUFFER;
+
+            if (Style != 0)
+                SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(Style));
         }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            UpdateExtendedStyles();
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
