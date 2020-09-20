@@ -27,143 +27,155 @@ namespace Sunny.UI
 {
     public class ConcurrentGroupDictionary<TGroup, TKey, TValue>
     {
-        private readonly ConcurrentDictionary<TGroup, ConcurrentDictionary<TKey, TValue>> GroupDictionary
+        private readonly ConcurrentDictionary<TGroup, ConcurrentDictionary<TKey, TValue>> Dictionary
             = new ConcurrentDictionary<TGroup, ConcurrentDictionary<TKey, TValue>>();
-        private readonly ConcurrentDictionary<TKey, TValue> ObjectDictionary
-            = new ConcurrentDictionary<TKey, TValue>();
 
         public ConcurrentDictionary<TKey, TValue> this[TGroup group]
         {
-            get => ContainsGroup(group) ? GroupDictionary[group] : new ConcurrentDictionary<TKey, TValue>();
+            get => ContainsGroup(group) ? Dictionary[group] : new ConcurrentDictionary<TKey, TValue>();
             set
             {
                 if (!ContainsGroup(group)) TryAdd(group);
-                GroupDictionary[group] = value;
+                Dictionary[group] = value;
             }
         }
 
         public bool ContainsGroup(TGroup group)
         {
-            return GroupDictionary.ContainsKey(group);
+            return Dictionary.ContainsKey(group);
         }
 
         public bool ContainsKey(TKey key)
         {
-            return ObjectDictionary.ContainsKey(key);
+            return Groups.Any(group => ContainsKey(group, key));
         }
 
         public bool ContainsKey(TGroup group, TKey key)
         {
-            return ContainsGroup(group) && GroupDictionary[group].ContainsKey(key);
+            return ContainsGroup(group) && Dictionary[group].ContainsKey(key);
         }
 
         public void TryAdd(TGroup group)
         {
-            if (!GroupDictionary.ContainsKey(group))
-                GroupDictionary.TryAdd(group, new ConcurrentDictionary<TKey, TValue>());
+            if (!Dictionary.ContainsKey(group))
+                Dictionary.TryAdd(group, new ConcurrentDictionary<TKey, TValue>());
         }
 
         public void TryAdd(TGroup group, TKey key, TValue value)
         {
             TryAdd(group);
 
-            if (GroupDictionary[group].ContainsKey(key))
-                GroupDictionary[group][key] = value;
+            if (ContainsKey(group, key))
+                Dictionary[group][key] = value;
             else
-                GroupDictionary[group].TryAdd(key, value);
-
-            if (ObjectDictionary.ContainsKey(key))
-                ObjectDictionary[key] = value;
-            else
-                ObjectDictionary.TryAdd(key, value);
+                Dictionary[group].TryAdd(key, value);
         }
 
-        public void TryRemove(TGroup group, TKey key, TValue value)
+        public bool TryUpdate(TGroup group, TKey key, TValue value)
         {
-            if (GroupDictionary.ContainsKey(group))
-            {
-                if (GroupDictionary[group].ContainsKey(key)) GroupDictionary[group].TryRemove(key, out _);
-                if (GroupDictionary[group].Count == 0) GroupDictionary.TryRemove(group, out _);
-            }
+            if (!ContainsGroup(group)) return false;
+            TryAdd(group, key, value);
+            return true;
+        }
 
-            if (ObjectDictionary.ContainsKey(key))
+        public void TryRemove(TGroup group, TKey key)
+        {
+            if (ContainsGroup(group))
             {
-                ObjectDictionary.TryRemove(key, out _);
+                if (ContainsKey(group, key)) Dictionary[group].TryRemove(key, out _);
+                if (GroupItemsCount(group) == 0) Dictionary.TryRemove(group, out _);
             }
         }
 
-        public void ClearAll()
+        public void TryRemove(TGroup group)
         {
-            List<TGroup> groups = GroupDictionary.Keys.ToList();
-            foreach (var group in groups)
+            ClearGroup(group);
+            Dictionary.TryRemove(group, out _);
+        }
+
+        public void Clear()
+        {
+            foreach (var group in Groups)
             {
                 ClearGroup(group);
             }
 
-            GroupDictionary.Clear();
-            ObjectDictionary.Clear();
+            Dictionary.Clear();
         }
 
         public void ClearGroup(TGroup group)
         {
-            if (GroupDictionary.ContainsKey(group))
+            if (ContainsGroup(group))
             {
-                List<TKey> keys = GroupDictionary[group].Keys.ToList();
+                Dictionary[group].Clear();
+            }
+        }
+
+        public List<TValue> Values(TGroup group)
+        {
+            return ContainsGroup(group) ? Dictionary[group].Values.ToList() : new List<TValue>();
+        }
+
+        public List<TGroup> Groups
+        {
+            get => Dictionary.Keys.ToList();
+        }
+
+        public List<TGroup> SortedGroups
+        {
+            get
+            {
+                List<TGroup> groups = Groups;
+                groups.Sort();
+                return groups;
+            }
+        }
+
+        public List<TKey> Keys(TGroup group)
+        {
+            return ContainsGroup(group) ? Dictionary[group].Keys.ToList() : new List<TKey>();
+        }
+
+        public List<TKey> SortedKeys(TGroup group)
+        {
+            List<TKey> keys = Keys(group);
+            keys.Sort();
+            return keys;
+        }
+
+        public List<TValue> SortedValues(TGroup group)
+        {
+            List<TValue> values = new List<TValue>();
+            if (ContainsGroup(group))
+            {
+                var keys = SortedKeys(group);
                 foreach (var key in keys)
                 {
-                    if (ObjectDictionary.ContainsKey(key))
-                        ObjectDictionary.TryRemove(key, out _);
+                    values.Add(Dictionary[group][key]);
                 }
-
-                GroupDictionary[group].Clear();
-            }
-        }
-
-        public List<TValue> GetValues(TGroup group)
-        {
-            if (!this.GroupDictionary.ContainsKey(group))
-            {
-                return new List<TValue>();
             }
 
-            return GroupDictionary[group].Values.ToList();
+            return values;
         }
 
-        public List<TGroup> Groups()
+        public TValue GetValue(TGroup group, TKey key)
         {
-            return GroupDictionary.Keys.ToList();
+            return ContainsKey(group, key) ? Dictionary[group][key] : default;
         }
 
-        public List<TValue> AllValues()
+        public int AllCount
         {
-            return ObjectDictionary.Values.ToList();
+            get => Groups.Sum(GroupItemsCount);
         }
 
-        public List<TKey> AllKeys()
+        public int GroupCount
         {
-            return ObjectDictionary.Keys.ToList();
+            get => Dictionary.Count;
         }
 
-        public List<TKey> GroupKeys(TGroup group)
+        public int GroupItemsCount(TGroup group)
         {
-            return ContainsGroup(group) ? GroupDictionary[group].Keys.ToList() : new List<TKey>();
-        }
-
-        public List<TValue> GroupValues(TGroup group)
-        {
-            return ContainsGroup(group) ? GroupDictionary[group].Values.ToList() : new List<TValue>();
-        }
-
-        public TValue GetValue(TKey key)
-        {
-            return ObjectDictionary.ContainsKey(key) ? ObjectDictionary[key] : default;
-        }
-
-        public int Count() => ObjectDictionary.Count;
-
-        public int Count(TGroup group)
-        {
-            return ContainsGroup(group) ? GroupDictionary[group].Count : 0;
+            return ContainsGroup(group) ? Dictionary[group].Count : 0;
         }
     }
 }
