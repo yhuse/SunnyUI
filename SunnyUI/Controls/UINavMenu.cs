@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -150,6 +151,29 @@ namespace Sunny.UI
                     Invalidate();
                 }
             }
+        }
+        /// <summary>
+        /// SizeChange导致treeNode闪屏
+        /// </summary>
+        const int TVM_SETEXTENDEDSTYLE = 0x112C;
+        const int TVS_EX_DOUBLEBUFFER = 0x0004;
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+        private void UpdateExtendedStyles()
+        {
+            int Style = 0;
+
+            if (DoubleBuffered)
+                Style |= TVS_EX_DOUBLEBUFFER;
+
+            if (Style != 0)
+                SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(Style));
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            UpdateExtendedStyles();
         }
 
         protected override void OnSizeChanged(EventArgs e)
