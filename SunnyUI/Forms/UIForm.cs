@@ -61,6 +61,7 @@ namespace Sunny.UI
 
             Version = UIGlobal.Version;
             FormBorderStyle = FormBorderStyle.None;
+            m_aeroEnabled = false;
             base.MaximumSize = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Size : Screen.PrimaryScreen.WorkingArea.Size;
         }
 
@@ -1051,9 +1052,10 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示阴影
         /// </summary>
-        private bool _showShadow = false;
+        private bool _showShadow;
 
         #region 边框阴影
+
         /// <summary>
         /// 是否显示阴影
         /// </summary>
@@ -1070,26 +1072,25 @@ namespace Sunny.UI
         }
 
         [DllImport("dwmapi.dll")]
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
+        private static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
 
         [DllImport("dwmapi.dll")]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
 
         [DllImport("dwmapi.dll")]
-        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
+        private static extern int DwmIsCompositionEnabled(ref int pfEnabled);
 
-        private bool m_aeroEnabled = false;
+        private bool m_aeroEnabled;
         private const int CS_DROPSHADOW = 0x00020000;
         private const int WM_NCPAINT = 0x0085;
 
-        public struct MARGINS
+        private struct MARGINS
         {
             public int leftWidth;
             public int rightWidth;
             public int topHeight;
             public int bottomHeight;
         }
-
 
         private bool CheckAeroEnabled()
         {
@@ -1099,37 +1100,11 @@ namespace Sunny.UI
                 DwmIsCompositionEnabled(ref enabled);
                 return enabled == 1;
             }
+
             return false;
         }
 
-        /*protected override void WndProc(ref Message m)
-        {
-            if (ShowShadow)
-            {
-                switch (m.Msg)
-                {
-                    case WM_NCPAINT:
-                        if (m_aeroEnabled)
-                        {
-                            var v = 2;
-                            DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
-                            MARGINS margins = new MARGINS()
-                            {
-                                bottomHeight = 0,
-                                leftWidth = 0,
-                                rightWidth = 0,
-                                topHeight = 1
-                            };
-                            DwmExtendFrameIntoClientArea(this.Handle, ref margins);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-            base.WndProc(ref m);
-        }*/
-        #endregion
+        #endregion 边框阴影
 
         /// <summary>
         /// 是否重绘边框样式
@@ -1309,10 +1284,13 @@ namespace Sunny.UI
                 m_aeroEnabled = CheckAeroEnabled();
 
                 CreateParams cp = base.CreateParams;
-                if (!m_aeroEnabled) cp.ClassStyle |= CS_DROPSHADOW;
+                if (!m_aeroEnabled)
+                {
+                    cp.ClassStyle |= CS_DROPSHADOW;
+                }
 
                 //---
-                if (this.FormBorderStyle == FormBorderStyle.None)
+                if (FormBorderStyle == FormBorderStyle.None)
                 {
                     // 当边框样式为FormBorderStyle.None时
                     // 点击窗体任务栏图标，可以进行最小化
@@ -1320,14 +1298,13 @@ namespace Sunny.UI
                     cp.Style = cp.Style | WS_MINIMIZEBOX;
                     return cp;
                 }
-                else
-                {
-                    return base.CreateParams;
-                }
+
+                return base.CreateParams;
             }
         }
 
         private bool showDragStretch;
+
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
         public bool ShowDragStretch
         {
@@ -1345,19 +1322,21 @@ namespace Sunny.UI
         }
 
         #region 拉拽调整窗体大小
-        const int WM_LEFT = 10;
-        const int WM_RIGHT = 11;
-        const int WM_TOP = 12;
-        const int WM_TOPLEFT = 13;
-        const int WM_TOPRIGHT = 14;
-        const int WM_BOTTOM = 15;
-        const int WM_BOTTOMLEFT = 0x10;
-        const int WM_BOTTOMRIGHT = 17;
+
+        private const int WM_LEFT = 10;
+        private const int WM_RIGHT = 11;
+        private const int WM_TOP = 12;
+        private const int WM_TOPLEFT = 13;
+        private const int WM_TOPRIGHT = 14;
+        private const int WM_BOTTOM = 15;
+        private const int WM_BOTTOMLEFT = 0x10;
+        private const int WM_BOTTOMRIGHT = 17;
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
 
-            if (ShowDragStretch && WindowState == FormWindowState.Normal && m.Msg == 0x0084)
+            if (m.Msg == 0x0084 && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
                 Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
                 vPoint = PointToClient(vPoint);
@@ -1388,30 +1367,22 @@ namespace Sunny.UI
                 }
             }
 
-            if (ShowShadow)
+            if (m.Msg == WM_NCPAINT && ShowShadow && m_aeroEnabled)
             {
-                switch (m.Msg)
+                var v = 2;
+                DwmSetWindowAttribute(Handle, 2, ref v, 4);
+                MARGINS margins = new MARGINS()
                 {
-                    case WM_NCPAINT:
-                        if (m_aeroEnabled)
-                        {
-                            var v = 2;
-                            DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
-                            MARGINS margins = new MARGINS()
-                            {
-                                bottomHeight = 0,
-                                leftWidth = 0,
-                                rightWidth = 0,
-                                topHeight = 1
-                            };
-                            DwmExtendFrameIntoClientArea(this.Handle, ref margins);
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                    bottomHeight = 0,
+                    leftWidth = 0,
+                    rightWidth = 0,
+                    topHeight = 1
+                };
+
+                DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
-        #endregion
+
+        #endregion 拉拽调整窗体大小
     }
 }
