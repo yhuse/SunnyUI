@@ -1036,7 +1036,10 @@ namespace Sunny.UI
         [DefaultValue(true)]
         public bool ShowRadius
         {
-            get => _showRadius;
+            get
+            {
+                return (_showRadius && !_showShadow);
+            }
             set
             {
                 _showRadius = value;
@@ -1044,6 +1047,89 @@ namespace Sunny.UI
                 Invalidate();
             }
         }
+
+        /// <summary>
+        /// 是否显示阴影
+        /// </summary>
+        private bool _showShadow = false;
+
+        #region 边框阴影
+        /// <summary>
+        /// 是否显示阴影
+        /// </summary>
+        [Description("是否显示阴影"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool ShowShadow
+        {
+            get => _showShadow;
+            set
+            {
+                _showShadow = value;
+                Invalidate();
+            }
+        }
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
+
+        private bool m_aeroEnabled = false;
+        private const int CS_DROPSHADOW = 0x00020000;
+        private const int WM_NCPAINT = 0x0085;
+
+        public struct MARGINS
+        {
+            public int leftWidth;
+            public int rightWidth;
+            public int topHeight;
+            public int bottomHeight;
+        }
+
+
+        private bool CheckAeroEnabled()
+        {
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                int enabled = 0;
+                DwmIsCompositionEnabled(ref enabled);
+                return enabled == 1;
+            }
+            return false;
+        }
+
+        /*protected override void WndProc(ref Message m)
+        {
+            if (ShowShadow)
+            {
+                switch (m.Msg)
+                {
+                    case WM_NCPAINT:
+                        if (m_aeroEnabled)
+                        {
+                            var v = 2;
+                            DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
+                            MARGINS margins = new MARGINS()
+                            {
+                                bottomHeight = 0,
+                                leftWidth = 0,
+                                rightWidth = 0,
+                                topHeight = 1
+                            };
+                            DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            base.WndProc(ref m);
+        }*/
+        #endregion
 
         /// <summary>
         /// 是否重绘边框样式
@@ -1220,11 +1306,18 @@ namespace Sunny.UI
         {
             get
             {
-                if (base.FormBorderStyle == FormBorderStyle.None)
+                m_aeroEnabled = CheckAeroEnabled();
+
+                CreateParams cp = base.CreateParams;
+                if (!m_aeroEnabled) cp.ClassStyle |= CS_DROPSHADOW;
+
+                //---
+                if (this.FormBorderStyle == FormBorderStyle.None)
                 {
+                    // 当边框样式为FormBorderStyle.None时
                     // 点击窗体任务栏图标，可以进行最小化
-                    CreateParams cp = base.CreateParams;
-                    cp.Style |= 0x00020000;
+                    const int WS_MINIMIZEBOX = 0x00020000;
+                    cp.Style = cp.Style | WS_MINIMIZEBOX;
                     return cp;
                 }
                 else
@@ -1292,6 +1385,30 @@ namespace Sunny.UI
                 else if (vPoint.Y >= ClientSize.Height - dragSize)
                 {
                     m.Result = (IntPtr)WM_BOTTOM;
+                }
+            }
+
+            if (ShowShadow)
+            {
+                switch (m.Msg)
+                {
+                    case WM_NCPAINT:
+                        if (m_aeroEnabled)
+                        {
+                            var v = 2;
+                            DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
+                            MARGINS margins = new MARGINS()
+                            {
+                                bottomHeight = 0,
+                                leftWidth = 0,
+                                rightWidth = 0,
+                                topHeight = 1
+                            };
+                            DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
