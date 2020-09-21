@@ -612,9 +612,11 @@
             this.uiSymbolButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton7.IsCircle = true;
             this.uiSymbolButton7.Location = new System.Drawing.Point(235, 280);
             this.uiSymbolButton7.Name = "uiSymbolButton7";
+            this.uiSymbolButton7.Padding = new System.Windows.Forms.Padding(7, 7, 4, 4);
             this.uiSymbolButton7.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
