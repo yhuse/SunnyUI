@@ -172,7 +172,7 @@ namespace Sunny.UI
             SnowflakeIDDetail result = new SnowflakeIDDetail();
             result.SnowflakeID = Id;
             var timestamp = (Id >> timestampLeftShift);
-            var time = DateTimeEx.DateTimeBegin.AddMilliseconds(timestamp + twepoch);
+            var time = DateTimeEx.Jan1st1970.AddMilliseconds(timestamp + twepoch);
             result.DateTime = time.ToLocalTime();
             result.DataCenterID = (Id ^ (timestamp << timestampLeftShift)) >> datacenterIdShift;
             result.WorkerID = (Id ^ ((timestamp << timestampLeftShift) | (result.DataCenterID << datacenterIdShift))) >> workerIdShift;
@@ -201,7 +201,7 @@ namespace Sunny.UI
         /// <returns></returns>
         private static long GetCurrentTimestamp()
         {
-            return (long)(DateTime.UtcNow - DateTimeEx.DateTimeBegin).TotalMilliseconds;
+            return (long)(DateTime.UtcNow - DateTimeEx.Jan1st1970).TotalMilliseconds;
         }
     }
 

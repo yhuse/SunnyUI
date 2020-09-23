@@ -7,7 +7,7 @@ namespace Sunny.UI
         public long Value { get; set; }
 
         public const long Jan1st1970Ticks = 621355968000000000; //Jan1st1970.Ticks;
-        public const long Dec31th9999Ticks = 3155378975999990000; //Dec31th9999.Ticks;
+        public const long Dec31th9999Ticks = 3155378975999990000; //DateTime.MaxValue.Ticks;
         public const string DefaultFormatString = DateTimeEx.DateTimeFormatEx;
 
         /// <summary>

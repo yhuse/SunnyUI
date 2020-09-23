@@ -249,18 +249,13 @@ namespace Sunny.UI
         /// <returns>浮点</returns>
         public static double ToDouble(this DateTime datetime)
         {
-            return datetime.Subtract(DateTimeBegin).TotalDays;
+            return datetime.Subtract(Jan1st1970).TotalDays;
         }
 
         /// <summary>
         /// 起始日期，UTC时间，1970-01-01 00：00：00起始
         /// </summary>
-        public static DateTime DateTimeBegin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
-        /// <summary>
-        /// 日期最大值
-        /// </summary>
-        public static DateTime DateTimeEnd = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Utc);
+        public static DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// 浮点转时间日期，以UTC时间，1970-01-01 00：00：00起始
@@ -269,7 +264,7 @@ namespace Sunny.UI
         /// <returns>日期</returns>
         public static DateTime ToDateTime(this double iDays)
         {
-            return TimeZone.CurrentTimeZone.ToLocalTime(DateTimeBegin.AddDays(iDays));
+            return TimeZone.CurrentTimeZone.ToLocalTime(Jan1st1970.AddDays(iDays));
         }
 
         /// <summary>
@@ -444,7 +439,7 @@ namespace Sunny.UI
         /// </remarks>
         public static long SecondsSince1970(this DateTime datetime)
         {
-            TimeSpan ts = datetime.ToUniversalTime().Subtract(DateTimeBegin);
+            TimeSpan ts = datetime.ToUniversalTime().Subtract(Jan1st1970);
             return (long)ts.TotalSeconds;
         }
 
