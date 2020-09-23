@@ -508,7 +508,7 @@ namespace Sunny.UI
         private void ShowMaximize(bool IsOnMoving = false)
         {
             Screen screen = Screen.FromPoint(MousePosition);
-            base.MaximumSize = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Size : Screen.PrimaryScreen.WorkingArea.Size;
+            base.MaximumSize = ShowFullScreen ? screen.Bounds.Size : screen.WorkingArea.Size;
             if (WindowState == FormWindowState.Normal)
             {
                 size = Size;
