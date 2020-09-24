@@ -56,6 +56,7 @@ namespace Sunny.UI
 
             Version = UIGlobal.Version;
             base.Font = UIFontColor.Font;
+            base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
         /// <summary>
