@@ -87,5 +87,10 @@ namespace Sunny.UI.Demo
         {
             state.ConsoleWriteLine("WindowState");
         }
+
+        private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
+        {
+            page?.Text.ConsoleWriteLine();
+        }
     }
 }

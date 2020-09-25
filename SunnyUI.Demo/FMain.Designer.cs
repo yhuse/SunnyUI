@@ -93,6 +93,7 @@
             this.uiAvatar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiAvatar.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar.Location = new System.Drawing.Point(939, 25);
+            this.uiAvatar.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar.Name = "uiAvatar";
             this.uiAvatar.Size = new System.Drawing.Size(66, 70);
             this.uiAvatar.TabIndex = 4;
@@ -110,6 +111,7 @@
             this.ShowRadius = false;
             this.ShowShadow = true;
             this.Text = "SunnyUI.Net";
+            this.Selecting += new Sunny.UI.UIMainFrame.OnSelecting(this.FMain_Selecting);
             this.Header.ResumeLayout(false);
             this.ResumeLayout(false);
 

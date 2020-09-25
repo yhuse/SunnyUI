@@ -48,6 +48,7 @@
             this.MainContainer.Size = new System.Drawing.Size(800, 415);
             this.MainContainer.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainContainer.TabIndex = 0;
+            this.MainContainer.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainContainer_Selecting);
             // 
             // tabPage1
             // 
@@ -63,7 +64,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(800, 375);
+            this.tabPage2.Size = new System.Drawing.Size(450, 230);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
