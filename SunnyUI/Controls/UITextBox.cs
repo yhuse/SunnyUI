@@ -335,11 +335,6 @@ namespace Sunny.UI
             }
             else
             {
-                if (Height < 69)
-                {
-                    Height = 69;
-                }
-
                 edit.Top = 3;
                 edit.Height = Height - 6;
                 edit.Left = 1;
