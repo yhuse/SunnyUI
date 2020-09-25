@@ -189,22 +189,44 @@ namespace Sunny.UI
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
-            //Width = (int)(Height * 2.6);
-            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            g.FillRoundRectangle(Active ? ActiveColor : InActiveColor, rect, rect.Height);
+            if (SwitchShape == UISwitchShape.Round)
+            {
+                Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+                g.FillRoundRectangle(Active ? ActiveColor : InActiveColor, rect, rect.Height);
 
-            int width = Width - 3 - 1 - 3 - (rect.Height - 6);
-            if (!Active)
-            {
-                g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, 3, 3, rect.Height - 6, rect.Height - 6);
-                SizeF sf = g.MeasureString(InActiveText, Font);
-                g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + rect.Height - 6 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                int width = Width - 3 - 1 - 3 - (rect.Height - 6);
+                if (!Active)
+                {
+                    g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, 3, 3, rect.Height - 6, rect.Height - 6);
+                    SizeF sf = g.MeasureString(InActiveText, Font);
+                    g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + rect.Height - 6 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                }
+                else
+                {
+                    g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, Width - 3 - 1 - (rect.Height - 6), 3, rect.Height - 6, rect.Height - 6);
+                    SizeF sf = g.MeasureString(ActiveText, Font);
+                    g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                }
             }
-            else
+
+            if (SwitchShape == UISwitchShape.Square)
             {
-                g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, Width - 3 - 1 - (rect.Height - 6), 3, rect.Height - 6, rect.Height - 6);
-                SizeF sf = g.MeasureString(ActiveText, Font);
-                g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+                g.FillRoundRectangle(Active ? ActiveColor : InActiveColor, rect, Radius);
+
+                int width = Width - 3 - 1 - 3 - (rect.Height - 6);
+                if (!Active)
+                {
+                    g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, 3, 3, rect.Height - 6, rect.Height - 6, Radius);
+                    SizeF sf = g.MeasureString(InActiveText, Font);
+                    g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + rect.Height - 6 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                }
+                else
+                {
+                    g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, Width - 3 - 1 - (rect.Height - 6), 3, rect.Height - 6, rect.Height - 6, Radius);
+                    SizeF sf = g.MeasureString(ActiveText, Font);
+                    g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
+                }
             }
         }
     }
