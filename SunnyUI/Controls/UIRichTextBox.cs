@@ -46,20 +46,13 @@ namespace Sunny.UI
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
         }
 
-        private bool showScrollBar = true;
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (edit != null) edit.Font = Font;
+        }
 
-        //        [DefaultValue(true)]
-        //        public bool ShowScrollBar
-        //        {
-        //            get => showScrollBar;
-        //            set
-        //            {
-        //                showScrollBar = value;
-        //                bar.Visible = value;
-        //                edit.ScrollBars = value ? RichTextBoxScrollBars.Vertical : RichTextBoxScrollBars.None;
-        //                SetScrollInfo();
-        //            }
-        //        }
+        private bool showScrollBar = true;
 
         [DefaultValue(false)]
         [Description("是否只读"), Category("SunnyUI")]

@@ -55,14 +55,12 @@ namespace Sunny.UI
                 ControlStyles.DoubleBuffer |
                 ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.AllPaintingInWmPaint |
-                //ControlStyles.ResizeRedraw |
                 ControlStyles.SupportsTransparentBackColor, true);
             UpdateStyles();
 
             Version = UIGlobal.Version;
             FormBorderStyle = FormBorderStyle.None;
             m_aeroEnabled = false;
-            base.MaximumSize = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Size : Screen.PrimaryScreen.WorkingArea.Size;
         }
 
         //不显示FormBorderStyle属性
@@ -72,11 +70,7 @@ namespace Sunny.UI
         public new FormBorderStyle FormBorderStyle
         {
             get { return base.FormBorderStyle; }
-            set
-            {
-                base.FormBorderStyle = FormBorderStyle.None;
-                Console.WriteLine(value);
-            }
+            set { base.FormBorderStyle = FormBorderStyle.None; }
         }
 
         public void Render()
@@ -281,11 +275,21 @@ namespace Sunny.UI
         {
         }
 
+        private bool showFullScreen;
+
         /// <summary>
         /// 是否以全屏模式进入最大化
         /// </summary>
         [Description("是否以全屏模式进入最大化"), Category("WindowStyle"), DefaultValue(false)]
-        public bool ShowFullScreen { get; set; }
+        public bool ShowFullScreen
+        {
+            get => showFullScreen;
+            set
+            {
+                showFullScreen = value;
+                base.MaximumSize = ShowFullScreen ? Screen.PrimaryScreen.Bounds.Size : Screen.PrimaryScreen.WorkingArea.Size;
+            }
+        }
 
         /// <summary>
         /// 标题栏高度
@@ -1019,7 +1023,6 @@ namespace Sunny.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-
             CalcSystemBoxPos();
             SetRadius();
             isShow = true;

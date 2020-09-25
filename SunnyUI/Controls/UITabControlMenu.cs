@@ -31,7 +31,7 @@ namespace Sunny.UI
     {
         public UITabControlMenu()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
 
             ItemSize = new Size(40, 200);
             DrawMode = TabDrawMode.OwnerDrawFixed;

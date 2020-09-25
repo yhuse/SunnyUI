@@ -34,6 +34,12 @@ namespace Sunny.UI
     {
         public delegate void OnValueChanged(object sender, bool value);
 
+        public enum UISwitchShape
+        {
+            Round,
+            Square
+        }
+
         public UISwitch()
         {
             Height = 29;
@@ -43,6 +49,20 @@ namespace Sunny.UI
             foreColor = Color.White;
             inActiveColor = Color.Silver;
             fillColor = Color.White;
+        }
+
+        public UISwitchShape switchShape = UISwitchShape.Round;
+
+        [Description("开关形状"), Category("SunnyUI")]
+        [DefaultValue(UISwitchShape.Round)]
+        public UISwitchShape SwitchShape
+        {
+            get => switchShape;
+            set
+            {
+                switchShape = value;
+                Invalidate();
+            }
         }
 
         public event OnValueChanged ValueChanged;
@@ -169,7 +189,7 @@ namespace Sunny.UI
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
-            Width = (int)(Height * 2.6);
+            //Width = (int)(Height * 2.6);
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
             g.FillRoundRectangle(Active ? ActiveColor : InActiveColor, rect, rect.Height);
 

@@ -44,9 +44,9 @@ namespace Sunny.UI
         public UIPanel()
         {
             InitializeComponent();
+
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.Selectable, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -55,6 +55,7 @@ namespace Sunny.UI
             UpdateStyles();
 
             Version = UIGlobal.Version;
+            AutoScaleMode = AutoScaleMode.None;
             base.Font = UIFontColor.Font;
             base.MinimumSize = new System.Drawing.Size(1, 1);
         }

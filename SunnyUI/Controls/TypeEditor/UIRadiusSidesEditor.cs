@@ -115,7 +115,6 @@ namespace Sunny.UI
             /// <param name="value">数值</param>
             protected override void InitValue(object value)
             {
-                Console.WriteLine(value.ToString());
                 UICornerRadiusSides sides = (UICornerRadiusSides)value;
                 ResetCheckBoxState();
                 if ((sides & UICornerRadiusSides.All) == UICornerRadiusSides.All)
