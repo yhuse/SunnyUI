@@ -179,6 +179,8 @@ namespace Sunny.UI
         /// 如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。
         /// </summary>
         public int Interval { get; set; } = 0;
+
+        public int Distance { get; set; } = 0;
     }
 
     public class UIValueAxis : UIAxis
@@ -202,6 +204,10 @@ namespace Sunny.UI
         public readonly List<double> Data = new List<double>();
 
         public readonly List<Color> Colors = new List<Color>();
+
+        public bool ShowBarName { get; set; }
+
+        public bool ShowValue { get; set; }
 
         public void AddData(double value)
         {

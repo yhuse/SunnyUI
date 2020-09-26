@@ -27,6 +27,9 @@ namespace Sunny.UI.Demo
         private void uiSymbolButton1_Click(object sender, System.EventArgs e)
         {
             UIBarOption option = new UIBarOption();
+
+            option.Grid.Bottom = 60;
+
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
             option.Title.SubText = "BarChartEx";
@@ -42,19 +45,25 @@ namespace Sunny.UI.Demo
 
             var series = new UIBarSeries();
             series.Name = "Bar1";
+            series.ShowBarName = true;
+            series.ShowValue = true;
             series.AddData("通道1", 11);
             series.AddData("通道2", 15);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar2";
-            series.AddData("通道1", -22);
-            series.AddData("通道2", -28);
-            series.AddData("通道3", -25);
+            series.ShowBarName = true;
+            series.ShowValue = true;
+            series.AddData("通道1", 22);
+            series.AddData("通道2", 28);
+            series.AddData("通道3", 25);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar3";
+            series.ShowBarName = true;
+            series.ShowValue = true;
             series.AddData("通道1", 7);
             option.Series.Add(series);
 
@@ -69,6 +78,8 @@ namespace Sunny.UI.Demo
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
+
+            option.XAxis.AxisTick.Distance = 14;
 
             option.FixedSeriesCount = 3;
 

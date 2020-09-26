@@ -158,7 +158,7 @@ namespace Sunny.UI
                     for (int j = 0; j < series.Data.Count; j++)
                     {
                         str += '\n';
-                        if (series.BarName.Count >= 0 && j < series.BarName.Count)
+                        if (series.BarName.Count > 0 && j < series.BarName.Count)
                             str += series.BarName[j] + " : ";
 
                         str += series.Data[j].ToString(BarOption.ToolTip.ValueFormat);
@@ -176,9 +176,39 @@ namespace Sunny.UI
             for (int i = 0; i < Bars.Count; i++)
             {
                 var bars = Bars[i];
-                foreach (var info in bars)
+                for (int j = 0; j < bars.Count; j++)
                 {
-                    g.FillRectangle(info.Color, info.Rect);
+                    g.FillRectangle(bars[j].Color, bars[j].Rect);
+                    var s = BarOption.Series[i];
+                    if (s.ShowBarName)
+                    {
+                        if (s.BarName.Count > 0 && j < s.BarName.Count)
+                        {
+                            SizeF sf = g.MeasureString(s.BarName[j], SubFont);
+                            if (s.Data[j] >= 0)
+                                g.DrawString(s.BarName[j], SubFont, ChartStyle.ForeColor,
+                                    bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
+                                    bars[j].Rect.Bottom + 1);
+                            else
+                                g.DrawString(s.BarName[j], SubFont, ChartStyle.ForeColor,
+                                    bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
+                                    bars[j].Rect.Top - sf.Height);
+                        }
+                    }
+
+                    if (s.ShowValue)
+                    {
+                        string value = s.Data[j].ToString("F" + BarOption.XAxis.AxisLabel.DecimalCount);
+                        SizeF sf = g.MeasureString(value, SubFont);
+                        if (s.Data[j] < 0)
+                            g.DrawString(value, SubFont, bars[j].Color,
+                                bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
+                                bars[j].Rect.Bottom + 1);
+                        else
+                            g.DrawString(value, SubFont, bars[j].Color,
+                                bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
+                                bars[j].Rect.Top - sf.Height);
+                    }
                 }
             }
 
@@ -238,12 +268,12 @@ namespace Sunny.UI
                 foreach (var data in BarOption.Series)
                 {
                     SizeF sf = g.MeasureString(data.Name, SubFont);
-                    g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length);
+                    g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length + BarOption.XAxis.AxisTick.Distance);
                     start += DrawBarWidth;
                 }
 
                 SizeF sfName = g.MeasureString(BarOption.XAxis.Name, SubFont);
-                g.DrawString(BarOption.XAxis.Name, SubFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length + sfName.Height);
+                g.DrawString(BarOption.XAxis.Name, SubFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f, DrawOrigin.Y + BarOption.XAxis.AxisTick.Length + BarOption.XAxis.AxisTick.Distance + sfName.Height);
             }
 
             if (BarOption.YAxis.AxisTick.Show)

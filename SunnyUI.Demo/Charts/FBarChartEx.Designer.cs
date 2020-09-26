@@ -114,7 +114,7 @@
             this.uiLine1.Name = "uiLine1";
             this.uiLine1.Size = new System.Drawing.Size(670, 20);
             this.uiLine1.TabIndex = 30;
-            this.uiLine1.Text = "UIBarChart";
+            this.uiLine1.Text = "UIBarChartEx";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BarChart
