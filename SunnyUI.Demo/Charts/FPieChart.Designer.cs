@@ -35,7 +35,6 @@
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -156,6 +155,5 @@
         private UIImageButton uiImageButton3;
         private UIImageButton uiImageButton2;
         private UISymbolButton uiSymbolButton1;
-        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -53,8 +53,9 @@ namespace Sunny.UI.Demo
             parent = Aside.CreateNode("Charts", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
             Aside.CreateChildNode(parent, AddPage(new FPieChart()));
-            Aside.CreateChildNode(parent, AddPage(new FBarChart()));
             Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
+            Aside.CreateChildNode(parent, AddPage(new FBarChart()));
+            Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
 
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();

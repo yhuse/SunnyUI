@@ -54,6 +54,9 @@
     <Compile Include="Charts\UIBarChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Charts\UIBarChartEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Charts\UIBarChartOption.cs" />
     <Compile Include="Charts\UIChart.cs">
       <SubType>Component</SubType>

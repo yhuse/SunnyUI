@@ -41,6 +41,8 @@ namespace Sunny.UI
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
+        public int FixedSeriesCount { get; set; } = 0;
+
         public void AddSeries(UIBarSeries series)
         {
             Series.Add(series);
@@ -195,6 +197,8 @@ namespace Sunny.UI
 
         public UISeriesType Type => UISeriesType.Bar;
 
+        public readonly List<string> BarName = new List<string>();
+
         public readonly List<double> Data = new List<double>();
 
         public readonly List<Color> Colors = new List<Color>();
@@ -215,6 +219,18 @@ namespace Sunny.UI
             Colors.Add(color);
         }
 
+        public void AddData(string name, double value)
+        {
+            BarName.Add(name);
+            AddData(value);
+        }
+
+        public void AddData(string name, double value, Color color)
+        {
+            BarName.Add(name);
+            AddData(value, color);
+        }
+
         public void Dispose()
         {
             Data.Clear();
@@ -232,6 +248,7 @@ namespace Sunny.UI
 
         public void Clear()
         {
+            BarName.Clear();
             Data.Clear();
             Colors.Clear();
         }

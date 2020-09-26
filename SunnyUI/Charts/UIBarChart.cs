@@ -34,7 +34,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public class UIBarChart : UIChart
     {
-        private bool NeedDraw;
+        protected bool NeedDraw;
 
         protected override void OnSizeChanged(EventArgs e)
         {
@@ -145,8 +145,8 @@ namespace Sunny.UI
                             if (k > 0) highV += (float)YAxisInterval;
                         }
 
-                        lowH.ConsoleWriteLine();
-                        highH.ConsoleWriteLine();
+                        // lowH.ConsoleWriteLine();
+                        // highH.ConsoleWriteLine();
 
                         if (series.Data[j] >= 0)
                         {
@@ -188,17 +188,17 @@ namespace Sunny.UI
             }
         }
 
-        private int selectIndex = -1;
-        private Point DrawOrigin;
-        private Size DrawSize;
-        private float DrawBarWidth;
-        private int YAxisStart;
-        private int YAxisEnd;
-        private double YAxisInterval;
-        private readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
+        protected int selectIndex = -1;
+        protected Point DrawOrigin;
+        protected Size DrawSize;
+        protected float DrawBarWidth;
+        protected int YAxisStart;
+        protected int YAxisEnd;
+        protected double YAxisInterval;
+        protected readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
 
         [DefaultValue(-1), Browsable(false)]
-        private int SelectIndex
+        protected int SelectIndex
         {
             get => selectIndex;
             set
@@ -258,7 +258,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        private UIBarOption BarOption
+        protected UIBarOption BarOption
         {
             get
             {
@@ -344,7 +344,7 @@ namespace Sunny.UI
             }
         }
 
-        private void DrawAxis(Graphics g)
+        protected virtual void DrawAxis(Graphics g)
         {
             if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
             if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
@@ -482,7 +482,7 @@ namespace Sunny.UI
             }
         }
 
-        private void DrawSeries(Graphics g, List<UIBarSeries> series)
+        protected virtual void DrawSeries(Graphics g, List<UIBarSeries> series)
         {
             if (series == null || series.Count == 0) return;
 
@@ -501,7 +501,7 @@ namespace Sunny.UI
             }
         }
 
-        internal class BarInfo
+        protected class BarInfo
         {
             public RectangleF Rect { get; set; }
 

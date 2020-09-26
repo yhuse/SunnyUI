@@ -53,6 +53,12 @@
     <Compile Include="Charts\FBarChart.Designer.cs">
       <DependentUpon>FBarChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\FBarChartEx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FBarChartEx.Designer.cs">
+      <DependentUpon>FBarChartEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\FDoughnutChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,12 +301,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Charts\FBarChart.resx">
-      <DependentUpon>FBarChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\FDoughnutChart.resx">
-      <DependentUpon>FDoughnutChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FAvatar.resx">
       <DependentUpon>FAvatar.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,9 +315,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\FPieChart.resx">
-      <DependentUpon>FPieChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FScrollBar.resx">
       <DependentUpon>FScrollBar.cs</DependentUpon>
