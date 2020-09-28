@@ -41,7 +41,15 @@ namespace Sunny.UI
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
+        /// <summary>
+        /// BarChartEx用，固定每个序列Bar个数
+        /// </summary>
         public int FixedSeriesCount { get; set; } = 0;
+
+        /// <summary>
+        /// BarChartEx用，自动调整为显示每个Bar等宽
+        /// </summary>
+        public bool AutoSizeBars { get; set; }
 
         public void AddSeries(UIBarSeries series)
         {
@@ -98,8 +106,14 @@ namespace Sunny.UI
         /// </summary>
         public bool Scale { get; set; }
 
+        /// <summary>
+        /// 坐标轴刻度
+        /// </summary>
         public UIAxisTick AxisTick = new UIAxisTick();
 
+        /// <summary>
+        /// 坐标轴标签
+        /// </summary>
         public UIAxisLabel AxisLabel = new UIAxisLabel();
 
         public bool MaxAuto { get; set; } = true;

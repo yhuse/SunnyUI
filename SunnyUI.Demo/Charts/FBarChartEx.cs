@@ -82,10 +82,12 @@ namespace Sunny.UI.Demo
             option.XAxis.AxisTick.Distance = 14;
 
             option.FixedSeriesCount = 3;
+            option.AutoSizeBars = true;
 
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
 
+            option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
             BarChart.SetOption(option);
         }
     }

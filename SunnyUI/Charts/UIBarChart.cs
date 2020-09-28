@@ -328,7 +328,7 @@ namespace Sunny.UI
             DrawAxisScales(g);
         }
 
-        private void DrawToolTip(Graphics g)
+        protected virtual void DrawToolTip(Graphics g)
         {
             if (selectIndex < 0) return;
             if (BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line)
