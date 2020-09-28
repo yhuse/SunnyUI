@@ -66,8 +66,9 @@ namespace Sunny.UI
             if (view != null)
             {
                 view.SelectedForeColor = UIColor.White;
+                view.FillColor = view.BackColor = fillColor = UIColor.White;
+
                 rectColor = uiColor.RectColor;
-                view.BackColor = fillColor = UIColor.White;
                 view.SelectedColor = uiColor.TreeViewSelectedColor;
                 view.ForeColor = foreColor = UIFontColor.Primary;
                 view.HoverColor = uiColor.TreeViewHoverColor;
@@ -76,6 +77,7 @@ namespace Sunny.UI
             if (Bar != null)
             {
                 Bar.FillColor = UIColor.White;
+
                 Bar.ForeColor = uiColor.PrimaryColor;
                 Bar.HoverColor = uiColor.ButtonFillHoverColor;
                 Bar.PressColor = uiColor.ButtonFillPressColor;
@@ -91,6 +93,11 @@ namespace Sunny.UI
             {
                 view.FillColor = color;
                 view.BackColor = color;
+            }
+
+            if (Bar != null)
+            {
+                Bar.FillColor = color;
             }
         }
 
