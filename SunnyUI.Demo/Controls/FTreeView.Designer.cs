@@ -132,8 +132,6 @@
             this.uiTreeView1.SelectedNode = null;
             this.uiTreeView1.ShowLines = true;
             this.uiTreeView1.Size = new System.Drawing.Size(266, 313);
-            this.uiTreeView1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiTreeView1.StyleCustomMode = true;
             this.uiTreeView1.TabIndex = 0;
             this.uiTreeView1.Text = null;
             // 

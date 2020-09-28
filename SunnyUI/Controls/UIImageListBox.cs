@@ -66,6 +66,20 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
         }
 
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (listbox != null)
+            {
+                listbox.BackColor = color;
+            }
+
+            if (bar != null)
+            {
+                bar.FillColor = color;
+            }
+        }
+
         private void Listbox_MouseMove(object sender, MouseEventArgs e)
         {
             MouseMove?.Invoke(this, e);
@@ -187,7 +201,10 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
+                listbox.BackColor = Color.White;
             }
+
+            fillColor = Color.White;
         }
 
         private int LastCount;

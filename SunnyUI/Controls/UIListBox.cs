@@ -26,7 +26,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -188,6 +187,23 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
+                listbox.BackColor = Color.White;
+            }
+
+            fillColor = Color.White;
+        }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (listbox != null)
+            {
+                listbox.BackColor = color;
+            }
+
+            if (bar != null)
+            {
+                bar.FillColor = color;
             }
         }
 
@@ -211,11 +227,6 @@ namespace Sunny.UI
         {
             base.OnRadiusChanged(value);
             Padding = new Padding(Math.Max(2, value / 2));
-        }
-
-        protected override void OnPaintFill(Graphics g, GraphicsPath path)
-        {
-            g.Clear(Color.White);
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
