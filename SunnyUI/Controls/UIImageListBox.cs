@@ -61,7 +61,29 @@ namespace Sunny.UI
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+            listbox.MouseDown += Listbox_MouseDown;
+            listbox.MouseUp += Listbox_MouseUp;
+            listbox.MouseMove += Listbox_MouseMove;
         }
+
+        private void Listbox_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
 
         protected override void OnFontChanged(EventArgs e)
         {
@@ -90,13 +112,13 @@ namespace Sunny.UI
         private void Listbox_DoubleClick(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemDoubleClick?.Invoke(sender, e);
+                ItemDoubleClick?.Invoke(this, e);
         }
 
         private void Listbox_Click(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemClick?.Invoke(sender, e);
+                ItemClick?.Invoke(this, e);
         }
 
         [Browsable(false)]
@@ -114,13 +136,13 @@ namespace Sunny.UI
 
         private void Listbox_SelectedValueChanged(object sender, EventArgs e)
         {
-            SelectedValueChanged?.Invoke(sender, e);
+            SelectedValueChanged?.Invoke(this, e);
             Text = listbox.SelectedItem?.ToString();
         }
 
         private void Listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedIndexChanged?.Invoke(sender, e);
+            SelectedIndexChanged?.Invoke(this, e);
         }
 
         [DefaultValue(100)]
