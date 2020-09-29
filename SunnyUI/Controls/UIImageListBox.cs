@@ -402,7 +402,7 @@ namespace Sunny.UI
 
             protected override void OnMeasureItem(MeasureItemEventArgs e)
             {
-                e.ItemHeight = e.ItemHeight + ItemHeight;
+                e.ItemHeight += ItemHeight;
             }
 
             /// <summary>

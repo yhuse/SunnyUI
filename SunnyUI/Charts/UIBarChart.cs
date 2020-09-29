@@ -109,7 +109,7 @@ namespace Sunny.UI
 
                     float xx = barX + x1 * (i + 1) + x2 * i + x1;
                     float ww = Math.Min(x2, series.MaxWidth);
-                    xx = xx - ww / 2.0f;
+                    xx -= ww / 2.0f;
 
                     if (YAxisStart >= 0)
                     {

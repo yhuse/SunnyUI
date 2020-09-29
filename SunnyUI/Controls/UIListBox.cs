@@ -569,7 +569,7 @@ namespace Sunny.UI
         protected override void OnMeasureItem(MeasureItemEventArgs e)
         {
             base.OnMeasureItem(e);
-            e.ItemHeight = e.ItemHeight + ItemHeight;
+            e.ItemHeight += ItemHeight;
         }
 
         public void SelectedFirst()

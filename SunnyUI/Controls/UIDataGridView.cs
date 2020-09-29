@@ -173,8 +173,8 @@ namespace Sunny.UI
             {
                 HBar.Maximum = HorizontalScrollBar.Maximum;
                 HBar.Value = HorizontalScrollBar.Value;
-                HBar.BoundsWidth = HorizontalScrollBar.Bounds.Width;
-                HBar.LargeChange = HorizontalScrollBar.Maximum / VisibleColumnCount();
+                HBar.BoundsWidth = HorizontalScrollBar.LargeChange;
+                HBar.LargeChange = HorizontalScrollBar.LargeChange;//.Maximum / VisibleColumnCount();
                 HBar.Visible = true;
             }
             else

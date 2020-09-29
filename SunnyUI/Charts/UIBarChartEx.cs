@@ -100,7 +100,7 @@ namespace Sunny.UI
 
                         float xx = barX + DrawSize.Width * 1.0f / DataCount / 2;
                         float ww = Math.Min(x2, series.MaxWidth);
-                        xx = xx - ww / 2.0f;
+                        xx -= ww / 2.0f;
 
                         if (YAxisStart >= 0)
                         {
@@ -187,7 +187,7 @@ namespace Sunny.UI
                             xx = barX + x1 * ((j + 1) * 3 - 1);
 
                         float ww = Math.Min(x2, series.MaxWidth);
-                        xx = xx - ww / 2.0f;
+                        xx -= ww / 2.0f;
 
                         if (YAxisStart >= 0)
                         {
@@ -442,7 +442,7 @@ namespace Sunny.UI
                     {
                         g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, Width - BarOption.Grid.Right, start);
 
-                        float lineStart = DrawOrigin.X;
+                        // float lineStart = DrawOrigin.X;
                         // for (int j = 0; j <= BarOption.Series.Count; j++)
                         // {
                         //     g.DrawLine(ChartStyle.ForeColor, lineStart, start, lineStart, start + BarOption.XAxis.AxisTick.Length);
