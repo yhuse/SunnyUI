@@ -1,4 +1,25 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIBarChartEx.cs
+ * 文件说明: 柱状图
+ * 当前版本: V2.2
+ * 创建日期: 2020-09-26
+ *
+ * 2020-09-26: V2.2.8 增加文件说明
+******************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -276,7 +297,7 @@ namespace Sunny.UI
 
                     if (s.ShowValue)
                     {
-                        string value = s.Data[j].ToString("F" + BarOption.XAxis.AxisLabel.DecimalCount);
+                        string value = s.Data[j].ToString("F" + BarOption.YAxis.AxisLabel.DecimalCount);
                         SizeF sf = g.MeasureString(value, SubFont);
                         if (s.Data[j] < 0)
                             g.DrawString(value, SubFont, bars[j].Color,
