@@ -85,11 +85,6 @@ namespace Sunny.UI.Demo
             }
         }
 
-        private void FMain_WindowStateChange(object sender, FormWindowState state)
-        {
-            state.ConsoleWriteLine("WindowState");
-        }
-
         private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
         {
             page?.Text.ConsoleWriteLine();

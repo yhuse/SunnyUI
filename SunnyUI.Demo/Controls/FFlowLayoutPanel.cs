@@ -12,7 +12,8 @@
         public override void Init()
         {
             base.Init();
-            uiFlowLayoutPanel1.Panel.Controls.Clear();
+            uiFlowLayoutPanel1.Clear();
+            index = 0;
 
             for (int i = 0; i < 30; i++)
             {
@@ -25,7 +26,7 @@
         {
             UIButton btn = new UIButton();
             btn.Text = "Button" + index++.ToString("D2");
-            uiFlowLayoutPanel1.Panel.Controls.Add(btn);
+            uiFlowLayoutPanel1.AddControl(btn);
         }
     }
 }
