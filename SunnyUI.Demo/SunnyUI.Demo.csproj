@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -136,6 +136,12 @@
     </Compile>
     <Compile Include="Controls\FCombobox.Designer.cs">
       <DependentUpon>FCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.Designer.cs">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FLogin.cs">
       <SubType>Form</SubType>
@@ -343,6 +349,9 @@
     <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FFlowLayoutPanel.resx">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -420,18 +429,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -465,6 +474,56 @@
     <None Include="Resources\ChartDefaultStyle.png" />
     <None Include="Resources\ChartPlainStyle.png" />
     <None Include="Resources\SunnyLogin.png" />
+    <None Include="Bin\Team\ajax.png" />
+    <None Include="Bin\Team\atalanta.png" />
+    <None Include="Bin\Team\barcelona.png" />
+    <None Include="Bin\Team\benfica.png" />
+    <None Include="Bin\Team\betis.png" />
+    <None Include="Bin\Team\brescia.png" />
+    <None Include="Bin\Team\chievo.png" />
+    <None Include="Bin\Team\deportivo.png" />
+    <None Include="Bin\Team\feyenoord.png" />
+    <None Include="Bin\Team\heerenveen.png" />
+    <None Include="Bin\Team\inter.png" />
+    <None Include="Bin\Team\lazio.png" />
+    <None Include="Bin\Team\mallorca.png" />
+    <None Include="Bin\Team\milan.png" />
+    <None Include="Bin\Team\parma.png" />
+    <None Include="Bin\Team\porto.png" />
+    <None Include="Bin\Team\psv.png" />
+    <None Include="Bin\Team\real_madrid.png" />
+    <None Include="Bin\Team\real_sociedad.png" />
+    <None Include="Bin\Team\roma.png" />
+    <None Include="Bin\Team\sevilla.png" />
+    <None Include="Bin\Team\udinese.png" />
+    <None Include="Bin\Team\valencia.png" />
+    <None Include="Bin\Team\villareal.png" />
+    <None Include="Bin\Team\zaragoza.png" />
+    <None Include="Resources\ajax.png" />
+    <None Include="Resources\atalanta.png" />
+    <None Include="Resources\barcelona.png" />
+    <None Include="Resources\benfica.png" />
+    <None Include="Resources\betis.png" />
+    <None Include="Resources\brescia.png" />
+    <None Include="Resources\chievo.png" />
+    <None Include="Resources\deportivo.png" />
+    <None Include="Resources\feyenoord.png" />
+    <None Include="Resources\heerenveen.png" />
+    <None Include="Resources\inter.png" />
+    <None Include="Resources\lazio.png" />
+    <None Include="Resources\mallorca.png" />
+    <None Include="Resources\milan.png" />
+    <None Include="Resources\parma.png" />
+    <None Include="Resources\porto.png" />
+    <None Include="Resources\psv.png" />
+    <None Include="Resources\real_madrid.png" />
+    <None Include="Resources\real_sociedad.png" />
+    <None Include="Resources\roma.png" />
+    <None Include="Resources\sevilla.png" />
+    <None Include="Resources\udinese.png" />
+    <None Include="Resources\valencia.png" />
+    <None Include="Resources\villareal.png" />
+    <None Include="Resources\zaragoza.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <ItemGroup />

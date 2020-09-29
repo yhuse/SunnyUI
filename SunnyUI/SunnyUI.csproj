@@ -116,6 +116,9 @@
     <Compile Include="Charts\UIPieChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UIFlowLayoutPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\UIHorScrollBar.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -130,11 +130,29 @@
   <data name="AHMF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AHMF1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ajax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ajax.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AM" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AM1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AM1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="atalanta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\atalanta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="barcelona" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barcelona.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="benfica" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\benfica.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="betis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\betis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brescia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brescia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChartDarkStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChartDarkStyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,11 +163,20 @@
   <data name="ChartPlainStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChartPlainStyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="chievo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chievo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dashboard0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboard0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deportivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deportivo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="feyenoord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\feyenoord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HAM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,6 +190,9 @@
   <data name="HAMF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HAMF1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="heerenveen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heerenveen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HM" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,17 +205,50 @@
   <data name="HMF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HMF1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="inter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lazio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lazio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mallorca" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mallorca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="milan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\milan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="parma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\parma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="porto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\porto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="psv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="real_madrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\real_madrid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="real_sociedad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\real_sociedad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="relationship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relationship0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationship0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="roma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sevilla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sevilla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SunnyLogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SunnyLogin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -195,5 +258,17 @@
   </data>
   <data name="SunnyUISmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SunnyUISmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="udinese" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\udinese.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="valencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\valencia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="villareal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\villareal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zaragoza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zaragoza.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
