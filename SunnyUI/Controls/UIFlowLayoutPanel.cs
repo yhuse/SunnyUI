@@ -37,12 +37,14 @@ namespace Sunny.UI
             Panel.AutoScroll = true;
             Panel.ControlAdded += Panel_ControlAdded;
             Panel.ControlRemoved += Panel_ControlRemoved;
-            Panel.SizeChanged += Panel_SizeChanged;
+            //Panel.SizeChanged += Panel_SizeChanged;
             Panel.Scroll += Panel_Scroll;
             Panel.MouseWheel += Panel_MouseWheel;
             Panel.MouseEnter += Panel_MouseEnter;
             Panel.MouseClick += Panel_MouseClick;
             Bar.ValueChanged += Bar_ValueChanged;
+
+            SizeChanged += Panel_SizeChanged;
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
