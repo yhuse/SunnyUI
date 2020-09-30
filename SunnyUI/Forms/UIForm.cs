@@ -1321,6 +1321,11 @@ namespace Sunny.UI
                     ShowRadius = false;
                     Padding = new Padding(2, showTitle ? TitleHeight : 2, 2, 2);
                 }
+                else
+                {
+                    ShowRect = false;
+                    Padding = new Padding(0, showTitle ? TitleHeight : 0, 0, 0);
+                }
             }
         }
 
