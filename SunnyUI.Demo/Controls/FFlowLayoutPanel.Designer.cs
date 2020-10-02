@@ -59,7 +59,7 @@
             this.uiFlowLayoutPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiFlowLayoutPanel1.Name = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanel1.Padding = new System.Windows.Forms.Padding(2);
-            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(270, 390);
+            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(249, 390);
             this.uiFlowLayoutPanel1.TabIndex = 8;
             this.uiFlowLayoutPanel1.Text = "uiFlowLayoutPanel1";
             // 

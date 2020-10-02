@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -27,7 +28,8 @@ namespace Sunny.UI
 {
     public class UIFlowLayoutPanel : UIPanel
     {
-        private UIVerScrollBarEx Bar;
+        private UIVerScrollBarEx VBar;
+        private UIHorScrollBarEx HBar;
         private FlowLayoutPanel flowLayoutPanel;
 
         public UIFlowLayoutPanel()
@@ -37,14 +39,31 @@ namespace Sunny.UI
             Panel.AutoScroll = true;
             Panel.ControlAdded += Panel_ControlAdded;
             Panel.ControlRemoved += Panel_ControlRemoved;
-            //Panel.SizeChanged += Panel_SizeChanged;
             Panel.Scroll += Panel_Scroll;
             Panel.MouseWheel += Panel_MouseWheel;
             Panel.MouseEnter += Panel_MouseEnter;
             Panel.MouseClick += Panel_MouseClick;
-            Bar.ValueChanged += Bar_ValueChanged;
+
+            VBar.ValueChanged += VBar_ValueChanged;
+            HBar.ValueChanged += HBar_ValueChanged;
 
             SizeChanged += Panel_SizeChanged;
+        }
+
+        [DefaultValue(FlowDirection.LeftToRight)]
+        [Localizable(true)]
+        public FlowDirection FlowDirection
+        {
+            get => Panel.FlowDirection;
+            set => Panel.FlowDirection = value;
+        }
+
+        [DefaultValue(true)]
+        [Localizable(true)]
+        public bool WrapContents
+        {
+            get => Panel.WrapContents;
+            set => Panel.WrapContents = value;
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
@@ -57,7 +76,8 @@ namespace Sunny.UI
         {
             base.AfterSetFillColor(color);
             Panel.BackColor = color;
-            Bar.FillColor = color;
+            VBar.FillColor = color;
+            HBar.FillColor = color;
         }
 
         public void AddControl(Control ctrl)
@@ -67,11 +87,6 @@ namespace Sunny.UI
 
         public void Clear()
         {
-            foreach (Control control in Panel.Controls)
-            {
-                control.Dispose();
-            }
-
             Panel.Controls.Clear();
         }
 
@@ -114,17 +129,22 @@ namespace Sunny.UI
                     Panel.VerticalScroll.Value = 0;
             }
 
-            Bar.Value = Panel.VerticalScroll.Value;
+            VBar.Value = Panel.VerticalScroll.Value;
         }
 
-        private void Bar_ValueChanged(object sender, EventArgs e)
+        private void VBar_ValueChanged(object sender, EventArgs e)
         {
-            Panel.VerticalScroll.Value = Bar.Value;
+            Panel.VerticalScroll.Value = VBar.Value;
+        }
+
+        private void HBar_ValueChanged(object sender, EventArgs e)
+        {
+            Panel.HorizontalScroll.Value = HBar.Value;
         }
 
         private void Panel_Scroll(object sender, ScrollEventArgs e)
         {
-            Bar.Value = Panel.VerticalScroll.Value;
+            VBar.Value = Panel.VerticalScroll.Value;
         }
 
         private void Panel_SizeChanged(object sender, EventArgs e)
@@ -144,11 +164,19 @@ namespace Sunny.UI
 
         private void SetScrollInfo()
         {
-            Bar.Visible = Panel.VerticalScroll.Visible;
-            Bar.Maximum = Panel.VerticalScroll.Maximum;
-            Bar.Value = Panel.VerticalScroll.Value;
-            Bar.LargeChange = Panel.VerticalScroll.LargeChange;
-            Bar.BoundsHeight = Panel.VerticalScroll.LargeChange;
+            VBar.Visible = Panel.VerticalScroll.Visible;
+            VBar.Maximum = Panel.VerticalScroll.Maximum;
+            VBar.Value = Panel.VerticalScroll.Value;
+            VBar.LargeChange = Panel.VerticalScroll.LargeChange;
+            VBar.BoundsHeight = Panel.VerticalScroll.LargeChange;
+
+            HBar.Visible = Panel.HorizontalScroll.Visible;
+            HBar.Maximum = Panel.HorizontalScroll.Maximum;
+            HBar.Value = Panel.HorizontalScroll.Value;
+            HBar.LargeChange = Panel.HorizontalScroll.LargeChange;
+            HBar.BoundsWidth = Panel.HorizontalScroll.LargeChange;
+
+            SetScrollPos();
         }
 
         public FlowLayoutPanel Panel => flowLayoutPanel;
@@ -156,7 +184,8 @@ namespace Sunny.UI
         private void InitializeComponent()
         {
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.Bar = new Sunny.UI.UIVerScrollBarEx();
+            this.VBar = new Sunny.UI.UIVerScrollBarEx();
+            this.HBar = new Sunny.UI.UIHorScrollBarEx();
             this.SuspendLayout();
             // 
             // flowLayoutPanel
@@ -168,23 +197,40 @@ namespace Sunny.UI
             this.flowLayoutPanel.Size = new System.Drawing.Size(429, 383);
             this.flowLayoutPanel.TabIndex = 0;
             // 
-            // Bar
+            // VBar
             // 
-            this.Bar.BoundsHeight = 10;
-            this.Bar.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.Bar.LargeChange = 10;
-            this.Bar.Location = new System.Drawing.Point(410, 5);
-            this.Bar.Maximum = 100;
-            this.Bar.MinimumSize = new System.Drawing.Size(1, 1);
-            this.Bar.Name = "Bar";
-            this.Bar.Size = new System.Drawing.Size(18, 377);
-            this.Bar.TabIndex = 1;
-            this.Bar.Text = "uiVerScrollBarEx1";
-            this.Bar.Value = 0;
+            this.VBar.BoundsHeight = 10;
+            this.VBar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.VBar.LargeChange = 10;
+            this.VBar.Location = new System.Drawing.Point(410, 5);
+            this.VBar.Maximum = 100;
+            this.VBar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.VBar.Name = "VBar";
+            this.VBar.Size = new System.Drawing.Size(18, 377);
+            this.VBar.TabIndex = 1;
+            this.VBar.Text = "uiVerScrollBarEx1";
+            this.VBar.Value = 0;
+            this.VBar.Visible = false;
+            // 
+            // HBar
+            // 
+            this.HBar.BoundsWidth = 10;
+            this.HBar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.HBar.LargeChange = 10;
+            this.HBar.Location = new System.Drawing.Point(5, 364);
+            this.HBar.Maximum = 100;
+            this.HBar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.HBar.Name = "HBar";
+            this.HBar.Size = new System.Drawing.Size(399, 18);
+            this.HBar.TabIndex = 2;
+            this.HBar.Text = "uiHorScrollBarEx1";
+            this.HBar.Value = 0;
+            this.HBar.Visible = false;
             // 
             // UIFlowLayoutPanel
             // 
-            this.Controls.Add(this.Bar);
+            this.Controls.Add(this.HBar);
+            this.Controls.Add(this.VBar);
             this.Controls.Add(this.flowLayoutPanel);
             this.Name = "UIFlowLayoutPanel";
             this.Padding = new System.Windows.Forms.Padding(2);
@@ -196,22 +242,30 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
+            SetScrollPos();
+        }
 
-            if (Bar != null)
+        private void SetScrollPos()
+        {
+            if (VBar != null && HBar != null)
             {
+                int added = 1;
                 if (RadiusSides != UICornerRadiusSides.None)
                 {
-                    int added = Radius / 2;
-                    Bar.Left = Width - Bar.Width - added;
-                    Bar.Top = added;
-                    Bar.Height = Height - added * 2;
+                    added = Radius / 2;
                 }
+
+                VBar.Left = Width - VBar.Width - added;
+                VBar.Top = added;
+                VBar.Height = Height - added * 2;
+
+                HBar.Left = added;
+                HBar.Top = Height - HBar.Height - added;
+
+                if (VBar.Visible)
+                    HBar.Width = VBar.Left - 1 - added;
                 else
-                {
-                    Bar.Left = Width - Bar.Width - 1;
-                    Bar.Top = 1;
-                    Bar.Height = Height - 2;
-                }
+                    HBar.Width = Width - added * 2;
             }
         }
     }
