@@ -20,7 +20,6 @@
 ******************************************************************************/
 
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -35,7 +34,7 @@ namespace Sunny.UI
             alpha = Math.Min(255, alpha);
             return Color.FromArgb(alpha, color);
         }
-        
+
         /// <summary>
         /// 九宫切图背景填充，#，http://st233.com/blog.php?id=24
         /// 例如按钮是图片分成九个区域 然后只需要将四角填充到目标区域 其余的拉伸就可以了
@@ -212,6 +211,26 @@ namespace Sunny.UI
             {
                 g.Smooth(smooth);
                 g.DrawLines(pen, points);
+                g.Smooth(false);
+            }
+        }
+
+        public static void DrawCurve(this Graphics g, Color color, Point[] points, bool smooth = false)
+        {
+            using (Pen pen = new Pen(color))
+            {
+                g.Smooth(smooth);
+                g.DrawCurve(pen, points);
+                g.Smooth(false);
+            }
+        }
+
+        public static void DrawCurve(this Graphics g, Color color, PointF[] points, bool smooth = false)
+        {
+            using (Pen pen = new Pen(color))
+            {
+                g.Smooth(smooth);
+                g.DrawCurve(pen, points);
                 g.Smooth(false);
             }
         }

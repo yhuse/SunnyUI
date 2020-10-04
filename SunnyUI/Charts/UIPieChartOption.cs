@@ -25,7 +25,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public class UIPieOption : UIOption, IDisposable
+    public sealed class UIPieOption : UIOption, IDisposable
     {
         public List<UIPieSeries> Series = new List<UIPieSeries>();
 

@@ -22,9 +22,9 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -624,7 +624,7 @@ namespace Sunny.UI
             {
                 if (MenuHelper.GetPageIndex(node) >= 0)
                 {
-                    AllNodes.AddOrUpdate(MenuHelper.GetPageIndex(node), node);
+                    AllNodes.TryAddOrUpdate(MenuHelper.GetPageIndex(node), node);
                 }
 
                 GetAllNodes(node.Nodes);

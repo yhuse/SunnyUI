@@ -57,7 +57,7 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            CalcData(PieOption);
+            CalcData();
         }
 
         protected override void DrawOption(Graphics g)
@@ -70,15 +70,14 @@ namespace Sunny.UI
 
         private bool AllIsZero;
 
-        protected override void CalcData(UIOption option)
+        protected override void CalcData()
         {
             Angles.Clear();
-            UIPieOption o = (UIPieOption)option;
-            if (o == null || o.Series == null || o.Series.Count == 0) return;
+            if (PieOption == null || PieOption.Series == null || PieOption.Series.Count == 0) return;
 
-            for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
+            for (int pieIndex = 0; pieIndex < PieOption.Series.Count; pieIndex++)
             {
-                var pie = o.Series[pieIndex];
+                var pie = PieOption.Series[pieIndex];
                 Angles.TryAdd(pieIndex, new ConcurrentDictionary<int, Angle>());
 
                 double all = 0;
@@ -95,14 +94,14 @@ namespace Sunny.UI
                     float angle = (float)(pie.Data[i].Value * 360.0f / all);
                     float percent = (float)(pie.Data[i].Value * 100.0f / all);
                     string text = "";
-                    if (o.ToolTip != null)
+                    if (PieOption.ToolTip != null)
                     {
                         try
                         {
-                            UITemplate template = new UITemplate(o.ToolTip.Formatter);
+                            UITemplate template = new UITemplate(PieOption.ToolTip.Formatter);
                             template.Set("a", pie.Name);
                             template.Set("b", pie.Data[i].Name);
-                            template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
+                            template.Set("c", pie.Data[i].Value.ToString(PieOption.ToolTip.ValueFormat));
                             template.Set("d", percent.ToString("F2"));
                             text = template.Render();
                         }
@@ -113,7 +112,7 @@ namespace Sunny.UI
                         }
                     }
 
-                    Angles[pieIndex].AddOrUpdate(i, new Angle(start, angle, text));
+                    Angles[pieIndex].TryAddOrUpdate(i, new Angle(start, angle, text));
                     start += angle;
                 }
             }
@@ -288,10 +287,6 @@ namespace Sunny.UI
 
         private float RadiusSize(UIPieSeries series)
         {
-            int left = series.Center.Left;
-            int top = series.Center.Top;
-            left = Width * left / 100;
-            top = Height * top / 100;
             return Math.Min(Width, Height) * series.Radius / 200.0f;
         }
 

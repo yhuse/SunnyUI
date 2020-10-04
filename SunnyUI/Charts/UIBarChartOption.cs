@@ -25,13 +25,13 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public class UIBarOption : UIOption, IDisposable
+    public sealed class UIBarOption : UIOption, IDisposable
     {
-        public UICategoryAxis XAxis { get; set; } = new UICategoryAxis();
+        public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Category);
 
         public UIBarToolTip ToolTip { get; set; }
 
-        public UIValueAxis YAxis { get; set; } = new UIValueAxis();
+        public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
         public List<UIBarSeries> Series = new List<UIBarSeries>();
 
@@ -90,6 +90,16 @@ namespace Sunny.UI
 
     public class UIAxis
     {
+        public UIAxis()
+        {
+
+        }
+
+        public UIAxis(UIAxisType axisType)
+        {
+            Type = axisType;
+        }
+
         public string Name { get; set; }
 
         public UIAxisType Type { get; set; }
@@ -121,15 +131,6 @@ namespace Sunny.UI
 
         public double Max { get; set; } = 100;
         public double Min { get; set; } = 0;
-
-    }
-
-    public class UICategoryAxis : UIAxis
-    {
-        public UICategoryAxis()
-        {
-            Type = UIAxisType.Category;
-        }
 
         public List<string> Data = new List<string>();
 
@@ -195,14 +196,6 @@ namespace Sunny.UI
         public int Interval { get; set; } = 0;
 
         public int Distance { get; set; } = 0;
-    }
-
-    public class UIValueAxis : UIAxis
-    {
-        public UIValueAxis()
-        {
-            Type = UIAxisType.Value;
-        }
     }
 
     public class UIBarSeries : IDisposable

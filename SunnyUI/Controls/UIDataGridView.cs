@@ -185,17 +185,6 @@ namespace Sunny.UI
             SetBarPosition();
         }
 
-        private int VisibleColumnCount()
-        {
-            int cnt = 0;
-            foreach (DataGridViewColumn column in Columns)
-            {
-                if (column.Visible) cnt++;
-            }
-
-            return cnt;
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -544,10 +533,10 @@ namespace Sunny.UI
             ClearColumns();
         }
 
-        // public void AddRow(params object[] values)
-        // {
-        //     Rows.Add(values);
-        // }
+        public int AddRow(params object[] values)
+        {
+            return Rows.Add(values);
+        }
     }
 
     public static class UIDataGridViewHelper

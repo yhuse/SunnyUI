@@ -126,7 +126,7 @@ namespace Sunny.UI
         /// <param name="value">值</param>
         /// <typeparam name="Key">键类型</typeparam>
         /// <typeparam name="Value">值类型</typeparam>
-        public static void AddOrUpdate<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary, Key key, Value value)
+        public static void TryAddOrUpdate<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary, Key key, Value value)
         {
             if (dictionary.ContainsKey(key))
             {
@@ -146,7 +146,7 @@ namespace Sunny.UI
         /// <param name="value">值</param>
         /// <typeparam name="Key">键类型</typeparam>
         /// <typeparam name="Value">值类型</typeparam>
-        public static void AddOrUpdate<Key, Value>(this Dictionary<Key, Value> dictionary, Key key, Value value)
+        public static void TryAddOrUpdate<Key, Value>(this Dictionary<Key, Value> dictionary, Key key, Value value)
         {
             if (dictionary.ContainsKey(key))
             {

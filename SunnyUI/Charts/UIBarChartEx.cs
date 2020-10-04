@@ -28,45 +28,44 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UIBarChartEx : UIBarChart
+    public sealed class UIBarChartEx : UIBarChart
     {
-        protected override void CalcData(UIOption option)
+        protected override void CalcData()
         {
             Bars.Clear();
             NeedDraw = false;
-            UIBarOption o = (UIBarOption)option;
-            if (o == null || o.Series == null || o.SeriesCount == 0) return;
+            if (BarOption == null || BarOption.Series == null || BarOption.SeriesCount == 0) return;
 
             DrawOrigin = new Point(BarOption.Grid.Left, Height - BarOption.Grid.Bottom);
             DrawSize = new Size(Width - BarOption.Grid.Left - BarOption.Grid.Right,
                 Height - BarOption.Grid.Top - BarOption.Grid.Bottom);
 
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
-            if (o.Series.Count == 0) return;
+            if (BarOption.Series.Count == 0) return;
 
             NeedDraw = true;
-            DrawBarWidth = DrawSize.Width * 1.0f / o.Series.Count;
+            DrawBarWidth = DrawSize.Width * 1.0f / BarOption.Series.Count;
 
             double min = double.MaxValue;
             double max = double.MinValue;
-            foreach (var series in o.Series)
+            foreach (var series in BarOption.Series)
             {
                 min = Math.Min(min, series.Data.Min());
                 max = Math.Max(max, series.Data.Max());
             }
 
-            if (min > 0 && max > 0 && !o.YAxis.Scale)
+            if (min > 0 && max > 0 && !BarOption.YAxis.Scale)
             {
                 min = 0;
             }
 
-            if (min < 0 && max < 0 && !o.YAxis.Scale)
+            if (min < 0 && max < 0 && !BarOption.YAxis.Scale)
             {
                 max = 0;
             }
 
-            if (!o.YAxis.MaxAuto) max = o.YAxis.Max;
-            if (!o.YAxis.MinAuto) min = o.YAxis.Min;
+            if (!BarOption.YAxis.MaxAuto) max = BarOption.YAxis.Max;
+            if (!BarOption.YAxis.MinAuto) min = BarOption.YAxis.Min;
 
             if ((max - min).IsZero())
             {
@@ -74,7 +73,7 @@ namespace Sunny.UI
                 min = 0;
             }
 
-            UIChartHelper.CalcDegreeScale(min, max, o.YAxis.SplitNumber,
+            UIChartHelper.CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 
             YAxisStart = start;
@@ -87,9 +86,9 @@ namespace Sunny.UI
                 float x1 = DrawSize.Width * 1.0f / DataCount / 4;
                 float x2 = x1 * 2;
 
-                for (int i = 0; i < o.SeriesCount; i++)
+                for (int i = 0; i < BarOption.SeriesCount; i++)
                 {
-                    var series = o.Series[i];
+                    var series = BarOption.Series[i];
                     Bars.TryAdd(i, new List<BarInfo>());
 
                     for (int j = 0; j < series.Data.Count; j++)
@@ -162,9 +161,9 @@ namespace Sunny.UI
             }
             else
             {
-                for (int i = 0; i < o.SeriesCount; i++)
+                for (int i = 0; i < BarOption.SeriesCount; i++)
                 {
-                    var series = o.Series[i];
+                    var series = BarOption.Series[i];
                     float x1;
                     if (BarOption.FixedSeriesCount > 0)
                         x1 = DrawBarWidth / (BarOption.FixedSeriesCount * 2 + BarOption.FixedSeriesCount + 1);

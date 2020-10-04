@@ -57,6 +57,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
             Aside.CreateChildNode(parent, AddPage(new FBarChart()));
             Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
+            Aside.CreateChildNode(parent, AddPage(new FLineChart()));
 
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();

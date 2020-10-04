@@ -96,8 +96,7 @@ namespace Sunny.UI
     {
         Value,
         Category,
-        Time,
-        Log
+        Time
     }
 
     public class UITitle
