@@ -33,7 +33,7 @@
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiLine1 = new Sunny.UI.UILine();
-            this.uiLineChart1 = new Sunny.UI.UILineChart();
+            this.LineChart = new Sunny.UI.UILineChart();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -47,7 +47,7 @@
             this.PagePanel.Controls.Add(this.uiImageButton2);
             this.PagePanel.Controls.Add(this.uiImageButton1);
             this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Controls.Add(this.uiLineChart1);
+            this.PagePanel.Controls.Add(this.LineChart);
             this.PagePanel.Size = new System.Drawing.Size(800, 539);
             // 
             // uiSymbolButton1
@@ -62,6 +62,7 @@
             this.uiSymbolButton1.Symbol = 61952;
             this.uiSymbolButton1.TabIndex = 34;
             this.uiSymbolButton1.Text = "数据";
+            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
             // 
             // uiImageButton3
             // 
@@ -113,18 +114,19 @@
             this.uiLine1.Text = "UIBarChart";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // uiLineChart1
+            // LineChart
             // 
-            this.uiLineChart1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.uiLineChart1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLineChart1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.uiLineChart1.Location = new System.Drawing.Point(30, 48);
-            this.uiLineChart1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLineChart1.Name = "uiLineChart1";
-            this.uiLineChart1.Option = null;
-            this.uiLineChart1.Size = new System.Drawing.Size(670, 400);
-            this.uiLineChart1.TabIndex = 35;
-            this.uiLineChart1.Text = "uiLineChart1";
+            this.LineChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.LineChart.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.LineChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.LineChart.Location = new System.Drawing.Point(30, 48);
+            this.LineChart.MinimumSize = new System.Drawing.Size(1, 1);
+            this.LineChart.Name = "LineChart";
+            this.LineChart.Option = null;
+            this.LineChart.Size = new System.Drawing.Size(670, 400);
+            this.LineChart.TabIndex = 35;
+            this.LineChart.Text = "uiLineChart1";
+            this.LineChart.PointValue += new Sunny.UI.UILineChart.OnPointValue(this.LineChart_PointValue);
             // 
             // FLineChart
             // 
@@ -149,6 +151,6 @@
         private UIImageButton uiImageButton2;
         private UIImageButton uiImageButton1;
         private UILine uiLine1;
-        private UILineChart uiLineChart1;
+        private UILineChart LineChart;
     }
 }

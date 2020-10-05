@@ -62,8 +62,11 @@ namespace Sunny.UI
             double max = double.MinValue;
             foreach (var series in BarOption.Series)
             {
-                min = Math.Min(min, series.Data.Min());
-                max = Math.Max(max, series.Data.Max());
+                if (series.Data.Count > 0)
+                {
+                    min = Math.Min(min, series.Data.Min());
+                    max = Math.Max(max, series.Data.Max());
+                }
             }
 
             if (min > 0 && max > 0 && !BarOption.YAxis.Scale) min = 0;

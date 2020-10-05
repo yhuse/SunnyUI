@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Sunny.UI.Charts
+namespace Sunny.UI
 {
     public sealed class UILineOption : UIOption, IDisposable
     {
@@ -29,10 +29,20 @@ namespace Sunny.UI.Charts
         public readonly List<UIScaleLine> XAxisScaleLines = new List<UIScaleLine>();
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
-        public void AddSeries(UILineSeries series)
+
+        public UILineSeries AddSeries(UILineSeries series)
         {
-            if (series.Name.IsNullOrEmpty()) return;
+            if (series.Name.IsNullOrEmpty()) return null;
             Series.TryAdd(series.Name, series);
+            return series;
+        }
+
+        public UILineSeries AddSeries(string name)
+        {
+            if (name.IsNullOrEmpty()) return null;
+            UILineSeries series = new UILineSeries(name);
+            Series.TryAdd(series.Name, series);
+            return series;
         }
 
         public void AddData(string name, double x, double y)
@@ -150,11 +160,13 @@ namespace Sunny.UI.Charts
     {
         public string Name { get; private set; }
 
-        public float Width { get; set; } = 1;
+        public float Width { get; set; } = 2;
         public Color Color { get; set; }
 
         public UILinePointSymbol Symbol { get; set; } = UILinePointSymbol.None;
-        public int SymbolSize { get; set; } = 1;
+        public int SymbolSize { get; set; } = 4;
+
+        public int SymbolLineWidth { get; set; } = 1;
 
         public Color SymbolColor { get; set; }
 
@@ -181,13 +193,47 @@ namespace Sunny.UI.Charts
 
         public readonly List<PointF> Points = new List<PointF>();
 
+        private readonly List<double> PointsX = new List<double>();
+
+        private readonly List<double> PointsY = new List<double>();
+
         public int DataCount => XData.Count;
+
+        public bool GetNearestPoint(Point p, int offset, out double x, out double y, out int index)
+        {
+            index = PointsX.BinarySearchNearIndex(p.X);
+            if (p.X >= PointsX[index] - offset && p.X <= PointsX[index] + offset &&
+                p.Y >= PointsY[index] - offset && p.Y <= PointsY[index] + offset)
+            {
+                x = XData[index];
+                y = YData[index];
+                return true;
+            }
+
+            x = 0;
+            y = 0;
+            return false;
+        }
 
         public void Clear()
         {
             XData.Clear();
             YData.Clear();
+            ClearPoints();
+        }
+
+        public void ClearPoints()
+        {
             Points.Clear();
+            PointsX.Clear();
+            PointsY.Clear();
+        }
+
+        public void AddPoint(PointF point)
+        {
+            Points.Add(point);
+            PointsX.Add(point.X);
+            PointsY.Add(point.Y);
         }
 
         public void Add(double x, double y)
@@ -220,5 +266,16 @@ namespace Sunny.UI.Charts
         Circle,
         Plus,
         Star
+    }
+
+    public struct UILineSelectPoint
+    {
+        public string Name { get; set; }
+
+        public int Index { get; set; }
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
     }
 }

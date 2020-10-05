@@ -159,15 +159,31 @@ namespace Sunny.UI
 
         public event DoFormatter Formatter;
 
-        public string GetLabel(double value, int index)
+        public string GetLabel(double value, int index, UIAxisType axisType = UIAxisType.Value)
         {
-            return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F" + DecimalCount);
+            switch (axisType)
+            {
+                case UIAxisType.Value:
+                    return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F" + DecimalCount);
+                case UIAxisType.Time:
+                    DateTimeInt64 dt = new DateTimeInt64((long)value);
+                    return Formatter != null ? Formatter?.Invoke(dt, index) : (DateTimeFormat.IsNullOrEmpty() ? dt.ToString() : dt.ToString(DateTimeFormat));
+                case UIAxisType.Category:
+                    return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F0");
+            }
+
+            return value.ToString("F2");
         }
 
         /// <summary>
         /// 小数位个数，Formatter不为空时以Formatter为准
         /// </summary>
         public int DecimalCount { get; set; } = 0;
+
+        /// <summary>
+        /// 日期格式化字符串，Formatter不为空时以Formatter为准
+        /// </summary>
+        public string DateTimeFormat { get; set; } = "HH:mm";
     }
 
     public class UIAxisTick
