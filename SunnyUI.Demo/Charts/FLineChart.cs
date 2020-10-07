@@ -11,7 +11,7 @@ namespace Sunny.UI.Demo.Charts
             InitializeComponent();
         }
 
-        private void uiSymbolButton1_Click(object sender, System.EventArgs e)
+        private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
             UILineOption option = new UILineOption();
             option.Title = new UITitle();
@@ -33,7 +33,7 @@ namespace Sunny.UI.Demo.Charts
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
 
-            series = option.AddSeries(new UILineSeries("Line2"));
+            series = option.AddSeries(new UILineSeries("Line2", Color.Lime));
             series.Add(dt.AddHours(0.3), 3.3);
             series.Add(dt.AddHours(0.4), 2.3);
             series.Add(dt.AddHours(0.5), 2.3);
@@ -51,6 +51,12 @@ namespace Sunny.UI.Demo.Charts
             // option.XAxis.MaxAuto = false;
             // option.XAxis.MinAuto = false;
 
+            option.GreaterWarningArea = new UILineWarningArea(3.5);
+            option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
+
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 2.2 });
+
             option.XAxis.Name = "数值";
             option.YAxis.Name = "数值";
 
@@ -67,6 +73,21 @@ namespace Sunny.UI.Demo.Charts
             }
 
             Console.WriteLine(sb.ToString());
+        }
+
+        private void uiImageButton1_Click(object sender, System.EventArgs e)
+        {
+            LineChart.ChartStyleType = UIChartStyleType.Default;
+        }
+
+        private void uiImageButton2_Click(object sender, System.EventArgs e)
+        {
+            LineChart.ChartStyleType = UIChartStyleType.Plain;
+        }
+
+        private void uiImageButton3_Click(object sender, System.EventArgs e)
+        {
+            LineChart.ChartStyleType = UIChartStyleType.Dark;
         }
     }
 }

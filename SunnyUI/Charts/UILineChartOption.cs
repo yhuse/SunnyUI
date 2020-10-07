@@ -30,6 +30,9 @@ namespace Sunny.UI
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
+        public UILineWarningArea GreaterWarningArea { get; set; }
+        public UILineWarningArea LessWarningArea { get; set; }
+
         public UILineSeries AddSeries(UILineSeries series)
         {
             if (series.Name.IsNullOrEmpty()) return null;
@@ -277,5 +280,28 @@ namespace Sunny.UI
         public double X { get; set; }
 
         public double Y { get; set; }
+    }
+
+    public class UILineWarningArea
+    {
+        public double Value { get; set; }
+
+        public Color Color { get; set; } = Color.Red;
+
+        public UILineWarningArea()
+        {
+
+        }
+
+        public UILineWarningArea(double value)
+        {
+            Value = value;
+        }
+
+        public UILineWarningArea(double value, Color color)
+        {
+            Value = value;
+            Color = color;
+        }
     }
 }

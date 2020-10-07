@@ -184,10 +184,10 @@ namespace Sunny.UI
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow) DrawToolTip(g);
             DrawAxis(g);
             DrawTitle(g, LineOption.Title);
+            DrawAxisScales(g);
             DrawSeries(g);
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, LineOption.Legend);
-            DrawAxisScales(g);
         }
 
         private void DrawAxis(Graphics g)
@@ -308,16 +308,83 @@ namespace Sunny.UI
                 Color color = series.Color;
                 if (!series.CustomColor) color = ChartStyle.GetColor(idx);
 
-                using (Pen pen = new Pen(color, series.Width))
+                if (LineOption.GreaterWarningArea == null && LineOption.LessWarningArea == null)
                 {
-                    g.SetHighQuality();
-                    if (series.Smooth)
-                        g.DrawCurve(pen, series.Points.ToArray());
-                    else
-                        g.DrawLines(pen, series.Points.ToArray());
-                    g.SetDefaultQuality();
+                    using (Pen pen = new Pen(color, series.Width))
+                    {
+                        g.SetHighQuality();
+                        if (series.Smooth)
+                            g.DrawCurve(pen, series.Points.ToArray());
+                        else
+                            g.DrawLines(pen, series.Points.ToArray());
+                        g.SetDefaultQuality();
+                    }
                 }
+                else
+                {
+                    Bitmap bmp = new Bitmap(Width, Height);
+                    Bitmap bmpGreater;
+                    Bitmap bmpLess;
 
+                    float wTop = 0;
+                    float wBottom = Height;
+
+                    using (Pen pen = new Pen(color, series.Width))
+                    {
+                        Graphics graphics = bmp.Graphics();
+                        graphics.SetHighQuality();
+                        if (series.Smooth)
+                            graphics.DrawCurve(pen, series.Points.ToArray());
+                        else
+                            graphics.DrawLines(pen, series.Points.ToArray());
+                        graphics.SetDefaultQuality();
+                    }
+
+                    if (LineOption.GreaterWarningArea != null)
+                    {
+                        using (Pen pen = new Pen(LineOption.GreaterWarningArea.Color, series.Width))
+                        using (bmpGreater = new Bitmap(Width, Height))
+                        {
+                            bmpGreater = new Bitmap(Width, Height);
+                            Graphics graphics = bmpGreater.Graphics();
+                            graphics.SetHighQuality();
+                            if (series.Smooth)
+                                graphics.DrawCurve(pen, series.Points.ToArray());
+                            else
+                                graphics.DrawLines(pen, series.Points.ToArray());
+                            graphics.SetDefaultQuality();
+
+                            wTop = (float)((LineOption.GreaterWarningArea.Value - YAxisStart * YAxisInterval) * 1.0f * DrawSize.Height / YAxisInterval / (YAxisEnd - YAxisStart));
+                            wTop = DrawOrigin.Y - wTop;
+                            g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
+                                new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
+                        }
+                    }
+
+                    if (LineOption.LessWarningArea != null)
+                    {
+                        using (Pen pen = new Pen(LineOption.LessWarningArea.Color, series.Width))
+                        using (bmpLess = new Bitmap(Width, Height))
+                        {
+                            Graphics graphics = bmpLess.Graphics();
+                            graphics.SetHighQuality();
+                            if (series.Smooth)
+                                graphics.DrawCurve(pen, series.Points.ToArray());
+                            else
+                                graphics.DrawLines(pen, series.Points.ToArray());
+                            graphics.SetDefaultQuality();
+
+                            wBottom = (float)((LineOption.LessWarningArea.Value - YAxisStart * YAxisInterval) * 1.0f * DrawSize.Height / YAxisInterval / (YAxisEnd - YAxisStart));
+                            wBottom = DrawOrigin.Y - wBottom;
+                            g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
+                                new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
+                        }
+                    }
+
+                    g.DrawImage(bmp, new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop),
+                        new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop), GraphicsUnit.Pixel);
+                    bmp.Dispose();
+                }
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {

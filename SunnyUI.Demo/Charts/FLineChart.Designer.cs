@@ -76,6 +76,7 @@
             this.uiImageButton3.TabStop = false;
             this.uiImageButton3.Text = "      Dark";
             this.uiImageButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiImageButton3.Click += new System.EventHandler(this.uiImageButton3_Click);
             // 
             // uiImageButton2
             // 
@@ -89,6 +90,7 @@
             this.uiImageButton2.TabStop = false;
             this.uiImageButton2.Text = "      Plain";
             this.uiImageButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiImageButton2.Click += new System.EventHandler(this.uiImageButton2_Click);
             // 
             // uiImageButton1
             // 
@@ -102,6 +104,7 @@
             this.uiImageButton1.TabStop = false;
             this.uiImageButton1.Text = "      Default";
             this.uiImageButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiImageButton1.Click += new System.EventHandler(this.uiImageButton1_Click);
             // 
             // uiLine1
             // 
@@ -111,7 +114,7 @@
             this.uiLine1.Name = "uiLine1";
             this.uiLine1.Size = new System.Drawing.Size(670, 20);
             this.uiLine1.TabIndex = 30;
-            this.uiLine1.Text = "UIBarChart";
+            this.uiLine1.Text = "UILineChart";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LineChart
