@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -442,6 +443,7 @@ namespace Sunny.UI
                     point.Index = index;
                     point.X = x;
                     point.Y = y;
+                    point.Location = new Point((int)series.Points[index].X, (int)series.Points[index].Y);
                     selectPointsTemp.Add(point);
                 }
             }
@@ -473,16 +475,60 @@ namespace Sunny.UI
             if (isNew)
             {
                 selectPoints.Clear();
+                StringBuilder sb = new StringBuilder();
+                int idx = 0;
                 foreach (var point in selectPointsTemp)
                 {
                     selectPoints.Add(point);
+
+                    if (idx > 0) sb.Append('\n');
+
+                    sb.Append(point.Name);
+                    sb.Append('\n');
+                    sb.Append(LineOption.XAxis.Name + ": ");
+                    if (LineOption.XAxisType == UIAxisType.DateTime)
+                        sb.Append(new DateTimeInt64(point.X).ToString(LineOption.XAxis.AxisLabel.DateTimeFormat));
+                    else
+                        sb.Append(point.X.ToString("F" + LineOption.XAxis.AxisLabel.DecimalCount));
+                    sb.Append('\n');
+                    sb.Append(LineOption.YAxis.Name + ": " + point.Y.ToString("F" + LineOption.YAxis.AxisLabel.DecimalCount));
+                    idx++;
                 }
 
-                PointValue?.Invoke(this, selectPoints);
+                if (LineOption.ToolTip != null)
+                {
+                    if (sb.ToString().IsNullOrEmpty())
+                    {
+                        tip.Visible = false;
+                    }
+                    else
+                    {
+                        using (Graphics g = this.CreateGraphics())
+                        {
+                            SizeF sf = g.MeasureString(sb.ToString(), SubFont);
+                            tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
+                        }
+
+                        int x = e.Location.X + 15;
+                        int y = e.Location.Y + 20;
+                        if (e.Location.X + 15 + tip.Width > Width - LineOption.Grid.Right)
+                            x = e.Location.X - tip.Width - 2;
+                        if (e.Location.Y + 20 + tip.Height > Height - LineOption.Grid.Bottom)
+                            y = e.Location.Y - tip.Height - 2;
+
+                        tip.Left = x;
+                        tip.Top = y;
+
+                        tip.Text = sb.ToString();
+                        if (!tip.Visible) tip.Visible = true;
+                    }
+                }
+
+                PointValue?.Invoke(this, selectPoints.ToArray());
             }
         }
 
-        public delegate void OnPointValue(object sender, List<UILineSelectPoint> points);
+        public delegate void OnPointValue(object sender, UILineSelectPoint[] points);
 
         public event OnPointValue PointValue;
     }

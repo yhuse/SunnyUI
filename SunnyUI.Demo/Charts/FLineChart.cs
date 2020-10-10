@@ -14,6 +14,7 @@ namespace Sunny.UI.Demo.Charts
         private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
             UILineOption option = new UILineOption();
+            option.ToolTip = new UIBarToolTip();
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
             option.Title.SubText = "LineChart";
@@ -46,33 +47,17 @@ namespace Sunny.UI.Demo.Charts
             series.SymbolColor = Color.Red;
             series.Smooth = true;
 
-            // option.XAxis.Min = new DateTimeInt64(dt.AddDays(-1));
-            // option.XAxis.Max = new DateTimeInt64(dt.AddDays(1));
-            // option.XAxis.MaxAuto = false;
-            // option.XAxis.MinAuto = false;
-
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
 
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 2.2 });
 
-            option.XAxis.Name = "数值";
+            option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
+            option.XAxis.AxisLabel.DateTimeFormat = DateTimeEx.DateTimeFormat;
 
             LineChart.SetOption(option);
-        }
-
-        private void LineChart_PointValue(object sender, System.Collections.Generic.List<UILineSelectPoint> points)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var point in points)
-            {
-                sb.Append(point.Name + ", " + point.Index + ", " + point.X + ", " + point.Y);
-                sb.Append('\n');
-            }
-
-            Console.WriteLine(sb.ToString());
         }
 
         private void uiImageButton1_Click(object sender, EventArgs e)
@@ -88,6 +73,18 @@ namespace Sunny.UI.Demo.Charts
         private void uiImageButton3_Click(object sender, EventArgs e)
         {
             LineChart.ChartStyleType = UIChartStyleType.Dark;
+        }
+
+        private void LineChart_PointValue(object sender, UILineSelectPoint[] points)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var point in points)
+            {
+                sb.Append(point.Name + ", " + point.Index + ", " + point.X + ", " + point.Y);
+                sb.Append('\n');
+            }
+
+            Console.WriteLine(sb.ToString());
         }
     }
 }

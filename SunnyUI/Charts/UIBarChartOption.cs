@@ -102,7 +102,7 @@ namespace Sunny.UI
 
         public string Name { get; set; }
 
-        public UIAxisType Type { get; set; }
+        public UIAxisType Type { get; }
 
         /// <summary>
         /// 坐标轴的分割段数，需要注意的是这个分割段数只是个预估值
