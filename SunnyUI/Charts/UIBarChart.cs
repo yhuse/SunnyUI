@@ -42,6 +42,67 @@ namespace Sunny.UI
             CalcData();
         }
 
+        /// <summary>
+        /// 计算刻度
+        /// 起始值必须小于结束值
+        /// </summary>
+        /// <param name="start">起始值</param>
+        /// <param name="end">结束值</param>
+        /// <param name="expect_num">期望刻度数量，实际数接近此数</param>
+        /// <param name="degree_start">刻度起始值，须乘以间隔使用</param>
+        /// <param name="degree_end">刻度结束值，须乘以间隔使用</param>
+        /// <param name="degree_gap">刻度间隔</param>
+        public void CalcDegreeScale(double start, double end, int expect_num,
+            out int degree_start, out int degree_end, out double degree_gap)
+        {
+            if (start >= end)
+            {
+                throw new Exception("起始值必须小于结束值");
+            }
+
+            double differ = end - start;
+            double differ_gap = differ / (expect_num - 1); //35, 4.6, 0.27
+
+            double exponent = Math.Log10(differ_gap) - 1; //0.54, -0.34, -1.57
+            int _exponent = (int)exponent; //0, 0=>-1, -1=>-2
+            if (exponent < 0 && Math.Abs(exponent) > 1e-8)
+            {
+                _exponent--;
+            }
+
+            int step = (int)(differ_gap / Math.Pow(10, _exponent)); //35, 46, 27
+            int[] fix_steps = new int[] { 10, 20, 25, 50, 100 };
+            int fix_step = 10; //25, 50, 25
+            for (int i = fix_steps.Length - 1; i >= 1; i--)
+            {
+                if (step > (fix_steps[i] + fix_steps[i - 1]) / 2)
+                {
+                    fix_step = fix_steps[i];
+                    break;
+                }
+            }
+
+            degree_gap = fix_step * Math.Pow(10, _exponent); //25, 5, 0.25
+
+            double start1 = start / degree_gap;
+            int start2 = (int)start1;
+            if (start1 < 0 && Math.Abs(start1 - start2) > 1e-8)
+            {
+                start2--;
+            }
+
+            degree_start = start2;
+
+            double end1 = end / degree_gap;
+            int end2 = (int)end1;
+            if (end1 >= 0 && Math.Abs(end1 - end2) > 1e-8)
+            {
+                end2++;
+            }
+
+            degree_end = end2;
+        }
+
         protected override void CalcData()
         {
             Bars.Clear();
@@ -80,7 +141,7 @@ namespace Sunny.UI
                 min = 0;
             }
 
-            UIChartHelper.CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
+            CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 
             YAxisStart = start;

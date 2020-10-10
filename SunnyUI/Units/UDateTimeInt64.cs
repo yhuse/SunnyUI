@@ -17,12 +17,18 @@
  * 创建日期: 2020-09-23
  *
  * 2020-09-23: V2.2.8 增加文件说明
+ * 2020-10-10: V2.2.8 增加与Double互转
 ******************************************************************************/
 
 using System;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 日期与长整形和浮点型互转
+    /// Value：长整形，为1970年1月1日0时起的毫秒数
+    /// DoubleValue：双精度浮点数，1970年1月1日0时起的天数
+    /// </summary>
     public struct DateTimeInt64 : IComparable, IEquatable<DateTimeInt64>, IEquatable<long>, IEquatable<DateTime>
     {
         public long Value { get; set; }
@@ -30,6 +36,7 @@ namespace Sunny.UI
         public const long Jan1st1970Ticks = 621355968000000000; //Jan1st1970.Ticks;
         public const long Dec31th9999Ticks = 3155378975999990000; //DateTime.MaxValue.Ticks;
         public const string DefaultFormatString = DateTimeEx.DateTimeFormatEx;
+        public const double MillisecondsPerDay = 86400000.0;
 
         /// <summary>
         /// 返回当前时间的毫秒数, 这个毫秒其实就是自1970年1月1日0时起的毫秒数
@@ -37,6 +44,12 @@ namespace Sunny.UI
         public static long CurrentDateTimeToTicks()
         {
             return (DateTime.UtcNow.Ticks - Jan1st1970Ticks) / 10000;
+        }
+
+        public double DoubleValue
+        {
+            get { return Value * 1.0 / MillisecondsPerDay; }
+            set { Value = (long)(value * MillisecondsPerDay); }
         }
 
         /// <summary>
@@ -67,6 +80,12 @@ namespace Sunny.UI
         {
             ticks = MakeValidDate(ticks);
             Value = ticks;
+        }
+
+        public DateTimeInt64(double doubleTicks)
+        {
+            doubleTicks = MakeValidDate((long)(doubleTicks * MillisecondsPerDay));
+            Value = (long)doubleTicks;
         }
 
         public DateTimeInt64(DateTime dateTime)
@@ -209,6 +228,16 @@ namespace Sunny.UI
             return dt.DateTime;
         }
 
+        public static implicit operator double(DateTimeInt64 dtValue)
+        {
+            return dtValue.DoubleValue;
+        }
+
+        public static implicit operator DateTimeInt64(double ticks)
+        {
+            return new DateTimeInt64(ticks);
+        }
+
         public static bool operator ==(DateTimeInt64 dtValue1, DateTimeInt64 dtValue2)
         {
             return dtValue1.Value == dtValue2.Value;
@@ -339,5 +368,13 @@ namespace Sunny.UI
         public string TimeString => DateTime.TimeString();
 
         public string HourMinuteString => DateTime.ToString("HH:mm");
+
+        public int Year => DateTime.Year;
+        public int Month => DateTime.Month;
+        public int Day => DateTime.Day;
+        public int Hour => DateTime.Hour;
+        public int Minute => DateTime.Minute;
+        public int Second => DateTime.Second;
+        public int Millisecond => DateTime.Millisecond;
     }
 }

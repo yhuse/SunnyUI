@@ -22,13 +22,6 @@ namespace Sunny.UI
         private Point DrawOrigin;
         private Size DrawSize;
 
-        private int YAxisStart;
-        private int YAxisEnd;
-        private double YAxisInterval;
-        private int XAxisStart;
-        private int XAxisEnd;
-        private double XAxisInterval;
-
         protected override void CalcData()
         {
             NeedDraw = false;
@@ -44,86 +37,48 @@ namespace Sunny.UI
             foreach (var series in LineOption.Series.Values)
             {
                 series.ClearPoints();
-
-                for (int i = 0; i < series.XData.Count; i++)
-                {
-                    float x = (float)((series.XData[i] - XAxisStart * XAxisInterval) * 1.0f * DrawSize.Width / XAxisInterval / (XAxisEnd - XAxisStart));
-                    float y = (float)((series.YData[i] - YAxisStart * YAxisInterval) * 1.0f * DrawSize.Height / YAxisInterval / (YAxisEnd - YAxisStart));
-                    series.AddPoint(new PointF(DrawOrigin.X + x, DrawOrigin.Y - y));
-                }
+                float[] x = XScale.CalcXPixels(series.XData.ToArray(), DrawOrigin.X, DrawSize.Width);
+                float[] y = YScale.CalcYPixels(series.YData.ToArray(), DrawOrigin.Y, DrawSize.Height);
+                series.AddPoints(x, y);
             }
 
             NeedDraw = true;
         }
 
+        private UIScale XScale;
+        private UIScale YScale;
+        private double[] YLabels;
+        private double[] XLabels;
+
         private void CalcAxises()
         {
+            if (LineOption.XAxisType == UIAxisType.DateTime)
+                XScale = new UIDateScale();
+            else
+                XScale = new UILinearScale();
+
+            YScale = new UILinearScale();
+
             //Y轴
-            double min = double.MaxValue;
-            double max = double.MinValue;
-            foreach (var series in LineOption.Series.Values)
             {
-                if (series.DataCount > 0)
-                {
-                    min = Math.Min(min, series.YData.Min());
-                    max = Math.Max(max, series.YData.Max());
-                }
+                LineOption.GetAllDataYRange(out double min, out double max);
+                if (min > 0 && max > 0 && !LineOption.YAxis.Scale) min = 0;
+                if (min < 0 && max < 0 && !LineOption.YAxis.Scale) max = 0;
+                YScale.SetRange(min, max);
+                YScale.AxisChange();
+                if (!LineOption.YAxis.MaxAuto) YScale.Max = LineOption.YAxis.Max;
+                if (!LineOption.YAxis.MinAuto) YScale.Min = LineOption.YAxis.Min;
+                YLabels = YScale.CalcLabels();
             }
-
-            if (min > 0 && max > 0 && !LineOption.YAxis.Scale) min = 0;
-            if (min < 0 && max < 0 && !LineOption.YAxis.Scale) max = 0;
-            if (!LineOption.YAxis.MaxAuto) max = LineOption.YAxis.Max;
-            if (!LineOption.YAxis.MinAuto) min = LineOption.YAxis.Min;
-
-            if ((max - min).IsZero())
-            {
-                max = 100;
-                min = 0;
-            }
-
-            UIChartHelper.CalcDegreeScale(min, max, LineOption.YAxis.SplitNumber,
-                out int startY, out int endY, out double intervalY);
-
-            YAxisStart = startY;
-            YAxisEnd = endY;
-            YAxisInterval = intervalY;
 
             //X轴
-            min = double.MaxValue;
-            max = double.MinValue;
-            foreach (var series in LineOption.Series.Values)
             {
-                min = Math.Min(min, series.XData.Min());
-                max = Math.Max(max, series.XData.Max());
-            }
-
-            if (min > 0 && max > 0 && !LineOption.XAxis.Scale && LineOption.XAxisType == UIAxisType.Value) min = 0;
-            if (min < 0 && max < 0 && !LineOption.XAxis.Scale && LineOption.XAxisType == UIAxisType.Value) max = 0;
-            if (!LineOption.XAxis.MaxAuto) max = LineOption.XAxis.Max;
-            if (!LineOption.XAxis.MinAuto) min = LineOption.XAxis.Min;
-
-            if ((max - min).IsZero())
-            {
-                max = 100;
-                min = 0;
-            }
-
-            if (LineOption.XAxisType == UIAxisType.Value || LineOption.XAxisType == UIAxisType.Category)
-            {
-                UIChartHelper.CalcDegreeScale(min, max, LineOption.XAxis.SplitNumber,
-                   out int startX, out int endX, out double intervalX);
-                XAxisStart = startX;
-                XAxisEnd = endX;
-                XAxisInterval = intervalX;
-            }
-
-            if (LineOption.XAxisType == UIAxisType.Time)
-            {
-                UIChartHelper.CalcDateTimeDegreeScale(min, max, LineOption.XAxis.SplitNumber,
-                    out int startX, out int endX, out double intervalX);
-                XAxisStart = startX;
-                XAxisEnd = endX;
-                XAxisInterval = intervalX;
+                LineOption.GetAllDataXRange(out double min, out double max);
+                XScale.SetRange(min, max);
+                XScale.AxisChange();
+                if (!LineOption.XAxis.MaxAuto) XScale.Max = LineOption.XAxis.Max;
+                if (!LineOption.XAxis.MinAuto) XScale.Min = LineOption.XAxis.Min;
+                XLabels = XScale.CalcLabels();
             }
         }
 
@@ -192,55 +147,37 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin,
-                new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
-            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, LineOption.Grid.Top),
-                new Point(DrawOrigin.X + DrawSize.Width, LineOption.Grid.Top));
-
-            g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
+            g.DrawRectangle(ChartStyle.ForeColor, LineOption.Grid.Left, LineOption.Grid.Top, DrawSize.Width, DrawSize.Height);
+            if (XScale == null || YScale == null) return;
 
             //X Tick
             if (LineOption.XAxis.AxisTick.Show)
             {
-                float start = DrawOrigin.X;
-                float DrawBarWidth = DrawSize.Width * 1.0f / (XAxisEnd - XAxisStart);
-                for (int i = XAxisStart; i <= XAxisEnd; i++)
+                float[] xlabels = XScale.CalcXPixels(XLabels, DrawOrigin.X, DrawSize.Width);
+                for (int i = 0; i < xlabels.Length; i++)
                 {
-                    g.DrawLine(ChartStyle.ForeColor, start, DrawOrigin.Y, start, DrawOrigin.Y + LineOption.XAxis.AxisTick.Length);
+                    float x = xlabels[i];
+                    if (LineOption.XAxis.AxisLabel.Show)
+                    {
+                        string label;
+                        if (LineOption.XAxisType == UIAxisType.DateTime)
+                            label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
+                        else
+                            label = XLabels[i].ToString(XScale.Format);
 
-                    if (i != 0)
-                    {
-                        using (Pen pn = new Pen(ChartStyle.ForeColor))
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                            g.DrawLine(pn, start, DrawOrigin.Y, start, LineOption.Grid.Top);
-                        }
-                    }
-                    else
-                    {
-                        g.DrawLine(ChartStyle.ForeColor, start, DrawOrigin.Y, start, LineOption.Grid.Top);
+                        SizeF sf = g.MeasureString(label, SubFont);
+                        g.DrawString(label, SubFont, ChartStyle.ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + LineOption.XAxis.AxisTick.Length);
                     }
 
-                    start += DrawBarWidth;
-                }
-            }
+                    if (x.Equals(DrawOrigin.X)) continue;
+                    if (x.Equals(DrawOrigin.X + DrawSize.Width)) continue;
 
-            //X Label
-            if (LineOption.XAxis.AxisLabel.Show)
-            {
-                float start = DrawOrigin.X;
-                float DrawBarWidth = DrawSize.Width * 1.0f / (XAxisEnd - XAxisStart);
-                int idx = 0;
-                float wmax = 0;
-                for (int i = XAxisStart; i <= XAxisEnd; i++)
-                {
-                    string label = LineOption.XAxis.AxisLabel.GetLabel(i * XAxisInterval, idx, LineOption.XAxisType);
-                    SizeF sf = g.MeasureString(label, SubFont);
-                    wmax = Math.Max(wmax, sf.Width);
-                    g.DrawString(label, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f,
-                        DrawOrigin.Y + LineOption.XAxis.AxisTick.Length);
-                    start += DrawBarWidth;
+                    using (Pen pn = new Pen(ChartStyle.ForeColor))
+                    {
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        g.DrawLine(pn, x, DrawOrigin.Y, x, LineOption.Grid.Top);
+                    }
                 }
 
                 SizeF sfname = g.MeasureString(LineOption.XAxis.Name, SubFont);
@@ -252,64 +189,51 @@ namespace Sunny.UI
             //Y Tick
             if (LineOption.YAxis.AxisTick.Show)
             {
-                float start = DrawOrigin.Y;
-                float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
-                for (int i = YAxisStart; i <= YAxisEnd; i++)
-                {
-                    g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, DrawOrigin.X - LineOption.YAxis.AxisTick.Length, start);
-
-                    if (i != 0)
-                    {
-                        using (Pen pn = new Pen(ChartStyle.ForeColor))
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                            g.DrawLine(pn, DrawOrigin.X, start, Width - LineOption.Grid.Right, start);
-                        }
-                    }
-                    else
-                    {
-                        g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, Width - LineOption.Grid.Right, start);
-                    }
-
-                    start -= DrawBarHeight;
-                }
-            }
-
-            //Y Label
-            if (LineOption.YAxis.AxisLabel.Show)
-            {
-                float start = DrawOrigin.Y;
-                float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
-                int idx = 0;
+                float[] ylabels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
                 float wmax = 0;
-                for (int i = YAxisStart; i <= YAxisEnd; i++)
+                for (int i = 0; i < ylabels.Length; i++)
                 {
-                    string label = LineOption.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);
-                    SizeF sf = g.MeasureString(label, SubFont);
-                    wmax = Math.Max(wmax, sf.Width);
-                    g.DrawString(label, SubFont, ChartStyle.ForeColor, DrawOrigin.X - LineOption.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
-                    start -= DrawBarHeight;
+                    float y = ylabels[i];
+                    if (LineOption.YAxis.AxisLabel.Show)
+                    {
+                        string label = YLabels[i].ToString(YScale.Format);
+                        SizeF sf = g.MeasureString(label, SubFont);
+                        wmax = Math.Max(wmax, sf.Width);
+                        g.DrawString(label, SubFont, ChartStyle.ForeColor, DrawOrigin.X - LineOption.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
+                    }
+
+                    if (y.Equals(DrawOrigin.Y)) continue;
+                    if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
+
+                    using (Pen pn = new Pen(ChartStyle.ForeColor))
+                    {
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        g.DrawLine(pn, DrawOrigin.X, y, Width - LineOption.Grid.Right, y);
+                    }
                 }
+
 
                 SizeF sfname = g.MeasureString(LineOption.YAxis.Name, SubFont);
-                int x = (int)(DrawOrigin.X - LineOption.YAxis.AxisTick.Length - wmax - sfname.Height);
-                int y = (int)(LineOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(LineOption.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(x, y),
+                int xx = (int)(DrawOrigin.X - LineOption.YAxis.AxisTick.Length - wmax - sfname.Height);
+                int yy = (int)(LineOption.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
+                g.DrawString(LineOption.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(xx, yy),
                     new StringFormat() { Alignment = StringAlignment.Center }, 270);
             }
         }
 
         private void DrawSeries(Graphics g)
         {
-            int idx = 0;
-            foreach (var series in LineOption.Series.Values)
-            {
-                Color color = series.Color;
-                if (!series.CustomColor) color = ChartStyle.GetColor(idx);
+            if (YScale == null) return;
 
-                if (LineOption.GreaterWarningArea == null && LineOption.LessWarningArea == null)
+            int idx = 0;
+            if (LineOption.GreaterWarningArea == null && LineOption.LessWarningArea == null)
+            {
+                foreach (var series in LineOption.Series.Values)
                 {
+                    Color color = series.Color;
+                    if (!series.CustomColor) color = ChartStyle.GetColor(idx);
+
                     using (Pen pen = new Pen(color, series.Width))
                     {
                         g.SetHighQuality();
@@ -319,15 +243,22 @@ namespace Sunny.UI
                             g.DrawLines(pen, series.Points.ToArray());
                         g.SetDefaultQuality();
                     }
-                }
-                else
-                {
-                    Bitmap bmp = new Bitmap(Width, Height);
-                    Bitmap bmpGreater;
-                    Bitmap bmpLess;
 
-                    float wTop = 0;
-                    float wBottom = Height;
+                    idx++;
+                }
+            }
+            else
+            {
+                Bitmap bmp = new Bitmap(Width, Height);
+                Bitmap bmpGreater = new Bitmap(Width, Height);
+                Bitmap bmpLess = new Bitmap(Width, Height);
+                float wTop = 0;
+                float wBottom = Height;
+
+                foreach (var series in LineOption.Series.Values)
+                {
+                    Color color = series.Color;
+                    if (!series.CustomColor) color = ChartStyle.GetColor(idx);
 
                     using (Pen pen = new Pen(color, series.Width))
                     {
@@ -343,9 +274,7 @@ namespace Sunny.UI
                     if (LineOption.GreaterWarningArea != null)
                     {
                         using (Pen pen = new Pen(LineOption.GreaterWarningArea.Color, series.Width))
-                        using (bmpGreater = new Bitmap(Width, Height))
                         {
-                            bmpGreater = new Bitmap(Width, Height);
                             Graphics graphics = bmpGreater.Graphics();
                             graphics.SetHighQuality();
                             if (series.Smooth)
@@ -353,18 +282,12 @@ namespace Sunny.UI
                             else
                                 graphics.DrawLines(pen, series.Points.ToArray());
                             graphics.SetDefaultQuality();
-
-                            wTop = (float)((LineOption.GreaterWarningArea.Value - YAxisStart * YAxisInterval) * 1.0f * DrawSize.Height / YAxisInterval / (YAxisEnd - YAxisStart));
-                            wTop = DrawOrigin.Y - wTop;
-                            g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
-                                new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
                         }
                     }
 
                     if (LineOption.LessWarningArea != null)
                     {
                         using (Pen pen = new Pen(LineOption.LessWarningArea.Color, series.Width))
-                        using (bmpLess = new Bitmap(Width, Height))
                         {
                             Graphics graphics = bmpLess.Graphics();
                             graphics.SetHighQuality();
@@ -373,18 +296,41 @@ namespace Sunny.UI
                             else
                                 graphics.DrawLines(pen, series.Points.ToArray());
                             graphics.SetDefaultQuality();
-
-                            wBottom = (float)((LineOption.LessWarningArea.Value - YAxisStart * YAxisInterval) * 1.0f * DrawSize.Height / YAxisInterval / (YAxisEnd - YAxisStart));
-                            wBottom = DrawOrigin.Y - wBottom;
-                            g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
-                                new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
                         }
                     }
 
-                    g.DrawImage(bmp, new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop),
-                        new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop), GraphicsUnit.Pixel);
-                    bmp.Dispose();
+                    idx++;
                 }
+
+                if (LineOption.GreaterWarningArea != null)
+                {
+                    wTop = YScale.CalcYPixel(LineOption.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
+                    wTop = DrawOrigin.Y - wTop;
+                    g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
+                        new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
+                }
+
+                if (LineOption.LessWarningArea != null)
+                {
+                    wBottom = YScale.CalcYPixel(LineOption.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
+                    wBottom = DrawOrigin.Y - wBottom;
+                    g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
+                        new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
+                }
+
+                g.DrawImage(bmp, new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop),
+                    new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop), GraphicsUnit.Pixel);
+
+                bmpGreater.Dispose();
+                bmpLess.Dispose();
+                bmp.Dispose();
+            }
+
+            idx = 0;
+            foreach (var series in LineOption.Series.Values)
+            {
+                Color color = series.Color;
+                if (!series.CustomColor) color = ChartStyle.GetColor(idx);
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {
@@ -456,11 +402,11 @@ namespace Sunny.UI
 
         private void DrawAxisScales(Graphics g)
         {
+            if (YScale == null) return;
+
             foreach (var line in LineOption.YAxisScaleLines)
             {
-                double ymin = YAxisStart * YAxisInterval;
-                double ymax = YAxisEnd * YAxisInterval;
-                float pos = (float)((line.Value - ymin) * (Height - LineOption.Grid.Top - LineOption.Grid.Bottom) / (ymax - ymin));
+                float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
                 pos = (Height - LineOption.Grid.Bottom - pos);
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {

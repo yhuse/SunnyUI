@@ -165,7 +165,7 @@ namespace Sunny.UI
             {
                 case UIAxisType.Value:
                     return Formatter != null ? Formatter?.Invoke(value, index) : value.ToString("F" + DecimalCount);
-                case UIAxisType.Time:
+                case UIAxisType.DateTime:
                     DateTimeInt64 dt = new DateTimeInt64((long)value);
                     return Formatter != null ? Formatter?.Invoke(dt, index) : (DateTimeFormat.IsNullOrEmpty() ? dt.ToString() : dt.ToString(DateTimeFormat));
                 case UIAxisType.Category:

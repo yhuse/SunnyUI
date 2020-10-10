@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace Sunny.UI
 {
@@ -157,6 +158,61 @@ namespace Sunny.UI
                 XAxis.Data.Add(label);
             }
         }
+
+        public int AllDataCount()
+        {
+            int cnt = 0;
+            foreach (var series in Series.Values)
+            {
+                cnt += series.DataCount;
+            }
+
+            return cnt;
+        }
+
+        public void GetAllDataYRange(out double min, out double max)
+        {
+            if (AllDataCount() == 0)
+            {
+                min = 0;
+                max = 1;
+            }
+            else
+            {
+                min = double.MaxValue;
+                max = double.MinValue;
+                foreach (var series in Series.Values)
+                {
+                    if (series.DataCount > 0)
+                    {
+                        min = Math.Min(min, series.YData.Min());
+                        max = Math.Max(max, series.YData.Max());
+                    }
+                }
+            }
+        }
+
+        public void GetAllDataXRange(out double min, out double max)
+        {
+            if (AllDataCount() == 0)
+            {
+                min = 0;
+                max = 1;
+            }
+            else
+            {
+                min = double.MaxValue;
+                max = double.MinValue;
+                foreach (var series in Series.Values)
+                {
+                    if (series.DataCount > 0)
+                    {
+                        min = Math.Min(min, series.XData.Min());
+                        max = Math.Max(max, series.XData.Max());
+                    }
+                }
+            }
+        }
     }
 
     public class UILineSeries
@@ -237,6 +293,16 @@ namespace Sunny.UI
             Points.Add(point);
             PointsX.Add(point.X);
             PointsY.Add(point.Y);
+        }
+
+        public void AddPoints(float[] x, float[] y)
+        {
+            if (x.Length != y.Length) return;
+            if (x.Length == 0) return;
+            for (int i = 0; i < x.Length; i++)
+            {
+                AddPoint(new PointF(x[i], y[i]));
+            }
         }
 
         public void Add(double x, double y)

@@ -73,7 +73,7 @@ namespace Sunny.UI
                 min = 0;
             }
 
-            UIChartHelper.CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
+            CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 
             YAxisStart = start;
