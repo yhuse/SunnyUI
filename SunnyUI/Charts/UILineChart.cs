@@ -66,9 +66,9 @@ namespace Sunny.UI
                 if (min > 0 && max > 0 && !LineOption.YAxis.Scale) min = 0;
                 if (min < 0 && max < 0 && !LineOption.YAxis.Scale) max = 0;
                 YScale.SetRange(min, max);
-                YScale.AxisChange();
                 if (!LineOption.YAxis.MaxAuto) YScale.Max = LineOption.YAxis.Max;
                 if (!LineOption.YAxis.MinAuto) YScale.Min = LineOption.YAxis.Min;
+                YScale.AxisChange();
                 YLabels = YScale.CalcLabels();
             }
 
@@ -76,9 +76,9 @@ namespace Sunny.UI
             {
                 LineOption.GetAllDataXRange(out double min, out double max);
                 XScale.SetRange(min, max);
-                XScale.AxisChange();
                 if (!LineOption.XAxis.MaxAuto) XScale.Max = LineOption.XAxis.Max;
                 if (!LineOption.XAxis.MinAuto) XScale.Min = LineOption.XAxis.Min;
+                XScale.AxisChange();
                 XLabels = XScale.CalcLabels();
             }
         }
