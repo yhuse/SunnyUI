@@ -213,6 +213,30 @@ namespace Sunny.UI
             }
         }
 
+        private void DrawSeries(Graphics g, Color color, UILineSeries series)
+        {
+            if (series.Points.Count == 0)
+            {
+                return;
+            }
+
+            if (series.Points.Count == 1 && series.Symbol == UILinePointSymbol.None)
+            {
+                g.FillEllipse(color, series.Points[0].X - 2, series.Points[0].Y - 2, 4, 4);
+                return;
+            }
+
+            using (Pen pen = new Pen(color, series.Width))
+            {
+                g.SetHighQuality();
+                if (series.Smooth)
+                    g.DrawCurve(pen, series.Points.ToArray());
+                else
+                    g.DrawLines(pen, series.Points.ToArray());
+                g.SetDefaultQuality();
+            }
+        }
+
         private void DrawSeries(Graphics g)
         {
             if (YScale == null) return;
@@ -224,17 +248,7 @@ namespace Sunny.UI
                 {
                     Color color = series.Color;
                     if (!series.CustomColor) color = ChartStyle.GetColor(idx);
-
-                    using (Pen pen = new Pen(color, series.Width))
-                    {
-                        g.SetHighQuality();
-                        if (series.Smooth)
-                            g.DrawCurve(pen, series.Points.ToArray());
-                        else
-                            g.DrawLines(pen, series.Points.ToArray());
-                        g.SetDefaultQuality();
-                    }
-
+                    DrawSeries(g, color, series);
                     idx++;
                 }
             }
@@ -251,42 +265,24 @@ namespace Sunny.UI
                     Color color = series.Color;
                     if (!series.CustomColor) color = ChartStyle.GetColor(idx);
 
-                    using (Pen pen = new Pen(color, series.Width))
+                    using (Graphics graphics = bmp.Graphics())
                     {
-                        Graphics graphics = bmp.Graphics();
-                        graphics.SetHighQuality();
-                        if (series.Smooth)
-                            graphics.DrawCurve(pen, series.Points.ToArray());
-                        else
-                            graphics.DrawLines(pen, series.Points.ToArray());
-                        graphics.SetDefaultQuality();
+                        DrawSeries(graphics, color, series);
                     }
 
                     if (LineOption.GreaterWarningArea != null)
                     {
-                        using (Pen pen = new Pen(LineOption.GreaterWarningArea.Color, series.Width))
+                        using (Graphics graphics = bmpGreater.Graphics())
                         {
-                            Graphics graphics = bmpGreater.Graphics();
-                            graphics.SetHighQuality();
-                            if (series.Smooth)
-                                graphics.DrawCurve(pen, series.Points.ToArray());
-                            else
-                                graphics.DrawLines(pen, series.Points.ToArray());
-                            graphics.SetDefaultQuality();
+                            DrawSeries(graphics, LineOption.GreaterWarningArea.Color, series);
                         }
                     }
 
                     if (LineOption.LessWarningArea != null)
                     {
-                        using (Pen pen = new Pen(LineOption.LessWarningArea.Color, series.Width))
+                        using (Graphics graphics = bmpLess.Graphics())
                         {
-                            Graphics graphics = bmpLess.Graphics();
-                            graphics.SetHighQuality();
-                            if (series.Smooth)
-                                graphics.DrawCurve(pen, series.Points.ToArray());
-                            else
-                                graphics.DrawLines(pen, series.Points.ToArray());
-                            graphics.SetDefaultQuality();
+                            DrawSeries(graphics, LineOption.LessWarningArea.Color, series);
                         }
                     }
 
@@ -296,7 +292,6 @@ namespace Sunny.UI
                 if (LineOption.GreaterWarningArea != null)
                 {
                     wTop = YScale.CalcYPixel(LineOption.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    wTop = DrawOrigin.Y - wTop;
                     g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
                         new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
                 }
@@ -304,7 +299,6 @@ namespace Sunny.UI
                 if (LineOption.LessWarningArea != null)
                 {
                     wBottom = YScale.CalcYPixel(LineOption.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    wBottom = DrawOrigin.Y - wBottom;
                     g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
                         new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
                 }
@@ -398,7 +392,6 @@ namespace Sunny.UI
             foreach (var line in LineOption.YAxisScaleLines)
             {
                 float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
-                pos = (Height - LineOption.Grid.Bottom - pos);
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - LineOption.Grid.Right, pos);
@@ -426,6 +419,7 @@ namespace Sunny.UI
             selectPointsTemp.Clear();
             foreach (var series in LineOption.Series.Values)
             {
+                if (series.DataCount == 0) continue;
                 if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
                 {
                     UILineSelectPoint point = new UILineSelectPoint();

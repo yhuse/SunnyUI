@@ -23,24 +23,24 @@ namespace Sunny.UI.Demo.Charts
 
             var series = option.AddSeries(new UILineSeries("Line1"));
             DateTime dt = new DateTime(2020, 10, 4);
-            series.Add(dt.AddHours(0), 1.2);
-            series.Add(dt.AddHours(1), 2.2);
-            series.Add(dt.AddHours(2), 3.2);
-            series.Add(dt.AddHours(3), 4.2);
-            series.Add(dt.AddHours(4), 3.2);
-            series.Add(dt.AddHours(5), 2.2);
+            // series.Add(dt.AddHours(0), 1.2);
+            // series.Add(dt.AddHours(1), 2.2);
+            // series.Add(dt.AddHours(2), 3.2);
+            // series.Add(dt.AddHours(3), 4.2);
+            // series.Add(dt.AddHours(4), 3.2);
+            // series.Add(dt.AddHours(5), 2.2);
             series.Symbol = UILinePointSymbol.Square;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
 
             series = option.AddSeries(new UILineSeries("Line2", Color.Lime));
-            series.Add(dt.AddHours(3), 3.3);
-            series.Add(dt.AddHours(4), 2.3);
-            series.Add(dt.AddHours(5), 2.3);
-            series.Add(dt.AddHours(6), 1.3);
-            series.Add(dt.AddHours(7), 2.3);
-            series.Add(dt.AddHours(8), 4.3);
+            // series.Add(dt.AddHours(3), 3.3);
+            // series.Add(dt.AddHours(4), 2.3);
+            // series.Add(dt.AddHours(5), 2.3);
+            // series.Add(dt.AddHours(6), 1.3);
+            // series.Add(dt.AddHours(7), 2.3);
+            // series.Add(dt.AddHours(8), 4.3);
             series.Symbol = UILinePointSymbol.Star;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;

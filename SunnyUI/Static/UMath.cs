@@ -68,6 +68,7 @@ namespace Sunny.UI
         /// <returns>最近值序号</returns>
         public static int BinarySearchNearIndex<T>(this IList<T> list, T target) where T : IComparable
         {
+            if (list.Count == 0) return -1;
             int i = 0, j = list.Count - 1;
 
             if (target.CompareTo(list[0]) == -1) return 0;
@@ -166,7 +167,7 @@ namespace Sunny.UI
 
         public static T CheckLowerLimit<T>(this T obj, T lowerLimit) where T : IComparable
         {
-            return  obj.CompareTo(lowerLimit) == -1 ? lowerLimit : obj;
+            return obj.CompareTo(lowerLimit) == -1 ? lowerLimit : obj;
         }
 
         public static T CheckUpperLimit<T>(this T obj, T upperLimit) where T : IComparable

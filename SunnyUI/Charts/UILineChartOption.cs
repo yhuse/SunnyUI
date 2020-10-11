@@ -267,6 +267,11 @@ namespace Sunny.UI
 
         public bool GetNearestPoint(Point p, int offset, out double x, out double y, out int index)
         {
+            x = 0;
+            y = 0;
+            index = -1;
+            if (PointsX.Count == 0) return false;
+
             index = PointsX.BinarySearchNearIndex(p.X);
             if (p.X >= PointsX[index] - offset && p.X <= PointsX[index] + offset &&
                 p.Y >= PointsY[index] - offset && p.Y <= PointsY[index] + offset)
@@ -276,8 +281,6 @@ namespace Sunny.UI
                 return true;
             }
 
-            x = 0;
-            y = 0;
             return false;
         }
 
