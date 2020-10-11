@@ -81,7 +81,6 @@ namespace Sunny.UI.Demo.Charts
             foreach (var point in points)
             {
                 sb.Append(point.Name + ", " + point.Index + ", " + point.X + ", " + point.Y);
-                sb.Append('\n');
             }
 
             Console.WriteLine(sb.ToString());

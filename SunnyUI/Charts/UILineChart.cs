@@ -103,28 +103,18 @@ namespace Sunny.UI
             option.Title.SubText = "LineChart";
 
             var series = option.AddSeries(new UILineSeries("Line1"));
-            series.Add(0, 1.2);
-            series.Add(1.1, 2.2);
-            series.Add(2.2, 3.2);
-            series.Add(3.3, 4.2);
-            series.Add(4.4, 3.2);
-            series.Add(5.5, 2.2);
-            series.Symbol = UILinePointSymbol.Square;
-            series.SymbolSize = 4;
-            series.SymbolLineWidth = 1;
-            series.SymbolColor = Color.Red;
+            for (int i = 0; i < 200; i++)
+            {
+                series.Add(i, 6 * Math.Sin(i * 3 * Math.PI / 180));
+            }
 
             series = option.AddSeries(new UILineSeries("Line2"));
-            series.Add(0.3, 3.3);
-            series.Add(1.3, 2.3);
-            series.Add(2.3, 2.3);
-            series.Add(3.3, 1.3);
-            series.Add(4.3, 2.3);
-            series.Add(5.3, 4.3);
-            series.Symbol = UILinePointSymbol.Plus;
-            series.SymbolSize = 4;
-            series.SymbolLineWidth = 1;
-            series.SymbolColor = Color.Red;
+            for (int i = 0; i < 150; i++)
+            {
+                series.Add(i, 6 * Math.Cos(i * 5 * Math.PI / 180));
+            }
+
+            series.Smooth = true;
 
             option.XAxis.Name = "数值";
             option.YAxis.Name = "数值";
@@ -439,6 +429,7 @@ namespace Sunny.UI
                 if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
                 {
                     UILineSelectPoint point = new UILineSelectPoint();
+                    point.SeriesIndex = series.Index;
                     point.Name = series.Name;
                     point.Index = index;
                     point.X = x;
@@ -477,7 +468,9 @@ namespace Sunny.UI
                 selectPoints.Clear();
                 StringBuilder sb = new StringBuilder();
                 int idx = 0;
-                foreach (var point in selectPointsTemp)
+                Dictionary<int, UILineSelectPoint> dictionary = selectPointsTemp.ToDictionary(p => p.SeriesIndex);
+                List<UILineSelectPoint> points = dictionary.SortedValues();
+                foreach (var point in points)
                 {
                     selectPoints.Add(point);
 

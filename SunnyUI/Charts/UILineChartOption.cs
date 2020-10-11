@@ -37,6 +37,7 @@ namespace Sunny.UI
         public UILineSeries AddSeries(UILineSeries series)
         {
             if (series.Name.IsNullOrEmpty()) return null;
+            series.Index = Series.Count;
             Series.TryAdd(series.Name, series);
             return series;
         }
@@ -45,7 +46,7 @@ namespace Sunny.UI
         {
             if (name.IsNullOrEmpty()) return null;
             UILineSeries series = new UILineSeries(name);
-            Series.TryAdd(series.Name, series);
+            AddSeries(series);
             return series;
         }
 
@@ -345,6 +346,7 @@ namespace Sunny.UI
 
     public struct UILineSelectPoint
     {
+        public int SeriesIndex { get; set; }
         public string Name { get; set; }
 
         public int Index { get; set; }
