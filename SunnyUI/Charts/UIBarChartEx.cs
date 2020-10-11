@@ -481,7 +481,7 @@ namespace Sunny.UI
         {
             try
             {
-                if (BarOption.ToolTip == null) return;
+                if (!BarOption.ToolTip.Visible) return;
                 if (e.Location.X > BarOption.Grid.Left &&
                     e.Location.X < Width - BarOption.Grid.Right &&
                     e.Location.Y > BarOption.Grid.Top &&

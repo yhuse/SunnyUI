@@ -30,6 +30,15 @@ namespace Sunny.UI
         public UILegend Legend;
     }
 
+    public class UIChartToolTip
+    {
+        public bool Visible { get; set; }
+
+        public string Formatter { get; set; }
+
+        public string ValueFormat { get; set; }
+    }
+
     public class UIScaleLine
     {
         public double Value { get; set; }

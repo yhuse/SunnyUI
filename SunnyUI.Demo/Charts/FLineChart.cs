@@ -14,7 +14,7 @@ namespace Sunny.UI.Demo.Charts
         private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
             UILineOption option = new UILineOption();
-            option.ToolTip = new UIBarToolTip();
+            option.ToolTip.Visible = true;
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
             option.Title.SubText = "LineChart";

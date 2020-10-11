@@ -12,7 +12,7 @@ namespace Sunny.UI
 
         public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
-        public UIBarToolTip ToolTip { get; set; }
+        public UILineToolTip ToolTip { get; set; } = new UILineToolTip();
 
         public void Dispose()
         {
@@ -215,8 +215,14 @@ namespace Sunny.UI
         }
     }
 
+    public class UILineToolTip : UIChartToolTip
+    {
+
+    }
+
     public class UILineSeries
     {
+        public int Index { get; set; }
         public string Name { get; private set; }
 
         public float Width { get; set; } = 2;

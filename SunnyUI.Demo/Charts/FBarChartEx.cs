@@ -73,7 +73,7 @@ namespace Sunny.UI.Demo
             option.XAxis.Data.Add("Thu");
             option.XAxis.Data.Add("Fri");
 
-            option.ToolTip = new UIBarToolTip();
+            option.ToolTip.Visible = true;
             option.YAxis.Scale = true;
 
             option.XAxis.Name = "日期";

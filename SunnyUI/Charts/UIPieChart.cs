@@ -243,7 +243,11 @@ namespace Sunny.UI
                             tip.Top = e.Location.Y + 20;
                         }
 
-                        if (!tip.Visible) tip.Visible = angle.Text.IsValid();
+                        if (PieOption.ToolTip.Visible)
+                        {
+                            if (!tip.Visible) tip.Visible = angle.Text.IsValid();
+                        }
+
                         return;
                     }
                 }

@@ -495,7 +495,7 @@ namespace Sunny.UI
                     idx++;
                 }
 
-                if (LineOption.ToolTip != null)
+                if (LineOption.ToolTip.Visible)
                 {
                     if (sb.ToString().IsNullOrEmpty())
                     {

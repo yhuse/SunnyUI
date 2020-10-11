@@ -29,7 +29,7 @@ namespace Sunny.UI
     {
         public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Category);
 
-        public UIBarToolTip ToolTip { get; set; }
+        public UIBarToolTip ToolTip { get; set; } = new UIBarToolTip();
 
         public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
@@ -69,13 +69,15 @@ namespace Sunny.UI
         public int SeriesCount => Series.Count;
     }
 
-    public class UIBarToolTip
+    public class UIBarToolTip : UIChartToolTip
     {
-        public string Formatter { get; set; } = "{{b}} : {{c}}";
-
-        public string ValueFormat { get; set; } = "F0";
-
         public UIAxisPointer AxisPointer = new UIAxisPointer();
+
+        public UIBarToolTip()
+        {
+            Formatter = "{{b}} : {{c}}";
+            ValueFormat = "F0";
+        }
     }
 
     public class UIAxisPointer
