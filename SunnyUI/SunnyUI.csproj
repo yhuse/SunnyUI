@@ -54,6 +54,9 @@
     <Compile Include="Charts\UIBarChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Charts\UIBarChartEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Charts\UIBarChartOption.cs" />
     <Compile Include="Charts\UIChart.cs">
       <SubType>Component</SubType>
@@ -62,8 +65,13 @@
     <Compile Include="Charts\UIDoughnutChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Charts\UILineChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Charts\UILineChartOption.cs" />
     <Compile Include="Charts\UIOption.cs" />
     <Compile Include="Charts\UIPieChartOption.cs" />
+    <Compile Include="Charts\UIScale.cs" />
     <Compile Include="Controls\Color\UIColorBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -112,6 +120,9 @@
     </Compile>
     <Compile Include="Charts\UIPieChart.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UIFlowLayoutPanel.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UIHorScrollBar.cs">
       <SubType>Component</SubType>
@@ -410,6 +421,7 @@
     </Compile>
     <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
     <Compile Include="Units\UConcurrentGroupDictionary.cs" />
+    <Compile Include="Units\UDateTimeInt64.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\USuspendCtrlAltDel.cs" />
     <Compile Include="Units\UThunder.cs" />
@@ -496,26 +508,11 @@
     <Compile Include="Units\UXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DropItem\UIDateTimeItem.resx">
-      <DependentUpon>UIDateTimeItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIEditForm.resx">
-      <DependentUpon>UIEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIForm.resx">
-      <DependentUpon>UIForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UILoginForm.resx">
-      <DependentUpon>UILoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Font\UIFontImages.resx">
       <DependentUpon>UIFontImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIStatusForm.resx">
-      <DependentUpon>UIStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

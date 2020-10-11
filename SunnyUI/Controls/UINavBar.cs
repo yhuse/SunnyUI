@@ -41,11 +41,10 @@ namespace Sunny.UI
 
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.ResizeRedraw, true);
-            SetStyle(ControlStyles.Selectable, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
             DoubleBuffered = true;
             UpdateStyles();
             Font = UIFontColor.Font;
@@ -55,6 +54,12 @@ namespace Sunny.UI
             Width = 500;
             Height = 110;
             Version = UIGlobal.Version;
+        }
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (NavBarMenu != null) NavBarMenu.Font = Font;
         }
 
         [DefaultValue(null)]
@@ -158,8 +163,26 @@ namespace Sunny.UI
             foreColor = uiColor.UnSelectedForeColor;
             backColor = uiColor.BackColor;
             menuHoverColor = uiColor.HoverColor;
+            menuSelectedColor = uiColor.SelectedColor;
             Invalidate();
         }
+
+        private Color menuSelectedColor = Color.FromArgb(36, 36, 36);
+
+        [DefaultValue(typeof(Color), "36, 36, 36")]
+        [Description("菜单栏选中背景颜色"), Category("SunnyUI")]
+        public Color MenuSelectedColor
+        {
+            get => menuSelectedColor;
+            set
+            {
+                menuSelectedColor = value;
+                _menuStyle = UIMenuStyle.Custom;
+            }
+        }
+
+        [Description("选中使用菜单栏选中背景颜色MenuSelectedColor，不选用则使用背景色BackColor"), Category("SunnyUI"), DefaultValue(false)]
+        public bool MenuSelectedColorUsed { get; set; }
 
         private Color menuHoverColor = Color.FromArgb(76, 76, 76);
 
@@ -344,6 +367,11 @@ namespace Sunny.UI
 
                 if (i == SelectedIndex)
                 {
+                    if (MenuSelectedColorUsed)
+                    {
+                        e.Graphics.FillRectangle(MenuSelectedColor, rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height);
+                    }
+
                     if (!NavBarMenu.Visible)
                     {
                         e.Graphics.FillRectangle(SelectedHighColor, rect.X, Height - 4, rect.Width, 4);

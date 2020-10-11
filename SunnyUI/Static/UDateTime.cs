@@ -249,22 +249,22 @@ namespace Sunny.UI
         /// <returns>浮点</returns>
         public static double ToDouble(this DateTime datetime)
         {
-            return datetime.Subtract(DateTimeBegin).TotalDays;
+            return datetime.Subtract(Jan1st1970).TotalDays;
         }
 
         /// <summary>
-        /// 起始日期，2000-01-01 00：00：00起始
+        /// 起始日期，UTC时间，1970-01-01 00：00：00起始
         /// </summary>
-        public static DateTime DateTimeBegin = new DateTime(2000, 1, 1, 0, 0, 0);
+        public static DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
-        /// 浮点转时间日期，以2000-01-01 00：00：00起始
+        /// 浮点转时间日期，以UTC时间，1970-01-01 00：00：00起始
         /// </summary>
         /// <param name="iDays">浮点</param>
         /// <returns>日期</returns>
         public static DateTime ToDateTime(this double iDays)
         {
-            return DateTimeBegin.AddDays(iDays);
+            return TimeZone.CurrentTimeZone.ToLocalTime(Jan1st1970.AddDays(iDays));
         }
 
         /// <summary>
@@ -429,8 +429,6 @@ namespace Sunny.UI
             return (time.TimeOfDay == timeToCompare.TimeOfDay);
         }
 
-        private static readonly DateTime Date1970 = new DateTime(1970, 1, 1);
-
         /// <summary>
         /// Get seconds of UNIX area. This is the milliseconds since 1/1/1970
         /// </summary>
@@ -441,7 +439,7 @@ namespace Sunny.UI
         /// </remarks>
         public static long SecondsSince1970(this DateTime datetime)
         {
-            TimeSpan ts = datetime.Subtract(Date1970);
+            TimeSpan ts = datetime.ToUniversalTime().Subtract(Jan1st1970);
             return (long)ts.TotalSeconds;
         }
 

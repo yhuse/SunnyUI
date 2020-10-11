@@ -285,10 +285,10 @@ namespace Sunny.UI
             if (pageIndex < 0) return;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageIndex == pageIndex && item.Key!=null)
+                if (item.Value.PageIndex == pageIndex && item.Key != null)
                 {
-                   if (tabControl.TabPages.Contains(item.Key))
-                    tabControl.SelectTab(item.Key);
+                    if (tabControl.TabPages.Contains(item.Key))
+                        tabControl.SelectTab(item.Key);
                 }
             }
         }

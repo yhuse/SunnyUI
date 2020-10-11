@@ -86,7 +86,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     字体颜色
+        /// 字体颜色
         /// </summary>
         [Description("字体颜色")]
         [Category("SunnyUI")]
@@ -109,7 +109,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     填充颜色，当值为背景色或透明色或空值则不填充
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色")]
         [Category("SunnyUI")]
@@ -141,10 +141,10 @@ namespace Sunny.UI
         public void SetOption(UIOption option)
         {
             Option = option;
-            CalcData(option);
+            CalcData();
         }
 
-        protected virtual void CalcData(UIOption o)
+        protected virtual void CalcData()
         {
         }
 
@@ -158,7 +158,7 @@ namespace Sunny.UI
                 if (emptyOption == null)
                 {
                     CreateEmptyOption();
-                    CalcData(emptyOption);
+                    CalcData();
                 }
 
                 return emptyOption;
@@ -307,8 +307,8 @@ namespace Sunny.UI
                 if (legend.Top == UITopAlignment.Bottom) top = Height - totalHeight - TextInterval;
             }
 
-            float startleft = left;
-            float starttop = top;
+            float startLeft = left;
+            float startTop = top;
             for (int i = 0; i < legend.DataCount; i++)
             {
                 var data = legend.Data[i];
@@ -320,17 +320,17 @@ namespace Sunny.UI
 
                 if (legend.Orient == UIOrient.Horizontal)
                 {
-                    g.FillRoundRectangle(color, (int)startleft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, color, startleft + 20, top);
-                    startleft += 22;
-                    startleft += sf.Width;
+                    g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, color, startLeft + 20, top);
+                    startLeft += 22;
+                    startLeft += sf.Width;
                 }
 
                 if (legend.Orient == UIOrient.Vertical)
                 {
-                    g.FillRoundRectangle(color, (int)left, (int)starttop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, color, left + 20, starttop);
-                    starttop += oneHeight;
+                    g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
+                    g.DrawString(data, LegendFont, color, left + 20, startTop);
+                    startTop += oneHeight;
                 }
             }
         }

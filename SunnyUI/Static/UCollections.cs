@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Sunny.UI
 {
@@ -30,6 +31,80 @@ namespace Sunny.UI
     /// </summary>
     public static class CollectionsEx
     {
+        /// <summary>
+        /// 键排序列表
+        /// </summary>
+        /// <typeparam name="Key">键</typeparam>
+        /// <typeparam name="Value">值</typeparam>
+        /// <param name="dictionary">字典</param>
+        /// <returns>键排序列表</returns>
+        public static List<Key> SortedKeys<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary)
+        {
+            if (dictionary == null) return null;
+
+            List<Key> keys = dictionary.Keys.ToList();
+            keys.Sort();
+            return keys;
+        }
+
+        /// <summary>
+        /// 键排序列表
+        /// </summary>
+        /// <typeparam name="Key">键</typeparam>
+        /// <typeparam name="Value">值</typeparam>
+        /// <param name="dictionary">字典</param>
+        /// <returns>键排序列表</returns>
+        public static List<Key> SortedKeys<Key, Value>(this Dictionary<Key, Value> dictionary)
+        {
+            if (dictionary == null) return null;
+
+            List<Key> keys = dictionary.Keys.ToList();
+            keys.Sort();
+            return keys;
+        }
+
+        /// <summary>
+        /// 键排序后，取值排序列表
+        /// </summary>
+        /// <typeparam name="Key">键</typeparam>
+        /// <typeparam name="Value">值</typeparam>
+        /// <param name="dictionary">字典</param>
+        /// <returns>值排序列表</returns>
+        public static List<Value> SortedValues<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary)
+        {
+            if (dictionary == null) return null;
+
+            List<Key> keys = dictionary.SortedKeys();
+            List<Value> values = new List<Value>();
+            foreach (var key in keys)
+            {
+                values.Add(dictionary[key]);
+            }
+
+            return values;
+        }
+
+        /// <summary>
+        /// 键排序后，取值排序列表
+        /// </summary>
+        /// <typeparam name="Key">键</typeparam>
+        /// <typeparam name="Value">值</typeparam>
+        /// <param name="dictionary">字典</param>
+        /// <returns>值排序列表</returns>
+        public static List<Value> SortedValues<Key, Value>(this Dictionary<Key, Value> dictionary)
+        {
+            if (dictionary == null) return null;
+
+            List<Key> keys = dictionary.SortedKeys();
+            List<Value> values = new List<Value>();
+            foreach (var key in keys)
+            {
+                values.Add(dictionary[key]);
+            }
+
+            return values;
+        }
+
         /// <summary>
         /// 清除
         /// </summary>
@@ -51,7 +126,7 @@ namespace Sunny.UI
         /// <param name="value">值</param>
         /// <typeparam name="Key">键类型</typeparam>
         /// <typeparam name="Value">值类型</typeparam>
-        public static void AddOrUpdate<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary, Key key, Value value)
+        public static void TryAddOrUpdate<Key, Value>(this ConcurrentDictionary<Key, Value> dictionary, Key key, Value value)
         {
             if (dictionary.ContainsKey(key))
             {
@@ -71,7 +146,7 @@ namespace Sunny.UI
         /// <param name="value">值</param>
         /// <typeparam name="Key">键类型</typeparam>
         /// <typeparam name="Value">值类型</typeparam>
-        public static void AddOrUpdate<Key, Value>(this Dictionary<Key, Value> dictionary, Key key, Value value)
+        public static void TryAddOrUpdate<Key, Value>(this Dictionary<Key, Value> dictionary, Key key, Value value)
         {
             if (dictionary.ContainsKey(key))
             {

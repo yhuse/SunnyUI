@@ -93,6 +93,7 @@
             this.uiLight1.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLight1.Location = new System.Drawing.Point(30, 52);
+            this.uiLight1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight1.Name = "uiLight1";
             this.uiLight1.Radius = 35;
             this.uiLight1.Size = new System.Drawing.Size(35, 35);
@@ -115,6 +116,7 @@
             this.uiLight2.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLight2.Location = new System.Drawing.Point(114, 52);
+            this.uiLight2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight2.Name = "uiLight2";
             this.uiLight2.Radius = 35;
             this.uiLight2.Size = new System.Drawing.Size(35, 35);
@@ -127,6 +129,7 @@
             this.uiLight3.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLight3.Location = new System.Drawing.Point(156, 52);
+            this.uiLight3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight3.Name = "uiLight3";
             this.uiLight3.Radius = 35;
             this.uiLight3.Size = new System.Drawing.Size(35, 35);
@@ -159,6 +162,7 @@
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 298);
+            this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(119, 132);
             this.uiProgressIndicator1.TabIndex = 26;
@@ -180,6 +184,7 @@
             this.uiTrackBar1.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar1.Location = new System.Drawing.Point(381, 136);
+            this.uiTrackBar1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTrackBar1.Name = "uiTrackBar1";
             this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar1.TabIndex = 30;
@@ -205,6 +210,7 @@
             this.uiLight4.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLight4.Location = new System.Drawing.Point(72, 52);
+            this.uiLight4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight4.Name = "uiLight4";
             this.uiLight4.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiLight4.Radius = 35;
@@ -256,7 +262,6 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
-            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -278,6 +283,7 @@
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
             this.uiScrollingText1.Location = new System.Drawing.Point(381, 215);
+            this.uiScrollingText1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText1.Name = "uiScrollingText1";
             this.uiScrollingText1.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
             this.uiScrollingText1.Size = new System.Drawing.Size(319, 35);
@@ -292,6 +298,7 @@
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Location = new System.Drawing.Point(381, 256);
+            this.uiScrollingText2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText2.Name = "uiScrollingText2";
             this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 49;
@@ -369,7 +376,6 @@
             this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
-            this.uiToolTip1.ToolTipTitle = "ToolTip title";
             // 
             // FOther
             // 

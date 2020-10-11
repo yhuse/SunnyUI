@@ -34,51 +34,106 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public class UIBarChart : UIChart
     {
-        private bool NeedDraw;
+        protected bool NeedDraw;
 
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            CalcData(BarOption);
+            CalcData();
         }
 
-        protected override void CalcData(UIOption option)
+        /// <summary>
+        /// 计算刻度
+        /// 起始值必须小于结束值
+        /// </summary>
+        /// <param name="start">起始值</param>
+        /// <param name="end">结束值</param>
+        /// <param name="expect_num">期望刻度数量，实际数接近此数</param>
+        /// <param name="degree_start">刻度起始值，须乘以间隔使用</param>
+        /// <param name="degree_end">刻度结束值，须乘以间隔使用</param>
+        /// <param name="degree_gap">刻度间隔</param>
+        public void CalcDegreeScale(double start, double end, int expect_num,
+            out int degree_start, out int degree_end, out double degree_gap)
+        {
+            if (start >= end)
+            {
+                throw new Exception("起始值必须小于结束值");
+            }
+
+            double differ = end - start;
+            double differ_gap = differ / (expect_num - 1); //35, 4.6, 0.27
+
+            double exponent = Math.Log10(differ_gap) - 1; //0.54, -0.34, -1.57
+            int _exponent = (int)exponent; //0, 0=>-1, -1=>-2
+            if (exponent < 0 && Math.Abs(exponent) > 1e-8)
+            {
+                _exponent--;
+            }
+
+            int step = (int)(differ_gap / Math.Pow(10, _exponent)); //35, 46, 27
+            int[] fix_steps = new int[] { 10, 20, 25, 50, 100 };
+            int fix_step = 10; //25, 50, 25
+            for (int i = fix_steps.Length - 1; i >= 1; i--)
+            {
+                if (step > (fix_steps[i] + fix_steps[i - 1]) / 2)
+                {
+                    fix_step = fix_steps[i];
+                    break;
+                }
+            }
+
+            degree_gap = fix_step * Math.Pow(10, _exponent); //25, 5, 0.25
+
+            double start1 = start / degree_gap;
+            int start2 = (int)start1;
+            if (start1 < 0 && Math.Abs(start1 - start2) > 1e-8)
+            {
+                start2--;
+            }
+
+            degree_start = start2;
+
+            double end1 = end / degree_gap;
+            int end2 = (int)end1;
+            if (end1 >= 0 && Math.Abs(end1 - end2) > 1e-8)
+            {
+                end2++;
+            }
+
+            degree_end = end2;
+        }
+
+        protected override void CalcData()
         {
             Bars.Clear();
             NeedDraw = false;
-            UIBarOption o = (UIBarOption)option;
-            if (o == null || o.Series == null || o.SeriesCount == 0) return;
+            if (BarOption == null || BarOption.Series == null || BarOption.SeriesCount == 0) return;
 
             DrawOrigin = new Point(BarOption.Grid.Left, Height - BarOption.Grid.Bottom);
             DrawSize = new Size(Width - BarOption.Grid.Left - BarOption.Grid.Right,
                 Height - BarOption.Grid.Top - BarOption.Grid.Bottom);
 
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
-            if (o.XAxis.Data.Count == 0) return;
+            if (BarOption.XAxis.Data.Count == 0) return;
 
             NeedDraw = true;
-            DrawBarWidth = DrawSize.Width * 1.0f / o.XAxis.Data.Count;
+            DrawBarWidth = DrawSize.Width * 1.0f / BarOption.XAxis.Data.Count;
 
             double min = double.MaxValue;
             double max = double.MinValue;
-            foreach (var series in o.Series)
+            foreach (var series in BarOption.Series)
             {
-                min = Math.Min(min, series.Data.Min());
-                max = Math.Max(max, series.Data.Max());
+                if (series.Data.Count > 0)
+                {
+                    min = Math.Min(min, series.Data.Min());
+                    max = Math.Max(max, series.Data.Max());
+                }
             }
 
-            if (min > 0 && max > 0 && !o.YAxis.Scale)
-            {
-                min = 0;
-            }
-
-            if (min < 0 && max < 0 && !o.YAxis.Scale)
-            {
-                max = 0;
-            }
-
-            if (!o.YAxis.MaxAuto) max = o.YAxis.Max;
-            if (!o.YAxis.MinAuto) min = o.YAxis.Min;
+            if (min > 0 && max > 0 && !BarOption.YAxis.Scale) min = 0;
+            if (min < 0 && max < 0 && !BarOption.YAxis.Scale) max = 0;
+            if (!BarOption.YAxis.MaxAuto) max = BarOption.YAxis.Max;
+            if (!BarOption.YAxis.MinAuto) min = BarOption.YAxis.Min;
 
             if ((max - min).IsZero())
             {
@@ -86,20 +141,20 @@ namespace Sunny.UI
                 min = 0;
             }
 
-            UIChartHelper.CalcDegreeScale(min, max, o.YAxis.SplitNumber,
+            CalcDegreeScale(min, max, BarOption.YAxis.SplitNumber,
                 out int start, out int end, out double interval);
 
             YAxisStart = start;
             YAxisEnd = end;
             YAxisInterval = interval;
 
-            float x1 = DrawBarWidth / ((o.SeriesCount * 2) + o.SeriesCount + 1);
+            float x1 = DrawBarWidth / (BarOption.SeriesCount * 2 + BarOption.SeriesCount + 1);
             float x2 = x1 * 2;
 
-            for (int i = 0; i < o.SeriesCount; i++)
+            for (int i = 0; i < BarOption.SeriesCount; i++)
             {
                 float barX = DrawOrigin.X;
-                var series = o.Series[i];
+                var series = BarOption.Series[i];
                 Bars.TryAdd(i, new List<BarInfo>());
                 for (int j = 0; j < series.Data.Count; j++)
                 {
@@ -109,7 +164,7 @@ namespace Sunny.UI
 
                     float xx = barX + x1 * (i + 1) + x2 * i + x1;
                     float ww = Math.Min(x2, series.MaxWidth);
-                    xx = xx - ww / 2.0f;
+                    xx -= ww / 2.0f;
 
                     if (YAxisStart >= 0)
                     {
@@ -145,8 +200,8 @@ namespace Sunny.UI
                             if (k > 0) highV += (float)YAxisInterval;
                         }
 
-                        lowH.ConsoleWriteLine();
-                        highH.ConsoleWriteLine();
+                        // lowH.ConsoleWriteLine();
+                        // highH.ConsoleWriteLine();
 
                         if (series.Data[j] >= 0)
                         {
@@ -188,17 +243,17 @@ namespace Sunny.UI
             }
         }
 
-        private int selectIndex = -1;
-        private Point DrawOrigin;
-        private Size DrawSize;
-        private float DrawBarWidth;
-        private int YAxisStart;
-        private int YAxisEnd;
-        private double YAxisInterval;
-        private readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
+        protected int selectIndex = -1;
+        protected Point DrawOrigin;
+        protected Size DrawSize;
+        protected float DrawBarWidth;
+        protected int YAxisStart;
+        protected int YAxisEnd;
+        protected double YAxisInterval;
+        protected readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
 
         [DefaultValue(-1), Browsable(false)]
-        private int SelectIndex
+        protected int SelectIndex
         {
             get => selectIndex;
             set
@@ -219,7 +274,7 @@ namespace Sunny.UI
 
             try
             {
-                if (BarOption.ToolTip == null) return;
+                if (!BarOption.ToolTip.Visible) return;
                 if (e.Location.X > BarOption.Grid.Left && e.Location.X < Width - BarOption.Grid.Right
                                                        && e.Location.Y > BarOption.Grid.Top &&
                                                        e.Location.Y < Height - BarOption.Grid.Bottom)
@@ -258,7 +313,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        private UIBarOption BarOption
+        protected UIBarOption BarOption
         {
             get
             {
@@ -328,7 +383,7 @@ namespace Sunny.UI
             DrawAxisScales(g);
         }
 
-        private void DrawToolTip(Graphics g)
+        protected virtual void DrawToolTip(Graphics g)
         {
             if (selectIndex < 0) return;
             if (BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line)
@@ -344,7 +399,7 @@ namespace Sunny.UI
             }
         }
 
-        private void DrawAxis(Graphics g)
+        protected virtual void DrawAxis(Graphics g)
         {
             if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
             if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, BarOption.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, BarOption.Grid.Top));
@@ -482,7 +537,7 @@ namespace Sunny.UI
             }
         }
 
-        private void DrawSeries(Graphics g, List<UIBarSeries> series)
+        protected virtual void DrawSeries(Graphics g, List<UIBarSeries> series)
         {
             if (series == null || series.Count == 0) return;
 
@@ -501,7 +556,7 @@ namespace Sunny.UI
             }
         }
 
-        internal class BarInfo
+        protected class BarInfo
         {
             public RectangleF Rect { get; set; }
 

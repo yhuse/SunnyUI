@@ -92,7 +92,7 @@ namespace Sunny.UI
             InitializeComponent();
             AutoSize = false;
             DoubleBuffered = true;
-            ResizeRedraw = true;
+            //ResizeRedraw = true;
             ToolStripControlHost _host = new ToolStripControlHost(item);
             Padding = Margin = _host.Padding = _host.Margin = Padding.Empty;
             item.MinimumSize = item.Size;

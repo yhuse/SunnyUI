@@ -26,7 +26,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -62,10 +61,32 @@ namespace Sunny.UI
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+            listbox.MouseDown += Listbox_MouseDown;
+            listbox.MouseUp += Listbox_MouseUp;
+            listbox.MouseMove += Listbox_MouseMove;
 
             timer.Tick += Timer_Tick;
             timer.Start();
         }
+
+        private void Listbox_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
 
         ~UIListBox()
         {
@@ -78,7 +99,7 @@ namespace Sunny.UI
             {
                 LastCount = 0;
                 timer.Stop();
-                ItemsCountChange?.Invoke(sender, e);
+                ItemsCountChange?.Invoke(this, e);
                 timer.Start();
             }
         }
@@ -110,13 +131,13 @@ namespace Sunny.UI
         private void Listbox_DoubleClick(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemDoubleClick?.Invoke(sender, e);
+                ItemDoubleClick?.Invoke(this, e);
         }
 
         private void Listbox_Click(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemClick?.Invoke(sender, e);
+                ItemClick?.Invoke(this, e);
         }
 
         public event EventHandler ItemClick;
@@ -131,13 +152,13 @@ namespace Sunny.UI
 
         private void Listbox_SelectedValueChanged(object sender, EventArgs e)
         {
-            SelectedValueChanged?.Invoke(sender, e);
+            SelectedValueChanged?.Invoke(this, e);
             Text = listbox.SelectedItem?.ToString();
         }
 
         private void Listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedIndexChanged?.Invoke(sender, e);
+            SelectedIndexChanged?.Invoke(this, e);
         }
 
         [DefaultValue(25)]
@@ -166,6 +187,23 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
+                listbox.BackColor = Color.White;
+            }
+
+            fillColor = Color.White;
+        }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (listbox != null)
+            {
+                listbox.BackColor = color;
+            }
+
+            if (bar != null)
+            {
+                bar.FillColor = color;
             }
         }
 
@@ -189,11 +227,6 @@ namespace Sunny.UI
         {
             base.OnRadiusChanged(value);
             Padding = new Padding(Math.Max(2, value / 2));
-        }
-
-        protected override void OnPaintFill(Graphics g, GraphicsPath path)
-        {
-            g.Clear(Color.White);
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -536,7 +569,7 @@ namespace Sunny.UI
         protected override void OnMeasureItem(MeasureItemEventArgs e)
         {
             base.OnMeasureItem(e);
-            e.ItemHeight = e.ItemHeight + ItemHeight;
+            e.ItemHeight += ItemHeight;
         }
 
         public void SelectedFirst()

@@ -61,7 +61,43 @@ namespace Sunny.UI
             listbox.Click += Listbox_Click;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
+            listbox.MouseDown += Listbox_MouseDown;
+            listbox.MouseUp += Listbox_MouseUp;
+            listbox.MouseMove += Listbox_MouseMove;
         }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (listbox != null)
+            {
+                listbox.BackColor = color;
+            }
+
+            if (bar != null)
+            {
+                bar.FillColor = color;
+            }
+        }
+
+        private void Listbox_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
 
         protected override void OnFontChanged(EventArgs e)
         {
@@ -90,13 +126,13 @@ namespace Sunny.UI
         private void Listbox_DoubleClick(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemDoubleClick?.Invoke(sender, e);
+                ItemDoubleClick?.Invoke(this, e);
         }
 
         private void Listbox_Click(object sender, EventArgs e)
         {
             if (SelectedItem != null)
-                ItemClick?.Invoke(sender, e);
+                ItemClick?.Invoke(this, e);
         }
 
         [Browsable(false)]
@@ -114,13 +150,13 @@ namespace Sunny.UI
 
         private void Listbox_SelectedValueChanged(object sender, EventArgs e)
         {
-            SelectedValueChanged?.Invoke(sender, e);
+            SelectedValueChanged?.Invoke(this, e);
             Text = listbox.SelectedItem?.ToString();
         }
 
         private void Listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedIndexChanged?.Invoke(sender, e);
+            SelectedIndexChanged?.Invoke(this, e);
         }
 
         [DefaultValue(100)]
@@ -165,7 +201,10 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
+                listbox.BackColor = Color.White;
             }
+
+            fillColor = Color.White;
         }
 
         private int LastCount;
@@ -220,6 +259,16 @@ namespace Sunny.UI
         public void AddImage(string imagePath, string description = "")
         {
             AddImage(new ImageListItem(imagePath, description));
+        }
+
+        /// <summary>
+        /// 增加图片
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <param name="description">图片描述</param>
+        public void AddImage(Bitmap image, string description = "")
+        {
+            AddImage(new ImageListItem(image, description));
         }
 
         public void SelectedFirst()
@@ -353,7 +402,7 @@ namespace Sunny.UI
 
             protected override void OnMeasureItem(MeasureItemEventArgs e)
             {
-                e.ItemHeight = e.ItemHeight + ItemHeight;
+                e.ItemHeight += ItemHeight;
             }
 
             /// <summary>
@@ -510,6 +559,11 @@ namespace Sunny.UI
                 AddImage(new ImageListItem(imagePath, description));
             }
 
+            public void AddImage(Bitmap image, string description = "")
+            {
+                AddImage(new ImageListItem(image, description));
+            }
+
             public delegate void OnBeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e);
 
             public event OnBeforeDrawItem BeforeDrawItem;
@@ -571,21 +625,17 @@ namespace Sunny.UI
                 SizeF sf = g.MeasureString("ImageListBox", Font);
                 int thumbnailSize = ShowDescription ? ((int)(ItemHeight - ImageInterval - sf.Height)) : (ItemHeight - ImageInterval * 2);
 
-                if (File.Exists(item.ImagePath))
+                if (item.Image != null)
                 {
-                    Image image = new Bitmap(item.ImagePath);
-
-                    if (image.Width <= thumbnailSize && image.Height <= thumbnailSize)
+                    if (item.Image.Width <= thumbnailSize && item.Image.Height <= thumbnailSize)
                     {
-                        g.DrawImage(image, new Rectangle(ImageInterval, ImageInterval, image.Width, image.Height));
+                        g.DrawImage(item.Image, new Rectangle(ImageInterval, ImageInterval, item.Image.Width, item.Image.Height));
                     }
                     else
                     {
-                        float scale = thumbnailSize * 1.0f / image.Height;
-                        g.DrawImage(image, new Rectangle(ImageInterval, ImageInterval, (int)(image.Width * scale), (int)(image.Height * scale)));
+                        float scale = thumbnailSize * 1.0f / item.Image.Height;
+                        g.DrawImage(item.Image, new Rectangle(ImageInterval, ImageInterval, (int)(item.Image.Width * scale), (int)(item.Image.Height * scale)));
                     }
-
-                    image.Dispose();
                 }
 
                 if (ShowDescription && !string.IsNullOrEmpty(item.Description))
@@ -649,21 +699,40 @@ namespace Sunny.UI
             }
         }
 
-        public class ImageListItem
+        public class ImageListItem : IDisposable
         {
-            public string ImagePath { get; set; }
+            public string ImagePath { get; private set; }
 
             public string Description { get; set; }
 
+            public Bitmap Image { get; private set; }
+
             public ImageListItem(string imagePath, string description = "")
             {
-                ImagePath = imagePath;
+                if (File.Exists(imagePath))
+                {
+                    ImagePath = imagePath;
+                    Image = new Bitmap(imagePath);
+                }
+
+                Description = description;
+            }
+
+            public ImageListItem(Bitmap image, string description = "")
+            {
+                ImagePath = "";
+                Image = new Bitmap(image);
                 Description = description;
             }
 
             public override string ToString()
             {
-                return ImagePath;
+                return Description + ", " + ImagePath;
+            }
+
+            public void Dispose()
+            {
+                Image?.Dispose();
             }
         }
     }

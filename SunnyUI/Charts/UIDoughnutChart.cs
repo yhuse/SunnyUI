@@ -29,7 +29,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true), Description("甜甜圈图")]
-    public class UIDoughnutChart : UIChart
+    public sealed class UIDoughnutChart : UIChart
     {
         protected override void CreateEmptyOption()
         {
@@ -58,7 +58,7 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            CalcData(DoughnutOption);
+            CalcData();
         }
 
         protected override void DrawOption(Graphics g)
@@ -69,15 +69,14 @@ namespace Sunny.UI
             DrawLegend(g, DoughnutOption.Legend);
         }
 
-        protected override void CalcData(UIOption option)
+        protected override void CalcData()
         {
             Angles.Clear();
-            UIDoughnutOption o = (UIDoughnutOption)option;
-            if (o == null || o.Series == null || o.Series.Count == 0) return;
+            if (DoughnutOption == null || DoughnutOption.Series == null || DoughnutOption.Series.Count == 0) return;
 
-            for (int pieIndex = 0; pieIndex < o.Series.Count; pieIndex++)
+            for (int pieIndex = 0; pieIndex < DoughnutOption.Series.Count; pieIndex++)
             {
-                var pie = o.Series[pieIndex];
+                var pie = DoughnutOption.Series[pieIndex];
                 Angles.TryAdd(pieIndex, new ConcurrentDictionary<int, Angle>());
 
                 double all = 0;
@@ -93,14 +92,14 @@ namespace Sunny.UI
                     float angle = (float)(pie.Data[i].Value * 360.0f / all);
                     float percent = (float)(pie.Data[i].Value * 100.0f / all);
                     string text = "";
-                    if (o.ToolTip != null)
+                    if (DoughnutOption.ToolTip != null)
                     {
                         try
                         {
-                            UITemplate template = new UITemplate(o.ToolTip.Formatter);
+                            UITemplate template = new UITemplate(DoughnutOption.ToolTip.Formatter);
                             template.Set("a", pie.Name);
                             template.Set("b", pie.Data[i].Name);
-                            template.Set("c", pie.Data[i].Value.ToString(o.ToolTip.ValueFormat));
+                            template.Set("c", pie.Data[i].Value.ToString(DoughnutOption.ToolTip.ValueFormat));
                             template.Set("d", percent.ToString("F2"));
                             text = template.Render();
                         }
@@ -113,7 +112,7 @@ namespace Sunny.UI
 
                     Angle pieAngle = new Angle(start, angle, text);
                     GetSeriesRect(pie, ref pieAngle);
-                    Angles[pieIndex].AddOrUpdate(i, pieAngle);
+                    Angles[pieIndex].TryAddOrUpdate(i, pieAngle);
                     start += angle;
                 }
             }
@@ -215,7 +214,11 @@ namespace Sunny.UI
                             tip.Top = e.Location.Y + 20;
                         }
 
-                        if (!tip.Visible) tip.Visible = angle.Text.IsValid();
+                        if (DoughnutOption.ToolTip.Visible)
+                        {
+                            if (!tip.Visible) tip.Visible = angle.Text.IsValid();
+                        }
+
                         return;
                     }
                 }

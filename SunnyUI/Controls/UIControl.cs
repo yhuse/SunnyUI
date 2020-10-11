@@ -39,13 +39,19 @@ namespace Sunny.UI
         /// </summary>
         public UIControl()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.Selectable, true);
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             base.DoubleBuffered = true;
             UpdateStyles();
 
             Version = UIGlobal.Version;
             base.Font = UIFontColor.Font;
             Size = new Size(100, 35);
+            base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
         /// <summary>

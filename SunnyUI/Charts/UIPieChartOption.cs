@@ -25,11 +25,11 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public class UIPieOption : UIOption, IDisposable
+    public sealed class UIPieOption : UIOption, IDisposable
     {
         public List<UIPieSeries> Series = new List<UIPieSeries>();
 
-        public UIPieToolTip ToolTip;
+        public UIPieToolTip ToolTip { get; set; } = new UIPieToolTip();
 
         public void AddSeries(UIPieSeries series)
         {
@@ -54,7 +54,7 @@ namespace Sunny.UI
     {
         public List<UIDoughnutSeries> Series = new List<UIDoughnutSeries>();
 
-        public UIPieToolTip ToolTip;
+        public UIPieToolTip ToolTip { get; set; } = new UIPieToolTip();
 
         public void AddSeries(UIDoughnutSeries series)
         {
@@ -75,11 +75,14 @@ namespace Sunny.UI
         public int SeriesCount => Series.Count;
     }
 
-    public class UIPieToolTip
+    public class UIPieToolTip : UIChartToolTip
     {
-        public string Formatter { get; set; } = "{{a}}" + '\n' + "{{b}} : {{c}} ({{d}}%)";
-
-        public string ValueFormat { get; set; } = "F0";
+        public UIPieToolTip()
+        {
+            Formatter = "{{a}}" + '\n' + "{{b}} : {{c}} ({{d}}%)";
+            ValueFormat = "F0";
+            Visible = true;
+        }
     }
 
     public class UIPieSeries : IDisposable

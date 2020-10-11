@@ -87,6 +87,7 @@
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.Maximum = 2147483647D;
             this.uiTextBox1.Minimum = -2147483648D;
+            this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
@@ -128,6 +129,7 @@
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox2.Maximum = 9D;
             this.uiTextBox2.Minimum = 0D;
+            this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
@@ -157,6 +159,7 @@
             this.uiTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox3.Maximum = 2147483647D;
             this.uiTextBox3.Minimum = -2147483648D;
+            this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox3.Name = "uiTextBox3";
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox3.Size = new System.Drawing.Size(221, 29);
@@ -216,6 +219,7 @@
             this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRichTextBox1.Location = new System.Drawing.Point(388, 219);
             this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRichTextBox1.Name = "uiRichTextBox1";
             this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
             this.uiRichTextBox1.Size = new System.Drawing.Size(308, 226);
@@ -255,6 +259,7 @@
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox4.Maximum = 2147483647D;
             this.uiTextBox4.Minimum = -2147483648D;
+            this.uiTextBox4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox4.Multiline = true;
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);

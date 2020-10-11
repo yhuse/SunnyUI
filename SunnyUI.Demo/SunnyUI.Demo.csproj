@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -53,11 +53,23 @@
     <Compile Include="Charts\FBarChart.Designer.cs">
       <DependentUpon>FBarChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\FBarChartEx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FBarChartEx.Designer.cs">
+      <DependentUpon>FBarChartEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\FDoughnutChart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Charts\FDoughnutChart.Designer.cs">
       <DependentUpon>FDoughnutChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\FLineChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FLineChart.Designer.cs">
+      <DependentUpon>FLineChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FAvatar.cs">
       <SubType>Form</SubType>
@@ -130,6 +142,12 @@
     </Compile>
     <Compile Include="Controls\FCombobox.Designer.cs">
       <DependentUpon>FCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.Designer.cs">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FLogin.cs">
       <SubType>Form</SubType>
@@ -295,11 +313,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Charts\FBarChart.resx">
-      <DependentUpon>FBarChart.cs</DependentUpon>
+    <EmbeddedResource Include="Charts\FBarChartEx.resx">
+      <DependentUpon>FBarChartEx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Charts\FDoughnutChart.resx">
-      <DependentUpon>FDoughnutChart.cs</DependentUpon>
+    <EmbeddedResource Include="Charts\FLineChart.resx">
+      <DependentUpon>FLineChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FAvatar.resx">
       <DependentUpon>FAvatar.cs</DependentUpon>
@@ -315,9 +333,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\FPieChart.resx">
-      <DependentUpon>FPieChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FScrollBar.resx">
       <DependentUpon>FScrollBar.cs</DependentUpon>
@@ -342,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FFlowLayoutPanel.resx">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
@@ -420,18 +438,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -465,6 +483,31 @@
     <None Include="Resources\ChartDefaultStyle.png" />
     <None Include="Resources\ChartPlainStyle.png" />
     <None Include="Resources\SunnyLogin.png" />
+    <None Include="Resources\ajax.png" />
+    <None Include="Resources\atalanta.png" />
+    <None Include="Resources\barcelona.png" />
+    <None Include="Resources\benfica.png" />
+    <None Include="Resources\betis.png" />
+    <None Include="Resources\brescia.png" />
+    <None Include="Resources\chievo.png" />
+    <None Include="Resources\deportivo.png" />
+    <None Include="Resources\feyenoord.png" />
+    <None Include="Resources\heerenveen.png" />
+    <None Include="Resources\inter.png" />
+    <None Include="Resources\lazio.png" />
+    <None Include="Resources\mallorca.png" />
+    <None Include="Resources\milan.png" />
+    <None Include="Resources\parma.png" />
+    <None Include="Resources\porto.png" />
+    <None Include="Resources\psv.png" />
+    <None Include="Resources\real_madrid.png" />
+    <None Include="Resources\real_sociedad.png" />
+    <None Include="Resources\roma.png" />
+    <None Include="Resources\sevilla.png" />
+    <None Include="Resources\udinese.png" />
+    <None Include="Resources\valencia.png" />
+    <None Include="Resources\villareal.png" />
+    <None Include="Resources\zaragoza.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <ItemGroup />

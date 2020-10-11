@@ -18,7 +18,7 @@
             option.Title.Left = UILeftAlignment.Center;
 
             //设置ToolTip
-            option.ToolTip = new UIPieToolTip();
+            option.ToolTip.Visible = true;
 
             //设置Legend
             option.Legend = new UILegend();

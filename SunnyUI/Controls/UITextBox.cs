@@ -84,6 +84,11 @@ namespace Sunny.UI
             Leave?.Invoke(sender, e);
         }
 
+        public override bool Focused
+        {
+            get => edit.Focused;
+        }
+
         [DefaultValue(false)]
         [Description("激活时选中全部文字"), Category("SunnyUI")]
         public bool FocusedSelectAll
@@ -330,11 +335,6 @@ namespace Sunny.UI
             }
             else
             {
-                if (Height < 69)
-                {
-                    Height = 69;
-                }
-
                 edit.Top = 3;
                 edit.Height = Height - 6;
                 edit.Left = 1;

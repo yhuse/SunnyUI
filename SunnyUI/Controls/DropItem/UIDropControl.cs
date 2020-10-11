@@ -81,6 +81,7 @@ namespace Sunny.UI
 
         public new event KeyPressEventHandler KeyPress;
 
+        [Browsable(true)]
         public new event EventHandler TextChanged;
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)

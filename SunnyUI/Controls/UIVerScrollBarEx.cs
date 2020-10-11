@@ -42,7 +42,7 @@ namespace Sunny.UI
             fillPressColor = Color.FromArgb(74, 131, 229);
         }
 
-        public int maximum = 100;
+        private int maximum = 100;
         public int Maximum
         {
             get => maximum;
@@ -55,7 +55,7 @@ namespace Sunny.UI
 
         public int LargeChange { get; set; } = 10;
 
-        public int thisValue;
+        private int thisValue;
         public event EventHandler ValueChanged;
 
         public int Value
@@ -69,7 +69,7 @@ namespace Sunny.UI
             }
         }
 
-        public int boundsHeight = 10;
+        private int boundsHeight = 10;
         public int BoundsHeight
         {
             get => boundsHeight;

@@ -44,9 +44,9 @@ namespace Sunny.UI
         public UIPanel()
         {
             InitializeComponent();
+
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.Selectable, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -55,7 +55,9 @@ namespace Sunny.UI
             UpdateStyles();
 
             Version = UIGlobal.Version;
+            AutoScaleMode = AutoScaleMode.None;
             base.Font = UIFontColor.Font;
+            base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
         /// <summary>
@@ -218,11 +220,12 @@ namespace Sunny.UI
                 if (rectColor != value)
                 {
                     rectColor = value;
-                    AfterSetRectColor(value);
                     RectColorChanged?.Invoke(this, null);
                     _style = UIStyle.Custom;
                     Invalidate();
                 }
+
+                AfterSetRectColor(value);
             }
         }
 
@@ -242,11 +245,12 @@ namespace Sunny.UI
                 if (fillColor != value)
                 {
                     fillColor = value;
-                    AfterSetFillColor(value);
                     FillColorChanged?.Invoke(this, null);
                     _style = UIStyle.Custom;
                     Invalidate();
                 }
+
+                AfterSetFillColor(value);
             }
         }
 

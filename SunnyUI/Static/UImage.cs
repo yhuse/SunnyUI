@@ -40,6 +40,19 @@ namespace Sunny.UI
     /// </summary>
     public static class ImageEx
     {
+        public static Bitmap ChangeOpacity(Image img, float opacity)
+        {
+            Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
+            Graphics graphics = bmp.Graphics();
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.Matrix33 = opacity;
+            ImageAttributes imgAttribute = new ImageAttributes();
+            imgAttribute.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            graphics.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute);
+            graphics.Dispose();   // Releasing all resource used by graphics 
+            return bmp;
+        }
+
         public static ImageList GetToolbarImageList(Type type, Bitmap bitmap, Size imageSize, Color transparentColor)
         {
             ImageList imageList = new ImageList();

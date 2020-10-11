@@ -49,11 +49,13 @@
             // 
             // uiImageListBox1
             // 
+            this.uiImageListBox1.FillColor = System.Drawing.Color.White;
             this.uiImageListBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiImageListBox1.ItemHeight = 80;
             this.uiImageListBox1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiImageListBox1.Location = new System.Drawing.Point(355, 48);
             this.uiImageListBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiImageListBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiImageListBox1.Name = "uiImageListBox1";
             this.uiImageListBox1.Padding = new System.Windows.Forms.Padding(2);
             this.uiImageListBox1.Size = new System.Drawing.Size(266, 343);
@@ -85,10 +87,12 @@
             // 
             // uiListBox1
             // 
+            this.uiListBox1.FillColor = System.Drawing.Color.White;
             this.uiListBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiListBox1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiListBox1.Location = new System.Drawing.Point(33, 48);
             this.uiListBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiListBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiListBox1.Name = "uiListBox1";
             this.uiListBox1.Padding = new System.Windows.Forms.Padding(2);
             this.uiListBox1.Size = new System.Drawing.Size(270, 343);
@@ -102,6 +106,7 @@
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiCheckBox1.Location = new System.Drawing.Point(355, 399);
+            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox1.Name = "uiCheckBox1";
             this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiCheckBox1.Size = new System.Drawing.Size(266, 35);
@@ -114,6 +119,7 @@
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton1.Location = new System.Drawing.Point(33, 400);
+            this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
             this.uiButton1.TabIndex = 23;

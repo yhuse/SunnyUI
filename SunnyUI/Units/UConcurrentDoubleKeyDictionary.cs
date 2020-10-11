@@ -32,8 +32,8 @@ namespace Sunny.UI
 
         public void TryAdd(TKey1 key1, TKey2 key2)
         {
-            Key1.AddOrUpdate(key1, key2);
-            Key2.AddOrUpdate(key2, key1);
+            Key1.TryAddOrUpdate(key1, key2);
+            Key2.TryAddOrUpdate(key2, key1);
         }
 
         public TKey2 this[TKey1 key1]
