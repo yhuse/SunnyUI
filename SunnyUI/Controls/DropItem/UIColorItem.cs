@@ -8,6 +8,9 @@ namespace Sunny.UI
         public UIColorItem()
         {
             InitializeComponent();
+
+            btnOK.Text = UILocalize.OK;
+            btnCancel.Text = UILocalize.Cancel;
         }
 
         private LabelRotate m_colorSample;

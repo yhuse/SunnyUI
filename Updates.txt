@@ -1,5 +1,18 @@
 + 增加； - 删除； * 修改 
 
+2020-10-12 V2.2.8
++ UILineChart：完成曲线图表
++ UIScale：增加坐标轴刻度计算类
++ UIFlowLayoutPanel：增加
++ UIBarChartEx：增加了一个新的柱状图类型，序列个数可以不相等
++ UDateTimeInt64：增加DateTimeInt64类，时间整形互转类
+* UIForm：增加窗体阴影
+* UIMainFrame：页面框架增加Selecting事件，在页面切换时执行该事件
+* UITextBox：解决Anchor包含Top、Bottom时，在窗体最小化后恢复时高度变化
+* UISwitch：增加长方形形状开关，取消长宽比锁定
+* UITreeView：背景色可改，设置FillColor，以及SystemCustomMode = true
+* UIDataGridView：解决水平滚动条在有列冻结时出错的问题
+
 2020-09-17 V2.2.7
 + 新增双主键线程安全字典，分组线程安全字典
 + UIHorScrollBarEx，UIVerScrollBarEx：重写了两个滚动条

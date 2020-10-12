@@ -35,6 +35,34 @@ namespace Sunny.UI
             return Color.FromArgb(alpha, color);
         }
 
+        private static Graphics graphics;
+
+        /// <summary>
+        /// 提供一个Graphics，常用于需要计算文字大小时
+        /// </summary>
+        /// <returns>大小</returns>
+        public static Graphics Graphics()
+        {
+            if (graphics == null)
+            {
+                Bitmap bmp = new Bitmap(1, 1);
+                graphics = bmp.Graphics();
+            }
+
+            return graphics;
+        }
+
+        /// <summary>
+        /// 计算文字大小
+        /// </summary>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <returns>大小</returns>
+        public static SizeF MeasureString(this string text, Font font)
+        {
+            return Graphics().MeasureString(text, font);
+        }
+
         /// <summary>
         /// 九宫切图背景填充，#，http://st233.com/blog.php?id=24
         /// 例如按钮是图片分成九个区域 然后只需要将四角填充到目标区域 其余的拉伸就可以了
@@ -149,15 +177,15 @@ namespace Sunny.UI
             return point.X >= rect.Left && point.X <= rect.Right && point.Y >= rect.Top && point.Y <= rect.Bottom;
         }
 
-        public static void Smooth(this Graphics graphics, bool smooth = true)
+        public static void Smooth(this Graphics g, bool smooth = true)
         {
             if (smooth)
             {
-                graphics.SetHighQuality();
+                g.SetHighQuality();
             }
             else
             {
-                graphics.SetDefaultQuality();
+                g.SetDefaultQuality();
             }
         }
 
@@ -195,9 +223,9 @@ namespace Sunny.UI
             g.DrawString(text, font, color, pt.X, pt.Y);
         }
 
-        public static void DrawLines(this Graphics g, Color color, Point[] points, bool smooth = false)
+        public static void DrawLines(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLines(pen, points);
@@ -205,9 +233,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawLines(this Graphics g, Color color, PointF[] points, bool smooth = false)
+        public static void DrawLines(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLines(pen, points);
@@ -215,9 +243,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawCurve(this Graphics g, Color color, Point[] points, bool smooth = false)
+        public static void DrawCurve(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawCurve(pen, points);
@@ -225,9 +253,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawCurve(this Graphics g, Color color, PointF[] points, bool smooth = false)
+        public static void DrawCurve(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawCurve(pen, points);
@@ -235,9 +263,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawLine(this Graphics g, Color color, int x1, int y1, int x2, int y2, bool smooth = false)
+        public static void DrawLine(this Graphics g, Color color, int x1, int y1, int x2, int y2, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLine(pen, x1, y1, x2, y2);
@@ -245,9 +273,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawLine(this Graphics g, Color color, Point pt1, Point pt2, bool smooth = false)
+        public static void DrawLine(this Graphics g, Color color, Point pt1, Point pt2, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLine(pen, pt1, pt2);
@@ -255,9 +283,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false)
+        public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLine(pen, x1, y1, x2, y2);
@@ -265,9 +293,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawLine(this Graphics g, Color color, PointF pt1, PointF pt2, bool smooth = false)
+        public static void DrawLine(this Graphics g, Color color, PointF pt1, PointF pt2, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawLine(pen, pt1, pt2);
@@ -275,9 +303,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawArc(this Graphics g, Color color, int x, int y, int width, int height, int startAngle, int sweepAngle, bool smooth = true)
+        public static void DrawArc(this Graphics g, Color color, int x, int y, int width, int height, int startAngle, int sweepAngle, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawArc(pen, x, y, width, height, startAngle, sweepAngle);
@@ -285,9 +313,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawArc(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true)
+        public static void DrawArc(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawArc(pen, x, y, width, height, startAngle, sweepAngle);
@@ -305,9 +333,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true)
+        public static void DrawPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pn = new Pen(color))
+            using (Pen pn = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawPath(pn, path);
@@ -325,9 +353,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true)
+        public static void DrawEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pn = new Pen(color))
+            using (Pen pn = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawEllipse(pn, rect);
@@ -345,9 +373,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true)
+        public static void DrawEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pn = new Pen(color))
+            using (Pen pn = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawEllipse(pn, rect);
@@ -385,9 +413,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false)
+        public static void DrawRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pn = new Pen(color))
+            using (Pen pn = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawRectangle(pn, rect);
@@ -405,9 +433,9 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false)
+        public static void DrawRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false, float penWidth = 1)
         {
-            using (Pen pn = new Pen(color))
+            using (Pen pn = new Pen(color, penWidth))
             {
                 g.Smooth(smooth);
                 g.DrawRectangle(pn, rect.X, rect.Y, rect.Width, rect.Height);
@@ -648,10 +676,10 @@ namespace Sunny.UI
             g.FillPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
         }
 
-        public static void DrawPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true)
+        public static void DrawPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             g.Smooth(smooth);
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
             }
@@ -659,15 +687,35 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        public static void DrawPoint(this Graphics g, Color color, int x, int y, float size)
+        {
+            g.FillEllipse(color, x - size / 2.0f, y - size / 2.0f, size, size);
+        }
+
+        public static void DrawPoint(this Graphics g, Color color, float x, float y, float size)
+        {
+            g.FillEllipse(color, x - size / 2.0f, y - size / 2.0f, size, size);
+        }
+
+        public static void DrawPoint(this Graphics g, Color color, Point point, float size)
+        {
+            g.DrawPoint(color, point.X, point.Y, size);
+        }
+
+        public static void DrawPoint(this Graphics g, Color color, PointF point, float size)
+        {
+            g.DrawPoint(color, point.X, point.Y, size);
+        }
+
         public static void DrawPie(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true)
         {
             g.DrawPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
         }
 
-        public static void DrawPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true)
+        public static void DrawPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             g.Smooth(smooth);
-            using (Pen pen = new Pen(color))
+            using (Pen pen = new Pen(color, penWidth))
             {
                 g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
             }

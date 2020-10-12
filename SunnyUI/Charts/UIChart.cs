@@ -127,8 +127,8 @@ namespace Sunny.UI
 
         private UIOption _option;
 
-        [Browsable(false)]
-        public UIOption Option
+        [Browsable(false), DefaultValue(null)]
+        protected UIOption BaseOption
         {
             get => _option;
             set
@@ -140,7 +140,7 @@ namespace Sunny.UI
 
         public void SetOption(UIOption option)
         {
-            Option = option;
+            BaseOption = option;
             CalcData();
         }
 

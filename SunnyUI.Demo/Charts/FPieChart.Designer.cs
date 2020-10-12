@@ -70,7 +70,6 @@
             this.PieChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PieChart.Location = new System.Drawing.Point(30, 48);
             this.PieChart.Name = "PieChart";
-            this.PieChart.Option = null;
             this.PieChart.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.PieChart.Size = new System.Drawing.Size(670, 400);
             this.PieChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
