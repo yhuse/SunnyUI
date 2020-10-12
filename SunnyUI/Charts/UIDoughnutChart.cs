@@ -63,20 +63,20 @@ namespace Sunny.UI
 
         protected override void DrawOption(Graphics g)
         {
-            if (DoughnutOption == null) return;
-            DrawTitle(g, DoughnutOption.Title);
-            DrawSeries(g, DoughnutOption.Series);
-            DrawLegend(g, DoughnutOption.Legend);
+            if (Option == null) return;
+            DrawTitle(g, Option.Title);
+            DrawSeries(g, Option.Series);
+            DrawLegend(g, Option.Legend);
         }
 
         protected override void CalcData()
         {
             Angles.Clear();
-            if (DoughnutOption == null || DoughnutOption.Series == null || DoughnutOption.Series.Count == 0) return;
+            if (Option == null || Option.Series == null || Option.Series.Count == 0) return;
 
-            for (int pieIndex = 0; pieIndex < DoughnutOption.Series.Count; pieIndex++)
+            for (int pieIndex = 0; pieIndex < Option.Series.Count; pieIndex++)
             {
-                var pie = DoughnutOption.Series[pieIndex];
+                var pie = Option.Series[pieIndex];
                 Angles.TryAdd(pieIndex, new ConcurrentDictionary<int, Angle>());
 
                 double all = 0;
@@ -92,14 +92,14 @@ namespace Sunny.UI
                     float angle = (float)(pie.Data[i].Value * 360.0f / all);
                     float percent = (float)(pie.Data[i].Value * 100.0f / all);
                     string text = "";
-                    if (DoughnutOption.ToolTip != null)
+                    if (Option.ToolTip != null)
                     {
                         try
                         {
-                            UITemplate template = new UITemplate(DoughnutOption.ToolTip.Formatter);
+                            UITemplate template = new UITemplate(Option.ToolTip.Formatter);
                             template.Set("a", pie.Name);
                             template.Set("b", pie.Data[i].Name);
-                            template.Set("c", pie.Data[i].Value.ToString(DoughnutOption.ToolTip.ValueFormat));
+                            template.Set("c", pie.Data[i].Value.ToString(Option.ToolTip.ValueFormat));
                             template.Set("d", percent.ToString("F2"));
                             text = template.Render();
                         }
@@ -154,14 +154,19 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
 
-        [Browsable(false)]
-        private UIDoughnutOption DoughnutOption
+        [Browsable(false), DefaultValue(null)]
+        public UIDoughnutOption Option
         {
             get
             {
-                UIOption option = Option ?? EmptyOption;
+                UIOption option = BaseOption ?? EmptyOption;
                 UIDoughnutOption o = (UIDoughnutOption)option;
                 return o;
+            }
+
+            set
+            {
+                SetOption(value);
             }
         }
 
@@ -169,15 +174,15 @@ namespace Sunny.UI
         {
             base.OnMouseMove(e);
 
-            if (DoughnutOption.SeriesCount == 0)
+            if (Option.SeriesCount == 0)
             {
                 SetPieAndAzIndex(-1, -1);
                 return;
             }
 
-            for (int pieIndex = 0; pieIndex < DoughnutOption.SeriesCount; pieIndex++)
+            for (int pieIndex = 0; pieIndex < Option.SeriesCount; pieIndex++)
             {
-                for (int azIndex = 0; azIndex < DoughnutOption.Series[pieIndex].Data.Count; azIndex++)
+                for (int azIndex = 0; azIndex < Option.Series[pieIndex].Data.Count; azIndex++)
                 {
                     Angle angle = Angles[pieIndex][azIndex];
                     PointF pf = angle.Center;
@@ -214,7 +219,7 @@ namespace Sunny.UI
                             tip.Top = e.Location.Y + 20;
                         }
 
-                        if (DoughnutOption.ToolTip.Visible)
+                        if (Option.ToolTip.Visible)
                         {
                             if (!tip.Visible) tip.Visible = angle.Text.IsValid();
                         }

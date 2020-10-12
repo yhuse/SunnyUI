@@ -125,7 +125,6 @@
             this.BarChart.Location = new System.Drawing.Point(30, 48);
             this.BarChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.BarChart.Name = "BarChart";
-            this.BarChart.Option = null;
             this.BarChart.Size = new System.Drawing.Size(670, 400);
             this.BarChart.TabIndex = 35;
             this.BarChart.Text = "uiBarChartEx1";

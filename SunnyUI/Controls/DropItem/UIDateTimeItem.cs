@@ -705,6 +705,9 @@ namespace Sunny.UI
             months.Add("十月");
             months.Add("十一月");
             months.Add("十二月");
+
+            btnOK.Text = UILocalize.OK;
+            btnCancel.Text = UILocalize.Cancel;
         }
 
         private int activeDay = -1;

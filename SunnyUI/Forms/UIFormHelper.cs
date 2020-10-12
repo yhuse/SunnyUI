@@ -157,15 +157,67 @@ namespace Sunny.UI
             return isOk;
         }
 
-        public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style)
+        public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style, bool topMost = false)
         {
             UIMessageForm frm = new UIMessageForm();
+            frm.TopMost = topMost;
             frm.ShowMessage(message, title, isShowCancel, style);
             frm.ShowDialog();
             bool isOk = frm.IsOK;
             frm.Dispose();
             return isOk;
         }
+    }
+
+    public static class UIMessageBox
+    {
+        public static void Show(string text)
+        {
+            Show(text, UILocalize.InfoTitle);
+        }
+
+        public static void ShowInfo(string text)
+        {
+            Show(text, UILocalize.InfoTitle, UIStyle.Gray);
+        }
+
+        public static void ShowSuccess(string text)
+        {
+            Show(text, UILocalize.SuccessTitle, UIStyle.Green);
+        }
+
+        public static void ShowWarning(string text)
+        {
+            Show(text, UILocalize.WarningTitle, UIStyle.Orange);
+        }
+
+        public static void ShowError(string text)
+        {
+            Show(text, UILocalize.ErrorTitle, UIStyle.Red);
+        }
+
+        public static bool ShowAsk(string text)
+        {
+            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel);
+        }
+
+        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool topMost = false)
+        {
+            return UIMessageDialog.ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, topMost);
+        }
+    }
+
+    public enum UIMessageBoxButtons
+    {
+        /// <summary>
+        /// 确定
+        /// </summary>
+        OK = 0,
+
+        /// <summary>
+        /// 确定、取消
+        /// </summary>
+        OKCancel = 1
     }
 
     public static class UIInputDialog

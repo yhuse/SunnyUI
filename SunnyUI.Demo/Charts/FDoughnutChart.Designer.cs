@@ -57,7 +57,6 @@
             this.DoughnutChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.DoughnutChart.Location = new System.Drawing.Point(30, 48);
             this.DoughnutChart.Name = "DoughnutChart";
-            this.DoughnutChart.Option = null;
             this.DoughnutChart.Size = new System.Drawing.Size(670, 400);
             this.DoughnutChart.TabIndex = 0;
             this.DoughnutChart.Text = "uiDoughnutChart1";

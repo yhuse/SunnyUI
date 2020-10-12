@@ -26,7 +26,7 @@ namespace Sunny.UI
 {
     public abstract class UIOption
     {
-        public UITitle Title;
+        public UITitle Title = new UITitle();
         public UILegend Legend;
     }
 
@@ -109,7 +109,7 @@ namespace Sunny.UI
 
     public class UITitle
     {
-        public string Text { get; set; } = "UIPieChart";
+        public string Text { get; set; } = "SunnyUI Chart";
 
         public string SubText { get; set; } = "";
 

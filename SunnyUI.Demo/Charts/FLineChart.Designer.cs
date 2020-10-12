@@ -125,7 +125,6 @@
             this.LineChart.Location = new System.Drawing.Point(30, 48);
             this.LineChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.LineChart.Name = "LineChart";
-            this.LineChart.Option = null;
             this.LineChart.Size = new System.Drawing.Size(670, 400);
             this.LineChart.TabIndex = 35;
             this.LineChart.Text = "uiLineChart1";

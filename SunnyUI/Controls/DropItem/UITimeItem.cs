@@ -414,6 +414,8 @@ namespace Sunny.UI
         {
             InitializeComponent();
             this.MouseWheel += UITimeItem_MouseWheel;
+            btnOK.Text = UILocalize.OK;
+            btnCancel.Text = UILocalize.Cancel;
         }
 
         private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
