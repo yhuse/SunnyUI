@@ -152,6 +152,7 @@
     <Compile Include="Controls\UIWaitingBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\UIFormService.cs" />
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +220,12 @@
     </Compile>
     <Compile Include="Forms\UIInputForm.Designer.cs">
       <DependentUpon>UIInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UIWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UIWaitForm.designer.cs">
+      <DependentUpon>UIWaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\UIAsideMainFrame.cs">
       <SubType>Form</SubType>
@@ -513,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Font\UIFontImages.resx">
       <DependentUpon>UIFontImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIWaitForm.resx">
+      <DependentUpon>UIWaitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

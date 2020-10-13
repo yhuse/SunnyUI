@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Sunny.UI.Demo
 {
@@ -44,13 +45,15 @@ namespace Sunny.UI.Demo
 
         private void btnStatus2_Click(object sender, EventArgs e)
         {
-            ShowStatus("提示", "数据加载中......");
-            for (int i = 0; i < 100; i++)
+            ShowStatusForm(100, "数据加载中......");
+            for (int i = 0; i < 88; i++)
             {
                 SystemEx.Delay(50);
-                StatusDescription = "数据加载中(" + i + "%)......";
-                StatusStepIt();
+                SetStatusFormDescription("数据加载中(" + i + "%)......");
+                StatusFormStepIt();
             }
+
+            HideStatusForm();
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -182,6 +185,15 @@ namespace Sunny.UI.Demo
         private bool Frm_OnLogin(string userName, string password)
         {
             return userName == "admin" && password == "admin";
+        }
+
+        private void uiSymbolButton11_Click(object sender, EventArgs e)
+        {
+            ShowWaitForm();
+            Thread.Sleep(3000);
+            SetWaitFormDescription(UILocalize.SystemProcessing + "50%");
+            Thread.Sleep(3000);
+            HideWaitForm();
         }
     }
 }

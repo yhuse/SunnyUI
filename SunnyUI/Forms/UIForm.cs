@@ -39,8 +39,6 @@ namespace Sunny.UI
 
         public readonly Guid Guid = Guid.NewGuid();
 
-        private UIStatusForm statusForm;
-
         public UIForm()
         {
             InitializeComponent();
@@ -79,42 +77,64 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 显示进度窗口
+        /// 显示进度提示窗
         /// </summary>
-        /// <param name="title">进度窗口的标题</param>
-        /// <param name="desc">进度窗口的描述</param>
-        /// <param name="max">最大进度值</param>
-        /// <param name="value">当前进度值</param>
-        public void ShowStatus(string title, string desc, int max = 100, int value = 0)
+        /// <param name="desc">描述文字</param>
+        /// <param name="maximum">最大进度值</param>
+        public void ShowStatusForm(int maximum = 100, string desc = "系统处理中，请稍候......")
         {
-            StatusForm.Style = Style;
-            StatusForm.Show(title, desc, max, value);
-        }
-
-        public UIStatusForm StatusForm => statusForm ?? (statusForm = new UIStatusForm());
-
-        /// <summary>
-        /// 隐藏进度窗口
-        /// </summary>
-        public void HideStatus()
-        {
-            StatusForm.Hide();
+            UIStatusFormService.ShowStatusForm(maximum, desc);
         }
 
         /// <summary>
-        /// 使进度条按步长自增一次
+        /// 隐藏进度提示窗
         /// </summary>
-        public void StatusStepIt()
+        public void HideStatusForm()
         {
-            StatusForm.StepIt();
+            UIStatusFormService.HideStatusForm();
         }
 
-        [DefaultValue(null)]
-        [Browsable(false)]
-        public string StatusDescription
+        /// <summary>
+        /// 设置进度提示窗步进值加1
+        /// </summary>
+        public void StatusFormStepIt()
         {
-            get => StatusForm?.Description;
-            set => StatusForm.Description = value;
+            UIStatusFormService.StepIt();
+        }
+
+        /// <summary>
+        /// 设置进度提示窗描述文字
+        /// </summary>
+        /// <param name="desc">描述文字</param>
+        public void SetStatusFormDescription(string desc)
+        {
+            UIStatusFormService.SetDescription(desc);
+        }
+
+        /// <summary>
+        /// 显示等待提示窗
+        /// </summary>
+        /// <param name="desc">描述文字</param>
+        public void ShowWaitForm(string desc = "系统处理中，请稍候......")
+        {
+            UIWaitFormService.ShowWaitForm(desc);
+        }
+
+        /// <summary>
+        /// 隐藏等待提示窗
+        /// </summary>
+        public void HideWaitForm()
+        {
+            UIWaitFormService.HideWaitForm();
+        }
+
+        /// <summary>
+        /// 设置等待提示窗描述文字
+        /// </summary>
+        /// <param name="desc">描述文字</param>
+        public void SetWaitFormDescription(string desc)
+        {
+            UIWaitFormService.SetDescription(desc);
         }
 
         protected override void OnBackColorChanged(EventArgs e)

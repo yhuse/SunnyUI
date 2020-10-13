@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI
 {
-    partial class UIStatusForm
+    partial class UIWaitForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.labelDescription = new Sunny.UI.UILabel();
-            this.processBar = new Sunny.UI.UIProcessBar();
+            this.Bar = new Sunny.UI.UIWaitingBar();
             this.SuspendLayout();
             // 
             // labelDescription
@@ -40,33 +40,32 @@
             this.labelDescription.Location = new System.Drawing.Point(32, 55);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(178, 21);
-            this.labelDescription.TabIndex = 1;
+            this.labelDescription.TabIndex = 4;
             this.labelDescription.Text = "系统处理中，请稍候......";
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // processBar
+            // Bar
             // 
-            this.processBar.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.processBar.Location = new System.Drawing.Point(32, 91);
-            this.processBar.MinimumSize = new System.Drawing.Size(70, 23);
-            this.processBar.Name = "processBar";
-            this.processBar.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.processBar.Size = new System.Drawing.Size(409, 29);
-            this.processBar.TabIndex = 3;
-            this.processBar.Text = "0.0%";
-            this.processBar.ValueChanged += new Sunny.UI.UIProcessBar.OnValueChanged(this.processBar_ValueChanged);
+            this.Bar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Bar.Location = new System.Drawing.Point(32, 91);
+            this.Bar.MinimumSize = new System.Drawing.Size(70, 23);
+            this.Bar.Name = "Bar";
+            this.Bar.Size = new System.Drawing.Size(409, 29);
+            this.Bar.TabIndex = 6;
+            this.Bar.Text = "uiWaitingBar1";
             // 
-            // UIStatusForm
+            // UIWaitForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(473, 153);
             this.ControlBox = false;
-            this.Controls.Add(this.processBar);
             this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.Bar);
+            this.EscClose = false;
             this.IsForbidAltF4 = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "UIStatusForm";
+            this.Name = "UIWaitForm";
             this.Text = "提示";
             this.TopMost = true;
             this.ResumeLayout(false);
@@ -76,6 +75,6 @@
 
         #endregion
         private UILabel labelDescription;
-        private UIProcessBar processBar;
+        private UIWaitingBar Bar;
     }
 }
