@@ -63,14 +63,7 @@ namespace Sunny.UI
 
         private void CloseForm()
         {
-            try
-            {
-                thread?.Abort();
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
+            if (form != null) form.NeedClose = true;
         }
 
         private void SetFormDescription(string desc)

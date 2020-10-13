@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI
+﻿using System.ComponentModel;
+
+namespace Sunny.UI
 {
     public partial class UIWaitForm : UIForm
     {
@@ -29,6 +31,14 @@
                 labelDescription.Text = text;
                 labelDescription.Invalidate();
             }
+        }
+
+        [DefaultValue(false), Browsable(false)]
+        public bool NeedClose { get; set; }
+
+        private void Bar_Tick(object sender, System.EventArgs e)
+        {
+            if (NeedClose) Close();
         }
     }
 }

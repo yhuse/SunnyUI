@@ -53,6 +53,7 @@
             this.Bar.Size = new System.Drawing.Size(409, 29);
             this.Bar.TabIndex = 6;
             this.Bar.Text = "uiWaitingBar1";
+            this.Bar.Tick += new System.EventHandler(this.Bar_Tick);
             // 
             // UIWaitForm
             // 
