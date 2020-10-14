@@ -7,7 +7,7 @@ namespace Sunny.UI
     public class UIWaitFormService
     {
         private static bool IsRun;
-        public static void ShowWaitForm(string desc = "系统处理中，请稍候......")
+        public static void ShowWaitForm(string desc = "系统正在处理中，请稍候...")
         {
             if (IsRun) return;
             Instance.CreateForm(desc);
@@ -82,7 +82,7 @@ namespace Sunny.UI
     public class UIStatusFormService
     {
         private static bool IsRun;
-        public static void ShowStatusForm(int maximum = 100, string desc = "系统处理中，请稍候......")
+        public static void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...")
         {
             if (IsRun) return;
             Instance.CreateForm(maximum, desc);

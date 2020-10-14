@@ -81,7 +81,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="desc">描述文字</param>
         /// <param name="maximum">最大进度值</param>
-        public void ShowStatusForm(int maximum = 100, string desc = "系统处理中，请稍候......")
+        public void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...")
         {
             UIStatusFormService.ShowStatusForm(maximum, desc);
         }
@@ -115,7 +115,7 @@ namespace Sunny.UI
         /// 显示等待提示窗
         /// </summary>
         /// <param name="desc">描述文字</param>
-        public void ShowWaitForm(string desc = "系统处理中，请稍候......")
+        public void ShowWaitForm(string desc = "系统正在处理中，请稍候...")
         {
             UIWaitFormService.ShowWaitForm(desc);
         }

@@ -79,9 +79,9 @@ namespace Sunny.UI
         public static string GridNoData = "[ 无数据 ]";
 
         /// <summary>
-        /// 数据加载中 ......
+        /// 数据加载中，请稍候...
         /// </summary>
-        public static string GridDataLoading = "数据加载中 ......";
+        public static string GridDataLoading = "数据加载中，请稍候...";
 
         /// <summary>
         /// 数据源必须为DataTable或者List
@@ -89,9 +89,9 @@ namespace Sunny.UI
         public static string GridDataSourceException = "数据源必须为DataTable或者List";
 
         /// <summary>
-        /// 系统处理中，请稍候......
+        /// "系统正在处理中，请稍候..."
         /// </summary>
-        public static string SystemProcessing = "系统处理中，请稍候......";
+        public static string SystemProcessing = "系统正在处理中，请稍候...";
     }
 
     public static class UILocalizeHelper
@@ -109,9 +109,9 @@ namespace Sunny.UI
             UILocalize.OK = "OK";
             UILocalize.Cancel = "Cancel";
             UILocalize.GridNoData = "[ No data ]";
-            UILocalize.GridDataLoading = "Data loading ......";
+            UILocalize.GridDataLoading = "Data loading, please wait...";
             UILocalize.GridDataSourceException = "The data source must be DataTable or List";
-            UILocalize.SystemProcessing = "System processing, please wait...";
+            UILocalize.SystemProcessing = "The system is processing, please wait...";
         }
 
         public static void SetCH()
@@ -127,9 +127,9 @@ namespace Sunny.UI
             UILocalize.OK = "确定";
             UILocalize.Cancel = "取消";
             UILocalize.GridNoData = "[ 无数据 ]";
-            UILocalize.GridDataLoading = "数据加载中 ......";
+            UILocalize.GridDataLoading = "数据加载中，请稍候...";
             UILocalize.GridDataSourceException = "数据源必须为DataTable或者List";
-            UILocalize.SystemProcessing = "系统处理中，请稍候......";
+            UILocalize.SystemProcessing = "系统正在处理中，请稍候...";
         }
     }
 }
