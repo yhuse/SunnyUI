@@ -37,7 +37,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string msg, UIStyle style = UIStyle.Green)
         {
-            form.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
+            ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
         {
-            form.ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
+            ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
         {
-            form.ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
+            ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
         {
-            form.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
+            ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue)
         {
-            return form.ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
+            return ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green)
         {
-            form.ShowMessageDialog(msg, title, false, style);
+            ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
         {
-            form.ShowMessageDialog(msg, title, false, style);
+            ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange)
         {
-            form.ShowMessageDialog(msg, title, false, style);
+            ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
@@ -130,41 +130,45 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red)
         {
-            form.ShowMessageDialog(msg, title, false, style);
+            ShowMessageDialog(msg, title, false, style);
         }
 
         /// <summary>
         /// 确认信息提示框
         /// </summary>
-        /// <param name="form">窗体</param>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
-        /// <param name="style"></param>
+        /// <param name="message">信息</param>
+        /// <param name="showCancelButton">显示取消按钮</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true)
         {
-            return form.ShowMessageDialog(msg, title, true, style);
-        }
+            Form back = null;
+            if (showMask)
+            {
+                int backBorder = 200;
+                back = new Form();                                              // Create the fade background
+                back.FormBorderStyle = FormBorderStyle.None;
+                back.BackColor = Color.FromArgb(0, 0, 0);
+                back.Opacity = 0.5;
+                back.ShowInTaskbar = false;
+                back.Location = new Point(-backBorder, -backBorder);
+                back.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width + backBorder, Screen.PrimaryScreen.WorkingArea.Height + backBorder);
+                back.Show();
+                back.TopMost = true;
+            }
 
-        public static bool ShowMessageDialog(this Form form, string message, string title, bool isShowCancel, UIStyle style)
-        {
             UIMessageForm frm = new UIMessageForm();
-            frm.TopMost = form.TopMost;
-            frm.ShowMessage(message, title, isShowCancel, style);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowMessage(message, title, showCancelButton, style);
+            frm.ShowInTaskbar = false;
+            frm.TopMost = showMask;
             frm.ShowDialog();
             bool isOk = frm.IsOK;
             frm.Dispose();
-            return isOk;
-        }
 
-        public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style, bool topMost = false)
-        {
-            UIMessageForm frm = new UIMessageForm();
-            frm.TopMost = topMost;
-            frm.ShowMessage(message, title, isShowCancel, style);
-            frm.ShowDialog();
-            bool isOk = frm.IsOK;
-            frm.Dispose();
+            back?.Close();
             return isOk;
         }
     }

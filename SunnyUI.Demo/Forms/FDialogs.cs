@@ -59,6 +59,7 @@ namespace Sunny.UI.Demo
         private void btnInfo_Click(object sender, EventArgs e)
         {
             this.ShowInfoDialog("默认信息提示框");
+            UIMessageDialog.ShowMessageDialog("默认信息提示框", "提示", false, UIStyle.Blue, true);
         }
 
         private void btnStringInput_Click(object sender, EventArgs e)

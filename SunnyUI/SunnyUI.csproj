@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -513,6 +514,15 @@
     <Compile Include="Units\UUdp.cs" />
     <Compile Include="Units\USevenZip.cs" />
     <Compile Include="Units\UXmlConfig.cs" />
+    <Compile Include="Win32\Win32.Added.cs" />
+    <Compile Include="Win32\Win32.cs" />
+    <Compile Include="Win32\Win32.ErrorCodes.cs" />
+    <Compile Include="Win32\Win32.GDI.cs" />
+    <Compile Include="Win32\Win32.Kernel.cs" />
+    <Compile Include="Win32\Win32.Multimedia.cs" />
+    <Compile Include="Win32\Win32.NetApi.cs" />
+    <Compile Include="Win32\Win32.Shell.cs" />
+    <Compile Include="Win32\Win32.User.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\UINotifier.resx">
@@ -579,6 +589,7 @@
   <ItemGroup>
     <None Include="Resources\Login6.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
