@@ -21,6 +21,7 @@
  * 2020-08-12: V2.2.7 标题垂直居中
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -741,11 +742,11 @@ namespace Sunny.UI
             {
                 if (SystemInformation.MouseButtonsSwapped)
                 {
-                    return (NativeMethods.GetKeyState(NativeMethods.VK_RBUTTON) < 0);
+                    return (Win32.User.GetKeyState(Win32.User.VK_RBUTTON) < 0);
                 }
                 else
                 {
-                    return (NativeMethods.GetKeyState(NativeMethods.VK_LBUTTON) < 0);
+                    return (Win32.User.GetKeyState(Win32.User.VK_LBUTTON) < 0);
                 }
             }
 
@@ -779,11 +780,11 @@ namespace Sunny.UI
                             clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
                             NativeMethods.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
 
-                            NativeMethods.PAINTSTRUCT ps = new NativeMethods.PAINTSTRUCT();
+                            PAINTSTRUCT ps = new PAINTSTRUCT();
                             _bPainting = true;
-                            NativeMethods.BeginPaint(m.HWnd, ref ps);
+                            Win32.User.BeginPaint(m.HWnd, ref ps);
                             DrawUpDownButton();
-                            NativeMethods.EndPaint(m.HWnd, ref ps);
+                            Win32.User.EndPaint(m.HWnd, ref ps);
                             _bPainting = false;
                             m.Result = NativeMethods.TRUE;
                         }
@@ -814,27 +815,8 @@ namespace Sunny.UI
         {
             public const int WM_PAINT = 0xF;
 
-            public const int VK_LBUTTON = 0x1;
-            public const int VK_RBUTTON = 0x2;
             public static readonly IntPtr TRUE = new IntPtr(1);
 
-            [StructLayout(LayoutKind.Sequential)]
-            public struct PAINTSTRUCT
-            {
-                internal IntPtr hdc;
-                internal int fErase;
-                internal RECT rcPaint;
-                internal int fRestore;
-                internal int fIncUpdate;
-                internal int Reserved1;
-                internal int Reserved2;
-                internal int Reserved3;
-                internal int Reserved4;
-                internal int Reserved5;
-                internal int Reserved6;
-                internal int Reserved7;
-                internal int Reserved8;
-            }
 
             [StructLayout(LayoutKind.Sequential)]
             public struct RECT
@@ -859,16 +841,6 @@ namespace Sunny.UI
                 IntPtr hwndChildAfter,
                 string lpszClass,
                 string lpszWindow);
-
-            [DllImport("user32.dll")]
-            public static extern IntPtr BeginPaint(IntPtr hWnd, ref PAINTSTRUCT ps);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool EndPaint(IntPtr hWnd, ref PAINTSTRUCT ps);
-
-            [DllImport("user32.dll")]
-            public static extern short GetKeyState(int nVirtKey);
 
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]

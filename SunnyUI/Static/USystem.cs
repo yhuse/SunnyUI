@@ -36,6 +36,59 @@ namespace Sunny.UI
     /// </summary>
     public static class SystemEx
     {
+        /// <summary>
+        /// 获取程序当前窗口的大小和位置
+        /// </summary>
+        /// <returns></returns>
+        public static Rectangle GetForegroundWindowBounds()
+        {
+            IntPtr awin = GetForegroundWindow();    //获取当前窗口句柄
+            RECT rect = new RECT();
+            GetWindowRect(awin, ref rect);
+            return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct RECT
+        {
+            public int Left;                             //最左坐标
+            public int Top;                             //最上坐标
+            public int Right;                           //最右坐标
+            public int Bottom;                        //最下坐标
+        }
+
+        /// <summary>
+        /// 获取鼠标位置
+        /// </summary>
+        /// <returns></returns>
+        public static Point GetCursorPos()
+        {
+            GetCursorPos(out POINT pos);
+            return new Point(pos.X, pos.Y);
+        }
+
+        [DllImport("user32.dll")]
+        static extern bool GetCursorPos(out POINT lpPoint);
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct POINT
+        {
+            public int X;
+            public int Y;
+            public POINT(int x, int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+        }
+
         public static void ConsoleWriteLine(this object obj, string preText = "")
         {
             if (preText != "")

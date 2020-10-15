@@ -28,6 +28,31 @@ namespace Sunny.UI
 {
     public static class GDIEx
     {
+        /// <summary>
+        /// 设置窗体的圆角矩形
+        /// </summary>
+        /// <param name="form">需要设置的窗体</param>
+        /// <param name="rgnRadius">圆角矩形的半径</param>
+        public static void SetFormRoundRectRegion(Form form, int rgnRadius)
+        {
+            if (form != null && form.FormBorderStyle == FormBorderStyle.None)
+            {
+                int region = Win32.GDI.CreateRoundRectRgn(0, 0, form.Width + 1, form.Height + 1, rgnRadius, rgnRadius);
+                Win32.User.SetWindowRgn(form.Handle, region, true);
+                Win32.GDI.DeleteObject(region);
+            }
+        }
+
+        public static PointF Center(this Rectangle rect)
+        {
+            return new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
+        }
+
+        public static PointF Center(this RectangleF rect)
+        {
+            return new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
+        }
+
         public static Color Alpha(this Color color, int alpha)
         {
             alpha = Math.Max(0, alpha);
