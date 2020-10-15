@@ -27,7 +27,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -585,7 +584,7 @@ namespace Sunny.UI
 
         private IntPtr FindUpDownButton()
         {
-            return NativeMethods.FindWindowEx(Handle, IntPtr.Zero, UpDownButtonClassName, null);
+            return User.FindWindowEx(Handle, IntPtr.Zero, UpDownButtonClassName, null).IntPtr();
         }
 
         public void OnPaintUpDownButton(UpDownButtonPaintEventArgs e)
@@ -742,22 +741,19 @@ namespace Sunny.UI
             {
                 if (SystemInformation.MouseButtonsSwapped)
                 {
-                    return (Win32.User.GetKeyState(Win32.User.VK_RBUTTON) < 0);
+                    return (User.GetKeyState(User.VK_RBUTTON) < 0);
                 }
-                else
-                {
-                    return (Win32.User.GetKeyState(Win32.User.VK_LBUTTON) < 0);
-                }
+
+                return (User.GetKeyState(User.VK_LBUTTON) < 0);
             }
 
             private void DrawUpDownButton()
             {
-                NativeMethods.RECT rect = new NativeMethods.RECT();
+                RECT rect = new RECT();
                 bool mousePress = LeftKeyPressed();
-                Point cursorPoint = new Point();
-                NativeMethods.GetCursorPos(ref cursorPoint);
-                NativeMethods.GetWindowRect(Handle, ref rect);
-                var mouseOver = NativeMethods.PtInRect(ref rect, cursorPoint);
+                Point cursorPoint = SystemEx.GetCursorPos();
+                User.GetWindowRect(Handle, ref rect);
+                var mouseOver = User.PtInRect(ref rect, cursorPoint);
                 cursorPoint.X -= rect.Left;
                 cursorPoint.Y -= rect.Top;
                 var mouseInUpButton = cursorPoint.X < clipRect.Width / 2;
@@ -772,21 +768,21 @@ namespace Sunny.UI
             {
                 switch (m.Msg)
                 {
-                    case NativeMethods.WM_PAINT:
+                    case User.WM_PAINT:
                         if (!_bPainting)
                         {
                             Point UpDownButtonLocation = new Point(_owner.Size.Width - 52, 0);
                             Size UpDownButtonSize = new Size(52, _owner.ItemSize.Height);
                             clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
-                            NativeMethods.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
+                            User.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
 
                             PAINTSTRUCT ps = new PAINTSTRUCT();
                             _bPainting = true;
-                            Win32.User.BeginPaint(m.HWnd, ref ps);
+                            User.BeginPaint(m.HWnd, ref ps);
                             DrawUpDownButton();
-                            Win32.User.EndPaint(m.HWnd, ref ps);
+                            User.EndPaint(m.HWnd, ref ps);
                             _bPainting = false;
-                            m.Result = NativeMethods.TRUE;
+                            m.Result = Win32Helper.TRUE;
                         }
                         else
                         {
@@ -809,54 +805,6 @@ namespace Sunny.UI
             }
 
             #endregion IDisposable 成员
-        }
-
-        internal class NativeMethods
-        {
-            public const int WM_PAINT = 0xF;
-
-            public static readonly IntPtr TRUE = new IntPtr(1);
-
-
-            [StructLayout(LayoutKind.Sequential)]
-            public struct RECT
-            {
-                internal RECT(int X, int Y, int Width, int Height)
-                {
-                    this.Left = X;
-                    this.Top = Y;
-                    this.Right = Width;
-                    this.Bottom = Height;
-                }
-
-                internal int Left;
-                internal int Top;
-                internal int Right;
-                internal int Bottom;
-            }
-
-            [DllImport("user32.dll")]
-            public static extern IntPtr FindWindowEx(
-                IntPtr hwndParent,
-                IntPtr hwndChildAfter,
-                string lpszClass,
-                string lpszWindow);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetCursorPos(ref Point lpPoint);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool PtInRect([In] ref RECT lprc, Point pt);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool MoveWindow(IntPtr hWnd, int x, int y, int nWidth, int nHeight, bool bRepaint = true);
         }
 
         public delegate void UpDownButtonPaintEventHandler(object sender, UpDownButtonPaintEventArgs e);

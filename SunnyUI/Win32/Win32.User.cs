@@ -426,13 +426,15 @@ namespace Sunny.UI.Win32
     }
     public struct SCROLLINFO
     {
-        public int cbSize;
-        public int fMask;
-        public int nMin;
-        public int nMax;
-        public int nPage;
-        public int nPos;
-        public int nTrackPos;
+        public int cbSize;    //ScrollInfo结构体本身的字节大小
+        public int fMask;     //fMask表示设置或获取哪些数据，如：SIF_ALL所有数据成员都有效、SIF_PAGE（nPage有效）、SIF_POS（nPos有效）、SIF_RANGE（nMin和nMax有效）、SIF_TRACKPOS（nTrackPos有效）。
+        public int nMin;      //最小滚动位置
+        public int nMax;      //最大滚动位置
+        public int nPage;     //页面尺寸
+        public int nPos;      //滚动块的位置
+        public int nTrackPos; //滚动块当前被拖动的位置，不能在SetScrollInfo中指定
+
+        public int ScrollMax => (nMax + 1 - nPage);
     }
     public struct MSGBOXPARAMS
     {

@@ -741,7 +741,7 @@ namespace Sunny.UI
         {
             base.WndProc(ref m);
             if (IsDisposed || Disposing) return;
-            ScrollBarInfo.ShowScrollBar(Handle, 3, false);
+            Win32.User.ShowScrollBar(Handle, 3, false);
         }
 
         public TreeNode CreateNode(string text, int pageIndex)

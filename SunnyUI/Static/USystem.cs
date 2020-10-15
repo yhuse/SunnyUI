@@ -19,13 +19,13 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Windows.Forms;
 
@@ -42,26 +42,10 @@ namespace Sunny.UI
         /// <returns></returns>
         public static Rectangle GetForegroundWindowBounds()
         {
-            IntPtr awin = GetForegroundWindow();    //获取当前窗口句柄
+            IntPtr handle = User.GetForegroundWindow().IntPtr();    //获取当前窗口句柄
             RECT rect = new RECT();
-            GetWindowRect(awin, ref rect);
+            User.GetWindowRect(handle, ref rect);
             return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
-        }
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct RECT
-        {
-            public int Left;                             //最左坐标
-            public int Top;                             //最上坐标
-            public int Right;                           //最右坐标
-            public int Bottom;                        //最下坐标
         }
 
         /// <summary>
@@ -70,23 +54,8 @@ namespace Sunny.UI
         /// <returns></returns>
         public static Point GetCursorPos()
         {
-            GetCursorPos(out POINT pos);
+            User.GetCursorPos(out POINT pos);
             return new Point(pos.X, pos.Y);
-        }
-
-        [DllImport("user32.dll")]
-        static extern bool GetCursorPos(out POINT lpPoint);
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct POINT
-        {
-            public int X;
-            public int Y;
-            public POINT(int x, int y)
-            {
-                this.X = x;
-                this.Y = y;
-            }
         }
 
         public static void ConsoleWriteLine(this object obj, string preText = "")
@@ -325,8 +294,8 @@ namespace Sunny.UI
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         private static void HandleRunningInstance(Process instance, int showStyle)
         {
-            ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口
-            SetForegroundWindow(instance.MainWindowHandle); //将窗口放置最前端。
+            User.ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口
+            User.SetForegroundWindow(instance.MainWindowHandle); //将窗口放置最前端。
         }
 
         /// <summary>
@@ -358,12 +327,6 @@ namespace Sunny.UI
             frm.Location = new Point(sc[monitor].Bounds.Left + left, sc[monitor].Bounds.Top + top);
             frm.WindowState = showMax ? FormWindowState.Maximized : FormWindowState.Normal;
         }
-
-        [DllImport("User32.dll")]
-        private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
-
-        [DllImport("User32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
         /// 最小化显示

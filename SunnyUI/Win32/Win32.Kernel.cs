@@ -695,7 +695,7 @@ namespace Sunny.UI.Win32
         public int BatteryFullLifeTime;
     }
 
-    public abstract class AdvApi
+    public partial class AdvApi
     {
         [DllImport("AdvApi32")] public static extern int ImpersonateLoggedOnUser(HANDLE hToken);
         [DllImport("advapi32")] public static extern int IsTextUnicode(IntPtr lpBuffer, int cb, ref int lpi);
@@ -847,7 +847,7 @@ namespace Sunny.UI.Win32
         [DllImport("version")] public static extern int VerQueryValue(IntPtr pBlock, string lpSubBlock, ref int lplpBuffer, ref int puLen);
     }
 
-    public abstract class Kernel
+    public partial class Kernel
     {
         [DllImport("kernel32")] public static extern void OutputDebugString(string lpszOutputString);
         [DllImport("KERNEL32")] public static extern int ConvertDefaultLocale(int Locale);

@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -26,7 +27,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Sunny.UI
@@ -42,11 +42,6 @@ namespace Sunny.UI
         [Description("文件名")]
         public string FileName { get; set; } //INI文件名
 
-        [DllImport("kernel32")]
-        private static extern bool WritePrivateProfileString(byte[] section, byte[] key, byte[] val, string filePath);
-
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(byte[] section, byte[] key, byte[] def, byte[] retVal, int size, string filePath);
 
         /// <summary>
         /// Ini文件编码格式
@@ -109,7 +104,7 @@ namespace Sunny.UI
                 value = "";
             }
 
-            return WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(value), FileName);
+            return Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(value), FileName);
         }
 
         /// <summary>
@@ -127,7 +122,7 @@ namespace Sunny.UI
                 Default = "";
             }
 
-            int bufLen = GetPrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(Default), buffer, 1024, FileName);
+            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(Default), buffer, 1024, FileName);
             //必须设定0（系统默认的代码页）的编码方式，否则无法支持中文
             return IniEncoding.GetString(buffer, 0, bufLen).Trim();
         }
@@ -165,7 +160,7 @@ namespace Sunny.UI
         private void GetKeys(string section, StringCollection keys)
         {
             byte[] buffer = new byte[65535];
-            int bufLen = GetPrivateProfileString(IniEncoding.GetBytes(section), null, null, buffer, 65535, FileName);
+            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), null, null, buffer, 65535, FileName);
             //对Section进行解析
             GetStringsFromBuffer(buffer, bufLen, keys);
         }
@@ -198,7 +193,7 @@ namespace Sunny.UI
         {
             //Note:必须得用Bytes来实现，StringBuilder只能取到第一个Section
             byte[] buffer = new byte[65535];
-            int bufLen = GetPrivateProfileString(null, null, null, buffer, buffer.GetUpperBound(0), FileName);
+            int bufLen = Kernel.GetPrivateProfileString(null, null, null, buffer, buffer.GetUpperBound(0), FileName);
             GetStringsFromBuffer(buffer, bufLen, sectionList);
         }
 
@@ -224,7 +219,7 @@ namespace Sunny.UI
         /// <param name="section">section</param>
         public void EraseSection(string section)
         {
-            if (!WritePrivateProfileString(IniEncoding.GetBytes(section), null, null, FileName))
+            if (!Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), null, null, FileName))
             {
                 throw (new ApplicationException("无法清除Ini文件中的Section"));
             }
@@ -237,7 +232,7 @@ namespace Sunny.UI
         /// <param name="key">key</param>
         public void DeleteKey(string section, string key)
         {
-            WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), null, FileName);
+            Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), null, FileName);
         }
 
         /// <summary>
@@ -247,7 +242,7 @@ namespace Sunny.UI
         /// </summary>
         public void UpdateFile()
         {
-            WritePrivateProfileString(null, null, null, FileName);
+            Kernel.WritePrivateProfileString(null, null, null, FileName);
         }
 
         /// <summary>
