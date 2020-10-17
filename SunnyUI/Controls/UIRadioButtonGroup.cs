@@ -169,6 +169,16 @@ namespace Sunny.UI
             }
         }
 
+        public void SelectedNone()
+        {
+            foreach (var button in buttons)
+            {
+                button.Checked = false;
+            }
+
+            ListBox.SelectedIndex = -1;
+        }
+
         private readonly List<UIRadioButton> buttons = new List<UIRadioButton>();
 
         private int columnCount = 1;

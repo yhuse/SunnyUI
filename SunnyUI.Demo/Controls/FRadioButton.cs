@@ -12,7 +12,17 @@ namespace Sunny.UI.Demo
 
         private void uiRadioButtonGroup1_ValueChanged(object sender, int index, string text)
         {
-           Console.WriteLine("SelectedIndex: " + index + ", SelectedText: " + text);
+            Console.WriteLine("SelectedIndex: " + index + ", SelectedText: " + text);
+        }
+
+        private void uiButton2_Click(object sender, EventArgs e)
+        {
+            uiRadioButtonGroup1.SelectedNone();
+        }
+
+        private void uiButton4_Click(object sender, EventArgs e)
+        {
+            uiRadioButtonGroup1.SelectedIndex = 6;
         }
     }
 }
