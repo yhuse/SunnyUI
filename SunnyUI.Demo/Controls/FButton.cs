@@ -17,5 +17,15 @@ namespace Sunny.UI.Demo
         {
             uiButton10.Selected = !uiButton10.Selected;
         }
+
+        private void uiSwitch1_ValueChanged(object sender, bool value)
+        {
+            Console.WriteLine(uiSwitch1.Active);
+        }
+
+        private void uiSwitch1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(uiSwitch1.Active);
+        }
     }
 }
