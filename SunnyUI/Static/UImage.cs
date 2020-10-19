@@ -53,7 +53,7 @@ namespace Sunny.UI
             return bmp;
         }
 
-        public static ImageList GetToolbarImageList(Type type, Bitmap bitmap, Size imageSize, Color transparentColor)
+        public static ImageList GetToolbarImageList(Type type, Image bitmap, Size imageSize, Color transparentColor)
         {
             ImageList imageList = new ImageList();
             imageList.ImageSize = imageSize;
@@ -63,7 +63,7 @@ namespace Sunny.UI
             return imageList;
         }
 
-        public static Bitmap Split(this Bitmap image, int size, UIShape shape)
+        public static Bitmap Split(this Image image, int size, UIShape shape)
         {
             //截图画板
             Bitmap result = new Bitmap(size, size);
@@ -94,7 +94,7 @@ namespace Sunny.UI
             return result;
         }
 
-        public static Bitmap Split(this Bitmap image, GraphicsPath path)
+        public static Bitmap Split(this Image image, GraphicsPath path)
         {
             //截图画板
             Bitmap result = new Bitmap(image.Width, image.Height);
@@ -201,7 +201,7 @@ namespace Sunny.UI
         /// <param name="angle">角度</param>
         /// <param name="bkColor">背景色</param>
         /// <returns>图片</returns>
-        public static Bitmap Rotate(this Bitmap bmp, float angle, Color bkColor)
+        public static Bitmap Rotate(this Image bmp, float angle, Color bkColor)
         {
             int w = bmp.Width;
             int h = bmp.Height;
@@ -314,7 +314,7 @@ namespace Sunny.UI
         /// <param name="newW">宽度</param>
         /// <param name="newH">高度</param>
         /// <returns>新图片</returns>
-        public static Bitmap ResizeImage(this Bitmap bmp, int newW, int newH)
+        public static Bitmap ResizeImage(this Image bmp, int newW, int newH)
         {
             if (bmp == null)
             {

@@ -105,6 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 720);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1366, 728);
             this.MinimumSize = new System.Drawing.Size(1024, 720);
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 35, 2, 2);

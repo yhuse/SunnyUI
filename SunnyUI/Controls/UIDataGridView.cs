@@ -232,6 +232,18 @@ namespace Sunny.UI
             SetBarPosition();
         }
 
+        protected override void OnColumnStateChanged(DataGridViewColumnStateChangedEventArgs e)
+        {
+            base.OnColumnStateChanged(e);
+            SetScrollInfo();
+        }
+
+        protected override void OnColumnRemoved(DataGridViewColumnEventArgs e)
+        {
+            base.OnColumnRemoved(e);
+            SetScrollInfo();
+        }
+
         private void SetBarPosition()
         {
             if (ShowRect)
@@ -273,6 +285,8 @@ namespace Sunny.UI
             {
                 ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             }
+
+            SetScrollInfo();
         }
 
         private UIStyle _style = UIStyle.Blue;
