@@ -22,7 +22,6 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Web.Script.Serialization;
 
 namespace Sunny.UI
 {
@@ -54,9 +53,7 @@ namespace Sunny.UI
 
             try
             {
-                string jsonStr = File.ReadAllText(filename, Encoding.Default);
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                current = js.Deserialize<TConfig>(jsonStr);
+                current = Json.DeserializeFromFile<TConfig>(filename, Encoding.Default);
                 return true;
             }
             catch (Exception ex)
@@ -80,10 +77,7 @@ namespace Sunny.UI
                 throw new ApplicationException($"未指定{typeof(TConfig).Name}的配置文件路径！");
             }
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonStr = js.Serialize(current);
-            DirEx.CreateDir(Path.GetDirectoryName(filename));
-            File.WriteAllText(filename, jsonStr, Encoding.Default);
+            Json.SerializeToFile(current, filename, Encoding.Default);
         }
     }
 }

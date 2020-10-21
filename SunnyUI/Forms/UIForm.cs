@@ -411,7 +411,7 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            if (FormBorderStyle == FormBorderStyle.None)
+            if (FormBorderStyle == FormBorderStyle.None && ShowTitle)
             {
                 if (InControlBox)
                 {

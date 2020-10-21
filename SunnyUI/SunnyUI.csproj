@@ -431,6 +431,7 @@
     <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
     <Compile Include="Units\UConcurrentGroupDictionary.cs" />
     <Compile Include="Units\UDateTimeInt64.cs" />
+    <Compile Include="Units\UJson.cs" />
     <Compile Include="Units\UJsonConfig.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\USuspendCtrlAltDel.cs" />
