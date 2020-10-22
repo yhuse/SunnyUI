@@ -23,5 +23,14 @@ namespace Sunny.UI.Demo
         {
             uiTimePicker1.Value.ConsoleWriteLine();
         }
+
+        private void uiComboBox1_DropDown(object sender, EventArgs e)
+        {
+            uiComboBox1.Items.Clear();
+            uiComboBox1.Items.Add("100");
+            uiComboBox1.Items.Add("101");
+            uiComboBox1.Items.Add("102");
+            uiComboBox1.Items.Add("103");
+        }
     }
 }

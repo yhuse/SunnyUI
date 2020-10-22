@@ -127,12 +127,18 @@ namespace Sunny.UI
                     {
                         itemForm.ValueChanged += ItemForm_ValueChanged;
                         itemForm.VisibleChanged += ItemForm_VisibleChanged;
+                        itemForm.Closed += ItemForm_Closed;
                     }
                 }
 
                 return itemForm;
             }
             set => itemForm = value;
+        }
+
+        private void ItemForm_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            DropDownClosed?.Invoke(this, null);
         }
 
         private void ItemForm_VisibleChanged(object sender, EventArgs e)
@@ -363,13 +369,14 @@ namespace Sunny.UI
                     ItemForm.SetStyle(UIStyles.ActiveStyleColor);
                 }
 
+                DropDown?.Invoke(this, e);
                 ButtonClick?.Invoke(this, e);
             }
         }
 
-        //public event EventHandler DropDown;
+        public event EventHandler DropDown;
 
-        //public event EventHandler DropDownClosed;
+        public event EventHandler DropDownClosed;
 
         public void Select(int start, int length)
         {

@@ -100,7 +100,6 @@
             this.uiColorPicker1.TabIndex = 40;
             this.uiColorPicker1.Text = "uiColorPicker1";
             this.uiColorPicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiColorPicker1.Value = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(159)))), ((int)(((byte)(254)))));
             // 
             // uiLine7
             // 
@@ -225,6 +224,7 @@
             this.uiComboBox1.TabIndex = 32;
             this.uiComboBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox1.Watermark = "水印文字";
+            this.uiComboBox1.DropDown += new System.EventHandler(this.uiComboBox1_DropDown);
             // 
             // FCombobox
             // 
