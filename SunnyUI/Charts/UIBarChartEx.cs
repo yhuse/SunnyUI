@@ -74,11 +74,12 @@ namespace Sunny.UI
             }
 
             CalcDegreeScale(min, max, Option.YAxis.SplitNumber,
-                out int start, out int end, out double interval);
+                out int start, out int end, out double interval, out int decimalCount);
 
             YAxisStart = start;
             YAxisEnd = end;
             YAxisInterval = interval;
+            YAxisDecimalCount = decimalCount;
             float barX = DrawOrigin.X;
 
             if (Option.AutoSizeBars)
@@ -460,6 +461,10 @@ namespace Sunny.UI
                 float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
                 int idx = 0;
                 float wmax = 0;
+
+                if (Option.YAxis.AxisLabel.AutoFormat)
+                    Option.YAxis.AxisLabel.DecimalCount = YAxisDecimalCount;
+
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
                     string label = Option.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);

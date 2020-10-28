@@ -53,7 +53,7 @@ namespace Sunny.UI
         /// <param name="degree_end">刻度结束值，须乘以间隔使用</param>
         /// <param name="degree_gap">刻度间隔</param>
         public void CalcDegreeScale(double start, double end, int expect_num,
-            out int degree_start, out int degree_end, out double degree_gap)
+            out int degree_start, out int degree_end, out double degree_gap, out int decimalCount)
         {
             if (start >= end)
             {
@@ -101,6 +101,10 @@ namespace Sunny.UI
             }
 
             degree_end = end2;
+            _exponent = Math.Abs(_exponent);
+            if (fix_step.IsEven()) _exponent--;
+            if (_exponent < 0) _exponent = 0;
+            decimalCount = _exponent;
         }
 
         protected override void CalcData()
@@ -142,11 +146,12 @@ namespace Sunny.UI
             }
 
             CalcDegreeScale(min, max, Option.YAxis.SplitNumber,
-                out int start, out int end, out double interval);
+                out int start, out int end, out double interval, out int decimalCount);
 
             YAxisStart = start;
             YAxisEnd = end;
             YAxisInterval = interval;
+            YAxisDecimalCount = decimalCount;
 
             float x1 = DrawBarWidth / (Option.SeriesCount * 2 + Option.SeriesCount + 1);
             float x2 = x1 * 2;
@@ -250,6 +255,7 @@ namespace Sunny.UI
         protected int YAxisStart;
         protected int YAxisEnd;
         protected double YAxisInterval;
+        protected int YAxisDecimalCount;
         protected readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
 
         [DefaultValue(-1), Browsable(false)]
@@ -501,6 +507,10 @@ namespace Sunny.UI
                 float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
                 int idx = 0;
                 float wmax = 0;
+
+                if (Option.YAxis.AxisLabel.AutoFormat)
+                    Option.YAxis.AxisLabel.DecimalCount = YAxisDecimalCount;
+
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
                     string label = Option.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);

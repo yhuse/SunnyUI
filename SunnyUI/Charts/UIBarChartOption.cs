@@ -177,6 +177,11 @@ namespace Sunny.UI
             return value.ToString("F2");
         }
 
+        public string GetAutoLabel(double value, int decimalCount)
+        {
+            return value.ToString("F" + decimalCount);
+        }
+
         /// <summary>
         /// 小数位个数，Formatter不为空时以Formatter为准
         /// </summary>
@@ -186,6 +191,8 @@ namespace Sunny.UI
         /// 日期格式化字符串，Formatter不为空时以Formatter为准
         /// </summary>
         public string DateTimeFormat { get; set; } = "HH:mm";
+
+        public bool AutoFormat { get; set; } = true;
     }
 
     public class UIAxisTick

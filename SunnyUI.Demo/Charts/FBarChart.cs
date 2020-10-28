@@ -26,20 +26,20 @@ namespace Sunny.UI.Demo.Charts
 
             var series = new UIBarSeries();
             series.Name = "Bar1";
-            series.AddData(11);
-            series.AddData(15);
-            series.AddData(12);
-            series.AddData(14);
-            series.AddData(13);
+            series.AddData(1.1);
+            series.AddData(1.5);
+            series.AddData(1.2);
+            series.AddData(1.4);
+            series.AddData(1.3);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar2";
-            series.AddData(-22);
-            series.AddData(-28);
-            series.AddData(-25);
-            series.AddData(-23);
-            series.AddData(-24);
+            series.AddData(-2.2);
+            series.AddData(-2.8);
+            series.AddData(-2.5);
+            series.AddData(-2.3);
+            series.AddData(-2.4);
             option.Series.Add(series);
 
             option.XAxis.Data.Add("Mon");

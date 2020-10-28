@@ -47,24 +47,24 @@ namespace Sunny.UI.Demo
             series.Name = "Bar1";
             series.ShowBarName = true;
             series.ShowValue = true;
-            series.AddData("通道1", 11);
-            series.AddData("通道2", 15);
+            series.AddData("通道1", 1.1);
+            series.AddData("通道2", 1.5);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar2";
             series.ShowBarName = true;
             series.ShowValue = true;
-            series.AddData("通道1", 22);
-            series.AddData("通道2", 28);
-            series.AddData("通道3", 25);
+            series.AddData("通道1", 2.2);
+            series.AddData("通道2", 2.8);
+            series.AddData("通道3", 2.5);
             option.Series.Add(series);
 
             series = new UIBarSeries();
             series.Name = "Bar3";
             series.ShowBarName = true;
             series.ShowValue = true;
-            series.AddData("通道1", 7);
+            series.AddData("通道1", 0.7);
             option.Series.Add(series);
 
             option.XAxis.Data.Add("Mon");
