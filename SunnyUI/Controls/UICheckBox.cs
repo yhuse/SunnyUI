@@ -42,6 +42,33 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+            PaintOther += UICheckBox_PaintOther; ;
+        }
+
+        private void UICheckBox_PaintOther(object sender, PaintEventArgs e)
+        {
+            if (AutoSize)
+            {
+                SizeF sf = Text.MeasureString(Font);
+                int w = (int)sf.Width + ImageSize + 3;
+                int h = Math.Max(ImageSize, (int)sf.Height) + 2;
+                if (Width != w) Width = w;
+                if (Height != h) Height = h;
+            }
+        }
+
+        private bool autoSize;
+
+        [Browsable(true)]
+        [Description("自动大小"), Category("SunnyUI")]
+        public override bool AutoSize
+        {
+            get => autoSize;
+            set
+            {
+                autoSize = value;
+                UICheckBox_PaintOther(this, null);
+            }
         }
 
         public delegate void OnValueChanged(object sender, bool value);

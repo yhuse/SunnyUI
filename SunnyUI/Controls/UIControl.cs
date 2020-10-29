@@ -287,7 +287,7 @@ namespace Sunny.UI
                 if (useDoubleClick != value)
                 {
                     useDoubleClick = value;
-                    //SetStyle(ControlStyles.StandardDoubleClick, useDoubleClick);
+                    SetStyle(ControlStyles.StandardDoubleClick, useDoubleClick);
                     //Invalidate();
                 }
             }

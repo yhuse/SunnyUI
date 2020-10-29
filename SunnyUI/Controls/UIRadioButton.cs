@@ -46,6 +46,33 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
+            PaintOther += UIRadioButton_PaintOther;
+        }
+
+        private void UIRadioButton_PaintOther(object sender, PaintEventArgs e)
+        {
+            if (AutoSize)
+            {
+                SizeF sf = Text.MeasureString(Font);
+                int w = (int)sf.Width + ImageSize + 3;
+                int h = Math.Max(ImageSize, (int)sf.Height) + 2;
+                if (Width != w) Width = w;
+                if (Height != h) Height = h;
+            }
+        }
+
+        private bool autoSize;
+
+        [Browsable(true)]
+        [Description("自动大小"), Category("SunnyUI")]
+        public override bool AutoSize
+        {
+            get => autoSize;
+            set
+            {
+                autoSize = value;
+                UIRadioButton_PaintOther(this, null);
+            }
         }
 
         [DefaultValue(false)]

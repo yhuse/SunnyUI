@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -36,8 +37,27 @@ namespace Sunny.UI
 
         public bool IsOK { get; private set; }
 
+        [Category("SunnyUI"), Description("确定按钮点击事件")]
         public event EventHandler ButtonOkClick;
+
+        [Category("SunnyUI"), Description("取消按钮点击事件")]
         public event EventHandler ButtonCancelClick;
+
+        [Description("确定按钮可用状态"), Category("SunnyUI")]
+        [DefaultValue(true)]
+        public bool ButtonOKEnabled
+        {
+            get => btnOK.Enabled;
+            set => btnOK.Enabled = value;
+        }
+
+        [Description("取消按钮可用状态"), Category("SunnyUI")]
+        [DefaultValue(true)]
+        public bool ButtonCancelEnabled
+        {
+            get => btnCancel.Enabled;
+            set => btnCancel.Enabled = value;
+        }
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
@@ -48,7 +68,7 @@ namespace Sunny.UI
 
             if (ButtonOkClick != null)
             {
-                ButtonOkClick.Invoke(sender,e);
+                ButtonOkClick.Invoke(sender, e);
             }
             else
             {
@@ -62,7 +82,7 @@ namespace Sunny.UI
         {
             if (ButtonCancelClick != null)
             {
-                ButtonCancelClick.Invoke(sender,e);
+                ButtonCancelClick.Invoke(sender, e);
             }
             else
             {
