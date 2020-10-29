@@ -214,7 +214,7 @@ namespace Sunny.UI
 
     public class UILinearScale : UIScale
     {
-        private static double ZeroLever = 0.25;
+        private static readonly double ZeroLever = 0.25;
 
         public override void AxisChange()
         {
@@ -222,8 +222,8 @@ namespace Sunny.UI
 
             if (_max - _min < 1.0e-30)
             {
-                if (_maxAuto) _max = _max + 0.2 * (_max == 0 ? 1.0 : Math.Abs(_max));
-                if (_minAuto) _min = _min - 0.2 * (_min == 0 ? 1.0 : Math.Abs(_min));
+                if (_maxAuto) _max += 0.2 * (_max == 0 ? 1.0 : Math.Abs(_max));
+                if (_minAuto) _min -= 0.2 * (_min == 0 ? 1.0 : Math.Abs(_min));
             }
 
             if (_minAuto && _min > 0 && _min / (_max - _min) < ZeroLever) _min = 0;
@@ -231,7 +231,7 @@ namespace Sunny.UI
 
             Step = CalcStepSize(_max - _min, TargetSteps);
 
-            if (_minAuto) _min = _min - MyMod(_min, Step);
+            if (_minAuto) _min -= MyMod(_min, Step);
             if (_maxAuto) _max = MyMod(_max, Step) == 0.0 ? _max : _max + Step - MyMod(_max, Step);
             SetScaleMag();
         }
@@ -304,8 +304,8 @@ namespace Sunny.UI
 
             if (_max - _min < 1.0e-20)
             {
-                if (_maxAuto) _max = _max + 0.2 * (_max == 0 ? 1.0 : Math.Abs(_max));
-                if (_minAuto) _min = _min - 0.2 * (_min == 0 ? 1.0 : Math.Abs(_min));
+                if (_maxAuto) _max += 0.2 * (_max == 0 ? 1.0 : Math.Abs(_max));
+                if (_minAuto) _min -= 0.2 * (_min == 0 ? 1.0 : Math.Abs(_min));
             }
 
             DateTimeInt64 max = new DateTimeInt64(_max);

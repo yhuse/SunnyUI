@@ -203,7 +203,7 @@ namespace Sunny.UI
             get => activePage;
             set
             {
-                if (activePage != value)
+                //if (activePage != value)
                 {
                     activePage = Math.Max(1, value);
                     edtPage.IntValue = activePage;
