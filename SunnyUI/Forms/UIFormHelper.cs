@@ -29,6 +29,134 @@ namespace Sunny.UI
     public static class UIMessageDialog
     {
         /// <summary>
+        /// 正确信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowSuccessDialog(this Form form, string msg, UIStyle style = UIStyle.Green)
+        {
+            form.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
+        {
+            form.ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
+        {
+            form.ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
+        {
+            form.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style"></param>
+        /// <returns>结果</returns>
+        public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue)
+        {
+            return form.ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
+        }
+
+        /// <summary>
+        /// 正确信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green)
+        {
+            form.ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
+        {
+            form.ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange)
+        {
+            form.ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red)
+        {
+            form.ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style"></param>
+        /// <returns>结果</returns>
+        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
+        {
+            return form.ShowMessageDialog(msg, title, true, style);
+        }
+
+        public static bool ShowMessageDialog(this Form form, string message, string title, bool isShowCancel, UIStyle style)
+        {
+            UIMessageForm frm = new UIMessageForm();
+            frm.TopMost = form.TopMost;
+            frm.ShowMessage(message, title, isShowCancel, style);
+            frm.ShowDialog();
+            bool isOk = frm.IsOK;
+            frm.Dispose();
+            return isOk;
+        }
+
+        /// <summary>
         /// 确认信息提示框
         /// </summary>
         /// <param name="title">标题</param>

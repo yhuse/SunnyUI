@@ -42,7 +42,7 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
-            PaintOther += UICheckBox_PaintOther; ;
+            PaintOther += UICheckBox_PaintOther;
         }
 
         private void UICheckBox_PaintOther(object sender, PaintEventArgs e)
@@ -171,9 +171,10 @@ namespace Sunny.UI
             }
             else
             {
-                using (Pen pn = new Pen(color, 2))
+                using (Pen pn = new Pen(color, 1))
                 {
                     g.DrawRoundRectangle(pn, new Rectangle((int)left + 1, (int)top + 1, ImageSize - 2, ImageSize - 2), 1);
+                    g.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
                 }
             }
         }
