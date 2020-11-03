@@ -534,6 +534,9 @@
     <Compile Include="Win32\Win32.User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\UIDataGridViewForm.resx">
+      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
