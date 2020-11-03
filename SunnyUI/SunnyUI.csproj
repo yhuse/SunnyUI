@@ -154,6 +154,12 @@
     <Compile Include="Controls\UIWaitingBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\UIDataGridViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UIDataGridViewForm.Designer.cs">
+      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UIFormService.cs" />
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>

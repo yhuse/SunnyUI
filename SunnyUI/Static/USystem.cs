@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using Microsoft.Win32;
 using Sunny.UI.Win32;
 using System;
 using System.Diagnostics;
@@ -46,6 +47,53 @@ namespace Sunny.UI
             RECT rect = new RECT();
             User.GetWindowRect(handle, ref rect);
             return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
+        }
+
+        public static void EnabledTaskManager()
+        {
+            DisableTaskMgrRegistryKey(true);
+        }
+
+        public static void DisabledTaskManager()
+        {
+            DisableTaskMgrRegistryKey(false);
+        }
+
+        private static void DisableTaskMgrRegistryKey(bool enabled)
+        {
+            string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
+            RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
+            mKey?.SetValue("DisableTaskMgr", enabled ? 0 : 1);
+            mKey?.Dispose();
+        }
+
+        /// <summary>
+        /// txtOutput.ThreadSafeCall(() => txtOutput.Text = "Updated");
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="method"></param>
+        public static void ThreadSafeCall(this Control control, Action method)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(method);
+            }
+            else
+            {
+                method();
+            }
+        }
+
+        public static T ThreadSafeCall<T>(this Control control, Func<T> method)
+        {
+            if (control.InvokeRequired)
+            {
+                return (T)control.Invoke(method);
+            }
+            else
+            {
+                return method();
+            }
         }
 
         /// <summary>
