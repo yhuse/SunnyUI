@@ -41,6 +41,11 @@ namespace Sunny.UI
             }
         }
 
+        public void Clear()
+        {
+            Items.Clear();
+        }
+
         private readonly ConcurrentDictionary<TreeNode, NavMenuItem> Items = new ConcurrentDictionary<TreeNode, NavMenuItem>();
 
         public string GetTipsText(TreeNode node)

@@ -51,19 +51,32 @@ namespace Sunny.UI
 
         public static void EnabledTaskManager()
         {
-            DisableTaskMgrRegistryKey(true);
+            RegistryDisableTaskMgr(0);
         }
 
         public static void DisabledTaskManager()
         {
-            DisableTaskMgrRegistryKey(false);
+            RegistryDisableTaskMgr(1);
         }
 
-        private static void DisableTaskMgrRegistryKey(bool enabled)
+        public static void RegistryDisableTaskMgr(int value)
         {
             string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
             RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
-            mKey?.SetValue("DisableTaskMgr", enabled ? 0 : 1);
+            mKey?.SetValue("DisableTaskMgr", value);
+            mKey?.Dispose();
+        }
+
+        public static void RegistryHooksTimeout()
+        {
+            string subKey = @"Control Panel\Desktop";
+            RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
+            mKey?.SetValue("LowLevelHooksTimeout", 10000);
+            mKey?.Dispose();
+
+            subKey = @".DEFAULT\Control Panel\Desktop";
+            mKey = Registry.Users.CreateSubKey(subKey);
+            mKey?.SetValue("LowLevelHooksTimeout", 10000);
             mKey?.Dispose();
         }
 
