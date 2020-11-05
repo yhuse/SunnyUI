@@ -327,10 +327,10 @@ namespace Sunny.UI
                 return (UIBarOption)option;
             }
 
-            set
-            {
-                SetOption(value);
-            }
+            // set
+            // {
+            //     SetOption(value);
+            // }
         }
 
         protected override void CreateEmptyOption()

@@ -113,10 +113,10 @@ namespace Sunny.UI
                 return (UILineOption)option;
             }
 
-            set
-            {
-                SetOption(value);
-            }
+            // set
+            // {
+            //     SetOption(value);
+            // }
         }
 
         protected override void CreateEmptyOption()

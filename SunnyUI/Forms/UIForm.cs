@@ -40,6 +40,7 @@ namespace Sunny.UI
 
         public UIForm()
         {
+            base.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);//设置最大化尺寸
             InitializeComponent();
 
             if (this.Register())
@@ -47,7 +48,7 @@ namespace Sunny.UI
                 SetStyle(UIStyles.Style);
             }
 
-            base.SetStyle(
+            SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer |
                 ControlStyles.OptimizedDoubleBuffer |
