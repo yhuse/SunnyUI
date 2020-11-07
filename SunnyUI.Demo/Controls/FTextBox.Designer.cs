@@ -93,7 +93,6 @@
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 3;
             this.uiTextBox1.Watermark = "水印文字";
-            this.uiTextBox1.Click += new System.EventHandler(this.uiTextBox1_Click);
             // 
             // uiLabel1
             // 

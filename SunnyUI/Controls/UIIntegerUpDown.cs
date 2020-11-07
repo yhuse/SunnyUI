@@ -75,6 +75,7 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
             if (pnlValue != null) pnlValue.Font = Font;
+            if (edit != null) edit.Font = Font;
         }
 
         private int step = 1;
