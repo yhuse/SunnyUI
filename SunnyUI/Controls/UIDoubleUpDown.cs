@@ -23,6 +23,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -36,6 +38,19 @@ namespace Sunny.UI
         {
             InitializeComponent();
             ShowText = false;
+            edit.Type = UITextBox.UIEditType.Double;
+            edit.Parent = pnlValue;
+            edit.Visible = false;
+            edit.BorderStyle = BorderStyle.None;
+            edit.TextChanged += Edit_TextChanged;
+        }
+
+        private void Edit_TextChanged(object sender, EventArgs e)
+        {
+            if (edit != null && edit.Visible)
+            {
+                Value = edit.Text.ToDouble();
+            }
         }
 
         protected override void OnFontChanged(EventArgs e)
@@ -46,7 +61,7 @@ namespace Sunny.UI
 
         public event OnValueChanged ValueChanged;
 
-        private double _value = 0;
+        private double _value;
 
         [DefaultValue(0)]
         [Description("选中数值"), Category("SunnyUI")]
@@ -73,20 +88,27 @@ namespace Sunny.UI
         public double Step
         {
             get => step;
-            set
-            {
-                step = Math.Abs(value);
-            }
+            set => step = Math.Abs(value);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Value += Step;
+            if (edit.Visible)
+            {
+                edit.Visible = false;
+                pnlValue.FillColor = pnlColor;
+            }
         }
 
         private void btnDec_Click(object sender, EventArgs e)
         {
             Value -= Step;
+            if (edit.Visible)
+            {
+                edit.Visible = false;
+                pnlValue.FillColor = pnlColor;
+            }
         }
 
         private double _maximum = double.MaxValue;
@@ -104,6 +126,7 @@ namespace Sunny.UI
                     _minimum = _maximum;
 
                 Value = CheckMaxMin(Value);
+                edit.MaxValue = _maximum;
                 Invalidate();
             }
         }
@@ -120,6 +143,7 @@ namespace Sunny.UI
                     _maximum = _minimum;
 
                 Value = CheckMaxMin(Value);
+                edit.MinValue = _minimum;
                 Invalidate();
             }
         }
@@ -155,6 +179,7 @@ namespace Sunny.UI
                 {
                     hasMaximum = value;
                     Value = CheckMaxMin(Value);
+                    edit.HasMaxValue = value;
                     Invalidate();
                 }
             }
@@ -171,9 +196,26 @@ namespace Sunny.UI
                 {
                     hasMinimum = value;
                     Value = CheckMaxMin(Value);
+                    edit.HasMinValue = value;
                     Invalidate();
                 }
             }
+        }
+
+        private readonly UIEdit edit = new UIEdit();
+        private Color pnlColor;
+        private void pnlValue_DoubleClick(object sender, EventArgs e)
+        {
+            edit.Left = 1;
+            edit.Top = (pnlValue.Height - edit.Height) / 2;
+            edit.Width = pnlValue.Width - 2;
+            pnlColor = pnlValue.FillColor;
+            pnlValue.FillColor = Color.White;
+            edit.TextAlign = HorizontalAlignment.Center;
+            edit.Text = pnlValue.Text;
+            edit.DecLength = Decimal;
+            edit.Visible = true;
+            edit.BringToFront();
         }
     }
 }

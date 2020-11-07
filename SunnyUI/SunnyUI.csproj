@@ -534,6 +534,12 @@
     <Compile Include="Win32\Win32.User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\UIDoubleUpDown.resx">
+      <DependentUpon>UIDoubleUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIIntegerUpDown.resx">
+      <DependentUpon>UIIntegerUpDown.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UIDataGridViewForm.resx">
       <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
     </EmbeddedResource>
