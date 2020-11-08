@@ -60,6 +60,12 @@ namespace Sunny.UI
             base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Invalidate();
+        }
+
         /// <summary>
         /// Tag字符串
         /// </summary>
