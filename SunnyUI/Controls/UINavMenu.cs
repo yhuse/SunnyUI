@@ -504,11 +504,12 @@ namespace Sunny.UI
                     if (MenuHelper.GetSymbol(e.Node) > 0)
                     {
                         SizeF fiSize = e.Graphics.GetFontImageSize(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node));
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), ForeColor, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
+                        Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
                     }
                     else
                     {
-                        if (TreeNodeSelected(e) && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
+                        if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
                             e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
                         else
                             e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
@@ -544,12 +545,6 @@ namespace Sunny.UI
                 tipsColor = value;
                 Invalidate();
             }
-        }
-
-        private bool TreeNodeSelected(DrawTreeNodeEventArgs e)
-        {
-            return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
-                   e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
         }
 
         [Description("展开节点后选中第一个子节点"), DefaultValue(true), Category("SunnyUI")]
