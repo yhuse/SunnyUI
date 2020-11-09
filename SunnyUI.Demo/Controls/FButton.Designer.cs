@@ -433,6 +433,7 @@
             this.uiButton13.StyleCustomMode = true;
             this.uiButton13.TabIndex = 17;
             this.uiButton13.Text = "Red";
+            this.uiButton13.Click += new System.EventHandler(this.uiButton13_Click);
             // 
             // uiButton14
             // 

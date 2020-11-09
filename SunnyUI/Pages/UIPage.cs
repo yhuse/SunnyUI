@@ -39,6 +39,8 @@ namespace Sunny.UI
 
         protected UIStyle _style = UIStyle.Blue;
 
+        public UIMainFrame Frame;
+
         public UIPage()
         {
             InitializeComponent();
