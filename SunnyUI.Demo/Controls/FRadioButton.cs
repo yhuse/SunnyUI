@@ -10,6 +10,12 @@ namespace Sunny.UI.Demo
             uiRadioButtonGroup1.SelectedIndex = 2;
         }
 
+        public override void Init()
+        {
+            base.Init();
+            uiRadioButtonGroup1.SelectedIndex = 1;
+        }
+
         private void uiRadioButtonGroup1_ValueChanged(object sender, int index, string text)
         {
             Console.WriteLine("SelectedIndex: " + index + ", SelectedText: " + text);

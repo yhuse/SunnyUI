@@ -65,7 +65,7 @@ namespace Sunny.UI
             return page;
         }
 
-        public void SelectPage(int pageIndex)
+        public virtual void SelectPage(int pageIndex)
         {
             MainContainer.SelectPage(pageIndex);
         }

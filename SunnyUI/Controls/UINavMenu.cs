@@ -651,6 +651,11 @@ namespace Sunny.UI
             MenuItemClick?.Invoke(SelectedNode, MenuHelper[SelectedNode], MenuHelper.GetPageIndex(SelectedNode));
         }
 
+        public TreeNode GetTreeNode(int pageIndex)
+        {
+            return MenuHelper.GetTreeNode(pageIndex);
+        }
+
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
