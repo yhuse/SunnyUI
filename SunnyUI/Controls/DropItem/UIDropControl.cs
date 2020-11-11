@@ -65,6 +65,12 @@ namespace Sunny.UI
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
             edit.BackColor = Color.White;
+            PaintOther += UIDropControl_PaintOther;
+        }
+
+        private void UIDropControl_PaintOther(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(RectColor, Width - 1, Radius, Width - 1, Height - Radius);
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)
@@ -256,13 +262,15 @@ namespace Sunny.UI
             if (!edit.Visible)
             {
                 base.OnPaintFore(g, path);
+                g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 26, edit.Height), Radius, false);
+                g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
             }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            Padding = new Padding(0, 0, 30, 0);
+            Padding = new Padding(0, 0, 30, 2);
             e.Graphics.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
             Color color = GetRectColor();
             SizeF sf = e.Graphics.GetFontImageSize(dropSymbol, 24);
@@ -307,6 +315,7 @@ namespace Sunny.UI
             set => edit.Text = value;
         }
 
+        [Browsable(false)]
         public bool IsEmpty => edit.Text == "";
 
         protected override void OnMouseDown(MouseEventArgs e)
