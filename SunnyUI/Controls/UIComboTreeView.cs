@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [DefaultEvent("NodeSelected")]
+    [DefaultProperty("Nodes")]
     [ToolboxItem(true)]
     public class UIComboTreeView : UIDropControl
     {
@@ -84,10 +87,33 @@ namespace Sunny.UI
             }
             else
             {
+                StringBuilder sb = new StringBuilder();
+                foreach (TreeNode node in Nodes)
+                {
+                    if (node.Checked) sb.Append(node.Text + "; ");
+                    AddChildNodeText(node, sb);
+                }
+
+                Text = sb.ToString();
                 NodesSelected?.Invoke(this, Nodes);
             }
 
             Invalidate();
+        }
+
+        private void AddChildNodeText(TreeNode node, StringBuilder sb)
+        {
+            if (node.Nodes.Count > 0)
+            {
+                foreach (TreeNode child in node.Nodes)
+                {
+                    if (child.Checked)
+                        sb.Append(child.Text + "; ");
+
+                    if (child.Nodes.Count > 0)
+                        AddChildNodeText(child, sb);
+                }
+            }
         }
 
         private void UIComboTreeView_ButtonClick(object sender, System.EventArgs e)

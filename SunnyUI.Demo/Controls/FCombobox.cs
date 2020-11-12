@@ -32,5 +32,15 @@ namespace Sunny.UI.Demo
             uiComboBox1.Items.Add("102");
             uiComboBox1.Items.Add("103");
         }
+
+        private void uiComboTreeView1_NodeSelected(object sender, System.Windows.Forms.TreeNode node)
+        {
+            ShowInfoTip(node.Text);
+        }
+
+        private void uiComboTreeView2_NodesSelected(object sender, System.Windows.Forms.TreeNodeCollection node)
+        {
+            ShowInfoTip(uiComboTreeView2.Text);
+        }
     }
 }

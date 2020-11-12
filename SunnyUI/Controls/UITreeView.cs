@@ -741,7 +741,7 @@ namespace Sunny.UI
                                 {
                                     lineX -= Indent;
 
-                                    if (pNode.Level == 0 && pNode.NextNode != null)
+                                    if (pNode.NextNode != null)
                                         e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
 
                                     if (pNode.NextNode != null)

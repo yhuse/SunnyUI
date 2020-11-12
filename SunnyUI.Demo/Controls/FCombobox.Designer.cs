@@ -311,6 +311,7 @@
             this.uiComboTreeView1.Size = new System.Drawing.Size(150, 29);
             this.uiComboTreeView1.TabIndex = 43;
             this.uiComboTreeView1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboTreeView1.NodeSelected += new Sunny.UI.UIComboTreeView.OnNodeSelected(this.uiComboTreeView1_NodeSelected);
             // 
             // uiLine1
             // 
@@ -350,6 +351,7 @@
             this.uiComboTreeView2.Size = new System.Drawing.Size(150, 29);
             this.uiComboTreeView2.TabIndex = 46;
             this.uiComboTreeView2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboTreeView2.NodesSelected += new Sunny.UI.UIComboTreeView.OnNodesSelected(this.uiComboTreeView2_NodesSelected);
             // 
             // uiComboTreeView3
             // 
