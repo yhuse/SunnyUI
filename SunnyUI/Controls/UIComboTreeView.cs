@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -28,6 +29,12 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (item != null) item.TreeView.Font = Font;
         }
 
         [Browsable(false)]
