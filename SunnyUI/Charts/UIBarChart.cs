@@ -139,10 +139,15 @@ namespace Sunny.UI
             if (!Option.YAxis.MaxAuto) max = Option.YAxis.Max;
             if (!Option.YAxis.MinAuto) min = Option.YAxis.Min;
 
-            if ((max - min).IsZero())
+            if ((max - min).IsZero() && min.IsZero())
             {
                 max = 100;
                 min = 0;
+            }
+            else
+            {
+                if (max > 0) min = 0;
+                else max = 0;
             }
 
             CalcDegreeScale(min, max, Option.YAxis.SplitNumber,
