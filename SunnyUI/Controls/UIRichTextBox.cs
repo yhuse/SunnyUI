@@ -46,6 +46,12 @@ namespace Sunny.UI
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
         }
 
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            edit.ContextMenuStrip = ContextMenuStrip;
+        }
+
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);

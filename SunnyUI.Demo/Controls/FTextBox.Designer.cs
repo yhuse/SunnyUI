@@ -43,7 +43,10 @@
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiTextBox4 = new Sunny.UI.UITextBox();
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
+            this.aaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PagePanel.SuspendLayout();
+            this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
@@ -214,6 +217,7 @@
             // uiRichTextBox1
             // 
             this.uiRichTextBox1.AutoWordSelection = true;
+            this.uiRichTextBox1.ContextMenuStrip = this.uiContextMenuStrip1;
             this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
             this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRichTextBox1.Location = new System.Drawing.Point(388, 219);
@@ -269,6 +273,20 @@
     "nnyUI技术交流群)，请给源码项目点个Star吧！！！";
             this.uiTextBox4.Watermark = "水印文字";
             // 
+            // uiContextMenuStrip1
+            // 
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aaToolStripMenuItem});
+            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(99, 30);
+            // 
+            // aaToolStripMenuItem
+            // 
+            this.aaToolStripMenuItem.Name = "aaToolStripMenuItem";
+            this.aaToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
+            this.aaToolStripMenuItem.Text = "aa";
+            // 
             // FTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -277,8 +295,10 @@
             this.Name = "FTextBox";
             this.Symbol = 61962;
             this.Text = "TextBox";
+            this.Controls.SetChildIndex(this.PagePanel, 0);
             this.PagePanel.ResumeLayout(false);
             this.PagePanel.PerformLayout();
+            this.uiContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -299,5 +319,7 @@
         private UITextBox uiTextBox4;
         private UILine uiLine3;
         private UILine uiLine2;
+        private UIContextMenuStrip uiContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem aaToolStripMenuItem;
     }
 }
