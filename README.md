@@ -4,7 +4,6 @@
 <a href="https://gitee.com/yhuse/SunnyUI/stargazers" target="_blank"><img src="https://svg.hamm.cn/gitee.svg?type=star&user=yhuse&project=SunnyUI"/></a>
 <a href="https://gitee.com/yhuse/SunnyUI/members" target="_blank"><img src="https://svg.hamm.cn/gitee.svg?type=fork&user=yhuse&project=SunnyUI"/></a>
 <img src="https://svg.hamm.cn/badge.svg?key=Base&value=C%23 Winform"/>
-<img src="https://svg.hamm.cn/badge.svg?key=Base&value=.Net Framework 4.0++"/>
 <img src="https://svg.hamm.cn/badge.svg?key=License&value=GPL-3.0"/>
 </p>
 
