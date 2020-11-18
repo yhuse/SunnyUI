@@ -180,9 +180,19 @@ namespace Sunny.UI
                     {
                         string label;
                         if (Option.XAxisType == UIAxisType.DateTime)
-                            label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
+                        {
+                            if (Option.XAxis.AxisLabel.AutoFormat)
+                                label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
+                            else
+                                label = new DateTimeInt64(XLabels[i]).ToString(Option.XAxis.AxisLabel.DateTimeFormat);
+                        }
                         else
-                            label = XLabels[i].ToString(XScale.Format);
+                        {
+                            if (Option.XAxis.AxisLabel.AutoFormat)
+                                label = XLabels[i].ToString(XScale.Format);
+                            else
+                                label = new DateTimeInt64(XLabels[i]).ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
+                        }
 
                         SizeF sf = g.MeasureString(label, SubFont);
                         g.DrawString(label, SubFont, ChartStyle.ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
