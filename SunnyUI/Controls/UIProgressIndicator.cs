@@ -50,6 +50,7 @@ namespace Sunny.UI
         ~UIProgressIndicator()
         {
             timer.Stop();
+            timer.Dispose();
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)

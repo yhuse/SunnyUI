@@ -58,6 +58,12 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        ~Thunder()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
@@ -320,7 +326,7 @@ namespace Sunny.UI
         private static extern bool XL_UnInit();
 
         [DllImport("xldl.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr XL_CreateTask([In]DownTaskParam stParam);
+        private static extern IntPtr XL_CreateTask([In] DownTaskParam stParam);
 
         [DllImport("xldl.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool XL_StartTask(IntPtr hTask);
@@ -358,7 +364,7 @@ namespace Sunny.UI
 
         [DllImport("xldl.dll", EntryPoint = "XL_QueryTaskInfoEx", CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool XL_QueryTaskInfoEx(IntPtr hTask, [Out]DownTaskInfo stTaskInfo);
+        private static extern bool XL_QueryTaskInfoEx(IntPtr hTask, [Out] DownTaskInfo stTaskInfo);
 
         [DllImport("xldl.dll", EntryPoint = "XL_QueryTaskInfoEx", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr XL_CreateBTTask(DownBTTaskParam stParam);

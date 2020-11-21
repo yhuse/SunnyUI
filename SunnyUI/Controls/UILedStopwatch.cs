@@ -47,6 +47,12 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
         }
 
+        ~UILedStopwatch()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         public enum TimeShowType
         {
             mmss,

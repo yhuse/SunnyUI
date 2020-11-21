@@ -64,6 +64,12 @@ namespace Sunny.UI
 
         public event EventHandler ValueChanged;
 
+        ~UIScrollBar()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         [DefaultValue(0)]
         [Description("当前值"), Category("SunnyUI")]
         public int Value

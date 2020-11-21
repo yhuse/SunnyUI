@@ -46,6 +46,12 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        ~UIWaitingBar()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         private void UIWaitingBar_PaintOther(object sender, PaintEventArgs e)
         {
             e.Graphics.FillRoundRectangle(rectColor, (int)dz + 1, 1, sliderWidth, Height - 3, Radius);

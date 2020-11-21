@@ -47,6 +47,12 @@ namespace Sunny.UI
             fillPressColor = Color.FromArgb(74, 131, 229);
         }
 
+        ~UIHorScrollBar()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         private int scrollValue;
         private int SmallChange = 1;
         private int LargeChange = 10;

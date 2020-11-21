@@ -53,6 +53,12 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
         }
 
+        ~UITabControl()
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();

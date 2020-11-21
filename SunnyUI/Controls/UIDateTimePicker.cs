@@ -51,8 +51,9 @@ namespace Sunny.UI
         public UIDatetimePicker()
         {
             InitializeComponent();
-            Width = 200;
             Value = DateTime.Now;
+            Text = Value.ToString(DateFormat);
+            Width = 200;
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
             MaxLength = 19;

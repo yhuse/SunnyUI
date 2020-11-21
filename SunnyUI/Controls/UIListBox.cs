@@ -97,6 +97,7 @@ namespace Sunny.UI
         ~UIListBox()
         {
             timer.Stop();
+            timer.Dispose();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

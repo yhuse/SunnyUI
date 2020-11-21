@@ -44,6 +44,12 @@ namespace Sunny.UI
         private readonly Color[] _surroundColor = new Color[] { Color.FromArgb(0, 255, 255, 255) };
         private readonly Timer _timer = new Timer();
 
+        ~UILedBulb()
+        {
+            _timer.Stop();
+            _timer.Dispose();
+        }
+
         /// <summary>
         /// Gets or Sets the color of the LED light
         /// </summary>
@@ -129,7 +135,7 @@ namespace Sunny.UI
         /// </summary>
         private void drawControl(Graphics g, bool on)
         {
-  // Is the bulb on or off
+            // Is the bulb on or off
             Color lightColor = (on) ? Color : Color.FromArgb(150, DarkColor);
             Color darkColor = (on) ? DarkColor : DarkDarkColor;
 
@@ -143,7 +149,7 @@ namespace Sunny.UI
 
             // Draw the background ellipse
             var rectangle = new Rectangle(Padding.Left, Padding.Top, diameter, diameter);
-            g.FillEllipse(darkColor, rectangle,true);
+            g.FillEllipse(darkColor, rectangle, true);
 
             // Draw the glow gradient
             var path = new GraphicsPath();
