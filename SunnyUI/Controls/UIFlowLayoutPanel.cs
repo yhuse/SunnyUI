@@ -92,6 +92,11 @@ namespace Sunny.UI
             Panel.Controls.Add(ctrl);
         }
 
+        public void RemoveControl(Control ctrl)
+        {
+            Panel.Controls.Remove(ctrl);
+        }
+
         public void Clear()
         {
             Panel.Controls.Clear();
