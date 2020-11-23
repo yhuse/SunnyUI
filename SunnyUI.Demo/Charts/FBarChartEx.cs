@@ -83,6 +83,8 @@ namespace Sunny.UI.Demo
 
             option.FixedSeriesCount = 3;
             option.AutoSizeBars = true;
+            option.AutoSizeBarsCompact = true;
+            option.AutoSizeBarsCompactValue = 0.8f;
 
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });

@@ -51,6 +51,10 @@ namespace Sunny.UI
         /// </summary>
         public bool AutoSizeBars { get; set; }
 
+        public bool AutoSizeBarsCompact { get; set; }
+
+        public float AutoSizeBarsCompactValue { get; set; } = 1.0f;
+
         public void AddSeries(UIBarSeries series)
         {
             Series.Add(series);
