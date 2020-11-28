@@ -275,10 +275,10 @@ namespace Sunny.UI
         {
             base.OnSizeChanged(e);
             CalcSystemBoxPos();
-            if (!resizing)
-            {
-                rowHeight = Height;
-            }
+            // if (!resizing)
+            // {
+            //     rowHeight = Height;
+            // }
         }
 
         protected override void OnMouseDoubleClick(MouseEventArgs e)

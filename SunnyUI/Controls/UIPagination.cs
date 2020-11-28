@@ -846,7 +846,7 @@ namespace Sunny.UI
         {
             if (dataSource == null)
             {
-                PageChanged?.Invoke(this, dataSource, 1, 0);
+                PageChanged?.Invoke(this, dataSource, activePage, 0);
                 return;
             }
 
