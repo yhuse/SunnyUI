@@ -245,6 +245,8 @@ namespace Sunny.UI
 
         public bool ShowValue { get; set; }
 
+        public float ShowValueFontSize { get; set; } = 0;
+
         public void AddData(double value)
         {
             Data.Add(value);

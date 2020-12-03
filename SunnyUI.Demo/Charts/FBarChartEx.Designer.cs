@@ -34,6 +34,7 @@
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.BarChart = new Sunny.UI.UIBarChartEx();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -42,6 +43,7 @@
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSymbolButton2);
             this.PagePanel.Controls.Add(this.uiSymbolButton1);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
@@ -59,7 +61,7 @@
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton1.Size = new System.Drawing.Size(100, 27);
-            this.uiSymbolButton1.Symbol = 61952;
+            this.uiSymbolButton1.Symbol = 61568;
             this.uiSymbolButton1.TabIndex = 34;
             this.uiSymbolButton1.Text = "数据";
             this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
@@ -129,6 +131,19 @@
             this.BarChart.TabIndex = 35;
             this.BarChart.Text = "uiBarChartEx1";
             // 
+            // uiSymbolButton2
+            // 
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(456, 466);
+            this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton2.Symbol = 61568;
+            this.uiSymbolButton2.TabIndex = 36;
+            this.uiSymbolButton2.Text = "数据";
+            this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
+            // 
             // FBarChartEx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -153,5 +168,6 @@
         private UIImageButton uiImageButton1;
         private UILine uiLine1;
         private UIBarChartEx BarChart;
+        private UISymbolButton uiSymbolButton2;
     }
 }

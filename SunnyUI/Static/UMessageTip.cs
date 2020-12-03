@@ -469,7 +469,6 @@ namespace Sunny.UI
                 || controlOrItem is GroupBox
                 || controlOrItem is Panel
                 || controlOrItem is TabControl
-                || controlOrItem is DataGrid
                 || controlOrItem is DataGridView
                 || controlOrItem is ListBox
                 || controlOrItem is ListView)

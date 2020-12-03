@@ -89,11 +89,13 @@ namespace Sunny.UI
 
             if (Option.AutoSizeBars)
             {
+                //每个柱子等宽
                 float x1 = DrawSize.Width * 1.0f / DataCount / 4;
                 float x2 = x1 * 2;
 
                 if (Option.AutoSizeBarsCompact)
                 {
+                    //紧凑
                     for (int i = 0; i < Option.SeriesCount; i++)
                     {
                         var series = Option.Series[i];
@@ -171,6 +173,7 @@ namespace Sunny.UI
                 }
                 else
                 {
+                    //宽松
                     for (int i = 0; i < Option.SeriesCount; i++)
                     {
                         var series = Option.Series[i];
@@ -247,89 +250,178 @@ namespace Sunny.UI
             }
             else
             {
-                for (int i = 0; i < Option.SeriesCount; i++)
+                //每个序列等宽
+                if (Option.AutoSizeBarsCompact)
                 {
-                    var series = Option.Series[i];
-                    float x1;
-                    if (Option.FixedSeriesCount > 0)
-                        x1 = DrawBarWidth / (Option.FixedSeriesCount * 2 + Option.FixedSeriesCount + 1);
-                    else
-                        x1 = DrawBarWidth / (series.Data.Count * 2 + series.Data.Count + 1);
+                    //紧凑
 
-                    float x2 = x1 * 2;
+                    float CompactWidth = DrawBarWidth / 4.0f * Option.AutoSizeBarsCompactValue;
 
-                    Bars.TryAdd(i, new List<BarInfo>());
-                    for (int j = 0; j < series.Data.Count; j++)
+                    for (int i = 0; i < Option.SeriesCount; i++)
                     {
-                        Color color = ChartStyle.GetColor(i);
-                        if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
-                            color = series.Colors[j];
-
-                        float xx;
-                        if (Option.FixedSeriesCount > 0)
-                            xx = barX + DrawBarWidth / (series.Data.Count * 2 + series.Data.Count + 1) * ((j + 1) * 3 - 1);
-                        else
-                            xx = barX + x1 * ((j + 1) * 3 - 1);
-
+                        var series = Option.Series[i];
+                        float x1 = DrawBarWidth / series.Data.Count / 4.0f;
+                        float x2 = x1 * 2;
                         float ww = Math.Min(x2, series.MaxWidth);
-                        xx -= ww / 2.0f;
 
-                        if (YAxisStart >= 0)
-                        {
-                            float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
+                        float sx = barX + (DrawBarWidth - ww * series.Data.Count - (series.Data.Count - 1) * CompactWidth) / 2.0f;
 
-                            Bars[i].Add(new BarInfo()
-                            {
-                                Rect = new RectangleF(xx, DrawOrigin.Y - h, ww, h),
-                                Color = color
-                            });
-                        }
-                        else if (YAxisEnd <= 0)
+                        Bars.TryAdd(i, new List<BarInfo>());
+                        for (int j = 0; j < series.Data.Count; j++)
                         {
-                            float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
-                            Bars[i].Add(new BarInfo()
-                            {
-                                Rect = new RectangleF(xx, Option.Grid.Top + 1, ww, h - 1),
-                                Color = color
-                            });
-                        }
-                        else
-                        {
-                            float lowH = 0;
-                            float highH = 0;
-                            float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
-                            float lowV = 0;
-                            float highV = 0;
-                            for (int k = YAxisStart; k <= YAxisEnd; k++)
-                            {
-                                if (k < 0) lowH += DrawBarHeight;
-                                if (k > 0) highH += DrawBarHeight;
-                                if (k < 0) lowV += (float)YAxisInterval;
-                                if (k > 0) highV += (float)YAxisInterval;
-                            }
+                            Color color = ChartStyle.GetColor(i);
+                            if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
+                                color = series.Colors[j];
 
-                            if (series.Data[j] >= 0)
+                            float xx = sx;
+
+                            if (YAxisStart >= 0)
                             {
-                                float h = Math.Abs((float)(highH * series.Data[j] / highV));
+                                float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
+
                                 Bars[i].Add(new BarInfo()
                                 {
-                                    Rect = new RectangleF(xx, DrawOrigin.Y - lowH - h, ww, h),
+                                    Rect = new RectangleF(xx, DrawOrigin.Y - h, ww, h),
+                                    Color = color
+                                });
+                            }
+                            else if (YAxisEnd <= 0)
+                            {
+                                float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
+                                Bars[i].Add(new BarInfo()
+                                {
+                                    Rect = new RectangleF(xx, Option.Grid.Top + 1, ww, h - 1),
                                     Color = color
                                 });
                             }
                             else
                             {
-                                float h = Math.Abs((float)(lowH * series.Data[j] / lowV));
+                                float lowH = 0;
+                                float highH = 0;
+                                float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
+                                float lowV = 0;
+                                float highV = 0;
+                                for (int k = YAxisStart; k <= YAxisEnd; k++)
+                                {
+                                    if (k < 0) lowH += DrawBarHeight;
+                                    if (k > 0) highH += DrawBarHeight;
+                                    if (k < 0) lowV += (float)YAxisInterval;
+                                    if (k > 0) highV += (float)YAxisInterval;
+                                }
+
+                                if (series.Data[j] >= 0)
+                                {
+                                    float h = Math.Abs((float)(highH * series.Data[j] / highV));
+                                    Bars[i].Add(new BarInfo()
+                                    {
+                                        Rect = new RectangleF(xx, DrawOrigin.Y - lowH - h, ww, h),
+                                        Color = color
+                                    });
+                                }
+                                else
+                                {
+                                    float h = Math.Abs((float)(lowH * series.Data[j] / lowV));
+                                    Bars[i].Add(new BarInfo()
+                                    {
+                                        Rect = new RectangleF(xx, DrawOrigin.Y - lowH + 1, ww, h - 1),
+                                        Color = color
+                                    });
+                                }
+                            }
+
+                            sx += ww + CompactWidth;
+                        }
+
+                        barX += DrawBarWidth;
+                    }
+                }
+                else
+                {
+                    //宽松
+                    for (int i = 0; i < Option.SeriesCount; i++)
+                    {
+                        var series = Option.Series[i];
+                        float x1;
+                        if (Option.FixedSeriesCount > 0)
+                            x1 = DrawBarWidth / (Option.FixedSeriesCount * 2 + Option.FixedSeriesCount + 1);
+                        else
+                            x1 = DrawBarWidth / (series.Data.Count * 2 + series.Data.Count + 1);
+
+                        float x2 = x1 * 2;
+
+                        Bars.TryAdd(i, new List<BarInfo>());
+                        for (int j = 0; j < series.Data.Count; j++)
+                        {
+                            Color color = ChartStyle.GetColor(i);
+                            if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
+                                color = series.Colors[j];
+
+                            float xx;
+                            if (Option.FixedSeriesCount > 0)
+                                xx = barX + DrawBarWidth / (series.Data.Count * 2 + series.Data.Count + 1) * ((j + 1) * 3 - 1);
+                            else
+                                xx = barX + x1 * ((j + 1) * 3 - 1);
+
+                            float ww = Math.Min(x2, series.MaxWidth);
+                            xx -= ww / 2.0f;
+
+                            if (YAxisStart >= 0)
+                            {
+                                float h = Math.Abs((float)(DrawSize.Height * (series.Data[j] - start * interval) / ((end - start) * interval)));
+
                                 Bars[i].Add(new BarInfo()
                                 {
-                                    Rect = new RectangleF(xx, DrawOrigin.Y - lowH + 1, ww, h - 1),
+                                    Rect = new RectangleF(xx, DrawOrigin.Y - h, ww, h),
                                     Color = color
                                 });
                             }
-                        }
-                    }
+                            else if (YAxisEnd <= 0)
+                            {
+                                float h = Math.Abs((float)(DrawSize.Height * (end * interval - series.Data[j]) / ((end - start) * interval)));
+                                Bars[i].Add(new BarInfo()
+                                {
+                                    Rect = new RectangleF(xx, Option.Grid.Top + 1, ww, h - 1),
+                                    Color = color
+                                });
+                            }
+                            else
+                            {
+                                float lowH = 0;
+                                float highH = 0;
+                                float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
+                                float lowV = 0;
+                                float highV = 0;
+                                for (int k = YAxisStart; k <= YAxisEnd; k++)
+                                {
+                                    if (k < 0) lowH += DrawBarHeight;
+                                    if (k > 0) highH += DrawBarHeight;
+                                    if (k < 0) lowV += (float)YAxisInterval;
+                                    if (k > 0) highV += (float)YAxisInterval;
+                                }
 
-                    barX += DrawBarWidth;
+                                if (series.Data[j] >= 0)
+                                {
+                                    float h = Math.Abs((float)(highH * series.Data[j] / highV));
+                                    Bars[i].Add(new BarInfo()
+                                    {
+                                        Rect = new RectangleF(xx, DrawOrigin.Y - lowH - h, ww, h),
+                                        Color = color
+                                    });
+                                }
+                                else
+                                {
+                                    float h = Math.Abs((float)(lowH * series.Data[j] / lowV));
+                                    Bars[i].Add(new BarInfo()
+                                    {
+                                        Rect = new RectangleF(xx, DrawOrigin.Y - lowH + 1, ww, h - 1),
+                                        Color = color
+                                    });
+                                }
+                            }
+                        }
+
+                        barX += DrawBarWidth;
+                    }
                 }
             }
 
@@ -382,16 +474,21 @@ namespace Sunny.UI
 
                     if (s.ShowValue)
                     {
+                        Font fontShow = null;
+                        if (s.ShowValueFontSize > 0) fontShow = new Font(SubFont.Name, s.ShowValueFontSize);
+
                         string value = s.Data[j].ToString("F" + Option.YAxis.AxisLabel.DecimalCount);
-                        SizeF sf = g.MeasureString(value, SubFont);
+                        SizeF sf = g.MeasureString(value, fontShow ?? SubFont);
                         if (s.Data[j] < 0)
-                            g.DrawString(value, SubFont, bars[j].Color,
+                            g.DrawString(value, fontShow ?? SubFont, bars[j].Color,
                                 bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                 bars[j].Rect.Bottom + 1);
                         else
-                            g.DrawString(value, SubFont, bars[j].Color,
+                            g.DrawString(value, fontShow ?? SubFont, bars[j].Color,
                                 bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                 bars[j].Rect.Top - sf.Height);
+
+                        fontShow?.Dispose();
                     }
                 }
             }

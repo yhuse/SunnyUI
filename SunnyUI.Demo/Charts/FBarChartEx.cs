@@ -92,5 +92,61 @@ namespace Sunny.UI.Demo
             option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
             BarChart.SetOption(option);
         }
+
+        private void uiSymbolButton2_Click(object sender, System.EventArgs e)
+        {
+            UIBarOption option = new UIBarOption();
+            option.Title = new UITitle();
+            option.Title.Text = "SunnyUI";
+            option.Title.SubText = "BarChartEx";
+
+            //设置Legend
+            option.Legend = new UILegend();
+            option.Legend.Orient = UIOrient.Horizontal;
+            option.Legend.Top = UITopAlignment.Top;
+            option.Legend.Left = UILeftAlignment.Left;
+            option.Legend.AddData("Bar1");
+            option.Legend.AddData("Bar2");
+            option.Legend.AddData("Bar3");
+
+            var series = new UIBarSeries();
+            series.ShowValue = true;
+            series.ShowValueFontSize = 6f;
+            series.MaxWidth = 22;
+            series.Name = "Bar1";
+            series.AddData(1);
+            option.Series.Add(series);
+
+            series = new UIBarSeries();
+            series.ShowValue = true;
+            series.ShowValueFontSize = 10.5f;
+            series.MaxWidth = 22;
+            series.Name = "Bar2";
+            series.AddData(2);
+            series.AddData(3);
+            option.Series.Add(series);
+
+            series = new UIBarSeries();
+            series.ShowValue = true;
+            series.ShowValueFontSize = 16f;
+            series.MaxWidth = 22;
+            series.Name = "Bar3";
+            series.AddData(4);
+            series.AddData(5);
+            series.AddData(6);
+            option.Series.Add(series);
+
+            option.XAxis.Data.Add("Mon");
+            option.XAxis.Data.Add("Tue");
+            option.XAxis.Data.Add("Wed");
+            option.XAxis.Data.Add("Thu");
+            option.XAxis.Data.Add("Fri");
+
+            option.ToolTip = new UIBarToolTip();
+            option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
+            option.AutoSizeBarsCompact = true;
+            option.AutoSizeBarsCompactValue = 0.1f;
+            BarChart.SetOption(option);
+        }
     }
 }

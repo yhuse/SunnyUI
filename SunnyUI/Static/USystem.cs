@@ -27,7 +27,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -299,7 +298,6 @@ namespace Sunny.UI
         /// 程序已经运行
         /// </summary>
         /// <returns>是否运行</returns>
-        [EnvironmentPermission(SecurityAction.LinkDemand, Unrestricted = true)]
         public static bool ProcessIsRun()
         {
             Process instance = RunningInstance();
@@ -310,14 +308,12 @@ namespace Sunny.UI
         /// 将程序调至前台
         /// </summary>
         /// <param name="showStyle">显示风格</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static void BringToFront(int showStyle = SW_SHOW)
         {
             Process instance = RunningInstance();
             HandleRunningInstance(instance, showStyle);
         }
 
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static Process RunningInstance()
         {
             Process currentProcess = Process.GetCurrentProcess();
@@ -352,7 +348,6 @@ namespace Sunny.UI
             }
         }
 
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         private static void HandleRunningInstance(Process instance, int showStyle)
         {
             User.ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口

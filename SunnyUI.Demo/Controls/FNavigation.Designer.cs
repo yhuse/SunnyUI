@@ -197,10 +197,11 @@
             // 
             // uiNavMenu1
             // 
-            this.uiNavMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.uiNavMenu1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.uiNavMenu1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.uiNavMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiNavMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.uiNavMenu1.FullRowSelect = true;
             this.uiNavMenu1.ItemHeight = 50;
             this.uiNavMenu1.Location = new System.Drawing.Point(30, 157);
             this.uiNavMenu1.Name = "uiNavMenu1";
@@ -261,7 +262,9 @@
             treeNode40,
             treeNode41,
             treeNode42});
+            this.uiNavMenu1.ShowLines = false;
             this.uiNavMenu1.Size = new System.Drawing.Size(253, 353);
+            this.uiNavMenu1.Style = Sunny.UI.UIStyle.Custom;
             this.uiNavMenu1.TabIndex = 1;
             this.uiNavMenu1.MenuItemClick += new Sunny.UI.UINavMenu.OnMenuItemClick(this.uiNavMenu1_MenuItemClick);
             // 
@@ -273,6 +276,7 @@
             this.uiNavMenu2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.uiNavMenu2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiNavMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiNavMenu2.FullRowSelect = true;
             this.uiNavMenu2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.uiNavMenu2.ItemHeight = 50;
             this.uiNavMenu2.Location = new System.Drawing.Point(299, 157);
@@ -336,6 +340,7 @@
             treeNode20,
             treeNode21});
             this.uiNavMenu2.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.uiNavMenu2.ShowLines = false;
             this.uiNavMenu2.Size = new System.Drawing.Size(253, 353);
             this.uiNavMenu2.TabIndex = 2;
             // 
