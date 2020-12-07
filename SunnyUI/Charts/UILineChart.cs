@@ -444,6 +444,29 @@ namespace Sunny.UI
                 if (line.Left == UILeftAlignment.Right)
                     g.DrawString(line.Name, SubFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
             }
+
+            int idx = 0;
+            foreach (var line in Option.XAxisScaleLines)
+            {
+                float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
+                using (Pen pn = new Pen(line.Color, line.Size))
+                {
+                    g.DrawLine(pn, pos, DrawOrigin.Y, pos, Option.Grid.Top);
+                }
+
+                SizeF sf = g.MeasureString(line.Name, SubFont);
+                float x = pos - sf.Width - 4;
+                if (x < Option.Grid.Left) x = pos + 4;
+                float y = Option.Grid.Top + 4 + sf.Height * idx;
+                if (y > Height - Option.Grid.Bottom)
+                {
+                    idx = 0;
+                    y = Option.Grid.Top + 4 + sf.Height * idx;
+                }
+
+                idx++;
+                g.DrawString(line.Name, SubFont, line.Color, x, y);
+            }
         }
 
         private readonly List<UILineSelectPoint> selectPoints = new List<UILineSelectPoint>();

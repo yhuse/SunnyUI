@@ -239,7 +239,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否以全屏模式进入最大化
         /// </summary>
-        [Description("是否以全屏模式进入最大化"), Category("WindowStyle"), DefaultValue(false)]
+        [Description("是否以全屏模式进入最大化"), Category("WindowStyle")]
         public bool ShowFullScreen
         {
             get => showFullScreen;

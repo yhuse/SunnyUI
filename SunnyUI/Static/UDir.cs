@@ -38,7 +38,8 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static string CurrentDir()
         {
-            return Environment.CurrentDirectory.DealPath();
+            //return Environment.CurrentDirectory.DealPath();
+            return AppDomain.CurrentDomain.BaseDirectory.DealPath();
         }
 
         /// <summary>
