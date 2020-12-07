@@ -583,7 +583,11 @@ namespace Sunny.UI
                     {
                         float w = DrawSize.Width * data.Data.Count * 1.0f / DataCount;
                         SizeF sf = g.MeasureString(data.Name, SubFont);
-                        g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start + w / 2.0f - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
+                        if (Option.XAxis.AxisLabel.Angle != 0)
+                            g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, new PointF(start + w / 2.0f - sf.Width / 2.0f, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
+                                new StringFormat() { Alignment = StringAlignment.Center }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
+                        else
+                            g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start + w / 2.0f - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
                         start += w;
                     }
                 }
@@ -593,7 +597,11 @@ namespace Sunny.UI
                     foreach (var data in Option.Series)
                     {
                         SizeF sf = g.MeasureString(data.Name, SubFont);
-                        g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
+                        if (Option.XAxis.AxisLabel.Angle != 0)
+                            g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, new PointF(start - sf.Width / 2.0f, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
+                            new StringFormat() { Alignment = StringAlignment.Center }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
+                        else
+                            g.DrawString(data.Name, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
                         start += DrawBarWidth;
                     }
                 }

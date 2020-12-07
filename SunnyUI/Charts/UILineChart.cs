@@ -455,8 +455,8 @@ namespace Sunny.UI
                 }
 
                 SizeF sf = g.MeasureString(line.Name, SubFont);
-                float x = pos - sf.Width - 4;
-                if (x < Option.Grid.Left) x = pos + 4;
+                float x = pos - sf.Width;
+                if (x < Option.Grid.Left) x = pos + 2;
                 float y = Option.Grid.Top + 4 + sf.Height * idx;
                 if (y > Height - Option.Grid.Bottom)
                 {

@@ -28,7 +28,7 @@ namespace Sunny.UI.Demo
         {
             UIBarOption option = new UIBarOption();
 
-            option.Grid.Bottom = 60;
+            option.Grid.Bottom = 65;
 
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
@@ -76,10 +76,11 @@ namespace Sunny.UI.Demo
             option.ToolTip.Visible = true;
             option.YAxis.Scale = true;
 
-            option.XAxis.Name = "日期";
+            option.XAxis.Name = "";
             option.YAxis.Name = "数值";
 
             option.XAxis.AxisTick.Distance = 14;
+            option.XAxis.AxisLabel.Angle = 90;
 
             option.FixedSeriesCount = 3;
             option.AutoSizeBars = true;

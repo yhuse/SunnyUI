@@ -165,6 +165,8 @@ namespace Sunny.UI
 
         public event DoFormatter Formatter;
 
+        public int Angle { get; set; } = 0;
+
         public string GetLabel(double value, int index, UIAxisType axisType = UIAxisType.Value)
         {
             switch (axisType)
