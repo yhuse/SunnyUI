@@ -112,7 +112,6 @@
             this.ShowRadius = false;
             this.ShowShadow = true;
             this.Text = "SunnyUI.Net";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Selecting += new Sunny.UI.UIMainFrame.OnSelecting(this.FMain_Selecting);
             this.Header.ResumeLayout(false);
             this.ResumeLayout(false);
