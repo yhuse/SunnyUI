@@ -32,7 +32,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Text")]
     [ToolboxItem(true)]
-    public sealed class UICheckBox : UIControl
+    public class UICheckBox : UIControl
     {
         public UICheckBox()
         {

@@ -31,7 +31,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UISymbolButton : UIButton
+    public class UISymbolButton : UIButton
     {
         private int _symbolSize = 24;
         private int _imageInterval = 2;
