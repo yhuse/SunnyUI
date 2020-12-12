@@ -1245,9 +1245,8 @@ namespace Sunny.UI
 
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
-                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
-                //修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
-                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);
+                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);                
+                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
                 vPoint = PointToClient(vPoint);
                 int dragSize = 5;
                 if (vPoint.X <= dragSize)
