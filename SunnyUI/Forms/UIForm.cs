@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
  * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
@@ -1245,7 +1245,9 @@ namespace Sunny.UI
 
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
-                Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
+                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
+                //修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
+                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);
                 vPoint = PointToClient(vPoint);
                 int dragSize = 5;
                 if (vPoint.X <= dragSize)
