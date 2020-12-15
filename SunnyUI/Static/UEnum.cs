@@ -101,7 +101,7 @@ namespace Sunny.UI
     /// http://about.me/AlekseyNagovitsyn
     /// </remarks>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Enum)]
-    internal class DisplayTextAttribute : Attribute
+    public class DisplayTextAttribute : Attribute
     {
         /// <summary>
         /// The default value for the attribute <c>DisplayTextAttribute</c>, which is an empty string

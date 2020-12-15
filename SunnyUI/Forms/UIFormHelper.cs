@@ -528,4 +528,70 @@ namespace Sunny.UI
             UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
         }
     }
+
+    public static class FormEx
+    {
+        public static Form ShowFullMask(this Form form)
+        {
+            Point pt = SystemEx.GetCursorPos();
+            Rectangle screen = Screen.GetBounds(pt);
+
+            Form mask = new Form();
+            mask.FormBorderStyle = FormBorderStyle.None;
+            mask.BackColor = Color.FromArgb(0, 0, 0);
+            mask.Opacity = 0.5;
+            mask.ShowInTaskbar = false;
+            mask.StartPosition = FormStartPosition.Manual;
+            mask.Bounds = screen;
+            mask.TopMost = true;
+            mask.Show();
+            return mask;
+        }
+
+        public static Form ShowControlMask(this Control control)
+        {
+            bool topmost = false;
+            Form baseForm = control.RootForm();
+            if (baseForm != null)
+            {
+                topmost = baseForm.TopMost;
+                baseForm.TopMost = true;
+                Application.DoEvents();
+            }
+
+            Form mask = new Form();
+            mask.FormBorderStyle = FormBorderStyle.None;
+            mask.BackColor = Color.FromArgb(0, 0, 0);
+            mask.Opacity = 0.5;
+            mask.ShowInTaskbar = false;
+            mask.StartPosition = FormStartPosition.Manual;
+            mask.Bounds = control.Bounds;
+            mask.Tag = baseForm;
+            mask.Text = topmost.ToString();
+
+            var pt = control.LocationOnScreen();
+            mask.Left = pt.X;
+            mask.Top = pt.Y;
+            mask.Show();
+            mask.TopMost = true;
+            return mask;
+        }
+
+        public static void EndShow(this Form maskForm)
+        {
+            if (maskForm.Tag is Form form)
+            {
+                form.TopMost = maskForm.Text.ToBoolean();
+            }
+        }
+
+        public static void ShowInMask(this Form frm, Form maskForm)
+        {
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Left = maskForm.Left + (maskForm.Width - frm.Width) / 2;
+            frm.Top = maskForm.Top + (maskForm.Height - frm.Height) / 2;
+            frm.ShowInTaskbar = false;
+            frm.TopMost = true;
+        }
+    }
 }

@@ -483,7 +483,6 @@ namespace Sunny.UI
                 return;
             }
 
-            removeIndex.ConsoleWriteLine("removeIndex");
             var menuItem = Helper[removeIndex];
             bool showButton = menuItem == null || !menuItem.AlwaysOpen;
             if (showButton)

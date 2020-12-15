@@ -74,8 +74,8 @@ namespace Sunny.UI
             {
                 Console.WriteLine("SeDebugPrivilege is now available");
             }
+
             CloseHandle(hToken);
-            Console.ReadLine();
         }
 
         public static void Suspend()

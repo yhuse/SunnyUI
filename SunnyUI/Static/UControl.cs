@@ -42,6 +42,30 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        public static Point LocationOnScreen(this Control ctrl)
+        {
+            Point point = new Point(0, 0);
+            do
+            {
+                point.Offset(ctrl.Location);
+                ctrl = ctrl.Parent;
+            }
+            while (ctrl != null);
+
+            return point;
+        }
+
+        public static Form RootForm(this Control ctrl)
+        {
+            if (ctrl == null) return null;
+            while (ctrl.Parent != null)
+            {
+                ctrl = ctrl.Parent;
+            }
+
+            return ctrl as Form;
+        }
+
         public static Form GetParentForm(this Control ctrl)
         {
             while (!IsForm(ctrl.Parent))
@@ -77,7 +101,7 @@ namespace Sunny.UI
             return (form.Height - form.ClientSize.Height) - form.BorderSize();
         }
 
-        public static Point LocationOnClient(this Control c)
+        private static Point LocationOnClient(this Control c)
         {
             Point point = new Point(0, 0);
             for (; c.Parent != null; c = c.Parent)
