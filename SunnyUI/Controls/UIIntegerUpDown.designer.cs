@@ -43,7 +43,7 @@
             this.btnDec.Margin = new System.Windows.Forms.Padding(0);
             this.btnDec.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnDec.Name = "btnDec";
-            this.btnDec.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
+            this.btnDec.Padding = new System.Windows.Forms.Padding(26, 4, 0, 0);
             this.btnDec.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
             this.btnDec.Size = new System.Drawing.Size(29, 29);
             this.btnDec.Symbol = 61544;
@@ -61,7 +61,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(26, 3, 0, 0);
             this.btnAdd.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
             this.btnAdd.Size = new System.Drawing.Size(29, 29);
             this.btnAdd.Symbol = 61543;
