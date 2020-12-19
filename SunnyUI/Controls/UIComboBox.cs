@@ -83,6 +83,7 @@ namespace Sunny.UI
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             SelectedIndex = ListBox.SelectedIndex;
+            Box_SelectedIndexChanged(null, null);
             Invalidate();
         }
 

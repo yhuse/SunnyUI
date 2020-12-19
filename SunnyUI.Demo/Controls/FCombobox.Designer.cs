@@ -127,6 +127,7 @@
             // 
             // uiDatetimePicker1
             // 
+            this.uiDatetimePicker1.CanEmpty = true;
             this.uiDatetimePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatetimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatetimePicker1.Location = new System.Drawing.Point(388, 136);
@@ -184,6 +185,7 @@
             // 
             // uiTimePicker1
             // 
+            this.uiTimePicker1.CanEmpty = true;
             this.uiTimePicker1.FillColor = System.Drawing.Color.White;
             this.uiTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTimePicker1.Location = new System.Drawing.Point(188, 136);
@@ -225,6 +227,7 @@
             // 
             // uiDatePicker1
             // 
+            this.uiDatePicker1.CanEmpty = true;
             this.uiDatePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker1.Location = new System.Drawing.Point(30, 136);
