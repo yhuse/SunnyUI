@@ -43,7 +43,8 @@ namespace Sunny.UI
             edit.Visible = false;
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += Edit_TextChanged;
-            edit.MouseLeave += Edit_Leave;
+            edit.Leave += Edit_Leave;
+            //edit.MouseLeave += Edit_Leave;
         }
 
         private void Edit_Leave(object sender, EventArgs e)

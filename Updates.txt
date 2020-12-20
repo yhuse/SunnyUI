@@ -1,5 +1,18 @@
 + 增加； - 删除； * 修改 
 
+2020-12-20 V2.2.9
++ UIWaitForm：等待窗体
++ UIComboTreeView：新增下拉框TreeView
++ UIMessageForm：消息提示框增加黑色半透明遮罩层
++ Win32API：新增Win32API函数
++ UJsonConfig：不引用第三方控件，用.Net自带的序列化实现Json，增加Json文件配置类
++ UIDataGridViewForm：增加了一个表格模板基类
+* UIDataGridView：修改DataSource赋值后Column改变引起的水平滚动条错误
+* UIDoubleUpDown，UIIntegerUpDown：增加双击可编辑数值
+* UINavMenu：增加选中后图标的背景色或应用选中图片索引
+* 页面框架增加页面内跳转方法
+* 日期、时间选择框增加CanEmpty，输入可为空
+
 2020-10-12 V2.2.8
 + UILineChart：完成曲线图表
 + UIScale：增加坐标轴刻度计算类
