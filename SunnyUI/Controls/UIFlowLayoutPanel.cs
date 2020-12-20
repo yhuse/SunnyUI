@@ -22,6 +22,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -36,6 +37,8 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
+            ShowText = false;
+
             Panel.AutoScroll = true;
             Panel.ControlAdded += Panel_ControlAdded;
             Panel.ControlRemoved += Panel_ControlRemoved;
@@ -48,6 +51,10 @@ namespace Sunny.UI
             HBar.ValueChanged += HBar_ValueChanged;
 
             SizeChanged += Panel_SizeChanged;
+        }
+
+        protected override void OnPaintFore(Graphics g, GraphicsPath path)
+        {
         }
 
         [DefaultValue(FlowDirection.LeftToRight)]
@@ -83,6 +90,11 @@ namespace Sunny.UI
         public void AddControl(Control ctrl)
         {
             Panel.Controls.Add(ctrl);
+        }
+
+        public void RemoveControl(Control ctrl)
+        {
+            Panel.Controls.Remove(ctrl);
         }
 
         public void Clear()

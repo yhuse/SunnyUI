@@ -26,7 +26,6 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -168,12 +167,6 @@ namespace Sunny.UI
             return path;
         }
 
-        [DllImport("User32.dll")]
-        private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
-
-        [DllImport("User32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
-
         /// <summary>
         /// 运行文件，当文件已经运行时调至前台
         /// </summary>
@@ -196,8 +189,8 @@ namespace Sunny.UI
                     }
 
                     IntPtr hWnd = oth.MainWindowHandle;
-                    ShowWindowAsync(hWnd, (int)ProcessWindowStyle.Maximized);
-                    SetForegroundWindow(hWnd);
+                    Win32.User.ShowWindowAsync(hWnd, (int)ProcessWindowStyle.Maximized);
+                    Win32.User.SetForegroundWindow(hWnd);
                     return oth;
                 }
             }

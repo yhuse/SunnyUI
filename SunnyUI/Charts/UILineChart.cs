@@ -113,10 +113,10 @@ namespace Sunny.UI
                 return (UILineOption)option;
             }
 
-            set
-            {
-                SetOption(value);
-            }
+            // set
+            // {
+            //     SetOption(value);
+            // }
         }
 
         protected override void CreateEmptyOption()
@@ -180,9 +180,19 @@ namespace Sunny.UI
                     {
                         string label;
                         if (Option.XAxisType == UIAxisType.DateTime)
-                            label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
+                        {
+                            if (Option.XAxis.AxisLabel.AutoFormat)
+                                label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
+                            else
+                                label = new DateTimeInt64(XLabels[i]).ToString(Option.XAxis.AxisLabel.DateTimeFormat);
+                        }
                         else
-                            label = XLabels[i].ToString(XScale.Format);
+                        {
+                            if (Option.XAxis.AxisLabel.AutoFormat)
+                                label = XLabels[i].ToString(XScale.Format);
+                            else
+                                label = new DateTimeInt64(XLabels[i]).ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
+                        }
 
                         SizeF sf = g.MeasureString(label, SubFont);
                         g.DrawString(label, SubFont, ChartStyle.ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
@@ -433,6 +443,29 @@ namespace Sunny.UI
                     g.DrawString(line.Name, SubFont, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
                 if (line.Left == UILeftAlignment.Right)
                     g.DrawString(line.Name, SubFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
+            }
+
+            int idx = 0;
+            foreach (var line in Option.XAxisScaleLines)
+            {
+                float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
+                using (Pen pn = new Pen(line.Color, line.Size))
+                {
+                    g.DrawLine(pn, pos, DrawOrigin.Y, pos, Option.Grid.Top);
+                }
+
+                SizeF sf = g.MeasureString(line.Name, SubFont);
+                float x = pos - sf.Width;
+                if (x < Option.Grid.Left) x = pos + 2;
+                float y = Option.Grid.Top + 4 + sf.Height * idx;
+                if (y > Height - Option.Grid.Bottom)
+                {
+                    idx = 0;
+                    y = Option.Grid.Top + 4 + sf.Height * idx;
+                }
+
+                idx++;
+                g.DrawString(line.Name, SubFont, line.Color, x, y);
             }
         }
 

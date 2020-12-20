@@ -48,11 +48,16 @@ namespace Sunny.UI
 
         }
 
+        [DefaultValue(false)]
+        [Description("日期输入时，是否可空显示"), Category("SunnyUI")]
+        public bool CanEmpty { get; set; }
+
         public UIDatetimePicker()
         {
             InitializeComponent();
-            Width = 200;
             Value = DateTime.Now;
+            Text = Value.ToString(DateFormat);
+            Width = 200;
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
             MaxLength = 19;
@@ -76,6 +81,11 @@ namespace Sunny.UI
 
         private void UIDatePicker_LostFocus(object sender, EventArgs e)
         {
+            if (Text.IsNullOrEmpty())
+            {
+                if (CanEmpty) return;
+            }
+
             try
             {
                 DateTime dt = Text.ToDateTime(DateFormat);

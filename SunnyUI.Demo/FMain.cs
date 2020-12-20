@@ -11,7 +11,6 @@ namespace Sunny.UI.Demo
         public FMain()
         {
             InitializeComponent();
-
             int pageIndex = 1000;
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[0], 61451);

@@ -19,6 +19,8 @@
  * 2020-05-05: V2.2.5 页面框架(Aside-Main)
 ******************************************************************************/
 
+using System.Windows.Forms;
+
 namespace Sunny.UI
 {
     public partial class UIAsideMainFrame : UIMainFrame
@@ -31,6 +33,13 @@ namespace Sunny.UI
             MainTabControl.Parent = this;
             MainTabControl.BringToFront();
             Aside.TabControl = MainTabControl;
+        }
+
+        public override void SelectPage(int pageIndex)
+        {
+            base.SelectPage(pageIndex);
+            TreeNode node = Aside.GetTreeNode(pageIndex);
+            if (node != null) Aside.SelectedNode = node;
         }
     }
 }

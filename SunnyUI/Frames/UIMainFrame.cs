@@ -44,6 +44,7 @@ namespace Sunny.UI
 
         public UIPage AddPage(UIPage page, int index)
         {
+            page.Frame = this;
             page.PageIndex = index;
             MainContainer.AddPage(page);
             return page;
@@ -51,6 +52,7 @@ namespace Sunny.UI
 
         public UIPage AddPage(UIPage page, Guid guid)
         {
+            page.Frame = this;
             page.PageGuid = guid;
             MainContainer.AddPage(page);
             return page;
@@ -58,11 +60,12 @@ namespace Sunny.UI
 
         public UIPage AddPage(UIPage page)
         {
+            page.Frame = this;
             MainContainer.AddPage(page);
             return page;
         }
 
-        public void SelectPage(int pageIndex)
+        public virtual void SelectPage(int pageIndex)
         {
             MainContainer.SelectPage(pageIndex);
         }

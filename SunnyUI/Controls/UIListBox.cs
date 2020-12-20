@@ -69,6 +69,12 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            listbox.ContextMenuStrip = ContextMenuStrip;
+        }
+
         private void Listbox_MouseMove(object sender, MouseEventArgs e)
         {
             MouseMove?.Invoke(this, e);
@@ -91,6 +97,7 @@ namespace Sunny.UI
         ~UIListBox()
         {
             timer.Stop();
+            timer.Dispose();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

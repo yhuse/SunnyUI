@@ -19,14 +19,14 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using Microsoft.Win32;
+using Sunny.UI.Win32;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -36,6 +36,88 @@ namespace Sunny.UI
     /// </summary>
     public static class SystemEx
     {
+        /// <summary>
+        /// 获取程序当前窗口的大小和位置
+        /// </summary>
+        /// <returns></returns>
+        public static Rectangle GetForegroundWindowBounds()
+        {
+            IntPtr handle = User.GetForegroundWindow().IntPtr();    //获取当前窗口句柄
+            RECT rect = new RECT();
+            User.GetWindowRect(handle, ref rect);
+            return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
+        }
+
+        public static void EnabledTaskManager()
+        {
+            RegistryDisableTaskMgr(0);
+        }
+
+        public static void DisabledTaskManager()
+        {
+            RegistryDisableTaskMgr(1);
+        }
+
+        public static void RegistryDisableTaskMgr(int value)
+        {
+            string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
+            RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
+            mKey?.SetValue("DisableTaskMgr", value);
+            mKey?.Dispose();
+        }
+
+        public static void RegistryHooksTimeout()
+        {
+            string subKey = @"Control Panel\Desktop";
+            RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
+            mKey?.SetValue("LowLevelHooksTimeout", 10000);
+            mKey?.Dispose();
+
+            subKey = @".DEFAULT\Control Panel\Desktop";
+            mKey = Registry.Users.CreateSubKey(subKey);
+            mKey?.SetValue("LowLevelHooksTimeout", 10000);
+            mKey?.Dispose();
+        }
+
+        /// <summary>
+        /// txtOutput.ThreadSafeCall(() => txtOutput.Text = "Updated");
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="method"></param>
+        public static void ThreadSafeCall(this Control control, Action method)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(method);
+            }
+            else
+            {
+                method();
+            }
+        }
+
+        public static T ThreadSafeCall<T>(this Control control, Func<T> method)
+        {
+            if (control.InvokeRequired)
+            {
+                return (T)control.Invoke(method);
+            }
+            else
+            {
+                return method();
+            }
+        }
+
+        /// <summary>
+        /// 获取鼠标位置
+        /// </summary>
+        /// <returns></returns>
+        public static Point GetCursorPos()
+        {
+            User.GetCursorPos(out POINT pos);
+            return new Point(pos.X, pos.Y);
+        }
+
         public static void ConsoleWriteLine(this object obj, string preText = "")
         {
             if (preText != "")
@@ -216,7 +298,6 @@ namespace Sunny.UI
         /// 程序已经运行
         /// </summary>
         /// <returns>是否运行</returns>
-        [EnvironmentPermission(SecurityAction.LinkDemand, Unrestricted = true)]
         public static bool ProcessIsRun()
         {
             Process instance = RunningInstance();
@@ -227,14 +308,12 @@ namespace Sunny.UI
         /// 将程序调至前台
         /// </summary>
         /// <param name="showStyle">显示风格</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static void BringToFront(int showStyle = SW_SHOW)
         {
             Process instance = RunningInstance();
             HandleRunningInstance(instance, showStyle);
         }
 
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static Process RunningInstance()
         {
             Process currentProcess = Process.GetCurrentProcess();
@@ -269,11 +348,10 @@ namespace Sunny.UI
             }
         }
 
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         private static void HandleRunningInstance(Process instance, int showStyle)
         {
-            ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口
-            SetForegroundWindow(instance.MainWindowHandle); //将窗口放置最前端。
+            User.ShowWindowAsync(instance.MainWindowHandle, showStyle); //调用api函数，正常显示窗口
+            User.SetForegroundWindow(instance.MainWindowHandle); //将窗口放置最前端。
         }
 
         /// <summary>
@@ -305,12 +383,6 @@ namespace Sunny.UI
             frm.Location = new Point(sc[monitor].Bounds.Left + left, sc[monitor].Bounds.Top + top);
             frm.WindowState = showMax ? FormWindowState.Maximized : FormWindowState.Normal;
         }
-
-        [DllImport("User32.dll")]
-        private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
-
-        [DllImport("User32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
         /// 最小化显示

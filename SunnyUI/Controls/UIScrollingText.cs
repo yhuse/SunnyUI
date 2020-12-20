@@ -56,6 +56,7 @@ namespace Sunny.UI
         ~UIScrollingText()
         {
             timer.Stop();
+            timer.Dispose();
         }
 
         [DefaultValue(200), Description("刷新间隔"), Category("SunnyUI")]

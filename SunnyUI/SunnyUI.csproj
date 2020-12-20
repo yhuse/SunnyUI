@@ -43,9 +43,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -91,6 +93,9 @@
     <Compile Include="Controls\DropItem\UIComboBoxItem.Designer.cs">
       <DependentUpon>UIComboBoxItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DropItem\UIComboTreeViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DropItem\UIDateItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +119,9 @@
     </Compile>
     <Compile Include="Controls\UIBattery.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UIComboTreeView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UIDatetimePicker.cs">
       <SubType>UserControl</SubType>
@@ -152,6 +160,13 @@
     <Compile Include="Controls\UIWaitingBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\UIDataGridViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UIDataGridViewForm.Designer.cs">
+      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UIFormService.cs" />
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +234,12 @@
     </Compile>
     <Compile Include="Forms\UIInputForm.Designer.cs">
       <DependentUpon>UIInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UIWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UIWaitForm.designer.cs">
+      <DependentUpon>UIWaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\UIAsideMainFrame.cs">
       <SubType>Form</SubType>
@@ -422,6 +443,8 @@
     <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
     <Compile Include="Units\UConcurrentGroupDictionary.cs" />
     <Compile Include="Units\UDateTimeInt64.cs" />
+    <Compile Include="Units\UJson.cs" />
+    <Compile Include="Units\UJsonConfig.cs" />
     <Compile Include="Units\USnowflakeID.cs" />
     <Compile Include="Units\USuspendCtrlAltDel.cs" />
     <Compile Include="Units\UThunder.cs" />
@@ -506,13 +529,40 @@
     <Compile Include="Units\UUdp.cs" />
     <Compile Include="Units\USevenZip.cs" />
     <Compile Include="Units\UXmlConfig.cs" />
+    <Compile Include="Win32\Win32.Added.cs" />
+    <Compile Include="Win32\Win32.cs" />
+    <Compile Include="Win32\Win32.ErrorCodes.cs" />
+    <Compile Include="Win32\Win32.GDI.cs" />
+    <Compile Include="Win32\Win32.Kernel.cs" />
+    <Compile Include="Win32\Win32.Multimedia.cs" />
+    <Compile Include="Win32\Win32.NetApi.cs" />
+    <Compile Include="Win32\Win32.Shell.cs" />
+    <Compile Include="Win32\Win32.User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DropItem\UIComboTreeViewItem.resx">
+      <DependentUpon>UIComboTreeViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIComboTreeView.resx">
+      <DependentUpon>UIComboTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIDoubleUpDown.resx">
+      <DependentUpon>UIDoubleUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UIIntegerUpDown.resx">
+      <DependentUpon>UIIntegerUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIDataGridViewForm.resx">
+      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Font\UIFontImages.resx">
       <DependentUpon>UIFontImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIWaitForm.resx">
+      <DependentUpon>UIWaitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -569,6 +619,7 @@
   <ItemGroup>
     <None Include="Resources\Login6.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

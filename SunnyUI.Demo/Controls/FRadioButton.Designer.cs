@@ -47,11 +47,15 @@
             this.uiRadioButton1 = new Sunny.UI.UIRadioButton();
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiRadioButtonGroup1 = new Sunny.UI.UIRadioButtonGroup();
+            this.uiButton4 = new Sunny.UI.UIButton();
+            this.uiButton2 = new Sunny.UI.UIButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiButton4);
+            this.PagePanel.Controls.Add(this.uiButton2);
             this.PagePanel.Controls.Add(this.uiRadioButtonGroup1);
             this.PagePanel.Controls.Add(this.uiRadioButton12);
             this.PagePanel.Controls.Add(this.uiRadioButton13);
@@ -80,6 +84,7 @@
             this.uiRadioButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton12.GroupIndex = 4;
             this.uiRadioButton12.Location = new System.Drawing.Point(516, 48);
+            this.uiRadioButton12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton12.Name = "uiRadioButton12";
             this.uiRadioButton12.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton12.Size = new System.Drawing.Size(156, 35);
@@ -94,6 +99,7 @@
             this.uiRadioButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton13.GroupIndex = 4;
             this.uiRadioButton13.Location = new System.Drawing.Point(354, 48);
+            this.uiRadioButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton13.Name = "uiRadioButton13";
             this.uiRadioButton13.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton13.Size = new System.Drawing.Size(156, 35);
@@ -118,6 +124,7 @@
             this.uiRadioButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton9.GroupIndex = 3;
             this.uiRadioButton9.Location = new System.Drawing.Point(516, 212);
+            this.uiRadioButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton9.Name = "uiRadioButton9";
             this.uiRadioButton9.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton9.Size = new System.Drawing.Size(156, 35);
@@ -130,6 +137,7 @@
             this.uiRadioButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton10.GroupIndex = 3;
             this.uiRadioButton10.Location = new System.Drawing.Point(354, 212);
+            this.uiRadioButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton10.Name = "uiRadioButton10";
             this.uiRadioButton10.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton10.Size = new System.Drawing.Size(156, 35);
@@ -142,6 +150,7 @@
             this.uiRadioButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton11.GroupIndex = 3;
             this.uiRadioButton11.Location = new System.Drawing.Point(192, 212);
+            this.uiRadioButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton11.Name = "uiRadioButton11";
             this.uiRadioButton11.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton11.Size = new System.Drawing.Size(156, 35);
@@ -165,6 +174,7 @@
             this.uiRadioButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton5.GroupIndex = 2;
             this.uiRadioButton5.Location = new System.Drawing.Point(516, 171);
+            this.uiRadioButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton5.Name = "uiRadioButton5";
             this.uiRadioButton5.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton5.Size = new System.Drawing.Size(156, 35);
@@ -178,6 +188,7 @@
             this.uiRadioButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton7.GroupIndex = 2;
             this.uiRadioButton7.Location = new System.Drawing.Point(354, 171);
+            this.uiRadioButton7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton7.Name = "uiRadioButton7";
             this.uiRadioButton7.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton7.Size = new System.Drawing.Size(156, 35);
@@ -190,6 +201,7 @@
             this.uiRadioButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton8.GroupIndex = 2;
             this.uiRadioButton8.Location = new System.Drawing.Point(192, 171);
+            this.uiRadioButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton8.Name = "uiRadioButton8";
             this.uiRadioButton8.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton8.Size = new System.Drawing.Size(156, 35);
@@ -213,6 +225,7 @@
             this.uiRadioButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton6.GroupIndex = 1;
             this.uiRadioButton6.Location = new System.Drawing.Point(516, 130);
+            this.uiRadioButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton6.Name = "uiRadioButton6";
             this.uiRadioButton6.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton6.Size = new System.Drawing.Size(156, 35);
@@ -225,6 +238,7 @@
             this.uiRadioButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton3.GroupIndex = 1;
             this.uiRadioButton3.Location = new System.Drawing.Point(354, 130);
+            this.uiRadioButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton3.Name = "uiRadioButton3";
             this.uiRadioButton3.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton3.Size = new System.Drawing.Size(156, 35);
@@ -238,6 +252,7 @@
             this.uiRadioButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton4.GroupIndex = 1;
             this.uiRadioButton4.Location = new System.Drawing.Point(192, 130);
+            this.uiRadioButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton4.Name = "uiRadioButton4";
             this.uiRadioButton4.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton4.Size = new System.Drawing.Size(156, 35);
@@ -260,6 +275,7 @@
             this.uiRadioButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiRadioButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton2.Location = new System.Drawing.Point(192, 48);
+            this.uiRadioButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton2.Name = "uiRadioButton2";
             this.uiRadioButton2.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton2.Size = new System.Drawing.Size(150, 35);
@@ -272,6 +288,7 @@
             this.uiRadioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiRadioButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRadioButton1.Location = new System.Drawing.Point(30, 48);
+            this.uiRadioButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButton1.Name = "uiRadioButton1";
             this.uiRadioButton1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton1.Size = new System.Drawing.Size(150, 35);
@@ -306,12 +323,37 @@
             "9"});
             this.uiRadioButtonGroup1.Location = new System.Drawing.Point(30, 253);
             this.uiRadioButtonGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiRadioButtonGroup1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButtonGroup1.Name = "uiRadioButtonGroup1";
             this.uiRadioButtonGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.uiRadioButtonGroup1.Size = new System.Drawing.Size(670, 173);
             this.uiRadioButtonGroup1.TabIndex = 63;
             this.uiRadioButtonGroup1.Text = "UIRadioButtonGroup";
             this.uiRadioButtonGroup1.ValueChanged += new Sunny.UI.UIRadioButtonGroup.OnValueChanged(this.uiRadioButtonGroup1_ValueChanged);
+            // 
+            // uiButton4
+            // 
+            this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton4.Location = new System.Drawing.Point(145, 446);
+            this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiButton4.Name = "uiButton4";
+            this.uiButton4.Size = new System.Drawing.Size(100, 35);
+            this.uiButton4.TabIndex = 65;
+            this.uiButton4.Text = "选择";
+            this.uiButton4.Click += new System.EventHandler(this.uiButton4_Click);
+            // 
+            // uiButton2
+            // 
+            this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton2.Location = new System.Drawing.Point(30, 446);
+            this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiButton2.Name = "uiButton2";
+            this.uiButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiButton2.TabIndex = 64;
+            this.uiButton2.Text = "全不选";
+            this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // FRadioButton
             // 
@@ -348,5 +390,7 @@
         private UIRadioButton uiRadioButton1;
         private UILine uiLine2;
         private UIRadioButtonGroup uiRadioButtonGroup1;
+        private UIButton uiButton4;
+        private UIButton uiButton2;
     }
 }

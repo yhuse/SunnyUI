@@ -37,6 +37,16 @@ namespace Sunny.UI
     public static class StringEx
     {
         /// <summary>
+        /// 处理文件夹名称末尾加文件夹分隔符(windows为\，linux为/)
+        /// </summary>
+        /// <param name="dir">文件夹名称</param>
+        /// <returns>结果</returns>
+        public static string DealPath(this string dir)
+        {
+            return dir.IsNullOrEmpty() ? dir : (dir[dir.Length - 1] == Path.DirectorySeparatorChar ? dir : dir + Path.DirectorySeparatorChar);
+        }
+
+        /// <summary>
         /// 默认加密密码
         /// </summary>
         public const string DefaultCryptString = "!@#$%^&*";

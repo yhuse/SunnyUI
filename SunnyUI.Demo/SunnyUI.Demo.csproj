@@ -257,7 +257,9 @@
     <Compile Include="Controls\FOther.Designer.cs">
       <DependentUpon>FOther.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FTabControl.cs" />
+    <Compile Include="Controls\FTabControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controls\FTabControl.Designer.cs">
       <DependentUpon>FTabControl.cs</DependentUpon>
     </Compile>

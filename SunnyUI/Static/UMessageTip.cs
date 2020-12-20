@@ -39,10 +39,9 @@ namespace Sunny.UI
     public static class UIMessageTip
     {
         //默认字体。当样式中的Font==null时用该字体替换
-        private static readonly Font DefaultFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12);
-
+        static readonly Font DefaultFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12);
         //文本格式。用于测量和绘制
-        private static readonly StringFormat DefStringFormat = StringFormat.GenericTypographic;
+        static readonly StringFormat DefStringFormat = StringFormat.GenericTypographic;
 
         /// <summary>
         /// 获取或设置默认消息样式
@@ -120,7 +119,7 @@ namespace Sunny.UI
         /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowWarning(Component controlOrItem, string text = null, int delay = 1000, bool? floating = null, bool? centerInControl = null) =>
+        public static void ShowWarning(Component controlOrItem, string text = null, int delay = 1000, bool? floating = false, bool? centerInControl = null) =>
             Show(controlOrItem, text, WarningStyle ?? TipStyle.Orange, delay, floating, centerInControl);
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace Sunny.UI
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
         /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowWarning(string text = null, int delay = 1000, bool? floating = null, Point? point = null, bool centerByPoint = false) =>
+        public static void ShowWarning(string text = null, int delay = 1000, bool? floating = false, Point? point = null, bool centerByPoint = false) =>
             Show(text, WarningStyle ?? TipStyle.Orange, delay, floating, point, centerByPoint);
 
         /// <summary>
@@ -142,7 +141,7 @@ namespace Sunny.UI
         /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowError(Component controlOrItem, string text = null, int delay = 1000, bool? floating = null, bool? centerInControl = null) =>
+        public static void ShowError(Component controlOrItem, string text = null, int delay = 1000, bool? floating = false, bool? centerInControl = null) =>
             Show(controlOrItem, text, ErrorStyle ?? TipStyle.Red, delay, floating, centerInControl);
 
         /// <summary>
@@ -153,7 +152,7 @@ namespace Sunny.UI
         /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
         /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
         /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowError(string text = null, int delay = 1000, bool? floating = null, Point? point = null, bool centerByPoint = false) =>
+        public static void ShowError(string text = null, int delay = 1000, bool? floating = false, Point? point = null, bool centerByPoint = false) =>
             Show(text, ErrorStyle ?? TipStyle.Red, delay, floating, point, centerByPoint);
 
         /// <summary>
@@ -185,7 +184,7 @@ namespace Sunny.UI
         /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
         public static void Show(string text, TipStyle style = null, int delay = -1, bool? floating = null, Point? point = null, bool centerByPoint = false)
         {
-            var basePoint = point ?? DetermineActive();
+            var basePoint = point ?? DetemineActive();
 
             new Thread(arg =>
             {
@@ -217,12 +216,11 @@ namespace Sunny.UI
             { IsBackground = true, Name = "T_Showing" }.Start();
         }
 
-        private static void layer_Showing(object sender, EventArgs e)
+        static void layer_Showing(object sender, EventArgs e)
         {
             var layer = (LayeredWindow)sender;
             var args = layer.Tag as object[];
             if (args == null || args.Length <= 2) return;
-
             var delay = (int)args[0];
             var floating = (bool)args[1];
             var floatDown = (bool)args[2];
@@ -248,7 +246,7 @@ namespace Sunny.UI
             layer.Close();
         }
 
-        private static void layer_Closing(object sender, CancelEventArgs e) =>
+        static void layer_Closing(object sender, CancelEventArgs e) =>
             FadeEffect((LayeredWindow)sender, false);
 
         /// <summary>
@@ -257,12 +255,12 @@ namespace Sunny.UI
         private static void FadeEffect(LayeredWindow window, bool fadeIn)
         {
             byte target = fadeIn ? byte.MaxValue : byte.MinValue;
-            const int UpdateInterval = 10;//动画更新间隔（毫秒）
-            int step = Fade < UpdateInterval ? 0 : (Fade / UpdateInterval);
+            const int Updateinterval = 10;//动画更新间隔（毫秒）
+            int step = Fade < Updateinterval ? 0 : (Fade / Updateinterval);
 
             for (int i = 1; i <= step; i++)
             {
-                Thread.Sleep(UpdateInterval);
+                Thread.Sleep(Updateinterval);
 
                 if (i == step) { break; }
 
@@ -276,7 +274,7 @@ namespace Sunny.UI
         /// <summary>
         /// 判定活动点
         /// </summary>
-        private static Point DetermineActive()
+        private static Point DetemineActive()
         {
             var point = Control.MousePosition;
 
@@ -471,7 +469,6 @@ namespace Sunny.UI
                 || controlOrItem is GroupBox
                 || controlOrItem is Panel
                 || controlOrItem is TabControl
-                || controlOrItem is DataGrid
                 || controlOrItem is DataGridView
                 || controlOrItem is ListBox
                 || controlOrItem is ListView)
@@ -509,7 +506,7 @@ namespace Sunny.UI
         [DllImport("user32.dll")]
         private static extern IntPtr GetFocus();
 
-        #endregion Win32 API
+        #endregion
     }
 
     /// <summary>
@@ -517,12 +514,11 @@ namespace Sunny.UI
     /// </summary>
     public sealed class TipStyle : IDisposable
     {
-        private bool _isPresets;
-        private bool _keepFont;
-        private bool _keepIcon;
+        bool _isPresets;
+        bool _keepFont;
+        bool _keepIcon;
 
-        private readonly Border _border;
-
+        readonly Border _border;
         /// <summary>
         /// 获取边框信息。内部用
         /// </summary>
@@ -645,29 +641,25 @@ namespace Sunny.UI
             ((IDisposable)this).Dispose();
         }
 
-        private static TipStyle _gray;
-
+        static TipStyle _gray;
         /// <summary>
         /// 预置的灰色样式
         /// </summary>
         public static TipStyle Gray => _gray ?? (_gray = CreatePresetsStyle(0));
 
-        private static TipStyle _green;
-
+        static TipStyle _green;
         /// <summary>
         /// 预置的绿色样式
         /// </summary>
         public static TipStyle Green => _green ?? (_green = CreatePresetsStyle(1));
 
-        private static TipStyle _orange;
-
+        static TipStyle _orange;
         /// <summary>
         /// 预置的橙色样式
         /// </summary>
         public static TipStyle Orange => _orange ?? (_orange = CreatePresetsStyle(2));
 
-        private static TipStyle _red;
-
+        static TipStyle _red;
         /// <summary>
         /// 预置的红色样式
         /// </summary>
@@ -682,7 +674,6 @@ namespace Sunny.UI
                 ShadowColor = PresetsResources.Colors[index, 2],
                 _isPresets = true
             };
-
             style.BackBrush = r =>
             {
                 var brush = new LinearGradientBrush(r,
@@ -692,12 +683,10 @@ namespace Sunny.UI
                 brush.SetBlendTriangularShape(0.5f);
                 return brush;
             };
-
             return style;
         }
 
-        private bool _disposed;
-
+        bool _disposed;
         [Obsolete("请改用Clear指定是否清理字体和图标")]
         [MethodImpl(MethodImplOptions.Synchronized)]
         void IDisposable.Dispose()
@@ -833,12 +822,10 @@ namespace Sunny.UI
         /// 居中
         /// </summary>
         Middle,
-
         /// <summary>
         /// 内部
         /// </summary>
         Inner,
-
         /// <summary>
         /// 外部
         /// </summary>
@@ -857,12 +844,11 @@ namespace Sunny.UI
         // - 再利用画笔的CompoundArray属性将边框裁切掉一半，
         //   同时根据不同参数偏移描边位置，达到可内可外可居中的效果
 
-        private float[] _compoundArray;
-
+        float[] _compoundArray;
         /// <summary>
         /// 根据_direction处理线段
         /// </summary>
-        private float[] CompoundArray
+        float[] CompoundArray
         {
             get
             {
@@ -881,7 +867,7 @@ namespace Sunny.UI
             }
         }
 
-        private readonly Pen _pen;
+        readonly Pen _pen;
 
         /// <summary>
         /// 获取用于画本边框的画笔。建议销毁本类而不是该画笔
@@ -906,8 +892,7 @@ namespace Sunny.UI
             set => Pen.Color = value;
         }
 
-        private Direction _direction;
-
+        Direction _direction;
         /// <summary>
         /// 边框位置。默认居中
         /// </summary>
@@ -945,9 +930,7 @@ namespace Sunny.UI
             return rectangle;
         }
 
-        public Border(Color color) : this(new Pen(color), false)
-        {
-        }
+        public Border(Color color) : this(new Pen(color), false) { }
 
         /// <summary>
         /// 基于现有画笔的副本构造
@@ -982,22 +965,21 @@ namespace Sunny.UI
     [SuppressUnmanagedCodeSecurity]
     public class LayeredWindow : IDisposable
     {
-        private const string ClassName = "AhDungLayeredWindow";
+        const string ClassName = "AhDungLayeredWindow";
 
-        private static WndProcDelegate _wndProc;
+        static WndProcDelegate _wndProc;
 
-        private readonly object syncObj = new object();
-        private readonly PointOrSize _size;
-        private IntPtr _dcMemory;
-        private IntPtr _hBmp;
-        private IntPtr _oldObj;
+        readonly object syncObj = new object();
+        readonly PointOrSize _size;
+        IntPtr _dcMemory;
+        IntPtr _hBmp;
+        IntPtr _oldObj;
 
-        private IntPtr _activeWindow; //用于模式显示时，记录并disable原窗体，然后在本类关闭后enable它
-        private bool _continueLoop = true;
-        private short _wndClass;
-        private IntPtr _hWnd;
-
-        private BLENDFUNCTION _blend = new BLENDFUNCTION
+        IntPtr _activeWindow; //用于模式显示时，记录并disable原窗体，然后在本类关闭后enable它
+        bool _continueLoop = true;
+        short _wndClass;
+        IntPtr _hWnd;
+        BLENDFUNCTION _blend = new BLENDFUNCTION
         {
             BlendOp = 0,               //AC_SRC_OVER
             BlendFlags = 0,
@@ -1015,19 +997,14 @@ namespace Sunny.UI
         /// </summary>
         public event CancelEventHandler Closing;
 
-        private static IntPtr _hInstance;
-
-        private static IntPtr HInstance
+        static IntPtr _hInstance;
+        static IntPtr HInstance
         {
             get
             {
                 if (_hInstance == IntPtr.Zero)
                 {
-                    Assembly assembly = Assembly.GetEntryAssembly();
-                    if (assembly != null)
-                    {
-                        _hInstance = Marshal.GetHINSTANCE(assembly.ManifestModule);
-                    }
+                    _hInstance = Marshal.GetHINSTANCE(Assembly.GetEntryAssembly()?.ManifestModule);
                 }
                 return _hInstance;
             }
@@ -1036,7 +1013,7 @@ namespace Sunny.UI
         /// <summary>
         /// 获取窗体位置。内部用
         /// </summary>
-        private PointOrSize LocationInternal => new PointOrSize(_left, _top);
+        PointOrSize LocationInternal => new PointOrSize(_left, _top);
 
         /// <summary>
         /// 窗体句柄
@@ -1048,8 +1025,7 @@ namespace Sunny.UI
         /// </summary>
         public bool Visible { get; private set; }
 
-        private int _left;
-
+        int _left;
         /// <summary>
         /// 获取或设置左边缘坐标
         /// </summary>
@@ -1064,8 +1040,7 @@ namespace Sunny.UI
             }
         }
 
-        private int _top;
-
+        int _top;
         /// <summary>
         /// 获取或设置上边缘坐标
         /// </summary>
@@ -1098,15 +1073,14 @@ namespace Sunny.UI
         /// <summary>
         /// 获取窗体宽度
         /// </summary>
-        public int Width { get; }
+        public int Width { get; private set; }
 
         /// <summary>
         /// 获取窗体高度
         /// </summary>
-        public int Height { get; }
+        public int Height { get; private set; }
 
-        private float _opacity;
-
+        float _opacity;
         /// <summary>
         /// 获取或设置窗体透明度（建议优先用Alpha）。0=完全透明；1=不透明
         /// </summary>
@@ -1161,7 +1135,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否在任务栏显示
         /// </summary>
-        public bool ShowInTaskBar { get; set; }
+        public bool ShowInTaskbar { get; set; }
 
         /// <summary>
         /// 是否让鼠标事件穿透本窗体
@@ -1249,7 +1223,7 @@ namespace Sunny.UI
             if (TopMost) { exStyle |= 0x8; }            //WS_EX_TOPMOST
             if (!Activation) { exStyle |= 0x08000000; } //WS_EX_NOACTIVATE
             if (MouseThrough) { exStyle |= 0x20; }      //WS_EX_TRANSPARENT
-            if (ShowInTaskBar) { exStyle |= 0x40000; }  //WS_EX_APPWINDOW
+            if (ShowInTaskbar) { exStyle |= 0x40000; }  //WS_EX_APPWINDOW
 
             int style = unchecked((int)0x80000000)      //WS_POPUP。不能加WS_VISIBLE，会抢焦点，改用ShowWindow显示
                 | 0x80000;                              //WS_SYSMENU
@@ -1290,7 +1264,6 @@ namespace Sunny.UI
                 case 0x10://WM_CLOSE
                     Close();
                     break;
-
                 case 0x2://WM_DESTROY
                     EnableWindow(_activeWindow, true);
                     _continueLoop = false;
@@ -1393,8 +1366,7 @@ namespace Sunny.UI
             }
         }
 
-        private bool _disposed;
-
+        bool _disposed;
         /// <summary>
         /// 释放窗体
         /// </summary>
@@ -1512,7 +1484,6 @@ namespace Sunny.UI
         // ReSharper disable UnusedField.Compiler
 #pragma warning disable 414
 #pragma warning disable 649
-
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         private class WNDCLASS
         {
@@ -1556,10 +1527,7 @@ namespace Sunny.UI
 
             public static readonly PointOrSize Empty = new PointOrSize();
 
-            public PointOrSize()
-            {
-                XOrWidth = 0; YOrHeight = 0;
-            }
+            public PointOrSize() { XOrWidth = 0; YOrHeight = 0; }
 
             public PointOrSize(int xOrWidth, int yOrHeight)
             {
@@ -1574,8 +1542,7 @@ namespace Sunny.UI
         // ReSharper restore NotAccessedField.Local
 #pragma warning restore 649
 #pragma warning restore 414
-
-        #endregion Win32 API
+        #endregion
     }
 
     internal static class GraphicsUtils
@@ -1718,7 +1685,8 @@ namespace Sunny.UI
         /// <param name="border">边框描述对象。对象无效则不描边</param>
         public static void DrawPath(Graphics g, GraphicsPath path, Brush brush = null, Border border = null)
         {
-            if (border != null && Border.IsValid(border) && border.Behind)
+            if (border == null) return;
+            if (Border.IsValid(border) && border.Behind)
             {
                 g.DrawPath(border.Pen, path);
             }
@@ -1726,11 +1694,12 @@ namespace Sunny.UI
             {
                 g.FillPath(brush, path);
             }
-            if (border != null && Border.IsValid(border) && !border.Behind)
+            if (Border.IsValid(border) && !border.Behind)
             {
                 g.DrawPath(border.Pen, path);
             }
         }
+
 
         /// <summary>
         /// 阴影生成类
@@ -1744,11 +1713,10 @@ namespace Sunny.UI
          * - 减少运算量
          * =================================================================================
          */
-
         private static class DropShadow
         {
-            private const int CHANNELS = 4;
-            private const int InflateMultiple = 2;//单边外延radius的倍数
+            const int CHANNELS = 4;
+            const int InflateMultiple = 2;//单边外延radius的倍数
 
             /// <summary>
             /// 获取阴影边界。供外部定位阴影用
@@ -1853,7 +1821,6 @@ namespace Sunny.UI
 #if UNSAFE
             private static unsafe void BoxBlur(BitmapData data, int radius, Color color)
 #else
-
             private static void BoxBlur(BitmapData data, int radius, Color color)
 #endif
             {
@@ -1955,22 +1922,22 @@ namespace Sunny.UI
 #endif
             }
 
-            //private static int[] DetermineBoxes(double Sigma, int BoxCount)
-            //{
-            //    double IdealWidth = Math.Sqrt((12 * Sigma * Sigma / BoxCount) + 1);
-            //    int Lower = (int)Math.Floor(IdealWidth);
-            //    if (Lower % 2 == 0)
-            //        Lower--;
-            //    int Upper = Lower + 2;
-
-            //    double MedianWidth = (12 * Sigma * Sigma - BoxCount * Lower * Lower - 4 * BoxCount * Lower - 3 * BoxCount) / (-4 * Lower - 4);
-            //    int Median = (int)Math.Round(MedianWidth);
-
-            //    int[] BoxSizes = new int[BoxCount];
-            //    for (int i = 0; i < BoxCount; i++)
-            //        BoxSizes[i] = (i < Median) ? Lower : Upper;
-            //    return BoxSizes;
-            //}
+            // private static int[] DetermineBoxes(double Sigma, int BoxCount)
+            // {
+            //     double IdealWidth = Math.Sqrt((12 * Sigma * Sigma / BoxCount) + 1);
+            //     int Lower = (int)Math.Floor(IdealWidth);
+            //     if (Lower % 2 == 0)
+            //         Lower--;
+            //     int Upper = Lower + 2;
+            //
+            //     double MedianWidth = (12 * Sigma * Sigma - BoxCount * Lower * Lower - 4 * BoxCount * Lower - 3 * BoxCount) / (-4 * Lower - 4);
+            //     int Median = (int)Math.Round(MedianWidth);
+            //
+            //     int[] BoxSizes = new int[BoxCount];
+            //     for (int i = 0; i < BoxCount; i++)
+            //         BoxSizes[i] = (i < Median) ? Lower : Upper;
+            //     return BoxSizes;
+            // }
         }
 
         #region Win32 API
@@ -1981,6 +1948,6 @@ namespace Sunny.UI
         [DllImport("user32.dll")]
         private static extern bool ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
-        #endregion Win32 API
+        #endregion
     }
 }

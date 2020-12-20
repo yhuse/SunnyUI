@@ -41,7 +41,7 @@
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(178, 21);
             this.labelDescription.TabIndex = 1;
-            this.labelDescription.Text = "系统处理中，请稍候......";
+            this.labelDescription.Text = "系统正在处理中，请稍候...";
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // processBar
@@ -67,8 +67,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UIStatusForm";
-            this.ShowIcon = false;
-            this.Text = "进度";
+            this.Text = "提示";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

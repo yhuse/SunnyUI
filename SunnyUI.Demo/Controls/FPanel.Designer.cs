@@ -49,6 +49,7 @@
             this.uiTitlePanel1.ForeColor = System.Drawing.Color.White;
             this.uiTitlePanel1.Location = new System.Drawing.Point(30, 230);
             this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
             this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.uiTitlePanel1.Size = new System.Drawing.Size(270, 180);
@@ -60,6 +61,7 @@
             this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel1.Location = new System.Drawing.Point(30, 20);
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
             this.uiPanel1.Size = new System.Drawing.Size(270, 180);
             this.uiPanel1.TabIndex = 3;
@@ -70,6 +72,7 @@
             this.uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiGroupBox1.Location = new System.Drawing.Point(331, 4);
             this.uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.uiGroupBox1.Size = new System.Drawing.Size(270, 196);
@@ -82,6 +85,7 @@
             this.uiTitlePanel2.ForeColor = System.Drawing.Color.White;
             this.uiTitlePanel2.Location = new System.Drawing.Point(331, 230);
             this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel2.Name = "uiTitlePanel2";
             this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.uiTitlePanel2.ShowCollapse = true;

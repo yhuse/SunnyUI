@@ -6,10 +6,5 @@
         {
             InitializeComponent();
         }
-
-        private void uiTextBox1_Click(object sender, System.EventArgs e)
-        {
-
-        }
     }
 }

@@ -159,16 +159,16 @@ namespace Sunny.UI
 
         protected override void OnClick(EventArgs e)
         {
-            base.OnClick(e);
             Active = !Active;
+            base.OnClick(e);
         }
 
         protected override void OnDoubleClick(EventArgs e)
         {
             if (!UseDoubleClick)
             {
-                base.OnClick(e);
                 Active = !Active;
+                base.OnClick(e);
             }
             else
             {

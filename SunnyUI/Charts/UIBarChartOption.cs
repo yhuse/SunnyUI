@@ -51,6 +51,10 @@ namespace Sunny.UI
         /// </summary>
         public bool AutoSizeBars { get; set; }
 
+        public bool AutoSizeBarsCompact { get; set; }
+
+        public float AutoSizeBarsCompactValue { get; set; } = 1.0f;
+
         public void AddSeries(UIBarSeries series)
         {
             Series.Add(series);
@@ -161,6 +165,8 @@ namespace Sunny.UI
 
         public event DoFormatter Formatter;
 
+        public int Angle { get; set; } = 0;
+
         public string GetLabel(double value, int index, UIAxisType axisType = UIAxisType.Value)
         {
             switch (axisType)
@@ -177,6 +183,11 @@ namespace Sunny.UI
             return value.ToString("F2");
         }
 
+        public string GetAutoLabel(double value, int decimalCount)
+        {
+            return value.ToString("F" + decimalCount);
+        }
+
         /// <summary>
         /// 小数位个数，Formatter不为空时以Formatter为准
         /// </summary>
@@ -186,6 +197,8 @@ namespace Sunny.UI
         /// 日期格式化字符串，Formatter不为空时以Formatter为准
         /// </summary>
         public string DateTimeFormat { get; set; } = "HH:mm";
+
+        public bool AutoFormat { get; set; } = true;
     }
 
     public class UIAxisTick
@@ -233,6 +246,8 @@ namespace Sunny.UI
         public bool ShowBarName { get; set; }
 
         public bool ShowValue { get; set; }
+
+        public float ShowValueFontSize { get; set; } = 0;
 
         public void AddData(double value)
         {

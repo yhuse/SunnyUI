@@ -27,7 +27,6 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -41,6 +40,30 @@ namespace Sunny.UI
         {
             timer.Stop();
             timer.Start();
+        }
+
+        public static Point LocationOnScreen(this Control ctrl)
+        {
+            Point point = new Point(0, 0);
+            do
+            {
+                point.Offset(ctrl.Location);
+                ctrl = ctrl.Parent;
+            }
+            while (ctrl != null);
+
+            return point;
+        }
+
+        public static Form RootForm(this Control ctrl)
+        {
+            if (ctrl == null) return null;
+            while (ctrl.Parent != null)
+            {
+                ctrl = ctrl.Parent;
+            }
+
+            return ctrl as Form;
         }
 
         public static Form GetParentForm(this Control ctrl)
@@ -78,7 +101,7 @@ namespace Sunny.UI
             return (form.Height - form.ClientSize.Height) - form.BorderSize();
         }
 
-        public static Point LocationOnClient(this Control c)
+        private static Point LocationOnClient(this Control c)
         {
             Point point = new Point(0, 0);
             for (; c.Parent != null; c = c.Parent)
@@ -170,9 +193,6 @@ namespace Sunny.UI
             objects[index] = value;
         }
 
-        [DllImport("user32.dll")]
-        private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
-
         /// <summary>
         /// 修改控件或窗体的边框，例如 TextBox 或是 Form 窗体
         /// </summary>
@@ -186,7 +206,7 @@ namespace Sunny.UI
             using (Pen pen = new Pen(color, width))
             {
                 //得到当前的句柄
-                IntPtr hDC = GetWindowDC(m.HWnd);
+                IntPtr hDC = (IntPtr)Win32.User.GetWindowDC(m.HWnd);
                 if (hDC.ToInt32() == 0)
                 {
                     return;
@@ -196,7 +216,7 @@ namespace Sunny.UI
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.DrawRectangle(pen, 0, 0, control.Width - width, control.Height - width);
                 //释放
-                ReleaseDC(m.HWnd, hDC);
+                Win32.User.ReleaseDC(m.HWnd, hDC);
             }
         }
 
@@ -310,24 +330,6 @@ namespace Sunny.UI
             return values;
         }
 
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateCompatibleDC(IntPtr hdc);
-
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateCompatibleBitmap(IntPtr hdc, int nWidth, int nHeight);
-
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr SelectObject(IntPtr hdc, IntPtr obj);
-
-        [DllImport("gdi32.dll")]
-        private static extern int DeleteDC(IntPtr hdc);
-
-        [DllImport("user32.dll")]
-        private static extern bool PrintWindow(IntPtr window, IntPtr hdcBlt, uint nFlags);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetWindowDC(IntPtr window);
-
         /// <summary>
         /// 控件保存为图片
         /// </summary>
@@ -335,14 +337,14 @@ namespace Sunny.UI
         /// <returns></returns>
         public static Bitmap SaveToImage(this Control ctrl)
         {
-            IntPtr hdc = GetWindowDC(ctrl.Handle);
-            IntPtr bitmap = CreateCompatibleBitmap(hdc, ctrl.Width, ctrl.Height);
-            IntPtr compatibleDc = CreateCompatibleDC(hdc);
-            SelectObject(compatibleDc, bitmap);
-            PrintWindow(ctrl.Handle, compatibleDc, 0);
+            IntPtr hdc = (IntPtr)Win32.User.GetWindowDC(ctrl.Handle);
+            IntPtr bitmap = (IntPtr)Win32.GDI.CreateCompatibleBitmap(hdc, ctrl.Width, ctrl.Height);
+            IntPtr compatibleDc = (IntPtr)Win32.GDI.CreateCompatibleDC(hdc);
+            Win32.GDI.SelectObject(compatibleDc, bitmap);
+            Win32.GDI.PrintWindow(ctrl.Handle, compatibleDc, 0);
             Bitmap bmp = Image.FromHbitmap(bitmap);
-            DeleteDC(hdc);       //删除用过的对象
-            DeleteDC(compatibleDc);       //删除用过的对象
+            Win32.GDI.DeleteDC(hdc);       //删除用过的对象
+            Win32.GDI.DeleteDC(compatibleDc);       //删除用过的对象
             return bmp;
         }
 

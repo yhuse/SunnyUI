@@ -164,10 +164,10 @@ namespace Sunny.UI
                 return o;
             }
 
-            set
-            {
-                SetOption(value);
-            }
+            // set
+            // {
+            //     SetOption(value);
+            // }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

@@ -433,6 +433,7 @@
             this.uiButton13.StyleCustomMode = true;
             this.uiButton13.TabIndex = 17;
             this.uiButton13.Text = "Red";
+            this.uiButton13.Click += new System.EventHandler(this.uiButton13_Click);
             // 
             // uiButton14
             // 
@@ -946,6 +947,8 @@
             this.uiSwitch1.Size = new System.Drawing.Size(75, 29);
             this.uiSwitch1.TabIndex = 45;
             this.uiSwitch1.Text = "uiSwitch1";
+            this.uiSwitch1.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.uiSwitch1_ValueChanged);
+            this.uiSwitch1.Click += new System.EventHandler(this.uiSwitch1_Click);
             // 
             // uiLine4
             // 

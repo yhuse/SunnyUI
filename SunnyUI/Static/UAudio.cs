@@ -22,7 +22,6 @@
 using System;
 using System.ComponentModel;
 using System.Media;
-using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
 
@@ -169,9 +168,6 @@ namespace Sunny.UI
     /// </summary>
     public static class Mp3Player
     {
-        [DllImport("winmm.dll")]
-        private static extern long mciSendString(string strCommand, System.Text.StringBuilder strReturn, int iReturnLength, IntPtr callback);
-
         /// <summary>
         /// 播放
         /// </summary>
@@ -179,8 +175,8 @@ namespace Sunny.UI
         /// <param name="Repeat">重复</param>
         public static void Play(string MP3_FileName, bool Repeat)
         {
-            mciSendString("open \"" + MP3_FileName + "\" type mpegvideo alias MediaFile", null, 0, IntPtr.Zero);
-            mciSendString("play MediaFile" + (Repeat ? " repeat" : string.Empty), null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString("open \"" + MP3_FileName + "\" type mpegvideo alias MediaFile", null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString("play MediaFile" + (Repeat ? " repeat" : string.Empty), null, 0, IntPtr.Zero);
         }
 
         /// <summary>
@@ -188,7 +184,7 @@ namespace Sunny.UI
         /// </summary>
         public static void Pause()
         {
-            mciSendString("stop MediaFile", null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString("stop MediaFile", null, 0, IntPtr.Zero);
         }
 
         /// <summary>
@@ -196,7 +192,7 @@ namespace Sunny.UI
         /// </summary>
         public static void Stop()
         {
-            mciSendString("close MediaFile", null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString("close MediaFile", null, 0, IntPtr.Zero);
         }
     }
 }

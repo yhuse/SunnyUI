@@ -60,6 +60,12 @@ namespace Sunny.UI
             base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Invalidate();
+        }
+
         /// <summary>
         /// Tag字符串
         /// </summary>
@@ -445,13 +451,13 @@ namespace Sunny.UI
                 g.FillPath(color, path);
         }
 
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg != 20)
-            {
-                base.WndProc(ref m);
-            }
-        }
+        // protected override void WndProc(ref Message m)
+        // {
+        //     if (m.Msg != 20)
+        //     {
+        //         base.WndProc(ref m);
+        //     }
+        // }
 
         protected virtual void AfterSetFillColor(Color color)
         {

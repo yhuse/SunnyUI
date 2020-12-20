@@ -25,7 +25,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -66,6 +65,12 @@ namespace Sunny.UI
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
             edit.BackColor = Color.White;
+            PaintOther += UIDropControl_PaintOther;
+        }
+
+        private void UIDropControl_PaintOther(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(RectColor, Width - 1, Radius, Width - 1, Height - Radius);
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)
@@ -128,12 +133,18 @@ namespace Sunny.UI
                     {
                         itemForm.ValueChanged += ItemForm_ValueChanged;
                         itemForm.VisibleChanged += ItemForm_VisibleChanged;
+                        itemForm.Closed += ItemForm_Closed;
                     }
                 }
 
                 return itemForm;
             }
             set => itemForm = value;
+        }
+
+        private void ItemForm_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            DropDownClosed?.Invoke(this, null);
         }
 
         private void ItemForm_VisibleChanged(object sender, EventArgs e)
@@ -251,13 +262,15 @@ namespace Sunny.UI
             if (!edit.Visible)
             {
                 base.OnPaintFore(g, path);
+                g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 26, edit.Height), Radius, false);
+                g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
             }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            Padding = new Padding(0, 0, 30, 0);
+            Padding = new Padding(0, 0, 30, 2);
             e.Graphics.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
             Color color = GetRectColor();
             SizeF sf = e.Graphics.GetFontImageSize(dropSymbol, 24);
@@ -302,6 +315,7 @@ namespace Sunny.UI
             set => edit.Text = value;
         }
 
+        [Browsable(false)]
         public bool IsEmpty => edit.Text == "";
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -364,13 +378,14 @@ namespace Sunny.UI
                     ItemForm.SetStyle(UIStyles.ActiveStyleColor);
                 }
 
+                DropDown?.Invoke(this, e);
                 ButtonClick?.Invoke(this, e);
             }
         }
 
-        //public event EventHandler DropDown;
+        public event EventHandler DropDown;
 
-        //public event EventHandler DropDownClosed;
+        public event EventHandler DropDownClosed;
 
         public void Select(int start, int length)
         {
@@ -386,8 +401,7 @@ namespace Sunny.UI
         {
             private string watermark;
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto)]
-            private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
+
 
             [DefaultValue(null)]
             public string Watermark
@@ -396,7 +410,7 @@ namespace Sunny.UI
                 set
                 {
                     watermark = value;
-                    SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+                    Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
                 }
             }
         }

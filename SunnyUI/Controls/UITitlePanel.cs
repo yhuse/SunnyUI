@@ -249,10 +249,10 @@ namespace Sunny.UI
                 {
                     resizing = true;
                     Height = TitleHeight;
-                    resizing = false;
                 }
                 else
                 {
+                    resizing = false;
                     Height = rowHeight;
                 }
 

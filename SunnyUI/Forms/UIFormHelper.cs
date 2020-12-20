@@ -21,7 +21,6 @@
 ******************************************************************************/
 
 using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -157,53 +156,84 @@ namespace Sunny.UI
             return isOk;
         }
 
-        public static bool ShowMessageDialog(string message, string title, bool isShowCancel, UIStyle style, bool topMost = false)
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="message">信息</param>
+        /// <param name="showCancelButton">显示取消按钮</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        /// <returns>结果</returns>
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true)
         {
+            Point pt = SystemEx.GetCursorPos();
+            Rectangle screen = Screen.GetBounds(pt);
+
+            Form mask = null;
+            if (showMask)
+            {
+                mask = new Form();
+                mask.FormBorderStyle = FormBorderStyle.None;
+                mask.BackColor = Color.FromArgb(0, 0, 0);
+                mask.Opacity = 0.5;
+                mask.ShowInTaskbar = false;
+                mask.StartPosition = FormStartPosition.Manual;
+                mask.Bounds = screen;
+                mask.Show();
+                mask.TopMost = true;
+                Application.DoEvents();
+            }
+
             UIMessageForm frm = new UIMessageForm();
-            frm.TopMost = topMost;
-            frm.ShowMessage(message, title, isShowCancel, style);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowMessage(message, title, showCancelButton, style);
+            frm.ShowInTaskbar = false;
+            frm.TopMost = showMask;
             frm.ShowDialog();
             bool isOk = frm.IsOK;
             frm.Dispose();
+
+            mask?.Close();
             return isOk;
         }
     }
 
     public static class UIMessageBox
     {
-        public static void Show(string text)
+        public static void Show(string text, bool showMask = true)
         {
-            Show(text, UILocalize.InfoTitle);
+            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask);
         }
 
-        public static void ShowInfo(string text)
+        public static void ShowInfo(string text, bool showMask = true)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Gray);
+            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask);
         }
 
-        public static void ShowSuccess(string text)
+        public static void ShowSuccess(string text, bool showMask = true)
         {
-            Show(text, UILocalize.SuccessTitle, UIStyle.Green);
+            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask);
         }
 
-        public static void ShowWarning(string text)
+        public static void ShowWarning(string text, bool showMask = true)
         {
-            Show(text, UILocalize.WarningTitle, UIStyle.Orange);
+            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask);
         }
 
-        public static void ShowError(string text)
+        public static void ShowError(string text, bool showMask = true)
         {
-            Show(text, UILocalize.ErrorTitle, UIStyle.Red);
+            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask);
         }
 
-        public static bool ShowAsk(string text)
+        public static bool ShowAsk(string text, bool showMask = true)
         {
-            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel);
+            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel, showMask);
         }
 
-        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool topMost = false)
+        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true)
         {
-            return UIMessageDialog.ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, topMost);
+            return UIMessageDialog.ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask);
         }
     }
 
@@ -493,138 +523,75 @@ namespace Sunny.UI
 
     public static class UINotifierHelper
     {
-        private static void ShowNotifier(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier", bool isDialog = false, int timeout = 0, Form inApp = null)
+        public static void ShowNotifier(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier", bool isDialog = false, int timeout = 0, Form inApp = null)
         {
             UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
         }
-
-        public static void ShowInfoNotifier(this Form form, string desc, bool isDialog = false, int timeout = 2000)
-        {
-            ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, false, timeout);
-        }
-
-        public static void ShowSuccessNotifier(this Form form, string desc, bool isDialog = false, int timeout = 3000)
-        {
-            ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, false, timeout);
-        }
-
-        public static void ShowWarningNotifier(this Form form, string desc, bool isDialog = false, int timeout = 0)
-        {
-            ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, false, timeout);
-        }
-
-        public static void ShowErrorNotifier(this Form form, string desc, bool isDialog = false, int timeout = 0)
-        {
-            ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, false, timeout);
-        }
     }
 
-    public static class UIMessageTipHelper
+    public static class FormEx
     {
-        /// <summary>
-        /// 显示消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="style">消息样式。不指定则使用默认样式</param>
-        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
-        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
-        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
-        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowInfoTip(this Form form, string text, TipStyle style = null, int delay = -1, bool? floating = null,
-            Point? point = null, bool centerByPoint = false)
-            => UIMessageTip.Show(text, style, delay, floating, point, centerByPoint);
+        public static Form ShowFullMask(this Form form)
+        {
+            Point pt = SystemEx.GetCursorPos();
+            Rectangle screen = Screen.GetBounds(pt);
 
-        /// <summary>
-        /// 在指定控件附近显示消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="controlOrItem">控件或工具栏项</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="style">消息样式。不指定则使用默认样式</param>
-        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
-        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
-        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowInfoTip(this Form form, Component controlOrItem, string text, TipStyle style = null, int delay = -1,
-            bool? floating = null, bool? centerInControl = null)
-            => UIMessageTip.Show(controlOrItem, text, style, delay, floating, centerInControl);
+            Form mask = new Form();
+            mask.FormBorderStyle = FormBorderStyle.None;
+            mask.BackColor = Color.FromArgb(0, 0, 0);
+            mask.Opacity = 0.5;
+            mask.ShowInTaskbar = false;
+            mask.StartPosition = FormStartPosition.Manual;
+            mask.Bounds = screen;
+            mask.TopMost = true;
+            mask.Show();
+            return mask;
+        }
 
-        /// <summary>
-        /// 在指定控件附近显示出错消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="controlOrItem">控件或工具栏项</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
-        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
-        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowErrorTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
-            bool? floating = null, bool? centerInControl = null)
-            => UIMessageTip.ShowError(controlOrItem, text, delay, floating, centerInControl);
+        public static Form ShowControlMask(this Control control)
+        {
+            bool topmost = false;
+            Form baseForm = control.RootForm();
+            if (baseForm != null)
+            {
+                topmost = baseForm.TopMost;
+                baseForm.TopMost = true;
+                Application.DoEvents();
+            }
 
-        /// <summary>
-        /// 显示出错消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
-        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
-        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
-        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowErrorTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
-            bool centerByPoint = false)
-            => UIMessageTip.ShowError(text, delay, floating, point, centerByPoint);
+            Form mask = new Form();
+            mask.FormBorderStyle = FormBorderStyle.None;
+            mask.BackColor = Color.FromArgb(0, 0, 0);
+            mask.Opacity = 0.5;
+            mask.ShowInTaskbar = false;
+            mask.StartPosition = FormStartPosition.Manual;
+            mask.Bounds = control.Bounds;
+            mask.Tag = baseForm;
+            mask.Text = topmost.ToString();
 
-        /// <summary>
-        /// 在指定控件附近显示良好消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="controlOrItem">控件或工具栏项</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
-        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
-        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowSuccessTip(this Form form, Component controlOrItem, string text = null, int delay = -1, bool? floating = null,
-            bool? centerInControl = null)
-            => UIMessageTip.ShowOk(controlOrItem, text, delay, floating, centerInControl);
+            var pt = control.LocationOnScreen();
+            mask.Left = pt.X;
+            mask.Top = pt.Y;
+            mask.Show();
+            mask.TopMost = true;
+            return mask;
+        }
 
-        /// <summary>
-        /// 显示良好消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。为负时使用全局时长</param>
-        /// <param name="floating">是否漂浮，不指定则使用全局设置</param>
-        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
-        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowSuccessTip(this Form form, string text = null, int delay = -1, bool? floating = null, Point? point = null,
-            bool centerByPoint = false)
-            => UIMessageTip.ShowOk(text, delay, floating, point, centerByPoint);
+        public static void EndShow(this Form maskForm)
+        {
+            if (maskForm.Tag is Form form)
+            {
+                form.TopMost = maskForm.Text.ToBoolean();
+            }
+        }
 
-        /// <summary>
-        /// 在指定控件附近显示警告消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="controlOrItem">控件或工具栏项</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
-        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
-        /// <param name="centerInControl">是否在控件中央显示，不指定则自动判断</param>
-        public static void ShowWarningTip(this Form form, Component controlOrItem, string text = null, int delay = 1000,
-            bool? floating = null, bool? centerInControl = null)
-            => UIMessageTip.ShowWarning(controlOrItem, text, delay, floating, centerInControl);
-
-        /// <summary>
-        /// 显示警告消息
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="text">消息文本</param>
-        /// <param name="delay">消息停留时长(ms)。默认1秒，若要使用全局时长请设为-1</param>
-        /// <param name="floating">是否漂浮。默认不漂浮。若要使用全局设置请设为null</param>
-        /// <param name="point">消息窗显示位置。不指定则智能判定，当由工具栏项(ToolStripItem)弹出时，请指定该参数或使用接收控件的重载</param>
-        /// <param name="centerByPoint">是否以point参数为中心进行呈现。为false则是在其附近呈现</param>
-        public static void ShowWarningTip(this Form form, string text = null, int delay = 1000, bool? floating = null, Point? point = null,
-            bool centerByPoint = false)
-            => UIMessageTip.ShowWarning(text, delay, floating, point, centerByPoint);
+        public static void ShowInMask(this Form frm, Form maskForm)
+        {
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Left = maskForm.Left + (maskForm.Width - frm.Width) / 2;
+            frm.Top = maskForm.Top + (maskForm.Height - frm.Height) / 2;
+            frm.ShowInTaskbar = false;
+            frm.TopMost = true;
+        }
     }
 }

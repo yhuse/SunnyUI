@@ -56,6 +56,12 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        public void ClearAll()
+        {
+            Nodes.Clear();
+            MenuHelper.Clear();
+        }
+
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);

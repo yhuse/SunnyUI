@@ -33,21 +33,12 @@ namespace Sunny.UI
     public static class DirEx
     {
         /// <summary>
-        /// 处理文件夹名称末尾加反斜杠\
-        /// </summary>
-        /// <param name="dir">文件夹名称</param>
-        /// <returns>结果</returns>
-        public static string DealPath(this string dir)
-        {
-            return dir.Right(1) == "\\" ? dir : dir + "\\";
-        }
-
-        /// <summary>
-        /// 当前可执行文件路径，末尾包括\
+        /// 当前可执行文件路径，末尾包括文件夹分隔符(windows为\，linux为/)
         /// </summary>
         /// <returns>结果</returns>
         public static string CurrentDir()
         {
+            //return Environment.CurrentDirectory.DealPath();
             return AppDomain.CurrentDomain.BaseDirectory.DealPath();
         }
 

@@ -28,6 +28,17 @@ namespace Sunny.UI
         public UIStatusForm()
         {
             InitializeComponent();
+            Text = UILocalize.InfoTitle;
+            Description = UILocalize.SystemProcessing;
+        }
+
+        public UIStatusForm(int max, string desc)
+        {
+            InitializeComponent();
+
+            Maximum = max;
+            Description = desc;
+            Value = 0;
         }
 
         [DefaultValue(100)]
@@ -42,11 +53,6 @@ namespace Sunny.UI
         {
             get => processBar.Value;
             set => processBar.Value = value;
-        }
-
-        public void StepIt()
-        {
-            processBar.StepIt();
         }
 
         [DefaultValue(1)]
@@ -92,5 +98,34 @@ namespace Sunny.UI
             set => labelDescription.Text = value;
         }
 
+        private delegate void SetTextHandler(string text);
+
+        public void SetDescription(string text)
+        {
+            if (labelDescription.InvokeRequired)
+            {
+                Invoke(new SetTextHandler(SetDescription), text);
+            }
+            else
+            {
+                labelDescription.Text = text;
+                labelDescription.Invalidate();
+            }
+        }
+
+        private delegate void StepItHandler(int step);
+
+        public void StepIt(int step = 1)
+        {
+            if (processBar.InvokeRequired)
+            {
+                Invoke(new StepItHandler(StepIt), step);
+            }
+            else
+            {
+                processBar.Step = step;
+                processBar.StepIt();
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UIWaitingBar : UIControl
     {
-        private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        private readonly Timer timer = new Timer();
 
         public UIWaitingBar()
         {
@@ -44,6 +44,12 @@ namespace Sunny.UI
             timer.Interval = 200;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        ~UIWaitingBar()
+        {
+            timer.Stop();
+            timer.Dispose();
         }
 
         private void UIWaitingBar_PaintOther(object sender, PaintEventArgs e)
@@ -66,6 +72,8 @@ namespace Sunny.UI
             set => blockCount = Math.Max(10, value);
         }
 
+        public event EventHandler Tick;
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             //移动距离要减去滑块本身的宽度
@@ -86,6 +94,8 @@ namespace Sunny.UI
             dz = dMoveDistance * (1 + Math.Sin((d - 90) * Math.PI / 180)) / 2;
 
             Invalidate();
+
+            Tick?.Invoke(sender, e);
         }
 
         [DefaultValue(200)]
