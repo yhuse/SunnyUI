@@ -56,9 +56,19 @@ namespace Sunny.UI
             return origin + (float)((value - _min) * 1.0f * width / (_max - _min));
         }
 
+        public double CalcXPos(double value, int origin, int width)
+        {
+            return (float)(_min + (value - origin) * (_max - _min) * 1.0f / width);
+        }
+
         public float CalcYPixel(double value, int origin, int height)
         {
             return origin - (float)((value - _min) * 1.0f * height / (_max - _min));
+        }
+
+        public double CalcYPos(double value, int origin, int height)
+        {
+            return (float)(_min + (origin - value) * (_max - _min) * 1.0f / height);
         }
 
         public float[] CalcXPixels(double[] labels, int origin, int width)

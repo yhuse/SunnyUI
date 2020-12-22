@@ -31,7 +31,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
-    public sealed class UILineChart : UIChart
+    public class UILineChart : UIChart
     {
         private bool NeedDraw;
 
@@ -41,8 +41,8 @@ namespace Sunny.UI
             CalcData();
         }
 
-        private Point DrawOrigin;
-        private Size DrawSize;
+        protected Point DrawOrigin;
+        protected Size DrawSize;
 
         protected override void CalcData()
         {
@@ -67,8 +67,8 @@ namespace Sunny.UI
             NeedDraw = true;
         }
 
-        private UIScale XScale;
-        private UIScale YScale;
+        protected UIScale XScale;
+        protected UIScale YScale;
         private double[] YLabels;
         private double[] XLabels;
 
@@ -160,6 +160,12 @@ namespace Sunny.UI
             DrawSeries(g);
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, Option.Legend);
+            DrawOther(g);
+        }
+
+        protected virtual void DrawOther(Graphics g)
+        {
+
         }
 
         private void DrawAxis(Graphics g)

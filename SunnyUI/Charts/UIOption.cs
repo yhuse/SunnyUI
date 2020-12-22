@@ -47,6 +47,8 @@ namespace Sunny.UI
         public UILeftAlignment Left { get; set; } = UILeftAlignment.Left;
 
         public float Size { get; set; } = 1.0f;
+
+        public object Tag { get; set; }
     }
 
     public class UILegend
