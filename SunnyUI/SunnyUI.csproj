@@ -543,6 +543,9 @@
     <EmbeddedResource Include="Controls\DropItem\UIComboTreeViewItem.resx">
       <DependentUpon>UIComboTreeViewItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropItem\UIDateItem.resx">
+      <DependentUpon>UIDateItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIComboTreeView.resx">
       <DependentUpon>UIComboTreeView.cs</DependentUpon>
     </EmbeddedResource>

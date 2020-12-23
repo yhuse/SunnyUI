@@ -37,9 +37,9 @@
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiPanel1);
             this.PagePanel.Controls.Add(this.uiTitlePanel2);
             this.PagePanel.Controls.Add(this.uiGroupBox1);
-            this.PagePanel.Controls.Add(this.uiPanel1);
             this.PagePanel.Controls.Add(this.uiTitlePanel1);
             this.PagePanel.Size = new System.Drawing.Size(800, 453);
             // 

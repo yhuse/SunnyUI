@@ -64,9 +64,9 @@ namespace Sunny.UI
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // TopPanel
-            //
+            // 
             this.TopPanel.Controls.Add(this.b4);
             this.TopPanel.Controls.Add(this.b3);
             this.TopPanel.Controls.Add(this.b2);
@@ -76,6 +76,7 @@ namespace Sunny.UI
             this.TopPanel.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TopPanel.MinimumSize = new System.Drawing.Size(1, 1);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
@@ -86,9 +87,9 @@ namespace Sunny.UI
             this.TopPanel.TabIndex = 0;
             this.TopPanel.Text = "2020-05-05";
             this.TopPanel.Click += new System.EventHandler(this.TopPanel_Click);
-            //
+            // 
             // b4
-            //
+            // 
             this.b4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b4.BackColor = System.Drawing.Color.Transparent;
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -98,6 +99,7 @@ namespace Sunny.UI
             this.b4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b4.ImageInterval = 0;
             this.b4.Location = new System.Drawing.Point(427, 4);
+            this.b4.MinimumSize = new System.Drawing.Size(1, 1);
             this.b4.Name = "b4";
             this.b4.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -109,9 +111,9 @@ namespace Sunny.UI
             this.b4.Symbol = 61697;
             this.b4.TabIndex = 3;
             this.b4.Click += new System.EventHandler(this.b4_Click);
-            //
+            // 
             // b3
-            //
+            // 
             this.b3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.b3.BackColor = System.Drawing.Color.Transparent;
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -121,6 +123,7 @@ namespace Sunny.UI
             this.b3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b3.ImageInterval = 0;
             this.b3.Location = new System.Drawing.Point(391, 4);
+            this.b3.MinimumSize = new System.Drawing.Size(1, 1);
             this.b3.Name = "b3";
             this.b3.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -132,9 +135,9 @@ namespace Sunny.UI
             this.b3.Symbol = 61701;
             this.b3.TabIndex = 2;
             this.b3.Click += new System.EventHandler(this.b3_Click);
-            //
+            // 
             // b2
-            //
+            // 
             this.b2.BackColor = System.Drawing.Color.Transparent;
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b2.FillColor = System.Drawing.Color.White;
@@ -143,6 +146,7 @@ namespace Sunny.UI
             this.b2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b2.ImageInterval = 0;
             this.b2.Location = new System.Drawing.Point(40, 4);
+            this.b2.MinimumSize = new System.Drawing.Size(1, 1);
             this.b2.Name = "b2";
             this.b2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -154,9 +158,9 @@ namespace Sunny.UI
             this.b2.Symbol = 61700;
             this.b2.TabIndex = 1;
             this.b2.Click += new System.EventHandler(this.b2_Click);
-            //
+            // 
             // b1
-            //
+            // 
             this.b1.BackColor = System.Drawing.Color.Transparent;
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b1.FillColor = System.Drawing.Color.White;
@@ -165,6 +169,7 @@ namespace Sunny.UI
             this.b1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.b1.ImageInterval = 0;
             this.b1.Location = new System.Drawing.Point(4, 4);
+            this.b1.MinimumSize = new System.Drawing.Size(1, 1);
             this.b1.Name = "b1";
             this.b1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.b1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
@@ -176,9 +181,9 @@ namespace Sunny.UI
             this.b1.Symbol = 61696;
             this.b1.TabIndex = 0;
             this.b1.Click += new System.EventHandler(this.b1_Click);
-            //
+            // 
             // TabControl
-            //
+            // 
             this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Controls.Add(this.tabPage2);
             this.TabControl.Controls.Add(this.tabPage3);
@@ -194,9 +199,9 @@ namespace Sunny.UI
             this.TabControl.Style = Sunny.UI.UIStyle.Custom;
             this.TabControl.TabIndex = 1;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
-            //
+            // 
             // tabPage1
-            //
+            // 
             this.tabPage1.Controls.Add(this.p1);
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
             this.tabPage1.Name = "tabPage1";
@@ -204,14 +209,15 @@ namespace Sunny.UI
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            //
+            // 
             // p1
-            //
+            // 
             this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p1.FillColor = System.Drawing.Color.White;
             this.p1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p1.Location = new System.Drawing.Point(0, 0);
             this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p1.MinimumSize = new System.Drawing.Size(1, 1);
             this.p1.Name = "p1";
             this.p1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.p1.Size = new System.Drawing.Size(461, 277);
@@ -221,9 +227,9 @@ namespace Sunny.UI
             this.p1.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p1_PaintOther);
             this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
             this.p1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p1_MouseMove);
-            //
+            // 
             // tabPage2
-            //
+            // 
             this.tabPage2.Controls.Add(this.p2);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
@@ -231,14 +237,15 @@ namespace Sunny.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            //
+            // 
             // p2
-            //
+            // 
             this.p2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p2.FillColor = System.Drawing.Color.White;
             this.p2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p2.Location = new System.Drawing.Point(0, 0);
             this.p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p2.MinimumSize = new System.Drawing.Size(1, 1);
             this.p2.Name = "p2";
             this.p2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.p2.Size = new System.Drawing.Size(450, 230);
@@ -248,9 +255,9 @@ namespace Sunny.UI
             this.p2.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p2_PaintOther);
             this.p2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p2_MouseClick);
             this.p2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p2_MouseMove);
-            //
+            // 
             // tabPage3
-            //
+            // 
             this.tabPage3.Controls.Add(this.p3);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
             this.tabPage3.Name = "tabPage3";
@@ -258,14 +265,15 @@ namespace Sunny.UI
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            //
+            // 
             // p3
-            //
+            // 
             this.p3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.p3.FillColor = System.Drawing.Color.White;
             this.p3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p3.Location = new System.Drawing.Point(0, 0);
             this.p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.p3.MinimumSize = new System.Drawing.Size(1, 1);
             this.p3.Name = "p3";
             this.p3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.p3.Size = new System.Drawing.Size(461, 277);
@@ -275,9 +283,9 @@ namespace Sunny.UI
             this.p3.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p3_PaintOther);
             this.p3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p3_MouseClick);
             this.p3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p3_MouseMove);
-            //
+            // 
             // UIDateItem
-            //
+            // 
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.TopPanel);
             this.FillColor = System.Drawing.Color.White;
@@ -290,6 +298,7 @@ namespace Sunny.UI
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion InitializeComponent
@@ -583,8 +592,8 @@ namespace Sunny.UI
 
         private void p1_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            int width = p2.Width / 4;
-            int height = p2.Height / 3;
+            int width = p1.Width / 4;
+            int height = p1.Height / 3;
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int iy = x + y * 4;

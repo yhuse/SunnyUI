@@ -1132,8 +1132,8 @@ namespace Sunny.UI
 
         private void p1_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            int width = p2.Width / 4;
-            int height = p2.Height / 3;
+            int width = p1.Width / 4;
+            int height = p1.Height / 3;
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int iy = x + y * 4;
