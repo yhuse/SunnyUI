@@ -41,7 +41,7 @@ namespace Sunny.UI
 
         public UIProcessBar()
         {
-            MinimumSize = new Size(70, 23);
+            MinimumSize = new Size(70, 5);
             Size = new Size(300, 29);
             ShowText = false;
 
@@ -113,7 +113,10 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            if (ShowValue)
+            SizeF sf = e.Graphics.MeasureString(processText, Font);
+            bool canShow = Height > sf.Height + 4;
+
+            if (ShowValue && canShow)
             {
                 e.Graphics.DrawString(processText, Font, foreColor, Size, Padding, TextAlign);
             }
@@ -132,7 +135,7 @@ namespace Sunny.UI
             g.SetHighQuality();
             g.FillRoundRectangle(rectColor, rect, Radius);
             g.DrawRoundRectangle(rectColor, rect, Radius);
-            if (ShowValue)
+            if (ShowValue && canShow)
             {
                 g.DrawString(processText, Font, fillColor, Size, Padding, TextAlign);
             }

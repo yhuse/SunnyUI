@@ -56,11 +56,13 @@
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.uiProcessBar2 = new Sunny.UI.UIProcessBar();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiProcessBar2);
             this.PagePanel.Controls.Add(this.uiLabel3);
             this.PagePanel.Controls.Add(this.uiLabel2);
             this.PagePanel.Controls.Add(this.uiLabel1);
@@ -141,11 +143,12 @@
             // 
             this.uiProcessBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiProcessBar1.Location = new System.Drawing.Point(30, 136);
-            this.uiProcessBar1.MinimumSize = new System.Drawing.Size(70, 23);
+            this.uiProcessBar1.MinimumSize = new System.Drawing.Size(70, 1);
             this.uiProcessBar1.Name = "uiProcessBar1";
-            this.uiProcessBar1.Size = new System.Drawing.Size(319, 29);
+            this.uiProcessBar1.Size = new System.Drawing.Size(318, 29);
             this.uiProcessBar1.TabIndex = 24;
-            this.uiProcessBar1.Text = "0.0%";
+            this.uiProcessBar1.Text = "50.0%";
+            this.uiProcessBar1.Value = 50;
             // 
             // uiLine3
             // 
@@ -262,6 +265,7 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
+            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -377,6 +381,17 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
+            // uiProcessBar2
+            // 
+            this.uiProcessBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiProcessBar2.Location = new System.Drawing.Point(30, 171);
+            this.uiProcessBar2.MinimumSize = new System.Drawing.Size(70, 1);
+            this.uiProcessBar2.Name = "uiProcessBar2";
+            this.uiProcessBar2.Size = new System.Drawing.Size(318, 5);
+            this.uiProcessBar2.TabIndex = 56;
+            this.uiProcessBar2.Text = "50.0%";
+            this.uiProcessBar2.Value = 50;
+            // 
             // FOther
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -419,5 +434,6 @@
         private UILabel uiLabel2;
         private UILabel uiLabel1;
         private UIToolTip uiToolTip1;
+        private UIProcessBar uiProcessBar2;
     }
 }
