@@ -19,9 +19,9 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Drawing;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -185,8 +185,8 @@ namespace Sunny.UI
                 // If not, GC randomly collects it, and a NullReference exception is thrown
                 _hookCallback = HookCallbackProcedure;
 
-                _handleToHook = SetWindowsHookEx(_hookType, _hookCallback,
-                    Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
+                _handleToHook = SetWindowsHookEx(_hookType, _hookCallback, (IntPtr)Kernel.GetModuleHandle(null), 0);
+                //Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
 
                 // Were we able to sucessfully start hook?
                 if (_handleToHook != 0)
