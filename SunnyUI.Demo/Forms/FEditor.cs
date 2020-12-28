@@ -40,6 +40,28 @@ namespace Sunny.UI.Demo.Forms
 
             frm.Dispose();
         }
+
+        private void uiSymbolButton1_Click(object sender, EventArgs e)
+        {
+            UIEditOption option = new UIEditOption();
+            option.AutoLabelWidth = true;
+            option.Text = "增加";
+            option.AddText("Name", "姓名", "", true);
+            option.AddInteger("Age", "年龄", 20);
+            option.AddDate("Birthday", "生日", DateTime.Now);
+
+            UIEditForm frm = new UIEditForm(option);
+            frm.ShowDialog();
+
+            if (frm.IsOK)
+            {
+                Console.WriteLine("姓名: " + frm["Name"]);
+                Console.WriteLine("年龄: " + frm["Age"]);
+                Console.WriteLine("生日: " + frm["Birthday"]);
+            }
+
+            frm.Dispose();
+        }
     }
 
     public class Person

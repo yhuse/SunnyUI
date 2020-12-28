@@ -31,11 +31,15 @@
             this.btnEdit = new Sunny.UI.UISymbolButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.btnAdd = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.uiLine2 = new Sunny.UI.UILine();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine2);
+            this.PagePanel.Controls.Add(this.uiSymbolButton1);
             this.PagePanel.Controls.Add(this.btnAdd);
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.btnEdit);
@@ -45,6 +49,7 @@
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnEdit.Location = new System.Drawing.Point(152, 57);
+            this.btnEdit.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnEdit.Size = new System.Drawing.Size(100, 35);
@@ -69,6 +74,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnAdd.Location = new System.Drawing.Point(30, 57);
+            this.btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnAdd.Size = new System.Drawing.Size(100, 35);
@@ -76,6 +82,31 @@
             this.btnAdd.TabIndex = 20;
             this.btnAdd.Text = "增加";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // uiSymbolButton1
+            // 
+            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 149);
+            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton1.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton1.Symbol = 61543;
+            this.uiSymbolButton1.TabIndex = 21;
+            this.uiSymbolButton1.Text = "增加";
+            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            // 
+            // uiLine2
+            // 
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Location = new System.Drawing.Point(30, 114);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(670, 20);
+            this.uiLine2.TabIndex = 22;
+            this.uiLine2.Text = "UIEditForm 代码生成";
+            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FEditor
             // 
@@ -95,5 +126,7 @@
         private UISymbolButton btnEdit;
         private UILine uiLine1;
         private UISymbolButton btnAdd;
+        private UILine uiLine2;
+        private UISymbolButton uiSymbolButton1;
     }
 }

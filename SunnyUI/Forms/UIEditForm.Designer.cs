@@ -43,6 +43,7 @@
             this.pnlBtm.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.pnlBtm.Location = new System.Drawing.Point(1, 392);
             this.pnlBtm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlBtm.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlBtm.Name = "pnlBtm";
             this.pnlBtm.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.pnlBtm.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Top;
@@ -57,6 +58,7 @@
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnCancel.Location = new System.Drawing.Point(470, 12);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnCancel.Size = new System.Drawing.Size(100, 35);
@@ -73,6 +75,7 @@
             this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnOK.Location = new System.Drawing.Point(355, 12);
             this.btnOK.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnOK.Name = "btnOK";
             this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnOK.Size = new System.Drawing.Size(100, 35);
@@ -90,7 +93,6 @@
             this.MinimizeBox = false;
             this.Name = "UIEditForm";
             this.Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "UIEditForm";
             this.pnlBtm.ResumeLayout(false);
