@@ -33,7 +33,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public class UILineChart : UIChart
     {
-        private bool NeedDraw;
+        protected bool NeedDraw;
 
         protected override void OnSizeChanged(EventArgs e)
         {
@@ -72,7 +72,7 @@ namespace Sunny.UI
         private double[] YLabels;
         private double[] XLabels;
 
-        private void CalcAxises()
+        protected void CalcAxises()
         {
             if (Option.XAxisType == UIAxisType.DateTime)
                 XScale = new UIDateScale();
@@ -257,7 +257,7 @@ namespace Sunny.UI
             }
         }
 
-        private void DrawSeries(Graphics g, Color color, UILineSeries series)
+        protected virtual void DrawSeries(Graphics g, Color color, UILineSeries series)
         {
             if (series.Points.Count == 0)
             {
