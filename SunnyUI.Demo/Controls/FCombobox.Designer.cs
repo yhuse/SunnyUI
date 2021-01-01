@@ -56,19 +56,19 @@
             treeNode9});
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("节点2");
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("节点3");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("节点0");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("节点2");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("节点3");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("节点00");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("节点01");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("节点02");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("节点03");
             System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
             treeNode13,
             treeNode14,
             treeNode15,
             treeNode16});
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("节点4");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("节点5");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("节点6");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("节点7");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("节点11");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("节点12");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("节点13");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("节点14");
             System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
             treeNode18,
             treeNode19,
@@ -412,23 +412,23 @@
             this.uiComboTreeView4.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiComboTreeView4.Name = "uiComboTreeView4";
             treeNode13.Name = "节点0";
-            treeNode13.Text = "节点0";
+            treeNode13.Text = "节点00";
             treeNode14.Name = "节点1";
-            treeNode14.Text = "节点1";
+            treeNode14.Text = "节点01";
             treeNode15.Name = "节点2";
-            treeNode15.Text = "节点2";
+            treeNode15.Text = "节点02";
             treeNode16.Name = "节点3";
-            treeNode16.Text = "节点3";
+            treeNode16.Text = "节点03";
             treeNode17.Name = "节点0";
             treeNode17.Text = "节点0";
             treeNode18.Name = "节点4";
-            treeNode18.Text = "节点4";
+            treeNode18.Text = "节点11";
             treeNode19.Name = "节点5";
-            treeNode19.Text = "节点5";
+            treeNode19.Text = "节点12";
             treeNode20.Name = "节点6";
-            treeNode20.Text = "节点6";
+            treeNode20.Text = "节点13";
             treeNode21.Name = "节点7";
-            treeNode21.Text = "节点7";
+            treeNode21.Text = "节点14";
             treeNode22.Name = "节点1";
             treeNode22.Text = "节点1";
             treeNode23.Name = "节点2";

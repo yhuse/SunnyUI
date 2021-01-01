@@ -53,6 +53,9 @@ namespace Sunny.UI
             set => item.CheckBoxes = value;
         }
 
+        [DefaultValue(false), Description("单选时是否可选择父节点"), Category("SunnyUI")]
+        public bool CanSelectRootNode { get; set; }
+
         [DefaultValue(false), Description("是否显示连线"), Category("SunnyUI")]
         public bool ShowLines
         {
@@ -127,6 +130,7 @@ namespace Sunny.UI
         {
             ItemForm.Size = ItemSize;
             item.TreeView.ExpandAll();
+            item.CanSelectRootNode = CanSelectRootNode;
             ItemForm.Show(this);
         }
 
