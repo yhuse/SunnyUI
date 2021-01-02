@@ -52,7 +52,9 @@ namespace Sunny.UI
             get => item.CheckBoxes;
             set { item.CheckBoxes = value;
                 if (value)
+                {
                     CanSelectRootNode = false;
+                }                    
             }
         }
 
@@ -62,7 +64,9 @@ namespace Sunny.UI
             set {
                 item.CanSelectRootNode = value;
                 if (value)
+                {
                     CheckBoxes = false;
+                }
             }
         }
 
