@@ -46,15 +46,29 @@ namespace Sunny.UI
         [Description("显示节点集合"), Category("SunnyUI")]
         public TreeNodeCollection Nodes => item.TreeView.Nodes;
 
-        [DefaultValue(false), Description("是否显示单选框"), Category("SunnyUI")]
+        [DefaultValue(false), Description("是否显示单选框,该属性与CanSelectRootNode互斥"), Category("SunnyUI")]
         public bool CheckBoxes
         {
             get => item.CheckBoxes;
-            set => item.CheckBoxes = value;
+            set { item.CheckBoxes = value;
+                if (value)
+                {
+                    CanSelectRootNode = false;
+                }                    
+            }
         }
 
-        [DefaultValue(false), Description("单选时是否可选择父节点"), Category("SunnyUI")]
-        public bool CanSelectRootNode { get; set; }
+        [DefaultValue(false), Description("单选时是否可选择父节点,该属性与CheckBoxes互斥"), Category("SunnyUI")]
+        public bool CanSelectRootNode {
+            get =>item.CanSelectRootNode;
+            set {
+                item.CanSelectRootNode = value;
+                if (value)
+                {
+                    CheckBoxes = false;
+                }
+            }
+        }
 
         [DefaultValue(false), Description("是否显示连线"), Category("SunnyUI")]
         public bool ShowLines
