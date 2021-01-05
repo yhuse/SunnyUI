@@ -2,7 +2,8 @@
 
 <p align="left">
 <a href="https://gitee.com/yhuse/SunnyUI/stargazers" target="_blank"><img src="https://svg.hamm.cn/gitee.svg?type=star&user=yhuse&project=SunnyUI"/></a>
-<a href="https://gitee.com/yhuse/SunnyUI/members" target="_blank"><img src="https://svg.hamm.cn/gitee.svg?type=fork&user=yhuse&project=SunnyUI"/></a><img src="https://svg.hamm.cn/badge.svg?key=License&value=GPL-3.0"/><br/>
+<a href="https://gitee.com/yhuse/SunnyUI/members" target="_blank"><img src="https://svg.hamm.cn/gitee.svg?type=fork&user=yhuse&project=SunnyUI"/></a> 
+ <img src="https://svg.hamm.cn/badge.svg?key=License&value=GPL-3.0"/><br/>
 <img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net Framework 4"/>
 <img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net Core 3.1"/>
 <img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net 5.0"/>
