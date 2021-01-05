@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UJson.cs
  * 文件说明: Json扩展类，不引用第三方组件实现简单的Json字符串和对象的转换
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-10-21
  *
  * 2020-10-21: V2.2.9 增加文件说明
@@ -22,7 +22,9 @@
 using System;
 using System.IO;
 using System.Text;
+#if NETFRAMEWORK
 using System.Web.Script.Serialization;
+#endif
 
 namespace Sunny.UI
 {
@@ -32,8 +34,12 @@ namespace Sunny.UI
         {
             try
             {
+#if NETFRAMEWORK
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 return js.Deserialize<T>(input);
+#else
+                return System.Text.Json.JsonSerializer.Deserialize<T>(input);
+#endif
             }
             catch (Exception e)
             {
@@ -44,8 +50,12 @@ namespace Sunny.UI
 
         public static string Serialize(object obj)
         {
+#if NETFRAMEWORK
             JavaScriptSerializer js = new JavaScriptSerializer();
             return js.Serialize(obj);
+#else
+            return System.Text.Json.JsonSerializer.Serialize(obj);
+#endif
         }
 
         public static T DeserializeFromFile<T>(string filename, Encoding encoding)

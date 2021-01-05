@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UPrivilegeAPI.cs
  * 文件说明: 系统权限管理类
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
@@ -154,7 +154,7 @@ namespace Sunny.UI
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool AdjustTokenPrivileges(IntPtr TokenHandle,
             [MarshalAs(UnmanagedType.Bool)] bool DisableAllPrivileges,
-            [MarshalAs(UnmanagedType.Struct)]ref TOKEN_PRIVILEGES NewState,
+            [MarshalAs(UnmanagedType.Struct)] ref TOKEN_PRIVILEGES NewState,
             uint BufferLength, IntPtr PreviousState, uint ReturnLength);
 
         // 如果进程的访问令牌中没有关联某权限，则AdjustTokenPrivileges函数调用将会返回错误码ERROR_NOT_ALL_ASSIGNED（值为1300）

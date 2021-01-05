@@ -1,638 +1,76 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AB1CB247-E20B-4CBE-B269-570ADDD96C53}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sunny.UI</RootNamespace>
-    <AssemblyName>SunnyUI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>
-    </DocumentationFile>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
+		<ProjectGuid>{AB1CB247-E20B-4CBE-B269-570ADDD96C53}</ProjectGuid>
+		<UseWindowsForms>true</UseWindowsForms>
+		<RootNamespace>Sunny.UI</RootNamespace>
+		<Description>基于.Net Framework 4.0+、.Net Core3.1、.Net 5 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。</Description>
+		<Copyright>CopyRight © SunnyUI.Net 2012-2021</Copyright>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Version>3.0.0</Version>
+		<Authors>ShenYonghua</Authors>
+		<Company>SunnyUI.Net</Company>
+		<PackageId>SunnyUI</PackageId>
+		<PackageProjectUrl>https://gitee.com/yhuse/SunnyUI</PackageProjectUrl>
+		<RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageIcon>SunnyUI.png</PackageIcon>
+	</PropertyGroup>
+ 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\Bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\Bin\</OutputPath>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DocumentationFile></DocumentationFile>
+	</PropertyGroup>
+ 
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+	<None Remove="Font\ElegantIcons.ttf" />
+	<None Remove="Font\FontAwesome.ttf" />
+	<None Include="..\LICENSE">
+	  <Pack>True</Pack>
+	  <PackagePath></PackagePath>
+	</None>
+	<None Include="..\SunnyUI.png">
+	  <Pack>True</Pack>
+	  <PackagePath></PackagePath>
+	</None>
   </ItemGroup>
+ 
   <ItemGroup>
-    <Compile Include="Charts\UIBarChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Charts\UIBarChartEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Charts\UIBarChartOption.cs" />
-    <Compile Include="Charts\UIChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Charts\UIChartStyle.cs" />
-    <Compile Include="Charts\UIDoughnutChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Charts\UILineChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Charts\UILineChartOption.cs" />
-    <Compile Include="Charts\UIOption.cs" />
-    <Compile Include="Charts\UIPieChartOption.cs" />
-    <Compile Include="Charts\UIScale.cs" />
-    <Compile Include="Controls\Color\UIColorBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Color\UIColorTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Color\UIColorWheel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Color\UIHSLColor.cs" />
-    <Compile Include="Controls\Color\UILabelRotate.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIComboBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIComboBoxItem.Designer.cs">
-      <DependentUpon>UIComboBoxItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIComboTreeViewItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDateItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDateTimeItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDropDown.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDropDownItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDropDownItem.Designer.cs">
-      <DependentUpon>UIDropDownItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DropItem\UITimeItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIColorItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIBattery.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIComboTreeView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIDatetimePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\UIPieChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIFlowLayoutPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIHorScrollBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIVerScrollBarEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIHorScrollBarEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UINavMenuHelper.cs" />
-    <Compile Include="Controls\UIPagination.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIRichTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIScrollingText.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITimePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UITransparentPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIWaitingBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\UIDataGridViewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIDataGridViewForm.Designer.cs">
-      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIEditFormHelper.cs" />
-    <Compile Include="Forms\UIFormService.cs" />
-    <Compile Include="Forms\UILoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UILoginForm.Designer.cs">
-      <DependentUpon>UILoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UINotifier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UINotifier.designer.cs">
-      <DependentUpon>UINotifier.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIAnalogMeter.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIAnalogMeterRender.cs" />
-    <Compile Include="Controls\UILedBulb.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UICheckBoxGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIGlobal.cs" />
-    <Compile Include="Controls\UIDoubleUpDown.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIDoubleUpDown.designer.cs">
-      <DependentUpon>UIDoubleUpDown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UILight.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIProcessBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIScrollBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UINavBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UINavBar.Designer.cs">
-      <DependentUpon>UINavBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UILogo.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITreeView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\UIStatusForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIStatusForm.Designer.cs">
-      <DependentUpon>UIStatusForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIInputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIInputForm.Designer.cs">
-      <DependentUpon>UIInputForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIWaitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIWaitForm.designer.cs">
-      <DependentUpon>UIWaitForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIAsideMainFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIAsideMainFrame.Designer.cs">
-      <DependentUpon>UIAsideMainFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIHeaderAsideMainFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIHeaderAsideMainFrame.Designer.cs">
-      <DependentUpon>UIHeaderAsideMainFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIHeaderMainFooterFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIHeaderMainFooterFrame.Designer.cs">
-      <DependentUpon>UIHeaderMainFooterFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIMainFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIMainFrame.Designer.cs">
-      <DependentUpon>UIMainFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIHeaderMainFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIHeaderMainFrame.Designer.cs">
-      <DependentUpon>UIHeaderMainFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UITitlePage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pages\UITitlePage.Designer.cs">
-      <DependentUpon>UITitlePage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIEdit.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Font\UIFontImages.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Font\UIFontImages.designer.cs">
-      <DependentUpon>UIFontImages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIForm.designer.cs">
-      <DependentUpon>UIForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIFormHelper.cs" />
-    <Compile Include="Static\ULocalize.cs" />
-    <Compile Include="Static\UMessageTip.cs" />
-    <Compile Include="Style\UIMenuStyle.cs" />
-    <Compile Include="Style\UIStyleColor.cs" />
-    <Compile Include="Forms\UIMessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIMessageForm.Designer.cs">
-      <DependentUpon>UIMessageForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UIEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UIEditForm.Designer.cs">
-      <DependentUpon>UIEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Style\UIStyleManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TypeEditor\UIDropEditor.cs" />
-    <Compile Include="Controls\UIDatePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIDatePicker.Designer.cs">
-      <DependentUpon>UIDatePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UILabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITabControlMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIImageListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIImageListBox.Designer.cs">
-      <DependentUpon>UIImageListBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIListBox.Designer.cs">
-      <DependentUpon>UIListBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIIntegerUpDown.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIIntegerUpDown.designer.cs">
-      <DependentUpon>UIIntegerUpDown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIProgressIndicator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UISwitch.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Static\UGDI.cs" />
-    <Compile Include="Controls\UILedStopwatch.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIImageButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UILedDisplay.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIRoundMeter.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UICheckBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Style\UIStyle.cs" />
-    <Compile Include="Controls\DropItem\UIDropControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DropItem\UIDropControl.Designer.cs">
-      <DependentUpon>UIDropControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIComboBox.Designer.cs">
-      <DependentUpon>UIComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UISymbolButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIGroupBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIGroupBox.Designer.cs">
-      <DependentUpon>UIGroupBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIRadioButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UITextBox.Designer.cs">
-      <DependentUpon>UITextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UITitlePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UITitlePanel.Designer.cs">
-      <DependentUpon>UITitlePanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UIPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIPanel.Designer.cs">
-      <DependentUpon>UIPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UIPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pages\UIPage.Designer.cs">
-      <DependentUpon>UIPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Static\UPrivilegeAPI.cs" />
-    <Compile Include="Static\UAssembly.cs" />
-    <Compile Include="Static\UCollections.cs" />
-    <Compile Include="Static\UControl.cs" />
-    <Compile Include="Static\UAudio.cs" />
-    <Compile Include="Static\UImage.cs" />
-    <Compile Include="Static\UDataReader.cs" />
-    <Compile Include="Static\UAttribute.cs" />
-    <Compile Include="Static\USyncTime.cs" />
-    <Compile Include="Controls\UIColorPicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UIToolTip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Units\UConcurrentDoubleKeyDictionary.cs" />
-    <Compile Include="Units\UConcurrentGroupDictionary.cs" />
-    <Compile Include="Units\UDateTimeInt64.cs" />
-    <Compile Include="Units\UJson.cs" />
-    <Compile Include="Units\UJsonConfig.cs" />
-    <Compile Include="Units\USnowflakeID.cs" />
-    <Compile Include="Units\USuspendCtrlAltDel.cs" />
-    <Compile Include="Units\UThunder.cs" />
-    <Compile Include="Controls\UILine.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITrackBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UINavMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Static\UScrollBarInfo.cs" />
-    <Compile Include="Controls\UIAvatar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\UITransfer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UITransfer.Designer.cs">
-      <DependentUpon>UITransfer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UIControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TypeEditor\UIRadiusSidesEditor.cs" />
-    <Compile Include="Controls\UIRadioButtonGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\UIAsideHeaderMainFooterFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIAsideHeaderMainFooterFrame.Designer.cs">
-      <DependentUpon>UIAsideHeaderMainFooterFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIAsideHeaderMainFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIAsideHeaderMainFrame.Designer.cs">
-      <DependentUpon>UIAsideHeaderMainFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UIHeaderAsideMainFooterFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frames\UIHeaderAsideMainFooterFrame.Designer.cs">
-      <DependentUpon>UIHeaderAsideMainFooterFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UISelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UISelectForm.Designer.cs">
-      <DependentUpon>UISelectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Units\UFastBitmap.cs" />
-    <Compile Include="Units\UHook.cs" />
-    <Compile Include="Units\UBaseConfig.cs" />
-    <Compile Include="Units\UIdentityCard.cs" />
-    <Compile Include="Units\UKeyScope.cs" />
-    <Compile Include="Units\ULimitedQueue.cs" />
-    <Compile Include="Units\UIniConfig.cs" />
-    <Compile Include="Units\UListEx.cs" />
-    <Compile Include="Units\UTemplate.cs" />
-    <Compile Include="Units\UWMI.cs" />
-    <Compile Include="Font\UIFontImageDefine.cs" />
-    <Compile Include="Font\UIFontImage.cs" />
-    <Compile Include="Units\ULogFile.cs" />
-    <Compile Include="Units\UBackgroundWorker.cs" />
-    <Compile Include="Units\UCrc32.cs" />
-    <Compile Include="Static\UArray.cs" />
-    <Compile Include="Static\UDateTime.cs" />
-    <Compile Include="Static\UDir.cs" />
-    <Compile Include="Static\UEnum.cs" />
-    <Compile Include="Static\UFile.cs" />
-    <Compile Include="Static\UMath.cs" />
-    <Compile Include="Static\URandom.cs" />
-    <Compile Include="Static\UString.cs" />
-    <Compile Include="Static\USystem.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Units\UIniFile.cs" />
-    <Compile Include="Units\UStringList.cs" />
-    <Compile Include="Units\USerialPort.cs" />
-    <Compile Include="Units\UUdp.cs" />
-    <Compile Include="Units\USevenZip.cs" />
-    <Compile Include="Units\UXmlConfig.cs" />
-    <Compile Include="Win32\Win32.Added.cs" />
-    <Compile Include="Win32\Win32.cs" />
-    <Compile Include="Win32\Win32.ErrorCodes.cs" />
-    <Compile Include="Win32\Win32.GDI.cs" />
-    <Compile Include="Win32\Win32.Kernel.cs" />
-    <Compile Include="Win32\Win32.Multimedia.cs" />
-    <Compile Include="Win32\Win32.NetApi.cs" />
-    <Compile Include="Win32\Win32.Shell.cs" />
-    <Compile Include="Win32\Win32.User.cs" />
+	<EmbeddedResource Include="Font\ElegantIcons.ttf" />
+	<EmbeddedResource Include="Font\FontAwesome.ttf" />
   </ItemGroup>
+ 
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DropItem\UIComboTreeViewItem.resx">
-      <DependentUpon>UIComboTreeViewItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DropItem\UIDateItem.resx">
-      <DependentUpon>UIDateItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UIComboTreeView.resx">
-      <DependentUpon>UIComboTreeView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UIDoubleUpDown.resx">
-      <DependentUpon>UIDoubleUpDown.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UIIntegerUpDown.resx">
-      <DependentUpon>UIIntegerUpDown.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIDataGridViewForm.resx">
-      <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIEditForm.resx">
-      <DependentUpon>UIEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UINotifier.resx">
-      <DependentUpon>UINotifier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Font\UIFontImages.resx">
-      <DependentUpon>UIFontImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UIWaitForm.resx">
-      <DependentUpon>UIWaitForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+	<PackageReference Include="SunnyUI.Common" Version="3.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Font\FontAwesome.ttf" />
-    <EmbeddedResource Include="Font\ElegantIcons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\wind_postion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\gps_postion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\gps1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\wind.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img_notifier.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\notifier.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\colorbarIndicators.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Login6.png" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Web.Extensions" />
+		<Reference Include="System.Design" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+		<DesignTime>True</DesignTime>
+		<AutoGen>True</AutoGen>
+		<DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+		<Generator>ResXFileCodeGenerator</Generator>
+		<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
 </Project>
