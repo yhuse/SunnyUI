@@ -1,4 +1,9 @@
 # SunnyUI.Net
+
+<img src="https://svg.hamm.cn/badge.svg?key=License&value=GPL-3.0"/> 
+<img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net Framework 4"/> 
+<img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net Core 3.1"/> 
+<img src="https://svg.hamm.cn/badge.svg?key=Support&value=.Net 5.0"/> 
 ![SunnyUI.Net](https://images.gitee.com/uploads/images/2020/0627/205841_13e961a1_416720.png "SunnyUI.png")
 
 - Blog:   https://www.cnblogs.com/yhuse
@@ -12,7 +17,8 @@
 #### 介绍
 - SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
 - 源码编译环境：VS2019
-- 动态库应用环境：VS2010及以上，.Net Framework 4.0及以上（不包括.Net Framework 4 Client Profile）
+- 动态库应用环境：VS2010及以上，.Net Framework 4.0及以上（不包括.Net Framework 4 Client Profile），.Net Core 3.1，.Net 5.0
+- **推荐通过Nuget安装：Install-Package SunnyUI，或者通过VS2019的管理Nuget程序包搜索SunnyUI安装。** 
 
 #### 软件框架
 ![思维导图](https://images.gitee.com/uploads/images/2020/0627/210016_f3203a8b_416720.png "0.png")
