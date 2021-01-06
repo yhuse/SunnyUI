@@ -685,7 +685,7 @@ namespace Sunny.UI
 
                     if (haveImage)
                     {
-                        if (TreeNodeSelected(e) && e.Node.SelectedImageIndex >= 0 &&
+                        if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 &&
                             e.Node.SelectedImageIndex < ImageList.Images.Count)
                             e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft,
                                 e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);

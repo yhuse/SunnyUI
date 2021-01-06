@@ -33,6 +33,7 @@ namespace Sunny.UI
     /// 圆角位置
     /// </summary>
     [ComVisible(true)]
+    [ToolboxItem(false)]
     [Editor(typeof(UIRadiusSidesEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [Flags]
     public enum UICornerRadiusSides

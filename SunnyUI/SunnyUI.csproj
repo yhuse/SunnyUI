@@ -166,6 +166,7 @@
     <Compile Include="Forms\UIDataGridViewForm.Designer.cs">
       <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UIEditFormHelper.cs" />
     <Compile Include="Forms\UIFormService.cs" />
     <Compile Include="Forms\UILoginForm.cs">
       <SubType>Form</SubType>
@@ -543,6 +544,9 @@
     <EmbeddedResource Include="Controls\DropItem\UIComboTreeViewItem.resx">
       <DependentUpon>UIComboTreeViewItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropItem\UIDateItem.resx">
+      <DependentUpon>UIDateItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UIComboTreeView.resx">
       <DependentUpon>UIComboTreeView.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UIDataGridViewForm.resx">
       <DependentUpon>UIDataGridViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UIEditForm.resx">
+      <DependentUpon>UIEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UINotifier.resx">
       <DependentUpon>UINotifier.cs</DependentUpon>

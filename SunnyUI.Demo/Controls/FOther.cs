@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Sunny.UI.Demo
+﻿namespace Sunny.UI.Demo
 {
     public partial class FOther : UITitlePage
     {
@@ -9,8 +7,8 @@ namespace Sunny.UI.Demo
             InitializeComponent();
 
             uiToolTip1.SetToolTip(uiLabel2, "赠人玫瑰手有余香", "SunnyUI");
-            uiToolTip1.SetToolTip(uiLabel3, "赠人玫瑰手有余香"+'\n'+ "赠人玫瑰手有余香", 
-                "SunnyUI", 61530,32,UIColor.Green);
+            uiToolTip1.SetToolTip(uiLabel3, "赠人玫瑰手有余香" + '\n' + "赠人玫瑰手有余香",
+                "SunnyUI", 61530, 32, UIColor.Green);
         }
 
         private int value;
@@ -25,7 +23,7 @@ namespace Sunny.UI.Demo
         {
             value++;
             uiTrackBar1.Value = value;
-            uiProcessBar1.Value = value;
+            uiProcessBar2.Value = uiProcessBar1.Value = value;
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Sunny.UI
             box.DataSourceChanged += Box_DataSourceChanged;
             box.DisplayMemberChanged += Box_DisplayMemberChanged;
             box.ValueMemberChanged += Box_ValueMemberChanged;
+            DropDownWidth = 150;
         }
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)
@@ -139,7 +140,7 @@ namespace Sunny.UI
             }
 
             ListBox.SelectedIndex = SelectedIndex;
-            ItemForm.Show(this, new Size(Width, CalcItemFormHeight()));
+            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
@@ -206,7 +207,9 @@ namespace Sunny.UI
             }
         }
 
-        //public int DropDownWidth { get; set; }
+        [DefaultValue(150)]
+        [Description("下拉框宽度"), Category("SunnyUI")]
+        public int DropDownWidth { get; set; }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]

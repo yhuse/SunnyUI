@@ -22,6 +22,8 @@ namespace Sunny.UI
             }
         }
 
+        public bool CanSelectRootNode { get; set; }
+
         public UIComboTreeViewItem()
         {
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace Sunny.UI
             this.panel.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel.Name = "panel";
             this.panel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.panel.Size = new System.Drawing.Size(250, 44);
             this.panel.TabIndex = 1;
@@ -120,10 +122,13 @@ namespace Sunny.UI
 
         private void TreeView_NodeMouseClick(object sender, System.Windows.Forms.TreeNodeMouseClickEventArgs e)
         {
-            if (!treeView.CheckBoxes && e.Node.Nodes.Count == 0)
+            if (!treeView.CheckBoxes)
             {
-                DoValueChanged(this, e.Node);
-                CloseParent();
+                if (e.Node.Nodes.Count == 0 || CanSelectRootNode)
+                {
+                    DoValueChanged(this, e.Node);
+                    CloseParent();
+                }
             }
         }
 

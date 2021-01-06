@@ -69,6 +69,14 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        [DefaultValue(StringAlignment.Near)]
+        [Description("列表项高度"), Category("SunnyUI")]
+        public new StringAlignment TextAlignment
+        {
+            get => listbox.TextAlignment;
+            set => listbox.TextAlignment = value;
+        }
+
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
             base.OnContextMenuStripChanged(e);
@@ -503,6 +511,18 @@ namespace Sunny.UI
 
         public event OnBeforeDrawItem AfterDrawItem;
 
+        private StringAlignment textAlignment = StringAlignment.Near;
+
+        public StringAlignment TextAlignment
+        {
+            get => textAlignment;
+            set
+            {
+                textAlignment = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             base.OnDrawItem(e);
@@ -526,6 +546,7 @@ namespace Sunny.UI
 
             StringFormat sStringFormat = new StringFormat();
             sStringFormat.LineAlignment = StringAlignment.Center;
+            sStringFormat.Alignment = textAlignment;
 
             bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
             Color backColor = isSelected ? ItemSelectBackColor : BackColor;

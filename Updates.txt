@@ -1,5 +1,9 @@
 + 增加； - 删除； * 修改 
 
+2021-01-05 V2.2.10
+* V2.2 .Net Framewok 4.0最终版本
+* V3.0 开始将同时兼容.Net Framework 4.0+、.Net Core3.1、.Net 5 框架
+
 2020-12-20 V2.2.9
 + UIWaitForm：等待窗体
 + UIComboTreeView：新增下拉框TreeView

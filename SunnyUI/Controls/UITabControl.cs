@@ -59,6 +59,20 @@ namespace Sunny.UI
             timer.Dispose();
         }
 
+        private string mainPage = "";
+
+        [DefaultValue(true)]
+        [Description("主页名称，此页面不显示关闭按钮"), Category("SunnyUI")]
+        public string MainPage
+        {
+            get => mainPage;
+            set
+            {
+                mainPage = value;
+                Invalidate();
+            }
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
@@ -432,7 +446,9 @@ namespace Sunny.UI
                 g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
 
                 var menuItem = Helper[index];
-                bool showButton = menuItem == null || !menuItem.AlwaysOpen;
+                bool show1 = TabPages[index].Text != MainPage;
+                bool show2 = menuItem == null || !menuItem.AlwaysOpen;
+                bool showButton = show1 && show2;
 
                 if (showButton)
                 {
@@ -484,12 +500,14 @@ namespace Sunny.UI
             }
 
             var menuItem = Helper[removeIndex];
-            bool showButton = menuItem == null || !menuItem.AlwaysOpen;
+            bool show1 = TabPages[removeIndex].Text != MainPage;
+            bool show2 = menuItem == null || !menuItem.AlwaysOpen;
+            bool showButton = show1 && show2;
             if (showButton)
             {
                 if (ShowCloseButton)
                 {
-                    if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                    if (BeforeRemoveTabPage == null || BeforeRemoveTabPage.Invoke(this, removeIndex))
                     {
                         RemoveTabPage(removeIndex);
                     }
@@ -498,7 +516,7 @@ namespace Sunny.UI
                 {
                     if (DrawedIndex == removeIndex)
                     {
-                        if (BeforeRemoveTabPage == null || (BeforeRemoveTabPage != null && BeforeRemoveTabPage.Invoke(this, removeIndex)))
+                        if (BeforeRemoveTabPage == null || BeforeRemoveTabPage.Invoke(this, removeIndex))
                         {
                             RemoveTabPage(removeIndex);
                         }
@@ -515,11 +533,28 @@ namespace Sunny.UI
 
         public event OnAfterRemoveTabPage AfterRemoveTabPage;
 
+        [DefaultValue(false)]
+        [Description("多页面框架时，包含UIPage，在点击Tab页关闭时关闭UIPage"), Category("SunnyUI")]
+        public bool AutoClosePage { get; set; }
+
         internal void RemoveTabPage(int index)
         {
             if (index < 0 || index >= TabCount)
             {
                 return;
+            }
+
+            TabPage tabPage = TabPages[index];
+
+            if (AutoClosePage)
+            {
+                var pages = tabPage.GetControls<UIPage>();
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    pages[i].Final();
+                    pages[i].Dispose();
+                    pages[i] = null;
+                }
             }
 
             TabPages.Remove(TabPages[index]);

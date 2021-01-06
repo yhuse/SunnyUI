@@ -159,6 +159,11 @@ namespace Sunny.UI
             Data.Add(new UIPieSeriesData(name, value));
         }
 
+        public void AddData(string name, double value, Color color)
+        {
+            Data.Add(new UIPieSeriesData(name, value, color));
+        }
+
         public void Dispose()
         {
             Data.Clear();

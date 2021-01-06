@@ -319,6 +319,9 @@
     <EmbeddedResource Include="Charts\FLineChart.resx">
       <DependentUpon>FLineChart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Charts\FPieChart.resx">
+      <DependentUpon>FPieChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FAvatar.resx">
       <DependentUpon>FAvatar.cs</DependentUpon>
     </EmbeddedResource>
