@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UGDI.cs
  * 文件说明: GDI扩展类
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
@@ -28,6 +28,90 @@ namespace Sunny.UI
 {
     public static class GDIEx
     {
+        /// <summary>
+        /// 点是否在区域内
+        /// </summary>
+        /// <param name="point">点</param>
+        /// <param name="region">区域范围</param>
+        /// <returns>是否在区域内</returns>
+        public static bool InRegion(this Point point, Region region)
+        {
+            return region.IsVisible(point);
+        }
+
+        /// <summary>
+        /// 点是否在区域内
+        /// </summary>
+        /// <param name="point">点</param>
+        /// <param name="points">区域范围</param>
+        /// <returns>是否在区域内</returns>
+        public static bool InRegion(this Point point, Point[] points)
+        {
+            using (GraphicsPath path = points.Path())
+            {
+                using (Region region = path.Region())
+                {
+                    return region.IsVisible(point);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 点是否在区域内
+        /// </summary>
+        /// <param name="point">点</param>
+        /// <param name="points">区域范围</param>
+        /// <returns>是否在区域内</returns>
+        public static bool InRegion(this PointF point, PointF[] points)
+        {
+            using (GraphicsPath path = points.Path())
+            {
+                using (Region region = path.Region())
+                {
+                    return region.IsVisible(point);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 创建路径
+        /// </summary>
+        /// <param name="points">点集合</param>
+        /// <returns>路径</returns>
+        public static GraphicsPath Path(this Point[] points)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.Reset();
+            path.AddPolygon(points);
+            return path;
+        }
+
+        /// <summary>
+        /// 创建路径
+        /// </summary>
+        /// <param name="points">点集合</param>
+        /// <returns>路径</returns>
+        public static GraphicsPath Path(this PointF[] points)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.Reset();
+            path.AddPolygon(points);
+            return path;
+        }
+
+        /// <summary>
+        /// 创建区域
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns>区域</returns>
+        public static Region Region(this GraphicsPath path)
+        {
+            Region region = new Region();
+            region.MakeEmpty();
+            region.Union(path);
+            return region;
+        }
+
         /// <summary>
         /// 设置窗体的圆角矩形
         /// </summary>

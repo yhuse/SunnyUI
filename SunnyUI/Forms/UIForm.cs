@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UIForm.cs
  * 文件说明: 窗体基类
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
@@ -1246,7 +1246,7 @@ namespace Sunny.UI
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
                 //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);                
-                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
+                Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
                 vPoint = PointToClient(vPoint);
                 int dragSize = 5;
                 if (vPoint.X <= dragSize)

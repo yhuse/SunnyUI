@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UIScale.cs
  * 文件说明: 坐标轴刻度计算类
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-10-01
  *
  * 2020-10-01: V2.2.8 完成曲线图表坐标轴刻度计算类
@@ -356,39 +356,70 @@ namespace Sunny.UI
             {
                 default:
                     if (direction == 1 && month == 1 && day == 1 && hour == 0 && minute == 0 && second == 0)
+                    {
                         return date;
+                    }
                     else
-                        return new DateTimeInt64(new DateTime(year + direction, 1, 1, 0, 0, 0)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, 1, 1, 0, 0, 0);
+                        return new DateTimeInt64(dt.AddYears(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Month:
                     if (direction == 1 && day == 1 && hour == 0 && minute == 0 && second == 0)
+                    {
                         return date;
+                    }
                     else
-                        return new DateTimeInt64(new DateTime(year, month + direction, 1, 0, 0, 0)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, 1, 0, 0, 0);
+                        return new DateTimeInt64(dt.AddMonths(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Day:
                     if (direction == 1 && hour == 0 && minute == 0 && second == 0)
+                    {
                         return date;
+                    }
                     else
-                        return new DateTimeInt64(new DateTime(year, month, day + direction, 0, 0, 0)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, day, 0, 0, 0);
+                        return new DateTimeInt64(dt.AddDays(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Hour:
                     if (direction == 1 && minute == 0 && second == 0)
+                    {
                         return date;
+                    }
                     else
-                        return new DateTimeInt64(new DateTime(year, month, day, hour + direction, 0, 0)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, day, hour, 0, 0);
+                        return new DateTimeInt64(dt.AddHours(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Minute:
                     if (direction == 1 && second == 0)
+                    {
                         return date;
+                    }
                     else
-                        return new DateTimeInt64(new DateTime(year, month, day, hour, minute + direction, 0)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, day, hour, minute, 0);
+                        return new DateTimeInt64(dt.AddMinutes(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Second:
-                    return new DateTimeInt64(new DateTime(year, month, day, hour, minute, second + direction)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, day, hour, minute, second);
+                        return new DateTimeInt64(dt.AddSeconds(direction)).DoubleValue;
+                    }
 
                 case UIDateScaleLevel.Millisecond:
-                    return new DateTimeInt64(new DateTime(year, month, day, hour, minute, second, millisecond + direction)).DoubleValue;
+                    {
+                        DateTime dt = new DateTime(year, month, day, hour, minute, second, millisecond);
+                        return new DateTimeInt64(dt.AddMilliseconds(direction)).DoubleValue;
+                    }
             }
         }
 

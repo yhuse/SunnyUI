@@ -13,7 +13,7 @@
  ******************************************************************************
  * 文件名称: UIStyleColor.cs
  * 文件说明: 控件样式定义类
- * 当前版本: V2.2
+ * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
@@ -40,7 +40,7 @@ namespace Sunny.UI
         public abstract Color RectHoverColor { get; }
         public abstract Color RectPressColor { get; }
 
-        public abstract Color RectSelectedColor { get; } 
+        public abstract Color RectSelectedColor { get; }
         public abstract Color ButtonForeSelectedColor { get; }
         public abstract Color ButtonFillSelectedColor { get; }
 
