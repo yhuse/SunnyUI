@@ -857,7 +857,7 @@ namespace Sunny.UI
 
             e.Graphics.SetDefaultQuality();
 
-            if (ShowIcon && Icon != null)
+            if (ShowTitleIcon && Icon != null)
             {
                 e.Graphics.DrawImage(Icon.ToBitmap(), 6, (TitleHeight - 24) / 2, 24, 24);
             }
@@ -869,7 +869,21 @@ namespace Sunny.UI
             }
             else
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor, 6 + (ShowIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, Font, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+            }
+        }
+
+        private bool showTitleIcon = false;
+
+        [Description("显示标题栏图标"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool ShowTitleIcon
+        {
+            get => showTitleIcon;
+            set
+            {
+                showTitleIcon = value;
+                Invalidate();
             }
         }
 

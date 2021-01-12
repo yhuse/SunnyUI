@@ -109,6 +109,7 @@
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 35, 2, 2);
             this.ShowDragStretch = true;
+            this.ShowIcon = true;
             this.ShowRadius = false;
             this.ShowShadow = true;
             this.Text = "SunnyUI.Net";
