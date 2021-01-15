@@ -84,6 +84,13 @@ namespace Sunny.UI
             Leave?.Invoke(sender, e);
         }
 
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
+            edit.BackColor = Enabled ? Color.White : FillDisableColor;
+            edit.Enabled = Enabled;
+        }
+
         public override bool Focused
         {
             get => edit.Focused;
@@ -376,7 +383,7 @@ namespace Sunny.UI
             set
             {
                 edit.ReadOnly = value;
-                edit.BackColor = Color.White;
+                edit.BackColor = Enabled ? Color.White : FillDisableColor;
             }
         }
 
@@ -495,7 +502,7 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
 
-            edit.BackColor = fillColor = Color.White;
+            edit.BackColor = fillColor = Enabled ? Color.White : FillDisableColor;
             edit.ForeColor = foreColor = UIFontColor.Primary;
 
             if (bar != null)
@@ -518,7 +525,7 @@ namespace Sunny.UI
         protected override void AfterSetFillColor(Color color)
         {
             base.AfterSetFillColor(color);
-            edit.BackColor = color;
+            edit.BackColor = Enabled ? color : FillDisableColor;
         }
 
         public enum UIEditType
