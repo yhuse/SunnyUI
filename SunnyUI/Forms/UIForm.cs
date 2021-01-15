@@ -1224,6 +1224,7 @@ namespace Sunny.UI
                     return cp;
                 }
 
+                cp.ExStyle |= 0x02000000;
                 return base.CreateParams;
             }
         }
