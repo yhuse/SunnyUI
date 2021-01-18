@@ -41,7 +41,15 @@ namespace Sunny.UI
         public UIForm()
         {
             base.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);//设置最大化尺寸
-            InitializeComponent();            
+            InitializeComponent();
+
+            SetStyle(
+                ControlStyles.UserPaint |
+                ControlStyles.DoubleBuffer |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.SupportsTransparentBackColor, true);
+            UpdateStyles();
 
             Version = UIGlobal.Version;
             FormBorderStyle = FormBorderStyle.None;
@@ -62,20 +70,15 @@ namespace Sunny.UI
         {
             SetStyle(UIStyles.Style);
         }
+
         private void UIForm_Load(object sender, EventArgs e)
         {
             if (this.Register())
             {
                 SetStyle(UIStyles.Style);
             }
-            SetStyle(
-                ControlStyles.UserPaint |
-                ControlStyles.DoubleBuffer |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.SupportsTransparentBackColor, true);
-            UpdateStyles();
         }
+
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
@@ -1566,7 +1569,7 @@ namespace Sunny.UI
         public void ShowSuccessNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
             UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, false, timeout);
-        }        
+        }
 
         public void ShowWarningNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {

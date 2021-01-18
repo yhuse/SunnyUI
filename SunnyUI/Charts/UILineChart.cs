@@ -197,7 +197,7 @@ namespace Sunny.UI
                             if (Option.XAxis.AxisLabel.AutoFormat)
                                 label = XLabels[i].ToString(XScale.Format);
                             else
-                                label = new DateTimeInt64(XLabels[i]).ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
+                                label = XLabels[i].ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
                         }
 
                         SizeF sf = g.MeasureString(label, SubFont);
