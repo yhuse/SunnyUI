@@ -47,6 +47,7 @@
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton1.Location = new System.Drawing.Point(30, 57);
+            this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(232, 35);
             this.uiButton1.TabIndex = 0;
@@ -56,13 +57,14 @@
             // 
             this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(181, 26);
             // 
             // uiButton2
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton2.Location = new System.Drawing.Point(294, 57);
+            this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.Size = new System.Drawing.Size(232, 35);
             this.uiButton2.TabIndex = 1;
