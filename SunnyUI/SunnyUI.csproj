@@ -30,6 +30,10 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile></DocumentationFile>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0-windows|AnyCPU'">
+	  <Optimize>false</Optimize>
+	</PropertyGroup>
  
   <ItemGroup>
 	<None Remove="Font\ElegantIcons.ttf" />
