@@ -43,6 +43,11 @@ namespace Sunny.UI
             base.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);//设置最大化尺寸
             InitializeComponent();
 
+            if (this.Register())
+            {
+                SetStyle(UIStyles.Style);
+            }
+
             SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer |
@@ -73,10 +78,6 @@ namespace Sunny.UI
 
         private void UIForm_Load(object sender, EventArgs e)
         {
-            if (this.Register())
-            {
-                SetStyle(UIStyles.Style);
-            }
         }
 
         protected override void OnBackColorChanged(EventArgs e)
