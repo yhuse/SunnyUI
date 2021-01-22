@@ -338,9 +338,15 @@ namespace Sunny.UI
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            //标题行颜色
+            //列头部颜色
             ColumnHeadersDefaultCellStyle.BackColor = uiColor.TitleColor;
             ColumnHeadersDefaultCellStyle.ForeColor = uiColor.TitleForeColor;
+            ColumnHeadersDefaultCellStyle.SelectionBackColor = uiColor.TitleColor;
+
+            //行头部颜色
+            RowHeadersDefaultCellStyle.BackColor = uiColor.PlainColor;
+            RowHeadersDefaultCellStyle.ForeColor = uiColor.TitleForeColor;
+            RowHeadersDefaultCellStyle.SelectionBackColor = uiColor.TitleColor;
 
             //数据行选中颜色
             DefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;
