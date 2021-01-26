@@ -474,23 +474,23 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnGridColorChanged(EventArgs e)
-        {
-            base.OnGridColorChanged(e);
-            _style = UIStyle.Custom;
-        }
-
-        protected override void OnDefaultCellStyleChanged(EventArgs e)
-        {
-            base.OnDefaultCellStyleChanged(e);
-            _style = UIStyle.Custom;
-        }
-
-        protected override void OnColumnDefaultCellStyleChanged(DataGridViewColumnEventArgs e)
-        {
-            base.OnColumnDefaultCellStyleChanged(e);
-            _style = UIStyle.Custom;
-        }
+        // protected override void OnGridColorChanged(EventArgs e)
+        // {
+        //     base.OnGridColorChanged(e);
+        //     _style = UIStyle.Custom;
+        // }
+        //
+        // protected override void OnDefaultCellStyleChanged(EventArgs e)
+        // {
+        //     base.OnDefaultCellStyleChanged(e);
+        //     _style = UIStyle.Custom;
+        // }
+        //
+        // protected override void OnColumnDefaultCellStyleChanged(DataGridViewColumnEventArgs e)
+        // {
+        //     base.OnColumnDefaultCellStyleChanged(e);
+        //     _style = UIStyle.Custom;
+        // }
 
         public DataGridViewColumn AddColumn(string columnName, string dataPropertyName, int fillWeight = 100, DataGridViewContentAlignment alignment = DataGridViewContentAlignment.MiddleCenter, bool readOnly = true)
         {
