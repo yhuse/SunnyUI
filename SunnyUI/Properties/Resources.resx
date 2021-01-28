@@ -156,14 +156,14 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>SunnyUI.Net</value>
-    <comment>基于 GPL-3.0 的 .Net Framework 4.0+、.Net Core3.1、.Net 5 WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。</comment>
+    <comment>基于 .Net Framework 4.0+、.Net Core3.1、.Net 5 WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。</comment>
   </data>
   <data name="notifier" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\notifier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>V3.0.0</value>
-    <comment>2021-01-01</comment>
+    <value>V3.0.1</value>
+    <comment>2021-01-28</comment>
   </data>
   <data name="wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

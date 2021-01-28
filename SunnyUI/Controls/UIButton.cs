@@ -150,6 +150,7 @@ namespace Sunny.UI
 
         private Color tipsColor = Color.Red;
 
+        [Description("角标文字颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Red")]
         public Color TipsColor
         {
