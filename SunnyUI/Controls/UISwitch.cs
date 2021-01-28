@@ -28,7 +28,7 @@ using System.Drawing.Drawing2D;
 namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
-    [DefaultProperty("ActiveValue")]
+    [DefaultProperty("Active")]
     [ToolboxItem(true)]
     public sealed class UISwitch : UIControl
     {

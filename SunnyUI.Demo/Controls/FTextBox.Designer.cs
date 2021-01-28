@@ -40,11 +40,11 @@
             this.uiLine4 = new Sunny.UI.UILine();
             this.uiLine5 = new Sunny.UI.UILine();
             this.uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
+            this.aaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiTextBox4 = new Sunny.UI.UITextBox();
-            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
-            this.aaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PagePanel.SuspendLayout();
             this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -231,6 +231,20 @@
     ": https://github.com/yhuse/SunnyUI\nSunnyUI.Net 系列文章目录\n欢迎交流，QQ群： 56829229 (SunnyU" +
     "I技术交流群)，请给源码项目点个Star吧！！！";
             // 
+            // uiContextMenuStrip1
+            // 
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aaToolStripMenuItem});
+            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(99, 30);
+            // 
+            // aaToolStripMenuItem
+            // 
+            this.aaToolStripMenuItem.Name = "aaToolStripMenuItem";
+            this.aaToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
+            this.aaToolStripMenuItem.Text = "aa";
+            // 
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -272,20 +286,6 @@
     "ub: https://github.com/yhuse/SunnyUI\r\nSunnyUI.Net 系列文章目录\r\n欢迎交流，QQ群： 56829229 (Su" +
     "nnyUI技术交流群)，请给源码项目点个Star吧！！！";
             this.uiTextBox4.Watermark = "水印文字";
-            // 
-            // uiContextMenuStrip1
-            // 
-            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aaToolStripMenuItem});
-            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(99, 30);
-            // 
-            // aaToolStripMenuItem
-            // 
-            this.aaToolStripMenuItem.Name = "aaToolStripMenuItem";
-            this.aaToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
-            this.aaToolStripMenuItem.Text = "aa";
             // 
             // FTextBox
             // 

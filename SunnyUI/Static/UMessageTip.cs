@@ -1004,8 +1004,13 @@ namespace Sunny.UI
             {
                 if (_hInstance == IntPtr.Zero)
                 {
-                    _hInstance = Marshal.GetHINSTANCE(Assembly.GetEntryAssembly()?.ManifestModule);
+                    Assembly assembly = Assembly.GetEntryAssembly();
+                    if (assembly != null)
+                    {
+                        _hInstance = Marshal.GetHINSTANCE(assembly.ManifestModule);
+                    }
                 }
+
                 return _hInstance;
             }
         }

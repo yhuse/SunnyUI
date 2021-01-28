@@ -255,6 +255,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(null)]
+        [Browsable(false)]
         [Description("下拉菜单图片列表"), Category("SunnyUI")]
         public ImageList DropMenuImageList
         {
@@ -505,10 +506,12 @@ namespace Sunny.UI
 
             NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
+            NavBarMenu.ImageList = ImageList;
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };
                 item.Click += Item_Click;
+                if (ImageList != null) item.ImageIndex = node.ImageIndex;
                 NavBarMenu.Items.Add(item);
 
                 if (node.Nodes.Count > 0)
@@ -528,12 +531,24 @@ namespace Sunny.UI
             {
                 item.AutoSize = false;
                 item.Width = NavBarMenu.Width - 1;
-                item.Height = 30;
+
+                if (!DropDownItemAutoHeight)
+                {
+                    item.Height = DropDownItemHeight;
+                }
             }
 
             NavBarMenu.CalcHeight();
             NavBarMenu.Show(this, NodeMenuLeft(SelectedIndex), Height);
         }
+
+        [DefaultValue(30)]
+        [Description("下拉菜单节点高度"), Category("SunnyUI")]
+        public int DropDownItemHeight { get; set; } = 30;
+
+        [DefaultValue(false)]
+        [Description("下拉菜单节点自动高度"), Category("SunnyUI")]
+        public bool DropDownItemAutoHeight { get; set; } = false;
 
         private void Item_Click(object sender, EventArgs e)
         {
@@ -559,6 +574,7 @@ namespace Sunny.UI
             foreach (TreeNode childNode in node.Nodes)
             {
                 ToolStripMenuItem childItem = new ToolStripMenuItem(childNode.Text) { Tag = childNode };
+                if (ImageList != null) childItem.ImageIndex = childNode.ImageIndex;
                 childItem.Click += Item_Click;
                 item.DropDownItems.Add(childItem);
 

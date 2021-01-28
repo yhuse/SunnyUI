@@ -21,7 +21,6 @@
 
 using System;
 using System.Globalization;
-using static System.Double;
 
 namespace Sunny.UI
 {
@@ -162,9 +161,9 @@ namespace Sunny.UI
             double minVal = _rangeMin;
             double maxVal = _rangeMax;
 
-            if (IsInfinity(minVal) || IsNaN(minVal) || minVal.Equals(MaxValue))
+            if (double.IsInfinity(minVal) || double.IsNaN(minVal) || minVal.Equals(double.MinValue))
                 minVal = 0.0;
-            if (IsInfinity(maxVal) || IsNaN(maxVal) || maxVal.Equals(MaxValue))
+            if (double.IsInfinity(maxVal) || double.IsNaN(maxVal) || maxVal.Equals(double.MaxValue))
                 maxVal = 0.0;
 
             double range = maxVal - minVal;

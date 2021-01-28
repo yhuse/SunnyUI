@@ -20,11 +20,13 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -40,6 +42,54 @@ namespace Sunny.UI
     /// </summary>
     public static class ImageEx
     {
+        /// <summary>
+        /// 获取打开文件对话框所有的图片类型过滤条件
+        /// ------
+        /// All Images|*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG|
+        /// BMP Files: (*.BMP;*.DIB;*.RLE)|*.BMP;*.DIB;*.RLE|
+        /// JPEG Files: (*.JPG;*.JPEG;*.JPE;*.JFIF)|*.JPG;*.JPEG;*.JPE;*.JFIF|
+        /// GIF Files: (*.GIF)|*.GIF|
+        /// TIFF Files: (*.TIF;*.TIFF)|*.TIF;*.TIFF|
+        /// PNG Files: (*.PNG)|*.PNG|
+        /// All Files|*.*
+        /// ------
+        /// </summary>
+        /// <returns></returns>
+        public static string GetImageFilter()
+        {
+            StringBuilder allImageExtensions = new StringBuilder();
+            string separator = "";
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            Dictionary<string, string> images = new Dictionary<string, string>();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                allImageExtensions.Append(separator);
+                allImageExtensions.Append(codec.FilenameExtension);
+                separator = ";";
+                images.Add(string.Format("{0} Files: ({1})", codec.FormatDescription, codec.FilenameExtension), codec.FilenameExtension);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            if (allImageExtensions.Length > 0)
+            {
+                sb.AppendFormat("{0}|{1}", "All Images", allImageExtensions.ToString());
+            }
+
+            images.Add("All Files", "*.*");
+            foreach (KeyValuePair<string, string> image in images)
+            {
+                sb.AppendFormat("|{0}|{1}", image.Key, image.Value);
+            }
+
+            return sb.ToString();
+        }
+
+        public static Color RandomColor()
+        {
+            Random random = new Random();
+            return Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+        }
+
         public static Bitmap ChangeOpacity(Image img, float opacity)
         {
             Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
