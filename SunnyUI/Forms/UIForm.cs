@@ -22,12 +22,14 @@
  * 2020-07-05: V2.2.6 更新窗体控制按钮圆角和跟随窗体圆角变化。
  * 2020-09-17: V2.2.7 重写WindowState相关代码
  * 2020-09-17: V2.2.7 增加了窗体可拉拽调整大小ShowDragStretch属性
+ * 2021-02-04: V3.0.1 标题栏增加扩展按钮
 ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -57,9 +59,75 @@ namespace Sunny.UI
             UpdateStyles();
 
             Version = UIGlobal.Version;
+            extendSymbol = 0;
             FormBorderStyle = FormBorderStyle.None;
             m_aeroEnabled = false;
+            showTitleIcon = false;
         }
+
+        private bool extendBox;
+
+        [DefaultValue(false)]
+        [Description("显示扩展按钮"), Category("SunnyUI")]
+        public bool ExtendBox
+        {
+            get => extendBox;
+            set
+            {
+                extendBox = value;
+                CalcSystemBoxPos();
+                Invalidate();
+            }
+        }
+
+        private int extendSymbol;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        [Description("扩展按钮字体图标"), Category("SunnyUI")]
+        public int ExtendSymbol
+        {
+            get => extendSymbol;
+            set
+            {
+                extendSymbol = value;
+                Invalidate();
+            }
+        }
+
+        private int _symbolSize = 24;
+
+        [DefaultValue(24)]
+        [Description("扩展按钮字体图标大小"), Category("SunnyUI")]
+        public int ExtendSymbolSize
+        {
+            get => _symbolSize;
+            set
+            {
+                _symbolSize = Math.Max(value, 16);
+                _symbolSize = Math.Min(value, 64);
+                Invalidate();
+            }
+        }
+
+        private Point extendSymbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("扩展按钮字体图标偏移量"), Category("SunnyUI")]
+        public Point ExtendSymbolOffset
+        {
+            get => extendSymbolOffset;
+            set
+            {
+                extendSymbolOffset = value;
+                Invalidate();
+            }
+        }
+
+        [DefaultValue(null)]
+        [Description("扩展按钮菜单"), Category("SunnyUI")]
+        public UIContextMenuStrip ExtendMenu { get; set; }
 
         //不显示FormBorderStyle属性
         [Browsable(false)]
@@ -321,6 +389,8 @@ namespace Sunny.UI
 
         private Rectangle MinimizeBoxRect;
 
+        private Rectangle ExtendBoxRect;
+
         private int ControlBoxLeft;
 
         private void CalcSystemBoxPos()
@@ -351,10 +421,22 @@ namespace Sunny.UI
                 {
                     MinimizeBoxRect = new Rectangle(Width + 1, Height + 1, 1, 1);
                 }
+
+                if (ExtendBox)
+                {
+                    if (MinimizeBox)
+                    {
+                        ExtendBoxRect = new Rectangle(MinimizeBoxRect.Left - 28 - 2, ControlBoxRect.Top, 28, 28);
+                    }
+                    else
+                    {
+                        ExtendBoxRect = new Rectangle(ControlBoxRect.Left - 28 - 2, ControlBoxRect.Top, 28, 28);
+                    }
+                }
             }
             else
             {
-                MaximizeBoxRect = MinimizeBoxRect = ControlBoxRect = new Rectangle(Width + 1, Height + 1, 1, 1);
+                ExtendBoxRect = MaximizeBoxRect = MinimizeBoxRect = ControlBoxRect = new Rectangle(Width + 1, Height + 1, 1, 1);
             }
         }
 
@@ -435,8 +517,23 @@ namespace Sunny.UI
                     InMaxBox = false;
                     ShowMaximize();
                 }
+
+                if (InExtendBox)
+                {
+                    InExtendBox = false;
+                    if (ExtendMenu != null)
+                    {
+                        this.ShowContextMenuStrip(ExtendMenu, ExtendBoxRect.Left, TitleHeight - 1);
+                    }
+                    else
+                    {
+                        ExtendBoxClick?.Invoke(this, null);
+                    }
+                }
             }
         }
+
+        public event EventHandler ExtendBoxClick;
 
         /// <summary>
         /// 窗体最大化前的大小
@@ -500,7 +597,7 @@ namespace Sunny.UI
         {
             base.OnMouseDown(e);
 
-            if (InControlBox || InMaxBox || InMinBox) return;
+            if (InControlBox || InMaxBox || InMinBox || InExtendBox) return;
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
 
@@ -517,7 +614,7 @@ namespace Sunny.UI
             base.OnMouseDoubleClick(e);
 
             if (!MaximizeBox) return;
-            if (InControlBox || InMaxBox || InMinBox) return;
+            if (InControlBox || InMaxBox || InMinBox || InExtendBox) return;
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
 
@@ -623,6 +720,7 @@ namespace Sunny.UI
                     bool inControlBox = e.Location.InRect(ControlBoxRect);
                     bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
                     bool inMinBox = e.Location.InRect(MinimizeBoxRect);
+                    bool inExtendBox = e.Location.InRect(ExtendBoxRect);
                     bool isChange = false;
 
                     if (inControlBox != InControlBox)
@@ -643,6 +741,12 @@ namespace Sunny.UI
                         isChange = true;
                     }
 
+                    if (inExtendBox != InExtendBox)
+                    {
+                        InExtendBox = inExtendBox;
+                        isChange = true;
+                    }
+
                     if (isChange)
                     {
                         Invalidate();
@@ -650,7 +754,7 @@ namespace Sunny.UI
                 }
                 else
                 {
-                    InControlBox = InMaxBox = InMinBox = false;
+                    InExtendBox = InControlBox = InMaxBox = InMinBox = false;
                 }
             }
 
@@ -660,11 +764,11 @@ namespace Sunny.UI
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            InControlBox = InMaxBox = InMinBox = false;
+            InExtendBox = InControlBox = InMaxBox = InMinBox = false;
             Invalidate();
         }
 
-        private bool InControlBox, InMaxBox, InMinBox;
+        private bool InControlBox, InMaxBox, InMinBox, InExtendBox;
 
         /// <summary>
         /// 是否屏蔽Alt+F4
@@ -854,9 +958,39 @@ namespace Sunny.UI
                 e.Graphics.DrawLine(Color.White,
                     MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 - 6,
                     MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2,
-                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 + 6,
+                    MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 + 5,
                     MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2);
                 //e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
+            }
+
+            if (ExtendBox)
+            {
+                if (InExtendBox)
+                {
+                    if (ShowRadius)
+                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, ExtendBoxRect, 5);
+                    else
+                        e.Graphics.FillRectangle(btn.FillHoverColor, ExtendBoxRect);
+                }
+
+                if (ExtendSymbol == 0)
+                {
+                    e.Graphics.DrawLine(Color.White,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 5 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 + 3);
+
+                    e.Graphics.DrawLine(Color.White,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 + 5 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 + 3);
+                }
+                else
+                {
+                    e.Graphics.DrawFontImage(extendSymbol, ExtendSymbolSize, Color.White, ExtendBoxRect, ExtendSymbolOffset.X, ExtendSymbolOffset.Y);
+                }
             }
 
             e.Graphics.SetDefaultQuality();
@@ -877,7 +1011,7 @@ namespace Sunny.UI
             }
         }
 
-        private bool showTitleIcon = false;
+        private bool showTitleIcon;
 
         [Description("显示标题栏图标"), Category("SunnyUI")]
         [DefaultValue(false)]
