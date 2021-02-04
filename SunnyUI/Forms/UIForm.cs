@@ -65,6 +65,14 @@ namespace Sunny.UI
             showTitleIcon = false;
         }
 
+        [DefaultValue(false)]
+        [Description("允许显示标题栏"), Category("SunnyUI")]
+        public bool AllowShowTitle
+        {
+            get => ShowTitle;
+            set => ShowTitle = value;
+        }
+
         private bool extendBox;
 
         [DefaultValue(false)]

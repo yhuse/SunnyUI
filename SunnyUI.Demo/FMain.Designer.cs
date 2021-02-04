@@ -110,19 +110,19 @@
             this.关于ToolStripMenuItem,
             this.关于ToolStripMenuItem1});
             this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(181, 78);
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(113, 56);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
             this.关于ToolStripMenuItem.Text = "主页";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem1
             // 
             this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
-            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
+            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(112, 26);
             this.关于ToolStripMenuItem1.Text = "关于";
             this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
             // 
