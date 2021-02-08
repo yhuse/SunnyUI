@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SunnyUI" Version="3.0" />
+    <PackageReference Include="SunnyUI" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

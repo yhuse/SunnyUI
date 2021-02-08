@@ -313,6 +313,77 @@ namespace Sunny.UI
                 _style = UIStyle.Custom;
             }
         }
+
+        [DefaultValue("")]
+        [Description("指示要为此控件中的项显示的属性")]
+        [TypeConverter("System.Windows.Forms.Design.DataMemberFieldConverter, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        public string DisplayMember
+        {
+            get => listbox.DisplayMember;
+            set => listbox.DisplayMember = value;
+        }
+
+        [DefaultValue("")]
+        [Description("指示用作控件中项的实际值的属性")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        public string ValueMember
+        {
+            get => listbox.ValueMember;
+            set => listbox.ValueMember = value;
+        }
+
+        [DefaultValue(null)]
+        [RefreshProperties(RefreshProperties.Repaint)]
+        [AttributeProvider(typeof(IListSource))]
+        [Description("指示此控件将用来获取其项的列表")]
+        public object DataSource
+        {
+            get => listbox.DataSource;
+            set => listbox.DataSource = value;
+        }
+
+        private void Box_ValueMemberChanged(object sender, EventArgs e)
+        {
+            ValueMemberChanged?.Invoke(sender, e);
+        }
+
+        private void Box_DisplayMemberChanged(object sender, EventArgs e)
+        {
+            DisplayMemberChanged?.Invoke(sender, e);
+        }
+
+        private void Box_DataSourceChanged(object sender, EventArgs e)
+        {
+            DataSourceChanged?.Invoke(sender, e);
+        }
+
+        public event EventHandler DataSourceChanged;
+
+        public event EventHandler DisplayMemberChanged;
+
+        public event EventHandler ValueMemberChanged;
+
+        [DefaultValue(null)]
+        [Description("格式说明符，指示显示值的方式")]
+        public string FormatString
+        {
+            get => listbox.FormatString;
+            set => listbox.FormatString = value;
+        }
+
+        [Description("获取或设置指示显示值是否可以进行格式化操作。"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool FormattingEnabled
+        {
+            get => listbox.FormattingEnabled;
+            set => listbox.FormattingEnabled = value;
+        }
+
+        public string GetItemText(object item)
+        {
+            return listbox.GetItemText(item);
+        }
     }
 
     /// <summary>
