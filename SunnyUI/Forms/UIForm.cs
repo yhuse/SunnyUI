@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -1005,7 +1006,10 @@ namespace Sunny.UI
 
             if (ShowTitleIcon && Icon != null)
             {
-                e.Graphics.DrawImage(Icon.ToBitmap(), 6, (TitleHeight - 24) / 2, 24, 24);
+                using (Image image = IconToImage(Icon))
+                {
+                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
+                }
             }
 
             SizeF sf = e.Graphics.MeasureString(Text, Font);
@@ -1017,6 +1021,14 @@ namespace Sunny.UI
             {
                 e.Graphics.DrawString(Text, Font, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
             }
+        }
+
+        private Image IconToImage(Icon icon)
+        {
+            MemoryStream mStream = new MemoryStream();
+            icon.Save(mStream);
+            Image image = Image.FromStream(mStream);
+            return image;
         }
 
         private bool showTitleIcon;
