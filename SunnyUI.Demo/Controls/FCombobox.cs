@@ -17,9 +17,9 @@ namespace Sunny.UI.Demo
             infoList.Add(info2);
             infoList.Add(info3);
 
-            uiComboBox2.DataSource = infoList;
             uiComboBox2.ValueMember = "Id";
             uiComboBox2.DisplayMember = "Name";
+            uiComboBox2.DataSource = infoList;
         }
 
         private void uiDatePicker1_ValueChanged(object sender, DateTime value)
