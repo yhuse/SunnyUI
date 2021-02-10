@@ -21,7 +21,7 @@
 
 #### 介绍
 - SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
-- 源码编译环境：VS2019 16.8，.net5，.net core3.1
+- 源码编译环境：VS2019 16.8，.Net5，.Net Core3.1
 - 动态库应用环境：VS2010及以上，.Net Framework 4.0及以上（不包括.Net Framework 4 Client Profile），.Net Core 3.1，.Net 5.0
 - **推荐通过Nuget安装：Install-Package SunnyUI，或者通过Nuget搜索SunnyUI安装。** 
 
