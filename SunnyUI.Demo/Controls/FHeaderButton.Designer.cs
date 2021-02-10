@@ -1,0 +1,466 @@
+﻿
+namespace Sunny.UI.Demo
+{
+    partial class FHeaderButton
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.uiPanel1 = new Sunny.UI.UIPanel();
+            this.uiHeaderButton12 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton11 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton10 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton9 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton8 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton1 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiPanel2 = new Sunny.UI.UIPanel();
+            this.uiHeaderButton6 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton7 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton4 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton5 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton3 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton2 = new Sunny.UI.Controls.UIHeaderButton();
+            this.PagePanel.SuspendLayout();
+            this.uiPanel1.SuspendLayout();
+            this.uiPanel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // PagePanel
+            // 
+            this.PagePanel.Controls.Add(this.uiPanel2);
+            this.PagePanel.Controls.Add(this.uiPanel1);
+            this.PagePanel.Size = new System.Drawing.Size(837, 501);
+            // 
+            // uiPanel1
+            // 
+            this.uiPanel1.Controls.Add(this.uiHeaderButton12);
+            this.uiPanel1.Controls.Add(this.uiHeaderButton11);
+            this.uiPanel1.Controls.Add(this.uiHeaderButton10);
+            this.uiPanel1.Controls.Add(this.uiHeaderButton9);
+            this.uiPanel1.Controls.Add(this.uiHeaderButton8);
+            this.uiPanel1.Controls.Add(this.uiHeaderButton1);
+            this.uiPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPanel1.Location = new System.Drawing.Point(17, 57);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel1.Name = "uiPanel1";
+            this.uiPanel1.Size = new System.Drawing.Size(737, 88);
+            this.uiPanel1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiPanel1.StyleCustomMode = true;
+            this.uiPanel1.TabIndex = 0;
+            this.uiPanel1.Text = null;
+            // 
+            // uiHeaderButton12
+            // 
+            this.uiHeaderButton12.CircleColor = System.Drawing.Color.Olive;
+            this.uiHeaderButton12.CircleSize = 50;
+            this.uiHeaderButton12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton12.ImageTop = 0;
+            this.uiHeaderButton12.Location = new System.Drawing.Point(616, 1);
+            this.uiHeaderButton12.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton12.Name = "uiHeaderButton12";
+            this.uiHeaderButton12.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton12.PageIndex = 0;
+            this.uiHeaderButton12.Radius = 0;
+            this.uiHeaderButton12.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton12.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton12.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton12.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton12.Symbol = 61459;
+            this.uiHeaderButton12.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton12.SymbolOffset = new System.Drawing.Point(1, 2);
+            this.uiHeaderButton12.SymbolSize = 41;
+            this.uiHeaderButton12.TabIndex = 5;
+            this.uiHeaderButton12.Text = "设置";
+            // 
+            // uiHeaderButton11
+            // 
+            this.uiHeaderButton11.CircleColor = System.Drawing.Color.Purple;
+            this.uiHeaderButton11.CircleSize = 50;
+            this.uiHeaderButton11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton11.ImageTop = 0;
+            this.uiHeaderButton11.Location = new System.Drawing.Point(516, 1);
+            this.uiHeaderButton11.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton11.Name = "uiHeaderButton11";
+            this.uiHeaderButton11.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton11.PageIndex = 0;
+            this.uiHeaderButton11.Radius = 0;
+            this.uiHeaderButton11.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton11.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton11.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton11.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton11.Symbol = 61447;
+            this.uiHeaderButton11.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton11.SymbolOffset = new System.Drawing.Point(1, 0);
+            this.uiHeaderButton11.SymbolSize = 40;
+            this.uiHeaderButton11.TabIndex = 4;
+            this.uiHeaderButton11.Text = "朋友";
+            // 
+            // uiHeaderButton10
+            // 
+            this.uiHeaderButton10.CircleColor = System.Drawing.Color.Teal;
+            this.uiHeaderButton10.CircleSize = 50;
+            this.uiHeaderButton10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton10.ImageTop = 0;
+            this.uiHeaderButton10.Location = new System.Drawing.Point(416, 1);
+            this.uiHeaderButton10.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton10.Name = "uiHeaderButton10";
+            this.uiHeaderButton10.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton10.PageIndex = 0;
+            this.uiHeaderButton10.Radius = 0;
+            this.uiHeaderButton10.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton10.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton10.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton10.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton10.Symbol = 62145;
+            this.uiHeaderButton10.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton10.SymbolOffset = new System.Drawing.Point(1, 2);
+            this.uiHeaderButton10.SymbolSize = 38;
+            this.uiHeaderButton10.TabIndex = 3;
+            this.uiHeaderButton10.Text = "手机";
+            // 
+            // uiHeaderButton9
+            // 
+            this.uiHeaderButton9.CircleColor = System.Drawing.Color.DarkOrange;
+            this.uiHeaderButton9.CircleSize = 50;
+            this.uiHeaderButton9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton9.ImageTop = 0;
+            this.uiHeaderButton9.Location = new System.Drawing.Point(316, 1);
+            this.uiHeaderButton9.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton9.Name = "uiHeaderButton9";
+            this.uiHeaderButton9.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton9.PageIndex = 0;
+            this.uiHeaderButton9.Radius = 0;
+            this.uiHeaderButton9.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton9.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton9.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton9.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton9.Symbol = 61664;
+            this.uiHeaderButton9.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton9.SymbolOffset = new System.Drawing.Point(0, 1);
+            this.uiHeaderButton9.SymbolSize = 40;
+            this.uiHeaderButton9.TabIndex = 2;
+            this.uiHeaderButton9.Text = "邮件";
+            // 
+            // uiHeaderButton8
+            // 
+            this.uiHeaderButton8.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.uiHeaderButton8.CircleSize = 50;
+            this.uiHeaderButton8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton8.ImageTop = 0;
+            this.uiHeaderButton8.Location = new System.Drawing.Point(216, 1);
+            this.uiHeaderButton8.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton8.Name = "uiHeaderButton8";
+            this.uiHeaderButton8.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton8.PageIndex = 0;
+            this.uiHeaderButton8.Radius = 0;
+            this.uiHeaderButton8.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton8.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton8.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton8.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton8.Symbol = 62074;
+            this.uiHeaderButton8.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton8.SymbolOffset = new System.Drawing.Point(1, 0);
+            this.uiHeaderButton8.SymbolSize = 44;
+            this.uiHeaderButton8.TabIndex = 1;
+            this.uiHeaderButton8.Text = "消息";
+            // 
+            // uiHeaderButton1
+            // 
+            this.uiHeaderButton1.CircleColor = System.Drawing.Color.RoyalBlue;
+            this.uiHeaderButton1.CircleSize = 50;
+            this.uiHeaderButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton1.ImageTop = 0;
+            this.uiHeaderButton1.Location = new System.Drawing.Point(116, 1);
+            this.uiHeaderButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton1.Name = "uiHeaderButton1";
+            this.uiHeaderButton1.Padding = new System.Windows.Forms.Padding(0, 8, 0, 3);
+            this.uiHeaderButton1.PageIndex = 0;
+            this.uiHeaderButton1.Radius = 0;
+            this.uiHeaderButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton1.Size = new System.Drawing.Size(100, 88);
+            this.uiHeaderButton1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton1.Symbol = 61461;
+            this.uiHeaderButton1.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton1.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton1.TabIndex = 0;
+            this.uiHeaderButton1.Text = "主页";
+            // 
+            // uiPanel2
+            // 
+            this.uiPanel2.Controls.Add(this.uiHeaderButton6);
+            this.uiPanel2.Controls.Add(this.uiHeaderButton7);
+            this.uiPanel2.Controls.Add(this.uiHeaderButton4);
+            this.uiPanel2.Controls.Add(this.uiHeaderButton5);
+            this.uiPanel2.Controls.Add(this.uiHeaderButton3);
+            this.uiPanel2.Controls.Add(this.uiHeaderButton2);
+            this.uiPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiPanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPanel2.ForeColor = System.Drawing.Color.Silver;
+            this.uiPanel2.Location = new System.Drawing.Point(17, 202);
+            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel2.Name = "uiPanel2";
+            this.uiPanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiPanel2.Size = new System.Drawing.Size(737, 88);
+            this.uiPanel2.Style = Sunny.UI.UIStyle.Custom;
+            this.uiPanel2.StyleCustomMode = true;
+            this.uiPanel2.TabIndex = 1;
+            this.uiPanel2.Text = null;
+            // 
+            // uiHeaderButton6
+            // 
+            this.uiHeaderButton6.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton6.CircleSize = 50;
+            this.uiHeaderButton6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton6.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton6.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton6.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton6.Image = global::Sunny.UI.Demo.Properties.Resources._7;
+            this.uiHeaderButton6.ImageTop = 0;
+            this.uiHeaderButton6.Location = new System.Drawing.Point(616, 1);
+            this.uiHeaderButton6.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton6.Name = "uiHeaderButton6";
+            this.uiHeaderButton6.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton6.PageIndex = 0;
+            this.uiHeaderButton6.Radius = 0;
+            this.uiHeaderButton6.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton6.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton6.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton6.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton6.StyleCustomMode = true;
+            this.uiHeaderButton6.Symbol = 0;
+            this.uiHeaderButton6.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton6.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton6.TabIndex = 5;
+            this.uiHeaderButton6.Text = "设置";
+            // 
+            // uiHeaderButton7
+            // 
+            this.uiHeaderButton7.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton7.CircleSize = 50;
+            this.uiHeaderButton7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton7.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton7.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton7.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton7.Image = global::Sunny.UI.Demo.Properties.Resources._5;
+            this.uiHeaderButton7.ImageTop = 0;
+            this.uiHeaderButton7.Location = new System.Drawing.Point(516, 1);
+            this.uiHeaderButton7.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton7.Name = "uiHeaderButton7";
+            this.uiHeaderButton7.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton7.PageIndex = 0;
+            this.uiHeaderButton7.Radius = 0;
+            this.uiHeaderButton7.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton7.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton7.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton7.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton7.StyleCustomMode = true;
+            this.uiHeaderButton7.Symbol = 0;
+            this.uiHeaderButton7.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton7.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton7.TabIndex = 4;
+            this.uiHeaderButton7.Text = "朋友";
+            // 
+            // uiHeaderButton4
+            // 
+            this.uiHeaderButton4.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton4.CircleSize = 50;
+            this.uiHeaderButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton4.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton4.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton4.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton4.Image = global::Sunny.UI.Demo.Properties.Resources._4;
+            this.uiHeaderButton4.ImageTop = 0;
+            this.uiHeaderButton4.Location = new System.Drawing.Point(416, 1);
+            this.uiHeaderButton4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton4.Name = "uiHeaderButton4";
+            this.uiHeaderButton4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton4.PageIndex = 0;
+            this.uiHeaderButton4.Radius = 0;
+            this.uiHeaderButton4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton4.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton4.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton4.StyleCustomMode = true;
+            this.uiHeaderButton4.Symbol = 0;
+            this.uiHeaderButton4.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton4.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton4.TabIndex = 3;
+            this.uiHeaderButton4.Text = "手机";
+            // 
+            // uiHeaderButton5
+            // 
+            this.uiHeaderButton5.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton5.CircleSize = 50;
+            this.uiHeaderButton5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton5.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton5.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton5.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton5.Image = global::Sunny.UI.Demo.Properties.Resources._3;
+            this.uiHeaderButton5.ImageTop = 0;
+            this.uiHeaderButton5.Location = new System.Drawing.Point(316, 1);
+            this.uiHeaderButton5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton5.Name = "uiHeaderButton5";
+            this.uiHeaderButton5.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton5.PageIndex = 0;
+            this.uiHeaderButton5.Radius = 0;
+            this.uiHeaderButton5.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton5.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton5.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton5.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton5.StyleCustomMode = true;
+            this.uiHeaderButton5.Symbol = 0;
+            this.uiHeaderButton5.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton5.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton5.TabIndex = 2;
+            this.uiHeaderButton5.Text = "邮件";
+            // 
+            // uiHeaderButton3
+            // 
+            this.uiHeaderButton3.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton3.CircleSize = 50;
+            this.uiHeaderButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton3.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton3.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton3.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton3.Image = global::Sunny.UI.Demo.Properties.Resources._2;
+            this.uiHeaderButton3.ImageTop = 0;
+            this.uiHeaderButton3.Location = new System.Drawing.Point(216, 1);
+            this.uiHeaderButton3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton3.Name = "uiHeaderButton3";
+            this.uiHeaderButton3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton3.PageIndex = 0;
+            this.uiHeaderButton3.Radius = 0;
+            this.uiHeaderButton3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton3.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton3.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton3.StyleCustomMode = true;
+            this.uiHeaderButton3.Symbol = 0;
+            this.uiHeaderButton3.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton3.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton3.TabIndex = 1;
+            this.uiHeaderButton3.Text = "消息";
+            // 
+            // uiHeaderButton2
+            // 
+            this.uiHeaderButton2.CircleColor = System.Drawing.Color.Bisque;
+            this.uiHeaderButton2.CircleSize = 50;
+            this.uiHeaderButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHeaderButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
+            this.uiHeaderButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.uiHeaderButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton2.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.uiHeaderButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton2.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton2.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton2.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.uiHeaderButton2.Image = global::Sunny.UI.Demo.Properties.Resources._1;
+            this.uiHeaderButton2.ImageTop = 0;
+            this.uiHeaderButton2.Location = new System.Drawing.Point(116, 1);
+            this.uiHeaderButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiHeaderButton2.Name = "uiHeaderButton2";
+            this.uiHeaderButton2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
+            this.uiHeaderButton2.PageIndex = 0;
+            this.uiHeaderButton2.Radius = 0;
+            this.uiHeaderButton2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiHeaderButton2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton2.Size = new System.Drawing.Size(100, 86);
+            this.uiHeaderButton2.Style = Sunny.UI.UIStyle.Custom;
+            this.uiHeaderButton2.StyleCustomMode = true;
+            this.uiHeaderButton2.Symbol = 0;
+            this.uiHeaderButton2.SymbolColor = System.Drawing.Color.White;
+            this.uiHeaderButton2.SymbolOffset = new System.Drawing.Point(0, 0);
+            this.uiHeaderButton2.TabIndex = 0;
+            this.uiHeaderButton2.Text = "主页";
+            // 
+            // FHeaderButton
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(837, 536);
+            this.Name = "FHeaderButton";
+            this.Symbol = 62141;
+            this.Text = "HeaderButton";
+            this.Load += new System.EventHandler(this.FHeaderButton_Load);
+            this.PagePanel.ResumeLayout(false);
+            this.uiPanel1.ResumeLayout(false);
+            this.uiPanel2.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private UIPanel uiPanel1;
+        private UI.Controls.UIHeaderButton uiHeaderButton1;
+        private UIPanel uiPanel2;
+        private UI.Controls.UIHeaderButton uiHeaderButton2;
+        private UI.Controls.UIHeaderButton uiHeaderButton3;
+        private UI.Controls.UIHeaderButton uiHeaderButton6;
+        private UI.Controls.UIHeaderButton uiHeaderButton7;
+        private UI.Controls.UIHeaderButton uiHeaderButton4;
+        private UI.Controls.UIHeaderButton uiHeaderButton5;
+        private UI.Controls.UIHeaderButton uiHeaderButton12;
+        private UI.Controls.UIHeaderButton uiHeaderButton11;
+        private UI.Controls.UIHeaderButton uiHeaderButton10;
+        private UI.Controls.UIHeaderButton uiHeaderButton9;
+        private UI.Controls.UIHeaderButton uiHeaderButton8;
+    }
+}

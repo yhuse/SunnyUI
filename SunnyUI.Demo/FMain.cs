@@ -17,6 +17,7 @@ namespace Sunny.UI.Demo
             TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
             //通过设置PageIndex关联
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, 62141, 24, AddPage(new FHeaderButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
             Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61842, 24, AddPage(new FRadioButton(), ++pageIndex));
