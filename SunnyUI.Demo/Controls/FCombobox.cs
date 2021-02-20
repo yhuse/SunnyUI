@@ -20,6 +20,10 @@ namespace Sunny.UI.Demo
             uiComboBox2.ValueMember = "Id";
             uiComboBox2.DisplayMember = "Name";
             uiComboBox2.DataSource = infoList;
+
+            uiComboboxEx2.ValueMember = "Id";
+            uiComboboxEx2.DisplayMember = "Name";
+            uiComboboxEx2.DataSource = infoList;
         }
 
         private void uiDatePicker1_ValueChanged(object sender, DateTime value)
