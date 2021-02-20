@@ -454,7 +454,7 @@
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(308, 20);
             this.uiLine4.TabIndex = 49;
-            this.uiLine4.Text = "UIComboBox";
+            this.uiLine4.Text = "UIComboBoxEx";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiComboboxEx1
