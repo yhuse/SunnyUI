@@ -32,7 +32,8 @@ namespace Sunny.UI
         Integer,
         Double,
         Date,
-        DateTime
+        DateTime,
+        Password
     }
 
     public class EditInfo
@@ -75,6 +76,25 @@ namespace Sunny.UI
             {
                 DataPropertyName = dataPropertyName,
                 EditType = EditType.Text,
+                Text = text,
+                Value = value,
+                CheckEmpty = checkEmpty,
+                Enabled = enabled
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddPassword(string dataPropertyName, string text, string value, bool checkEmpty, bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.Password,
                 Text = text,
                 Value = value,
                 CheckEmpty = checkEmpty,
