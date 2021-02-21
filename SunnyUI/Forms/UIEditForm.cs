@@ -89,6 +89,7 @@ namespace Sunny.UI
                     edit.Text = info.Value.ToString();
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
                     ctrls.Add(edit);
                 }
 
@@ -102,6 +103,7 @@ namespace Sunny.UI
                     edit.Parent = this;
                     edit.PasswordChar = '*';
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
                     ctrls.Add(edit);
                 }
 
@@ -128,6 +130,7 @@ namespace Sunny.UI
                     edit.DoubleValue = info.Value.ToString().ToDouble();
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
                     ctrls.Add(edit);
                 }
 
@@ -167,6 +170,13 @@ namespace Sunny.UI
                 ctrl.TabIndex = tabIndex;
                 tabIndex++;
             }
+
+            pnlBtm.TabIndex = tabIndex;
+            tabIndex++;
+            btnOK.TabIndex = tabIndex;
+            tabIndex++;
+            btnCancel.TabIndex = tabIndex;
+            btnOK.ShowFocusLine = btnCancel.ShowFocusLine = true;
         }
 
         public object this[string dataPropertyName]
