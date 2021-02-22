@@ -90,6 +90,7 @@ namespace Sunny.UI
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
                     edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
@@ -104,6 +105,7 @@ namespace Sunny.UI
                     edit.PasswordChar = '*';
                     edit.Name = "Edit_" + info.DataPropertyName;
                     edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
@@ -117,6 +119,7 @@ namespace Sunny.UI
                     edit.IntValue = info.Value.ToString().ToInt();
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
@@ -131,6 +134,7 @@ namespace Sunny.UI
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
                     edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
@@ -143,6 +147,7 @@ namespace Sunny.UI
                     edit.Value = (DateTime)info.Value;
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
@@ -155,6 +160,7 @@ namespace Sunny.UI
                     edit.Value = (DateTime)info.Value;
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
                     ctrls.Add(edit);
                 }
 
