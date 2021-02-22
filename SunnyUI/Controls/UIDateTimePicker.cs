@@ -123,8 +123,8 @@ namespace Sunny.UI
             get => item.Date;
             set
             {
-                if (value < DateTimeEx.Jan1st1970)
-                    value = DateTimeEx.Jan1st1970;
+                if (value < new DateTime(1900, 1, 1))
+                    value = new DateTime(1900, 1, 1);
                 Text = value.ToString(dateFormat);
                 item.Date = value;
             }
