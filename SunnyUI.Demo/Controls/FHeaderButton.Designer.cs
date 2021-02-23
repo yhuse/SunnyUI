@@ -30,19 +30,19 @@ namespace Sunny.UI.Demo
         private void InitializeComponent()
         {
             this.uiPanel1 = new Sunny.UI.UIPanel();
-            this.uiHeaderButton12 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton11 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton10 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton9 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton8 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton1 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton12 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton11 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton10 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton9 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton8 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton1 = new Sunny.UI.UIHeaderButton();
             this.uiPanel2 = new Sunny.UI.UIPanel();
-            this.uiHeaderButton6 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton7 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton4 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton5 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton3 = new Sunny.UI.Controls.UIHeaderButton();
-            this.uiHeaderButton2 = new Sunny.UI.Controls.UIHeaderButton();
+            this.uiHeaderButton6 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton7 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton4 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton5 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton3 = new Sunny.UI.UIHeaderButton();
+            this.uiHeaderButton2 = new Sunny.UI.UIHeaderButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine2 = new Sunny.UI.UILine();
             this.PagePanel.SuspendLayout();
@@ -414,19 +414,19 @@ namespace Sunny.UI.Demo
         #endregion
 
         private UIPanel uiPanel1;
-        private UI.Controls.UIHeaderButton uiHeaderButton1;
+        private UIHeaderButton uiHeaderButton1;
         private UIPanel uiPanel2;
-        private UI.Controls.UIHeaderButton uiHeaderButton2;
-        private UI.Controls.UIHeaderButton uiHeaderButton3;
-        private UI.Controls.UIHeaderButton uiHeaderButton6;
-        private UI.Controls.UIHeaderButton uiHeaderButton7;
-        private UI.Controls.UIHeaderButton uiHeaderButton4;
-        private UI.Controls.UIHeaderButton uiHeaderButton5;
-        private UI.Controls.UIHeaderButton uiHeaderButton12;
-        private UI.Controls.UIHeaderButton uiHeaderButton11;
-        private UI.Controls.UIHeaderButton uiHeaderButton10;
-        private UI.Controls.UIHeaderButton uiHeaderButton9;
-        private UI.Controls.UIHeaderButton uiHeaderButton8;
+        private UIHeaderButton uiHeaderButton2;
+        private UIHeaderButton uiHeaderButton3;
+        private UIHeaderButton uiHeaderButton6;
+        private UIHeaderButton uiHeaderButton7;
+        private UIHeaderButton uiHeaderButton4;
+        private UIHeaderButton uiHeaderButton5;
+        private UIHeaderButton uiHeaderButton12;
+        private UIHeaderButton uiHeaderButton11;
+        private UIHeaderButton uiHeaderButton10;
+        private UIHeaderButton uiHeaderButton9;
+        private UIHeaderButton uiHeaderButton8;
         private UILine uiLine2;
         private UILine uiLine1;
     }

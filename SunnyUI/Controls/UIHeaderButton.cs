@@ -28,7 +28,7 @@ using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Sunny.UI.Controls
+namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
