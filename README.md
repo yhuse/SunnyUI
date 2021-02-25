@@ -9,8 +9,8 @@
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
 #### 介绍
-- SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架
-- 源码编译环境：VS2019 16.8，.Net5，.Net Core3.1
+- SunnyUI.Net 是基于.Net Framework 4.0+、.Net Core3.1、.Net 5 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。
+- 源码编译环境：VS2019 16.8+，.Net5，.Net Core3.1
 - 动态库应用环境：VS2010及以上，.Net Framework 4.0及以上（不包括.Net Framework 4 Client Profile），.Net Core 3.1，.Net 5.0
 - **推荐通过Nuget安装：Install-Package SunnyUI，或者通过Nuget搜索SunnyUI安装。** 
 
@@ -24,8 +24,8 @@
 
 1、开源控件库
 
-  - 基于 framework4.0，原生控件开发，参考 Element主题风格，包含 按钮、编辑框、下拉框、数据表格、工控仪表、统计图表在内的常用控件超过  **50** 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
-  - 包含 Element 风格主题 11 个，DotNetBar 主题 3 个，其他主题 2 个，包含主题管理组件 UIStyleManager，可自由切换主题。
+  - 基于.Net Framework4.0，原生控件开发，参考 Element主题风格，包含 按钮、编辑框、下拉框、数据表格、工控仪表、统计图表在内的常用控件超过  **50** 个，满足常规开发需求，每个控件都精雕细琢，注重细节；
+  - 包含 Element 风格主题 11 个，其他主题 6 个，包含主题管理组件 UIStyleManager，可自由切换主题。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0627/210102_6d4899e9_416720.png "1.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0627/210116_bcd384cc_416720.png "2.png")
