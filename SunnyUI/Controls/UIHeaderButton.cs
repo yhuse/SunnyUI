@@ -82,6 +82,8 @@ namespace Sunny.UI
             base.OnClick(e);
         }
 
+        public event EventHandler SelectedChanged;
+
         private int _symbolSize = 48;
 
         [DefaultValue(48)]
@@ -326,6 +328,7 @@ namespace Sunny.UI
                 if (selected != value)
                 {
                     selected = value;
+                    SelectedChanged?.Invoke(this, new EventArgs());
                     Invalidate();
                 }
             }
