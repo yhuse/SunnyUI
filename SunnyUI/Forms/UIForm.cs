@@ -1075,7 +1075,10 @@ namespace Sunny.UI
 
             SetStyleColor(UIStyles.GetStyleColor(style));
             _style = style;
+            UIStyleChanged?.Invoke(this, new EventArgs());
         }
+
+        public event EventHandler UIStyleChanged;
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
