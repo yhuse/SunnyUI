@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "SunnyUI.Net5.Demo/3.0.1": {
+      "SunnyUI.Net5.Demo/3.0.2": {
         "dependencies": {
           "SunnyUI": "3.0.2"
         },
@@ -36,7 +36,7 @@
     }
   },
   "libraries": {
-    "SunnyUI.Net5.Demo/3.0.1": {
+    "SunnyUI.Net5.Demo/3.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
