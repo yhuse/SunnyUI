@@ -32,6 +32,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [ToolboxItem(true)]
     public class UIHeaderButton : UIControl, IButtonControl
     {
         public UIHeaderButton()
