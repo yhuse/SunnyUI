@@ -170,7 +170,7 @@ namespace Sunny.UI.Demo
             frm.ShowInTaskbar = true;
             frm.Text = "Login";
             frm.Title = "SunnyUI.Net Login Form";
-            frm.SubText = "SunnyUI.Net V2.2.5";
+            frm.SubText = Version;
             frm.OnLogin += Frm_OnLogin;
             frm.LoginImage = UILoginForm.UILoginImage.Login2;
             frm.ShowDialog();

@@ -35,6 +35,10 @@
             // 
             this.lblTitle.Text = "SunnyUI.Net Login Form";
             // 
+            // lblSubText
+            // 
+            this.lblSubText.Text = "SunnyUI.Net";
+            // 
             // FLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -43,10 +47,11 @@
             this.ClientSize = new System.Drawing.Size(750, 450);
             this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login6;
             this.Name = "FLogin";
+            this.SubText = "SunnyUI.Net";
             this.Text = "SunnyUI.Net Login Form";
+            this.Title = "SunnyUI.Net Login Form";
             this.ButtonLoginClick += new System.EventHandler(this.FLogin_ButtonLoginClick);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

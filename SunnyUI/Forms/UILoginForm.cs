@@ -11,6 +11,7 @@ namespace Sunny.UI
         public UILoginForm()
         {
             InitializeComponent();
+            lblSubText.Text = lblSubText.Version;
         }
 
         public string Title
@@ -43,7 +44,7 @@ namespace Sunny.UI
                     if (loginImage == UILoginImage.Login4) BackgroundImage = Resources.Login4;
                     if (loginImage == UILoginImage.Login5) BackgroundImage = Resources.Login5;
                     if (loginImage == UILoginImage.Login6) BackgroundImage = Resources.Login6;
- }
+                }
             }
         }
 
@@ -106,4 +107,4 @@ namespace Sunny.UI
             set => edtPassword.Text = value;
         }
     }
-} 
+}
