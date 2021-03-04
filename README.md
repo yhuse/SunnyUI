@@ -54,5 +54,5 @@
 ![多页面框架](https://images.gitee.com/uploads/images/2020/0627/210832_a1a766ac_416720.png "21.png")
 
 #### 感谢  
-  - 感谢  **JetBrains**  对开源项目的支持
+  - 感谢  **JetBrains**  对开源项目的支持<br/>
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0714/114152_d335c2f1_416720.png "jetbrains.png")
