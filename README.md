@@ -52,3 +52,6 @@
 
   - 参考Element，包括7种常用框架风格，只需几行简单的代码即可创建多页面程序，其支撑组件包括UIForm，UIPage，UIFrame，集合常用控件库即可快速开发WinForm应用程序。
 ![多页面框架](https://images.gitee.com/uploads/images/2020/0627/210832_a1a766ac_416720.png "21.png")
+
+#### 感谢  **JetBrains**  对开源项目的支持
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0714/114152_d335c2f1_416720.png "jetbrains.png")
