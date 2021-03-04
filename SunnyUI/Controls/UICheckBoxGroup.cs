@@ -72,6 +72,13 @@ namespace Sunny.UI
             boxes.Clear();
         }
 
+        public void Clear()
+        {
+            Items.Clear();
+            ClearBoxes();
+            Invalidate();
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
@@ -102,7 +109,6 @@ namespace Sunny.UI
 
         private void CreateBoxes()
         {
-            if (Items.Count == 0) return;
             if (Items.Count != boxes.Count)
             {
                 ClearBoxes();
