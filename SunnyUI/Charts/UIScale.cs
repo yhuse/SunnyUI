@@ -585,6 +585,7 @@ namespace Sunny.UI
             double xlDate = xlDateNew.DoubleValue;
             if (xlDate < _min)
             {
+                /*
                 switch (_scaleLevel)
                 {
                     default: year++; break;
@@ -597,6 +598,18 @@ namespace Sunny.UI
                 }
 
                 xlDateNew = new DateTimeInt64(year, month, day, hour, minute, second, millisecond);
+                */
+
+                switch (_scaleLevel)
+                {
+                    default: xlDateNew.AddYears(1); break;
+                    case UIDateScaleLevel.Month: xlDateNew.AddMonths(1); break;
+                    case UIDateScaleLevel.Day: xlDateNew.AddDays(1); break;
+                    case UIDateScaleLevel.Hour: xlDateNew.AddHours(1); break;
+                    case UIDateScaleLevel.Minute: xlDateNew.AddMinutes(1); break;
+                    case UIDateScaleLevel.Second: xlDateNew.AddSeconds(1); break;
+                    case UIDateScaleLevel.Millisecond: xlDateNew.AddMilliseconds(1); break;
+                }
             }
 
             return xlDateNew.DoubleValue;
