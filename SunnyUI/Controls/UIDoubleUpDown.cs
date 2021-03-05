@@ -45,6 +45,21 @@ namespace Sunny.UI
             edit.TextChanged += Edit_TextChanged;
             edit.Leave += Edit_Leave;
             //edit.MouseLeave += Edit_Leave;
+            pnlValue.PaintOther += PnlValue_PaintOther;
+        }
+
+        private void PnlValue_PaintOther(object sender, PaintEventArgs e)
+        {
+            if (Enabled)
+            {
+                e.Graphics.DrawLine(RectColor, 0, 0, pnlValue.Width, 0);
+                e.Graphics.DrawLine(RectColor, 0, Height - 1, pnlValue.Width, Height - 1);
+            }
+            else
+            {
+                e.Graphics.DrawLine(RectDisableColor, 0, 0, pnlValue.Width, 0);
+                e.Graphics.DrawLine(RectDisableColor, 0, Height - 1, pnlValue.Width, Height - 1);
+            }
         }
 
         private void Edit_Leave(object sender, EventArgs e)
