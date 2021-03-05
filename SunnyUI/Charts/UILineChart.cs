@@ -153,13 +153,33 @@ namespace Sunny.UI
             if (Option == null) return;
             if (!NeedDraw) return;
 
+            if (bmp == null || bmp.Width != Width || bmp.Height != Height)
+            {
+                bmp?.Dispose();
+                bmp = new Bitmap(Width, Height);
+            }
+
+            if (bmpGreater == null || bmpGreater.Width != Width || bmpGreater.Height != Height)
+            {
+                bmpGreater?.Dispose();
+                bmpGreater = new Bitmap(Width, Height);
+            }
+
+            if (bmpLess == null || bmpLess.Width != Width || bmpLess.Height != Height)
+            {
+                bmpLess?.Dispose();
+                bmpLess = new Bitmap(Width, Height);
+            }
+
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow) DrawToolTip(g);
-            DrawAxis(g);
+
             DrawTitle(g, Option.Title);
-            DrawAxisScales(g);
+
             DrawSeries(g);
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, Option.Legend);
+            DrawAxis(g);
+            DrawAxisScales(g);
             DrawOther(g);
         }
 
@@ -167,7 +187,11 @@ namespace Sunny.UI
         {
             g.DrawRectangle(ChartStyle.ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
             float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
-            g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+            if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
+            {
+                g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+            }
+
             if (XScale == null || YScale == null) return;
 
             //X Tick
@@ -177,6 +201,8 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float x = labels[i];
+                    if (x <= Option.Grid.Left || x >= Width - Option.Grid.Right) continue;
+
                     if (Option.XAxis.AxisLabel.Show)
                     {
                         string label;
@@ -224,6 +250,8 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float y = labels[i];
+                    if (y <= Option.Grid.Top || y >= Height - Option.Grid.Bottom) continue;
+
                     if (Option.YAxis.AxisLabel.Show)
                     {
                         string label = YLabels[i].ToString(YScale.Format);
@@ -242,7 +270,6 @@ namespace Sunny.UI
                         g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
                     }
                 }
-
 
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
                 int xx = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height);
@@ -276,29 +303,49 @@ namespace Sunny.UI
             }
         }
 
+        Bitmap bmp, bmpGreater, bmpLess;
+
         private void DrawSeries(Graphics g)
         {
             if (YScale == null) return;
 
+            using (Graphics graphics = bmp.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
+            using (Graphics graphics = bmpGreater.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
+            using (Graphics graphics = bmpLess.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
             int idx = 0;
+            float wTop = Option.Grid.Top;
+            float wBottom = Height - Option.Grid.Bottom;
+            float wLeft = Option.Grid.Left;
+            float wRight = Width - Option.Grid.Right;
+
             if (Option.GreaterWarningArea == null && Option.LessWarningArea == null)
             {
                 foreach (var series in Option.Series.Values)
                 {
                     Color color = series.Color;
                     if (!series.CustomColor) color = ChartStyle.GetColor(idx);
-                    DrawSeries(g, color, series);
+                    using (Graphics graphics = bmp.Graphics())
+                    {
+                        DrawSeries(graphics, color, series);
+                    }
+
                     idx++;
                 }
             }
             else
             {
-                Bitmap bmp = new Bitmap(Width, Height);
-                Bitmap bmpGreater = new Bitmap(Width, Height);
-                Bitmap bmpLess = new Bitmap(Width, Height);
-                float wTop = 0;
-                float wBottom = Height;
-
                 foreach (var series in Option.Series.Values)
                 {
                     Color color = series.Color;
@@ -331,24 +378,38 @@ namespace Sunny.UI
                 if (Option.GreaterWarningArea != null)
                 {
                     wTop = YScale.CalcYPixel(Option.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
-                        new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
+                    if (wTop < Option.Grid.Top)
+                    {
+                        wTop = Option.Grid.Top;
+                    }
+                    else
+                    {
+                        if (wTop > Height - Option.Grid.Bottom)
+                            wTop = Height - Option.Grid.Bottom;
+                        g.DrawImage(bmpGreater, new Rectangle((int)wLeft, Option.Grid.Top, (int)(wRight - wLeft), (int)(wTop - Option.Grid.Top)),
+                            new Rectangle((int)wLeft, Option.Grid.Top, (int)(wRight - wLeft), (int)(wTop - Option.Grid.Top)), GraphicsUnit.Pixel);
+                    }
                 }
 
                 if (Option.LessWarningArea != null)
                 {
                     wBottom = YScale.CalcYPixel(Option.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
-                        new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
+                    if (wBottom > Height - Option.Grid.Bottom)
+                    {
+                        wBottom = Height - Option.Grid.Bottom;
+                    }
+                    else
+                    {
+                        if (wBottom < Option.Grid.Top)
+                            wBottom = Option.Grid.Top;
+                        g.DrawImage(bmpLess, new Rectangle((int)wLeft, (int)wBottom, (int)(wRight - wLeft), (int)(Height - Option.Grid.Bottom - wBottom)),
+                            new Rectangle((int)wLeft, (int)wBottom, (int)(wRight - wLeft), (int)(Height - Option.Grid.Bottom - wBottom)), GraphicsUnit.Pixel);
+                    }
                 }
-
-                g.DrawImage(bmp, new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop),
-                    new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop), GraphicsUnit.Pixel);
-
-                bmpGreater.Dispose();
-                bmpLess.Dispose();
-                bmp.Dispose();
             }
+
+            g.DrawImage(bmp, new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)),
+             new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)), GraphicsUnit.Pixel);
 
             idx = 0;
             foreach (var series in Option.Series.Values)
@@ -363,6 +424,9 @@ namespace Sunny.UI
                     {
                         foreach (var p in series.Points)
                         {
+                            if (p.X <= Option.Grid.Left || p.X >= Width - Option.Grid.Right) continue;
+                            if (p.Y <= Option.Grid.Top || p.Y >= Height - Option.Grid.Bottom) continue;
+
                             switch (series.Symbol)
                             {
                                 case UILinePointSymbol.Square:
@@ -431,6 +495,8 @@ namespace Sunny.UI
             foreach (var line in Option.YAxisScaleLines)
             {
                 float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+                if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
+
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - Option.Grid.Right, pos);
@@ -450,6 +516,8 @@ namespace Sunny.UI
             foreach (var line in Option.XAxisScaleLines)
             {
                 float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
+                if (pos <= Option.Grid.Left || pos >= Width - Option.Grid.Right) continue;
+
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, pos, DrawOrigin.Y, pos, Option.Grid.Top);
@@ -605,7 +673,7 @@ namespace Sunny.UI
             if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
                 e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
             {
-                //IsMouseDown = true;
+                IsMouseDown = true;
                 StartPoint = e.Location;
             }
         }
@@ -627,6 +695,8 @@ namespace Sunny.UI
 
         private void Zoom()
         {
+            if (Math.Abs(StartPoint.X - StopPoint.X) < 10 || Math.Abs(StartPoint.Y - StopPoint.Y) < 10) return;
+
             IsZoom = true;
 
             XMin = Option.XAxis.Min;
@@ -682,6 +752,11 @@ namespace Sunny.UI
             {
                 Color color = Color.FromArgb(50, UIColor.Blue);
                 g.FillRectangle(color,
+                    Math.Min(StartPoint.X, StopPoint.X),
+                    Math.Min(StartPoint.Y, StopPoint.Y),
+                    Math.Abs(StopPoint.X - StartPoint.X),
+                    Math.Abs(StopPoint.Y - StartPoint.Y));
+                g.DrawRectangle(UIColor.Blue,
                     Math.Min(StartPoint.X, StopPoint.X),
                     Math.Min(StartPoint.Y, StopPoint.Y),
                     Math.Abs(StopPoint.X - StartPoint.X),
