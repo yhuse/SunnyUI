@@ -593,5 +593,11 @@ namespace Sunny.UI
             frm.ShowInTaskbar = false;
             frm.TopMost = true;
         }
+
+        public static DialogResult ShowDialog(this UIEditOption option)
+        {
+            UIEditForm frm = new UIEditForm(option);
+            return frm.ShowDialog();
+        }
     }
 }
