@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -32,7 +32,8 @@ namespace Sunny.UI
         Integer,
         Double,
         Date,
-        DateTime
+        DateTime,
+        Password
     }
 
     public class EditInfo
@@ -75,6 +76,25 @@ namespace Sunny.UI
             {
                 DataPropertyName = dataPropertyName,
                 EditType = EditType.Text,
+                Text = text,
+                Value = value,
+                CheckEmpty = checkEmpty,
+                Enabled = enabled
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddPassword(string dataPropertyName, string text, string value, bool checkEmpty, bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.Password,
                 Text = text,
                 Value = value,
                 CheckEmpty = checkEmpty,

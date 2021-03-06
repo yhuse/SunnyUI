@@ -207,6 +207,12 @@
     <Compile Include="Controls\FTreeView.Designer.cs">
       <DependentUpon>FTreeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FHeaderButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FHeaderButton.Designer.cs">
+      <DependentUpon>FHeaderButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FFlowLayoutPanel.resx">
       <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FHeaderButton.resx">
+      <DependentUpon>FHeaderButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FLabel.resx">
       <DependentUpon>FLabel.cs</DependentUpon>
@@ -623,6 +632,15 @@
     <None Include="Resources\zaragoza.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\1.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\4.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\6.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\8.png" />
+    <None Include="Resources\9.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

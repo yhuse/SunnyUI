@@ -17,6 +17,7 @@ namespace Sunny.UI.Demo
             TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
             //通过设置PageIndex关联
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, 62141, 24, AddPage(new FHeaderButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
             Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
             Aside.CreateChildNode(parent, 61842, 24, AddPage(new FRadioButton(), ++pageIndex));
@@ -88,6 +89,16 @@ namespace Sunny.UI.Demo
         private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
         {
             page?.Text.ConsoleWriteLine();
+        }
+
+        private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UIMessageBox.Show("SunnyUI.Net V3.0", "关于", Style, UIMessageBoxButtons.OK, false);
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://gitee.com/yhuse/SunnyUI");
         }
     }
 }

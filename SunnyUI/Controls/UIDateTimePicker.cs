@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -123,8 +123,8 @@ namespace Sunny.UI
             get => item.Date;
             set
             {
-                if (value < DateTimeEx.Jan1st1970)
-                    value = DateTimeEx.Jan1st1970;
+                if (value < new DateTime(1900, 1, 1))
+                    value = new DateTime(1900, 1, 1);
                 Text = value.ToString(dateFormat);
                 item.Date = value;
             }

@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -153,26 +153,45 @@ namespace Sunny.UI
             if (Option == null) return;
             if (!NeedDraw) return;
 
+            if (bmp == null || bmp.Width != Width || bmp.Height != Height)
+            {
+                bmp?.Dispose();
+                bmp = new Bitmap(Width, Height);
+            }
+
+            if (bmpGreater == null || bmpGreater.Width != Width || bmpGreater.Height != Height)
+            {
+                bmpGreater?.Dispose();
+                bmpGreater = new Bitmap(Width, Height);
+            }
+
+            if (bmpLess == null || bmpLess.Width != Width || bmpLess.Height != Height)
+            {
+                bmpLess?.Dispose();
+                bmpLess = new Bitmap(Width, Height);
+            }
+
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow) DrawToolTip(g);
-            DrawAxis(g);
+
             DrawTitle(g, Option.Title);
-            DrawAxisScales(g);
+
             DrawSeries(g);
             // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, Option.Legend);
+            DrawAxis(g);
+            DrawAxisScales(g);
             DrawOther(g);
-        }
-
-        protected virtual void DrawOther(Graphics g)
-        {
-
         }
 
         private void DrawAxis(Graphics g)
         {
             g.DrawRectangle(ChartStyle.ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
             float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
-            g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+            if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
+            {
+                g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+            }
+
             if (XScale == null || YScale == null) return;
 
             //X Tick
@@ -182,6 +201,8 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float x = labels[i];
+                    if (x <= Option.Grid.Left || x >= Width - Option.Grid.Right) continue;
+
                     if (Option.XAxis.AxisLabel.Show)
                     {
                         string label;
@@ -229,6 +250,8 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float y = labels[i];
+                    if (y <= Option.Grid.Top || y >= Height - Option.Grid.Bottom) continue;
+
                     if (Option.YAxis.AxisLabel.Show)
                     {
                         string label = YLabels[i].ToString(YScale.Format);
@@ -247,7 +270,6 @@ namespace Sunny.UI
                         g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
                     }
                 }
-
 
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
                 int xx = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height);
@@ -281,29 +303,49 @@ namespace Sunny.UI
             }
         }
 
+        Bitmap bmp, bmpGreater, bmpLess;
+
         private void DrawSeries(Graphics g)
         {
             if (YScale == null) return;
 
+            using (Graphics graphics = bmp.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
+            using (Graphics graphics = bmpGreater.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
+            using (Graphics graphics = bmpLess.Graphics())
+            {
+                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+            }
+
             int idx = 0;
+            float wTop = Option.Grid.Top;
+            float wBottom = Height - Option.Grid.Bottom;
+            float wLeft = Option.Grid.Left;
+            float wRight = Width - Option.Grid.Right;
+
             if (Option.GreaterWarningArea == null && Option.LessWarningArea == null)
             {
                 foreach (var series in Option.Series.Values)
                 {
                     Color color = series.Color;
                     if (!series.CustomColor) color = ChartStyle.GetColor(idx);
-                    DrawSeries(g, color, series);
+                    using (Graphics graphics = bmp.Graphics())
+                    {
+                        DrawSeries(graphics, color, series);
+                    }
+
                     idx++;
                 }
             }
             else
             {
-                Bitmap bmp = new Bitmap(Width, Height);
-                Bitmap bmpGreater = new Bitmap(Width, Height);
-                Bitmap bmpLess = new Bitmap(Width, Height);
-                float wTop = 0;
-                float wBottom = Height;
-
                 foreach (var series in Option.Series.Values)
                 {
                     Color color = series.Color;
@@ -336,24 +378,38 @@ namespace Sunny.UI
                 if (Option.GreaterWarningArea != null)
                 {
                     wTop = YScale.CalcYPixel(Option.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    g.DrawImage(bmpGreater, new Rectangle(0, 0, Width, (int)wTop),
-                        new Rectangle(0, 0, Width, (int)wTop), GraphicsUnit.Pixel);
+                    if (wTop < Option.Grid.Top)
+                    {
+                        wTop = Option.Grid.Top;
+                    }
+                    else
+                    {
+                        if (wTop > Height - Option.Grid.Bottom)
+                            wTop = Height - Option.Grid.Bottom;
+                        g.DrawImage(bmpGreater, new Rectangle((int)wLeft, Option.Grid.Top, (int)(wRight - wLeft), (int)(wTop - Option.Grid.Top)),
+                            new Rectangle((int)wLeft, Option.Grid.Top, (int)(wRight - wLeft), (int)(wTop - Option.Grid.Top)), GraphicsUnit.Pixel);
+                    }
                 }
 
                 if (Option.LessWarningArea != null)
                 {
                     wBottom = YScale.CalcYPixel(Option.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
-                    g.DrawImage(bmpLess, new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom),
-                        new Rectangle(0, (int)wBottom, Width, Height - (int)wBottom), GraphicsUnit.Pixel);
+                    if (wBottom > Height - Option.Grid.Bottom)
+                    {
+                        wBottom = Height - Option.Grid.Bottom;
+                    }
+                    else
+                    {
+                        if (wBottom < Option.Grid.Top)
+                            wBottom = Option.Grid.Top;
+                        g.DrawImage(bmpLess, new Rectangle((int)wLeft, (int)wBottom, (int)(wRight - wLeft), (int)(Height - Option.Grid.Bottom - wBottom)),
+                            new Rectangle((int)wLeft, (int)wBottom, (int)(wRight - wLeft), (int)(Height - Option.Grid.Bottom - wBottom)), GraphicsUnit.Pixel);
+                    }
                 }
-
-                g.DrawImage(bmp, new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop),
-                    new Rectangle(0, (int)wTop, Width, (int)wBottom - (int)wTop), GraphicsUnit.Pixel);
-
-                bmpGreater.Dispose();
-                bmpLess.Dispose();
-                bmp.Dispose();
             }
+
+            g.DrawImage(bmp, new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)),
+             new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)), GraphicsUnit.Pixel);
 
             idx = 0;
             foreach (var series in Option.Series.Values)
@@ -368,6 +424,9 @@ namespace Sunny.UI
                     {
                         foreach (var p in series.Points)
                         {
+                            if (p.X <= Option.Grid.Left || p.X >= Width - Option.Grid.Right) continue;
+                            if (p.Y <= Option.Grid.Top || p.Y >= Height - Option.Grid.Bottom) continue;
+
                             switch (series.Symbol)
                             {
                                 case UILinePointSymbol.Square:
@@ -436,6 +495,8 @@ namespace Sunny.UI
             foreach (var line in Option.YAxisScaleLines)
             {
                 float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+                if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
+
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - Option.Grid.Right, pos);
@@ -455,6 +516,8 @@ namespace Sunny.UI
             foreach (var line in Option.XAxisScaleLines)
             {
                 float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
+                if (pos <= Option.Grid.Left || pos >= Width - Option.Grid.Right) continue;
+
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, pos, DrawOrigin.Y, pos, Option.Grid.Top);
@@ -483,107 +546,231 @@ namespace Sunny.UI
             base.OnMouseMove(e);
             if (!NeedDraw) return;
 
-            selectPointsTemp.Clear();
-            foreach (var series in Option.Series.Values)
+            if (!IsMouseDown)
             {
-                if (series.DataCount == 0) continue;
-                if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
+                selectPointsTemp.Clear();
+                foreach (var series in Option.Series.Values)
                 {
-                    UILineSelectPoint point = new UILineSelectPoint();
-                    point.SeriesIndex = series.Index;
-                    point.Name = series.Name;
-                    point.Index = index;
-                    point.X = x;
-                    point.Y = y;
-                    point.Location = new Point((int)series.Points[index].X, (int)series.Points[index].Y);
-                    selectPointsTemp.Add(point);
+                    if (series.DataCount == 0) continue;
+                    if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
+                    {
+                        UILineSelectPoint point = new UILineSelectPoint();
+                        point.SeriesIndex = series.Index;
+                        point.Name = series.Name;
+                        point.Index = index;
+                        point.X = x;
+                        point.Y = y;
+                        point.Location = new Point((int)series.Points[index].X, (int)series.Points[index].Y);
+                        selectPointsTemp.Add(point);
+                    }
                 }
-            }
 
-            bool isNew = false;
-            if (selectPointsTemp.Count != selectPoints.Count)
-            {
-                isNew = true;
+                bool isNew = false;
+                if (selectPointsTemp.Count != selectPoints.Count)
+                {
+                    isNew = true;
+                }
+                else
+                {
+                    Dictionary<string, UILineSelectPoint> points = selectPoints.ToDictionary(p => p.Name);
+                    foreach (var point in selectPointsTemp)
+                    {
+                        if (!points.ContainsKey(point.Name))
+                        {
+                            isNew = true;
+                            break;
+                        }
+
+                        if (points[point.Name].Index != point.Index)
+                        {
+                            isNew = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (isNew)
+                {
+                    selectPoints.Clear();
+                    StringBuilder sb = new StringBuilder();
+                    int idx = 0;
+                    Dictionary<int, UILineSelectPoint> dictionary = selectPointsTemp.ToDictionary(p => p.SeriesIndex);
+                    List<UILineSelectPoint> points = dictionary.SortedValues();
+                    foreach (var point in points)
+                    {
+                        selectPoints.Add(point);
+
+                        if (idx > 0) sb.Append('\n');
+
+                        sb.Append(point.Name);
+                        sb.Append('\n');
+                        sb.Append(Option.XAxis.Name + ": ");
+                        if (Option.XAxisType == UIAxisType.DateTime)
+                            sb.Append(new DateTimeInt64(point.X).ToString(Option.XAxis.AxisLabel.DateTimeFormat));
+                        else
+                            sb.Append(point.X.ToString("F" + Option.XAxis.AxisLabel.DecimalCount));
+                        sb.Append('\n');
+                        sb.Append(
+                            Option.YAxis.Name + ": " + point.Y.ToString("F" + Option.YAxis.AxisLabel.DecimalCount));
+                        idx++;
+                    }
+
+                    if (Option.ToolTip.Visible)
+                    {
+                        if (sb.ToString().IsNullOrEmpty())
+                        {
+                            tip.Visible = false;
+                        }
+                        else
+                        {
+                            using (Graphics g = this.CreateGraphics())
+                            {
+                                SizeF sf = g.MeasureString(sb.ToString(), SubFont);
+                                tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
+                            }
+
+                            int x = e.Location.X + 15;
+                            int y = e.Location.Y + 20;
+                            if (e.Location.X + 15 + tip.Width > Width - Option.Grid.Right)
+                                x = e.Location.X - tip.Width - 2;
+                            if (e.Location.Y + 20 + tip.Height > Height - Option.Grid.Bottom)
+                                y = e.Location.Y - tip.Height - 2;
+
+                            tip.Left = x;
+                            tip.Top = y;
+
+                            tip.Text = sb.ToString();
+                            if (!tip.Visible) tip.Visible = true;
+                        }
+                    }
+
+                    PointValue?.Invoke(this, selectPoints.ToArray());
+                }
             }
             else
             {
-                Dictionary<string, UILineSelectPoint> points = selectPoints.ToDictionary(p => p.Name);
-                foreach (var point in selectPointsTemp)
+                if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                    e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
                 {
-                    if (!points.ContainsKey(point.Name))
-                    {
-                        isNew = true;
-                        break;
-                    }
-
-                    if (points[point.Name].Index != point.Index)
-                    {
-                        isNew = true;
-                        break;
-                    }
+                    StopPoint = e.Location;
+                    Invalidate();
                 }
-            }
-
-            if (isNew)
-            {
-                selectPoints.Clear();
-                StringBuilder sb = new StringBuilder();
-                int idx = 0;
-                Dictionary<int, UILineSelectPoint> dictionary = selectPointsTemp.ToDictionary(p => p.SeriesIndex);
-                List<UILineSelectPoint> points = dictionary.SortedValues();
-                foreach (var point in points)
-                {
-                    selectPoints.Add(point);
-
-                    if (idx > 0) sb.Append('\n');
-
-                    sb.Append(point.Name);
-                    sb.Append('\n');
-                    sb.Append(Option.XAxis.Name + ": ");
-                    if (Option.XAxisType == UIAxisType.DateTime)
-                        sb.Append(new DateTimeInt64(point.X).ToString(Option.XAxis.AxisLabel.DateTimeFormat));
-                    else
-                        sb.Append(point.X.ToString("F" + Option.XAxis.AxisLabel.DecimalCount));
-                    sb.Append('\n');
-                    sb.Append(Option.YAxis.Name + ": " + point.Y.ToString("F" + Option.YAxis.AxisLabel.DecimalCount));
-                    idx++;
-                }
-
-                if (Option.ToolTip.Visible)
-                {
-                    if (sb.ToString().IsNullOrEmpty())
-                    {
-                        tip.Visible = false;
-                    }
-                    else
-                    {
-                        using (Graphics g = this.CreateGraphics())
-                        {
-                            SizeF sf = g.MeasureString(sb.ToString(), SubFont);
-                            tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
-                        }
-
-                        int x = e.Location.X + 15;
-                        int y = e.Location.Y + 20;
-                        if (e.Location.X + 15 + tip.Width > Width - Option.Grid.Right)
-                            x = e.Location.X - tip.Width - 2;
-                        if (e.Location.Y + 20 + tip.Height > Height - Option.Grid.Bottom)
-                            y = e.Location.Y - tip.Height - 2;
-
-                        tip.Left = x;
-                        tip.Top = y;
-
-                        tip.Text = sb.ToString();
-                        if (!tip.Visible) tip.Visible = true;
-                    }
-                }
-
-                PointValue?.Invoke(this, selectPoints.ToArray());
             }
         }
 
         public delegate void OnPointValue(object sender, UILineSelectPoint[] points);
 
         public event OnPointValue PointValue;
+
+        private bool IsMouseDown;
+
+        private Point StartPoint, StopPoint;
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (IsZoom) return;
+            if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+            {
+                IsMouseDown = true;
+                StartPoint = e.Location;
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            if (IsMouseDown)
+            {
+                IsMouseDown = false;
+                Invalidate();
+                Zoom();
+            }
+        }
+
+        private bool IsZoom;
+        private bool XMinAuto, XMaxAuto, YMinAuto, YMaxAuto;
+        private double XMin, XMax, YMin, YMax;
+
+        private void Zoom()
+        {
+            if (Math.Abs(StartPoint.X - StopPoint.X) < 10 || Math.Abs(StartPoint.Y - StopPoint.Y) < 10) return;
+
+            IsZoom = true;
+
+            XMin = Option.XAxis.Min;
+            XMax = Option.XAxis.Max;
+            YMin = Option.YAxis.Min;
+            YMax = Option.YAxis.Max;
+            XMinAuto = Option.XAxis.MinAuto;
+            XMaxAuto = Option.XAxis.MaxAuto;
+            YMinAuto = Option.YAxis.MinAuto;
+            YMaxAuto = Option.YAxis.MaxAuto;
+
+            double xmin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+            double xmax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+            double ymax = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+            double ymin = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+            Option.XAxis.Min = xmin;
+            Option.XAxis.Max = xmax;
+            Option.YAxis.Min = ymin;
+            Option.YAxis.Max = ymax;
+            Option.XAxis.MinAuto = false;
+            Option.XAxis.MaxAuto = false;
+            Option.YAxis.MinAuto = false;
+            Option.YAxis.MaxAuto = false;
+            CalcData();
+            Invalidate();
+        }
+
+        private void ZoomNormal()
+        {
+            IsZoom = false;
+
+            Option.XAxis.Min = XMin;
+            Option.XAxis.Max = XMax;
+            Option.YAxis.Min = YMin;
+            Option.YAxis.Max = YMax;
+            Option.XAxis.MinAuto = XMinAuto;
+            Option.XAxis.MaxAuto = XMaxAuto;
+            Option.YAxis.MinAuto = YMinAuto;
+            Option.YAxis.MaxAuto = YMaxAuto;
+            CalcData();
+            Invalidate();
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            IsMouseDown = false;
+        }
+
+        protected virtual void DrawOther(Graphics g)
+        {
+            if (IsMouseDown)
+            {
+                Color color = Color.FromArgb(50, UIColor.Blue);
+                g.FillRectangle(color,
+                    Math.Min(StartPoint.X, StopPoint.X),
+                    Math.Min(StartPoint.Y, StopPoint.Y),
+                    Math.Abs(StopPoint.X - StartPoint.X),
+                    Math.Abs(StopPoint.Y - StartPoint.Y));
+                g.DrawRectangle(UIColor.Blue,
+                    Math.Min(StartPoint.X, StopPoint.X),
+                    Math.Min(StartPoint.Y, StopPoint.Y),
+                    Math.Abs(StopPoint.X - StartPoint.X),
+                    Math.Abs(StopPoint.Y - StartPoint.Y));
+            }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            if (IsZoom)
+            {
+                ZoomNormal();
+            }
+        }
     }
 }

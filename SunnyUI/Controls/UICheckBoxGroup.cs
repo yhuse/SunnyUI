@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -72,6 +72,13 @@ namespace Sunny.UI
             boxes.Clear();
         }
 
+        public void Clear()
+        {
+            Items.Clear();
+            ClearBoxes();
+            Invalidate();
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
@@ -102,7 +109,6 @@ namespace Sunny.UI
 
         private void CreateBoxes()
         {
-            if (Items.Count == 0) return;
             if (Items.Count != boxes.Count)
             {
                 ClearBoxes();

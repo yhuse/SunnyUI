@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -49,8 +50,9 @@ namespace Sunny.UI
             if (option == null || option.Infos.Count == 0) return;
 
             base.Text = option.Text;
-            int tabIndex = 0;
             int top = 55;
+
+            List<Control> ctrls = new List<Control>();
 
             if (option.AutoLabelWidth)
             {
@@ -86,8 +88,25 @@ namespace Sunny.UI
                     edit.Top = top;
                     edit.Text = info.Value.ToString();
                     edit.Parent = this;
-                    edit.TabIndex = tabIndex;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
+                }
+
+                if (info.EditType == EditType.Password)
+                {
+                    UITextBox edit = new UITextBox();
+                    edit.Left = option.LabelWidth;
+                    edit.Width = option.ValueWidth;
+                    edit.Top = top;
+                    edit.Text = info.Value.ToString();
+                    edit.Parent = this;
+                    edit.PasswordChar = '*';
+                    edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
                 }
 
                 if (info.EditType == EditType.Integer)
@@ -99,8 +118,9 @@ namespace Sunny.UI
                     edit.Top = top;
                     edit.IntValue = info.Value.ToString().ToInt();
                     edit.Parent = this;
-                    edit.TabIndex = tabIndex;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
                 }
 
                 if (info.EditType == EditType.Double)
@@ -112,8 +132,10 @@ namespace Sunny.UI
                     edit.Top = top;
                     edit.DoubleValue = info.Value.ToString().ToDouble();
                     edit.Parent = this;
-                    edit.TabIndex = tabIndex;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.EnterAsTab = true;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
                 }
 
                 if (info.EditType == EditType.Date)
@@ -124,8 +146,9 @@ namespace Sunny.UI
                     edit.Top = top;
                     edit.Value = (DateTime)info.Value;
                     edit.Parent = this;
-                    edit.TabIndex = tabIndex;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
                 }
 
                 if (info.EditType == EditType.DateTime)
@@ -136,15 +159,30 @@ namespace Sunny.UI
                     edit.Top = top;
                     edit.Value = (DateTime)info.Value;
                     edit.Parent = this;
-                    edit.TabIndex = tabIndex;
                     edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
                 }
 
                 top += 29 + 10;
+            }
+
+            pnlBtm.BringToFront();
+            Height = top + 10 + 55;
+
+            int tabIndex = 0;
+            foreach (var ctrl in ctrls)
+            {
+                ctrl.TabIndex = tabIndex;
                 tabIndex++;
             }
 
-            Height = top + 10 + 55;
+            pnlBtm.TabIndex = tabIndex;
+            tabIndex++;
+            btnOK.TabIndex = tabIndex;
+            tabIndex++;
+            btnCancel.TabIndex = tabIndex;
+            btnOK.ShowFocusLine = btnCancel.ShowFocusLine = true;
         }
 
         public object this[string dataPropertyName]
@@ -228,7 +266,7 @@ namespace Sunny.UI
             {
                 foreach (var info in Option.Infos)
                 {
-                    if (info.EditType == EditType.Text)
+                    if (info.EditType == EditType.Text || info.EditType == EditType.Password)
                     {
                         UITextBox edit = this.GetControl<UITextBox>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;

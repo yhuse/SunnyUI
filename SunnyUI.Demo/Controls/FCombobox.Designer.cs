@@ -92,11 +92,17 @@
             this.uiComboTreeView2 = new Sunny.UI.UIComboTreeView();
             this.uiComboTreeView3 = new Sunny.UI.UIComboTreeView();
             this.uiComboTreeView4 = new Sunny.UI.UIComboTreeView();
+            this.uiLine4 = new Sunny.UI.UILine();
+            this.uiComboboxEx1 = new Sunny.UI.UIComboboxEx();
+            this.uiComboboxEx2 = new Sunny.UI.UIComboboxEx();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiComboboxEx2);
+            this.PagePanel.Controls.Add(this.uiComboboxEx1);
+            this.PagePanel.Controls.Add(this.uiLine4);
             this.PagePanel.Controls.Add(this.uiComboTreeView3);
             this.PagePanel.Controls.Add(this.uiComboTreeView4);
             this.PagePanel.Controls.Add(this.uiComboTreeView2);
@@ -251,13 +257,6 @@
             this.uiComboBox2.DropDownWidth = 300;
             this.uiComboBox2.FillColor = System.Drawing.Color.White;
             this.uiComboBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiComboBox2.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
             this.uiComboBox2.Location = new System.Drawing.Point(188, 54);
             this.uiComboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox2.MinimumSize = new System.Drawing.Size(63, 0);
@@ -266,6 +265,7 @@
             this.uiComboBox2.Size = new System.Drawing.Size(150, 29);
             this.uiComboBox2.TabIndex = 33;
             this.uiComboBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboBox2.SelectedIndexChanged += new System.EventHandler(this.uiComboBox2_SelectedIndexChanged);
             // 
             // uiComboBox1
             // 
@@ -446,6 +446,48 @@
             this.uiComboTreeView4.TabIndex = 47;
             this.uiComboTreeView4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLine4
+            // 
+            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.Location = new System.Drawing.Point(30, 261);
+            this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine4.Name = "uiLine4";
+            this.uiLine4.Size = new System.Drawing.Size(308, 20);
+            this.uiLine4.TabIndex = 49;
+            this.uiLine4.Text = "UIComboBoxEx";
+            this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiComboboxEx1
+            // 
+            this.uiComboboxEx1.BackColor = System.Drawing.Color.White;
+            this.uiComboboxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.uiComboboxEx1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiComboboxEx1.FormattingEnabled = true;
+            this.uiComboboxEx1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.uiComboboxEx1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiComboboxEx1.Location = new System.Drawing.Point(30, 294);
+            this.uiComboboxEx1.Name = "uiComboboxEx1";
+            this.uiComboboxEx1.Size = new System.Drawing.Size(150, 30);
+            this.uiComboboxEx1.TabIndex = 50;
+            // 
+            // uiComboboxEx2
+            // 
+            this.uiComboboxEx2.BackColor = System.Drawing.Color.White;
+            this.uiComboboxEx2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.uiComboboxEx2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiComboboxEx2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiComboboxEx2.FormattingEnabled = true;
+            this.uiComboboxEx2.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiComboboxEx2.Location = new System.Drawing.Point(188, 294);
+            this.uiComboboxEx2.Name = "uiComboboxEx2";
+            this.uiComboboxEx2.Size = new System.Drawing.Size(150, 30);
+            this.uiComboboxEx2.TabIndex = 51;
+            // 
             // FCombobox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -477,5 +519,8 @@
         private UIComboTreeView uiComboTreeView1;
         private UIComboTreeView uiComboTreeView3;
         private UIComboTreeView uiComboTreeView4;
+        private UILine uiLine4;
+        private UIComboboxEx uiComboboxEx2;
+        private UIComboboxEx uiComboboxEx1;
     }
 }

@@ -37,7 +37,11 @@
             this.uiLogo1 = new Sunny.UI.UILogo();
             this.uiAvatar = new Sunny.UI.UIAvatar();
             this.StyleManager = new Sunny.UI.UIStyleManager(this.components);
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Header.SuspendLayout();
+            this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Aside
@@ -99,11 +103,36 @@
             this.uiAvatar.TabIndex = 4;
             this.uiAvatar.Text = "uiAvatar1";
             // 
+            // uiContextMenuStrip1
+            // 
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.关于ToolStripMenuItem,
+            this.关于ToolStripMenuItem1});
+            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(113, 56);
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
+            this.关于ToolStripMenuItem.Text = "主页";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
+            // 
+            // 关于ToolStripMenuItem1
+            // 
+            this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
+            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(112, 26);
+            this.关于ToolStripMenuItem1.Text = "关于";
+            this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 720);
+            this.ExtendBox = true;
+            this.ExtendMenu = this.uiContextMenuStrip1;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 720);
             this.Name = "FMain";
@@ -114,7 +143,10 @@
             this.ShowShadow = true;
             this.Text = "SunnyUI.Net";
             this.Selecting += new Sunny.UI.UIMainFrame.OnSelecting(this.FMain_Selecting);
+            this.Controls.SetChildIndex(this.Header, 0);
+            this.Controls.SetChildIndex(this.Aside, 0);
             this.Header.ResumeLayout(false);
+            this.uiContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -124,5 +156,8 @@
         private UILogo uiLogo1;
         private UIAvatar uiAvatar;
         private UIStyleManager StyleManager;
+        private UIContextMenuStrip uiContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
     }
 }

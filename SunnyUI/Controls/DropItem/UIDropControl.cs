@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2020 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@qq.com
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -70,7 +70,24 @@ namespace Sunny.UI
 
         private void UIDropControl_PaintOther(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(RectColor, Width - 1, Radius, Width - 1, Height - Radius);
+            if (Enabled)
+            {
+                if (Radius == 0 || RadiusSides == UICornerRadiusSides.None)
+                    e.Graphics.DrawRectangle(RectColor, 0, 0, Width - 1, Height - 1);
+                else
+                    e.Graphics.DrawRoundRectangle(RectColor, 0, 0, Width, Height, Radius);
+
+                edit.BackColor = Color.White;
+            }
+            else
+            {
+                if (Radius == 0 || RadiusSides == UICornerRadiusSides.None)
+                    e.Graphics.DrawRectangle(RectDisableColor, 0, 0, Width - 1, Height - 1);
+                else
+                    e.Graphics.DrawRoundRectangle(RectDisableColor, 0, 0, Width, Height, Radius);
+
+                edit.BackColor = GetFillColor();
+            }
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)
@@ -400,8 +417,6 @@ namespace Sunny.UI
         protected class TextBoxEx : TextBox
         {
             private string watermark;
-
-
 
             [DefaultValue(null)]
             public string Watermark

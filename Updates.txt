@@ -1,5 +1,25 @@
 + 增加； - 删除； * 修改 
 
+2020-02-26 V3.0.1
++ UIForm：标题栏增加扩展按钮
++ UIHeaderButton：新增大图标的导航按钮
++ 新增UIComboboxEx，从Combobox原生控件继承，以方便做查询过滤等操作
+* UIForm：修正不显示标题栏时，标题栏位置可放置控件
+* UIListBox：增加一些原有属性
+* FCombobox：增加数据绑定Demo
+* UICombobox：更改索引改变事件的多次触发
+* UIForm：修改一处Icon图片显示的问题
+* UIEditForm：修改通过代码生成窗体控件的TabIndex
+* UIDatePicker，UIDateTimePicker：将日期选择控件的最小值调整为1900年
+* UIHeaderButton：将其命名空间从Sunny.UI.Control改为Sunny.UI
+
+2020-01-26 V3.0.0
++ 同时兼容.Net Framework 4.0+、.Net Core3.1、.Net 5 框架
+* 更新UIMessageTip
+* UIForm：增加ShowTitleIcon用来显示标题栏图标，与ShowIcon分开
+* UINavBar：增加下拉菜单可设置自动高度或者固定高度，可显示ImageList绑定
+* UIDataGridView更新行头和列头的选中颜色
+
 2021-01-05 V2.2.10
 * V2.2 .Net Framewok 4.0最终版本
 * V3.0 开始将同时兼容.Net Framework 4.0+、.Net Core3.1、.Net 5 框架

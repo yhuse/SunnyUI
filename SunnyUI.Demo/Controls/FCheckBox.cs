@@ -44,5 +44,10 @@ namespace Sunny.UI.Demo
         {
             uiCheckBoxGroup1.SelectedIndexes = new List<int>() { 2, 4 };
         }
+
+        private void uiButton5_Click(object sender, EventArgs e)
+        {
+            uiCheckBoxGroup1.Clear();
+        }
     }
 }
