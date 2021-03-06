@@ -594,13 +594,7 @@ namespace Sunny.UI
             frm.TopMost = true;
         }
 
-        public static bool ShowDialog(this UIEditOption option)
-        {
-            UIEditForm frm = new UIEditForm(option);
-            return frm.ShowDialog() == DialogResult.OK;
-        }
-
-        public static UIEditForm Create(this UIEditOption option)
+        public static UIEditForm CreateForm(this UIEditOption option)
         {
             return new UIEditForm(option);
         }
