@@ -674,7 +674,7 @@ namespace Sunny.UI
                 e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
             {
                 IsMouseDown = true;
-                StartPoint = e.Location;
+                StartPoint = StopPoint = e.Location;
             }
         }
 
