@@ -87,10 +87,9 @@ namespace Sunny.UI
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
-        public void SetStyleColor(UIBaseStyle uiColor)
+        public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
             if (uiColor.IsCustom()) return;
-
             ForeColor = uiColor.LabelForeColor;
             Invalidate();
         }

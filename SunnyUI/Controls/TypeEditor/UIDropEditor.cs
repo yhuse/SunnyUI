@@ -25,6 +25,7 @@ using System.Drawing.Design;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+#pragma warning disable SYSLIB0003 // 类型或成员已过时
 
 namespace Sunny.UI
 {

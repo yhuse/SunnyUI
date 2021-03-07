@@ -35,11 +35,21 @@
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiSymbolLabel1 = new Sunny.UI.UISymbolLabel();
             this.uiSymbolLabel2 = new Sunny.UI.UISymbolLabel();
+            this.uiMarkLabel1 = new Sunny.UI.UIMarkLabel();
+            this.uiLine4 = new Sunny.UI.UILine();
+            this.uiMarkLabel2 = new Sunny.UI.UIMarkLabel();
+            this.uiMarkLabel3 = new Sunny.UI.UIMarkLabel();
+            this.uiMarkLabel4 = new Sunny.UI.UIMarkLabel();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiMarkLabel4);
+            this.PagePanel.Controls.Add(this.uiMarkLabel3);
+            this.PagePanel.Controls.Add(this.uiMarkLabel2);
+            this.PagePanel.Controls.Add(this.uiLine4);
+            this.PagePanel.Controls.Add(this.uiMarkLabel1);
             this.PagePanel.Controls.Add(this.uiSymbolLabel2);
             this.PagePanel.Controls.Add(this.uiSymbolLabel1);
             this.PagePanel.Controls.Add(this.uiLine3);
@@ -113,6 +123,7 @@
             // 
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolLabel1.Location = new System.Drawing.Point(42, 209);
+            this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
             this.uiSymbolLabel1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolLabel1.Size = new System.Drawing.Size(91, 24);
@@ -124,6 +135,7 @@
             // 
             this.uiSymbolLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolLabel2.Location = new System.Drawing.Point(139, 209);
+            this.uiSymbolLabel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel2.Name = "uiSymbolLabel2";
             this.uiSymbolLabel2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolLabel2.Size = new System.Drawing.Size(91, 24);
@@ -131,6 +143,64 @@
             this.uiSymbolLabel2.TabIndex = 23;
             this.uiSymbolLabel2.Text = "Cancel";
             this.uiSymbolLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiMarkLabel1
+            // 
+            this.uiMarkLabel1.AutoSize = true;
+            this.uiMarkLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel1.Location = new System.Drawing.Point(42, 285);
+            this.uiMarkLabel1.Name = "uiMarkLabel1";
+            this.uiMarkLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.uiMarkLabel1.Size = new System.Drawing.Size(118, 21);
+            this.uiMarkLabel1.TabIndex = 24;
+            this.uiMarkLabel1.Text = "uiMarkLabel1";
+            // 
+            // uiLine4
+            // 
+            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.Location = new System.Drawing.Point(30, 248);
+            this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine4.Name = "uiLine4";
+            this.uiLine4.Size = new System.Drawing.Size(670, 20);
+            this.uiLine4.TabIndex = 25;
+            this.uiLine4.Text = "UIMarkLabel";
+            this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiMarkLabel2
+            // 
+            this.uiMarkLabel2.AutoSize = true;
+            this.uiMarkLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel2.Location = new System.Drawing.Point(42, 326);
+            this.uiMarkLabel2.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Bottom;
+            this.uiMarkLabel2.Name = "uiMarkLabel2";
+            this.uiMarkLabel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.uiMarkLabel2.Size = new System.Drawing.Size(113, 26);
+            this.uiMarkLabel2.TabIndex = 26;
+            this.uiMarkLabel2.Text = "uiMarkLabel2";
+            // 
+            // uiMarkLabel3
+            // 
+            this.uiMarkLabel3.AutoSize = true;
+            this.uiMarkLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel3.Location = new System.Drawing.Point(185, 285);
+            this.uiMarkLabel3.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Right;
+            this.uiMarkLabel3.Name = "uiMarkLabel3";
+            this.uiMarkLabel3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.uiMarkLabel3.Size = new System.Drawing.Size(118, 21);
+            this.uiMarkLabel3.TabIndex = 27;
+            this.uiMarkLabel3.Text = "uiMarkLabel3";
+            // 
+            // uiMarkLabel4
+            // 
+            this.uiMarkLabel4.AutoSize = true;
+            this.uiMarkLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel4.Location = new System.Drawing.Point(190, 326);
+            this.uiMarkLabel4.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Top;
+            this.uiMarkLabel4.Name = "uiMarkLabel4";
+            this.uiMarkLabel4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.uiMarkLabel4.Size = new System.Drawing.Size(113, 26);
+            this.uiMarkLabel4.TabIndex = 28;
+            this.uiMarkLabel4.Text = "uiMarkLabel4";
             // 
             // FLabel
             // 
@@ -156,5 +226,10 @@
         private UILine uiLine1;
         private UISymbolLabel uiSymbolLabel1;
         private UISymbolLabel uiSymbolLabel2;
+        private UIMarkLabel uiMarkLabel1;
+        private UILine uiLine4;
+        private UIMarkLabel uiMarkLabel4;
+        private UIMarkLabel uiMarkLabel3;
+        private UIMarkLabel uiMarkLabel2;
     }
 }

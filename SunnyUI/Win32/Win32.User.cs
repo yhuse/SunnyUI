@@ -4,6 +4,7 @@ using System.Text;
 using HANDLE = System.IntPtr;
 using HDC = System.IntPtr;
 using HWND = System.IntPtr;
+#pragma warning disable CS0618 // 类型或成员已过时
 
 namespace Sunny.UI.Win32
 {

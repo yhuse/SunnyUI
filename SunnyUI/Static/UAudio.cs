@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Media;
 using System.Security;
 using System.Security.Permissions;
+#pragma warning disable SYSLIB0003 // 类型或成员已过时
 
 namespace Sunny.UI
 {
