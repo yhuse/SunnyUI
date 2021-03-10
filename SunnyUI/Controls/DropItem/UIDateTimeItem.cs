@@ -1207,7 +1207,7 @@ namespace Sunny.UI
             date = days[id].Date;
             date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
             DoValueChanged(this, Date);
-            CloseParent();
+            //CloseParent();
         }
     }
 }
