@@ -460,7 +460,7 @@ namespace Sunny.UI
             }
         }
 
-        private Color secondBackColor = UIColor.Blue;
+        private Color secondBackColor = Color.FromArgb(66, 66, 66);
 
         [DefaultValue(typeof(Color), "66, 66, 66")]
         [Description("二级节点背景颜色"), Category("SunnyUI")]
