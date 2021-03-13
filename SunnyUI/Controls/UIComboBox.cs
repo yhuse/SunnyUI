@@ -44,6 +44,7 @@ namespace Sunny.UI
             box.DisplayMemberChanged += Box_DisplayMemberChanged;
             box.ValueMemberChanged += Box_ValueMemberChanged;
             DropDownWidth = 150;
+            fullControlSelect = true;
         }
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)

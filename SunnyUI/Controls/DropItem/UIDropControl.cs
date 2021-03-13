@@ -66,6 +66,14 @@ namespace Sunny.UI
             fillColor = Color.White;
             edit.BackColor = Color.White;
             PaintOther += UIDropControl_PaintOther;
+            MouseMove += UIDropControl_MouseMove;
+        }
+
+        protected Point MouseLocation;
+
+        private void UIDropControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseLocation = e.Location;
         }
 
         private void UIDropControl_PaintOther(object sender, PaintEventArgs e)
@@ -383,6 +391,8 @@ namespace Sunny.UI
             edit.ForeColor = foreColor;
         }
 
+        protected bool fullControlSelect;
+
         protected override void OnClick(EventArgs e)
         {
             if (!ReadOnly)
@@ -396,7 +406,16 @@ namespace Sunny.UI
                 }
 
                 DropDown?.Invoke(this, e);
-                ButtonClick?.Invoke(this, e);
+
+
+                if (fullControlSelect || MouseLocation.X > Width - 30)
+                {
+                    ButtonClick?.Invoke(this, e);
+                }
+                else
+                {
+                    base.OnClick(e);
+                }
             }
         }
 

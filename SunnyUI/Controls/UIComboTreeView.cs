@@ -14,6 +14,7 @@ namespace Sunny.UI
         public UIComboTreeView()
         {
             InitializeComponent();
+            fullControlSelect = true;
         }
 
         private void InitializeComponent()
@@ -50,18 +51,22 @@ namespace Sunny.UI
         public bool CheckBoxes
         {
             get => item.CheckBoxes;
-            set { item.CheckBoxes = value;
+            set
+            {
+                item.CheckBoxes = value;
                 if (value)
                 {
                     CanSelectRootNode = false;
-                }                    
+                }
             }
         }
 
         [DefaultValue(false), Description("单选时是否可选择父节点,该属性与CheckBoxes互斥"), Category("SunnyUI")]
-        public bool CanSelectRootNode {
-            get =>item.CanSelectRootNode;
-            set {
+        public bool CanSelectRootNode
+        {
+            get => item.CanSelectRootNode;
+            set
+            {
                 item.CanSelectRootNode = value;
                 if (value)
                 {

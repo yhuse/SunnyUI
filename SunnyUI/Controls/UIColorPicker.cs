@@ -17,8 +17,9 @@
  * 创建日期: 2020-05-29
  *
  * 2020-05-31: V2.2.5 增加文件
+ * 2021-03-13: V3.0.2 增加单击事件以选中颜色
  ******************************************************************************
- * 文件名称: Color picker with color wheel and eye dropper
+ * 文件名称: UIColorPicker.cs
  * 文件说明: Color picker with color wheel and eye dropper
  * 文件作者: jkristia
  * 开源协议: CPOL
@@ -31,6 +32,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
+    [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
     public sealed class UIColorPicker : UIDropControl
     {
@@ -64,6 +66,14 @@ namespace Sunny.UI
         {
             item.SelectedColor = Value;
             ItemForm.Show(this);
+        }
+
+        [DefaultValue(false)]
+        [Description("整个控件点击下拉选择颜色"), Category("SunnyUI")]
+        public bool FullControlSelect
+        {
+            get => fullControlSelect;
+            set => fullControlSelect = value;
         }
 
         protected override void ItemForm_ValueChanged(object sender, object value)

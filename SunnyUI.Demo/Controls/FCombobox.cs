@@ -70,5 +70,15 @@ namespace Sunny.UI.Demo
         {
             ShowInfoTip(uiComboBox2.SelectedValue.ToString());
         }
+
+        private void uiColorPicker1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(uiColorPicker1.Value.ToString());
+        }
+
+        private void uiColorPicker1_ValueChanged(object sender, System.Drawing.Color value)
+        {
+            Console.WriteLine(uiColorPicker1.Value.ToString());
+        }
     }
 }
