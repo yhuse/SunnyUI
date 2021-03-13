@@ -586,7 +586,7 @@ namespace Sunny.UI
             }
         }
 
-        [Description("展开节点后选中第一个子节点"), DefaultValue(true), Category("SunnyUI")]
+        [Description("展开节点后选中第一个子节点"), Category("SunnyUI")]
         public bool ExpandSelectFirst { get; set; } = true;
 
         public string Version { get; }

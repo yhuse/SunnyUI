@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("控件");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("窗体");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("图表");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("主题");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("控件");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("窗体");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("图表");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("主题");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.uiLogo1 = new Sunny.UI.UILogo();
             this.uiAvatar = new Sunny.UI.UIAvatar();
@@ -46,13 +46,11 @@
             // 
             // Aside
             // 
-            this.Aside.ExpandSelectFirst = false;
             this.Aside.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Aside.ItemHeight = 36;
             this.Aside.LineColor = System.Drawing.Color.Black;
             this.Aside.Location = new System.Drawing.Point(2, 145);
             this.Aside.MenuStyle = Sunny.UI.UIMenuStyle.Black;
-            this.Aside.SecondBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.Aside.ShowOneNode = true;
             this.Aside.ShowSecondBackColor = true;
             this.Aside.ShowTips = true;
@@ -65,20 +63,20 @@
             this.Header.Controls.Add(this.uiAvatar);
             this.Header.Controls.Add(this.uiLogo1);
             this.Header.Location = new System.Drawing.Point(2, 35);
-            treeNode5.ImageIndex = 1;
-            treeNode5.Name = "节点0";
-            treeNode5.Text = "控件";
-            treeNode6.Name = "节点1";
-            treeNode6.Text = "窗体";
-            treeNode7.Name = "节点2";
-            treeNode7.Text = "图表";
-            treeNode8.Name = "节点2";
-            treeNode8.Text = "主题";
+            treeNode9.ImageIndex = 1;
+            treeNode9.Name = "节点0";
+            treeNode9.Text = "控件";
+            treeNode10.Name = "节点1";
+            treeNode10.Text = "窗体";
+            treeNode11.Name = "节点2";
+            treeNode11.Text = "图表";
+            treeNode12.Name = "节点2";
+            treeNode12.Text = "主题";
             this.Header.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
             this.Header.SelectedIndex = 0;
             this.Header.Size = new System.Drawing.Size(1020, 110);
             this.Header.Style = Sunny.UI.UIStyle.Custom;
