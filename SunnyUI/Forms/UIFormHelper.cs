@@ -273,12 +273,12 @@ namespace Sunny.UI
 
         public static bool InputStringDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputStringDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputStringDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
@@ -307,12 +307,12 @@ namespace Sunny.UI
 
         public static bool InputPasswordDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputPasswordDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputPasswordDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue)
@@ -367,12 +367,12 @@ namespace Sunny.UI
 
         public static bool InputIntegerDialog(this UIForm form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputIntegerDialog(this UIPage form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputIntegerDialog(this Form form, ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
@@ -382,12 +382,12 @@ namespace Sunny.UI
 
         public static bool InputIntegerDialog(this UIForm form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputIntegerDialog(this UIPage form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputIntegerDialog(this Form form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
@@ -443,12 +443,12 @@ namespace Sunny.UI
 
         public static bool InputDoubleDialog(this UIForm form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputDoubleDialog(this UIPage form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputDoubleDialog(this Form form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
@@ -458,12 +458,12 @@ namespace Sunny.UI
 
         public static bool InputDoubleDialog(this UIForm form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputDoubleDialog(this UIPage form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form.Style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool InputDoubleDialog(this Form form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
@@ -512,12 +512,12 @@ namespace Sunny.UI
 
         public static bool ShowSelectDialog(this UIForm form, ref int selectIndex, IList items, string title, string description)
         {
-            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style, form != null && form.TopMost);
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
 
         public static bool ShowSelectDialog(this UIPage form, ref int selectIndex, IList items, string title, string description)
         {
-            return form.ShowSelectDialog(ref selectIndex, items, title, description, form.Style, form != null && form.TopMost);
+            return form.ShowSelectDialog(ref selectIndex, items, title, description, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
         }
     }
 
