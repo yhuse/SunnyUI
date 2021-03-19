@@ -286,7 +286,7 @@ namespace Sunny.UI
                 return;
             }
 
-            if (series.Points.Count == 1 && series.Symbol == UILinePointSymbol.None)
+            if (series.Points.Count == 1)
             {
                 g.DrawPoint(color, series.Points[0], 4);
                 return;
