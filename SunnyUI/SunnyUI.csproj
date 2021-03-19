@@ -38,6 +38,7 @@
   <ItemGroup>
 	<None Remove="Font\ElegantIcons.ttf" />
 	<None Remove="Font\FontAwesome.ttf" />
+	<None Remove="Font\LigatureSymbols.ttf" />
 	<None Include="..\LICENSE">
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
@@ -51,6 +52,7 @@
   <ItemGroup>
 	<EmbeddedResource Include="Font\ElegantIcons.ttf" />
 	<EmbeddedResource Include="Font\FontAwesome.ttf" />
+	<EmbeddedResource Include="Font\LigatureSymbols.ttf" />
   </ItemGroup>
  
   <ItemGroup>

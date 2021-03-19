@@ -31,6 +31,7 @@ namespace Sunny.UI
 
     /// <summary>
     /// FontAwesome.ttf V4.7
+    /// 61440..62176
     /// </summary>
     public static class FontAwesomeIcons
     {
@@ -849,6 +850,7 @@ namespace Sunny.UI
 
     /// <summary>
     /// ElegantIcons.ttf V1.0
+    /// 33..126, 57344..57609
     /// </summary>
     public static class FontElegantIcons
     {
@@ -1212,5 +1214,252 @@ namespace Sunny.UI
         public const int icon_percent_alt = 0xe0da;
         public const int icon_globe_alt = 0xe0de;
         public const int icon_clipboard = 0xe0e6;
+    }
+
+    /// <summary>
+    /// LigatureSymbols-2.11.ttf V2.11
+    /// 57344..57725
+    /// </summary>
+    public static class LigatureSymbols
+    {
+        public const int file = 0xE048;
+        public const int print = 0xE10a;
+        public const int delete = 0xE12c;
+        public const int clear = 0xE02f;
+        public const int save = 0xE115;
+        public const int upload = 0xE136;
+        public const int cloud = 0xE031;
+        public const int folder = 0xE04c;
+        public const int camera = 0xE026;
+        public const int photo = 0xE101;
+        public const int image = 0xE074;
+        public const int barcode = 0xE013;
+        public const int phone = 0xE100;
+        public const int music = 0xE094;
+        public const int video = 0xE139;
+        public const int playmedia = 0xE107;
+        public const int record = 0xE10d;
+        public const int play = 0xE106;
+        public const int pause = 0xE09d;
+        public const int stop = 0xE123;
+        public const int eject = 0xE042;
+        public const int bell = 0xE014;
+        public const int volumeup = 0xE13d;
+        public const int volumedown = 0xE13c;
+        public const int volume = 0xE13b;
+        public const int off = 0xE098;
+        public const int light = 0xE14c;
+        public const int dark = 0xE147;
+        public const int locker = 0xE086;
+        public const int unlock = 0xE134;
+        public const int flag = 0xE04a;
+        public const int wifi = 0xE140;
+        public const int time = 0xE12b;
+        public const int map = 0xE08b;
+        public const int geo = 0xE056;
+        public const int location = 0xE085;
+        public const int pin = 0xE103;
+        public const int walking = 0xE13e;
+        public const int bicycle = 0xE015;
+        public const int car = 0xE027;
+        public const int bus = 0xE024;
+        public const int plane = 0xE105;
+        public const int compass = 0xE036;
+        public const int cursor = 0xE166;
+        public const int pointer = 0xE16b;
+        public const int grab = 0xE169;
+        public const int arrowup = 0xE00e;
+        public const int arrowright = 0xE00d;
+        public const int arrowdown = 0xE00b;
+        public const int arrowleft = 0xE00c;
+        public const int up = 0xE135;
+        public const int right = 0xE112;
+        public const int down = 0xE03e;
+        public const int left = 0xE080;
+        public const int back = 0xE00f;
+        public const int next = 0xE096;
+        public const int dropdown = 0xE040;
+        public const int sort = 0xE120;
+        public const int good = 0xE059;
+        public const int bad = 0xE011;
+        public const int full = 0xE053;
+        public const int small = 0xE11d;
+        public const int move = 0xE093;
+        public const int undo = 0xE133;
+        public const int forward = 0xE04e;
+        public const int reply = 0xE111;
+        public const int share = 0xE118;
+        public const int login = 0xE087;
+        public const int logout = 0xE088;
+        public const int exchange = 0xE045;
+        public const int shuffle = 0xE11a;
+        public const int repeat = 0xE110;
+        public const int refresh = 0xE10e;
+        public const int sync = 0xE125;
+        public const int external = 0xE046;
+        public const int addstar = 0xE000;
+        public const int star = 0xE121;
+        public const int starempty = 0xE122;
+        public const int heart = 0xE06e;
+        public const int heartempty = 0xE06f;
+        public const int view = 0xE13a;
+        public const int comment = 0xE034;
+        public const int comments = 0xE035;
+        public const int plus = 0xE108;
+        public const int minus = 0xE08f;
+        public const int zoomin = 0xE142;
+        public const int zoomout = 0xE143;
+        public const int search = 0xE116;
+        public const int menu = 0xE08e;
+        public const int tilemenu = 0xE12a;
+        public const int list = 0xE084;
+        public const int tile = 0xE129;
+        public const int notify = 0xE097;
+        public const int table = 0xE127;
+        public const int copy = 0xE038;
+        public const int cut = 0xE03b;
+        public const int backspace = 0xE010;
+        public const int alignleft = 0xE005;
+        public const int aligncenter = 0xE004;
+        public const int alignright = 0xE006;
+        public const int alignadjust = 0xE003;
+        public const int italic = 0xE079;
+        public const int bold = 0xE01f;
+        public const int underline = 0xE132;
+        public const int strike = 0xE159;
+        public const int emphasis = 0xE152;
+        public const int code = 0xE032;
+        public const int link = 0xE082;
+        public const int quote = 0xE10b;
+        public const int graph = 0xE05b;
+        public const int magic = 0xE089;
+        public const int brush = 0xE022;
+        public const int color = 0xE033;
+        public const int contrast = 0xE001;
+        public const int ink = 0xE14a;
+        public const int gradation = 0xE149;
+        public const int sepia = 0xE14e;
+        public const int invert = 0xE14b;
+        public const int paint = 0xE09b;
+        public const int paramater = 0xE09c;
+        public const int crop = 0xE039;
+        public const int check = 0xE029;
+        public const int checkbox = 0xE02a;
+        public const int checkboxempty = 0xE02b;
+        public const int pc = 0xE09e;
+        public const int keyboard = 0xE07d;
+        public const int mobile = 0xE078;
+        public const int horizontal = 0xE071;
+        public const int vertical = 0xE138;
+        public const int web = 0xE13f;
+        public const int mail = 0xE08a;
+        public const int shopping = 0xE119;
+        public const int dashboard = 0xE03c;
+        public const int key = 0xE07c;
+        public const int sns = 0xE11f;
+        public const int calendar = 0xE15e;
+        public const int dailycalendar = 0xE025;
+        public const int ban = 0xE012;
+        public const int remove = 0xE10f;
+        public const int pen = 0xE09f;
+        public const int eraser = 0xE148;
+        public const int edit = 0xE041;
+        public const int tabs = 0xE095;
+        public const int tag = 0xE128;
+        public const int setup = 0xE117;
+        public const int setting = 0xE055;
+        public const int etc = 0xE043;
+        public const int clip = 0xE030;
+        public const int bookmark = 0xE021;
+        public const int book = 0xE020;
+        public const int album = 0xE002;
+        public const int user = 0xE137;
+        public const int friend = 0xE051;
+        public const int group = 0xE05c;
+        public const int frustrate = 0xE052;
+        public const int laugh = 0xE07f;
+        public const int wink = 0xE081;
+        public const int smile = 0xE11e;
+        public const int surprise = 0xE124;
+        public const int trouble = 0xE12d;
+        public const int male = 0xE176;
+        public const int female = 0xE175;
+        public const int game = 0xE054;
+        public const int globe = 0xE058;
+        public const int home = 0xE072;
+        public const int building = 0xE023;
+        public const int rss = 0xE113;
+        public const int server = 0xE16c;
+        public const int sitemap = 0xE16d;
+        public const int app = 0xE009;
+        public const int memo = 0xE08d;
+        public const int meal = 0xE08c;
+        public const int coffee = 0xE146;
+        public const int spa = 0xE177;
+        public const int college = 0xE174;
+        public const int bag = 0xE173;
+        public const int present = 0xE109;
+        public const int umbrella = 0xE178;
+        public const int twinkle = 0xE073;
+        public const int crown = 0xE03a;
+        public const int category = 0xE028;
+        public const int circle = 0xE02e;
+        public const int info = 0xE075;
+        public const int help = 0xE070;
+        public const int refreshbutton = 0xE14d;
+        public const int terminal = 0xE16e;
+        public const int apple = 0xE00a;
+        public const int android = 0xE008;
+        public const int windows = 0xE151;
+        public const int ubuntu = 0xE17b;
+        public const int amazon = 0xE007;
+        public const int facebook = 0xE047;
+        public const int twitter = 0xE12f;
+        public const int vk = 0xE17c;
+        public const int google = 0xE05a;
+        public const int yahoo = 0xE172;
+        public const int bing = 0xE164;
+        public const int hatena = 0xE05d;
+        public const int hatenabookmark = 0xE161;
+        public const int digg = 0xE167;
+        public const int linkedin = 0xE083;
+        public const int myspace = 0xE16a;
+        public const int paperboy = 0xE162;
+        public const int mixi = 0xE090;
+        public const int line = 0xE157;
+        public const int mobage = 0xE158;
+        public const int gree = 0xE153;
+        public const int skype = 0xE11b;
+        public const int aim = 0xE163;
+        public const int yelp = 0xE17d;
+        public const int foursquare = 0xE04d;
+        public const int pinterest = 0xE104;
+        public const int flickr = 0xE04b;
+        public const int tumblr = 0xE12e;
+        public const int wordpress = 0xE171;
+        public const int blogger = 0xE165;
+        public const int evernote = 0xE044;
+        public const int dropbox = 0xE168;
+        public const int slideshare = 0xE179;
+        public const int github = 0xE057;
+        public const int yapcasialogomark = 0xE15c;
+        public const int dribbble = 0xE03f;
+        public const int cookpad = 0xE037;
+        public const int instapaper = 0xE076;
+        public const int readability = 0xE10c;
+        public const int gumroad = 0xE154;
+        public const int picasa = 0xE102;
+        public const int instagram = 0xE155;
+        public const int delicious = 0xE03d;
+        public const int youtube = 0xE141;
+        public const int vimeo = 0xE170;
+        public const int ustream = 0xE16f;
+        public const int soundcloud = 0xE17a;
+        public const int chrome = 0xE02c;
+        public const int safari = 0xE114;
+        public const int sleipnir = 0xE11c;
+        public const int firefox = 0xE049;
+        public const int opera = 0xE099;
+        public const int internetexplorer = 0xE077;
     }
 }

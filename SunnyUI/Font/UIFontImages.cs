@@ -36,6 +36,7 @@ namespace Sunny.UI
     {
         private readonly ConcurrentQueue<Label> AwesomeLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> ElegantLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> LigatureSymbolsLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -98,6 +99,17 @@ namespace Sunny.UI
             {
                 int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
                 ElegantLabels.Enqueue(CreateLabel(value));
+            }
+        }
+
+        private void AddLigatureSymbolsEx()
+        {
+            Type t = typeof(LigatureSymbols);
+            FieldInfo[] fis = t.GetFields();
+            foreach (var fieldInfo in fis)
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                LigatureSymbolsLabels.Enqueue(CreateLabel(value));
             }
         }
 
