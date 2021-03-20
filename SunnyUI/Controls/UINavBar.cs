@@ -330,7 +330,11 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            e.Graphics.Clear(BackColor);
+            if (BackgroundImage == null)
+            {
+                e.Graphics.Clear(BackColor);
+            }
+
             NodeX = 0;
             NodeY = Height - NodeSize.Height;
 
