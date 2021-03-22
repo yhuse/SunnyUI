@@ -67,6 +67,7 @@ namespace Sunny.UI
         private int _symbolSize = 24;
 
         [DefaultValue(24)]
+        [Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => _symbolSize;
@@ -84,6 +85,7 @@ namespace Sunny.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
         [DefaultValue(0)]
+        [Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => _symbol;
@@ -95,7 +97,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false), Description("在Frame框架中不被关闭")]
+        [DefaultValue(false), Description("在Frame框架中不被关闭"), Category("SunnyUI")]
         public bool AlwaysOpen { get; set; }
 
         protected virtual void SymbolChange()
@@ -103,7 +105,8 @@ namespace Sunny.UI
 
         }
 
-        [Browsable(false)] public Point ParentLocation { get; set; } = new Point(0, 0);
+        [Browsable(false)]
+        public Point ParentLocation { get; set; } = new Point(0, 0);
 
         [DefaultValue(-1)]
         public int PageIndex { get; set; } = -1;
@@ -118,7 +121,7 @@ namespace Sunny.UI
         ///     边框颜色
         /// </summary>
         /// <value>The color of the border style.</value>
-        [Description("边框颜色")]
+        [Description("边框颜色"), Category("SunnyUI")]
         public Color RectColor
         {
             get => _rectColor;
@@ -146,7 +149,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(ToolStripStatusLabelBorderSides.None)]
-        [Description("边框显示位置")]
+        [Description("边框显示位置"), Category("SunnyUI")]
         public ToolStripStatusLabelBorderSides RectSides
         {
             get => _rectSides;

@@ -32,6 +32,11 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UISwitch : UIControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">对象</param>
+        /// <param name="value">开关值</param>
         public delegate void OnValueChanged(object sender, bool value);
 
         public enum UISwitchShape
