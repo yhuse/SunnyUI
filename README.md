@@ -1,5 +1,7 @@
-![SunnyUI.Net](https://images.gitee.com/uploads/images/2020/0627/205841_13e961a1_416720.png "SunnyUI.png")
+![SunnyUI](https://images.gitee.com/uploads/images/2021/0324/212733_bffe279a_416720.png "SunnyUI.png")
 
+[![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
+[![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)
 - Blog:   https://www.cnblogs.com/yhuse
 - Gitee:  https://gitee.com/yhuse/SunnyUI
 - GitHub: https://github.com/yhuse/SunnyUI
