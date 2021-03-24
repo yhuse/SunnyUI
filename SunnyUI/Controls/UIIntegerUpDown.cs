@@ -32,7 +32,19 @@ namespace Sunny.UI
     [DefaultProperty("Value")]
     public sealed partial class UIIntegerUpDown : UIPanel
     {
-        public delegate void OnValueChanged(object sender, int value);
+        public class ValueChangedEventArgs : EventArgs
+        {
+            public ValueChangedEventArgs()
+            {
+            }
+
+            public ValueChangedEventArgs(int value)
+            {
+                Value = value;
+            }
+
+            public int Value { get; set; }
+        }
 
         public UIIntegerUpDown()
         {
@@ -80,7 +92,7 @@ namespace Sunny.UI
             }
         }
 
-        public event OnValueChanged ValueChanged;
+        public event EventHandler ValueChanged;
 
         private int _value;
 
@@ -94,7 +106,7 @@ namespace Sunny.UI
                 value = CheckMaxMin(value);
                 _value = value;
                 pnlValue.Text = _value.ToString();
-                ValueChanged?.Invoke(this, _value);
+                ValueChanged?.Invoke(this, new ValueChangedEventArgs(_value));
             }
         }
 
@@ -228,6 +240,7 @@ namespace Sunny.UI
 
         private readonly UIEdit edit = new UIEdit();
         private Color pnlColor;
+
         private void pnlValue_DoubleClick(object sender, EventArgs e)
         {
             edit.Left = 1;
