@@ -8,6 +8,9 @@
 
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
+## 特别声明
+SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。
+
 #### 介绍
 - SunnyUI.Net 是基于.Net Framework 4.0+、.Net Core3.1、.Net 5 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。
 - 源码编译环境：VS2019 16.8+，.Net5，.Net Core3.1
