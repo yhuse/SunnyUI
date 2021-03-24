@@ -10,6 +10,7 @@
 
 ## 特别声明
 SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。
+![dotnetchina](https://images.gitee.com/uploads/images/2021/0225/132645_21007ea0_974299.png "dotnetchina")
 
 #### 介绍
 - SunnyUI.Net 是基于.Net Framework 4.0+、.Net Core3.1、.Net 5 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。
