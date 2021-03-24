@@ -9,7 +9,7 @@
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
 ## 特别声明
-SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。</br>
+SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
 ![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
 
 #### 介绍
