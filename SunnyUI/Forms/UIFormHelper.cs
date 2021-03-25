@@ -599,4 +599,9 @@ namespace Sunny.UI
             return new UIEditForm(option);
         }
     }
+
+    public interface IFrame
+    {
+        void SelectPage(int pageIndex);
+    }
 }
