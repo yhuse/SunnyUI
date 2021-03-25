@@ -39,6 +39,7 @@ namespace Sunny.UI
 
         protected UIStyle _style = UIStyle.Blue;
 
+        [Browsable(false)]
         public IFrame Frame { get; set; }
 
         public UIPage()

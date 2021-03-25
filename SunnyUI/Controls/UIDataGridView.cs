@@ -200,7 +200,7 @@ namespace Sunny.UI
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (VBar.Visible)
+            /*if (VBar.Visible)
             {
                 if (e.Delta > 10)
                 {
@@ -210,8 +210,39 @@ namespace Sunny.UI
                 {
                     VBar.SetValue(VBar.Value + VBar.Maximum / 20);
                 }
+            }*/
+
+            if (VBar.Visible && ScrollMode == UIDataGridViewScrollMode.Page)
+            {
+                if (e.Delta > 10)
+                {
+                    var lineCount = Rows.GetLastRow(DataGridViewElementStates.Displayed) - FirstDisplayedScrollingRowIndex;
+                    VBar.SetValue(VBar.Value - lineCount + 3);
+                }
+                else if (e.Delta < -10)
+                {
+                    var lineCount = FirstDisplayedScrollingRowIndex - Rows.GetLastRow(DataGridViewElementStates.Displayed);
+                    VBar.SetValue(VBar.Value - lineCount - 3);
+                }
             }
         }
+
+        [Description("垂直滚动条滚动方式"), Category("SunnyUI")]
+        [DefaultValue(UIDataGridViewScrollMode.Normal)]
+        public UIDataGridViewScrollMode ScrollMode { get; set; } = UIDataGridViewScrollMode.Normal;
+
+        public enum UIDataGridViewScrollMode
+        {
+            /// <summary>
+            /// 正常
+            /// </summary>
+            Normal,
+            /// <summary>
+            /// 翻页
+            /// </summary>
+            Page
+        }
+
 
         protected override void OnRowsAdded(DataGridViewRowsAddedEventArgs e)
         {
