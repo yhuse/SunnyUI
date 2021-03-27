@@ -17,6 +17,7 @@
  * 创建日期: 2021-02-10
  *
  * 2021-02-10: V3.0.1 增加文件说明
+ * 2021-03-27: V3.0.2 增加字体图标背景时鼠标移上背景色
 ******************************************************************************/
 
 
@@ -283,6 +284,24 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(false)]
+        [Description("是否显示字体图标鼠标移上背景颜色"), Category("SunnyUI")]
+        public bool ShowCircleHoverColor { get; set; }
+
+        private Color circleHoverColor = Color.Bisque;
+
+        [DefaultValue(typeof(Color), "Bisque")]
+        [Description("字体图标鼠标移上背景颜色"), Category("SunnyUI")]
+        public Color CircleHoverColor
+        {
+            get => circleHoverColor;
+            set
+            {
+                circleHoverColor = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaddingChanged(EventArgs e)
         {
             base.OnPaddingChanged(e);
@@ -397,7 +416,6 @@ namespace Sunny.UI
             //重绘父类
             base.OnPaint(e);
 
-
             SizeF ImageSize = new SizeF(0, 0);
             if (Symbol > 0)
                 ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
@@ -407,7 +425,13 @@ namespace Sunny.UI
             //字体图标
             if (Symbol > 0 && Image == null)
             {
-                e.Graphics.FillEllipse(CircleColor, (Width - CircleSize) / 2.0f, Padding.Top, CircleSize, CircleSize);
+                Color bcColor = CircleColor;
+                if (ShowCircleHoverColor && IsHover)
+                {
+                    bcColor = CircleHoverColor;
+                }
+
+                e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Padding.Top, CircleSize, CircleSize);
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
                     new RectangleF(
                         symbolOffset.X + (Width - CircleSize) / 2.0f,

@@ -181,6 +181,7 @@ namespace Sunny.UI.Demo
             // uiHeaderButton1
             // 
             this.uiHeaderButton1.CircleColor = System.Drawing.Color.RoyalBlue;
+            this.uiHeaderButton1.CircleHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.uiHeaderButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiHeaderButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiHeaderButton1.Location = new System.Drawing.Point(100, 1);
@@ -190,6 +191,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton1.Radius = 0;
             this.uiHeaderButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiHeaderButton1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiHeaderButton1.ShowCircleHoverColor = true;
             this.uiHeaderButton1.Size = new System.Drawing.Size(100, 88);
             this.uiHeaderButton1.Style = Sunny.UI.UIStyle.Custom;
             this.uiHeaderButton1.Symbol = 61461;
