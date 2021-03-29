@@ -171,7 +171,7 @@
             // FFrames
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(892, 627);
             this.Name = "FFrames";
             this.Symbol = 61674;

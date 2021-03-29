@@ -358,7 +358,7 @@
             // FRadioButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 598);
             this.Name = "FRadioButton";
             this.Symbol = 61842;
