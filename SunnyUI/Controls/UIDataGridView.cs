@@ -23,6 +23,7 @@
  * 2020-08-22: V2.2.7 更新了水平和垂直滚动条的显示，优化滚动效果。
  * 2020-08-28: V2.2.7 调整水平滚动条
  * 2021-03-25: V3.0.2 修改垂直滚动条和原版一致，并增加翻页方式滚动。
+ * 2021-04-01: V3.0.2 编辑输入时，用Enter键代替Tab键跳到下一个单元格
 ******************************************************************************/
 
 using System;
@@ -589,6 +590,38 @@ namespace Sunny.UI
         {
             return Rows.Add(values);
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (EnterAsTab)
+            {
+                Keys key = (keyData & Keys.KeyCode);
+                if (key == Keys.Enter)
+                {
+                    //交由自定义控件处理
+                    return false;
+                }
+            }
+
+            return base.ProcessDialogKey(keyData);
+        }
+
+        protected override bool ProcessDataGridViewKey(KeyEventArgs e)
+        {
+            if (EnterAsTab)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    return this.ProcessTabKey(e.KeyData);
+                }
+            }
+
+            return base.ProcessDataGridViewKey(e);
+        }
+
+        [DefaultValue(false)]
+        [Description("编辑输入时，用Enter键代替Tab键跳到下一个单元格"), Category("SunnyUI")]
+        public bool EnterAsTab { get; set; }
     }
 
     public static class UIDataGridViewHelper
