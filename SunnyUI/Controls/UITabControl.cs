@@ -83,10 +83,7 @@ namespace Sunny.UI
         {
             base.OnSelected(e);
 
-            if (ShowActiveCloseButton && !ShowCloseButton)
-            {
-                timer.Start();
-            }
+
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -589,6 +586,10 @@ namespace Sunny.UI
         {
             base.OnSelectedIndexChanged(e);
             Init(SelectedIndex);
+            if (ShowActiveCloseButton && !ShowCloseButton)
+            {
+                timer.Start();
+            }
         }
 
         public void Init(int index = 0)
@@ -750,6 +751,10 @@ namespace Sunny.UI
             if (e.Control is TabPage)
             {
                 e.Control.Padding = new Padding(0);
+                if (ShowActiveCloseButton && !ShowCloseButton)
+                {
+                    timer.Start();
+                }
             }
         }
 
