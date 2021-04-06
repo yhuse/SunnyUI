@@ -960,6 +960,35 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 以文字中心点为原点，旋转文字
+        /// </summary>
+        /// <param name="graphics">Graphics</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="centerPoint">文字中心点</param>
+        /// <param name="angle">角度</param>
+        public static void DrawStringRotateAtCenter(this Graphics graphics, string text, Font font, Color color, PointF centerPoint, int angle)
+        {
+            SizeF sf = graphics.MeasureString(text, font);
+            float x1 = centerPoint.X - sf.Width / 2.0f;
+            float y1 = centerPoint.Y - sf.Height / 2.0f;
+
+            // 把画板的原点(默认是左上角)定位移到文字中心
+            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            // 旋转画板
+            graphics.RotateTransform(angle);
+            // 回退画板x,y轴移动过的距离
+            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            graphics.DrawString(text, font, new SolidBrush(Color.Black), x1, y1);
+
+            //恢复
+            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            graphics.RotateTransform(-angle);
+            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+        }
+
+        /// <summary>
         /// 绘制根据点旋转文本，一般旋转点给定位文本包围盒中心点
         /// </summary>
         /// <param name="g">Graphics</param>

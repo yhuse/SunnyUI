@@ -275,28 +275,8 @@ namespace Sunny.UI
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Width;
                 float yy = Option.Grid.Top + (DrawSize.Height - sfName.Height) / 2.0f;
-                DrawStringRotateAtCenter(g, Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx + sfName.Width / 2.0f, yy + sfName.Height / 2.0f), 270);
+                g.DrawStringRotateAtCenter(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx + sfName.Width / 2.0f, yy + sfName.Height / 2.0f), 270);
             }
-        }
-
-        public void DrawStringRotateAtCenter(Graphics graphics, string text, Font font, Color color, PointF centerPoint, int angle)
-        {
-            SizeF sf = graphics.MeasureString(text, font);
-            float x1 = centerPoint.X - sf.Width / 2.0f;
-            float y1 = centerPoint.Y - sf.Height / 2.0f;
-
-            // 把画板的原点(默认是左上角)定位移到文字中心
-            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            // 旋转画板
-            graphics.RotateTransform(angle);
-            // 回退画板x,y轴移动过的距离
-            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
-            graphics.DrawString(text, font, new SolidBrush(Color.Black), x1, y1);
-
-            //恢复
-            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            graphics.RotateTransform(-angle);
-            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
         }
 
         protected virtual void DrawSeries(Graphics g, Color color, UILineSeries series)
