@@ -185,5 +185,24 @@ namespace Sunny.UI
         }
     }
 
+    public class ZoomArea
+    {
+        public bool XMinAuto { get; set; }
+        public bool XMaxAuto { get; set; }
+        public bool YMinAuto { get; set; }
+        public bool YMaxAuto { get; set; }
+        public bool Y2MinAuto { get; set; }
+        public bool Y2MaxAuto { get; set; }
+        public double XMin { get; set; }
+        public double XMax { get; set; }
+        public double YMin { get; set; }
+        public double YMax { get; set; }
+        public double Y2Min { get; set; }
+        public double Y2Max { get; set; }
 
+        public double XRange => XMax - XMin;
+        public double YRange => YMax - YMin;
+        public double Y2Range => Y2Max - Y2Min;
+
+    }
 }

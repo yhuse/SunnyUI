@@ -17,6 +17,7 @@
  * 创建日期: 2020-10-01
  *
  * 2020-10-01: V2.2.8 完成曲线图表
+ * 2021-04-06: V3.0.2 增加鼠标框选放大，可多次放大，右键点击恢复一次，双击恢复默认
 ******************************************************************************/
 
 using System;
@@ -272,11 +273,30 @@ namespace Sunny.UI
                 }
 
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
-                int xx = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height);
-                int yy = (int)(Option.Grid.Top + (DrawSize.Height - sfName.Width) / 2);
-                g.DrawString(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(xx, yy),
-                    new StringFormat() { Alignment = StringAlignment.Center }, 270);
+                float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Width;
+                float yy = Option.Grid.Top + (DrawSize.Height - sfName.Height) / 2.0f;
+                DrawStringRotateAtCenter(g, Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx + sfName.Width / 2.0f, yy + sfName.Height / 2.0f), 270);
             }
+        }
+
+        public void DrawStringRotateAtCenter(Graphics graphics, string text, Font font, Color color, PointF centerPoint, int angle)
+        {
+            SizeF sf = graphics.MeasureString(text, font);
+            float x1 = centerPoint.X - sf.Width / 2.0f;
+            float y1 = centerPoint.Y - sf.Height / 2.0f;
+
+            // 把画板的原点(默认是左上角)定位移到文字中心
+            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            // 旋转画板
+            graphics.RotateTransform(angle);
+            // 回退画板x,y轴移动过的距离
+            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            graphics.DrawString(text, font, new SolidBrush(Color.Black), x1, y1);
+
+            //恢复
+            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            graphics.RotateTransform(-angle);
+            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
         }
 
         protected virtual void DrawSeries(Graphics g, Color color, UILineSeries series)
@@ -669,12 +689,17 @@ namespace Sunny.UI
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            if (IsZoom) return;
+
             if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
                 e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
             {
                 IsMouseDown = true;
                 StartPoint = StopPoint = e.Location;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                ZoomBack();
             }
         }
 
@@ -690,54 +715,102 @@ namespace Sunny.UI
         }
 
         private bool IsZoom;
-        private bool XMinAuto, XMaxAuto, YMinAuto, YMaxAuto;
-        private double XMin, XMax, YMin, YMax;
+        private readonly List<ZoomArea> ZoomAreas = new List<ZoomArea>();
+        private ZoomArea BaseArea;
+
+        private void CreateBaseArea()
+        {
+            IsZoom = true;
+
+            if (BaseArea == null)
+            {
+                BaseArea = new ZoomArea();
+                BaseArea.XMin = XScale.Min;
+                BaseArea.XMax = XScale.Max;
+                BaseArea.YMin = YScale.Min;
+                BaseArea.YMax = YScale.Max;
+                BaseArea.XMinAuto = Option.XAxis.MinAuto;
+                BaseArea.XMaxAuto = Option.XAxis.MaxAuto;
+                BaseArea.YMinAuto = Option.YAxis.MinAuto;
+                BaseArea.YMaxAuto = Option.YAxis.MaxAuto;
+            }
+        }
 
         private void Zoom()
         {
-            if (Math.Abs(StartPoint.X - StopPoint.X) < 10 || Math.Abs(StartPoint.Y - StopPoint.Y) < 10) return;
+            if (Math.Abs(StartPoint.X - StopPoint.X) < 6 && Math.Abs(StartPoint.Y - StopPoint.Y) < 6) return;
 
-            IsZoom = true;
+            CreateBaseArea();
 
-            XMin = Option.XAxis.Min;
-            XMax = Option.XAxis.Max;
-            YMin = Option.YAxis.Min;
-            YMax = Option.YAxis.Max;
-            XMinAuto = Option.XAxis.MinAuto;
-            XMaxAuto = Option.XAxis.MaxAuto;
-            YMinAuto = Option.YAxis.MinAuto;
-            YMaxAuto = Option.YAxis.MaxAuto;
+            var zoomArea = new ZoomArea();
+            zoomArea.XMin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+            zoomArea.XMax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+            zoomArea.YMax = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+            zoomArea.YMin = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+            AddZoomArea(zoomArea);
+        }
 
-            double xmin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
-            double xmax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
-            double ymax = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
-            double ymin = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
-            Option.XAxis.Min = xmin;
-            Option.XAxis.Max = xmax;
-            Option.YAxis.Min = ymin;
-            Option.YAxis.Max = ymax;
-            Option.XAxis.MinAuto = false;
-            Option.XAxis.MaxAuto = false;
-            Option.YAxis.MinAuto = false;
-            Option.YAxis.MaxAuto = false;
+        public const double MinInterval = 0.000005;
+        public const double MaxInterval = int.MaxValue;
+
+        private void AddZoomArea(ZoomArea zoomArea)
+        {
+            if (zoomArea.XMax - zoomArea.XMin <= MinInterval) return;
+            if (zoomArea.YMax - zoomArea.YMin <= MinInterval) return;
+            if (zoomArea.XMax - zoomArea.XMin >= MaxInterval) return;
+            if (zoomArea.YMax - zoomArea.YMin >= MaxInterval) return;
+
+            ZoomAreas.Add(zoomArea);
+            Zoom(zoomArea);
+        }
+
+        private void Zoom(ZoomArea zoomArea)
+        {
+            Option.XAxis.Min = zoomArea.XMin;
+            Option.XAxis.Max = zoomArea.XMax;
+            Option.YAxis.Max = zoomArea.YMax;
+            Option.YAxis.Min = zoomArea.YMin;
+            Option.XAxis.MinAuto = zoomArea.XMinAuto;
+            Option.XAxis.MaxAuto = zoomArea.XMaxAuto;
+            Option.YAxis.MinAuto = zoomArea.YMinAuto;
+            Option.YAxis.MaxAuto = zoomArea.YMaxAuto;
+
             CalcData();
             Invalidate();
         }
 
-        private void ZoomNormal()
+        public void ZoomNormal()
         {
-            IsZoom = false;
+            if (!IsZoom) return;
 
-            Option.XAxis.Min = XMin;
-            Option.XAxis.Max = XMax;
-            Option.YAxis.Min = YMin;
-            Option.YAxis.Max = YMax;
-            Option.XAxis.MinAuto = XMinAuto;
-            Option.XAxis.MaxAuto = XMaxAuto;
-            Option.YAxis.MinAuto = YMinAuto;
-            Option.YAxis.MaxAuto = YMaxAuto;
+            IsZoom = false;
+            Option.XAxis.Min = BaseArea.XMin;
+            Option.XAxis.Max = BaseArea.XMax;
+            Option.YAxis.Min = BaseArea.YMin;
+            Option.YAxis.Max = BaseArea.YMax;
+            Option.XAxis.MinAuto = BaseArea.XMinAuto;
+            Option.XAxis.MaxAuto = BaseArea.XMaxAuto;
+            Option.YAxis.MinAuto = BaseArea.YMinAuto;
+            Option.YAxis.MaxAuto = BaseArea.YMaxAuto;
+            BaseArea = null;
             CalcData();
             Invalidate();
+        }
+
+        private void ZoomBack()
+        {
+            if (!IsZoom) return;
+
+            if (ZoomAreas.Count > 1)
+            {
+                ZoomAreas.RemoveAt(ZoomAreas.Count - 1);
+                Zoom(ZoomAreas[ZoomAreas.Count - 1]);
+            }
+            else
+            {
+                ZoomAreas.Clear();
+                ZoomNormal();
+            }
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -764,13 +837,10 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnMouseClick(MouseEventArgs e)
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
-            if (IsZoom)
-            {
-                ZoomNormal();
-            }
+            base.OnMouseDoubleClick(e);
+            if (e.Button == MouseButtons.Left) ZoomNormal();
         }
     }
 }
