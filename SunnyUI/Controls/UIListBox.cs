@@ -69,6 +69,9 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        [Browsable(false)]
+        public ListBox ListBox => listbox;
+
         [DefaultValue(StringAlignment.Near)]
         [Description("列表项高度"), Category("SunnyUI")]
         public new StringAlignment TextAlignment

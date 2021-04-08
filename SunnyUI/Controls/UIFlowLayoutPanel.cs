@@ -53,6 +53,9 @@ namespace Sunny.UI
             SizeChanged += Panel_SizeChanged;
         }
 
+        [Browsable(false)]
+        public FlowLayoutPanel FlowLayoutPanel => flowLayoutPanel;
+
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
         }

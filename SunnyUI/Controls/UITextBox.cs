@@ -79,6 +79,9 @@ namespace Sunny.UI
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
 
+        [Browsable(false)]
+        public TextBox TextBox => edit;
+
         private void Edit_Leave(object sender, EventArgs e)
         {
             Leave?.Invoke(sender, e);

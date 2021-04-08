@@ -69,6 +69,9 @@ namespace Sunny.UI
             MouseMove += UIDropControl_MouseMove;
         }
 
+        [Browsable(false)]
+        public TextBox TextBox => edit;
+
         protected Point MouseLocation;
 
         private void UIDropControl_MouseMove(object sender, MouseEventArgs e)

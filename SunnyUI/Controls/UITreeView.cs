@@ -59,6 +59,9 @@ namespace Sunny.UI
             view.NodeMouseDoubleClick += View_NodeMouseDoubleClick;
         }
 
+        [Browsable(false)]
+        public TreeView TreeView => view;
+
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             if (uiColor.IsCustom()) return;
