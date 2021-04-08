@@ -305,8 +305,6 @@ namespace Sunny.UI
         /// <param name="e">e</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-
             if (!Visible || Width <= 0 || Height <= 0) return;
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
@@ -333,6 +331,7 @@ namespace Sunny.UI
             path.Dispose();
 
             PaintOther?.Invoke(this, e);
+            base.OnPaint(e);
         }
 
         public event PaintEventHandler PaintOther;

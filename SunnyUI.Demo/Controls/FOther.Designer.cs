@@ -57,11 +57,13 @@
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.uiProcessBar2 = new Sunny.UI.UIProcessBar();
+            this.uiRoundProcess1 = new Sunny.UI.UIRoundProcess();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiRoundProcess1);
             this.PagePanel.Controls.Add(this.uiProcessBar2);
             this.PagePanel.Controls.Add(this.uiLabel3);
             this.PagePanel.Controls.Add(this.uiLabel2);
@@ -167,7 +169,7 @@
             this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 298);
             this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
-            this.uiProgressIndicator1.Size = new System.Drawing.Size(119, 132);
+            this.uiProgressIndicator1.Size = new System.Drawing.Size(120, 120);
             this.uiProgressIndicator1.TabIndex = 26;
             this.uiProgressIndicator1.Text = "uiProgressIndicator1";
             // 
@@ -265,7 +267,6 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
-            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -392,9 +393,24 @@
             this.uiProcessBar2.Text = "50.0%";
             this.uiProcessBar2.Value = 50;
             // 
+            // uiRoundProcess1
+            // 
+            this.uiRoundProcess1.BackColor = System.Drawing.Color.Transparent;
+            this.uiRoundProcess1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundProcess1.Inner = 30;
+            this.uiRoundProcess1.Location = new System.Drawing.Point(228, 298);
+            this.uiRoundProcess1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiRoundProcess1.Name = "uiRoundProcess1";
+            this.uiRoundProcess1.Outer = 50;
+            this.uiRoundProcess1.ProcessBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.uiRoundProcess1.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiRoundProcess1.Size = new System.Drawing.Size(120, 120);
+            this.uiRoundProcess1.TabIndex = 57;
+            this.uiRoundProcess1.Text = "uiRoundProcess1";
+            this.uiRoundProcess1.Value = 80;
+            // 
             // FOther
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 507);
             this.Name = "FOther";
@@ -435,5 +451,6 @@
         private UILabel uiLabel1;
         private UIToolTip uiToolTip1;
         private UIProcessBar uiProcessBar2;
+        private UIRoundProcess uiRoundProcess1;
     }
 }
