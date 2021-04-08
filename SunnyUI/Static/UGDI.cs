@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -144,7 +145,7 @@ namespace Sunny.UI
             return Color.FromArgb(alpha, color);
         }
 
-        private static Graphics graphics;
+        private static Graphics TempGraphics;
 
         /// <summary>
         /// 提供一个Graphics，常用于需要计算文字大小时
@@ -152,13 +153,13 @@ namespace Sunny.UI
         /// <returns>大小</returns>
         public static Graphics Graphics()
         {
-            if (graphics == null)
+            if (TempGraphics == null)
             {
                 Bitmap bmp = new Bitmap(1, 1);
-                graphics = bmp.Graphics();
+                TempGraphics = bmp.Graphics();
             }
 
-            return graphics;
+            return TempGraphics;
         }
 
         /// <summary>
@@ -912,20 +913,91 @@ namespace Sunny.UI
         }
 
         public static void DrawString(this Graphics g, string s, Font font, Color color,
-            RectangleF layoutRectangle, StringFormat format, float angle)
+            RectangleF rect, StringFormat format, float angle)
         {
             using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s, font, br, layoutRectangle, format, angle);
+                g.DrawStringRotateAtCenter(s, font, color, rect.Center(), (int)angle);
+                //g.DrawString(s, font, br, layoutRectangle, format, angle);
             }
         }
 
-        public static void DrawString(this Graphics g, string s, Font font, Color color,
-            PointF point, StringFormat format, float angle)
+        /// <summary>
+        /// 以文字中心点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="centerPoint">文字中心点</param>
+        /// <param name="angle">角度</param>
+        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
         {
             using (Brush br = new SolidBrush(color))
             {
-                g.DrawString(s, font, br, point, format, angle);
+                g.DrawStringRotateAtCenter(text, font, br, centerPoint, angle);
+            }
+        }
+
+        /// <summary>
+        /// 以文字中心点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="brush">笔刷</param>
+        /// <param name="centerPoint">文字中心点</param>
+        /// <param name="angle">角度</param>
+        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
+        {
+            SizeF sf = g.MeasureString(text, font);
+            float x1 = centerPoint.X - sf.Width / 2.0f;
+            float y1 = centerPoint.Y - sf.Height / 2.0f;
+
+            // 把画板的原点(默认是左上角)定位移到文字中心
+            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            // 旋转画板
+            g.RotateTransform(angle);
+            // 回退画板x,y轴移动过的距离
+            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            g.DrawString(text, font, brush, x1, y1);
+
+            //恢复
+            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            g.RotateTransform(-angle);
+            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+        }
+
+        /// <summary>
+        /// 以旋转点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="text">文本</param>
+        /// <param name="font">字体</param>
+        /// <param name="brush">填充</param>
+        /// <param name="rotatePoint">旋转点</param>
+        /// <param name="format">布局方式</param>
+        /// <param name="angle">角度</param>
+        public static void DrawString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
+        {
+            // Save the matrix
+            Matrix mtxSave = g.Transform;
+
+            Matrix mtxRotate = g.Transform;
+            mtxRotate.RotateAt(angle, rotatePoint);
+            g.Transform = mtxRotate;
+
+            g.DrawString(text, font, brush, rotatePoint, format);
+
+            // Reset the matrix
+            g.Transform = mtxSave;
+        }
+
+        public static void DrawString(this Graphics g, string s, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
+        {
+            using (Brush br = new SolidBrush(color))
+            {
+                g.DrawString(s, font, br, rotatePoint, format, angle);
             }
         }
 
@@ -933,161 +1005,244 @@ namespace Sunny.UI
         /// 绘制根据矩形旋转文本
         /// </summary>
         /// <param name="g">Graphics</param>
-        /// <param name="s">文本</param>
+        /// <param name="text">文本</param>
         /// <param name="font">字体</param>
         /// <param name="brush">填充</param>
-        /// <param name="layoutRectangle">局部矩形</param>
+        /// <param name="rect">局部矩形</param>
         /// <param name="format">布局方式</param>
         /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format, float angle)
+        public static void DrawString(this Graphics g, string text, Font font, Brush brush, RectangleF rect, StringFormat format, float angle)
         {
-            // 求取字符串大小
-            SizeF size = g.MeasureString(s, font);
-
-            // 根据旋转角度，求取旋转后字符串大小
-            SizeF sizeRotate = ConvertSize(size, angle);
-
-            // 根据旋转后尺寸、布局矩形、布局方式计算文本旋转点
-            PointF rotatePt = GetRotatePoint(sizeRotate, layoutRectangle, format);
-
-            // 重设布局方式都为Center
-            StringFormat newFormat = new StringFormat(format);
-            newFormat.Alignment = StringAlignment.Center;
-            newFormat.LineAlignment = StringAlignment.Center;
-
-            // 绘制旋转后文本
-            g.DrawString(s, font, brush, rotatePt, newFormat, angle);
+            g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
         }
 
         /// <summary>
-        /// 以文字中心点为原点，旋转文字
+        /// 两个矩阵是否重叠（边沿重叠，也认为是重叠）
         /// </summary>
-        /// <param name="graphics">Graphics</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="centerPoint">文字中心点</param>
-        /// <param name="angle">角度</param>
-        public static void DrawStringRotateAtCenter(this Graphics graphics, string text, Font font, Color color, PointF centerPoint, int angle)
+        /// <param name="rc1">第一个矩阵的位置</param>
+        /// <param name="rc2">第二个矩阵的位置</param>
+        /// <returns></returns>
+        public static bool IsOverlap(this Rectangle rc1, Rectangle rc2)
         {
-            SizeF sf = graphics.MeasureString(text, font);
-            float x1 = centerPoint.X - sf.Width / 2.0f;
-            float y1 = centerPoint.Y - sf.Height / 2.0f;
-
-            // 把画板的原点(默认是左上角)定位移到文字中心
-            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            // 旋转画板
-            graphics.RotateTransform(angle);
-            // 回退画板x,y轴移动过的距离
-            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
-            graphics.DrawString(text, font, new SolidBrush(Color.Black), x1, y1);
-
-            //恢复
-            graphics.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            graphics.RotateTransform(-angle);
-            graphics.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            return rc1.X + rc1.Width > rc2.X &&
+                   rc2.X + rc2.Width > rc1.X &&
+                   rc1.Y + rc1.Height > rc2.Y &&
+                   rc2.Y + rc2.Height > rc1.Y;
         }
 
         /// <summary>
-        /// 绘制根据点旋转文本，一般旋转点给定位文本包围盒中心点
+        /// 两个矩阵是否重叠（边沿重叠，也认为是重叠）
         /// </summary>
-        /// <param name="g">Graphics</param>
-        /// <param name="s">文本</param>
-        /// <param name="font">字体</param>
-        /// <param name="brush">填充</param>
-        /// <param name="point">旋转点</param>
-        /// <param name="format">布局方式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string s, Font font, Brush brush, PointF point, StringFormat format, float angle)
+        /// <param name="rc1">第一个矩阵的位置</param>
+        /// <param name="rc2">第二个矩阵的位置</param>
+        /// <returns></returns>
+        public static bool IsOverlap(this RectangleF rc1, RectangleF rc2)
         {
-            // Save the matrix
-            Matrix mtxSave = g.Transform;
-
-            Matrix mtxRotate = g.Transform;
-            mtxRotate.RotateAt(angle, point);
-            g.Transform = mtxRotate;
-
-            g.DrawString(s, font, brush, point, format);
-
-            // Reset the matrix
-            g.Transform = mtxSave;
+            return rc1.X + rc1.Width > rc2.X &&
+                   rc2.X + rc2.Width > rc1.X &&
+                   rc1.Y + rc1.Height > rc2.Y &&
+                   rc2.Y + rc2.Height > rc1.Y;
         }
 
-        private static SizeF ConvertSize(SizeF size, float angle)
+        /// <summary>
+        /// 两点创建一个矩形
+        /// </summary>
+        /// <param name="pf1">点1</param>
+        /// <param name="pf2">点2</param>
+        /// <returns>矩形</returns>
+        public static RectangleF CreateRectangleF(this PointF pf1, PointF pf2)
         {
-            Matrix matrix = new Matrix();
-            matrix.Rotate(angle);
-
-            // 旋转矩形四个顶点
-            PointF[] pts = new PointF[4];
-            pts[0].X = -size.Width / 2f;
-            pts[0].Y = -size.Height / 2f;
-            pts[1].X = -size.Width / 2f;
-            pts[1].Y = size.Height / 2f;
-            pts[2].X = size.Width / 2f;
-            pts[2].Y = size.Height / 2f;
-            pts[3].X = size.Width / 2f;
-            pts[3].Y = -size.Height / 2f;
-            matrix.TransformPoints(pts);
-
-            // 求取四个顶点的包围盒
-            float left = float.MaxValue;
-            float right = float.MinValue;
-            float top = float.MaxValue;
-            float bottom = float.MinValue;
-
-            foreach (PointF pt in pts)
-            {
-                // 求取并集
-                if (pt.X < left)
-                    left = pt.X;
-                if (pt.X > right)
-                    right = pt.X;
-                if (pt.Y < top)
-                    top = pt.Y;
-                if (pt.Y > bottom)
-                    bottom = pt.Y;
-            }
-
-            SizeF result = new SizeF(right - left, bottom - top);
-            return result;
+            return new RectangleF(Math.Min(pf1.X, pf2.X), Math.Min(pf1.Y, pf2.Y),
+                Math.Abs(pf1.X - pf2.X), Math.Abs(pf1.Y - pf2.Y));
         }
 
-        private static PointF GetRotatePoint(SizeF size, RectangleF layoutRectangle, StringFormat format)
+        /// <summary>
+        /// 两点创建一个矩形
+        /// </summary>
+        /// <param name="pf1">点1</param>
+        /// <param name="pf2">点2</param>
+        /// <returns>矩形</returns>
+        public static Rectangle CreateRectangle(this Point pf1, Point pf2)
         {
-            PointF pt = new PointF();
+            return new Rectangle(Math.Min(pf1.X, pf2.X), Math.Min(pf1.Y, pf2.Y),
+                Math.Abs(pf1.X - pf2.X), Math.Abs(pf1.Y - pf2.Y));
+        }
 
-            switch (format.Alignment)
+        public static double CalcY(PointF pf1, PointF pf2, double x)
+        {
+            if (pf1.Y.Equals(pf2.Y)) return pf1.Y;
+            if (pf1.X.Equals(pf2.X)) return float.NaN;
+
+            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
+            double b = pf1.Y - a * pf1.X;
+            return a * x + b;
+        }
+
+        public static double CalcX(PointF pf1, PointF pf2, double y)
+        {
+            if (pf1.X.Equals(pf2.X)) return pf1.X;
+            if (pf1.Y.Equals(pf2.Y)) return float.NaN;
+
+            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
+            double b = pf1.Y - a * pf1.X;
+            return (y - b) * 1.0 / a;
+        }
+
+        public static double CalcY(Point pf1, Point pf2, double x)
+        {
+            if (pf1.Y == pf2.Y) return pf1.Y;
+            if (pf1.X == pf2.X) return double.NaN;
+
+            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
+            double b = pf1.Y - a * pf1.X;
+            return a * x + b;
+        }
+
+        public static double CalcX(Point pf1, Point pf2, double y)
+        {
+            if (pf1.Y == pf2.Y) return pf1.X;
+            if (pf1.X == pf2.X) return double.NaN;
+
+            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
+            double b = pf1.Y - a * pf1.X;
+            return (y - b) * 1.0 / a;
+        }
+
+
+        public static void DrawTwoPoints(this Graphics g, Color color, float width, PointF pf1, PointF pf2, Rectangle rect)
+        {
+            using (Pen pen = new Pen(color, width))
             {
-                case StringAlignment.Near:
-                    pt.X = layoutRectangle.Left + size.Width / 2f;
-                    break;
+                DrawTwoPoints(g, pen, pf1, pf2, rect);
+            }
+        }
 
-                case StringAlignment.Center:
-                    pt.X = (layoutRectangle.Left + layoutRectangle.Right) / 2f;
-                    break;
+        public static void DrawTwoPoints(this Graphics g, Pen pen, PointF pf1, PointF pf2, Rectangle rect)
+        {
+            bool haveLargePixel = Math.Abs(pf1.X - pf2.X) >= rect.Width * 100 || Math.Abs(pf1.Y - pf2.Y) >= rect.Height * 100;
 
-                case StringAlignment.Far:
-                    pt.X = layoutRectangle.Right - size.Width / 2f;
-                    break;
+            //两点都在区域内
+            if (pf1.InRect(rect) && pf2.InRect(rect))
+            {
+                g.DrawLine(pen, pf1, pf2);
+                return;
             }
 
-            switch (format.LineAlignment)
+            //无大坐标像素
+            if (!haveLargePixel)
             {
-                case StringAlignment.Near:
-                    pt.Y = layoutRectangle.Top + size.Height / 2f;
-                    break;
-
-                case StringAlignment.Center:
-                    pt.Y = (layoutRectangle.Top + layoutRectangle.Bottom) / 2f;
-                    break;
-
-                case StringAlignment.Far:
-                    pt.Y = layoutRectangle.Bottom - size.Height / 2f;
-                    break;
+                g.DrawLine(pen, pf1, pf2);
+                return;
             }
 
-            return pt;
+            //垂直线
+            if (pf1.X.Equals(pf2.X))
+            {
+                if (pf1.X <= rect.Left) return;
+                if (pf1.X >= rect.Right) return;
+                if (pf1.Y <= rect.Top && pf2.Y <= rect.Top) return;
+                if (pf1.Y >= rect.Bottom && pf2.Y >= rect.Bottom) return;
+
+                float yy1 = Math.Min(pf1.Y, pf2.Y);
+                float yy2 = Math.Max(pf1.Y, pf2.Y);
+                if (yy1 <= rect.Top)
+                {
+                    if (yy2 <= rect.Bottom) g.DrawLine(pen, pf1.X, rect.Top, pf1.X, yy2);
+                    else g.DrawLine(pen, pf1.X, rect.Top, pf1.X, rect.Bottom);
+                }
+                else
+                {
+                    if (yy2 <= rect.Bottom) g.DrawLine(pen, pf1.X, yy1, pf1.X, yy2);
+                    else g.DrawLine(pen, pf1.X, yy1, pf1.X, rect.Bottom);
+                }
+
+                return;
+            }
+
+            //水平线
+            if (pf1.Y.Equals(pf2.Y))
+            {
+                if (pf1.Y <= rect.Top) return;
+                if (pf1.Y >= rect.Bottom) return;
+                if (pf1.X <= rect.Left && pf2.X <= rect.Left) return;
+                if (pf1.X >= rect.Right && pf2.X >= rect.Right) return;
+
+                float xx1 = Math.Min(pf1.X, pf2.X);
+                float xx2 = Math.Max(pf1.X, pf2.X);
+                if (xx1 <= rect.Left)
+                {
+                    if (xx2 <= rect.Right) g.DrawLine(pen, rect.Left, pf1.Y, xx2, pf1.Y);
+                    else g.DrawLine(pen, rect.Left, pf1.Y, rect.Right, pf1.Y);
+                }
+                else
+                {
+                    if (xx2 <= rect.Right) g.DrawLine(pen, xx1, pf1.Y, xx2, pf1.Y);
+                    else g.DrawLine(pen, xx1, pf1.Y, rect.Right, pf1.Y);
+                }
+
+                return;
+            }
+
+            //判断两个区域是否相交
+            RectangleF rect1 = pf1.CreateRectangleF(pf2);
+            if (!rect1.IsOverlap(rect)) return;
+
+            double x1 = CalcX(pf1, pf2, rect.Top);
+            double x2 = CalcX(pf1, pf2, rect.Bottom);
+            double y1 = CalcY(pf1, pf2, rect.Left);
+            double y2 = CalcY(pf1, pf2, rect.Right);
+
+            //判断线段是否和区域有交点
+            bool isExist = x1.InRange(rect.Left, rect.Right) || x2.InRange(rect.Left, rect.Right) || y1.InRange(rect.Top, rect.Bottom) || y2.InRange(rect.Top, rect.Bottom);
+            if (!isExist) return;
+
+            List<PointF> TwoPoints = new List<PointF>();
+            if (!pf1.InRect(rect) && !pf2.InRect(rect))
+            {
+                if (x1.InRange(rect.Left, rect.Right)) TwoPoints.Add(new PointF((float)x1, rect.Top));
+                if (x2.InRange(rect.Left, rect.Right)) TwoPoints.Add(new PointF((float)x2, rect.Bottom));
+                if (y1.InRange(rect.Top, rect.Bottom)) TwoPoints.Add(new PointF(rect.Left, (float)y1));
+                if (y2.InRange(rect.Top, rect.Bottom)) TwoPoints.Add(new PointF(rect.Right, (float)y2));
+            }
+            else
+            {
+                PointF center = pf1.InRect(rect) ? pf1 : pf2;
+                PointF border = pf2.InRect(rect) ? pf1 : pf2;
+                TwoPoints.Add(center);
+                if (border.X >= center.X)
+                {
+                    if (border.Y >= center.Y)
+                    {
+                        TwoPoints.Add(x2 <= rect.Right ? new PointF((float)x2, rect.Bottom) : new PointF(rect.Right, (float)y2));
+                    }
+                    else
+                    {
+                        TwoPoints.Add(x1 <= rect.Right ? new PointF((float)x1, rect.Top) : new PointF(rect.Right, (float)y2));
+                    }
+                }
+                else
+                {
+                    if (border.Y >= center.Y)
+                    {
+                        TwoPoints.Add(x2 >= rect.Left ? new PointF((float)x2, rect.Bottom) : new PointF(rect.Left, (float)y1));
+                    }
+                    else
+                    {
+                        TwoPoints.Add(x1 >= rect.Left ? new PointF((float)x1, rect.Bottom) : new PointF(rect.Left, (float)y1));
+                    }
+                }
+            }
+
+            if (TwoPoints.Count == 2)
+            {
+                g.DrawLine(pen, TwoPoints[0], TwoPoints[1]);
+            }
+            else
+            {
+                Console.WriteLine(TwoPoints.Count);
+            }
+
+            TwoPoints.Clear();
         }
     }
 }

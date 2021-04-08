@@ -273,9 +273,9 @@ namespace Sunny.UI
                 }
 
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
-                float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Width;
-                float yy = Option.Grid.Top + (DrawSize.Height - sfName.Height) / 2.0f;
-                g.DrawStringRotateAtCenter(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx + sfName.Width / 2.0f, yy + sfName.Height / 2.0f), 270);
+                float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
+                float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
+                g.DrawStringRotateAtCenter(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx, yy), 270);
             }
         }
 
