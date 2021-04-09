@@ -728,30 +728,58 @@ namespace Sunny.UI
 
         public static void DrawFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
-            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
-            g.DrawPath(color, path, smooth);
-            path.Dispose();
+            if (d1.Equals(0))
+            {
+                g.DrawPie(color, center.X - d2, center.Y - d2, d2 * 2, d2 * 2, startAngle, sweepAngle);
+            }
+            else
+            {
+                GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+                g.DrawPath(color, path, smooth);
+                path.Dispose();
+            }
         }
 
         public static void DrawFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
-            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
-            g.DrawPath(color, path, smooth);
-            path.Dispose();
+            if (d1.Equals(0))
+            {
+                g.DrawPie(color, center.X - d2, center.Y - d2, d2 * 2, d2 * 2, startAngle, sweepAngle);
+            }
+            else
+            {
+                GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+                g.DrawPath(color, path, smooth);
+                path.Dispose();
+            }
         }
 
         public static void FillFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
-            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
-            g.FillPath(color, path, smooth);
-            path.Dispose();
+            if (d1.Equals(0))
+            {
+                g.FillPie(color, center.X - d2, center.Y - d2, d2 * 2, d2 * 2, startAngle, sweepAngle);
+            }
+            else
+            {
+                GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+                g.FillPath(color, path, smooth);
+                path.Dispose();
+            }
         }
 
         public static void FillFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
-            GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
-            g.FillPath(color, path, smooth);
-            path.Dispose();
+            if (d1.Equals(0))
+            {
+                g.FillPie(color, center.X - d2, center.Y - d2, d2 * 2, d2 * 2, startAngle, sweepAngle);
+            }
+            else
+            {
+                GraphicsPath path = g.CreateFanPath(center, d1, d2, startAngle, sweepAngle);
+                g.FillPath(color, path, smooth);
+                path.Dispose();
+            }
         }
 
         public static void FillPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true)

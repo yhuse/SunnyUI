@@ -24,6 +24,7 @@
             value++;
             uiTrackBar1.Value = value;
             uiProcessBar2.Value = uiProcessBar1.Value = value;
+            uiRoundProcess2.Value = uiRoundProcess1.Value = value;
         }
     }
 }

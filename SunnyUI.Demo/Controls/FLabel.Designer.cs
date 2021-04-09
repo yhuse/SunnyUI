@@ -57,6 +57,7 @@
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiLinkLabel1);
             this.PagePanel.Controls.Add(this.uiLabel1);
+            this.PagePanel.Size = new System.Drawing.Size(800, 415);
             // 
             // uiLabel1
             // 
@@ -154,6 +155,7 @@
             this.uiMarkLabel1.Size = new System.Drawing.Size(118, 21);
             this.uiMarkLabel1.TabIndex = 24;
             this.uiMarkLabel1.Text = "uiMarkLabel1";
+            this.uiMarkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiLine4
             // 
@@ -177,6 +179,7 @@
             this.uiMarkLabel2.Size = new System.Drawing.Size(113, 26);
             this.uiMarkLabel2.TabIndex = 26;
             this.uiMarkLabel2.Text = "uiMarkLabel2";
+            this.uiMarkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiMarkLabel3
             // 
@@ -189,6 +192,7 @@
             this.uiMarkLabel3.Size = new System.Drawing.Size(118, 21);
             this.uiMarkLabel3.TabIndex = 27;
             this.uiMarkLabel3.Text = "uiMarkLabel3";
+            this.uiMarkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiMarkLabel4
             // 
@@ -201,10 +205,10 @@
             this.uiMarkLabel4.Size = new System.Drawing.Size(113, 26);
             this.uiMarkLabel4.TabIndex = 28;
             this.uiMarkLabel4.Text = "uiMarkLabel4";
+            this.uiMarkLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FLabel";

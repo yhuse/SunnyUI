@@ -58,11 +58,15 @@
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.uiProcessBar2 = new Sunny.UI.UIProcessBar();
             this.uiRoundProcess1 = new Sunny.UI.UIRoundProcess();
+            this.uiLine9 = new Sunny.UI.UILine();
+            this.uiRoundProcess2 = new Sunny.UI.UIRoundProcess();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiRoundProcess2);
+            this.PagePanel.Controls.Add(this.uiLine9);
             this.PagePanel.Controls.Add(this.uiRoundProcess1);
             this.PagePanel.Controls.Add(this.uiProcessBar2);
             this.PagePanel.Controls.Add(this.uiLabel3);
@@ -90,7 +94,7 @@
             this.PagePanel.Controls.Add(this.uiLight2);
             this.PagePanel.Controls.Add(this.uiLine2);
             this.PagePanel.Controls.Add(this.uiLight1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 472);
+            this.PagePanel.Size = new System.Drawing.Size(800, 578);
             // 
             // uiLight1
             // 
@@ -166,7 +170,7 @@
             // uiProgressIndicator1
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(30, 298);
+            this.uiProgressIndicator1.Location = new System.Drawing.Point(381, 339);
             this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(120, 120);
@@ -176,7 +180,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(30, 271);
+            this.uiLine4.Location = new System.Drawing.Point(381, 313);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(319, 20);
@@ -194,6 +198,7 @@
             this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar1.TabIndex = 30;
             this.uiTrackBar1.Text = "uiTrackBar1";
+            this.uiTrackBar1.Value = 50;
             // 
             // uiLine5
             // 
@@ -333,7 +338,7 @@
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine7.Location = new System.Drawing.Point(381, 313);
+            this.uiLine7.Location = new System.Drawing.Point(29, 256);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
             this.uiLine7.Size = new System.Drawing.Size(319, 20);
@@ -345,7 +350,7 @@
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel1.Location = new System.Drawing.Point(382, 350);
+            this.uiLabel1.Location = new System.Drawing.Point(30, 293);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(138, 21);
             this.uiLabel1.TabIndex = 53;
@@ -357,7 +362,7 @@
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel2.Location = new System.Drawing.Point(562, 350);
+            this.uiLabel2.Location = new System.Drawing.Point(210, 293);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(138, 21);
             this.uiLabel2.TabIndex = 54;
@@ -368,7 +373,7 @@
             // 
             this.uiLabel3.AutoSize = true;
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel3.Location = new System.Drawing.Point(382, 388);
+            this.uiLabel3.Location = new System.Drawing.Point(30, 331);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(138, 21);
             this.uiLabel3.TabIndex = 55;
@@ -397,22 +402,45 @@
             // 
             this.uiRoundProcess1.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundProcess1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundProcess1.Inner = 30;
-            this.uiRoundProcess1.Location = new System.Drawing.Point(228, 298);
+            this.uiRoundProcess1.Location = new System.Drawing.Point(29, 393);
             this.uiRoundProcess1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundProcess1.Name = "uiRoundProcess1";
-            this.uiRoundProcess1.Outer = 50;
-            this.uiRoundProcess1.ProcessBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.uiRoundProcess1.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiRoundProcess1.ShowProcess = true;
             this.uiRoundProcess1.Size = new System.Drawing.Size(120, 120);
             this.uiRoundProcess1.TabIndex = 57;
-            this.uiRoundProcess1.Text = "uiRoundProcess1";
-            this.uiRoundProcess1.Value = 80;
+            this.uiRoundProcess1.Text = "0.0%";
+            // 
+            // uiLine9
+            // 
+            this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine9.Location = new System.Drawing.Point(30, 367);
+            this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine9.Name = "uiLine9";
+            this.uiLine9.Size = new System.Drawing.Size(319, 20);
+            this.uiLine9.TabIndex = 58;
+            this.uiLine9.Text = "UIRoundProcess";
+            this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiRoundProcess2
+            // 
+            this.uiRoundProcess2.BackColor = System.Drawing.Color.Transparent;
+            this.uiRoundProcess2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundProcess2.ForeColor = System.Drawing.Color.White;
+            this.uiRoundProcess2.Inner = 0;
+            this.uiRoundProcess2.Location = new System.Drawing.Point(156, 393);
+            this.uiRoundProcess2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiRoundProcess2.Name = "uiRoundProcess2";
+            this.uiRoundProcess2.ShowProcess = true;
+            this.uiRoundProcess2.Size = new System.Drawing.Size(120, 120);
+            this.uiRoundProcess2.Style = Sunny.UI.UIStyle.Custom;
+            this.uiRoundProcess2.StyleCustomMode = true;
+            this.uiRoundProcess2.TabIndex = 59;
+            this.uiRoundProcess2.Text = "0.0%";
             // 
             // FOther
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 507);
+            this.ClientSize = new System.Drawing.Size(800, 613);
             this.Name = "FOther";
             this.Symbol = 62173;
             this.Text = "Other";
@@ -452,5 +480,7 @@
         private UIToolTip uiToolTip1;
         private UIProcessBar uiProcessBar2;
         private UIRoundProcess uiRoundProcess1;
+        private UIRoundProcess uiRoundProcess2;
+        private UILine uiLine9;
     }
 }

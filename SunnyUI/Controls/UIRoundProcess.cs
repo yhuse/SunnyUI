@@ -19,16 +19,19 @@
  * 2021-04-08: V3.0.2 增加文件说明
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace Sunny.UI
 {
     /// <summary>
     /// 圆形滚动条
     /// </summary>
-    [ToolboxItem(false)]
+    [ToolboxItem(true)]
+    [DefaultEvent("ValueChanged")]
+    [DefaultProperty("Value")]
     public class UIRoundProcess : UIControl
     {
         public UIRoundProcess()
@@ -37,29 +40,136 @@ namespace Sunny.UI
             Inner = 30;
             Outer = 50;
 
-            ProcessColor = UIColor.Blue;
-            ProcessBackColor = Color.FromArgb(155, 200, 255);
-            base.BackColor = Color.Transparent;
+            fillColor = UIColor.Blue;
+            rectColor = Color.FromArgb(155, 200, 255);
+            foreColor = UIColor.Blue;
             ShowText = false;
             ShowRect = false;
-            ShowFill = false;
         }
 
-        public int Inner { get; set; }
+        private int maximum = 100;
 
-        public int Outer { get; set; }
-
-        public Color ProcessColor { get; set; }
-
-        public Color ProcessBackColor { get; set; }
-
-        public int Value { get; set; }
-
-        protected override void OnPaint(PaintEventArgs e)
+        [DefaultValue(100)]
+        [Description("最大值"), Category("SunnyUI")]
+        public int Maximum
         {
-            base.OnPaint(e);
-            e.Graphics.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
-            e.Graphics.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value / 100.0f * 360);
+            get => maximum;
+            set
+            {
+                maximum = Math.Max(1, value);
+                Invalidate();
+            }
+        }
+
+        private int inner = 30;
+        private int outer = 50;
+
+        [Description("内径")]
+        [Category("SunnyUI")]
+        [DefaultValue(30)]
+        public int Inner
+        {
+            get => inner;
+            set
+            {
+                inner = Math.Max(value, 0);
+                inner = Math.Min(value, outer - 5);
+                Invalidate();
+            }
+        }
+
+        [Description("外径")]
+        [Category("SunnyUI")]
+        [DefaultValue(50)]
+        public int Outer
+        {
+            get => outer;
+            set
+            {
+                outer = Math.Max(value, 5);
+                inner = Math.Min(inner, outer - 5);
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        ///     进度条前景色
+        /// </summary>
+        [Description("进度条前景色")]
+        [Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ProcessColor
+        {
+            get => fillColor;
+            set => SetFillColor(value);
+        }
+
+        /// <summary>
+        ///     进度条背景色
+        /// </summary>
+        [Description("进度条背景色")]
+        [Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "155, 200, 255")]
+        public Color ProcessBackColor
+        {
+            get => rectColor;
+            set => SetRectColor(value);
+        }
+
+        /// <summary>
+        ///     字体颜色
+        /// </summary>
+        [Description("字体颜色")]
+        [Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public override Color ForeColor
+        {
+            get => foreColor;
+            set => SetForeColor(value);
+        }
+
+        private int posValue;
+
+        [DefaultValue(0)]
+        [Description("当前位置"), Category("SunnyUI")]
+        public int Value
+        {
+            get => posValue;
+            set
+            {
+                posValue = Math.Max(value, 0);
+                posValue = Math.Min(posValue, maximum);
+                Text = (posValue * 100.0 / maximum).ToString("F1") + "%";
+                ValueChanged?.Invoke(this, posValue);
+                Invalidate();
+            }
+        }
+
+        public delegate void OnValueChanged(object sender, int value);
+
+        public event OnValueChanged ValueChanged;
+
+        protected override void OnPaintFill(Graphics g, GraphicsPath path)
+        {
+            g.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
+            g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value * 1.0f / Maximum * 360.0f);
+        }
+
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            base.SetStyleColor(uiColor);
+            if (uiColor.IsCustom()) return;
+
+            fillColor = uiColor.PrimaryColor;
+            foreColor = uiColor.PrimaryColor;
+            rectColor = uiColor.GridSelectedColor;
+            Invalidate();
+        }
+
+        public bool ShowProcess
+        {
+            get => ShowText;
+            set => ShowText = value;
         }
     }
 }
