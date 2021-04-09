@@ -194,6 +194,24 @@ namespace Sunny.UI
             }
         }
 
+        private bool showFill = true;
+
+        /// <summary>
+        /// 是否显示填充
+        /// </summary>
+        protected bool ShowFill
+        {
+            get => showFill;
+            set
+            {
+                if (showFill != value)
+                {
+                    showFill = value;
+                    Invalidate();
+                }
+            }
+        }
+
         /// <summary>
         /// 版本
         /// </summary>
@@ -311,7 +329,7 @@ namespace Sunny.UI
             GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides);
 
             //填充背景色
-            if (fillColor.IsValid())
+            if (ShowFill && fillColor.IsValid())
             {
                 OnPaintFill(e.Graphics, path);
             }
@@ -329,12 +347,8 @@ namespace Sunny.UI
             }
 
             path.Dispose();
-
-            PaintOther?.Invoke(this, e);
             base.OnPaint(e);
         }
-
-        public event PaintEventHandler PaintOther;
 
         /// <summary>
         /// 获取边框颜色

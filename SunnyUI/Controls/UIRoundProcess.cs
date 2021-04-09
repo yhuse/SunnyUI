@@ -21,7 +21,6 @@
 
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -43,6 +42,7 @@ namespace Sunny.UI
             base.BackColor = Color.Transparent;
             ShowText = false;
             ShowRect = false;
+            ShowFill = false;
         }
 
         public int Inner { get; set; }
@@ -58,13 +58,8 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-        }
-
-        protected override void OnPaintFill(Graphics g, GraphicsPath path)
-        {
-            g.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
-            g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value / 100.0f * 360);
+            e.Graphics.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
+            e.Graphics.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value / 100.0f * 360);
         }
     }
 }

@@ -42,11 +42,11 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
-            PaintOther += UICheckBox_PaintOther;
         }
 
-        private void UICheckBox_PaintOther(object sender, PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             if (AutoSize)
             {
                 SizeF sf = Text.MeasureString(Font);
@@ -67,7 +67,7 @@ namespace Sunny.UI
             set
             {
                 autoSize = value;
-                UICheckBox_PaintOther(this, null);
+                Invalidate();
             }
         }
 

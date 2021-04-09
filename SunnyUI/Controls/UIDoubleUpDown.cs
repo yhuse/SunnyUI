@@ -44,11 +44,10 @@ namespace Sunny.UI
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += Edit_TextChanged;
             edit.Leave += Edit_Leave;
-            //edit.MouseLeave += Edit_Leave;
-            pnlValue.PaintOther += PnlValue_PaintOther;
+            pnlValue.Paint += PnlValue_Paint;
         }
 
-        private void PnlValue_PaintOther(object sender, PaintEventArgs e)
+        private void PnlValue_Paint(object sender, PaintEventArgs e)
         {
             if (Enabled)
             {

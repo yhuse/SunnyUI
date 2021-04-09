@@ -663,10 +663,12 @@
             this.uiSymbolButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton8.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton8.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton8.IsCircle = true;
             this.uiSymbolButton8.Location = new System.Drawing.Point(194, 280);
             this.uiSymbolButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton8.Name = "uiSymbolButton8";
+            this.uiSymbolButton8.Padding = new System.Windows.Forms.Padding(7, 9, 0, 0);
             this.uiSymbolButton8.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiSymbolButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
@@ -685,10 +687,12 @@
             this.uiSymbolButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton9.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton9.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton9.IsCircle = true;
             this.uiSymbolButton9.Location = new System.Drawing.Point(153, 280);
             this.uiSymbolButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton9.Name = "uiSymbolButton9";
+            this.uiSymbolButton9.Padding = new System.Windows.Forms.Padding(6, 8, 0, 0);
             this.uiSymbolButton9.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
@@ -704,10 +708,12 @@
             this.uiSymbolButton10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton10.ForeSelectedColor = System.Drawing.Color.Empty;
+            this.uiSymbolButton10.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton10.IsCircle = true;
             this.uiSymbolButton10.Location = new System.Drawing.Point(112, 280);
             this.uiSymbolButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton10.Name = "uiSymbolButton10";
+            this.uiSymbolButton10.Padding = new System.Windows.Forms.Padding(6, 9, 0, 0);
             this.uiSymbolButton10.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiSymbolButton10.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton10.StyleCustomMode = true;
@@ -721,10 +727,12 @@
             this.uiSymbolButton11.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton11.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton11.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton11.IsCircle = true;
             this.uiSymbolButton11.Location = new System.Drawing.Point(71, 280);
             this.uiSymbolButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton11.Name = "uiSymbolButton11";
+            this.uiSymbolButton11.Padding = new System.Windows.Forms.Padding(7, 10, 0, 0);
             this.uiSymbolButton11.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton11.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiSymbolButton11.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
@@ -1159,7 +1167,6 @@
             // FButton
             // 
             this.AlwaysOpen = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 534);
             this.Name = "FButton";

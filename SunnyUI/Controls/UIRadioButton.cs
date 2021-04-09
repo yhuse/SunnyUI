@@ -46,11 +46,11 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
-            PaintOther += UIRadioButton_PaintOther;
         }
 
-        private void UIRadioButton_PaintOther(object sender, PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             if (AutoSize)
             {
                 SizeF sf = Text.MeasureString(Font);
@@ -71,7 +71,7 @@ namespace Sunny.UI
             set
             {
                 autoSize = value;
-                UIRadioButton_PaintOther(this, null);
+                Invalidate();
             }
         }
 

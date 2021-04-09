@@ -65,7 +65,6 @@ namespace Sunny.UI
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
             edit.BackColor = Color.White;
-            PaintOther += UIDropControl_PaintOther;
             MouseMove += UIDropControl_MouseMove;
         }
 
@@ -79,8 +78,9 @@ namespace Sunny.UI
             MouseLocation = e.Location;
         }
 
-        private void UIDropControl_PaintOther(object sender, PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             if (Enabled)
             {
                 if (Radius == 0 || RadiusSides == UICornerRadiusSides.None)
@@ -293,16 +293,12 @@ namespace Sunny.UI
                 g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 26, edit.Height), Radius, false);
                 g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
             }
-        }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
             Padding = new Padding(0, 0, 30, 2);
-            e.Graphics.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
+            g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
             Color color = GetRectColor();
-            SizeF sf = e.Graphics.GetFontImageSize(dropSymbol, 24);
-            e.Graphics.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
+            SizeF sf = g.GetFontImageSize(dropSymbol, 24);
+            g.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
         }
 
         protected override void OnGotFocus(EventArgs e)

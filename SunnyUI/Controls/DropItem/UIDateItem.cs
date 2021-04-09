@@ -224,7 +224,7 @@ namespace Sunny.UI
             this.p1.Style = Sunny.UI.UIStyle.Custom;
             this.p1.TabIndex = 0;
             this.p1.Text = null;
-            this.p1.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p1_PaintOther);
+            this.p1.Paint += new System.Windows.Forms.PaintEventHandler(this.p1_Paint);
             this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
             this.p1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p1_MouseMove);
             // 
@@ -252,7 +252,7 @@ namespace Sunny.UI
             this.p2.Style = Sunny.UI.UIStyle.Custom;
             this.p2.TabIndex = 1;
             this.p2.Text = null;
-            this.p2.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p2_PaintOther);
+            this.p2.Paint += new System.Windows.Forms.PaintEventHandler(this.p2_Paint);
             this.p2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p2_MouseClick);
             this.p2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p2_MouseMove);
             // 
@@ -280,7 +280,7 @@ namespace Sunny.UI
             this.p3.Style = Sunny.UI.UIStyle.Custom;
             this.p3.TabIndex = 2;
             this.p3.Text = null;
-            this.p3.PaintOther += new System.Windows.Forms.PaintEventHandler(this.p3_PaintOther);
+            this.p3.Paint += new System.Windows.Forms.PaintEventHandler(this.p3_Paint);
             this.p3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p3_MouseClick);
             this.p3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p3_MouseMove);
             // 
@@ -513,7 +513,7 @@ namespace Sunny.UI
             TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = color;
         }
 
-        private void p2_PaintOther(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -558,7 +558,7 @@ namespace Sunny.UI
 
         private int activeYear = -1;
 
-        private void p1_PaintOther(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -604,7 +604,7 @@ namespace Sunny.UI
             p2.Invalidate();
         }
 
-        private void p3_PaintOther(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p3_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
