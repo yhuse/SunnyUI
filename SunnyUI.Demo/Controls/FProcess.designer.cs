@@ -69,7 +69,7 @@ namespace Sunny.UI.Demo
             // uiBreadcrumb1
             // 
             this.uiBreadcrumb1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiBreadcrumb1.ItemIndex = 2;
+            this.uiBreadcrumb1.ItemIndex = 0;
             this.uiBreadcrumb1.Items.AddRange(new object[] {
             "步骤一",
             "步骤二",
@@ -243,7 +243,7 @@ namespace Sunny.UI.Demo
             this.ClientSize = new System.Drawing.Size(1022, 560);
             this.Name = "FProcess";
             this.Symbol = 62034;
-            this.Text = "Progress";
+            this.Text = "Process";
             this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
