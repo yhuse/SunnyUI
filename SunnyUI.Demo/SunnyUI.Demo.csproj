@@ -171,6 +171,12 @@
     <Compile Include="Controls\FPanel.Designer.cs">
       <DependentUpon>FPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FProcess.designer.cs">
+      <DependentUpon>FProcess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FRadioButton.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FPanel.resx">
       <DependentUpon>FPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FProcess.resx">
+      <DependentUpon>FProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FRadioButton.resx">
       <DependentUpon>FRadioButton.cs</DependentUpon>

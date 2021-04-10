@@ -33,13 +33,6 @@
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiLight2 = new Sunny.UI.UILight();
             this.uiLight3 = new Sunny.UI.UILight();
-            this.uiProcessBar1 = new Sunny.UI.UIProcessBar();
-            this.uiLine3 = new Sunny.UI.UILine();
-            this.uiProgressIndicator1 = new Sunny.UI.UIProgressIndicator();
-            this.uiLine4 = new Sunny.UI.UILine();
-            this.uiTrackBar1 = new Sunny.UI.UITrackBar();
-            this.uiLine5 = new Sunny.UI.UILine();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.uiLight4 = new Sunny.UI.UILight();
             this.uiLedBulb1 = new Sunny.UI.UILedBulb();
             this.uiLine8 = new Sunny.UI.UILine();
@@ -49,32 +42,20 @@
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiScrollingText1 = new Sunny.UI.UIScrollingText();
             this.uiScrollingText2 = new Sunny.UI.UIScrollingText();
-            this.uiWaitingBar1 = new Sunny.UI.UIWaitingBar();
-            this.uiLine1 = new Sunny.UI.UILine();
             this.uiLine7 = new Sunny.UI.UILine();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.uiProcessBar2 = new Sunny.UI.UIProcessBar();
-            this.uiRoundProcess1 = new Sunny.UI.UIRoundProcess();
-            this.uiLine9 = new Sunny.UI.UILine();
-            this.uiRoundProcess2 = new Sunny.UI.UIRoundProcess();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
-            this.PagePanel.Controls.Add(this.uiRoundProcess2);
-            this.PagePanel.Controls.Add(this.uiLine9);
-            this.PagePanel.Controls.Add(this.uiRoundProcess1);
-            this.PagePanel.Controls.Add(this.uiProcessBar2);
             this.PagePanel.Controls.Add(this.uiLabel3);
             this.PagePanel.Controls.Add(this.uiLabel2);
             this.PagePanel.Controls.Add(this.uiLabel1);
             this.PagePanel.Controls.Add(this.uiLine7);
-            this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Controls.Add(this.uiWaitingBar1);
             this.PagePanel.Controls.Add(this.uiScrollingText2);
             this.PagePanel.Controls.Add(this.uiScrollingText1);
             this.PagePanel.Controls.Add(this.uiLine6);
@@ -84,12 +65,6 @@
             this.PagePanel.Controls.Add(this.uiLine8);
             this.PagePanel.Controls.Add(this.uiLedBulb1);
             this.PagePanel.Controls.Add(this.uiLight4);
-            this.PagePanel.Controls.Add(this.uiLine5);
-            this.PagePanel.Controls.Add(this.uiTrackBar1);
-            this.PagePanel.Controls.Add(this.uiLine4);
-            this.PagePanel.Controls.Add(this.uiProgressIndicator1);
-            this.PagePanel.Controls.Add(this.uiLine3);
-            this.PagePanel.Controls.Add(this.uiProcessBar1);
             this.PagePanel.Controls.Add(this.uiLight3);
             this.PagePanel.Controls.Add(this.uiLight2);
             this.PagePanel.Controls.Add(this.uiLine2);
@@ -144,76 +119,6 @@
             this.uiLight3.State = Sunny.UI.UILightState.Blink;
             this.uiLight3.TabIndex = 23;
             this.uiLight3.Text = "uiLight3";
-            // 
-            // uiProcessBar1
-            // 
-            this.uiProcessBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProcessBar1.Location = new System.Drawing.Point(30, 136);
-            this.uiProcessBar1.MinimumSize = new System.Drawing.Size(70, 1);
-            this.uiProcessBar1.Name = "uiProcessBar1";
-            this.uiProcessBar1.Size = new System.Drawing.Size(318, 29);
-            this.uiProcessBar1.TabIndex = 24;
-            this.uiProcessBar1.Text = "50.0%";
-            this.uiProcessBar1.Value = 50;
-            // 
-            // uiLine3
-            // 
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.Location = new System.Drawing.Point(30, 103);
-            this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine3.Name = "uiLine3";
-            this.uiLine3.Size = new System.Drawing.Size(319, 20);
-            this.uiLine3.TabIndex = 25;
-            this.uiLine3.Text = "UIProcessBar";
-            this.uiLine3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiProgressIndicator1
-            // 
-            this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(381, 339);
-            this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiProgressIndicator1.Name = "uiProgressIndicator1";
-            this.uiProgressIndicator1.Size = new System.Drawing.Size(120, 120);
-            this.uiProgressIndicator1.TabIndex = 26;
-            this.uiProgressIndicator1.Text = "uiProgressIndicator1";
-            // 
-            // uiLine4
-            // 
-            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(381, 313);
-            this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine4.Name = "uiLine4";
-            this.uiLine4.Size = new System.Drawing.Size(319, 20);
-            this.uiLine4.TabIndex = 27;
-            this.uiLine4.Text = "UIProgressIndicator";
-            this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiTrackBar1
-            // 
-            this.uiTrackBar1.DisableColor = System.Drawing.Color.Silver;
-            this.uiTrackBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTrackBar1.Location = new System.Drawing.Point(381, 136);
-            this.uiTrackBar1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiTrackBar1.Name = "uiTrackBar1";
-            this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
-            this.uiTrackBar1.TabIndex = 30;
-            this.uiTrackBar1.Text = "uiTrackBar1";
-            this.uiTrackBar1.Value = 50;
-            // 
-            // uiLine5
-            // 
-            this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.Location = new System.Drawing.Point(381, 101);
-            this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine5.Name = "uiLine5";
-            this.uiLine5.Size = new System.Drawing.Size(319, 20);
-            this.uiLine5.TabIndex = 31;
-            this.uiLine5.Text = "UITrackBar";
-            this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // uiLight4
             // 
@@ -272,6 +177,7 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
+            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -279,7 +185,7 @@
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.Location = new System.Drawing.Point(381, 182);
+            this.uiLine6.Location = new System.Drawing.Point(381, 98);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
             this.uiLine6.Size = new System.Drawing.Size(319, 20);
@@ -292,7 +198,7 @@
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
-            this.uiScrollingText1.Location = new System.Drawing.Point(381, 215);
+            this.uiScrollingText1.Location = new System.Drawing.Point(381, 131);
             this.uiScrollingText1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText1.Name = "uiScrollingText1";
             this.uiScrollingText1.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
@@ -307,38 +213,17 @@
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiScrollingText2.Location = new System.Drawing.Point(381, 256);
+            this.uiScrollingText2.Location = new System.Drawing.Point(381, 172);
             this.uiScrollingText2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText2.Name = "uiScrollingText2";
             this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 49;
             this.uiScrollingText2.Text = "赠人玫瑰手有余香";
             // 
-            // uiWaitingBar1
-            // 
-            this.uiWaitingBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiWaitingBar1.Location = new System.Drawing.Point(30, 215);
-            this.uiWaitingBar1.MinimumSize = new System.Drawing.Size(70, 23);
-            this.uiWaitingBar1.Name = "uiWaitingBar1";
-            this.uiWaitingBar1.Size = new System.Drawing.Size(319, 29);
-            this.uiWaitingBar1.TabIndex = 50;
-            this.uiWaitingBar1.Text = "uiWaitingBar1";
-            // 
-            // uiLine1
-            // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(30, 182);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(319, 20);
-            this.uiLine1.TabIndex = 51;
-            this.uiLine1.Text = "UIWaitingBar";
-            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine7.Location = new System.Drawing.Point(29, 256);
+            this.uiLine7.Location = new System.Drawing.Point(30, 98);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
             this.uiLine7.Size = new System.Drawing.Size(319, 20);
@@ -350,7 +235,7 @@
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel1.Location = new System.Drawing.Point(30, 293);
+            this.uiLabel1.Location = new System.Drawing.Point(31, 138);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(138, 21);
             this.uiLabel1.TabIndex = 53;
@@ -362,7 +247,7 @@
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel2.Location = new System.Drawing.Point(210, 293);
+            this.uiLabel2.Location = new System.Drawing.Point(211, 138);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(138, 21);
             this.uiLabel2.TabIndex = 54;
@@ -373,7 +258,7 @@
             // 
             this.uiLabel3.AutoSize = true;
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel3.Location = new System.Drawing.Point(30, 331);
+            this.uiLabel3.Location = new System.Drawing.Point(31, 179);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(138, 21);
             this.uiLabel3.TabIndex = 55;
@@ -386,56 +271,6 @@
             this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
-            // 
-            // uiProcessBar2
-            // 
-            this.uiProcessBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProcessBar2.Location = new System.Drawing.Point(30, 171);
-            this.uiProcessBar2.MinimumSize = new System.Drawing.Size(70, 1);
-            this.uiProcessBar2.Name = "uiProcessBar2";
-            this.uiProcessBar2.Size = new System.Drawing.Size(318, 5);
-            this.uiProcessBar2.TabIndex = 56;
-            this.uiProcessBar2.Text = "50.0%";
-            this.uiProcessBar2.Value = 50;
-            // 
-            // uiRoundProcess1
-            // 
-            this.uiRoundProcess1.BackColor = System.Drawing.Color.Transparent;
-            this.uiRoundProcess1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundProcess1.Location = new System.Drawing.Point(29, 393);
-            this.uiRoundProcess1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiRoundProcess1.Name = "uiRoundProcess1";
-            this.uiRoundProcess1.ShowProcess = true;
-            this.uiRoundProcess1.Size = new System.Drawing.Size(120, 120);
-            this.uiRoundProcess1.TabIndex = 57;
-            this.uiRoundProcess1.Text = "0.0%";
-            // 
-            // uiLine9
-            // 
-            this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine9.Location = new System.Drawing.Point(30, 367);
-            this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine9.Name = "uiLine9";
-            this.uiLine9.Size = new System.Drawing.Size(319, 20);
-            this.uiLine9.TabIndex = 58;
-            this.uiLine9.Text = "UIRoundProcess";
-            this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiRoundProcess2
-            // 
-            this.uiRoundProcess2.BackColor = System.Drawing.Color.Transparent;
-            this.uiRoundProcess2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundProcess2.ForeColor = System.Drawing.Color.White;
-            this.uiRoundProcess2.Inner = 0;
-            this.uiRoundProcess2.Location = new System.Drawing.Point(156, 393);
-            this.uiRoundProcess2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiRoundProcess2.Name = "uiRoundProcess2";
-            this.uiRoundProcess2.ShowProcess = true;
-            this.uiRoundProcess2.Size = new System.Drawing.Size(120, 120);
-            this.uiRoundProcess2.Style = Sunny.UI.UIStyle.Custom;
-            this.uiRoundProcess2.StyleCustomMode = true;
-            this.uiRoundProcess2.TabIndex = 59;
-            this.uiRoundProcess2.Text = "0.0%";
             // 
             // FOther
             // 
@@ -455,13 +290,6 @@
         private UILight uiLight2;
         private UILine uiLine2;
         private UILight uiLight1;
-        private UITrackBar uiTrackBar1;
-        private UILine uiLine4;
-        private UIProgressIndicator uiProgressIndicator1;
-        private UILine uiLine3;
-        private UIProcessBar uiProcessBar1;
-        private UILine uiLine5;
-        private System.Windows.Forms.Timer timer1;
         private UILight uiLight4;
         private UILedBulb uiLedBulb2;
         private UILine uiLine8;
@@ -471,16 +299,10 @@
         private UILine uiLine6;
         private UIScrollingText uiScrollingText1;
         private UIScrollingText uiScrollingText2;
-        private UIWaitingBar uiWaitingBar1;
-        private UILine uiLine1;
         private UILine uiLine7;
         private UILabel uiLabel3;
         private UILabel uiLabel2;
         private UILabel uiLabel1;
         private UIToolTip uiToolTip1;
-        private UIProcessBar uiProcessBar2;
-        private UIRoundProcess uiRoundProcess1;
-        private UIRoundProcess uiRoundProcess2;
-        private UILine uiLine9;
     }
 }
