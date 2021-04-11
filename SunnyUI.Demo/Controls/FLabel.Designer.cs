@@ -225,7 +225,7 @@
             this.uiLedLabel.Name = "uiLedLabel";
             this.uiLedLabel.Size = new System.Drawing.Size(670, 20);
             this.uiLedLabel.TabIndex = 29;
-            this.uiLedLabel.Text = "UILedLabel";
+            this.uiLedLabel.Text = "UILedLabel （仅支持英文、标点符号、希腊字母）";
             this.uiLedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiLedLabel1

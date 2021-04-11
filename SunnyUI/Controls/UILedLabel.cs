@@ -42,7 +42,7 @@ namespace Sunny.UI.Controls
             base.OnPaint(e);
 
             int width = CharCount * IntervalOn * 5 +
-                        CharCount * IntervalIn * 4 + (CharCount + 1) * IntervalOn + CharCount * 2;// * IntervalIn;
+                        CharCount * IntervalIn * 4 + (CharCount + 1) * IntervalOn + CharCount * IntervalIn;
             int height = IntervalOn * 7 + IntervalIn * 6;
 
             float left = 0;

@@ -161,6 +161,8 @@ namespace Sunny.UI
                 InControlBox = inControlBox;
                 if (ShowCollapse) Invalidate();
             }
+
+            base.OnMouseMove(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)
