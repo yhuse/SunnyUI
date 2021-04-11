@@ -68,12 +68,14 @@
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiLedStopwatch1);
             this.PagePanel.Controls.Add(this.uiLedDisplay1);
+            this.PagePanel.Size = new System.Drawing.Size(800, 415);
             // 
             // uiAnalogMeter1
             // 
             this.uiAnalogMeter1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAnalogMeter1.Location = new System.Drawing.Point(381, 146);
             this.uiAnalogMeter1.MaxValue = 100D;
+            this.uiAnalogMeter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAnalogMeter1.MinValue = 0D;
             this.uiAnalogMeter1.Name = "uiAnalogMeter1";
             this.uiAnalogMeter1.Renderer = null;
@@ -135,7 +137,7 @@
             this.uiLedStopwatch1.Name = "uiLedStopwatch1";
             this.uiLedStopwatch1.Size = new System.Drawing.Size(190, 34);
             this.uiLedStopwatch1.TabIndex = 45;
-            this.uiLedStopwatch1.Text = "00:06";
+            this.uiLedStopwatch1.Text = "00:03";
             // 
             // uiLedDisplay1
             // 
@@ -160,6 +162,7 @@
             this.uiRoundMeter2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRoundMeter2.Location = new System.Drawing.Point(186, 141);
             this.uiRoundMeter2.MeterType = Sunny.UI.UIRoundMeter.TMeterType.Wind;
+            this.uiRoundMeter2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundMeter2.Name = "uiRoundMeter2";
             this.uiRoundMeter2.Size = new System.Drawing.Size(140, 140);
             this.uiRoundMeter2.TabIndex = 49;
@@ -173,6 +176,7 @@
             this.uiRoundMeter1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.uiRoundMeter1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRoundMeter1.Location = new System.Drawing.Point(30, 136);
+            this.uiRoundMeter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundMeter1.Name = "uiRoundMeter1";
             this.uiRoundMeter1.Size = new System.Drawing.Size(150, 150);
             this.uiRoundMeter1.TabIndex = 47;
@@ -193,6 +197,7 @@
             // 
             this.uiBattery1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery1.Location = new System.Drawing.Point(30, 328);
+            this.uiBattery1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery1.Name = "uiBattery1";
             this.uiBattery1.Size = new System.Drawing.Size(48, 24);
             this.uiBattery1.TabIndex = 54;
@@ -202,6 +207,7 @@
             // 
             this.uiBattery2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery2.Location = new System.Drawing.Point(84, 328);
+            this.uiBattery2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery2.Name = "uiBattery2";
             this.uiBattery2.Power = 1;
             this.uiBattery2.Size = new System.Drawing.Size(48, 24);
@@ -212,6 +218,7 @@
             // 
             this.uiBattery3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery3.Location = new System.Drawing.Point(138, 328);
+            this.uiBattery3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery3.Name = "uiBattery3";
             this.uiBattery3.Power = 25;
             this.uiBattery3.Size = new System.Drawing.Size(48, 24);
@@ -222,6 +229,7 @@
             // 
             this.uiBattery4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery4.Location = new System.Drawing.Point(192, 328);
+            this.uiBattery4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery4.Name = "uiBattery4";
             this.uiBattery4.Power = 50;
             this.uiBattery4.Size = new System.Drawing.Size(48, 24);
@@ -232,6 +240,7 @@
             // 
             this.uiBattery5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery5.Location = new System.Drawing.Point(246, 328);
+            this.uiBattery5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery5.Name = "uiBattery5";
             this.uiBattery5.Power = 75;
             this.uiBattery5.Size = new System.Drawing.Size(48, 24);
@@ -242,6 +251,7 @@
             // 
             this.uiBattery6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiBattery6.Location = new System.Drawing.Point(301, 328);
+            this.uiBattery6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery6.Name = "uiBattery6";
             this.uiBattery6.Size = new System.Drawing.Size(48, 24);
             this.uiBattery6.TabIndex = 59;
@@ -249,7 +259,6 @@
             // 
             // FMeter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FMeter";

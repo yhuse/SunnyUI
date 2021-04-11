@@ -160,8 +160,8 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
 
-            fillColor = uiColor.PrimaryColor;
-            foreColor = uiColor.PrimaryColor;
+            fillColor = uiColor.RectColor;
+            foreColor = uiColor.RectColor;
             rectColor = uiColor.GridSelectedColor;
             Invalidate();
         }

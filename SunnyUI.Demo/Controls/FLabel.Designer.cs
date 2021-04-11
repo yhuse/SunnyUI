@@ -40,11 +40,21 @@
             this.uiMarkLabel2 = new Sunny.UI.UIMarkLabel();
             this.uiMarkLabel3 = new Sunny.UI.UIMarkLabel();
             this.uiMarkLabel4 = new Sunny.UI.UIMarkLabel();
+            this.uiLedLabel = new Sunny.UI.UILine();
+            this.uiLedLabel1 = new Sunny.UI.Controls.UILedLabel();
+            this.uiLedLabel2 = new Sunny.UI.Controls.UILedLabel();
+            this.uiLedLabel3 = new Sunny.UI.Controls.UILedLabel();
+            this.uiLedLabel4 = new Sunny.UI.Controls.UILedLabel();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLedLabel4);
+            this.PagePanel.Controls.Add(this.uiLedLabel3);
+            this.PagePanel.Controls.Add(this.uiLedLabel2);
+            this.PagePanel.Controls.Add(this.uiLedLabel1);
+            this.PagePanel.Controls.Add(this.uiLedLabel);
             this.PagePanel.Controls.Add(this.uiMarkLabel4);
             this.PagePanel.Controls.Add(this.uiMarkLabel3);
             this.PagePanel.Controls.Add(this.uiMarkLabel2);
@@ -57,7 +67,7 @@
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiLinkLabel1);
             this.PagePanel.Controls.Add(this.uiLabel1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 415);
+            this.PagePanel.Size = new System.Drawing.Size(800, 471);
             // 
             // uiLabel1
             // 
@@ -78,7 +88,7 @@
             this.uiLinkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLinkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.uiLinkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.uiLinkLabel1.Location = new System.Drawing.Point(42, 127);
+            this.uiLinkLabel1.Location = new System.Drawing.Point(394, 55);
             this.uiLinkLabel1.Name = "uiLinkLabel1";
             this.uiLinkLabel1.Size = new System.Drawing.Size(146, 21);
             this.uiLinkLabel1.TabIndex = 1;
@@ -93,7 +103,7 @@
             this.uiLine1.Location = new System.Drawing.Point(30, 20);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(670, 20);
+            this.uiLine1.Size = new System.Drawing.Size(319, 20);
             this.uiLine1.TabIndex = 19;
             this.uiLine1.Text = "UILabel";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,10 +111,10 @@
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 92);
+            this.uiLine2.Location = new System.Drawing.Point(381, 20);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(670, 20);
+            this.uiLine2.Size = new System.Drawing.Size(319, 20);
             this.uiLine2.TabIndex = 20;
             this.uiLine2.Text = "UILinkLabel";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -112,7 +122,7 @@
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.Location = new System.Drawing.Point(30, 173);
+            this.uiLine3.Location = new System.Drawing.Point(30, 98);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(670, 20);
@@ -123,7 +133,7 @@
             // uiSymbolLabel1
             // 
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolLabel1.Location = new System.Drawing.Point(42, 209);
+            this.uiSymbolLabel1.Location = new System.Drawing.Point(42, 134);
             this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
             this.uiSymbolLabel1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -135,7 +145,7 @@
             // uiSymbolLabel2
             // 
             this.uiSymbolLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolLabel2.Location = new System.Drawing.Point(139, 209);
+            this.uiSymbolLabel2.Location = new System.Drawing.Point(139, 134);
             this.uiSymbolLabel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel2.Name = "uiSymbolLabel2";
             this.uiSymbolLabel2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -149,7 +159,7 @@
             // 
             this.uiMarkLabel1.AutoSize = true;
             this.uiMarkLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiMarkLabel1.Location = new System.Drawing.Point(42, 285);
+            this.uiMarkLabel1.Location = new System.Drawing.Point(42, 210);
             this.uiMarkLabel1.Name = "uiMarkLabel1";
             this.uiMarkLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.uiMarkLabel1.Size = new System.Drawing.Size(118, 21);
@@ -160,7 +170,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(30, 248);
+            this.uiLine4.Location = new System.Drawing.Point(30, 173);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(670, 20);
@@ -172,7 +182,7 @@
             // 
             this.uiMarkLabel2.AutoSize = true;
             this.uiMarkLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiMarkLabel2.Location = new System.Drawing.Point(42, 326);
+            this.uiMarkLabel2.Location = new System.Drawing.Point(356, 207);
             this.uiMarkLabel2.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Bottom;
             this.uiMarkLabel2.Name = "uiMarkLabel2";
             this.uiMarkLabel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
@@ -185,7 +195,7 @@
             // 
             this.uiMarkLabel3.AutoSize = true;
             this.uiMarkLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiMarkLabel3.Location = new System.Drawing.Point(185, 285);
+            this.uiMarkLabel3.Location = new System.Drawing.Point(199, 210);
             this.uiMarkLabel3.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Right;
             this.uiMarkLabel3.Name = "uiMarkLabel3";
             this.uiMarkLabel3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
@@ -198,7 +208,7 @@
             // 
             this.uiMarkLabel4.AutoSize = true;
             this.uiMarkLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiMarkLabel4.Location = new System.Drawing.Point(190, 326);
+            this.uiMarkLabel4.Location = new System.Drawing.Point(508, 207);
             this.uiMarkLabel4.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Top;
             this.uiMarkLabel4.Name = "uiMarkLabel4";
             this.uiMarkLabel4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -207,10 +217,73 @@
             this.uiMarkLabel4.Text = "uiMarkLabel4";
             this.uiMarkLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLedLabel
+            // 
+            this.uiLedLabel.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLedLabel.Location = new System.Drawing.Point(30, 252);
+            this.uiLedLabel.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLedLabel.Name = "uiLedLabel";
+            this.uiLedLabel.Size = new System.Drawing.Size(670, 20);
+            this.uiLedLabel.TabIndex = 29;
+            this.uiLedLabel.Text = "UILedLabel";
+            this.uiLedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLedLabel1
+            // 
+            this.uiLedLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLedLabel1.Location = new System.Drawing.Point(42, 288);
+            this.uiLedLabel1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiLedLabel1.Name = "uiLedLabel1";
+            this.uiLedLabel1.Size = new System.Drawing.Size(150, 35);
+            this.uiLedLabel1.TabIndex = 30;
+            this.uiLedLabel1.Text = "999.99";
+            this.uiLedLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLedLabel2
+            // 
+            this.uiLedLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLedLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.uiLedLabel2.Location = new System.Drawing.Point(199, 288);
+            this.uiLedLabel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiLedLabel2.Name = "uiLedLabel2";
+            this.uiLedLabel2.Size = new System.Drawing.Size(150, 35);
+            this.uiLedLabel2.Style = Sunny.UI.UIStyle.Red;
+            this.uiLedLabel2.StyleCustomMode = true;
+            this.uiLedLabel2.TabIndex = 31;
+            this.uiLedLabel2.Text = "999.99";
+            this.uiLedLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLedLabel3
+            // 
+            this.uiLedLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLedLabel3.IntervalOn = 3;
+            this.uiLedLabel3.Location = new System.Drawing.Point(356, 288);
+            this.uiLedLabel3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiLedLabel3.Name = "uiLedLabel3";
+            this.uiLedLabel3.Size = new System.Drawing.Size(150, 35);
+            this.uiLedLabel3.TabIndex = 32;
+            this.uiLedLabel3.Text = "999.99";
+            this.uiLedLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLedLabel4
+            // 
+            this.uiLedLabel4.BackColor = System.Drawing.Color.Black;
+            this.uiLedLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLedLabel4.ForeColor = System.Drawing.Color.Lime;
+            this.uiLedLabel4.IntervalOn = 3;
+            this.uiLedLabel4.Location = new System.Drawing.Point(527, 288);
+            this.uiLedLabel4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiLedLabel4.Name = "uiLedLabel4";
+            this.uiLedLabel4.Size = new System.Drawing.Size(181, 35);
+            this.uiLedLabel4.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLedLabel4.StyleCustomMode = true;
+            this.uiLedLabel4.TabIndex = 33;
+            this.uiLedLabel4.Text = "999.99";
+            // 
             // FLabel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 506);
             this.Name = "FLabel";
             this.StyleCustomMode = true;
             this.Symbol = 61490;
@@ -235,5 +308,10 @@
         private UIMarkLabel uiMarkLabel4;
         private UIMarkLabel uiMarkLabel3;
         private UIMarkLabel uiMarkLabel2;
+        private UI.Controls.UILedLabel uiLedLabel1;
+        private UILine uiLedLabel;
+        private UI.Controls.UILedLabel uiLedLabel3;
+        private UI.Controls.UILedLabel uiLedLabel2;
+        private UI.Controls.UILedLabel uiLedLabel4;
     }
 }
