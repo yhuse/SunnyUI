@@ -47,6 +47,34 @@ namespace Sunny.UI
             rectColor = UIColor.Blue;
         }
 
+        public enum BarDirection
+        {
+            /// <summary>
+            /// 水平的
+            /// </summary>
+            Horizontal,
+
+            /// <summary>
+            /// 竖直的
+            /// </summary>
+            Vertical
+        }
+
+        private BarDirection direction = BarDirection.Horizontal;
+
+        [DefaultValue(BarDirection.Horizontal)]
+        [Description("线条方向"), Category("SunnyUI")]
+        public BarDirection Direction
+        {
+            get => direction;
+            set
+            {
+                direction = value;
+                Invalidate();
+            }
+        }
+
+
         private int _maximum = 100;
         private int _minimum;
         private int trackBarValue;
@@ -118,21 +146,65 @@ namespace Sunny.UI
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             g.Clear(fillColor);
-            g.FillRoundRectangle(rectDisableColor, new Rectangle(5, Height / 2 - 3, Width - 1 - 10, 6), 6);
 
-            int len = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
-            if (len > 0)
+            if (Direction == BarDirection.Horizontal)
             {
-                g.FillRoundRectangle(foreColor, new Rectangle(5, Height / 2 - 3, len, 6), 6);
+                g.FillRoundRectangle(rectDisableColor,
+                    new Rectangle(5, Height / 2 - 3, Width - 1 - 10, 6), 6);
+
+                int len = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
+                if (len > 0)
+                {
+                    g.FillRoundRectangle(foreColor, new Rectangle(5, Height / 2 - 3, len, 6), 6);
+                }
+
+                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White,
+                    new Rectangle(len, (Height - BarSize) / 2, 10, BarSize), 5);
+
+                using (Pen pen = new Pen(rectColor, 2))
+                {
+                    g.SetHighQuality();
+                    g.DrawRoundRectangle(pen,
+                        new Rectangle(len + 1, (Height - BarSize) / 2 + 1, 8, BarSize - 2), 5);
+                    g.SetDefaultQuality();
+                }
             }
 
-            g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, new Rectangle(len, Height / 2 - 10, 10, 20), 5);
-
-            using (Pen pen = new Pen(rectColor, 2))
+            if (Direction == BarDirection.Vertical)
             {
-                g.SetHighQuality();
-                g.DrawRoundRectangle(pen, new Rectangle(len + 1, Height / 2 - 9, 8, 18), 5);
-                g.SetDefaultQuality();
+                g.FillRoundRectangle(rectDisableColor,
+                    new Rectangle(Width / 2 - 3, 5, 6, Height - 1 - 10), 6);
+
+                int len = (int)((Value - Minimum) * 1.0 * (Height - 1 - 10) / (Maximum - Minimum));
+                if (len > 0)
+                {
+                    g.FillRoundRectangle(foreColor, new Rectangle(Width / 2 - 3, Height - len - 5, 6, len), 6);
+                }
+
+                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White,
+                    new Rectangle((Width - BarSize) / 2, Height - len - 10 - 1, BarSize, 10), 5);
+
+                using (Pen pen = new Pen(rectColor, 2))
+                {
+                    g.SetHighQuality();
+                    g.DrawRoundRectangle(pen,
+                        new Rectangle((Width - BarSize) / 2 + 1, Height - len - 10, BarSize - 2, 8), 5);
+                    g.SetDefaultQuality();
+                }
+            }
+        }
+
+        private int trackBarSize = 20;
+
+        [DefaultValue(20)]
+        [Description("按钮大小"), Category("SunnyUI")]
+        public int BarSize
+        {
+            get => trackBarSize;
+            set
+            {
+                trackBarSize = Math.Max(12, value);
+                Invalidate();
             }
         }
 
@@ -141,9 +213,19 @@ namespace Sunny.UI
             base.OnMouseClick(e);
             if (!ReadOnly)
             {
-                int len = e.X - 5;
-                int value = (len * 1.0 * (Maximum - Minimum) / (Width - 1 - 10)).RoundEx() + Minimum;
-                Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                if (Direction == BarDirection.Horizontal)
+                {
+                    int len = e.X - 5;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Width - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
+
+                if (Direction == BarDirection.Vertical)
+                {
+                    int len = Height - 10 - e.Y;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
             }
         }
 
@@ -152,9 +234,19 @@ namespace Sunny.UI
             base.OnMouseMove(e);
             if (IsPress && !ReadOnly)
             {
-                int len = e.X - 5;
-                int value = (len * 1.0 * (Maximum - Minimum) / (Width - 1 - 10)).RoundEx() + Minimum;
-                Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                if (Direction == BarDirection.Horizontal)
+                {
+                    int len = e.X - 5;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Width - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
+
+                if (Direction == BarDirection.Vertical)
+                {
+                    int len = Height - 10 - e.Y;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
             }
         }
 
