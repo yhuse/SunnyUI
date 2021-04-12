@@ -20,6 +20,7 @@
  * 2020-05-05: V2.2.5 增加下拉选择框，进度提升窗体
 ******************************************************************************/
 
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
@@ -602,6 +603,14 @@ namespace Sunny.UI
 
     public interface IFrame
     {
+        UITabControl MainTabControl { get; }
+
+        UIPage AddPage(UIPage page, int index);
+
+        UIPage AddPage(UIPage page, Guid guid);
+
+        UIPage AddPage(UIPage page);
+
         void SelectPage(int pageIndex);
     }
 }
