@@ -1417,7 +1417,15 @@ namespace Sunny.UI
 
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
+            switch (m.Msg)
+            {
+                case Win32.User.WM_ERASEBKGND:
+                    m.Result = IntPtr.Zero;
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
 
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {

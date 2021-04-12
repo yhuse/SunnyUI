@@ -39,7 +39,12 @@ namespace Sunny.UI
 
         public UITabControl()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            DoubleBuffered = true;
+            UpdateStyles();
 
             ItemSize = new Size(150, 40);
             DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -77,13 +82,6 @@ namespace Sunny.UI
         {
             timer.Stop();
             DrawedIndex = SelectedIndex;
-        }
-
-        protected override void OnSelected(TabControlEventArgs e)
-        {
-            base.OnSelected(e);
-
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

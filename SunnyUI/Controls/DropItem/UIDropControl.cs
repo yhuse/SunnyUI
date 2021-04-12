@@ -48,6 +48,14 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.Selectable, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            base.DoubleBuffered = true;
+            UpdateStyles();
+
             edit.Font = UIFontColor.Font;
             edit.Left = 3;
             edit.Top = 3;
