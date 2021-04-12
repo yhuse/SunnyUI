@@ -677,7 +677,7 @@ namespace Sunny.UI
                 StartPoint = StopPoint = e.Location;
             }
 
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && ContextMenuStrip == null)
             {
                 ZoomBack();
             }
@@ -777,7 +777,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        private void ZoomBack()
+        public void ZoomBack()
         {
             if (!IsZoom) return;
 
