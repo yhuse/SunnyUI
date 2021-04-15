@@ -41,10 +41,10 @@
             this.uiMarkLabel3 = new Sunny.UI.UIMarkLabel();
             this.uiMarkLabel4 = new Sunny.UI.UIMarkLabel();
             this.uiLedLabel = new Sunny.UI.UILine();
-            this.uiLedLabel1 = new Sunny.UI.Controls.UILedLabel();
-            this.uiLedLabel2 = new Sunny.UI.Controls.UILedLabel();
-            this.uiLedLabel3 = new Sunny.UI.Controls.UILedLabel();
-            this.uiLedLabel4 = new Sunny.UI.Controls.UILedLabel();
+            this.uiLedLabel1 = new Sunny.UI.UILedLabel();
+            this.uiLedLabel2 = new Sunny.UI.UILedLabel();
+            this.uiLedLabel3 = new Sunny.UI.UILedLabel();
+            this.uiLedLabel4 = new Sunny.UI.UILedLabel();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -308,10 +308,10 @@
         private UIMarkLabel uiMarkLabel4;
         private UIMarkLabel uiMarkLabel3;
         private UIMarkLabel uiMarkLabel2;
-        private UI.Controls.UILedLabel uiLedLabel1;
+        private UI.UILedLabel uiLedLabel1;
         private UILine uiLedLabel;
-        private UI.Controls.UILedLabel uiLedLabel3;
-        private UI.Controls.UILedLabel uiLedLabel2;
-        private UI.Controls.UILedLabel uiLedLabel4;
+        private UI.UILedLabel uiLedLabel3;
+        private UI.UILedLabel uiLedLabel2;
+        private UI.UILedLabel uiLedLabel4;
     }
 }

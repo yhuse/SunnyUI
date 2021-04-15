@@ -24,7 +24,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Sunny.UI.Controls
+namespace Sunny.UI
 {
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]

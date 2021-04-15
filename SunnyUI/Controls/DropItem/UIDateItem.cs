@@ -523,7 +523,7 @@ namespace Sunny.UI
                 int top = height * (i / 4);
 
                 SizeF sf = e.Graphics.MeasureString(months[i], Font);
-                e.Graphics.DrawString(months[i], Font, i == activeMonth ? UIColor.Blue : ForeColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                e.Graphics.DrawString(months[i], Font, i == activeMonth ? PrimaryColor : ForeColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
             }
         }
 
@@ -558,6 +558,8 @@ namespace Sunny.UI
 
         private int activeYear = -1;
 
+        public bool ShowToday { get; set; }
+
         private void p1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
@@ -571,7 +573,7 @@ namespace Sunny.UI
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
                 if (years[i] != 10000)
                 {
-                    e.Graphics.DrawString(years[i].ToString(), Font, i == activeYear ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                    e.Graphics.DrawString(years[i].ToString(), Font, i == activeYear ? PrimaryColor : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
                 }
             }
         }
@@ -628,11 +630,11 @@ namespace Sunny.UI
 
                 sf = e.Graphics.MeasureString(days[i].Day.ToString(), Font);
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
-                color = (days[i].DateString() == date.DateString()) ? UIColor.Blue : color;
+                color = (days[i].DateString() == date.DateString()) ? PrimaryColor : color;
 
                 if (!maxDrawer)
                 {
-                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? UIColor.Blue : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
+                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? PrimaryColor : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
                 }
 
                 if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
@@ -640,9 +642,25 @@ namespace Sunny.UI
                     maxDrawer = true;
                 }
             }
+
+            if (ShowToday)
+            {
+                using (Font SubFont = new Font("微软雅黑", 10.5f))
+                {
+                    e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
+                    e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle((int)(p3.Width - width * 4 + 6), p3.Height - height + 3, 8, height - 10), 3);
+
+                    sf = e.Graphics.MeasureString("今天：" + DateTime.Now.DateString(), SubFont);
+                    e.Graphics.DrawString("今天 :", SubFont, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 17, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
+
+                    sf = e.Graphics.MeasureString(DateTime.Now.DateString(), Font);
+                    e.Graphics.DrawString(DateTime.Now.DateString(), Font, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 55, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
+                }
+            }
         }
 
         private int activeDay = -1;
+        private bool isToday;
 
         private void p3_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -651,8 +669,11 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = (e.Location.Y - 30) / height;
             int iy = x + y * 7;
-            if (activeDay != iy)
+            bool istoday = ShowToday && e.Location.Y > p3.Top + p3.Height - height && e.Location.X > p3.Left + width * 3;
+
+            if (activeDay != iy || istoday != isToday)
             {
+                isToday = istoday;
                 activeDay = iy;
                 p3.Invalidate();
             }
@@ -667,8 +688,16 @@ namespace Sunny.UI
             int id = x + y * 7;
             if (id < 0 || id >= 42) return;
             date = days[id].Date;
+
+            if (ShowToday && e.Location.Y > p3.Height - height && e.Location.X > p3.Width - width * 4)
+            {
+                date = DateTime.Now.Date;
+            }
+
             DoValueChanged(this, Date);
             CloseParent();
         }
+
+        public Color PrimaryColor { get; set; } = UIColor.Blue;
     }
 }

@@ -45,6 +45,10 @@ namespace Sunny.UI
         [Description("日期输入时，是否可空显示"), Category("SunnyUI")]
         public bool CanEmpty { get; set; }
 
+        [DefaultValue(false)]
+        [Description("日期输入时，显示今日按钮"), Category("SunnyUI")]
+        public bool ShowToday { get; set; }
+
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
             if (Text.Length == MaxLength)
@@ -112,6 +116,8 @@ namespace Sunny.UI
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
             item.Date = Value;
+            item.ShowToday = ShowToday;
+            item.PrimaryColor = RectColor;
             ItemForm.Show(this);
         }
 
