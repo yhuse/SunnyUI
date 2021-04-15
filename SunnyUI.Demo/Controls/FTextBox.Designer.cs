@@ -80,6 +80,7 @@
             this.uiIntegerUpDown1.Size = new System.Drawing.Size(150, 29);
             this.uiIntegerUpDown1.TabIndex = 2;
             this.uiIntegerUpDown1.Text = "_uiIntegerUpDown1";
+            this.uiIntegerUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiTextBox1
             // 
@@ -95,6 +96,7 @@
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 3;
+            this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox1.Watermark = "水印文字";
             // 
             // uiLabel1
@@ -137,6 +139,7 @@
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 5;
             this.uiTextBox2.Text = "5";
+            this.uiTextBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
             this.uiTextBox2.Watermark = "水印文字";
             // 
@@ -166,6 +169,7 @@
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox3.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox3.TabIndex = 7;
+            this.uiTextBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox3.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.uiTextBox3.Watermark = "水印文字";
             // 
@@ -179,6 +183,7 @@
             this.uiDoubleUpDown1.Size = new System.Drawing.Size(150, 29);
             this.uiDoubleUpDown1.TabIndex = 14;
             this.uiDoubleUpDown1.Text = "uiDoubleUpDown1";
+            this.uiDoubleUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiDoubleUpDown1.Value = 0D;
             // 
             // uiLine1
@@ -230,6 +235,7 @@
             this.uiRichTextBox1.Text = "Blog: https://www.cnblogs.com/yhuse\nGitee: https://gitee.com/yhuse/SunnyUI\nGitHub" +
     ": https://github.com/yhuse/SunnyUI\nSunnyUI.Net 系列文章目录\n欢迎交流，QQ群： 56829229 (SunnyU" +
     "I技术交流群)，请给源码项目点个Star吧！！！";
+            this.uiRichTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiContextMenuStrip1
             // 
@@ -285,11 +291,11 @@
             this.uiTextBox4.Text = "Blog: https://www.cnblogs.com/yhuse\r\nGitee: https://gitee.com/yhuse/SunnyUI\r\nGitH" +
     "ub: https://github.com/yhuse/SunnyUI\r\nSunnyUI.Net 系列文章目录\r\n欢迎交流，QQ群： 56829229 (Su" +
     "nnyUI技术交流群)，请给源码项目点个Star吧！！！";
+            this.uiTextBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox4.Watermark = "水印文字";
             // 
             // FTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 565);
             this.Name = "FTextBox";

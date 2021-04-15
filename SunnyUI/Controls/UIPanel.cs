@@ -602,18 +602,14 @@ namespace Sunny.UI
         /// 文字对齐方向
         /// </summary>
         [Description("文字对齐方向"), Category("SunnyUI")]
-        [DefaultValue(ContentAlignment.MiddleCenter)]
         public ContentAlignment TextAlignment
         {
             get => _textAlignment;
             set
             {
-                if (_textAlignment != value)
-                {
-                    _textAlignment = value;
-                    TextAlignmentChange?.Invoke(this, value);
-                    Invalidate();
-                }
+                _textAlignment = value;
+                TextAlignmentChange?.Invoke(this, value);
+                Invalidate();
             }
         }
 

@@ -72,6 +72,7 @@ namespace Sunny.UI
             bar.ValueChanged += Bar_ValueChanged;
             edit.MouseWheel += OnMouseWheel;
             bar.MouseEnter += Bar_MouseEnter;
+            base.TextAlignment = ContentAlignment.MiddleLeft;
 
             SizeChange();
 
