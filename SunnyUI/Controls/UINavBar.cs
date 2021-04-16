@@ -45,6 +45,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.ResizeRedraw, true);
             DoubleBuffered = true;
             UpdateStyles();
             Font = UIFontColor.Font;
@@ -54,6 +55,12 @@ namespace Sunny.UI
             Width = 500;
             Height = 110;
             Version = UIGlobal.Version;
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Invalidate();
         }
 
         public void ClearAll()
