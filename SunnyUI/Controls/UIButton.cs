@@ -41,6 +41,7 @@ namespace Sunny.UI
     {
         public UIButton()
         {
+            SetStyleFlags();
             TabStop = true;
             Width = 100;
             Height = 35;

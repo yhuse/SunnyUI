@@ -37,7 +37,7 @@ namespace Sunny.UI
         public UIFlowLayoutPanel()
         {
             InitializeComponent();
-
+            SetStyleFlags(true, false);
             ShowText = false;
 
             Panel.AutoScroll = true;

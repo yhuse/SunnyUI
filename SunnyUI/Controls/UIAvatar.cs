@@ -60,6 +60,7 @@ namespace Sunny.UI
         /// </summary>
         public UIAvatar()
         {
+            SetStyleFlags(true, false);
             Width = Height = 60;
             ShowText = false;
             ShowRect = false;

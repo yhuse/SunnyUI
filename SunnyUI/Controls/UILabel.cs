@@ -125,6 +125,7 @@ namespace Sunny.UI
 
         public UISymbolLabel()
         {
+            SetStyleFlags(true, false);
             ShowRect = false;
             foreColor = UIFontColor.Primary;
             symbolColor = UIFontColor.Primary;

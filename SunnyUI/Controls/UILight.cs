@@ -41,6 +41,7 @@ namespace Sunny.UI
 
         public UILight()
         {
+            SetStyleFlags(true, false);
             ShowRect = false;
             ShowText = false;
             Radius = Width = Height = 35;

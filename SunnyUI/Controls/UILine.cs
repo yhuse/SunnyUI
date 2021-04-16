@@ -31,6 +31,7 @@ namespace Sunny.UI
     {
         public UILine()
         {
+            SetStyleFlags(true, false);
             Size = new Size(360, 29);
             MinimumSize = new Size(2, 2);
             foreColor = UIStyles.Blue.LineForeColor;

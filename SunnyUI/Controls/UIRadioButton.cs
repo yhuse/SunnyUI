@@ -41,6 +41,7 @@ namespace Sunny.UI
 
         public UIRadioButton()
         {
+            SetStyleFlags();
             Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);

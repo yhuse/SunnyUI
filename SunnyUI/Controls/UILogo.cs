@@ -34,6 +34,7 @@ namespace Sunny.UI
         [ToolboxItem(true)]
         public UILogo()
         {
+            SetStyleFlags(true, false);
             ShowText = ShowRect = false;
             Width = 300;
             Height = 80;

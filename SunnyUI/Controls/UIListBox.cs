@@ -41,6 +41,7 @@ namespace Sunny.UI
         public UIListBox()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
             ShowText = false;
             Padding = new Padding(2);
 

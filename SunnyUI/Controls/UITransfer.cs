@@ -40,6 +40,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             ShowText = false;
+            SetStyleFlags(true, false);
 
             l1.ItemsCountChange += L1_ItemsCountChange;
             l2.ItemsCountChange += L2_ItemsCountChange;

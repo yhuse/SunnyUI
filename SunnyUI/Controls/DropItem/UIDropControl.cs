@@ -47,14 +47,7 @@ namespace Sunny.UI
         public UIDropControl()
         {
             InitializeComponent();
-
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.Selectable, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            base.DoubleBuffered = true;
-            UpdateStyles();
+            SetStyleFlags();
 
             edit.Font = UIFontColor.Font;
             edit.Left = 3;

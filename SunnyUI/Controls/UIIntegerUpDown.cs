@@ -37,6 +37,7 @@ namespace Sunny.UI
         public UIIntegerUpDown()
         {
             InitializeComponent();
+            SetStyleFlags();
             ShowText = false;
             edit.Type = UITextBox.UIEditType.Integer;
             edit.Parent = pnlValue;

@@ -37,6 +37,7 @@ namespace Sunny.UI
     {
         public UIBreadcrumb()
         {
+            SetStyleFlags(true, false);
             ShowText = false;
             ShowRect = false;
             Height = 29;

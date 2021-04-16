@@ -39,19 +39,23 @@ namespace Sunny.UI
         /// </summary>
         public UIControl()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.Selectable, true);
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            base.DoubleBuffered = true;
-            UpdateStyles();
-
             Version = UIGlobal.Version;
             base.Font = UIFontColor.Font;
             Size = new Size(100, 35);
             base.MinimumSize = new Size(1, 1);
+        }
+
+        protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
+        {
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            if (supportTransparent) SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            if (selectable) SetStyle(ControlStyles.Selectable, true);
+            if (resizeRedraw) SetStyle(ControlStyles.ResizeRedraw, true);
+            base.DoubleBuffered = true;
+            UpdateStyles();
         }
 
         protected override void OnSizeChanged(EventArgs e)

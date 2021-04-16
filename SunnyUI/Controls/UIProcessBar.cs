@@ -41,6 +41,7 @@ namespace Sunny.UI
 
         public UIProcessBar()
         {
+            SetStyleFlags(true, false);
             MinimumSize = new Size(70, 5);
             Size = new Size(300, 29);
             ShowText = false;

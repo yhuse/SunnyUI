@@ -60,6 +60,7 @@ namespace Sunny.UI
         public UITitlePanel()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
             ShowText = false;
             foreColor = Color.White;
             CalcSystemBoxPos();

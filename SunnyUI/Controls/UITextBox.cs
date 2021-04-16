@@ -40,7 +40,7 @@ namespace Sunny.UI
         public UITextBox()
         {
             InitializeComponent();
-
+            SetStyleFlags();
             CalcEditHeight();
             Height = MiniHeight;
             ShowText = false;

@@ -37,6 +37,9 @@ namespace Sunny.UI
         public UIDoubleUpDown()
         {
             InitializeComponent();
+
+            SetStyleFlags();
+
             ShowText = false;
             edit.Type = UITextBox.UIEditType.Double;
             edit.Parent = pnlValue;

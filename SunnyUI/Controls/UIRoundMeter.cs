@@ -88,7 +88,7 @@ namespace Sunny.UI
         public UIRoundMeter()
         {
             InitializeComponent();
-
+            SetStyleFlags(true, false);
             MeterType = TMeterType.Gps;
             _runType = TRunType.ClockWise;
 

@@ -33,6 +33,7 @@ namespace Sunny.UI
     {
         public UILedLabel()
         {
+            SetStyleFlags(true, false);
             ShowText = ShowRect = ShowFill = false;
             foreColor = UIColor.Blue;
         }

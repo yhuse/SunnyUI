@@ -37,6 +37,7 @@ namespace Sunny.UI
 
         public UITrackBar()
         {
+            SetStyleFlags();
             Width = 150;
             Height = 29;
 

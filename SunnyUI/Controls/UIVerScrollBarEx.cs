@@ -32,6 +32,7 @@ namespace Sunny.UI
     {
         public UIVerScrollBarEx()
         {
+            SetStyleFlags(true, false);
             ShowText = false;
             ShowRect = false;
             Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;

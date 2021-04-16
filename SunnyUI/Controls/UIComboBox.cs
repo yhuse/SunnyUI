@@ -38,15 +38,6 @@ namespace Sunny.UI
         public UIComboBox()
         {
             InitializeComponent();
-
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.Selectable, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            DoubleBuffered = true;
-            UpdateStyles();
-
             box.SelectedIndexChanged += Box_SelectedIndexChanged;
             box.DataSourceChanged += Box_DataSourceChanged;
             box.DisplayMemberChanged += Box_DisplayMemberChanged;

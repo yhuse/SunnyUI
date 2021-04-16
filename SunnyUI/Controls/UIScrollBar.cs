@@ -34,6 +34,7 @@ namespace Sunny.UI
     {
         public UIScrollBar()
         {
+            SetStyleFlags(true, false);
             Maximum = 100;
             up_state = value_state = down_state = DrawItemState.None;
             timer.Interval = 150;

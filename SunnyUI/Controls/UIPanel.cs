@@ -60,6 +60,19 @@ namespace Sunny.UI
             base.MinimumSize = new System.Drawing.Size(1, 1);
         }
 
+        protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
+        {
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            if (supportTransparent) SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            if (selectable) SetStyle(ControlStyles.Selectable, true);
+            if (resizeRedraw) SetStyle(ControlStyles.ResizeRedraw, true);
+            base.DoubleBuffered = true;
+            UpdateStyles();
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);

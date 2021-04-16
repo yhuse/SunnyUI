@@ -40,6 +40,7 @@ namespace Sunny.UI
         public UIImageListBox()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
             ShowText = false;
 
             Padding = new Padding(2);

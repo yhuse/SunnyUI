@@ -41,6 +41,7 @@ namespace Sunny.UI
         public UITreeView()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
             ShowText = false;
             SetScrollInfo();
 

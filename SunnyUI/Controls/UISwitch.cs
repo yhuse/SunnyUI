@@ -47,6 +47,7 @@ namespace Sunny.UI
 
         public UISwitch()
         {
+            SetStyleFlags();
             Height = 29;
             Width = 75;
             ShowText = false;

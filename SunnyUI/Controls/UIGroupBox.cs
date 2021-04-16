@@ -32,6 +32,7 @@ namespace Sunny.UI
         public UIGroupBox()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)

@@ -38,6 +38,7 @@ namespace Sunny.UI
 
         public UIScrollingText()
         {
+            SetStyleFlags(true, false);
             fillColor = UIStyles.Blue.PlainColor;
             foreColor = UIStyles.Blue.RectColor;
             Reset();

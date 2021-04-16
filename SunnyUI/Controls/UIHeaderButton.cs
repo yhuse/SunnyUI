@@ -38,6 +38,7 @@ namespace Sunny.UI
     {
         public UIHeaderButton()
         {
+            SetStyleFlags();
             Size = new Size(100, 88);
             ShowText = false;
             ShowRect = false;

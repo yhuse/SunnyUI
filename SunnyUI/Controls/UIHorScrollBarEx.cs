@@ -32,6 +32,7 @@ namespace Sunny.UI
     {
         public UIHorScrollBarEx()
         {
+            SetStyleFlags(true, false);
             ShowText = false;
             ShowRect = false;
             Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;

@@ -35,6 +35,7 @@ namespace Sunny.UI
 
         public UIProgressIndicator()
         {
+            SetStyleFlags(true, false);
             Width = Height = 100;
 
             timer.Interval = 200;

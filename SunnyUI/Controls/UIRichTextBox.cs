@@ -17,7 +17,7 @@ namespace Sunny.UI
         public UIRichTextBox()
         {
             InitializeComponent();
-
+            SetStyleFlags();
             ShowText = false;
 
             edit.MouseWheel += OnMouseWheel;

@@ -10,6 +10,11 @@ namespace Sunny.UI
     {
         private int _opacity = 150;
 
+        public UITransparentPanel()
+        {
+            SetStyleFlags(true, false);
+        }
+
         [Bindable(true), Category("Custom"), DefaultValue(150), Description("背景的透明度. 有效值0-255")]
         public int Opacity
         {

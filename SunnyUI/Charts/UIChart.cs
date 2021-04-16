@@ -32,6 +32,7 @@ namespace Sunny.UI
     {
         public UIChart()
         {
+            SetStyleFlags(true, false);
             ShowText = false;
             fillColor = UIChartStyles.Plain.BackColor;
             foreColor = UIChartStyles.Plain.ForeColor;

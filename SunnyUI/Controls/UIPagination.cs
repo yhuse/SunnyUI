@@ -84,6 +84,7 @@ namespace Sunny.UI
         public UIPagination()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
 
             ShowText = false;
             buttons.TryAdd(0, b0);

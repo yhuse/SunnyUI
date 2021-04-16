@@ -36,6 +36,7 @@ namespace Sunny.UI
         public UIDropDownItem()
         {
             InitializeComponent();
+            SetStyleFlags(true, false);
         }
 
         /// <summary>

@@ -83,8 +83,7 @@ namespace Sunny.UI
 
         public UIAnalogMeter()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
-            base.DoubleBuffered = true;
+            SetStyleFlags(true, false, true);
 
             // Properties initialization
             needleColor = Color.Yellow;

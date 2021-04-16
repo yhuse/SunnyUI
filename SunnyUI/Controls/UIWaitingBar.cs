@@ -33,6 +33,7 @@ namespace Sunny.UI
 
         public UIWaitingBar()
         {
+            SetStyleFlags(true, false);
             MinimumSize = new Size(70, 23);
             Size = new Size(300, 29);
             ShowText = false;

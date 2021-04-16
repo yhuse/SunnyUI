@@ -43,6 +43,7 @@ namespace Sunny.UI
 
         public UIBattery()
         {
+            SetStyleFlags(true, false);
             ShowRect = false;
             fillColor = UIStyles.Blue.PlainColor;
             Width = 48;

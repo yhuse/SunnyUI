@@ -45,7 +45,6 @@ namespace Sunny.UI
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.ResizeRedraw, true);
             DoubleBuffered = true;
             UpdateStyles();
             Font = UIFontColor.Font;

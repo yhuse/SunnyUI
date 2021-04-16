@@ -33,6 +33,7 @@ namespace Sunny.UI
     {
         public UIHorScrollBar()
         {
+            SetStyleFlags(true, false);
             Maximum = 100;
             left_state = value_state = right_state = DrawItemState.None;
             timer.Interval = 150;

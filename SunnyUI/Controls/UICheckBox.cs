@@ -36,6 +36,7 @@ namespace Sunny.UI
     {
         public UICheckBox()
         {
+            SetStyleFlags();
             Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);

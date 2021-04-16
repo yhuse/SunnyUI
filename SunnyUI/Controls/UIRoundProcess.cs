@@ -36,6 +36,7 @@ namespace Sunny.UI
     {
         public UIRoundProcess()
         {
+            SetStyleFlags(true, false);
             Size = new Size(120, 120);
             Inner = 30;
             Outer = 50;
