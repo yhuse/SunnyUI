@@ -31,6 +31,8 @@ namespace Sunny.UI
     /// <summary>
     /// 头像
     /// </summary>
+    [DefaultEvent("Click")]
+    [DefaultProperty("Symbol")]
     [ToolboxItem(true)]
     public sealed class UIAvatar : UIControl
     {

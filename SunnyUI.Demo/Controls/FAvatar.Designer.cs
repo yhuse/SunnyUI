@@ -42,12 +42,20 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiLine1 = new Sunny.UI.UILine();
+            this.uiLabel5 = new Sunny.UI.UILabel();
+            this.uiLabel6 = new Sunny.UI.UILabel();
+            this.uiAvatar5 = new Sunny.UI.UIAvatar();
+            this.uiAvatar6 = new Sunny.UI.UIAvatar();
             this.PagePanel.SuspendLayout();
             this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLabel5);
+            this.PagePanel.Controls.Add(this.uiLabel6);
+            this.PagePanel.Controls.Add(this.uiAvatar5);
+            this.PagePanel.Controls.Add(this.uiAvatar6);
             this.PagePanel.Controls.Add(this.uiLine1);
             this.PagePanel.Controls.Add(this.uiLabel4);
             this.PagePanel.Controls.Add(this.uiLabel3);
@@ -57,6 +65,7 @@
             this.PagePanel.Controls.Add(this.uiAvatar3);
             this.PagePanel.Controls.Add(this.uiAvatar2);
             this.PagePanel.Controls.Add(this.uiAvatar1);
+            this.PagePanel.Size = new System.Drawing.Size(800, 415);
             this.PagePanel.Text = "";
             // 
             // uiAvatar1
@@ -64,6 +73,7 @@
             this.uiAvatar1.AvatarSize = 55;
             this.uiAvatar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar1.Location = new System.Drawing.Point(102, 50);
+            this.uiAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar1.Name = "uiAvatar1";
             this.uiAvatar1.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar1.SymbolSize = 48;
@@ -77,6 +87,7 @@
             this.uiAvatar2.Icon = Sunny.UI.UIAvatar.UIIcon.Image;
             this.uiAvatar2.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyUISmall;
             this.uiAvatar2.Location = new System.Drawing.Point(30, 50);
+            this.uiAvatar2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar2.Name = "uiAvatar2";
             this.uiAvatar2.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar2.TabIndex = 1;
@@ -88,6 +99,7 @@
             this.uiAvatar3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar3.Icon = Sunny.UI.UIAvatar.UIIcon.Text;
             this.uiAvatar3.Location = new System.Drawing.Point(174, 50);
+            this.uiAvatar3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar3.Name = "uiAvatar3";
             this.uiAvatar3.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar3.TabIndex = 2;
@@ -98,6 +110,7 @@
             this.uiAvatar4.AvatarSize = 55;
             this.uiAvatar4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiAvatar4.Location = new System.Drawing.Point(362, 50);
+            this.uiAvatar4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar4.Name = "uiAvatar4";
             this.uiAvatar4.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar4.Symbol = 61715;
@@ -194,9 +207,56 @@
             this.uiLine1.Text = "UIAvatar";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLabel5
+            // 
+            this.uiLabel5.AutoSize = true;
+            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel5.Location = new System.Drawing.Point(183, 222);
+            this.uiLabel5.Name = "uiLabel5";
+            this.uiLabel5.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel5.TabIndex = 23;
+            this.uiLabel5.Text = "文字";
+            this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel6
+            // 
+            this.uiLabel6.AutoSize = true;
+            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel6.Location = new System.Drawing.Point(111, 222);
+            this.uiLabel6.Name = "uiLabel6";
+            this.uiLabel6.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel6.TabIndex = 22;
+            this.uiLabel6.Text = "图标";
+            this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiAvatar5
+            // 
+            this.uiAvatar5.AvatarSize = 55;
+            this.uiAvatar5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiAvatar5.Icon = Sunny.UI.UIAvatar.UIIcon.Text;
+            this.uiAvatar5.Location = new System.Drawing.Point(174, 155);
+            this.uiAvatar5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiAvatar5.Name = "uiAvatar5";
+            this.uiAvatar5.Shape = Sunny.UI.UIShape.Square;
+            this.uiAvatar5.Size = new System.Drawing.Size(60, 60);
+            this.uiAvatar5.TabIndex = 21;
+            this.uiAvatar5.Text = "Avatar";
+            // 
+            // uiAvatar6
+            // 
+            this.uiAvatar6.AvatarSize = 55;
+            this.uiAvatar6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiAvatar6.Location = new System.Drawing.Point(102, 155);
+            this.uiAvatar6.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiAvatar6.Name = "uiAvatar6";
+            this.uiAvatar6.Shape = Sunny.UI.UIShape.Square;
+            this.uiAvatar6.Size = new System.Drawing.Size(60, 60);
+            this.uiAvatar6.SymbolSize = 48;
+            this.uiAvatar6.TabIndex = 20;
+            this.uiAvatar6.Text = "uiAvatar6";
+            // 
             // FAvatar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "FAvatar";
@@ -226,5 +286,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private UILine uiLine1;
+        private UILabel uiLabel5;
+        private UILabel uiLabel6;
+        private UIAvatar uiAvatar5;
+        private UIAvatar uiAvatar6;
     }
 }
