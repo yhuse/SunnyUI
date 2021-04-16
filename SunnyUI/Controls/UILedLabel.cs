@@ -27,8 +27,8 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
-    [DefaultEvent("ValueChanged")]
-    [DefaultProperty("Value")]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public class UILedLabel : UIControl
     {
         public UILedLabel()

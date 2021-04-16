@@ -25,6 +25,9 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [ToolboxItem(true)]
+    [DefaultEvent("Click")]
+    [DefaultProperty("Text")]
     public class UIMarkLabel : UILabel
     {
         public UIMarkLabel()
@@ -108,7 +111,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
-            markColor = uiColor.PrimaryColor;
+            markColor = uiColor.RectColor;
             Invalidate();
         }
 
