@@ -62,29 +62,33 @@ namespace Sunny.UI
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Down)
+            if (!Multiline)
             {
-                if (e.KeyData == Keys.Enter)
+                if (e.KeyData == Keys.Enter || e.KeyData == Keys.Down)
                 {
-                    EnterKeyPress?.Invoke(this, e);
+                    if (e.KeyData == Keys.Enter)
+                    {
+                        EnterKeyPress?.Invoke(this, e);
+                    }
+
+                    if (EnterAsTab)
+                    {
+                        SendKeys.Send("{tab}");
+                    }
+
+                    e.Handled = true;
                 }
 
-                if (EnterAsTab)
+
+                if (e.KeyData == Keys.Up)
                 {
-                    SendKeys.Send("{tab}");
+                    if (EnterAsTab)
+                    {
+                        SendKeys.Send("+{TAB}");
+                    }
+
+                    e.Handled = true;
                 }
-
-                e.Handled = true;
-            }
-
-            if (e.KeyData == Keys.Up)
-            {
-                if (EnterAsTab)
-                {
-                    SendKeys.Send("+{TAB}");
-                }
-
-                e.Handled = true;
             }
 
             if (e.Control && e.KeyCode == Keys.A)
@@ -451,17 +455,20 @@ namespace Sunny.UI
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-            //以下代码  取消按下回车或esc的“叮”声
-            if (e.KeyChar == Convert.ToChar(13) || e.KeyChar == Convert.ToChar(27))
+            if (!Multiline)
             {
-                e.Handled = true;
-            }
-            else if (e.KeyChar == 8)
-            {
-            }
-            else if (!(IsValidChar(Text, e.KeyChar, SelectionStart + 1) & (e.KeyChar >= 32)))
-            {
-                e.Handled = true;
+                //以下代码  取消按下回车或esc的“叮”声
+                if (e.KeyChar == Convert.ToChar(13) || e.KeyChar == Convert.ToChar(27))
+                {
+                    e.Handled = true;
+                }
+                else if (e.KeyChar == 8)
+                {
+                }
+                else if (!(IsValidChar(Text, e.KeyChar, SelectionStart + 1) & (e.KeyChar >= 32)))
+                {
+                    e.Handled = true;
+                }
             }
 
             base.OnKeyPress(e);
