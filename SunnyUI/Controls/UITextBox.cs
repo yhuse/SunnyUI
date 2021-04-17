@@ -335,7 +335,7 @@ namespace Sunny.UI
         {
             if (!multiline)
             {
-                if (Height != MiniHeight)
+                if (Height < MiniHeight)
                 {
                     Height = MiniHeight;
                 }
