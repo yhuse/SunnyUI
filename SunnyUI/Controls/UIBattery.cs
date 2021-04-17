@@ -26,6 +26,7 @@ using System.Drawing.Drawing2D;
 
 namespace Sunny.UI
 {
+    [DefaultProperty("Power")]
     [ToolboxItem(true)]
     public sealed class UIBattery : UIControl
     {
@@ -119,9 +120,9 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     字体颜色
+        ///     默认电量颜色
         /// </summary>
-        [Description("字体颜色")]
+        [Description("默认电量颜色")]
         [Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public override Color ForeColor

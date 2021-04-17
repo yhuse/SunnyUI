@@ -12,7 +12,7 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UILedStopwatch.cs
- * 文件说明: LED 时钟
+ * 文件说明: LED计时器
  * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
@@ -27,14 +27,14 @@ namespace Sunny.UI
     /// <summary>
     /// LED计时器
     /// </summary>
-    [DefaultEvent("Click")]
-    [DefaultProperty("TimerTick")]
+    [DefaultEvent("TimerTick")]
+    [DefaultProperty("Text")]
     public sealed class UILedStopwatch : UILedDisplay
     {
         private readonly System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         /// <summary>
-        /// 当定时器启动后，每隔1秒触发一次
+        /// 当定时器启动后，Text变化时触发一次
         /// </summary>
         public event EventHandler TimerTick;
 
@@ -43,7 +43,7 @@ namespace Sunny.UI
         /// </summary>
         public UILedStopwatch()
         {
-            timer.Interval = 50;
+            timer.Interval = 100;
             timer.Tick += Timer_Tick;
         }
 
@@ -61,6 +61,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(TimeShowType.mmss)]
+        [Description("显示方式"), Category("SunnyUI")]
         public TimeShowType ShowType { get; set; } = TimeShowType.mmss;
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -85,7 +86,7 @@ namespace Sunny.UI
             if (text != Text)
             {
                 Text = text;
-                TimerTick?.Invoke(this, null);
+                TimerTick?.Invoke(this, e);
             }
         }
 

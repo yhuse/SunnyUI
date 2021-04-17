@@ -48,11 +48,16 @@ namespace Sunny.UI
             foreColor = Color.White;
         }
 
+        ~UIBreadcrumb()
+        {
+            listbox.Dispose();
+        }
+
         public delegate void OnValueChanged(object sender, int value);
 
         public event OnValueChanged ItemIndexChanged;
 
-        private readonly ListBoxEx listbox = new ListBoxEx();
+        private readonly ListBox listbox = new ListBox();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]

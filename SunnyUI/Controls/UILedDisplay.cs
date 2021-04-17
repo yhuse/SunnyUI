@@ -12,7 +12,7 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UILedDisplay.cs
- * 文件说明: LED 显示器
+ * 文件说明: LED显示屏
  * 当前版本: V3.0
  * 创建日期: 2020-01-01
  *
@@ -30,6 +30,7 @@ namespace Sunny.UI
     /// <summary>
     /// LED显示屏
     /// </summary>
+    [DefaultProperty("Text")]
     public class UILedDisplay : Control
     {
         #region 组件设计器生成的代码
@@ -85,6 +86,13 @@ namespace Sunny.UI
         }
 
         public string Version { get; }
+
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString { get; set; }
 
         private Color borderColor = Color.Black;
         private Color borderInColor = Color.Silver;
@@ -272,7 +280,7 @@ namespace Sunny.UI
         /// <summary>
         /// 计算大小
         /// </summary>
-        public void CalcSize()
+        private void CalcSize()
         {
             Width = BorderWidth * 2 + BorderInWidth * 2 + IntervalH * 2 + CharCount * IntervalOn * 5 +
                     CharCount * IntervalIn * 4 + (CharCount + 1) * IntervalOn + CharCount * 2 * IntervalIn;
