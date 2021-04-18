@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-06-03: V2.2.5 增加多行，增加滚动条
  * 2020-09-03: V2.2.7 增加FocusedSelectAll属性，激活时全选。
+ * 2021-04-18: V3.0.3 增加ShowScrollBar属性，单独控制垂直滚动条
 ******************************************************************************/
 
 using System;
@@ -42,7 +43,7 @@ namespace Sunny.UI
             InitializeComponent();
             SetStyleFlags();
             CalcEditHeight();
-            Height = MiniHeight;
+            Height = MinHeight;
             ShowText = false;
             Font = UIFontColor.Font;
 
@@ -72,7 +73,7 @@ namespace Sunny.UI
             bar.ValueChanged += Bar_ValueChanged;
             edit.MouseWheel += OnMouseWheel;
             bar.MouseEnter += Bar_MouseEnter;
-            base.TextAlignment = ContentAlignment.MiddleLeft;
+            TextAlignment = ContentAlignment.MiddleLeft;
 
             SizeChange();
 
@@ -203,11 +204,39 @@ namespace Sunny.UI
             {
                 multiline = value;
                 edit.Multiline = value;
+                // edit.ScrollBars = value ? ScrollBars.Vertical : ScrollBars.None;
+                // bar.Visible = multiline;
 
-                edit.ScrollBars = value ? ScrollBars.Vertical : ScrollBars.None;
-                bar.Visible = multiline;
+                if (value && Type != UIEditType.String)
+                {
+                    Type = UIEditType.String;
+                }
 
                 SizeChange();
+            }
+        }
+
+        private bool showScrollBar;
+
+        [DefaultValue(false)]
+        [Description("显示垂直滚动条"), Category("SunnyUI")]
+        public bool ShowScrollBar
+        {
+            get => showScrollBar;
+            set
+            {
+                value = value && Multiline;
+                showScrollBar = value;
+                if (value)
+                {
+                    edit.ScrollBars = ScrollBars.Vertical;
+                    bar.Visible = true;
+                }
+                else
+                {
+                    edit.ScrollBars = ScrollBars.None;
+                    bar.Visible = false;
+                }
             }
         }
 
@@ -320,14 +349,16 @@ namespace Sunny.UI
             }
         }
 
-        private int MiniHeight;
+        private int MinHeight;
+        private int MaxHeight;
 
         private void CalcEditHeight()
         {
-            UIEdit edt = new UIEdit();
+            TextBox edt = new TextBox();
             edt.Font = edit.Font;
-            edt.Invalidate();
-            MiniHeight = edt.Height;
+            MinHeight = edt.PreferredHeight;
+            edt.BorderStyle = BorderStyle.None;
+            MaxHeight = edt.PreferredHeight * 2 + MinHeight - edt.PreferredHeight;
             edt.Dispose();
         }
 
@@ -335,10 +366,8 @@ namespace Sunny.UI
         {
             if (!multiline)
             {
-                if (Height < MiniHeight)
-                {
-                    Height = MiniHeight;
-                }
+                if (Height < MinHeight) Height = MinHeight;
+                if (Height > MaxHeight) Height = MaxHeight;
 
                 edit.Top = (Height - edit.Height) / 2;
                 edit.Left = 4;
@@ -615,7 +644,7 @@ namespace Sunny.UI
                 for (int i = 0; i < count; i++)
                 {
                     string currentItemText = values[i].ToString();
-                    if (!currentItemText.Equals("ListItems"))
+                    if (currentItemText != null && !currentItemText.Equals("ListItems"))
                     {
                         list.Add(values[i]);
                     }
