@@ -27,6 +27,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [DefaultProperty("Text")]
     public partial class UIGroupBox : UIPanel
     {
         public UIGroupBox()

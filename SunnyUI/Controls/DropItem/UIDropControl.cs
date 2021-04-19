@@ -322,6 +322,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly
         {
             get => edit.ReadOnly;

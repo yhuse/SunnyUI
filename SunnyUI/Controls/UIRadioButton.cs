@@ -31,7 +31,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
-    [DefaultProperty("Text")]
+    [DefaultProperty("Checked")]
     [ToolboxItem(true)]
     public sealed class UIRadioButton : UIControl
     {
@@ -226,6 +226,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
+        [Description("分组编号"), Category("SunnyUI")]
         public int GroupIndex { get; set; }
 
         /// <summary>

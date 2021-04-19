@@ -30,7 +30,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
-    [DefaultProperty("Text")]
+    [DefaultProperty("Checked")]
     [ToolboxItem(true)]
     public class UICheckBox : UIControl
     {
@@ -93,6 +93,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
 
         /// <summary>
