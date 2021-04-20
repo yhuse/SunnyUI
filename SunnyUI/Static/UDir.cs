@@ -49,15 +49,36 @@ namespace Sunny.UI
         /// <param name="dir">返回true则path为选择文件夹路径</param>
         /// <param name="showNewButton">显示新建文件夹按钮</param>
         /// <returns>是否选择文件夹</returns>
-        public static bool SelectDir(string desc, out string dir, bool showNewButton = true)
+        public static bool SelectDir(string desc, ref string dir, bool showNewButton = true)
         {
-            dir = string.Empty;
             bool bOk = false;
             using (FolderBrowserDialog fd = new FolderBrowserDialog { Description = desc, ShowNewFolderButton = showNewButton })
             {
+                fd.SelectedPath = dir;
                 if (fd.ShowDialog() == DialogResult.OK)
                 {
                     dir = fd.SelectedPath.DealPath();
+                    bOk = true;
+                }
+            }
+
+            return bOk;
+        }
+
+        /// <summary>
+        /// 选择文件夹
+        /// </summary>
+        /// <param name="desc">说明</param>
+        /// <param name="dir">返回true则path为选择文件夹路径</param>
+        /// <returns>是否选择文件夹</returns>
+        public static bool SelectDirEx(string desc, ref string dir)
+        {
+            bool bOk = false;
+            using (FolderBrowserDialogEx fd = new FolderBrowserDialogEx { Description = desc, DirectoryPath = dir })
+            {
+                if (fd.ShowDialog(null) == DialogResult.OK)
+                {
+                    dir = fd.DirectoryPath.DealPath();
                     bOk = true;
                 }
             }
