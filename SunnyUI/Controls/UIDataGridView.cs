@@ -135,6 +135,7 @@ namespace Sunny.UI
         private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
         {
             VBar.Value = FirstDisplayedScrollingRowIndex;
+            VerticalScrollBarChanged?.Invoke(this, e);
         }
 
         private void VBarValueChanged(object sender, EventArgs e)
@@ -151,7 +152,12 @@ namespace Sunny.UI
         {
             HorizontalScrollBar.Value = HBar.Value;
             HorizontalScrollingOffset = HBar.Value;
+            HorizontalScrollBarChanged?.Invoke(this, e);
         }
+
+        public event EventHandler HorizontalScrollBarChanged;
+
+        public event EventHandler VerticalScrollBarChanged;
 
         public void SetScrollInfo()
         {
