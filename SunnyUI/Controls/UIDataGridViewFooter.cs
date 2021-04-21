@@ -34,7 +34,7 @@ namespace Sunny.UI
         public UIDataGridViewFooter()
         {
             SetStyleFlags(true, false, true);
-            Height = 35;
+            Height = 29;
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
         }
@@ -88,12 +88,26 @@ namespace Sunny.UI
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            if (dgv.ColumnCount > 0 && dgv.RowCount > 0)
+            if (dgv != null && dgv.ColumnCount > 0 && dgv.RowCount > 0)
             {
+                if (dgv.ShowGridLine)
+                {
+                    g.DrawLine(dgv.GridColor, 0, 0, 0, Height);
+                }
+
                 foreach (DataGridViewColumn column in dgv.Columns)
                 {
                     Rectangle rect = dgv.GetCellDisplayRectangle(column.Index, 0, false);
-                    if (rect.Left == 0 && rect.Width == 0) continue;
+                    int minleft = dgv.ShowGridLine ? 1 : 0;
+
+                    if (rect.Left == minleft && rect.Width == 0) continue;
+                    if (rect.Left >= minleft && dgv.ShowGridLine)
+                    {
+                        g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Left - minleft, Height);
+                        g.DrawLine(dgv.GridColor, rect.Right - minleft, 0, rect.Right - minleft, Height);
+                        g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Right - minleft, 0);
+                        g.DrawLine(dgv.GridColor, rect.Left - minleft, Height - 1, rect.Right - minleft, Height - 1);
+                    }
 
                     string str = this[column.Name];
                     if (str.IsNullOrEmpty()) continue;
