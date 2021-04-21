@@ -2,11 +2,11 @@
 
 [![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
 [![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)
-- Blog:   https://www.cnblogs.com/yhuse
+- 帮助文档目录: https://gitee.com/yhuse/SunnyUI/wikis/pages
 - Gitee:  https://gitee.com/yhuse/SunnyUI
 - GitHub: https://github.com/yhuse/SunnyUI
 - Nuget:  https://www.nuget.org/packages/SunnyUI/ 
-- 帮助文档目录: https://www.cnblogs.com/yhuse/p/SunnyUI_Menu.html
+- Blog:   https://www.cnblogs.com/yhuse
 
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
 
