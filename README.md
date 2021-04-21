@@ -2,7 +2,7 @@
 
 [![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
 [![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)
-- 帮助文档目录: https://gitee.com/yhuse/SunnyUI/wikis/pages
+- 帮助文档: https://gitee.com/yhuse/SunnyUI/wikis/pages
 - Gitee:  https://gitee.com/yhuse/SunnyUI
 - GitHub: https://github.com/yhuse/SunnyUI
 - Nuget:  https://www.nuget.org/packages/SunnyUI/ 
