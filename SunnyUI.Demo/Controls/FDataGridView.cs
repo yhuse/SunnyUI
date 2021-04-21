@@ -8,10 +8,10 @@ namespace Sunny.UI.Demo
         {
             InitializeComponent();
 
-            uiDataGridView1.AddColumn("Column1", "Column1").SetFixedMode(100);
-            uiDataGridView1.AddColumn("Column2", "Column2").SetFixedMode(100);
-            uiDataGridView1.AddColumn("Column3", "Column3").SetFixedMode(100);
-            uiDataGridView1.AddColumn("Column4", "Column4").SetFixedMode(100);
+            uiDataGridView1.AddColumn("Column1", "Column1").SetFixedMode(150);
+            uiDataGridView1.AddColumn("Column2", "Column2").SetFixedMode(150);
+            uiDataGridView1.AddColumn("Column3", "Column3").SetFixedMode(150);
+            uiDataGridView1.AddColumn("Column4", "Column4").SetFixedMode(150);
             uiDataGridView1.ReadOnly = true;
         }
 
@@ -53,6 +53,11 @@ namespace Sunny.UI.Demo
         private void uiPagination1_PageChanged(object sender, object pagingSource, int pageIndex, int count)
         {
             uiDataGridView1.DataSource = pagingSource;
+            uiDataGridViewFooter1.Clear();
+            uiDataGridViewFooter1["Column1"] = "合计：";
+            uiDataGridViewFooter1["Column2"] = "Column2_" + pageIndex;
+            uiDataGridViewFooter1["Column3"] = "Column3_" + pageIndex;
+            uiDataGridViewFooter1["Column4"] = "Column4_" + pageIndex;
         }
     }
 }

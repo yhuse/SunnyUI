@@ -37,6 +37,9 @@ namespace Sunny.UI
             Height = 29;
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
+
+            foreColor = UIFontColor.Primary;
+            fillColor = UIColor.LightBlue;
         }
 
         private UIDataGridView dgv;
@@ -113,13 +116,13 @@ namespace Sunny.UI
                     if (str.IsNullOrEmpty()) continue;
 
                     SizeF sf = g.MeasureString(str, Font);
-                    if (rect.Left == 0 && rect.Width < column.Width)
+                    if (rect.Left == minleft && rect.Width < column.Width)
                     {
-                        g.DrawString(str, Font, Color.White, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                        g.DrawString(str, Font, ForeColor, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
                     }
                     else
                     {
-                        g.DrawString(str, Font, Color.White, rect.Left + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                        g.DrawString(str, Font, ForeColor, rect.Left + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
                     }
                 }
             }
@@ -130,6 +133,7 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
 
+            foreColor = UIFontColor.Primary;
             fillColor = uiColor.PlainColor;
 
             Invalidate();
@@ -139,7 +143,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "235, 243, 255")]
         public Color FillColor
         {
             get => fillColor;
@@ -161,7 +165,7 @@ namespace Sunny.UI
         /// 字体颜色
         /// </summary>
         [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "48, 48, 48")]
         public override Color ForeColor
         {
             get => foreColor;
