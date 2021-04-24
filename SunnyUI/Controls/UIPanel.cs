@@ -44,16 +44,6 @@ namespace Sunny.UI
         public UIPanel()
         {
             InitializeComponent();
-
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.Selectable, true);
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            base.DoubleBuffered = true;
-            UpdateStyles();
-
             Version = UIGlobal.Version;
             AutoScaleMode = AutoScaleMode.None;
             base.Font = UIFontColor.Font;

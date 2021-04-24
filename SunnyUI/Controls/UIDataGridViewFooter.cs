@@ -29,7 +29,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
-    public class UIDataGridViewFooter : UIControl
+    public sealed class UIDataGridViewFooter : UIControl
     {
         public UIDataGridViewFooter()
         {
@@ -38,6 +38,7 @@ namespace Sunny.UI
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
 
+            Font = UIFontColor.Font;
             foreColor = UIFontColor.Primary;
             fillColor = UIColor.LightBlue;
         }
@@ -116,6 +117,8 @@ namespace Sunny.UI
                     if (str.IsNullOrEmpty()) continue;
 
                     SizeF sf = g.MeasureString(str, Font);
+
+                    if (rect.Left == 0 && rect.Width == 0) continue;
                     if (rect.Left == minleft && rect.Width < column.Width)
                     {
                         g.DrawString(str, Font, ForeColor, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);

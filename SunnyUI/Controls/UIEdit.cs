@@ -26,7 +26,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(false)]
-    public sealed class UIEdit : TextBox
+    public class UIEdit : TextBox
     {
         private bool canEmpty;
         private int decLength = 2;
@@ -41,10 +41,10 @@ namespace Sunny.UI
         {
             //设置为单选边框
             BorderStyle = BorderStyle.FixedSingle;
-            Font = UIFontColor.Font;
-            ForeColor = UIFontColor.Primary;
+            base.Font = UIFontColor.Font;
+            base.ForeColor = UIFontColor.Primary;
             Width = 150;
-            MaxLength = 32767;
+            base.MaxLength = 32767;
         }
 
         private string watermark;

@@ -120,7 +120,7 @@
     <Compile Include="Controls\FDataGridView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\FDataGridView.Designer.cs">
+    <Compile Include="Controls\FDataGridView.designer.cs">
       <DependentUpon>FDataGridView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FFlowLayoutPanel.cs">
@@ -358,9 +358,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FDataGridView.Designer.resx">
-      <DependentUpon>FDataGridView.Designer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FDataGridView.resx">
       <DependentUpon>FDataGridView.cs</DependentUpon>

@@ -126,7 +126,7 @@
             // 
             this.uiDataGridViewFooter1.DataGridView = this.uiDataGridView1;
             this.uiDataGridViewFooter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiDataGridViewFooter1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiDataGridViewFooter1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiDataGridViewFooter1.Location = new System.Drawing.Point(0, 351);
             this.uiDataGridViewFooter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiDataGridViewFooter1.Name = "uiDataGridViewFooter1";
