@@ -10,8 +10,8 @@ namespace Sunny.UI
         public static void ShowWaitForm(string desc = "系统正在处理中，请稍候...")
         {
             if (IsRun) return;
-            Instance.CreateForm(desc);
             IsRun = true;
+            Instance.CreateForm(desc);
         }
 
         public static void HideWaitForm()
@@ -55,10 +55,13 @@ namespace Sunny.UI
             thread = new Thread(delegate ()
             {
                 form = new UIWaitForm(desc);
-                Application.Run(form);
+                if (IsRun) Application.Run(form);
             });
 
-            thread.Start();
+            if (IsRun)
+                thread.Start();
+            else
+                CloseForm();
         }
 
         private void CloseForm()
