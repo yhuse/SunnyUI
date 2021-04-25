@@ -85,10 +85,10 @@ namespace Sunny.UI
     public class UIStatusFormService
     {
         private static bool IsRun;
-        public static void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...")
+        public static void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
         {
             if (IsRun) return;
-            Instance.CreateForm(maximum, desc);
+            Instance.CreateForm(maximum, desc, decimalCount);
             IsRun = true;
         }
 
@@ -133,12 +133,12 @@ namespace Sunny.UI
         private Thread thread;
         private UIStatusForm form;
 
-        private void CreateForm(int max, string desc)
+        private void CreateForm(int max, string desc, int decimalCount = 1)
         {
             CloseForm();
             thread = new Thread(delegate ()
             {
-                form = new UIStatusForm(max, desc);
+                form = new UIStatusForm(max, desc, decimalCount);
                 form.VisibleChanged += WaitForm_VisibleChanged;
                 Application.Run(form);
                 IsRun = false;

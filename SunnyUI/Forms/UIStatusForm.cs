@@ -32,13 +32,14 @@ namespace Sunny.UI
             Description = UILocalize.SystemProcessing;
         }
 
-        public UIStatusForm(int max, string desc)
+        public UIStatusForm(int max, string desc, int decimalCount = 1)
         {
             InitializeComponent();
 
             Maximum = max;
             Description = desc;
             Value = 0;
+            DecimalCount = decimalCount;
         }
 
         [DefaultValue(100)]
@@ -96,6 +97,12 @@ namespace Sunny.UI
         {
             get => labelDescription.Text;
             set => labelDescription.Text = value;
+        }
+
+        public int DecimalCount
+        {
+            get => processBar.DecimalCount;
+            set => processBar.DecimalCount = value;
         }
 
         private delegate void SetTextHandler(string text);

@@ -1478,14 +1478,16 @@ namespace Sunny.UI
         #endregion 拉拽调整窗体大小
 
         #region 一些辅助窗口
+
         /// <summary>
         /// 显示进度提示窗
         /// </summary>
         /// <param name="desc">描述文字</param>
         /// <param name="maximum">最大进度值</param>
-        public void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...")
+        /// <param name="decimalCount">显示进度条小数个数</param>
+        public void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
         {
-            UIStatusFormService.ShowStatusForm(maximum, desc);
+            UIStatusFormService.ShowStatusForm(maximum, desc, decimalCount);
         }
 
         /// <summary>

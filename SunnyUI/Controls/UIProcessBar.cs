@@ -74,7 +74,7 @@ namespace Sunny.UI
                 posValue = Math.Max(value, 0);
                 posValue = Math.Min(posValue, maximum);
                 processWidth = (int)(posValue * Width * 1.0 / Maximum);
-                processText = (posValue * 100.0 / maximum).ToString("F1") + "%";
+                processText = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
                 ValueChanged?.Invoke(this, posValue);
                 Invalidate();
             }
@@ -157,8 +157,16 @@ namespace Sunny.UI
             image?.Dispose();
             image = null;
             processWidth = (int)(posValue * Width * 1.0 / Maximum);
-            Text = (posValue * 100.0 / maximum).ToString("F1") + "%";
+            Text = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
             Invalidate();
+        }
+
+        private int decimalCount = 1;
+
+        public int DecimalCount
+        {
+            get => decimalCount;
+            set => decimalCount = Math.Max(value, 0);
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
