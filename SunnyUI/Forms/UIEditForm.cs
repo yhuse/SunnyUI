@@ -164,6 +164,40 @@ namespace Sunny.UI
                     ctrls.Add(edit);
                 }
 
+                if (info.EditType == EditType.Combobox)
+                {
+                    UIComboBox edit = new UIComboBox();
+                    edit.DropDownStyle = UIDropDownStyle.DropDownList;
+                    edit.Left = option.LabelWidth;
+                    edit.Width = info.HalfWidth ? option.ValueWidth / 2 : option.ValueWidth;
+                    edit.Top = top;
+                    edit.Parent = this;
+                    edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+
+                    if (info.DisplayMember.IsNullOrEmpty())
+                    {
+                        object[] items = (object[])info.DataSource;
+                        if (items != null)
+                        {
+                            edit.Items.AddRange(items);
+                            int index = info.Value.ToString().ToInt();
+                            if (index < items.Length)
+                                edit.SelectedIndex = index;
+                        }
+                    }
+                    else
+                    {
+                        edit.DisplayMember = info.DisplayMember;
+                        edit.ValueMember = info.ValueMember;
+                        edit.DataSource = info.DataSource;
+                        edit.SelectedValue = info.Value;
+                    }
+
+
+                    ctrls.Add(edit);
+                }
+
                 top += 29 + 10;
             }
 
@@ -307,6 +341,13 @@ namespace Sunny.UI
                         UIDatetimePicker edit = this.GetControl<UIDatetimePicker>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;
                         info.Value = edit.Value;
+                    }
+
+                    if (info.EditType == EditType.Combobox)
+                    {
+                        UIComboBox edit = this.GetControl<UIComboBox>("Edit_" + info.DataPropertyName);
+                        if (edit == null) continue;
+                        info.Value = edit.ValueMember.IsValid() ? edit.SelectedValue : edit.SelectedIndex;
                     }
                 }
             }

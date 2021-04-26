@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sunny.UI.Demo.Forms
 {
@@ -43,12 +44,24 @@ namespace Sunny.UI.Demo.Forms
 
         private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
+            List<FCombobox.Info> infoList = new List<FCombobox.Info>();
+            FCombobox.Info info1 = new FCombobox.Info() { Id = "1", Name = "张三" };
+            FCombobox.Info info2 = new FCombobox.Info() { Id = "2", Name = "李四" };
+            FCombobox.Info info3 = new FCombobox.Info() { Id = "3", Name = "王五" };
+            infoList.Add(info1);
+            infoList.Add(info2);
+            infoList.Add(info3);
+
+            string[] sex = new[] { "男", "女" };
+
             UIEditOption option = new UIEditOption();
             option.AutoLabelWidth = true;
             option.Text = "增加";
             option.AddText("Name", "姓名", "", true);
             option.AddInteger("Age", "年龄", 20);
             option.AddDate("Birthday", "生日", DateTime.Now);
+            option.AddCombobox("Sex", "性别", sex, 1, true, true);
+            option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
 
             UIEditForm frm = new UIEditForm(option);
             frm.ShowDialog();
@@ -58,6 +71,8 @@ namespace Sunny.UI.Demo.Forms
                 Console.WriteLine("姓名: " + frm["Name"]);
                 Console.WriteLine("年龄: " + frm["Age"]);
                 Console.WriteLine("生日: " + frm["Birthday"]);
+                Console.WriteLine("性别: " + sex[(int)frm["Sex"]]);
+                Console.WriteLine("关联: " + frm["Info"]);
             }
 
             frm.Dispose();
