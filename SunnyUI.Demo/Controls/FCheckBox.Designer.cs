@@ -70,6 +70,7 @@
             this.uiCheckBox1.Size = new System.Drawing.Size(150, 35);
             this.uiCheckBox1.TabIndex = 0;
             this.uiCheckBox1.Text = "uiCheckBox1";
+            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
             // uiLine1
             // 
@@ -146,6 +147,7 @@
             this.uiCheckBoxGroup1.Size = new System.Drawing.Size(670, 211);
             this.uiCheckBoxGroup1.TabIndex = 41;
             this.uiCheckBoxGroup1.Text = "UICheckBoxGroup";
+            this.uiCheckBoxGroup1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiCheckBoxGroup1.ValueChanged += new Sunny.UI.UICheckBoxGroup.OnValueChanged(this.uiCheckBoxGroup1_ValueChanged);
             // 
             // uiButton1
@@ -210,7 +212,6 @@
             // 
             // FCheckBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 556);
             this.Name = "FCheckBox";

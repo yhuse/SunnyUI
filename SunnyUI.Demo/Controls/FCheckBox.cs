@@ -49,5 +49,10 @@ namespace Sunny.UI.Demo
         {
             uiCheckBoxGroup1.Clear();
         }
+
+        private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(uiCheckBox1.Checked);
+        }
     }
 }

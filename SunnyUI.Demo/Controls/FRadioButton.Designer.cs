@@ -294,6 +294,7 @@
             this.uiRadioButton1.Size = new System.Drawing.Size(150, 35);
             this.uiRadioButton1.TabIndex = 45;
             this.uiRadioButton1.Text = "uiRadioButton1";
+            this.uiRadioButton1.CheckedChanged += new System.EventHandler(this.uiRadioButton1_CheckedChanged);
             // 
             // uiLine2
             // 
@@ -329,6 +330,7 @@
             this.uiRadioButtonGroup1.Size = new System.Drawing.Size(670, 173);
             this.uiRadioButtonGroup1.TabIndex = 63;
             this.uiRadioButtonGroup1.Text = "UIRadioButtonGroup";
+            this.uiRadioButtonGroup1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiRadioButtonGroup1.ValueChanged += new Sunny.UI.UIRadioButtonGroup.OnValueChanged(this.uiRadioButtonGroup1_ValueChanged);
             // 
             // uiButton4
@@ -357,7 +359,6 @@
             // 
             // FRadioButton
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 598);
             this.Name = "FRadioButton";

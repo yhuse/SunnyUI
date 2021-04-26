@@ -29,7 +29,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    [DefaultEvent("ValueChanged")]
+    [DefaultEvent("CheckedChanged")]
     [DefaultProperty("Checked")]
     [ToolboxItem(true)]
     public class UICheckBox : UIControl
@@ -37,7 +37,7 @@ namespace Sunny.UI
         public UICheckBox()
         {
             SetStyleFlags();
-            Cursor = Cursors.Hand;
+            base.Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);
             foreColor = UIStyles.Blue.CheckBoxForeColor;
@@ -130,9 +130,12 @@ namespace Sunny.UI
             {
                 _checked = value;
                 ValueChanged?.Invoke(this, _checked);
+                CheckedChanged?.Invoke(this, new EventArgs());
                 Invalidate();
             }
         }
+
+        public event EventHandler CheckedChanged;
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {

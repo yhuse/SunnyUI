@@ -30,7 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    [DefaultEvent("ValueChanged")]
+    [DefaultEvent("CheckedChanged")]
     [DefaultProperty("Checked")]
     [ToolboxItem(true)]
     public sealed class UIRadioButton : UIControl
@@ -38,6 +38,8 @@ namespace Sunny.UI
         public delegate void OnValueChanged(object sender, bool value);
 
         public event OnValueChanged ValueChanged;
+
+        public event EventHandler CheckedChanged;
 
         public UIRadioButton()
         {
@@ -150,6 +152,7 @@ namespace Sunny.UI
                 }
 
                 ValueChanged?.Invoke(this, _checked);
+                CheckedChanged?.Invoke(this, new EventArgs());
                 Invalidate();
             }
         }

@@ -30,5 +30,10 @@ namespace Sunny.UI.Demo
         {
             uiRadioButtonGroup1.SelectedIndex = 6;
         }
+
+        private void uiRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(uiRadioButton1.Checked);
+        }
     }
 }
