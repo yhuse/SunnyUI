@@ -164,6 +164,21 @@ namespace Sunny.UI
                     ctrls.Add(edit);
                 }
 
+                if (info.EditType == EditType.Switch)
+                {
+                    UISwitch edit = new UISwitch();
+                    edit.SwitchShape = UISwitch.UISwitchShape.Square;
+                    edit.Left = option.LabelWidth;
+                    edit.Width = 75;
+                    edit.Height = 29;
+                    edit.Top = top;
+                    edit.Active = (bool)info.Value;
+                    edit.Parent = this;
+                    edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+                    ctrls.Add(edit);
+                }
+
                 if (info.EditType == EditType.Combobox)
                 {
                     UIComboBox edit = new UIComboBox();
@@ -348,6 +363,13 @@ namespace Sunny.UI
                         UIComboBox edit = this.GetControl<UIComboBox>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;
                         info.Value = edit.ValueMember.IsValid() ? edit.SelectedValue : edit.SelectedIndex;
+                    }
+
+                    if (info.EditType == EditType.Switch)
+                    {
+                        UISwitch edit = this.GetControl<UISwitch>("Edit_" + info.DataPropertyName);
+                        if (edit == null) continue;
+                        info.Value = edit.Active;
                     }
                 }
             }

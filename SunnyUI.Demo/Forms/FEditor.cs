@@ -62,6 +62,7 @@ namespace Sunny.UI.Demo.Forms
             option.AddDate("Birthday", "生日", DateTime.Now);
             option.AddCombobox("Sex", "性别", sex, 1, true, true);
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
+            option.AddSwitch("Switch", "选择", false);
 
             UIEditForm frm = new UIEditForm(option);
             frm.ShowDialog();
@@ -73,6 +74,7 @@ namespace Sunny.UI.Demo.Forms
                 Console.WriteLine("生日: " + frm["Birthday"]);
                 Console.WriteLine("性别: " + sex[(int)frm["Sex"]]);
                 Console.WriteLine("关联: " + frm["Info"]);
+                Console.WriteLine("选择: " + frm["Switch"]);
             }
 
             frm.Dispose();

@@ -57,7 +57,7 @@ namespace Sunny.UI
             fillColor = Color.White;
         }
 
-        public UISwitchShape switchShape = UISwitchShape.Round;
+        private UISwitchShape switchShape = UISwitchShape.Round;
 
         [Description("开关形状"), Category("SunnyUI")]
         [DefaultValue(UISwitchShape.Round)]

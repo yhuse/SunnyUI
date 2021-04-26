@@ -35,7 +35,8 @@ namespace Sunny.UI
         Date,
         DateTime,
         Password,
-        Combobox
+        Combobox,
+        Switch
     }
 
     public class EditInfo
@@ -181,6 +182,24 @@ namespace Sunny.UI
                 Value = value,
                 Enabled = enabled,
                 HalfWidth = halfWidth
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddSwitch(string dataPropertyName, string text, bool value, bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.Switch,
+                Text = text,
+                Value = value,
+                Enabled = enabled
             };
 
             Infos.Add(info);
