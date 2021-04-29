@@ -70,6 +70,12 @@ namespace Sunny.UI
             ColumnHeadersDefaultCellStyle.ForeColor = UIColor.White;
             ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
+            //行头部颜色
+            RowHeadersDefaultCellStyle.BackColor = UIColor.LightBlue;
+            RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
+            RowHeadersDefaultCellStyle.SelectionBackColor = UIColor.Blue;
+            RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
             //标题行行高，与OnColumnAdded事件配合
             ColumnHeadersHeight = 32;
 
@@ -87,6 +93,29 @@ namespace Sunny.UI
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
         }
+
+        /*
+        private bool showRowIndex;
+
+        [Description("显示行号"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool ShowRowIndex
+        {
+            get => showRowIndex;
+            set
+            {
+                showRowIndex = value;
+                if (value) RowHeadersVisible = true;
+                Invalidate();
+            }
+        }
+
+        protected override void OnRowStateChanged(int rowIndex, DataGridViewRowStateChangedEventArgs e)
+        {
+            base.OnRowStateChanged(rowIndex, e);
+            if (ShowRowIndex) e.Row.HeaderCell.Value = (e.Row.Index + 1).ToString();
+        }
+        */
 
         private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
         {
@@ -384,8 +413,9 @@ namespace Sunny.UI
 
             //行头部颜色
             RowHeadersDefaultCellStyle.BackColor = uiColor.PlainColor;
-            RowHeadersDefaultCellStyle.ForeColor = uiColor.TitleForeColor;
-            RowHeadersDefaultCellStyle.SelectionBackColor = uiColor.TitleColor;
+            RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
+            RowHeadersDefaultCellStyle.SelectionBackColor = uiColor.RectColor;
+            RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
             //数据行选中颜色
             DefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;

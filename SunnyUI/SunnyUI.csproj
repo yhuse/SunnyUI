@@ -36,6 +36,7 @@
 </PropertyGroup>
  
 <ItemGroup>
+	<None Remove="Controls\UIDataGridView.cs~RF2e4ccc29.TMP" />
 	<None Remove="Font\ElegantIcons.ttf" />
 	<None Remove="Font\FontAwesome.ttf" />
 	<None Remove="Font\LigatureSymbols.ttf" />
