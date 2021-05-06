@@ -73,6 +73,8 @@ namespace Sunny.UI
 
         public event OnValueChanged ValueChanged;
 
+        public event EventHandler ActiveChanged;
+
         /// <summary>
         /// 字体颜色
         /// </summary>
@@ -93,9 +95,13 @@ namespace Sunny.UI
             get => activeValue;
             set
             {
-                activeValue = value;
-                ValueChanged?.Invoke(this, value);
-                Invalidate();
+                if (activeValue != value)
+                {
+                    activeValue = value;
+                    ValueChanged?.Invoke(this, value);
+                    ActiveChanged?.Invoke(this, new EventArgs());
+                    Invalidate();
+                }
             }
         }
 
