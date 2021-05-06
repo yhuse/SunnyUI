@@ -86,7 +86,7 @@ namespace Sunny.UI
             if (SelectedIndex != ListBox.SelectedIndex)
             {
                 SelectedIndex = ListBox.SelectedIndex;
-                Box_SelectedIndexChanged(null, null);
+                //Box_SelectedIndexChanged(null, null);
                 Invalidate();
             }
         }
