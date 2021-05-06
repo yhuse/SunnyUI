@@ -67,6 +67,13 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
+        [Description("允许在标题栏放置控件"), Category("SunnyUI")]
+        public bool AllowAddControlOnTitle
+        {
+            get; set;
+        }
+
+        [DefaultValue(false)]
         [Description("允许显示标题栏"), Category("SunnyUI")]
         public bool AllowShowTitle
         {
@@ -195,7 +202,7 @@ namespace Sunny.UI
                 }
             }
 
-            if (ShowTitle && e.Control.Top < TitleHeight)
+            if (ShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
                 e.Control.Top = Padding.Top;
             }
