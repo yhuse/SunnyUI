@@ -114,10 +114,10 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnClick(EventArgs e)
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
             timer.Enabled = !timer.Enabled;
-            base.OnClick(e);
+            base.OnMouseDoubleClick(e);
         }
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
