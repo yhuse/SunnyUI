@@ -144,11 +144,11 @@ namespace Sunny.UI
                 max = 100;
                 min = 0;
             }
-            else
-            {
-                if (max > 0) min = 0;
-                else max = 0;
-            }
+            //else
+            //{
+            //    if (max > 0) min = 0;
+            //    else max = 0;
+            //}
 
             CalcDegreeScale(min, max, Option.YAxis.SplitNumber,
                 out int start, out int end, out double interval, out int decimalCount);

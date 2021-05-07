@@ -26,11 +26,14 @@ namespace Sunny.UI.Demo.Charts
 
             var series = new UIBarSeries();
             series.Name = "Bar1";
-            series.AddData(1.1);
-            series.AddData(1.1);
-            series.AddData(1.1);
-            series.AddData(1.1);
-            series.AddData(1.1);
+            series.AddData(-1);
+            series.AddData(-1);
+            series.AddData(-1);
+            series.AddData(-1);
+            series.AddData(-1);
+            series.AddData(1);
+            series.AddData(1);
+            series.AddData(1);
             option.Series.Add(series);
 
             series = new UIBarSeries();
@@ -40,13 +43,19 @@ namespace Sunny.UI.Demo.Charts
             series.AddData(1.1);
             series.AddData(1.1);
             series.AddData(1.1);
+            series.AddData(1.1);
+            series.AddData(1.1);
+            series.AddData(1.1);
             option.Series.Add(series);
 
-            option.XAxis.Data.Add("Mon");
-            option.XAxis.Data.Add("Tue");
-            option.XAxis.Data.Add("Wed");
-            option.XAxis.Data.Add("Thu");
-            option.XAxis.Data.Add("Fri");
+            option.XAxis.Data.Add("D1");
+            option.XAxis.Data.Add("D2");
+            option.XAxis.Data.Add("D3");
+            option.XAxis.Data.Add("D4");
+            option.XAxis.Data.Add("D5");
+            option.XAxis.Data.Add("D6");
+            option.XAxis.Data.Add("D7");
+            option.XAxis.Data.Add("D8");
 
             option.ToolTip.Visible = true;
             option.YAxis.Scale = true;
