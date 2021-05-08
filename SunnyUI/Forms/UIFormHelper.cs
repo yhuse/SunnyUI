@@ -165,8 +165,9 @@ namespace Sunny.UI
         /// <param name="showCancelButton">显示取消按钮</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
+        /// <param name="topMost">置顶</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true)
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = false)
         {
             Point pt = SystemEx.GetCursorPos();
             Rectangle screen = Screen.GetBounds(pt);
@@ -190,7 +191,7 @@ namespace Sunny.UI
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
-            frm.TopMost = showMask;
+            frm.TopMost = showMask || topMost;
             frm.ShowDialog();
             bool isOk = frm.IsOK;
             frm.Dispose();
@@ -202,39 +203,39 @@ namespace Sunny.UI
 
     public static class UIMessageBox
     {
-        public static void Show(string text, bool showMask = true)
+        public static void Show(string text, bool showMask = true, bool topMost = false)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask);
+            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, topMost);
         }
 
-        public static void ShowInfo(string text, bool showMask = true)
+        public static void ShowInfo(string text, bool showMask = true, bool topMost = false)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask);
+            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, topMost);
         }
 
-        public static void ShowSuccess(string text, bool showMask = true)
+        public static void ShowSuccess(string text, bool showMask = true, bool topMost = false)
         {
-            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask);
+            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, topMost);
         }
 
-        public static void ShowWarning(string text, bool showMask = true)
+        public static void ShowWarning(string text, bool showMask = true, bool topMost = false)
         {
-            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask);
+            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, topMost);
         }
 
-        public static void ShowError(string text, bool showMask = true)
+        public static void ShowError(string text, bool showMask = true, bool topMost = false)
         {
-            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask);
+            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, topMost);
         }
 
-        public static bool ShowAsk(string text, bool showMask = true)
+        public static bool ShowAsk(string text, bool showMask = true, bool topMost = false)
         {
-            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel, showMask);
+            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel, showMask, topMost);
         }
 
-        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true)
+        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true, bool topMost = false)
         {
-            return UIMessageDialog.ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask);
+            return UIMessageDialog.ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask, topMost);
         }
     }
 
@@ -612,5 +613,7 @@ namespace Sunny.UI
         UIPage AddPage(UIPage page);
 
         void SelectPage(int pageIndex);
+
+        bool GetTopMost();
     }
 }

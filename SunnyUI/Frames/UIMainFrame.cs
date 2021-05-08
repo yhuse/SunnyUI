@@ -129,6 +129,11 @@ namespace Sunny.UI
             MainTabControl.SelectPage(pageIndex);
         }
 
+        public bool GetTopMost()
+        {
+            return TopMost;
+        }
+
         #endregion IFrame实现
     }
 }

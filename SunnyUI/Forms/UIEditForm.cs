@@ -168,7 +168,7 @@ namespace Sunny.UI
                 {
                     UISwitch edit = new UISwitch();
                     edit.SwitchShape = UISwitch.UISwitchShape.Square;
-                    edit.Left = option.LabelWidth;
+                    edit.Left = option.LabelWidth - 1;
                     edit.Width = 75;
                     edit.Height = 29;
                     edit.Top = top;
