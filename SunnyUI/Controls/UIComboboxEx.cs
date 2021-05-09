@@ -44,6 +44,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             base.DoubleBuffered = true;
+            this.DoubleBuffered();
             UpdateStyles();
             Width = 150;
         }
@@ -221,30 +222,37 @@ namespace Sunny.UI
             }
         }
 
+        private readonly Graphics graphics = null;
+        private Graphics Graphics => graphics ?? CreateGraphics();
+
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
+            if (IsDisposed || Disposing) return;
 
-            //WM_PAINT = 0xf; 要求一个窗口重画自己,即Paint事件时
-            //WM_CTLCOLOREDIT = 0x133;当一个编辑型控件将要被绘制时发送此消息给它的父窗口；
-            //通过响应这条消息，所有者窗口可以通过使用给定的相关显示设备的句柄来设置编辑框的文本和背景颜色
-            //windows消息值表,可参考:http://hi.baidu.com/dooy/blog/item/0e770a24f70e3b2cd407421b.html
-            if (m.Msg == Win32.User.WM_PAINT || m.Msg == Win32.User.WM_CTLCOLOREDIT)
+            switch (m.Msg)
             {
-                IntPtr hDC = (IntPtr)Win32.User.GetWindowDC(m.HWnd);
-                if (hDC.ToInt32() == 0) return;
-                Graphics g = Graphics.FromHdc(hDC);
-                g.FillRectangle(BackColor, new Rectangle(0, 0, Width, Height));
-                g.DrawRectangle(rectColor, 0, 0, Width - 1, Height - 1);
+                //WM_PAINT = 0xf; 要求一个窗口重画自己,即Paint事件时
+                //WM_CTLCOLOREDIT = 0x133;当一个编辑型控件将要被绘制时发送此消息给它的父窗口；
+                //通过响应这条消息，所有者窗口可以通过使用给定的相关显示设备的句柄来设置编辑框的文本和背景颜色
+                //windows消息值表,可参考:http://hi.baidu.com/dooy/blog/item/0e770a24f70e3b2cd407421b.html
+                case Win32.User.WM_PAINT:
+                    //case Win32.User.WM_CTLCOLOREDIT:
+                    base.WndProc(ref m);
+                    //Graphics.FillRectangle(BackColor, new Rectangle(0, 0, Width, Height));
 
-                if (Text.IsValid())
-                {
-                    SizeF sf = g.MeasureString(Text, Font);
-                    g.DrawString(Text, Font, ForeColor, 0, (Height - sf.Height) / 2);
-                }
+                    Graphics.DrawRectangle(rectColor, 0, 0, Width - 1, Height - 1);
 
-                g.DrawFontImage(61703, 24, rectColor, new Rectangle(Width - 28, 1, 28, Height - 2));
-                Win32.User.ReleaseDC(m.HWnd, hDC);
+                    // if (Text.IsValid())
+                    // {
+                    //     SizeF sf = Graphics.MeasureString(Text, Font);
+                    //     Graphics.DrawString(Text, Font, ForeColor, 0, (Height - sf.Height) / 2);
+                    // }
+                    //
+                    // Graphics.DrawFontImage(61703, 24, rectColor, new Rectangle(Width - 28, 1, 28, Height - 2));
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    break;
             }
         }
     }
