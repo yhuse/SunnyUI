@@ -48,6 +48,7 @@ namespace Sunny.UI
             AutoScaleMode = AutoScaleMode.None;
             base.Font = UIFontColor.Font;
             base.MinimumSize = new System.Drawing.Size(1, 1);
+            SetStyleFlags(true, false);
         }
 
         protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
