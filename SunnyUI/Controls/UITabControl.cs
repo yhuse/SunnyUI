@@ -110,6 +110,10 @@ namespace Sunny.UI
 
         public void AddPage(UIPage page) => Helper.AddPage(page);
 
+        public bool RemovePage(int pageIndex) => Helper.RemovePage(pageIndex);
+
+        public bool RemovePage(Guid guid) => Helper.RemovePage(guid);
+
         public void AddPages(params UIPage[] pages)
         {
             foreach (var page in pages) AddPage(page);

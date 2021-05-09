@@ -114,7 +114,7 @@ namespace Sunny.UI
         public UIPage AddPage(UIPage page, Guid guid)
         {
             page.PageGuid = guid;
-            return AddPage(page); ;
+            return AddPage(page);
         }
 
         public UIPage AddPage(UIPage page)
@@ -128,6 +128,17 @@ namespace Sunny.UI
         {
             MainTabControl.SelectPage(pageIndex);
         }
+
+        public bool RemovePage(int pageIndex)
+        {
+            return MainTabControl.RemovePage(pageIndex);
+        }
+
+        public bool RemovePage(Guid guid)
+        {
+            return MainTabControl.RemovePage(guid);
+        }
+
         #endregion IFrame实现
     }
 }

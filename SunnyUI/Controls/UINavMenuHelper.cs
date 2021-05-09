@@ -319,6 +319,40 @@ namespace Sunny.UI
                 }
             }
         }
+
+        public bool RemovePage(int pageIndex)
+        {
+            if (pageIndex < 0) return false;
+            foreach (var item in PageItems)
+            {
+                if (item.Value.PageIndex == pageIndex && item.Key != null)
+                {
+                    TabPage tabPage = item.Key;
+                    tabControl.RemoveTabPage(tabPage.TabIndex);
+                    PageItems.TryRemove(item.Key, out _);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool RemovePage(Guid guid)
+        {
+            if (guid == Guid.Empty) return false;
+            foreach (var item in PageItems)
+            {
+                if (item.Value.PageGuid == guid && item.Key != null)
+                {
+                    TabPage tabPage = item.Key;
+                    tabControl.RemoveTabPage(tabPage.TabIndex);
+                    PageItems.TryRemove(item.Key, out _);
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     public class NavMenuItem

@@ -615,5 +615,9 @@ namespace Sunny.UI
         void SelectPage(int pageIndex);
 
         bool TopMost { get; set; }
+
+        bool RemovePage(int pageIndex);
+
+        bool RemovePage(Guid guid);
     }
 }
