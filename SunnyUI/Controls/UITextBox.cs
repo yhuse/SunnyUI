@@ -44,13 +44,14 @@ namespace Sunny.UI
             SetStyleFlags();
             CalcEditHeight();
             Height = MinHeight;
+            iconSize = MinHeight;
             ShowText = false;
             Font = UIFontColor.Font;
             Padding = new Padding(0, 0, 0, 0);
 
             edit.Top = (Height - edit.Height) / 2;
-            edit.Left = 4 + Padding.Left;
-            edit.Width = Width - 8 - Padding.Left - Padding.Right;
+            edit.Left = 4;
+            edit.Width = Width - 8;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += EditTextChanged;
@@ -334,6 +335,7 @@ namespace Sunny.UI
         protected override void OnPaddingChanged(EventArgs e)
         {
             base.OnPaddingChanged(e);
+            SizeChange();
         }
 
         public void SetScrollInfo()
@@ -376,8 +378,16 @@ namespace Sunny.UI
                 if (Height > MaxHeight) Height = MaxHeight;
 
                 edit.Top = (Height - edit.Height) / 2;
-                edit.Left = 4 + Padding.Left;
-                edit.Width = Width - 8 - Padding.Left - Padding.Right;
+                if (icon == null)
+                {
+                    edit.Left = 4 + Padding.Left;
+                    edit.Width = Width - 8 - Padding.Left - Padding.Right;
+                }
+                else
+                {
+                    edit.Left = 4 + iconSize + Padding.Left;
+                    edit.Width = Width - 8 - iconSize - Padding.Left - Padding.Right;
+                }
             }
             else
             {
@@ -812,6 +822,49 @@ namespace Sunny.UI
         public void Undo()
         {
             edit.Undo();
+        }
+
+        private Image icon;
+        [Description("图标"), Category("SunnyUI")]
+        [DefaultValue(null)]
+        public Image Icon
+        {
+            get => icon;
+            set
+            {
+                icon = value;
+                SizeChange();
+                Invalidate();
+            }
+        }
+
+        private int iconSize;
+        [Description("图标大小(方形)"), Category("SunnyUI")]
+        public int IconSize
+        {
+            get => iconSize;
+            set
+            {
+                if (value > Height - 8)
+                {
+                    iconSize = Height - 8;
+                }
+                else
+                {
+                    iconSize = value;
+                }
+                SizeChange();
+                Invalidate();
+            }
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (!multiline && icon != null)
+            {
+                e.Graphics.DrawImage(icon, new Rectangle(4, (Height - iconSize) / 2, iconSize, iconSize), new Rectangle(0, 0, iconSize, iconSize), GraphicsUnit.Pixel);
+            }
         }
     }
 }
