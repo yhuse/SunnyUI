@@ -46,10 +46,11 @@ namespace Sunny.UI
             Height = MinHeight;
             ShowText = false;
             Font = UIFontColor.Font;
+            Padding = new Padding(0, 0, 0, 0);
 
             edit.Top = (Height - edit.Height) / 2;
-            edit.Left = 4;
-            edit.Width = Width - 8;
+            edit.Left = 4 + Padding.Left;
+            edit.Width = Width - 8 - Padding.Left - Padding.Right;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
             edit.TextChanged += EditTextChanged;
@@ -330,6 +331,11 @@ namespace Sunny.UI
             SizeChange();
         }
 
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            base.OnPaddingChanged(e);
+        }
+
         public void SetScrollInfo()
         {
             if (bar == null)
@@ -370,8 +376,8 @@ namespace Sunny.UI
                 if (Height > MaxHeight) Height = MaxHeight;
 
                 edit.Top = (Height - edit.Height) / 2;
-                edit.Left = 4;
-                edit.Width = Width - 8;
+                edit.Left = 4 + Padding.Left;
+                edit.Width = Width - 8 - Padding.Left - Padding.Right;
             }
             else
             {
