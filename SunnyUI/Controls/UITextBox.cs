@@ -845,14 +845,7 @@ namespace Sunny.UI
             get => iconSize;
             set
             {
-                if (value > Height - 8)
-                {
-                    iconSize = Height - 8;
-                }
-                else
-                {
-                    iconSize = value;
-                }
+                iconSize = value;
                 SizeChange();
                 Invalidate();
             }
