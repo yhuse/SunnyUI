@@ -280,15 +280,9 @@ namespace Sunny.UI
 
         private void SizeChange()
         {
-            TextBox edt = new TextBox();
-            edt.Font = edit.Font;
-            edt.Invalidate();
-            Height = edt.Height;
-            edt.Dispose();
-
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 3 + Padding.Left;
-            edit.Width = Width - 30 - Padding.Left;
+            edit.Width = Width - 30 - Padding.Left - Padding.Right;
         }
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
@@ -302,7 +296,7 @@ namespace Sunny.UI
                 g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
             }
 
-            Padding = new Padding(Padding.Left, 0, 30, 2);
+            Padding = new Padding(Padding.Left, 0, 30 + Padding.Right, 2);
             g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
             Color color = GetRectColor();
             SizeF sf = g.GetFontImageSize(dropSymbol, 24);
