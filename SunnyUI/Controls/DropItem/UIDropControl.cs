@@ -48,7 +48,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             SetStyleFlags();
-            Padding = new Padding(0, 0, 0, 0);
+            Padding = new Padding(0, 0, 30, 2);
 
             edit.Font = UIFontColor.Font;
             edit.Left = 3;
