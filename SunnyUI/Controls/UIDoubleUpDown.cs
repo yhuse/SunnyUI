@@ -243,8 +243,10 @@ namespace Sunny.UI
             edit.TextAlign = HorizontalAlignment.Center;
             edit.Text = pnlValue.Text;
             edit.DecLength = Decimal;
-            edit.Visible = true;
             edit.BringToFront();
+            edit.Visible = true;
+            edit.Focus();
+            edit.SelectAll();
         }
     }
 }

@@ -82,7 +82,7 @@
             this.pnlValue.Size = new System.Drawing.Size(58, 29);
             this.pnlValue.TabIndex = 2;
             this.pnlValue.Text = "0";
-            this.pnlValue.DoubleClick += new System.EventHandler(this.pnlValue_DoubleClick);
+            this.pnlValue.Click += new System.EventHandler(this.pnlValue_DoubleClick);
             // 
             // UIDoubleUpDown
             // 

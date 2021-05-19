@@ -236,8 +236,10 @@ namespace Sunny.UI
             pnlValue.FillColor = Color.White;
             edit.TextAlign = HorizontalAlignment.Center;
             edit.Text = pnlValue.Text;
-            edit.Visible = true;
             edit.BringToFront();
+            edit.Visible = true;
+            edit.Focus();
+            edit.SelectAll();
         }
     }
 }
