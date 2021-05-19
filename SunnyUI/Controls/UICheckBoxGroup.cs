@@ -52,12 +52,21 @@ namespace Sunny.UI
         /// </summary>
         public event OnValueChanged ValueChanged;
 
+        public UICheckBoxGroup()
+        {
+            items.CountChange += Items_CountChange;
+        }
+
+        private void Items_CountChange(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
         /// <summary>
         /// 析构事件
         /// </summary>
         ~UICheckBoxGroup()
         {
-            listbox?.Dispose();
             ClearBoxes();
         }
 
@@ -84,23 +93,9 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("获取该多选框组中项的集合"), Category("SunnyUI")]
-        public ListBox.ObjectCollection Items => ListBox.Items;
+        public UIObjectCollection Items => items;
 
-        private CheckedListBoxEx listbox;
-
-        private CheckedListBoxEx ListBox
-        {
-            get
-            {
-                if (listbox == null)
-                {
-                    listbox = new CheckedListBoxEx();
-                    listbox.OnItemsCountChange += Listbox_OnItemsCountChange;
-                }
-
-                return listbox;
-            }
-        }
+        private readonly UIObjectCollection items = new UIObjectCollection();
 
         private void Listbox_OnItemsCountChange(object sender, EventArgs e)
         {
@@ -353,24 +348,5 @@ namespace Sunny.UI
         }
 
         private bool multiChange;
-
-        [ToolboxItem(false)]
-        internal class CheckedListBoxEx : CheckedListBox
-        {
-            public event EventHandler OnItemsCountChange;
-
-            private int count = -1;
-
-            protected override void OnDrawItem(DrawItemEventArgs e)
-            {
-                base.OnDrawItem(e);
-
-                if (count != Items.Count)
-                {
-                    OnItemsCountChange?.Invoke(this, e);
-                    count = Items.Count;
-                }
-            }
-        }
     }
 }

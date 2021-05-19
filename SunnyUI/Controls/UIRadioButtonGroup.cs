@@ -39,9 +39,18 @@ namespace Sunny.UI
 
         public event OnValueChanged ValueChanged;
 
+        public UIRadioButtonGroup()
+        {
+            items.CountChange += Items_CountChange;
+        }
+
+        private void Items_CountChange(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
         ~UIRadioButtonGroup()
         {
-            listbox?.Dispose();
             ClearButtons();
         }
 
@@ -69,28 +78,9 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("列表项"), Category("SunnyUI")]
-        public ListBox.ObjectCollection Items => ListBox.Items;
+        public UIObjectCollection Items => items;
 
-        private CheckedListBoxEx listbox;
-
-        private CheckedListBoxEx ListBox
-        {
-            get
-            {
-                if (listbox == null)
-                {
-                    listbox = new CheckedListBoxEx();
-                    listbox.OnItemsCountChange += Listbox_OnItemsCountChange;
-                }
-
-                return listbox;
-            }
-        }
-
-        private void Listbox_OnItemsCountChange(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
+        private readonly UIObjectCollection items = new UIObjectCollection();
 
         private void CreateBoxes()
         {
@@ -147,11 +137,13 @@ namespace Sunny.UI
             }
         }
 
+        private int selectedIndex = -1;
+
         [Browsable(false)]
         [DefaultValue(-1)]
         public int SelectedIndex
         {
-            get => ListBox.SelectedIndex;
+            get => selectedIndex;
             set
             {
                 if (buttons.Count != Items.Count)
@@ -161,7 +153,7 @@ namespace Sunny.UI
 
                 if (Items.Count == 0)
                 {
-                    ListBox.SelectedIndex = -1;
+                    selectedIndex = -1;
                     return;
                 }
 
@@ -169,7 +161,7 @@ namespace Sunny.UI
                 {
                     if (value >= 0 && value < buttons.Count)
                     {
-                        ListBox.SelectedIndex = value;
+                        selectedIndex = value;
                         buttons[value].Checked = true;
                         ValueChanged?.Invoke(this, value, buttons[value].Text);
                     }
@@ -184,7 +176,7 @@ namespace Sunny.UI
                 button.Checked = false;
             }
 
-            ListBox.SelectedIndex = -1;
+            selectedIndex = -1;
         }
 
         private readonly List<UIRadioButton> buttons = new List<UIRadioButton>();
@@ -265,25 +257,6 @@ namespace Sunny.UI
             foreach (var button in buttons)
             {
                 button.Font = Font;
-            }
-        }
-
-        [ToolboxItem(false)]
-        internal class CheckedListBoxEx : CheckedListBox
-        {
-            public event EventHandler OnItemsCountChange;
-
-            private int count = -1;
-
-            protected override void OnDrawItem(DrawItemEventArgs e)
-            {
-                base.OnDrawItem(e);
-
-                if (count != Items.Count)
-                {
-                    OnItemsCountChange?.Invoke(this, e);
-                    count = Items.Count;
-                }
             }
         }
     }
