@@ -37,6 +37,7 @@ namespace Sunny.UI
     {
         public UIBreadcrumb()
         {
+            items.CountChange += Items_CountChange;
             SetStyleFlags(true, false);
             ShowText = false;
             ShowRect = false;
@@ -48,23 +49,23 @@ namespace Sunny.UI
             foreColor = Color.White;
         }
 
-        ~UIBreadcrumb()
+        private void Items_CountChange(object sender, EventArgs e)
         {
-            listbox.Dispose();
+            Invalidate();
         }
 
         public delegate void OnValueChanged(object sender, int value);
 
         public event OnValueChanged ItemIndexChanged;
 
-        private readonly ListBox listbox = new ListBox();
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("列表项"), Category("SunnyUI")]
-        public ListBox.ObjectCollection Items => listbox.Items;
+        public UIObjectCollection Items => items;
+
+        private readonly UIObjectCollection items = new UIObjectCollection();
 
         private readonly ConcurrentDictionary<int, Point[]> ClickArea = new ConcurrentDictionary<int, Point[]>();
 

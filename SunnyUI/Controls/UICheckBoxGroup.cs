@@ -97,11 +97,6 @@ namespace Sunny.UI
 
         private readonly UIObjectCollection items = new UIObjectCollection();
 
-        private void Listbox_OnItemsCountChange(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
-
         private void CreateBoxes()
         {
             if (Items.Count != boxes.Count)
