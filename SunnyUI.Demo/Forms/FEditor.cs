@@ -58,13 +58,14 @@ namespace Sunny.UI.Demo.Forms
             option.AutoLabelWidth = true;
             option.Text = "增加";
             option.AddText("Name", "姓名", "", true);
-            option.AddInteger("Age", "年龄", 20);
+            option.AddInteger("Age", "年龄", 16);
             option.AddDate("Birthday", "生日", DateTime.Now);
             option.AddCombobox("Sex", "性别", sex, 1, true, true);
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
             option.AddSwitch("Switch", "选择", false);
 
             UIEditForm frm = new UIEditForm(option);
+            frm.CheckedData += Frm_CheckedData;
             frm.ShowDialog();
 
             if (frm.IsOK)
@@ -78,6 +79,18 @@ namespace Sunny.UI.Demo.Forms
             }
 
             frm.Dispose();
+        }
+
+        private bool Frm_CheckedData(object sender, UIEditForm.EditFormEventArgs e)
+        {
+            if (e.Form["Age"].ToString().ToInt() < 18 || e.Form["Age"].ToString().ToInt() > 60)
+            {
+                e.Form.SetEditorFocus("Age");
+                ShowWarningTip("年龄范围为18到60岁");
+                return false;
+            }
+
+            return true;
         }
     }
 

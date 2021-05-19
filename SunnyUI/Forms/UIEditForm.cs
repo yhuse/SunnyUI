@@ -283,6 +283,14 @@ namespace Sunny.UI
                 return;
             }
 
+            if (CheckedData != null)
+            {
+                if (!CheckedData.Invoke(this, new EditFormEventArgs(this)))
+                {
+                    return;
+                }
+            }
+
             if (ButtonOkClick != null)
             {
                 ButtonOkClick.Invoke(sender, e);
@@ -307,6 +315,13 @@ namespace Sunny.UI
                 IsOK = false;
                 Close();
             }
+        }
+
+        public void SetEditorFocus(string dataPropertyName)
+        {
+            Control editor = this.GetControl<UITextBox>("Edit_" + dataPropertyName);
+            if (editor != null)
+                editor.Focus();
         }
 
         protected virtual bool CheckData()
@@ -375,6 +390,25 @@ namespace Sunny.UI
             }
 
             return true;
+        }
+
+        public delegate bool OnCheckedData(object sender, EditFormEventArgs e);
+
+        public event OnCheckedData CheckedData;
+
+        public class EditFormEventArgs : EventArgs
+        {
+            public EditFormEventArgs()
+            {
+
+            }
+
+            public EditFormEventArgs(UIEditForm editor)
+            {
+                Form = editor;
+            }
+
+            public UIEditForm Form { get; set; }
         }
 
         protected override void OnSizeChanged(EventArgs e)
