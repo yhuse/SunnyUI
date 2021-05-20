@@ -94,7 +94,7 @@ namespace Sunny.UI.Demo
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            UIMessageBox.Show("SunnyUI.Net V3.0", "关于", Style, UIMessageBoxButtons.OK, false);
+            UIMessageBox.Show(Version, "关于", Style, UIMessageBoxButtons.OK, false);
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
