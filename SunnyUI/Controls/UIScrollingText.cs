@@ -48,6 +48,9 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        [DefaultValue(false), Description("点击暂停滚动"), Category("SunnyUI")]
+        public bool ClickPause { get; set; }
+
         private void Reset()
         {
             XPos = int.MinValue;
@@ -116,7 +119,11 @@ namespace Sunny.UI
 
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
-            timer.Enabled = !timer.Enabled;
+            if (ClickPause)
+            {
+                timer.Enabled = !timer.Enabled;
+            }
+
             base.OnMouseDoubleClick(e);
         }
 

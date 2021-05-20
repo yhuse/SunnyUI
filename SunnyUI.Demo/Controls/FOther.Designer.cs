@@ -177,7 +177,6 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
-            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -195,6 +194,7 @@
             // 
             // uiScrollingText1
             // 
+            this.uiScrollingText1.ClickPause = true;
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
@@ -211,7 +211,7 @@
             // uiScrollingText2
             // 
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Location = new System.Drawing.Point(381, 172);
             this.uiScrollingText2.MinimumSize = new System.Drawing.Size(1, 1);
