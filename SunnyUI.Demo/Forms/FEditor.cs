@@ -57,7 +57,7 @@ namespace Sunny.UI.Demo.Forms
             UIEditOption option = new UIEditOption();
             option.AutoLabelWidth = true;
             option.Text = "增加";
-            option.AddText("Name", "姓名", "", true);
+            option.AddText("Name", "姓名", null, true);
             option.AddInteger("Age", "年龄", 16);
             option.AddDate("Birthday", "生日", DateTime.Now);
             option.AddCombobox("Sex", "性别", sex, 1, true, true);

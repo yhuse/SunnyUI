@@ -86,7 +86,7 @@ namespace Sunny.UI
                     edit.Left = option.LabelWidth;
                     edit.Width = option.ValueWidth;
                     edit.Top = top;
-                    edit.Text = info.Value.ToString();
+                    edit.Text = info.Value?.ToString();
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
                     edit.EnterAsTab = true;
@@ -100,7 +100,7 @@ namespace Sunny.UI
                     edit.Left = option.LabelWidth;
                     edit.Width = option.ValueWidth;
                     edit.Top = top;
-                    edit.Text = info.Value.ToString();
+                    edit.Text = info.Value?.ToString();
                     edit.Parent = this;
                     edit.PasswordChar = '*';
                     edit.Name = "Edit_" + info.DataPropertyName;
