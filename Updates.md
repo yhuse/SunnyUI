@@ -1,4 +1,31 @@
-:fa-plus:增加； :fa-minus:删除； :fa-asterisk:修改
+:fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
+
+#### 2021-05-20 V3.0.4  
+:fa-plus: UIObjectCollection：带集合个数改变事件的对象集合类  
+:fa-plus: UIStringCollection：带集合个数改变事件的字符串集合类  
+:fa-plus: UIDataGridViewFooter：增加DataGridView页脚，可做统计显示  
+:fa-asterisk: UIBreadcrumb, UICheckBoxGroup, UIRadioButtonGroup: 更改列表项为UIObjectCollection  
+:fa-asterisk: UIScrollingText：增加属性可设置双击暂停滚动  
+:fa-asterisk: UIEditForm：动态生成表单，增加校验方法  
+:fa-asterisk: UIDoubleUpDown, UIIntegerUpDown：将双击编辑更改为单机编辑并选中  
+:fa-asterisk: IFrame：增加RemovePage接口  
+:fa-asterisk: UIMessageDialog，UIMessageBox：增加TopMost参数  
+:fa-asterisk: UIBarChart：修改了一个显示负值的Bug  
+:fa-asterisk: UIForm：加了个属性AllowAddControlOnTitle，允许在标题栏放置控件  
+:fa-asterisk: UICombobox：解决鼠标下拉选择，触发SelectedIndexChanged两次的问题  
+:fa-asterisk: UISwitch：更新Active状态改变时触发ValueChanged事件  
+:fa-asterisk: UIDataGridView：设置数据行头部颜色  
+:fa-asterisk: UIEditForm：代码生成增加Switch类型，增加Combobox类型  
+:fa-asterisk: UICheckBox，UIRadioButton：增加默认事件CheckedChanged  
+:fa-asterisk: UIProcessBar：可设置显示进度条小数个数  
+:fa-asterisk: 等待提示框：更新等待时间短时无法关闭等待窗体的问题  
+:fa-asterisk: DirEx：增加一个文件夹选择框  
+:fa-asterisk: UITextBox：增加ShowScrollBar属性，单独控制垂直滚动条  
+:fa-asterisk: UITextBox：不限制高度为根据字体计算，可进行调整  
+:fa-asterisk: UITextBox：解决多行输入时不能输入回车的问题  
+:fa-asterisk: UITextBox：修改文字可以居中显示  
+:fa-asterisk: UIDatePicker,UIDateTimePicker：增加ShowToday显示今日属性  
+:fa-asterisk: UILineChart：有右键菜单时，取消恢复上次缩放，可在右键菜单增加节点，调用ZoomBack()方法  
 
 #### 2021-04-11 V3.0.2  
 :fa-plus: UIMarkLabel：增加带颜色标签的Label  
