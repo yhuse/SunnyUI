@@ -607,7 +607,7 @@ namespace Sunny.UI
             List<UIPage> pages = TabPages[SelectedIndex].GetControls<UIPage>();
             foreach (var page in pages)
             {
-                page.Init();
+                page.ReLoad();
             }
 
             List<UITabControlMenu> leftTabControls = TabPages[SelectedIndex].GetControls<UITabControlMenu>();

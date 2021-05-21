@@ -945,7 +945,6 @@
             // 
             // uiSwitch1
             // 
-            this.uiSwitch1.Active = true;
             this.uiSwitch1.ActiveText = "On";
             this.uiSwitch1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSwitch1.InActiveText = "Off";
@@ -1152,7 +1151,6 @@
             // 
             // uiSwitch4
             // 
-            this.uiSwitch4.Active = true;
             this.uiSwitch4.ActiveText = "On";
             this.uiSwitch4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSwitch4.InActiveText = "Off";

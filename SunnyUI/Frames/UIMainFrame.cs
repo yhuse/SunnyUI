@@ -129,6 +129,11 @@ namespace Sunny.UI
             MainTabControl.SelectPage(pageIndex);
         }
 
+        public virtual void SelectPage(Guid guid)
+        {
+            MainTabControl.SelectPage(guid);
+        }
+
         public bool RemovePage(int pageIndex)
         {
             return MainTabControl.RemovePage(pageIndex);

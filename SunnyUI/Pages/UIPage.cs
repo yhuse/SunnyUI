@@ -187,8 +187,6 @@ namespace Sunny.UI
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
-        public event EventHandler Initialize;
-
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
@@ -219,7 +217,18 @@ namespace Sunny.UI
 
         public virtual void Init()
         {
-            Initialize?.Invoke(this, null);
+
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            Init();
+        }
+
+        public void ReLoad()
+        {
+            OnLoad(EventArgs.Empty);
         }
 
         public virtual void Final()
@@ -570,5 +579,10 @@ namespace Sunny.UI
         }
 
         #endregion
+
+        private void UIPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

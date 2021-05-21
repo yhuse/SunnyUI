@@ -13,6 +13,22 @@ namespace Sunny.UI.Demo
                 uiSymbolButton2.Symbol, 32, UIColor.Red);
         }
 
+        //放在OnLoad事件的每次页面切换都会执行
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            uiSwitch1.Active = uiSwitch4.Active = true;
+            uiSwitch2.Active = uiSwitch3.Active = false;
+        }
+
+        //放在Init事件的每次页面切换都会执行，和OnLoad保留一个就行了
+        //public override void Init()
+        //{
+        //    base.Init();
+        //    uiSwitch1.Active = uiSwitch4.Active = true;
+        //    uiSwitch2.Active = uiSwitch3.Active = false;
+        //}
+
         private void uiButton10_Click(object sender, EventArgs e)
         {
             uiButton10.Selected = !uiButton10.Selected;
