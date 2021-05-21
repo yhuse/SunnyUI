@@ -13,15 +13,27 @@ namespace Sunny.UI.Demo
                 uiSymbolButton2.Symbol, 32, UIColor.Red);
         }
 
-        //放在OnLoad事件的每次页面切换都会执行
-        protected override void OnLoad(EventArgs e)
+        /// <summary>
+        /// 放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换都会执行。
+        /// 这三个选一个用就行了。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FButton_Load(object sender, EventArgs e)
         {
-            base.OnLoad(e);
             uiSwitch1.Active = uiSwitch4.Active = true;
             uiSwitch2.Active = uiSwitch3.Active = false;
         }
 
-        //放在Init事件的每次页面切换都会执行，和OnLoad保留一个就行了
+        //放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换都会执行。
+        //protected override void OnLoad(EventArgs e)
+        //{
+        //    base.OnLoad(e);
+        //    uiSwitch1.Active = uiSwitch4.Active = true;
+        //    uiSwitch2.Active = uiSwitch3.Active = false;
+        //}
+
+        //放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换都会执行。
         //public override void Init()
         //{
         //    base.Init();

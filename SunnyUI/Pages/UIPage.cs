@@ -25,6 +25,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -229,6 +230,22 @@ namespace Sunny.UI
         public void ReLoad()
         {
             OnLoad(EventArgs.Empty);
+            //EventLoad();
+        }
+
+        private void EventLoad()
+        {
+            Type type = this.GetType().BaseType;
+            while (type.Name != "Form")
+            {
+                type = type.BaseType;
+            }
+
+            FieldInfo targetMethod = type.GetField("EVENT_LOAD", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            object obj = (object)targetMethod.GetValue(this);
+
+            EventHandler handler = (EventHandler)this.Events[obj];
+            handler?.Invoke(this, EventArgs.Empty);
         }
 
         public virtual void Final()
@@ -579,10 +596,5 @@ namespace Sunny.UI
         }
 
         #endregion
-
-        private void UIPage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -45,7 +45,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "UIPage";
-            this.Load += new System.EventHandler(this.UIPage_Load);
             this.Shown += new System.EventHandler(this.UIPage_Shown);
             this.ResumeLayout(false);
 
