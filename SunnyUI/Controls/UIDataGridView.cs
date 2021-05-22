@@ -80,9 +80,9 @@ namespace Sunny.UI
             ColumnHeadersHeight = 32;
 
             //数据行行高
-            RowTemplate.Height = 29;
-            RowTemplate.MinimumHeight = 29;
-            AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            // RowTemplate.Height = 29;
+            // RowTemplate.MinimumHeight = 29;
+            // AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
             //设置奇偶数行颜色
             StripeEvenColor = UIColor.White;
@@ -92,6 +92,20 @@ namespace Sunny.UI
             HorizontalScrollBar.ValueChanged += HorizontalScrollBar_ValueChanged;
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
+        }
+
+        [Description("行高"), Category("SunnyUI")]
+        [DefaultValue(23)]
+        public int RowHeight
+        {
+            get => RowTemplate.Height;
+            set
+            {
+                int rowHeight = Math.Max(23, value);
+                RowTemplate.Height = rowHeight;
+                RowTemplate.MinimumHeight = rowHeight;
+                AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            }
         }
 
         /*
