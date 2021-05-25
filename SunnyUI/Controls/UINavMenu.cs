@@ -21,7 +21,6 @@
  * 2020-03-12: V3.0.2 增加设置二级菜单底色
 ******************************************************************************/
 
-using Sunny.UI.Win32;
 using System;
 using System.Collections.Concurrent;
 using System.ComponentModel;
@@ -786,17 +785,9 @@ namespace Sunny.UI
 
         protected override void WndProc(ref Message m)
         {
+            base.WndProc(ref m);
             if (IsDisposed || Disposing) return;
-
-            switch (m.Msg)
-            {
-                case User.WM_ERASEBKGND:
-                    Win32.User.ShowScrollBar(Handle, 3, false);
-                    break;
-                default:
-                    base.WndProc(ref m);
-                    break;
-            }
+            Win32.User.ShowScrollBar(Handle, 3, false);
         }
 
         public TreeNode CreateNode(string text, int pageIndex)
