@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    internal interface IStyleInterface
+    public interface IStyleInterface
     {
         UIStyle Style { get; set; }
 
