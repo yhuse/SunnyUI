@@ -46,6 +46,8 @@ namespace Sunny.UI
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
         }
 
+        public override Color BackColor { get => edit.BackColor; set { edit.BackColor = base.BackColor = value; } }
+
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
             base.OnContextMenuStripChanged(e);
