@@ -8,7 +8,10 @@
 - Nuget:  https://www.nuget.org/packages/SunnyUI/ 
 - Blog:   https://www.cnblogs.com/yhuse
 
-欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！
+欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！  
+
+#### 感谢码云
+![GVP](https://images.gitee.com/uploads/images/2021/0526/214138_85647268_416720.png "QQ图片20210526213958.png")  
 
 #### 特别声明
 SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
