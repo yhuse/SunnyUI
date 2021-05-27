@@ -137,6 +137,11 @@ namespace Sunny.UI
 
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
+            if (DateTime.TryParse(Text, out DateTime dt))
+                Value = dt;
+            else
+                Value = DateTime.Now;
+
             item.Date = Value;
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;

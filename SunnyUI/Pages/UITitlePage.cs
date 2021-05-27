@@ -103,6 +103,7 @@ namespace Sunny.UI
         {
             public UITitle()
             {
+                SetStyleFlags(true, false);
                 fillColor = Color.FromArgb(76, 76, 76);
                 foreColor = Color.White;
             }
