@@ -48,6 +48,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             SetStyleFlags();
+            Padding = new Padding(0, 0, 30, 2);
 
             edit.Font = UIFontColor.Font;
             edit.Left = 3;
@@ -266,6 +267,16 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            if (Padding.Right < 30 || Padding.Bottom < 2)
+            {
+                Padding = new Padding(Padding.Left, Padding.Top, Padding.Right < 30 ? 30 : Padding.Right, Padding.Bottom < 2 ? 2 : Padding.Bottom);
+            }
+            base.OnPaddingChanged(e);
+            SizeChange();
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             SizeChange();
@@ -273,15 +284,9 @@ namespace Sunny.UI
 
         private void SizeChange()
         {
-            TextBox edt = new TextBox();
-            edt.Font = edit.Font;
-            edt.Invalidate();
-            Height = edt.Height;
-            edt.Dispose();
-
             edit.Top = (Height - edit.Height) / 2;
-            edit.Left = 3;
-            edit.Width = Width - 30;
+            edit.Left = 3 + Padding.Left;
+            edit.Width = Width - Padding.Left - Padding.Right;
         }
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
@@ -295,7 +300,6 @@ namespace Sunny.UI
                 g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
             }
 
-            Padding = new Padding(0, 0, 30, 2);
             g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
             Color color = GetRectColor();
             SizeF sf = g.GetFontImageSize(dropSymbol, 24);
