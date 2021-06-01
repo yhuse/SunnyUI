@@ -194,10 +194,26 @@ namespace Sunny.UI
             return value;
         }
 
+        [DefaultValue(false)]
+        [Description("是否判断最大值显示"), Category("SunnyUI")]
+        public bool MaximumEnabled
+        {
+            get => HasMaximum;
+            set => HasMaximum = value;
+        }
+
+        [DefaultValue(false)]
+        [Description("是否判断最小值显示"), Category("SunnyUI")]
+        public bool MinimumEnabled
+        {
+            get => HasMinimum;
+            set => HasMinimum = value;
+        }
+
         private bool hasMaximum;
         private bool hasMinimum;
 
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("检查最大值"), Category("SunnyUI")]
         public bool HasMaximum
         {
@@ -214,7 +230,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("检查最小值"), Category("SunnyUI")]
         public bool HasMinimum
         {
