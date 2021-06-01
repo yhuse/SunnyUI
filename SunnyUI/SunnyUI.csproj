@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 <PropertyGroup>
-	<TargetFrameworks>net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
+	<TargetFrameworks>net5.0-windows;netcoreapp3.1;net40;net45</TargetFrameworks>
 	<ProjectGuid>{AB1CB247-E20B-4CBE-B269-570ADDD96C53}</ProjectGuid>
 	<UseWindowsForms>true</UseWindowsForms>
 	<RootNamespace>Sunny.UI</RootNamespace>
@@ -64,6 +64,12 @@
 	<Reference Include="System.Windows.Forms" />
 	<Reference Include="System.Web.Extensions" />
 	<Reference Include="System.Design" />
+</ItemGroup>
+
+<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Design" />
 </ItemGroup>
 
 <ItemGroup>

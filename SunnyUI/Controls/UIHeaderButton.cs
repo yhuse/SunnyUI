@@ -354,9 +354,10 @@ namespace Sunny.UI
                 }
             }
         }
+
         public TextImageRelation textImageRelation = TextImageRelation.ImageAboveText;
 
-        [DefaultValue(typeof(TextImageRelation), "ImageAboveText")]
+        [DefaultValue(TextImageRelation.ImageAboveText)]
         [Description("指定图像与文本的相对位置"), Category("SunnyUI")]
         public TextImageRelation TextImageRelation
         {
@@ -367,6 +368,7 @@ namespace Sunny.UI
                 Invalidate();
             }
         }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -439,15 +441,10 @@ namespace Sunny.UI
 
             switch (textImageRelation)
             {
-                /*case TextImageRelation.Overlay:
-                    {
-
-                    }
-                    break; */
                 case TextImageRelation.TextAboveImage:
-                    { 
+                    {
                         #region  文本在上
-                        e.Graphics.DrawString(Text, Font, color, (Width - sf.Width) / 2, Padding.Top );
+                        e.Graphics.DrawString(Text, Font, color, (Width - sf.Width) / 2, Padding.Top);
 
                         //字体图标
                         if (Symbol > 0 && Image == null)
@@ -458,7 +455,7 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Height - Padding.Bottom- CircleSize, CircleSize, CircleSize);
+                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Height - Padding.Bottom - CircleSize, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
                                 new RectangleF(
                                     symbolOffset.X + (Width - CircleSize) / 2.0f,
@@ -468,8 +465,8 @@ namespace Sunny.UI
                         }
                         else if (Image != null)
                         {
-                            e.Graphics.DrawImage(Image, (Width - ImageSize.Width) / 2.0f, Height - Padding.Bottom - ImageSize.Height+imageTop, ImageSize.Width, ImageSize.Height);
-                        } 
+                            e.Graphics.DrawImage(Image, (Width - ImageSize.Width) / 2.0f, Height - Padding.Bottom - ImageSize.Height + imageTop, ImageSize.Width, ImageSize.Height);
+                        }
                         #endregion
                     }
                     break;
@@ -502,8 +499,8 @@ namespace Sunny.UI
                         #endregion
                     }
                     break;
-                case TextImageRelation.TextBeforeImage :
-                    { 
+                case TextImageRelation.TextBeforeImage:
+                    {
                         #region  文本在前
                         e.Graphics.DrawString(Text, Font, color, Padding.Left, (Height - sf.Height) / 2);
 
@@ -516,7 +513,7 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, Width - Padding.Right - CircleSize, (Height - CircleSize) / 2.0f,  CircleSize, CircleSize);
+                            e.Graphics.FillEllipse(bcColor, Width - Padding.Right - CircleSize, (Height - CircleSize) / 2.0f, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
                                 new RectangleF(
                                     symbolOffset.X + Width - Padding.Right - CircleSize,
@@ -531,7 +528,7 @@ namespace Sunny.UI
                         #endregion
                     }
                     break;
-                default :
+                default:
                     {
                         #region  图片在上
                         //字体图标
@@ -555,12 +552,12 @@ namespace Sunny.UI
                         {
                             e.Graphics.DrawImage(Image, (Width - ImageSize.Width) / 2.0f, ImageTop, ImageSize.Width, ImageSize.Height);
                         }
-                         
+
                         e.Graphics.DrawString(Text, Font, color, (Width - sf.Width) / 2, Height - Padding.Bottom - sf.Height);
                         #endregion
                     }
                     break;
-            } 
+            }
         }
 
         [DefaultValue(null)]
