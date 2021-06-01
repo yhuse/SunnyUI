@@ -650,6 +650,7 @@
     <None Include="Resources\7.png" />
     <None Include="Resources\8.png" />
     <None Include="Resources\9.png" />
+    <None Include="Resources\Home_32x32.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

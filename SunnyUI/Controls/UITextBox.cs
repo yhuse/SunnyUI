@@ -44,10 +44,9 @@ namespace Sunny.UI
             SetStyleFlags();
             CalcEditHeight();
             Height = MinHeight;
-            iconSize = MinHeight;
             ShowText = false;
             Font = UIFontColor.Font;
-            Padding = new Padding(0, 0, 0, 0);
+            Padding = new Padding(0);
 
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4;
@@ -378,15 +377,23 @@ namespace Sunny.UI
                 if (Height > MaxHeight) Height = MaxHeight;
 
                 edit.Top = (Height - edit.Height) / 2;
-                if (icon == null)
+                if (icon == null && Symbol == 0)
                 {
                     edit.Left = 4 + Padding.Left;
                     edit.Width = Width - 8 - Padding.Left - Padding.Right;
                 }
                 else
                 {
-                    edit.Left = 4 + iconSize + Padding.Left;
-                    edit.Width = Width - 8 - iconSize - Padding.Left - Padding.Right;
+                    if (icon != null)
+                    {
+                        edit.Left = 4 + iconSize + Padding.Left;
+                        edit.Width = Width - 8 - iconSize - Padding.Left - Padding.Right;
+                    }
+                    else if (Symbol > 0)
+                    {
+                        edit.Left = 4 + SymbolSize + Padding.Left;
+                        edit.Width = Width - 8 - SymbolSize - Padding.Left - Padding.Right;
+                    }
                 }
             }
             else
@@ -838,14 +845,14 @@ namespace Sunny.UI
             }
         }
 
-        private int iconSize;
-        [Description("图标大小(方形)"), Category("SunnyUI")]
+        private int iconSize = 24;
+        [Description("图标大小(方形)"), Category("SunnyUI"), DefaultValue(24)]
         public int IconSize
         {
             get => iconSize;
             set
             {
-                iconSize = value;
+                iconSize = Math.Min(MinHeight, value);
                 SizeChange();
                 Invalidate();
             }
@@ -854,9 +861,74 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (!multiline && icon != null)
+
+            if (multiline) return;
+            if (icon != null)
             {
-                e.Graphics.DrawImage(icon, new Rectangle(4, (Height - iconSize) / 2, iconSize, iconSize), new Rectangle(0, 0, iconSize, iconSize), GraphicsUnit.Pixel);
+                e.Graphics.DrawImage(icon, new Rectangle(4, (Height - iconSize) / 2, iconSize, iconSize), new Rectangle(0, 0, icon.Width, icon.Height), GraphicsUnit.Pixel);
+            }
+            else if (Symbol != 0)
+            {
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize));
+            }
+        }
+
+        private Point symbolOffset = new Point(0, 0);
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标偏移"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
+                Invalidate();
+            }
+        }
+
+        public Color _symbolColor = UIFontColor.Primary;
+        [DefaultValue(typeof(Color), "48, 48, 48")]
+        [Description("字体图标颜色"), Category("SunnyUI")]
+        public Color SymbolColor
+        {
+            get => _symbolColor;
+            set
+            {
+                _symbolColor = value;
+                Invalidate();
+            }
+        }
+
+        private int _symbol = 0;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        [Description("字体图标"), Category("SunnyUI")]
+        public int Symbol
+        {
+            get => _symbol;
+            set
+            {
+                _symbol = value;
+                SizeChange();
+                Invalidate();
+            }
+        }
+
+        private int _symbolSize = 24;
+
+        [DefaultValue(24)]
+        [Description("字体图标大小"), Category("SunnyUI")]
+        public int SymbolSize
+        {
+            get => _symbolSize;
+            set
+            {
+                _symbolSize = Math.Max(value, 16);
+                _symbolSize = Math.Min(value, MinHeight);
+                SizeChange();
+                Invalidate();
             }
         }
     }
