@@ -41,8 +41,14 @@ namespace Sunny.UI
             ListBox.DataSourceChanged += Box_DataSourceChanged;
             ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
+            ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        private void ListBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SelectedValueChanged?.Invoke(this, e);
         }
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)
@@ -63,7 +69,6 @@ namespace Sunny.UI
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
             Text = ListBox.GetItemText(ListBox.SelectedItem);
-            SelectedValueChanged?.Invoke(this, e);
             SelectedIndexChanged?.Invoke(this, e);
         }
 

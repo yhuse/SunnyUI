@@ -65,6 +65,9 @@ namespace Sunny.UI
             listbox.MouseDown += Listbox_MouseDown;
             listbox.MouseUp += Listbox_MouseUp;
             listbox.MouseMove += Listbox_MouseMove;
+            ListBox.DataSourceChanged += Box_DataSourceChanged;
+            ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
+            ListBox.ValueMemberChanged += Box_ValueMemberChanged;
 
             timer.Tick += Timer_Tick;
             timer.Start();
