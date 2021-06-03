@@ -25,7 +25,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
-using static System.Windows.Forms.ComboBox;
 
 namespace Sunny.UI
 {
@@ -38,10 +37,10 @@ namespace Sunny.UI
         public UIComboBox()
         {
             InitializeComponent();
-            box.SelectedIndexChanged += Box_SelectedIndexChanged;
-            box.DataSourceChanged += Box_DataSourceChanged;
-            box.DisplayMemberChanged += Box_DisplayMemberChanged;
-            box.ValueMemberChanged += Box_ValueMemberChanged;
+            ListBox.SelectedIndexChanged += Box_SelectedIndexChanged;
+            ListBox.DataSourceChanged += Box_DataSourceChanged;
+            ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
+            ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
         }
@@ -63,8 +62,7 @@ namespace Sunny.UI
 
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Text = box.GetItemText(box.SelectedItem);
-            GetSelectedValue();
+            Text = ListBox.GetItemText(ListBox.SelectedItem);
             SelectedValueChanged?.Invoke(this, e);
             SelectedIndexChanged?.Invoke(this, e);
         }
@@ -78,8 +76,6 @@ namespace Sunny.UI
         public event EventHandler ValueMemberChanged;
 
         public event EventHandler SelectedValueChanged;
-
-        public readonly ComboBox box = new ComboBox();
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
@@ -131,18 +127,6 @@ namespace Sunny.UI
 
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
-            ListBox.Items.Clear();
-            if (Items.Count == 0 || ItemForm.Visible)
-            {
-                return;
-            }
-
-            foreach (var data in Items)
-            {
-                ListBox.Items.Add(GetItemText(data));
-            }
-
-            ListBox.SelectedIndex = SelectedIndex;
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
         }
 
@@ -154,60 +138,10 @@ namespace Sunny.UI
             ListBox.SetStyleColor(uiColor);
         }
 
-        private object dataSource;
-
-        [DefaultValue(null), RefreshProperties(RefreshProperties.Repaint), AttributeProvider(typeof(IListSource))]
-        [Description("数据源"), Category("SunnyUI")]
         public object DataSource
         {
-            get => dataSource;
-            set
-            {
-                SetDataConnection(value, new BindingMemberInfo(DisplayMember));
-                dataSource = value;
-                box.Items.Clear();
-
-                if (dataManager != null)
-                {
-                    foreach (var obj in dataManager.List)
-                    {
-                        box.Items.Add(obj);
-                    }
-                }
-            }
-        }
-
-        private bool inSetDataConnection;
-        private CurrencyManager dataManager;
-
-        private void SetDataConnection(object newDataSource, BindingMemberInfo newDisplayMember)
-        {
-            bool dataSourceChanged = dataSource != newDataSource;
-            bool displayMemberChanged = !DisplayMember.Equals(newDisplayMember.BindingPath);
-
-            if (inSetDataConnection)
-            {
-                return;
-            }
-
-            try
-            {
-                inSetDataConnection = true;
-                if (dataSourceChanged || displayMemberChanged)
-                {
-                    CurrencyManager newDataManager = null;
-                    if (newDataSource != null && newDataSource != Convert.DBNull)
-                    {
-                        newDataManager = (CurrencyManager)BindingContext[newDataSource, newDisplayMember.BindingPath];
-                    }
-
-                    dataManager = newDataManager;
-                }
-            }
-            finally
-            {
-                inSetDataConnection = false;
-            }
+            get => ListBox.DataSource;
+            set => ListBox.DataSource = value;
         }
 
         [DefaultValue(150)]
@@ -215,29 +149,26 @@ namespace Sunny.UI
         public int DropDownWidth { get; set; }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [Localizable(true)]
+        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         [MergableProperty(false)]
-        [Description("下拉显示项"), Category("SunnyUI")]
-        public ObjectCollection Items
-        {
-            get => box.Items;
-        }
+        [Description("列表项"), Category("SunnyUI")]
+        public ListBox.ObjectCollection Items => ListBox.Items;
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("选中索引"), Category("SunnyUI")]
         public int SelectedIndex
         {
-            get => box.SelectedIndex;
-            set => box.SelectedIndex = value;
+            get => ListBox.SelectedIndex;
+            set => ListBox.SelectedIndex = value;
         }
 
         [Browsable(false), Bindable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("选中项"), Category("SunnyUI")]
         public object SelectedItem
         {
-            get => box.SelectedItem;
-            set => box.SelectedItem = value;
+            get => ListBox.SelectedItem;
+            set => ListBox.SelectedItem = value;
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -268,12 +199,8 @@ namespace Sunny.UI
         [TypeConverter("System.Windows.Forms.Design.DataMemberFieldConverter, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         public string DisplayMember
         {
-            get => box.DisplayMember;
-            set
-            {
-                SetDataConnection(dataSource, new BindingMemberInfo(value));
-                box.DisplayMember = value;
-            }
+            get => ListBox.DisplayMember;
+            set => ListBox.DisplayMember = value;
         }
 
         [Description("获取或设置指示显示值的方式的格式说明符字符。"), Category("SunnyUI")]
@@ -282,16 +209,16 @@ namespace Sunny.UI
         [MergableProperty(false)]
         public string FormatString
         {
-            get => box.FormatString;
-            set => box.FormatString = value;
+            get => ListBox.FormatString;
+            set => ListBox.FormatString = value;
         }
 
         [Description("获取或设置指示显示值是否可以进行格式化操作。"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool FormattingEnabled
         {
-            get => box.FormattingEnabled;
-            set => box.FormattingEnabled = value;
+            get => ListBox.FormattingEnabled;
+            set => ListBox.FormattingEnabled = value;
         }
 
         [Description("获取或设置要为此列表框实际值的属性。"), Category("SunnyUI")]
@@ -299,22 +226,8 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         public string ValueMember
         {
-            get => box.ValueMember;
-            set => box.ValueMember = value;
-        }
-
-        private object selectedValue;
-
-        private void GetSelectedValue()
-        {
-            if (SelectedIndex != -1 && dataManager != null)
-            {
-                selectedValue = FilterItemOnProperty(SelectedItem, ValueMember);
-            }
-            else
-            {
-                selectedValue = null;
-            }
+            get => ListBox.ValueMember;
+            set => ListBox.ValueMember = value;
         }
 
         [
@@ -325,73 +238,13 @@ namespace Sunny.UI
         ]
         public object SelectedValue
         {
-            get
-            {
-                GetSelectedValue();
-                return selectedValue;
-            }
-            set
-            {
-                selectedValue = value;
-
-                if (value == null)
-                {
-                    return;
-                }
-
-                if (dataManager != null)
-                {
-                    int index = DataManagerFind(value);
-                    SelectedIndex = index;
-                }
-            }
-        }
-
-        private int DataManagerFind(object value)
-        {
-            if (dataManager == null) return -1;
-            for (int i = 0; i < dataManager.List.Count; i++)
-            {
-                var item = dataManager.List[i];
-                if (FilterItemOnProperty(item, ValueMember).Equals(value))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        private object FilterItemOnProperty(object item, string field)
-        {
-            if (item != null && field.Length > 0)
-            {
-                try
-                {
-                    // if we have a dataSource, then use that to display the string
-                    PropertyDescriptor descriptor;
-                    if (dataManager != null)
-                        descriptor = dataManager.GetItemProperties().Find(field, true);
-                    else
-                        descriptor = TypeDescriptor.GetProperties(item).Find(field, true);
-
-                    if (descriptor != null)
-                    {
-                        item = descriptor.GetValue(item);
-                    }
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-
-            return item;
+            get => ListBox.SelectedValue;
+            set => ListBox.SelectedValue = value;
         }
 
         public string GetItemText(object item)
         {
-            return box.GetItemText(item);
+            return ListBox.GetItemText(item);
         }
     }
 }
