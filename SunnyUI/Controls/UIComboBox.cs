@@ -84,12 +84,14 @@ namespace Sunny.UI
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            if (SelectedIndex != ListBox.SelectedIndex)
-            {
-                SelectedIndex = ListBox.SelectedIndex;
-                //Box_SelectedIndexChanged(null, null);
-                Invalidate();
-            }
+            //if (SelectedIndex != ListBox.SelectedIndex)
+            //{
+            //    SelectedIndex = ListBox.SelectedIndex;
+            //    //Box_SelectedIndexChanged(null, null);
+            //    Invalidate();
+            //}
+
+            Invalidate();
         }
 
         private readonly UIComboBoxItem dropForm = new UIComboBoxItem();
