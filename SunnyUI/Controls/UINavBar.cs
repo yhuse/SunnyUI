@@ -230,6 +230,26 @@ namespace Sunny.UI
             }
         }
 
+        private int selectedHighColorSize = 4;
+
+        /// <summary>
+        /// 选中页高亮高度
+        /// </summary>
+        [Description("选中Tab页高亮高度"), Category("SunnyUI")]
+        [DefaultValue(4)]
+        public int SelectedHighColorSize
+
+        {
+            get => selectedHighColorSize;
+            set
+            {
+                value = Math.Max(value, 0);
+                value = Math.Min(value, 8);
+                selectedHighColorSize = value;
+                Invalidate();
+            }
+        }
+
         private UIStyle _style = UIStyle.Blue;
 
         /// <summary>
@@ -390,9 +410,9 @@ namespace Sunny.UI
                         e.Graphics.FillRectangle(MenuSelectedColor, rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height);
                     }
 
-                    if (!NavBarMenu.Visible)
+                    if (!NavBarMenu.Visible && SelectedHighColorSize > 0)
                     {
-                        e.Graphics.FillRectangle(SelectedHighColor, rect.X, Height - 4, rect.Width, 4);
+                        e.Graphics.FillRectangle(SelectedHighColor, rect.X, Height - SelectedHighColorSize, rect.Width, SelectedHighColorSize);
                     }
 
                     textColor = SelectedForeColor;

@@ -295,7 +295,7 @@ namespace Sunny.UI
         private int tabSelectedHighColorSize = 4;
 
         /// <summary>
-        /// 边框颜色
+        /// 选中Tab页高亮高度
         /// </summary>
         [Description("选中Tab页高亮高度"), Category("SunnyUI")]
         [DefaultValue(4)]
@@ -305,7 +305,9 @@ namespace Sunny.UI
             get => tabSelectedHighColorSize;
             set
             {
-                tabSelectedHighColorSize = Math.Max(value, 0);
+                value = Math.Max(value, 0);
+                value = Math.Min(value, 8);
+                tabSelectedHighColorSize = value;
                 Invalidate();
             }
         }
