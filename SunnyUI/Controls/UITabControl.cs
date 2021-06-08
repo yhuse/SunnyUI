@@ -292,6 +292,24 @@ namespace Sunny.UI
             }
         }
 
+        private int tabSelectedHighColorSize = 4;
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("选中Tab页高亮高度"), Category("SunnyUI")]
+        [DefaultValue(4)]
+        public int TabSelectedHighColorSize
+
+        {
+            get => tabSelectedHighColorSize;
+            set
+            {
+                tabSelectedHighColorSize = Math.Max(value, 0);
+                Invalidate();
+            }
+        }
+
         private UIStyle _style = UIStyle.Blue;
 
         /// <summary>
@@ -439,7 +457,9 @@ namespace Sunny.UI
                 if (index == SelectedIndex)
                 {
                     g.Clear(TabSelectedColor);
-                    g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - 4, bmp.Width, 4);
+
+                    if (TabSelectedHighColorSize > 0)
+                        g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
                 }
 
                 g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height - 4) / 2.0f);

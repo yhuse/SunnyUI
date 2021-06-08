@@ -52,12 +52,12 @@ namespace Sunny.UI.Demo
 
         private void uiComboTreeView1_NodeSelected(object sender, System.Windows.Forms.TreeNode node)
         {
-            ShowInfoTip(node.Text);
+            //ShowInfoTip(node.Text);
         }
 
         private void uiComboTreeView2_NodesSelected(object sender, System.Windows.Forms.TreeNodeCollection node)
         {
-            ShowInfoTip(uiComboTreeView2.Text);
+            //ShowInfoTip(uiComboTreeView2.Text);
         }
 
         public class Info
@@ -68,7 +68,7 @@ namespace Sunny.UI.Demo
 
         private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowInfoTip(uiComboBox2.SelectedValue.ToString());
+            //ShowInfoTip(uiComboBox2.SelectedValue.ToString());
         }
 
         private void uiColorPicker1_Click(object sender, EventArgs e)
