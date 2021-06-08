@@ -161,10 +161,6 @@ namespace Sunny.UI
             SetStyle(UIStyles.Style);
         }
 
-        private void UIForm_Load(object sender, EventArgs e)
-        {
-        }
-
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);
@@ -306,7 +302,7 @@ namespace Sunny.UI
         /// <summary>
         /// 当前控件的版本
         /// </summary>
-        [Description("控件版本"), Category("SunnyUI"), DefaultValue(true)]
+        [Description("控件版本"), Category("SunnyUI")]
         public string Version { get; }
 
         /// <summary>
@@ -371,13 +367,8 @@ namespace Sunny.UI
         [Description("标题栏颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TitleColor
         {
-            get => titleColor;
-            set
-            {
-                titleColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
-            }
+            get => RectColor;
+            set => RectColor = value;
         }
 
         /// <summary>
@@ -1228,9 +1219,9 @@ namespace Sunny.UI
             }
         }
 
-        [Description("使用Esc键关闭窗口"), Category("Key")]
-        [DefaultValue(true)]
-        public bool EscClose { get; set; } = true;
+        [Description("使用Esc键关闭窗口"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool EscClose { get; set; } = false;
 
         /// <summary>
         /// Does the escape.
@@ -1371,6 +1362,7 @@ namespace Sunny.UI
             }
         }
 
+        [Description("窗体关闭时提示文字，为空则不提示"), Category("SunnyUI"), DefaultValue(null)]
         public string CloseAskString { get; set; }
 
         protected override CreateParams CreateParams
