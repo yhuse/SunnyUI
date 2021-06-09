@@ -26,7 +26,7 @@ namespace Sunny.UI
     /// <summary>
     /// 下拉选择窗体
     /// </summary>
-    public partial class UISelectForm : UIEditForm
+    public sealed partial class UISelectForm : UIEditForm
     {
         /// <summary>
         /// 构造函数

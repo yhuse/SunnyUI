@@ -2,7 +2,7 @@
 
 namespace Sunny.UI
 {
-    public partial class UIWaitForm : UIForm
+    public sealed partial class UIWaitForm : UIForm
     {
         public UIWaitForm()
         {

@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UINotifier : Form
+    public sealed partial class UINotifier : Form
     {
         #region GLOBALS
 
