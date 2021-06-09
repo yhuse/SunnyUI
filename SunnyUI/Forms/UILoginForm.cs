@@ -14,12 +14,16 @@ namespace Sunny.UI
             lblSubText.Text = lblSubText.Version;
         }
 
+        [Description("顶部标题"), Category("SunnyUI")]
+        [DefaultValue(null)]
         public string Title
         {
             get => lblTitle.Text;
             set => lblTitle.Text = value;
         }
 
+        [Description("底部说明"), Category("SunnyUI")]
+        [DefaultValue(null)]
         public string SubText
         {
             get => lblSubText.Text;
@@ -29,6 +33,7 @@ namespace Sunny.UI
         private UILoginImage loginImage;
 
         [DefaultValue(UILoginImage.Login1)]
+        [Description("背景图片"), Category("SunnyUI")]
         public UILoginImage LoginImage
         {
             get => loginImage;
@@ -79,8 +84,10 @@ namespace Sunny.UI
             }
         }
 
+        [Description("确认按钮事件"), Category("SunnyUI")]
         public event EventHandler ButtonLoginClick;
 
+        [Description("取消按钮事件"), Category("SunnyUI")]
         public event EventHandler ButtonCancelClick;
 
         [DefaultValue(false), Browsable(false)]
@@ -88,19 +95,19 @@ namespace Sunny.UI
 
         public delegate bool OnLoginHandle(string userName, string password);
 
+        [Description("登录校验事件"), Category("SunnyUI")]
         public event OnLoginHandle OnLogin;
 
-        private void UILoginForm_Enter(object sender, EventArgs e)
-        {
-            //btnLogin.PerformClick();
-        }
-
+        [DefaultValue(null)]
+        [Description("账号"), Category("SunnyUI")]
         public string UserName
         {
             get => edtUser.Text;
             set => edtUser.Text = value;
         }
 
+        [DefaultValue(null)]
+        [Description("密码"), Category("SunnyUI")]
         public string Password
         {
             get => edtPassword.Text;
