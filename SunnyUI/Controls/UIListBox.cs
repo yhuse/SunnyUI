@@ -638,16 +638,17 @@ namespace Sunny.UI
             }
             else
             {
-                var list = Items[e.Index].GetType().GetNeedProperties();
-                foreach (var info in list)
-                {
-                    if (info.Name == DisplayMember)
-                    {
-                        object defaultobj = info.GetValue(Items[e.Index], null);
-                        showText = defaultobj.ToString();
-                    }
-                }
+                //var list = Items[e.Index].GetType().GetNeedProperties();
+                //foreach (var info in list)
+                //{
+                //    if (info.Name == DisplayMember)
+                //    {
+                //        object defaultobj = info.GetValue(Items[e.Index], null);
+                //        showText = defaultobj.ToString();
+                //    }
+                //}
 
+                showText = GetItemText(Items[e.Index]);
                 if (showText.IsNullOrEmpty())
                 {
                     showText = Items[e.Index].ToString();
