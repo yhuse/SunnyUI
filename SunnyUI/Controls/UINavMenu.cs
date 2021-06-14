@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -45,7 +46,7 @@ namespace Sunny.UI
                      ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
 
-            base.UpdateStyles();
+            UpdateStyles();
 
             BorderStyle = BorderStyle.None;
             //HideSelection = false;
@@ -166,13 +167,13 @@ namespace Sunny.UI
 
         private void UpdateExtendedStyles()
         {
-            int Style = 0;
+            int style = 0;
 
             if (DoubleBuffered)
-                Style |= TVS_EX_DOUBLEBUFFER;
+                style |= TVS_EX_DOUBLEBUFFER;
 
             if (Style != 0)
-                Win32.User.SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(Style));
+                Win32.User.SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(style));
         }
 
         protected override void OnHandleCreated(EventArgs e)
@@ -521,11 +522,37 @@ namespace Sunny.UI
 
                     e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                     e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));
+
+                    if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
+                    {
+                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                        if (e.Node.Nodes.Count > 0) symbolRight -= 32;
+                        int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
+
+                        for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
+                        {
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor,
+                                new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
+                        }
+                    }
                 }
                 else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
                 {
                     e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
                     e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+
+                    if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
+                    {
+                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                        if (e.Node.Nodes.Count > 0) symbolRight -= 32;
+                        int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
+
+                        for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
+                        {
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor,
+                                new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
+                        }
+                    }
                 }
                 else
                 {
@@ -561,7 +588,7 @@ namespace Sunny.UI
                     e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, Width - (Bar.Visible ? 50 : 30), e.Bounds.Y + (ItemHeight - 24) / 2);
                 }
 
-                if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
+                if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid() && TreeNodeSymbols.NotContainsKey(e.Node))
                 {
                     SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TipsFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
@@ -596,7 +623,7 @@ namespace Sunny.UI
         {
             base.OnNodeMouseClick(e);
 
-            if (e.Node != null && e.Node.Nodes.Count > 0)
+            if (e.Node.Nodes.Count > 0)
             {
                 if (e.Node.IsExpanded)
                 {
@@ -619,6 +646,21 @@ namespace Sunny.UI
             else
             {
                 SelectedNode = e.Node;
+            }
+
+            if (e.Node != null && TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
+            {
+                int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                if (e.Node.Nodes.Count > 0) symbolRight -= 32;
+                int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
+                if (e.X >= firstLeft && e.X < symbolRight)
+                {
+                    int idx = (e.X - firstLeft) / 32;
+                    if (idx >= 0 && idx < TreeNodeSymbols[e.Node].Count)
+                    {
+                        NodeRightSymbolClick?.Invoke(this, e.Node, idx, TreeNodeSymbols[e.Node][idx]);
+                    }
+                }
             }
 
             ShowSelectedNode();
@@ -907,5 +949,42 @@ namespace Sunny.UI
             MenuHelper.SetSymbol(childNode, symbol, symbolSize);
             return childNode;
         }
+
+        private readonly Dictionary<TreeNode, List<int>> TreeNodeSymbols = new Dictionary<TreeNode, List<int>>();
+
+        public void AddNodeRightSymbol(TreeNode node, int symbol)
+        {
+            if (!TreeNodeSymbols.ContainsKey(node))
+                TreeNodeSymbols.Add(node, new List<int>());
+
+            TreeNodeSymbols[node].Add(symbol);
+            Invalidate();
+        }
+
+        public void RemoveNodeRightSymbol(TreeNode node, int symbol)
+        {
+            if (TreeNodeSymbols.ContainsKey(node))
+            {
+                int idx = TreeNodeSymbols[node].IndexOf(symbol);
+                if (idx >= 0)
+                {
+                    TreeNodeSymbols[node].RemoveAt(idx);
+                    Invalidate();
+                }
+            }
+        }
+
+        public void ClearNodeRightSymbol(TreeNode node)
+        {
+            if (TreeNodeSymbols.ContainsKey(node))
+            {
+                TreeNodeSymbols[node].Clear();
+                Invalidate();
+            }
+        }
+
+        public delegate void OnNodeRightSymbolClick(object sender, TreeNode node, int index, int symbol);
+
+        public event OnNodeRightSymbolClick NodeRightSymbolClick;
     }
 }
