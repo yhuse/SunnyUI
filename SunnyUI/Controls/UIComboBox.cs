@@ -42,8 +42,16 @@ namespace Sunny.UI
             ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
+            edit.TextChanged += Edit_TextChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        public new EventHandler TextChanged;
+
+        private void Edit_TextChanged(object sender, EventArgs e)
+        {
+            TextChanged?.Invoke(this, e);
         }
 
         private void ListBox_SelectedValueChanged(object sender, EventArgs e)
