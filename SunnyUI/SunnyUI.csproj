@@ -38,8 +38,10 @@
 <ItemGroup>
 	<None Remove="Controls\UIDataGridView.cs~RF2e4ccc29.TMP" />
 	<None Remove="Font\ElegantIcons.ttf" />
+	<None Remove="Font\fa-brands-400.ttf" />
+	<None Remove="Font\fa-regular-400.ttf" />
+	<None Remove="Font\fa-solid-900.ttf" />
 	<None Remove="Font\FontAwesome.ttf" />
-	<None Remove="Font\LigatureSymbols.ttf" />
 	<None Include="..\LICENSE">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
@@ -52,8 +54,10 @@
  
 <ItemGroup>
     <EmbeddedResource Include="Font\ElegantIcons.ttf" />
+    <EmbeddedResource Include="Font\fa-brands-400.ttf" />
+    <EmbeddedResource Include="Font\fa-regular-400.ttf" />
+    <EmbeddedResource Include="Font\fa-solid-900.ttf" />
     <EmbeddedResource Include="Font\FontAwesome.ttf" />
-    <EmbeddedResource Include="Font\LigatureSymbols.ttf" />
 </ItemGroup>
  
 <ItemGroup>

@@ -24,7 +24,6 @@ using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -32,11 +31,13 @@ namespace Sunny.UI
     /// <summary>
     /// 字体图标编辑器
     /// </summary>
-    public partial class UIFontImages : Form
+    public partial class UIFontImages : Form, ISymbol
     {
-        private readonly ConcurrentQueue<Label> AwesomeLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> ElegantLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> LigatureSymbolsLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV4Labels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> ElegantIconsLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV5SolidLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV5BrandsLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV5RegularLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -49,7 +50,11 @@ namespace Sunny.UI
         private void UIFontImages_Load(object sender, EventArgs e)
         {
             AddHighFreqImage();
-            bg.RunWorkerAsync();
+            bg1.RunWorkerAsync();
+            bg2.RunWorkerAsync();
+            bg3.RunWorkerAsync();
+            bg4.RunWorkerAsync();
+            bg5.RunWorkerAsync();
             timer.Start();
         }
 
@@ -57,60 +62,57 @@ namespace Sunny.UI
         {
             timer.Stop();
 
-            while (AwesomeLabels.Count > 0)
+            while (FontAwesomeV4Labels.Count > 0)
             {
-                if (AwesomeLabels.TryDequeue(out Label lbl))
+                if (FontAwesomeV4Labels.TryDequeue(out Label lbl))
                 {
                     lpAwesome.Controls.Add(lbl);
-                    int symbol = (int)lbl.Tag;
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
             }
 
-            while (ElegantLabels.Count > 0)
+            while (ElegantIconsLabels.Count > 0)
             {
-                if (ElegantLabels.TryDequeue(out Label lbl))
+                if (ElegantIconsLabels.TryDequeue(out Label lbl))
                 {
                     lpElegant.Controls.Add(lbl);
-                    int symbol = (int)lbl.Tag;
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (FontAwesomeV5SolidLabels.Count > 0)
+            {
+                if (FontAwesomeV5SolidLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Solid.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (FontAwesomeV5RegularLabels.Count > 0)
+            {
+                if (FontAwesomeV5RegularLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Regular.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (FontAwesomeV5BrandsLabels.Count > 0)
+            {
+                if (FontAwesomeV5BrandsLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Brands.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
             }
 
             timer.Start();
-        }
-
-        private void AddAwesomeImageEx()
-        {
-            Type t = typeof(FontAwesomeIcons);
-            FieldInfo[] fis = t.GetFields();
-            foreach (var fieldInfo in fis)
-            {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                AwesomeLabels.Enqueue(CreateLabel(value));
-            }
-        }
-
-        private void AddElegantImageEx()
-        {
-            Type t = typeof(FontElegantIcons);
-            FieldInfo[] fis = t.GetFields();
-            foreach (var fieldInfo in fis)
-            {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                ElegantLabels.Enqueue(CreateLabel(value));
-            }
-        }
-
-        private void AddLigatureSymbolsEx()
-        {
-            Type t = typeof(LigatureSymbols);
-            FieldInfo[] fis = t.GetFields();
-            foreach (var fieldInfo in fis)
-            {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                LigatureSymbolsLabels.Enqueue(CreateLabel(value));
-            }
         }
 
         private void AddHighFreqImage()
@@ -212,79 +214,119 @@ namespace Sunny.UI
 
         private void AddLabel(int icon)
         {
-            Label lbl = CreateLabel(icon);
+            Label lbl = CreateLabel(icon, UISymbolType.FontAwesomeV4);
             lpCustom.Controls.Add(lbl);
-            int symbol = (int)lbl.Tag;
+            SymbolValue symbol = (SymbolValue)lbl.Tag;
             toolTip.SetToolTip(lbl, symbol.ToString());
         }
 
-        private Label CreateLabel(int icon)
+        public struct SymbolValue
+        {
+            public int Symbol { get; set; }
+
+            public UISymbolType SymbolType { get; set; }
+
+            public override string ToString()
+            {
+                return Symbol.ToString();
+            }
+        }
+
+        private Label CreateLabel(int icon, UISymbolType symbolType)
         {
             Label lbl = new Label();
             lbl.AutoSize = false;
             lbl.Size = new Size(32, 32);
             lbl.ForeColor = UIColor.Blue;
-
-            FontImageHelper.AwesomeFont.ForeColor = UIFontColor.Primary;
-            FontImageHelper.ElegantFont.ForeColor = UIFontColor.Primary;
-
-            lbl.Image = icon >= 0xF000 ?
-                        FontImageHelper.AwesomeFont.GetImage(icon, 28) :
-                        FontImageHelper.ElegantFont.GetImage(icon, 28);
+            lbl.Image = FontImageHelper.CreateImage(icon, 28, UIFontColor.Primary, symbolType);
             lbl.ImageAlign = ContentAlignment.MiddleCenter;
             lbl.TextAlign = ContentAlignment.MiddleLeft;
             lbl.Margin = new Padding(2);
             lbl.Click += lbl_DoubleClick;
             lbl.MouseEnter += Lbl_MouseEnter;
             lbl.MouseLeave += Lbl_MouseLeave;
-            lbl.Tag = icon;
+            lbl.Tag = new SymbolValue() { Symbol = icon, SymbolType = symbolType };
             return lbl;
         }
 
         private void Lbl_MouseLeave(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
-            FontImageHelper.AwesomeFont.ForeColor = UIFontColor.Primary;
-            FontImageHelper.ElegantFont.ForeColor = UIFontColor.Primary;
-            int icon = (int)lbl.Tag;
-            lbl.Image = icon >= 0xF000 ?
-                        FontImageHelper.AwesomeFont.GetImage(icon, 28) :
-                        FontImageHelper.ElegantFont.GetImage(icon, 28);
+            SymbolValue symbol = (SymbolValue)lbl.Tag;
+            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol, 28, UIFontColor.Primary, symbol.SymbolType);
         }
 
         private void Lbl_MouseEnter(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
-            FontImageHelper.AwesomeFont.ForeColor = UIColor.Blue;
-            FontImageHelper.ElegantFont.ForeColor = UIColor.Blue;
-            int icon = (int)lbl.Tag;
-            lbl.Image = icon >= 0xF000 ?
-                        FontImageHelper.AwesomeFont.GetImage(icon, 28) :
-                        FontImageHelper.ElegantFont.GetImage(icon, 28);
+            SymbolValue symbol = (SymbolValue)lbl.Tag;
+            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol, 28, UIColor.Blue, symbol.SymbolType);
         }
 
-        /// <summary>
-        /// 选中图标
-        /// </summary>
-        public int SelectSymbol { get; private set; }
+        public int Symbol { get; set; }
+        public UISymbolType SymbolType { get; set; }
+        public Point SymbolOffset { get; set; }
 
         private void lbl_DoubleClick(object sender, EventArgs e)
         {
-            if (sender is Label lbl) SelectSymbol = (int)lbl.Tag;
-            DialogResult = DialogResult.OK;
-            Close();
+            if (sender is Label lbl)
+            {
+                SymbolValue symbol = (SymbolValue)lbl.Tag;
+                SymbolType = symbol.SymbolType;
+                Symbol = ((int)symbol.SymbolType) * 100000 + symbol.Symbol;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            AddAwesomeImageEx();
-            //scoreStep = 1;
-            AddElegantImageEx();
+            var t = typeof(FontAwesomeIcons);
+            foreach (var fieldInfo in t.GetFields())
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                FontAwesomeV4Labels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+            }
         }
 
-        private void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bg2_DoWork(object sender, DoWorkEventArgs e)
         {
+            var t = typeof(FontElegantIcons);
+            foreach (var fieldInfo in t.GetFields())
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                ElegantIconsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+            }
+        }
 
+        private void bg3_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var t = typeof(FontAweSomeV5Brands);
+            foreach (var fieldInfo in t.GetFields())
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                FontAwesomeV5BrandsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Brands));
+            }
+        }
+
+        private void bg4_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var t = typeof(FontAweSomeV5Regular);
+            foreach (var fieldInfo in t.GetFields())
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                FontAwesomeV5RegularLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Regular));
+            }
+        }
+
+        private void bg5_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var t = typeof(FontAweSomeV5Solid);
+            foreach (var fieldInfo in t.GetFields())
+            {
+                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
+                FontAwesomeV5SolidLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Solid));
+            }
         }
     }
 
@@ -316,7 +358,7 @@ namespace Sunny.UI
             //打开属性编辑器修改数据
             UIFontImages frm = new UIFontImages();
             if (frm.ShowDialog() == DialogResult.OK)
-                value = frm.SelectSymbol;
+                value = frm.Symbol;
             frm.Dispose();
             return value;
         }

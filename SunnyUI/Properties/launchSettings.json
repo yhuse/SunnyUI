@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SunnyUI": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
