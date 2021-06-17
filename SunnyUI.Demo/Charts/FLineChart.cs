@@ -56,6 +56,7 @@ namespace Sunny.UI.Demo.Charts
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
             option.XAxis.AxisLabel.DateTimeFormat = DateTimeEx.DateTimeFormat;
+            option.YAxis.AxisLabel.DecimalCount = 1;
 
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(3).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(3)) });
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(6).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(6)) });
