@@ -114,6 +114,18 @@ namespace Sunny.UI
         /// <param name="key">key</param>
         /// <param name="Default">Normal</param>
         /// <returns>结果</returns>
+        public string ReadString(string section, string key, string Default)
+        {
+            return Read(section, key, Default);
+        }
+
+        /// <summary>
+        /// 读取字符串
+        /// </summary>
+        /// <param name="section">section</param>
+        /// <param name="key">key</param>
+        /// <param name="Default">Normal</param>
+        /// <returns>结果</returns>
         public string Read(string section, string key, string Default)
         {
             byte[] buffer = new byte[1024];
