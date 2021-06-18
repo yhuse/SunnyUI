@@ -46,7 +46,6 @@ namespace Sunny.UI
         {
             SetStyleFlags(true, false);
             ShowRect = false;
-            fillColor = UIStyles.Blue.PlainColor;
             Width = 48;
             Height = 24;
         }
@@ -145,6 +144,8 @@ namespace Sunny.UI
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
+            if (uiColor.IsCustom()) return;
+
             base.SetStyleColor(uiColor);
             fillColor = uiColor.PlainColor;
         }
