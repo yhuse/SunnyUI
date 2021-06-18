@@ -280,6 +280,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
+
             symbolColor = foreColor = uiColor.LabelForeColor;
         }
 

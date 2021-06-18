@@ -111,6 +111,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
+
             markColor = uiColor.RectColor;
             Invalidate();
         }

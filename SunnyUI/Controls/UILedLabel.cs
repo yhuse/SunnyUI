@@ -180,6 +180,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             if (uiColor.IsCustom()) return;
+
             foreColor = uiColor.RectColor;
             Invalidate();
         }
