@@ -78,6 +78,8 @@
             this.uiLight1.Location = new System.Drawing.Point(30, 52);
             this.uiLight1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight1.Name = "uiLight1";
+            this.uiLight1.OffCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLight1.OnCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight1.Radius = 35;
             this.uiLight1.Size = new System.Drawing.Size(35, 35);
             this.uiLight1.TabIndex = 20;
@@ -101,6 +103,8 @@
             this.uiLight2.Location = new System.Drawing.Point(114, 52);
             this.uiLight2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight2.Name = "uiLight2";
+            this.uiLight2.OffCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLight2.OnCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight2.Radius = 35;
             this.uiLight2.Size = new System.Drawing.Size(35, 35);
             this.uiLight2.State = Sunny.UI.UILightState.Off;
@@ -114,6 +118,8 @@
             this.uiLight3.Location = new System.Drawing.Point(156, 52);
             this.uiLight3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight3.Name = "uiLight3";
+            this.uiLight3.OffCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLight3.OnCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.uiLight3.Radius = 35;
             this.uiLight3.Size = new System.Drawing.Size(35, 35);
             this.uiLight3.State = Sunny.UI.UILightState.Blink;
@@ -122,15 +128,19 @@
             // 
             // uiLight4
             // 
-            this.uiLight4.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLight4.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.uiLight4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLight4.Location = new System.Drawing.Point(72, 52);
             this.uiLight4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight4.Name = "uiLight4";
+            this.uiLight4.OffCenterColor = System.Drawing.Color.Gainsboro;
+            this.uiLight4.OnCenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.uiLight4.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiLight4.Radius = 35;
+            this.uiLight4.Radius = 0;
+            this.uiLight4.Shape = Sunny.UI.UIShape.Square;
             this.uiLight4.ShowLightLine = false;
             this.uiLight4.Size = new System.Drawing.Size(35, 35);
+            this.uiLight4.State = Sunny.UI.UILightState.Blink;
             this.uiLight4.TabIndex = 36;
             this.uiLight4.Text = "uiLight4";
             // 

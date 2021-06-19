@@ -47,6 +47,25 @@ namespace Sunny.UI
             Radius = Width = Height = 35;
         }
 
+        private UIShape sharpType = UIShape.Circle;
+
+        /// <summary>
+        /// 显示形状：圆形，正方形
+        /// </summary>
+        [DefaultValue(UIShape.Circle), Description("显示形状：圆形，正方形"), Category("SunnyUI")]
+        public UIShape Shape
+        {
+            get => sharpType;
+            set
+            {
+                if (sharpType != value)
+                {
+                    sharpType = value;
+                    Invalidate();
+                }
+            }
+        }
+
         private int interval = 500;
 
         [DefaultValue(500), Description("显示间隔"), Category("SunnyUI")]
@@ -82,16 +101,6 @@ namespace Sunny.UI
                 state = value;
                 timer?.Stop();
 
-                if (state == UILightState.On)
-                {
-                    showColor = onColor;
-                }
-
-                if (state == UILightState.Off)
-                {
-                    showColor = offColor;
-                }
-
                 if (state == UILightState.Blink)
                 {
                     if (timer == null)
@@ -101,7 +110,6 @@ namespace Sunny.UI
                     }
 
                     blinkState = true;
-                    showColor = onColor;
                     timer.Start();
                 }
 
@@ -109,22 +117,17 @@ namespace Sunny.UI
             }
         }
 
-        private Color showColor = UIColor.Green;
         private bool blinkState;
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             blinkState = !blinkState;
-            showColor = blinkState ? onColor : offColor;
             Invalidate();
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
-            if (Width != Height)
-            {
-                Width = Height;
-            }
+            int ShowSize = Math.Min(Width, Height);
 
             Color color;
             if (State == UILightState.On)
@@ -132,32 +135,75 @@ namespace Sunny.UI
             else if (State == UILightState.Off)
                 color = OffColor;
             else
-                color = showColor;
+                color = blinkState ? onColor : offColor;
 
-            GraphicsPath CirclePath = new GraphicsPath();
-            CirclePath.AddEllipse(2, 2, Width - 4, Height - 4);
-            g.Smooth();
-
-            if (ShowCenterColor)
-            {
-                Color[] surroundColor = new Color[] { color };
-                PathGradientBrush gradientBrush = new PathGradientBrush(path);
-                gradientBrush.CenterColor = centerColor;
-                gradientBrush.SurroundColors = surroundColor;
-                g.FillPath(gradientBrush, CirclePath);
-                gradientBrush.Dispose();
-            }
+            Color cColor;
+            if (State == UILightState.On)
+                cColor = OnCenterColor;
+            else if (State == UILightState.Off)
+                cColor = offCenterColor;
             else
+                cColor = blinkState ? OnCenterColor : offCenterColor;
+
+
+            if (Shape == UIShape.Circle)
             {
-                g.FillPath(color, CirclePath);
+                Radius = ShowSize;
+                GraphicsPath CirclePath = new GraphicsPath();
+                CirclePath.AddEllipse(2, 2, ShowSize - 4, ShowSize - 4);
+                g.Smooth();
+
+                if (ShowCenterColor)
+                {
+                    Color[] surroundColor = new Color[] { color };
+                    PathGradientBrush gradientBrush = new PathGradientBrush(path);
+                    gradientBrush.CenterPoint = new PointF(ShowSize / 2.0f, ShowSize / 2.0f);
+                    gradientBrush.CenterColor = cColor;
+                    gradientBrush.SurroundColors = surroundColor;
+                    g.FillPath(gradientBrush, CirclePath);
+                    gradientBrush.Dispose();
+                }
+                else
+                {
+                    g.FillPath(color, CirclePath);
+                }
+
+                CirclePath.Dispose();
+
+                if (ShowLightLine)
+                {
+                    int size = (ShowSize - 4) / 5;
+                    g.DrawArc(cColor, size, size,
+                        ShowSize - size * 2, ShowSize - size * 2,
+                        45, -155);
+                }
             }
 
-            CirclePath.Dispose();
-
-            if (ShowLightLine)
+            if (Shape == UIShape.Square)
             {
-                int size = (Width - 4) / 5;
-                g.DrawArc(centerColor, size, size, Width - size * 2, Height - size * 2, 45, -155);
+                Radius = 0;
+                g.FillRoundRectangle(color, 2, 2, ShowSize - 4, ShowSize - 4, 5);
+
+                if (ShowCenterColor)
+                {
+                    GraphicsPath CirclePath = new GraphicsPath();
+                    Point[] p = {
+                        new Point(3,3),new Point(ShowSize-3,3),
+                        new Point(ShowSize-3,ShowSize-3),new Point(3,ShowSize-3)
+                    };
+
+                    CirclePath.AddLines(p);
+                    g.Smooth();
+
+                    Color[] surroundColor = new Color[] { color };
+                    PathGradientBrush gradientBrush = new PathGradientBrush(path);
+                    gradientBrush.CenterPoint = new PointF(ShowSize / 2.0f, ShowSize / 2.0f);
+                    gradientBrush.CenterColor = cColor;
+                    gradientBrush.SurroundColors = surroundColor;
+                    g.FillPath(gradientBrush, CirclePath);
+                    gradientBrush.Dispose();
+                    CirclePath.Dispose();
+                }
             }
         }
 
@@ -203,16 +249,39 @@ namespace Sunny.UI
             }
         }
 
-        private Color centerColor = UIColor.LightGreen;
+        private Color centerColor = UIColor.White;
 
-        [DefaultValue(typeof(Color), "110, 190, 40")]
-        [Description("中心颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        [Description("中心颜色"), Category("SunnyUI"), Browsable(false)]
         public Color CenterColor
         {
             get => centerColor;
             set
             {
                 centerColor = value;
+                Invalidate();
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White")]
+        [Description("中心颜色"), Category("SunnyUI")]
+        public Color OnCenterColor
+        {
+            get => CenterColor;
+            set => CenterColor = value;
+        }
+
+
+        private Color offCenterColor = UIColor.White;
+
+        [DefaultValue(typeof(Color), "White")]
+        [Description("中心颜色"), Category("SunnyUI")]
+        public Color OffCenterColor
+        {
+            get => offCenterColor;
+            set
+            {
+                offCenterColor = value;
                 Invalidate();
             }
         }
