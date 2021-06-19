@@ -148,7 +148,7 @@ namespace Sunny.UI
 
             if (Shape == UIShape.Circle)
             {
-                Radius = ShowSize;
+                if (Radius != ShowSize) Radius = ShowSize;
                 GraphicsPath CirclePath = new GraphicsPath();
                 CirclePath.AddEllipse(2, 2, ShowSize - 4, ShowSize - 4);
                 g.Smooth();
@@ -181,7 +181,7 @@ namespace Sunny.UI
 
             if (Shape == UIShape.Square)
             {
-                Radius = 0;
+                if (Radius != 0) Radius = 0;
                 g.FillRoundRectangle(color, 2, 2, ShowSize - 4, ShowSize - 4, 5);
 
                 if (ShowCenterColor)

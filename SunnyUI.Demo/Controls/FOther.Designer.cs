@@ -47,11 +47,25 @@
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.uiSignal1 = new Sunny.UI.UISignal();
+            this.uiLine1 = new Sunny.UI.UILine();
+            this.uiSignal2 = new Sunny.UI.UISignal();
+            this.uiSignal3 = new Sunny.UI.UISignal();
+            this.uiSignal4 = new Sunny.UI.UISignal();
+            this.uiSignal5 = new Sunny.UI.UISignal();
+            this.uiSignal6 = new Sunny.UI.UISignal();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSignal6);
+            this.PagePanel.Controls.Add(this.uiSignal5);
+            this.PagePanel.Controls.Add(this.uiSignal4);
+            this.PagePanel.Controls.Add(this.uiSignal3);
+            this.PagePanel.Controls.Add(this.uiSignal2);
+            this.PagePanel.Controls.Add(this.uiLine1);
+            this.PagePanel.Controls.Add(this.uiSignal1);
             this.PagePanel.Controls.Add(this.uiLabel3);
             this.PagePanel.Controls.Add(this.uiLabel2);
             this.PagePanel.Controls.Add(this.uiLabel1);
@@ -282,6 +296,82 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
+            // uiSignal1
+            // 
+            this.uiSignal1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal1.Level = 0;
+            this.uiSignal1.Location = new System.Drawing.Point(35, 246);
+            this.uiSignal1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal1.Name = "uiSignal1";
+            this.uiSignal1.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal1.TabIndex = 56;
+            this.uiSignal1.Text = "uiSignal1";
+            // 
+            // uiLine1
+            // 
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Location = new System.Drawing.Point(30, 220);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(319, 20);
+            this.uiLine1.TabIndex = 57;
+            this.uiLine1.Text = "UISignal";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSignal2
+            // 
+            this.uiSignal2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal2.Level = 1;
+            this.uiSignal2.Location = new System.Drawing.Point(76, 246);
+            this.uiSignal2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal2.Name = "uiSignal2";
+            this.uiSignal2.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal2.TabIndex = 58;
+            this.uiSignal2.Text = "uiSignal2";
+            // 
+            // uiSignal3
+            // 
+            this.uiSignal3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal3.Level = 2;
+            this.uiSignal3.Location = new System.Drawing.Point(117, 246);
+            this.uiSignal3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal3.Name = "uiSignal3";
+            this.uiSignal3.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal3.TabIndex = 59;
+            this.uiSignal3.Text = "uiSignal3";
+            // 
+            // uiSignal4
+            // 
+            this.uiSignal4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal4.Level = 3;
+            this.uiSignal4.Location = new System.Drawing.Point(158, 246);
+            this.uiSignal4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal4.Name = "uiSignal4";
+            this.uiSignal4.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal4.TabIndex = 60;
+            this.uiSignal4.Text = "uiSignal4";
+            // 
+            // uiSignal5
+            // 
+            this.uiSignal5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal5.Level = 4;
+            this.uiSignal5.Location = new System.Drawing.Point(199, 246);
+            this.uiSignal5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal5.Name = "uiSignal5";
+            this.uiSignal5.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal5.TabIndex = 61;
+            this.uiSignal5.Text = "uiSignal5";
+            // 
+            // uiSignal6
+            // 
+            this.uiSignal6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal6.Location = new System.Drawing.Point(240, 246);
+            this.uiSignal6.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSignal6.Name = "uiSignal6";
+            this.uiSignal6.Size = new System.Drawing.Size(35, 35);
+            this.uiSignal6.TabIndex = 62;
+            this.uiSignal6.Text = "uiSignal6";
+            // 
             // FOther
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -314,5 +404,12 @@
         private UILabel uiLabel2;
         private UILabel uiLabel1;
         private UIToolTip uiToolTip1;
+        private UISignal uiSignal6;
+        private UISignal uiSignal5;
+        private UISignal uiSignal4;
+        private UISignal uiSignal3;
+        private UISignal uiSignal2;
+        private UILine uiLine1;
+        private UISignal uiSignal1;
     }
 }
