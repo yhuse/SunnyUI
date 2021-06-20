@@ -523,7 +523,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示窗体的控制按钮
         /// </summary>
-        private bool controlBox = false;
+        private bool controlBox;
 
         /// <summary>
         /// 是否显示窗体的控制按钮

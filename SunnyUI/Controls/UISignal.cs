@@ -67,9 +67,9 @@ namespace Sunny.UI
             }
         }
 
-        private int lineHeight = 5;
+        private int lineHeight = 4;
 
-        [DefaultValue(5)]
+        [DefaultValue(4)]
         [Description("线高"), Category("SunnyUI")]
         public int LineHeight
         {

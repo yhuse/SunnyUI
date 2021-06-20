@@ -201,6 +201,7 @@
             this.uiLedBulb4.BlinkInterval = 500;
             this.uiLedBulb4.Location = new System.Drawing.Point(507, 52);
             this.uiLedBulb4.Name = "uiLedBulb4";
+            this.uiLedBulb4.On = false;
             this.uiLedBulb4.Size = new System.Drawing.Size(32, 32);
             this.uiLedBulb4.TabIndex = 41;
             this.uiLedBulb4.Text = "uiLedBulb4";
@@ -300,6 +301,7 @@
             // 
             this.uiSignal1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSignal1.Level = 0;
+            this.uiSignal1.LineHeight = 4;
             this.uiSignal1.Location = new System.Drawing.Point(35, 246);
             this.uiSignal1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal1.Name = "uiSignal1";
@@ -322,6 +324,7 @@
             // 
             this.uiSignal2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSignal2.Level = 1;
+            this.uiSignal2.LineHeight = 4;
             this.uiSignal2.Location = new System.Drawing.Point(76, 246);
             this.uiSignal2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal2.Name = "uiSignal2";
@@ -333,6 +336,7 @@
             // 
             this.uiSignal3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSignal3.Level = 2;
+            this.uiSignal3.LineHeight = 4;
             this.uiSignal3.Location = new System.Drawing.Point(117, 246);
             this.uiSignal3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal3.Name = "uiSignal3";
@@ -344,6 +348,7 @@
             // 
             this.uiSignal4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSignal4.Level = 3;
+            this.uiSignal4.LineHeight = 4;
             this.uiSignal4.Location = new System.Drawing.Point(158, 246);
             this.uiSignal4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal4.Name = "uiSignal4";
@@ -355,6 +360,7 @@
             // 
             this.uiSignal5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSignal5.Level = 4;
+            this.uiSignal5.LineHeight = 4;
             this.uiSignal5.Location = new System.Drawing.Point(199, 246);
             this.uiSignal5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal5.Name = "uiSignal5";
@@ -365,6 +371,7 @@
             // uiSignal6
             // 
             this.uiSignal6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSignal6.LineHeight = 4;
             this.uiSignal6.Location = new System.Drawing.Point(240, 246);
             this.uiSignal6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal6.Name = "uiSignal6";
