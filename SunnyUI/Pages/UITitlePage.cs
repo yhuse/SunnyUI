@@ -52,7 +52,7 @@ namespace Sunny.UI
 
         [Description("显示标题"), Category("SunnyUI")]
         [DefaultValue(true)]
-        public bool ShowTitle
+        public new bool ShowTitle
         {
             get => showTitle;
             set => showTitle = value;
@@ -73,7 +73,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("标题颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "76, 76, 76")]
-        public Color TitleFillColor
+        public new Color TitleFillColor
         {
             get => PageTitle.FillColor;
             set
@@ -88,7 +88,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("字体颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
-        public Color TitleForeColor
+        public new Color TitleForeColor
         {
             get => PageTitle.ForeColor;
             set
@@ -139,7 +139,7 @@ namespace Sunny.UI
                 ForeColor = uiColor.PageTitleForeColor;
             }
 
-            private int symbol = 0;
+            private int symbol;
             public int Symbol
             {
                 get => symbol;

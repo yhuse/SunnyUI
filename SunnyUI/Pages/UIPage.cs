@@ -25,7 +25,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -214,6 +213,18 @@ namespace Sunny.UI
                     }
                 }
             }
+
+            if (AllowShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
+            {
+                e.Control.Top = Padding.Top;
+            }
+        }
+
+        [DefaultValue(false)]
+        [Description("允许在标题栏放置控件"), Category("SunnyUI")]
+        public bool AllowAddControlOnTitle
+        {
+            get; set;
         }
 
         public virtual void Init()
@@ -233,20 +244,20 @@ namespace Sunny.UI
             //EventLoad();
         }
 
-        private void EventLoad()
-        {
-            Type type = this.GetType().BaseType;
-            while (type.Name != "Form")
-            {
-                type = type.BaseType;
-            }
-
-            FieldInfo targetMethod = type.GetField("EVENT_LOAD", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-            object obj = (object)targetMethod.GetValue(this);
-
-            EventHandler handler = (EventHandler)this.Events[obj];
-            handler?.Invoke(this, EventArgs.Empty);
-        }
+        // private void EventLoad()
+        // {
+        //     Type type = this.GetType().BaseType;
+        //     while (type.Name != "Form")
+        //     {
+        //         type = type.BaseType;
+        //     }
+        //
+        //     FieldInfo targetMethod = type.GetField("EVENT_LOAD", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+        //     object obj = (object)targetMethod.GetValue(this);
+        //
+        //     EventHandler handler = (EventHandler)this.Events[obj];
+        //     handler?.Invoke(this, EventArgs.Empty);
+        // }
 
         public virtual void Final()
         {
@@ -291,6 +302,11 @@ namespace Sunny.UI
 
             if (Width <= 0 || Height <= 0) return;
 
+            if (AllowShowTitle)
+            {
+                e.Graphics.FillRectangle(TitleFillColor, 0, 0, Width, TitleHeight);
+            }
+
             if (RectSides != ToolStripStatusLabelBorderSides.None)
             {
                 if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Left))
@@ -301,6 +317,100 @@ namespace Sunny.UI
                     e.Graphics.DrawLine(RectColor, Width - 1, 0, Width - 1, Height - 1);
                 if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Bottom))
                     e.Graphics.DrawLine(RectColor, 0, Height - 1, Width - 1, Height - 1);
+            }
+
+            if (!AllowShowTitle) return;
+            if (Symbol > 0)
+            {
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight));
+            }
+
+            SizeF sf = e.Graphics.MeasureString(Text, Font);
+            e.Graphics.DrawString(Text, Font, TitleForeColor,
+                Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, (TitleHeight - sf.Height) / 2);
+
+            e.Graphics.SetHighQuality();
+            if (ControlBox)
+            {
+                if (InControlBox)
+                {
+                    e.Graphics.FillRectangle(UIColor.Red, ControlBoxRect);
+                }
+
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5);
+                e.Graphics.DrawLine(Color.White,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5,
+                    ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
+                    ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5);
+            }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.None && ShowTitle)
+            {
+                if (InControlBox)
+                {
+                    InControlBox = false;
+                    Close();
+                    AfterClose();
+                }
+            }
+        }
+
+        private void AfterClose()
+        {
+            Console.WriteLine("Close");
+        }
+
+        private Color titleFillColor = Color.FromArgb(76, 76, 76);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("标题颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "76, 76, 76")]
+        public Color TitleFillColor
+        {
+            get => titleFillColor;
+            set
+            {
+                titleFillColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color titleForeColor = Color.White;
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color TitleForeColor
+        {
+            get => titleForeColor;
+            set
+            {
+                titleForeColor = value;
+                Invalidate();
+            }
+        }
+
+        private int imageInterval = 6;
+
+        public int ImageInterval
+        {
+            get => imageInterval;
+            set
+            {
+                imageInterval = Math.Max(2, value);
+                Invalidate();
             }
         }
 
@@ -318,10 +428,123 @@ namespace Sunny.UI
             _style = UIStyle.Custom;
         }
 
-        private void UIPage_Shown(object sender, EventArgs e)
+        private int titleHeight = 35;
+
+        [Description("面板高度"), Category("SunnyUI")]
+        [DefaultValue(35)]
+        public int TitleHeight
         {
-            //SetStyle(UIStyles.Style);
+            get => titleHeight;
+            set
+            {
+                titleHeight = Math.Max(value, 31);
+                Padding = new Padding(Padding.Left, titleHeight, Padding.Right, Padding.Bottom);
+                CalcSystemBoxPos();
+                Invalidate();
+            }
         }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            CalcSystemBoxPos();
+        }
+
+        private bool InControlBox;
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (ShowTitle && ControlBox)
+            {
+                bool inControlBox = e.Location.InRect(ControlBoxRect);
+
+                if (inControlBox != InControlBox)
+                {
+                    InControlBox = inControlBox;
+                    Invalidate();
+                }
+
+            }
+        }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            base.OnPaddingChanged(e);
+
+            if (AllowShowTitle)
+            {
+                Padding = new Padding(Padding.Left, titleHeight, Padding.Right, Padding.Bottom);
+            }
+        }
+
+        [Description("允许显示标题栏"), Category("SunnyUI"), DefaultValue(false)]
+        public bool AllowShowTitle
+        {
+            get => ShowTitle;
+            set => ShowTitle = value;
+        }
+
+        /// <summary>
+        /// 是否显示窗体的标题栏
+        /// </summary>
+        private bool showTitle;
+
+        /// <summary>
+        /// 是否显示窗体的标题栏
+        /// </summary>
+        [Description("是否显示窗体的标题栏"), Category("WindowStyle"), DefaultValue(false)]
+        public bool ShowTitle
+        {
+            get => showTitle;
+            set
+            {
+                showTitle = value;
+                Padding = new Padding(Padding.Left, value ? titleHeight : 0, Padding.Right, Padding.Bottom);
+                Invalidate();
+            }
+        }
+
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            Invalidate();
+        }
+
+        private void CalcSystemBoxPos()
+        {
+            ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
+
+        }
+
+        private Rectangle ControlBoxRect;
+
+
+        /// <summary>
+        /// 是否显示窗体的控制按钮
+        /// </summary>
+        private bool controlBox = false;
+
+        /// <summary>
+        /// 是否显示窗体的控制按钮
+        /// </summary>
+        [Description("是否显示窗体的控制按钮"), Category("WindowStyle"), DefaultValue(false)]
+        public new bool ControlBox
+        {
+            get => controlBox;
+            set
+            {
+                controlBox = value;
+                CalcSystemBoxPos();
+                Invalidate();
+            }
+        }
+
+        [Browsable(false)]
+        public new bool MinimizeBox { get; set; }
+
+        [Browsable(false)]
+        public new bool MaximizeBox { get; set; }
 
         #region 一些辅助窗口
 

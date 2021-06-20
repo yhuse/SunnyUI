@@ -42,7 +42,7 @@
             this.PageTitle.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.PageTitle.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.PageTitle.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.PageTitle.Size = new System.Drawing.Size(1475, 35);
+            this.PageTitle.Size = new System.Drawing.Size(913, 35);
             this.PageTitle.Symbol = 0;
             this.PageTitle.SymbolSize = 24;
             this.PageTitle.TabIndex = 0;
@@ -59,7 +59,7 @@
             this.PagePanel.Name = "PagePanel";
             this.PagePanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.PagePanel.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.PagePanel.Size = new System.Drawing.Size(1475, 852);
+            this.PagePanel.Size = new System.Drawing.Size(913, 367);
             this.PagePanel.TabIndex = 1;
             this.PagePanel.Text = null;
             this.PagePanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,7 +67,7 @@
             // UITitlePage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1475, 887);
+            this.ClientSize = new System.Drawing.Size(913, 402);
             this.Controls.Add(this.PagePanel);
             this.Controls.Add(this.PageTitle);
             this.Name = "UITitlePage";
