@@ -57,12 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Charts\FBarChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Charts\FBarChart.Designer.cs">
-      <DependentUpon>FBarChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Charts\FBarChartEx.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +152,12 @@
     </Compile>
     <Compile Include="Controls\FListBox.Designer.cs">
       <DependentUpon>FListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\FBarChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Charts\FBarChart.Designer.cs">
+      <DependentUpon>FBarChart.cs</DependentUpon>
     </Compile>
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
@@ -379,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FListBox.resx">
       <DependentUpon>FListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\FBarChart.resx">
+      <DependentUpon>FBarChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>

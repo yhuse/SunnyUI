@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace Sunny.UI.Demo.Charts
+namespace Sunny.UI.Demo
 {
-    public partial class FBarChart : UITitlePage
+    public partial class FBarChart : UIPage
     {
         public FBarChart()
         {

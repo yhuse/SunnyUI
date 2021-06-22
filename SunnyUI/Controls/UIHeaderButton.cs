@@ -79,11 +79,19 @@ namespace Sunny.UI
                 button.Selected = false;
             }
 
-            Selected = true;
+            if (ShowSelected)
+            {
+                Selected = true;
+            }
+
             TabControl?.SelectPage(PageIndex);
 
             base.OnClick(e);
         }
+
+        [DefaultValue(true)]
+        [Description("显示选中状态"), Category("SunnyUI")]
+        public bool ShowSelected { get; set; } = true;
 
         public event EventHandler SelectedChanged;
 
