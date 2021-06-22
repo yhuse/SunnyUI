@@ -1,4 +1,5 @@
-﻿namespace Sunny.UI.Demo
+﻿
+namespace Sunny.UI.Demo
 {
     partial class FTabControl
     {
@@ -28,6 +29,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uiTabControlMenu1 = new Sunny.UI.UITabControlMenu();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.uiLine2 = new Sunny.UI.UILine();
+            this.uiLine1 = new Sunny.UI.UILine();
             this.uiTabControl1 = new Sunny.UI.UITabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -37,26 +45,85 @@
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.uiLine1 = new Sunny.UI.UILine();
-            this.uiLine2 = new Sunny.UI.UILine();
-            this.uiTabControlMenu1 = new Sunny.UI.UITabControlMenu();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.PagePanel.SuspendLayout();
-            this.uiTabControl1.SuspendLayout();
             this.uiTabControlMenu1.SuspendLayout();
+            this.uiTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // PagePanel
+            // uiTabControlMenu1
             // 
-            this.PagePanel.Controls.Add(this.uiTabControlMenu1);
-            this.PagePanel.Controls.Add(this.uiLine2);
-            this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Controls.Add(this.uiTabControl1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 619);
+            this.uiTabControlMenu1.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.uiTabControlMenu1.Controls.Add(this.tabPage5);
+            this.uiTabControlMenu1.Controls.Add(this.tabPage6);
+            this.uiTabControlMenu1.Controls.Add(this.tabPage7);
+            this.uiTabControlMenu1.Controls.Add(this.tabPage8);
+            this.uiTabControlMenu1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.uiTabControlMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTabControlMenu1.ItemSize = new System.Drawing.Size(40, 200);
+            this.uiTabControlMenu1.Location = new System.Drawing.Point(30, 321);
+            this.uiTabControlMenu1.Multiline = true;
+            this.uiTabControlMenu1.Name = "uiTabControlMenu1";
+            this.uiTabControlMenu1.SelectedIndex = 0;
+            this.uiTabControlMenu1.Size = new System.Drawing.Size(670, 239);
+            this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.uiTabControlMenu1.TabIndex = 25;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage5.Location = new System.Drawing.Point(201, 0);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(469, 239);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "tabPage5";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabPage6.Location = new System.Drawing.Point(201, 0);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(469, 239);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "tabPage6";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabPage7.Location = new System.Drawing.Point(201, 0);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(469, 239);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "tabPage7";
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabPage8.Location = new System.Drawing.Point(201, 0);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(469, 239);
+            this.tabPage8.TabIndex = 3;
+            this.tabPage8.Text = "tabPage8";
+            // 
+            // uiLine2
+            // 
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Location = new System.Drawing.Point(30, 286);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(670, 20);
+            this.uiLine2.TabIndex = 24;
+            this.uiLine2.Text = "UITabControlMenu";
+            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLine1
+            // 
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Location = new System.Drawing.Point(30, 55);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(670, 20);
+            this.uiLine1.TabIndex = 23;
+            this.uiLine1.Text = "UITabControl";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiTabControl1
             // 
@@ -71,15 +138,15 @@
             this.uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
-            this.uiTabControl1.Location = new System.Drawing.Point(30, 52);
-            this.uiTabControl1.MainPage = "tabPage1";
+            this.uiTabControl1.Location = new System.Drawing.Point(30, 85);
+            this.uiTabControl1.MainPage = "主页";
             this.uiTabControl1.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             this.uiTabControl1.Name = "uiTabControl1";
             this.uiTabControl1.SelectedIndex = 0;
             this.uiTabControl1.ShowActiveCloseButton = true;
             this.uiTabControl1.Size = new System.Drawing.Size(670, 183);
             this.uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.uiTabControl1.TabIndex = 0;
+            this.uiTabControl1.TabIndex = 22;
             this.uiTabControl1.BeforeRemoveTabPage += new Sunny.UI.UITabControl.OnBeforeRemoveTabPage(this.uiTabControl1_BeforeRemoveTabPage);
             // 
             // tabPage1
@@ -89,7 +156,7 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(670, 143);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "主页";
             // 
             // tabPage2
             // 
@@ -154,119 +221,39 @@
             this.tabPage13.Text = "tabPage13";
             this.tabPage13.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tabPage4.Location = new System.Drawing.Point(0, 40);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(670, 143);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            // 
-            // uiLine1
-            // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(30, 20);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(670, 20);
-            this.uiLine1.TabIndex = 19;
-            this.uiLine1.Text = "UITabControl";
-            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 253);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(670, 20);
-            this.uiLine2.TabIndex = 20;
-            this.uiLine2.Text = "UITabControlMenu";
-            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiTabControlMenu1
-            // 
-            this.uiTabControlMenu1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.uiTabControlMenu1.Controls.Add(this.tabPage5);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage6);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage7);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage8);
-            this.uiTabControlMenu1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControlMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTabControlMenu1.ItemSize = new System.Drawing.Size(40, 200);
-            this.uiTabControlMenu1.Location = new System.Drawing.Point(30, 288);
-            this.uiTabControlMenu1.Multiline = true;
-            this.uiTabControlMenu1.Name = "uiTabControlMenu1";
-            this.uiTabControlMenu1.SelectedIndex = 0;
-            this.uiTabControlMenu1.Size = new System.Drawing.Size(670, 239);
-            this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.uiTabControlMenu1.TabIndex = 21;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage5.Location = new System.Drawing.Point(201, 0);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(469, 239);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tabPage6.Location = new System.Drawing.Point(201, 0);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(469, 239);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tabPage7.Location = new System.Drawing.Point(201, 0);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(469, 239);
-            this.tabPage7.TabIndex = 2;
-            this.tabPage7.Text = "tabPage7";
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tabPage8.Location = new System.Drawing.Point(201, 0);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(469, 239);
-            this.tabPage8.TabIndex = 3;
-            this.tabPage8.Text = "tabPage8";
-            // 
             // FTabControl
             // 
+            this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 654);
+            this.ClientSize = new System.Drawing.Size(800, 584);
+            this.Controls.Add(this.uiTabControlMenu1);
+            this.Controls.Add(this.uiLine2);
+            this.Controls.Add(this.uiLine1);
+            this.Controls.Add(this.uiTabControl1);
             this.Name = "FTabControl";
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.ShowTitle = true;
             this.Symbol = 61716;
             this.Text = "TabControl";
-            this.PagePanel.ResumeLayout(false);
-            this.uiTabControl1.ResumeLayout(false);
             this.uiTabControlMenu1.ResumeLayout(false);
+            this.uiTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private UITabControl uiTabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private UITabControlMenu uiTabControlMenu1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private UILine uiLine2;
-        private UILine uiLine1;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage8;
+        private UILine uiLine2;
+        private UILine uiLine1;
+        private UITabControl uiTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TabPage tabPage11;

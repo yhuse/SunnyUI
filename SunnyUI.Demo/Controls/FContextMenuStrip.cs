@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FContextMenuStrip : UITitlePage
+    public partial class FContextMenuStrip : UIPage
     {
         public FContextMenuStrip()
         {

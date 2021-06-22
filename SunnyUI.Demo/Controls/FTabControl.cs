@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FTabControl : UITitlePage
+    public partial class FTabControl : UIPage
     {
         public FTabControl()
         {

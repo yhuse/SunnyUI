@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo
 {
-    public partial class FDataGridView : UITitlePage
+    public partial class FDataGridView : UIPage
     {
         List<Data> datas = new List<Data>();
 

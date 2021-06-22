@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FTextBox : UITitlePage
+    public partial class FTextBox : UIPage
     {
         public FTextBox()
         {

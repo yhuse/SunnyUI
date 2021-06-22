@@ -264,8 +264,12 @@ namespace Sunny.UI
         }
 
         public int Symbol { get; set; }
+
         public UISymbolType SymbolType { get; set; }
+
         public Point SymbolOffset { get; set; }
+
+        public int SymbolSize { get; set; } = 28;
 
         private void lbl_DoubleClick(object sender, EventArgs e)
         {

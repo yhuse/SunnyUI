@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FProcess : UITitlePage
+    public partial class FProcess : UIPage
     {
         public FProcess()
         {

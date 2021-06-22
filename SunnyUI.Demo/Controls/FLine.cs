@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FLine : UITitlePage
+    public partial class FLine : UIPage
     {
         public FLine()
         {

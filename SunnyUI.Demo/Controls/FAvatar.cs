@@ -1,15 +1,13 @@
-﻿using System;
-
-namespace Sunny.UI.Demo
+﻿namespace Sunny.UI.Demo
 {
-    public partial class FAvatar : UITitlePage
+    public partial class FAvatar : UIPage
     {
         public FAvatar()
         {
             InitializeComponent();
         }
 
-        private void uiAvatar4_Click(object sender, EventArgs e)
+        private void uiAvatar4_Click(object sender, System.EventArgs e)
         {
             uiContextMenuStrip1.Show(uiAvatar4, 0, uiAvatar4.Height);
         }

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FScrollBar : UITitlePage
+    public partial class FScrollBar : UIPage
     {
         public FScrollBar()
         {
@@ -28,8 +21,8 @@ namespace Sunny.UI.Demo
             value++;
             uiScrollBar1.Value = value;
             uiHorScrollBar1.Value = value;
-            uiScrollBar2.Value = value/3;
-            uiHorScrollBar2.Value = value/3;
+            uiScrollBar2.Value = value / 3;
+            uiHorScrollBar2.Value = value / 3;
             uiScrollBar3.Value = value / 10;
             uiHorScrollBar3.Value = value / 10;
         }

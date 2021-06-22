@@ -3,7 +3,7 @@ using System;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FListBox : UITitlePage
+    public partial class FListBox : UIPage
     {
         public FListBox()
         {
@@ -19,14 +19,6 @@ namespace Sunny.UI.Demo
             }
 
             uiImageListBox1.Items.Clear();
-            // string[] files = System.IO.Directory.GetFiles(DirEx.CurrentDir() + "Team",
-            //     "*.png", SearchOption.TopDirectoryOnly);
-            // foreach (string file in files)
-            // {
-            //     uiImageListBox1.AddImage(file, file.FileInfo().Name);
-            //     Console.WriteLine(file.FileInfo().Name);
-            // }
-
             uiImageListBox1.AddImage(Resources.ajax, "ajax.png");
             uiImageListBox1.AddImage(Resources.atalanta, "atalanta.png");
             uiImageListBox1.AddImage(Resources.barcelona, "barcelona.png");
@@ -59,7 +51,7 @@ namespace Sunny.UI.Demo
             this.ShowInfoDialog(uiImageListBox1.SelectedItem.ImagePath);
         }
 
-        private void uiCheckBox1_ValueChanged(object sender, bool value)
+        private void uiCheckBox1_CheckedChanged(object sender, System.EventArgs e)
         {
             uiImageListBox1.ShowDescription = !uiImageListBox1.ShowDescription;
             uiImageListBox1.ItemHeight = uiImageListBox1.ShowDescription ? 80 : 50;
@@ -74,12 +66,6 @@ namespace Sunny.UI.Demo
         private void uiButton1_Click(object sender, System.EventArgs e)
         {
             uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_" + num);
-            num++;
-        }
-
-        private void uiButton1_DoubleClick(object sender, EventArgs e)
-        {
-            uiListBox1.Items.Add(DateTime.Now.ToString("yyyyMMdd") + "_double_" + num);
             num++;
         }
     }

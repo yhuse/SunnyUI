@@ -1,16 +1,15 @@
 ﻿using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FLabel : UITitlePage
+    public partial class FLabel : UIPage
     {
         public FLabel()
         {
             InitializeComponent();
         }
 
-        private void uiLinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void uiLinkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(uiLinkLabel1.Text);
         }

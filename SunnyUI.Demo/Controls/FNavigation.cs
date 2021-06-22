@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FNavigation : UITitlePage
+    public partial class FNavigation : UIPage
     {
         public FNavigation()
         {
@@ -12,11 +12,6 @@
         private void uiNavBar1_MenuItemClick(string itemText, int menuIndex, int pageIndex)
         {
             UIMessageTip.ShowOk(itemText + ", " + menuIndex + ", " + pageIndex);
-        }
-
-        private void uiNavBar1_NodeMouseClick(System.Windows.Forms.TreeNode node, int menuIndex, int pageIndex)
-        {
-            //UIMessageTip.ShowOk(node.Text + ", " + menuIndex + ", " + pageIndex);
         }
 
         private void uiNavMenu1_MenuItemClick(System.Windows.Forms.TreeNode node, NavMenuItem item, int pageIndex)

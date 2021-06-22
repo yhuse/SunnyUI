@@ -1,12 +1,10 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FFlowLayoutPanel : UITitlePage
+    public partial class FFlowLayoutPanel : UIPage
     {
         public FFlowLayoutPanel()
         {
             InitializeComponent();
-
-
         }
 
         public override void Init()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FCombobox : UITitlePage
+    public partial class FCombobox : UIPage
     {
         public FCombobox()
         {
@@ -26,22 +26,13 @@ namespace Sunny.UI.Demo
             uiComboboxEx2.DataSource = infoList;
         }
 
-        private void uiDatePicker1_ValueChanged(object sender, DateTime value)
+        public class Info
         {
-            uiDatePicker1.Value.ConsoleWriteLine();
+            public string Id { get; set; }
+            public string Name { get; set; }
         }
 
-        private void uiDatetimePicker1_ValueChanged(object sender, DateTime value)
-        {
-            uiDatetimePicker1.Value.ConsoleWriteLine();
-        }
-
-        private void uiTimePicker1_ValueChanged(object sender, DateTime value)
-        {
-            uiTimePicker1.Value.ConsoleWriteLine();
-        }
-
-        private void uiComboBox1_DropDown(object sender, EventArgs e)
+        private void uiComboBox1_DropDown(object sender, System.EventArgs e)
         {
             uiComboBox1.Items.Clear();
             uiComboBox1.Items.Add("100");
@@ -50,35 +41,29 @@ namespace Sunny.UI.Demo
             uiComboBox1.Items.Add("103");
         }
 
-        private void uiComboTreeView1_NodeSelected(object sender, System.Windows.Forms.TreeNode node)
+        private void uiDatePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            //ShowInfoTip(node.Text);
+            value.ConsoleWriteLine();
         }
 
-        private void uiComboTreeView2_NodesSelected(object sender, System.Windows.Forms.TreeNodeCollection node)
+        private void uiTimePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            //ShowInfoTip(uiComboTreeView2.Text);
+            value.ConsoleWriteLine();
         }
 
-        public class Info
+        private void uiDatetimePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            public string Id { get; set; }
-            public string Name { get; set; }
+            value.ConsoleWriteLine();
         }
 
-        private void uiComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //ShowInfoTip(uiComboBox2.SelectedValue.ToString());
-        }
-
-        private void uiColorPicker1_Click(object sender, EventArgs e)
+        private void uiColorPicker1_Click(object sender, System.EventArgs e)
         {
             Console.WriteLine(uiColorPicker1.Value.ToString());
         }
 
         private void uiColorPicker1_ValueChanged(object sender, System.Drawing.Color value)
         {
-            Console.WriteLine(uiColorPicker1.Value.ToString());
+            Console.WriteLine(value.ToString());
         }
     }
 }

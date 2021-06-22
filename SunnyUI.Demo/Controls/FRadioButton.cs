@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo
 {
-    public partial class FRadioButton : UITitlePage
+    public partial class FRadioButton : UIPage
     {
         public FRadioButton()
         {

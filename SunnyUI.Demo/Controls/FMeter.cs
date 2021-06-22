@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FMeter : UITitlePage
+    public partial class FMeter : UIPage
     {
         public FMeter()
         {

@@ -1,4 +1,5 @@
-﻿namespace Sunny.UI.Demo
+﻿
+namespace Sunny.UI.Demo
 {
     partial class FTransfer
     {
@@ -28,16 +29,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uiTransfer1 = new Sunny.UI.UITransfer();
             this.uiLine1 = new Sunny.UI.UILine();
-            this.PagePanel.SuspendLayout();
+            this.uiTransfer1 = new Sunny.UI.UITransfer();
             this.SuspendLayout();
             // 
-            // PagePanel
+            // uiLine1
             // 
-            this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Controls.Add(this.uiTransfer1);
-            this.PagePanel.Size = new System.Drawing.Size(800, 480);
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Location = new System.Drawing.Point(30, 55);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(670, 20);
+            this.uiLine1.TabIndex = 21;
+            this.uiLine1.Text = "UITransfer";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiTransfer1
             // 
@@ -60,45 +65,37 @@
             "14",
             "15",
             "16"});
-            this.uiTransfer1.Location = new System.Drawing.Point(30, 55);
+            this.uiTransfer1.Location = new System.Drawing.Point(30, 90);
             this.uiTransfer1.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
+            this.uiTransfer1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTransfer1.Name = "uiTransfer1";
             this.uiTransfer1.Padding = new System.Windows.Forms.Padding(1);
             this.uiTransfer1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiTransfer1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiTransfer1.Size = new System.Drawing.Size(427, 370);
-            this.uiTransfer1.TabIndex = 3;
+            this.uiTransfer1.TabIndex = 20;
             this.uiTransfer1.Text = "uiTransfer1";
-            this.uiTransfer1.ItemsLeftCountChange += new System.EventHandler(this.uiTransfer1_ItemsLeftCountChange);
-            this.uiTransfer1.ItemsRightCountChange += new System.EventHandler(this.uiTransfer1_ItemsRightCountChange);
+            this.uiTransfer1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiLine1
+            // FTransfer1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(30, 20);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(670, 20);
-            this.uiLine1.TabIndex = 19;
-            this.uiLine1.Text = "UITransfer";
-            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // FTransfer
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 515);
-            this.Name = "FTransfer";
+            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.Controls.Add(this.uiLine1);
+            this.Controls.Add(this.uiTransfer1);
+            this.Name = "FTransfer1";
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.ShowTitle = true;
             this.Symbol = 61516;
             this.Text = "Transfer";
-            this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private UITransfer uiTransfer1;
         private UILine uiLine1;
+        private UITransfer uiTransfer1;
     }
 }

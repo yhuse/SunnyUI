@@ -29,6 +29,8 @@ namespace Sunny.UI
     {
         int Symbol { get; set; }
 
+        int SymbolSize { get; set; }
+
         Point SymbolOffset { get; set; }
     }
 

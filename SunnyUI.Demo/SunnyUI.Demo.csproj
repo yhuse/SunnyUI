@@ -87,17 +87,17 @@
     <Compile Include="Charts\FPieChart.Designer.cs">
       <DependentUpon>FPieChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FAvatar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FAvatar.Designer.cs">
-      <DependentUpon>FAvatar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FButton.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\FButton.Designer.cs">
       <DependentUpon>FButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FAvatar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FAvatar.Designer.cs">
+      <DependentUpon>FAvatar.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FCheckBox.cs">
       <SubType>Form</SubType>
@@ -117,18 +117,6 @@
     <Compile Include="Controls\FContextMenuStrip.Designer.cs">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FDataGridView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FDataGridView.designer.cs">
-      <DependentUpon>FDataGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FFlowLayoutPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FFlowLayoutPanel.Designer.cs">
-      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FLabel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,11 +129,41 @@
     <Compile Include="Controls\FLine.Designer.cs">
       <DependentUpon>FLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTransfer.Designer.cs">
+      <DependentUpon>FTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FHeaderButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FHeaderButton.Designer.cs">
+      <DependentUpon>FHeaderButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FFlowLayoutPanel.Designer.cs">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FDataGridView.Designer.cs">
+      <DependentUpon>FDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FListBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\FListBox.Designer.cs">
       <DependentUpon>FListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FMain.designer.cs">
+      <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FMeter.cs">
       <SubType>Form</SubType>
@@ -158,72 +176,6 @@
     </Compile>
     <Compile Include="Controls\FNavigation.Designer.cs">
       <DependentUpon>FNavigation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FOther.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FOther.Designer.cs">
-      <DependentUpon>FOther.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FPanel.Designer.cs">
-      <DependentUpon>FPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FProcess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FProcess.designer.cs">
-      <DependentUpon>FProcess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FRadioButton.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FRadioButton.Designer.cs">
-      <DependentUpon>FRadioButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FScrollBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FScrollBar.Designer.cs">
-      <DependentUpon>FScrollBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FTabControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FTabControl.Designer.cs">
-      <DependentUpon>FTabControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FTextBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FTextBox.Designer.cs">
-      <DependentUpon>FTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FTransfer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FTransfer.Designer.cs">
-      <DependentUpon>FTransfer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FTreeView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FTreeView.Designer.cs">
-      <DependentUpon>FTreeView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FHeaderButton.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FHeaderButton.Designer.cs">
-      <DependentUpon>FHeaderButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FMain.designer.cs">
-      <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FDialogs.cs">
       <SubType>Form</SubType>
@@ -333,6 +285,54 @@
     <Compile Include="Forms\Pages\FTitlePage3.Designer.cs">
       <DependentUpon>FTitlePage3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FPanel.Designer.cs">
+      <DependentUpon>FPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTreeView.Designer.cs">
+      <DependentUpon>FTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTabControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTabControl.Designer.cs">
+      <DependentUpon>FTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FTextBox.Designer.cs">
+      <DependentUpon>FTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FScrollBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FScrollBar.Designer.cs">
+      <DependentUpon>FScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FRadioButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FRadioButton.Designer.cs">
+      <DependentUpon>FRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FProcess.Designer.cs">
+      <DependentUpon>FProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FOther.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FOther.Designer.cs">
+      <DependentUpon>FOther.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Charts\FBarChartEx.resx">
@@ -344,11 +344,11 @@
     <EmbeddedResource Include="Charts\FPieChart.resx">
       <DependentUpon>FPieChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FAvatar.resx">
-      <DependentUpon>FAvatar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FButton.resx">
       <DependentUpon>FButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FAvatar.resx">
+      <DependentUpon>FAvatar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FCheckBox.resx">
       <DependentUpon>FCheckBox.cs</DependentUpon>
@@ -359,59 +359,35 @@
     <EmbeddedResource Include="Controls\FContextMenuStrip.resx">
       <DependentUpon>FContextMenuStrip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FDataGridView.resx">
-      <DependentUpon>FDataGridView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FFlowLayoutPanel.resx">
-      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FHeaderButton.resx">
-      <DependentUpon>FHeaderButton.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FLabel.resx">
       <DependentUpon>FLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FLine.resx">
       <DependentUpon>FLine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTransfer.resx">
+      <DependentUpon>FTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FHeaderButton.resx">
+      <DependentUpon>FHeaderButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FFlowLayoutPanel.resx">
+      <DependentUpon>FFlowLayoutPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FDataGridView.resx">
+      <DependentUpon>FDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FListBox.resx">
       <DependentUpon>FListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMain.resx">
+      <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FNavigation.resx">
       <DependentUpon>FNavigation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FOther.resx">
-      <DependentUpon>FOther.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FPanel.resx">
-      <DependentUpon>FPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FProcess.resx">
-      <DependentUpon>FProcess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FRadioButton.resx">
-      <DependentUpon>FRadioButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FScrollBar.resx">
-      <DependentUpon>FScrollBar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FTabControl.resx">
-      <DependentUpon>FTabControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FTextBox.resx">
-      <DependentUpon>FTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FTransfer.resx">
-      <DependentUpon>FTransfer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FTreeView.resx">
-      <DependentUpon>FTreeView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FMain.resx">
-      <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FDialogs.resx">
       <DependentUpon>FDialogs.cs</DependentUpon>
@@ -466,6 +442,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pages\FTitlePage3.resx">
       <DependentUpon>FTitlePage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FPanel.resx">
+      <DependentUpon>FPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTreeView.resx">
+      <DependentUpon>FTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTabControl.resx">
+      <DependentUpon>FTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FTextBox.resx">
+      <DependentUpon>FTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FScrollBar.resx">
+      <DependentUpon>FScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FRadioButton.resx">
+      <DependentUpon>FRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FProcess.resx">
+      <DependentUpon>FProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FOther.resx">
+      <DependentUpon>FOther.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
