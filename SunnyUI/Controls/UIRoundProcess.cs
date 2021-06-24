@@ -74,7 +74,6 @@ namespace Sunny.UI
             set
             {
                 inner = Math.Max(value, 0);
-                inner = Math.Min(value, outer - 5);
                 Invalidate();
             }
         }
@@ -88,7 +87,6 @@ namespace Sunny.UI
             set
             {
                 outer = Math.Max(value, 5);
-                inner = Math.Min(inner, outer - 5);
                 Invalidate();
             }
         }
@@ -152,6 +150,16 @@ namespace Sunny.UI
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
+            int iin = Math.Min(inner, outer);
+            int iou = Math.Max(inner, outer);
+            if (iin == iou)
+            {
+                iou = iin + 1;
+            }
+
+            inner = iin;
+            outer = iou;
+
             g.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
             g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value * 1.0f / Maximum * 360.0f);
         }
