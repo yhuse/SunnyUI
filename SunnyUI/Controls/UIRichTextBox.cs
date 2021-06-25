@@ -46,6 +46,8 @@ namespace Sunny.UI
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
         }
 
+        public RichTextBox RichTextBox => edit;
+
         public override Color BackColor { get => edit.BackColor; set { edit.BackColor = base.BackColor = value; } }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
@@ -664,6 +666,12 @@ namespace Sunny.UI
         {
             get => edit.ZoomFactor;
             set => edit.ZoomFactor = value;
+        }
+
+        public bool WordWrap
+        {
+            get => edit.WordWrap;
+            set => edit.WordWrap = value;
         }
 
         public bool CanPaste(DataFormats.Format clipFormat)
