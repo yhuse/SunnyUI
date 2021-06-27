@@ -144,6 +144,11 @@ namespace Sunny.UI
             return MainTabControl.RemovePage(guid);
         }
 
+        public virtual void Feedback(object sender, int pageIndex, params object[] objects)
+        {
+
+        }
+
         #endregion IFrame实现
     }
 }

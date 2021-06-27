@@ -619,5 +619,7 @@ namespace Sunny.UI
         bool RemovePage(int pageIndex);
 
         bool RemovePage(Guid guid);
+
+        void Feedback(object sender, int pageIndex, params object[] objects);
     }
 }
