@@ -27,6 +27,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -93,6 +94,76 @@ namespace Sunny.UI
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
         }
+
+        private readonly Dictionary<string, CellStyle> CellStyles = new Dictionary<string, CellStyle>();
+
+        public class CellStyle
+        {
+            public int Row { get; set; }
+
+            public int Col { get; set; }
+
+            public Color BackColor { get; set; }
+
+            public Color ForeColor { get; set; }
+
+            public CellStyle(int row, int col, Color backColor, Color foreColor)
+            {
+                Row = row;
+                Col = col;
+                BackColor = backColor;
+                ForeColor = foreColor;
+            }
+        }
+
+        protected override void OnCellPainting(DataGridViewCellPaintingEventArgs e)
+        {
+            base.OnCellPainting(e);
+
+            if (CellStyles.Count > 0 && e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                object obj = e.Value;
+                if (obj == null) return;
+
+                string key = e.RowIndex + "_" + e.ColumnIndex;
+                if (CellStyles.ContainsKey(key))
+                {
+                    e.CellStyle.ForeColor = CellStyles[key].ForeColor;
+                    e.CellStyle.BackColor = CellStyles[key].BackColor;
+                    e.CellStyle.SelectionForeColor = CellStyles[key].ForeColor;
+                    e.CellStyle.SelectionBackColor = CellStyles[key].BackColor;
+                }
+            }
+        }
+
+        public void SetCellStyle(int row, int col, Color backColor, Color foreColor)
+        {
+            SetCellStyle(new CellStyle(row, col, backColor, foreColor));
+        }
+
+        public void SetCellStyle(CellStyle style)
+        {
+            string key = style.Row + "_" + style.Col;
+            if (CellStyles.ContainsKey(key))
+                CellStyles[key] = style;
+            else
+                CellStyles.Add(key, style);
+        }
+
+        public void ClearCellStyles()
+        {
+            CellStyles.Clear();
+        }
+
+        public void ClearCellStyle(int row, int col)
+        {
+            string key = row + "_" + col;
+            if (CellStyles.ContainsKey(key))
+            {
+                CellStyles.Remove(key);
+            }
+        }
+
 
         [Description("行高"), Category("SunnyUI")]
         [DefaultValue(23)]
