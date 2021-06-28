@@ -246,6 +246,8 @@ namespace Sunny.UI
         [DefaultValue(0), Description("垂直偏移"), Category("SunnyUI")]
         public int OffsetY { get; set; } = 0;
 
+        public event PaintEventHandler PaintAgain;
+
         /// <summary>
         /// OnPaint
         /// </summary>
@@ -259,9 +261,9 @@ namespace Sunny.UI
                 return;
             }
 
-            int size = Math.Min(Width, Height) - 3;
             if (Icon == UIIcon.Image)
             {
+                int size = avatarSize;
                 if (Image == null)
                 {
                     return;
@@ -274,21 +276,21 @@ namespace Sunny.UI
                     (int)(Image.Height * 1.0 / Math.Min(sc1, sc2) + 0.5));
 
                 Bitmap bmp = scaleImage.Split(size, Shape);
-                e.Graphics.DrawImage(bmp, 1, 1);
+                e.Graphics.DrawImage(bmp, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY);
                 bmp.Dispose();
                 scaleImage.Dispose();
                 e.Graphics.SetHighQuality();
 
-                using (Pen pn = new Pen(BackColor, 2))
+                using (Pen pn = new Pen(BackColor, 4))
                 {
                     if (Shape == UIShape.Circle)
                     {
-                        e.Graphics.DrawEllipse(pn, 1, 1, size, size);
+                        e.Graphics.DrawEllipse(pn, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY, size, size);
                     }
 
                     if (Shape == UIShape.Square)
                     {
-                        e.Graphics.DrawRoundRectangle(pn, 1, 1, size, size, 5);
+                        e.Graphics.DrawRoundRectangle(pn, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY, size, size, 5);
                     }
                 }
 
@@ -305,6 +307,8 @@ namespace Sunny.UI
                 SizeF sf = e.Graphics.MeasureString(Text, Font);
                 e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + OffsetX, (Height - sf.Height) / 2.0f + 1 + OffsetY);
             }
+
+            PaintAgain?.Invoke(this, e);
         }
     }
 }
