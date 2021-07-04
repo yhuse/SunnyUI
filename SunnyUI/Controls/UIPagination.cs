@@ -142,7 +142,8 @@ namespace Sunny.UI
             {
                 totalCount = Math.Max(0, value);
                 SetShowButtons();
-                DataBind();
+                if (ActivePage > PageCount)
+                    ActivePage = 1;
             }
         }
 
