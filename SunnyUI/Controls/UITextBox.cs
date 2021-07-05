@@ -61,6 +61,8 @@ namespace Sunny.UI
             edit.Click += Edit_Click;
             edit.DoubleClick += Edit_DoubleClick;
             edit.Leave += Edit_Leave;
+            edit.Validated += Edit_Validated;
+            edit.Validating += Edit_Validating;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -82,12 +84,26 @@ namespace Sunny.UI
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
 
+        private void Edit_Validating(object sender, CancelEventArgs e)
+        {
+            Validating?.Invoke(this, e);
+        }
+
+
+        public new CancelEventHandler Validating;
+        public new event EventHandler Validated;
+
+        private void Edit_Validated(object sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
+        }
+
         [Browsable(false)]
         public TextBox TextBox => edit;
 
         private void Edit_Leave(object sender, EventArgs e)
         {
-            Leave?.Invoke(sender, e);
+            Leave?.Invoke(this, e);
         }
 
         protected override void OnEnabledChanged(EventArgs e)
@@ -261,24 +277,24 @@ namespace Sunny.UI
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
-            KeyPress?.Invoke(sender, e);
+            KeyPress?.Invoke(this, e);
         }
 
         private void EditOnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DoEnter?.Invoke(sender, e);
+                DoEnter?.Invoke(this, e);
             }
 
-            KeyDown?.Invoke(sender, e);
+            KeyDown?.Invoke(this, e);
         }
 
         public event EventHandler DoEnter;
 
         private void EditOnKeyUp(object sender, KeyEventArgs e)
         {
-            KeyUp?.Invoke(sender, e);
+            KeyUp?.Invoke(this, e);
         }
 
         [DefaultValue(null)]

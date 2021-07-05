@@ -49,7 +49,7 @@ namespace Sunny.UI
 
         private void MainContainer_AfterRemoveTabPage(object sender, int index)
         {
-            AfterRemoveTabPage?.Invoke(sender, index);
+            AfterRemoveTabPage?.Invoke(this, index);
         }
 
         private bool MainContainer_BeforeRemoveTabPage(object sender, int index)

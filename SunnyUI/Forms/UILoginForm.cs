@@ -66,7 +66,7 @@ namespace Sunny.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (ButtonCancelClick != null)
-                ButtonCancelClick?.Invoke(sender, e);
+                ButtonCancelClick?.Invoke(this, e);
             else
                 Close();
         }
@@ -75,7 +75,7 @@ namespace Sunny.UI
         {
             if (ButtonLoginClick != null)
             {
-                ButtonLoginClick?.Invoke(sender, e);
+                ButtonLoginClick?.Invoke(this, e);
             }
             else
             {

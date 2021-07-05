@@ -105,7 +105,7 @@ namespace Sunny.UI
 
         private void Edit_LostFocus(object sender, EventArgs e)
         {
-            EditorLostFocus?.Invoke(sender, e);
+            EditorLostFocus?.Invoke(this, e);
         }
 
         public event EventHandler EditorLostFocus;
@@ -121,7 +121,7 @@ namespace Sunny.UI
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
-            KeyPress?.Invoke(sender, e);
+            KeyPress?.Invoke(this, e);
         }
 
         public event EventHandler DoEnter;
@@ -130,15 +130,15 @@ namespace Sunny.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DoEnter?.Invoke(sender, e);
+                DoEnter?.Invoke(this, e);
             }
 
-            KeyDown?.Invoke(sender, e);
+            KeyDown?.Invoke(this, e);
         }
 
         private void EditOnKeyUp(object sender, KeyEventArgs e)
         {
-            KeyUp?.Invoke(sender, e);
+            KeyUp?.Invoke(this, e);
         }
 
         [DefaultValue(null)]

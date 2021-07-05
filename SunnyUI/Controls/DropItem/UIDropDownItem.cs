@@ -58,7 +58,7 @@ namespace Sunny.UI
         /// <param name="value">数值</param>
         protected void DoValueChanged(object sender, object value)
         {
-            ValueChanged?.Invoke(sender, value);
+            ValueChanged?.Invoke(this, value);
         }
 
         /// <summary>

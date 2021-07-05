@@ -74,47 +74,47 @@ namespace Sunny.UI
 
         private void Edit_SelectionChanged(object sender, EventArgs e)
         {
-            SelectionChanged?.Invoke(sender, e);
+            SelectionChanged?.Invoke(this, e);
         }
 
         private void Edit_Protected(object sender, EventArgs e)
         {
-            Protected?.Invoke(sender, e);
+            Protected?.Invoke(this, e);
         }
 
         private void Edit_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            LinkClicked?.Invoke(sender, e);
+            LinkClicked?.Invoke(this, e);
         }
 
         private void Edit_QueryContinueDrag(object sender, QueryContinueDragEventArgs e)
         {
-            QueryContinueDrag?.Invoke(sender, e);
+            QueryContinueDrag?.Invoke(this, e);
         }
 
         private void Edit_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
-            GiveFeedback?.Invoke(sender, e);
+            GiveFeedback?.Invoke(this, e);
         }
 
         private void Edit_DragOver(object sender, DragEventArgs e)
         {
-            DragOver?.Invoke(sender, e);
+            DragOver?.Invoke(this, e);
         }
 
         private void Edit_DragLeave(object sender, EventArgs e)
         {
-            DragLeave?.Invoke(sender, e);
+            DragLeave?.Invoke(this, e);
         }
 
         private void Edit_DragEnter(object sender, DragEventArgs e)
         {
-            DragEnter?.Invoke(sender, e);
+            DragEnter?.Invoke(this, e);
         }
 
         private void Edit_DragDrop(object sender, DragEventArgs e)
         {
-            DragDrop?.Invoke(sender, e);
+            DragDrop?.Invoke(this, e);
         }
 
         public new event KeyEventHandler KeyDown;
@@ -167,17 +167,17 @@ namespace Sunny.UI
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)
         {
-            KeyPress?.Invoke(sender, e);
+            KeyPress?.Invoke(this, e);
         }
 
         private void EditOnKeyDown(object sender, KeyEventArgs e)
         {
-            KeyDown?.Invoke(sender, e);
+            KeyDown?.Invoke(this, e);
         }
 
         private void EditOnKeyUp(object sender, KeyEventArgs e)
         {
-            KeyUp?.Invoke(sender, e);
+            KeyUp?.Invoke(this, e);
         }
 
         [Category("SunnyUI"), Browsable(true), DefaultValue(""), Description("文字")]

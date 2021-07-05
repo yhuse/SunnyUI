@@ -95,7 +95,7 @@ namespace Sunny.UI
 
             Invalidate();
 
-            Tick?.Invoke(sender, e);
+            Tick?.Invoke(this, e);
         }
 
         [DefaultValue(200)]

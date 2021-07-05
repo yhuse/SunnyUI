@@ -317,67 +317,67 @@ namespace Sunny.UI
 
         private void View_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            NodeMouseDoubleClick?.Invoke(sender, e);
+            NodeMouseDoubleClick?.Invoke(this, e);
         }
 
         private void View_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            NodeMouseClick?.Invoke(sender, e);
+            NodeMouseClick?.Invoke(this, e);
         }
 
         private void View_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            AfterSelect?.Invoke(sender, e);
+            AfterSelect?.Invoke(this, e);
         }
 
         private void View_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            BeforeSelect?.Invoke(sender, e);
+            BeforeSelect?.Invoke(this, e);
         }
 
         private void View_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
         {
-            NodeMouseHover?.Invoke(sender, e);
+            NodeMouseHover?.Invoke(this, e);
         }
 
         private void View_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            ItemDrag?.Invoke(sender, e);
+            ItemDrag?.Invoke(this, e);
         }
 
         private void View_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
-            DrawNode?.Invoke(sender, e);
+            DrawNode?.Invoke(this, e);
         }
 
         private void View_AfterExpand(object sender, TreeViewEventArgs e)
         {
-            AfterExpand?.Invoke(sender, e);
+            AfterExpand?.Invoke(this, e);
         }
 
         private void View_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            BeforeExpand?.Invoke(sender, e);
+            BeforeExpand?.Invoke(this, e);
         }
 
         private void View_AfterCollapse(object sender, TreeViewEventArgs e)
         {
-            AfterCollapse?.Invoke(sender, e);
+            AfterCollapse?.Invoke(this, e);
         }
 
         private void View_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
-            BeforeCollapse?.Invoke(sender, e);
+            BeforeCollapse?.Invoke(this, e);
         }
 
         private void View_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            AfterCheck?.Invoke(sender, e);
+            AfterCheck?.Invoke(this, e);
         }
 
         private void View_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
-            BeforeCheck?.Invoke(sender, e);
+            BeforeCheck?.Invoke(this, e);
         }
 
         public void BeginUpdate()

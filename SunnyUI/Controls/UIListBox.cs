@@ -352,17 +352,17 @@ namespace Sunny.UI
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)
         {
-            ValueMemberChanged?.Invoke(sender, e);
+            ValueMemberChanged?.Invoke(this, e);
         }
 
         private void Box_DisplayMemberChanged(object sender, EventArgs e)
         {
-            DisplayMemberChanged?.Invoke(sender, e);
+            DisplayMemberChanged?.Invoke(this, e);
         }
 
         private void Box_DataSourceChanged(object sender, EventArgs e)
         {
-            DataSourceChanged?.Invoke(sender, e);
+            DataSourceChanged?.Invoke(this, e);
         }
 
         public event EventHandler DataSourceChanged;

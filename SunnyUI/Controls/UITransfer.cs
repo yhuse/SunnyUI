@@ -48,12 +48,12 @@ namespace Sunny.UI
 
         private void L2_ItemsCountChange(object sender, EventArgs e)
         {
-            ItemsRightCountChange?.Invoke(sender, e);
+            ItemsRightCountChange?.Invoke(this, e);
         }
 
         private void L1_ItemsCountChange(object sender, EventArgs e)
         {
-            ItemsLeftCountChange?.Invoke(sender, e);
+            ItemsLeftCountChange?.Invoke(this, e);
         }
 
         public event EventHandler ItemsLeftCountChange;

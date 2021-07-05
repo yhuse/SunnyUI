@@ -77,7 +77,7 @@ namespace Sunny.UI
 
         private void DoValueChanged(object sender, object value)
         {
-            ValueChanged?.Invoke(sender, value);
+            ValueChanged?.Invoke(this, value);
         }
 
         /// <summary>

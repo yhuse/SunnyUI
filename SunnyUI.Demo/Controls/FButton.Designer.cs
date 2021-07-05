@@ -1059,10 +1059,12 @@ namespace Sunny.UI.Demo
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiButton2.ShowFocusLine = true;
+            this.uiButton2.ShowTips = true;
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 60;
             this.uiButton2.Text = "Blue";
+            this.uiButton2.TipsText = "16";
             // 
             // uiButton1
             // 
