@@ -94,6 +94,11 @@ namespace Sunny.UI
             parent?.Close();
         }
 
+        public void Close()
+        {
+            CloseParent();
+        }
+
         public virtual void SetStyle(UIBaseStyle style)
         {
         }

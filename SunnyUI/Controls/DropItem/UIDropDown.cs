@@ -136,7 +136,23 @@ namespace Sunny.UI
                 throw new ArgumentNullException(nameof(control));
             }
 
-            Show(control, control.ClientRectangle);
+            Show(control, control.ClientRectangle, new Point(0, 0));
+        }
+
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <param name="control">Control</param>
+        /// <param name="size">大小</param>
+        public void Show(Control control, Size size, Point offset)
+        {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
+            Size = size;
+            Show(control, control.ClientRectangle, offset);
         }
 
         /// <summary>
@@ -176,7 +192,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="control">Control</param>
         /// <param name="area">区域</param>
-        public void Show(Control control, Rectangle area)
+        public void Show(Control control, Rectangle area, Point offset)
         {
             if (control == null)
             {
@@ -187,6 +203,10 @@ namespace Sunny.UI
 
             Point location = control.PointToScreen(new Point(area.Left, area.Top + area.Height));
             Rectangle screen = Screen.FromControl(control).WorkingArea;
+
+            location.X += offset.X;
+            location.Y += offset.Y;
+
             if (location.X + Size.Width > (screen.Left + screen.Width))
             {
                 location.X = (screen.Left + screen.Width) - Size.Width;
