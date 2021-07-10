@@ -118,6 +118,35 @@ namespace Sunny.UI
             HBar.FillColor = color;
         }
 
+        protected override void AfterSetForeColor(Color color)
+        {
+            base.AfterSetForeColor(color);
+
+            if (!StyleCustomMode)
+            {
+                scrollBarColor = color;
+            }
+        }
+
+        private Color scrollBarColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => scrollBarColor;
+            set
+            {
+                scrollBarColor = value;
+                VBar.ForeColor = value;
+                HBar.ForeColor = value;
+                Invalidate();
+            }
+        }
+
         public void AddControl(Control ctrl)
         {
             Panel.Controls.Add(ctrl);
