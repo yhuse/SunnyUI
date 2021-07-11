@@ -1,5 +1,38 @@
 :fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
 
+#### 2021-07-11 V3.0.5  
+:fa-plus:  字体图标：增加FontAwesome V5.15版本字体图标  
+:fa-plus:  UISignal: 增加信号强度显示控件  
+:fa-plus:  UIToolStripDropDown: 增加了一个弹窗管理类  
+:fa-asterisk: UIPage：增加标题行，后期以替代UITitlePage  
+:fa-asterisk: Demo的Controls下的页面全部从UITitlePage切换到UIPage，后期会逐步舍弃UITitlePage。  
+:fa-asterisk: UIDataGridView：增加了一个RowHeight，默认23  
+:fa-asterisk: IStyleInterface：设置为Public，可基于此扩展外部控件  
+:fa-asterisk: UIRichTextBox：支持可改背景色  
+:fa-asterisk: UIPagination：更新了Demo，分页切换事件加载数据。  
+:fa-asterisk: UITitlePage：解决标题栏闪烁  
+:fa-asterisk: UITextBox：增加图标和字体图标的显示  
+:fa-asterisk: UITextBox: MaximumEnabled，MinimumEnabled代替HasMaximum，HasMinim  
+:fa-asterisk: UIHeaderButton: 增加了TextImageRelation，实现文本和图像的相对位置  
+:fa-asterisk: UIListBox：修改对象绑定的显示问题  
+:fa-asterisk: UICombobox: 更新了数据绑定相关代码  
+:fa-asterisk: UITabControl：Tab页标题选中高亮颜色增加可调整高度  
+:fa-asterisk: UINavBar: 标题选中高亮颜色增加可调整高度  
+:fa-asterisk: UIListBox：更新一处数据绑定显示错误  
+:fa-asterisk: UINavMenu：增加右侧图标  
+:fa-asterisk: UIBattery：修改可自定义背景色  
+:fa-asterisk: UILight：增加方形显示，优化渐变色  
+:fa-asterisk: UIHeaderButton：增加ShowSelected，是否显示选中状态  
+:fa-asterisk: UIBarChart：修正一个显示的Bug  
+:fa-asterisk: UIRoundProcess：修改显示值  
+:fa-asterisk: UIRichTextBox：增加WordWrap属性  
+:fa-asterisk: UIDataGridView：自定义单元格颜色  
+:fa-asterisk: IFame：增加一个反馈的接口，Feedback，Page可将对象反馈给Frame  
+:fa-asterisk: UIAvatar：更改图片显示  
+:fa-asterisk: UIPagination：设置总数在页面不超过总页数的情况下不刷新  
+:fa-asterisk: UITextBox等组合控件将其回调事件的Sender设置为this，而不是其内置控件  
+:fa-asterisk: UIFlowLayoutPanel：增加滚动条颜色属性  
+
 #### 2021-05-20 V3.0.4  
 :fa-plus: UIObjectCollection：带集合个数改变事件的对象集合类  
 :fa-plus: UIStringCollection：带集合个数改变事件的字符串集合类  

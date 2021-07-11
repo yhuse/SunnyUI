@@ -6,36 +6,36 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "SunnyUI/3.0.4": {
+      "SunnyUI/3.0.5": {
         "dependencies": {
-          "SunnyUI.Common": "3.0.4"
+          "SunnyUI.Common": "3.0.5"
         },
         "runtime": {
           "SunnyUI.dll": {}
         }
       },
-      "SunnyUI.Common/3.0.4": {
+      "SunnyUI.Common/3.0.5": {
         "runtime": {
           "lib/net5.0/SunnyUI.Common.dll": {
-            "assemblyVersion": "3.0.4.0",
-            "fileVersion": "3.0.4.0"
+            "assemblyVersion": "3.0.5.0",
+            "fileVersion": "3.0.5.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "SunnyUI/3.0.4": {
+    "SunnyUI/3.0.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "SunnyUI.Common/3.0.4": {
+    "SunnyUI.Common/3.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eFd9v+FBd6+pkdjFIOx2SWXmifFmYh9RL8wgrtt3A4Q81uCo7NNiYYJys/YIcpxQReObOWmJ1h/3vZCD3sfnlA==",
-      "path": "sunnyui.common/3.0.4",
-      "hashPath": "sunnyui.common.3.0.4.nupkg.sha512"
+      "sha512": "sha512-bP9fQW8P4fJAV6FfU2Xfw3MtOduLoj/j+MRfdIn3eq9bGqDepg/w5/xqXi393Vuxvxk24eY9+5YMRVyeS+tiRg==",
+      "path": "sunnyui.common/3.0.5",
+      "hashPath": "sunnyui.common.3.0.5.nupkg.sha512"
     }
   }
 }

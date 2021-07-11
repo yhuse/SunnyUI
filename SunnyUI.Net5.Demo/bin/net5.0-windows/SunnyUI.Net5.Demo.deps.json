@@ -6,54 +6,54 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "SunnyUI.Net5.Demo/3.0.4": {
+      "SunnyUI.Net5.Demo/3.0.5": {
         "dependencies": {
-          "SunnyUI": "3.0.4"
+          "SunnyUI": "3.0.5"
         },
         "runtime": {
           "SunnyUI.Net5.Demo.dll": {}
         }
       },
-      "SunnyUI/3.0.4": {
+      "SunnyUI/3.0.5": {
         "dependencies": {
-          "SunnyUI.Common": "3.0.4"
+          "SunnyUI.Common": "3.0.5"
         },
         "runtime": {
           "lib/net5.0-windows7.0/SunnyUI.dll": {
-            "assemblyVersion": "3.0.4.0",
-            "fileVersion": "3.0.4.0"
+            "assemblyVersion": "3.0.5.0",
+            "fileVersion": "3.0.5.0"
           }
         }
       },
-      "SunnyUI.Common/3.0.4": {
+      "SunnyUI.Common/3.0.5": {
         "runtime": {
           "lib/net5.0/SunnyUI.Common.dll": {
-            "assemblyVersion": "3.0.4.0",
-            "fileVersion": "3.0.4.0"
+            "assemblyVersion": "3.0.5.0",
+            "fileVersion": "3.0.5.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "SunnyUI.Net5.Demo/3.0.4": {
+    "SunnyUI.Net5.Demo/3.0.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "SunnyUI/3.0.4": {
+    "SunnyUI/3.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bFGJ/r5BjMW86l6zjPd1P5lSXu5b3oOqxQ7dOxoZ4+Vgy6yM4QPRLcft1JDHRujx0DiUCztPu/Y+iaZoift9LQ==",
-      "path": "sunnyui/3.0.4",
-      "hashPath": "sunnyui.3.0.4.nupkg.sha512"
+      "sha512": "sha512-0+U39GWGWBQFmoZom+UOzuST9FxsbUol5RWZgnBLzfGDlR+O4C72HjQ38u9G/SppWBswr5+dmGvFYHBA2HS4uQ==",
+      "path": "sunnyui/3.0.5",
+      "hashPath": "sunnyui.3.0.5.nupkg.sha512"
     },
-    "SunnyUI.Common/3.0.4": {
+    "SunnyUI.Common/3.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eFd9v+FBd6+pkdjFIOx2SWXmifFmYh9RL8wgrtt3A4Q81uCo7NNiYYJys/YIcpxQReObOWmJ1h/3vZCD3sfnlA==",
-      "path": "sunnyui.common/3.0.4",
-      "hashPath": "sunnyui.common.3.0.4.nupkg.sha512"
+      "sha512": "sha512-bP9fQW8P4fJAV6FfU2Xfw3MtOduLoj/j+MRfdIn3eq9bGqDepg/w5/xqXi393Vuxvxk24eY9+5YMRVyeS+tiRg==",
+      "path": "sunnyui.common/3.0.5",
+      "hashPath": "sunnyui.common.3.0.5.nupkg.sha512"
     }
   }
 }

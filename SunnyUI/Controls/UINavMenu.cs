@@ -45,7 +45,6 @@ namespace Sunny.UI
             SetStyle(ControlStyles.DoubleBuffer |
                      ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
-
             UpdateStyles();
 
             BorderStyle = BorderStyle.None;
@@ -159,34 +158,35 @@ namespace Sunny.UI
                 }
             }
         }
-        /// <summary>
-        /// SizeChange导致treeNode闪屏
-        /// </summary>
-        const int TVM_SETEXTENDEDSTYLE = 0x112C;
-        const int TVS_EX_DOUBLEBUFFER = 0x0004;
 
-        private void UpdateExtendedStyles()
-        {
-            int style = 0;
+        // /// <summary>
+        // /// SizeChange导致treeNode闪屏
+        // /// </summary>
+        // const int TVM_SETEXTENDEDSTYLE = 0x112C;
+        // const int TVS_EX_DOUBLEBUFFER = 0x0004;
+        //
+        // private void UpdateExtendedStyles()
+        // {
+        //     int style = 0;
+        //
+        //     if (DoubleBuffered)
+        //         style |= TVS_EX_DOUBLEBUFFER;
+        //
+        //     if (Style != 0)
+        //         Win32.User.SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(style));
+        // }
+        //
+        // protected override void OnHandleCreated(EventArgs e)
+        // {
+        //     base.OnHandleCreated(e);
+        //     UpdateExtendedStyles();
+        // }
 
-            if (DoubleBuffered)
-                style |= TVS_EX_DOUBLEBUFFER;
-
-            if (Style != 0)
-                Win32.User.SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(style));
-        }
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-            UpdateExtendedStyles();
-        }
-
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-            SetScrollInfo();
-        }
+        //protected override void OnSizeChanged(EventArgs e)
+        //{
+        //    base.OnSizeChanged(e);
+        //    SetScrollInfo();
+        //}
 
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
@@ -827,8 +827,14 @@ namespace Sunny.UI
 
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
             if (IsDisposed || Disposing) return;
+            if (m.Msg == Win32.User.WM_ERASEBKGND)
+            {
+                m.Result = IntPtr.Zero;
+                return;
+            }
+
+            base.WndProc(ref m);
             Win32.User.ShowScrollBar(Handle, 3, false);
         }
 
