@@ -55,8 +55,6 @@
             this.Aside.ShowSecondBackColor = true;
             this.Aside.ShowTips = true;
             this.Aside.Size = new System.Drawing.Size(250, 573);
-            this.Aside.Style = Sunny.UI.UIStyle.Custom;
-            this.Aside.StyleCustomMode = true;
             // 
             // Header
             // 

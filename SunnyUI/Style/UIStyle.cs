@@ -99,6 +99,12 @@ namespace Sunny.UI
         Black = 8,
 
         /// <summary>
+        /// 紫
+        /// </summary>
+        [DisplayText("Purple")]
+        Purple = 9,
+
+        /// <summary>
         /// Office蓝
         /// </summary>
         [DisplayText("Office2010Blue")]
@@ -246,6 +252,8 @@ namespace Sunny.UI
         /// </summary>
         public static UIBaseStyle Office2010Silver = new UIOffice2010SilverStyle();
 
+        public static UIBaseStyle PurpleStyle = new UIPurpleStyle();
+
         /// <summary>
         /// Office黑
         /// </summary>
@@ -276,6 +284,7 @@ namespace Sunny.UI
             AddStyle(DarkBlue);
             AddStyle(Black);
             AddStyle(White);
+            AddStyle(PurpleStyle);
             AddStyle(Office2010Blue);
             AddStyle(Office2010Silver);
             AddStyle(Office2010Black);
@@ -497,6 +506,16 @@ namespace Sunny.UI
         /// 黑
         /// </summary>
         public static readonly Color Black = Color.Black;
+
+        /// <summary>
+        /// 紫
+        /// </summary>
+        public static readonly Color Purple = Color.FromArgb(184, 36, 255);// Color.FromArgb(123, 81, 201);
+
+        /// <summary>
+        /// 浅紫
+        /// </summary>
+        public static readonly Color LightPurple = Color.FromArgb(250, 238, 255);
 
         /// <summary>
         /// 透明

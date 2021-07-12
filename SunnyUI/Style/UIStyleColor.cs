@@ -227,6 +227,31 @@ namespace Sunny.UI
         public override Color TitleForeColor => Color.White;
     }
 
+    public class UIPurpleStyle : UIBaseStyle
+    {
+        public override UIStyle Name => UIStyle.Purple;
+        public override Color PrimaryColor => UIColor.Purple;
+        public override Color RegularColor => Color.FromArgb(201, 89, 255);
+        public override Color SecondaryColor => Color.FromArgb(220, 147, 255);
+        public override Color PlainColor => UIColor.LightPurple;
+        public override Color ButtonFillColor => UIColor.Purple;
+        public override Color ButtonFillHoverColor => Color.FromArgb(194, 70, 255);
+        public override Color ButtonFillPressColor => Color.FromArgb(172, 0, 255);
+        public override Color ButtonForeColor => Color.White;
+        public override Color ButtonForeHoverColor => Color.White;
+        public override Color ButtonForePressColor => Color.White;
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
+        public override Color RectColor => UIColor.Purple;
+        public override Color RectHoverColor => Color.FromArgb(194, 70, 255);
+        public override Color RectPressColor => Color.FromArgb(172, 0, 255);
+        public override Color TitleColor => UIColor.Purple;
+        public override Color TitleForeColor => Color.White;
+        public override Color MenuSelectedColor => UIColor.Purple;
+        public override Color GridSelectedColor => Color.FromArgb(230, 176, 255);
+    }
+
     public class UILightBlueStyle : UIBaseStyle
     {
         public override UIStyle Name => UIStyle.LightBlue;
