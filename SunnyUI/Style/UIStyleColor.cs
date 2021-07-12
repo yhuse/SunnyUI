@@ -31,10 +31,10 @@ namespace Sunny.UI
     {
         public abstract UIStyle Name { get; }
 
-        public abstract Color PrimaryColor { get; }
-        public abstract Color RegularColor { get; }
-        public abstract Color SecondaryColor { get; }
-        public abstract Color PlainColor { get; }
+        public virtual Color PrimaryColor { get; protected set; }
+        public virtual Color RegularColor { get; protected set; }
+        public virtual Color SecondaryColor { get; protected set; }
+        public virtual Color PlainColor { get; protected set; }
 
         public abstract Color RectColor { get; }
         public abstract Color RectHoverColor { get; }
@@ -44,9 +44,9 @@ namespace Sunny.UI
         public abstract Color ButtonForeSelectedColor { get; }
         public abstract Color ButtonFillSelectedColor { get; }
 
-        public abstract Color ButtonFillColor { get; }
-        public abstract Color ButtonFillHoverColor { get; }
-        public abstract Color ButtonFillPressColor { get; }
+        public virtual Color ButtonFillColor { get; protected set; }
+        public virtual Color ButtonFillHoverColor { get; protected set; }
+        public virtual Color ButtonFillPressColor { get; protected set; }
 
         public abstract Color ButtonForeColor { get; }
         public abstract Color ButtonForeHoverColor { get; }
@@ -72,7 +72,7 @@ namespace Sunny.UI
 
         public virtual Color MenuSelectedColor => UIColor.Blue;
 
-        public virtual Color GridSelectedColor => Color.FromArgb(155, 200, 255);
+        public virtual Color GridSelectedColor { get; protected set; } = Color.FromArgb(155, 200, 255);
 
         public virtual Color GridSelectedForeColor => UIFontColor.Primary;
         public virtual Color GridStripeEvenColor => Color.White;
@@ -127,6 +127,49 @@ namespace Sunny.UI
         {
             return Name.DisplayText();
         }
+    }
+
+    public class UIPurpleStyle : UIBaseStyle
+    {
+        public UIPurpleStyle()
+        {
+            PrimaryColor = UIColor.Purple;
+            Color[] colors = GDIEx.GradientColors(Color.White, PrimaryColor, 16);
+            Color[] colors1 = GDIEx.GradientColors(PrimaryColor, Color.Black, 16);
+            PlainColor = colors[1];
+            SecondaryColor = colors[5];
+            RegularColor = colors[10];
+
+            ButtonFillColor = PrimaryColor;
+            ButtonFillHoverColor = colors[12];
+            ButtonFillPressColor = colors1[3];
+            GridSelectedColor = colors[3];
+        }
+
+        public override UIStyle Name => UIStyle.Blue;
+
+        public override Color PrimaryColor { get; protected set; }
+        public override Color RegularColor { get; protected set; }
+        public override Color SecondaryColor { get; protected set; }
+        public override Color PlainColor { get; protected set; }
+
+        public override Color ButtonFillColor { get; protected set; }
+        public override Color ButtonFillHoverColor { get; protected set; }
+        public override Color ButtonFillPressColor { get; protected set; }
+
+        public override Color ButtonForeColor => Color.White;
+        public override Color ButtonForeHoverColor => Color.White;
+        public override Color ButtonForePressColor => Color.White;
+        public override Color RectSelectedColor => RectPressColor;
+        public override Color ButtonForeSelectedColor => ButtonForePressColor;
+        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
+        public override Color RectColor => UIColor.Purple;
+        public override Color RectHoverColor => ButtonFillHoverColor;
+        public override Color RectPressColor => ButtonFillPressColor;
+        public override Color TitleColor => UIColor.Purple;
+        public override Color TitleForeColor => Color.White;
+        public override Color MenuSelectedColor => UIColor.Purple;
+        public override Color GridSelectedColor { get; protected set; }
     }
 
     public class UICustomStyle : UIBlueStyle
@@ -225,31 +268,6 @@ namespace Sunny.UI
         public override Color RectPressColor => Color.FromArgb(74, 131, 229);
         public override Color TitleColor => UIColor.Blue;
         public override Color TitleForeColor => Color.White;
-    }
-
-    public class UIPurpleStyle : UIBaseStyle
-    {
-        public override UIStyle Name => UIStyle.Purple;
-        public override Color PrimaryColor => UIColor.Purple;
-        public override Color RegularColor => Color.FromArgb(201, 89, 255);
-        public override Color SecondaryColor => Color.FromArgb(220, 147, 255);
-        public override Color PlainColor => UIColor.LightPurple;
-        public override Color ButtonFillColor => UIColor.Purple;
-        public override Color ButtonFillHoverColor => Color.FromArgb(194, 70, 255);
-        public override Color ButtonFillPressColor => Color.FromArgb(172, 0, 255);
-        public override Color ButtonForeColor => Color.White;
-        public override Color ButtonForeHoverColor => Color.White;
-        public override Color ButtonForePressColor => Color.White;
-        public override Color RectSelectedColor => RectPressColor;
-        public override Color ButtonForeSelectedColor => ButtonForePressColor;
-        public override Color ButtonFillSelectedColor => ButtonFillPressColor;
-        public override Color RectColor => UIColor.Purple;
-        public override Color RectHoverColor => Color.FromArgb(194, 70, 255);
-        public override Color RectPressColor => Color.FromArgb(172, 0, 255);
-        public override Color TitleColor => UIColor.Purple;
-        public override Color TitleForeColor => Color.White;
-        public override Color MenuSelectedColor => UIColor.Purple;
-        public override Color GridSelectedColor => Color.FromArgb(230, 176, 255);
     }
 
     public class UILightBlueStyle : UIBaseStyle

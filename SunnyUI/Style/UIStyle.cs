@@ -101,8 +101,8 @@ namespace Sunny.UI
         /// <summary>
         /// 紫
         /// </summary>
-        [DisplayText("Purple")]
-        Purple = 9,
+        //[DisplayText("Purple")]
+        //Purple = 9,
 
         /// <summary>
         /// Office蓝
@@ -284,7 +284,7 @@ namespace Sunny.UI
             AddStyle(DarkBlue);
             AddStyle(Black);
             AddStyle(White);
-            AddStyle(PurpleStyle);
+            //AddStyle(PurpleStyle);
             AddStyle(Office2010Blue);
             AddStyle(Office2010Silver);
             AddStyle(Office2010Black);
@@ -510,7 +510,7 @@ namespace Sunny.UI
         /// <summary>
         /// 紫
         /// </summary>
-        public static readonly Color Purple = Color.FromArgb(184, 36, 255);// Color.FromArgb(123, 81, 201);
+        public static readonly Color Purple = Color.FromArgb(102, 58, 183);// Color.FromArgb(123, 81, 201);
 
         /// <summary>
         /// 浅紫
