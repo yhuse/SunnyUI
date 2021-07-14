@@ -396,7 +396,7 @@ namespace Sunny.UI
             DoubleBuffered = true;
             SizeMode = TabSizeMode.Fixed;
             Appearance = TabAppearance.Normal;
-            Alignment = TabAlignment.Top;
+            //Alignment = TabAlignment.Top;
         }
 
         private bool showCloseButton;
@@ -463,8 +463,8 @@ namespace Sunny.UI
                     if (TabSelectedHighColorSize > 0)
                         g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
                 }
-
-                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
+                 
+                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
 
                 var menuItem = Helper[index];
                 bool show1 = TabPages[index].Text != MainPage;
@@ -475,7 +475,7 @@ namespace Sunny.UI
                 {
                     if (ShowCloseButton || (ShowActiveCloseButton && index == SelectedIndex))
                     {
-                        g.DrawFontImage(77, 28, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, TabRect.Top, 24, TabRect.Height));
+                        g.DrawFontImage(77, 28, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, 0, 24, TabRect.Height));
                     }
                 }
 
@@ -840,7 +840,16 @@ namespace Sunny.UI
                     case User.WM_PAINT:
                         if (!_bPainting)
                         {
-                            Point UpDownButtonLocation = new Point(_owner.Size.Width - 52, 0);
+                            int itemTop = 0;
+                            if(_owner.Alignment ==TabAlignment.Top )
+                            {
+                                itemTop = 0;
+                            }
+                            else if (_owner.Alignment == TabAlignment.Bottom)
+                            {
+                                itemTop = _owner.Size.Height - _owner.ItemSize.Height;
+                            }
+                            Point UpDownButtonLocation = new Point(_owner.Size.Width - 52, itemTop);
                             Size UpDownButtonSize = new Size(52, _owner.ItemSize.Height);
                             clipRect = new Rectangle(UpDownButtonLocation, UpDownButtonSize);
                             User.MoveWindow(Handle, UpDownButtonLocation.X, UpDownButtonLocation.Y, clipRect.Width, clipRect.Height);
