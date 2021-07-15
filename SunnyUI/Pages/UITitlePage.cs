@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UITitlePage : UIPage
+    public partial class UITitlePage : UIPage, ISymbol
     {
         public UITitlePage()
         {
@@ -161,12 +161,26 @@ namespace Sunny.UI
                 }
             }
 
+            private Point symbolOffset = new Point(0, 0);
+
+            [DefaultValue(typeof(Point), "0, 0")]
+            [Description("字体图标的偏移位置"), Category("SunnyUI")]
+            public Point SymbolOffset
+            {
+                get => symbolOffset;
+                set
+                {
+                    symbolOffset = value;
+                    Invalidate();
+                }
+            }
+
             protected override void OnPaintFore(Graphics g, GraphicsPath path)
             {
                 base.OnPaintFore(g, path);
                 if (Symbol > 0)
                 {
-                    g.DrawFontImage(Symbol, SymbolSize, ForeColor, new Rectangle(6, 0, SymbolSize, Height));
+                    g.DrawFontImage(Symbol, SymbolSize, ForeColor, new Rectangle(6, 0, SymbolSize, Height), SymbolOffset.X, SymbolOffset.Y);
                 }
             }
         }

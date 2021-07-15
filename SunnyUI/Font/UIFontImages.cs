@@ -62,7 +62,7 @@ namespace Sunny.UI
         {
             timer.Stop();
 
-            while (FontAwesomeV4Labels.Count > 0)
+            while (!FontAwesomeV4Labels.IsEmpty)
             {
                 if (FontAwesomeV4Labels.TryDequeue(out Label lbl))
                 {
@@ -72,7 +72,7 @@ namespace Sunny.UI
                 }
             }
 
-            while (ElegantIconsLabels.Count > 0)
+            while (!ElegantIconsLabels.IsEmpty)
             {
                 if (ElegantIconsLabels.TryDequeue(out Label lbl))
                 {
@@ -82,7 +82,7 @@ namespace Sunny.UI
                 }
             }
 
-            while (FontAwesomeV5SolidLabels.Count > 0)
+            while (!FontAwesomeV5SolidLabels.IsEmpty)
             {
                 if (FontAwesomeV5SolidLabels.TryDequeue(out Label lbl))
                 {
@@ -92,7 +92,7 @@ namespace Sunny.UI
                 }
             }
 
-            while (FontAwesomeV5RegularLabels.Count > 0)
+            while (!FontAwesomeV5RegularLabels.IsEmpty)
             {
                 if (FontAwesomeV5RegularLabels.TryDequeue(out Label lbl))
                 {
@@ -102,7 +102,7 @@ namespace Sunny.UI
                 }
             }
 
-            while (FontAwesomeV5BrandsLabels.Count > 0)
+            while (!FontAwesomeV5BrandsLabels.IsEmpty)
             {
                 if (FontAwesomeV5BrandsLabels.TryDequeue(out Label lbl))
                 {
@@ -234,14 +234,17 @@ namespace Sunny.UI
 
         private Label CreateLabel(int icon, UISymbolType symbolType)
         {
-            Label lbl = new Label();
-            lbl.AutoSize = false;
-            lbl.Size = new Size(32, 32);
-            lbl.ForeColor = UIColor.Blue;
-            lbl.Image = FontImageHelper.CreateImage(icon, 28, UIFontColor.Primary, symbolType);
-            lbl.ImageAlign = ContentAlignment.MiddleCenter;
-            lbl.TextAlign = ContentAlignment.MiddleLeft;
-            lbl.Margin = new Padding(2);
+            Label lbl = new Label
+            {
+                AutoSize = false,
+                Size = new Size(32, 32),
+                ForeColor = UIColor.Blue,
+                Image = FontImageHelper.CreateImage(icon, 28, UIFontColor.Primary, symbolType),
+                ImageAlign = ContentAlignment.MiddleCenter,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Margin = new Padding(2)
+            };
+
             lbl.Click += lbl_DoubleClick;
             lbl.MouseEnter += Lbl_MouseEnter;
             lbl.MouseLeave += Lbl_MouseLeave;

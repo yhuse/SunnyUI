@@ -34,7 +34,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Symbol")]
     [ToolboxItem(true)]
-    public sealed class UIAvatar : UIControl
+    public sealed class UIAvatar : UIControl, ISymbol
     {
         /// <summary>
         /// 头像图标类型
@@ -218,6 +218,48 @@ namespace Sunny.UI
             }
         }
 
+        private Point symbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
+                Invalidate();
+            }
+        }
+
+        private Point textOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("文字的偏移位置"), Category("SunnyUI")]
+        public Point TextOffset
+        {
+            get => textOffset;
+            set
+            {
+                textOffset = value;
+                Invalidate();
+            }
+        }
+
+        private Point imageOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("文字的偏移位置"), Category("SunnyUI")]
+        public Point ImageOffset
+        {
+            get => imageOffset;
+            set
+            {
+                imageOffset = value;
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// OnPaintFill
         /// </summary>
@@ -225,7 +267,6 @@ namespace Sunny.UI
         /// <param name="path">path</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
-            int size = Math.Min(Width, Height) - 3;
             Rectangle rect = new Rectangle((Width - avatarSize) / 2, (Height - avatarSize) / 2, avatarSize, avatarSize);
 
             switch (Shape)
@@ -240,10 +281,10 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(0), Description("水平偏移"), Category("SunnyUI")]
+        [Browsable(false), DefaultValue(0), Description("水平偏移"), Category("SunnyUI")]
         public int OffsetX { get; set; } = 0;
 
-        [DefaultValue(0), Description("垂直偏移"), Category("SunnyUI")]
+        [Browsable(false), DefaultValue(0), Description("垂直偏移"), Category("SunnyUI")]
         public int OffsetY { get; set; } = 0;
 
         public event PaintEventHandler PaintAgain;
@@ -276,7 +317,7 @@ namespace Sunny.UI
                     (int)(Image.Height * 1.0 / Math.Min(sc1, sc2) + 0.5));
 
                 Bitmap bmp = scaleImage.Split(size, Shape);
-                e.Graphics.DrawImage(bmp, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY);
+                e.Graphics.DrawImage(bmp, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y);
                 bmp.Dispose();
                 scaleImage.Dispose();
                 e.Graphics.SetHighQuality();
@@ -285,12 +326,12 @@ namespace Sunny.UI
                 {
                     if (Shape == UIShape.Circle)
                     {
-                        e.Graphics.DrawEllipse(pn, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY, size, size);
+                        e.Graphics.DrawEllipse(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size);
                     }
 
                     if (Shape == UIShape.Square)
                     {
-                        e.Graphics.DrawRoundRectangle(pn, (Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY, size, size, 5);
+                        e.Graphics.DrawRoundRectangle(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size, 5);
                     }
                 }
 
@@ -299,13 +340,14 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Symbol)
             {
-                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle((Width - avatarSize) / 2 + 1 + OffsetX, (Height - avatarSize) / 2 + 1 + OffsetY, avatarSize, avatarSize));
+                e.Graphics.DrawFontImage(symbol, symbolSize, ForeColor, new Rectangle((Width - avatarSize) / 2 + 1 + SymbolOffset.X,
+                    (Height - avatarSize) / 2 + 1 + SymbolOffset.Y, avatarSize, avatarSize));
             }
 
             if (Icon == UIIcon.Text)
             {
                 SizeF sf = e.Graphics.MeasureString(Text, Font);
-                e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + OffsetX, (Height - sf.Height) / 2.0f + 1 + OffsetY);
+                e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + TextOffset.X, (Height - sf.Height) / 2.0f + 1 + TextOffset.Y);
             }
 
             PaintAgain?.Invoke(this, e);

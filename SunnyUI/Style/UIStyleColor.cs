@@ -22,9 +22,6 @@
 
 using System.Drawing;
 
-#pragma warning disable 1591
-//ButtonFillSelectedColor
-
 namespace Sunny.UI
 {
     public abstract class UIBaseStyle

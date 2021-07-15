@@ -180,10 +180,7 @@ namespace Sunny.UI
                     {
                         var bmp = new Bitmap(e.ToolTipSize.Width, e.ToolTipSize.Height);
                         var g = Graphics.FromImage(bmp);
-
                         int symbolWidth = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
-                        int symbolHeight = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
-
                         SizeF titleSize = new SizeF(0, 0);
                         if (tooltip.Title.IsValid())
                         {
@@ -219,7 +216,6 @@ namespace Sunny.UI
                 }
 
                 int symbolWidth = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
-                int symbolHeight = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
                 SizeF titleSize = new SizeF(0, 0);
                 if (tooltip.Title.IsValid())
                 {
@@ -249,7 +245,7 @@ namespace Sunny.UI
             }
         }
 
-        public class ToolTipControl
+        public class ToolTipControl : ISymbol
         {
             public Control Control { get; set; }
             public string Title { get; set; }
@@ -258,6 +254,8 @@ namespace Sunny.UI
             public int Symbol { get; set; } = 0;
 
             public int SymbolSize { get; set; } = 32;
+
+            public Point SymbolOffset { get; set; } = new Point(0, 0);
 
             public Color SymbolColor { get; set; } = UIChartStyles.Dark.ForeColor;
         }

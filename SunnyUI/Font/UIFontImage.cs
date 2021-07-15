@@ -382,7 +382,7 @@ namespace Sunny.UI
             return graphics.MeasureString(text, font).ToSize();
         }
 
-        private Icon ToIcon(Bitmap srcBitmap, int size)
+        public Icon ToIcon(Bitmap srcBitmap, int size)
         {
             if (srcBitmap == null)
             {

@@ -19,8 +19,6 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-#pragma warning disable 1591
-
 using System.Drawing;
 
 namespace Sunny.UI

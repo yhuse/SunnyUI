@@ -30,7 +30,6 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 // ReSharper disable All
-#pragma warning disable 1591
 
 namespace Sunny.UI
 {

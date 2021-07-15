@@ -33,7 +33,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
-    public sealed partial class UITextBox : UIPanel
+    public sealed partial class UITextBox : UIPanel, ISymbol
     {
         private readonly UIEdit edit = new UIEdit();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -377,7 +377,7 @@ namespace Sunny.UI
 
         private void CalcEditHeight()
         {
-            TextBox edt = new TextBox();
+            TextBox edt = new();
             edt.Font = edit.Font;
             MinHeight = edt.PreferredHeight;
             edt.BorderStyle = BorderStyle.None;
@@ -901,20 +901,7 @@ namespace Sunny.UI
             }
             else if (Symbol != 0)
             {
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize));
-            }
-        }
-
-        private Point symbolOffset = new Point(0, 0);
-        [DefaultValue(typeof(Point), "0, 0")]
-        [Description("字体图标偏移"), Category("SunnyUI")]
-        public Point SymbolOffset
-        {
-            get => symbolOffset;
-            set
-            {
-                symbolOffset = value;
-                Invalidate();
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
             }
         }
 
@@ -960,6 +947,20 @@ namespace Sunny.UI
                 _symbolSize = Math.Max(value, 16);
                 _symbolSize = Math.Min(value, MinHeight);
                 SizeChange();
+                Invalidate();
+            }
+        }
+
+        private Point symbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
                 Invalidate();
             }
         }

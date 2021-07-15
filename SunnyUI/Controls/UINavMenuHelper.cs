@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -355,7 +356,7 @@ namespace Sunny.UI
         }
     }
 
-    public class NavMenuItem
+    public class NavMenuItem : ISymbol
     {
         public string Text { get; set; }
 
@@ -366,6 +367,8 @@ namespace Sunny.UI
         public int Symbol { get; set; }
 
         public int SymbolSize { get; set; } = 24;
+
+        public Point SymbolOffset { get; set; } = new Point(0, 0);
 
         public int PageIndex { get; set; }
 
@@ -378,6 +381,7 @@ namespace Sunny.UI
         public Guid PageGuid { get; set; } = Guid.Empty;
 
         public bool AlwaysOpen { get; set; } = false;
+
 
         public NavMenuItem()
         {

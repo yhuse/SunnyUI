@@ -385,23 +385,18 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 反注册窗体
+        /// 反注册窗体、页面
         /// </summary>
         /// <param name="guid">GUID</param>
         /// <param name="form">窗体</param>
-        public static void UnRegister(Guid guid, UIForm form)
+        public static void UnRegister(Guid guid)
         {
-            Forms.TryRemove(guid, out _);
-        }
+            if (Forms.ContainsKey(guid))
+                Forms.TryRemove(guid, out _);
 
-        /// <summary>
-        /// 反注册页面
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        /// <param name="page">页面</param>
-        public static void UnRegister(Guid guid, UIPage page)
-        {
-            Pages.TryRemove(guid, out _);
+            if (Pages.ContainsKey(guid))
+                Pages.TryRemove(guid, out _);
+
         }
 
         /// <summary>

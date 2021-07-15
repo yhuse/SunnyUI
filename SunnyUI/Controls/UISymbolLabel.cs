@@ -31,7 +31,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UISymbolLabel : UIControl
+    public sealed class UISymbolLabel : UIControl, ISymbol
     {
         private int _symbolSize = 24;
         private int _imageInterval = 2;
@@ -147,6 +147,20 @@ namespace Sunny.UI
             }
         }
 
+        private Point symbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             g.FillRectangle(BackColor, Bounds);
@@ -171,12 +185,10 @@ namespace Sunny.UI
             if (IsCircle)
             {
                 int size = Math.Min(Width, Height) - 2 - CircleRectWidth;
-                using (Pen pn = new Pen(GetRectColor(), CircleRectWidth))
-                {
-                    g.SetHighQuality();
-                    g.DrawEllipse(pn, (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
-                    g.SetDefaultQuality();
-                }
+                using var pn = new Pen(GetRectColor(), CircleRectWidth);
+                g.SetHighQuality();
+                g.DrawEllipse(pn, (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
+                g.SetDefaultQuality();
             }
             else
             {
@@ -247,9 +259,9 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f, SymbolOffset.X, SymbolOffset.Y);
             else
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, left, top);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, left, top, SymbolOffset.X, SymbolOffset.Y);
         }
     }
 }

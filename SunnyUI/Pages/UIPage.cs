@@ -30,7 +30,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("Initialize")]
-    public partial class UIPage : Form, IStyleInterface
+    public partial class UIPage : Form, IStyleInterface, ISymbol
     {
         public readonly Guid Guid = Guid.NewGuid();
         private Color _rectColor = UIColor.Blue;
@@ -94,6 +94,20 @@ namespace Sunny.UI
             {
                 _symbol = value;
                 SymbolChange();
+                Invalidate();
+            }
+        }
+
+        private Point symbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
                 Invalidate();
             }
         }
@@ -322,7 +336,7 @@ namespace Sunny.UI
             if (!AllowShowTitle) return;
             if (Symbol > 0)
             {
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight));
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y);
             }
 
             SizeF sf = e.Graphics.MeasureString(Text, Font);
@@ -800,22 +814,22 @@ namespace Sunny.UI
 
         public void ShowInfoNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, isDialog, timeout);
         }
 
         public void ShowSuccessNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, isDialog, timeout);
         }
 
         public void ShowWarningNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, isDialog, timeout);
         }
 
         public void ShowErrorNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
         }
 
         #endregion

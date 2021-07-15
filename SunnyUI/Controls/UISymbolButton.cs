@@ -31,7 +31,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public class UISymbolButton : UIButton
+    public class UISymbolButton : UIButton, ISymbol
     {
         private int _symbolSize = 24;
         private int _imageInterval = 2;
@@ -121,6 +121,20 @@ namespace Sunny.UI
             }
         }
 
+        private Point symbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             if (IsCircle)
@@ -153,12 +167,10 @@ namespace Sunny.UI
             if (IsCircle)
             {
                 int size = Math.Min(Width, Height) - 2 - CircleRectWidth;
-                using (Pen pn = new Pen(GetRectColor(), CircleRectWidth))
-                {
-                    g.SetHighQuality();
-                    g.DrawEllipse(pn, (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
-                    g.SetDefaultQuality();
-                }
+                using var pn = new Pen(GetRectColor(), CircleRectWidth);
+                g.SetHighQuality();
+                g.DrawEllipse(pn, (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
+                g.SetDefaultQuality();
             }
             else
             {
@@ -204,7 +216,7 @@ namespace Sunny.UI
                                 new RectangleF(
                                     (Width - ImageSize.Width) / 2.0f,
                                     Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f,
-                                      ImageSize.Width, ImageSize.Height));
+                                      ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                         }
 
                         if (Image != null)
@@ -223,7 +235,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
-                            new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height));
+                            new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
                     if (Image != null)
@@ -294,7 +306,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
-                            new RectangleF(left, top, ImageSize.Width, ImageSize.Height));
+                            new RectangleF(left, top, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
                     if (Image != null)
