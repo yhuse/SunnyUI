@@ -82,8 +82,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             fillColor = uiColor.PlainColor;
             rectColor = uiColor.RectColor;
             foreColor = uiColor.LineForeColor;

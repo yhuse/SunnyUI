@@ -37,6 +37,10 @@ namespace Sunny.UI
         string Version { get; }
 
         string TagString { get; set; }
+
+        void SetStyleColor(UIBaseStyle uiColor);
+
+        void SetStyle(UIStyle style);
     }
 
     /// <summary>

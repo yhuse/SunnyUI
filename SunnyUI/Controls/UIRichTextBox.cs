@@ -137,8 +137,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             edit.BackColor = fillColor = Color.White;
             edit.ForeColor = foreColor = UIFontColor.Primary;
 

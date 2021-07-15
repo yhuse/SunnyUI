@@ -351,14 +351,13 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             tabSelectedForeColor = tabSelectedHighColor = uiColor.MenuSelectedColor;
             _fillColor = uiColor.PlainColor;
             Invalidate();
@@ -463,7 +462,7 @@ namespace Sunny.UI
                     if (TabSelectedHighColorSize > 0)
                         g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
                 }
-                 
+
                 g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
 
                 var menuItem = Helper[index];
@@ -841,7 +840,7 @@ namespace Sunny.UI
                         if (!_bPainting)
                         {
                             int itemTop = 0;
-                            if(_owner.Alignment ==TabAlignment.Top )
+                            if (_owner.Alignment == TabAlignment.Top)
                             {
                                 itemTop = 0;
                             }

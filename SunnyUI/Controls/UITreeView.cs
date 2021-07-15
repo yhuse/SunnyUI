@@ -65,8 +65,7 @@ namespace Sunny.UI
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
+            base.SetStyleColor(uiColor);
             if (view != null)
             {
                 view.SelectedForeColor = UIColor.White;

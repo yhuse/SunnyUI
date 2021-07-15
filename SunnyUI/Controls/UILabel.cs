@@ -75,7 +75,8 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
@@ -88,7 +89,6 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
             ForeColor = uiColor.LabelForeColor;
             Invalidate();
         }
@@ -146,14 +146,13 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             ForeColor = uiColor.LabelForeColor;
             LinkColor = uiColor.LabelForeColor;
             Invalidate();

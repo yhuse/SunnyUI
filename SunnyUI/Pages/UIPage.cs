@@ -281,7 +281,8 @@ namespace Sunny.UI
         {
             this.SetChildUIStyle(style);
 
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
         }
@@ -290,8 +291,6 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             BackColor = uiColor.PlainColor;
             RectColor = uiColor.RectColor;
             ForeColor = UIFontColor.Primary;

@@ -203,7 +203,8 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
@@ -213,7 +214,6 @@ namespace Sunny.UI
         /// <param name="uiColor"></param>
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
             FrameColor = uiColor.RectColor;
             ForeColor = uiColor.PanelForeColor;
             Invalidate();

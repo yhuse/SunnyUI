@@ -57,8 +57,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             foreColor = uiColor.ProgressIndicatorColor;
             ClearImage();
             Invalidate();

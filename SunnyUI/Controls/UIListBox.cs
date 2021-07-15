@@ -194,8 +194,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             if (bar != null)
             {
                 bar.ForeColor = uiColor.PrimaryColor;
@@ -538,14 +536,13 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             ItemSelectBackColor = uiColor.ListItemSelectBackColor;
             ItemSelectForeColor = uiColor.ListItemSelectForeColor;
             Invalidate();

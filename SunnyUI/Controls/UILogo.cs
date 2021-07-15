@@ -120,8 +120,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             foreColor = UIFontColor.Primary;
             fillColor = uiColor.MenuSelectedColor;
             Invalidate();

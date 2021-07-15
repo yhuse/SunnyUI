@@ -54,14 +54,13 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             ColorTable.SetStyleColor(uiColor);
             BackColor = uiColor.ContextMenuColor;
             Invalidate();

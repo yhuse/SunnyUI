@@ -131,8 +131,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             fillHoverColor = uiColor.ButtonFillHoverColor;
             foreHoverColor = uiColor.ButtonForeHoverColor;
 

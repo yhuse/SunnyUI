@@ -201,8 +201,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             if (l1 == null || l2 == null) return;
             if (b1 == null || b2 == null || b3 == null || b4 == null) return;
 

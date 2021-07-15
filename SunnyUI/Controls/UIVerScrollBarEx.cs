@@ -226,8 +226,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             fillColor = uiColor.PlainColor;
             foreColor = uiColor.ScrollBarForeColor;
             fillHoverColor = uiColor.ButtonFillHoverColor;

@@ -1072,7 +1072,8 @@ namespace Sunny.UI
             this.SetChildUIStyle(style);
             btn.SetStyle(style);
 
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
         }
@@ -1081,8 +1082,6 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             rectColor = uiColor.RectColor;
             foreColor = UIFontColor.Primary;
             BackColor = uiColor.PlainColor;

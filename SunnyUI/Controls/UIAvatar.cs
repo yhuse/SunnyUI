@@ -113,8 +113,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            if (uiColor.IsCustom()) return;
-
             fillColor = uiColor.AvatarFillColor;
             foreColor = uiColor.AvatarForeColor;
             Invalidate();

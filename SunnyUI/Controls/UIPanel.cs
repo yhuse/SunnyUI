@@ -504,14 +504,13 @@ namespace Sunny.UI
         {
             this.SetChildUIStyle(style);
 
-            SetStyleColor(UIStyles.GetStyleColor(style));
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
         }
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (uiColor.IsCustom()) return;
-
             fillColor = uiColor.PlainColor;
             rectColor = uiColor.RectColor;
             foreColor = uiColor.PanelForeColor;
