@@ -47,7 +47,7 @@ namespace Sunny.UI
             _style = UIStyle.Custom;
         }
 
-        private Color foreColor = UIStyles.Blue.LabelForeColor;
+        private Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).LabelForeColor;
 
         /// <summary>
         /// Tag字符串

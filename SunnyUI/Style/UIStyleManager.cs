@@ -44,6 +44,14 @@ namespace Sunny.UI
             }
         }
 
+        public void Render()
+        {
+            if (Style != UIStyle.Custom)
+            {
+                UIStyles.SetStyle(Style);
+            }
+        }
+
         /// <summary>
         /// 构造函数
         /// </summary>

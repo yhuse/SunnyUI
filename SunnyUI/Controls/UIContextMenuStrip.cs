@@ -97,7 +97,7 @@ namespace Sunny.UI
 
     public class ContextMenuColorTable : ProfessionalColorTable
     {
-        private UIBaseStyle StyleColor = UIStyles.Blue;
+        private UIBaseStyle StyleColor = UIStyles.GetStyleColor(UIStyle.Blue);
 
         public void SetStyleColor(UIBaseStyle color)
         {

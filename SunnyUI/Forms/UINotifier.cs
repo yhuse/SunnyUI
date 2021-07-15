@@ -165,30 +165,30 @@ namespace Sunny.UI
             {
                 case UINotifierType.ERROR:
                     icon.Symbol = 61527;
-                    icon.SymbolColor = UIStyles.Red.ButtonFillColor;
-                    LeaveColor = UIStyles.Red.ButtonFillColor;
-                    HoverColor = UIStyles.Red.ButtonFillHoverColor;
+                    icon.SymbolColor = UIStyles.GetStyleColor(UIStyle.Red).ButtonFillColor;
+                    LeaveColor = UIStyles.GetStyleColor(UIStyle.Red).ButtonFillColor;
+                    HoverColor = UIStyles.GetStyleColor(UIStyle.Red).ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.INFO:
                     icon.Symbol = 61530;
-                    icon.SymbolColor = UIStyles.Blue.ButtonFillColor;
-                    LeaveColor = UIStyles.Blue.ButtonFillColor;
-                    HoverColor = UIStyles.Blue.ButtonFillHoverColor;
+                    icon.SymbolColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
+                    LeaveColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
+                    HoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.WARNING:
                     icon.Symbol = 61553;
-                    icon.SymbolColor = UIStyles.Orange.ButtonFillColor;
-                    LeaveColor = UIStyles.Orange.ButtonFillColor;
-                    HoverColor = UIStyles.Orange.ButtonFillHoverColor;
+                    icon.SymbolColor = UIStyles.GetStyleColor(UIStyle.Orange).ButtonFillColor;
+                    LeaveColor = UIStyles.GetStyleColor(UIStyle.Orange).ButtonFillColor;
+                    HoverColor = UIStyles.GetStyleColor(UIStyle.Orange).ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.OK:
                     icon.Symbol = 61528;
-                    icon.SymbolColor = UIStyles.Green.ButtonFillColor;
-                    LeaveColor = UIStyles.Green.ButtonFillColor;
-                    HoverColor = UIStyles.Green.ButtonFillHoverColor;
+                    icon.SymbolColor = UIStyles.GetStyleColor(UIStyle.Green).ButtonFillColor;
+                    LeaveColor = UIStyles.GetStyleColor(UIStyle.Green).ButtonFillColor;
+                    HoverColor = UIStyles.GetStyleColor(UIStyle.Green).ButtonFillHoverColor;
                     break;
             }
 

@@ -44,6 +44,7 @@
 	<None Remove="Font\fa-solid-900.ttf" />
 	<None Remove="Font\FontAwesome.ttf" />
 	<None Remove="Style\UIStyleColor.cs~RF1472b803.TMP" />
+	<None Remove="Style\UIStyleColor.cs~RF22754f9d.TMP" />
 	<None Include="..\LICENSE">
         <Pack>True</Pack>
         <PackagePath></PackagePath>

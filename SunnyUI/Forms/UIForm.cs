@@ -1730,22 +1730,22 @@ namespace Sunny.UI
 
         public void ShowInfoNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, isDialog, timeout);
         }
 
         public void ShowSuccessNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, isDialog, timeout);
         }
 
         public void ShowWarningNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, isDialog, timeout);
         }
 
         public void ShowErrorNotifier(string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, false, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
         }
 
         #endregion

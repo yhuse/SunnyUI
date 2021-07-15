@@ -47,12 +47,12 @@ namespace Sunny.UI
             RectSides = ToolStripStatusLabelBorderSides.None;
             Padding = new Padding(0, 8, 0, 3);
 
-            foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
-            forePressColor = UIStyles.Blue.ButtonForePressColor;
-            foreSelectedColor = UIStyles.Blue.ButtonForeSelectedColor;
-            fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
-            fillPressColor = UIStyles.Blue.ButtonFillPressColor;
-            fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
+            foreHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeHoverColor;
+            forePressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForePressColor;
+            foreSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeSelectedColor;
+            fillHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillHoverColor;
+            fillPressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillPressColor;
+            fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 

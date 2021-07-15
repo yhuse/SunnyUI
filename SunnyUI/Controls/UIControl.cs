@@ -549,22 +549,22 @@ namespace Sunny.UI
         /// <summary>
         /// 选中颜色
         /// </summary>
-        protected Color fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
+        protected Color fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
 
         /// <summary>
         /// 边框颜色
         /// </summary>
-        protected Color rectColor = UIStyles.Blue.RectColor;
+        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
 
         /// <summary>
         /// 填充颜色
         /// </summary>
-        protected Color fillColor = UIStyles.Blue.ButtonFillColor;
+        protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
 
         /// <summary>
         /// 字体颜色
         /// </summary>
-        protected Color foreColor = UIStyles.Blue.ButtonForeColor;
+        protected Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeColor;
 
         /// <summary>
         /// 字体鼠标移上颜色
@@ -579,7 +579,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体不可用颜色
         /// </summary>
-        protected Color foreDisableColor = UIStyles.Blue.ForeDisableColor;
+        protected Color foreDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).ForeDisableColor;
 
         /// <summary>
         /// 边框鼠标移上颜色
@@ -594,7 +594,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框不可用颜色
         /// </summary>
-        protected Color rectDisableColor = UIStyles.Blue.RectDisableColor;
+        protected Color rectDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
 
         /// <summary>
         /// 填充鼠标移上颜色
@@ -609,7 +609,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充不可用颜色
         /// </summary>
-        protected Color fillDisableColor = UIStyles.Blue.FillDisableColor;
+        protected Color fillDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).FillDisableColor;
 
         /// <summary>
         /// 设置选中颜色

@@ -47,8 +47,8 @@ namespace Sunny.UI
             Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);
-            foreColor = UIStyles.Blue.CheckBoxForeColor;
-            fillColor = UIStyles.Blue.CheckBoxColor;
+            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxForeColor;
+            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)

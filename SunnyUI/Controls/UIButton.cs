@@ -46,17 +46,17 @@ namespace Sunny.UI
             Height = 35;
             Cursor = Cursors.Hand;
 
-            foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
-            forePressColor = UIStyles.Blue.ButtonForePressColor;
-            foreSelectedColor = UIStyles.Blue.ButtonForeSelectedColor;
+            foreHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeHoverColor;
+            forePressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForePressColor;
+            foreSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeSelectedColor;
 
-            rectHoverColor = UIStyles.Blue.RectHoverColor;
-            rectPressColor = UIStyles.Blue.RectPressColor;
-            rectSelectedColor = UIStyles.Blue.RectSelectedColor;
+            rectHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).RectHoverColor;
+            rectPressColor = UIStyles.GetStyleColor(UIStyle.Blue).RectPressColor;
+            rectSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).RectSelectedColor;
 
-            fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
-            fillPressColor = UIStyles.Blue.ButtonFillPressColor;
-            fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
+            fillHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillHoverColor;
+            fillPressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillPressColor;
+            fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 

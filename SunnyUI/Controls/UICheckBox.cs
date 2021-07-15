@@ -40,8 +40,8 @@ namespace Sunny.UI
             base.Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);
-            foreColor = UIStyles.Blue.CheckBoxForeColor;
-            fillColor = UIStyles.Blue.CheckBoxColor;
+            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxForeColor;
+            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 

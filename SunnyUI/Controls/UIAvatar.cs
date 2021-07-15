@@ -67,8 +67,8 @@ namespace Sunny.UI
             ShowText = false;
             ShowRect = false;
 
-            fillColor = UIStyles.Blue.AvatarFillColor;
-            foreColor = UIStyles.Blue.AvatarForeColor;
+            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).AvatarFillColor;
+            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).AvatarForeColor;
         }
 
         private int avatarSize = 60;

@@ -197,7 +197,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        protected Color rectColor = UIStyles.Blue.RectColor;
+        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
 
         /// <summary>
         /// 字体颜色

@@ -37,9 +37,9 @@ namespace Sunny.UI
     public partial class UIPanel : UserControl, IStyleInterface
     {
         private int radius = 5;
-        protected Color rectColor = UIStyles.Blue.RectColor;
-        protected Color fillColor = UIStyles.Blue.PlainColor;
-        protected Color foreColor = UIStyles.Blue.PanelForeColor;
+        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
+        protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
+        protected Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).PanelForeColor;
 
         public UIPanel()
         {

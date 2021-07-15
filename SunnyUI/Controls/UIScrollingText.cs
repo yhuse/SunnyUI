@@ -39,8 +39,8 @@ namespace Sunny.UI
         public UIScrollingText()
         {
             SetStyleFlags(true, false);
-            fillColor = UIStyles.Blue.PlainColor;
-            foreColor = UIStyles.Blue.RectColor;
+            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
+            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
             Reset();
 
             timer.Interval = interval;
