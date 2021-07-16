@@ -31,6 +31,23 @@ namespace Sunny.UI
         public UITitlePage()
         {
             InitializeComponent();
+            base.BackColor = UIColor.LightBlue;
+            TopLevel = false;
+            if (this.Register()) SetStyle(UIStyles.Style);
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            UpdateStyles();
+
+            if (!IsDesignMode) base.Dock = DockStyle.Fill;
+
+            Version = UIGlobal.Version;
+        }
+
+        public new string Version
+        {
+            get;
         }
 
         private string text;

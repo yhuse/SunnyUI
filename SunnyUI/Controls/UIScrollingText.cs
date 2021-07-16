@@ -34,7 +34,7 @@ namespace Sunny.UI
         private int XPos = int.MinValue;
         private int XPos1 = int.MaxValue;
         private int interval = 200;
-        private int TextWidth = Int32.MinValue;
+        private int TextWidth = int.MinValue;
 
         public UIScrollingText()
         {
@@ -104,7 +104,7 @@ namespace Sunny.UI
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (XPos == Int32.MinValue)
+            if (XPos == int.MinValue)
             {
                 Invalidate();
             }
