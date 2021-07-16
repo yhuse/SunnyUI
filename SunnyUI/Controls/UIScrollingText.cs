@@ -45,16 +45,33 @@ namespace Sunny.UI
 
             timer.Interval = interval;
             timer.Tick += Timer_Tick;
-            timer.Start();
+        }
+
+        [DefaultValue(false), Description("是否滚动"), Category("SunnyUI")]
+        public bool Active
+        {
+            get => timer.Enabled;
+            set
+            {
+                timer.Enabled = value;
+                if (!value)
+                {
+                    Reset();
+                }
+            }
         }
 
         [DefaultValue(false), Description("点击暂停滚动"), Category("SunnyUI")]
-        public bool ClickPause { get; set; }
+        public bool ClickPause
+        {
+            get; set;
+        }
 
         private void Reset()
         {
             XPos = int.MinValue;
             XPos1 = int.MaxValue;
+            Invalidate();
         }
 
         ~UIScrollingText()

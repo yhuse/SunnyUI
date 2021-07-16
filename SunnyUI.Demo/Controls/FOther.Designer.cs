@@ -179,6 +179,7 @@ namespace Sunny.UI.Demo
             // 
             // uiScrollingText2
             // 
+            this.uiScrollingText2.Active = true;
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -191,7 +192,7 @@ namespace Sunny.UI.Demo
             // 
             // uiScrollingText1
             // 
-            this.uiScrollingText1.ClickPause = true;
+            this.uiScrollingText1.Active = true;
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
@@ -347,7 +348,6 @@ namespace Sunny.UI.Demo
             // FOther
             // 
             this.AllowShowTitle = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.uiSignal6);
