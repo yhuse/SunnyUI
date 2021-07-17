@@ -787,6 +787,18 @@ namespace Sunny.UI
                 return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
                        e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
             }
+
+            protected override void WndProc(ref Message m)
+            {
+                if (IsDisposed || Disposing) return;
+                if (m.Msg == Win32.User.WM_ERASEBKGND)
+                {
+                    m.Result = IntPtr.Zero;
+                    return;
+                }
+
+                base.WndProc(ref m);
+            }
         }
     }
 }

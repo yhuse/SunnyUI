@@ -1,4 +1,40 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UGif.cs
+ * 文件说明: GIF图片帮助类，可控制单帧显示图片
+ * 当前版本: V3.0
+ * 创建日期: 2021-07-17
+ *
+ * 2021-07-17: V3.0.5 增加文件说明
+******************************************************************************/
+
+/*  用法
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            Gif gif = new Gif("C:\\aa.gif");
+            //gif.Loop = true;//是否循环播放
+            gif.ImageChanged += Gif_ImageChanged;
+            gif.Active = gif.IsGif;//打开播放
+        }
+
+        private void Gif_ImageChanged(object sender, System.Drawing.Image image)
+        {
+            pictureBox1.Image = image;
+        } 
+*/
+
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -29,17 +65,40 @@ namespace Sunny.UI
             }
         }
 
+        public void Dispose()
+        {
+            Active = false;
+            timer.Stop();
+            Image?.Dispose();
+            Image = null;
+            ShowImage?.Dispose();
+            ShowImage = null;
+        }
+
         public bool Loop
         {
             get; set;
         }
 
-        public void Reset()
+        public void JumpToFrame(int frameIndex)
         {
-            ImageCount = 0;
-            FrameIndex = 0;
-            Active = false;
+            if (ImageCount == 0) return;
+            if (frameIndex >= 0 && frameIndex < ImageCount)
+            {
+                if (ShowImage == null || ShowImage.Width != Image.Width || ShowImage.Height != Image.Height)
+                {
+                    ShowImage?.Dispose();
+                    ShowImage = new Bitmap(Image.Width, Image.Height);
+                }
+
+                FrameDimension fd = Image.GifFrameDimension();
+                Image.SelectActiveFrame(fd, frameIndex);
+                ShowImage.Graphics().DrawImage(Image, 0, 0, Image.Width, Image.Height);
+                ImageChanged?.Invoke(this, ShowImage);
+            }
         }
+
+        private Image ShowImage;
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -47,12 +106,14 @@ namespace Sunny.UI
 
             if (Image == null)
             {
-                Reset();
+                Active = false;
                 return;
             }
 
             if (IsGif)
             {
+                JumpToFrame(FrameIndex);
+
                 if (FrameIndex < ImageCount - 1)
                 {
                     FrameIndex++;
@@ -68,16 +129,14 @@ namespace Sunny.UI
                         active = false;
                     }
                 }
-
-                FrameDimension fd = image.GifFrameDimension();
-                Image.SelectActiveFrame(fd, FrameIndex);
+            }
+            else
+            {
+                ImageChanged?.Invoke(this, Image);
             }
 
-            ImageChanged?.Invoke(this, Image);
             timer.Enabled = IsGif && active;
         }
-
-        public Color BackColor { get; set; } = Color.White;
 
         public delegate void OnImageChanged(object sender, Image image);
 
@@ -87,7 +146,7 @@ namespace Sunny.UI
 
         private Image image;
 
-        private int ImageCount;
+        private int ImageCount => image == null ? 0 : image.GifFrameCount();
         public bool IsGif => ImageCount > 0;
 
         public Image Image
@@ -95,20 +154,14 @@ namespace Sunny.UI
             get => image;
             set
             {
-                Reset();
+                Active = false;
                 image = value;
-
-                if (Image != null)
+                if (IsGif)
                 {
-                    ImageCount = image.GifFrameCount();
-
-                    if (IsGif)
+                    int delay = image.GifFrameInterval();
+                    if (delay > 0)
                     {
-                        int delay = image.GifFrameInterval();
-                        if (delay > 0)
-                        {
-                            timer.Interval = delay;
-                        }
+                        timer.Interval = delay;
                     }
                 }
             }
@@ -122,13 +175,6 @@ namespace Sunny.UI
             }
         }
 
-        public void Dispose()
-        {
-            Reset();
-            Image?.Dispose();
-            Image = null;
-        }
-
         private int FrameIndex;
         private bool active;
         public bool Active
@@ -136,7 +182,6 @@ namespace Sunny.UI
             get => active;
             set
             {
-                ImageCount = 0;
                 FrameIndex = 0;
                 active = value;
                 timer.Enabled = value;
