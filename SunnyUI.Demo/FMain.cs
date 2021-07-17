@@ -60,6 +60,8 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
             Aside.CreateChildNode(parent, AddPage(new FLineChart()));
 
+            AddPage(new FColorful());
+
             Header.SetNodeSymbol(Header.Nodes[3], 61502);
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
@@ -67,6 +69,7 @@ namespace Sunny.UI.Demo
                 Header.CreateChildNode(Header.Nodes[3], style.DisplayText(), style.Value());
             }
 
+            Header.CreateChildNode(Header.Nodes[3], "多彩主题", UIStyle.Colorful.Value());
             Aside.SelectFirst();
         }
 
@@ -82,7 +85,11 @@ namespace Sunny.UI.Demo
 
                 case 3:
                     UIStyle style = (UIStyle)pageIndex;
-                    StyleManager.Style = style;
+                    if (style != UIStyle.Colorful)
+                        StyleManager.Style = style;
+                    else
+                        SelectPage(pageIndex);
+
                     break;
             }
         }
