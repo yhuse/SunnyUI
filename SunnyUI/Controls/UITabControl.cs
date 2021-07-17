@@ -21,13 +21,13 @@
  * 2020-08-12: V2.2.7 标题垂直居中
 ******************************************************************************/
 
-using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {
@@ -127,7 +127,10 @@ namespace Sunny.UI
 
         public void AddPage(Guid guid, UITabControlMenu page) => Helper.AddPage(guid, page);
 
-        public string Version { get; }
+        public string Version
+        {
+            get;
+        }
 
         private Color _fillColor = UIColor.LightBlue;
         private Color tabBackColor = Color.FromArgb(56, 56, 56);
@@ -137,14 +140,20 @@ namespace Sunny.UI
         /// </summary>
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
-        public string TagString { get; set; }
+        public string TagString
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 自定义主题风格
         /// </summary>
         [DefaultValue(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode
+        {
+            get; set;
+        }
 
         private HorizontalAlignment textAlignment = HorizontalAlignment.Center;
 
@@ -555,7 +564,10 @@ namespace Sunny.UI
 
         [DefaultValue(false)]
         [Description("多页面框架时，包含UIPage，在点击Tab页关闭时关闭UIPage"), Category("SunnyUI")]
-        public bool AutoClosePage { get; set; }
+        public bool AutoClosePage
+        {
+            get; set;
+        }
 
         internal void RemoveTabPage(int index)
         {
@@ -608,27 +620,44 @@ namespace Sunny.UI
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
             base.OnSelectedIndexChanged(e);
-            Init(SelectedIndex);
+            Init();
             if (ShowActiveCloseButton && !ShowCloseButton)
             {
                 timer.Start();
             }
         }
 
-        public void Init(int index = 0)
+        private int LastIndex = 0;
+
+        public void Init()
         {
-            if (index < 0 || index >= TabPages.Count)
+            if (SelectedIndex < 0 || SelectedIndex >= TabPages.Count)
             {
                 return;
             }
 
-            if (SelectedIndex != index)
-                SelectedIndex = index;
-
-            List<UIPage> pages = TabPages[SelectedIndex].GetControls<UIPage>();
-            foreach (var page in pages)
+            if (SelectedIndex >= 0)
             {
-                page.ReLoad();
+                List<UIPage> pages;
+                if (LastIndex != SelectedIndex)
+                {
+                    if (LastIndex >= 0 && TabPages.Count > 0)
+                    {
+                        pages = TabPages[LastIndex].GetControls<UIPage>();
+                        foreach (var page in pages)
+                        {
+                            page.Final();
+                        }
+                    }
+
+                    LastIndex = SelectedIndex;
+                }
+
+                pages = TabPages[SelectedIndex].GetControls<UIPage>();
+                foreach (var page in pages)
+                {
+                    page.ReLoad();
+                }
             }
 
             List<UITabControlMenu> leftTabControls = TabPages[SelectedIndex].GetControls<UITabControlMenu>();
@@ -901,11 +930,20 @@ namespace Sunny.UI
                 MouseInUpButton = mouseInUpButton;
             }
 
-            public bool MouseOver { get; }
+            public bool MouseOver
+            {
+                get;
+            }
 
-            public bool MousePress { get; }
+            public bool MousePress
+            {
+                get;
+            }
 
-            public bool MouseInUpButton { get; }
+            public bool MouseInUpButton
+            {
+                get;
+            }
         }
     }
 }

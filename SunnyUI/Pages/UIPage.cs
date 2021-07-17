@@ -217,6 +217,7 @@ namespace Sunny.UI
         }
 
         public event EventHandler Initialize;
+        public event EventHandler Finalize;
 
         protected override void OnControlAdded(ControlEventArgs e)
         {
@@ -260,7 +261,7 @@ namespace Sunny.UI
 
         public virtual void Init()
         {
-            Initialize?.Invoke(this, null);
+            Initialize?.Invoke(this, new EventArgs());
         }
 
         protected override void OnLoad(EventArgs e)
@@ -292,6 +293,7 @@ namespace Sunny.UI
 
         public virtual void Final()
         {
+            Finalize?.Invoke(this, new EventArgs());
         }
 
         public void SetStyle(UIStyle style)
