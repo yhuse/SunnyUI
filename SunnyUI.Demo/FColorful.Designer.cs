@@ -39,6 +39,9 @@ namespace Sunny.UI.Demo
             this.uiPanel8 = new Sunny.UI.UIPanel();
             this.uiPanel9 = new Sunny.UI.UIPanel();
             this.uiPanel10 = new Sunny.UI.UIPanel();
+            this.uiLabel1 = new Sunny.UI.UILabel();
+            this.uiPanel11 = new Sunny.UI.UIPanel();
+            this.uiLabel2 = new Sunny.UI.UILabel();
             this.SuspendLayout();
             // 
             // uiPanel1
@@ -221,12 +224,53 @@ namespace Sunny.UI.Demo
             this.uiPanel10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiPanel10.Click += new System.EventHandler(this.uiPanel1_Click);
             // 
+            // uiLabel1
+            // 
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Location = new System.Drawing.Point(23, 297);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(698, 23);
+            this.uiLabel1.TabIndex = 10;
+            this.uiLabel1.Text = "多彩主题，以颜色深色，文字白色为主，主题配色自动计算，不能保证所有颜色显示效果";
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiPanel11
+            // 
+            this.uiPanel11.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            this.uiPanel11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPanel11.ForeColor = System.Drawing.Color.White;
+            this.uiPanel11.Location = new System.Drawing.Point(23, 340);
+            this.uiPanel11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel11.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel11.Name = "uiPanel11";
+            this.uiPanel11.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            this.uiPanel11.Size = new System.Drawing.Size(120, 100);
+            this.uiPanel11.Style = Sunny.UI.UIStyle.Custom;
+            this.uiPanel11.StyleCustomMode = true;
+            this.uiPanel11.TabIndex = 11;
+            this.uiPanel11.Text = "随机颜色";
+            this.uiPanel11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiPanel11.Click += new System.EventHandler(this.uiPanel11_Click);
+            // 
+            // uiLabel2
+            // 
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Location = new System.Drawing.Point(23, 457);
+            this.uiLabel2.Name = "uiLabel2";
+            this.uiLabel2.Size = new System.Drawing.Size(172, 23);
+            this.uiLabel2.TabIndex = 12;
+            this.uiLabel2.Text = "RGB: 255, 255, 255 ";
+            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FColorful
             // 
             this.AllowShowTitle = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 543);
+            this.Controls.Add(this.uiLabel2);
+            this.Controls.Add(this.uiPanel11);
+            this.Controls.Add(this.uiLabel1);
             this.Controls.Add(this.uiPanel10);
             this.Controls.Add(this.uiPanel6);
             this.Controls.Add(this.uiPanel7);
@@ -258,5 +302,8 @@ namespace Sunny.UI.Demo
         private UIPanel uiPanel8;
         private UIPanel uiPanel9;
         private UIPanel uiPanel10;
+        private UILabel uiLabel1;
+        private UIPanel uiPanel11;
+        private UILabel uiLabel2;
     }
 }
