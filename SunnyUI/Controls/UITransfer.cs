@@ -242,5 +242,17 @@ namespace Sunny.UI
             if (RectSides != ToolStripStatusLabelBorderSides.None)
                 RectSides = ToolStripStatusLabelBorderSides.None;
         }
+
+        public event EventHandler ItemsLeftClick;
+        public event EventHandler ItemsRightClick;
+        private void l1_ItemClick(object sender, EventArgs e)
+        {
+            ItemsLeftClick?.Invoke(this, e);
+        }
+
+        private void l2_ItemClick(object sender, EventArgs e)
+        {
+            ItemsRightClick?.Invoke(this, e);
+        }
     }
 }

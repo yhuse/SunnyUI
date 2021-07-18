@@ -42,9 +42,10 @@ namespace Sunny.UI
             // 
             this.b1.BackColor = System.Drawing.Color.Transparent;
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b1.Location = new System.Drawing.Point(228, 85);
             this.b1.Margin = new System.Windows.Forms.Padding(0);
+            this.b1.MinimumSize = new System.Drawing.Size(1, 1);
             this.b1.Name = "b1";
             this.b1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.b1.Size = new System.Drawing.Size(44, 32);
@@ -57,9 +58,10 @@ namespace Sunny.UI
             // 
             this.b2.BackColor = System.Drawing.Color.Transparent;
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b2.Location = new System.Drawing.Point(228, 135);
             this.b2.Margin = new System.Windows.Forms.Padding(0);
+            this.b2.MinimumSize = new System.Drawing.Size(1, 1);
             this.b2.Name = "b2";
             this.b2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.b2.Size = new System.Drawing.Size(44, 32);
@@ -72,9 +74,10 @@ namespace Sunny.UI
             // 
             this.b3.BackColor = System.Drawing.Color.Transparent;
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b3.Location = new System.Drawing.Point(228, 183);
             this.b3.Margin = new System.Windows.Forms.Padding(0);
+            this.b3.MinimumSize = new System.Drawing.Size(1, 1);
             this.b3.Name = "b3";
             this.b3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.b3.Size = new System.Drawing.Size(44, 32);
@@ -87,9 +90,10 @@ namespace Sunny.UI
             // 
             this.b4.BackColor = System.Drawing.Color.Transparent;
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b4.Location = new System.Drawing.Point(228, 233);
             this.b4.Margin = new System.Windows.Forms.Padding(0);
+            this.b4.MinimumSize = new System.Drawing.Size(1, 1);
             this.b4.Name = "b4";
             this.b4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.b4.Size = new System.Drawing.Size(44, 32);
@@ -102,35 +106,42 @@ namespace Sunny.UI
             // 
             this.l1.BackColor = System.Drawing.Color.Transparent;
             this.l1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.l1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.l1.FillColor = System.Drawing.Color.White;
+            this.l1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.l1.FormatString = "";
             this.l1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.l1.Location = new System.Drawing.Point(1, 1);
             this.l1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.l1.MinimumSize = new System.Drawing.Size(1, 1);
             this.l1.Name = "l1";
             this.l1.Padding = new System.Windows.Forms.Padding(2);
             this.l1.Size = new System.Drawing.Size(210, 348);
             this.l1.TabIndex = 7;
             this.l1.Text = null;
+            this.l1.ItemClick += new System.EventHandler(this.l1_ItemClick);
             this.l1.ItemDoubleClick += new System.EventHandler(this.l1_DoubleClick);
             // 
             // l2
             // 
             this.l2.BackColor = System.Drawing.Color.Transparent;
             this.l2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.l2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.l2.FillColor = System.Drawing.Color.White;
+            this.l2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.l2.FormatString = "";
             this.l2.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.l2.Location = new System.Drawing.Point(289, 1);
             this.l2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.l2.MinimumSize = new System.Drawing.Size(1, 1);
             this.l2.Name = "l2";
             this.l2.Padding = new System.Windows.Forms.Padding(2);
             this.l2.Size = new System.Drawing.Size(210, 348);
             this.l2.TabIndex = 8;
             this.l2.Text = null;
+            this.l2.ItemClick += new System.EventHandler(this.l2_ItemClick);
             this.l2.ItemDoubleClick += new System.EventHandler(this.l2_DoubleClick);
             // 
             // UITransfer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.l2);
             this.Controls.Add(this.l1);
