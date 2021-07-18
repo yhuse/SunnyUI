@@ -30,13 +30,25 @@ namespace Sunny.UI
 {
     public interface IStyleInterface
     {
-        UIStyle Style { get; set; }
+        UIStyle Style
+        {
+            get; set;
+        }
 
-        bool StyleCustomMode { get; set; }
+        bool StyleCustomMode
+        {
+            get; set;
+        }
 
-        string Version { get; }
+        string Version
+        {
+            get;
+        }
 
-        string TagString { get; set; }
+        string TagString
+        {
+            get; set;
+        }
 
         void SetStyleColor(UIBaseStyle uiColor);
 
@@ -727,23 +739,10 @@ namespace Sunny.UI
             return !style.IsCustom();
         }
 
-        public static void SetChildUIStyle(this UIPanel ctrl, UIStyle style)
+        public static void SetChildUIStyle(Control ctrl, UIStyle style)
         {
-            SetControlChildUIStyle(ctrl, style);
-        }
+            ctrl.SuspendLayout();
 
-        public static void SetChildUIStyle(this UIForm ctrl, UIStyle style)
-        {
-            SetControlChildUIStyle(ctrl, style);
-        }
-
-        public static void SetChildUIStyle(this UIPage ctrl, UIStyle style)
-        {
-            SetControlChildUIStyle(ctrl, style);
-        }
-
-        private static void SetControlChildUIStyle(Control ctrl, UIStyle style)
-        {
             List<Control> controls = ctrl.GetUIStyleControls("IStyleInterface");
             foreach (var control in controls)
             {
@@ -768,6 +767,8 @@ namespace Sunny.UI
                     }
                 }
             }
+
+            ctrl.ResumeLayout();
         }
 
         /// <summary>
@@ -788,6 +789,8 @@ namespace Sunny.UI
                 }
 
                 if (obj is UIPage) continue;
+                if (obj is UITableLayoutPanel) continue;
+                if (obj is UIFlowLayoutPanel) continue;
                 if (obj is UIPanel) continue;
 
                 if (obj.Controls.Count > 0)
@@ -797,6 +800,49 @@ namespace Sunny.UI
             }
 
             return values;
+        }
+
+        public static void SetRawControlStyle(ControlEventArgs e, UIStyle style)
+        {
+            if (e.Control is TableLayoutPanel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        item.Style = style;
+                    }
+                }
+
+                return;
+            }
+
+            if (e.Control is TableLayoutPanel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        item.Style = style;
+                    }
+                }
+
+                return;
+            }
+
+            if (e.Control is Panel)
+            {
+                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
+                foreach (var control in controls)
+                {
+                    if (control is IStyleInterface item)
+                    {
+                        item.Style = style;
+                    }
+                }
+            }
         }
     }
 }

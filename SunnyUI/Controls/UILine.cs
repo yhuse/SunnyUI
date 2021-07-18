@@ -101,7 +101,6 @@ namespace Sunny.UI
 
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            g.Clear(fillColor);
             if (Direction == LineDirection.Horizontal)
             {
                 int top = (Height - lineSize) / 2;

@@ -145,7 +145,7 @@ namespace Sunny.UI.Demo
             this.uiNavMenu2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.uiNavMenu2.ItemHeight = 50;
             this.uiNavMenu2.Location = new System.Drawing.Point(299, 192);
-            this.uiNavMenu2.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
+            this.uiNavMenu2.MenuStyle = Sunny.UI.UIMenuStyle.White;
             this.uiNavMenu2.Name = "uiNavMenu2";
             treeNode1.Name = "节点14";
             treeNode1.Text = "节点14";
@@ -205,9 +205,10 @@ namespace Sunny.UI.Demo
             treeNode20,
             treeNode21});
             this.uiNavMenu2.SecondBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.uiNavMenu2.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.uiNavMenu2.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.uiNavMenu2.ShowLines = false;
             this.uiNavMenu2.Size = new System.Drawing.Size(253, 353);
+            this.uiNavMenu2.Style = Sunny.UI.UIStyle.Custom;
             this.uiNavMenu2.TabIndex = 22;
             // 
             // uiNavMenu1
@@ -352,7 +353,6 @@ namespace Sunny.UI.Demo
             // FNavigation
             // 
             this.AllowShowTitle = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 603);
             this.Controls.Add(this.uiLine2);

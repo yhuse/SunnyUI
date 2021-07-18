@@ -20,7 +20,6 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -222,29 +221,12 @@ namespace Sunny.UI
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
-
             if (e.Control is IStyleInterface ctrl)
             {
-                if (!ctrl.StyleCustomMode)
-                {
-                    ctrl.Style = Style;
-                }
+                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
             }
 
-            if (e.Control is Panel)
-            {
-                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
-                foreach (var control in controls)
-                {
-                    if (control is IStyleInterface item)
-                    {
-                        if (!item.StyleCustomMode)
-                        {
-                            item.Style = Style;
-                        }
-                    }
-                }
-            }
+            UIStyleHelper.SetRawControlStyle(e, Style);
 
             if (AllowShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
@@ -298,7 +280,7 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            this.SetChildUIStyle(style);
+            UIStyleHelper.SetChildUIStyle(this, style);
 
             UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
             if (!uiColor.IsCustom()) SetStyleColor(uiColor);

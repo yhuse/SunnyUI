@@ -145,18 +145,28 @@ namespace Sunny.UI
             }
         }
 
-        public void AddControl(Control ctrl)
+        public void AddControl(Control control)
         {
-            Panel.Controls.Add(ctrl);
+            if (control is IStyleInterface ctrl)
+            {
+                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
+            }
+
+            Panel.Controls.Add(control);
         }
 
-        public void RemoveControl(Control ctrl)
+        public void RemoveControl(Control control)
         {
-            Panel.Controls.Remove(ctrl);
+            Panel.Controls.Remove(control);
         }
 
         public void Clear()
         {
+            foreach (Control control in Panel.Controls)
+            {
+                control.Dispose();
+            }
+
             Panel.Controls.Clear();
         }
 

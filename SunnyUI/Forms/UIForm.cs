@@ -144,7 +144,10 @@ namespace Sunny.UI
 
         [DefaultValue(null)]
         [Description("扩展按钮菜单"), Category("SunnyUI")]
-        public UIContextMenuStrip ExtendMenu { get; set; }
+        public UIContextMenuStrip ExtendMenu
+        {
+            get; set;
+        }
 
         //不显示FormBorderStyle属性
         [Browsable(false)]
@@ -152,8 +155,14 @@ namespace Sunny.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new FormBorderStyle FormBorderStyle
         {
-            get { return base.FormBorderStyle; }
-            set { base.FormBorderStyle = FormBorderStyle.None; }
+            get
+            {
+                return base.FormBorderStyle;
+            }
+            set
+            {
+                base.FormBorderStyle = FormBorderStyle.None;
+            }
         }
 
         public void Render()
@@ -178,26 +187,10 @@ namespace Sunny.UI
 
             if (e.Control is IStyleInterface ctrl)
             {
-                if (!ctrl.StyleCustomMode)
-                {
-                    ctrl.Style = Style;
-                }
+                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
             }
 
-            if (e.Control is Panel)
-            {
-                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
-                foreach (var control in controls)
-                {
-                    if (control is IStyleInterface item)
-                    {
-                        if (!item.StyleCustomMode)
-                        {
-                            item.Style = Style;
-                        }
-                    }
-                }
-            }
+            UIStyleHelper.SetRawControlStyle(e, Style);
 
             if (ShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
@@ -210,7 +203,10 @@ namespace Sunny.UI
         /// </summary>
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
-        public string TagString { get; set; }
+        public string TagString
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 是否显示窗体的标题栏
@@ -303,7 +299,10 @@ namespace Sunny.UI
         /// 当前控件的版本
         /// </summary>
         [Description("控件版本"), Category("SunnyUI")]
-        public string Version { get; }
+        public string Version
+        {
+            get;
+        }
 
         /// <summary>
         /// 初始化
@@ -783,7 +782,10 @@ namespace Sunny.UI
         /// </summary>
         [Description("是否屏蔽Alt+F4"), Category("Key")]
         [DefaultValue(false)]
-        public bool IsForbidAltF4 { get; set; }
+        public bool IsForbidAltF4
+        {
+            get; set;
+        }
 
         protected override void OnActivated(EventArgs e)
         {
@@ -1065,11 +1067,14 @@ namespace Sunny.UI
 
         [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("SunnyUI")]
         [DefaultValue(false)]
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode
+        {
+            get; set;
+        }
 
         public void SetStyle(UIStyle style)
         {
-            this.SetChildUIStyle(style);
+            UIStyleHelper.SetChildUIStyle(this, style);
             btn.SetStyle(style);
 
             UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
@@ -1362,7 +1367,10 @@ namespace Sunny.UI
         }
 
         [Description("窗体关闭时提示文字，为空则不提示"), Category("SunnyUI"), DefaultValue(null)]
-        public string CloseAskString { get; set; }
+        public string CloseAskString
+        {
+            get; set;
+        }
 
         protected override CreateParams CreateParams
         {
