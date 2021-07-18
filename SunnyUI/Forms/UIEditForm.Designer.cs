@@ -50,6 +50,7 @@
             this.pnlBtm.Size = new System.Drawing.Size(598, 55);
             this.pnlBtm.TabIndex = 1;
             this.pnlBtm.Text = null;
+            this.pnlBtm.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancel
             // 
@@ -61,6 +62,7 @@
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.btnCancel.ShowFocusColor = true;
             this.btnCancel.Size = new System.Drawing.Size(100, 35);
             this.btnCancel.Symbol = 61453;
             this.btnCancel.TabIndex = 1;
@@ -78,6 +80,7 @@
             this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnOK.Name = "btnOK";
             this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.btnOK.ShowFocusColor = true;
             this.btnOK.Size = new System.Drawing.Size(100, 35);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
@@ -89,6 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(600, 450);
             this.Controls.Add(this.pnlBtm);
+            this.EscClose = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UIEditForm";
@@ -101,8 +105,8 @@
         }
 
         #endregion
-        private UISymbolButton btnCancel;
-        private UISymbolButton btnOK;
         protected UIPanel pnlBtm;
+        protected UISymbolButton btnCancel;
+        protected UISymbolButton btnOK;
     }
 }

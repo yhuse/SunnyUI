@@ -35,7 +35,10 @@ namespace Sunny.UI
             btnCancel.Text = UILocalize.Cancel;
         }
 
-        public bool IsOK { get; private set; }
+        public bool IsOK
+        {
+            get; private set;
+        }
 
         private bool _showCancel = true;
 

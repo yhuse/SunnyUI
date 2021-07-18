@@ -69,14 +69,20 @@ namespace Sunny.UI
         /// </summary>
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
-        public string TagString { get; set; }
+        public string TagString
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 自定义主题风格
         /// </summary>
         [DefaultValue(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 是否在设计期
@@ -89,7 +95,8 @@ namespace Sunny.UI
                 {
                     return true;
                 }
-                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+
+                if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
                 {
                     return true;
                 }
@@ -219,7 +226,10 @@ namespace Sunny.UI
         /// <summary>
         /// 版本
         /// </summary>
-        public string Version { get; }
+        public string Version
+        {
+            get;
+        }
 
         /// <summary>
         /// 设置主题样式
@@ -367,7 +377,17 @@ namespace Sunny.UI
                 color = rectPressColor;
             if (selected)
                 color = rectSelectedColor;
+            if (ShowFocusColor && Focused)
+                color = rectPressColor;
             return Enabled ? color : rectDisableColor;
+        }
+
+        [Description("是否显示激活状态颜色"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool ShowFocusColor
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -384,6 +404,8 @@ namespace Sunny.UI
                 color = forePressColor;
             if (selected)
                 color = foreSelectedColor;
+            if (ShowFocusColor && Focused)
+                color = forePressColor;
             return Enabled ? color : foreDisableColor;
         }
 
@@ -401,6 +423,8 @@ namespace Sunny.UI
                 color = fillPressColor;
             if (selected)
                 color = fillSelectedColor;
+            if (ShowFocusColor && Focused)
+                color = fillPressColor;
             return Enabled ? color : fillDisableColor;
         }
 

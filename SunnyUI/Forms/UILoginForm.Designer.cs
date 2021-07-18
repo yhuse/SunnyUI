@@ -115,6 +115,7 @@
             this.btnLogin.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.btnLogin.ShowFocusColor = true;
             this.btnLogin.Size = new System.Drawing.Size(86, 29);
             this.btnLogin.Style = Sunny.UI.UIStyle.Custom;
             this.btnLogin.TabIndex = 2;
@@ -137,6 +138,7 @@
             this.btnCancel.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.btnCancel.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.btnCancel.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.btnCancel.ShowFocusColor = true;
             this.btnCancel.Size = new System.Drawing.Size(86, 29);
             this.btnCancel.Style = Sunny.UI.UIStyle.Red;
             this.btnCancel.StyleCustomMode = true;
@@ -217,6 +219,7 @@
             this.Controls.Add(this.uiPanel1);
             this.Controls.Add(this.lblSubText);
             this.Controls.Add(this.lblTitle);
+            this.EscClose = true;
             this.MaximumSize = new System.Drawing.Size(750, 450);
             this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "UILoginForm";

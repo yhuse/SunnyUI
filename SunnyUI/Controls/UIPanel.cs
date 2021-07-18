@@ -75,7 +75,10 @@ namespace Sunny.UI
         /// </summary>
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
-        public string TagString { get; set; }
+        public string TagString
+        {
+            get; set;
+        }
 
         private string text;
 
@@ -486,7 +489,10 @@ namespace Sunny.UI
         /// </summary>
         [DefaultValue(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode
+        {
+            get; set;
+        }
 
         protected UIStyle _style = UIStyle.Blue;
 
@@ -597,7 +603,10 @@ namespace Sunny.UI
 
         public event EventHandler RectColorChanged;
 
-        public string Version { get; }
+        public string Version
+        {
+            get;
+        }
 
         private ContentAlignment _textAlignment = ContentAlignment.MiddleCenter;
 

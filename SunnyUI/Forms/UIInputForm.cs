@@ -38,7 +38,10 @@ namespace Sunny.UI
 
         public UILabel Label => label;
 
-        public bool CheckInputEmpty { get; set; }
+        public bool CheckInputEmpty
+        {
+            get; set;
+        }
 
         protected override bool CheckData()
         {
@@ -56,6 +59,8 @@ namespace Sunny.UI
 
         protected override void DoEnter()
         {
+            if (btnCancel.Focused || btnOK.Focused) return;
+
             btnOK_Click(null, null);
         }
 
