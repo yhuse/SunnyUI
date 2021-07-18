@@ -98,6 +98,12 @@ namespace Sunny.UI
             Validated?.Invoke(this, e);
         }
 
+        public new void Focus()
+        {
+            base.Focus();
+            edit.Focus();
+        }
+
         [Browsable(false)]
         public TextBox TextBox => edit;
 

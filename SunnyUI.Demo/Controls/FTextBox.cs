@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private void FTextBox_Shown(object sender, System.EventArgs e)
+        {
+            uiTextBox1.Focus();
+        }
     }
 }
