@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -171,7 +172,8 @@ namespace Sunny.UI
                 get => symbolSize;
                 set
                 {
-                    symbolSize = value;
+                    symbolSize = Math.Max(value, 16);
+                    symbolSize = Math.Min(value, 128);
                     Invalidate();
                 }
             }

@@ -104,7 +104,7 @@ namespace Sunny.UI
             set
             {
                 _imageSize = Math.Max(value, 16);
-                _imageSize = Math.Min(value, 64);
+                _imageSize = Math.Min(value, 128);
                 Invalidate();
             }
         }

@@ -491,11 +491,13 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
+            this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 
             UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
             if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
+            this.ResumeLayout();
         }
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)

@@ -56,8 +56,10 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
+            this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
             _style = style;
+            this.ResumeLayout();
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)

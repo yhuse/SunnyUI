@@ -49,14 +49,17 @@ namespace Sunny.UI
             set
             {
                 _symbolSize = Math.Max(value, 16);
-                _symbolSize = Math.Min(value, 64);
+                _symbolSize = Math.Min(value, 128);
                 Invalidate();
             }
         }
 
         [DefaultValue(null)]
         [Description("图片"), Category("SunnyUI")]
-        public Image Image { get; set; }
+        public Image Image
+        {
+            get; set;
+        }
 
         private ContentAlignment imageAlign = ContentAlignment.MiddleCenter;
 

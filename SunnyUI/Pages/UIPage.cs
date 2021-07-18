@@ -77,7 +77,7 @@ namespace Sunny.UI
             set
             {
                 _symbolSize = Math.Max(value, 16);
-                _symbolSize = Math.Min(value, 64);
+                _symbolSize = Math.Min(value, 128);
                 SymbolChange();
                 Invalidate();
             }
@@ -280,12 +280,14 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
+            this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 
             UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
             if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
+            this.ResumeLayout();
         }
 
         public event EventHandler UIStyleChanged;

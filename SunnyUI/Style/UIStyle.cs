@@ -741,8 +741,6 @@ namespace Sunny.UI
 
         public static void SetChildUIStyle(Control ctrl, UIStyle style)
         {
-            ctrl.SuspendLayout();
-
             List<Control> controls = ctrl.GetUIStyleControls("IStyleInterface");
             foreach (var control in controls)
             {
@@ -767,8 +765,6 @@ namespace Sunny.UI
                     }
                 }
             }
-
-            ctrl.ResumeLayout();
         }
 
         /// <summary>

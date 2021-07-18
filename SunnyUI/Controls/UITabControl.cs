@@ -21,13 +21,13 @@
  * 2020-08-12: V2.2.7 标题垂直居中
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {
@@ -641,7 +641,7 @@ namespace Sunny.UI
                 List<UIPage> pages;
                 if (LastIndex != SelectedIndex)
                 {
-                    if (LastIndex >= 0 && TabPages.Count > 0)
+                    if (LastIndex >= 0 && TabPages.Count > 0 && LastIndex < TabPages.Count)
                     {
                         pages = TabPages[LastIndex].GetControls<UIPage>();
                         foreach (var page in pages)

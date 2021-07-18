@@ -102,10 +102,9 @@ namespace Sunny.UI
         /// <param name="symbol">字符</param>
         /// <param name="symbolSize">大小</param>
         /// <returns>字体大小</returns>
-        public static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize,
-            UISymbolType symbolType = UISymbolType.FontAwesomeV4)
+        public static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize)
         {
-            Font font = GetFont(symbol, symbolSize, symbolType);
+            Font font = GetFont(symbol, symbolSize);
             if (font == null)
             {
                 return new SizeF(0, 0);
@@ -114,41 +113,14 @@ namespace Sunny.UI
             return graphics.MeasureString(char.ConvertFromUtf32(symbol), font);
         }
 
-        /// <summary>
-        /// 绘制字体图片
-        /// </summary>
-        /// <param name="graphics">GDI绘图</param>
-        /// <param name="symbol">字符</param>
-        /// <param name="symbolSize">大小</param>
-        /// <param name="color">颜色</param>
-        /// <param name="left">左</param>
-        /// <param name="top">上</param>
-        /// <param name="xOffset">左右偏移</param>
-        /// <param name="yOffSet">上下偏移</param>
-        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
-            float left, float top, int xOffset = 0, int yOffSet = 0)
+        private static UISymbolType GetSymbolType(int symbol)
         {
-            UISymbolType symbolType = (UISymbolType)symbol.Div(100000);
-            graphics.DrawFontImage(symbol, symbolSize, color, left, top, xOffset, yOffSet, symbolType);
+            return (UISymbolType)symbol.Div(100000);
         }
 
-        /// <summary>
-        /// 绘制字体图片
-        /// </summary>
-        /// <param name="graphics">GDI绘图</param>
-        /// <param name="symbol">字符</param>
-        /// <param name="symbolSize">大小</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rect">区域</param>
-        /// <param name="xOffset">左右偏移</param>
-        /// <param name="yOffSet">上下偏移</param>
-        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
-            Rectangle rect, int xOffset = 0, int yOffSet = 0)
+        private static int GetSymbolValue(int symbol)
         {
-            UISymbolType symbolType = (UISymbolType)symbol.Div(100000);
-            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize, symbolType);
-            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
-                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet, symbolType);
+            return symbol.Mod(100000);
         }
 
         /// <summary>
@@ -165,9 +137,9 @@ namespace Sunny.UI
             RectangleF rect, int xOffset = 0, int yOffSet = 0)
         {
             UISymbolType symbolType = (UISymbolType)symbol.Div(100000);
-            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize, symbolType);
+            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
             graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
-                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet, symbolType);
+                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
         }
 
         /// <summary>
@@ -181,18 +153,18 @@ namespace Sunny.UI
         /// <param name="top">上</param>
         /// <param name="xOffset">左右偏移</param>
         /// <param name="yOffSet">上下偏移</param>
-        private static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
-            float left, float top, int xOffset, int yOffSet, UISymbolType symbolType)
+        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
+            float left, float top, int xOffset = 0, int yOffSet = 0)
         {
-            symbol = symbol.Mod(100000);
             //字体
-            Font font = GetFont(symbol, symbolSize, symbolType);
+            Font font = GetFont(symbol, symbolSize);
             if (font == null)
             {
                 return;
             }
 
-            string text = char.ConvertFromUtf32(symbol);
+            var symbolValue = GetSymbolValue(symbol);
+            string text = char.ConvertFromUtf32(symbolValue);
             graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
             graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
             graphics.DrawString(text, font, color, left + xOffset, top + yOffSet);
@@ -207,14 +179,14 @@ namespace Sunny.UI
         /// <param name="size">大小</param>
         /// <param name="color">颜色</param>
         /// <returns>图片</returns>
-        public static Image CreateImage(int symbol, int size, Color color, UISymbolType symbolType = UISymbolType.FontAwesomeV4)
+        public static Image CreateImage(int symbol, int size, Color color)
         {
             Bitmap image = new Bitmap(size, size);
 
             using (Graphics g = image.Graphics())
             {
-                SizeF sf = g.GetFontImageSize(symbol, size, symbolType);
-                g.DrawFontImage(symbol, size, color, (image.Width - sf.Width) / 2.0f, (image.Height - sf.Height) / 2.0f, 0, 0, symbolType);
+                SizeF sf = g.GetFontImageSize(symbol, size);
+                g.DrawFontImage(symbol, size, color, (image.Width - sf.Width) / 2.0f, (image.Height - sf.Height) / 2.0f, 0, 0);
             }
 
             return image;
@@ -226,26 +198,28 @@ namespace Sunny.UI
         /// <param name="symbol">字符</param>
         /// <param name="imageSize">大小</param>
         /// <returns>字体</returns>
-        public static Font GetFont(int symbol, int imageSize, UISymbolType symbolType = UISymbolType.FontAwesomeV4)
+        public static Font GetFont(int symbol, int imageSize)
         {
+            var symbolType = GetSymbolType(symbol);
+            var symbolValue = GetSymbolValue(symbol);
             switch (symbolType)
             {
                 case UISymbolType.FontAwesomeV4:
                     if (symbol > 0xF000)
-                        return FontAwesomeV4.GetFont(symbol, imageSize);
+                        return FontAwesomeV4.GetFont(symbolValue, imageSize);
                     else
-                        return ElegantIcons.GetFont(symbol, imageSize);
+                        return ElegantIcons.GetFont(symbolValue, imageSize);
                 case UISymbolType.FontAwesomeV5Brands:
-                    return FontAwesomeV5Brands.GetFont(symbol, imageSize);
+                    return FontAwesomeV5Brands.GetFont(symbolValue, imageSize);
                 case UISymbolType.FontAwesomeV5Regular:
-                    return FontAwesomeV5Regular.GetFont(symbol, imageSize);
+                    return FontAwesomeV5Regular.GetFont(symbolValue, imageSize);
                 case UISymbolType.FontAwesomeV5Solid:
-                    return FontAwesomeV5Solid.GetFont(symbol, imageSize);
+                    return FontAwesomeV5Solid.GetFont(symbolValue, imageSize);
                 default:
                     if (symbol > 0xF000)
-                        return FontAwesomeV4.GetFont(symbol, imageSize);
+                        return FontAwesomeV4.GetFont(symbolValue, imageSize);
                     else
-                        return ElegantIcons.GetFont(symbol, imageSize);
+                        return ElegantIcons.GetFont(symbolValue, imageSize);
             }
         }
     }
@@ -258,18 +232,8 @@ namespace Sunny.UI
         private readonly PrivateFontCollection ImageFont;
         private readonly Dictionary<int, Font> Fonts = new Dictionary<int, Font>();
         private const int MinFontSize = 8;
-        private const int MaxFontSize = 43;
+        private const int MaxFontSize = 88;
         private readonly IntPtr memoryFont = IntPtr.Zero;
-
-        /// <summary>
-        /// 大小
-        /// </summary>
-        public int IconSize { get; set; } = 128;
-
-        /// <summary>
-        /// 背景色
-        /// </summary>
-        public Color BackColor { get; set; } = Color.Transparent;
 
         public FontImages(byte[] buffer)
         {
@@ -299,7 +263,10 @@ namespace Sunny.UI
         /// <summary>
         /// 字体加载完成标志
         /// </summary>
-        public bool Loaded { get; }
+        public bool Loaded
+        {
+            get;
+        }
 
         private void LoadDictionary()
         {
@@ -349,31 +316,34 @@ namespace Sunny.UI
         /// <summary>
         /// 获取字体大小
         /// </summary>
-        /// <param name="iconText">图标</param>
+        /// <param name="symbol">图标</param>
         /// <param name="imageSize">图标大小</param>
         /// <returns>字体大小</returns>
-        public int GetFontSize(int iconText, int imageSize)
+        public int GetFontSize(int symbol, int imageSize)
         {
-            int size = MaxFontSize;
-            int interval = MaxFontSize - MinFontSize;
             using (Bitmap bitmap = new Bitmap(48, 48))
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
-                for (int i = 0; i <= interval; i++)
-                {
-                    Font font = Fonts[size];
-                    SizeF sf = GetIconSize(iconText, graphics, font);
+                return BinarySearch(graphics, MinFontSize, MaxFontSize, symbol, imageSize);
+            }
+        }
 
-                    if (sf.Width < imageSize && sf.Height < imageSize)
-                    {
-                        break;
-                    }
-
-                    size -= 1;
-                }
+        public int BinarySearch(Graphics graphics, int low, int high, int symbol, int imageSize)
+        {
+            int mid = (low + high) / 2;
+            Font font = Fonts[mid];
+            SizeF sf = GetIconSize(symbol, graphics, font);
+            if (low >= high)
+            {
+                return mid;
             }
 
-            return size;
+            if (sf.Width < imageSize && sf.Height < imageSize)
+            {
+                return BinarySearch(graphics, mid + 1, high, symbol, imageSize);
+            }
+
+            return BinarySearch(graphics, low, mid - 1, symbol, imageSize);
         }
 
         private Size GetIconSize(int iconText, Graphics graphics, Font font)

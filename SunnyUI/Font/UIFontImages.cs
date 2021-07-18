@@ -239,7 +239,7 @@ namespace Sunny.UI
                 AutoSize = false,
                 Size = new Size(32, 32),
                 ForeColor = UIColor.Blue,
-                Image = FontImageHelper.CreateImage(icon, 28, UIFontColor.Primary, symbolType),
+                Image = FontImageHelper.CreateImage(icon + (int)symbolType * 100000, 28, UIFontColor.Primary),
                 ImageAlign = ContentAlignment.MiddleCenter,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Margin = new Padding(2)
@@ -256,14 +256,14 @@ namespace Sunny.UI
         {
             Label lbl = (Label)sender;
             SymbolValue symbol = (SymbolValue)lbl.Tag;
-            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol, 28, UIFontColor.Primary, symbol.SymbolType);
+            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol + (int)symbol.SymbolType * 100000, 28, UIFontColor.Primary);
         }
 
         private void Lbl_MouseEnter(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
             SymbolValue symbol = (SymbolValue)lbl.Tag;
-            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol, 28, UIColor.Blue, symbol.SymbolType);
+            lbl.Image = FontImageHelper.CreateImage(symbol.Symbol + (int)symbol.SymbolType * 100000, 28, UIColor.Blue);
         }
 
         public int Symbol { get; set; }

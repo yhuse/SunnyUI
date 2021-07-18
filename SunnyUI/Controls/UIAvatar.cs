@@ -189,7 +189,7 @@ namespace Sunny.UI
                 if (symbolSize != value)
                 {
                     symbolSize = Math.Max(value, 16);
-                    symbolSize = Math.Min(value, 64);
+                    symbolSize = Math.Min(value, 128);
                     Invalidate();
                 }
             }
