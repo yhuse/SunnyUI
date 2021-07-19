@@ -651,7 +651,11 @@ namespace Sunny.UI
                     var haveImage = false;
                     var sf = e.Graphics.MeasureString(e.Node.Text, Font);
 
-                    if (CheckBoxes) drawLeft += 16;
+                    if (CheckBoxes)
+                    {
+                        drawLeft += 16;
+                        imageLeft += 16;
+                    }
 
                     if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 &&
                         e.Node.ImageIndex < ImageList.Images.Count)
