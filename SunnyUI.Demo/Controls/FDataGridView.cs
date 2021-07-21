@@ -10,10 +10,10 @@ namespace Sunny.UI.Demo
         {
             InitializeComponent();
 
-            uiDataGridView1.AddColumn("Column1", "Column1").SetFixedMode(150);
-            uiDataGridView1.AddColumn("Column2", "Column2").SetFixedMode(150);
-            uiDataGridView1.AddColumn("Column3", "Column3").SetFixedMode(150);
-            uiDataGridView1.AddColumn("Column4", "Column4").SetFixedMode(150);
+            uiDataGridView1.AddColumn("Column1", "Column1");
+            uiDataGridView1.AddColumn("Column2", "Column2");
+            uiDataGridView1.AddColumn("Column3", "Column3");
+            uiDataGridView1.AddColumn("Column4", "Column4");
             uiDataGridView1.ReadOnly = true;
 
             for (int i = 0; i < 3610; i++)

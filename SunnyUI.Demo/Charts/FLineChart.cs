@@ -13,6 +13,10 @@ namespace Sunny.UI.Demo.Charts
 
         private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
+
+            DateTime dt = new DateTime(2020, 10, 4);
+
             UILineOption option = new UILineOption();
             option.ToolTip.Visible = true;
             option.Title = new UITitle();
@@ -22,7 +26,6 @@ namespace Sunny.UI.Demo.Charts
             option.XAxisType = UIAxisType.DateTime;
 
             var series = option.AddSeries(new UILineSeries("Line1"));
-            DateTime dt = new DateTime(2020, 10, 4);
             series.Add(dt.AddHours(0), 1.2);
             series.Add(dt.AddHours(1), 2.2);
             series.Add(dt.AddHours(2), 3.2);
@@ -55,8 +58,10 @@ namespace Sunny.UI.Demo.Charts
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
-            option.XAxis.AxisLabel.DateTimeFormat = DateTimeEx.DateTimeFormat;
+            option.XAxis.AxisLabel.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            option.XAxis.AxisLabel.AutoFormat = false;
             option.YAxis.AxisLabel.DecimalCount = 1;
+            option.YAxis.AxisLabel.AutoFormat = false;
 
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(3).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(3)) });
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(6).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(6)) });
@@ -88,6 +93,44 @@ namespace Sunny.UI.Demo.Charts
             }
 
             Console.WriteLine(sb.ToString());
+        }
+
+        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        {
+            index = 0;
+            UILineOption option = new UILineOption();
+            option.ToolTip.Visible = true;
+            option.Title = new UITitle();
+            option.Title.Text = "SunnyUI";
+            option.Title.SubText = "LineChart";
+            var series = option.AddSeries(new UILineSeries("Line1"));
+            series.Smooth = true;
+
+            option.XAxis.AxisLabel.DecimalCount = 1;
+            option.XAxis.AxisLabel.AutoFormat = false;
+            option.YAxis.AxisLabel.DecimalCount = 1;
+            option.YAxis.AxisLabel.AutoFormat = false;
+            LineChart.SetOption(option);
+            timer1.Start();
+        }
+
+        int index = 0;
+        Random random = new Random();
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            LineChart.Option.AddData("Line1", index, random.NextDouble() * 10);
+            index++;
+
+            if (index > 50)
+            {
+                LineChart.Option.XAxis.Max = index + 20;
+                LineChart.Option.XAxis.MaxAuto = false;
+                LineChart.Option.XAxis.Min = index - 50;
+                LineChart.Option.XAxis.MinAuto = false;
+            }
+
+            LineChart.Refresh();
         }
     }
 }

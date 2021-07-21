@@ -57,7 +57,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FPieChart()));
             Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
             Aside.CreateChildNode(parent, AddPage(new FBarChart()));
-            Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
+            //Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
             Aside.CreateChildNode(parent, AddPage(new FLineChart()));
 
             AddPage(new FColorful());

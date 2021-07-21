@@ -68,6 +68,17 @@ namespace Sunny.UI
             NeedDraw = true;
         }
 
+        public override void Refresh()
+        {
+            base.Refresh();
+            if (Option != null)
+            {
+                SetOption(Option);
+            }
+
+            CalcData();
+        }
+
         protected UIScale XScale;
         protected UIScale YScale;
         private double[] YLabels;

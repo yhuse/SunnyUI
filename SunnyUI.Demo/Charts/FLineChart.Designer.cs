@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.LineChart = new Sunny.UI.UILineChart();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -42,6 +45,7 @@
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSymbolButton2);
             this.PagePanel.Controls.Add(this.uiSymbolButton1);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
@@ -130,9 +134,26 @@
             this.LineChart.Text = "uiLineChart1";
             this.LineChart.PointValue += new Sunny.UI.UILineChart.OnPointValue(this.LineChart_PointValue);
             // 
+            // uiSymbolButton2
+            // 
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(454, 466);
+            this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton2.Symbol = 61463;
+            this.uiSymbolButton2.TabIndex = 36;
+            this.uiSymbolButton2.Text = "实时";
+            this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FLineChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 574);
             this.Name = "FLineChart";
@@ -154,5 +175,7 @@
         private UIImageButton uiImageButton1;
         private UILine uiLine1;
         private UILineChart LineChart;
+        private UISymbolButton uiSymbolButton2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
