@@ -42,6 +42,26 @@ namespace Sunny.UI
             CalcData();
         }
 
+        public override void Refresh()
+        {
+            base.Refresh();
+            if (Option != null)
+            {
+                SetOption(Option);
+            }
+
+            CalcData();
+        }
+
+        public void Update(string seriesName, int index, double value)
+        {
+            var series = Option[seriesName];
+            if (series != null)
+            {
+                series.Update(index, value);
+            }
+        }
+
         /// <summary>
         /// 计算刻度
         /// 起始值必须小于结束值

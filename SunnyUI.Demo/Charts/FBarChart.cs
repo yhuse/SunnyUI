@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using System;
 
 namespace Sunny.UI.Demo
 {
@@ -63,10 +63,12 @@ namespace Sunny.UI.Demo
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
 
-            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
-            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
+            //option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
+            //option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
 
             BarChart.SetOption(option);
+
+            uiSymbolButton2.Enabled = true;
         }
 
         private void uiImageButton1_Click(object sender, System.EventArgs e)
@@ -82,6 +84,30 @@ namespace Sunny.UI.Demo
         private void uiImageButton3_Click(object sender, System.EventArgs e)
         {
             BarChart.ChartStyleType = UIChartStyleType.Dark;
+        }
+
+        private void uiSymbolButton2_Click(object sender, System.EventArgs e)
+        {
+            Random random = new Random(DateTime.Now.Millisecond);
+            BarChart.Update("Bar1", 0, random.Next(10));
+            BarChart.Update("Bar1", 1, random.Next(10));
+            BarChart.Update("Bar1", 2, random.Next(10));
+            BarChart.Update("Bar1", 3, random.Next(10));
+            BarChart.Update("Bar1", 4, random.Next(10));
+            BarChart.Update("Bar1", 5, random.Next(10));
+            BarChart.Update("Bar1", 6, random.Next(10));
+            BarChart.Update("Bar1", 7, random.Next(10));
+
+            BarChart.Update("Bar2", 0, random.Next(10));
+            BarChart.Update("Bar2", 1, random.Next(10));
+            BarChart.Update("Bar2", 2, random.Next(10));
+            BarChart.Update("Bar2", 3, random.Next(10));
+            BarChart.Update("Bar2", 4, random.Next(10));
+            BarChart.Update("Bar2", 5, random.Next(10));
+            BarChart.Update("Bar2", 6, random.Next(10));
+            BarChart.Update("Bar2", 7, random.Next(10));
+
+            BarChart.Refresh();
         }
     }
 }

@@ -48,6 +48,19 @@ namespace Sunny.UI
         }
 
         public int SeriesCount => Series.Count;
+
+        public UIPieSeries this[string seriesName]
+        {
+            get
+            {
+                foreach (var item in Series)
+                {
+                    if (item.Name == seriesName) return item;
+                }
+
+                return null;
+            }
+        }
     }
 
     public class UIDoughnutOption : UIOption, IDisposable
@@ -73,6 +86,19 @@ namespace Sunny.UI
         }
 
         public int SeriesCount => Series.Count;
+
+        public UIDoughnutSeries this[string seriesName]
+        {
+            get
+            {
+                foreach (var item in Series)
+                {
+                    if (item.Name == seriesName) return item;
+                }
+
+                return null;
+            }
+        }
     }
 
     public class UIPieToolTip : UIChartToolTip
@@ -125,6 +151,15 @@ namespace Sunny.UI
         {
             Data.Clear();
         }
+
+        public void Update(string name, double value)
+        {
+            foreach (var item in Data)
+            {
+                if (item.Name == name)
+                    item.Value = value;
+            }
+        }
     }
 
     public class RadiusInOut
@@ -167,6 +202,15 @@ namespace Sunny.UI
         public void Dispose()
         {
             Data.Clear();
+        }
+
+        public void Update(string name, double value)
+        {
+            foreach (var item in Data)
+            {
+                if (item.Name == name)
+                    item.Value = value;
+            }
         }
     }
 

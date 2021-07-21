@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI.Demo.Charts
+﻿using System;
+
+namespace Sunny.UI.Demo.Charts
 {
     public partial class FDoughnutChart : UITitlePage
     {
@@ -36,7 +38,7 @@
 
             //设置Series
             var series = new UIDoughnutSeries();
-            series.Name = "Star count";
+            series.Name = "StarCount";
             series.Center = new UICenter(50, 55);
             series.Radius.Inner = 40;
             series.Radius.Outer = 70;
@@ -53,10 +55,12 @@
             series.AddData("2020-05-25", 27);
 
             //增加Series
+            option.Series.Clear();
             option.Series.Add(series);
 
             //设置Option
             DoughnutChart.SetOption(option);
+            uiSymbolButton2.Enabled = true;
         }
 
         private void uiImageButton1_Click(object sender, System.EventArgs e)
@@ -72,6 +76,20 @@
         private void uiImageButton3_Click(object sender, System.EventArgs e)
         {
             DoughnutChart.ChartStyleType = UIChartStyleType.Dark;
+        }
+
+        private void uiSymbolButton2_Click(object sender, System.EventArgs e)
+        {
+            Random random = new Random(DateTime.Now.Millisecond);
+            DoughnutChart.Update("StarCount", "2020-05-19", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-20", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-21", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-22", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-23", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-24", random.Next(50));
+            DoughnutChart.Update("StarCount", "2020-05-25", random.Next(50));
+
+            DoughnutChart.Refresh();
         }
     }
 }

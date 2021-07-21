@@ -344,6 +344,9 @@
     <EmbeddedResource Include="Charts\FBarChartEx.resx">
       <DependentUpon>FBarChartEx.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Charts\FDoughnutChart.resx">
+      <DependentUpon>FDoughnutChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\FLineChart.resx">
       <DependentUpon>FLineChart.cs</DependentUpon>
     </EmbeddedResource>

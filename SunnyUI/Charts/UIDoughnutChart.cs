@@ -55,9 +55,29 @@ namespace Sunny.UI
             emptyOption = option;
         }
 
+        public void Update(string seriesName, string name, double value)
+        {
+            var series = Option[seriesName];
+            if (series != null)
+            {
+                series.Update(name, value);
+            }
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
+            CalcData();
+        }
+
+        public override void Refresh()
+        {
+            base.Refresh();
+            if (Option != null)
+            {
+                SetOption(Option);
+            }
+
             CalcData();
         }
 

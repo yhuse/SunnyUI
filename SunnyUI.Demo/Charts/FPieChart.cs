@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI.Demo.Controls
+﻿using System;
+
+namespace Sunny.UI.Demo.Controls
 {
     public partial class FPieChart : UITitlePage
     {
@@ -51,7 +53,7 @@
 
             //设置Series
             var series = new UIPieSeries();
-            series.Name = "Star count";
+            series.Name = "StarCount";
             series.Center = new UICenter(50, 55);
             series.Radius = 70;
             series.Label.Show = true;
@@ -66,10 +68,27 @@
             series.AddData("2020-05-25", 27);
 
             //增加Series
+            option.Series.Clear();
             option.Series.Add(series);
 
             //设置Option
             PieChart.SetOption(option);
+
+            uiSymbolButton2.Enabled = true;
+        }
+
+        private void uiSymbolButton2_Click(object sender, System.EventArgs e)
+        {
+            Random random = new Random(DateTime.Now.Millisecond);
+            PieChart.Update("StarCount", "2020-05-19", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-20", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-21", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-22", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-23", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-24", random.Next(50));
+            PieChart.Update("StarCount", "2020-05-25", random.Next(50));
+
+            PieChart.Refresh();
         }
     }
 }

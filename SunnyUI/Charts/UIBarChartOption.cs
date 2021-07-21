@@ -71,6 +71,19 @@ namespace Sunny.UI
         }
 
         public int SeriesCount => Series.Count;
+
+        public UIBarSeries this[string seriesName]
+        {
+            get
+            {
+                foreach (var item in Series)
+                {
+                    if (item.Name == seriesName) return item;
+                }
+
+                return null;
+            }
+        }
     }
 
     public class UIBarToolTip : UIChartToolTip
@@ -281,6 +294,15 @@ namespace Sunny.UI
         {
             Data.Clear();
             Colors.Clear();
+        }
+
+        public void Update(int index, double value)
+        {
+            if (Data.Count == 0) return;
+            if (index >= 0 && index < Data.Count)
+            {
+                Data[index] = value;
+            }
         }
 
         public delegate Color OnDataColorChangeEventHandler(double data);

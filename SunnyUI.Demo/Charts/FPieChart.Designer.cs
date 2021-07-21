@@ -34,6 +34,7 @@
             this.uiImageButton3 = new Sunny.UI.UIImageButton();
             this.uiImageButton2 = new Sunny.UI.UIImageButton();
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -42,6 +43,7 @@
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiSymbolButton2);
             this.PagePanel.Controls.Add(this.uiSymbolButton1);
             this.PagePanel.Controls.Add(this.uiImageButton3);
             this.PagePanel.Controls.Add(this.uiImageButton2);
@@ -132,9 +134,23 @@
             this.uiImageButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiImageButton1.Click += new System.EventHandler(this.uiImageButton1_Click);
             // 
+            // uiSymbolButton2
+            // 
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.Enabled = false;
+            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(454, 466);
+            this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton2.Symbol = 61473;
+            this.uiSymbolButton2.TabIndex = 36;
+            this.uiSymbolButton2.Text = "更新";
+            this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
+            // 
             // FPieChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(828, 552);
             this.Name = "FPieChart";
@@ -155,5 +171,6 @@
         private UIImageButton uiImageButton3;
         private UIImageButton uiImageButton2;
         private UISymbolButton uiSymbolButton1;
+        private UISymbolButton uiSymbolButton2;
     }
 }

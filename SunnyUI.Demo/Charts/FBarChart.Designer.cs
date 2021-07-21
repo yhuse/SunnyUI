@@ -35,6 +35,7 @@ namespace Sunny.UI.Demo
             this.uiImageButton1 = new Sunny.UI.UIImageButton();
             this.uiLine1 = new Sunny.UI.UILine();
             this.BarChart = new Sunny.UI.UIBarChart();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
@@ -119,11 +120,27 @@ namespace Sunny.UI.Demo
             this.BarChart.TabIndex = 29;
             this.BarChart.Text = "uiBarChart1";
             // 
+            // uiSymbolButton2
+            // 
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.Enabled = false;
+            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(454, 503);
+            this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton2.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton2.Symbol = 61473;
+            this.uiSymbolButton2.TabIndex = 35;
+            this.uiSymbolButton2.Text = "更新";
+            this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
+            // 
             // FBarChart
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 606);
+            this.Controls.Add(this.uiSymbolButton2);
             this.Controls.Add(this.uiSymbolButton1);
             this.Controls.Add(this.uiImageButton3);
             this.Controls.Add(this.uiImageButton2);
@@ -150,5 +167,6 @@ namespace Sunny.UI.Demo
         private UIImageButton uiImageButton1;
         private UILine uiLine1;
         private UIBarChart BarChart;
+        private UISymbolButton uiSymbolButton2;
     }
 }
