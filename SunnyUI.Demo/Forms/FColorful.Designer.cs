@@ -266,7 +266,7 @@ namespace Sunny.UI.Demo
             // 
             this.AllowShowTitle = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(776, 543);
             this.Controls.Add(this.uiLabel2);
             this.Controls.Add(this.uiPanel11);

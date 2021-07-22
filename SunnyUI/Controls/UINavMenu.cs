@@ -874,6 +874,11 @@ namespace Sunny.UI
             return node;
         }
 
+        public TreeNode CreateNode(int symbol, int symbolSize, UIPage page)
+        {
+            return CreateNode(new NavMenuItem(page), symbol, symbolSize);
+        }
+
         public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex)
         {
             return CreateNode(new NavMenuItem(text, pageIndex), symbol, symbolSize);

@@ -392,6 +392,8 @@ namespace Sunny.UI
             Text = page.Text;
             PageIndex = page.PageIndex;
             PageGuid = page.PageGuid;
+            Symbol = page.Symbol;
+            SymbolSize = page.SymbolSize;
             AlwaysOpen = page.AlwaysOpen;
         }
 

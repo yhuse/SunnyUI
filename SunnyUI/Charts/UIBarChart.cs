@@ -445,10 +445,10 @@ namespace Sunny.UI
 
         protected virtual void DrawAxis(Graphics g)
         {
-            if (YAxisStart >= 0) g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
-            if (YAxisEnd <= 0) g.DrawLine(ChartStyle.ForeColor, new Point(DrawOrigin.X, Option.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, Option.Grid.Top));
+            if (YAxisStart >= 0) g.DrawLine(ForeColor, DrawOrigin, new Point(DrawOrigin.X + DrawSize.Width, DrawOrigin.Y));
+            if (YAxisEnd <= 0) g.DrawLine(ForeColor, new Point(DrawOrigin.X, Option.Grid.Top), new Point(DrawOrigin.X + DrawSize.Width, Option.Grid.Top));
 
-            g.DrawLine(ChartStyle.ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
+            g.DrawLine(ForeColor, DrawOrigin, new Point(DrawOrigin.X, DrawOrigin.Y - DrawSize.Height));
 
             if (Option.XAxis.AxisTick.Show)
             {
@@ -459,7 +459,7 @@ namespace Sunny.UI
                     start = DrawOrigin.X + DrawBarWidth / 2.0f;
                     for (int i = 0; i < Option.XAxis.Data.Count; i++)
                     {
-                        g.DrawLine(ChartStyle.ForeColor, start, DrawOrigin.Y, start, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        g.DrawLine(ForeColor, start, DrawOrigin.Y, start, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                         start += DrawBarWidth;
                     }
                 }
@@ -480,7 +480,7 @@ namespace Sunny.UI
                         start = DrawOrigin.X;
                         for (int i = 0; i <= Option.XAxis.Data.Count; i++)
                         {
-                            g.DrawLine(ChartStyle.ForeColor, start, DrawOrigin.Y, start, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                            g.DrawLine(ForeColor, start, DrawOrigin.Y, start, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                             start += DrawBarWidth;
                         }
                     }
@@ -493,12 +493,12 @@ namespace Sunny.UI
                 foreach (var data in Option.XAxis.Data)
                 {
                     SizeF sf = g.MeasureString(data, SubFont);
-                    g.DrawString(data, SubFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                    g.DrawString(data, SubFont, ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                     start += DrawBarWidth;
                 }
 
                 SizeF sfname = g.MeasureString(Option.XAxis.Name, SubFont);
-                g.DrawString(Option.XAxis.Name, SubFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfname.Height);
+                g.DrawString(Option.XAxis.Name, SubFont, ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfname.Height);
             }
 
             if (Option.YAxis.AxisTick.Show)
@@ -507,11 +507,11 @@ namespace Sunny.UI
                 float DrawBarHeight = DrawSize.Height * 1.0f / (YAxisEnd - YAxisStart);
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
-                    g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, DrawOrigin.X - Option.YAxis.AxisTick.Length, start);
+                    g.DrawLine(ForeColor, DrawOrigin.X, start, DrawOrigin.X - Option.YAxis.AxisTick.Length, start);
 
                     if (i != 0)
                     {
-                        using (Pen pn = new Pen(ChartStyle.ForeColor))
+                        using (Pen pn = new Pen(ForeColor))
                         {
                             pn.DashStyle = DashStyle.Dash;
                             pn.DashPattern = new float[] { 3, 3 };
@@ -520,12 +520,12 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, start, Width - Option.Grid.Right, start);
+                        g.DrawLine(ForeColor, DrawOrigin.X, start, Width - Option.Grid.Right, start);
 
                         float lineStart = DrawOrigin.X;
                         for (int j = 0; j <= Option.XAxis.Data.Count; j++)
                         {
-                            g.DrawLine(ChartStyle.ForeColor, lineStart, start, lineStart, start + Option.XAxis.AxisTick.Length);
+                            g.DrawLine(ForeColor, lineStart, start, lineStart, start + Option.XAxis.AxisTick.Length);
                             lineStart += DrawBarWidth;
                         }
                     }
@@ -549,14 +549,14 @@ namespace Sunny.UI
                     string label = Option.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);
                     SizeF sf = g.MeasureString(label, SubFont);
                     wmax = Math.Max(wmax, sf.Width);
-                    g.DrawString(label, SubFont, ChartStyle.ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
+                    g.DrawString(label, SubFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
                     start -= DrawBarHeight;
                 }
 
                 SizeF sfname = g.MeasureString(Option.YAxis.Name, SubFont);
                 int x = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfname.Height);
                 int y = (int)(Option.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new Point(x, y),
+                g.DrawString(Option.YAxis.Name, SubFont, ForeColor, new Point(x, y),
                     new StringFormat() { Alignment = StringAlignment.Center }, 270);
             }
         }
@@ -569,6 +569,7 @@ namespace Sunny.UI
                 double ymax = YAxisEnd * YAxisInterval;
                 float pos = (float)((line.Value - ymin) * (Height - Option.Grid.Top - Option.Grid.Bottom) / (ymax - ymin));
                 pos = (Height - Option.Grid.Bottom - pos);
+                if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - Option.Grid.Right, pos);

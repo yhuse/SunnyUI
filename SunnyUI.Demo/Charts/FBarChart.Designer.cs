@@ -117,6 +117,7 @@ namespace Sunny.UI.Demo
             this.BarChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.BarChart.Name = "BarChart";
             this.BarChart.Size = new System.Drawing.Size(670, 400);
+            this.BarChart.Style = Sunny.UI.UIStyle.Custom;
             this.BarChart.TabIndex = 29;
             this.BarChart.Text = "uiBarChart1";
             // 

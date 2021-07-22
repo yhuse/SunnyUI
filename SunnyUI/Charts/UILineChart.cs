@@ -197,11 +197,11 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            g.DrawRectangle(ChartStyle.ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
+            g.DrawRectangle(ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
             float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
             if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
             {
-                g.DrawLine(ChartStyle.ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+                g.DrawLine(ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
             }
 
             if (XScale == null || YScale == null) return;
@@ -234,13 +234,13 @@ namespace Sunny.UI
                         }
 
                         SizeF sf = g.MeasureString(label, SubFont);
-                        g.DrawString(label, SubFont, ChartStyle.ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        g.DrawString(label, SubFont, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                     }
 
                     if (x.Equals(DrawOrigin.X)) continue;
                     if (x.Equals(DrawOrigin.X + DrawSize.Width)) continue;
 
-                    using (Pen pn = new Pen(ChartStyle.ForeColor))
+                    using (Pen pn = new Pen(ForeColor))
                     {
                         pn.DashStyle = DashStyle.Dash;
                         pn.DashPattern = new float[] { 3, 3 };
@@ -249,7 +249,7 @@ namespace Sunny.UI
                 }
 
                 SizeF sfName = g.MeasureString(Option.XAxis.Name, SubFont);
-                g.DrawString(Option.XAxis.Name, SubFont, ChartStyle.ForeColor,
+                g.DrawString(Option.XAxis.Name, SubFont, ForeColor,
                     DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f,
                     DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfName.Height);
             }
@@ -269,13 +269,13 @@ namespace Sunny.UI
                         string label = YLabels[i].ToString(YScale.Format);
                         SizeF sf = g.MeasureString(label, SubFont);
                         widthMax = Math.Max(widthMax, sf.Width);
-                        g.DrawString(label, SubFont, ChartStyle.ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
+                        g.DrawString(label, SubFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
                     }
 
                     if (y.Equals(DrawOrigin.Y)) continue;
                     if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
 
-                    using (Pen pn = new Pen(ChartStyle.ForeColor))
+                    using (Pen pn = new Pen(ForeColor))
                     {
                         pn.DashStyle = DashStyle.Dash;
                         pn.DashPattern = new float[] { 3, 3 };
@@ -286,7 +286,7 @@ namespace Sunny.UI
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, SubFont);
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
-                g.DrawStringRotateAtCenter(Option.YAxis.Name, SubFont, ChartStyle.ForeColor, new PointF(xx, yy), 270);
+                g.DrawStringRotateAtCenter(Option.YAxis.Name, SubFont, ForeColor, new PointF(xx, yy), 270);
             }
         }
 
@@ -322,17 +322,17 @@ namespace Sunny.UI
 
             using (Graphics graphics = bmp.Graphics())
             {
-                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
             }
 
             using (Graphics graphics = bmpGreater.Graphics())
             {
-                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
             }
 
             using (Graphics graphics = bmpLess.Graphics())
             {
-                graphics.FillRectangle(ChartStyle.BackColor, 0, 0, Width, Height);
+                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
             }
 
             int idx = 0;
@@ -430,7 +430,7 @@ namespace Sunny.UI
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {
-                    using (Brush br = new SolidBrush(ChartStyle.BackColor))
+                    using (Brush br = new SolidBrush(FillColor))
                     using (Pen pn = new Pen(color, series.SymbolLineWidth))
                     {
                         foreach (var p in series.Points)

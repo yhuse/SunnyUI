@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Sunny.UI.Demo
 {
@@ -62,9 +63,13 @@ namespace Sunny.UI.Demo
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
+            option.YAxis.AxisLabel.DecimalCount = 1;
+            option.YAxis.AxisLabel.AutoFormat = false;
 
-            //option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
-            //option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 12 });
+            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = -20 });
+
+            option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
 
             BarChart.SetOption(option);
 
