@@ -43,6 +43,8 @@
 	<None Remove="Font\fa-regular-400.ttf" />
 	<None Remove="Font\fa-solid-900.ttf" />
 	<None Remove="Font\FontAwesome.ttf" />
+	<None Remove="Forms\UIForm.cs~RF43da5c.TMP" />
+	<None Remove="Forms\UIForm.cs~RF485c3b.TMP" />
 	<None Remove="Style\UIStyleColor.cs~RF1472b803.TMP" />
 	<None Remove="Style\UIStyleColor.cs~RF22754f9d.TMP" />
 	<None Include="..\LICENSE">

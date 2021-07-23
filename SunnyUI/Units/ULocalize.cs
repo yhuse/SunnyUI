@@ -92,6 +92,17 @@ namespace Sunny.UI
         /// "系统正在处理中，请稍候..."
         /// </summary>
         public static string SystemProcessing = "系统正在处理中，请稍候...";
+
+        public static string Monday = "一";
+        public static string Tuesday = "二";
+        public static string Wednesday = "三";
+        public static string Thursday = "四";
+        public static string Friday = "五";
+        public static string Saturday = "六";
+        public static string Sunday = "日";
+
+        public static string Prev = "上一页";
+        public static string Next = "下一页";
     }
 
     public static class UILocalizeHelper
@@ -112,6 +123,19 @@ namespace Sunny.UI
             UILocalize.GridDataLoading = "Data loading, please wait...";
             UILocalize.GridDataSourceException = "The data source must be DataTable or List";
             UILocalize.SystemProcessing = "The system is processing, please wait...";
+
+            UILocalize.Monday = "Mon";
+            UILocalize.Tuesday = "Tue";
+            UILocalize.Wednesday = "Wed";
+            UILocalize.Thursday = "Thur";
+            UILocalize.Friday = "Fri";
+            UILocalize.Saturday = "Sat";
+            UILocalize.Sunday = "Sun";
+
+            UILocalize.Prev = "Prev";
+            UILocalize.Next = "Next";
+
+            UIStyles.Translate();
         }
 
         public static void SetCH()
@@ -130,6 +154,19 @@ namespace Sunny.UI
             UILocalize.GridDataLoading = "数据加载中，请稍候...";
             UILocalize.GridDataSourceException = "数据源必须为DataTable或者List";
             UILocalize.SystemProcessing = "系统正在处理中，请稍候...";
+
+            UILocalize.Monday = "一";
+            UILocalize.Tuesday = "二";
+            UILocalize.Wednesday = "三";
+            UILocalize.Thursday = "四";
+            UILocalize.Friday = "五";
+            UILocalize.Saturday = "六";
+            UILocalize.Sunday = "日";
+
+            UILocalize.Prev = "上一页";
+            UILocalize.Next = "下一页";
+
+            UIStyles.Translate();
         }
     }
 }

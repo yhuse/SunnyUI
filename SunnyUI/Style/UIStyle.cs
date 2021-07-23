@@ -505,6 +505,14 @@ namespace Sunny.UI
                 page.Style = style;
             }
         }
+
+        public static void Translate()
+        {
+            foreach (var form in Forms.Values)
+            {
+                form.Translate();
+            }
+        }
     }
 
     /// <summary>
@@ -792,6 +800,26 @@ namespace Sunny.UI
                 if (obj.Controls.Count > 0)
                 {
                     values.AddRange(obj.GetUIStyleControls(interfaceName));
+                }
+            }
+
+            return values;
+        }
+
+        public static List<Control> GetTranslateControls(this Control ctrl, string interfaceName)
+        {
+            List<Control> values = new List<Control>();
+
+            foreach (Control obj in ctrl.Controls)
+            {
+                if (obj.GetType().GetInterface(interfaceName) != null)
+                {
+                    values.Add(obj);
+                }
+
+                if (obj.Controls.Count > 0)
+                {
+                    values.AddRange(obj.GetTranslateControls(interfaceName));
                 }
             }
 

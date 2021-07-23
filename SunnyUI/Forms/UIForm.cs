@@ -36,7 +36,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UIForm : Form, IStyleInterface
+    public partial class UIForm : Form, IStyleInterface, ITranslate
     {
         private readonly UIButton btn = new UIButton();
 
@@ -65,6 +65,18 @@ namespace Sunny.UI
             FormBorderStyle = FormBorderStyle.None;
             m_aeroEnabled = false;
             showTitleIcon = false;
+        }
+
+        public void Translate()
+        {
+            List<Control> controls = this.GetTranslateControls("ITranslate");
+            foreach (var control in controls)
+            {
+                if (control is ITranslate item)
+                {
+                    item.Translate();
+                }
+            }
         }
 
         [DefaultValue(false)]
