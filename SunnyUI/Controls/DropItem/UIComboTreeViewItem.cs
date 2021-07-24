@@ -2,7 +2,7 @@
 
 namespace Sunny.UI
 {
-    public class UIComboTreeViewItem : UIDropDownItem
+    public class UIComboTreeViewItem : UIDropDownItem, ITranslate
     {
         private UIPanel panel;
         private UISymbolButton btnCancel;
@@ -27,6 +27,13 @@ namespace Sunny.UI
         public UIComboTreeViewItem()
         {
             InitializeComponent();
+            Translate();
+        }
+
+        public void Translate()
+        {
+            btnOK.Text = UILocalize.OK;
+            btnCancel.Text = UILocalize.Cancel;
         }
 
         private void InitializeComponent()

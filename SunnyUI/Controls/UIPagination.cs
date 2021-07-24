@@ -26,6 +26,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -120,6 +121,22 @@ namespace Sunny.UI
             b0.Text = UILocalize.Prev;
             b16.Text = UILocalize.Next;
             btnSelect.Text = UILocalize.SelectTitle;
+
+            SizeF sf = b0.CreateGraphics().MeasureString(b0.Text, b0.Font);
+            b0.Width = b0.SymbolSize + (int)sf.Width + 10;
+
+            sf = b16.CreateGraphics().MeasureString(b16.Text, b16.Font);
+            b16.Width = b16.SymbolSize + (int)sf.Width + 10;
+
+            btnSelect.Width = (int)btnSelect.CreateGraphics().MeasureString(btnSelect.Text, btnSelect.Font).Width + 16;
+
+            uiLabel1.Text = UILocalize.SelectPageLeft;
+            uiLabel2.Text = UILocalize.SelectPageRight;
+            edtPage.Left = uiLabel1.Right + 3;
+            uiLabel2.Left = edtPage.Right + 3;
+            btnSelect.Left = uiLabel2.Right + 3;
+            p1.Width = btnSelect.Right + 3;
+            SetShowButtons();
         }
 
         private int buttonInterval = 4;
@@ -544,7 +561,7 @@ namespace Sunny.UI
             this.b16.Location = new System.Drawing.Point(561, 3);
             this.b16.MinimumSize = new System.Drawing.Size(1, 1);
             this.b16.Name = "b16";
-            this.b16.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.b16.Padding = new System.Windows.Forms.Padding(6, 0, 5, 0);
             this.b16.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
             this.b16.Size = new System.Drawing.Size(75, 29);
             this.b16.Symbol = 61701;
@@ -751,6 +768,8 @@ namespace Sunny.UI
             {
                 b0.Enabled = true;
             }
+
+            b1.Left = b0.Right + buttonInterval - 1;
             edtPage.IntValue = activePage;
 
             if (TotalCount == 0)

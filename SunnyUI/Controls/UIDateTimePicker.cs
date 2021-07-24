@@ -145,6 +145,7 @@ namespace Sunny.UI
             item.Date = Value;
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;
+            item.Translate();
             ItemForm.Show(this);
         }
 

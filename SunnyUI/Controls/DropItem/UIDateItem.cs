@@ -27,7 +27,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public sealed class UIDateItem : UIDropDownItem
+    public sealed class UIDateItem : UIDropDownItem, ITranslate
     {
         #region InitializeComponent
 
@@ -313,19 +313,24 @@ namespace Sunny.UI
             Width = 284;
             Height = 200;
             TabControl.TabVisible = false;
+            Translate();
+        }
 
-            months.Add("一月");
-            months.Add("二月");
-            months.Add("三月");
-            months.Add("四月");
-            months.Add("五月");
-            months.Add("六月");
-            months.Add("七月");
-            months.Add("八月");
-            months.Add("九月");
-            months.Add("十月");
-            months.Add("十一月");
-            months.Add("十二月");
+        public void Translate()
+        {
+            months.Clear();
+            months.Add(UILocalize.January);
+            months.Add(UILocalize.February);
+            months.Add(UILocalize.March);
+            months.Add(UILocalize.April);
+            months.Add(UILocalize.May);
+            months.Add(UILocalize.June);
+            months.Add(UILocalize.July);
+            months.Add(UILocalize.August);
+            months.Add(UILocalize.September);
+            months.Add(UILocalize.October);
+            months.Add(UILocalize.November);
+            months.Add(UILocalize.December);
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
@@ -400,7 +405,7 @@ namespace Sunny.UI
             }
 
             p3.Invalidate();
-            TopPanel.Text = Year + "年" + Month + "月";
+            TopPanel.Text = Year + " - " + Month.ToString("D2");
         }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -414,18 +419,18 @@ namespace Sunny.UI
                     break;
 
                 case 1:
-                    TopPanel.Text = Year + "年";
+                    TopPanel.Text = Year.ToString();
                     break;
 
                 case 2:
-                    TopPanel.Text = Year + "年" + Month + "月";
+                    TopPanel.Text = Year + " - " + Month.ToString("D2");
                     break;
             }
         }
 
         private void SetYears(int iy)
         {
-            TopPanel.Text = iy + "年 - " + (iy + 9) + "年";
+            TopPanel.Text = iy + " - " + (iy + 9);
 
             years.Clear();
             years.Add(iy - 1);
@@ -451,7 +456,7 @@ namespace Sunny.UI
 
                 case 1:
                     Year -= 1;
-                    TopPanel.Text = Year + "年";
+                    TopPanel.Text = Year.ToString();
                     break;
 
                 case 2:
@@ -494,7 +499,7 @@ namespace Sunny.UI
                 case 1:
                     if (Year == DateTime.MaxValue.Year) return;
                     Year += 1;
-                    TopPanel.Text = Year + "年";
+                    TopPanel.Text = Year.ToString();
                     break;
 
                 case 2:
@@ -611,14 +616,20 @@ namespace Sunny.UI
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
 
-            SizeF sf = e.Graphics.MeasureString("日", Font);
-            e.Graphics.DrawString("日", Font, ForeColor, width * 0 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("一", Font, ForeColor, width * 1 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("二", Font, ForeColor, width * 2 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("三", Font, ForeColor, width * 3 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("四", Font, ForeColor, width * 4 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("五", Font, ForeColor, width * 5 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            e.Graphics.DrawString("六", Font, ForeColor, width * 6 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            SizeF sf = e.Graphics.MeasureString(UILocalize.Sunday, Font);
+            e.Graphics.DrawString(UILocalize.Sunday, Font, ForeColor, width * 0 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Monday, Font);
+            e.Graphics.DrawString(UILocalize.Monday, Font, ForeColor, width * 1 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Tuesday, Font);
+            e.Graphics.DrawString(UILocalize.Tuesday, Font, ForeColor, width * 2 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Wednesday, Font);
+            e.Graphics.DrawString(UILocalize.Wednesday, Font, ForeColor, width * 3 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Thursday, Font);
+            e.Graphics.DrawString(UILocalize.Thursday, Font, ForeColor, width * 4 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Friday, Font);
+            e.Graphics.DrawString(UILocalize.Friday, Font, ForeColor, width * 5 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            sf = e.Graphics.MeasureString(UILocalize.Saturday, Font);
+            e.Graphics.DrawString(UILocalize.Saturday, Font, ForeColor, width * 6 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
 
             e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
 
@@ -650,11 +661,11 @@ namespace Sunny.UI
                     e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
                     e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle((int)(p3.Width - width * 4 + 6), p3.Height - height + 3, 8, height - 10), 3);
 
-                    sf = e.Graphics.MeasureString("今天：" + DateTime.Now.DateString(), SubFont);
-                    e.Graphics.DrawString("今天 :", SubFont, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 17, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
+                    sf = e.Graphics.MeasureString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont);
+                    e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 17, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
 
-                    sf = e.Graphics.MeasureString(DateTime.Now.DateString(), Font);
-                    e.Graphics.DrawString(DateTime.Now.DateString(), Font, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 55, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
+                    //sf = e.Graphics.MeasureString(DateTime.Now.DateString(), Font);
+                    //e.Graphics.DrawString(DateTime.Now.DateString(), Font, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 55, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
                 }
             }
         }

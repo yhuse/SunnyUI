@@ -3,12 +3,16 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public sealed class UIColorItem : UIDropDownItem
+    public sealed class UIColorItem : UIDropDownItem, ITranslate
     {
         public UIColorItem()
         {
             InitializeComponent();
+            Translate();
+        }
 
+        public void Translate()
+        {
             btnOK.Text = UILocalize.OK;
             btnCancel.Text = UILocalize.Cancel;
         }

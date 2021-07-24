@@ -65,6 +65,7 @@ namespace Sunny.UI
         private void UIColorPicker_ButtonClick(object sender, EventArgs e)
         {
             item.SelectedColor = Value;
+            item.Translate();
             ItemForm.Show(this);
         }
 

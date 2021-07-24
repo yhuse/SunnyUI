@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
@@ -64,6 +65,21 @@ namespace Sunny.UI.Demo
         private void uiColorPicker1_ValueChanged(object sender, System.Drawing.Color value)
         {
             Console.WriteLine(value.ToString());
+        }
+
+        private void uiComboTreeView2_NodesSelected(object sender, System.Windows.Forms.TreeNodeCollection nodes)
+        {
+            //返回的nodes为TreeView的所有节点，需循环判断
+            foreach (TreeNode item in nodes)
+            {
+                if (item.Checked)
+                    Console.WriteLine(item.ToString());
+            }
+        }
+
+        private void uiComboTreeView3_NodesSelected(object sender, TreeNodeCollection nodes)
+        {
+
         }
     }
 }

@@ -735,7 +735,7 @@ namespace Sunny.UI
             handler?.Invoke(this, e);
         }
 
-        internal void RenderButton(Graphics g, Rectangle rect, Color arrowColor, ArrowDirection direction)
+        private static void RenderButton(Graphics g, Rectangle rect, Color arrowColor, ArrowDirection direction)
         {
             switch (direction)
             {
@@ -834,7 +834,7 @@ namespace Sunny.UI
                 AssignHandle(owner.UpDownButtonHandle);
             }
 
-            private bool LeftKeyPressed()
+            private static bool LeftKeyPressed()
             {
                 if (SystemInformation.MouseButtonsSwapped)
                 {

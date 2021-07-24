@@ -101,7 +101,7 @@ namespace Sunny.UI
         }
 
         public delegate void OnNodeSelected(object sender, TreeNode node);
-        public delegate void OnNodesSelected(object sender, TreeNodeCollection node);
+        public delegate void OnNodesSelected(object sender, TreeNodeCollection nodes);
 
         public event OnNodeSelected NodeSelected;
         public event OnNodesSelected NodesSelected;
@@ -150,6 +150,7 @@ namespace Sunny.UI
             ItemForm.Size = ItemSize;
             item.TreeView.ExpandAll();
             item.CanSelectRootNode = CanSelectRootNode;
+            item.Translate();
             ItemForm.Show(this);
         }
 

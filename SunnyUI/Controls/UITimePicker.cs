@@ -142,6 +142,7 @@ namespace Sunny.UI
         private void UITimePicker_ButtonClick(object sender, EventArgs e)
         {
             item.Time = Value;
+            item.Translate();
             ItemForm.Show(this);
         }
     }

@@ -103,6 +103,23 @@ namespace Sunny.UI
 
         public static string Prev = "上一页";
         public static string Next = "下一页";
+        public static string SelectPageLeft = "第";
+        public static string SelectPageRight = "页";
+
+        public static string January = "一月";
+        public static string February = "二月";
+        public static string March = "三月";
+        public static string April = "四月";
+        public static string May = "五月";
+        public static string June = "六月";
+        public static string July = "七月";
+        public static string August = "八月";
+        public static string September = "九月";
+        public static string October = "十月";
+        public static string November = "十一月";
+        public static string December = "十二月";
+
+        public static string Today = "今天";
     }
 
     public static class UILocalizeHelper
@@ -124,16 +141,33 @@ namespace Sunny.UI
             UILocalize.GridDataSourceException = "The data source must be DataTable or List";
             UILocalize.SystemProcessing = "The system is processing, please wait...";
 
-            UILocalize.Monday = "Mon";
-            UILocalize.Tuesday = "Tue";
-            UILocalize.Wednesday = "Wed";
-            UILocalize.Thursday = "Thur";
-            UILocalize.Friday = "Fri";
-            UILocalize.Saturday = "Sat";
-            UILocalize.Sunday = "Sun";
+            UILocalize.Monday = "Mon.";
+            UILocalize.Tuesday = "Tue.";
+            UILocalize.Wednesday = "Wed.";
+            UILocalize.Thursday = "Thur.";
+            UILocalize.Friday = "Fri.";
+            UILocalize.Saturday = "Sat.";
+            UILocalize.Sunday = "Sun.";
 
-            UILocalize.Prev = "Prev";
+            UILocalize.Prev = "Previous";
             UILocalize.Next = "Next";
+            UILocalize.SelectPageLeft = "Page";
+            UILocalize.SelectPageRight = "";
+
+            UILocalize.January = "Jan.";
+            UILocalize.February = "Feb.";
+            UILocalize.March = "Mar.";
+            UILocalize.April = "Apr.";
+            UILocalize.May = "May";
+            UILocalize.June = "Jun.";
+            UILocalize.July = "Jul.";
+            UILocalize.August = "Aug.";
+            UILocalize.September = "Sep.";
+            UILocalize.October = "Oct.";
+            UILocalize.November = "Nov.";
+            UILocalize.December = "Dec.";
+
+            UILocalize.Today = "Today";
 
             UIStyles.Translate();
         }
@@ -165,6 +199,24 @@ namespace Sunny.UI
 
             UILocalize.Prev = "上一页";
             UILocalize.Next = "下一页";
+
+            UILocalize.SelectPageLeft = "第";
+            UILocalize.SelectPageRight = "页";
+
+            UILocalize.January = "一月";
+            UILocalize.February = "二月";
+            UILocalize.March = "三月";
+            UILocalize.April = "四月";
+            UILocalize.May = "五月";
+            UILocalize.June = "六月";
+            UILocalize.July = "七月";
+            UILocalize.August = "八月";
+            UILocalize.September = "九月";
+            UILocalize.October = "十月";
+            UILocalize.November = "十一月";
+            UILocalize.December = "十二月";
+
+            UILocalize.Today = "今天";
 
             UIStyles.Translate();
         }
