@@ -368,6 +368,8 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
+            base.OnMouseClick(e);
+
             if (FormBorderStyle == FormBorderStyle.None && ShowTitle)
             {
                 if (InControlBox)
@@ -470,6 +472,8 @@ namespace Sunny.UI
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
+            base.OnMouseMove(e);
+
             if (ShowTitle && ControlBox)
             {
                 bool inControlBox = e.Location.InRect(ControlBoxRect);
