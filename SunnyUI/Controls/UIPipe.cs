@@ -1,4 +1,25 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIPipe.cs
+ * 文件说明: 管道
+ * 当前版本: V3.0
+ * 创建日期: 2021-07-26
+ *
+ * 2020-07-26: V3.0.5 增加管道控件
+******************************************************************************/
+
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -37,7 +58,7 @@ namespace Sunny.UI
         /// 边框颜色
         /// </summary>
         [Description("边框颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "Silver")]
         public Color RectColor
         {
             get => rectColor;
@@ -48,15 +69,19 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "White")]
         public Color FillColor
         {
             get => fillColor;
             set => SetFillColor(value);
         }
 
+        [Description("流动开启"), Category("SunnyUI")]
+        [DefaultValue(false)]
         public bool Active { get; set; }
 
+        [Description("流动方向"), Category("SunnyUI")]
+        [DefaultValue(UIFlowDirection.Forward)]
         public UIFlowDirection FlowDirection
         {
             get;
@@ -64,22 +89,30 @@ namespace Sunny.UI
         }
 
         public int flowSpeed = 6;
+        [Description("流动速度"), Category("SunnyUI")]
+        [DefaultValue(6)]
         public int FlowSpeed
         {
             get => flowSpeed;
             set => flowSpeed = Math.Max(value, 1);
         }
 
+        [Description("流动填充块颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Purple")]
         public Color FlowColor { get; set; } = Color.Purple;
 
         public int flowSize = 35;
+        [Description("流动填充块大小"), Category("SunnyUI")]
+        [DefaultValue(35)]
         public int FlowSize
         {
             get => flowSize;
-            set => flowSize = Math.Max(value, 10);
+            set => flowSize = Math.Max(value, Math.Min(Width, Height) + 2);
         }
 
         public int flowInterval = 22;
+        [Description("流动填充块间隔"), Category("SunnyUI")]
+        [DefaultValue(22)]
         public int FlowInterval
         {
             get => flowInterval;
