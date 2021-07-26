@@ -95,5 +95,11 @@ namespace Sunny.UI
         {
             User.SendMessage(handle, User.WM_VSCROLL, User.SB_LINEDOWN, 0);
         }
+
+        public static bool IsVerticalScrollBarVisible(Control ctrl)
+        {
+            if (!ctrl.IsHandleCreated) return false;
+            return (Sunny.UI.Win32.User.GetWindowLong(ctrl.Handle, User.GWL_STYLE) & User.WS_VSCROLL) != 0;
+        }
     }
 }

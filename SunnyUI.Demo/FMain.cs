@@ -14,7 +14,7 @@ namespace Sunny.UI.Demo
             int pageIndex = 1000;
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[0], 61451);
-            TreeNode parent = Aside.CreateNode("Controls", 61451, 24, pageIndex);
+            TreeNode parent = Aside.CreateNode("控件", 61451, 24, pageIndex);
             //通过设置PageIndex关联
             Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
             Aside.CreateChildNode(parent, 62141, 24, AddPage(new FHeaderButton(), ++pageIndex));
@@ -38,12 +38,15 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FScrollBar(), ++pageIndex));
             Aside.CreateChildNode(parent, 61668, 24, AddPage(new FMeter(), ++pageIndex));
             Aside.CreateChildNode(parent, 62173, 24, AddPage(new FOther(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FPipe()));
+
+            Aside.ShowTips = true;
             Aside.SetNodeTipsText(parent.Nodes[0], "1");
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[1], 61818);
-            parent = Aside.CreateNode("Forms", 61818, 24, pageIndex);
+            parent = Aside.CreateNode("窗体", 61818, 24, pageIndex);
             //通过设置GUID关联，节点字体图标和大小由UIPage设置
             Aside.CreateChildNode(parent, AddPage(new FDialogs(), Guid.NewGuid()));
             Aside.CreateChildNode(parent, AddPage(new FEditor(), Guid.NewGuid()));
@@ -52,7 +55,7 @@ namespace Sunny.UI.Demo
             pageIndex = 3000;
             Header.SetNodePageIndex(Header.Nodes[2], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[2], 61950);
-            parent = Aside.CreateNode("Charts", 61950, 24, pageIndex);
+            parent = Aside.CreateNode("图表", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
             Aside.CreateChildNode(parent, AddPage(new FPieChart()));
             Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));

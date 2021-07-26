@@ -123,6 +123,12 @@
     <Compile Include="Controls\FLine.Designer.cs">
       <DependentUpon>FLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FPipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FPipe.designer.cs">
+      <DependentUpon>FPipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FLine.resx">
       <DependentUpon>FLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FPipe.resx">
+      <DependentUpon>FPipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FTransfer.resx">
       <DependentUpon>FTransfer.cs</DependentUpon>
