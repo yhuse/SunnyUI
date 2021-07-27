@@ -797,6 +797,8 @@ namespace Sunny.UI
                 if (obj is UIFlowLayoutPanel) continue;
                 if (obj is UIPanel) continue;
 
+                if (obj is TableLayoutPanel) continue;
+
                 if (obj.Controls.Count > 0)
                 {
                     values.AddRange(obj.GetUIStyleControls(interfaceName));
@@ -835,21 +837,23 @@ namespace Sunny.UI
                 {
                     if (control is IStyleInterface item)
                     {
-                        item.Style = style;
+                        if (!item.StyleCustomMode)
+                            item.Style = style;
                     }
                 }
 
                 return;
             }
 
-            if (e.Control is TableLayoutPanel)
+            if (e.Control is FlowLayoutPanel)
             {
                 List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
                 foreach (var control in controls)
                 {
                     if (control is IStyleInterface item)
                     {
-                        item.Style = style;
+                        if (!item.StyleCustomMode)
+                            item.Style = style;
                     }
                 }
 
@@ -863,7 +867,8 @@ namespace Sunny.UI
                 {
                     if (control is IStyleInterface item)
                     {
-                        item.Style = style;
+                        if (!item.StyleCustomMode)
+                            item.Style = style;
                     }
                 }
             }

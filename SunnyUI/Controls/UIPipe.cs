@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -37,6 +38,18 @@ namespace Sunny.UI
             fillColor = Color.White;
             StyleCustomMode = true;
             Style = UIStyle.Custom;
+            Width = 200;
+            Height = 16;
+        }
+
+        private List<UIPipe> linked = new List<UIPipe>();
+
+        public void Link(UIPipe pipe)
+        {
+            if (linked.IndexOf(pipe) < 0)
+            {
+                linked.Add(pipe);
+            }
         }
 
         private UILine.LineDirection direction = UILine.LineDirection.Horizontal;
@@ -48,9 +61,25 @@ namespace Sunny.UI
             get => direction;
             set
             {
-                Radius = 0;
-                direction = value;
-                Invalidate();
+                if (direction != value)
+                {
+                    Radius = 0;
+                    direction = value;
+
+                    if (direction == UILine.LineDirection.Horizontal)
+                    {
+                        Width = 200;
+                        Height = 16;
+                    }
+
+                    if (direction == UILine.LineDirection.Vertical)
+                    {
+                        Width = 16;
+                        Height = 200;
+                    }
+
+                    Invalidate();
+                }
             }
         }
 
@@ -368,6 +397,8 @@ namespace Sunny.UI
                             g.DrawLine(colors[idx], 0, Height - i, Width - i, Height - i);
                     }
                 }
+
+
             }
 
             PaintFlow(g);
