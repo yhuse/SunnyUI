@@ -27,6 +27,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListBox;
 
 namespace Sunny.UI
 {
@@ -83,6 +84,22 @@ namespace Sunny.UI
             get => listbox.TextAlignment;
             set => listbox.TextAlignment = value;
         }
+
+        [DefaultValue(SelectionMode.One)]
+        [Description("选择项所用方法"), Category("SunnyUI")]
+        public SelectionMode SelectionMode
+        {
+            get => listbox.SelectionMode;
+            set => listbox.SelectionMode = value;
+        }
+
+        [DefaultValue(SelectionMode.One)]
+        [Description("选择项所用方法"), Category("SunnyUI")]
+        public SelectedIndexCollection SelectedIndices
+        {
+            get => listbox.SelectedIndices;
+        }
+
 
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
@@ -737,12 +754,14 @@ namespace Sunny.UI
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+            if (SelectionMode != SelectionMode.One) return;
             MouseIndex = IndexFromPoint(e.Location);
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
+            if (SelectionMode != SelectionMode.One) return;
             MouseIndex = -1;
         }
     }
