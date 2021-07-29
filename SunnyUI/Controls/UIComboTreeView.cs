@@ -96,7 +96,7 @@ namespace Sunny.UI
             set
             {
                 item.TreeView.SelectedNode = value;
-                Text = value.Text;
+                Text = value?.Text;
             }
         }
 
