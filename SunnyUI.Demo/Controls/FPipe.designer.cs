@@ -61,11 +61,7 @@ namespace Sunny.UI.Demo
             this.uiPipe3.Active = true;
             this.uiPipe3.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe3.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe3.FillColor = System.Drawing.Color.White;
             this.uiPipe3.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.uiPipe3.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe3.FlowInterval = 22;
-            this.uiPipe3.FlowSize = 35;
             this.uiPipe3.FlowSpeed = 10;
             this.uiPipe3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe3.Location = new System.Drawing.Point(196, 194);
@@ -73,7 +69,6 @@ namespace Sunny.UI.Demo
             this.uiPipe3.Name = "uiPipe3";
             this.uiPipe3.Radius = 16;
             this.uiPipe3.RadiusSides = Sunny.UI.UICornerRadiusSides.RightTop;
-            this.uiPipe3.RectColor = System.Drawing.Color.Silver;
             this.uiPipe3.Size = new System.Drawing.Size(16, 234);
             this.uiPipe3.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe3.StyleCustomMode = true;
@@ -85,11 +80,7 @@ namespace Sunny.UI.Demo
             this.uiPipe4.Active = true;
             this.uiPipe4.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe4.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe4.FillColor = System.Drawing.Color.White;
             this.uiPipe4.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.uiPipe4.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe4.FlowInterval = 22;
-            this.uiPipe4.FlowSize = 35;
             this.uiPipe4.FlowSpeed = 10;
             this.uiPipe4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe4.Location = new System.Drawing.Point(34, 63);
@@ -97,7 +88,6 @@ namespace Sunny.UI.Demo
             this.uiPipe4.Name = "uiPipe4";
             this.uiPipe4.Radius = 15;
             this.uiPipe4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe4.RectColor = System.Drawing.Color.Silver;
             this.uiPipe4.Size = new System.Drawing.Size(15, 365);
             this.uiPipe4.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe4.StyleCustomMode = true;
@@ -108,11 +98,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe2.Active = true;
             this.uiPipe2.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe2.FillColor = System.Drawing.Color.White;
             this.uiPipe2.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.uiPipe2.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe2.FlowInterval = 22;
-            this.uiPipe2.FlowSize = 35;
             this.uiPipe2.FlowSpeed = 10;
             this.uiPipe2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe2.Location = new System.Drawing.Point(48, 194);
@@ -120,7 +106,6 @@ namespace Sunny.UI.Demo
             this.uiPipe2.Name = "uiPipe2";
             this.uiPipe2.Radius = 16;
             this.uiPipe2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe2.RectColor = System.Drawing.Color.Silver;
             this.uiPipe2.Size = new System.Drawing.Size(149, 16);
             this.uiPipe2.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe2.StyleCustomMode = true;
@@ -132,11 +117,7 @@ namespace Sunny.UI.Demo
             this.uiPipe7.Active = true;
             this.uiPipe7.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe7.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe7.FillColor = System.Drawing.Color.White;
             this.uiPipe7.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe7.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe7.FlowInterval = 22;
-            this.uiPipe7.FlowSize = 35;
             this.uiPipe7.FlowSpeed = 10;
             this.uiPipe7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe7.Location = new System.Drawing.Point(451, 194);
@@ -144,7 +125,6 @@ namespace Sunny.UI.Demo
             this.uiPipe7.Name = "uiPipe7";
             this.uiPipe7.Radius = 16;
             this.uiPipe7.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
-            this.uiPipe7.RectColor = System.Drawing.Color.Silver;
             this.uiPipe7.Size = new System.Drawing.Size(16, 73);
             this.uiPipe7.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe7.StyleCustomMode = true;
@@ -156,11 +136,7 @@ namespace Sunny.UI.Demo
             this.uiPipe8.Active = true;
             this.uiPipe8.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe8.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe8.FillColor = System.Drawing.Color.White;
             this.uiPipe8.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe8.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe8.FlowInterval = 22;
-            this.uiPipe8.FlowSize = 35;
             this.uiPipe8.FlowSpeed = 10;
             this.uiPipe8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe8.Location = new System.Drawing.Point(289, 63);
@@ -168,7 +144,6 @@ namespace Sunny.UI.Demo
             this.uiPipe8.Name = "uiPipe8";
             this.uiPipe8.Radius = 15;
             this.uiPipe8.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe8.RectColor = System.Drawing.Color.Silver;
             this.uiPipe8.Size = new System.Drawing.Size(15, 365);
             this.uiPipe8.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe8.StyleCustomMode = true;
@@ -179,11 +154,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe9.Active = true;
             this.uiPipe9.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe9.FillColor = System.Drawing.Color.White;
             this.uiPipe9.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe9.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe9.FlowInterval = 22;
-            this.uiPipe9.FlowSize = 35;
             this.uiPipe9.FlowSpeed = 10;
             this.uiPipe9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe9.Location = new System.Drawing.Point(303, 194);
@@ -191,7 +162,6 @@ namespace Sunny.UI.Demo
             this.uiPipe9.Name = "uiPipe9";
             this.uiPipe9.Radius = 16;
             this.uiPipe9.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe9.RectColor = System.Drawing.Color.Silver;
             this.uiPipe9.Size = new System.Drawing.Size(149, 16);
             this.uiPipe9.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe9.StyleCustomMode = true;
@@ -202,11 +172,8 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe10.Active = true;
             this.uiPipe10.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe10.FillColor = System.Drawing.Color.White;
             this.uiPipe10.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe10.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Reverse;
-            this.uiPipe10.FlowInterval = 22;
-            this.uiPipe10.FlowSize = 35;
             this.uiPipe10.FlowSpeed = 10;
             this.uiPipe10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe10.Location = new System.Drawing.Point(78, 251);
@@ -214,7 +181,6 @@ namespace Sunny.UI.Demo
             this.uiPipe10.Name = "uiPipe10";
             this.uiPipe10.Radius = 16;
             this.uiPipe10.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe10.RectColor = System.Drawing.Color.Silver;
             this.uiPipe10.Size = new System.Drawing.Size(389, 16);
             this.uiPipe10.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe10.StyleCustomMode = true;
@@ -225,11 +191,8 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe11.Active = true;
             this.uiPipe11.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe11.FillColor = System.Drawing.Color.White;
             this.uiPipe11.FlowColor = System.Drawing.Color.SkyBlue;
             this.uiPipe11.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Reverse;
-            this.uiPipe11.FlowInterval = 22;
-            this.uiPipe11.FlowSize = 35;
             this.uiPipe11.FlowSpeed = 10;
             this.uiPipe11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe11.Location = new System.Drawing.Point(109, 295);
@@ -237,7 +200,6 @@ namespace Sunny.UI.Demo
             this.uiPipe11.Name = "uiPipe11";
             this.uiPipe11.Radius = 16;
             this.uiPipe11.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe11.RectColor = System.Drawing.Color.Silver;
             this.uiPipe11.Size = new System.Drawing.Size(612, 16);
             this.uiPipe11.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe11.StyleCustomMode = true;
@@ -249,11 +211,7 @@ namespace Sunny.UI.Demo
             this.uiPipe12.Active = true;
             this.uiPipe12.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe12.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe12.FillColor = System.Drawing.Color.White;
             this.uiPipe12.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe12.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe12.FlowInterval = 22;
-            this.uiPipe12.FlowSize = 35;
             this.uiPipe12.FlowSpeed = 10;
             this.uiPipe12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe12.Location = new System.Drawing.Point(63, 251);
@@ -261,7 +219,6 @@ namespace Sunny.UI.Demo
             this.uiPipe12.Name = "uiPipe12";
             this.uiPipe12.Radius = 16;
             this.uiPipe12.RadiusSides = Sunny.UI.UICornerRadiusSides.LeftTop;
-            this.uiPipe12.RectColor = System.Drawing.Color.Silver;
             this.uiPipe12.Size = new System.Drawing.Size(16, 114);
             this.uiPipe12.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe12.StyleCustomMode = true;
@@ -273,11 +230,7 @@ namespace Sunny.UI.Demo
             this.uiPipe1.Active = true;
             this.uiPipe1.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe1.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe1.FillColor = System.Drawing.Color.White;
             this.uiPipe1.FlowColor = System.Drawing.Color.SkyBlue;
-            this.uiPipe1.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe1.FlowInterval = 22;
-            this.uiPipe1.FlowSize = 35;
             this.uiPipe1.FlowSpeed = 10;
             this.uiPipe1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe1.Location = new System.Drawing.Point(94, 295);
@@ -285,7 +238,6 @@ namespace Sunny.UI.Demo
             this.uiPipe1.Name = "uiPipe1";
             this.uiPipe1.Radius = 16;
             this.uiPipe1.RadiusSides = Sunny.UI.UICornerRadiusSides.LeftTop;
-            this.uiPipe1.RectColor = System.Drawing.Color.Silver;
             this.uiPipe1.Size = new System.Drawing.Size(16, 70);
             this.uiPipe1.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe1.StyleCustomMode = true;
@@ -297,11 +249,7 @@ namespace Sunny.UI.Demo
             this.uiPipe5.Active = true;
             this.uiPipe5.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe5.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe5.FillColor = System.Drawing.Color.White;
             this.uiPipe5.FlowColor = System.Drawing.Color.SkyBlue;
-            this.uiPipe5.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
-            this.uiPipe5.FlowInterval = 22;
-            this.uiPipe5.FlowSize = 35;
             this.uiPipe5.FlowSpeed = 10;
             this.uiPipe5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPipe5.Location = new System.Drawing.Point(720, 63);
@@ -309,7 +257,6 @@ namespace Sunny.UI.Demo
             this.uiPipe5.Name = "uiPipe5";
             this.uiPipe5.Radius = 16;
             this.uiPipe5.RadiusSides = Sunny.UI.UICornerRadiusSides.RightBottom;
-            this.uiPipe5.RectColor = System.Drawing.Color.Silver;
             this.uiPipe5.Size = new System.Drawing.Size(16, 248);
             this.uiPipe5.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe5.StyleCustomMode = true;
@@ -321,9 +268,7 @@ namespace Sunny.UI.Demo
             this.uiPipe6.Active = true;
             this.uiPipe6.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe6.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe6.FillColor = System.Drawing.Color.White;
             this.uiPipe6.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.uiPipe6.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe6.FlowInterval = 16;
             this.uiPipe6.FlowSize = 28;
             this.uiPipe6.FlowSpeed = 20;
@@ -344,9 +289,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe13.Active = true;
             this.uiPipe13.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe13.FillColor = System.Drawing.Color.White;
             this.uiPipe13.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.uiPipe13.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe13.FlowInterval = 16;
             this.uiPipe13.FlowSize = 28;
             this.uiPipe13.FlowSpeed = 20;
@@ -367,9 +310,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe14.Active = true;
             this.uiPipe14.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe14.FillColor = System.Drawing.Color.White;
             this.uiPipe14.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.uiPipe14.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe14.FlowInterval = 16;
             this.uiPipe14.FlowSize = 28;
             this.uiPipe14.FlowSpeed = 20;
@@ -391,7 +332,6 @@ namespace Sunny.UI.Demo
             this.uiPipe15.Active = true;
             this.uiPipe15.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe15.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe15.FillColor = System.Drawing.Color.White;
             this.uiPipe15.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.uiPipe15.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Reverse;
             this.uiPipe15.FlowInterval = 16;
@@ -415,9 +355,7 @@ namespace Sunny.UI.Demo
             this.uiPipe16.Active = true;
             this.uiPipe16.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe16.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe16.FillColor = System.Drawing.Color.White;
             this.uiPipe16.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe16.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe16.FlowInterval = 16;
             this.uiPipe16.FlowSize = 28;
             this.uiPipe16.FlowSpeed = 20;
@@ -439,9 +377,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiPipe17.Active = true;
             this.uiPipe17.BackColor = System.Drawing.Color.Transparent;
-            this.uiPipe17.FillColor = System.Drawing.Color.White;
             this.uiPipe17.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe17.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe17.FlowInterval = 16;
             this.uiPipe17.FlowSize = 28;
             this.uiPipe17.FlowSpeed = 20;
@@ -464,9 +400,7 @@ namespace Sunny.UI.Demo
             this.uiPipe18.Active = true;
             this.uiPipe18.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe18.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiPipe18.FillColor = System.Drawing.Color.White;
             this.uiPipe18.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.uiPipe18.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Forward;
             this.uiPipe18.FlowInterval = 16;
             this.uiPipe18.FlowSize = 28;
             this.uiPipe18.FlowSpeed = 20;

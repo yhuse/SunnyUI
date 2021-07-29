@@ -20,7 +20,7 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -42,14 +42,20 @@ namespace Sunny.UI
             Height = 16;
         }
 
-        private List<UIPipe> linked = new List<UIPipe>();
+        private ConcurrentDictionary<UIPipe, Bitmap> linked = new ConcurrentDictionary<UIPipe, Bitmap>();
 
         public void Link(UIPipe pipe)
         {
-            if (linked.IndexOf(pipe) < 0)
+            if (linked.NotContainsKey(pipe))
             {
-                linked.Add(pipe);
+                linked.TryAdd(pipe, null);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            foreach (var key in linked.Keys)
+                linked[key]?.Dispose();
         }
 
         private UILine.LineDirection direction = UILine.LineDirection.Horizontal;
@@ -130,6 +136,15 @@ namespace Sunny.UI
         [DefaultValue(typeof(Color), "Purple")]
         public Color FlowColor { get; set; } = Color.Purple;
 
+        private int flowColorAlpha = 200;
+        [Description("流动填充块颜色透明度"), Category("SunnyUI")]
+        [DefaultValue(200)]
+        public int FlowColorAlpha
+        {
+            get => flowColorAlpha;
+            set => flowColorAlpha = Math.Min(Math.Max(0, value), 255);
+        }
+
         public int flowSize = 35;
         [Description("流动填充块大小"), Category("SunnyUI")]
         [DefaultValue(35)]
@@ -209,6 +224,8 @@ namespace Sunny.UI
                         g.DrawLine(colors[idx], 0, Height - i, 1, Height - i);
                 }
             }
+
+            PaintLinkedRect(g);
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
@@ -397,11 +414,150 @@ namespace Sunny.UI
                             g.DrawLine(colors[idx], 0, Height - i, Width - i, Height - i);
                     }
                 }
-
-
             }
 
+            PaintLinked(g);
             PaintFlow(g);
+        }
+
+        private void PaintLinked(Graphics g)
+        {
+            foreach (var pipe in linked.Keys)
+            {
+                if (Direction == UILine.LineDirection.Horizontal)
+                {
+
+                }
+
+                if (Direction == UILine.LineDirection.Vertical)
+                {
+                    if (pipe.Direction == UILine.LineDirection.Vertical) continue;
+                    if (pipe.Parent != this.Parent) continue;
+                    if (pipe.Width < 5) continue;
+
+                    if (linked[pipe] == null || linked[pipe].Size != pipe.Size)
+                    {
+                        linked[pipe]?.Dispose();
+                        linked[pipe] = CreatePipeBack(pipe);
+                    }
+
+                    if (pipe.Left > Left && pipe.Left < Right && pipe.Right > Right)
+                    {
+                        int h = pipe.Height / 2;
+                        int w = Width / 2 + Width.Mod(2) - 1;
+                        for (int i = 0; i < h; i++)
+                        {
+                            int ww = i;
+                            if (ww >= w) ww = w;
+                            g.DrawLine(linked[pipe].GetPixel(2, i), Width - ww, pipe.Top + i - this.Top, Width, pipe.Top + i - this.Top);
+                        }
+
+                        for (int i = h; i < pipe.Height; i++)
+                        {
+                            int ww = pipe.Height - i - 1;
+                            if (ww >= w) ww = w;
+                            g.DrawLine(linked[pipe].GetPixel(2, i), Width - ww, pipe.Top + i - this.Top, Width, pipe.Top + i - this.Top);
+                        }
+                    }
+
+                    if (pipe.Left < Left && pipe.Right > Left && pipe.Right < Right)
+                    {
+                        int h = pipe.Height / 2;
+                        int w = Width / 2 + Width.Mod(2) - 1;
+                        for (int i = 0; i < h; i++)
+                        {
+                            int ww = i;
+                            if (ww >= w) ww = w;
+                            g.DrawLine(linked[pipe].GetPixel(2, i), 0, pipe.Top + i - this.Top, ww - 1, pipe.Top + i - this.Top);
+                        }
+
+                        for (int i = h; i < pipe.Height; i++)
+                        {
+                            int ww = pipe.Height - i - 1;
+                            if (ww >= w) ww = w;
+                            g.DrawLine(linked[pipe].GetPixel(2, i), 0, pipe.Top + i - this.Top, ww - 1, pipe.Top + i - this.Top);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void PaintLinkedRect(Graphics g)
+        {
+            foreach (var pipe in linked.Keys)
+            {
+                if (Direction == UILine.LineDirection.Horizontal)
+                {
+
+                }
+
+                if (Direction == UILine.LineDirection.Vertical)
+                {
+                    if (pipe.Direction == UILine.LineDirection.Vertical) continue;
+                    if (pipe.Parent != this.Parent) continue;
+                    if (pipe.Width < 5) continue;
+
+                    if (linked[pipe] == null || linked[pipe].Size != pipe.Size)
+                    {
+                        linked[pipe]?.Dispose();
+                        linked[pipe] = CreatePipeBack(pipe);
+                    }
+
+                    if (pipe.Left > Left && pipe.Left < Right && pipe.Right > Right)
+                    {
+                        for (int i = 0; i < pipe.Height; i++)
+                        {
+                            g.DrawLine(linked[pipe].GetPixel(2, i), Width - 1, pipe.Top + i - this.Top, Width + 1, pipe.Top + i - this.Top);
+                        }
+                    }
+
+                    if (pipe.Left < Left && pipe.Right > Left && pipe.Right < Right)
+                    {
+                        for (int i = 0; i < pipe.Height; i++)
+                        {
+                            g.DrawLine(linked[pipe].GetPixel(2, i), -1, pipe.Top + i - this.Top, 0, pipe.Top + i - this.Top);
+                        }
+                    }
+                }
+            }
+        }
+
+        private Bitmap CreatePipeBack(UIPipe pipe)
+        {
+            Bitmap result = new Bitmap(pipe.Width, pipe.Height);
+            Graphics g = result.Graphics();
+            var path = result.Bounds().CreateRoundedRectanglePath(5, UICornerRadiusSides.None);
+
+            int h = pipe.Height.Div(2) + pipe.Height.Mod(2);
+            using (Bitmap bmp = new Bitmap(pipe.Width, pipe.Height))
+            using (Graphics g1 = bmp.Graphics())
+            using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
+                new Point(0, h),
+                rectColor,
+                fillColor))
+            {
+                g1.SetHighQuality();
+                g1.FillPath(lgb, path);
+                g1.SetDefaultQuality();
+                g.DrawImage(bmp, new Rectangle(0, 0, pipe.Width, h), new Rectangle(0, 0, pipe.Width, h), GraphicsUnit.Pixel);
+            }
+
+            using (Bitmap bmp = new Bitmap(pipe.Width, pipe.Height))
+            using (Graphics g1 = bmp.Graphics())
+            using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, h - 1),
+                new Point(0, pipe.Height),
+                fillColor,
+                rectColor))
+            {
+                g1.SetHighQuality();
+                g1.FillPath(lgb, path);
+                g1.SetDefaultQuality();
+
+                g.DrawImage(bmp, new Rectangle(0, h, pipe.Width, pipe.Height - h), new Rectangle(0, h, pipe.Width, pipe.Height - h), GraphicsUnit.Pixel);
+            }
+
+            g.Dispose();
+            return result;
         }
 
         private int FlowPos = 0;
@@ -410,7 +566,7 @@ namespace Sunny.UI
         {
             if (IsDesignMode) return;
             if (!Active) return;
-            Color color = Color.FromArgb(150, FlowColor);
+            Color color = Color.FromArgb(FlowColorAlpha, FlowColor);
             if (Direction == UILine.LineDirection.Horizontal)
             {
                 int pos = FlowPos.Mod(FlowSize + FlowInterval);

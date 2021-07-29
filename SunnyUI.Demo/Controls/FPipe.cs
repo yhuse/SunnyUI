@@ -9,6 +9,11 @@ namespace Sunny.UI.Demo
         public FPipe()
         {
             InitializeComponent();
+
+            uiPipe4.Link(uiPipe2);
+            uiPipe18.Link(uiPipe13);
+            uiPipe8.Link(uiPipe9);
+            uiPipe6.Link(uiPipe13);
             timer1.Start();
         }
 
