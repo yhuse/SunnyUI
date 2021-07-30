@@ -58,6 +58,42 @@ namespace Sunny.UI
             view.AfterSelect += View_AfterSelect;
             view.NodeMouseClick += View_NodeMouseClick;
             view.NodeMouseDoubleClick += View_NodeMouseDoubleClick;
+            view.MouseUp += View_MouseUp;
+            view.MouseDown += View_MouseDown;
+            view.MouseMove += View_MouseMove;
+            view.MouseEnter += View_MouseEnter;
+            view.MouseLeave += View_MouseLeave;
+        }
+
+        public new EventHandler MouseLeave;
+        public new EventHandler MouseEnter;
+        public new MouseEventHandler MouseMove;
+        public new MouseEventHandler MouseDown;
+        public new MouseEventHandler MouseUp;
+
+        private void View_MouseLeave(object sender, EventArgs e)
+        {
+            MouseLeave?.Invoke(this, e);
+        }
+
+        private void View_MouseEnter(object sender, EventArgs e)
+        {
+            MouseEnter?.Invoke(this, e);
+        }
+
+        private void View_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void View_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        private void View_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
         }
 
         [Browsable(false)]
