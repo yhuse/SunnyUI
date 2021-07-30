@@ -593,7 +593,7 @@ namespace Sunny.UI
                 if (!otherState)
                 {
                     e.Graphics.FillRectangle(BackColor, e.Bounds);
-                    e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                    e.Graphics.FillRectangle(backColor, rect);
                 }
                 else
                 {
@@ -610,7 +610,7 @@ namespace Sunny.UI
                     }
 
                     e.Graphics.FillRectangle(BackColor, e.Bounds);
-                    e.Graphics.FillRoundRectangle(backColor, rect, 5);
+                    e.Graphics.FillRectangle(backColor, rect);
                 }
 
                 Graphics g = e.Graphics;
