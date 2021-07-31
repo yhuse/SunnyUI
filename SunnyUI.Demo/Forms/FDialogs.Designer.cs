@@ -61,11 +61,15 @@
             this.uiSymbolButton10 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton11 = new Sunny.UI.UISymbolButton();
             this.uiLine9 = new Sunny.UI.UILine();
+            this.uiLine10 = new Sunny.UI.UILine();
+            this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
             this.PagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // PagePanel
             // 
+            this.PagePanel.Controls.Add(this.uiLine10);
+            this.PagePanel.Controls.Add(this.uiSymbolButton13);
             this.PagePanel.Controls.Add(this.uiLine9);
             this.PagePanel.Controls.Add(this.uiSymbolButton11);
             this.PagePanel.Controls.Add(this.uiLine8);
@@ -639,9 +643,33 @@
             this.uiLine9.Text = "UIWaitingForm";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLine10
+            // 
+            this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine10.Location = new System.Drawing.Point(372, 415);
+            this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine10.Name = "uiLine10";
+            this.uiLine10.Size = new System.Drawing.Size(328, 20);
+            this.uiLine10.TabIndex = 74;
+            this.uiLine10.Text = "选择文件夹";
+            this.uiLine10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSymbolButton13
+            // 
+            this.uiSymbolButton13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton13.Location = new System.Drawing.Point(372, 447);
+            this.uiSymbolButton13.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton13.Name = "uiSymbolButton13";
+            this.uiSymbolButton13.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton13.Size = new System.Drawing.Size(214, 35);
+            this.uiSymbolButton13.Symbol = 61717;
+            this.uiSymbolButton13.TabIndex = 72;
+            this.uiSymbolButton13.Text = "选择文件夹";
+            this.uiSymbolButton13.Click += new System.EventHandler(this.uiSymbolButton13_Click);
+            // 
             // FDialogs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 549);
             this.Name = "FDialogs";
@@ -687,5 +715,7 @@
         private UISymbolButton uiSymbolButton10;
         private UISymbolButton uiSymbolButton11;
         private UILine uiLine9;
+        private UILine uiLine10;
+        private UISymbolButton uiSymbolButton13;
     }
 }
