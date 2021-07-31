@@ -58,9 +58,106 @@ namespace Sunny.UI
             timer.Start();
         }
 
-        ~UIFlowLayoutPanel()
+        protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
             timer.Stop();
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            if (e.Control is UIHorScrollBarEx bar1)
+            {
+                if (bar1.TagString == "79E1E7DD-3E4D-916B-C8F1-F45B579C290C")
+                {
+                    base.OnControlAdded(e);
+                    return;
+                }
+            }
+
+            if (e.Control is UIVerScrollBarEx bar2)
+            {
+                if (bar2.TagString == "63FD1249-41D3-E08A-F8F5-CC41CC30FD03")
+                {
+                    base.OnControlAdded(e);
+                    return;
+                }
+            }
+
+            if (e.Control is FlowLayoutPanel panel)
+            {
+                if (panel.Tag.ToString() == "69605093-6397-AD32-9F69-3C29F642F87E")
+                {
+                    base.OnControlAdded(e);
+                    return;
+                }
+            }
+
+            if (Panel != null && !IsDesignMode)
+            {
+                Add(e.Control);
+            }
+            else
+            {
+                base.OnControlAdded(e);
+                if (Panel != null) Panel.SendToBack();
+            }
+        }
+
+        public void Remove(Control control)
+        {
+            if (Panel != null)
+            {
+                if (Panel.Controls.Contains(control))
+                    Panel.Controls.Remove(control);
+            }
+        }
+
+        public void Add(Control control)
+        {
+            if (control is IStyleInterface ctrl)
+            {
+                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
+            }
+
+            if (Panel != null)
+            {
+                Panel.Controls.Add(control);
+            }
+        }
+
+        [Obsolete("此方法已优化，用Add代替")]
+        public void AddControl(Control control)
+        {
+            if (control is IStyleInterface ctrl)
+            {
+                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
+            }
+
+            if (Panel != null)
+            {
+                Panel.Controls.Add(control);
+            }
+        }
+
+        [Obsolete("此方法已优化，用Remove代替")]
+        public void RemoveControl(Control control)
+        {
+            if (Panel != null)
+            {
+                if (Panel.Controls.Contains(control))
+                    Panel.Controls.Remove(control);
+            }
+        }
+
+        public void Clear()
+        {
+            foreach (Control control in Panel.Controls)
+            {
+                control.Dispose();
+            }
+
+            Panel.Controls.Clear();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -143,31 +240,6 @@ namespace Sunny.UI
                 HBar.ForeColor = value;
                 Invalidate();
             }
-        }
-
-        public void AddControl(Control control)
-        {
-            if (control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            Panel.Controls.Add(control);
-        }
-
-        public void RemoveControl(Control control)
-        {
-            Panel.Controls.Remove(control);
-        }
-
-        public void Clear()
-        {
-            foreach (Control control in Panel.Controls)
-            {
-                control.Dispose();
-            }
-
-            Panel.Controls.Clear();
         }
 
         private void Panel_MouseClick(object sender, MouseEventArgs e)
@@ -277,11 +349,12 @@ namespace Sunny.UI
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(429, 383);
             this.flowLayoutPanel.TabIndex = 0;
+            this.flowLayoutPanel.Tag = "69605093-6397-AD32-9F69-3C29F642F87E";
             // 
             // VBar
             // 
             this.VBar.BoundsHeight = 10;
-            this.VBar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.VBar.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.VBar.LargeChange = 10;
             this.VBar.Location = new System.Drawing.Point(410, 5);
             this.VBar.Maximum = 100;
@@ -289,6 +362,7 @@ namespace Sunny.UI
             this.VBar.Name = "VBar";
             this.VBar.Size = new System.Drawing.Size(18, 377);
             this.VBar.TabIndex = 1;
+            this.VBar.TagString = "63FD1249-41D3-E08A-F8F5-CC41CC30FD03";
             this.VBar.Text = "uiVerScrollBarEx1";
             this.VBar.Value = 0;
             this.VBar.Visible = false;
@@ -296,7 +370,7 @@ namespace Sunny.UI
             // HBar
             // 
             this.HBar.BoundsWidth = 10;
-            this.HBar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.HBar.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.HBar.LargeChange = 10;
             this.HBar.Location = new System.Drawing.Point(5, 364);
             this.HBar.Maximum = 100;
@@ -304,6 +378,7 @@ namespace Sunny.UI
             this.HBar.Name = "HBar";
             this.HBar.Size = new System.Drawing.Size(399, 18);
             this.HBar.TabIndex = 2;
+            this.HBar.TagString = "79E1E7DD-3E4D-916B-C8F1-F45B579C290C";
             this.HBar.Text = "uiHorScrollBarEx1";
             this.HBar.Value = 0;
             this.HBar.Visible = false;
