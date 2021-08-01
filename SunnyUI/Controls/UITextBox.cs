@@ -63,6 +63,8 @@ namespace Sunny.UI
             edit.Leave += Edit_Leave;
             edit.Validated += Edit_Validated;
             edit.Validating += Edit_Validating;
+            edit.GotFocus += Edit_GotFocus;
+            edit.LostFocus += Edit_LostFocus;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -84,12 +86,23 @@ namespace Sunny.UI
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
 
+        private void Edit_LostFocus(object sender, EventArgs e)
+        {
+            LostFocus?.Invoke(this, e);
+        }
+
+        private void Edit_GotFocus(object sender, EventArgs e)
+        {
+            GotFocus?.Invoke(this, e);
+        }
+
         private void Edit_Validating(object sender, CancelEventArgs e)
         {
             Validating?.Invoke(this, e);
         }
 
-
+        public new EventHandler GotFocus;
+        public new EventHandler LostFocus;
         public new CancelEventHandler Validating;
         public new event EventHandler Validated;
 
