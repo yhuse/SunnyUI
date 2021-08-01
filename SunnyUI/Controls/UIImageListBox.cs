@@ -67,6 +67,16 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
         }
 
+        public int IndexFromPoint(Point p)
+        {
+            return listbox.IndexFromPoint(p);
+        }
+
+        public int IndexFromPoint(int x, int y)
+        {
+            return listbox.IndexFromPoint(x, y);
+        }
+
         protected override void AfterSetFillColor(Color color)
         {
             base.AfterSetFillColor(color);

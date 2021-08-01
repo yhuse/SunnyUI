@@ -23,8 +23,11 @@
         UIButton btn;
         private void uiButton1_Click(object sender, System.EventArgs e)
         {
-            btn = new UIButton();
-            btn.Text = "Button" + index++.ToString("D2");
+            btn = new UIButton
+            {
+                Text = "Button" + index++.ToString("D2")
+            };
+
             //可以用原生方法Controls.Add
             uiFlowLayoutPanel1.Controls.Add(btn);
             //或者封装的方法Add

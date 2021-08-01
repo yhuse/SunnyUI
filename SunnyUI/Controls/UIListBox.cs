@@ -77,6 +77,16 @@ namespace Sunny.UI
         [Browsable(false)]
         public ListBox ListBox => listbox;
 
+        public int IndexFromPoint(Point p)
+        {
+            return listbox.IndexFromPoint(p);
+        }
+
+        public int IndexFromPoint(int x, int y)
+        {
+            return listbox.IndexFromPoint(x, y);
+        }
+
         [DefaultValue(StringAlignment.Near)]
         [Description("列表项高度"), Category("SunnyUI")]
         public new StringAlignment TextAlignment
@@ -99,7 +109,6 @@ namespace Sunny.UI
         {
             get => listbox.SelectedIndices;
         }
-
 
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
