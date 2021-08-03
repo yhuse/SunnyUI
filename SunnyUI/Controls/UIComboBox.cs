@@ -42,9 +42,19 @@ namespace Sunny.UI
             ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
+            ListBox.ItemsCountChange += ListBox_ItemsCountChange;
             edit.TextChanged += Edit_TextChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        private void ListBox_ItemsCountChange(object sender, EventArgs e)
+        {
+            if (ListBox.Count == 0)
+            {
+                Text = "";
+                edit.Text = "";
+            }
         }
 
         public new EventHandler TextChanged;
@@ -142,7 +152,8 @@ namespace Sunny.UI
 
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
-            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+            if (Items.Count > 0)
+                ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
