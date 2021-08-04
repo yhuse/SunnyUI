@@ -42,19 +42,26 @@ namespace Sunny.UI
             ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
-            ListBox.ItemsCountChange += ListBox_ItemsCountChange;
+            ListBox.ItemsClear += ListBox_ItemsClear;
+            ListBox.ItemsRemove += ListBox_ItemsRemove;
             edit.TextChanged += Edit_TextChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
         }
 
-        private void ListBox_ItemsCountChange(object sender, EventArgs e)
+        private void ListBox_ItemsRemove(object sender, EventArgs e)
         {
             if (ListBox.Count == 0)
             {
                 Text = "";
                 edit.Text = "";
             }
+        }
+
+        private void ListBox_ItemsClear(object sender, EventArgs e)
+        {
+            Text = "";
+            edit.Text = "";
         }
 
         public new EventHandler TextChanged;

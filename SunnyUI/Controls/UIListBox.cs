@@ -66,12 +66,42 @@ namespace Sunny.UI
             listbox.MouseDown += Listbox_MouseDown;
             listbox.MouseUp += Listbox_MouseUp;
             listbox.MouseMove += Listbox_MouseMove;
-            ListBox.DataSourceChanged += Box_DataSourceChanged;
-            ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
-            ListBox.ValueMemberChanged += Box_ValueMemberChanged;
+            listbox.DataSourceChanged += Box_DataSourceChanged;
+            listbox.DisplayMemberChanged += Box_DisplayMemberChanged;
+            listbox.ValueMemberChanged += Box_ValueMemberChanged;
+            listbox.ItemsClear += Listbox_ItemsClear;
+            listbox.ItemsAdd += Listbox_ItemsAdd;
+            listbox.ItemsRemove += Listbox_ItemsRemove;
+            listbox.ItemsInsert += Listbox_ItemsInsert;
 
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public event EventHandler ItemsClear;
+        public event EventHandler ItemsAdd;
+        public event EventHandler ItemsRemove;
+        public event EventHandler ItemsInsert;
+
+        private void Listbox_ItemsInsert(object sender, EventArgs e)
+        {
+            ItemsInsert?.Invoke(this, e);
+        }
+
+        private void Listbox_ItemsRemove(object sender, EventArgs e)
+        {
+            ItemsRemove?.Invoke(this, e);
+        }
+
+        private void Listbox_ItemsAdd(object sender, EventArgs e)
+        {
+            ItemsAdd?.Invoke(this, e);
+        }
+
+
+        private void Listbox_ItemsClear(object sender, EventArgs e)
+        {
+            ItemsClear?.Invoke(this, e);
         }
 
         [Browsable(false)]
@@ -458,6 +488,44 @@ namespace Sunny.UI
             IntegralHeight = false;
             Version = UIGlobal.Version;
             SetScrollInfo();
+        }
+
+        public event EventHandler ItemsClear;
+        public event EventHandler ItemsAdd;
+        public event EventHandler ItemsRemove;
+        public event EventHandler ItemsInsert;
+
+        protected override void WndProc(ref Message m)
+        {
+            if (IsDisposed || Disposing) return;
+            if (IsHandleCreated)
+            {
+                const int LB_ADDSTRING = 0x0180;
+                const int LB_INSERTSTRING = 0x0181;
+                const int LB_DELETESTRING = 0x0182;
+                const int LB_RESETCONTENT = 0x0184;
+                if (m.Msg == LB_RESETCONTENT)
+                {
+                    ItemsClear?.Invoke(this, EventArgs.Empty);
+                }
+
+                if (m.Msg == LB_DELETESTRING)
+                {
+                    ItemsRemove?.Invoke(this, EventArgs.Empty);
+                }
+
+                if (m.Msg == LB_ADDSTRING)
+                {
+                    ItemsAdd?.Invoke(this, EventArgs.Empty);
+                }
+
+                if (m.Msg == LB_INSERTSTRING)
+                {
+                    ItemsInsert?.Invoke(this, EventArgs.Empty);
+                }
+            }
+
+            base.WndProc(ref m);
         }
 
         protected override void OnSizeChanged(EventArgs e)
