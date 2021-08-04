@@ -44,7 +44,7 @@ namespace Sunny.UI
 
         public UIForm()
         {
-            base.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);//设置最大化尺寸
+            base.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;//设置最大化尺寸
             InitializeComponent();
 
             if (this.Register())
@@ -1106,7 +1106,6 @@ namespace Sunny.UI
         protected override void OnLocationChanged(EventArgs e)
         {
             base.OnLocationChanged(e);
-
             List<UIPage> pages = this.GetControls<UIPage>(true);
             foreach (var page in pages)
             {
@@ -1116,6 +1115,7 @@ namespace Sunny.UI
 
         protected override void OnSizeChanged(EventArgs e)
         {
+            base.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;//设置最大化尺寸
             base.OnSizeChanged(e);
             CalcSystemBoxPos();
 
