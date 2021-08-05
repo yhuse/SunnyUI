@@ -61,6 +61,7 @@ namespace Sunny.UI
             listbox.SelectedIndexChanged += Listbox_SelectedIndexChanged;
             listbox.SelectedValueChanged += Listbox_SelectedValueChanged;
             listbox.Click += Listbox_Click;
+            listbox.MouseClick += Listbox_MouseClick;
             listbox.DoubleClick += Listbox_DoubleClick;
             listbox.BeforeDrawItem += Listbox_BeforeDrawItem;
             listbox.MouseDown += Listbox_MouseDown;
@@ -78,10 +79,56 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        private void Listbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            MouseClick?.Invoke(this, e);
+        }
+
+        public new event MouseEventHandler MouseClick;
         public event EventHandler ItemsClear;
         public event EventHandler ItemsAdd;
         public event EventHandler ItemsRemove;
         public event EventHandler ItemsInsert;
+
+        public void BeginUpdate()
+        {
+            listbox.BeginUpdate();
+        }
+
+        public void EndUpdate()
+        {
+            listbox.EndUpdate();
+        }
+
+        public void ClearSelected()
+        {
+            listbox.ClearSelected();
+        }
+
+        public int FindString(string s, int startIndex)
+        {
+            return listbox.FindString(s, startIndex);
+        }
+
+        public int FindStringExact(string s, int startIndex)
+        {
+            return listbox.FindStringExact(s, startIndex);
+        }
+
+        public Rectangle GetItemRectangle(int index)
+        {
+            return listbox.GetItemRectangle(index);
+        }
+
+        public bool GetSelected(int index)
+        {
+            return listbox.GetSelected(index);
+        }
+
+        public void SetSelected(int index, bool value)
+        {
+            listbox.SetSelected(index, value);
+        }
 
         private void Listbox_ItemsInsert(object sender, EventArgs e)
         {
@@ -97,7 +144,6 @@ namespace Sunny.UI
         {
             ItemsAdd?.Invoke(this, e);
         }
-
 
         private void Listbox_ItemsClear(object sender, EventArgs e)
         {
@@ -148,6 +194,33 @@ namespace Sunny.UI
         public SelectedIndexCollection SelectedIndices
         {
             get => listbox.SelectedIndices;
+        }
+
+        [DefaultValue(false)]
+        public bool Sorted
+        {
+            get => listbox.Sorted;
+            set => listbox.Sorted = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int TopIndex
+        {
+            get => listbox.TopIndex;
+            set => listbox.TopIndex = value;
+        }
+
+        [DefaultValue(true)]
+        public bool UseTabStops
+        {
+            get => listbox.UseTabStops;
+            set => listbox.UseTabStops = value;
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public SelectedObjectCollection SelectedItems
+        {
+            get => listbox.SelectedItems;
         }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
