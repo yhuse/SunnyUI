@@ -104,6 +104,16 @@ namespace Sunny.UI
             ItemsClear?.Invoke(this, e);
         }
 
+        public int FindString(string s)
+        {
+            return listbox.FindString(s);
+        }
+
+        public int FindStringExact(string s)
+        {
+            return listbox.FindStringExact(s);
+        }
+
         [Browsable(false)]
         public ListBox ListBox => listbox;
 

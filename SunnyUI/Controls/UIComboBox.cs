@@ -49,6 +49,16 @@ namespace Sunny.UI
             fullControlSelect = true;
         }
 
+        public int FindString(string s)
+        {
+            return ListBox.FindString(s);
+        }
+
+        public int FindStringExact(string s)
+        {
+            return ListBox.FindStringExact(s);
+        }
+
         private void ListBox_ItemsRemove(object sender, EventArgs e)
         {
             if (ListBox.Count == 0)
