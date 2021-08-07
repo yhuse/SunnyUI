@@ -38,5 +38,10 @@ namespace Sunny.UI.Demo
                 pipe.Invalidate();
             }
         }
+
+        private void uiValve1_ActiveChanged(object sender, System.EventArgs e)
+        {
+            uiPipe8.Active = uiPipe9.Active = uiPipe7.Active = uiPipe10.Active = uiPipe12.Active = uiValve1.Active;
+        }
     }
 }

@@ -49,6 +49,8 @@ namespace Sunny.UI.Demo
             this.uiPipe16 = new Sunny.UI.UIPipe();
             this.uiPipe17 = new Sunny.UI.UIPipe();
             this.uiPipe18 = new Sunny.UI.UIPipe();
+            this.uiValve1 = new Sunny.UI.UIValve();
+            this.uiPipe19 = new Sunny.UI.UIPipe();
             this.SuspendLayout();
             // 
             // timer1
@@ -86,9 +88,9 @@ namespace Sunny.UI.Demo
             this.uiPipe4.Location = new System.Drawing.Point(34, 63);
             this.uiPipe4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe4.Name = "uiPipe4";
-            this.uiPipe4.Radius = 15;
+            this.uiPipe4.Radius = 16;
             this.uiPipe4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe4.Size = new System.Drawing.Size(15, 365);
+            this.uiPipe4.Size = new System.Drawing.Size(16, 365);
             this.uiPipe4.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe4.StyleCustomMode = true;
             this.uiPipe4.TabIndex = 8;
@@ -139,12 +141,12 @@ namespace Sunny.UI.Demo
             this.uiPipe8.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe8.FlowSpeed = 10;
             this.uiPipe8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPipe8.Location = new System.Drawing.Point(289, 63);
+            this.uiPipe8.Location = new System.Drawing.Point(289, 175);
             this.uiPipe8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe8.Name = "uiPipe8";
-            this.uiPipe8.Radius = 15;
+            this.uiPipe8.Radius = 16;
             this.uiPipe8.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPipe8.Size = new System.Drawing.Size(15, 365);
+            this.uiPipe8.Size = new System.Drawing.Size(16, 253);
             this.uiPipe8.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe8.StyleCustomMode = true;
             this.uiPipe8.TabIndex = 13;
@@ -276,10 +278,10 @@ namespace Sunny.UI.Demo
             this.uiPipe6.Location = new System.Drawing.Point(64, 391);
             this.uiPipe6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe6.Name = "uiPipe6";
-            this.uiPipe6.Radius = 15;
+            this.uiPipe6.Radius = 16;
             this.uiPipe6.RadiusSides = Sunny.UI.UICornerRadiusSides.LeftBottom;
             this.uiPipe6.RectColor = System.Drawing.Color.DarkGray;
-            this.uiPipe6.Size = new System.Drawing.Size(15, 156);
+            this.uiPipe6.Size = new System.Drawing.Size(16, 156);
             this.uiPipe6.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe6.StyleCustomMode = true;
             this.uiPipe6.TabIndex = 20;
@@ -341,10 +343,10 @@ namespace Sunny.UI.Demo
             this.uiPipe15.Location = new System.Drawing.Point(375, 391);
             this.uiPipe15.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe15.Name = "uiPipe15";
-            this.uiPipe15.Radius = 15;
+            this.uiPipe15.Radius = 16;
             this.uiPipe15.RadiusSides = Sunny.UI.UICornerRadiusSides.RightBottom;
             this.uiPipe15.RectColor = System.Drawing.Color.DarkGray;
-            this.uiPipe15.Size = new System.Drawing.Size(15, 156);
+            this.uiPipe15.Size = new System.Drawing.Size(16, 156);
             this.uiPipe15.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe15.StyleCustomMode = true;
             this.uiPipe15.TabIndex = 23;
@@ -364,10 +366,10 @@ namespace Sunny.UI.Demo
             this.uiPipe16.Location = new System.Drawing.Point(538, 391);
             this.uiPipe16.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe16.Name = "uiPipe16";
-            this.uiPipe16.Radius = 15;
+            this.uiPipe16.Radius = 16;
             this.uiPipe16.RadiusSides = Sunny.UI.UICornerRadiusSides.LeftBottom;
             this.uiPipe16.RectColor = System.Drawing.Color.DarkGray;
-            this.uiPipe16.Size = new System.Drawing.Size(15, 83);
+            this.uiPipe16.Size = new System.Drawing.Size(16, 83);
             this.uiPipe16.Style = Sunny.UI.UIStyle.Custom;
             this.uiPipe16.StyleCustomMode = true;
             this.uiPipe16.TabIndex = 24;
@@ -418,12 +420,47 @@ namespace Sunny.UI.Demo
             this.uiPipe18.TabIndex = 26;
             this.uiPipe18.Text = "uiPipe18";
             // 
+            // uiValve1
+            // 
+            this.uiValve1.Active = true;
+            this.uiValve1.Direction = Sunny.UI.UIValve.UIValveDirection.Left;
+            this.uiValve1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve1.Location = new System.Drawing.Point(255, 122);
+            this.uiValve1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiValve1.Name = "uiValve1";
+            this.uiValve1.PipeSize = 20;
+            this.uiValve1.Size = new System.Drawing.Size(60, 60);
+            this.uiValve1.TabIndex = 27;
+            this.uiValve1.Text = "uiValve1";
+            this.uiValve1.ActiveChanged += new System.EventHandler(this.uiValve1_ActiveChanged);
+            // 
+            // uiPipe19
+            // 
+            this.uiPipe19.Active = true;
+            this.uiPipe19.BackColor = System.Drawing.Color.Transparent;
+            this.uiPipe19.Direction = Sunny.UI.UILine.LineDirection.Vertical;
+            this.uiPipe19.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.uiPipe19.FlowSpeed = 10;
+            this.uiPipe19.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe19.Location = new System.Drawing.Point(289, 63);
+            this.uiPipe19.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPipe19.Name = "uiPipe19";
+            this.uiPipe19.Radius = 16;
+            this.uiPipe19.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPipe19.Size = new System.Drawing.Size(16, 74);
+            this.uiPipe19.Style = Sunny.UI.UIStyle.Custom;
+            this.uiPipe19.StyleCustomMode = true;
+            this.uiPipe19.TabIndex = 28;
+            this.uiPipe19.Text = "uiPipe19";
+            // 
             // FPipe
             // 
             this.AllowShowTitle = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 642);
+            this.Controls.Add(this.uiValve1);
+            this.Controls.Add(this.uiPipe19);
             this.Controls.Add(this.uiPipe18);
             this.Controls.Add(this.uiPipe16);
             this.Controls.Add(this.uiPipe15);
@@ -471,6 +508,8 @@ namespace Sunny.UI.Demo
         private UIPipe uiPipe16;
         private UIPipe uiPipe17;
         private UIPipe uiPipe18;
+        private UIValve uiValve1;
+        private UIPipe uiPipe19;
     }
 }
 

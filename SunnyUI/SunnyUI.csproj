@@ -38,6 +38,7 @@
  
 <ItemGroup>
 	<None Remove="Controls\UIDataGridView.cs~RF2e4ccc29.TMP" />
+	<None Remove="Controls\UIValve.cs~RF48b9b3f5.TMP" />
 	<None Remove="Font\ElegantIcons.ttf" />
 	<None Remove="Font\fa-brands-400.ttf" />
 	<None Remove="Font\fa-regular-400.ttf" />

@@ -453,6 +453,26 @@ namespace Sunny.UI
             }
         }
 
+        public static void FillPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true)
+        {
+            using (SolidBrush sb = new SolidBrush(color))
+            {
+                g.Smooth(smooth);
+                g.FillPolygon(sb, points);
+                g.Smooth(false);
+            }
+        }
+
+        public static void DrawPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true)
+        {
+            using (Pen pn = new Pen(color))
+            {
+                g.Smooth(smooth);
+                g.DrawPolygon(pn, points);
+                g.Smooth(false);
+            }
+        }
+
         public static void FillEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true)
         {
             using (SolidBrush sb = new SolidBrush(color))
