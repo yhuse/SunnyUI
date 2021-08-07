@@ -17,6 +17,13 @@
             {
                 components.Dispose();
             }
+
+            foreach (var item in Items)
+            {
+                if (item is ImageListItem imageItem)
+                    imageItem.Dispose();
+            }
+
             base.Dispose(disposing);
         }
 

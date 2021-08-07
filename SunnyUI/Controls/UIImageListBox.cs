@@ -727,14 +727,14 @@ namespace Sunny.UI
 
             public string Description { get; set; }
 
-            public Bitmap Image { get; private set; }
+            public Image Image { get; private set; }
 
             public ImageListItem(string imagePath, string description = "")
             {
                 if (File.Exists(imagePath))
                 {
                     ImagePath = imagePath;
-                    Image = new Bitmap(imagePath);
+                    Image = ImageEx.FromFile(imagePath);
                 }
 
                 Description = description;

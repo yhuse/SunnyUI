@@ -84,6 +84,26 @@ namespace Sunny.UI
             return sb.ToString();
         }
 
+        public static Image FromFile(string path)
+        {
+            if (File.Exists(path))
+            {
+                try
+                {
+                    byte[] bytes = File.ReadAllBytes(path);
+                    return System.Drawing.Image.FromStream(new MemoryStream(bytes));
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static Color RandomColor()
         {
             Random random = new Random();
