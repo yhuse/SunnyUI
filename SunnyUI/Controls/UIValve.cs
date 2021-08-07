@@ -126,11 +126,14 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            int w = pipeSize / 2;
+            Rectangle rect;
+            Color[] colors;
+            Point pt1, pt2, pt3, pt4;
 
             switch (direction)
             {
                 case UIValveDirection.Left:
-                    int w = pipeSize / 2;
                     using (Bitmap bmp = new Bitmap(Width, Height))
                     using (Graphics g1 = bmp.Graphics())
                     using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
@@ -160,7 +163,7 @@ namespace Sunny.UI
 
                     e.Graphics.DrawRectangle(RectColor, new Rectangle(Width - pipeSize - 8, 0, pipeSize - 1, Height - 1));
 
-                    Rectangle rect = new Rectangle(Width - pipeSize - 8 - 2, 4, pipeSize + 4, 6);
+                    rect = new Rectangle(Width - pipeSize - 8 - 2, 4, pipeSize + 4, 6);
                     e.Graphics.FillRectangle(rectColor, rect);
 
                     rect = new Rectangle(Width - pipeSize - 8 - 2, Height - 4 - 6, pipeSize + 4, 6);
@@ -172,7 +175,7 @@ namespace Sunny.UI
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14, 10, 27);
                     e.Graphics.FillRectangle(valveColor, rect);
 
-                    Color[] colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14 + 4, 10, 4);
                     e.Graphics.FillRectangle(colors[4], rect);
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14 + 12, 10, 4);
@@ -183,16 +186,73 @@ namespace Sunny.UI
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14, 10, 27);
                     e.Graphics.DrawRectangle(valveColor, rect);
 
-                    Point pt1 = new Point(Width - pipeSize - 8 - 7, Height / 2 - 5);
-                    Point pt2 = new Point(Width - pipeSize - 8 + 2, Height / 2 - 5 - 5);
-                    Point pt3 = new Point(Width - pipeSize - 8 + 2, Height / 2 + 4 + 5);
-                    Point pt4 = new Point(Width - pipeSize - 8 - 7, Height / 2 + 4);
+                    pt1 = new Point(Width - pipeSize - 8 - 7, Height / 2 - 5);
+                    pt2 = new Point(Width - pipeSize - 8 + 2, Height / 2 - 5 - 5);
+                    pt3 = new Point(Width - pipeSize - 8 + 2, Height / 2 + 4 + 5);
+                    pt4 = new Point(Width - pipeSize - 8 - 7, Height / 2 + 4);
                     e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
 
                     break;
                 case UIValveDirection.Top:
                     break;
                 case UIValveDirection.Right:
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
+                        new Point(w, 0),
+                        rectColor,
+                        fillColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
+                        g1.SetDefaultQuality();
+                        e.Graphics.DrawImage(bmp, new Rectangle(8, -5, w, Height + 50), new Rectangle(0, 5, w, Height + 20), GraphicsUnit.Pixel);
+                    }
+
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
+                        new Point(w, 0),
+                           fillColor,
+                        rectColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
+                        g1.SetDefaultQuality();
+
+                        e.Graphics.DrawImage(bmp, new Rectangle(w + 8, -5, w, Height + 50), new Rectangle(0, 5, w, Height + 20), GraphicsUnit.Pixel);
+                    }
+
+                    e.Graphics.DrawRectangle(RectColor, new Rectangle(8, 0, pipeSize - 1, Height - 1));
+
+                    rect = new Rectangle(8 - 2, 4, pipeSize + 4, 6);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(8 - 2, Height - 4 - 6, pipeSize + 4, 6);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(pipeSize + 8, Height / 2 - 2, 14, 4);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14, 10, 27);
+                    e.Graphics.FillRectangle(valveColor, rect);
+
+                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14 + 4, 10, 4);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14 + 12, 10, 4);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14 + 20, 10, 4);
+                    e.Graphics.FillRectangle(colors[4], rect);
+
+                    rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14, 10, 27);
+                    e.Graphics.DrawRectangle(valveColor, rect);
+
+                    pt1 = new Point(pipeSize + 8 + 7, Height / 2 - 5);
+                    pt2 = new Point(pipeSize + 8 - 2, Height / 2 - 5 - 5);
+                    pt3 = new Point(pipeSize + 8 - 2, Height / 2 + 4 + 5);
+                    pt4 = new Point(pipeSize + 8 + 7, Height / 2 + 4);
+                    e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
                     break;
                 case UIValveDirection.Bottom:
                     break;

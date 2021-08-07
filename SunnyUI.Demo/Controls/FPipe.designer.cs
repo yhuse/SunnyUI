@@ -51,6 +51,7 @@ namespace Sunny.UI.Demo
             this.uiPipe18 = new Sunny.UI.UIPipe();
             this.uiValve1 = new Sunny.UI.UIValve();
             this.uiPipe19 = new Sunny.UI.UIPipe();
+            this.uiValve2 = new Sunny.UI.UIValve();
             this.SuspendLayout();
             // 
             // timer1
@@ -453,12 +454,26 @@ namespace Sunny.UI.Demo
             this.uiPipe19.TabIndex = 28;
             this.uiPipe19.Text = "uiPipe19";
             // 
+            // uiValve2
+            // 
+            this.uiValve2.Active = true;
+            this.uiValve2.Direction = Sunny.UI.UIValve.UIValveDirection.Right;
+            this.uiValve2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve2.Location = new System.Drawing.Point(710, 122);
+            this.uiValve2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiValve2.Name = "uiValve2";
+            this.uiValve2.PipeSize = 20;
+            this.uiValve2.Size = new System.Drawing.Size(60, 60);
+            this.uiValve2.TabIndex = 29;
+            this.uiValve2.Text = "uiValve2";
+            // 
             // FPipe
             // 
             this.AllowShowTitle = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 642);
+            this.Controls.Add(this.uiValve2);
             this.Controls.Add(this.uiValve1);
             this.Controls.Add(this.uiPipe19);
             this.Controls.Add(this.uiPipe18);
@@ -510,6 +525,7 @@ namespace Sunny.UI.Demo
         private UIPipe uiPipe18;
         private UIValve uiValve1;
         private UIPipe uiPipe19;
+        private UIValve uiValve2;
     }
 }
 
