@@ -81,6 +81,20 @@ namespace Sunny.UI
         [Description("只显示一个打开的节点"), Category("SunnyUI")]
         public bool ShowOneNode { get; set; }
 
+        private bool showItemsArrow = true;
+
+        [DefaultValue(true)]
+        [Description("显示子节点提示箭头"), Category("SunnyUI")]
+        public bool ShowItemsArrow
+        {
+            get => showItemsArrow;
+            set
+            {
+                showItemsArrow = value;
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// Tag字符串
         /// </summary>
@@ -582,7 +596,7 @@ namespace Sunny.UI
                     }
                 }
 
-                if (e.Node.Nodes.Count > 0)
+                if (ShowItemsArrow && e.Node.Nodes.Count > 0)
                 {
                     e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, Width - (Bar.Visible ? 50 : 30), e.Bounds.Y + (ItemHeight - 24) / 2);
                 }

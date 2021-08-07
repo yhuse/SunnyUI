@@ -64,7 +64,25 @@ namespace Sunny.UI
         public int Radius
         {
             get => radius;
-            set => radius = Math.Max(0, value);
+            set
+            {
+                radius = Math.Max(0, value);
+                Invalidate();
+            }
+        }
+
+        private bool showItemsArrow = true;
+
+        [DefaultValue(true)]
+        [Description("显示子节点提示箭头"), Category("SunnyUI")]
+        public bool ShowItemsArrow
+        {
+            get => showItemsArrow;
+            set
+            {
+                showItemsArrow = value;
+                Invalidate();
+            }
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -465,7 +483,7 @@ namespace Sunny.UI
                     e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
                 }
 
-                if (node.Nodes.Count > 0)
+                if (ShowItemsArrow && node.Nodes.Count > 0)
                 {
                     SizeF imageSize = e.Graphics.GetFontImageSize(61703, 24);
                     if (i != SelectedIndex)
