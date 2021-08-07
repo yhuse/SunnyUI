@@ -572,7 +572,7 @@ namespace Sunny.UI
                 int pos = FlowPos.Mod(FlowSize + FlowInterval);
                 for (int i = 0; i < int.MaxValue; i++)
                 {
-                    Rectangle rect = new Rectangle(pos - FlowSize - FlowInterval, 1, FlowSize, Height - 3);
+                    Rectangle rect = new Rectangle(pos - FlowSize - FlowInterval, 2, FlowSize, Height - 5);
                     if (rect.Left > Width) break;
                     bool isShow = rect.Left >= 0 & rect.Right <= Width;
 
@@ -596,7 +596,7 @@ namespace Sunny.UI
 
                     if (rect.Width >= rect.Height && isShow)
                     {
-                        g.FillRoundRectangle(color, rect, Radius - 2);
+                        g.FillRoundRectangle(color, rect, Radius - 4);
                     }
 
                     pos += FlowSize;
@@ -626,7 +626,7 @@ namespace Sunny.UI
 
                 for (int i = 0; i < int.MaxValue; i++)
                 {
-                    Rectangle rect = new Rectangle(1, pos - FlowSize - FlowInterval, Width - 3, FlowSize);
+                    Rectangle rect = new Rectangle(2, pos - FlowSize - FlowInterval, Width - 5, FlowSize);
                     if (rect.Top > Height) break;
                     bool isShow = rect.Top >= top & rect.Bottom <= bottom;
 
@@ -650,7 +650,7 @@ namespace Sunny.UI
 
                     if (rect.Height >= rect.Width && isShow)
                     {
-                        g.FillRoundRectangle(color, rect, Radius - 2);
+                        g.FillRoundRectangle(color, rect, Radius - 4);
                     }
 
                     pos += FlowSize;

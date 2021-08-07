@@ -23,7 +23,6 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -49,6 +48,22 @@ namespace Sunny.UI
             fillColor = UIColor.LightBlue;
             foreColor = UIColor.Blue;
         }
+        private UILine.LineDirection direction = UILine.LineDirection.Horizontal;
+
+        [DefaultValue(UILine.LineDirection.Horizontal)]
+        [Description("线条方向"), Category("SunnyUI")]
+        public UILine.LineDirection Direction
+        {
+            get => direction;
+            set
+            {
+                if (direction != value)
+                {
+                    direction = value;
+                    Invalidate();
+                }
+            }
+        }
 
         [DefaultValue(100)]
         [Description("最大值"), Category("SunnyUI")]
@@ -73,16 +88,10 @@ namespace Sunny.UI
             {
                 posValue = Math.Max(value, 0);
                 posValue = Math.Min(posValue, maximum);
-                processWidth = (int)(posValue * Width * 1.0 / Maximum);
-                processText = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
                 ValueChanged?.Invoke(this, posValue);
                 Invalidate();
             }
         }
-
-        private int processWidth;
-
-        private string processText = "0.0%";
 
         private bool showValue = true;
 
@@ -114,6 +123,19 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
+            float processSize;
+            string processText = "0.0%";
+
+            if (Direction == UILine.LineDirection.Horizontal)
+                processSize = posValue * Width * 1.0f / Maximum;
+            else
+                processSize = posValue * Height * 1.0f / Maximum;
+
+            if (ShowPercent)
+                processText = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
+            else
+                processText = (posValue * 1.0 / maximum).ToString("F" + DecimalCount);
+
             SizeF sf = e.Graphics.MeasureString(processText, Font);
             bool canShow = Height > sf.Height + 4;
 
@@ -122,10 +144,10 @@ namespace Sunny.UI
                 e.Graphics.DrawString(processText, Font, foreColor, Size, Padding, TextAlign);
             }
 
-            if (image == null || image.Width != Width + 2 || image.Height != Height + 2 || imageRadius != Radius)
+            if (image == null || image.Width != Width || image.Height != Height || imageRadius != Radius)
             {
                 image?.Dispose();
-                image = new Bitmap(Width + 2, Height + 2);
+                image = new Bitmap(Width, Height);
                 imageRadius = Radius;
             }
 
@@ -143,26 +165,46 @@ namespace Sunny.UI
 
             g.Dispose();
 
-            rect = new Rectangle(0, 0, processWidth, image.Height - 1);
-            GraphicsPath path = rect.CreateRoundedRectanglePath(0, UICornerRadiusSides.None);
-            using (Bitmap img = image.Split(path))
+            if (Direction == UILine.LineDirection.Horizontal)
             {
-                e.Graphics.DrawImage(img, 0, 0);
+                e.Graphics.DrawImage(image,
+                    new RectangleF(0, 0, processSize, image.Height),
+                    new RectangleF(0, 0, processSize, image.Height),
+                    GraphicsUnit.Pixel);
+            }
+            else
+            {
+                e.Graphics.DrawImage(image,
+                    new RectangleF(0, image.Height - processSize, image.Width, processSize),
+                    new RectangleF(0, image.Height - processSize, image.Width, processSize),
+                    GraphicsUnit.Pixel);
             }
         }
 
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            image?.Dispose();
-            image = null;
-            processWidth = (int)(posValue * Width * 1.0 / Maximum);
-            Text = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
             Invalidate();
+        }
+
+        private bool showPercent = true;
+
+        [Description("显示文字百分比"), Category("SunnyUI")]
+        [DefaultValue(true)]
+        public bool ShowPercent
+        {
+            get => showPercent;
+            set
+            {
+                showPercent = value;
+                Invalidate();
+            }
         }
 
         private int decimalCount = 1;
 
+        [Description("显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(1)]
         public int DecimalCount
         {
             get => decimalCount;

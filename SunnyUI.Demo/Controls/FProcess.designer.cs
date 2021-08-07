@@ -52,6 +52,8 @@ namespace Sunny.UI.Demo
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiProcessBar1 = new Sunny.UI.UIProcessBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uiProcessBar3 = new Sunny.UI.UIProcessBar();
+            this.uiLine6 = new Sunny.UI.UILine();
             this.SuspendLayout();
             // 
             // uiTrackBar8
@@ -147,7 +149,7 @@ namespace Sunny.UI.Demo
             this.uiLine2.Location = new System.Drawing.Point(29, 287);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(319, 20);
+            this.uiLine2.Size = new System.Drawing.Size(440, 20);
             this.uiLine2.TabIndex = 95;
             this.uiLine2.Text = "UIBreadcrumb";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -211,7 +213,6 @@ namespace Sunny.UI.Demo
             // 
             // uiProcessBar2
             // 
-            this.uiProcessBar2.DecimalCount = 1;
             this.uiProcessBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiProcessBar2.Location = new System.Drawing.Point(30, 123);
             this.uiProcessBar2.MinimumSize = new System.Drawing.Size(70, 1);
@@ -248,7 +249,7 @@ namespace Sunny.UI.Demo
             this.uiLine5.Location = new System.Drawing.Point(28, 369);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
-            this.uiLine5.Size = new System.Drawing.Size(672, 20);
+            this.uiLine5.Size = new System.Drawing.Size(441, 20);
             this.uiLine5.TabIndex = 87;
             this.uiLine5.Text = "UITrackBar";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -298,25 +299,47 @@ namespace Sunny.UI.Demo
             // 
             // uiProcessBar1
             // 
-            this.uiProcessBar1.DecimalCount = 1;
             this.uiProcessBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiProcessBar1.Location = new System.Drawing.Point(30, 88);
             this.uiProcessBar1.MinimumSize = new System.Drawing.Size(70, 1);
             this.uiProcessBar1.Name = "uiProcessBar1";
             this.uiProcessBar1.Size = new System.Drawing.Size(318, 29);
             this.uiProcessBar1.TabIndex = 82;
-            this.uiProcessBar1.Text = "50.0%";
-            this.uiProcessBar1.Value = 50;
+            this.uiProcessBar1.Value = 10;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // uiProcessBar3
+            // 
+            this.uiProcessBar3.Direction = Sunny.UI.UILine.LineDirection.Vertical;
+            this.uiProcessBar3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiProcessBar3.Location = new System.Drawing.Point(527, 325);
+            this.uiProcessBar3.MinimumSize = new System.Drawing.Size(70, 1);
+            this.uiProcessBar3.Name = "uiProcessBar3";
+            this.uiProcessBar3.Size = new System.Drawing.Size(203, 169);
+            this.uiProcessBar3.TabIndex = 103;
+            this.uiProcessBar3.Value = 50;
+            // 
+            // uiLine6
+            // 
+            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Location = new System.Drawing.Point(527, 287);
+            this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine6.Name = "uiLine6";
+            this.uiLine6.Size = new System.Drawing.Size(203, 20);
+            this.uiLine6.TabIndex = 104;
+            this.uiLine6.Text = "UIProcessBar";
+            this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FProcess
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 546);
+            this.Controls.Add(this.uiLine6);
+            this.Controls.Add(this.uiProcessBar3);
             this.Controls.Add(this.uiTrackBar8);
             this.Controls.Add(this.uiTrackBar7);
             this.Controls.Add(this.uiTrackBar6);
@@ -371,5 +394,7 @@ namespace Sunny.UI.Demo
         private UILine uiLine3;
         private UIProcessBar uiProcessBar1;
         private System.Windows.Forms.Timer timer1;
+        private UIProcessBar uiProcessBar3;
+        private UILine uiLine6;
     }
 }
