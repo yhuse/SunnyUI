@@ -221,9 +221,9 @@ namespace Sunny.UI
             }
         }
 
-        private bool showLightLine = true;
+        private bool showLightLine = false;
 
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         [Description("显示灯光亮线"), Category("SunnyUI")]
         public bool ShowLightLine
         {
