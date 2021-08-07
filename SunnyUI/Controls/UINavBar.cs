@@ -57,6 +57,16 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        private int radius;
+
+        [DefaultValue(0)]
+        [Description("显示选择项圆角"), Category("SunnyUI")]
+        public int Radius
+        {
+            get => radius;
+            set => radius = Math.Max(0, value);
+        }
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -399,7 +409,16 @@ namespace Sunny.UI
 
                 if (i == ActiveIndex)
                 {
-                    e.Graphics.FillRectangle(MenuHoverColor, rect);
+                    if (radius == 0)
+                    {
+                        e.Graphics.FillRectangle(MenuHoverColor, rect);
+                    }
+                    else
+                    {
+                        var path = rect.CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
+                        e.Graphics.FillPath(MenuHoverColor, path);
+                    }
+
                     textColor = SelectedForeColor;
                 }
 
@@ -407,7 +426,15 @@ namespace Sunny.UI
                 {
                     if (MenuSelectedColorUsed)
                     {
-                        e.Graphics.FillRectangle(MenuSelectedColor, rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height);
+                        if (radius == 0)
+                        {
+                            e.Graphics.FillRectangle(MenuSelectedColor, rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height);
+                        }
+                        else
+                        {
+                            var path = new Rectangle(rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height).CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
+                            e.Graphics.FillPath(MenuSelectedColor, path);
+                        }
                     }
 
                     if (!NavBarMenu.Visible && SelectedHighColorSize > 0)
