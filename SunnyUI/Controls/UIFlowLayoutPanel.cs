@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Windows.Forms.Layout;
 
 namespace Sunny.UI
 {
@@ -62,6 +63,40 @@ namespace Sunny.UI
         {
             base.Dispose(disposing);
             timer.Stop();
+        }
+
+        public override LayoutEngine LayoutEngine
+        {
+            get { return Panel.LayoutEngine; }
+        }
+
+        [DefaultValue(System.Windows.Forms.FlowDirection.LeftToRight)]
+        [Localizable(true)]
+        public FlowDirection FlowDirection
+        {
+            get => Panel.FlowDirection;
+            set => Panel.FlowDirection = value;
+        }
+
+        [DefaultValue(true)]
+        [Localizable(true)]
+        public bool WrapContents
+        {
+            get => Panel.WrapContents;
+            set => Panel.WrapContents = value;
+        }
+
+        [DefaultValue(false)]
+        [DisplayName("FlowBreak")]
+        public bool GetFlowBreak(Control control)
+        {
+            return Panel.GetFlowBreak(control);
+        }
+
+        [DisplayName("FlowBreak")]
+        public void SetFlowBreak(Control control, bool value)
+        {
+            Panel.SetFlowBreak(control, value);
         }
 
         protected override void OnControlAdded(ControlEventArgs e)
@@ -183,21 +218,7 @@ namespace Sunny.UI
         {
         }
 
-        [DefaultValue(FlowDirection.LeftToRight)]
-        [Localizable(true)]
-        public FlowDirection FlowDirection
-        {
-            get => Panel.FlowDirection;
-            set => Panel.FlowDirection = value;
-        }
 
-        [DefaultValue(true)]
-        [Localizable(true)]
-        public bool WrapContents
-        {
-            get => Panel.WrapContents;
-            set => Panel.WrapContents = value;
-        }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
@@ -331,7 +352,6 @@ namespace Sunny.UI
 
             SetScrollPos();
         }
-
         public FlowLayoutPanel Panel => flowLayoutPanel;
 
         private void InitializeComponent()
