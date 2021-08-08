@@ -362,20 +362,20 @@ namespace Sunny.UI
                 }
             }
 
-            protected override void WndProc(ref Message m)
-            {
-                if (IsDisposed || Disposing) return;
-                if (IsHandleCreated)
-                {
-                    if (m.Msg == Win32.User.WM_ERASEBKGND)
-                    {
-                        m.Result = IntPtr.Zero;
-                        return;
-                    }
-                }
-
-                base.WndProc(ref m);
-            }
+            //protected override void WndProc(ref Message m)
+            //{
+            //    if (IsDisposed || Disposing) return;
+            //    if (IsHandleCreated)
+            //    {
+            //        if (m.Msg == Win32.User.WM_ERASEBKGND)
+            //        {
+            //            m.Result = IntPtr.Zero;
+            //            return;
+            //        }
+            //    }
+            //
+            //    base.WndProc(ref m);
+            //}
 
             public ImageListBox()
             {

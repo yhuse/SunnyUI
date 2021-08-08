@@ -24,7 +24,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.Windows.Forms.Layout;
 
 namespace Sunny.UI
 {
@@ -63,11 +62,6 @@ namespace Sunny.UI
         {
             base.Dispose(disposing);
             timer.Stop();
-        }
-
-        public override LayoutEngine LayoutEngine
-        {
-            get { return Panel.LayoutEngine; }
         }
 
         [DefaultValue(System.Windows.Forms.FlowDirection.LeftToRight)]

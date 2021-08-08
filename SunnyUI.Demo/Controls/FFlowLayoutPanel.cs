@@ -28,10 +28,10 @@
                 Text = "Button" + index++.ToString("D2")
             };
 
-            //可以用原生方法Controls.Add
-            uiFlowLayoutPanel1.Controls.Add(btn);
-            //或者封装的方法Add
-            //uiFlowLayoutPanel1.Add(btn);
+            //建议用封装的方法Add
+            uiFlowLayoutPanel1.Add(btn);
+            //也可以用原生方法Controls.Add（不推荐）
+            //uiFlowLayoutPanel1.Controls.Add(btn);    
 
             uiButton3.Enabled = true;
         }

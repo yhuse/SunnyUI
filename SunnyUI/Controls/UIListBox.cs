@@ -607,11 +607,11 @@ namespace Sunny.UI
                     ItemsInsert?.Invoke(this, EventArgs.Empty);
                 }
 
-                if (m.Msg == Win32.User.WM_ERASEBKGND)
-                {
-                    m.Result = IntPtr.Zero;
-                    return;
-                }
+                //if (m.Msg == Win32.User.WM_ERASEBKGND)
+                //{
+                //    m.Result = IntPtr.Zero;
+                //    return;
+                //}
             }
 
             base.WndProc(ref m);

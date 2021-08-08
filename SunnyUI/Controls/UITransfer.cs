@@ -46,6 +46,14 @@ namespace Sunny.UI
             l2.ItemsCountChange += L2_ItemsCountChange;
         }
 
+        [DefaultValue(true)]
+        [Description("显示多选按钮"), Category("SunnyUI")]
+        public bool ShowMulti
+        {
+            get => b1.Visible;
+            set => b1.Visible = b4.Visible = value;
+        }
+
         private void L2_ItemsCountChange(object sender, EventArgs e)
         {
             ItemsRightCountChange?.Invoke(this, e);
@@ -84,12 +92,17 @@ namespace Sunny.UI
         [Browsable(false)]
         public ListBox ListBoxRight => l2.ListBox;
 
+        public delegate void ItemChange(object sender, object item);
+
+        public event ItemChange ItemAdd;
+        public event ItemChange ItemRemove;
 
         private void b1_Click(object sender, EventArgs e)
         {
             foreach (object item in l1.Items)
             {
                 l2.Items.Add(item);
+                ItemAdd?.Invoke(this, item);
             }
 
             l1.Items.Clear();
@@ -106,6 +119,7 @@ namespace Sunny.UI
                 int idx = l1.SelectedIndex;
                 object item = l1.SelectedItem;
                 l2.Items.Add(item);
+                ItemAdd?.Invoke(this, item);
                 l1.Items.Remove(item);
 
                 if (l2.Items.Count > 0)
@@ -132,6 +146,7 @@ namespace Sunny.UI
                 int idx = l2.SelectedIndex;
                 object item = l2.SelectedItem;
                 l1.Items.Add(item);
+                ItemRemove?.Invoke(this, item);
                 l2.Items.Remove(item);
 
                 if (l1.Items.Count > 0)
@@ -156,6 +171,7 @@ namespace Sunny.UI
             foreach (object item in l2.Items)
             {
                 l1.Items.Add(item);
+                ItemRemove?.Invoke(this, item);
             }
 
             l2.Items.Clear();
