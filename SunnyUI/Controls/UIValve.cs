@@ -1,4 +1,25 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIValve.cs
+ * 文件说明: 阀门
+ * 当前版本: V3.0
+ * 创建日期: 2021-08-08
+ *
+ * 2021-08-08: V3.0.5 增加阀门控件
+******************************************************************************/
+
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -18,12 +39,21 @@ namespace Sunny.UI
             rectColor = Color.Silver;
             fillColor = Color.White;
             valveColor = UIColor.Blue;
+            Version = UIGlobal.Version;
         }
 
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
             Active = !Active;
+        }
+
+        /// <summary>
+        /// 版本
+        /// </summary>
+        public string Version
+        {
+            get;
         }
 
         private bool active;
@@ -66,6 +96,7 @@ namespace Sunny.UI
         }
 
         private UIValveDirection direction = UIValveDirection.Left;
+        [DefaultValue(UIValveDirection.Left), Description("阀门方向"), Category("SunnyUI")]
         public UIValveDirection Direction
         {
             get => direction;
@@ -136,10 +167,7 @@ namespace Sunny.UI
                 case UIValveDirection.Left:
                     using (Bitmap bmp = new Bitmap(Width, Height))
                     using (Graphics g1 = bmp.Graphics())
-                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
-                        new Point(w, 0),
-                        rectColor,
-                        fillColor))
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(w, 0), rectColor, fillColor))
                     {
                         g1.SetHighQuality();
                         g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
@@ -149,15 +177,11 @@ namespace Sunny.UI
 
                     using (Bitmap bmp = new Bitmap(Width, Height))
                     using (Graphics g1 = bmp.Graphics())
-                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
-                        new Point(w, 0),
-                           fillColor,
-                        rectColor))
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(w, 0), fillColor, rectColor))
                     {
                         g1.SetHighQuality();
                         g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
                         g1.SetDefaultQuality();
-
                         e.Graphics.DrawImage(bmp, new Rectangle(Width - w - 8, -5, w, Height + 50), new Rectangle(0, 5, w, Height + 20), GraphicsUnit.Pixel);
                     }
 
@@ -193,15 +217,62 @@ namespace Sunny.UI
                     e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
 
                     break;
-                case UIValveDirection.Top:
+                case UIValveDirection.Bottom:
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(0, w), rectColor, fillColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, Width * 2, w));
+                        g1.SetDefaultQuality();
+                        e.Graphics.DrawImage(bmp, new Rectangle(-5, 8, Width + 50, w), new Rectangle(5, 0, Width + 20, w), GraphicsUnit.Pixel);
+                    }
+
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(0, w), fillColor, rectColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, Width * 2, w));
+                        g1.SetDefaultQuality();
+                        e.Graphics.DrawImage(bmp, new Rectangle(-5, w + 8, Width + 50, w), new Rectangle(5, 0, Width + 20, w), GraphicsUnit.Pixel);
+                    }
+
+                    e.Graphics.DrawRectangle(RectColor, new Rectangle(0, 8, Width - 1, pipeSize - 1));
+
+                    rect = new Rectangle(4, 8 - 2, 6, pipeSize + 4);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width - 4 - 6, 8 - 2, 6, pipeSize + 4);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width / 2 - 2, pipeSize + 8, 4, 14);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width / 2 - 14, pipeSize + 8 + 10 + 4, 27, 10);
+                    e.Graphics.FillRectangle(valveColor, rect);
+
+                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    rect = new Rectangle(Width / 2 - 14 + 4, pipeSize + 8 + 10 + 4, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(Width / 2 - 14 + 12, pipeSize + 8 + 10 + 4, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(Width / 2 - 14 + 20, pipeSize + 8 + 10 + 4, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+
+                    rect = new Rectangle(Width / 2 - 14, pipeSize + 8 + 10 + 4, 27, 10);
+                    e.Graphics.DrawRectangle(valveColor, rect);
+
+                    pt1 = new Point(Width / 2 - 5, pipeSize + 8 + 7);
+                    pt2 = new Point(Width / 2 - 5 - 5, pipeSize + 8 - 2);
+                    pt3 = new Point(Width / 2 + 4 + 5, pipeSize + 8 - 2);
+                    pt4 = new Point(Width / 2 + 4, pipeSize + 8 + 7);
+                    e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
                     break;
                 case UIValveDirection.Right:
                     using (Bitmap bmp = new Bitmap(Width, Height))
                     using (Graphics g1 = bmp.Graphics())
-                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
-                        new Point(w, 0),
-                        rectColor,
-                        fillColor))
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(w, 0), rectColor, fillColor))
                     {
                         g1.SetHighQuality();
                         g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
@@ -211,15 +282,11 @@ namespace Sunny.UI
 
                     using (Bitmap bmp = new Bitmap(Width, Height))
                     using (Graphics g1 = bmp.Graphics())
-                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0),
-                        new Point(w, 0),
-                           fillColor,
-                        rectColor))
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(w, 0), fillColor, rectColor))
                     {
                         g1.SetHighQuality();
                         g1.FillRectangle(lgb, new Rectangle(0, 0, w, Height * 2));
                         g1.SetDefaultQuality();
-
                         e.Graphics.DrawImage(bmp, new Rectangle(w + 8, -5, w, Height + 50), new Rectangle(0, 5, w, Height + 20), GraphicsUnit.Pixel);
                     }
 
@@ -254,7 +321,57 @@ namespace Sunny.UI
                     pt4 = new Point(pipeSize + 8 + 7, Height / 2 + 4);
                     e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
                     break;
-                case UIValveDirection.Bottom:
+                case UIValveDirection.Top:
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(0, w), rectColor, fillColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, Width * 2, w));
+                        g1.SetDefaultQuality();
+                        e.Graphics.DrawImage(bmp, new Rectangle(-5, Height - w * 2 - 8, Width + 50, w), new Rectangle(5, 0, Width + 20, w), GraphicsUnit.Pixel);
+                    }
+
+                    using (Bitmap bmp = new Bitmap(Width, Height))
+                    using (Graphics g1 = bmp.Graphics())
+                    using (LinearGradientBrush lgb = new LinearGradientBrush(new Point(0, 0), new Point(0, w), fillColor, rectColor))
+                    {
+                        g1.SetHighQuality();
+                        g1.FillRectangle(lgb, new Rectangle(0, 0, Width * 2, w));
+                        g1.SetDefaultQuality();
+                        e.Graphics.DrawImage(bmp, new Rectangle(-5, Height - w - 8, Width + 50, w), new Rectangle(5, 0, Width + 20, w), GraphicsUnit.Pixel);
+                    }
+
+                    e.Graphics.DrawRectangle(RectColor, new Rectangle(0, Height - pipeSize - 8, Width - 1, pipeSize - 1));
+
+                    rect = new Rectangle(4, Height - pipeSize - 8 - 2, 6, pipeSize + 4);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width - 4 - 6, Height - pipeSize - 8 - 2, 6, pipeSize + 4);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width / 2 - 2, Height - pipeSize - 8 - 14, 4, 14);
+                    e.Graphics.FillRectangle(rectColor, rect);
+
+                    rect = new Rectangle(Width / 2 - 14, Height - pipeSize - 8 - 14 - 10, 27, 10);
+                    e.Graphics.FillRectangle(valveColor, rect);
+
+                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    rect = new Rectangle(Width / 2 - 14 + 4, Height - pipeSize - 8 - 14 - 10, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(Width / 2 - 14 + 12, Height - pipeSize - 8 - 14 - 10, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+                    rect = new Rectangle(Width / 2 - 14 + 20, Height - pipeSize - 8 - 14 - 10, 4, 10);
+                    e.Graphics.FillRectangle(colors[4], rect);
+
+                    rect = new Rectangle(Width / 2 - 14, Height - pipeSize - 8 - 14 - 10, 27, 10);
+                    e.Graphics.DrawRectangle(valveColor, rect);
+
+                    pt1 = new Point(Width / 2 - 5, Height - pipeSize - 8 - 7);
+                    pt2 = new Point(Width / 2 - 5 - 5, Height - pipeSize - 8 + 2);
+                    pt3 = new Point(Width / 2 + 4 + 5, Height - pipeSize - 8 + 2);
+                    pt4 = new Point(Width / 2 + 4, Height - pipeSize - 8 - 7);
+                    e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
                     break;
                 default:
                     break;

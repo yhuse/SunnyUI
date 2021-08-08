@@ -43,5 +43,20 @@ namespace Sunny.UI.Demo
         {
             uiPipe8.Active = uiPipe9.Active = uiPipe7.Active = uiPipe10.Active = uiPipe12.Active = uiValve1.Active;
         }
+
+        private void uiValve3_ActiveChanged(object sender, System.EventArgs e)
+        {
+            uiPipe20.Active = uiPipe3.Active = uiValve3.Active;
+        }
+
+        private void uiValve2_ActiveChanged(object sender, System.EventArgs e)
+        {
+            uiPipe5.Active = uiPipe11.Active = uiPipe1.Active = uiValve2.Active;
+        }
+
+        private void uiValve4_ActiveChanged(object sender, System.EventArgs e)
+        {
+            uiPipe22.Active = uiPipe15.Active = uiValve4.Active;
+        }
     }
 }
