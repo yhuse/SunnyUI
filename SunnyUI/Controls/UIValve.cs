@@ -119,7 +119,11 @@ namespace Sunny.UI
         public Color ValveColor
         {
             get => valveColor;
-            set => valveColor = value;
+            set
+            {
+                valveColor = value;
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -130,7 +134,11 @@ namespace Sunny.UI
         public Color RectColor
         {
             get => rectColor;
-            set => rectColor = value;
+            set
+            {
+                rectColor = value;
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -141,18 +149,26 @@ namespace Sunny.UI
         public Color FillColor
         {
             get => fillColor;
-            set => fillColor = value;
+            set
+            {
+                fillColor = value;
+                Invalidate();
+            }
         }
 
         [Description("管道尺寸"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(20)]
         public int PipeSize
         {
             get => pipeSize;
-            set => pipeSize = value;
+            set
+            {
+                pipeSize = value;
+                Invalidate();
+            }
         }
 
-        int pipeSize = 24;
+        int pipeSize = 20;
 
         protected override void OnPaint(PaintEventArgs e)
         {
