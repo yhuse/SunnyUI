@@ -29,11 +29,6 @@ namespace Sunny.UI.Demo
         /// </summary>
         private void InitializeComponent()
         {
-            this.uiLedLabel4 = new Sunny.UI.UILedLabel();
-            this.uiLedLabel3 = new Sunny.UI.UILedLabel();
-            this.uiLedLabel2 = new Sunny.UI.UILedLabel();
-            this.uiLedLabel1 = new Sunny.UI.UILedLabel();
-            this.uiLedLabel = new Sunny.UI.UILine();
             this.uiMarkLabel4 = new Sunny.UI.UIMarkLabel();
             this.uiMarkLabel3 = new Sunny.UI.UIMarkLabel();
             this.uiMarkLabel2 = new Sunny.UI.UIMarkLabel();
@@ -47,69 +42,6 @@ namespace Sunny.UI.Demo
             this.uiLinkLabel1 = new Sunny.UI.UILinkLabel();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.SuspendLayout();
-            // 
-            // uiLedLabel4
-            // 
-            this.uiLedLabel4.BackColor = System.Drawing.Color.Black;
-            this.uiLedLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLedLabel4.ForeColor = System.Drawing.Color.Lime;
-            this.uiLedLabel4.IntervalOn = 3;
-            this.uiLedLabel4.Location = new System.Drawing.Point(527, 323);
-            this.uiLedLabel4.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLedLabel4.Name = "uiLedLabel4";
-            this.uiLedLabel4.Size = new System.Drawing.Size(181, 35);
-            this.uiLedLabel4.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLedLabel4.StyleCustomMode = true;
-            this.uiLedLabel4.TabIndex = 50;
-            this.uiLedLabel4.Text = "999.99";
-            // 
-            // uiLedLabel3
-            // 
-            this.uiLedLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLedLabel3.IntervalOn = 3;
-            this.uiLedLabel3.Location = new System.Drawing.Point(356, 323);
-            this.uiLedLabel3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLedLabel3.Name = "uiLedLabel3";
-            this.uiLedLabel3.Size = new System.Drawing.Size(150, 35);
-            this.uiLedLabel3.TabIndex = 49;
-            this.uiLedLabel3.Text = "999.99";
-            this.uiLedLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLedLabel2
-            // 
-            this.uiLedLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLedLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiLedLabel2.Location = new System.Drawing.Point(199, 323);
-            this.uiLedLabel2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLedLabel2.Name = "uiLedLabel2";
-            this.uiLedLabel2.Size = new System.Drawing.Size(150, 35);
-            this.uiLedLabel2.Style = Sunny.UI.UIStyle.Red;
-            this.uiLedLabel2.StyleCustomMode = true;
-            this.uiLedLabel2.TabIndex = 48;
-            this.uiLedLabel2.Text = "999.99";
-            this.uiLedLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLedLabel1
-            // 
-            this.uiLedLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLedLabel1.Location = new System.Drawing.Point(42, 323);
-            this.uiLedLabel1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLedLabel1.Name = "uiLedLabel1";
-            this.uiLedLabel1.Size = new System.Drawing.Size(150, 35);
-            this.uiLedLabel1.TabIndex = 47;
-            this.uiLedLabel1.Text = "999.99";
-            this.uiLedLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLedLabel
-            // 
-            this.uiLedLabel.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLedLabel.Location = new System.Drawing.Point(30, 287);
-            this.uiLedLabel.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLedLabel.Name = "uiLedLabel";
-            this.uiLedLabel.Size = new System.Drawing.Size(670, 20);
-            this.uiLedLabel.TabIndex = 46;
-            this.uiLedLabel.Text = "UILedLabel （仅支持英文、标点符号、希腊字母）";
-            this.uiLedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiMarkLabel4
             // 
@@ -259,17 +191,11 @@ namespace Sunny.UI.Demo
             this.uiLabel1.Text = "Hello world!";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // FLabel1
+            // FLabel
             // 
             this.AllowShowTitle = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.uiLedLabel4);
-            this.Controls.Add(this.uiLedLabel3);
-            this.Controls.Add(this.uiLedLabel2);
-            this.Controls.Add(this.uiLedLabel1);
-            this.Controls.Add(this.uiLedLabel);
             this.Controls.Add(this.uiMarkLabel4);
             this.Controls.Add(this.uiMarkLabel3);
             this.Controls.Add(this.uiMarkLabel2);
@@ -282,7 +208,7 @@ namespace Sunny.UI.Demo
             this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.uiLinkLabel1);
             this.Controls.Add(this.uiLabel1);
-            this.Name = "FLabel1";
+            this.Name = "FLabel";
             this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.ShowTitle = true;
             this.Symbol = 61490;
@@ -293,12 +219,6 @@ namespace Sunny.UI.Demo
         }
 
         #endregion
-
-        private UILedLabel uiLedLabel4;
-        private UILedLabel uiLedLabel3;
-        private UILedLabel uiLedLabel2;
-        private UILedLabel uiLedLabel1;
-        private UILine uiLedLabel;
         private UIMarkLabel uiMarkLabel4;
         private UIMarkLabel uiMarkLabel3;
         private UIMarkLabel uiMarkLabel2;

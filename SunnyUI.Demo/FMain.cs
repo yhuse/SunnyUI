@@ -15,33 +15,31 @@ namespace Sunny.UI.Demo
             Header.SetNodePageIndex(Header.Nodes[0], pageIndex);
             Header.SetNodeSymbol(Header.Nodes[0], 61451);
             TreeNode parent = Aside.CreateNode("控件", 61451, 24, pageIndex);
-            //通过设置PageIndex关联
-            Aside.CreateChildNode(parent, 61640, 24, AddPage(new FButton(), ++pageIndex));
-            Aside.CreateChildNode(parent, 62141, 24, AddPage(new FHeaderButton(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61490, 24, AddPage(new FLabel(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61770, 24, AddPage(new FCheckBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61842, 24, AddPage(new FRadioButton(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61962, 24, AddPage(new FTextBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61776, 24, AddPage(new FCombobox(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61646, 24, AddPage(new FDataGridView(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61474, 24, AddPage(new FListBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61499, 24, AddPage(new FTreeView(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61912, 24, AddPage(new FNavigation(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61716, 24, AddPage(new FTabControl(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61544, 24, AddPage(new FLine(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61590, 24, AddPage(new FPanel(), ++pageIndex));
+            //通过设置PageIndex关联，节点文字、图标由相应的Page的Text、Symbol提供
+            Aside.CreateChildNode(parent, AddPage(new FButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FHeaderButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FLabel(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FCheckBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FRadioButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTextBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FCombobox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FDataGridView(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FListBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTreeView(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FNavigation(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTabControl(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FLine(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FPanel(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FFlowLayoutPanel(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61516, 24, AddPage(new FTransfer(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61447, 24, AddPage(new FAvatar(), ++pageIndex));
-            Aside.CreateChildNode(parent, 62104, 24, AddPage(new FContextMenuStrip(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTransfer(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FAvatar(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FContextMenuStrip(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FProcess(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FScrollBar(), ++pageIndex));
-            Aside.CreateChildNode(parent, 61668, 24, AddPage(new FMeter(), ++pageIndex));
-            Aside.CreateChildNode(parent, 62173, 24, AddPage(new FOther(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FPipe()));
-
+            Aside.CreateChildNode(parent, AddPage(new FOther(), ++pageIndex));
+            //示例设置某个节点的小红点提示
             Aside.ShowTips = true;
-            Aside.SetNodeTipsText(parent.Nodes[0], "1");
+            Aside.SetNodeTipsText(parent.Nodes[0], "6");
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);
@@ -60,19 +58,30 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FPieChart()));
             Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
             Aside.CreateChildNode(parent, AddPage(new FBarChart()));
-            //Aside.CreateChildNode(parent, AddPage(new FBarChartEx()));
             Aside.CreateChildNode(parent, AddPage(new FLineChart()));
 
-            AddPage(new FColorful());
+            pageIndex = 4000;
+            Header.SetNodePageIndex(Header.Nodes[3], pageIndex);
+            Header.SetNodeSymbol(Header.Nodes[3], 362614);
+            parent = Aside.CreateNode("工控", 362614, 24, pageIndex);
+            //直接关联（默认自动生成GUID）
+            Aside.CreateChildNode(parent, AddPage(new FPipe()));
+            Aside.CreateChildNode(parent, AddPage(new FMeter()));
+            Aside.CreateChildNode(parent, AddPage(new FLed()));
+            Aside.CreateChildNode(parent, AddPage(new FLight()));
 
-            Header.SetNodeSymbol(Header.Nodes[3], 61502);
+            Header.SetNodeSymbol(Header.Nodes[4], 61502);
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {
-                Header.CreateChildNode(Header.Nodes[3], style.DisplayText(), style.Value());
+                Header.CreateChildNode(Header.Nodes[4], style.DisplayText(), style.Value());
             }
 
-            Header.CreateChildNode(Header.Nodes[3], "多彩主题", UIStyle.Colorful.Value());
+            Header.CreateChildNode(Header.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
+            //直接增加一个页面，不在左侧列表显示
+            AddPage(new FColorful());
+
+            //选中第一个节点
             Aside.SelectFirst();
         }
 
@@ -80,19 +89,16 @@ namespace Sunny.UI.Demo
         {
             switch (menuIndex)
             {
-                case 0:
-                case 1:
-                case 2:
-                    Aside.SelectPage(pageIndex);
-                    break;
-
-                case 3:
+                case 4:
                     UIStyle style = (UIStyle)pageIndex;
                     if (style != UIStyle.Colorful)
                         StyleManager.Style = style;
                     else
                         SelectPage(pageIndex);
 
+                    break;
+                default:
+                    Aside.SelectPage(pageIndex);
                     break;
             }
         }

@@ -32,7 +32,8 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("控件");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("窗体");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("图表");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("主题");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("工控");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("主题");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.uiLogo1 = new Sunny.UI.UILogo();
             this.uiAvatar = new Sunny.UI.UIAvatar();
@@ -55,6 +56,7 @@
             this.Aside.ShowSecondBackColor = true;
             this.Aside.ShowTips = true;
             this.Aside.Size = new System.Drawing.Size(250, 573);
+            this.Aside.Style = Sunny.UI.UIStyle.Custom;
             // 
             // Header
             // 
@@ -68,13 +70,17 @@
             treeNode2.Text = "窗体";
             treeNode3.Name = "节点2";
             treeNode3.Text = "图表";
-            treeNode4.Name = "节点2";
-            treeNode4.Text = "主题";
+            treeNode4.Name = "节点0";
+            treeNode4.Text = "工控";
+            treeNode5.Name = "节点2";
+            treeNode5.Text = "主题";
             this.Header.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
-            treeNode4});
+            treeNode4,
+            treeNode5});
+            this.Header.NodeSize = new System.Drawing.Size(110, 45);
             this.Header.SelectedIndex = 0;
             this.Header.Size = new System.Drawing.Size(1020, 110);
             this.Header.Style = Sunny.UI.UIStyle.Custom;
@@ -83,7 +89,7 @@
             // uiLogo1
             // 
             this.uiLogo1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLogo1.Location = new System.Drawing.Point(20, 15);
+            this.uiLogo1.Location = new System.Drawing.Point(2, 15);
             this.uiLogo1.MaximumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.MinimumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.Name = "uiLogo1";

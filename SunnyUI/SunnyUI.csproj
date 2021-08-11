@@ -37,18 +37,6 @@
 </PropertyGroup>
  
 <ItemGroup>
-	<None Remove="Controls\UIDataGridView.cs~RF2e4ccc29.TMP" />
-	<None Remove="Controls\UIValve.cs~RF48b9b3f5.TMP" />
-	<None Remove="Controls\UIValve.cs~RF4c040e6a.TMP" />
-	<None Remove="Font\ElegantIcons.ttf" />
-	<None Remove="Font\fa-brands-400.ttf" />
-	<None Remove="Font\fa-regular-400.ttf" />
-	<None Remove="Font\fa-solid-900.ttf" />
-	<None Remove="Font\FontAwesome.ttf" />
-	<None Remove="Forms\UIForm.cs~RF43da5c.TMP" />
-	<None Remove="Forms\UIForm.cs~RF485c3b.TMP" />
-	<None Remove="Style\UIStyleColor.cs~RF1472b803.TMP" />
-	<None Remove="Style\UIStyleColor.cs~RF22754f9d.TMP" />
 	<None Include="..\LICENSE">
         <Pack>True</Pack>
         <PackagePath></PackagePath>

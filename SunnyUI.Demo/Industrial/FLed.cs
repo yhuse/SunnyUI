@@ -1,8 +1,8 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FMeter : UIPage
+    public partial class FLed : UIPage
     {
-        public FMeter()
+        public FLed()
         {
             InitializeComponent();
         }
@@ -19,9 +19,6 @@
         private void timer1_Tick(object sender, System.EventArgs e)
         {
             value++;
-            uiRoundMeter1.Angle = value * 10;
-            uiRoundMeter2.Angle = value * 10;
-            uiAnalogMeter1.Value = value;
             uiBattery1.Power = value;
             uiLedDisplay1.Text = value + " Ω";
         }

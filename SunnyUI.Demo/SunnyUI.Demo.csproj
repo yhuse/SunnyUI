@@ -123,10 +123,22 @@
     <Compile Include="Controls\FLine.Designer.cs">
       <DependentUpon>FLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FPipe.cs">
+    <Compile Include="Industrial\FLight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\FPipe.designer.cs">
+    <Compile Include="Industrial\FLight.Designer.cs">
+      <DependentUpon>FLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Industrial\FLed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Industrial\FLed.Designer.cs">
+      <DependentUpon>FLed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Industrial\FPipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Industrial\FPipe.designer.cs">
       <DependentUpon>FPipe.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FTransfer.cs">
@@ -171,10 +183,10 @@
     <Compile Include="FMain.designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FMeter.cs">
+    <Compile Include="Industrial\FMeter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\FMeter.Designer.cs">
+    <Compile Include="Industrial\FMeter.Designer.cs">
       <DependentUpon>FMeter.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FNavigation.cs">
@@ -380,7 +392,13 @@
     <EmbeddedResource Include="Controls\FLine.resx">
       <DependentUpon>FLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FPipe.resx">
+    <EmbeddedResource Include="Industrial\FLight.resx">
+      <DependentUpon>FLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Industrial\FLed.resx">
+      <DependentUpon>FLed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Industrial\FPipe.resx">
       <DependentUpon>FPipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FTransfer.resx">
@@ -404,7 +422,7 @@
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FMeter.resx">
+    <EmbeddedResource Include="Industrial\FMeter.resx">
       <DependentUpon>FMeter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FNavigation.resx">
@@ -680,5 +698,6 @@
     <None Include="Resources\Home_32x32.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
