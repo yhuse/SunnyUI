@@ -55,7 +55,7 @@ namespace Sunny.UI.Demo
             this.uiFlowLayoutPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiFlowLayoutPanel1.Name = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanel1.Padding = new System.Windows.Forms.Padding(2);
-            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(334, 390);
+            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(354, 390);
             this.uiFlowLayoutPanel1.TabIndex = 10;
             this.uiFlowLayoutPanel1.Text = "`";
             this.uiFlowLayoutPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -64,7 +64,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton2.Location = new System.Drawing.Point(264, 462);
+            this.uiButton2.Location = new System.Drawing.Point(284, 462);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
@@ -77,7 +77,7 @@ namespace Sunny.UI.Demo
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.Enabled = false;
             this.uiButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton3.Location = new System.Drawing.Point(147, 462);
+            this.uiButton3.Location = new System.Drawing.Point(157, 462);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.Size = new System.Drawing.Size(100, 35);

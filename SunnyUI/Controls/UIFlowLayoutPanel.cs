@@ -58,6 +58,23 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        public new void Focus()
+        {
+            base.Focus();
+            Panel.Focus();
+        }
+
+        public override bool Focused
+        {
+            get => Panel.Focused;
+        }
+
+        protected override void OnEnter(EventArgs e)
+        {
+            base.OnEnter(e);
+            Panel.Focus();
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -259,12 +276,12 @@ namespace Sunny.UI
 
         private void Panel_MouseClick(object sender, MouseEventArgs e)
         {
-            Panel.Focus();
+            //Panel.Focus();
         }
 
         private void Panel_MouseEnter(object sender, EventArgs e)
         {
-            Panel.Focus();
+            //Panel.Focus();
         }
 
         protected override void OnGotFocus(EventArgs e)

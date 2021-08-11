@@ -13,7 +13,7 @@
             uiFlowLayoutPanel1.Clear();
             index = 0;
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 uiButton1.PerformClick();
             }
@@ -23,10 +23,9 @@
         UIButton btn;
         private void uiButton1_Click(object sender, System.EventArgs e)
         {
-            btn = new UIButton
-            {
-                Text = "Button" + index++.ToString("D2")
-            };
+            btn = new UIButton();
+            btn.Text = "Button" + index++.ToString("D2");
+            //btn.Click += Btn_Click;
 
             //建议用封装的方法Add
             uiFlowLayoutPanel1.Add(btn);
@@ -34,6 +33,12 @@
             //uiFlowLayoutPanel1.Controls.Add(btn);    
 
             uiButton3.Enabled = true;
+        }
+
+        private void Btn_Click(object sender, System.EventArgs e)
+        {
+            var button = (UIButton)sender;
+            ShowInfoTip(button.Text);
         }
 
         private void uiButton2_Click(object sender, System.EventArgs e)

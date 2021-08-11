@@ -121,7 +121,7 @@ namespace Sunny.UI
             get => valveColor;
             set
             {
-                valveColor = value;
+                valveColor = value; 
                 Invalidate();
             }
         }
