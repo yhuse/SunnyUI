@@ -6,12 +6,23 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+      "SunnyUI.Net5.Demo/3.0.6": {
+        "dependencies": {
+          "SunnyUI": "3.0.6"
+        },
+        "runtime": {
+          "SunnyUI.Net5.Demo.dll": {}
+        }
+      },
       "SunnyUI/3.0.6": {
         "dependencies": {
           "SunnyUI.Common": "3.0.6"
         },
         "runtime": {
-          "SunnyUI.dll": {}
+          "lib/net5.0-windows7.0/SunnyUI.dll": {
+            "assemblyVersion": "3.0.6.0",
+            "fileVersion": "3.0.6.0"
+          }
         }
       },
       "SunnyUI.Common/3.0.6": {
@@ -25,10 +36,17 @@
     }
   },
   "libraries": {
-    "SunnyUI/3.0.6": {
+    "SunnyUI.Net5.Demo/3.0.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "SunnyUI/3.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lS2AD3CrSMRnzwjrh9FxNYgU4CzPd7+XYwaX5TgurnDAFWkLGTZrLn4q05pDB/4TqwzAPcUJfwSlIgMtFtUEHg==",
+      "path": "sunnyui/3.0.6",
+      "hashPath": "sunnyui.3.0.6.nupkg.sha512"
     },
     "SunnyUI.Common/3.0.6": {
       "type": "package",

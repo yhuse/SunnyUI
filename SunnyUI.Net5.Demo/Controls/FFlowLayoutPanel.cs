@@ -26,7 +26,7 @@
         {
             UIButton btn = new UIButton();
             btn.Text = "Button" + index++.ToString("D2");
-            uiFlowLayoutPanel1.AddControl(btn);
+            uiFlowLayoutPanel1.Add(btn);
         }
     }
 }

@@ -1,5 +1,51 @@
 :fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
 
+#### 2021-08-12 V3.0.6  
+:fa-plus: UIPipe: 增加管道控件  
+:fa-plus: UIValve: 增加阀门控件  
+:fa-plus: UIStyle：增加多彩主题，以颜色深色，文字白色为主  
+:fa-plus: UIStyle：增加紫色主题  
+:fa-plus: UITableLayoutPanel：增加控件  
+:fa-plus: Demo：增加工控分类  
+:fa-plus: ITranslate：增加多语翻译接口  
+:fa-plus: UGif: GIF图片解析类  
+:fa-plus: SunnyUI: Nuget项目引用增加签名  
+:fa-asterisk: UIFlowLayoutPanel: 增加了几个原生方法  
+:fa-asterisk: UITransfer: 增加了显示多个移动的属性  
+:fa-asterisk: UIProcessBar: 增加垂直方向的进度显示  
+:fa-asterisk: UILight: 默认不显示灯光亮线  
+:fa-asterisk: UINavMenu：显示子节点提示箭头  
+:fa-asterisk: UINavBar: 增加选中项圆角  
+:fa-asterisk: UIImageListBox: 从文件载入图片，并且解除占用  
+:fa-asterisk: UICombobox: 增加几个原生方法  
+:fa-asterisk: UIListBox: 增加一大波ListBox原生方法  
+:fa-asterisk: UIListBox：增加Items变更的事件  
+:fa-asterisk: UIForm: 修复最大化盖住任务栏的问题  
+:fa-asterisk: UITextBox: 增加GotFocus和LostFocus事件  
+:fa-asterisk: UIFlowLayoutPanel: 可像原生控件一样通过Controls.Add增加  
+:fa-asterisk: UIListBox: 选中项显示方角  
+:fa-asterisk: UIListBox：增加多选行  
+:fa-asterisk: UIComboTreeView : 修复SelectedNode=null的问题  
+:fa-asterisk: UIRichTextBox: 修改滚动条没有文字时自动隐藏  
+:fa-asterisk: UIPage: 修复OnMouseMove事件  
+:fa-asterisk: UIStyle: 更新了放在TableLayoutPanel里控件的自定义颜色问题  
+:fa-asterisk: UILocalize: 内置支付串已经处理完国际化  
+:fa-asterisk: UILineChart：可自定义背景色  
+:fa-asterisk: UILineChart：增加实时数据的Demo  
+:fa-asterisk: UIBarChart, UIPieChart, UIDoughnutChart增加更新数据的方法  
+:fa-asterisk: UITreeView: 调整了显示CheckBoxes时图片位置  
+:fa-asterisk: ISymbol: 将字体图标最大尺寸从64调整到128  
+:fa-asterisk: UITextBox: 修改Focus可用  
+:fa-asterisk: UIButton：增加ShowFocusColor，用来显示Focus状态  
+:fa-asterisk: UIPage：修复OnLoad在加载时重复加载两次的问题，增加Final函数，每次页面切换，退出页面都会执行  
+:fa-asterisk: UIStyle: 多彩颜色增加随机颜色Demo  
+:fa-asterisk: UIScrollingText: 增加属性控制开启滚动  
+:fa-asterisk: UIPage：恢复删除的Initialize事件  
+:fa-asterisk: ISytle：调整主题切换执行流程  
+:fa-asterisk: IStyle：支持自定义主题  
+:fa-asterisk: ISymbol：增加SymbolOffset接口  
+:fa-asterisk: UITabControl：支持Tab在下方显示  
+  
 #### 2021-07-11 V3.0.5  
 :fa-plus:  字体图标：增加FontAwesome V5.15版本字体图标  
 :fa-plus:  UISignal: 增加信号强度显示控件  

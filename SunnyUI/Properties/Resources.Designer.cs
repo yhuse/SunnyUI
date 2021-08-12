@@ -200,7 +200,7 @@ namespace Sunny.UI.Properties {
         }
         
         /// <summary>
-        ///   查找类似 V3.0.5 的本地化字符串。
+        ///   查找类似 V3.0.6 的本地化字符串。
         /// </summary>
         internal static string Version {
             get {
