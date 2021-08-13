@@ -413,20 +413,22 @@ namespace Sunny.UI.Demo
             // uiDatePicker1
             // 
             this.uiDatePicker1.CanEmpty = true;
+            this.uiDatePicker1.DateFormat = "yyyy-MM";
             this.uiDatePicker1.FillColor = System.Drawing.Color.White;
             this.uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker1.Location = new System.Drawing.Point(30, 171);
             this.uiDatePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiDatePicker1.MaxLength = 10;
+            this.uiDatePicker1.MaxLength = 7;
             this.uiDatePicker1.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiDatePicker1.Name = "uiDatePicker1";
             this.uiDatePicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiDatePicker1.ShowToday = true;
+            this.uiDatePicker1.ShowType = Sunny.UI.UIDateType.YearMonth;
             this.uiDatePicker1.Size = new System.Drawing.Size(150, 29);
             this.uiDatePicker1.SymbolDropDown = 61555;
             this.uiDatePicker1.SymbolNormal = 61555;
             this.uiDatePicker1.TabIndex = 54;
-            this.uiDatePicker1.Text = "2020-04-16";
+            this.uiDatePicker1.Text = "2020-04";
             this.uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiDatePicker1.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
             this.uiDatePicker1.ValueChanged += new Sunny.UI.UIDatePicker.OnDateTimeChanged(this.uiDatePicker1_ValueChanged);

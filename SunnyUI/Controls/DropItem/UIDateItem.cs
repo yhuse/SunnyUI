@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 
 namespace Sunny.UI
@@ -352,9 +353,27 @@ namespace Sunny.UI
                 Month = date.Month;
                 SetYearMonth(Year, Month);
                 activeDay = -1;
-                TabControl.SelectedTab = tabPage3;
+
+                switch (ShowType)
+                {
+                    case UIDateType.YearMonthDay:
+                        TabControl.SelectedTab = tabPage3;
+                        break;
+                    case UIDateType.YearMonth:
+                        TabControl.SelectedTab = tabPage2;
+                        break;
+                    case UIDateType.Year:
+                        TabControl.SelectedTab = tabPage1;
+                        break;
+                }
+
+
             }
         }
+
+        [DefaultValue(UIDateType.YearMonthDay)]
+        [Description("日期显示类型"), Category("SunnyUI")]
+        public UIDateType ShowType { get; set; }
 
         private int year;
 
@@ -542,7 +561,17 @@ namespace Sunny.UI
             if (Month <= 0 || Month > 12) return;
             SetYearMonth(Year, Month);
             activeMonth = -1;
-            TabControl.SelectedTab = tabPage3;
+
+            if (ShowType == UIDateType.YearMonth)
+            {
+                date = new DateTime(Year, Month, 1);
+                DoValueChanged(this, Date);
+                CloseParent();
+            }
+            else
+            {
+                TabControl.SelectedTab = tabPage3;
+            }
         }
 
         private int activeMonth = -1;
@@ -659,7 +688,7 @@ namespace Sunny.UI
                 using (Font SubFont = new Font("微软雅黑", 10.5f))
                 {
                     e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
-                    e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle((int)(p3.Width - width * 4 + 6), p3.Height - height + 3, 8, height - 10), 3);
+                    e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);
 
                     sf = e.Graphics.MeasureString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont);
                     e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 17, p3.Height - height - 1 + (height - sf.Height) / 2.0f);

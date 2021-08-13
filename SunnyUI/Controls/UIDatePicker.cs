@@ -49,6 +49,31 @@ namespace Sunny.UI
         [Description("日期输入时，显示今日按钮"), Category("SunnyUI")]
         public bool ShowToday { get; set; }
 
+        private UIDateType showType = UIDateType.YearMonthDay;
+
+        [DefaultValue(UIDateType.YearMonthDay)]
+        [Description("日期显示类型"), Category("SunnyUI")]
+        public UIDateType ShowType
+        {
+            get => showType;
+            set
+            {
+                showType = value;
+                switch (value)
+                {
+                    case UIDateType.YearMonthDay:
+                        DateFormat = "yyyy-MM-dd";
+                        break;
+                    case UIDateType.YearMonth:
+                        DateFormat = "yyyy-MM";
+                        break;
+                    case UIDateType.Year:
+                        DateFormat = "yyyy";
+                        break;
+                }
+            }
+        }
+
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
             if (Text.Length == MaxLength)
@@ -115,6 +140,7 @@ namespace Sunny.UI
 
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
+            item.ShowType = ShowType;
             item.Date = Value;
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;
