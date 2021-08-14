@@ -277,7 +277,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        public Point imageOffset;
+        private Point imageOffset;
 
         [DefaultValue(typeof(Point), "0, 0")]
         [Description("图片偏移位置"), Category("SunnyUI")]
