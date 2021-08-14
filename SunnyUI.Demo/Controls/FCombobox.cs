@@ -11,9 +11,9 @@ namespace Sunny.UI.Demo
             InitializeComponent();
 
             IList<Info> infoList = new List<Info>();
-            Info info1 = new Info() { Id = " 1 ", Name = " 张三 " };
-            Info info2 = new Info() { Id = " 2 ", Name = " 李四 " };
-            Info info3 = new Info() { Id = " 3 ", Name = " 王五 " };
+            Info info1 = new Info() { Id = "1", Name = "张三" };
+            Info info2 = new Info() { Id = "2", Name = "李四" };
+            Info info3 = new Info() { Id = "3", Name = "王五" };
             infoList.Add(info1);
             infoList.Add(info2);
             infoList.Add(info3);
@@ -21,10 +21,6 @@ namespace Sunny.UI.Demo
             uiComboBox2.ValueMember = "Id";
             uiComboBox2.DisplayMember = "Name";
             uiComboBox2.DataSource = infoList;
-
-            uiComboboxEx2.ValueMember = "Id";
-            uiComboboxEx2.DisplayMember = "Name";
-            uiComboboxEx2.DataSource = infoList;
         }
 
         public class Info

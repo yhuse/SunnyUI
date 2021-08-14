@@ -74,6 +74,10 @@ namespace Sunny.UI
             }
         }
 
+        public int Year => Value.Year;
+        public int Month => Value.Month;
+        public int Day => Value.Day;
+
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
             if (Text.Length == MaxLength)

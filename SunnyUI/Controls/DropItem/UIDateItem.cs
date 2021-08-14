@@ -348,7 +348,7 @@ namespace Sunny.UI
             set
             {
                 date = value;
-                TabControl.SelectPage(2);
+                //TabControl.SelectPage(2);
                 Year = date.Year;
                 Month = date.Month;
                 SetYearMonth(Year, Month);
@@ -367,7 +367,7 @@ namespace Sunny.UI
                         break;
                 }
 
-
+                TabControl_SelectedIndexChanged(TabControl, EventArgs.Empty);
             }
         }
 
@@ -636,8 +636,18 @@ namespace Sunny.UI
             if (iy < 0 || iy >= 12) return;
             Year = years[iy] > 9999 ? 9999 : years[iy];
             activeYear = -1;
-            TabControl.SelectedTab = tabPage2;
-            p2.Invalidate();
+
+            if (ShowType == UIDateType.Year)
+            {
+                date = new DateTime(Year, 1, 1);
+                DoValueChanged(this, Date);
+                CloseParent();
+            }
+            else
+            {
+                TabControl.SelectedTab = tabPage2;
+                p2.Invalidate();
+            }
         }
 
         private void p3_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
