@@ -589,8 +589,9 @@ namespace Sunny.UI
                 }
             }
 
-            TabPages.Remove(TabPages[index]);
+            TabPages.Remove(tabPage);
             AfterRemoveTabPage?.Invoke(this, index);
+            tabPage.Dispose();
 
             if (TabCount == 0) return;
             if (index == 0) SelectedIndex = 0;
