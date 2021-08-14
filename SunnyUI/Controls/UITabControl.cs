@@ -569,6 +569,13 @@ namespace Sunny.UI
             get; set;
         }
 
+        [DefaultValue(false)]
+        [Description("移除TabPage后，是否自动销毁TabPage"), Category("SunnyUI")]
+        public bool DisposeTabPageAfterRemove
+        {
+            get; set;
+        }
+
         internal void RemoveTabPage(int index)
         {
             if (index < 0 || index >= TabCount)
@@ -591,11 +598,14 @@ namespace Sunny.UI
 
             TabPages.Remove(tabPage);
             AfterRemoveTabPage?.Invoke(this, index);
-            tabPage.Dispose();
 
-            if (TabCount == 0) return;
-            if (index == 0) SelectedIndex = 0;
-            if (index > 0) SelectedIndex = index - 1;
+            if (TabCount > 0)
+            {
+                if (index == 0) SelectedIndex = 0;
+                if (index > 0) SelectedIndex = index - 1;
+            }
+
+            if (DisposeTabPageAfterRemove) tabPage.Dispose();
         }
 
         public enum UITabPosition
