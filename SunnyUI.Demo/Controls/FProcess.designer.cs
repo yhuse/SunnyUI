@@ -319,7 +319,6 @@ namespace Sunny.UI.Demo
             this.uiProcessBar3.MinimumSize = new System.Drawing.Size(70, 1);
             this.uiProcessBar3.Name = "uiProcessBar3";
             this.uiProcessBar3.Size = new System.Drawing.Size(203, 169);
-            this.uiProcessBar3.Style = Sunny.UI.UIStyle.Custom;
             this.uiProcessBar3.TabIndex = 103;
             this.uiProcessBar3.Value = 50;
             // 

@@ -124,7 +124,7 @@ namespace Sunny.UI
             base.OnPaint(e);
 
             float processSize;
-            string processText = "0.0%";
+            string processText;
 
             if (Direction == UILine.LineDirection.Horizontal)
                 processSize = posValue * Width * 1.0f / Maximum;
@@ -134,7 +134,7 @@ namespace Sunny.UI
             if (ShowPercent)
                 processText = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
             else
-                processText = (posValue * 1.0 / maximum).ToString("F" + DecimalCount);
+                processText = posValue.ToString();
 
             SizeF sf = e.Graphics.MeasureString(processText, Font);
             bool canShow = Height > sf.Height + 4;
