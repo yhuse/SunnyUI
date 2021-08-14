@@ -272,6 +272,7 @@ namespace Sunny.UI
             this.p1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.p1.Paint += new System.Windows.Forms.PaintEventHandler(this.p1_Paint);
             this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
+            this.p1.MouseLeave += new System.EventHandler(this.p1_MouseLeave);
             this.p1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p1_MouseMove);
             // 
             // tabPage2
@@ -301,6 +302,7 @@ namespace Sunny.UI
             this.p2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.p2.Paint += new System.Windows.Forms.PaintEventHandler(this.p2_Paint);
             this.p2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p2_MouseClick);
+            this.p2.MouseLeave += new System.EventHandler(this.p2_MouseLeave);
             this.p2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p2_MouseMove);
             // 
             // tabPage3
@@ -330,6 +332,7 @@ namespace Sunny.UI
             this.p3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.p3.Paint += new System.Windows.Forms.PaintEventHandler(this.p3_Paint);
             this.p3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p3_MouseClick);
+            this.p3.MouseLeave += new System.EventHandler(this.p3_MouseLeave);
             this.p3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p3_MouseMove);
             // 
             // sb
@@ -625,12 +628,15 @@ namespace Sunny.UI
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.FillColor = System.Drawing.Color.White;
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.uiLine2.LineColor = System.Drawing.Color.Silver;
             this.uiLine2.Location = new System.Drawing.Point(289, 88);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
+            this.uiLine2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiLine2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiLine2.Size = new System.Drawing.Size(157, 16);
             this.uiLine2.Style = Sunny.UI.UIStyle.Custom;
             this.uiLine2.StyleCustomMode = true;
@@ -638,12 +644,15 @@ namespace Sunny.UI
             // 
             // uiLine3
             // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
             this.uiLine3.FillColor = System.Drawing.Color.White;
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.uiLine3.LineColor = System.Drawing.Color.Silver;
             this.uiLine3.Location = new System.Drawing.Point(289, 54);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
+            this.uiLine3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiLine3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiLine3.Size = new System.Drawing.Size(157, 16);
             this.uiLine3.Style = Sunny.UI.UIStyle.Custom;
             this.uiLine3.StyleCustomMode = true;
@@ -1103,7 +1112,14 @@ namespace Sunny.UI
                 int top = height * (i / 4);
 
                 SizeF sf = e.Graphics.MeasureString(months[i], Font);
-                e.Graphics.DrawString(months[i], Font, i == activeMonth ? PrimaryColor : ForeColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                if (i + 1 == Month)
+                {
+                    e.Graphics.DrawString(months[i], Font, PrimaryColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                }
+                else
+                {
+                    e.Graphics.DrawString(months[i], Font, i == activeMonth ? PrimaryColor : ForeColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                }
             }
         }
 
@@ -1145,7 +1161,7 @@ namespace Sunny.UI
 
                 SizeF sf = e.Graphics.MeasureString(years[i].ToString(), Font);
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
-                e.Graphics.DrawString(years[i].ToString(), Font, i == activeYear ? PrimaryColor : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                e.Graphics.DrawString(years[i].ToString(), Font, (i == activeYear || years[i] == Year) ? PrimaryColor : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
             }
         }
 
@@ -1272,6 +1288,24 @@ namespace Sunny.UI
             date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
             DoValueChanged(this, Date);
             //CloseParent();
+        }
+
+        private void p1_MouseLeave(object sender, EventArgs e)
+        {
+            activeYear = -1;
+            p1.Invalidate();
+        }
+
+        private void p2_MouseLeave(object sender, EventArgs e)
+        {
+            activeMonth = -1;
+            p2.Invalidate();
+        }
+
+        private void p3_MouseLeave(object sender, EventArgs e)
+        {
+            activeDay = -1;
+            p3.Invalidate();
         }
     }
 }

@@ -73,12 +73,15 @@ namespace Sunny.UI
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.FillColor = System.Drawing.Color.White;
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.uiLine1.LineColor = System.Drawing.Color.Silver;
             this.uiLine1.Location = new System.Drawing.Point(6, 54);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
+            this.uiLine1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiLine1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiLine1.Size = new System.Drawing.Size(157, 16);
             this.uiLine1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLine1.StyleCustomMode = true;
@@ -86,12 +89,15 @@ namespace Sunny.UI
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.FillColor = System.Drawing.Color.White;
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.uiLine2.LineColor = System.Drawing.Color.Silver;
             this.uiLine2.Location = new System.Drawing.Point(6, 88);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
+            this.uiLine2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiLine2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.uiLine2.Size = new System.Drawing.Size(157, 16);
             this.uiLine2.Style = Sunny.UI.UIStyle.Custom;
             this.uiLine2.StyleCustomMode = true;
