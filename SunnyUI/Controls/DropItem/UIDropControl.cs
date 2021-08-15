@@ -149,6 +149,14 @@ namespace Sunny.UI
             set => edit.Watermark = value;
         }
 
+        [DefaultValue(typeof(Color), "Gray")]
+        [Description("水印文字颜色"), Category("SunnyUI")]
+        public Color WatermarkColor
+        {
+            get => edit.WaterMarkColor;
+            set => edit.WaterMarkColor = value;
+        }
+
         private UIDropDown itemForm;
 
         protected UIDropDown ItemForm
@@ -174,7 +182,7 @@ namespace Sunny.UI
 
         private void ItemForm_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            DropDownClosed?.Invoke(this, null);
+            DropDownClosed?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemForm_VisibleChanged(object sender, EventArgs e)
@@ -190,7 +198,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool DroppedDown => itemForm != null && itemForm.Visible;
+        public bool DroppedDown => itemForm is { Visible: true };
 
         private int symbolNormal = 61703;
         private int dropSymbol = 61703;
@@ -244,7 +252,7 @@ namespace Sunny.UI
 
         public event EventHandler ButtonClick;
 
-        protected readonly TextBoxEx edit = new TextBoxEx();
+        protected readonly UIEdit edit = new UIEdit();
 
         protected override void OnTextChanged(EventArgs e)
         {
@@ -297,7 +305,7 @@ namespace Sunny.UI
             {
                 base.OnPaintFore(g, path);
                 g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 26, edit.Height), Radius, false);
-                g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius, true);
+                g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius);
             }
 
             g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
@@ -434,22 +442,6 @@ namespace Sunny.UI
         public void SelectAll()
         {
             edit.SelectAll();
-        }
-
-        protected class TextBoxEx : TextBox
-        {
-            private string watermark;
-
-            [DefaultValue(null)]
-            public string Watermark
-            {
-                get => watermark;
-                set
-                {
-                    watermark = value;
-                    Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
-                }
-            }
         }
     }
 }
