@@ -279,13 +279,13 @@ namespace Sunny.UI
             bar.Left = Width - bar.Width - 2;
         }
 
-        private void Listbox_BeforeDrawItem(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
+        private void Listbox_BeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e)
         {
             if (Items.Count != LastCount)
             {
                 listbox.SetScrollInfo();
                 LastCount = Items.Count;
-                ItemsCountChange?.Invoke(this, null);
+                ItemsCountChange?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -390,10 +390,10 @@ namespace Sunny.UI
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
-        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("列表项"), Category("SunnyUI")]
-        public ListBox.ObjectCollection Items => listbox.Items;
+        public ObjectCollection Items => listbox.Items;
 
         [Browsable(false)]
         public int Count => Items.Count;
@@ -811,7 +811,7 @@ namespace Sunny.UI
             Color foreColor = isSelected ? ItemSelectForeColor : ForeColor;
 
             Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1);
-            string showText = string.Empty;
+            string showText;
             if (DisplayMember.IsNullOrEmpty())
             {
                 showText = Items[e.Index].ToString();

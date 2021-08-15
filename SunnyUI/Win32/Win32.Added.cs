@@ -102,4 +102,12 @@ namespace Sunny.UI.Win32
         public static extern int GetPrivateProfileString(byte[] section, byte[] key, byte[] def, byte[] retVal, int size, string filePath);
 
     }
+
+    public partial class WinMM
+    {
+        [DllImport("winmm.dll")]
+        public static extern int timeSetEvent(int uDelay, int uResolution, TimerSetEventCallback fptc, int dwUser, int uFlags);
+
+        public delegate void TimerSetEventCallback(int uTimerID, uint uMsg, uint dwUser, UIntPtr dw1, UIntPtr dw2);
+    }
 }

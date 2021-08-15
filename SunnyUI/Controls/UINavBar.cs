@@ -24,6 +24,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -299,6 +300,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [MergableProperty(false)]
         [Description("菜单栏显示节点集合"), Category("SunnyUI")]
+        [Editor("System.Windows.Forms.Design.TreeNodeCollectionEditor", typeof(UITypeEditor))]
         public TreeNodeCollection Nodes => Menu.Nodes;
 
         [DefaultValue(null)]

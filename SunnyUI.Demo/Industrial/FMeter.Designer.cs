@@ -36,7 +36,7 @@ namespace Sunny.UI.Demo
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiRoundMeter2 = new Sunny.UI.UIRoundMeter();
             this.uiRoundMeter1 = new Sunny.UI.UIRoundMeter();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uiMillisecondTimer1 = new Sunny.UI.UIMillisecondTimer(this.components);
             this.SuspendLayout();
             // 
             // uiAnalogMeter1
@@ -104,9 +104,11 @@ namespace Sunny.UI.Demo
             this.uiRoundMeter1.TabIndex = 63;
             this.uiRoundMeter1.Text = "uiRoundMeter1";
             // 
-            // timer1
+            // uiMillisecondTimer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.uiMillisecondTimer1.Interval = 100;
+            this.uiMillisecondTimer1.TagString = null;
+            this.uiMillisecondTimer1.Tick += new System.EventHandler(this.uiMillisecondTimer1_Tick);
             // 
             // FMeter
             // 
@@ -133,6 +135,6 @@ namespace Sunny.UI.Demo
         private UIRoundMeter uiRoundMeter2;
         private UILine uiLine6;
         private UIRoundMeter uiRoundMeter1;
-        private System.Windows.Forms.Timer timer1;
+        private UIMillisecondTimer uiMillisecondTimer1;
     }
 }

@@ -114,7 +114,7 @@ namespace Sunny.UI
         [Description("多页面框架的页面索引"), Category("SunnyUI")]
         public int PageIndex { get; set; }
 
-        public Color symbolColor = Color.White;
+        private Color symbolColor = Color.White;
 
         [DefaultValue(typeof(Color), "White")]
         [Description("字体图标颜色"), Category("SunnyUI")]
@@ -361,7 +361,7 @@ namespace Sunny.UI
             }
         }
 
-        public TextImageRelation textImageRelation = TextImageRelation.ImageAboveText;
+        private TextImageRelation textImageRelation = TextImageRelation.ImageAboveText;
 
         [DefaultValue(TextImageRelation.ImageAboveText)]
         [Description("指定图像与文本的相对位置"), Category("SunnyUI")]

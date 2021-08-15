@@ -523,7 +523,7 @@ namespace Sunny.UI.Win32
         [DllImport("lz32")] public static extern int LZSeek(HANDLE hfFile, int lOffset, int nOrigin);
         [DllImport("lz32")] public static extern void LZClose(HANDLE hfFile);
     }
-    public abstract class WinMM
+    public partial class WinMM
     {
         [DllImport("winmm")] public static extern int mciGetYieldProc(int mciId, ref int pdwYieldData);
         [DllImport("winmm")] public static extern int mciSetYieldProc(int mciId, int fpYieldProc, int dwYieldData);
