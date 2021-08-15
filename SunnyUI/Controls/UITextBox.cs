@@ -132,10 +132,7 @@ namespace Sunny.UI
             edit.Enabled = Enabled;
         }
 
-        public override bool Focused
-        {
-            get => edit.Focused;
-        }
+        public override bool Focused => edit.Focused;
 
         [DefaultValue(false)]
         [Description("激活时选中全部文字"), Category("SunnyUI")]
@@ -322,6 +319,14 @@ namespace Sunny.UI
         {
             get => edit.Watermark;
             set => edit.Watermark = value;
+        }
+
+        [DefaultValue(typeof(Color), "Gray")]
+        [Description("水印文字颜色"), Category("SunnyUI")]
+        public Color WatermarkColor
+        {
+            get => edit.WaterMarkColor;
+            set => edit.WaterMarkColor = value;
         }
 
         public void SelectAll()

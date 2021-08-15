@@ -21,6 +21,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -45,6 +46,7 @@ namespace Sunny.UI
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;
+            JoinEvents(true);
         }
 
         private string watermark;
@@ -56,7 +58,87 @@ namespace Sunny.UI
             set
             {
                 watermark = value;
-                Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+                Invalidate();
+                //Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
+            }
+        }
+
+        private Font oldFont;
+        private Boolean waterMarkTextEnabled;
+
+        private Color _waterMarkColor = Color.Gray;
+        public Color WaterMarkColor
+        {
+            get => _waterMarkColor;
+            set
+            {
+                _waterMarkColor = value;
+                Invalidate();
+            }
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+            WaterMark_Toggle(null, null);
+        }
+
+        protected override void OnPaint(PaintEventArgs args)
+        {
+            // Use the same font that was defined in base class
+            Font drawFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
+            //Create new brush with gray color or 
+            SolidBrush drawBrush = new SolidBrush(WaterMarkColor);//use Water mark color
+            //Draw Text or WaterMark
+            args.Graphics.DrawString((waterMarkTextEnabled ? Watermark : Text), drawFont, drawBrush, new PointF(0.0F, 0.0F));
+            base.OnPaint(args);
+        }
+
+        private void JoinEvents(Boolean join)
+        {
+            if (join)
+            {
+                TextChanged += WaterMark_Toggle;
+                LostFocus += WaterMark_Toggle;
+                FontChanged += WaterMark_FontChanged;
+            }
+        }
+
+        private void WaterMark_Toggle(object sender, EventArgs args)
+        {
+            if (Text.Length <= 0)
+                EnableWaterMark();
+            else
+                DisableWaterMark();
+        }
+
+        private void EnableWaterMark()
+        {
+            //Save current font until returning the UserPaint style to false (NOTE: It is a try and error advice)
+            oldFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
+            //Enable OnPaint event handler
+            SetStyle(ControlStyles.UserPaint, true);
+            waterMarkTextEnabled = true;
+            //OnPaint right now
+            Refresh();
+        }
+
+        private void DisableWaterMark()
+        {
+            //Disable OnPaint event handler
+            waterMarkTextEnabled = false;
+            SetStyle(ControlStyles.UserPaint, false);
+            //Return back oldFont if existed
+            if (oldFont != null)
+                Font = new Font(oldFont.FontFamily, oldFont.Size, oldFont.Style, oldFont.Unit);
+        }
+
+        private void WaterMark_FontChanged(object sender, EventArgs args)
+        {
+            if (waterMarkTextEnabled)
+            {
+                oldFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
+                Refresh();
             }
         }
 
