@@ -341,8 +341,8 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y);
             }
 
-            SizeF sf = e.Graphics.MeasureString(Text, Font);
-            e.Graphics.DrawString(Text, Font, TitleForeColor,
+            SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
+            e.Graphics.DrawString(Text, TitleFont, TitleForeColor,
                 Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, (TitleHeight - sf.Height) / 2);
 
             e.Graphics.SetHighQuality();
@@ -416,6 +416,26 @@ namespace Sunny.UI
             set
             {
                 titleForeColor = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 标题字体
+        /// </summary>
+        private Font titleFont = UIFontColor.Font;
+
+        /// <summary>
+        /// 标题字体
+        /// </summary>
+        [Description("标题字体"), Category("SunnyUI")]
+        [DefaultValue(typeof(Font), "微软雅黑, 12pt")]
+        public Font TitleFont
+        {
+            get => titleFont;
+            set
+            {
+                titleFont = value;
                 Invalidate();
             }
         }

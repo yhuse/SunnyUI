@@ -397,6 +397,27 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 标题字体
+        /// </summary>
+        private Font titleFont = UIFontColor.Font;
+
+        /// <summary>
+        /// 标题字体
+        /// </summary>
+        [Description("标题字体"), Category("SunnyUI")]
+        [DefaultValue(typeof(Font), "微软雅黑, 12pt")]
+        public Font TitleFont
+        {
+            get => titleFont;
+            set
+            {
+                titleFont = value;
+                Invalidate();
+            }
+        }
+
+
         private Rectangle ControlBoxRect;
 
         private Rectangle MaximizeBoxRect;
@@ -1020,14 +1041,14 @@ namespace Sunny.UI
                 }
             }
 
-            SizeF sf = e.Graphics.MeasureString(Text, Font);
+            SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
             if (TextAlignment == StringAlignment.Center)
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor, (Width - sf.Width) / 2, (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, (Width - sf.Width) / 2, (TitleHeight - sf.Height) / 2);
             }
             else
             {
-                e.Graphics.DrawString(Text, Font, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
             }
         }
 
