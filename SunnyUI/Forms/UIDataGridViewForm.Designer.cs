@@ -39,16 +39,9 @@
             this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
-            this.PagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.Panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // PagePanel
-            // 
-            this.PagePanel.Controls.Add(this.Grid);
-            this.PagePanel.Controls.Add(this.Panel);
-            this.PagePanel.Size = new System.Drawing.Size(1264, 852);
             // 
             // Grid
             // 
@@ -77,7 +70,7 @@
             this.Grid.EnableHeadersVisualStyles = false;
             this.Grid.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.Grid.Location = new System.Drawing.Point(0, 0);
+            this.Grid.Location = new System.Drawing.Point(0, 35);
             this.Grid.Name = "Grid";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
@@ -93,7 +86,7 @@
             this.Grid.RowTemplate.Height = 29;
             this.Grid.SelectedIndex = -1;
             this.Grid.ShowGridLine = true;
-            this.Grid.Size = new System.Drawing.Size(1264, 797);
+            this.Grid.Size = new System.Drawing.Size(1034, 511);
             this.Grid.TabIndex = 0;
             // 
             // Panel
@@ -104,14 +97,14 @@
             this.Panel.Controls.Add(this.uiSymbolButton1);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Panel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Panel.Location = new System.Drawing.Point(0, 797);
+            this.Panel.Location = new System.Drawing.Point(0, 546);
             this.Panel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Panel.MinimumSize = new System.Drawing.Size(1, 1);
             this.Panel.Name = "Panel";
             this.Panel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.Panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.Panel.Size = new System.Drawing.Size(1264, 55);
+            this.Panel.Size = new System.Drawing.Size(1034, 55);
             this.Panel.TabIndex = 1;
             this.Panel.Text = null;
             this.Panel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,11 +164,15 @@
             // 
             // UIDataGridViewForm
             // 
+            this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1264, 887);
+            this.ClientSize = new System.Drawing.Size(1034, 601);
+            this.Controls.Add(this.Grid);
+            this.Controls.Add(this.Panel);
             this.Name = "UIDataGridViewForm";
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.ShowTitle = true;
             this.Text = "FDataGridView";
-            this.PagePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.Panel.ResumeLayout(false);
             this.ResumeLayout(false);

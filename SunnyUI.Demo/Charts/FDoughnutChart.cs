@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo.Charts
 {
-    public partial class FDoughnutChart : UITitlePage
+    public partial class FDoughnutChart : UIPage
     {
         public FDoughnutChart()
         {

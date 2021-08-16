@@ -63,47 +63,7 @@
             this.uiLine9 = new Sunny.UI.UILine();
             this.uiLine10 = new Sunny.UI.UILine();
             this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
-            this.PagePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // PagePanel
-            // 
-            this.PagePanel.Controls.Add(this.uiLine10);
-            this.PagePanel.Controls.Add(this.uiSymbolButton13);
-            this.PagePanel.Controls.Add(this.uiLine9);
-            this.PagePanel.Controls.Add(this.uiSymbolButton11);
-            this.PagePanel.Controls.Add(this.uiLine8);
-            this.PagePanel.Controls.Add(this.uiSymbolButton3);
-            this.PagePanel.Controls.Add(this.uiSymbolButton10);
-            this.PagePanel.Controls.Add(this.uiLine7);
-            this.PagePanel.Controls.Add(this.uiSymbolButton7);
-            this.PagePanel.Controls.Add(this.uiSymbolButton8);
-            this.PagePanel.Controls.Add(this.uiSymbolButton9);
-            this.PagePanel.Controls.Add(this.btnEN);
-            this.PagePanel.Controls.Add(this.btnCH);
-            this.PagePanel.Controls.Add(this.uiLine6);
-            this.PagePanel.Controls.Add(this.uiLine5);
-            this.PagePanel.Controls.Add(this.uiSymbolButton2);
-            this.PagePanel.Controls.Add(this.uiSymbolButton4);
-            this.PagePanel.Controls.Add(this.uiSymbolButton5);
-            this.PagePanel.Controls.Add(this.uiSymbolButton6);
-            this.PagePanel.Controls.Add(this.uiLine4);
-            this.PagePanel.Controls.Add(this.uiSymbolButton1);
-            this.PagePanel.Controls.Add(this.uiLine3);
-            this.PagePanel.Controls.Add(this.uiLine2);
-            this.PagePanel.Controls.Add(this.uiLine1);
-            this.PagePanel.Controls.Add(this.btnPasswordInput);
-            this.PagePanel.Controls.Add(this.btnDoubleInput);
-            this.PagePanel.Controls.Add(this.btnIntInput);
-            this.PagePanel.Controls.Add(this.btnStringInput);
-            this.PagePanel.Controls.Add(this.btnInfo);
-            this.PagePanel.Controls.Add(this.btnStatus2);
-            this.PagePanel.Controls.Add(this.btnAuto);
-            this.PagePanel.Controls.Add(this.btnError);
-            this.PagePanel.Controls.Add(this.btnWarn);
-            this.PagePanel.Controls.Add(this.btnSuccess);
-            this.PagePanel.Controls.Add(this.btnAsk);
-            this.PagePanel.Size = new System.Drawing.Size(800, 514);
             // 
             // btnError
             // 
@@ -113,7 +73,7 @@
             this.btnError.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.btnError.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.btnError.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnError.Location = new System.Drawing.Point(600, 53);
+            this.btnError.Location = new System.Drawing.Point(600, 88);
             this.btnError.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnError.Name = "btnError";
             this.btnError.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -137,7 +97,7 @@
             this.btnWarn.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.btnWarn.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.btnWarn.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnWarn.Location = new System.Drawing.Point(486, 53);
+            this.btnWarn.Location = new System.Drawing.Point(486, 88);
             this.btnWarn.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnWarn.Name = "btnWarn";
             this.btnWarn.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -161,7 +121,7 @@
             this.btnSuccess.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.btnSuccess.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.btnSuccess.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnSuccess.Location = new System.Drawing.Point(372, 53);
+            this.btnSuccess.Location = new System.Drawing.Point(372, 88);
             this.btnSuccess.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnSuccess.Name = "btnSuccess";
             this.btnSuccess.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -181,7 +141,7 @@
             // 
             this.btnAsk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAsk.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnAsk.Location = new System.Drawing.Point(30, 52);
+            this.btnAsk.Location = new System.Drawing.Point(30, 87);
             this.btnAsk.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAsk.Name = "btnAsk";
             this.btnAsk.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -196,7 +156,7 @@
             // 
             this.btnAuto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAuto.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnAuto.Location = new System.Drawing.Point(144, 53);
+            this.btnAuto.Location = new System.Drawing.Point(144, 88);
             this.btnAuto.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAuto.Name = "btnAuto";
             this.btnAuto.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -210,7 +170,7 @@
             // 
             this.btnStatus2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStatus2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnStatus2.Location = new System.Drawing.Point(30, 210);
+            this.btnStatus2.Location = new System.Drawing.Point(30, 245);
             this.btnStatus2.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnStatus2.Name = "btnStatus2";
             this.btnStatus2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -228,7 +188,7 @@
             this.btnInfo.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
             this.btnInfo.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
             this.btnInfo.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnInfo.Location = new System.Drawing.Point(258, 53);
+            this.btnInfo.Location = new System.Drawing.Point(258, 88);
             this.btnInfo.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -248,7 +208,7 @@
             // 
             this.btnPasswordInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPasswordInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnPasswordInput.Location = new System.Drawing.Point(543, 131);
+            this.btnPasswordInput.Location = new System.Drawing.Point(543, 166);
             this.btnPasswordInput.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnPasswordInput.Name = "btnPasswordInput";
             this.btnPasswordInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -262,7 +222,7 @@
             // 
             this.btnDoubleInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDoubleInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnDoubleInput.Location = new System.Drawing.Point(372, 131);
+            this.btnDoubleInput.Location = new System.Drawing.Point(372, 166);
             this.btnDoubleInput.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnDoubleInput.Name = "btnDoubleInput";
             this.btnDoubleInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -276,7 +236,7 @@
             // 
             this.btnIntInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIntInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnIntInput.Location = new System.Drawing.Point(201, 131);
+            this.btnIntInput.Location = new System.Drawing.Point(201, 166);
             this.btnIntInput.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnIntInput.Name = "btnIntInput";
             this.btnIntInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -290,7 +250,7 @@
             // 
             this.btnStringInput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStringInput.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnStringInput.Location = new System.Drawing.Point(30, 131);
+            this.btnStringInput.Location = new System.Drawing.Point(30, 166);
             this.btnStringInput.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnStringInput.Name = "btnStringInput";
             this.btnStringInput.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -303,7 +263,7 @@
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(30, 20);
+            this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
             this.uiLine1.Size = new System.Drawing.Size(670, 20);
@@ -314,7 +274,7 @@
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 99);
+            this.uiLine2.Location = new System.Drawing.Point(30, 134);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(670, 20);
@@ -325,7 +285,7 @@
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.Location = new System.Drawing.Point(30, 178);
+            this.uiLine3.Location = new System.Drawing.Point(30, 213);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(155, 20);
@@ -336,7 +296,7 @@
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(372, 178);
+            this.uiLine4.Location = new System.Drawing.Point(372, 213);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(328, 20);
@@ -348,7 +308,7 @@
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(372, 210);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(372, 245);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -361,7 +321,7 @@
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.Location = new System.Drawing.Point(30, 257);
+            this.uiLine5.Location = new System.Drawing.Point(30, 292);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
             this.uiLine5.Size = new System.Drawing.Size(670, 20);
@@ -373,7 +333,7 @@
             // 
             this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton2.Location = new System.Drawing.Point(30, 289);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(30, 324);
             this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
             this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -392,7 +352,7 @@
             this.uiSymbolButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton4.Location = new System.Drawing.Point(372, 289);
+            this.uiSymbolButton4.Location = new System.Drawing.Point(372, 324);
             this.uiSymbolButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton4.Name = "uiSymbolButton4";
             this.uiSymbolButton4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -416,7 +376,7 @@
             this.uiSymbolButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton5.Location = new System.Drawing.Point(258, 289);
+            this.uiSymbolButton5.Location = new System.Drawing.Point(258, 324);
             this.uiSymbolButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton5.Name = "uiSymbolButton5";
             this.uiSymbolButton5.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -440,7 +400,7 @@
             this.uiSymbolButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton6.Location = new System.Drawing.Point(144, 289);
+            this.uiSymbolButton6.Location = new System.Drawing.Point(144, 324);
             this.uiSymbolButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton6.Name = "uiSymbolButton6";
             this.uiSymbolButton6.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -459,7 +419,7 @@
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.Location = new System.Drawing.Point(30, 415);
+            this.uiLine6.Location = new System.Drawing.Point(30, 450);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
             this.uiLine6.Size = new System.Drawing.Size(328, 20);
@@ -471,7 +431,7 @@
             // 
             this.btnEN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEN.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnEN.Location = new System.Drawing.Point(144, 447);
+            this.btnEN.Location = new System.Drawing.Point(144, 482);
             this.btnEN.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnEN.Name = "btnEN";
             this.btnEN.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -485,7 +445,7 @@
             // 
             this.btnCH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCH.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCH.Location = new System.Drawing.Point(30, 447);
+            this.btnCH.Location = new System.Drawing.Point(30, 482);
             this.btnCH.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCH.Name = "btnCH";
             this.btnCH.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -499,7 +459,7 @@
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine7.Location = new System.Drawing.Point(30, 336);
+            this.uiLine7.Location = new System.Drawing.Point(30, 371);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
             this.uiLine7.Size = new System.Drawing.Size(328, 20);
@@ -515,7 +475,7 @@
             this.uiSymbolButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
             this.uiSymbolButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton7.Location = new System.Drawing.Point(258, 368);
+            this.uiSymbolButton7.Location = new System.Drawing.Point(258, 403);
             this.uiSymbolButton7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton7.Name = "uiSymbolButton7";
             this.uiSymbolButton7.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -539,7 +499,7 @@
             this.uiSymbolButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton8.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
             this.uiSymbolButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton8.Location = new System.Drawing.Point(144, 368);
+            this.uiSymbolButton8.Location = new System.Drawing.Point(144, 403);
             this.uiSymbolButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton8.Name = "uiSymbolButton8";
             this.uiSymbolButton8.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -563,7 +523,7 @@
             this.uiSymbolButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton9.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
             this.uiSymbolButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton9.Location = new System.Drawing.Point(30, 368);
+            this.uiSymbolButton9.Location = new System.Drawing.Point(30, 403);
             this.uiSymbolButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton9.Name = "uiSymbolButton9";
             this.uiSymbolButton9.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -582,7 +542,7 @@
             // uiLine8
             // 
             this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine8.Location = new System.Drawing.Point(372, 336);
+            this.uiLine8.Location = new System.Drawing.Point(372, 371);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine8.Name = "uiLine8";
             this.uiLine8.Size = new System.Drawing.Size(328, 20);
@@ -594,7 +554,7 @@
             // 
             this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton3.Location = new System.Drawing.Point(486, 368);
+            this.uiSymbolButton3.Location = new System.Drawing.Point(486, 403);
             this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton3.Name = "uiSymbolButton3";
             this.uiSymbolButton3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -608,7 +568,7 @@
             // 
             this.uiSymbolButton10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton10.Location = new System.Drawing.Point(372, 368);
+            this.uiSymbolButton10.Location = new System.Drawing.Point(372, 403);
             this.uiSymbolButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton10.Name = "uiSymbolButton10";
             this.uiSymbolButton10.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -622,7 +582,7 @@
             // 
             this.uiSymbolButton11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton11.Location = new System.Drawing.Point(201, 210);
+            this.uiSymbolButton11.Location = new System.Drawing.Point(201, 245);
             this.uiSymbolButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton11.Name = "uiSymbolButton11";
             this.uiSymbolButton11.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -635,7 +595,7 @@
             // uiLine9
             // 
             this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine9.Location = new System.Drawing.Point(201, 178);
+            this.uiLine9.Location = new System.Drawing.Point(201, 213);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
             this.uiLine9.Size = new System.Drawing.Size(155, 20);
@@ -646,7 +606,7 @@
             // uiLine10
             // 
             this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine10.Location = new System.Drawing.Point(372, 415);
+            this.uiLine10.Location = new System.Drawing.Point(372, 450);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
             this.uiLine10.Size = new System.Drawing.Size(328, 20);
@@ -658,7 +618,7 @@
             // 
             this.uiSymbolButton13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton13.Location = new System.Drawing.Point(372, 447);
+            this.uiSymbolButton13.Location = new System.Drawing.Point(372, 482);
             this.uiSymbolButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton13.Name = "uiSymbolButton13";
             this.uiSymbolButton13.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -670,12 +630,49 @@
             // 
             // FDialogs
             // 
+            this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 549);
+            this.Controls.Add(this.uiLine1);
+            this.Controls.Add(this.uiLine10);
+            this.Controls.Add(this.btnAsk);
+            this.Controls.Add(this.uiSymbolButton5);
+            this.Controls.Add(this.uiSymbolButton13);
+            this.Controls.Add(this.uiSymbolButton4);
+            this.Controls.Add(this.btnSuccess);
+            this.Controls.Add(this.uiSymbolButton6);
+            this.Controls.Add(this.uiLine9);
+            this.Controls.Add(this.uiSymbolButton2);
+            this.Controls.Add(this.btnWarn);
+            this.Controls.Add(this.uiLine4);
+            this.Controls.Add(this.uiSymbolButton11);
+            this.Controls.Add(this.uiLine5);
+            this.Controls.Add(this.btnError);
+            this.Controls.Add(this.uiSymbolButton1);
+            this.Controls.Add(this.uiLine8);
+            this.Controls.Add(this.uiLine6);
+            this.Controls.Add(this.btnAuto);
+            this.Controls.Add(this.uiLine3);
+            this.Controls.Add(this.uiSymbolButton3);
+            this.Controls.Add(this.btnCH);
+            this.Controls.Add(this.btnStatus2);
+            this.Controls.Add(this.uiLine2);
+            this.Controls.Add(this.uiSymbolButton10);
+            this.Controls.Add(this.btnEN);
+            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnPasswordInput);
+            this.Controls.Add(this.uiLine7);
+            this.Controls.Add(this.uiSymbolButton9);
+            this.Controls.Add(this.btnStringInput);
+            this.Controls.Add(this.btnDoubleInput);
+            this.Controls.Add(this.uiSymbolButton7);
+            this.Controls.Add(this.uiSymbolButton8);
+            this.Controls.Add(this.btnIntInput);
             this.Name = "FDialogs";
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.ShowTitle = true;
             this.Symbol = 62160;
             this.Text = "Dialogs";
-            this.PagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

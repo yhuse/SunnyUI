@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo.Controls
 {
-    public partial class FPieChart : UITitlePage
+    public partial class FPieChart : UIPage
     {
         public FPieChart()
         {

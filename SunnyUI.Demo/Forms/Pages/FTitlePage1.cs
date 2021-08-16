@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI.Demo
 {
-    public partial class FTitlePage1 : UITitlePage
+    public partial class FTitlePage1 : UIPage
     {
         public FTitlePage1()
         {

@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI
 {
-    public partial class UIDataGridViewForm : UITitlePage
+    public partial class UIDataGridViewForm : UIPage
     {
         public UIDataGridViewForm()
         {

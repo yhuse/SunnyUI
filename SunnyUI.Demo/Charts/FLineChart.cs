@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sunny.UI.Demo.Charts
 {
-    public partial class FLineChart : UITitlePage
+    public partial class FLineChart : UIPage
     {
         public FLineChart()
         {

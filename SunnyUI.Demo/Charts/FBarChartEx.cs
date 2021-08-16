@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo
 {
-    public partial class FBarChartEx : UITitlePage
+    public partial class FBarChartEx : UIPage
     {
         public FBarChartEx()
         {

@@ -2,7 +2,7 @@
 
 namespace Sunny.UI.Demo
 {
-    public partial class FFrames : UITitlePage
+    public partial class FFrames : UIPage
     {
         public FFrames()
         {

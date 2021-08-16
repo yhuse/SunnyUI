@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sunny.UI.Demo.Forms
 {
-    public partial class FEditor : UITitlePage
+    public partial class FEditor : UIPage
     {
         public FEditor()
         {

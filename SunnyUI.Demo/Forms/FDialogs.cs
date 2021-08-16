@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FDialogs : UITitlePage
+    public partial class FDialogs : UIPage
     {
         public FDialogs()
         {
