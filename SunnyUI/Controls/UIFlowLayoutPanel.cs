@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UIFlowLayoutPanel : UIPanel
+    public class UIFlowLayoutPanel : UIPanel,IToolTip
     {
         private UIVerScrollBarEx VBar;
         private UIHorScrollBarEx HBar;
@@ -56,6 +56,11 @@ namespace Sunny.UI
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public Control ExToolTipControl()
+        {
+            return Panel;
         }
 
         public new void Focus()

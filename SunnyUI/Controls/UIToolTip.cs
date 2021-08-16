@@ -93,6 +93,11 @@ namespace Sunny.UI
                 ToolTipControls.TryAdd(control, ctrl);
             }
 
+            if (control is IToolTip toolTip)
+            {
+                SetToolTip(toolTip.ExToolTipControl(), description, title, symbol, symbolSize, symbolColor);
+            }
+
             base.SetToolTip(control, description);
         }
 
@@ -117,6 +122,11 @@ namespace Sunny.UI
                 ToolTipControls.TryAdd(control, ctrl);
             }
 
+            if (control is IToolTip toolTip)
+            {
+                SetToolTip(toolTip.ExToolTipControl(), description, title);
+            }
+
             base.SetToolTip(control, description);
         }
 
@@ -139,13 +149,25 @@ namespace Sunny.UI
                 ToolTipControls.TryAdd(control, ctrl);
             }
 
+            if (control is IToolTip toolTip)
+            {
+                SetToolTip(toolTip.ExToolTipControl(), description);
+            }
+
             base.SetToolTip(control, description);
         }
 
         public void RemoveToolTip(Control control)
         {
             if (ToolTipControls.ContainsKey(control))
+            {
                 ToolTipControls.TryRemove(control, out _);
+            }
+
+            if (control is IToolTip toolTip)
+            {
+                RemoveToolTip(toolTip.ExToolTipControl());
+            }
         }
 
         public new string GetToolTip(Control control)

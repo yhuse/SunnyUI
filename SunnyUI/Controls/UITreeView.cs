@@ -31,7 +31,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UITreeView : UIPanel
+    public sealed class UITreeView : UIPanel,IToolTip
     {
         private UIScrollBar Bar;
 
@@ -63,6 +63,11 @@ namespace Sunny.UI
             view.MouseMove += View_MouseMove;
             view.MouseEnter += View_MouseEnter;
             view.MouseLeave += View_MouseLeave;
+        }
+
+        public Control ExToolTipControl()
+        {
+            return view;
         }
 
         public new EventHandler MouseLeave;

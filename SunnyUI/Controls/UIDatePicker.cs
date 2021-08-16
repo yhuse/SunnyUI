@@ -22,13 +22,14 @@
 
 using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
-    public sealed partial class UIDatePicker : UIDropControl
+    public sealed partial class UIDatePicker : UIDropControl,IToolTip
     {
         public delegate void OnDateTimeChanged(object sender, DateTime value);
 
@@ -72,6 +73,11 @@ namespace Sunny.UI
                         break;
                 }
             }
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         public int Year => Value.Year;

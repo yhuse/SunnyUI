@@ -32,7 +32,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
-    public sealed partial class UIImageListBox : UIPanel
+    public sealed partial class UIImageListBox : UIPanel,IToolTip
     {
         private readonly ImageListBox listbox = new ImageListBox();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -67,6 +67,11 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
         }
 
+
+        public Control ExToolTipControl()
+        {
+            return listbox;
+        }
         public int IndexFromPoint(Point p)
         {
             return listbox.IndexFromPoint(p);

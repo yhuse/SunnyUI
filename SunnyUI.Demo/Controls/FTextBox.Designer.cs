@@ -29,6 +29,7 @@ namespace Sunny.UI.Demo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiTextBox6 = new Sunny.UI.UITextBox();
             this.uiTextBox5 = new Sunny.UI.UITextBox();
             this.uiTextBox4 = new Sunny.UI.UITextBox();
@@ -46,6 +47,7 @@ namespace Sunny.UI.Demo
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiTextBox1 = new Sunny.UI.UITextBox();
             this.uiIntegerUpDown1 = new Sunny.UI.UIIntegerUpDown();
+            this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.SuspendLayout();
             // 
             // uiTextBox6
@@ -280,6 +282,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 0;
             this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiToolTip1.SetToolTip(this.uiTextBox1, "Hello world!");
             this.uiTextBox1.Watermark = "水印文字";
             // 
             // uiIntegerUpDown1
@@ -295,6 +298,12 @@ namespace Sunny.UI.Demo
             this.uiIntegerUpDown1.TabIndex = 7;
             this.uiIntegerUpDown1.Text = "_uiIntegerUpDown1";
             this.uiIntegerUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiToolTip1
+            // 
+            this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.uiToolTip1.OwnerDraw = true;
             // 
             // FTextBox
             // 
@@ -348,5 +357,6 @@ namespace Sunny.UI.Demo
         private UILabel uiLabel1;
         private UITextBox uiTextBox1;
         private UIIntegerUpDown uiIntegerUpDown1;
+        private UIToolTip uiToolTip1;
     }
 }

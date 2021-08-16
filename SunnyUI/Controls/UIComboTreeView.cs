@@ -9,7 +9,7 @@ namespace Sunny.UI
     [DefaultEvent("NodeSelected")]
     [DefaultProperty("Nodes")]
     [ToolboxItem(true)]
-    public class UIComboTreeView : UIDropControl
+    public class UIComboTreeView : UIDropControl,IToolTip
     {
         public UIComboTreeView()
         {
@@ -30,6 +30,11 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         protected override void OnFontChanged(EventArgs e)

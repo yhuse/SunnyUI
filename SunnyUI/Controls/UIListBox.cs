@@ -33,7 +33,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
     [DefaultProperty("Items")]
-    public sealed partial class UIListBox : UIPanel
+    public sealed partial class UIListBox : UIPanel,IToolTip
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -77,6 +77,11 @@ namespace Sunny.UI
 
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public Control ExToolTipControl()
+        {
+            return listbox;
         }
 
         private void Listbox_MouseClick(object sender, MouseEventArgs e)

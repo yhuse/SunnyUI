@@ -30,7 +30,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
-    public sealed partial class UIIntegerUpDown : UIPanel
+    public sealed partial class UIIntegerUpDown : UIPanel,IToolTip
     {
         public delegate void OnValueChanged(object sender, int value);
 
@@ -46,6 +46,11 @@ namespace Sunny.UI
             edit.TextChanged += Edit_TextChanged;
             edit.Leave += Edit_Leave;
             pnlValue.Paint += PnlValue_Paint;
+        }
+
+        public Control ExToolTipControl()
+        {
+            return pnlValue;
         }
 
         private void PnlValue_Paint(object sender, PaintEventArgs e)

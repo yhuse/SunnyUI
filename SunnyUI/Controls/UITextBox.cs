@@ -33,7 +33,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
-    public sealed partial class UITextBox : UIPanel, ISymbol
+    public sealed partial class UITextBox : UIPanel, ISymbol, IToolTip
     {
         private readonly UIEdit edit = new UIEdit();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -84,6 +84,11 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)

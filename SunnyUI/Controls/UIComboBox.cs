@@ -32,7 +32,7 @@ namespace Sunny.UI
     [DefaultEvent("SelectedIndexChanged")]
     [ToolboxItem(true)]
     [LookupBindingProperties("DataSource", "DisplayMember", "ValueMember", "SelectedValue")]
-    public sealed partial class UIComboBox : UIDropControl
+    public sealed partial class UIComboBox : UIDropControl,IToolTip
     {
         public UIComboBox()
         {
@@ -47,6 +47,11 @@ namespace Sunny.UI
             edit.TextChanged += Edit_TextChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         [DefaultValue(false)]

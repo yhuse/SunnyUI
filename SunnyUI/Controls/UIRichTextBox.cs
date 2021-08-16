@@ -30,7 +30,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
-    public sealed class UIRichTextBox : UIPanel
+    public sealed class UIRichTextBox : UIPanel,IToolTip
     {
         private UIScrollBar bar;
         private RichTextBox edit;
@@ -65,6 +65,11 @@ namespace Sunny.UI
             edit.SelectionChanged += Edit_SelectionChanged;
 
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         public RichTextBox RichTextBox => edit;

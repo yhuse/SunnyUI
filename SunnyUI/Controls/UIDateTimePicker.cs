@@ -24,13 +24,14 @@
 
 using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
-    public sealed partial class UIDatetimePicker : UIDropControl
+    public sealed partial class UIDatetimePicker : UIDropControl,IToolTip
     {
         private void InitializeComponent()
         {
@@ -46,6 +47,11 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        public Control ExToolTipControl()
+        {
+            return edit;
         }
 
         [DefaultValue(false)]
