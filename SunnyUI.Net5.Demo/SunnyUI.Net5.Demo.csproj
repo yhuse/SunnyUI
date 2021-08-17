@@ -13,6 +13,7 @@
     <Company>SunnyUI.Net</Company>
     <Copyright>Copyright ©SunnyUI.Net 2012-2021</Copyright>
     <PackageProjectUrl>https://gitee.com/yhuse/SunnyUI</PackageProjectUrl>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

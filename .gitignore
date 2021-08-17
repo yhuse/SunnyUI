@@ -337,3 +337,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/SunnyUI.Net5.Demo/bin/net5.0-windows
