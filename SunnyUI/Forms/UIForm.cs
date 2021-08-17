@@ -44,7 +44,7 @@ namespace Sunny.UI
 
         public UIForm()
         {
-            base.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;//设置最大化尺寸
+            base.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;//设置最大化尺寸
             InitializeComponent();
 
             if (this.Register())
@@ -173,6 +173,8 @@ namespace Sunny.UI
             }
             set
             {
+                if (!Enum.IsDefined(typeof(FormBorderStyle), value))
+                    throw new InvalidEnumArgumentException(nameof(value), (int)value, typeof(FormBorderStyle));
                 base.FormBorderStyle = FormBorderStyle.None;
             }
         }
@@ -584,15 +586,16 @@ namespace Sunny.UI
         {
             Screen screen = Screen.FromPoint(MousePosition);
             base.MaximumSize = ShowFullScreen ? screen.Bounds.Size : screen.WorkingArea.Size;
+            if (screen.Primary)
+                MaximizedBounds = ShowFullScreen ? screen.Bounds : screen.WorkingArea;
+            else
+                MaximizedBounds = new Rectangle(0, 0, 0, 0);
+
             if (WindowState == FormWindowState.Normal)
             {
                 size = Size;
                 // 若窗体从正常模式->最大化模式，该操作是由移动窗体至顶部触发的，记录的是移动前的窗体位置
                 location = IsOnMoving ? FormLocation : Location;
-                Width = ShowFullScreen ? screen.Bounds.Width : screen.WorkingArea.Width;
-                Height = ShowFullScreen ? screen.Bounds.Height : screen.WorkingArea.Height;
-                Left = screen.Bounds.Left;
-                Top = screen.Bounds.Top;
                 GDIEx.SetFormRoundRectRegion(this, 0);
                 WindowState = FormWindowState.Maximized;
             }
@@ -600,14 +603,20 @@ namespace Sunny.UI
             {
                 if (size.Width == 0 || size.Height == 0)
                 {
-                    size = new Size(800, 600);
+                    int w = 800;
+                    if (MinimumSize.Width > 0) w = MinimumSize.Width;
+                    int h = 600;
+                    if (MinimumSize.Height > 0) h = MinimumSize.Height;
+                    size = new Size(w, h);
                 }
 
                 Size = size;
-                Point center = new Point(screen.Bounds.Left + screen.WorkingArea.Width / 2 - Size.Width / 2,
-                    screen.Bounds.Top + screen.WorkingArea.Height / 2 - Size.Height / 2);
+                if (location.X == 0 && location.Y == 0)
+                {
+                    location = new Point(screen.Bounds.Left + screen.Bounds.Width / 2 - size.Width / 2,
+                      screen.Bounds.Top + screen.Bounds.Height / 2 - size.Height / 2);
+                }
 
-                if (location.X == 0 && location.Y == 0) location = center;
                 Location = location;
                 GDIEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 WindowState = FormWindowState.Normal;
@@ -1136,7 +1145,6 @@ namespace Sunny.UI
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            base.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;//设置最大化尺寸
             base.OnSizeChanged(e);
             CalcSystemBoxPos();
 
