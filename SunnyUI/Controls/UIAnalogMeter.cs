@@ -40,6 +40,8 @@ namespace Sunny.UI
     /// Class for the analog meter control
     /// </summary>
     [ToolboxItem(true)]
+    [DefaultEvent("ValueChanged")]
+    [DefaultProperty("Value")]
     public class UIAnalogMeter : UIControl
     {
         #region Enumerator
@@ -186,6 +188,8 @@ namespace Sunny.UI
             }
         }
 
+        public event EventHandler ValueChanged;
+
         [
             Category("Behavior"),
             Description("Value of the data"),
@@ -203,8 +207,12 @@ namespace Sunny.UI
                 if (val < minValue)
                     val = minValue;
 
-                currValue = val;
-                Invalidate();
+                if (currValue != val)
+                {
+                    currValue = val;
+                    Invalidate();
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
