@@ -697,7 +697,12 @@ namespace Sunny.UI
 
             if (radiusSides == UICornerRadiusSides.None || radius == 0)
             {
-                Point[] points = new Point[] { new Point(0, 0), new Point(rect.Width, 0), new Point(rect.Width, rect.Height), new Point(0, rect.Height), new Point(0, 0), };
+                Point[] points = new Point[] {
+                    new Point(rect.Left, rect.Top),
+                    new Point(rect.Right, rect.Top),
+                    new Point(rect.Right, rect.Bottom),
+                    new Point(rect.Left, rect.Bottom),
+                    new Point(rect.Left, rect.Top) };
                 path = points.Path();
             }
             else
@@ -889,27 +894,42 @@ namespace Sunny.UI
         public static GraphicsPath CreateRoundedRectanglePath(this Rectangle rect, int radius, bool cornerLeftTop = true, bool cornerRightTop = true, bool cornerRightBottom = true, bool cornerLeftBottom = true)
         {
             GraphicsPath path = new GraphicsPath();
-            if (cornerLeftTop)
-                path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            else
-                path.AddLine(new Point(rect.X, rect.Y + 1), new Point(rect.X, rect.Y));
 
-            if (cornerRightTop)
-                path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+            if ((!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
+            {
+                Point[] points = new Point[] {
+                    new Point(rect.Left, rect.Top),
+                    new Point(rect.Right, rect.Top),
+                    new Point(rect.Right, rect.Bottom),
+                    new Point(rect.Left, rect.Bottom),
+                    new Point(rect.Left, rect.Top) };
+                path = points.Path();
+            }
             else
-                path.AddLine(new Point(rect.X + rect.Width - 1, rect.Y), new Point(rect.X + rect.Width, rect.Y));
+            {
+                if (cornerLeftTop)
+                    path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                else
+                    path.AddLine(new Point(rect.X, rect.Y + 1), new Point(rect.X, rect.Y));
 
-            if (cornerRightBottom)
-                path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
-            else
-                path.AddLine(new Point(rect.X + rect.Width, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+                if (cornerRightTop)
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                else
+                    path.AddLine(new Point(rect.X + rect.Width - 1, rect.Y), new Point(rect.X + rect.Width, rect.Y));
 
-            if (cornerLeftBottom)
-                path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
-            else
-                path.AddLine(new Point(rect.X + 1, rect.Y + rect.Height), new Point(rect.X, rect.Y + rect.Height));
+                if (cornerRightBottom)
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+                else
+                    path.AddLine(new Point(rect.X + rect.Width, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
 
-            path.CloseFigure();
+                if (cornerLeftBottom)
+                    path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+                else
+                    path.AddLine(new Point(rect.X + 1, rect.Y + rect.Height), new Point(rect.X, rect.Y + rect.Height));
+
+                path.CloseFigure();
+            }
+
             return path;
         }
 

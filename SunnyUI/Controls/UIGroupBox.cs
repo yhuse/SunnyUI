@@ -43,15 +43,7 @@ namespace Sunny.UI
 
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            //IsRadius为True时，显示左上圆角
-            bool RadiusLeftTop = RadiusSides.GetValue(UICornerRadiusSides.LeftTop);
-            //IsRadius为True时，显示左下圆角
-            bool RadiusLeftBottom = RadiusSides.GetValue(UICornerRadiusSides.LeftBottom);
-            //IsRadius为True时，显示右上圆角
-            bool RadiusRightTop = RadiusSides.GetValue(UICornerRadiusSides.RightTop);
-            //IsRadius为True时，显示右下圆角
-            bool RadiusRightBottom = RadiusSides.GetValue(UICornerRadiusSides.RightBottom);
-            path = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1).CreateRoundedRectanglePath(Radius, RadiusLeftTop, RadiusRightTop, RadiusRightBottom, RadiusLeftBottom);
+            path = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1).CreateRoundedRectanglePath(Radius, RadiusSides);
             base.OnPaintRect(g, path);
         }
 
