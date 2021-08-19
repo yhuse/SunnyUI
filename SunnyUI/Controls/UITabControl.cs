@@ -54,7 +54,6 @@ namespace Sunny.UI
             DrawMode = TabDrawMode.OwnerDrawFixed;
             Font = UIFontColor.Font;
             AfterSetFillColor(FillColor);
-            Size = new Size(450, 270);
             Version = UIGlobal.Version;
 
             Helper = new UITabControlHelper(this);

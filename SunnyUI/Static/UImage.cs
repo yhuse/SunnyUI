@@ -104,12 +104,6 @@ namespace Sunny.UI
             }
         }
 
-        public static Color RandomColor()
-        {
-            Random random = new Random();
-            return Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
-        }
-
         public static Bitmap ChangeOpacity(Image img, float opacity)
         {
             Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
@@ -232,38 +226,6 @@ namespace Sunny.UI
             }
         }
 
-        public static bool IsNullOrEmpty(this Color color)
-        {
-            return color == Color.Empty || color == Color.Transparent;
-        }
-
-        public static bool IsValid(this Color color)
-        {
-            return !color.IsNullOrEmpty();
-        }
-
-        /// <summary>
-        /// 设置GDI高质量模式抗锯齿
-        /// </summary>
-        /// <param name="g"></param>
-        public static void SetHighQuality(this Graphics g)
-        {
-            g.SmoothingMode = SmoothingMode.AntiAlias;  //使绘图质量最高，即消除锯齿
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            g.CompositingQuality = CompositingQuality.HighQuality;
-        }
-
-        /// <summary>
-        /// 设置GDI默认值
-        /// </summary>
-        /// <param name="g"></param>
-        public static void SetDefaultQuality(this Graphics g)
-        {
-            g.SmoothingMode = SmoothingMode.Default;
-            g.InterpolationMode = InterpolationMode.Default;
-            g.CompositingQuality = CompositingQuality.Default;
-        }
-
         /// <summary>
         /// 旋转图片
         /// </summary>
@@ -305,79 +267,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 设置递进颜色
-        /// </summary>
-        /// <param name="color">颜色</param>
-        /// <param name="alpha">alpha</param>
-        /// <returns>颜色</returns>
-        public static Color StepColor(this Color color, int alpha)
-        {
-            if (alpha == 100)
-            {
-                return color;
-            }
-
-            byte a = color.A;
-            byte r = color.R;
-            byte g = color.G;
-            byte b = color.B;
-            float bg;
-
-            int _alpha = Math.Max(alpha, 0);
-            double d = (_alpha - 100.0) / 100.0;
-
-            if (d > 100)
-            {
-                // blend with white
-                bg = 255.0F;
-                d = 1.0F - d;  // 0 = transparent fg; 1 = opaque fg
-            }
-            else
-            {
-                // blend with black
-                bg = 0.0F;
-                d = 1.0F + d;  // 0 = transparent fg; 1 = opaque fg
-            }
-
-            r = (byte)(BlendColor(r, bg, d));
-            g = (byte)(BlendColor(g, bg, d));
-            b = (byte)(BlendColor(b, bg, d));
-
-            return Color.FromArgb(a, r, g, b);
-        }
-
-        private static double BlendColor(double fg, double bg, double alpha)
-        {
-            double result = bg + (alpha * (fg - bg));
-            if (result < 0.0)
-            {
-                result = 0.0;
-            }
-
-            if (result > 255)
-            {
-                result = 255;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// 文件转换为Byte数组
-        /// </summary>
-        /// <param name="filename">文件名</param>
-        /// <returns>结果</returns>
-        public static byte[] FileToBytes(this string filename)
-        {
-            if (!File.Exists(filename))
-            {
-                return null;
-            }
-
-            return File.ReadAllBytes(filename);
-        }
-
-        /// <summary>
         /// 缩放图像
         /// </summary>
         /// <param name="bmp">原图片</param>
@@ -400,16 +289,6 @@ namespace Sunny.UI
             }
 
             return b;
-        }
-
-        /// <summary>
-        /// Byte数组保存为文件
-        /// </summary>
-        /// <param name="bytes">bytes</param>
-        /// <param name="filename">文件名</param>
-        public static void ToFile(this byte[] bytes, string filename)
-        {
-            File.WriteAllBytes(filename, bytes);
         }
 
         /// <summary>

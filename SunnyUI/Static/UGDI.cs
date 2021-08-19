@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2021-08-19: V3.0.5 修复CreateRoundedRectanglePath参数radius=0时的错误 
 ******************************************************************************/
 
 using System;
@@ -1311,6 +1312,167 @@ namespace Sunny.UI
             }
 
             TwoPoints.Clear();
+        }
+
+        public static bool IsNullOrEmpty(this Color color)
+        {
+            return color == Color.Empty || color == Color.Transparent;
+        }
+
+        public static bool IsValid(this Color color)
+        {
+            return !color.IsNullOrEmpty();
+        }
+
+        /// <summary>
+        /// 设置GDI高质量模式抗锯齿
+        /// </summary>
+        /// <param name="g"></param>
+        public static void SetHighQuality(this Graphics g)
+        {
+            g.SmoothingMode = SmoothingMode.AntiAlias;  //使绘图质量最高，即消除锯齿
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.CompositingQuality = CompositingQuality.HighQuality;
+        }
+
+        /// <summary>
+        /// 设置GDI默认值
+        /// </summary>
+        /// <param name="g"></param>
+        public static void SetDefaultQuality(this Graphics g)
+        {
+            g.SmoothingMode = SmoothingMode.Default;
+            g.InterpolationMode = InterpolationMode.Default;
+            g.CompositingQuality = CompositingQuality.Default;
+        }
+
+        /// <summary>
+        /// 设置递进颜色
+        /// </summary>
+        /// <param name="color">颜色</param>
+        /// <param name="alpha">alpha</param>
+        /// <returns>颜色</returns>
+        public static Color StepColor(this Color color, int alpha)
+        {
+            if (alpha == 100)
+            {
+                return color;
+            }
+
+            byte a = color.A;
+            byte r = color.R;
+            byte g = color.G;
+            byte b = color.B;
+            float bg;
+
+            int _alpha = Math.Max(alpha, 0);
+            double d = (_alpha - 100.0) / 100.0;
+
+            if (d > 100)
+            {
+                // blend with white
+                bg = 255.0F;
+                d = 1.0F - d;  // 0 = transparent fg; 1 = opaque fg
+            }
+            else
+            {
+                // blend with black
+                bg = 0.0F;
+                d = 1.0F + d;  // 0 = transparent fg; 1 = opaque fg
+            }
+
+            r = (byte)(BlendColor(r, bg, d));
+            g = (byte)(BlendColor(g, bg, d));
+            b = (byte)(BlendColor(b, bg, d));
+
+            return Color.FromArgb(a, r, g, b);
+        }
+
+        private static double BlendColor(double fg, double bg, double alpha)
+        {
+            double result = bg + (alpha * (fg - bg));
+            if (result < 0.0)
+            {
+                result = 0.0;
+            }
+
+            if (result > 255)
+            {
+                result = 255;
+            }
+
+            return result;
+        }
+
+        public static Color RandomColor()
+        {
+            Random random = new Random();
+            return Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+        }
+
+        /// <summary>
+        /// 平移
+        /// </summary>
+        public static Point Offset(this Point point, Size size)
+        {
+            point.Offset(size.Width, size.Height);
+            return point;
+        }
+
+        /// <summary>
+        /// 宽度放大
+        /// </summary>
+        public static Size MultiplyWidth(this Size size, int multiple)
+        {
+            return new Size(size.Width * multiple, size.Height);
+        }
+
+        /// <summary>
+        /// 高度放大
+        /// </summary>
+        public static Size MultiplyHeight(this Size size, int multiple)
+        {
+            return new Size(size.Width, size.Height * multiple);
+        }
+
+        /// <summary>
+        /// 宽度和高度放大
+        /// </summary>
+        public static Size MultiplyAll(this Size size, int multiple)
+        {
+            return new Size(size.Width * multiple, size.Height * multiple);
+        }
+
+        /// <summary>
+        /// 宽度放大
+        /// </summary>
+        public static Size MultiplyWidth(this Size size, double multiple)
+        {
+            return new Size((int)(size.Width * multiple), size.Height);
+        }
+
+        /// <summary>
+        /// 高度放大
+        /// </summary>
+        public static Size MultiplyHeight(this Size size, double multiple)
+        {
+            return new Size(size.Width, (int)(size.Height * multiple));
+        }
+
+        /// <summary>
+        /// 宽度和高度放大
+        /// </summary>
+        public static Size MultiplyAll(this Size size, double multiple)
+        {
+            return new Size((int)(size.Width * multiple), (int)(size.Height * multiple));
+        }
+
+        /// <summary>
+        /// 区域是否可见
+        /// </summary>
+        public static bool IsVisible(this Rectangle rect)
+        {
+            return rect.Width > 0 && rect.Height > 0;
         }
     }
 }
