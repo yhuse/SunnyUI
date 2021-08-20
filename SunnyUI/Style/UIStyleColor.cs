@@ -129,8 +129,8 @@ namespace Sunny.UI
             Name = style;
 
             MenuSelectedColor = TitleColor = RectColor = PrimaryColor = color;
-            Color[] colors = GDIEx.GradientColors(Color.White, PrimaryColor, 16);
-            Color[] colors1 = GDIEx.GradientColors(PrimaryColor, Color.Black, 16);
+            Color[] colors = Color.White.GradientColors(PrimaryColor, 16);
+            Color[] colors1 = PrimaryColor.GradientColors(Color.Black, 16);
             PlainColor = colors[1];
             SecondaryColor = colors[5];
             RegularColor = colors[10];
@@ -147,8 +147,8 @@ namespace Sunny.UI
         {
             Name = style;
             MenuSelectedColor = RectColor = RectHoverColor = TitleColor = ButtonForeColor = ButtonFillHoverColor = PrimaryColor = color;
-            Color[] colors = GDIEx.GradientColors(Color.White, PrimaryColor, 16);
-            Color[] colors1 = GDIEx.GradientColors(PrimaryColor, Color.Black, 16);
+            Color[] colors = Color.White.GradientColors(PrimaryColor, 16);
+            Color[] colors1 = PrimaryColor.GradientColors(Color.Black, 16);
             ButtonFillColor = PlainColor = colors[1];
             SecondaryColor = colors[5];
             RegularColor = colors[10];

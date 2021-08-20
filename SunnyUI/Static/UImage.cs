@@ -572,5 +572,76 @@ namespace Sunny.UI
                 }
             }
         }
+
+        public static void DrawImageFromBase64(this Graphics g, string base64Image, Rectangle rect)
+        {
+            using (var ms = new System.IO.MemoryStream(Convert.FromBase64String(base64Image)))
+            using (var image = Image.FromStream(ms))
+            {
+                g.DrawImage(image, rect);
+                image.Dispose();
+            }
+        }
+
+        public static void DrawTransparentImage(this Graphics g, float alpha, Image image, Rectangle rect)
+        {
+            var colorMatrix = new ColorMatrix { Matrix33 = alpha };
+            var imageAttributes = new ImageAttributes();
+            imageAttributes.SetColorMatrix(colorMatrix);
+            g.DrawImage(image, new Rectangle(rect.X, rect.Y, image.Width, image.Height), rect.X, rect.Y, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
+            imageAttributes.Dispose();
+        }
+
+        public static void DrawStrokedRectangle(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
+        {
+            using (var bodyBrush = new SolidBrush(bodyColor))
+            {
+                var x = strokeThickness == 1 ? 0 : strokeThickness;
+                var y = strokeThickness == 1 ? 0 : strokeThickness;
+                var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
+                var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
+                var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
+                using (var strokePen = new Pen(strokeColor, strokeThickness))
+                {
+                    g.FillRectangle(bodyBrush, newRect);
+                    g.DrawRectangle(strokePen, newRect);
+                }
+            }
+        }
+
+        public static void DrawStrokedEllipse(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
+        {
+            using (var bodyBrush = new SolidBrush(bodyColor))
+            {
+                var x = strokeThickness == 1 ? 0 : strokeThickness;
+                var y = strokeThickness == 1 ? 0 : strokeThickness;
+                var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
+                var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
+                var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
+                using (var strokePen = new Pen(strokeColor, strokeThickness))
+                {
+                    g.FillEllipse(bodyBrush, newRect);
+                    g.DrawEllipse(strokePen, newRect);
+                }
+            }
+        }
+
+        public static string ToBase64(this Image image)
+        {
+            using (var toBase64 = new MemoryStream())
+            {
+                image.Save(toBase64, image.RawFormat);
+                image.Dispose();
+                return Convert.ToBase64String(toBase64.ToArray());
+            }
+        }
+
+        public static Image ToImage(string base64Image)
+        {
+            using (var toImage = new System.IO.MemoryStream(Convert.FromBase64String(base64Image)))
+            {
+                return Image.FromStream(toImage);
+            }
+        }
     }
 }

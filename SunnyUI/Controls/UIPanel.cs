@@ -310,7 +310,7 @@ namespace Sunny.UI
             if (IsDisposed) return;
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            GraphicsPath path = GDIEx.CreateRoundedRectanglePath(rect, radius, RadiusSides);
+            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides);
 
             //填充背景色
             if (ShowFill && fillColor.IsValid())

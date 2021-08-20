@@ -122,7 +122,7 @@ namespace Sunny.UI
             get => valveColor;
             set
             {
-                valveColor = value; 
+                valveColor = value;
                 Invalidate();
             }
         }
@@ -216,7 +216,7 @@ namespace Sunny.UI
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14, 10, 27);
                     e.Graphics.FillRectangle(valveColor, rect);
 
-                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    colors = Color.White.GradientColors(valveColor, 14);
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14 + 4, 10, 4);
                     e.Graphics.FillRectangle(colors[4], rect);
                     rect = new Rectangle(Width - pipeSize - 8 - 14 - 10, Height / 2 - 14 + 12, 10, 4);
@@ -269,7 +269,7 @@ namespace Sunny.UI
                     rect = new Rectangle(Width / 2 - 14, pipeSize + 8 + 10 + 4, 27, 10);
                     e.Graphics.FillRectangle(valveColor, rect);
 
-                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    colors = Color.White.GradientColors(valveColor, 14);
                     rect = new Rectangle(Width / 2 - 14 + 4, pipeSize + 8 + 10 + 4, 4, 10);
                     e.Graphics.FillRectangle(colors[4], rect);
                     rect = new Rectangle(Width / 2 - 14 + 12, pipeSize + 8 + 10 + 4, 4, 10);
@@ -321,7 +321,7 @@ namespace Sunny.UI
                     rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14, 10, 27);
                     e.Graphics.FillRectangle(valveColor, rect);
 
-                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    colors = Color.White.GradientColors(valveColor, 14);
                     rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14 + 4, 10, 4);
                     e.Graphics.FillRectangle(colors[4], rect);
                     rect = new Rectangle(pipeSize + 8 + 10 + 4, Height / 2 - 14 + 12, 10, 4);
@@ -373,7 +373,7 @@ namespace Sunny.UI
                     rect = new Rectangle(Width / 2 - 14, Height - pipeSize - 8 - 14 - 10, 27, 10);
                     e.Graphics.FillRectangle(valveColor, rect);
 
-                    colors = GDIEx.GradientColors(Color.White, valveColor, 14);
+                    colors = Color.White.GradientColors(valveColor, 14);
                     rect = new Rectangle(Width / 2 - 14 + 4, Height - pipeSize - 8 - 14 - 10, 4, 10);
                     e.Graphics.FillRectangle(colors[4], rect);
                     rect = new Rectangle(Width / 2 - 14 + 12, Height - pipeSize - 8 - 14 - 10, 4, 10);

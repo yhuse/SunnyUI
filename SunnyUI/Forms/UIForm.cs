@@ -598,7 +598,7 @@ namespace Sunny.UI
                 size = Size;
                 // 若窗体从正常模式->最大化模式，该操作是由移动窗体至顶部触发的，记录的是移动前的窗体位置
                 location = IsOnMoving ? FormLocation : Location;
-                GDIEx.SetFormRoundRectRegion(this, 0);
+                FormEx.SetFormRoundRectRegion(this, 0);
                 WindowState = FormWindowState.Maximized;
             }
             else if (WindowState == FormWindowState.Maximized)
@@ -620,7 +620,7 @@ namespace Sunny.UI
                 }
 
                 Location = location;
-                GDIEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+                FormEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 WindowState = FormWindowState.Normal;
             }
 
@@ -1371,11 +1371,11 @@ namespace Sunny.UI
 
             if (WindowState == FormWindowState.Maximized)
             {
-                GDIEx.SetFormRoundRectRegion(this, 0);
+                FormEx.SetFormRoundRectRegion(this, 0);
             }
             else
             {
-                GDIEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+                FormEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
             }
 
             Invalidate();
