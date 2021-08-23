@@ -59,10 +59,10 @@ namespace Sunny.UI
             edit.Width = Width - 8;
             edit.Text = String.Empty;
             edit.BorderStyle = BorderStyle.None;
-            edit.TextChanged += EditTextChanged;
-            edit.KeyDown += EditOnKeyDown;
-            edit.KeyUp += EditOnKeyUp;
-            edit.KeyPress += EditOnKeyPress;
+            edit.TextChanged += Edit_TextChanged;
+            edit.KeyDown += Edit_OnKeyDown;
+            edit.KeyUp += Edit_OnKeyUp;
+            edit.KeyPress += Edit_OnKeyPress;
             edit.MouseEnter += Edit_MouseEnter;
             edit.Click += Edit_Click;
             edit.DoubleClick += Edit_DoubleClick;
@@ -71,6 +71,11 @@ namespace Sunny.UI
             edit.Validating += Edit_Validating;
             edit.GotFocus += Edit_GotFocus;
             edit.LostFocus += Edit_LostFocus;
+            edit.MouseLeave += Edit_MouseLeave;
+            edit.MouseWheel += Edit_MouseWheel;
+            edit.MouseDown += Edit_MouseDown;
+            edit.MouseUp += Edit_MouseUp;
+            edit.MouseMove += Edit_MouseMove;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -82,7 +87,6 @@ namespace Sunny.UI
             bar.Style = UIStyle.Custom;
             bar.Visible = false;
             bar.ValueChanged += Bar_ValueChanged;
-            edit.MouseWheel += OnMouseWheel;
             bar.MouseEnter += Bar_MouseEnter;
             TextAlignment = ContentAlignment.MiddleLeft;
 
@@ -90,6 +94,30 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private void Edit_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void Edit_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
+        }
+
+        private void Edit_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
+
+        private void Edit_MouseLeave(object sender, EventArgs e)
+        {
+            MouseLeave?.Invoke(this, e);
         }
 
         public Control ExToolTipControl()
@@ -116,6 +144,7 @@ namespace Sunny.UI
         public new EventHandler LostFocus;
         public new CancelEventHandler Validating;
         public new event EventHandler Validated;
+        public new EventHandler MouseLeave;
 
         private void Edit_Validated(object sender, EventArgs e)
         {
@@ -205,7 +234,7 @@ namespace Sunny.UI
             }
         }
 
-        private void OnMouseWheel(object sender, MouseEventArgs e)
+        private void Edit_MouseWheel(object sender, MouseEventArgs e)
         {
             base.OnMouseWheel(e);
             if (bar != null && bar.Visible && edit != null)
@@ -302,12 +331,12 @@ namespace Sunny.UI
             edit.ScrollToCaret();
         }
 
-        private void EditOnKeyPress(object sender, KeyPressEventArgs e)
+        private void Edit_OnKeyPress(object sender, KeyPressEventArgs e)
         {
             KeyPress?.Invoke(this, e);
         }
 
-        private void EditOnKeyDown(object sender, KeyEventArgs e)
+        private void Edit_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -319,7 +348,7 @@ namespace Sunny.UI
 
         public event EventHandler DoEnter;
 
-        private void EditOnKeyUp(object sender, KeyEventArgs e)
+        private void Edit_OnKeyUp(object sender, KeyEventArgs e)
         {
             KeyUp?.Invoke(this, e);
         }
@@ -362,7 +391,7 @@ namespace Sunny.UI
 
         public new event EventHandler Leave;
 
-        private void EditTextChanged(object s, EventArgs e)
+        private void Edit_TextChanged(object s, EventArgs e)
         {
             TextChanged?.Invoke(this, e);
             SetScrollInfo();

@@ -71,9 +71,9 @@ namespace Sunny.UI
             listbox.MouseDown += Listbox_MouseDown;
             listbox.MouseUp += Listbox_MouseUp;
             listbox.MouseMove += Listbox_MouseMove;
-            listbox.DataSourceChanged += Box_DataSourceChanged;
-            listbox.DisplayMemberChanged += Box_DisplayMemberChanged;
-            listbox.ValueMemberChanged += Box_ValueMemberChanged;
+            listbox.DataSourceChanged += Listbox_DataSourceChanged;
+            listbox.DisplayMemberChanged += Listbox_DisplayMemberChanged;
+            listbox.ValueMemberChanged += Listbox_ValueMemberChanged;
             listbox.ItemsClear += Listbox_ItemsClear;
             listbox.ItemsAdd += Listbox_ItemsAdd;
             listbox.ItemsRemove += Listbox_ItemsRemove;
@@ -81,14 +81,28 @@ namespace Sunny.UI
             listbox.KeyPress += Listbox_KeyPress;
             listbox.KeyDown += Listbox_KeyDown;
             listbox.KeyUp += Listbox_KeyUp;
+            listbox.MouseEnter += Listbox_MouseEnter;
+            listbox.MouseLeave += Listbox_MouseLeave;
 
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
+        public new EventHandler MouseLeave;
+        public new EventHandler MouseEnter;
         public new event KeyPressEventHandler KeyPress;
         public new event KeyEventHandler KeyDown;
         public new event KeyEventHandler KeyUp;
+
+        private void Listbox_MouseLeave(object sender, EventArgs e)
+        {
+            MouseLeave?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseEnter(object sender, EventArgs e)
+        {
+            MouseEnter?.Invoke(this, e);
+        }
 
         private void Listbox_KeyUp(object sender, KeyEventArgs e)
         {
@@ -518,17 +532,17 @@ namespace Sunny.UI
             set => listbox.DataSource = value;
         }
 
-        private void Box_ValueMemberChanged(object sender, EventArgs e)
+        private void Listbox_ValueMemberChanged(object sender, EventArgs e)
         {
             ValueMemberChanged?.Invoke(this, e);
         }
 
-        private void Box_DisplayMemberChanged(object sender, EventArgs e)
+        private void Listbox_DisplayMemberChanged(object sender, EventArgs e)
         {
             DisplayMemberChanged?.Invoke(this, e);
         }
 
-        private void Box_DataSourceChanged(object sender, EventArgs e)
+        private void Listbox_DataSourceChanged(object sender, EventArgs e)
         {
             DataSourceChanged?.Invoke(this, e);
         }

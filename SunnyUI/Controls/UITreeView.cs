@@ -32,7 +32,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UITreeView : UIPanel,IToolTip
+    public sealed class UITreeView : UIPanel, IToolTip
     {
         private UIScrollBar Bar;
 
@@ -64,6 +64,9 @@ namespace Sunny.UI
             view.MouseMove += View_MouseMove;
             view.MouseEnter += View_MouseEnter;
             view.MouseLeave += View_MouseLeave;
+            view.KeyPress += View_KeyPress;
+            view.KeyDown += View_KeyDown;
+            view.KeyUp += View_KeyUp;
         }
 
         public Control ExToolTipControl()
@@ -76,6 +79,25 @@ namespace Sunny.UI
         public new MouseEventHandler MouseMove;
         public new MouseEventHandler MouseDown;
         public new MouseEventHandler MouseUp;
+        public new event KeyPressEventHandler KeyPress;
+        public new event KeyEventHandler KeyDown;
+        public new event KeyEventHandler KeyUp;
+
+        private void View_KeyUp(object sender, KeyEventArgs e)
+        {
+            KeyUp?.Invoke(this, e);
+        }
+
+        private void View_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(this, e);
+        }
+
+        private void View_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPress?.Invoke(this, e);
+        }
+
 
         private void View_MouseLeave(object sender, EventArgs e)
         {
