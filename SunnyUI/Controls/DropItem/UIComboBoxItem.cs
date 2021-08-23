@@ -69,5 +69,13 @@ namespace Sunny.UI
         {
             DoValueChanged(this, ListBox.SelectedValue);
         }
+
+        private void listBox_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter || e.KeyCode == System.Windows.Forms.Keys.Space)
+            {
+                CloseParent();
+            }
+        }
     }
 }

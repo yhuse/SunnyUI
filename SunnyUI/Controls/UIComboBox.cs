@@ -36,7 +36,7 @@ namespace Sunny.UI
     [DefaultEvent("SelectedIndexChanged")]
     [ToolboxItem(true)]
     [LookupBindingProperties("DataSource", "DisplayMember", "ValueMember", "SelectedValue")]
-    public sealed partial class UIComboBox : UIDropControl,IToolTip
+    public sealed partial class UIComboBox : UIDropControl, IToolTip
     {
         public UIComboBox()
         {
@@ -193,6 +193,11 @@ namespace Sunny.UI
             }
         }
 
+        public void ShowDropDown()
+        {
+            UIComboBox_ButtonClick(this, EventArgs.Empty);
+        }
+
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
             if (Items.Count > 0)
@@ -312,6 +317,22 @@ namespace Sunny.UI
         public string GetItemText(object item)
         {
             return ListBox.GetItemText(item);
+        }
+
+        private void UIComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                ShowDropDown();
+            }
+        }
+
+        private void edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                ShowDropDown();
+            }
         }
     }
 }

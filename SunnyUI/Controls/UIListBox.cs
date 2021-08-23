@@ -37,7 +37,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
     [DefaultProperty("Items")]
-    public sealed partial class UIListBox : UIPanel,IToolTip
+    public sealed partial class UIListBox : UIPanel, IToolTip
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -78,9 +78,31 @@ namespace Sunny.UI
             listbox.ItemsAdd += Listbox_ItemsAdd;
             listbox.ItemsRemove += Listbox_ItemsRemove;
             listbox.ItemsInsert += Listbox_ItemsInsert;
+            listbox.KeyPress += Listbox_KeyPress;
+            listbox.KeyDown += Listbox_KeyDown;
+            listbox.KeyUp += Listbox_KeyUp;
 
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public new event KeyPressEventHandler KeyPress;
+        public new event KeyEventHandler KeyDown;
+        public new event KeyEventHandler KeyUp;
+
+        private void Listbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            KeyUp?.Invoke(this, e);
+        }
+
+        private void Listbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(this, e);
+        }
+
+        private void Listbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPress?.Invoke(this, e);
         }
 
         public Control ExToolTipControl()

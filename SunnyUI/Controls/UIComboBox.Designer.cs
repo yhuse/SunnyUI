@@ -30,11 +30,15 @@
         {
             this.SuspendLayout();
             // 
+            // edit
+            // 
+            this.edit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edit_KeyDown);
+            // 
             // UIComboBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Name = "UIComboBox";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UIComboBox_KeyDown);
             this.ButtonClick += new System.EventHandler(this.UIComboBox_ButtonClick);
             this.FontChanged += new System.EventHandler(this.UIComboBox_FontChanged);
             this.ResumeLayout(false);
