@@ -132,5 +132,17 @@ namespace Sunny.UI.Demo.Charts
 
             LineChart.Refresh();
         }
+
+        private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (LineChart.Option == null) return;
+            foreach (var series in LineChart.Option.Series.Values)
+            {
+                series.ShowLine = !uiCheckBox1.Checked;
+                series.Symbol = uiCheckBox1.Checked ? UILinePointSymbol.Circle : UILinePointSymbol.None;
+            }
+
+            LineChart.Refresh();
+        }
     }
 }

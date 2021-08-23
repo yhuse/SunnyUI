@@ -261,6 +261,8 @@ namespace Sunny.UI
 
         public bool Smooth { get; set; }
 
+        public bool ShowLine { get; set; } = true;
+
         public UILineSeries(string name)
         {
             Name = name;

@@ -36,6 +36,7 @@
             this.LineChart = new Sunny.UI.UILineChart();
             this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
@@ -128,11 +129,25 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // uiCheckBox1
+            // 
+            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBox1.Location = new System.Drawing.Point(571, 505);
+            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiCheckBox1.Name = "uiCheckBox1";
+            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.uiCheckBox1.Size = new System.Drawing.Size(100, 29);
+            this.uiCheckBox1.TabIndex = 37;
+            this.uiCheckBox1.Text = "显示点";
+            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
+            // 
             // FLineChart
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 574);
+            this.Controls.Add(this.uiCheckBox1);
             this.Controls.Add(this.uiSymbolButton2);
             this.Controls.Add(this.uiSymbolButton1);
             this.Controls.Add(this.uiImageButton3);
@@ -160,5 +175,6 @@
         private UILineChart LineChart;
         private UISymbolButton uiSymbolButton2;
         private System.Windows.Forms.Timer timer1;
+        private UICheckBox uiCheckBox1;
     }
 }
