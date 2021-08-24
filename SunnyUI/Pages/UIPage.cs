@@ -21,6 +21,7 @@
  * 2021-06-20: V3.0.4 增加标题行，替代UITitlePage
  * 2021-07-18: V3.0.5 修复OnLoad在加载时重复加载两次的问题，增加Final函数，每次页面切换，退出页面都会执行
  * 2021-08-17: V3.0.6 增加TitleFont属性
+ * 2021-08-24: V3.0.3 修复OnLoad在加载时重复加载两次的问题
 ******************************************************************************/
 
 using System;
@@ -256,10 +257,17 @@ namespace Sunny.UI
             Init();
         }
 
+        private bool IsShown;
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            IsShown = true;
+        }
+
         public void ReLoad()
         {
-            OnLoad(EventArgs.Empty);
-            //EventLoad();
+            if (IsShown) OnLoad(EventArgs.Empty);
         }
 
         // private void EventLoad()
