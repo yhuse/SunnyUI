@@ -20,14 +20,18 @@
  * 2020-07-07: V2.2.6 全部重写，增加圆角，CheckBoxes等
  * 2020-08-12: V2.2.7 更新可设置背景色
  * 2021-07-19: V3.0.5 调整了显示CheckBoxes时图片位置
+ * 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
 ******************************************************************************/
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -698,155 +702,187 @@ namespace Sunny.UI
             {
                 base.OnDrawNode(e);
 
-                if (e.Node == null) return;
+                if (e.Node == null || Nodes.Count == 0) return;
 
-                if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
-
-                if (e.Node == null || e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 &&
-                    e.Node.Bounds.Y <= 0)
+                try
                 {
-                    e.DrawDefault = true;
-                }
-                else
-                {
-                    var drawLeft = (e.Node.Level + 1) * Indent + 3;
-                    var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
-                    var imageLeft = drawLeft;
-                    var haveImage = false;
-                    var sf = e.Graphics.MeasureString(e.Node.Text, Font);
+                    if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
 
-                    if (CheckBoxes)
+                    if (e.Node == null || e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0)
                     {
-                        drawLeft += 16;
-                        imageLeft += 16;
-                    }
-
-                    if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 &&
-                        e.Node.ImageIndex < ImageList.Images.Count)
-                    {
-                        haveImage = true;
-                        drawLeft += ImageList.ImageSize.Width + 6;
-                    }
-
-                    var checkboxColor = ForeColor;
-                    if (e.Node == SelectedNode)
-                    {
-                        e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
-                            new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-
-                        e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft,
-                            e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
-
-                        checkboxColor = SelectedForeColor;
-                    }
-                    else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
-                    {
-                        e.Graphics.FillRectangle(HoverColor,
-                            new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
-                            e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+                        e.DrawDefault = true;
                     }
                     else
                     {
-                        e.Graphics.FillRectangle(FillColor,
-                            new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
-                            e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
-                    }
+                        var drawLeft = (e.Node.Level + 1) * Indent + 3;
+                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
+                        var imageLeft = drawLeft;
+                        var haveImage = false;
+                        var sf = e.Graphics.MeasureString(e.Node.Text, Font);
 
-                    if (haveImage)
-                    {
-                        if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 &&
-                            e.Node.SelectedImageIndex < ImageList.Images.Count)
-                            e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft,
-                                e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
-                        else
-                            e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft,
-                                e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
-                    }
-
-                    if (CheckBoxes)
-                    {
-                        if (!e.Node.Checked)
-                            using (var pn = new Pen(checkboxColor, 1))
-                            {
-                                e.Graphics.DrawRectangle(pn,
-                                    new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
-                            }
-                        else
-                            using (var pn = new Pen(checkboxColor, 2))
-                            {
-                                var pt1 = new Point(checkBoxLeft + 2 + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1 + 5);
-                                var pt2 = new Point(pt1.X + 3, pt1.Y + 3);
-                                var pt3 = new Point(pt2.X + 5, pt2.Y - 5);
-
-                                PointF[] CheckMarkLine = { pt1, pt2, pt3 };
-
-                                e.Graphics.SetHighQuality();
-                                e.Graphics.DrawLines(pn, CheckMarkLine);
-                                e.Graphics.SetDefaultQuality();
-                                e.Graphics.DrawRectangle(checkboxColor,
-                                    new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
-                            }
-                    }
-
-                    var lineY = e.Bounds.Y + e.Node.Bounds.Height / 2 - 1;
-                    var lineX = 3 + e.Node.Level * Indent + 9;
-
-                    if (ShowLinesEx)
-                        try
+                        if (CheckBoxes)
                         {
-                            //绘制虚线
-                            var pn = new Pen(LineColor);
-                            pn.DashStyle = DashStyle.Dot;
-                            e.Graphics.DrawLine(pn, lineX, lineY, lineX + 10, lineY);
+                            drawLeft += 16;
+                            imageLeft += 16;
+                        }
 
-                            if (e.Node.Level >= 1)
+                        if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 &&
+                            e.Node.ImageIndex < ImageList.Images.Count)
+                        {
+                            haveImage = true;
+                            drawLeft += ImageList.ImageSize.Width + 6;
+                        }
+
+                        var checkboxColor = ForeColor;
+                        if (e.Node != null)
+                        {
+                            if (e.Node == SelectedNode)
                             {
-                                e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Bounds.Top);
-                                if (e.Node.NextNode != null)
-                                    e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
+                                e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
+                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
 
-                                var pNode = e.Node.Parent;
-                                while (pNode != null)
-                                {
-                                    lineX -= Indent;
+                                e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft,
+                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
 
-                                    if (pNode.NextNode != null)
-                                        e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
-
-                                    if (pNode.NextNode != null)
-                                        e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
-
-                                    pNode = pNode.Parent;
-                                }
+                                checkboxColor = SelectedForeColor;
+                            }
+                            else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
+                            {
+                                e.Graphics.FillRectangle(HoverColor,
+                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
+                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                             }
                             else
                             {
-                                if (e.Node.PrevNode != null)
-                                    e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
-
-                                if (e.Node.NextNode != null)
-                                    e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
+                                e.Graphics.FillRectangle(FillColor,
+                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
+                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                             }
 
-                            pn.Dispose();
-                        }
-                        catch (Exception exception)
-                        {
-                            Console.WriteLine(exception);
+                            if (haveImage)
+                            {
+                                if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 &&
+                                    e.Node.SelectedImageIndex < ImageList.Images.Count)
+                                    e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft,
+                                        e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                                else
+                                    e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft,
+                                        e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                            }
+
+                            if (CheckBoxes)
+                            {
+                                if (!e.Node.Checked)
+                                {
+                                    e.Graphics.DrawRectangle(checkboxColor,
+                                        new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
+                                }
+                                else
+                                {
+                                    using (var pn = new Pen(checkboxColor, 2))
+                                    {
+                                        var pt1 = new Point(checkBoxLeft + 2 + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1 + 5);
+                                        var pt2 = new Point(pt1.X + 3, pt1.Y + 3);
+                                        var pt3 = new Point(pt2.X + 5, pt2.Y - 5);
+
+                                        PointF[] CheckMarkLine = { pt1, pt2, pt3 };
+
+                                        e.Graphics.SetHighQuality();
+                                        e.Graphics.DrawLines(pn, CheckMarkLine);
+                                        e.Graphics.SetDefaultQuality();
+                                        e.Graphics.DrawRectangle(checkboxColor,
+                                            new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
+                                    }
+                                }
+
+                                if (!DicNodeStatus.Keys.Contains(e.Node.GetHashCode()))
+                                {
+                                    DicNodeStatus.Add(e.Node.GetHashCode(), false);
+                                }
+
+                                if (DicNodeStatus[e.Node.GetHashCode()])
+                                {
+                                    var location = e.Node.Bounds.Location;
+                                    location.Offset(-29, 10);
+                                    var size = new Size(7, 7);
+                                    e.Graphics.FillRectangle(checkboxColor, new Rectangle(location, size)); //这里绘制的是正方形
+
+                                }
+                            }
                         }
 
-                    lineX = 3 + e.Node.Level * Indent + 9;
-                    //绘制左侧+号
-                    if (ShowPlusMinus && e.Node.Nodes.Count > 0)
-                    {
-                        e.Graphics.FillRectangle(Color.White, new Rectangle(lineX - 4, lineY - 4, 8, 8));
-                        e.Graphics.DrawRectangle(UIFontColor.Primary, new Rectangle(lineX - 4, lineY - 4, 8, 8));
-                        e.Graphics.DrawLine(UIFontColor.Primary, lineX - 2, lineY, lineX + 2, lineY);
-                        if (!e.Node.IsExpanded)
-                            e.Graphics.DrawLine(UIFontColor.Primary, lineX, lineY - 2, lineX, lineY + 2);
+                        var lineY = e.Bounds.Y + e.Node.Bounds.Height / 2 - 1;
+                        var lineX = 3 + e.Node.Level * Indent + 9;
+
+                        if (ShowLinesEx)
+                        {
+                            try
+                            {
+                                //绘制虚线
+                                var pn = new Pen(LineColor);
+                                pn.DashStyle = DashStyle.Dot;
+                                e.Graphics.DrawLine(pn, lineX, lineY, lineX + 10, lineY);
+
+                                if (e.Node.Level >= 1)
+                                {
+                                    e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Bounds.Top);
+                                    if (e.Node.NextNode != null)
+                                        e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
+
+                                    var pNode = e.Node.Parent;
+                                    while (pNode != null)
+                                    {
+                                        lineX -= Indent;
+
+                                        if (pNode != null && Nodes.Count > 0)
+                                        {
+                                            if (pNode.NextNode != null)
+                                                e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
+
+                                            if (pNode.NextNode != null)
+                                                e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
+                                        }
+
+                                        pNode = pNode.Parent;
+                                    }
+                                }
+                                else
+                                {
+                                    if (e.Node != null && Nodes.Count > 0)
+                                    {
+                                        if (e.Node.PrevNode != null)
+                                            e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
+
+                                        if (e.Node.NextNode != null)
+                                            e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
+                                    }
+                                }
+
+                                pn.Dispose();
+                            }
+                            catch (Exception exception)
+                            {
+                                Console.WriteLine(exception);
+                            }
+                        }
+
+                        lineX = 3 + e.Node.Level * Indent + 9;
+                        //绘制左侧+号
+                        if (ShowPlusMinus && e.Node.Nodes.Count > 0)
+                        {
+                            e.Graphics.FillRectangle(Color.White, new Rectangle(lineX - 4, lineY - 4, 8, 8));
+                            e.Graphics.DrawRectangle(UIFontColor.Primary, new Rectangle(lineX - 4, lineY - 4, 8, 8));
+                            e.Graphics.DrawLine(UIFontColor.Primary, lineX - 2, lineY, lineX + 2, lineY);
+                            if (!e.Node.IsExpanded)
+                                e.Graphics.DrawLine(UIFontColor.Primary, lineX, lineY - 2, lineX, lineY + 2);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
 
@@ -866,6 +902,74 @@ namespace Sunny.UI
                 }
 
                 base.WndProc(ref m);
+            }
+
+            private Dictionary<int, bool> DicNodeStatus = new Dictionary<int, bool>();
+
+            protected override void OnAfterCheck(TreeViewEventArgs e)
+            {
+
+                base.OnAfterCheck(e);
+                if (e.Action == TreeViewAction.ByMouse) //鼠标点击
+                {
+                    DicNodeStatus[e.Node.GetHashCode()] = false;
+
+                    SetChildNodeCheckedState(e.Node, e.Node.Checked);
+                    if (e.Node.Parent != null)
+                    {
+                        SetParentNodeCheckedState(e.Node);
+                    }
+
+                }
+
+            }
+
+            private void SetParentNodeCheckedState(TreeNode currNode)
+            {
+                TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
+
+                var count = parentNode.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
+
+                parentNode.Checked = count == parentNode.Nodes.Count;
+
+                var half = parentNode.Nodes.Cast<TreeNode>().Where(n => DicNodeStatus[n.GetHashCode()]).ToList().Count;
+
+                if ((count > 0 && count < parentNode.Nodes.Count) || half > 0)
+                {
+                    DicNodeStatus[parentNode.GetHashCode()] = true;
+                }
+                else
+                {
+                    DicNodeStatus[parentNode.GetHashCode()] = false;
+                }
+
+
+                var g = CreateGraphics();
+                OnDrawNode(new DrawTreeNodeEventArgs(g, parentNode,
+                    new Rectangle(0, parentNode.Bounds.Y, Width, parentNode.Bounds.Height), TreeNodeStates.Hot));
+                g.Dispose();
+
+
+                if (parentNode.Parent != null) //如果父节点之上还有父节点
+                {
+                    SetParentNodeCheckedState(parentNode); //递归调用
+                }
+            }
+
+
+            //选中节点之后，选中节点的所有子节点
+            private void SetChildNodeCheckedState(TreeNode currNode, bool state)
+            {
+                TreeNodeCollection nodes = currNode.Nodes; //获取所有子节点
+                if (nodes.Count > 0) //存在子节点
+                {
+                    foreach (TreeNode tn in nodes)
+                    {
+                        DicNodeStatus[tn.GetHashCode()] = false;
+                        tn.Checked = state;
+                        SetChildNodeCheckedState(tn, state);//递归调用子节点的子节点
+                    }
+                }
             }
         }
     }
