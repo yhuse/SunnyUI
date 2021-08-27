@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Text;
 
-namespace Sunny.UI.Demo.Charts
+namespace Sunny.UI.Demo
 {
     public partial class FLineChart : UIPage
     {

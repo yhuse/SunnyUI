@@ -151,7 +151,7 @@ namespace Sunny.UI
 
         private Color tipsColor = Color.Red;
 
-        [Description("角标文字颜色"), Category("SunnyUI")]
+        [Description("角标背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Red")]
         public Color TipsColor
         {
@@ -159,6 +159,19 @@ namespace Sunny.UI
             set
             {
                 tipsColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color tipsForeColor = Color.White;
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI"), Description("角标文字颜色")]
+        public Color TipsForeColor
+        {
+            get => tipsForeColor;
+            set
+            {
+                tipsForeColor = value;
                 Invalidate();
             }
         }
@@ -175,7 +188,7 @@ namespace Sunny.UI
                 float x = Width - 1 - 2 - sfMax;
                 float y = 1 + 1;
                 e.Graphics.FillEllipse(TipsColor, x, y, sfMax, sfMax);
-                e.Graphics.DrawString(TipsText, TipsFont, Color.White, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+                e.Graphics.DrawString(TipsText, TipsFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
             }
 
             if (Focused && ShowFocusLine)

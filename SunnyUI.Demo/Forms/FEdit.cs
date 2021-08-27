@@ -1,4 +1,4 @@
-﻿namespace Sunny.UI.Demo.Forms
+﻿namespace Sunny.UI.Demo
 {
     public partial class FEdit : UIEditForm
     {

@@ -1,4 +1,4 @@
-﻿namespace Sunny.UI.Demo.Controls
+﻿namespace Sunny.UI.Demo
 {
     partial class FPieChart
     {

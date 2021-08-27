@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sunny.UI.Demo.Controls
+namespace Sunny.UI.Demo
 {
     public partial class FPieChart : UIPage
     {

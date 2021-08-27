@@ -1,4 +1,4 @@
-﻿namespace Sunny.UI.Demo.Charts
+﻿namespace Sunny.UI.Demo
 {
     partial class FDoughnutChart
     {

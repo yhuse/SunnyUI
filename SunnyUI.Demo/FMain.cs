@@ -1,7 +1,5 @@
-﻿using Sunny.UI.Demo.Charts;
-using Sunny.UI.Demo.Controls;
-using Sunny.UI.Demo.Forms;
-using System;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
@@ -39,7 +37,8 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FOther(), ++pageIndex));
             //示例设置某个节点的小红点提示
             Aside.ShowTips = true;
-            Aside.SetNodeTipsText(parent.Nodes[0], "6");
+            Aside.SetNodeTipsText(parent.Nodes[0], "6", Color.Red, Color.White);
+            Aside.SetNodeTipsText(parent.Nodes[1], " ", Color.Lime, Color.White);
 
             pageIndex = 2000;
             Header.SetNodePageIndex(Header.Nodes[1], pageIndex);

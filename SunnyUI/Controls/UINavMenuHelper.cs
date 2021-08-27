@@ -80,7 +80,20 @@ namespace Sunny.UI
             if (node == null) return;
 
             CreateIfNotExist(node);
+            Items[node].TipsCustom = false;
             Items[node].TipsText = tips;
+            node.TreeView.Invalidate();
+        }
+
+        public void SetTipsText(TreeNode node, string tips, Color tipsBackColor, Color tipsForeColor)
+        {
+            if (node == null) return;
+
+            CreateIfNotExist(node);
+            Items[node].TipsCustom = true;
+            Items[node].TipsText = tips;
+            Items[node].TipsBackColor = tipsBackColor;
+            Items[node].TipsForeColor = tipsForeColor;
             node.TreeView.Invalidate();
         }
 
@@ -373,6 +386,12 @@ namespace Sunny.UI
         public int PageIndex { get; set; }
 
         public string TipsText { get; set; }
+
+        public bool TipsCustom { get; set; }
+
+        public Color TipsBackColor { get; set; }
+
+        public Color TipsForeColor { get; set; }
 
         public bool Enabled { get; set; } = true;
 

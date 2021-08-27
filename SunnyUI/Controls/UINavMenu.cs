@@ -21,6 +21,7 @@
  * 2020-03-12: V3.0.2 增加设置二级菜单底色
  * 2021-06-14: V3.0.4 增加右侧图标
  * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头
+ * 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
 ******************************************************************************/
 
 using System;
@@ -453,6 +454,11 @@ namespace Sunny.UI
             MenuHelper.SetTipsText(node, tipsText);
         }
 
+        public void SetNodeTipsText(TreeNode node, string tipsText, Color tipsBackColor, Color tipsForeColor)
+        {
+            MenuHelper.SetTipsText(node, tipsText, tipsBackColor, tipsForeColor);
+        }
+
         public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
         {
             MenuHelper.SetSymbol(node, symbol, symbolSize);
@@ -610,15 +616,26 @@ namespace Sunny.UI
                     float tipsLeft = Width - (ScrollBarVisible ? 50 : 30) - 6 - sfMax;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
-                    e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
-                    e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, Color.White, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                    if (MenuHelper[e.Node] != null)
+                    {
+                        if (MenuHelper[e.Node].TipsCustom)
+                        {
+                            e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft, tipsTop, sfMax, sfMax);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, MenuHelper[e.Node].TipsForeColor, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                        }
+                        else
+                        {
+                            e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, TipsForeColor, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                        }
+                    }
                 }
             }
         }
 
         private Color tipsColor = Color.Red;
 
-        [DefaultValue(typeof(Color), "Red")]
+        [DefaultValue(typeof(Color), "Red"), Category("SunnyUI"), Description("节点提示圆点背景颜色")]
         public Color TipsColor
         {
             get => tipsColor;
@@ -629,7 +646,20 @@ namespace Sunny.UI
             }
         }
 
-        [Description("展开节点后选中第一个子节点"), Category("SunnyUI")]
+        private Color tipsForeColor = Color.White;
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI"), Description("节点提示圆点文字颜色")]
+        public Color TipsForeColor
+        {
+            get => tipsForeColor;
+            set
+            {
+                tipsForeColor = value;
+                Invalidate();
+            }
+        }
+
+        [Description("展开节点后选中第一个子节点"), Category("SunnyUI"), DefaultValue(true)]
         public bool ExpandSelectFirst { get; set; } = true;
 
         public string Version { get; }

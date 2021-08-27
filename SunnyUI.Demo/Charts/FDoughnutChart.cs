@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sunny.UI.Demo.Charts
+namespace Sunny.UI.Demo
 {
     public partial class FDoughnutChart : UIPage
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sunny.UI.Demo.Forms
+namespace Sunny.UI.Demo
 {
     public partial class FEditor : UIPage
     {
