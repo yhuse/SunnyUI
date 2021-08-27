@@ -804,8 +804,9 @@ namespace Sunny.UI
 
                                 if (DicNodeStatus[e.Node.GetHashCode()])
                                 {
-                                    var location = e.Node.Bounds.Location;
-                                    location.Offset(-29, 10);
+                                    //var location = e.Node.Bounds.Location;
+                                    //location.Offset(-29, 10);
+                                    var location = new Point(checkBoxLeft + 5, e.Bounds.Y + (ItemHeight - 12) / 2 + 2);
                                     var size = new Size(7, 7);
                                     e.Graphics.FillRectangle(checkboxColor, new Rectangle(location, size)); //这里绘制的是正方形
 
