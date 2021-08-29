@@ -56,7 +56,9 @@ namespace Sunny.UI
         public bool HalfWidth { get; set; }
 
         public object DataSource { get; set; }
+
         public string DisplayMember { get; set; }
+
         public string ValueMember { get; set; }
     }
 
@@ -200,6 +202,25 @@ namespace Sunny.UI
                 Text = text,
                 Value = value,
                 Enabled = enabled
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddSwitch(string dataPropertyName, string text, bool value, string activeText, string inActiveText, bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.Switch,
+                Text = text,
+                Value = value,
+                Enabled = enabled,
+                DataSource = new string[2] { activeText, inActiveText }
             };
 
             Infos.Add(info);

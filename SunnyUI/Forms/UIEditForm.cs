@@ -178,6 +178,17 @@ namespace Sunny.UI
                     edit.Parent = this;
                     edit.Name = "Edit_" + info.DataPropertyName;
                     edit.Enabled = info.Enabled;
+
+                    if (info.DataSource != null)
+                    {
+                        string[] items = (string[])info.DataSource;
+                        edit.ActiveText = items[0];
+                        edit.InActiveText = items[1];
+                        SizeF sf1 = GDI.MeasureString(items[0], edit.Font);
+                        SizeF sf2 = GDI.MeasureString(items[0], edit.Font);
+                        edit.Width = (int)Math.Max(sf1.Width, sf2.Width) + edit.Height + 16;
+                    }
+
                     ctrls.Add(edit);
                 }
 

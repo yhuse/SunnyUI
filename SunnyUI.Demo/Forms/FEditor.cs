@@ -62,7 +62,7 @@ namespace Sunny.UI.Demo
             option.AddDate("Birthday", "生日", DateTime.Now);
             option.AddCombobox("Sex", "性别", sex, 1, true, true);
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
-            option.AddSwitch("Switch", "选择", false);
+            option.AddSwitch("Switch", "选择", false, "打开", "关闭");
 
             UIEditForm frm = new UIEditForm(option);
             frm.CheckedData += Frm_CheckedData;
