@@ -21,6 +21,48 @@ namespace Sunny.UI.Demo
             uiComboBox2.ValueMember = "Id";
             uiComboBox2.DisplayMember = "Name";
             uiComboBox2.DataSource = infoList;
+
+            uiComboDataGridView1.DataGridView.Init();
+            uiComboDataGridView1.ItemSize = new System.Drawing.Size(360, 240);
+            uiComboDataGridView1.DataGridView.AddColumn("Column1", "Column1");
+            uiComboDataGridView1.DataGridView.AddColumn("Column2", "Column2");
+            uiComboDataGridView1.DataGridView.AddColumn("Column3", "Column3");
+            uiComboDataGridView1.DataGridView.ReadOnly = true;
+            uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
+
+            for (int i = 0; i < 20; i++)
+            {
+                Data data = new Data();
+                data.Column1 = "Data" + i.ToString("D2");
+                data.Column2 = i.Mod(2) == 0 ? "A" : "B";
+                data.Column3 = "编辑";
+                datas.Add(data);
+            }
+
+            uiComboDataGridView1.DataGridView.DataSource = datas;
+        }
+
+        private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
+        {
+            uiComboDataGridView1.Text = datas[index].ToString();
+        }
+
+        List<Data> datas = new List<Data>();
+
+        public class Data
+        {
+            public string Column1 { get; set; }
+
+            public string Column2 { get; set; }
+
+            public string Column3 { get; set; }
+
+            public bool Column4 { get; set; }
+
+            public override string ToString()
+            {
+                return Column1;
+            }
         }
 
         public class Info

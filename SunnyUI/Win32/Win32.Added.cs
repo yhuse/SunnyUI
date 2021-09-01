@@ -48,6 +48,9 @@ namespace Sunny.UI.Win32
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ShowScrollBar(IntPtr hWnd, int wBar, bool bShow);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetProcessDPIAware();
     }
 
     public class Dwm

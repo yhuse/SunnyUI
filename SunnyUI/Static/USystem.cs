@@ -48,6 +48,15 @@ namespace Sunny.UI
             return new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
         }
 
+        /// <summary>
+        /// 通知系统本程序已自行适配高DPI，不需要再对我进行缩放，Win7有用，Win10不一定有用。
+        /// </summary>
+        public static void SetProcessDPIAware()
+        {
+            if (Environment.OSVersion.Version.Major >= 6)
+                User.SetProcessDPIAware();
+        }
+
         public static void EnabledTaskManager()
         {
             RegistryDisableTaskMgr(0);
