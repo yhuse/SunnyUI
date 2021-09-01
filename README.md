@@ -9,6 +9,7 @@
 - Blog:   https://www.cnblogs.com/yhuse
 
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！  
+个人学习交流免费，**商业应用需要授权**，联系QQ：**17612584** 咨询授权事宜。  
 
 #### 感谢码云
 ![GVP](https://images.gitee.com/uploads/images/2021/0526/214138_85647268_416720.png "QQ图片20210526213958.png")  
@@ -27,9 +28,9 @@ SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织�
 ![思维导图](https://images.gitee.com/uploads/images/2020/0627/210016_f3203a8b_416720.png "0.png")
 
 #### 支持开源
-- 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有你更精彩！
-- **个人学习交流免费，商业应用需要授权，联系QQ：17612584 咨询授权事宜。** 
+- 希望SunnyUI对您有用，您的支持也是SunnyUI开源的动力，SunnyUI有您更精彩！
 ![感谢您的支持](https://images.gitee.com/uploads/images/2021/0409/201558_9a0993a3_416720.png "SupportSunnyUI.png")
+- 多多打赏，喝点咖啡提提神，或者防脱洗发水保养下头发，哈哈哈！~
 
 1、开源控件库  
 
