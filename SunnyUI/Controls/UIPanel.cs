@@ -327,7 +327,11 @@ namespace Sunny.UI
             //填充文字
             if (ShowText)
             {
-                OnPaintFore(e.Graphics, path);
+                rect = new Rectangle(1, 1, Width - 3, Height - 3);
+                using (var path1 = rect.GraphicsPath())
+                {
+                    OnPaintFore(e.Graphics, path1);
+                }
             }
 
             path.Dispose();

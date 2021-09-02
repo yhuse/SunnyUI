@@ -80,27 +80,10 @@ namespace Sunny.UI
             MouseLocation = e.Location;
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnEnabledChanged(EventArgs e)
         {
-            base.OnPaint(e);
-            if (Enabled)
-            {
-                if (Radius == 0 || RadiusSides == UICornerRadiusSides.None)
-                    e.Graphics.DrawRectangle(RectColor, 0, 0, Width - 1, Height - 1);
-                else
-                    e.Graphics.DrawRoundRectangle(RectColor, 0, 0, Width, Height, Radius);
-
-                edit.BackColor = Color.White;
-            }
-            else
-            {
-                if (Radius == 0 || RadiusSides == UICornerRadiusSides.None)
-                    e.Graphics.DrawRectangle(RectDisableColor, 0, 0, Width - 1, Height - 1);
-                else
-                    e.Graphics.DrawRoundRectangle(RectDisableColor, 0, 0, Width, Height, Radius);
-
-                edit.BackColor = GetFillColor();
-            }
+            base.OnEnabledChanged(e);
+            edit.BackColor = Enabled ? Color.White : GetFillColor();
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)
@@ -304,14 +287,13 @@ namespace Sunny.UI
             if (!edit.Visible)
             {
                 base.OnPaintFore(g, path);
-                g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 26, edit.Height), Radius, false);
-                g.DrawRoundRectangle(rectColor, new Rectangle(0, 0, Width, Height), Radius);
             }
 
-            g.FillRoundRectangle(GetFillColor(), new Rectangle(Width - 27, edit.Top, 25, edit.Height), Radius);
+            g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));
             Color color = GetRectColor();
             SizeF sf = g.GetFontImageSize(dropSymbol, 24);
             g.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
+            g.DrawLine(RectColor, Width - 1, Radius / 2, Width - 1, Height - Radius);
         }
 
         protected override void OnGotFocus(EventArgs e)
