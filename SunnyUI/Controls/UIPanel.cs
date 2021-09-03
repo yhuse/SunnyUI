@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2021-05-09: V3.0.3 增加双缓冲，减少闪烁
+ * 2021-09-03: V3.0.6 支持背景图片显示
 ******************************************************************************/
 
 using System;
@@ -313,7 +314,7 @@ namespace Sunny.UI
             GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides);
 
             //填充背景色
-            if (ShowFill && fillColor.IsValid())
+            if (BackgroundImage == null && ShowFill && fillColor.IsValid())
             {
                 OnPaintFill(e.Graphics, path);
             }
