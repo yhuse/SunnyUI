@@ -29,7 +29,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UIWaitingBar : UIControl
     {
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
 
         public UIWaitingBar()
         {
@@ -40,15 +40,27 @@ namespace Sunny.UI
 
             fillColor = UIColor.LightBlue;
             foreColor = UIColor.Blue;
+            timer = new Timer();
             timer.Interval = 200;
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
-        ~UIWaitingBar()
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
+        }
+
+        public void Start()
+        {
+            timer.Start();
+        }
+
+        public void Stop()
         {
             timer.Stop();
-            timer.Dispose();
         }
 
         protected override void OnPaint(PaintEventArgs e)

@@ -68,7 +68,8 @@ namespace Sunny.UI
         public void Dispose()
         {
             Active = false;
-            timer.Stop();
+            timer?.Stop();
+            timer?.Dispose();
             Image?.Dispose();
             Image = null;
             ShowImage?.Dispose();

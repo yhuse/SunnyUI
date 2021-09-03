@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-07-30: V2.2.6 增加可收缩选项
+ * 2020-09-03: V3.0.6 增加标题文字颜色
 ******************************************************************************/
 
 using System;
@@ -63,7 +64,6 @@ namespace Sunny.UI
             InitializeComponent();
             SetStyleFlags(true, false);
             ShowText = false;
-            foreColor = Color.White;
             CalcSystemBoxPos();
         }
 
@@ -71,7 +71,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             titleColor = uiColor.TitleColor;
-            foreColor = uiColor.TitleForeColor;
+            titleForeColor = uiColor.TitleForeColor;
             Invalidate();
         }
 
@@ -88,6 +88,21 @@ namespace Sunny.UI
             set
             {
                 textAlign = value;
+                Invalidate();
+            }
+        }
+
+        private Color titleForeColor = Color.White;
+
+        [DefaultValue(typeof(Color), "White")]
+        [Description("标题文字颜色"), Category("SunnyUI")]
+        public Color TitleForeColor
+        {
+            get => titleForeColor;
+            set
+            {
+                titleForeColor = value;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -119,7 +134,7 @@ namespace Sunny.UI
             Color color = Enabled ? TitleColor : UIDisableColor.Fill;
             g.FillPath(color, path);
 
-            color = Enabled ? ForeColor : UIFontColor.Regular;
+            color = Enabled ? TitleForeColor : UIFontColor.Regular;
             SizeF sf = g.MeasureString(Text, Font);
             switch (TextAlign)
             {

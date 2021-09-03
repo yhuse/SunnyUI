@@ -41,11 +41,10 @@ namespace Sunny.UI
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
 
         public UIListBox()
         {
-            InitializeComponent();
             SetStyleFlags(true, false);
             ShowText = false;
             Padding = new Padding(2);
@@ -84,8 +83,16 @@ namespace Sunny.UI
             listbox.MouseEnter += Listbox_MouseEnter;
             listbox.MouseLeave += Listbox_MouseLeave;
 
+            timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         public new EventHandler MouseLeave;
@@ -292,12 +299,6 @@ namespace Sunny.UI
         public new event MouseEventHandler MouseDown;
         public new event MouseEventHandler MouseUp;
         public new event MouseEventHandler MouseMove;
-
-        ~UIListBox()
-        {
-            timer.Stop();
-            timer.Dispose();
-        }
 
         private void Timer_Tick(object sender, EventArgs e)
         {

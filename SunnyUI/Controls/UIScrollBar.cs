@@ -37,6 +37,7 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             Maximum = 100;
             up_state = value_state = down_state = DrawItemState.None;
+            timer = new Timer();
             timer.Interval = 150;
             timer.Tick += TimerTick;
             Width = SystemInformation.VerticalScrollBarWidth + 2;
@@ -59,16 +60,17 @@ namespace Sunny.UI
         private int dragOffset;
         private int barHeight;
         private double percentValue;
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
         private bool isScrollUp = true;
         private bool largeChange = true;
 
         public event EventHandler ValueChanged;
 
-        ~UIScrollBar()
+        protected override void Dispose(bool disposing)
         {
-            timer.Stop();
-            timer.Dispose();
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         [DefaultValue(0)]

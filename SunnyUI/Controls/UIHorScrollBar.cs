@@ -36,6 +36,7 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             Maximum = 100;
             left_state = value_state = right_state = DrawItemState.None;
+            timer = new Timer();
             timer.Interval = 150;
             timer.Tick += TimerTick;
             Width = 300;
@@ -48,10 +49,11 @@ namespace Sunny.UI
             fillPressColor = Color.FromArgb(74, 131, 229);
         }
 
-        ~UIHorScrollBar()
+        protected override void Dispose(bool disposing)
         {
-            timer.Stop();
-            timer.Dispose();
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         private int scrollValue;
@@ -64,7 +66,7 @@ namespace Sunny.UI
         private int dragOffset;
         private int barWidth;
         private double percentValue;
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
         private bool isScrollUp = true;
         private bool largeChange = true;
 

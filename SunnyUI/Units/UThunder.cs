@@ -32,7 +32,7 @@ namespace Sunny.UI
 {
     public class Thunder : IDisposable
     {
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
         private bool Exit;
 
         public delegate void OnTaskInfoChange(object sender, ThunderTask task);
@@ -52,7 +52,7 @@ namespace Sunny.UI
         public Thunder()
         {
             InitSuccess = ThunderDll.Init();
-
+            timer = new Timer();
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -60,8 +60,8 @@ namespace Sunny.UI
 
         ~Thunder()
         {
-            timer.Stop();
-            timer.Dispose();
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

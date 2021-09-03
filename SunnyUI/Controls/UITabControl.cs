@@ -39,7 +39,7 @@ namespace Sunny.UI
     {
         private readonly UITabControlHelper Helper;
         private int DrawedIndex = -1;
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
 
         public UITabControl()
         {
@@ -57,14 +57,16 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
 
             Helper = new UITabControlHelper(this);
+            timer = new Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
         }
 
-        ~UITabControl()
+        protected override void Dispose(bool disposing)
         {
-            timer.Stop();
-            timer.Dispose();
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         private string mainPage = "";

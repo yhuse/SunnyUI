@@ -31,7 +31,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public class UIScrollingText : UIControl
     {
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
         private int XPos = int.MinValue;
         private int XPos1 = int.MaxValue;
         private int interval = 200;
@@ -44,6 +44,7 @@ namespace Sunny.UI
             foreColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
             Reset();
 
+            timer = new Timer();
             timer.Interval = interval;
             timer.Tick += Timer_Tick;
         }
@@ -75,10 +76,21 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        ~UIScrollingText()
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
+        }
+
+        public void Start()
+        {
+            timer.Start();
+        }
+
+        public void Stop()
         {
             timer.Stop();
-            timer.Dispose();
         }
 
         [DefaultValue(200), Description("刷新间隔"), Category("SunnyUI")]

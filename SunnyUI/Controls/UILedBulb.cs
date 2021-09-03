@@ -42,12 +42,13 @@ namespace Sunny.UI
         private bool _on = true;
         private readonly Color _reflectionColor = Color.FromArgb(180, 255, 255, 255);
         private readonly Color[] _surroundColor = new Color[] { Color.FromArgb(0, 255, 255, 255) };
-        private readonly Timer _timer = new Timer();
+        private readonly Timer timer;
 
-        ~UILedBulb()
+        protected override void Dispose(bool disposing)
         {
-            _timer.Stop();
-            _timer.Dispose();
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         /// <summary>
@@ -106,7 +107,8 @@ namespace Sunny.UI
 
             Width = Height = 32;
             Color = Color.FromArgb(192, 255, 192);
-            _timer.Tick += (sender, e) => { On = !On; };
+            timer = new Timer();
+            timer.Tick += (sender, e) => { On = !On; };
         }
 
         #endregion Constructor
@@ -199,22 +201,22 @@ namespace Sunny.UI
             {
                 blinkInterval = Math.Max(100, value);
                 bool isBlink = Blink;
-                if (isBlink) _timer.Stop();
-                _timer.Interval = blinkInterval;
-                _timer.Enabled = isBlink;
+                if (isBlink) timer.Stop();
+                timer.Interval = blinkInterval;
+                timer.Enabled = isBlink;
             }
         }
 
         [DefaultValue(false)]
         public bool Blink
         {
-            get => _timer.Enabled;
+            get => timer.Enabled;
             set
             {
                 On = true;
-                _timer.Stop();
-                _timer.Interval = BlinkInterval;
-                _timer.Enabled = value;
+                timer.Stop();
+                timer.Interval = BlinkInterval;
+                timer.Enabled = value;
             }
         }
 

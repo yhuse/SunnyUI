@@ -31,13 +31,14 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UIProgressIndicator : UIControl
     {
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
 
         public UIProgressIndicator()
         {
             SetStyleFlags(true, false);
             Width = Height = 100;
 
+            timer = new Timer();
             timer.Interval = 200;
             timer.Tick += timer_Tick;
             timer.Start();
@@ -48,10 +49,21 @@ namespace Sunny.UI
             foreColor = UIColor.Blue;
         }
 
-        ~UIProgressIndicator()
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            timer?.Stop();
+            timer?.Dispose();
+        }
+
+        public void Start()
+        {
+            timer.Start();
+        }
+
+        public void Stop()
         {
             timer.Stop();
-            timer.Dispose();
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)

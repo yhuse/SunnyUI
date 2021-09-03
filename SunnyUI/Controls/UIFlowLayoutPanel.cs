@@ -30,12 +30,12 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UIFlowLayoutPanel : UIPanel,IToolTip
+    public class UIFlowLayoutPanel : UIPanel, IToolTip
     {
         private UIVerScrollBarEx VBar;
         private UIHorScrollBarEx HBar;
         private FlowLayoutPanel flowLayoutPanel;
-        private readonly Timer timer = new Timer();
+        private readonly Timer timer;
 
         public UIFlowLayoutPanel()
         {
@@ -56,6 +56,7 @@ namespace Sunny.UI
             HBar.ValueChanged += HBar_ValueChanged;
 
             SizeChanged += Panel_SizeChanged;
+            timer = new Timer();
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -86,7 +87,8 @@ namespace Sunny.UI
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            timer.Stop();
+            timer?.Stop();
+            timer?.Dispose();
         }
 
         [DefaultValue(System.Windows.Forms.FlowDirection.LeftToRight)]
