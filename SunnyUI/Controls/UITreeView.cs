@@ -87,6 +87,13 @@ namespace Sunny.UI
         public new event KeyEventHandler KeyDown;
         public new event KeyEventHandler KeyUp;
 
+        [DefaultValue(false)]
+        public bool LabelEdit
+        {
+            get => view.LabelEdit;
+            set => view.LabelEdit = true;
+        }
+
         private void View_KeyUp(object sender, KeyEventArgs e)
         {
             KeyUp?.Invoke(this, e);
