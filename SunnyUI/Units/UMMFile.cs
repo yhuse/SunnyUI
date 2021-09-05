@@ -137,7 +137,6 @@ namespace Sunny.UI
             var mmf = MemoryMappedFile.CreateOrOpen(MapName, Capacity, MemoryMappedFileAccess.ReadWrite);
             using (var accessor = mmf.CreateViewAccessor(0, Capacity))
             {
-                accessor.Write(0, false);
                 var len = accessor.ReadInt32(128);
                 var data = new byte[len];
                 accessor.ReadArray(128 + 4, data, 0, len);
@@ -147,6 +146,8 @@ namespace Sunny.UI
                 data = new byte[len];
                 accessor.ReadArray(1024 + 4, data, 0, len);
                 message.Value = Encoding.Unicode.GetString(data);
+
+                accessor.Write(0, false);
                 return message;
             }
         }
