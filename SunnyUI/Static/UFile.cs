@@ -766,6 +766,25 @@ namespace Sunny.UI
             crc ^= 0xFFFFFFFF;
             return crc.ToString("X").PadLeft(8, '0');
         }
+
+        public static bool IsValidFileName(string name)
+        {
+            if (name.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            string[] errorStr = { "/", "\\", ":", ",", "*", "?", "\"", "<", ">", "|" };
+            foreach (var str in errorStr)
+            {
+                if (name.Contains(str))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     /// <summary>

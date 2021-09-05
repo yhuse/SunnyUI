@@ -37,7 +37,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
     [DefaultProperty("Items")]
-    public sealed partial class UIListBox : UIPanel, IToolTip
+    public sealed class UIListBox : UIPanel, IToolTip
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
         private readonly UIScrollBar bar = new UIScrollBar();
