@@ -17,6 +17,47 @@
  * 创建日期: 2021-09-05
  *
  * 2021-09-05: V3.0.6 增加文件说明
+ ******************************************************************************
+ * 用法：
+ * 1、分别在不同的进程Demo1、Demo2中创建通信类
+ * 在Demo1里创建通信类mmfile1：
+   var mmfile1 = new MMFile("Demo1");
+   mmfile1.Start();
+   mmfile1.OnMessage += Mmfile1_OnMessage;
+   
+ * 在Demo2里创建通信类mmfile2：
+   var mmfile2 = new MMFile("Demo2");
+   mmfile2.Start();
+   mmfile2.OnMessage += Mmfile2_OnMessage;
+   
+ * 2、发送消息
+ * Demo1发送一条消息给Demo2：
+   mmfile1.Write("Demo2", "Hello world.");
+ 
+ * 3、接收消息
+ * Demo2的接收消息事件里处理消息，注意，该消息与界面交互需用Invoke
+   private void Mmfile2_OnMessage(object sender, MMFileEventArgs e)
+   {
+       AddMessage(e);
+   }
+
+   private void AddMessage(MMFileEventArgs e)
+   {
+       if (listBox1.InvokeRequired)
+       {
+           listBox1.Invoke(new Action<MMFileEventArgs>(AddMessage), e);
+       }
+       else
+       {
+           listBox1.Items.Add(e.Source + "," + e.Value);
+       }
+   }
+
+ * 4、关闭及销毁通信类
+ * mmfile1.Stop();
+   mmfile1.Dispose();
+ * mmfile2.Stop();
+   mmfile2.Dispose();
 ******************************************************************************/
 
 using System;
