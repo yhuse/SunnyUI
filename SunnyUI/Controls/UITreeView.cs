@@ -71,6 +71,12 @@ namespace Sunny.UI
             view.KeyPress += View_KeyPress;
             view.KeyDown += View_KeyDown;
             view.KeyUp += View_KeyUp;
+            view.AfterLabelEdit += View_AfterLabelEdit;
+        }
+
+        private void View_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            AfterLabelEdit?.Invoke(this, e);
         }
 
         public Control ExToolTipControl()
@@ -78,11 +84,12 @@ namespace Sunny.UI
             return view;
         }
 
-        public new EventHandler MouseLeave;
-        public new EventHandler MouseEnter;
-        public new MouseEventHandler MouseMove;
-        public new MouseEventHandler MouseDown;
-        public new MouseEventHandler MouseUp;
+        public event NodeLabelEditEventHandler AfterLabelEdit;
+        public new event EventHandler MouseLeave;
+        public new event EventHandler MouseEnter;
+        public new event MouseEventHandler MouseMove;
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
         public new event KeyPressEventHandler KeyPress;
         public new event KeyEventHandler KeyDown;
         public new event KeyEventHandler KeyUp;

@@ -111,10 +111,6 @@ namespace Sunny.UI
             MouseDown?.Invoke(this, e);
         }
 
-        public new event MouseEventHandler MouseDown;
-        public new event MouseEventHandler MouseUp;
-        public new event MouseEventHandler MouseMove;
-
         private void Edit_MouseLeave(object sender, EventArgs e)
         {
             MouseLeave?.Invoke(this, e);
@@ -140,11 +136,22 @@ namespace Sunny.UI
             Validating?.Invoke(this, e);
         }
 
-        public new EventHandler GotFocus;
-        public new EventHandler LostFocus;
-        public new CancelEventHandler Validating;
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
+        public new event EventHandler GotFocus;
+        public new event EventHandler LostFocus;
+        public new event CancelEventHandler Validating;
         public new event EventHandler Validated;
-        public new EventHandler MouseLeave;
+        public new event EventHandler MouseLeave;
+        public new event EventHandler DoubleClick;
+        public new event EventHandler Click;
+        [Browsable(true)]
+        public new event EventHandler TextChanged;
+        public new event KeyEventHandler KeyDown;
+        public new event KeyEventHandler KeyUp;
+        public new event KeyPressEventHandler KeyPress;
+        public new event EventHandler Leave;
 
         private void Edit_Validated(object sender, EventArgs e)
         {
@@ -203,8 +210,7 @@ namespace Sunny.UI
             DoubleClick?.Invoke(this, e);
         }
 
-        public new event EventHandler DoubleClick;
-        public new event EventHandler Click;
+
 
         private void Edit_Click(object sender, EventArgs e)
         {
@@ -379,17 +385,6 @@ namespace Sunny.UI
         {
             edit.CheckMaxMin();
         }
-
-        [Browsable(true)]
-        public new event EventHandler TextChanged;
-
-        public new event KeyEventHandler KeyDown;
-
-        public new event KeyEventHandler KeyUp;
-
-        public new event KeyPressEventHandler KeyPress;
-
-        public new event EventHandler Leave;
 
         private void Edit_TextChanged(object s, EventArgs e)
         {

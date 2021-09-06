@@ -100,7 +100,7 @@ namespace Sunny.UI
             edit.Text = "";
         }
 
-        public new EventHandler TextChanged;
+        public new event EventHandler TextChanged;
 
         private void Edit_TextChanged(object sender, EventArgs e)
         {

@@ -214,6 +214,9 @@ _pkginfo.txt
 
 # Others
 ClientBin/
+[Bb]in/net462/
+[Bb]in/net5.0-windows/
+[Bb]in/netcoreapp3.1/
 ~$*
 *~
 *.dbmdl

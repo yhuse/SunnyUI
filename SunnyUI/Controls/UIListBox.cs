@@ -95,8 +95,8 @@ namespace Sunny.UI
             timer?.Dispose();
         }
 
-        public new EventHandler MouseLeave;
-        public new EventHandler MouseEnter;
+        public new event EventHandler MouseLeave;
+        public new event EventHandler MouseEnter;
         public new event KeyPressEventHandler KeyPress;
         public new event KeyEventHandler KeyDown;
         public new event KeyEventHandler KeyUp;
