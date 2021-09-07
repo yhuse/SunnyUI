@@ -52,6 +52,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox6
             // 
+            this.uiTextBox6.ButtonWidth = 100;
             this.uiTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox6.FillColor = System.Drawing.Color.White;
             this.uiTextBox6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -70,6 +71,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox5
             // 
+            this.uiTextBox5.ButtonWidth = 100;
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox5.FillColor = System.Drawing.Color.White;
             this.uiTextBox5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -88,6 +90,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox4
             // 
+            this.uiTextBox4.ButtonWidth = 100;
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox4.FillColor = System.Drawing.Color.White;
             this.uiTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -206,6 +209,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox3
             // 
+            this.uiTextBox3.ButtonWidth = 100;
             this.uiTextBox3.CanEmpty = true;
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox3.FillColor = System.Drawing.Color.White;
@@ -236,6 +240,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox2
             // 
+            this.uiTextBox2.ButtonWidth = 100;
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.DoubleValue = 5D;
@@ -279,6 +284,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.uiTextBox1.ShowButton = true;
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 0;
             this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;

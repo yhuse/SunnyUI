@@ -26,6 +26,7 @@
  * 2021-07-18: V3.0.5 修改Focus可用
  * 2021-08-03: V3.0.5 增加GotFocus和LostFocus事件
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
+ * 2021-09-07: V3.0.6 增加按钮
 ******************************************************************************/
 
 using System;
@@ -43,6 +44,7 @@ namespace Sunny.UI
     {
         private readonly UIEdit edit = new UIEdit();
         private readonly UIScrollBar bar = new UIScrollBar();
+        private readonly UISymbolButton btn = new UISymbolButton();
 
         public UITextBox()
         {
@@ -77,6 +79,15 @@ namespace Sunny.UI
             edit.MouseUp += Edit_MouseUp;
             edit.MouseMove += Edit_MouseMove;
 
+            btn.Parent = this;
+            btn.Visible = false;
+            btn.Text = "";
+            btn.Symbol = 61761;
+            btn.Top = 1;
+            btn.Height = 25;
+            btn.Width = 29;
+            btn.Click += Btn_Click;
+
             edit.Invalidate();
             Controls.Add(edit);
             fillColor = Color.White;
@@ -94,6 +105,35 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            ButtonClick?.Invoke(this, e);
+        }
+
+        public event EventHandler ButtonClick;
+
+        [DefaultValue(29), Category("SunnyUI"), Description("按钮宽度")]
+        public int ButtonWidth { get => btn.Width; set { btn.Width = Math.Max(20, value); SizeChange(); } }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("显示按钮")]
+        public bool ShowButton
+        {
+            get => btn.Visible;
+            set
+            {
+                if (Multiline)
+                {
+                    btn.Visible = false;
+                }
+                else
+                {
+                    btn.Visible = value;
+                }
+
+                SizeChange();
+            }
         }
 
         private void Edit_MouseMove(object sender, MouseEventArgs e)
@@ -470,13 +510,23 @@ namespace Sunny.UI
                         edit.Width = Width - 8 - SymbolSize - Padding.Left - Padding.Right;
                     }
                 }
+
+                if (ShowButton)
+                {
+                    btn.Left = Width - 2 - ButtonWidth;
+                    btn.Top = 2;
+                    btn.Height = Height - 4;
+                    edit.Width = edit.Width - btn.Width - 1;
+                }
             }
             else
             {
+                btn.Visible = false;
                 edit.Top = 3;
                 edit.Height = Height - 6;
                 edit.Left = 1;
                 edit.Width = Width - 2;
+
                 bar.Top = 2;
                 bar.Width = ScrollBarInfo.VerticalScrollBarWidth();
                 bar.Left = Width - bar.Width - 1;
@@ -1020,6 +1070,32 @@ namespace Sunny.UI
                 symbolOffset = value;
                 Invalidate();
             }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        [Description("按钮字体图标"), Category("SunnyUI")]
+        public int ButtonSymbol
+        {
+            get => btn.Symbol;
+            set => btn.Symbol = value;
+        }
+
+        [DefaultValue(24)]
+        [Description("按钮字体图标大小"), Category("SunnyUI")]
+        public int ButtonSymbolSize
+        {
+            get => btn.SymbolSize;
+            set => btn.SymbolSize = value;
+        }
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("按钮字体图标的偏移位置"), Category("SunnyUI")]
+        public Point ButtonSymbolOffset
+        {
+            get => btn.SymbolOffset;
+            set => btn.SymbolOffset = value;
         }
     }
 }
