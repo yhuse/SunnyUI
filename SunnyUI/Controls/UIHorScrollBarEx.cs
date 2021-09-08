@@ -131,14 +131,14 @@ namespace Sunny.UI
 
             if (inLeftArea)
             {
-                int value = (Value - LargeChange).CheckRange(0, Maximum - BoundsWidth);
+                int value = (Value - LargeChange).CheckInRange(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, null);
             }
 
             if (inRightArea)
             {
-                int value = (Value + LargeChange).CheckRange(0, Maximum - BoundsWidth);
+                int value = (Value + LargeChange).CheckInRange(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, null);
             }
@@ -147,7 +147,7 @@ namespace Sunny.UI
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
                 int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.CheckRange(0, Maximum - BoundsWidth);
+                value = value.CheckInRange(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, null);
             }
@@ -218,7 +218,7 @@ namespace Sunny.UI
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
                 int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.CheckRange(0, Maximum - BoundsWidth);
+                value = value.CheckInRange(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, null);
             }

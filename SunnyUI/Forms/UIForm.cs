@@ -28,6 +28,7 @@
  * 2021-08-17: V3.0.6 适应主屏幕任务栏在屏幕各个方向均可
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

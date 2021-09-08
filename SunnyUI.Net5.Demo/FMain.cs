@@ -87,7 +87,7 @@ namespace Sunny.UI.Demo
 
         private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
         {
-            page?.Text.ConsoleWriteLine();
+            Console.WriteLine(page?.Text);
         }
     }
 }

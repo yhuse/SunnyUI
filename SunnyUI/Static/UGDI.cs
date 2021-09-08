@@ -113,16 +113,6 @@ namespace Sunny.UI
             return region;
         }
 
-        public static PointF Center(this Rectangle rect)
-        {
-            return new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
-        }
-
-        public static PointF Center(this RectangleF rect)
-        {
-            return new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
-        }
-
         public static Color Alpha(this Color color, int alpha)
         {
             alpha = Math.Max(0, alpha);
@@ -187,26 +177,6 @@ namespace Sunny.UI
 
             image.Dispose();
             return colors;
-        }
-
-        public static bool InRect(this Point point, Rectangle rect)
-        {
-            return point.X >= rect.Left && point.X <= rect.Right && point.Y >= rect.Top && point.Y <= rect.Bottom;
-        }
-
-        public static bool InRect(this Point point, RectangleF rect)
-        {
-            return point.X >= rect.Left && point.X <= rect.Right && point.Y >= rect.Top && point.Y <= rect.Bottom;
-        }
-
-        public static bool InRect(this PointF point, Rectangle rect)
-        {
-            return point.X >= rect.Left && point.X <= rect.Right && point.Y >= rect.Top && point.Y <= rect.Bottom;
-        }
-
-        public static bool InRect(this PointF point, RectangleF rect)
-        {
-            return point.X >= rect.Left && point.X <= rect.Right && point.Y >= rect.Top && point.Y <= rect.Bottom;
         }
 
         public static void Smooth(this Graphics g, bool smooth = true)
@@ -325,98 +295,6 @@ namespace Sunny.UI
             }
 
             return path;
-        }
-
-        /// <summary>
-        /// 两个矩阵是否重叠（边沿重叠，也认为是重叠）
-        /// </summary>
-        /// <param name="rc1">第一个矩阵的位置</param>
-        /// <param name="rc2">第二个矩阵的位置</param>
-        /// <returns></returns>
-        public static bool IsOverlap(this Rectangle rc1, Rectangle rc2)
-        {
-            return rc1.X + rc1.Width > rc2.X &&
-                   rc2.X + rc2.Width > rc1.X &&
-                   rc1.Y + rc1.Height > rc2.Y &&
-                   rc2.Y + rc2.Height > rc1.Y;
-        }
-
-        /// <summary>
-        /// 两个矩阵是否重叠（边沿重叠，也认为是重叠）
-        /// </summary>
-        /// <param name="rc1">第一个矩阵的位置</param>
-        /// <param name="rc2">第二个矩阵的位置</param>
-        /// <returns></returns>
-        public static bool IsOverlap(this RectangleF rc1, RectangleF rc2)
-        {
-            return rc1.X + rc1.Width > rc2.X &&
-                   rc2.X + rc2.Width > rc1.X &&
-                   rc1.Y + rc1.Height > rc2.Y &&
-                   rc2.Y + rc2.Height > rc1.Y;
-        }
-
-        /// <summary>
-        /// 两点创建一个矩形
-        /// </summary>
-        /// <param name="pf1">点1</param>
-        /// <param name="pf2">点2</param>
-        /// <returns>矩形</returns>
-        public static RectangleF CreateRectangleF(this PointF pf1, PointF pf2)
-        {
-            return new RectangleF(Math.Min(pf1.X, pf2.X), Math.Min(pf1.Y, pf2.Y),
-                Math.Abs(pf1.X - pf2.X), Math.Abs(pf1.Y - pf2.Y));
-        }
-
-        /// <summary>
-        /// 两点创建一个矩形
-        /// </summary>
-        /// <param name="pf1">点1</param>
-        /// <param name="pf2">点2</param>
-        /// <returns>矩形</returns>
-        public static Rectangle CreateRectangle(this Point pf1, Point pf2)
-        {
-            return new Rectangle(Math.Min(pf1.X, pf2.X), Math.Min(pf1.Y, pf2.Y),
-                Math.Abs(pf1.X - pf2.X), Math.Abs(pf1.Y - pf2.Y));
-        }
-
-        public static double CalcY(PointF pf1, PointF pf2, double x)
-        {
-            if (pf1.Y.Equals(pf2.Y)) return pf1.Y;
-            if (pf1.X.Equals(pf2.X)) return float.NaN;
-
-            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
-            double b = pf1.Y - a * pf1.X;
-            return a * x + b;
-        }
-
-        public static double CalcX(PointF pf1, PointF pf2, double y)
-        {
-            if (pf1.X.Equals(pf2.X)) return pf1.X;
-            if (pf1.Y.Equals(pf2.Y)) return float.NaN;
-
-            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
-            double b = pf1.Y - a * pf1.X;
-            return (y - b) * 1.0 / a;
-        }
-
-        public static double CalcY(Point pf1, Point pf2, double x)
-        {
-            if (pf1.Y == pf2.Y) return pf1.Y;
-            if (pf1.X == pf2.X) return double.NaN;
-
-            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
-            double b = pf1.Y - a * pf1.X;
-            return a * x + b;
-        }
-
-        public static double CalcX(Point pf1, Point pf2, double y)
-        {
-            if (pf1.Y == pf2.Y) return pf1.X;
-            if (pf1.X == pf2.X) return double.NaN;
-
-            double a = (pf2.Y - pf1.Y) * 1.0 / (pf2.X - pf1.X);
-            double b = pf1.Y - a * pf1.X;
-            return (y - b) * 1.0 / a;
         }
 
         /// <summary>

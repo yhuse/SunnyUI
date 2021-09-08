@@ -127,14 +127,6 @@ namespace Sunny.UI
             return new Point(pos.X, pos.Y);
         }
 
-        public static void ConsoleWriteLine(this object obj, string preText = "")
-        {
-            if (preText != "")
-                Console.WriteLine(preText + ": " + obj);
-            else
-                Console.WriteLine(obj.ToString());
-        }
-
         /// <summary>
         /// Delays the specified ms.
         /// </summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sunny.UI.Demo
+﻿namespace Sunny.UI.Demo
 {
     public partial class FMeter : UIPage
     {
@@ -23,8 +21,6 @@ namespace Sunny.UI.Demo
             uiRoundMeter1.Angle = value * 10;
             uiRoundMeter2.Angle = value * 10;
             uiAnalogMeter1.Value = value;
-
-            Console.WriteLine(DateTime.Now.ToString(DateTimeEx.DateTimeFormatEx));
         }
     }
 }

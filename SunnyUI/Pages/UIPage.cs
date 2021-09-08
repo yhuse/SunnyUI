@@ -24,6 +24,7 @@
  * 2021-08-24: V3.0.6 修复OnLoad在加载时重复加载两次的问题
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;

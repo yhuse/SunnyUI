@@ -19,6 +19,7 @@
  * 2021-08-20: V3.0.6 整理了一些GDI绘图的常用方法扩展 
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -1012,10 +1013,10 @@ namespace Sunny.UI
             RectangleF rect1 = pf1.CreateRectangleF(pf2);
             if (!rect1.IsOverlap(rect)) return;
 
-            double x1 = GDI.CalcX(pf1, pf2, rect.Top);
-            double x2 = GDI.CalcX(pf1, pf2, rect.Bottom);
-            double y1 = GDI.CalcY(pf1, pf2, rect.Left);
-            double y2 = GDI.CalcY(pf1, pf2, rect.Right);
+            double x1 = Drawing.CalcX(pf1, pf2, rect.Top);
+            double x2 = Drawing.CalcX(pf1, pf2, rect.Bottom);
+            double y1 = Drawing.CalcY(pf1, pf2, rect.Left);
+            double y2 = Drawing.CalcY(pf1, pf2, rect.Right);
 
             //判断线段是否和区域有交点
             bool isExist = x1.InRange(rect.Left, rect.Right) || x2.InRange(rect.Left, rect.Right) || y1.InRange(rect.Top, rect.Bottom) || y2.InRange(rect.Top, rect.Bottom);

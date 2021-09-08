@@ -11,17 +11,17 @@ namespace Sunny.UI.Demo
 
         private void uiDatePicker1_ValueChanged(object sender, DateTime value)
         {
-            uiDatePicker1.Value.ConsoleWriteLine();
+            Console.WriteLine(uiDatePicker1.Value);
         }
 
         private void uiDatetimePicker1_ValueChanged(object sender, DateTime value)
         {
-            uiDatetimePicker1.Value.ConsoleWriteLine();
+            Console.WriteLine(uiDatetimePicker1.Value);
         }
 
         private void uiTimePicker1_ValueChanged(object sender, DateTime value)
         {
-            uiTimePicker1.Value.ConsoleWriteLine();
+            Console.WriteLine(uiTimePicker1.Value);
         }
 
         private void uiComboBox1_DropDown(object sender, EventArgs e)

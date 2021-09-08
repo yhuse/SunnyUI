@@ -22,6 +22,7 @@
  * 2020-09-03: V3.0.6 增加标题文字颜色
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.ComponentModel;
 using System.Drawing;

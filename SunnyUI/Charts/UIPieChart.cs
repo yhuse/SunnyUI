@@ -20,6 +20,7 @@
  * 2021-07-22: V3.0.5 增加更新数据的方法
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -232,9 +233,9 @@ namespace Sunny.UI
                 if (!e.Location.InRect(rect)) continue;
 
                 PointF pf = new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
-                if (MathEx.CalcDistance(e.Location, pf) * 2 > rect.Width) continue;
+                if (Drawing.CalcDistance(e.Location, pf) * 2 > rect.Width) continue;
 
-                double az = MathEx.CalcAngle(e.Location, pf);
+                double az = Drawing.CalcAngle(e.Location, pf);
                 for (int azIndex = 0; azIndex < Option.Series[pieIndex].Data.Count; azIndex++)
                 {
                     Angle angle = Angles[pieIndex][azIndex];

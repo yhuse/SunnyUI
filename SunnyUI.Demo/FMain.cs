@@ -104,7 +104,7 @@ namespace Sunny.UI.Demo
 
         private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
         {
-            page?.Text.ConsoleWriteLine();
+            Console.WriteLine(page?.Text);
         }
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)

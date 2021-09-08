@@ -82,17 +82,17 @@ namespace Sunny.UI.Demo
 
         private void uiDatePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            value.ConsoleWriteLine();
+            Console.WriteLine(value);
         }
 
         private void uiTimePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            value.ConsoleWriteLine();
+            Console.WriteLine(value);
         }
 
         private void uiDatetimePicker1_ValueChanged(object sender, System.DateTime value)
         {
-            value.ConsoleWriteLine();
+            Console.WriteLine(value);
         }
 
         private void uiColorPicker1_Click(object sender, System.EventArgs e)

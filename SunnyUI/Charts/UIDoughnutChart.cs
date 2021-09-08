@@ -20,6 +20,7 @@
  * 2021-07-22: V3.0.5 增加更新数据的方法
 ******************************************************************************/
 
+using Sunny.UI.Static;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -207,9 +208,9 @@ namespace Sunny.UI
                 {
                     Angle angle = Angles[pieIndex][azIndex];
                     PointF pf = angle.Center;
-                    if (MathEx.CalcDistance(e.Location, pf) > angle.Outer) continue;
-                    if (MathEx.CalcDistance(e.Location, pf) < angle.Inner) continue;
-                    double az = MathEx.CalcAngle(e.Location, pf);
+                    if (Drawing.CalcDistance(e.Location, pf) > angle.Outer) continue;
+                    if (Drawing.CalcDistance(e.Location, pf) < angle.Inner) continue;
+                    double az = Drawing.CalcAngle(e.Location, pf);
                     if (az >= angle.Start && az <= angle.Start + angle.Sweep)
                     {
                         SetPieAndAzIndex(pieIndex, azIndex);
