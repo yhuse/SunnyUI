@@ -1,5 +1,36 @@
-:fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
-
+﻿:fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
+    
+#### 2021-09-08 V3.0.7    
+:fa-plus: MMFile: 增加多进程通信类    
+:fa-plus: UIComboDataGridView: 增加表格下拉列表框    
+:fa-plus: UIMillisecondTimer: 增加毫秒定时器    
+:fa-plus: 增加ToolTip接口，在用UIToolTip时解决类似UITextBox这类的组合控件无法显示ToolTip的问题    
+:fa-asterisk: UIForm: 修复多屏时最大化显示的问题    
+:fa-asterisk: UIPage: 修复OnLoad在加载时重复加载两次的问题    
+:fa-asterisk: UITextBox: 重写了水印文字的画法，并增加水印文字颜色    
+:fa-asterisk: UICombobox: 修改Watermark及其颜色    
+:fa-asterisk: UITextBox：增加按钮    
+:fa-asterisk: UIPanel: 支持背景图片显示    
+:fa-asterisk: UITitlePanel: 增加标题文字颜色    
+:fa-asterisk: UIDropControl: 优化下拉框控件显示效果    
+:fa-asterisk: UIEditForm: 代码创建时增加UISwitch开关文字描述    
+:fa-asterisk: UINavMenu: 增加自定义TipsText显示的颜色    
+:fa-asterisk: UITreeView： CheckBoxes增加三态，感谢群友：笑口常开    
+:fa-asterisk: UILineChart: 增加可只显示点的模式    
+:fa-asterisk: UICombobox: 增加ShowDropDown函数    
+:fa-asterisk: UIGroupBox: 解决Radius为0时的报错    
+:fa-asterisk: UIAnalogMeter: 增加ValueChanged事件    
+:fa-asterisk: Demo: 修改Demo的UITitlePage为UIPage，UITitlePage已废弃    
+:fa-asterisk: UIForm, UIPage: 增加TitleFont属性    
+:fa-asterisk: UIProcessBar: 修改不显示百分比时，显示数值    
+:fa-asterisk: UIDatePicker: 增加可选择年、年月、年月日    
+:fa-asterisk: UIDateTimePicker: 选中的年月日标记显示    
+:fa-asterisk: UIImageButton: 更改了一个属性为私有，在VB.Net下不区分大小写而出错    
+:fa-asterisk: UITabControl: 增加DisposeTabPageAfterRemove标志，移除TabPage后，是否自动销毁TabPage    
+:fa-asterisk: UITabControl: 关闭TabPage并销毁TabPage    
+:fa-asterisk: 整理了一些GDI绘图的常用方法扩展    
+:fa-asterisk: 整理了一些扩展函数    
+    
 #### 2021-08-12 V3.0.6  
 :fa-plus: UIPipe: 增加管道控件  
 :fa-plus: UIValve: 增加阀门控件  
