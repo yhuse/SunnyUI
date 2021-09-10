@@ -811,7 +811,7 @@ namespace Sunny.UI
                                     }
                                 }
 
-                                if (!DicNodeStatus.Keys.Contains(e.Node.GetHashCode()))
+                                if (!DicNodeStatus.ContainsKey(e.Node.GetHashCode()))
                                 {
                                     DicNodeStatus.Add(e.Node.GetHashCode(), false);
                                 }
@@ -947,7 +947,7 @@ namespace Sunny.UI
 
                 parentNode.Checked = count == parentNode.Nodes.Count;
 
-                var half = parentNode.Nodes.Cast<TreeNode>().Where(n => DicNodeStatus[n.GetHashCode()]).ToList().Count;
+                var half = parentNode.Nodes.Cast<TreeNode>().Where(n => (DicNodeStatus.ContainsKey(n.GetHashCode()) ? DicNodeStatus[n.GetHashCode()] : false)).ToList().Count;
 
                 if ((count > 0 && count < parentNode.Nodes.Count) || half > 0)
                 {
