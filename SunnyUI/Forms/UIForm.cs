@@ -70,6 +70,10 @@ namespace Sunny.UI
             showTitleIcon = false;
         }
 
+        [DefaultValue(true)]
+        [Description("是否点击标题栏可以移动窗体"), Category("SunnyUI")]
+        public bool Movable { get; set; } = true;
+
         public void Translate()
         {
             List<Control> controls = this.GetTranslateControls("ITranslate");
@@ -648,7 +652,7 @@ namespace Sunny.UI
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && Movable)
             {
                 FormMoveMouseDown = true;
                 FormLocation = Location;
