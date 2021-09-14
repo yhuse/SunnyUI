@@ -88,6 +88,8 @@ namespace Sunny.UI.Demo
             this.uiButton2 = new Sunny.UI.UIButton();
             this.uiButton1 = new Sunny.UI.UIButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.uiSwitch5 = new Sunny.UI.UISwitch();
+            this.uiSwitch6 = new Sunny.UI.UISwitch();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
@@ -424,6 +426,7 @@ namespace Sunny.UI.Demo
             // uiSymbolButton18
             // 
             this.uiSymbolButton18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton18.Enabled = false;
             this.uiSymbolButton18.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton18.Location = new System.Drawing.Point(30, 395);
             this.uiSymbolButton18.MinimumSize = new System.Drawing.Size(1, 1);
@@ -1098,11 +1101,39 @@ namespace Sunny.UI.Demo
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
+            // uiSwitch5
+            // 
+            this.uiSwitch5.ActiveText = "On";
+            this.uiSwitch5.Enabled = false;
+            this.uiSwitch5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSwitch5.InActiveText = "Off";
+            this.uiSwitch5.Location = new System.Drawing.Point(30, 520);
+            this.uiSwitch5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSwitch5.Name = "uiSwitch5";
+            this.uiSwitch5.Size = new System.Drawing.Size(75, 29);
+            this.uiSwitch5.TabIndex = 116;
+            this.uiSwitch5.Text = "uiSwitch5";
+            // 
+            // uiSwitch6
+            // 
+            this.uiSwitch6.Active = true;
+            this.uiSwitch6.Enabled = false;
+            this.uiSwitch6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSwitch6.Location = new System.Drawing.Point(112, 520);
+            this.uiSwitch6.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSwitch6.Name = "uiSwitch6";
+            this.uiSwitch6.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiSwitch6.Size = new System.Drawing.Size(75, 29);
+            this.uiSwitch6.TabIndex = 117;
+            this.uiSwitch6.Text = "uiSwitch6";
+            // 
             // FButton
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 614);
+            this.Controls.Add(this.uiSwitch6);
+            this.Controls.Add(this.uiSwitch5);
             this.Controls.Add(this.uiSwitch3);
             this.Controls.Add(this.uiSwitch4);
             this.Controls.Add(this.uiSymbolButton26);
@@ -1234,5 +1265,7 @@ namespace Sunny.UI.Demo
         private UIButton uiButton2;
         private UIButton uiButton1;
         private UIToolTip uiToolTip1;
+        private UISwitch uiSwitch5;
+        private UISwitch uiSwitch6;
     }
 }

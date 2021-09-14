@@ -93,7 +93,7 @@ namespace Sunny.UI
 
         public virtual Color SwitchActiveColor => PrimaryColor;
 
-        public virtual Color SwitchInActiveColor => Color.Silver;
+        public virtual Color SwitchInActiveColor => Color.Gray;
 
         public virtual Color SwitchFillColor => Color.White;
 
