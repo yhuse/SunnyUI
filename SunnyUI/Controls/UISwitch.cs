@@ -196,11 +196,10 @@ namespace Sunny.UI
             rectColor = uiColor.SwitchActiveColor;
             fillColor = uiColor.SwitchFillColor;
             inActiveColor = uiColor.SwitchInActiveColor;
-            disabledColor = uiColor.RectDisableColor;
+            rectDisableColor = uiColor.RectDisableColor;
             Invalidate();
         }
 
-        private Color disabledColor;
         [Description("不可用颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "173, 178, 181")]
         public Color DisabledColor
@@ -218,7 +217,7 @@ namespace Sunny.UI
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             Color color = Active ? ActiveColor : InActiveColor;
-            if (!Enabled) color = disabledColor;
+            if (!Enabled) color = rectDisableColor;
 
             if (SwitchShape == UISwitchShape.Round)
             {

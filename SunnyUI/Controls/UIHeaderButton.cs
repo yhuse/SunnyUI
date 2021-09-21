@@ -20,6 +20,7 @@
  * 2021-03-27: V3.0.2 增加字体图标背景时鼠标移上背景色
  * 2021-06-01: V3.0.4 增加图片与文字的位置
  * 2021-06-22: V3.0.4 增加ShowSelected，是否显示选中状态
+ * 2021-09-21: V3.0.7 增加Disabled颜色
 ******************************************************************************/
 
 using System;
@@ -51,10 +52,16 @@ namespace Sunny.UI
             foreHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeHoverColor;
             forePressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForePressColor;
             foreSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeSelectedColor;
+
             fillHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillHoverColor;
             fillPressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillPressColor;
             fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
+
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+
+            fillDisableColor = fillColor;
+            foreDisableColor = foreColor;
+            rectDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
         }
 
         private bool isClick;
@@ -141,7 +148,19 @@ namespace Sunny.UI
             fillSelectedColor = uiColor.ButtonFillSelectedColor;
             foreSelectedColor = uiColor.ButtonForeSelectedColor;
 
+            rectDisableColor = uiColor.RectDisableColor;
+            fillDisableColor = fillColor;
+            foreDisableColor = foreColor;
+
             Invalidate();
+        }
+
+        [Description("不可用颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "173, 178, 181")]
+        public Color CircleDisabledColor
+        {
+            get => rectDisableColor;
+            set => SetRectDisableColor(value);
         }
 
         /// <summary>
@@ -155,6 +174,14 @@ namespace Sunny.UI
             set => SetFillColor(value);
         }
 
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color FillDisableColor
+        {
+            get => fillDisableColor;
+            set => SetFillDisableColor(value);
+        }
+
         /// <summary>
         /// 字体颜色
         /// </summary>
@@ -166,15 +193,7 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
-        [DefaultValue(typeof(Color), "244, 244, 244"), Category("SunnyUI")]
-        [Description("不可用时填充颜色")]
-        public Color FillDisableColor
-        {
-            get => fillDisableColor;
-            set => SetFillDisableColor(value);
-        }
-
-        [DefaultValue(typeof(Color), "109, 109, 103"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         [Description("不可用时字体颜色")]
         public Color ForeDisableColor
         {
@@ -457,6 +476,7 @@ namespace Sunny.UI
                         if (Symbol > 0 && Image == null)
                         {
                             Color bcColor = CircleColor;
+                            if (!Enabled) bcColor = CircleDisabledColor;
                             if (ShowCircleHoverColor && IsHover)
                             {
                                 bcColor = CircleHoverColor;
@@ -484,6 +504,7 @@ namespace Sunny.UI
                         if (Symbol > 0 && Image == null)
                         {
                             Color bcColor = CircleColor;
+                            if (!Enabled) bcColor = CircleDisabledColor;
                             if (ShowCircleHoverColor && IsHover)
                             {
                                 bcColor = CircleHoverColor;
@@ -515,6 +536,7 @@ namespace Sunny.UI
                         if (Symbol > 0 && Image == null)
                         {
                             Color bcColor = CircleColor;
+                            if (!Enabled) bcColor = CircleDisabledColor;
                             if (ShowCircleHoverColor && IsHover)
                             {
                                 bcColor = CircleHoverColor;
@@ -542,6 +564,7 @@ namespace Sunny.UI
                         if (Symbol > 0 && Image == null)
                         {
                             Color bcColor = CircleColor;
+                            if (!Enabled) bcColor = CircleDisabledColor;
                             if (ShowCircleHoverColor && IsHover)
                             {
                                 bcColor = CircleHoverColor;

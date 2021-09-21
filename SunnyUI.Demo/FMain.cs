@@ -14,26 +14,26 @@ namespace Sunny.UI.Demo
             Header.SetNodeSymbol(Header.Nodes[0], 61451);
             TreeNode parent = Aside.CreateNode("控件", 61451, 24, pageIndex);
             //通过设置PageIndex关联，节点文字、图标由相应的Page的Text、Symbol提供
+            Aside.CreateChildNode(parent, AddPage(new FAvatar(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FButton(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FCheckBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FCombobox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FContextMenuStrip(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FDataGridView(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FFlowLayoutPanel(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FHeaderButton(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FLabel(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FCheckBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FRadioButton(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FTextBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FCombobox(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FDataGridView(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FListBox(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FTreeView(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FNavigation(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FTabControl(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FLine(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FListBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FNavigation(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FPanel(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FFlowLayoutPanel(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FTransfer(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FAvatar(), ++pageIndex));
-            Aside.CreateChildNode(parent, AddPage(new FContextMenuStrip(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FProcess(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FRadioButton(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FScrollBar(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTabControl(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTextBox(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTransfer(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FTreeView(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FOther(), ++pageIndex));
             //示例设置某个节点的小红点提示
             Aside.ShowTips = true;
@@ -81,7 +81,7 @@ namespace Sunny.UI.Demo
             AddPage(new FColorful());
 
             //选中第一个节点
-            Aside.SelectFirst();
+            Aside.SelectPage(1002);
         }
 
         private void Header_MenuItemClick(string text, int menuIndex, int pageIndex)
