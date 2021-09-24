@@ -712,6 +712,7 @@ namespace Sunny.UI
                 g.Dispose();
             }
 
+
             protected override void OnDrawNode(DrawTreeNodeEventArgs e)
             {
                 base.OnDrawNode(e);
@@ -720,6 +721,17 @@ namespace Sunny.UI
 
                 try
                 {
+                    if (!DicNodeStatus.ContainsKey(e.Node.GetHashCode()))
+                    {
+                        DicNodeStatus.Add(e.Node.GetHashCode(), false);
+                    }
+                    if (CheckBoxes)
+                    {
+                        if (e.Node.Parent != null && DicNodeStatus.ContainsKey(e.Node.Parent.GetHashCode()) && !DicNodeStatus[e.Node.Parent.GetHashCode()])
+                        {
+                            SetParentNodeCheckedState(e.Node);
+                        }
+                    }
                     if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
 
                     if (e.Node == null || e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0)
@@ -728,6 +740,7 @@ namespace Sunny.UI
                     }
                     else
                     {
+
                         var drawLeft = (e.Node.Level + 1) * Indent + 3;
                         var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
                         var imageLeft = drawLeft;
@@ -750,6 +763,7 @@ namespace Sunny.UI
                         var checkboxColor = ForeColor;
                         if (e.Node != null)
                         {
+
                             if (e.Node == SelectedNode)
                             {
                                 e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
@@ -788,6 +802,8 @@ namespace Sunny.UI
 
                             if (CheckBoxes)
                             {
+
+
                                 if (!e.Node.Checked)
                                 {
                                     e.Graphics.DrawRectangle(checkboxColor,
@@ -809,11 +825,6 @@ namespace Sunny.UI
                                         e.Graphics.DrawRectangle(checkboxColor,
                                             new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
                                     }
-                                }
-
-                                if (!DicNodeStatus.ContainsKey(e.Node.GetHashCode()))
-                                {
-                                    DicNodeStatus.Add(e.Node.GetHashCode(), false);
                                 }
 
                                 if (DicNodeStatus[e.Node.GetHashCode()])
@@ -930,17 +941,18 @@ namespace Sunny.UI
                     DicNodeStatus[e.Node.GetHashCode()] = false;
 
                     SetChildNodeCheckedState(e.Node, e.Node.Checked);
-                    if (e.Node.Parent != null)
-                    {
-                        SetParentNodeCheckedState(e.Node);
-                    }
+
+                    SetParentNodeCheckedState(e.Node, true);
 
                 }
 
             }
 
-            private void SetParentNodeCheckedState(TreeNode currNode)
+            private void SetParentNodeCheckedState(TreeNode currNode, bool ByMouse = false)
             {
+
+                if (currNode.Parent == null)
+                    return;
                 TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
 
                 var count = parentNode.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
@@ -958,17 +970,19 @@ namespace Sunny.UI
                     DicNodeStatus[parentNode.GetHashCode()] = false;
                 }
 
-
-                var g = CreateGraphics();
-                OnDrawNode(new DrawTreeNodeEventArgs(g, parentNode,
-                    new Rectangle(0, parentNode.Bounds.Y, Width, parentNode.Bounds.Height), TreeNodeStates.Hot));
-                g.Dispose();
-
-
-                if (parentNode.Parent != null) //如果父节点之上还有父节点
+                if (ByMouse)
                 {
-                    SetParentNodeCheckedState(parentNode); //递归调用
+                    var g = CreateGraphics();
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, parentNode,
+                        new Rectangle(0, parentNode.Bounds.Y, Width, parentNode.Bounds.Height), TreeNodeStates.Hot));
+                    g.Dispose();
+
+                    if (parentNode.Parent != null) //如果父节点之上还有父节点
+                    {
+                        SetParentNodeCheckedState(parentNode, ByMouse); //递归调用
+                    }
                 }
+
             }
 
 
@@ -986,6 +1000,8 @@ namespace Sunny.UI
                     }
                 }
             }
+
+
         }
     }
 }
