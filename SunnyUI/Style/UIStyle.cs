@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-07-12: V3.0.5 增加紫色主题
  * 2021-07-18: V3.0.5 增加多彩主题，以颜色深色，文字白色为主
+ * 2021-09-24: V3.0.7 修改默认字体的GdiCharSet
 ******************************************************************************/
 
 using System;
@@ -205,102 +206,102 @@ namespace Sunny.UI
         /// <summary>
         /// 自定义
         /// </summary>
-        private readonly static UIBaseStyle Custom = new UICustomStyle();
+        private static readonly UIBaseStyle Custom = new UICustomStyle();
 
         /// <summary>
         /// 白
         /// </summary>
-        private readonly static UIBaseStyle White = new UIWhiteStyle();
+        private static readonly UIBaseStyle White = new UIWhiteStyle();
 
         /// <summary>
         /// 蓝
         /// </summary>
-        private readonly static UIBaseStyle Blue = new UIBlueStyle();
+        private static readonly UIBaseStyle Blue = new UIBlueStyle();
 
         /// <summary>
         /// 浅蓝
         /// </summary>
-        private readonly static UIBaseStyle LightBlue = new UILightBlueStyle();
+        private static readonly UIBaseStyle LightBlue = new UILightBlueStyle();
 
         /// <summary>
         /// 橙
         /// </summary>
-        private readonly static UIBaseStyle Orange = new UIOrangeStyle();
+        private static readonly UIBaseStyle Orange = new UIOrangeStyle();
 
         /// <summary>
         /// 浅橙
         /// </summary>
-        private readonly static UIBaseStyle LightOrange = new UILightOrangeStyle();
+        private static readonly UIBaseStyle LightOrange = new UILightOrangeStyle();
 
         /// <summary>
         /// 灰
         /// </summary>
-        private readonly static UIBaseStyle Gray = new UIGrayStyle();
+        private static readonly UIBaseStyle Gray = new UIGrayStyle();
 
         /// <summary>
         /// 浅灰
         /// </summary>
-        private readonly static UIBaseStyle LightGray = new UILightGrayStyle();
+        private static readonly UIBaseStyle LightGray = new UILightGrayStyle();
 
         /// <summary>
         /// 绿
         /// </summary>
-        private readonly static UIBaseStyle Green = new UIGreenStyle();
+        private static readonly UIBaseStyle Green = new UIGreenStyle();
 
         /// <summary>
         /// 浅绿
         /// </summary>
-        private readonly static UIBaseStyle LightGreen = new UILightGreenStyle();
+        private static readonly UIBaseStyle LightGreen = new UILightGreenStyle();
 
         /// <summary>
         /// 红
         /// </summary>
-        private readonly static UIBaseStyle Red = new UIRedStyle();
+        private static readonly UIBaseStyle Red = new UIRedStyle();
 
         /// <summary>
         /// 浅红
         /// </summary>
-        private readonly static UIBaseStyle LightRed = new UILightRedStyle();
+        private static readonly UIBaseStyle LightRed = new UILightRedStyle();
 
         /// <summary>
         /// 深蓝
         /// </summary>
-        private readonly static UIBaseStyle DarkBlue = new UIDarkBlueStyle();
+        private static readonly UIBaseStyle DarkBlue = new UIDarkBlueStyle();
 
         /// <summary>
         /// 黑
         /// </summary>
-        private readonly static UIBaseStyle Black = new UIBlackStyle();
+        private static readonly UIBaseStyle Black = new UIBlackStyle();
 
         /// <summary>
         /// Office蓝
         /// </summary>
-        private readonly static UIBaseStyle Office2010Blue = new UIOffice2010BlueStyle();
+        private static readonly UIBaseStyle Office2010Blue = new UIOffice2010BlueStyle();
 
         /// <summary>
         /// Office银
         /// </summary>
-        private readonly static UIBaseStyle Office2010Silver = new UIOffice2010SilverStyle();
+        private static readonly UIBaseStyle Office2010Silver = new UIOffice2010SilverStyle();
 
         /// <summary>
         /// 紫
         /// </summary>
-        private readonly static UIBaseStyle Purple = new UIPurpleStyle();
+        private static readonly UIBaseStyle Purple = new UIPurpleStyle();
 
         /// <summary>
         /// 浅紫
         /// </summary>
-        private readonly static UIBaseStyle LightPurple = new UILightPurpleStyle();
+        private static readonly UIBaseStyle LightPurple = new UILightPurpleStyle();
 
         /// <summary>
         /// 多彩
         /// </summary>
-        private readonly static UIColorfulStyle Colorful = new UIColorfulStyle();
+        private static readonly UIColorfulStyle Colorful = new UIColorfulStyle();
 
         /// <summary>
         /// Office黑
         /// </summary>
-        private readonly static UIBaseStyle Office2010Black = new UIOffice2010BlackStyle();
+        private static readonly UIBaseStyle Office2010Black = new UIOffice2010BlackStyle();
 
         public static void InitColorful(Color styleColor, Color foreColor)
         {
@@ -440,7 +441,6 @@ namespace Sunny.UI
         /// 反注册窗体、页面
         /// </summary>
         /// <param name="guid">GUID</param>
-        /// <param name="form">窗体</param>
         public static void UnRegister(Guid guid)
         {
             if (Forms.ContainsKey(guid))
@@ -462,17 +462,12 @@ namespace Sunny.UI
             {
                 return Styles[style];
             }
-            else
-            {
-                Style = UIStyle.Blue;
-                return Styles[Style];
-            }
+
+            Style = UIStyle.Blue;
+            return Styles[Style];
         }
 
-        public static UIBaseStyle ActiveStyleColor
-        {
-            get => GetStyleColor(Style);
-        }
+        public static UIBaseStyle ActiveStyleColor => GetStyleColor(Style);
 
         private static void AddStyle(UIBaseStyle uiColor)
         {
@@ -565,7 +560,7 @@ namespace Sunny.UI
         /// <summary>
         /// 紫
         /// </summary>
-        public static readonly Color Purple = Color.FromArgb(102, 58, 183);// Color.FromArgb(123, 81, 201);
+        public static readonly Color Purple = Color.FromArgb(102, 58, 183);
 
         /// <summary>
         /// 浅紫
@@ -649,15 +644,51 @@ namespace Sunny.UI
     /// </summary>
     public static class UIFontColor
     {
-        /// <summary>
-        /// 默认字体
-        /// </summary>
-        public static readonly Font Font = new Font("微软雅黑", 12);
+        public static byte GdiCharSet
+        {
+            get
+            {
+                byte value = 1;
+                // 注解
+                // 除非在构造函数中指定了不同的字符集，否则此属性将返回 1 
+                // Font(String, Single, FontStyle, GraphicsUnit, Byte) 。 
+                // 此属性采用 Windows SDK 头文件 WinGDI 中定义的列表的值。 下表列出了字符集和字节值。
+                // 字符集 “值”
+                // ANSI    0
+                // DEFAULT 1
+                // 代号  2
+                // SHIFTJIS    128
+                // HANGEUL 129
+                // 文字  129
+                // GB2312  134
+                // CHINESEBIG5 136
+                // OEM 255
+                // JOHAB   130
+                // 希伯来语    177
+                // 阿拉伯语    178
+                // 希腊语 161
+                // 土耳其语    162
+                // 越南语 163
+                // 泰语  222
+                // EASTEUROPE  238
+                // 俄语  204
+                // MAC 77
+                // 波罗  186
+
+                if (System.Text.Encoding.Default.BodyName.ToUpper() == "GB2312") value = 134;
+                return value;
+            }
+        }
 
         /// <summary>
         /// 默认字体
         /// </summary>
-        public static readonly Font SubFont = new Font("微软雅黑", 9);
+        public static readonly Font Font = new Font("微软雅黑", 12, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+
+        /// <summary>
+        /// 默认字体
+        /// </summary>
+        public static readonly Font SubFont = new Font("微软雅黑", 9, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
 
         /// <summary>
         /// 主要颜色
