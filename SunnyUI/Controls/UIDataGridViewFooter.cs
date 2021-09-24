@@ -17,6 +17,7 @@
  * 创建日期: 2021-04-20
  *
  * 2021-04-20: V3.0.3 增加文件说明
+ * 2021-09-24: V3.0.7 文字显示方向与Column列显示方向一致
 ******************************************************************************/
 
 using System;
@@ -116,17 +117,54 @@ namespace Sunny.UI
                     string str = this[column.Name];
                     if (str.IsNullOrEmpty()) continue;
 
+                    var align = column.DefaultCellStyle.Alignment;
                     SizeF sf = g.MeasureString(str, Font);
 
                     if (rect.Left == 0 && rect.Width == 0) continue;
-                    if (rect.Left == minleft && rect.Width < column.Width)
+                    switch (align)
                     {
-                        g.DrawString(str, Font, ForeColor, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                        case DataGridViewContentAlignment.TopLeft:
+                        case DataGridViewContentAlignment.MiddleLeft:
+                        case DataGridViewContentAlignment.BottomLeft:
+                            if (rect.Left == minleft && rect.Width < column.Width)
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width, (Height - sf.Height) / 2.0f);
+                            }
+                            else
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Left, (Height - sf.Height) / 2.0f);
+                            }
+
+                            break;
+                        case DataGridViewContentAlignment.TopCenter:
+                        case DataGridViewContentAlignment.MiddleCenter:
+                        case DataGridViewContentAlignment.BottomCenter:
+                            if (rect.Left == minleft && rect.Width < column.Width)
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                            }
+                            else
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Left + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                            }
+
+                            break;
+                        case DataGridViewContentAlignment.TopRight:
+                        case DataGridViewContentAlignment.MiddleRight:
+                        case DataGridViewContentAlignment.BottomRight:
+                            if (rect.Left == minleft && rect.Width < column.Width)
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width + column.Width - sf.Width, (Height - sf.Height) / 2.0f);
+                            }
+                            else
+                            {
+                                g.DrawString(str, Font, ForeColor, rect.Left + column.Width - sf.Width, (Height - sf.Height) / 2.0f);
+                            }
+
+                            break;
                     }
-                    else
-                    {
-                        g.DrawString(str, Font, ForeColor, rect.Left + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
-                    }
+
+
                 }
             }
         }
