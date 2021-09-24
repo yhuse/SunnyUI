@@ -875,10 +875,10 @@ namespace Sunny.UI
                 //}
 
                 showText = GetItemText(Items[e.Index]);
-                if (showText.IsNullOrEmpty())
-                {
-                    showText = Items[e.Index].ToString();
-                }
+                // if (showText.IsNullOrEmpty())
+                // {
+                //     showText = Items[e.Index].ToString();
+                // }
             }
 
             if (!otherState)
