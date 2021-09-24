@@ -15,7 +15,7 @@
     <PackageId>SunnyUI</PackageId>
     <PackageProjectUrl>https://gitee.com/yhuse/SunnyUI</PackageProjectUrl>
     <RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>SunnyUI.png</PackageIcon>
 </PropertyGroup>
