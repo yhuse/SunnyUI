@@ -421,5 +421,44 @@ namespace Sunny.UI
                 propertyInfo.SetValue(control, true, null);
             }
         }
+
+        /// <summary>
+        /// 获取此TreeNode的选中状态
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>全选状态(Checked),半选状态(Indeterminate),未选状态(Unchecked)</returns>
+        public static CheckState CheckState(this TreeNode node)
+        {
+            if (GetChildNodeCheckedState(node))
+            {
+                return System.Windows.Forms.CheckState.Indeterminate;
+            }
+
+            return node.Checked ? System.Windows.Forms.CheckState.Checked : System.Windows.Forms.CheckState.Unchecked;
+        }
+
+        private static bool GetChildNodeCheckedState(TreeNode node)
+        {
+
+            if (node.Nodes.Count > 0)
+            {
+                var count = node.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
+                if (count > 0 && count < node.Nodes.Count)
+                {
+                    return true;
+                }
+                else
+                {
+                    foreach (TreeNode nd in node.Nodes)
+                    {
+                        return GetChildNodeCheckedState(nd);
+                    }
+                }
+
+
+            }
+            return false;
+        }
+
     }
 }
