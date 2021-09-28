@@ -929,10 +929,8 @@ namespace Sunny.UI
 
         public static void DrawTwoPoints(this Graphics g, Color color, PointF pf1, PointF pf2, Rectangle rect, bool smooth = true, float penWidth = 1)
         {
-            using (Pen pen = color.Pen(penWidth))
-            {
-                DrawTwoPoints(g, pen, pf1, pf2, rect, smooth);
-            }
+            using Pen pen = color.Pen(penWidth);
+            DrawTwoPoints(g, pen, pf1, pf2, rect, smooth);
         }
 
         public static void DrawTwoPoints(this Graphics g, Pen pen, PointF pf1, PointF pf2, Rectangle rect, bool smooth = true)
@@ -1071,6 +1069,35 @@ namespace Sunny.UI
             }
 
             TwoPoints.Clear();
+        }
+
+        /// <summary>
+        /// 以center为中心，绘制箭头，正北0°，顺时针0°到359°
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="arrowSize">箭头尺寸</param>
+        /// <param name="arrowDir">箭头方向</param>
+        /// <param name="penWidth">笔宽</param>
+        public static void DrawArrow(this Graphics g, Color color, PointF center, float arrowSize, float arrowDir, float penWidth = 1)
+        {
+            using Pen pen = color.Pen(penWidth);
+            PointF pfStart = new PointF(Convert.ToSingle(center.X + arrowSize * Math.Sin(arrowDir.Rad()) / 2),
+                Convert.ToSingle(center.Y - arrowSize * Math.Cos(arrowDir.Rad()) / 2));
+            PointF pfEnd = new PointF(Convert.ToSingle(center.X - arrowSize * Math.Sin(arrowDir.Rad()) / 2),
+                Convert.ToSingle(center.Y + arrowSize * Math.Cos(arrowDir.Rad()) / 2));
+
+            double dAngle = arrowDir + 180 + 25;
+            PointF pfArrow1 = new PointF(Convert.ToSingle(pfStart.X + arrowSize * Math.Sin(dAngle.Rad()) / 2),
+                Convert.ToSingle(pfStart.Y - arrowSize * Math.Cos(dAngle.Rad()) / 2));
+
+            dAngle = arrowDir + 180 - 25;
+            PointF pfArrow2 = new PointF(Convert.ToSingle(pfStart.X + arrowSize * Math.Sin(dAngle.Rad()) / 2),
+                Convert.ToSingle(pfStart.Y - arrowSize * Math.Cos(dAngle.Rad()) / 2));
+
+            PointF[] pfPoints = { pfArrow1, pfStart, pfEnd, pfStart, pfArrow2 };
+            g.DrawLines(pen, pfPoints);
         }
     }
 }

@@ -29,6 +29,20 @@ namespace Sunny.UI
 {
     public static class GDI
     {
+        public static PointF AzRange(this PointF center, float range, float az, float xOffset = 0, float yOffset = 0)
+        {
+            float x = (float)(range * 1.0f * Math.Sin(az * Math.PI / 180));
+            float y = (float)(range * 1.0f * Math.Cos(az * Math.PI / 180));
+            return new PointF(center.X + xOffset + x, center.Y + yOffset - y);
+        }
+
+        public static PointF AzRange(this Point center, float range, float az, float xOffset = 0, float yOffset = 0)
+        {
+            float x = (float)(range * 1.0f * Math.Sin(az * Math.PI / 180));
+            float y = (float)(range * 1.0f * Math.Cos(az * Math.PI / 180));
+            return new PointF(center.X + xOffset + x, center.Y + yOffset - y);
+        }
+
         /// <summary>
         /// 点是否在区域内
         /// </summary>
