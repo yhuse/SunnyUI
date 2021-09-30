@@ -361,6 +361,13 @@
     <Compile Include="Forms\FColorful.Designer.cs">
       <DependentUpon>FColorful.cs</DependentUpon>
     </Compile>
+    <Compile Include="Units\FCommon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Units\FCommon.Designer.cs">
+      <DependentUpon>FCommon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Units\UMapperDemo.cs" />
     <EmbeddedResource Include="Charts\FBarChartEx.resx">
       <DependentUpon>FBarChartEx.cs</DependentUpon>
     </EmbeddedResource>
@@ -520,6 +527,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\FColorful.resx">
       <DependentUpon>FColorful.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Units\FCommon.resx">
+      <DependentUpon>FCommon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>

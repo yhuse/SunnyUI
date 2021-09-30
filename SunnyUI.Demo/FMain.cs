@@ -80,6 +80,8 @@ namespace Sunny.UI.Demo
             //直接增加一个页面，不在左侧列表显示
             AddPage(new FColorful());
 
+            AddPage(new FCommon());
+
             //选中第一个节点
             Aside.SelectPage(1002);
         }

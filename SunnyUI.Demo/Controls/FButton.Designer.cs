@@ -162,8 +162,9 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton25.StyleCustomMode = true;
             this.uiSymbolButton25.Symbol = 61453;
             this.uiSymbolButton25.TabIndex = 112;
-            this.uiSymbolButton25.Text = "Link";
+            this.uiSymbolButton25.Text = "类库";
             this.uiSymbolButton25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiSymbolButton25.Click += new System.EventHandler(this.uiSymbolButton25_Click);
             // 
             // uiImageButton4
             // 
@@ -426,7 +427,6 @@ namespace Sunny.UI.Demo
             // uiSymbolButton18
             // 
             this.uiSymbolButton18.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton18.Enabled = false;
             this.uiSymbolButton18.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton18.Location = new System.Drawing.Point(30, 395);
             this.uiSymbolButton18.MinimumSize = new System.Drawing.Size(1, 1);

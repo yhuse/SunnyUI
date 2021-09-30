@@ -57,5 +57,10 @@ namespace Sunny.UI.Demo
         {
             Console.WriteLine(uiSwitch1.Active);
         }
+
+        private void uiSymbolButton25_Click(object sender, EventArgs e)
+        {
+            Frame.SelectPage(5000);
+        }
     }
 }
