@@ -14,11 +14,6 @@
 #### 感谢码云
 ![GVP](https://images.gitee.com/uploads/images/2021/0526/214138_85647268_416720.png "QQ图片20210526213958.png")  
     
-#### 赞助商：驰骋工作流、表单引擎、驰骋低代码快速开发平台.    
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0914/161524_f35db6e5_416720.png "屏幕截图.png")
-- 驰骋工作流、表单、低代码平台100%开源，有java.net两个版本.    
-- 下载地址： [https://ccfast.cc/?Frm=SunnyUI](https://ccfast.cc/?Frm=SunnyUI)    
-    
 #### 特别声明
 SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
 ![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
