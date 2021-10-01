@@ -1,7 +1,17 @@
 ﻿:fa-plus:增加；  :fa-asterisk:修改；  :fa-minus:删除
     
+#### 2021-10-01 V3.0.8    
+:fa-plus: Mapper: 轻量级的对象映射框架，可以映射值类型（包括Struct），和以值类型构成的List和数组。    
+:fa-asterisk: UITreeView：修复TreeView默认展开时，绘制半选状态报错的问题    
+:fa-asterisk: UIDataGridViewFooter: 文字显示方向与Column列显示方向一致    
+:fa-asterisk: UICombobox: 修复使用BindingList进行绑定，DisplayMember是空字符串显示错误    
+:fa-asterisk: UIStyle: 修改默认字体的GdiCharSet    
+:fa-asterisk: UIHeaderButton: 增加Disabled颜色    
+:fa-asterisk: UISwitch: 增加Disabled颜色    
+:fa-asterisk: UIForm: 增加Movable属性，控制点击标题行是否能移动窗体    
+    
 #### 2021-09-08 V3.0.7    
-:fa-plus: MMFile: 增加多进程通信类    
+:fa-plus: MMFile: 增加多进程通信框架    
 :fa-plus: UIComboDataGridView: 增加表格下拉列表框    
 :fa-plus: UIMillisecondTimer: 增加毫秒定时器    
 :fa-plus: 增加ToolTip接口，在用UIToolTip时解决类似UITextBox这类的组合控件无法显示ToolTip的问题    
