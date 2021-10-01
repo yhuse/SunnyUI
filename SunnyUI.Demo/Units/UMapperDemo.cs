@@ -1,5 +1,4 @@
-﻿using Sunny.UI.Static;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -30,6 +29,7 @@ namespace Sunny.UI.Demo
     {
         public string A { get; set; }
 
+        [MapperIgnore]
         public int B { get; set; }
 
         public double C { get; set; }
@@ -60,6 +60,9 @@ namespace Sunny.UI.Demo
         public Point E { get; set; }
 
         public MapperT3 F { get; set; }
+
+        [MapperIgnore]
+        public Size G { get; set; }
 
         public List<string> H { get; set; }
 

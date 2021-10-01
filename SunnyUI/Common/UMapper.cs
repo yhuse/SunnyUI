@@ -27,9 +27,9 @@ using System.Reflection;
 
 namespace Sunny.UI
 {
-    public static class SunnyMapper
+    public static class Mapper
     {
-        private static void Mapper<T1, T2>(T1 source, T2 dest)
+        private static void Execute<T1, T2>(T1 source, T2 dest)
             where T1 : class
             where T2 : class
         {
@@ -161,14 +161,14 @@ namespace Sunny.UI
             where T1 : class
             where T2 : class
         {
-            Mapper(source, dest);
+            Execute(source, dest);
         }
 
         public static void MapperFrom<T1, T2>(this T1 dest, T2 source)
             where T1 : class
             where T2 : class
         {
-            Mapper(source, dest);
+            Execute(source, dest);
         }
 
         public static Type GetArrayElementType(this Type t)

@@ -20,7 +20,6 @@
  * 2021-07-22: V3.0.5 增加更新数据的方法
 ******************************************************************************/
 
-using Sunny.UI.Static;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

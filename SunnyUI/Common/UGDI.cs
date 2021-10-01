@@ -334,11 +334,6 @@ namespace Sunny.UI
             return color == Color.Empty || color == Color.Transparent;
         }
 
-        public static bool IsValid(this Color color)
-        {
-            return !color.IsNullOrEmpty();
-        }
-
         public static SolidBrush Brush(this Color color)
         {
             return new SolidBrush(color);

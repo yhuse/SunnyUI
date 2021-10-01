@@ -25,7 +25,6 @@
  * 2021-08-14: V3.0.6 增加DisposeTabPageAfterRemove标志，移除TabPage后，是否自动销毁TabPage
 ******************************************************************************/
 
-using Sunny.UI.Static;
 using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;

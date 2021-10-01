@@ -19,7 +19,6 @@
  * 2021-08-20: V3.0.6 整理了一些GDI绘图的常用方法扩展 
 ******************************************************************************/
 
-using Sunny.UI.Static;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

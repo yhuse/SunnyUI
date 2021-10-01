@@ -19,7 +19,6 @@
  * 2021-04-08: V3.0.2 增加文件说明
 ******************************************************************************/
 
-using Sunny.UI.Static;
 using System;
 using System.ComponentModel;
 using System.Drawing;
