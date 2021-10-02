@@ -48,6 +48,7 @@ namespace Sunny.UI
 
         protected Point DrawOrigin;
         protected Size DrawSize;
+        private Rectangle DrawRect;
 
         protected override void CalcData()
         {
@@ -57,6 +58,8 @@ namespace Sunny.UI
             DrawOrigin = new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
             DrawSize = new Size(Width - Option.Grid.Left - Option.Grid.Right,
                 Height - Option.Grid.Top - Option.Grid.Bottom);
+            DrawRect = new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
+
 
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
             CalcAxises();
@@ -307,15 +310,32 @@ namespace Sunny.UI
                 return;
             }
 
+            if (series.Points.Count == 2)
+            {
+                g.DrawTwoPoints(color, series.Points[0], series.Points[1], DrawRect);
+                return;
+            }
+
             if (series.ShowLine || series.Symbol == UILinePointSymbol.None)
             {
                 using (Pen pen = new Pen(color, series.Width))
                 {
                     g.SetHighQuality();
-                    if (series.Smooth)
-                        g.DrawCurve(pen, series.Points.ToArray());
+                    if (series.ContainsNan)
+                    {
+                        for (int i = 0; i < series.Points.Count - 1; i++)
+                        {
+                            g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                        }
+                    }
                     else
-                        g.DrawLines(pen, series.Points.ToArray());
+                    {
+                        if (series.Smooth)
+                            g.DrawCurve(pen, series.Points.ToArray());
+                        else
+                            g.DrawLines(pen, series.Points.ToArray());
+                    }
+
                     g.SetDefaultQuality();
                 }
             }
@@ -444,6 +464,7 @@ namespace Sunny.UI
                         {
                             if (p.X <= Option.Grid.Left || p.X >= Width - Option.Grid.Right) continue;
                             if (p.Y <= Option.Grid.Top || p.Y >= Height - Option.Grid.Bottom) continue;
+                            if (double.IsNaN(p.X) || double.IsNaN(p.Y)) continue;
 
                             switch (series.Symbol)
                             {

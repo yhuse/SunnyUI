@@ -31,13 +31,9 @@ namespace Sunny.UI
 
         protected bool _minAuto = true;
         protected bool _maxAuto = true;
-        protected double _minGrace = 0.1;
-        protected double _maxGrace = 0.1;
         protected double _min, _max;
-        protected bool _formatAuto = true;
         protected string _format;
 
-        protected bool _magAuto = true;
         protected int _mag;
 
         protected static double TargetSteps = 7.0;
@@ -76,7 +72,10 @@ namespace Sunny.UI
             float[] result = new float[labels.Length];
             for (int i = 0; i < labels.Length; i++)
             {
-                result[i] = CalcXPixel(labels[i], origin, width);
+                if (labels[i].IsInfinity() || labels[i].IsNan())
+                    result[i] = float.NaN;
+                else
+                    result[i] = CalcXPixel(labels[i], origin, width);
             }
 
             return result;
@@ -88,7 +87,10 @@ namespace Sunny.UI
             float[] result = new float[labels.Length];
             for (int i = 0; i < labels.Length; i++)
             {
-                result[i] = CalcYPixel(labels[i], origin, height);
+                if (labels[i].IsInfinity() || labels[i].IsNan())
+                    result[i] = float.NaN;
+                else
+                    result[i] = CalcYPixel(labels[i], origin, height);
             }
 
             return result;
@@ -96,38 +98,22 @@ namespace Sunny.UI
 
         public int Mag
         {
-            get { return _mag; }
-            set { _mag = value; _magAuto = false; }
+            get => _mag;
+            set { _mag = value; MagAuto = false; }
         }
 
-        public bool MagAuto
-        {
-            get { return _magAuto; }
-            set { _magAuto = value; }
-        }
+        public bool MagAuto { get; set; } = true;
 
-        public double MinGrace
-        {
-            get { return _minGrace; }
-            set { _minGrace = value; }
-        }
+        public double MinGrace { get; set; } = 0.1;
 
-        public double MaxGrace
-        {
-            get { return _maxGrace; }
-            set { _maxGrace = value; }
-        }
+        public double MaxGrace { get; set; } = 0.1;
 
-        public bool FormatAuto
-        {
-            get { return _formatAuto; }
-            set { _formatAuto = value; }
-        }
+        public bool FormatAuto { get; set; } = true;
 
         public string Format
         {
-            get { return _format; }
-            set { _format = value; _formatAuto = false; }
+            get => _format;
+            set { _format = value; FormatAuto = false; }
         }
 
         public virtual double Min
@@ -171,14 +157,14 @@ namespace Sunny.UI
             if (_minAuto)
             {
                 _min = minVal;
-                if (_min < 0 || minVal - _minGrace * range >= 0.0)
-                    _min = minVal - _minGrace * range;
+                if (_min < 0 || minVal - MinGrace * range >= 0.0)
+                    _min = minVal - MinGrace * range;
             }
             if (_maxAuto)
             {
                 _max = maxVal;
-                if (_max > 0 || maxVal + _maxGrace * range <= 0.0)
-                    _max = maxVal + _maxGrace * range;
+                if (_max > 0 || maxVal + MaxGrace * range <= 0.0)
+                    _max = maxVal + MaxGrace * range;
             }
 
             if (_max.Equals(_min) && _maxAuto && _minAuto)
@@ -247,7 +233,7 @@ namespace Sunny.UI
 
         private void SetScaleMag()
         {
-            if (_magAuto)
+            if (MagAuto)
             {
                 double minMag = Math.Floor(Math.Log10(Math.Abs(_min)));
                 double maxMag = Math.Floor(Math.Log10(Math.Abs(_max)));
@@ -256,7 +242,7 @@ namespace Sunny.UI
                 _mag = (int)(Math.Floor(mag / 3.0) * 3.0);
             }
 
-            if (_formatAuto)
+            if (FormatAuto)
             {
                 int numDec = 0 - (int)(Math.Floor(Math.Log10(Step)) - _mag);
                 if (numDec < 0) numDec = 0;
@@ -433,37 +419,37 @@ namespace Sunny.UI
             if (span.TotalDays > 1825) // 5 years
             {
                 _scaleLevel = UIDateScaleLevel.Year;
-                if (_formatAuto) _format = "yyyy";
+                if (FormatAuto) _format = "yyyy";
                 tempStep = Math.Ceiling(tempStep / 365.0);
             }
             else if (span.TotalDays > 730) // 2 years
             {
                 _scaleLevel = UIDateScaleLevel.Year;
-                if (_formatAuto) _format = "yyyy-MM";
+                if (FormatAuto) _format = "yyyy-MM";
                 tempStep = Math.Ceiling(tempStep / 365.0);
             }
             else if (span.TotalDays > 300) // 10 months
             {
                 _scaleLevel = UIDateScaleLevel.Month;
-                if (_formatAuto) _format = "yyyy-MM";
+                if (FormatAuto) _format = "yyyy-MM";
                 tempStep = Math.Ceiling(tempStep / 30.0);
             }
             else if (span.TotalDays > 10)  // 10 days
             {
                 _scaleLevel = UIDateScaleLevel.Day;
-                if (_formatAuto) _format = "yyyy-MM-dd";
+                if (FormatAuto) _format = "yyyy-MM-dd";
                 tempStep = Math.Ceiling(tempStep);
             }
             else if (span.TotalDays > 3)  // 3 days
             {
                 _scaleLevel = UIDateScaleLevel.Day;
-                if (_formatAuto) _format = "yyyy-MM-dd HH:mm";
+                if (FormatAuto) _format = "yyyy-MM-dd HH:mm";
                 tempStep = Math.Ceiling(tempStep);
             }
             else if (span.TotalHours > 10) // 10 hours
             {
                 _scaleLevel = UIDateScaleLevel.Hour;
-                if (_formatAuto) _format = "HH:mm";
+                if (FormatAuto) _format = "HH:mm";
                 tempStep = Math.Ceiling(tempStep * 24.0);
 
                 if (tempStep > 12.0) tempStep = 24.0;
@@ -475,13 +461,13 @@ namespace Sunny.UI
             else if (span.TotalHours > 3) // 3 hours
             {
                 _scaleLevel = UIDateScaleLevel.Hour;
-                if (_formatAuto) _format = "HH:mm";
+                if (FormatAuto) _format = "HH:mm";
                 tempStep = Math.Ceiling(tempStep * 24.0);
             }
             else if (span.TotalMinutes > 10) // 10 Minutes
             {
                 _scaleLevel = UIDateScaleLevel.Minute;
-                if (_formatAuto) _format = "HH:mm";
+                if (FormatAuto) _format = "HH:mm";
                 tempStep = Math.Ceiling(tempStep * 1440.0);
                 // make sure the minute step size is 1, 5, 15, or 30 minutes
                 if (tempStep > 15.0) tempStep = 30.0;
@@ -492,13 +478,13 @@ namespace Sunny.UI
             else if (span.TotalMinutes > 3)  // 3 Minutes
             {
                 _scaleLevel = UIDateScaleLevel.Minute;
-                if (_formatAuto) _format = "mm:ss";
+                if (FormatAuto) _format = "mm:ss";
                 tempStep = Math.Ceiling(tempStep * 1440.0);
             }
             else if (span.TotalSeconds > 3)  // 3 Seconds
             {
                 _scaleLevel = UIDateScaleLevel.Second;
-                if (_formatAuto) _format = "mm:ss";
+                if (FormatAuto) _format = "mm:ss";
 
                 tempStep = Math.Ceiling(tempStep * 86400.0);
                 // make sure the second step size is 1, 5, 15, or 30 seconds
@@ -510,7 +496,7 @@ namespace Sunny.UI
             else
             {
                 _scaleLevel = UIDateScaleLevel.Millisecond;
-                if (_formatAuto) _format = "ss.fff";
+                if (FormatAuto) _format = "ss.fff";
                 tempStep = CalcStepSize(span.TotalMilliseconds, targetSteps);
             }
 

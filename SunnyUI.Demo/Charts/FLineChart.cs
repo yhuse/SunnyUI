@@ -144,5 +144,38 @@ namespace Sunny.UI.Demo
 
             LineChart.Refresh();
         }
+
+        private void uiSymbolButton3_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            UILineOption option = new UILineOption();
+            option.ToolTip.Visible = true;
+            option.Title = new UITitle();
+            option.Title.Text = "SunnyUI";
+            option.Title.SubText = "LineChart";
+
+            var series = option.AddSeries(new UILineSeries("Line1"));
+            series.Add(0, 1.2);
+            series.Add(1, 2.2);
+            series.Add(2, double.NaN);
+            series.Add(3, 4.2);
+            series.Add(4, 3.2);
+            series.Add(5, 2.2);
+            series.Symbol = UILinePointSymbol.Square;
+            series.SymbolSize = 4;
+            series.SymbolLineWidth = 2;
+            series.SymbolColor = Color.Red;
+            series.ContainsNan = true;
+
+            option.XAxis.Name = "日期";
+            option.YAxis.Name = "数值";
+            option.XAxis.AxisLabel.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            option.XAxis.AxisLabel.AutoFormat = false;
+            option.YAxis.AxisLabel.DecimalCount = 1;
+            option.YAxis.AxisLabel.AutoFormat = false;
+
+            LineChart.SetOption(option);
+        }
     }
 }

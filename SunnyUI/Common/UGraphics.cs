@@ -934,6 +934,7 @@ namespace Sunny.UI
 
         public static void DrawTwoPoints(this Graphics g, Pen pen, PointF pf1, PointF pf2, Rectangle rect, bool smooth = true)
         {
+            if (pf1.X.IsNan() || pf1.Y.IsNan() || pf2.X.IsNan() || pf2.Y.IsNan()) return;
             bool haveLargePixel = Math.Abs(pf1.X - pf2.X) >= rect.Width * 100 || Math.Abs(pf1.Y - pf2.Y) >= rect.Height * 100;
 
             //两点都在区域内

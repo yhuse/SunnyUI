@@ -37,6 +37,7 @@
             this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
+            this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
@@ -103,10 +104,12 @@
             this.LineChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.LineChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.LineChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.LineChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.Location = new System.Drawing.Point(30, 55);
             this.LineChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.LineChart.Name = "LineChart";
             this.LineChart.Size = new System.Drawing.Size(670, 430);
+            this.LineChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.TabIndex = 35;
             this.LineChart.Text = "uiLineChart1";
             this.LineChart.PointValue += new Sunny.UI.UILineChart.OnPointValue(this.LineChart_PointValue);
@@ -142,11 +145,27 @@
             this.uiCheckBox1.Text = "显示点";
             this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
+            // uiSymbolButton3
+            // 
+            this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton3.Location = new System.Drawing.Point(665, 505);
+            this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton3.Name = "uiSymbolButton3";
+            this.uiSymbolButton3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton3.Size = new System.Drawing.Size(100, 27);
+            this.uiSymbolButton3.Symbol = 61952;
+            this.uiSymbolButton3.TabIndex = 38;
+            this.uiSymbolButton3.Text = "数据";
+            this.uiSymbolButton3.Visible = false;
+            this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click);
+            // 
             // FLineChart
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 574);
+            this.Controls.Add(this.uiSymbolButton3);
             this.Controls.Add(this.uiCheckBox1);
             this.Controls.Add(this.uiSymbolButton2);
             this.Controls.Add(this.uiSymbolButton1);
@@ -176,5 +195,6 @@
         private UISymbolButton uiSymbolButton2;
         private System.Windows.Forms.Timer timer1;
         private UICheckBox uiCheckBox1;
+        private UISymbolButton uiSymbolButton3;
     }
 }

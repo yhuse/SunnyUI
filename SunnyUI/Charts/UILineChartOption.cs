@@ -207,8 +207,20 @@ namespace Sunny.UI
                 {
                     if (series.DataCount > 0)
                     {
-                        min = Math.Min(min, series.YData.Min());
-                        max = Math.Max(max, series.YData.Max());
+                        if (series.ContainsNan)
+                        {
+                            foreach (var d in series.YData)
+                            {
+                                if (d.IsNan() || d.IsInfinity()) continue;
+                                min = Math.Min(min, d);
+                                max = Math.Max(max, d);
+                            }
+                        }
+                        else
+                        {
+                            min = Math.Min(min, series.YData.Min());
+                            max = Math.Max(max, series.YData.Max());
+                        }
                     }
                 }
             }
@@ -225,12 +237,25 @@ namespace Sunny.UI
             {
                 min = double.MaxValue;
                 max = double.MinValue;
+
                 foreach (var series in Series.Values)
                 {
                     if (series.DataCount > 0)
                     {
-                        min = Math.Min(min, series.XData.Min());
-                        max = Math.Max(max, series.XData.Max());
+                        if (series.ContainsNan)
+                        {
+                            foreach (var d in series.XData)
+                            {
+                                if (d.IsNan() || d.IsInfinity()) continue;
+                                min = Math.Min(min, d);
+                                max = Math.Max(max, d);
+                            }
+                        }
+                        else
+                        {
+                            min = Math.Min(min, series.XData.Min());
+                            max = Math.Max(max, series.XData.Max());
+                        }
                     }
                 }
             }
@@ -262,6 +287,8 @@ namespace Sunny.UI
         public bool Smooth { get; set; }
 
         public bool ShowLine { get; set; } = true;
+
+        public bool ContainsNan { get; set; }
 
         public UILineSeries(string name)
         {
@@ -359,6 +386,7 @@ namespace Sunny.UI
         public void Add(double x, double y)
         {
             XData.Add(x);
+            if (double.IsInfinity(y)) y = double.NaN;
             YData.Add(y);
         }
 
@@ -366,6 +394,7 @@ namespace Sunny.UI
         {
             DateTimeInt64 t = new DateTimeInt64(x);
             XData.Add(t);
+            if (double.IsInfinity(y)) y = double.NaN;
             YData.Add(y);
         }
 
@@ -373,6 +402,7 @@ namespace Sunny.UI
         {
             int cnt = XData.Count;
             XData.Add(cnt);
+            if (double.IsInfinity(y)) y = double.NaN;
             YData.Add(y);
         }
     }
