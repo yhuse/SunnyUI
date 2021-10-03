@@ -133,11 +133,6 @@ namespace Sunny.UI
             Bars.Clear();
             NeedDraw = false;
             if (Option == null || Option.Series == null || Option.SeriesCount == 0) return;
-
-            DrawOrigin = new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
-            DrawSize = new Size(Width - Option.Grid.Left - Option.Grid.Right,
-                Height - Option.Grid.Top - Option.Grid.Bottom);
-
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
             if (Option.XAxis.Data.Count == 0) return;
 
@@ -282,9 +277,11 @@ namespace Sunny.UI
             }
         }
 
+        protected Point DrawOrigin => new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
+        protected Size DrawSize => new Size(Width - Option.Grid.Left - Option.Grid.Right, Height - Option.Grid.Top - Option.Grid.Bottom);
+        protected Rectangle DrawRect => new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
+
         protected int selectIndex = -1;
-        protected Point DrawOrigin;
-        protected Size DrawSize;
         protected float DrawBarWidth;
         protected int YAxisStart;
         protected int YAxisEnd;

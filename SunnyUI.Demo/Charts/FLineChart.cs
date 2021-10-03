@@ -29,13 +29,14 @@ namespace Sunny.UI.Demo
             series.Add(dt.AddHours(0), 1.2);
             series.Add(dt.AddHours(1), 2.2);
             series.Add(dt.AddHours(2), 3.2);
-            series.Add(dt.AddHours(3), 4.2);
+            series.Add(dt.AddHours(3), cbContainsNan.Checked ? double.NaN : 4.2);
             series.Add(dt.AddHours(4), 3.2);
             series.Add(dt.AddHours(5), 2.2);
             series.Symbol = UILinePointSymbol.Square;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
+            series.ShowLine = !cbPoints.Checked;
 
             series = option.AddSeries(new UILineSeries("Line2", Color.Lime));
             series.Add(dt.AddHours(3), 3.3);
@@ -49,6 +50,7 @@ namespace Sunny.UI.Demo
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
             series.Smooth = true;
+            series.ShowLine = !cbPoints.Checked;
 
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
@@ -135,14 +137,7 @@ namespace Sunny.UI.Demo
 
         private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (LineChart.Option == null) return;
-            foreach (var series in LineChart.Option.Series.Values)
-            {
-                series.ShowLine = !uiCheckBox1.Checked;
-                series.Symbol = uiCheckBox1.Checked ? UILinePointSymbol.Circle : UILinePointSymbol.None;
-            }
-
-            LineChart.Refresh();
+            uiSymbolButton1.PerformClick();
         }
 
         private void uiSymbolButton3_Click(object sender, EventArgs e)
@@ -166,7 +161,6 @@ namespace Sunny.UI.Demo
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
-            series.ContainsNan = true;
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
@@ -176,6 +170,11 @@ namespace Sunny.UI.Demo
             option.YAxis.AxisLabel.AutoFormat = false;
 
             LineChart.SetOption(option);
+        }
+
+        private void uiCheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            uiSymbolButton1.PerformClick();
         }
     }
 }

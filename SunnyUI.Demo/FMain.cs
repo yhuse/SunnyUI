@@ -54,10 +54,10 @@ namespace Sunny.UI.Demo
             Header.SetNodeSymbol(Header.Nodes[2], 61950);
             parent = Aside.CreateNode("图表", 61950, 24, pageIndex);
             //直接关联（默认自动生成GUID）
-            Aside.CreateChildNode(parent, AddPage(new FPieChart()));
-            Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
             Aside.CreateChildNode(parent, AddPage(new FBarChart()));
+            Aside.CreateChildNode(parent, AddPage(new FDoughnutChart()));
             Aside.CreateChildNode(parent, AddPage(new FLineChart()));
+            Aside.CreateChildNode(parent, AddPage(new FPieChart()));
 
             pageIndex = 4000;
             Header.SetNodePageIndex(Header.Nodes[3], pageIndex);

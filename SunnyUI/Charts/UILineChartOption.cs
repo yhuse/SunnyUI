@@ -288,7 +288,7 @@ namespace Sunny.UI
 
         public bool ShowLine { get; set; } = true;
 
-        public bool ContainsNan { get; set; }
+        public bool ContainsNan { get; private set; }
 
         public UILineSeries(string name)
         {
@@ -354,12 +354,13 @@ namespace Sunny.UI
 
         public void Clear()
         {
+            ContainsNan = false;
             XData.Clear();
             YData.Clear();
             ClearPoints();
         }
 
-        public void ClearPoints()
+        private void ClearPoints()
         {
             Points.Clear();
             PointsX.Clear();
@@ -383,10 +384,19 @@ namespace Sunny.UI
             }
         }
 
+        public void CalcData(UILineChart chart, UIScale XScale, UIScale YScale)
+        {
+            ClearPoints();
+            float[] x = XScale.CalcXPixels(XData.ToArray(), chart.DrawOrigin.X, chart.DrawSize.Width);
+            float[] y = YScale.CalcYPixels(YData.ToArray(), chart.DrawOrigin.Y, chart.DrawSize.Height);
+            AddPoints(x, y);
+        }
+
         public void Add(double x, double y)
         {
             XData.Add(x);
-            if (double.IsInfinity(y)) y = double.NaN;
+            if (y.IsInfinity()) y = double.NaN;
+            if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
         }
 
@@ -394,7 +404,8 @@ namespace Sunny.UI
         {
             DateTimeInt64 t = new DateTimeInt64(x);
             XData.Add(t);
-            if (double.IsInfinity(y)) y = double.NaN;
+            if (y.IsInfinity()) y = double.NaN;
+            if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
         }
 
@@ -402,7 +413,8 @@ namespace Sunny.UI
         {
             int cnt = XData.Count;
             XData.Add(cnt);
-            if (double.IsInfinity(y)) y = double.NaN;
+            if (y.IsInfinity()) y = double.NaN;
+            if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
         }
     }

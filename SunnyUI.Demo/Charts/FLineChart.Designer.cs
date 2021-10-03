@@ -36,8 +36,8 @@
             this.LineChart = new Sunny.UI.UILineChart();
             this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
-            this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
+            this.cbPoints = new Sunny.UI.UICheckBox();
+            this.cbContainsNan = new Sunny.UI.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
@@ -132,41 +132,39 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // uiCheckBox1
+            // cbPoints
             // 
-            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiCheckBox1.Location = new System.Drawing.Point(571, 505);
-            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiCheckBox1.Name = "uiCheckBox1";
-            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.uiCheckBox1.Size = new System.Drawing.Size(100, 29);
-            this.uiCheckBox1.TabIndex = 37;
-            this.uiCheckBox1.Text = "显示点";
-            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
+            this.cbPoints.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbPoints.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbPoints.Location = new System.Drawing.Point(571, 505);
+            this.cbPoints.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cbPoints.Name = "cbPoints";
+            this.cbPoints.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.cbPoints.Size = new System.Drawing.Size(95, 27);
+            this.cbPoints.TabIndex = 37;
+            this.cbPoints.Text = "只显示点";
+            this.cbPoints.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
-            // uiSymbolButton3
+            // cbContainsNan
             // 
-            this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton3.Location = new System.Drawing.Point(665, 505);
-            this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton3.Name = "uiSymbolButton3";
-            this.uiSymbolButton3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.uiSymbolButton3.Size = new System.Drawing.Size(100, 27);
-            this.uiSymbolButton3.Symbol = 61952;
-            this.uiSymbolButton3.TabIndex = 38;
-            this.uiSymbolButton3.Text = "数据";
-            this.uiSymbolButton3.Visible = false;
-            this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click);
+            this.cbContainsNan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbContainsNan.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbContainsNan.Location = new System.Drawing.Point(571, 535);
+            this.cbContainsNan.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cbContainsNan.Name = "cbContainsNan";
+            this.cbContainsNan.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.cbContainsNan.Size = new System.Drawing.Size(95, 27);
+            this.cbContainsNan.TabIndex = 38;
+            this.cbContainsNan.Text = "包含Nan";
+            this.cbContainsNan.CheckedChanged += new System.EventHandler(this.uiCheckBox2_CheckedChanged);
             // 
             // FLineChart
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 574);
-            this.Controls.Add(this.uiSymbolButton3);
-            this.Controls.Add(this.uiCheckBox1);
+            this.Controls.Add(this.cbContainsNan);
+            this.Controls.Add(this.cbPoints);
             this.Controls.Add(this.uiSymbolButton2);
             this.Controls.Add(this.uiSymbolButton1);
             this.Controls.Add(this.uiImageButton3);
@@ -194,7 +192,7 @@
         private UILineChart LineChart;
         private UISymbolButton uiSymbolButton2;
         private System.Windows.Forms.Timer timer1;
-        private UICheckBox uiCheckBox1;
-        private UISymbolButton uiSymbolButton3;
+        private UICheckBox cbPoints;
+        private UICheckBox cbContainsNan;
     }
 }

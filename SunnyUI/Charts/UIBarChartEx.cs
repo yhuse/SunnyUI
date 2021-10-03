@@ -37,11 +37,6 @@ namespace Sunny.UI
             Bars.Clear();
             NeedDraw = false;
             if (Option == null || Option.Series == null || Option.SeriesCount == 0) return;
-
-            DrawOrigin = new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
-            DrawSize = new Size(Width - Option.Grid.Left - Option.Grid.Right,
-                Height - Option.Grid.Top - Option.Grid.Bottom);
-
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
             if (Option.Series.Count == 0) return;
 

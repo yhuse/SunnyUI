@@ -46,30 +46,25 @@ namespace Sunny.UI
             CalcData();
         }
 
-        protected Point DrawOrigin;
-        protected Size DrawSize;
-        private Rectangle DrawRect;
+        [Browsable(false)]
+        public Point DrawOrigin => new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
+
+        [Browsable(false)]
+        public Size DrawSize => new Size(Width - Option.Grid.Left - Option.Grid.Right, Height - Option.Grid.Top - Option.Grid.Bottom);
+
+        [Browsable(false)]
+        public Rectangle DrawRect => new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
 
         protected override void CalcData()
         {
             NeedDraw = false;
             if (Option?.Series == null || Option.Series.Count == 0) return;
-
-            DrawOrigin = new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
-            DrawSize = new Size(Width - Option.Grid.Left - Option.Grid.Right,
-                Height - Option.Grid.Top - Option.Grid.Bottom);
-            DrawRect = new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
-
-
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
             CalcAxises();
 
             foreach (var series in Option.Series.Values)
             {
-                series.ClearPoints();
-                float[] x = XScale.CalcXPixels(series.XData.ToArray(), DrawOrigin.X, DrawSize.Width);
-                float[] y = YScale.CalcYPixels(series.YData.ToArray(), DrawOrigin.Y, DrawSize.Height);
-                series.AddPoints(x, y);
+                series.CalcData(this, XScale, YScale);
             }
 
             NeedDraw = true;
@@ -199,6 +194,7 @@ namespace Sunny.UI
             DrawLegend(g, Option.Legend);
             DrawAxis(g);
             DrawAxisScales(g);
+            DrawPointSymbols(g);
             DrawOther(g);
         }
 
@@ -396,18 +392,14 @@ namespace Sunny.UI
 
                     if (Option.GreaterWarningArea != null)
                     {
-                        using (Graphics graphics = bmpGreater.Graphics())
-                        {
-                            DrawSeries(graphics, Option.GreaterWarningArea.Color, series);
-                        }
+                        using Graphics graphics = bmpGreater.Graphics();
+                        DrawSeries(graphics, Option.GreaterWarningArea.Color, series);
                     }
 
                     if (Option.LessWarningArea != null)
                     {
-                        using (Graphics graphics = bmpLess.Graphics())
-                        {
-                            DrawSeries(graphics, Option.LessWarningArea.Color, series);
-                        }
+                        using Graphics graphics = bmpLess.Graphics();
+                        DrawSeries(graphics, Option.LessWarningArea.Color, series);
                     }
 
                     idx++;
@@ -449,7 +441,12 @@ namespace Sunny.UI
             g.DrawImage(bmp, new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)),
              new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)), GraphicsUnit.Pixel);
 
-            idx = 0;
+
+        }
+
+        private void DrawPointSymbols(Graphics g)
+        {
+            int idx = 0;
             foreach (var series in Option.Series.Values)
             {
                 Color color = series.Color;
@@ -462,8 +459,8 @@ namespace Sunny.UI
                     {
                         foreach (var p in series.Points)
                         {
-                            if (p.X <= Option.Grid.Left || p.X >= Width - Option.Grid.Right) continue;
-                            if (p.Y <= Option.Grid.Top || p.Y >= Height - Option.Grid.Bottom) continue;
+                            if (p.X < Option.Grid.Left || p.X > Width - Option.Grid.Right) continue;
+                            if (p.Y < Option.Grid.Top || p.Y > Height - Option.Grid.Bottom) continue;
                             if (double.IsNaN(p.X) || double.IsNaN(p.Y)) continue;
 
                             switch (series.Symbol)
@@ -538,7 +535,7 @@ namespace Sunny.UI
 
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
-                    g.DrawLine(pn, DrawOrigin.X, pos, Width - Option.Grid.Right, pos);
+                    g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
                 }
 
                 SizeF sf = g.MeasureString(line.Name, SubFont);
@@ -559,7 +556,7 @@ namespace Sunny.UI
 
                 using (Pen pn = new Pen(line.Color, line.Size))
                 {
-                    g.DrawLine(pn, pos, DrawOrigin.Y, pos, Option.Grid.Top);
+                    g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
                 }
 
                 SizeF sf = g.MeasureString(line.Name, SubFont);
