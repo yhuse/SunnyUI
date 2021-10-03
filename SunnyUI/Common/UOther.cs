@@ -21,5 +21,15 @@
         {
             return float.IsInfinity(d);
         }
+
+        public static bool IsNanOrInfinity(this double d)
+        {
+            return d.IsNan() || d.IsInfinity();
+        }
+
+        public static bool IsNanOrInfinity(this float d)
+        {
+            return d.IsNan() || d.IsInfinity();
+        }
     }
 }

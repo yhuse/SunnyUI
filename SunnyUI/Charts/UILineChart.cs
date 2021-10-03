@@ -104,6 +104,13 @@ namespace Sunny.UI
                 YScale.SetRange(min, max);
                 if (!Option.YAxis.MaxAuto) YScale.Max = Option.YAxis.Max;
                 if (!Option.YAxis.MinAuto) YScale.Min = Option.YAxis.Min;
+
+                if (YScale.Max.IsNanOrInfinity() || YScale.Min.IsNanOrInfinity())
+                {
+                    YScale.Max = max;
+                    YScale.Min = min;
+                }
+
                 YScale.AxisChange();
                 YLabels = YScale.CalcLabels();
             }
