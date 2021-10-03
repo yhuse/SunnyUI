@@ -280,7 +280,7 @@ namespace Sunny.UI
 
         public int SymbolLineWidth { get; set; } = 1;
 
-        public Color SymbolColor { get; set; }
+        public Color SymbolColor { get; set; } = Color.Empty;
 
         public bool CustomColor { get; set; }
 
@@ -355,6 +355,8 @@ namespace Sunny.UI
         public void Clear()
         {
             ContainsNan = false;
+            SymbolColor = Color.Empty;
+
             XData.Clear();
             YData.Clear();
             ClearPoints();

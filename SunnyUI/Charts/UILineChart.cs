@@ -22,6 +22,7 @@
  * 2021-06-18: V3.0.4 显示鼠标点格式更新
  * 2021-07-22: V3.0.5 可自定义背景色，增加实时数据的Demo
  * 2021-08-23: V3.0.6 增加可只显示点的模式
+ * 2021-10-02: V3.0.8 支持数据包括Nan
 ******************************************************************************/
 
 using System;
@@ -450,7 +451,7 @@ namespace Sunny.UI
             foreach (var series in Option.Series.Values)
             {
                 Color color = series.Color;
-                if (!series.CustomColor) color = ChartStyle.GetColor(idx);
+                if (series.SymbolColor.IsValid()) color = series.SymbolColor;
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {

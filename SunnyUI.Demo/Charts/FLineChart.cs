@@ -48,7 +48,6 @@ namespace Sunny.UI.Demo
             series.Symbol = UILinePointSymbol.Star;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
-            series.SymbolColor = Color.Red;
             series.Smooth = true;
             series.ShowLine = !cbPoints.Checked;
 
