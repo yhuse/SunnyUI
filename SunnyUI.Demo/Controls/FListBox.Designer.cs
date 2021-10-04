@@ -77,6 +77,7 @@ namespace Sunny.UI.Demo
             this.uiListBox1.Size = new System.Drawing.Size(270, 343);
             this.uiListBox1.TabIndex = 27;
             this.uiListBox1.Text = "uiListBox1";
+            this.uiListBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBox_DrawItem);
             this.uiListBox1.ItemDoubleClick += new System.EventHandler(this.uiListBox1_ItemDoubleClick);
             // 
             // uiLine2
@@ -118,7 +119,7 @@ namespace Sunny.UI.Demo
             this.uiImageListBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiImageListBox1.ItemDoubleClick += new System.EventHandler(this.uiImageListBox1_ItemDoubleClick);
             // 
-            // FListBox1
+            // FListBox
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -129,7 +130,7 @@ namespace Sunny.UI.Demo
             this.Controls.Add(this.uiLine2);
             this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.uiImageListBox1);
-            this.Name = "FListBox1";
+            this.Name = "FListBox";
             this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.ShowTitle = true;
             this.Symbol = 61474;

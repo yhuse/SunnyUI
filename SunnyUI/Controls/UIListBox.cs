@@ -82,11 +82,19 @@ namespace Sunny.UI
             listbox.KeyUp += Listbox_KeyUp;
             listbox.MouseEnter += Listbox_MouseEnter;
             listbox.MouseLeave += Listbox_MouseLeave;
+            listbox.DrawItem += Listbox_DrawItem;
 
             timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
         }
+
+        private void Listbox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            DrawItem?.Invoke(sender, e);
+        }
+
+        public event DrawItemEventHandler DrawItem;
 
         protected override void Dispose(bool disposing)
         {
@@ -574,6 +582,12 @@ namespace Sunny.UI
         {
             return listbox.GetItemText(item);
         }
+
+        public string GetItemText(int index)
+        {
+            if (index < 0 || index >= Items.Count) return string.Empty;
+            return GetItemText(Items[index]);
+        }
     }
 
     /// <summary>
@@ -829,8 +843,6 @@ namespace Sunny.UI
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            base.OnDrawItem(e);
-
             BeforeDrawItem?.Invoke(this, Items, e);
             if (Items.Count == 0)
             {
@@ -857,29 +869,7 @@ namespace Sunny.UI
             Color foreColor = isSelected ? ItemSelectForeColor : ForeColor;
 
             Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1);
-            string showText;
-            if (DisplayMember.IsNullOrEmpty())
-            {
-                showText = Items[e.Index].ToString();
-            }
-            else
-            {
-                //var list = Items[e.Index].GetType().GetNeedProperties();
-                //foreach (var info in list)
-                //{
-                //    if (info.Name == DisplayMember)
-                //    {
-                //        object defaultobj = info.GetValue(Items[e.Index], null);
-                //        showText = defaultobj.ToString();
-                //    }
-                //}
-
-                showText = GetItemText(Items[e.Index]);
-                // if (showText.IsNullOrEmpty())
-                // {
-                //     showText = Items[e.Index].ToString();
-                // }
-            }
+            string showText = DisplayMember.IsNullOrEmpty() ? Items[e.Index].ToString() : GetItemText(Items[e.Index]);
 
             if (!otherState)
             {
@@ -907,6 +897,8 @@ namespace Sunny.UI
             }
 
             AfterDrawItem?.Invoke(this, Items, e);
+
+            base.OnDrawItem(e);
         }
 
         private Color hoverColor = Color.FromArgb(155, 200, 255);

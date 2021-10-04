@@ -1,5 +1,6 @@
 ﻿using Sunny.UI.Demo.Properties;
 using System;
+using System.Drawing;
 
 namespace Sunny.UI.Demo
 {
@@ -8,6 +9,17 @@ namespace Sunny.UI.Demo
         public FListBox()
         {
             InitializeComponent();
+        }
+
+        private void ListBox_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        {
+            string text = uiListBox1.GetItemText(e.Index);
+
+            if (text.Contains("6"))
+            {
+                e.Graphics.FillRectangle(UIColor.Green, e.Bounds);
+                e.Graphics.DrawString(text, e.Font, Color.Blue, e.Bounds);
+            }
         }
 
         public override void Init()
