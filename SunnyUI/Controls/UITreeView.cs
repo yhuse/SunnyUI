@@ -740,9 +740,9 @@ namespace Sunny.UI
                     }
                     else
                     {
-
-                        var drawLeft = (e.Node.Level + 1) * Indent + 3;
-                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
+                        var drawOffsetX = e.Node.Bounds.X-57;
+                        var drawLeft = (e.Node.Level + 1) * Indent + 3+ drawOffsetX;
+                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1+ drawOffsetX;
                         var imageLeft = drawLeft;
                         var haveImage = false;
                         var sf = e.Graphics.MeasureString(e.Node.Text, Font);
@@ -840,7 +840,7 @@ namespace Sunny.UI
                         }
 
                         var lineY = e.Bounds.Y + e.Node.Bounds.Height / 2 - 1;
-                        var lineX = 3 + e.Node.Level * Indent + 9;
+                        var lineX = 3 + e.Node.Level * Indent + 9+drawOffsetX ;
 
                         if (ShowLinesEx)
                         {
@@ -894,7 +894,7 @@ namespace Sunny.UI
                             }
                         }
 
-                        lineX = 3 + e.Node.Level * Indent + 9;
+                        lineX = 3 + e.Node.Level * Indent + 9 + drawOffsetX;
                         //绘制左侧+号
                         if (ShowPlusMinus && e.Node.Nodes.Count > 0)
                         {
@@ -933,8 +933,7 @@ namespace Sunny.UI
             private Dictionary<int, bool> DicNodeStatus = new Dictionary<int, bool>();
 
             protected override void OnAfterCheck(TreeViewEventArgs e)
-            {
-
+            { 
                 base.OnAfterCheck(e);
                 if (e.Action == TreeViewAction.ByMouse) //鼠标点击
                 {
@@ -956,9 +955,12 @@ namespace Sunny.UI
                 TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
 
                 var count = parentNode.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
-
-                parentNode.Checked = count == parentNode.Nodes.Count;
-
+                //判断节点Checked是否改变，只有改变时才赋值，否则不变更，以防止频繁触发OnAfterCheck事件
+                bool bChecked = count == parentNode.Nodes.Count;
+                if(parentNode.Checked != bChecked)
+                {
+                    parentNode.Checked = bChecked;
+                }
                 var half = parentNode.Nodes.Cast<TreeNode>().Where(n => (DicNodeStatus.ContainsKey(n.GetHashCode()) ? DicNodeStatus[n.GetHashCode()] : false)).ToList().Count;
 
                 if ((count > 0 && count < parentNode.Nodes.Count) || half > 0)
