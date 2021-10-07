@@ -740,7 +740,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        var drawOffsetX = e.Node.Bounds.X-57;
+                        var drawOffsetX = e.Node.Bounds.X-57-e.Node.Level * Indent;
                         var drawLeft = (e.Node.Level + 1) * Indent + 3+ drawOffsetX;
                         var checkBoxLeft = (e.Node.Level + 1) * Indent + 1+ drawOffsetX;
                         var imageLeft = drawLeft;
@@ -801,9 +801,7 @@ namespace Sunny.UI
                             }
 
                             if (CheckBoxes)
-                            {
-
-
+                            { 
                                 if (!e.Node.Checked)
                                 {
                                     e.Graphics.DrawRectangle(checkboxColor,
