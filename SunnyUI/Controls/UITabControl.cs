@@ -476,8 +476,14 @@ namespace Sunny.UI
                     if (TabSelectedHighColorSize > 0)
                         g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
                 }
-
-                g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
+                if(Alignment ==TabAlignment.Bottom )
+                {
+                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height + 4) / 2.0f);
+                }
+                else
+                {
+                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
+                }
 
                 var menuItem = Helper[index];
                 bool show1 = TabPages[index].Text != MainPage;
