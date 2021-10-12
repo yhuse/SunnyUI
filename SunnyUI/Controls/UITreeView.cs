@@ -1,26 +1,26 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2021 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UITreeView.cs
- * 文件说明: 树形列表
- * 当前版本: V3.0
- * 创建日期: 2020-05-05
- *
- * 2020-05-05: V2.2.5 增加文件
- * 2020-07-07: V2.2.6 全部重写，增加圆角，CheckBoxes等
- * 2020-08-12: V2.2.7 更新可设置背景色
- * 2021-07-19: V3.0.5 调整了显示CheckBoxes时图片位置
- * 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2021 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UITreeView.cs
+* 文件说明: 树形列表
+* 当前版本: V3.0
+* 创建日期: 2020-05-05
+*
+* 2020-05-05: V2.2.5 增加文件
+* 2020-07-07: V2.2.6 全部重写，增加圆角，CheckBoxes等
+* 2020-08-12: V2.2.7 更新可设置背景色
+* 2021-07-19: V3.0.5 调整了显示CheckBoxes时图片位置
+* 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
 ******************************************************************************/
 
 using System;
@@ -740,9 +740,9 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        var drawOffsetX = e.Node.Bounds.X-57-e.Node.Level * Indent;
-                        var drawLeft = (e.Node.Level + 1) * Indent + 3+ drawOffsetX;
-                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1+ drawOffsetX;
+
+                        var drawLeft = (e.Node.Level + 1) * Indent + 3;
+                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
                         var imageLeft = drawLeft;
                         var haveImage = false;
                         var sf = e.Graphics.MeasureString(e.Node.Text, Font);
@@ -801,7 +801,9 @@ namespace Sunny.UI
                             }
 
                             if (CheckBoxes)
-                            { 
+                            {
+
+
                                 if (!e.Node.Checked)
                                 {
                                     e.Graphics.DrawRectangle(checkboxColor,
@@ -838,7 +840,7 @@ namespace Sunny.UI
                         }
 
                         var lineY = e.Bounds.Y + e.Node.Bounds.Height / 2 - 1;
-                        var lineX = 3 + e.Node.Level * Indent + 9+drawOffsetX ;
+                        var lineX = 3 + e.Node.Level * Indent + 9;
 
                         if (ShowLinesEx)
                         {
@@ -892,7 +894,7 @@ namespace Sunny.UI
                             }
                         }
 
-                        lineX = 3 + e.Node.Level * Indent + 9 + drawOffsetX;
+                        lineX = 3 + e.Node.Level * Indent + 9;
                         //绘制左侧+号
                         if (ShowPlusMinus && e.Node.Nodes.Count > 0)
                         {
@@ -931,7 +933,8 @@ namespace Sunny.UI
             private Dictionary<int, bool> DicNodeStatus = new Dictionary<int, bool>();
 
             protected override void OnAfterCheck(TreeViewEventArgs e)
-            { 
+            {
+
                 base.OnAfterCheck(e);
                 if (e.Action == TreeViewAction.ByMouse) //鼠标点击
                 {
@@ -953,12 +956,14 @@ namespace Sunny.UI
                 TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
 
                 var count = parentNode.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
+
                 //判断节点Checked是否改变，只有改变时才赋值，否则不变更，以防止频繁触发OnAfterCheck事件
                 bool bChecked = count == parentNode.Nodes.Count;
-                if(parentNode.Checked != bChecked)
+                if (parentNode.Checked != bChecked)
                 {
                     parentNode.Checked = bChecked;
                 }
+
                 var half = parentNode.Nodes.Cast<TreeNode>().Where(n => (DicNodeStatus.ContainsKey(n.GetHashCode()) ? DicNodeStatus[n.GetHashCode()] : false)).ToList().Count;
 
                 if ((count > 0 && count < parentNode.Nodes.Count) || half > 0)
