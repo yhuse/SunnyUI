@@ -99,21 +99,55 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
+        private LineCap startCap = LineCap.Flat;
+
+        [DefaultValue(LineCap.Flat), Category("SunnyUI")]
+        public LineCap StartCap
+        {
+            get => startCap;
+            set
+            {
+                startCap = value;
+                Invalidate();
+            }
+        }
+
+        private LineCap endCap = LineCap.Flat;
+
+        [DefaultValue(LineCap.Flat), Category("SunnyUI")]
+        public LineCap EndCap
+        {
+            get => endCap;
+            set
+            {
+                endCap = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
+            Pen pen = new Pen(rectColor, lineSize);
+            pen.StartCap = StartCap;
+            pen.EndCap = EndCap;
+
+            g.Smooth();
             if (Direction == LineDirection.Horizontal)
             {
                 int top = (Height - lineSize) / 2;
-                g.FillRectangle(rectColor, Padding.Left, top, Width - Padding.Left - Padding.Right, lineSize);
-                g.DrawLine(Color.FromArgb(50, fillColor), Padding.Left, top + lineSize, Width - Padding.Right - 1, top + lineSize);
+                g.DrawLine(pen, Padding.Left, top, Width - Padding.Left - Padding.Right, top);
             }
             else
             {
                 int left = (Width - lineSize) / 2;
-                g.FillRectangle(rectColor, left, Padding.Top, lineSize, Height - Padding.Top - Padding.Bottom);
-                g.DrawLine(Color.FromArgb(50, fillColor), left + lineSize, Padding.Top, left + lineSize, Height - Padding.Bottom - 1);
+                g.DrawLine(pen, left, Padding.Top, left, Height - Padding.Top - Padding.Bottom);
             }
+
+            g.Smooth(false);
+            pen.Dispose();
         }
+
+
 
         private int textInterval = 10;
 
@@ -131,7 +165,7 @@ namespace Sunny.UI
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            if (Text.IsNullOrEmpty()) return;
+            if (string.IsNullOrEmpty(Text)) return;
 
             SizeF sf = g.MeasureString(Text, Font);
 
