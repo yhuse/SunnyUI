@@ -455,7 +455,10 @@ namespace Sunny.UI
             for (int index = 0; index <= TabCount - 1; index++)
             {
                 Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, ItemSize.Width, ItemSize.Height);
-
+                if (Alignment == TabAlignment.Bottom)
+                {
+                    TabRect = new Rectangle(GetTabRect(index).Location.X- 2, GetTabRect(index).Location.Y + 2, ItemSize.Width, ItemSize.Height);
+                }
                 Bitmap bmp = new Bitmap(TabRect.Width, TabRect.Height);
                 Graphics g = Graphics.FromImage(bmp);
 
@@ -476,13 +479,14 @@ namespace Sunny.UI
                     if (TabSelectedHighColorSize > 0)
                         g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
                 }
-                if(Alignment ==TabAlignment.Bottom )
+                
+                if (Alignment == TabAlignment.Bottom)
                 {
-                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height + 4) / 2.0f);
+                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft,   (TabRect.Height - sf.Height - TabSelectedHighColorSize) / 2.0f);
                 }
                 else
                 {
-                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - 4) / 2.0f);
+                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - TabSelectedHighColorSize) / 2.0f);
                 }
 
                 var menuItem = Helper[index];
