@@ -316,7 +316,11 @@ namespace Sunny.UI
 
             if (series.Points.Count == 2)
             {
-                g.DrawTwoPoints(color, series.Points[0], series.Points[1], DrawRect);
+                using (Pen pen = new Pen(color, series.Width))
+                {
+                    g.DrawTwoPoints(pen, series.Points[0], series.Points[1], DrawRect);
+                }
+
                 return;
             }
 
@@ -325,7 +329,7 @@ namespace Sunny.UI
                 using (Pen pen = new Pen(color, series.Width))
                 {
                     g.SetHighQuality();
-                    if (series.ContainsNan)
+                    if (series.ContainsNan || !series.Smooth)
                     {
                         for (int i = 0; i < series.Points.Count - 1; i++)
                         {
@@ -334,10 +338,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        if (series.Smooth)
-                            g.DrawCurve(pen, series.Points.ToArray());
-                        else
-                            g.DrawLines(pen, series.Points.ToArray());
+                        g.DrawCurve(pen, series.Points.ToArray());
                     }
 
                     g.SetDefaultQuality();
