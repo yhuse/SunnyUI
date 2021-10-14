@@ -41,6 +41,7 @@ namespace Sunny.UI.Demo
             this.uiCheckBox3 = new Sunny.UI.UICheckBox();
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
+            this.uiButton6 = new Sunny.UI.UIButton();
             this.SuspendLayout();
             // 
             // uiButton5
@@ -195,11 +196,24 @@ namespace Sunny.UI.Demo
             this.uiCheckBox1.Text = "uiCheckBox1";
             this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
+            // uiButton6
+            // 
+            this.uiButton6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton6.Location = new System.Drawing.Point(560, 345);
+            this.uiButton6.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiButton6.Name = "uiButton6";
+            this.uiButton6.Size = new System.Drawing.Size(100, 35);
+            this.uiButton6.TabIndex = 58;
+            this.uiButton6.Text = "单选";
+            this.uiButton6.Click += new System.EventHandler(this.uiButton6_Click);
+            // 
             // FCheckBox
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 521);
+            this.Controls.Add(this.uiButton6);
             this.Controls.Add(this.uiButton5);
             this.Controls.Add(this.uiButton4);
             this.Controls.Add(this.uiButton3);
@@ -233,5 +247,6 @@ namespace Sunny.UI.Demo
         private UICheckBox uiCheckBox3;
         private UILine uiLine1;
         private UICheckBox uiCheckBox1;
+        private UIButton uiButton6;
     }
 }

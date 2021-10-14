@@ -62,6 +62,12 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        public bool this[int index]
+        {
+            get => GetItemCheckState(index);
+            set => SetItemCheckState(index, value);
+        }
+
         /// <summary>
         /// 析构事件
         /// </summary>
@@ -185,6 +191,22 @@ namespace Sunny.UI
             }
         }
 
+        public void SetItemCheckState(int index, bool isChecked)
+        {
+            if (index >= 0 && index < boxes.Count)
+            {
+                boxes[index].Checked = isChecked;
+            }
+        }
+
+        public bool GetItemCheckState(int index)
+        {
+            if (index >= 0 && index < items.Count)
+                return boxes[index].Checked;
+
+            return false;
+        }
+
         //[Browsable(false)]
         //public List<string> SelectedItems
         //{
@@ -207,15 +229,15 @@ namespace Sunny.UI
         {
             get
             {
-                List<object> items = new List<object>();
+                List<object> objects = new List<object>();
 
                 for (int i = 0; i < boxes.Count; i++)
                 {
                     if (boxes[i].Checked)
-                        items.Add(Items[i]);
+                        objects.Add(Items[i]);
                 }
 
-                return items;
+                return objects;
             }
         }
 
