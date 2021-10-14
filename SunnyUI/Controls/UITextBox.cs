@@ -27,6 +27,7 @@
  * 2021-08-03: V3.0.5 增加GotFocus和LostFocus事件
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
  * 2021-09-07: V3.0.6 增加按钮
+ * 2021-10-14: V3.0.8 调整最小高度限制
 ******************************************************************************/
 
 using System;
@@ -55,6 +56,7 @@ namespace Sunny.UI
             ShowText = false;
             Font = UIFontColor.Font;
             Padding = new Padding(0);
+            MinimumSize = new Size(1, 16);
 
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4;
@@ -488,10 +490,22 @@ namespace Sunny.UI
         {
             if (!multiline)
             {
-                if (Height < MinHeight) Height = MinHeight;
+                if (Height < 12) Height = MinHeight;
                 if (Height > MaxHeight) Height = MaxHeight;
 
-                edit.Top = (Height - edit.Height) / 2;
+                if (Height < MinHeight)
+                {
+                    edit.AutoSize = false;
+                    edit.Height = Height - 2;
+                    edit.Top = 1;
+                }
+                else
+                {
+                    edit.AutoSize = true;
+                    edit.Height = MinHeight;
+                    edit.Top = (Height - edit.Height) / 2;
+                }
+
                 if (icon == null && Symbol == 0)
                 {
                     edit.Left = 4 + Padding.Left;
