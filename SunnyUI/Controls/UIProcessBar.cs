@@ -20,6 +20,7 @@
  * 2020-04-19: V2.2.5 增加数值变化事件
  * 2021-08-07: V3.0.5 增加垂直方向的进度显示
  * 2021-08-14: V3.0.6 修改不显示百分比时，显示数值
+ * 2021-10-14: V3.0.8 调整最小高度为3
 ******************************************************************************/
 
 using System;
@@ -43,7 +44,7 @@ namespace Sunny.UI
         public UIProcessBar()
         {
             SetStyleFlags(true, false);
-            MinimumSize = new Size(70, 5);
+            MinimumSize = new Size(70, 3);
             Size = new Size(300, 29);
             ShowText = false;
 

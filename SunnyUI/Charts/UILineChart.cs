@@ -22,7 +22,8 @@
  * 2021-06-18: V3.0.4 显示鼠标点格式更新
  * 2021-07-22: V3.0.5 可自定义背景色，增加实时数据的Demo
  * 2021-08-23: V3.0.6 增加可只显示点的模式
- * 2021-10-02: V3.0.8 支持数据包括Nan
+ * 2021-10-02: V3.0.8 支持数据包括Nan，修改自定义最大值最小值为无穷时出错的问题
+ * 2021-10-14: V3.0.8 修改图线显示超出范围的问题
 ******************************************************************************/
 
 using System;
@@ -455,7 +456,6 @@ namespace Sunny.UI
 
         private void DrawPointSymbols(Graphics g)
         {
-            int idx = 0;
             foreach (var series in Option.Series.Values)
             {
                 Color color = series.Color;
@@ -528,8 +528,6 @@ namespace Sunny.UI
 
                     g.SetDefaultQuality();
                 }
-
-                idx++;
             }
         }
 

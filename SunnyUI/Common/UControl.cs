@@ -460,5 +460,15 @@ namespace Sunny.UI
             return false;
         }
 
+        public static void Disabled(this Control ctrl)
+        {
+            ctrl.Enabled = false;
+            ctrl.Hide();
+        }
+
+        public static void Invisible(this Control ctrl)
+        {
+            ctrl.Visible = false;
+        }
     }
 }

@@ -217,7 +217,8 @@ namespace Sunny.UI.Demo
             this.uiProcessBar2.Location = new System.Drawing.Point(30, 123);
             this.uiProcessBar2.MinimumSize = new System.Drawing.Size(70, 1);
             this.uiProcessBar2.Name = "uiProcessBar2";
-            this.uiProcessBar2.Size = new System.Drawing.Size(318, 5);
+            this.uiProcessBar2.Radius = 0;
+            this.uiProcessBar2.Size = new System.Drawing.Size(318, 3);
             this.uiProcessBar2.TabIndex = 90;
             this.uiProcessBar2.Text = "50.0%";
             this.uiProcessBar2.Value = 50;
@@ -318,7 +319,7 @@ namespace Sunny.UI.Demo
             this.uiProcessBar3.Location = new System.Drawing.Point(527, 325);
             this.uiProcessBar3.MinimumSize = new System.Drawing.Size(70, 1);
             this.uiProcessBar3.Name = "uiProcessBar3";
-            this.uiProcessBar3.Size = new System.Drawing.Size(203, 169);
+            this.uiProcessBar3.Size = new System.Drawing.Size(173, 169);
             this.uiProcessBar3.TabIndex = 103;
             this.uiProcessBar3.Value = 50;
             // 
