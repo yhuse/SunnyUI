@@ -33,7 +33,7 @@ namespace Sunny.UI
         {
             SetStyleFlags(true, false);
             Size = new Size(360, 29);
-            MinimumSize = new Size(2, 2);
+            MinimumSize = new Size(1, 1);
             foreColor = UIStyles.GetStyleColor(UIStyle.Blue).LineForeColor;
             fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
         }
