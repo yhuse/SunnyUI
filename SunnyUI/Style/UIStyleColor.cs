@@ -115,6 +115,8 @@ namespace Sunny.UI
 
         public virtual bool BuiltIn => true;
 
+        public virtual Color EditorBackColor => Color.White;
+
         public virtual void LoadFromFile()
         {
         }

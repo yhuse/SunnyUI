@@ -28,6 +28,7 @@
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
  * 2021-09-07: V3.0.6 增加按钮
  * 2021-10-14: V3.0.8 调整最小高度限制
+ * 2021-10-15: V3.0.8 支持修改背景色
 ******************************************************************************/
 
 using System;
@@ -88,7 +89,9 @@ namespace Sunny.UI
             btn.Top = 1;
             btn.Height = 25;
             btn.Width = 29;
+            btn.BackColor = Color.Transparent;
             btn.Click += Btn_Click;
+            btn.Radius = 3;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -107,6 +110,30 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public new Color FillColor
+        {
+            get
+            {
+                return fillColor;
+            }
+            set
+            {
+                if (fillColor != value)
+                {
+                    fillColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+
+                AfterSetFillColor(value);
+            }
         }
 
         private void Btn_Click(object sender, EventArgs e)
@@ -217,7 +244,7 @@ namespace Sunny.UI
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
-            edit.BackColor = Enabled ? Color.White : FillDisableColor;
+            edit.BackColor = Enabled ? FillColor : FillDisableColor;
             edit.Enabled = Enabled;
         }
 
@@ -488,6 +515,9 @@ namespace Sunny.UI
 
         private void SizeChange()
         {
+            if (edit == null) return;
+            if (btn == null) return;
+
             if (!multiline)
             {
                 if (Height < 12) Height = MinHeight;
@@ -496,14 +526,14 @@ namespace Sunny.UI
                 if (Height < MinHeight)
                 {
                     edit.AutoSize = false;
-                    edit.Height = Height - 2;
-                    edit.Top = 1;
+                    edit.Height = Height - 3;
+                    edit.Top = 2;
                 }
                 else
                 {
                     edit.AutoSize = true;
                     edit.Height = MinHeight;
-                    edit.Top = (Height - edit.Height) / 2;
+                    edit.Top = (Height - edit.Height) / 2 + 1;
                 }
 
                 if (icon == null && Symbol == 0)
@@ -525,12 +555,13 @@ namespace Sunny.UI
                     }
                 }
 
+                btn.Left = Width - 2 - ButtonWidth;
+                btn.Top = 2;
+                btn.Height = Height - 4;
+
                 if (ShowButton)
                 {
-                    btn.Left = Width - 2 - ButtonWidth;
-                    btn.Top = 2;
-                    btn.Height = Height - 4;
-                    edit.Width = edit.Width - btn.Width - 1;
+                    edit.Width = edit.Width - btn.Width - 3;
                 }
             }
             else
@@ -578,7 +609,7 @@ namespace Sunny.UI
             set
             {
                 edit.ReadOnly = value;
-                edit.BackColor = Enabled ? Color.White : FillDisableColor;
+                edit.BackColor = Enabled ? FillColor : FillDisableColor;
             }
         }
 
@@ -711,7 +742,11 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            edit.BackColor = fillColor = Enabled ? Color.White : FillDisableColor;
+
+            if (uiColor.IsCustom()) return;
+
+            fillColor = uiColor.EditorBackColor;
+            edit.BackColor = Enabled ? fillColor : FillDisableColor;
             edit.ForeColor = foreColor = UIFontColor.Primary;
 
             if (bar != null)
@@ -719,7 +754,7 @@ namespace Sunny.UI
                 bar.ForeColor = uiColor.PrimaryColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
-                bar.FillColor = Color.White;
+                bar.FillColor = fillColor;
             }
 
             Invalidate();

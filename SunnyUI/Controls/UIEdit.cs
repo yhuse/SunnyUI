@@ -63,7 +63,6 @@ namespace Sunny.UI
             }
         }
 
-        private Font oldFont;
         private Boolean waterMarkTextEnabled;
 
         private Color _waterMarkColor = Color.Gray;
@@ -83,15 +82,15 @@ namespace Sunny.UI
             WaterMark_Toggle(null, null);
         }
 
-        protected override void OnPaint(PaintEventArgs args)
+        protected override void OnPaint(PaintEventArgs e)
         {
-            // Use the same font that was defined in base class
-            Font drawFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
-            //Create new brush with gray color or 
-            SolidBrush drawBrush = new SolidBrush(WaterMarkColor);//use Water mark color
-            //Draw Text or WaterMark
-            args.Graphics.DrawString((waterMarkTextEnabled ? Watermark : Text), drawFont, drawBrush, new PointF(0.0F, 0.0F));
-            base.OnPaint(args);
+            if (waterMarkTextEnabled)
+            {
+                e.Graphics.FillRectangle(BackColor, Bounds);
+                e.Graphics.DrawString(Watermark, Font, WaterMarkColor, new PointF(0.0F, 0.0F));
+            }
+
+            base.OnPaint(e);
         }
 
         private void JoinEvents(Boolean join)
@@ -100,7 +99,8 @@ namespace Sunny.UI
             {
                 TextChanged += WaterMark_Toggle;
                 LostFocus += WaterMark_Toggle;
-                FontChanged += WaterMark_FontChanged;
+                GotFocus += WaterMark_Toggle;
+                MouseDown += WaterMark_Toggle;
             }
         }
 
@@ -114,11 +114,9 @@ namespace Sunny.UI
 
         private void EnableWaterMark()
         {
-            //Save current font until returning the UserPaint style to false (NOTE: It is a try and error advice)
-            oldFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
             //Enable OnPaint event handler
-            SetStyle(ControlStyles.UserPaint, true);
-            waterMarkTextEnabled = true;
+            SetStyle(ControlStyles.UserPaint, Watermark.IsValid());
+            waterMarkTextEnabled = Watermark.IsValid();
             //OnPaint right now
             Refresh();
         }
@@ -128,18 +126,6 @@ namespace Sunny.UI
             //Disable OnPaint event handler
             waterMarkTextEnabled = false;
             SetStyle(ControlStyles.UserPaint, false);
-            //Return back oldFont if existed
-            if (oldFont != null)
-                Font = new Font(oldFont.FontFamily, oldFont.Size, oldFont.Style, oldFont.Unit);
-        }
-
-        private void WaterMark_FontChanged(object sender, EventArgs args)
-        {
-            if (waterMarkTextEnabled)
-            {
-                oldFont = new Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
-                Refresh();
-            }
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
