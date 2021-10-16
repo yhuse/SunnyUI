@@ -11,6 +11,17 @@ namespace Sunny.UI
         private ContentAlignment m_rotatePointAlignment = ContentAlignment.MiddleCenter;
         private ContentAlignment m_textAlignment = ContentAlignment.MiddleLeft;
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         public new string Text
         {
             get { return base.Text; }

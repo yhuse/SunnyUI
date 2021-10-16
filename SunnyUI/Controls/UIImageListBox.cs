@@ -33,7 +33,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
-    public sealed partial class UIImageListBox : UIPanel,IToolTip
+    public sealed partial class UIImageListBox : UIPanel, IToolTip
     {
         private readonly ImageListBox listbox = new ImageListBox();
         private readonly UIScrollBar bar = new UIScrollBar();
@@ -136,7 +136,7 @@ namespace Sunny.UI
             {
                 listbox.SetScrollInfo();
                 LastCount = Items.Count;
-                ItemsCountChange?.Invoke(this, null);
+                ItemsCountChange?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -365,6 +365,17 @@ namespace Sunny.UI
                 {
                     bar = value;
                     SetScrollInfo();
+                }
+            }
+
+            public bool IsScaled { get; private set; }
+
+            public void SetDPIScale()
+            {
+                if (!IsScaled)
+                {
+                    this.SetDPIScaleFont();
+                    IsScaled = true;
                 }
             }
 

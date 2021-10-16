@@ -20,6 +20,7 @@
  * 2021-07-12: V3.0.5 增加紫色主题
  * 2021-07-18: V3.0.5 增加多彩主题，以颜色深色，文字白色为主
  * 2021-09-24: V3.0.7 修改默认字体的GdiCharSet
+ * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
 ******************************************************************************/
 
 using System;
@@ -56,6 +57,10 @@ namespace Sunny.UI
         void SetStyleColor(UIBaseStyle uiColor);
 
         void SetStyle(UIStyle style);
+
+        bool IsScaled { get; }
+
+        void SetDPIScale();
     }
 
     /// <summary>
@@ -189,6 +194,8 @@ namespace Sunny.UI
     /// </summary>
     public static class UIStyles
     {
+        public static bool DPIScale { get; set; }
+
         public static List<UIStyle> PopularStyles()
         {
             List<UIStyle> styles = new List<UIStyle>();
@@ -500,6 +507,21 @@ namespace Sunny.UI
             foreach (var page in Pages.Values)
             {
                 page.Style = style;
+            }
+        }
+
+        public static void SetDPIScale()
+        {
+            foreach (var form in Forms.Values)
+            {
+                if (!form.DPIScale().EqualsFloat(1))
+                    form.SetDPIScale();
+            }
+
+            foreach (var page in Pages.Values)
+            {
+                if (!page.DPIScale().EqualsFloat(1))
+                    page.SetDPIScale();
             }
         }
 

@@ -60,6 +60,17 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         private int radius;
 
         [DefaultValue(0)]

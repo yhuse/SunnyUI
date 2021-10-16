@@ -33,6 +33,17 @@ namespace Sunny.UI
             }
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         public void SetLightness(double lightness)
         {
             m_selectedColor.Lightness = lightness;

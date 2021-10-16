@@ -65,6 +65,23 @@ namespace Sunny.UI
             if (!IsDesignMode) base.Dock = DockStyle.Fill;
 
             Version = UIGlobal.Version;
+            SetDPIScale();
+        }
+
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                foreach (Control control in this.GetAllDPIScaleControls())
+                {
+                    control.SetDPIScaleFont();
+                }
+
+                IsScaled = true;
+            }
         }
 
         public void Render()

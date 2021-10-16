@@ -80,6 +80,17 @@ namespace Sunny.UI
             SetScrollInfo();
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         [DefaultValue(false)]
         [Description("只显示一个打开的节点"), Category("SunnyUI")]
         public bool ShowOneNode { get; set; }

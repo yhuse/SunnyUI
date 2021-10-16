@@ -303,6 +303,57 @@ namespace Sunny.UI
             return values;
         }
 
+        public static List<Control> GetAllControls(this Control control)
+        {
+            var list = new List<Control>();
+            foreach (Control con in control.Controls)
+            {
+                list.Add(con);
+                if (con.Controls.Count > 0)
+                {
+                    list.AddRange(GetAllControls(con));
+                }
+            }
+
+            return list;
+        }
+
+        public static float DPIScale(this Control control)
+        {
+            return control.CreateGraphics().DpiX / 96.0f;
+        }
+
+        public static Font DPIScaleFont(this Control control)
+        {
+            return new Font(control.Font.FontFamily, control.Font.Size / control.DPIScale(),
+                   control.Font.Style, control.Font.Unit, control.Font.GdiCharSet);
+        }
+
+        public static void SetDPIScaleFont(this Control control)
+        {
+            if (!control.DPIScale().Equals(1))
+            {
+                control.Font = control.DPIScaleFont();
+            }
+        }
+
+        public static List<Control> GetAllDPIScaleControls(this Control control)
+        {
+            var list = new List<Control>();
+            foreach (Control con in control.Controls)
+            {
+                list.Add(con);
+                if (con is IToolTip) continue;
+
+                if (con.Controls.Count > 0)
+                {
+                    list.AddRange(GetAllControls(con));
+                }
+            }
+
+            return list;
+        }
+
         /// <summary>
         /// 查找包含接口名称的控件列表
         /// </summary>
@@ -401,10 +452,10 @@ namespace Sunny.UI
 
             object obj = f1.GetValue(button);
             PropertyInfo pi = button.GetType().GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (pi != null)
+            if (pi != null && obj != null)
             {
                 EventHandlerList list = (EventHandlerList)pi.GetValue(button, null);
-                list.RemoveHandler(obj, list[obj]);
+                list?.RemoveHandler(obj, list[obj]);
             }
         }
 

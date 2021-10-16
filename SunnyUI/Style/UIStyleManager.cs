@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -66,6 +67,13 @@ namespace Sunny.UI
         public UIStyleManager(IContainer container) : this()
         {
             container.Add(this);
+        }
+
+        [DefaultValue(false), Description("DPI缩放"), Category("SunnyUI")]
+        public bool DPIScale
+        {
+            get => UIStyles.DPIScale;
+            set => UIStyles.DPIScale = value;
         }
     }
 }

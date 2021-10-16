@@ -98,6 +98,17 @@ namespace Sunny.UI
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         private readonly Dictionary<string, CellStyle> CellStyles = new Dictionary<string, CellStyle>();
 
         public class CellStyle

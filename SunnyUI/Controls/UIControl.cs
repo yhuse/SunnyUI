@@ -45,6 +45,17 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);

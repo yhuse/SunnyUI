@@ -49,6 +49,17 @@ namespace Sunny.UI
             Width = 150;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         private UIStyle _style = UIStyle.Blue;
 
         protected override void OnBackColorChanged(EventArgs e)

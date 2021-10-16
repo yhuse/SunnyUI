@@ -70,6 +70,22 @@ namespace Sunny.UI
             showTitleIcon = false;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled && UIStyles.DPIScale)
+            {
+                this.SetDPIScaleFont();
+                foreach (Control control in this.GetAllDPIScaleControls())
+                {
+                    control.SetDPIScaleFont();
+                }
+
+                IsScaled = true;
+            }
+        }
+
         [DefaultValue(true)]
         [Description("是否点击标题栏可以移动窗体"), Category("SunnyUI")]
         public bool Movable { get; set; } = true;
@@ -1183,6 +1199,7 @@ namespace Sunny.UI
             CalcSystemBoxPos();
             SetRadius();
             isShow = true;
+            SetDPIScale();
         }
 
         /// <summary>

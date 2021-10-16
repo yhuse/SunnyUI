@@ -38,6 +38,17 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         /// <summary>
         /// 自定义主题风格
         /// </summary>

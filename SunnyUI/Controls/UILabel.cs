@@ -42,6 +42,17 @@ namespace Sunny.UI
             ForeColorChanged += UILabel_ForeColorChanged;
         }
 
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         private void UILabel_ForeColorChanged(object sender, EventArgs e)
         {
             _style = UIStyle.Custom;
@@ -126,6 +137,17 @@ namespace Sunny.UI
             ActiveLinkColor = UIColor.Orange;
             VisitedLinkColor = UIColor.Red;
             LinkColor = UIColor.Blue;
+        }
+
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
         }
 
         /// <summary>
