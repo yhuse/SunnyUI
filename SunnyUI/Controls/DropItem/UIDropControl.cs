@@ -293,7 +293,7 @@ namespace Sunny.UI
             Color color = GetRectColor();
             SizeF sf = g.GetFontImageSize(dropSymbol, 24);
             g.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
-            g.DrawLine(RectColor, Width - 1, Radius / 2, Width - 1, Height - Radius);
+            //g.DrawLine(RectColor, Width - 1, Radius / 2, Width - 1, Height - Radius);
         }
 
         protected override void OnGotFocus(EventArgs e)
