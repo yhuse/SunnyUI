@@ -460,14 +460,14 @@ namespace Sunny.UI
             MenuHelper.SetPageIndex(node, pageIndex);
         }
 
-        public void SetNodeTipsText(TreeNode node, string tipsText)
+        public void SetNodeTipsText(TreeNode node, string nodeTipsText)
         {
-            MenuHelper.SetTipsText(node, tipsText);
+            MenuHelper.SetTipsText(node, nodeTipsText);
         }
 
-        public void SetNodeTipsText(TreeNode node, string tipsText, Color tipsBackColor, Color tipsForeColor)
+        public void SetNodeTipsText(TreeNode node, string nodeTipsText, Color nodeTipsBackColor, Color nodeTipsForeColor)
         {
-            MenuHelper.SetTipsText(node, tipsText, tipsBackColor, tipsForeColor);
+            MenuHelper.SetTipsText(node, nodeTipsText, nodeTipsBackColor, nodeTipsForeColor);
         }
 
         public void SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)

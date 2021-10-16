@@ -32,7 +32,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
-    public sealed partial class UIDatetimePicker : UIDropControl,IToolTip
+    public sealed class UIDatetimePicker : UIDropControl, IToolTip
     {
         private void InitializeComponent()
         {
@@ -41,10 +41,10 @@ namespace Sunny.UI
             // UIDatetimePicker
             // 
             this.Name = "UIDatetimePicker";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            this.Padding = new Padding(0, 0, 30, 0);
             this.SymbolDropDown = 61555;
             this.SymbolNormal = 61555;
-            this.ButtonClick += new System.EventHandler(this.UIDatetimePicker_ButtonClick);
+            this.ButtonClick += this.UIDatetimePicker_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -399,7 +399,7 @@ namespace Sunny.UI
 
         public Guid PageGuid { get; set; } = Guid.Empty;
 
-        public bool AlwaysOpen { get; set; } = false;
+        public bool AlwaysOpen { get; set; }
 
 
         public NavMenuItem()

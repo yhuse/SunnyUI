@@ -27,7 +27,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
@@ -862,7 +861,7 @@ namespace Sunny.UI
                                     {
                                         lineX -= Indent;
 
-                                        if (pNode != null && Nodes.Count > 0)
+                                        if (Nodes.Count > 0)
                                         {
                                             if (pNode.NextNode != null)
                                                 e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Top);
@@ -912,7 +911,7 @@ namespace Sunny.UI
                 }
             }
 
-            private bool TreeNodeSelected(DrawTreeNodeEventArgs e)
+            public bool TreeNodeSelected(DrawTreeNodeEventArgs e)
             {
                 return e.State == TreeNodeStates.Selected || e.State == TreeNodeStates.Focused ||
                        e.State == (TreeNodeStates.Focused | TreeNodeStates.Selected);
@@ -984,7 +983,7 @@ namespace Sunny.UI
 
                     if (parentNode.Parent != null) //如果父节点之上还有父节点
                     {
-                        SetParentNodeCheckedState(parentNode, ByMouse); //递归调用
+                        SetParentNodeCheckedState(parentNode, true); //递归调用
                     }
                 }
 

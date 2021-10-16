@@ -36,7 +36,7 @@ namespace Sunny.UI
         private int _symbolSize = 24;
         private int _imageInterval = 2;
 
-        private Color symbolColor = UIFontColor.Primary;
+        private Color symbolColor;
 
         public UISymbolLabel()
         {

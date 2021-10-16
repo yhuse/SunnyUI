@@ -164,7 +164,7 @@ namespace Sunny.UI
     {
         public UIPurpleStyle()
         {
-            Init(UIColor.Purple, UIStyle.Purple, Color.White);
+            base.Init(UIColor.Purple, UIStyle.Purple, Color.White);
         }
     }
 
@@ -172,7 +172,7 @@ namespace Sunny.UI
     {
         public UILightPurpleStyle()
         {
-            InitPlain(UIColor.Purple, UIStyle.LightPurple, Color.White);
+            base.InitPlain(UIColor.Purple, UIStyle.LightPurple, Color.White);
         }
     }
 
@@ -180,7 +180,7 @@ namespace Sunny.UI
     {
         public UIColorfulStyle()
         {
-            Init(Color.FromArgb(0, 190, 172), UIStyle.Colorful, Color.White);
+            base.Init(Color.FromArgb(0, 190, 172), UIStyle.Colorful, Color.White);
         }
 
         public void Init(Color styleColor, Color foreColor)

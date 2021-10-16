@@ -151,7 +151,7 @@ namespace Sunny.UI
 
             // Draw the background ellipse
             var rectangle = new Rectangle(Padding.Left, Padding.Top, diameter, diameter);
-            g.FillEllipse(darkColor, rectangle, true);
+            g.FillEllipse(darkColor, rectangle);
 
             // Draw the glow gradient
             var path = new GraphicsPath();

@@ -31,10 +31,6 @@ namespace Sunny.UI
             {
                 get; set;
             }
-            public Range BrightnessRange
-            {
-                get; set;
-            }
         }
 
         private static readonly Dictionary<ColorScheme, DefinedColor> ColorDictionary = new Dictionary<ColorScheme, DefinedColor>();
@@ -206,7 +202,7 @@ namespace Sunny.UI
                     var m = (v2 - v1) / (s2 - s1);
                     var b = v1 - m * s1;
 
-                    return (int)(m * S + b);
+                    return m * S + b;
                 }
             }
 
@@ -270,15 +266,12 @@ namespace Sunny.UI
 
             var sMin = jagged[0][0];
             var sMax = jagged[jagged.Length - 1][0];
-            var bMin = jagged[jagged.Length - 1][1];
-            var bMax = jagged[0][1];
 
             ColorDictionary[scheme] = new DefinedColor()
             {
                 HueRange = Range.ToRange(hueRange),
                 LowerBounds = jagged.Select(j => new Point(j[0], j[1])).ToArray(),
-                SaturationRange = new Range(sMin, sMax),
-                BrightnessRange = new Range(bMin, bMax)
+                SaturationRange = new Range(sMin, sMax)
             };
         }
 
@@ -345,7 +338,7 @@ namespace Sunny.UI
             {
                 h = 1;
             }
-            if (h == 360)
+            if (h.EqualsDouble(360))
             {
                 h = 359;
             }

@@ -291,8 +291,12 @@ namespace Sunny.UI
             var t = typeof(FontAwesomeIcons);
             foreach (var fieldInfo in t.GetFields())
             {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                FontAwesomeV4Labels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+                object obj = fieldInfo.GetRawConstantValue();
+                if (obj != null)
+                {
+                    int value = obj.ToString().ToInt();
+                    FontAwesomeV4Labels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+                }
             }
         }
 
@@ -301,8 +305,12 @@ namespace Sunny.UI
             var t = typeof(FontElegantIcons);
             foreach (var fieldInfo in t.GetFields())
             {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                ElegantIconsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+                object obj = fieldInfo.GetRawConstantValue();
+                if (obj != null)
+                {
+                    int value = obj.ToString().ToInt();
+                    ElegantIconsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV4));
+                }
             }
         }
 
@@ -311,8 +319,12 @@ namespace Sunny.UI
             var t = typeof(FontAweSomeV5Brands);
             foreach (var fieldInfo in t.GetFields())
             {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                FontAwesomeV5BrandsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Brands));
+                object obj = fieldInfo.GetRawConstantValue();
+                if (obj != null)
+                {
+                    int value = obj.ToString().ToInt();
+                    FontAwesomeV5BrandsLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Brands));
+                }
             }
         }
 
@@ -321,8 +333,12 @@ namespace Sunny.UI
             var t = typeof(FontAweSomeV5Regular);
             foreach (var fieldInfo in t.GetFields())
             {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                FontAwesomeV5RegularLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Regular));
+                object obj = fieldInfo.GetRawConstantValue();
+                if (obj != null)
+                {
+                    int value = obj.ToString().ToInt();
+                    FontAwesomeV5RegularLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Regular));
+                }
             }
         }
 
@@ -331,8 +347,12 @@ namespace Sunny.UI
             var t = typeof(FontAweSomeV5Solid);
             foreach (var fieldInfo in t.GetFields())
             {
-                int value = fieldInfo.GetRawConstantValue().ToString().ToInt();
-                FontAwesomeV5SolidLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Solid));
+                object obj = fieldInfo.GetRawConstantValue();
+                if (obj != null)
+                {
+                    int value = obj.ToString().ToInt();
+                    FontAwesomeV5SolidLabels.Enqueue(CreateLabel(value, UISymbolType.FontAwesomeV5Solid));
+                }
             }
         }
     }

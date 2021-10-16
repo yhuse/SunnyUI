@@ -259,7 +259,7 @@ namespace Sunny.UI
             }
 
             scrollValue = value;
-            ValueChanged?.Invoke(this, null);
+            ValueChanged?.Invoke(this, EventArgs.Empty);
             Invalidate();
         }
 

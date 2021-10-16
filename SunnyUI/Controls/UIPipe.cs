@@ -561,7 +561,7 @@ namespace Sunny.UI
             return result;
         }
 
-        private int FlowPos = 0;
+        private int FlowPos;
 
         private void PaintFlow(Graphics g)
         {

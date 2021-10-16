@@ -390,8 +390,6 @@ namespace Sunny.UI
                     pt4 = new Point(Width / 2 + 4, Height - pipeSize - 8 - 7);
                     e.Graphics.FillPolygon(rectColor, new PointF[] { pt1, pt2, pt3, pt4, pt1 });
                     break;
-                default:
-                    break;
             }
         }
     }

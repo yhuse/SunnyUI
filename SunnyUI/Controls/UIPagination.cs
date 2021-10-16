@@ -268,7 +268,7 @@ namespace Sunny.UI
                 dataSource = value;
                 activePage = 1;
                 TotalCount = dataManager?.List.Count ?? 0;
-                DataSourceChanged?.Invoke(this, null);
+                DataSourceChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

@@ -311,7 +311,7 @@ namespace Sunny.UI
 
         private void Edit_MouseWheel(object sender, MouseEventArgs e)
         {
-            base.OnMouseWheel(e);
+            OnMouseWheel(e);
             if (bar != null && bar.Visible && edit != null)
             {
                 var si = ScrollBarInfo.GetInfo(edit.Handle);
@@ -1074,7 +1074,7 @@ namespace Sunny.UI
             }
         }
 
-        private int _symbol = 0;
+        private int _symbol;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]

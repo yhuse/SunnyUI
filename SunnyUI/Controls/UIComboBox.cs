@@ -321,7 +321,7 @@ namespace Sunny.UI
 
         private void UIComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 ShowDropDown();
             }
@@ -329,7 +329,7 @@ namespace Sunny.UI
 
         private void edit_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 ShowDropDown();
             }

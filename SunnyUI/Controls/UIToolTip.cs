@@ -274,7 +274,7 @@ namespace Sunny.UI
             public string Title { get; set; }
             public string Description { get; set; }
 
-            public int Symbol { get; set; } = 0;
+            public int Symbol { get; set; }
 
             public int SymbolSize { get; set; } = 32;
 

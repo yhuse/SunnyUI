@@ -664,7 +664,7 @@ namespace Sunny.UI
             }
         }
 
-        private int LastIndex = 0;
+        private int LastIndex;
 
         public void Init()
         {

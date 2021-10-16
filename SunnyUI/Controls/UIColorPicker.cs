@@ -45,8 +45,8 @@ namespace Sunny.UI
             //
             this.DropDownStyle = UIDropDownStyle.DropDownList;
             this.Name = "UIColorPicker";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this.ButtonClick += new System.EventHandler(this.UIColorPicker_ButtonClick);
+            this.Padding = new Padding(0, 0, 30, 0);
+            this.ButtonClick += this.UIColorPicker_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -109,7 +109,7 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, System.Drawing.Drawing2D.GraphicsPath path)
         {
             base.OnPaintFore(g, path);
-            var pathColor = g.CreateRoundedRectanglePath(new Rectangle(3, 3, Width - 32, Height - 7), 5, UICornerRadiusSides.All);
+            var pathColor = g.CreateRoundedRectanglePath(new Rectangle(3, 3, Width - 32, Height - 7), 3, UICornerRadiusSides.All);
             g.FillPath(Value, pathColor);
         }
 

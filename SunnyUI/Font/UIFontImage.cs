@@ -136,7 +136,6 @@ namespace Sunny.UI
         public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
             RectangleF rect, int xOffset = 0, int yOffSet = 0)
         {
-            UISymbolType symbolType = (UISymbolType)symbol.Div(100000);
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
             graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
                 rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
@@ -186,7 +185,7 @@ namespace Sunny.UI
             using (Graphics g = image.Graphics())
             {
                 SizeF sf = g.GetFontImageSize(symbol, size);
-                g.DrawFontImage(symbol, size, color, (image.Width - sf.Width) / 2.0f, (image.Height - sf.Height) / 2.0f, 0, 0);
+                g.DrawFontImage(symbol, size, color, (image.Width - sf.Width) / 2.0f, (image.Height - sf.Height) / 2.0f);
             }
 
             return image;

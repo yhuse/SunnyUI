@@ -128,7 +128,7 @@ namespace Sunny.UI
                     Invalidate();
                 }
 
-                ValueChanged?.Invoke(this, null);
+                ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

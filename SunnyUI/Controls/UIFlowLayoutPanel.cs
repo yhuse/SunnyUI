@@ -91,7 +91,7 @@ namespace Sunny.UI
             timer?.Dispose();
         }
 
-        [DefaultValue(System.Windows.Forms.FlowDirection.LeftToRight)]
+        [DefaultValue(FlowDirection.LeftToRight)]
         [Localizable(true)]
         public FlowDirection FlowDirection
         {
@@ -377,31 +377,31 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.VBar = new Sunny.UI.UIVerScrollBarEx();
-            this.HBar = new Sunny.UI.UIHorScrollBarEx();
+            this.flowLayoutPanel = new FlowLayoutPanel();
+            this.VBar = new UIVerScrollBarEx();
+            this.HBar = new UIHorScrollBarEx();
             this.SuspendLayout();
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel.BackColor = Color.FromArgb(235, 243, 255);
+            this.flowLayoutPanel.Dock = DockStyle.Fill;
+            this.flowLayoutPanel.Location = new Point(2, 2);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(429, 383);
+            this.flowLayoutPanel.Size = new Size(429, 383);
             this.flowLayoutPanel.TabIndex = 0;
             this.flowLayoutPanel.Tag = "69605093-6397-AD32-9F69-3C29F642F87E";
             // 
             // VBar
             // 
             this.VBar.BoundsHeight = 10;
-            this.VBar.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.VBar.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
             this.VBar.LargeChange = 10;
-            this.VBar.Location = new System.Drawing.Point(410, 5);
+            this.VBar.Location = new Point(410, 5);
             this.VBar.Maximum = 100;
-            this.VBar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.VBar.MinimumSize = new Size(1, 1);
             this.VBar.Name = "VBar";
-            this.VBar.Size = new System.Drawing.Size(18, 377);
+            this.VBar.Size = new Size(18, 377);
             this.VBar.TabIndex = 1;
             this.VBar.TagString = "63FD1249-41D3-E08A-F8F5-CC41CC30FD03";
             this.VBar.Text = "uiVerScrollBarEx1";
@@ -411,13 +411,13 @@ namespace Sunny.UI
             // HBar
             // 
             this.HBar.BoundsWidth = 10;
-            this.HBar.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.HBar.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
             this.HBar.LargeChange = 10;
-            this.HBar.Location = new System.Drawing.Point(5, 364);
+            this.HBar.Location = new Point(5, 364);
             this.HBar.Maximum = 100;
-            this.HBar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.HBar.MinimumSize = new Size(1, 1);
             this.HBar.Name = "HBar";
-            this.HBar.Size = new System.Drawing.Size(399, 18);
+            this.HBar.Size = new Size(399, 18);
             this.HBar.TabIndex = 2;
             this.HBar.TagString = "79E1E7DD-3E4D-916B-C8F1-F45B579C290C";
             this.HBar.Text = "uiHorScrollBarEx1";
@@ -430,8 +430,8 @@ namespace Sunny.UI
             this.Controls.Add(this.VBar);
             this.Controls.Add(this.flowLayoutPanel);
             this.Name = "UIFlowLayoutPanel";
-            this.Padding = new System.Windows.Forms.Padding(2);
-            this.Size = new System.Drawing.Size(433, 387);
+            this.Padding = new Padding(2);
+            this.Size = new Size(433, 387);
             this.ResumeLayout(false);
 
         }

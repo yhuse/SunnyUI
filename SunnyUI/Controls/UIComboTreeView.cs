@@ -45,10 +45,10 @@ namespace Sunny.UI
             // 
             // UIComboTreeView
             // 
-            this.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.DropDownStyle = UIDropDownStyle.DropDownList;
             this.Name = "UIComboTreeView";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this.ButtonClick += new System.EventHandler(this.UIComboTreeView_ButtonClick);
+            this.Padding = new Padding(0, 0, 30, 0);
+            this.ButtonClick += this.UIComboTreeView_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +172,7 @@ namespace Sunny.UI
             }
         }
 
-        private void UIComboTreeView_ButtonClick(object sender, System.EventArgs e)
+        private void UIComboTreeView_ButtonClick(object sender, EventArgs e)
         {
             ItemForm.Size = ItemSize;
             item.TreeView.ExpandAll();
