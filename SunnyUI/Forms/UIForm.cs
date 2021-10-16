@@ -26,6 +26,7 @@
  * 2021-05-06: V3.0.3 增加属性，标题栏可放置控件
  * 2021-08-17: V3.0.6 增加TitleFont属性
  * 2021-08-17: V3.0.6 适应主屏幕任务栏在屏幕各个方向均可
+ * 2021-08-17: V3.0.8 增加IFrame接口
 ******************************************************************************/
 
 using System;
@@ -38,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UIForm : Form, IStyleInterface, ITranslate
+    public partial class UIForm : Form, IStyleInterface, ITranslate, IFrame
     {
         private readonly UIButton btn = new UIButton();
 
@@ -533,7 +534,7 @@ namespace Sunny.UI
             {
                 rectColor = value;
                 AfterSetRectColor(value);
-                RectColorChanged?.Invoke(this, null);
+                RectColorChanged?.Invoke(this, EventArgs.Empty);
                 _style = UIStyle.Custom;
                 Invalidate();
             }
@@ -570,7 +571,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        ExtendBoxClick?.Invoke(this, null);
+                        ExtendBoxClick?.Invoke(this, EventArgs.Empty);
                     }
                 }
             }
@@ -1800,5 +1801,55 @@ namespace Sunny.UI
         }
 
         #endregion
+
+        #region IFrame实现
+
+        public UITabControl MainTabControl { get; set; }
+
+        public UIPage AddPage(UIPage page, int index)
+        {
+            page.PageIndex = index;
+            return AddPage(page);
+        }
+
+        public UIPage AddPage(UIPage page, Guid guid)
+        {
+            page.PageGuid = guid;
+            return AddPage(page);
+        }
+
+        public UIPage AddPage(UIPage page)
+        {
+            page.Frame = this;
+            MainTabControl?.AddPage(page);
+            return page;
+        }
+
+        public virtual void SelectPage(int pageIndex)
+        {
+            MainTabControl?.SelectPage(pageIndex);
+        }
+
+        public virtual void SelectPage(Guid guid)
+        {
+            MainTabControl?.SelectPage(guid);
+        }
+
+        public bool RemovePage(int pageIndex)
+        {
+            return MainTabControl?.RemovePage(pageIndex) ?? false;
+        }
+
+        public bool RemovePage(Guid guid)
+        {
+            return MainTabControl?.RemovePage(guid) ?? false;
+        }
+
+        public virtual void Feedback(object sender, int pageIndex, params object[] objects)
+        {
+
+        }
+
+        #endregion IFrame实现
     }
 }

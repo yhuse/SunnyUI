@@ -737,7 +737,7 @@ namespace Sunny.UI
             }
         }
 
-        private bool IsZoom;
+        public bool IsZoom { get; private set; }
         private readonly List<ZoomArea> ZoomAreas = new List<ZoomArea>();
         private ZoomArea BaseArea;
 

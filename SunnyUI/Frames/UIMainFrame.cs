@@ -17,6 +17,7 @@
  * 创建日期: 2020-05-05
  *
  * 2020-05-05: V2.2.5 页面框架基类
+ * 2021-08-17: V3.0.8 删除IFrame接口，移到父类UIForm
 ******************************************************************************/
 
 using System;
@@ -26,7 +27,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UIMainFrame : UIForm, IFrame
+    public partial class UIMainFrame : UIForm
     {
         public UIMainFrame()
         {
@@ -99,56 +100,5 @@ namespace Sunny.UI
 
         [Description("页面选择事件"), Category("SunnyUI")]
         public event OnSelecting Selecting;
-
-        #region IFrame实现
-
-        [Browsable(false)]
-        public UITabControl MainTabControl => MainContainer;
-
-        public UIPage AddPage(UIPage page, int index)
-        {
-            page.PageIndex = index;
-            return AddPage(page);
-        }
-
-        public UIPage AddPage(UIPage page, Guid guid)
-        {
-            page.PageGuid = guid;
-            return AddPage(page);
-        }
-
-        public UIPage AddPage(UIPage page)
-        {
-            page.Frame = this;
-            MainTabControl.AddPage(page);
-            return page;
-        }
-
-        public virtual void SelectPage(int pageIndex)
-        {
-            MainTabControl.SelectPage(pageIndex);
-        }
-
-        public virtual void SelectPage(Guid guid)
-        {
-            MainTabControl.SelectPage(guid);
-        }
-
-        public bool RemovePage(int pageIndex)
-        {
-            return MainTabControl.RemovePage(pageIndex);
-        }
-
-        public bool RemovePage(Guid guid)
-        {
-            return MainTabControl.RemovePage(guid);
-        }
-
-        public virtual void Feedback(object sender, int pageIndex, params object[] objects)
-        {
-
-        }
-
-        #endregion IFrame实现
     }
 }

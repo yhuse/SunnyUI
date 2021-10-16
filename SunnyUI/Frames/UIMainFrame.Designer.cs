@@ -40,14 +40,16 @@
             this.MainContainer.Controls.Add(this.tabPage2);
             this.MainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainContainer.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MainContainer.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.MainContainer.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MainContainer.ItemSize = new System.Drawing.Size(150, 40);
             this.MainContainer.Location = new System.Drawing.Point(0, 35);
+            this.MainContainer.MainPage = "";
             this.MainContainer.Name = "MainContainer";
             this.MainContainer.SelectedIndex = 0;
             this.MainContainer.Size = new System.Drawing.Size(800, 415);
             this.MainContainer.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainContainer.TabIndex = 0;
+            this.MainContainer.TabUnSelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.MainContainer.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainContainer_Selecting);
             // 
             // tabPage1
@@ -64,7 +66,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(450, 230);
+            this.tabPage2.Size = new System.Drawing.Size(200, 60);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
@@ -73,6 +75,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainContainer);
+            this.MainTabControl = this.MainContainer;
             this.Name = "UIMainFrame";
             this.Text = "UIMainFrame";
             this.MainContainer.ResumeLayout(false);
