@@ -20,6 +20,7 @@
  * 2021-07-10: V3.0.4 增加滚动条颜色属性 
  * 2021-07-31: V3.0.5 可像原生控件一样通过Controls.Add增加
  * 2021-08-11: V3.0.5 删除点击的Focus事件
+ * 2021-10-18: V3.0.8 增加Scroll事件
 ******************************************************************************/
 
 using System;
@@ -61,6 +62,8 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
             timer.Start();
         }
+
+        public new event ScrollEventHandler Scroll;
 
         public Control ExToolTipControl()
         {
@@ -339,6 +342,7 @@ namespace Sunny.UI
 
         private void Panel_Scroll(object sender, ScrollEventArgs e)
         {
+            Scroll?.Invoke(this, e);
             VBar.Value = Panel.VerticalScroll.Value;
         }
 
