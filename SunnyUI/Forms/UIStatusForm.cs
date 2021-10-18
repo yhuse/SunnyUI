@@ -19,6 +19,7 @@
  * 2020-05-05: V2.2.5 增加文件
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 
 namespace Sunny.UI
@@ -32,14 +33,14 @@ namespace Sunny.UI
             Description = UILocalize.SystemProcessing;
         }
 
-        public UIStatusForm(int max, string desc, int decimalCount = 1)
+        public UIStatusForm(int max, string desc, int decimalPlaces = 1)
         {
             InitializeComponent();
 
             Maximum = max;
             Description = desc;
             Value = 0;
-            DecimalCount = decimalCount;
+            DecimalPlaces = decimalPlaces;
         }
 
         [DefaultValue(100)]
@@ -99,10 +100,18 @@ namespace Sunny.UI
             set => labelDescription.Text = value;
         }
 
+        public int DecimalPlaces
+        {
+            get => processBar.DecimalPlaces;
+            set => processBar.DecimalPlaces = value;
+        }
+
+
+        [Obsolete("请用DecimalPlaces代替。")]
         public int DecimalCount
         {
-            get => processBar.DecimalCount;
-            set => processBar.DecimalCount = value;
+            get => processBar.DecimalPlaces;
+            set => processBar.DecimalPlaces = value;
         }
 
         private delegate void SetTextHandler(string text);

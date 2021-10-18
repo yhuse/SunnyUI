@@ -175,6 +175,7 @@ namespace Sunny.UI.Demo
             // uiRoundProcess2
             // 
             this.uiRoundProcess2.BackColor = System.Drawing.Color.Transparent;
+            this.uiRoundProcess2.DecimalPlaces = 0;
             this.uiRoundProcess2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRoundProcess2.ForeColor = System.Drawing.Color.White;
             this.uiRoundProcess2.Inner = 0;
@@ -186,7 +187,7 @@ namespace Sunny.UI.Demo
             this.uiRoundProcess2.Style = Sunny.UI.UIStyle.Custom;
             this.uiRoundProcess2.StyleCustomMode = true;
             this.uiRoundProcess2.TabIndex = 93;
-            this.uiRoundProcess2.Text = "0.0%";
+            this.uiRoundProcess2.Text = "0%";
             // 
             // uiLine9
             // 

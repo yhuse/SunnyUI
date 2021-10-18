@@ -135,7 +135,7 @@ namespace Sunny.UI
                 processSize = posValue * Height * 1.0f / Maximum;
 
             if (ShowPercent)
-                processText = (posValue * 100.0 / maximum).ToString("F" + DecimalCount) + "%";
+                processText = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
             else
                 processText = posValue.ToString();
 
@@ -204,10 +204,19 @@ namespace Sunny.UI
             }
         }
 
+        [Description("显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int DecimalPlaces
+        {
+            get => decimalCount;
+            set => decimalCount = Math.Max(value, 0);
+        }
+
         private int decimalCount = 1;
 
         [Description("显示文字小数位数"), Category("SunnyUI")]
-        [DefaultValue(1)]
+        [DefaultValue(1), Browsable(false)]
+        [Obsolete("请用DecimalPlaces代替。")]
         public int DecimalCount
         {
             get => decimalCount;

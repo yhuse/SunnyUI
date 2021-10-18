@@ -17,6 +17,7 @@
  * 创建日期: 2021-04-08
  *
  * 2021-04-08: V3.0.2 增加文件说明
+ * 2021-10-18: V3.0.8 增加显示小数位数 
 ******************************************************************************/
 
 using System;
@@ -47,6 +48,20 @@ namespace Sunny.UI
             ShowText = false;
             ShowRect = false;
         }
+
+        [Description("显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int DecimalPlaces
+        {
+            get => decimalCount;
+            set
+            {
+                decimalCount = Math.Max(value, 0);
+                Text = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
+            }
+        }
+
+        private int decimalCount = 1;
 
         private int maximum = 100;
 
@@ -138,7 +153,7 @@ namespace Sunny.UI
             {
                 posValue = Math.Max(value, 0);
                 posValue = Math.Min(posValue, maximum);
-                Text = (posValue * 100.0 / maximum).ToString("F1") + "%";
+                Text = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
                 ValueChanged?.Invoke(this, posValue);
                 Invalidate();
             }
