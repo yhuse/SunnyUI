@@ -13,4 +13,13 @@ namespace Sunny.UI
     {
         Control ExToolTipControl();
     }
+
+    public enum UILineCap
+    {
+        None,
+        Square,
+        Diamond,
+        Triangle,
+        Circle
+    }
 }

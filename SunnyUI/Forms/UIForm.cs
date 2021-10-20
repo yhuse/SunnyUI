@@ -70,6 +70,7 @@ namespace Sunny.UI
             showTitleIcon = false;
         }
 
+        [Browsable(false)]
         public bool IsScaled { get; private set; }
 
         public void SetDPIScale()

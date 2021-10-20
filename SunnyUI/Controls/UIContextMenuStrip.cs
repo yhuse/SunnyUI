@@ -38,6 +38,7 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        [Browsable(false)]
         public bool IsScaled { get; private set; }
 
         public void SetDPIScale()

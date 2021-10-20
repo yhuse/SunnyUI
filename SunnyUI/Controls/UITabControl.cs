@@ -62,6 +62,7 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
         }
 
+        [Browsable(false)]
         public bool IsScaled { get; private set; }
 
         public void SetDPIScale()

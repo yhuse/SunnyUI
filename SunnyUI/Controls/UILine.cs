@@ -99,10 +99,10 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
-        private LineCap startCap = LineCap.Flat;
+        private UILineCap startCap = UILineCap.None;
 
-        [DefaultValue(LineCap.Flat), Category("SunnyUI")]
-        public LineCap StartCap
+        [DefaultValue(UILineCap.None), Category("SunnyUI")]
+        public UILineCap StartCap
         {
             get => startCap;
             set
@@ -112,10 +112,10 @@ namespace Sunny.UI
             }
         }
 
-        private LineCap endCap = LineCap.Flat;
+        private UILineCap endCap = UILineCap.None;
 
-        [DefaultValue(LineCap.Flat), Category("SunnyUI")]
-        public LineCap EndCap
+        [DefaultValue(UILineCap.None), Category("SunnyUI")]
+        public UILineCap EndCap
         {
             get => endCap;
             set
@@ -125,26 +125,66 @@ namespace Sunny.UI
             }
         }
 
+        private int lineCapSize = 6;
+
+        [DefaultValue(6), Category("SunnyUI")]
+        public int LineCapSize
+        {
+            get => lineCapSize;
+            set
+            {
+                lineCapSize = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            Pen pen = new Pen(rectColor, lineSize);
-            pen.StartCap = StartCap;
-            pen.EndCap = EndCap;
-
-            g.Smooth();
+            g.SetDefaultQuality();
             if (Direction == LineDirection.Horizontal)
             {
                 int top = (Height - lineSize) / 2;
-                g.DrawLine(pen, Padding.Left, top, Width - Padding.Left - Padding.Right, top);
+                g.FillRectangle(rectColor, Padding.Left + 1, top, Width - 2 - Padding.Left - Padding.Right, lineSize);
+                switch (startCap)
+                {
+                    case UILineCap.Square:
+                        top = Height / 2 - LineCapSize - 1;
+                        g.FillRectangle(rectColor, new RectangleF(0, top, LineCapSize * 2, LineCapSize * 2));
+                        break;
+                    case UILineCap.Diamond:
+                        break;
+                    case UILineCap.Triangle:
+                        break;
+                    case UILineCap.Circle:
+                        top = Height / 2 - LineCapSize - 1;
+                        g.FillEllipse(rectColor, new RectangleF(0, top, LineCapSize * 2, LineCapSize * 2));
+                        break;
+                }
+
+                switch (endCap)
+                {
+                    case UILineCap.Square:
+                        top = Height / 2 - LineCapSize;
+                        if (lineSize.Mod(2) == 1) top -= 1;
+                        g.FillRectangle(rectColor, new RectangleF(Width - lineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
+                        break;
+                    case UILineCap.Diamond:
+                        break;
+                    case UILineCap.Triangle:
+                        break;
+                    case UILineCap.Circle:
+                        top = Height / 2 - LineCapSize - 1;
+                        g.FillEllipse(rectColor, new RectangleF(Width - lineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
+                        break;
+                }
             }
             else
             {
                 int left = (Width - lineSize) / 2;
-                g.DrawLine(pen, left, Padding.Top, left, Height - Padding.Top - Padding.Bottom);
+                g.FillRectangle(rectColor, left, Padding.Top, lineSize, Height - Padding.Top - Padding.Bottom);
             }
 
-            g.Smooth(false);
-            pen.Dispose();
+
         }
 
 
@@ -169,7 +209,7 @@ namespace Sunny.UI
 
             SizeF sf = g.MeasureString(Text, Font);
 
-            if (Direction == LineDirection.Horizontal)
+            if (Direction == LineDirection.Horizontal && Height > sf.Height)
             {
                 switch (TextAlign)
                 {
