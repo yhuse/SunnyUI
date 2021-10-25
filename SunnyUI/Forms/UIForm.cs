@@ -29,6 +29,7 @@
  * 2021-08-17: V3.0.8 增加IFrame接口
 ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1482,6 +1483,23 @@ namespace Sunny.UI
             }
         }
 
+        public void RegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
+        {
+            if (hotKeys == null) hotKeys = new Dictionary<int, HotKey>();
+
+            int id = HotKey.CalculateID(modifierKey, key);
+            if (!hotKeys.ContainsKey(id))
+            {
+                HotKey newHotkey = new HotKey(modifierKey, key);
+                this.hotKeys.Add(id, newHotkey);
+                Win32.User.RegisterHotKey(Handle, id, (int)newHotkey.ModifierKey, (int)newHotkey.Key);
+            }
+        }
+
+        public event HotKeyEventHandler HotKeyEventHandler;
+
+        private Dictionary<int, HotKey> hotKeys;
+
         #region 拉拽调整窗体大小
 
         protected override void WndProc(ref Message m)
@@ -1490,6 +1508,12 @@ namespace Sunny.UI
             {
                 case Win32.User.WM_ERASEBKGND:
                     m.Result = IntPtr.Zero;
+                    break;
+                case Win32.User.WM_HOTKEY:
+                    int hotKeyId = (int)(m.WParam);
+                    if (hotKeys.ContainsKey(hotKeyId))
+                                            HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+                    
                     break;
                 default:
                     base.WndProc(ref m);

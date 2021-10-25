@@ -1,4 +1,6 @@
-﻿namespace Sunny.UI
+﻿using System;
+
+namespace Sunny.UI
 {
     partial class UIForm
     {
@@ -14,6 +16,11 @@
         protected override void Dispose(bool disposing)
         {
             this.UnRegister();
+
+            foreach (var hotKey in this.hotKeys.Values)
+            {
+                Win32.User.UnregisterHotKey(IntPtr.Zero, hotKey.id);
+            }
 
             if (disposing && (components != null))
             {
