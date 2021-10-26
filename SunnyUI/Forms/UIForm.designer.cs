@@ -17,9 +17,12 @@ namespace Sunny.UI
         {
             this.UnRegister();
 
-            foreach (var hotKey in this.hotKeys.Values)
+            if (hotKeys != null)
             {
-                Win32.User.UnregisterHotKey(IntPtr.Zero, hotKey.id);
+                foreach (var hotKey in hotKeys.Values)
+                {
+                    Win32.User.UnregisterHotKey(IntPtr.Zero, hotKey.id);
+                }
             }
 
             if (disposing && (components != null))
