@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-04-26: V3.0.3 代码生成增加Switch类型，代码生成增加Combobox类型
  * 2021-05-19: V3.0.3 动态生成表单，增加校验方法 
+ * 2021-10-26: V3.0.8 代码生成增加ComboTreeView类型
 ******************************************************************************/
 
 using System;
@@ -222,6 +223,25 @@ namespace Sunny.UI
                         edit.SelectedValue = info.Value;
                     }
 
+                    ctrls.Add(edit);
+                }
+
+                if (info.EditType== EditType.ComboTreeView)
+                {
+                    UIComboTreeView edit = new UIComboTreeView();
+                    edit.CanSelectRootNode = true;
+                    edit.ShowLines = true;
+                    edit.DropDownStyle = UIDropDownStyle.DropDownList;
+                    edit.Left = option.LabelWidth;
+                    edit.Width = info.HalfWidth ? option.ValueWidth / 2 : option.ValueWidth;
+                    edit.Top = top;
+                    edit.Parent = this;
+                    edit.Name = "Edit_" + info.DataPropertyName;
+                    edit.Enabled = info.Enabled;
+
+                    edit.TreeView.Nodes.Clear();
+                    edit.TreeView.Nodes.AddRange((TreeNode[])info.DataSource);
+                    edit.TreeView.SelectedNode = (TreeNode)info.Value;
 
                     ctrls.Add(edit);
                 }
@@ -398,6 +418,13 @@ namespace Sunny.UI
                         UISwitch edit = this.GetControl<UISwitch>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;
                         info.Value = edit.Active;
+                    }
+
+                    if (info.EditType == EditType.ComboTreeView)
+                    {
+                        UIComboTreeView edit = this.GetControl<UIComboTreeView>("Edit_" + info.DataPropertyName);
+                        if (edit == null) continue;
+                        info.Value = edit.TreeView.SelectedNode;
                     }
                 }
             }

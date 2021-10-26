@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
@@ -54,6 +55,16 @@ namespace Sunny.UI.Demo
 
             string[] sex = new[] { "男", "女" };
 
+            TreeNode[] nodes = new TreeNode[3];
+            nodes[0] = new TreeNode("AA");
+            nodes[1] = new TreeNode("BB");
+            nodes[2] = new TreeNode("CC");
+            nodes[0].Nodes.Add("AA11");
+            nodes[0].Nodes.Add("AA22");
+            nodes[0].Nodes.Add("AA33");
+            nodes[1].Nodes.Add("BB11");
+            nodes[1].Nodes.Add("BB22");
+
             UIEditOption option = new UIEditOption();
             option.AutoLabelWidth = true;
             option.Text = "增加";
@@ -63,6 +74,7 @@ namespace Sunny.UI.Demo
             option.AddCombobox("Sex", "性别", sex, 1, true, true);
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
             option.AddSwitch("Switch", "选择", false, "打开", "关闭");
+            option.AddComboTreeView("ComboTree", "选择", nodes, nodes[1].Nodes[1]);
 
             UIEditForm frm = new UIEditForm(option);
             frm.CheckedData += Frm_CheckedData;
@@ -76,6 +88,7 @@ namespace Sunny.UI.Demo
                 Console.WriteLine("性别: " + sex[(int)frm["Sex"]]);
                 Console.WriteLine("关联: " + frm["Info"]);
                 Console.WriteLine("选择: " + frm["Switch"]);
+                Console.WriteLine("选择: " + frm["ComboTree"]);
             }
 
             frm.Dispose();

@@ -24,6 +24,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -36,7 +37,9 @@ namespace Sunny.UI
         DateTime,
         Password,
         Combobox,
-        Switch
+        Switch,
+        ComboTreeView
+
     }
 
     public class EditInfo
@@ -264,6 +267,26 @@ namespace Sunny.UI
                 Enabled = enabled,
                 HalfWidth = halfWidth,
                 DataSource = items
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddComboTreeView(string dataPropertyName, string text, TreeNode[] nodes, TreeNode value, bool enabled = true, bool halfWidth = false)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.ComboTreeView,
+                Text = text,
+                Value = value,
+                Enabled = enabled,
+                HalfWidth = halfWidth,
+                DataSource = nodes
             };
 
             Infos.Add(info);

@@ -209,7 +209,7 @@ namespace Sunny.UI
 
             SizeF sf = g.MeasureString(Text, Font);
 
-            if (Direction == LineDirection.Horizontal && Height > sf.Height)
+            if (Direction == LineDirection.Horizontal)
             {
                 switch (TextAlign)
                 {
