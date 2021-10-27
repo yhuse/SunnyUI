@@ -119,5 +119,10 @@ namespace Sunny.UI.Demo
         {
 
         }
+
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            uiComboBox1.ShowDropDown();
+        }
     }
 }

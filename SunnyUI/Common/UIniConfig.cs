@@ -72,8 +72,7 @@ namespace Sunny.UI
                     if (ident.IsList)
                     {
                         ident.Values.Clear();
-                        NameValueCollection list = new NameValueCollection();
-                        ini.GetSectionValues(ident.Section + "-" + ident.Key, list);
+                        NameValueCollection list = ini.GetSectionValues(ident.Section + "-" + ident.Key);
                         foreach (var pair in list)
                         {
                             ident.Values.Add(ini.Read(ident.Section + "-" + ident.Key, pair.ToString(), ""));
