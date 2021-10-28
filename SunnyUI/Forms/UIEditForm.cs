@@ -200,6 +200,7 @@ namespace Sunny.UI
                     edit.CheckBoxes = true;
                     edit.DropDownStyle = UIDropDownStyle.DropDownList;
                     edit.TreeView.Nodes.Clear();
+                    edit.Text = info.Value?.ToString();
                     var obj = (ComboCheckedListBoxItem[])info.DataSource;
                     foreach (var item in obj)
                     {

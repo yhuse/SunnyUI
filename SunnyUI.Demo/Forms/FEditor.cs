@@ -82,7 +82,7 @@ namespace Sunny.UI.Demo
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
             option.AddSwitch("Switch", "选择", false, "打开", "关闭");
             option.AddComboTreeView("ComboTree", "选择", nodes, nodes[1].Nodes[1]);
-            option.AddComboCheckedListBox("checkedList", "选择", checkedItems);
+            option.AddComboCheckedListBox("checkedList", "选择", checkedItems, "CCC");
 
             UIEditForm frm = new UIEditForm(option);
             frm.CheckedData += Frm_CheckedData;

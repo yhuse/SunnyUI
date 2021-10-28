@@ -312,7 +312,7 @@ namespace Sunny.UI
             Dictionary.TryAdd(info.DataPropertyName, info);
         }
 
-        public void AddComboCheckedListBox(string dataPropertyName, string text, ComboCheckedListBoxItem[] nodes, bool enabled = true, bool halfWidth = false)
+        public void AddComboCheckedListBox(string dataPropertyName, string text, ComboCheckedListBoxItem[] nodes, string value, bool enabled = true, bool halfWidth = false)
         {
             if (Dictionary.ContainsKey(dataPropertyName))
                 throw new DuplicateNameException(dataPropertyName + ": 已经存在");
@@ -322,7 +322,7 @@ namespace Sunny.UI
                 DataPropertyName = dataPropertyName,
                 EditType = EditType.ComboCheckedListBox,
                 Text = text,
-                Value = nodes,
+                Value = value,
                 Enabled = enabled,
                 HalfWidth = halfWidth,
                 DataSource = nodes
