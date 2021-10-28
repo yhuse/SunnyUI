@@ -38,8 +38,25 @@ namespace Sunny.UI
         Password,
         Combobox,
         Switch,
-        ComboTreeView
+        ComboTreeView,
+        ComboCheckedListBox
+    }
 
+    public class ComboCheckedListBoxItem
+    {
+        public bool Checked;
+        public string Text;
+
+        public ComboCheckedListBoxItem()
+        {
+
+        }
+
+        public ComboCheckedListBoxItem(string text, bool isChecked)
+        {
+            Checked = isChecked;
+            Text = text;
+        }
     }
 
     public class EditInfo
@@ -204,7 +221,8 @@ namespace Sunny.UI
                 EditType = EditType.Switch,
                 Text = text,
                 Value = value,
-                Enabled = enabled
+                Enabled = enabled,
+                HalfWidth = true
             };
 
             Infos.Add(info);
@@ -223,7 +241,8 @@ namespace Sunny.UI
                 Text = text,
                 Value = value,
                 Enabled = enabled,
-                DataSource = new string[2] { activeText, inActiveText }
+                DataSource = new string[2] { activeText, inActiveText },
+                HalfWidth = true
             };
 
             Infos.Add(info);
@@ -284,6 +303,26 @@ namespace Sunny.UI
                 EditType = EditType.ComboTreeView,
                 Text = text,
                 Value = value,
+                Enabled = enabled,
+                HalfWidth = halfWidth,
+                DataSource = nodes
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddComboCheckedListBox(string dataPropertyName, string text, ComboCheckedListBoxItem[] nodes, bool enabled = true, bool halfWidth = false)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.ComboCheckedListBox,
+                Text = text,
+                Value = nodes,
                 Enabled = enabled,
                 HalfWidth = halfWidth,
                 DataSource = nodes

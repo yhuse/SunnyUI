@@ -54,6 +54,13 @@ namespace Sunny.UI.Demo
             infoList.Add(info3);
 
             string[] sex = new[] { "男", "女" };
+            ComboCheckedListBoxItem[] checkedItems = new ComboCheckedListBoxItem[4]
+            {
+                new ComboCheckedListBoxItem("AAA",false),
+                       new ComboCheckedListBoxItem("BBB",false),
+                              new ComboCheckedListBoxItem("CCC",true),
+                                     new ComboCheckedListBoxItem("DDD",false)
+            };
 
             TreeNode[] nodes = new TreeNode[3];
             nodes[0] = new TreeNode("AA");
@@ -75,6 +82,7 @@ namespace Sunny.UI.Demo
             option.AddCombobox("Info", "关联", infoList, "Name", "Id", "2");
             option.AddSwitch("Switch", "选择", false, "打开", "关闭");
             option.AddComboTreeView("ComboTree", "选择", nodes, nodes[1].Nodes[1]);
+            option.AddComboCheckedListBox("checkedList", "选择", checkedItems);
 
             UIEditForm frm = new UIEditForm(option);
             frm.CheckedData += Frm_CheckedData;
@@ -89,6 +97,12 @@ namespace Sunny.UI.Demo
                 Console.WriteLine("关联: " + frm["Info"]);
                 Console.WriteLine("选择: " + frm["Switch"]);
                 Console.WriteLine("选择: " + frm["ComboTree"]);
+
+                var outCheckedItems = (ComboCheckedListBoxItem[])frm["checkedList"];
+                foreach (var item in outCheckedItems)
+                {
+                    Console.WriteLine(item.Text, item.Checked);
+                }
             }
 
             frm.Dispose();
