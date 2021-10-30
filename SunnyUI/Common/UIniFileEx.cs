@@ -261,6 +261,18 @@ namespace Sunny.UI
             sw.Flush();
         }
 
+        public bool HasSection(string section)
+        {
+            return data.ContainsKey(section.ToLowerInvariant());
+        }
+
+        public bool HasKey(string section, string key)
+        {
+            return
+                data.ContainsKey(section) &&
+                !string.IsNullOrEmpty(data[section][key]);
+        }
+
         /// <summary>
         /// 写结构
         /// </summary>
