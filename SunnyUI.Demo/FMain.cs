@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SunnyUI.VIP.Demo;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -30,6 +31,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FProcess(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FRadioButton(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FScrollBar(), ++pageIndex));
+            Aside.CreateChildNode(parent, AddPage(new FSplitContainer(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FTabControl(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FTextBox(), ++pageIndex));
             Aside.CreateChildNode(parent, AddPage(new FTransfer(), ++pageIndex));

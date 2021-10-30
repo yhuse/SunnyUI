@@ -125,6 +125,12 @@
     <Compile Include="Controls\FLine.Designer.cs">
       <DependentUpon>FLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FSplitContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FSplitContainer.designer.cs">
+      <DependentUpon>FSplitContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Industrial\FLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FLine.resx">
       <DependentUpon>FLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FSplitContainer.resx">
+      <DependentUpon>FSplitContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Industrial\FLight.resx">
       <DependentUpon>FLight.cs</DependentUpon>
