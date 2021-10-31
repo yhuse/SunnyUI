@@ -109,6 +109,10 @@
             this.uiAvatar.TabIndex = 4;
             this.uiAvatar.Text = "uiAvatar1";
             // 
+            // StyleManager
+            // 
+            this.StyleManager.DPIScale = true;
+            // 
             // uiContextMenuStrip1
             // 
             this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
