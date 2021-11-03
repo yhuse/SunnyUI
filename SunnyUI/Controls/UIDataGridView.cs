@@ -414,6 +414,11 @@ namespace Sunny.UI
 
         private void SetBarPosition()
         {
+            if (VBar == null || HBar == null)
+            {
+                return;
+            }
+
             if (ShowRect)
             {
                 VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
