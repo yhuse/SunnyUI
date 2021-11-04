@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
@@ -11,6 +12,70 @@ namespace Sunny.UI.Win32
         public static IntPtr IntPtr(this int value)
         {
             return new IntPtr(value);
+        }
+
+        //根据进程名获取PID
+        public static int GetPidByProcessName(string processName)
+        {
+            Process[] arrayProcess = Process.GetProcessesByName(processName);
+            foreach (Process p in arrayProcess)
+            {
+                return p.Id;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 读取指定进程内存中的值
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <param name="baseAddress"></param>
+        /// <param name="buffer"></param>
+        public static void ReadMemoryValue(string processName, int baseAddress, ref byte[] buffer)
+        {
+            try
+            {
+                //获取缓冲区地址
+                IntPtr byteAddress = Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0);
+                //打开一个已存在的进程对象  0x1F0FFF 最高权限
+                IntPtr hProcess =Kernel.OpenProcess(0x1F0FFF, false, GetPidByProcessName(processName));
+                //将制定内存中的值读入缓冲区
+                Kernel.ReadProcessMemory(hProcess, (IntPtr)baseAddress, byteAddress, buffer.Length,System.IntPtr.Zero);
+                //关闭操作
+                Kernel.CloseHandle(hProcess);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 将值写入指定进程内存地址中
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <param name="baseAddress"></param>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public static int WriteMemoryValue(string processName, int baseAddress, byte[] buffer)
+        {
+            try
+            {
+                //获取缓冲区地址
+                IntPtr byteAddress = Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0);
+                //打开一个已存在的进程对象  0x1F0FFF 最高权限
+                IntPtr hProcess = Kernel.OpenProcess(0x1F0FFF, false, GetPidByProcessName(processName));
+                int count = 0;
+                //从指定内存中写入字节集数据
+                Kernel.WriteProcessMemory(hProcess, (IntPtr)baseAddress, byteAddress, buffer.Length, ref count);
+                //关闭操作
+                Kernel.CloseHandle(hProcess);
+                return count;
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 
@@ -104,6 +169,13 @@ namespace Sunny.UI.Win32
         [DllImport("kernel32")]
         public static extern int GetPrivateProfileString(byte[] section, byte[] key, byte[] def, byte[] retVal, int size, string filePath);
 
+        //打开一个已存在的进程对象，并返回进程的句柄
+        [DllImportAttribute("kernel32.dll", EntryPoint = "OpenProcess")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+
+        //从指定内存中读取字节集数据
+        [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
+        public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, IntPtr lpNumberOfBytesRead);
     }
 
     public partial class WinMM
