@@ -21,6 +21,7 @@
  * 2021-07-31: V3.0.5 可像原生控件一样通过Controls.Add增加
  * 2021-08-11: V3.0.5 删除点击的Focus事件
  * 2021-10-18: V3.0.8 增加Scroll事件
+ * 2021-11-05: V3.0.8 修改不同DPI缩放滚动条未覆盖的问题
 ******************************************************************************/
 
 using System;
@@ -61,6 +62,14 @@ namespace Sunny.UI
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (flowLayoutPanel != null) flowLayoutPanel.Font = Font;
+            if (VBar != null) VBar.Font = Font;
+            if (HBar != null) HBar.Font = Font;
         }
 
         public new event ScrollEventHandler Scroll;
@@ -456,10 +465,12 @@ namespace Sunny.UI
                     added = Radius / 2;
                 }
 
+                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth();
                 VBar.Left = Width - VBar.Width - added;
                 VBar.Top = added;
                 VBar.Height = Height - added * 2;
 
+                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight();
                 HBar.Left = added;
                 HBar.Top = Height - HBar.Height - added;
 
