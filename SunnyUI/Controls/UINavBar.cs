@@ -35,7 +35,7 @@ namespace Sunny.UI
     [DefaultProperty("Nodes")]
     public sealed partial class UINavBar : ScrollableControl, IStyleInterface
     {
-        public readonly UINavMenu Menu = new UINavMenu();
+        public readonly TreeView Menu = new TreeView();
 
         private readonly UIContextMenuStrip NavBarMenu = new UIContextMenuStrip();
 

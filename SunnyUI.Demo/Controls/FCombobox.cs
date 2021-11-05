@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
@@ -30,40 +31,29 @@ namespace Sunny.UI.Demo
             uiComboDataGridView1.DataGridView.ReadOnly = true;
             uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
 
-            for (int i = 0; i < 20; i++)
+
+            dt.Columns.Add("Column1", typeof(string));
+            dt.Columns.Add("Column2", typeof(string));
+            dt.Columns.Add("Column3", typeof(string));
+
+            for (int i = 0; i < 100; i++)
             {
-                Data data = new Data();
-                data.Column1 = "Data" + i.ToString("D2");
-                data.Column2 = i.Mod(2) == 0 ? "A" : "B";
-                data.Column3 = "编辑";
-                datas.Add(data);
+                dt.Rows.Add("A" + i.ToString("D2"),
+                    "B" + (i + 1).ToString("D2"),
+                    "C" + (i + 2).ToString("D2"));
             }
 
-            uiComboDataGridView1.DataGridView.DataSource = datas;
+            uiComboDataGridView1.ShowFilter = true;
+            uiComboDataGridView1.DataGridView.DataSource = dt;
+            uiComboDataGridView1.FilterColomnName = "Column1"; //不设置则全部列过滤
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
         {
-            uiComboDataGridView1.Text = datas[index].ToString();
+            uiComboDataGridView1.Text = dt.Rows[index]["Column1"].ToString();
         }
 
-        List<Data> datas = new List<Data>();
-
-        public class Data
-        {
-            public string Column1 { get; set; }
-
-            public string Column2 { get; set; }
-
-            public string Column3 { get; set; }
-
-            public bool Column4 { get; set; }
-
-            public override string ToString()
-            {
-                return Column1;
-            }
-        }
+        DataTable dt = new DataTable();
 
         public class Info
         {
@@ -123,6 +113,23 @@ namespace Sunny.UI.Demo
         private void uiButton1_Click(object sender, EventArgs e)
         {
             uiComboBox1.ShowDropDown();
+        }
+
+        private void uiComboDataGridView1_ValueChanged(object sender, object value)
+        {
+            if (value is DataGridViewRow row)
+            {
+                uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
+            }
+            else
+            {
+                uiComboDataGridView1.Text = "";
+            }
+        }
+
+        private void uiComboDataGridView1_SelectIndexChange_1(object sender, int index)
+        {
+            uiComboDataGridView1.Text = dt.Rows[index]["Column1"].ToString();
         }
     }
 }

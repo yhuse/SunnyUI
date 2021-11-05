@@ -17,6 +17,7 @@
  * 创建日期: 2021-09-01
  *
  * 2020-09-01: V3.0.6 增加文件说明
+ * 2021-11-05: V3.0.8 增加过滤
 ******************************************************************************/
 
 using System;
@@ -27,6 +28,7 @@ using static Sunny.UI.UIDataGridView;
 
 namespace Sunny.UI
 {
+    [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
     public class UIComboDataGridView : UIDropControl, IToolTip
     {
@@ -47,6 +49,8 @@ namespace Sunny.UI
 
         private void UIComboDataGridView_ButtonClick(object sender, EventArgs e)
         {
+            item.FilterColomnName = FilterColomnName;
+            item.ShowFilter = ShowFilter;
             ItemForm.Size = ItemSize;
             item.ShowButtons = true;
             item.Translate();
@@ -73,6 +77,8 @@ namespace Sunny.UI
             if (item != null) item.DataGridView.Font = Font;
         }
 
+        public bool ShowFilter { get; set; }
+
         private readonly UIComboDataGridViewItem item = new UIComboDataGridViewItem();
 
         protected override void CreateInstance()
@@ -84,9 +90,18 @@ namespace Sunny.UI
 
         public event OnSelectIndexChange SelectIndexChange;
 
+        public delegate void OnValueChanged(object sender, object value);
+
+        public event OnValueChanged ValueChanged;
+
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            SelectIndexChange?.Invoke(this, value.ToString().ToInt());
+            if (ShowFilter)
+                ValueChanged?.Invoke(this, value);
+            else
+                SelectIndexChange(this, value.ToString().ToInt());
         }
+
+        public string FilterColomnName { get; set; }
     }
 }

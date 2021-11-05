@@ -491,15 +491,19 @@ namespace Sunny.UI.Demo
             // 
             this.uiComboDataGridView1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboDataGridView1.FillColor = System.Drawing.Color.White;
+            this.uiComboDataGridView1.FilterColomnName = null;
             this.uiComboDataGridView1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboDataGridView1.Location = new System.Drawing.Point(386, 292);
             this.uiComboDataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboDataGridView1.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiComboDataGridView1.Name = "uiComboDataGridView1";
             this.uiComboDataGridView1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.uiComboDataGridView1.ShowFilter = false;
             this.uiComboDataGridView1.Size = new System.Drawing.Size(308, 29);
             this.uiComboDataGridView1.TabIndex = 74;
             this.uiComboDataGridView1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiComboDataGridView1.SelectIndexChange += new Sunny.UI.UIDataGridView.OnSelectIndexChange(this.uiComboDataGridView1_SelectIndexChange_1);
+            this.uiComboDataGridView1.ValueChanged += new Sunny.UI.UIComboDataGridView.OnValueChanged(this.uiComboDataGridView1_ValueChanged);
             // 
             // uiButton1
             // 
