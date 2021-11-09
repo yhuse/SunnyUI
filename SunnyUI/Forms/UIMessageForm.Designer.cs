@@ -37,9 +37,10 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCancel.Location = new System.Drawing.Point(224, 220);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.btnCancel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)));
@@ -55,9 +56,10 @@
             // 
             this.btnOK.BackColor = System.Drawing.Color.Transparent;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnOK.Location = new System.Drawing.Point(2, 220);
             this.btnOK.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnOK.Name = "btnOK";
             this.btnOK.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.btnOK.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
@@ -84,17 +86,16 @@
             // 
             // UIMessageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(450, 270);
             this.Controls.Add(this.lbMsg);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.EscClose = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UIMessageForm";
             this.Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "UIMsgBox";
             this.ResumeLayout(false);

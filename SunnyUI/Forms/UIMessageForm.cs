@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2021-11-09: V3.0.8 多个按钮显示时增加FocusLine
 ******************************************************************************/
 
 using System;
@@ -101,6 +102,8 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
+ 
             if (btnOK != null)
             {
                 btnOK.FillColor = BackColor;
@@ -139,6 +142,7 @@ namespace Sunny.UI
             Text = title;
             lbMsg.Text = message;
             ShowCancel = showCancel;
+            btnOK.ShowFocusLine = btnCancel.ShowFocusLine = showCancel;            
         }
     }
 }
