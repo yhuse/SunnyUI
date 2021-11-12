@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-23: V2.2.4 增加UISymbolLabel
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2020-11-12: V3.0.8 增加文字旋转角度
 ******************************************************************************/
 
 using System;
@@ -39,6 +40,19 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
             base.TextAlign = ContentAlignment.MiddleLeft;
             ForeColorChanged += UILabel_ForeColorChanged;
+        }
+
+        private int angle;
+
+        [DefaultValue(0),Category("SunnyUI"),Description("居中时旋转角度")]
+        public int Angle
+        {
+            get => angle;
+            set
+            {
+                angle = value;
+                Invalidate();
+            }
         }
 
         [Browsable(false)]
@@ -120,6 +134,18 @@ namespace Sunny.UI
         {
             base.OnForeColorChanged(e);
             _style = UIStyle.Custom;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            if (TextAlign == ContentAlignment.MiddleCenter && Angle != 0 && !AutoSize)
+            {
+                e.Graphics.DrawStringRotateAtCenter(Text, Font, ForeColor, this.ClientRectangle.Center(), Angle);
+            }
+            else
+            {
+                base.OnPaint(e);
+            }
         }
     }
 

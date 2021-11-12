@@ -105,16 +105,6 @@ namespace Sunny.UI.Demo
             }
         }
 
-        private void uiComboTreeView3_NodesSelected(object sender, TreeNodeCollection nodes)
-        {
-
-        }
-
-        private void uiButton1_Click(object sender, EventArgs e)
-        {
-            uiComboBox1.ShowDropDown();
-        }
-
         private void uiComboDataGridView1_ValueChanged(object sender, object value)
         {
             if (value is DataGridViewRow row)

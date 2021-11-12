@@ -97,7 +97,6 @@ namespace Sunny.UI.Demo
             this.uiDatePicker3 = new Sunny.UI.UIDatePicker();
             this.uiLine4 = new Sunny.UI.UILine();
             this.uiComboDataGridView1 = new Sunny.UI.UIComboDataGridView();
-            this.uiButton1 = new Sunny.UI.UIButton();
             this.SuspendLayout();
             // 
             // uiComboTreeView3
@@ -144,7 +143,6 @@ namespace Sunny.UI.Demo
             this.uiComboTreeView3.Size = new System.Drawing.Size(150, 29);
             this.uiComboTreeView3.TabIndex = 67;
             this.uiComboTreeView3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiComboTreeView3.NodesSelected += new Sunny.UI.UIComboTreeView.OnNodesSelected(this.uiComboTreeView3_NodesSelected);
             // 
             // uiComboTreeView4
             // 
@@ -505,24 +503,11 @@ namespace Sunny.UI.Demo
             this.uiComboDataGridView1.SelectIndexChange += new Sunny.UI.UIDataGridView.OnSelectIndexChange(this.uiComboDataGridView1_SelectIndexChange_1);
             this.uiComboDataGridView1.ValueChanged += new Sunny.UI.UIComboDataGridView.OnValueChanged(this.uiComboDataGridView1_ValueChanged);
             // 
-            // uiButton1
-            // 
-            this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton1.Location = new System.Drawing.Point(384, 439);
-            this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Size = new System.Drawing.Size(100, 35);
-            this.uiButton1.TabIndex = 75;
-            this.uiButton1.Text = "uiButton1";
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
-            // 
             // FCombobox
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(765, 522);
-            this.Controls.Add(this.uiButton1);
             this.Controls.Add(this.uiComboDataGridView1);
             this.Controls.Add(this.uiLine4);
             this.Controls.Add(this.uiDatePicker3);
@@ -573,6 +558,5 @@ namespace Sunny.UI.Demo
         private UIDatePicker uiDatePicker3;
         private UILine uiLine4;
         private UIComboDataGridView uiComboDataGridView1;
-        private UIButton uiButton1;
     }
 }
