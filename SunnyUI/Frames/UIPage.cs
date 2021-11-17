@@ -30,6 +30,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sunny.UI
 {
@@ -76,6 +77,11 @@ namespace Sunny.UI
             if (!IsScaled)
             {
                 this.SetDPIScaleFont();
+                if (!this.DPIScale().Equals(1))
+                {
+                    this.TitleFont = this.DPIScaleFont(this.TitleFont);
+                }
+
                 foreach (Control control in this.GetAllDPIScaleControls())
                 {
                     control.SetDPIScaleFont();
@@ -145,7 +151,6 @@ namespace Sunny.UI
 
         protected virtual void SymbolChange()
         {
-
         }
 
         [Browsable(false)]
@@ -239,6 +244,7 @@ namespace Sunny.UI
         }
 
         public event EventHandler Initialize;
+
         public event EventHandler Finalize;
 
         protected override void OnControlAdded(ControlEventArgs e)
@@ -533,7 +539,6 @@ namespace Sunny.UI
                     InControlBox = inControlBox;
                     Invalidate();
                 }
-
             }
         }
 
@@ -574,7 +579,6 @@ namespace Sunny.UI
             }
         }
 
-
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
@@ -584,11 +588,9 @@ namespace Sunny.UI
         private void CalcSystemBoxPos()
         {
             ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
-
         }
 
         private Rectangle ControlBoxRect;
-
 
         /// <summary>
         /// 是否显示窗体的控制按钮
@@ -894,6 +896,6 @@ namespace Sunny.UI
             UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
         }
 
-        #endregion
+        #endregion 一些辅助窗口
     }
 }

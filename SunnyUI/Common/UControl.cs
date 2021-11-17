@@ -329,6 +329,12 @@ namespace Sunny.UI
                    control.Font.Style, control.Font.Unit, control.Font.GdiCharSet);
         }
 
+        public static Font DPIScaleFont(this Control control, Font font)
+        {
+            return new Font(font.FontFamily, font.Size / control.DPIScale(),
+                   font.Style, font.Unit, font.GdiCharSet);
+        }
+
         public static void SetDPIScaleFont(this Control control)
         {
             if (!control.DPIScale().Equals(1))
@@ -490,7 +496,6 @@ namespace Sunny.UI
 
         private static bool GetChildNodeCheckedState(TreeNode node)
         {
-
             if (node.Nodes.Count > 0)
             {
                 var count = node.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
@@ -505,8 +510,6 @@ namespace Sunny.UI
                         return GetChildNodeCheckedState(nd);
                     }
                 }
-
-
             }
             return false;
         }

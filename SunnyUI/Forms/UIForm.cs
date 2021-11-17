@@ -79,6 +79,12 @@ namespace Sunny.UI
             if (!IsScaled && UIStyles.DPIScale)
             {
                 this.SetDPIScaleFont();
+
+                if (!this.DPIScale().Equals(1))
+                {
+                    this.TitleFont = this.DPIScaleFont(this.TitleFont);
+                }
+
                 foreach (Control control in this.GetAllDPIScaleControls())
                 {
                     control.SetDPIScaleFont();
@@ -443,7 +449,6 @@ namespace Sunny.UI
                 Invalidate();
             }
         }
-
 
         private Rectangle ControlBoxRect;
 
@@ -1509,12 +1514,14 @@ namespace Sunny.UI
                 case Win32.User.WM_ERASEBKGND:
                     m.Result = IntPtr.Zero;
                     break;
+
                 case Win32.User.WM_HOTKEY:
                     int hotKeyId = (int)(m.WParam);
                     if (hotKeys.ContainsKey(hotKeyId))
-                                            HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
-                    
+                        HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+
                     break;
+
                 default:
                     base.WndProc(ref m);
                     break;
@@ -1522,7 +1529,7 @@ namespace Sunny.UI
 
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
-                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);                
+                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
                 vPoint = PointToClient(vPoint);
                 int dragSize = 5;
@@ -1842,7 +1849,7 @@ namespace Sunny.UI
             UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
         }
 
-        #endregion
+        #endregion 一些辅助窗口
 
         #region IFrame实现
 
@@ -1889,7 +1896,6 @@ namespace Sunny.UI
 
         public virtual void Feedback(object sender, int pageIndex, params object[] objects)
         {
-
         }
 
         #endregion IFrame实现
