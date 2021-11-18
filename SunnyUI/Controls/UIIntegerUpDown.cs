@@ -30,7 +30,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
-    public sealed partial class UIIntegerUpDown : UIPanel,IToolTip
+    public sealed partial class UIIntegerUpDown : UIPanel, IToolTip
     {
         public delegate void OnValueChanged(object sender, int value);
 
@@ -105,8 +105,18 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (pnlValue != null) pnlValue.Font = Font;
-            if (edit != null) edit.Font = Font;
+
+            if (pnlValue != null)
+            {
+                pnlValue.IsScaled = true;
+                pnlValue.Font = Font;
+            }
+
+            if (edit != null)
+            {
+                edit.IsScaled = true;
+                edit.Font = Font;
+            }
         }
 
         private int step = 1;

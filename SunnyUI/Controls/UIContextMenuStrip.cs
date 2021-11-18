@@ -39,7 +39,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        public bool IsScaled { get; set; }
 
         public void SetDPIScale()
         {
@@ -47,6 +47,15 @@ namespace Sunny.UI
             {
                 this.SetDPIScaleFont();
                 IsScaled = true;
+            }
+        }
+
+        protected override void OnOpening(CancelEventArgs e)
+        {
+            base.OnOpening(e);
+            if (!IsScaled && UIStyles.DPIScale)
+            {
+                SetDPIScale();
             }
         }
 

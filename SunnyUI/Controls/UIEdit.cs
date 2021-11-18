@@ -49,6 +49,18 @@ namespace Sunny.UI
             JoinEvents(true);
         }
 
+        [Browsable(false)]
+        public bool IsScaled { get; set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
+
         private string watermark;
 
         [DefaultValue(null)]

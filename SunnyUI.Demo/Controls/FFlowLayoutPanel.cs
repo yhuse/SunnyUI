@@ -24,6 +24,7 @@
         private void uiButton1_Click(object sender, System.EventArgs e)
         {
             btn = new UIButton();
+            btn.SetDPIScale();
             btn.Text = "Button" + index++.ToString("D2");
             //btn.Click += Btn_Click;
 

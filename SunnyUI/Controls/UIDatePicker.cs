@@ -31,7 +31,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
-    public sealed partial class UIDatePicker : UIDropControl,IToolTip
+    public sealed partial class UIDatePicker : UIDropControl, IToolTip
     {
         public delegate void OnDateTimeChanged(object sender, DateTime value);
 
@@ -157,6 +157,7 @@ namespace Sunny.UI
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;
             item.Translate();
+            item.SetDPIScale();
             ItemForm.Show(this);
         }
 

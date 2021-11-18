@@ -119,6 +119,7 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
+            listbox.IsScaled = true;
             listbox.Font = Font;
         }
 
@@ -369,7 +370,7 @@ namespace Sunny.UI
             }
 
             [Browsable(false)]
-            public bool IsScaled { get; private set; }
+            public bool IsScaled { get; set; }
 
             public void SetDPIScale()
             {

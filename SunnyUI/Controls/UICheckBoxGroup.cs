@@ -111,14 +111,12 @@ namespace Sunny.UI
 
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    UICheckBox box = new UICheckBox
-                    {
-                        BackColor = Color.Transparent,
-                        Font = Font,
-                        Parent = this,
-                        Tag = i,
-                        Style = Style
-                    };
+                    UICheckBox box = new UICheckBox();
+                    box.BackColor = Color.Transparent;
+                    box.Font = Font;
+                    box.Parent = this;
+                    box.Tag = i;
+                    box.Style = Style;
 
                     box.ValueChanged += Box_ValueChanged;
                     boxes.Add(box);
@@ -207,23 +205,6 @@ namespace Sunny.UI
             return false;
         }
 
-        //[Browsable(false)]
-        //public List<string> SelectedItems
-        //{
-        //    get
-        //    {
-        //        List<string> items = new List<string>();
-
-        //        foreach (var checkBox in boxes)
-        //        {
-        //            if (checkBox.Checked)
-        //                items.Add(checkBox.Text);
-        //        }
-
-        //        return items;
-        //    }
-        //}
-
         [Browsable(false)]
         public List<object> SelectedItems
         {
@@ -310,15 +291,6 @@ namespace Sunny.UI
             {
                 rowInterval = value;
                 Invalidate();
-            }
-        }
-
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            foreach (var box in boxes)
-            {
-                box.Font = Font;
             }
         }
 

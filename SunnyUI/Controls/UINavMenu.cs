@@ -623,24 +623,28 @@ namespace Sunny.UI
 
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid() && TreeNodeSymbols.NotContainsKey(e.Node))
                 {
-                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TipsFont);
+                    var tmpFont = this.DPIScaleFont(TipsFont);
+                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), tmpFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
-                    float tipsLeft = Width - (ScrollBarVisible ? 50 : 30) - 6 - sfMax;
+                    float tipsLeft = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - sfMax - sfMax;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
                     if (MenuHelper[e.Node] != null)
                     {
+                        using StringFormat alignment = GDI.SetAlignment();
                         if (MenuHelper[e.Node].TipsCustom)
                         {
                             e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, MenuHelper[e.Node].TipsForeColor, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), tmpFont, MenuHelper[e.Node].TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
                         }
                         else
                         {
                             e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TipsFont, TipsForeColor, tipsLeft + sfMax / 2.0f - tipsSize.Width / 2.0f, tipsTop + 1 + sfMax / 2.0f - tipsSize.Height / 2.0f);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), tmpFont, TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
                         }
                     }
+
+                    tmpFont.Dispose();
                 }
             }
         }

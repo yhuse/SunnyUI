@@ -112,12 +112,6 @@ namespace Sunny.UI
             MenuHelper.Clear();
         }
 
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            if (NavBarMenu != null) NavBarMenu.Font = Font;
-        }
-
         [DefaultValue(null)]
         [Description("关联的TabControl"), Category("SunnyUI")]
         public UITabControl TabControl { get; set; }
@@ -332,6 +326,23 @@ namespace Sunny.UI
         {
             get => NavBarMenu.ImageList;
             set => NavBarMenu.ImageList = value;
+        }
+
+        private Font dropMenuFont = UIFontColor.Font;
+
+        /// <summary>
+        /// 标题字体
+        /// </summary>
+        [Description("标题字体"), Category("SunnyUI")]
+        [DefaultValue(typeof(Font), "微软雅黑, 12pt")]
+        public Font DropMenuFont
+        {
+            get => dropMenuFont;
+            set
+            {
+                dropMenuFont = value;
+                Invalidate();
+            }
         }
 
         private StringAlignment nodeAlignment = StringAlignment.Far;
@@ -599,6 +610,8 @@ namespace Sunny.UI
             NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
             NavBarMenu.ImageList = ImageList;
+            NavBarMenu.IsScaled = false;
+            NavBarMenu.Font = DropMenuFont;
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };

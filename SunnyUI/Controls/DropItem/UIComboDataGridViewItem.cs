@@ -21,6 +21,20 @@ namespace Sunny.UI
             Translate();
         }
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                edtFilter.SetDPIScaleFont();
+                btnSearch.SetDPIScaleFont();
+                btnClear.SetDPIScaleFont();
+                btnOK.SetDPIScaleFont();
+                btnCancel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         public void Translate()
         {
             btnOK.Text = UILocalize.OK;
@@ -68,7 +82,7 @@ namespace Sunny.UI
             this.panel.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel.Name = "panel";
             this.panel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.panel.Size = new System.Drawing.Size(569, 44);
             this.panel.TabIndex = 2;
@@ -171,7 +185,7 @@ namespace Sunny.UI
             this.pFilter.MinimumSize = new System.Drawing.Size(1, 1);
             this.pFilter.Name = "pFilter";
             this.pFilter.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.pFilter.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.pFilter.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.pFilter.Size = new System.Drawing.Size(569, 44);
             this.pFilter.TabIndex = 4;
@@ -194,7 +208,7 @@ namespace Sunny.UI
             // 
             // edtFilter
             // 
-            this.edtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtFilter.ButtonSymbol = 61761;
             this.edtFilter.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -259,7 +273,7 @@ namespace Sunny.UI
         public bool ShowFilter
         {
             get => pFilter.Visible;
-            set =>pFilter.Visible = value;
+            set => pFilter.Visible = value;
         }
 
         private void btnSearch_Click(object sender, System.EventArgs e)
@@ -270,14 +284,14 @@ namespace Sunny.UI
                 filter = "";
             }
             else
-            { 
+            {
                 if (FilterColomnName.IsValid())
                 {
                     string str = FilterColomnName + " like '%" + edtFilter.Text + "%'";
                     filter = str;
                 }
                 else
-                { 
+                {
                     List<string> strings = new List<string>();
                     foreach (DataGridViewColumn column in dataGridView.Columns)
                     {
@@ -288,7 +302,7 @@ namespace Sunny.UI
                     }
 
                     filter = string.Join(" or ", strings);
-                 }
+                }
             }
 
             if (dataGridView.DataSource is DataTable table)

@@ -29,7 +29,7 @@ namespace Sunny.UI
     /// <summary>
     /// 图像按钮
     /// </summary>
-    public sealed class UIImageButton : PictureBox
+    public sealed class UIImageButton : PictureBox, IStyleInterface
     {
         private bool IsPress;
         private bool IsHover;
@@ -44,11 +44,46 @@ namespace Sunny.UI
         private Color foreColor = UIFontColor.Primary;
 
         /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        /// <summary>
         /// Tag字符串
         /// </summary>
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
+
+        public void SetStyleColor(UIBaseStyle uiColor)
+        {
+            ForeColor = uiColor.LabelForeColor;
+            Invalidate();
+        }
+
+        public void SetStyle(UIStyle style)
+        {
+            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            _style = style;
+        }
+
+        private UIStyle _style = UIStyle.Blue;
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                this.SetDPIScaleFont();
+                IsScaled = true;
+            }
+        }
 
         [Category("SunnyUI")]
         [Description("按钮文字")]
@@ -133,6 +168,13 @@ namespace Sunny.UI
             Cursor = Cursors.Hand;
             base.Font = UIFontColor.Font;
         }
+
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
+        public bool StyleCustomMode { get; set; }
 
         public string Version { get; }
 

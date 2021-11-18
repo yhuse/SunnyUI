@@ -40,6 +40,29 @@ namespace Sunny.UI
 {
     public sealed partial class UINotifier : Form
     {
+
+        [Browsable(false)]
+        public bool IsScaled { get; private set; }
+
+        public void SetDPIScale()
+        {
+            if (!IsScaled && UIStyles.DPIScale)
+            {
+                this.SetDPIScaleFont();
+
+                noteTitle.Font = noteTitle.DPIScaleFont(noteTitle.Font);
+                noteContent.Font = noteContent.DPIScaleFont(noteContent.Font);
+                noteDate.Font = noteDate.DPIScaleFont(noteDate.Font);
+
+                foreach (Control control in this.GetAllDPIScaleControls())
+                {
+                    control.SetDPIScaleFont();
+                }
+
+                IsScaled = true;
+            }
+        }
+
         #region GLOBALS
 
         private class NoteLocation                                              // Helper class to handle Note position
@@ -362,6 +385,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private void onMenuClick(object sender, EventArgs e)
         {
+            closeAllToolStripMenuItem.Font = menu.DPIScaleFont(menu.Font);
             menu.Show(buttonMenu, new Point(0, buttonMenu.Height));
         }
 
@@ -479,6 +503,7 @@ namespace Sunny.UI
                                             isDialog,
                                             timeout,
                                             inApp);
+                not.SetDPIScale();
                 not.Show();                                                         // Show the note
 
                 if (not.Timeout >= 500)                                          // Start auto close timer (if any)
@@ -614,6 +639,7 @@ namespace Sunny.UI
             }
 
             UINotifier note = new UINotifier(content, type, title, true);      // Instantiate the UINotifier form
+            note.SetDPIScale();
             note.backDialogStyle = backDialogStyle;
 
             switch (note.backDialogStyle)

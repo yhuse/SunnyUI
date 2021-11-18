@@ -326,6 +326,16 @@ namespace Sunny.UI
             Translate();
         }
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                TopPanel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         public void Translate()
         {
             months.Clear();
@@ -711,7 +721,7 @@ namespace Sunny.UI
 
             if (ShowToday)
             {
-                using (Font SubFont = new Font("微软雅黑", 10.5f))
+                using (Font SubFont = new Font("微软雅黑", 10.5f / this.DPIScale()))
                 {
                     e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
                     e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);

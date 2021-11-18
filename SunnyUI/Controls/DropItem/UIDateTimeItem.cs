@@ -120,7 +120,7 @@ namespace Sunny.UI
             this.TopPanel.MinimumSize = new System.Drawing.Size(1, 1);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.TopPanel.Size = new System.Drawing.Size(284, 31);
             this.TopPanel.Style = Sunny.UI.UIStyle.Custom;
@@ -732,6 +732,24 @@ namespace Sunny.UI
             Translate();
         }
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                TopPanel.SetDPIScaleFont();
+
+                foreach (var label in this.GetControls<UILabel>())
+                {
+                    label.SetDPIScaleFont();
+                }
+
+                btnOK.SetDPIScaleFont();
+                btnCancel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         public void Translate()
         {
             months.Clear();
@@ -1238,7 +1256,7 @@ namespace Sunny.UI
 
             if (ShowToday)
             {
-                using (Font SubFont = new Font("微软雅黑", 10.5f))
+                using (Font SubFont = new Font("微软雅黑", 10.5f / this.DPIScale()))
                 {
                     e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
                     e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle((int)(p3.Width - width * 4 + 6), p3.Height - height + 3, 8, height - 10), 3);

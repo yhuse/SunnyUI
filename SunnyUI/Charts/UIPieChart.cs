@@ -158,6 +158,7 @@ namespace Sunny.UI
             {
                 var pie = series[pieIndex];
                 RectangleF rect = GetSeriesRect(pie);
+                using Font tmp = LegendFont.DPIScaleFont();
                 for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                 {
                     Color color = ChartStyle.GetColor(azIndex);
@@ -165,7 +166,7 @@ namespace Sunny.UI
                     if (data.StyleCustomMode) color = data.Color;
                     RectangleF rectx = new RectangleF(rect.X - 10, rect.Y - 10, rect.Width + 20, rect.Width + 20);
                     g.FillPie(color, (ActivePieIndex == pieIndex && ActiveAzIndex == azIndex) ? rectx : rect, Angles[pieIndex][azIndex].Start - 90, Angles[pieIndex][azIndex].Sweep);
-                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, LegendFont);
+                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, tmp);
 
                     if (pie.Label.Show)
                     {

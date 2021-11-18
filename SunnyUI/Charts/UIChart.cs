@@ -171,7 +171,7 @@ namespace Sunny.UI
             base.OnPaint(e);
             if (tip != null && !tip.Font.Equals(legendFont))
             {
-                tip.Font = legendFont;
+                tip.Font = legendFont.DPIScaleFont();
             }
 
             DrawOption(e.Graphics);
@@ -246,7 +246,8 @@ namespace Sunny.UI
 
             g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
 
-            SizeF sfs = g.MeasureString(title.SubText, SubFont);
+            using Font tmp = SubFont.DPIScaleFont();
+            SizeF sfs = g.MeasureString(title.SubText, tmp);
             switch (title.Left)
             {
                 case UILeftAlignment.Left: left = TextInterval; break;
@@ -260,7 +261,7 @@ namespace Sunny.UI
                 case UITopAlignment.Bottom: top = top - sf.Height; break;
             }
 
-            g.DrawString(title.SubText, SubFont, ChartStyle.ForeColor, left, top);
+            g.DrawString(title.SubText, tmp, ChartStyle.ForeColor, left, top);
         }
 
         protected void DrawLegend(Graphics g, UILegend legend)
@@ -272,9 +273,10 @@ namespace Sunny.UI
             float maxWidth = 0;
             float oneHeight = 0;
 
+            using Font tmp = LegendFont.DPIScaleFont();
             foreach (var data in legend.Data)
             {
-                SizeF sf = g.MeasureString(data, LegendFont);
+                SizeF sf = g.MeasureString(data, tmp);
                 totalHeight += sf.Height;
                 totalWidth += sf.Width;
                 totalWidth += 20;
@@ -313,7 +315,7 @@ namespace Sunny.UI
             for (int i = 0; i < legend.DataCount; i++)
             {
                 var data = legend.Data[i];
-                SizeF sf = g.MeasureString(data, LegendFont);
+                SizeF sf = g.MeasureString(data, tmp);
                 Color color = ChartStyle.GetColor(i);
 
                 if (legend.Colors.Count > 0 && i >= 0 && i < legend.Colors.Count)
@@ -322,7 +324,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Horizontal)
                 {
                     g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, color, startLeft + 20, top);
+                    g.DrawString(data, tmp, color, startLeft + 20, top);
                     startLeft += 22;
                     startLeft += sf.Width;
                 }
@@ -330,7 +332,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Vertical)
                 {
                     g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, LegendFont, color, left + 20, startTop);
+                    g.DrawString(data, tmp, color, left + 20, startTop);
                     startTop += oneHeight;
                 }
             }

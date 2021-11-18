@@ -149,6 +149,7 @@ namespace Sunny.UI
         {
             item.Time = Value;
             item.Translate();
+            item.SetDPIScale();
             ItemForm.Show(this);
         }
     }

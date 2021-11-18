@@ -53,6 +53,7 @@ namespace Sunny.UI
             item.ShowFilter = ShowFilter;
             ItemForm.Size = ItemSize;
             item.ShowButtons = true;
+            item.SetDPIScale();
             item.Translate();
             ItemForm.Show(this);
         }

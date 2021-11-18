@@ -11,6 +11,17 @@ namespace Sunny.UI
 
         public UITreeView TreeView => treeView;
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                btnOK.SetDPIScaleFont();
+                btnCancel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         [DefaultValue(false)]
         public bool CheckBoxes
         {

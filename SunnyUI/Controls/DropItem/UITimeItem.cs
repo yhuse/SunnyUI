@@ -438,6 +438,22 @@ namespace Sunny.UI
             btnCancel.Text = UILocalize.Cancel;
         }
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                foreach (var label in this.GetControls<UILabel>())
+                {
+                    label.SetDPIScaleFont();
+                }
+
+                btnOK.SetDPIScaleFont();
+                btnCancel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Delta < 0)

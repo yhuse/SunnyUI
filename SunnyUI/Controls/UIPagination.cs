@@ -123,11 +123,14 @@ namespace Sunny.UI
             b16.Text = UILocalize.Next;
             btnSelect.Text = UILocalize.SelectTitle;
 
-            SizeF sf = b0.CreateGraphics().MeasureString(b0.Text, b0.Font);
-            b0.Width = b0.SymbolSize + (int)sf.Width + 10;
+            using (Font tmpFont = this.DPIScaleFont(b0.Font))
+            {
+                SizeF sf = b0.CreateGraphics().MeasureString(b0.Text, tmpFont);
+                b0.Width = b0.SymbolSize + (int)sf.Width + 10;
 
-            sf = b16.CreateGraphics().MeasureString(b16.Text, b16.Font);
-            b16.Width = b16.SymbolSize + (int)sf.Width + 10;
+                sf = b16.CreateGraphics().MeasureString(b16.Text, tmpFont);
+                b16.Width = b16.SymbolSize + (int)sf.Width + 10;
+            }
 
             btnSelect.Width = (int)btnSelect.CreateGraphics().MeasureString(btnSelect.Text, btnSelect.Font).Width + 16;
 

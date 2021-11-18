@@ -323,11 +323,11 @@ namespace Sunny.UI
             return control.CreateGraphics().DpiX / 96.0f;
         }
 
-        public static Font DPIScaleFont(this Control control)
-        {
-            return new Font(control.Font.FontFamily, control.Font.Size / control.DPIScale(),
-                   control.Font.Style, control.Font.Unit, control.Font.GdiCharSet);
-        }
+        // public static Font DPIScaleFont(this Control control)
+        // {
+        //     return new Font(control.Font.FontFamily, control.Font.Size / control.DPIScale(),
+        //            control.Font.Style, control.Font.Unit, control.Font.GdiCharSet);
+        // }
 
         public static Font DPIScaleFont(this Control control, Font font)
         {
@@ -335,11 +335,22 @@ namespace Sunny.UI
                    font.Style, font.Unit, font.GdiCharSet);
         }
 
+        public static Font DPIScaleFont(this Font font)
+        {
+            using Control control = new();
+            return new Font(font.FontFamily, font.Size / control.DPIScale(),
+                font.Style, font.Unit, font.GdiCharSet);
+        }
+
         public static void SetDPIScaleFont(this Control control)
         {
             if (!control.DPIScale().Equals(1))
             {
-                control.Font = control.DPIScaleFont();
+                if (control is IStyleInterface ctrl)
+                {
+                    if (!ctrl.IsScaled)
+                        control.Font = control.DPIScaleFont(control.Font);
+                }
             }
         }
 
@@ -349,7 +360,15 @@ namespace Sunny.UI
             foreach (Control con in control.Controls)
             {
                 list.Add(con);
-                if (con is IToolTip) continue;
+
+                if (con is UITextBox) continue;
+                if (con is UIDropControl) continue;
+                if (con is UIListBox) continue;
+                if (con is UIImageListBox) continue;
+                if (con is UIPagination) continue;
+                if (con is UIRichTextBox) continue;
+                if (con is UITreeView) continue;
+                if (con is UINavBar) continue;
 
                 if (con.Controls.Count > 0)
                 {

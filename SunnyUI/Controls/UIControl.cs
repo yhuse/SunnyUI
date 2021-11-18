@@ -46,9 +46,9 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        public bool IsScaled { get; set; }
 
-        public void SetDPIScale()
+        public virtual void SetDPIScale()
         {
             if (!IsScaled)
             {

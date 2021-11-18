@@ -22,6 +22,8 @@
 using Microsoft.Win32;
 using System;
 
+#pragma warning disable CA1416 // 验证平台兼容性
+
 namespace Sunny.UI
 {
     public static class UEnvironment

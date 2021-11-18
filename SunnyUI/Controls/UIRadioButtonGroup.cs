@@ -250,14 +250,5 @@ namespace Sunny.UI
                 Invalidate();
             }
         }
-
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            foreach (var button in buttons)
-            {
-                button.Font = Font;
-            }
-        }
     }
 }

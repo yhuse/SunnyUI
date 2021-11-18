@@ -32,7 +32,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
-    public sealed class UIRichTextBox : UIPanel,IToolTip
+    public sealed class UIRichTextBox : UIPanel, IToolTip
     {
         private UIScrollBar bar;
         private RichTextBox edit;
@@ -262,6 +262,8 @@ namespace Sunny.UI
 
         public void SetScrollInfo()
         {
+            bar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+            bar.Left = Width - bar.Width - 1;
             if (bar == null)
             {
                 return;
@@ -284,7 +286,7 @@ namespace Sunny.UI
         private void SizeChange()
         {
             bar.Top = 2;
-            bar.Width = ScrollBarInfo.VerticalScrollBarWidth();
+            bar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
             bar.Left = Width - bar.Width - 1;
             bar.Height = Height - 4;
             bar.BringToFront();

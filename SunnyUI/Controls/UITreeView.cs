@@ -533,7 +533,11 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (view != null) view.Font = Font;
+            if (view != null)
+            {
+                view.IsScaled = true;
+                view.Font = Font;
+            }
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -658,6 +662,18 @@ namespace Sunny.UI
             {
                 DrawMode = TreeViewDrawMode.OwnerDrawAll;
                 base.DoubleBuffered = true;
+            }
+
+            [Browsable(false)]
+            public bool IsScaled { get; set; }
+
+            public void SetDPIScale()
+            {
+                if (!IsScaled)
+                {
+                    this.SetDPIScaleFont();
+                    IsScaled = true;
+                }
             }
 
             [DefaultValue(typeof(Color), "155, 200, 255")]

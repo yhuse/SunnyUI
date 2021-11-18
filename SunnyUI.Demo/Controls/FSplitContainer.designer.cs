@@ -1,5 +1,5 @@
 ﻿
-namespace SunnyUI.VIP.Demo
+namespace Sunny.UI.Demo
 {
     partial class FSplitContainer
     {

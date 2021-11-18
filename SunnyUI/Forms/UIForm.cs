@@ -29,7 +29,6 @@
  * 2021-08-17: V3.0.8 增加IFrame接口
 ******************************************************************************/
 
-using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +81,7 @@ namespace Sunny.UI
 
                 if (!this.DPIScale().Equals(1))
                 {
-                    this.TitleFont = this.DPIScaleFont(this.TitleFont);
+                    TitleFont = this.DPIScaleFont(TitleFont);
                 }
 
                 foreach (Control control in this.GetAllDPIScaleControls())

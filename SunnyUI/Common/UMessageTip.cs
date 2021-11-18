@@ -39,7 +39,7 @@ namespace Sunny.UI
     public static class UIMessageTip
     {
         //默认字体。当样式中的Font==null时用该字体替换
-        static readonly Font DefaultFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12);
+        static readonly Font DefaultFont = UIFontColor.Font;
         //文本格式。用于测量和绘制
         static readonly StringFormat DefStringFormat = StringFormat.GenericTypographic;
 
@@ -301,6 +301,8 @@ namespace Sunny.UI
             var size = Size.Empty;
             var iconBounds = Rectangle.Empty;
             var textBounds = Rectangle.Empty;
+            Font font = style.TextFont ?? DefaultFont;
+            using Font tmp = font.DPIScaleFont();
 
             if (style.Icon != null)
             {
@@ -317,7 +319,7 @@ namespace Sunny.UI
                     textBounds.X += style.IconSpacing;
                 }
 
-                textBounds.Size = Size.Truncate(GraphicsUtils.MeasureString(text, style.TextFont ?? DefaultFont, 0, DefStringFormat));
+                textBounds.Size = Size.Truncate(GraphicsUtils.MeasureString(text, tmp, 0, DefStringFormat));
                 size.Width += textBounds.Width;
 
                 if (size.Height < textBounds.Height)
@@ -330,6 +332,7 @@ namespace Sunny.UI
                 }
                 textBounds.Offset(style.TextOffset);
             }
+
             size += style.Padding.Size;
             iconBounds.Offset(style.Padding.Left, style.Padding.Top);
             textBounds.Offset(style.Padding.Left, style.Padding.Top);
@@ -370,7 +373,7 @@ namespace Sunny.UI
                 {
                     textBrush = new SolidBrush(style.TextColor);
                     //DEBUG: g.DrawRectangle(new Border(Color.Red){ Width=1, Direction= Direction.Inner}.Pen, textBounds);
-                    g.DrawString(text, style.TextFont ?? DefaultFont, textBrush, textBounds.Location, DefStringFormat);
+                    g.DrawString(text, tmp, textBrush, textBounds.Location, DefStringFormat);
                 }
 
                 g.Flush(FlushIntention.Sync);
@@ -617,7 +620,7 @@ namespace Sunny.UI
                 Width = 2
             };
             IconSpacing = 5;
-            TextFont = new Font(SystemFonts.MessageBoxFont.FontFamily, 12);
+            TextFont = UIFontColor.Font;
             var fontName = TextFont.Name;
             if (fontName == "宋体") { TextOffset = new Point(1, 1); }
             TextColor = Color.Black;

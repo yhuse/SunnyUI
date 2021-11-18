@@ -1,7 +1,7 @@
 ﻿using Sunny.UI;
 using System.Windows.Forms;
 
-namespace SunnyUI.VIP.Demo
+namespace Sunny.UI.Demo
 {
     public partial class FSplitContainer : UIPage
     {

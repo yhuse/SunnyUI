@@ -66,6 +66,7 @@ namespace Sunny.UI
         {
             item.SelectedColor = Value;
             item.Translate();
+            item.SetDPIScale();
             ItemForm.Show(this);
         }
 

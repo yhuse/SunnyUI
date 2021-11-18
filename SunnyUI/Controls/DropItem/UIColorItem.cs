@@ -11,6 +11,30 @@ namespace Sunny.UI
             Translate();
         }
 
+        public override void SetDPIScale()
+        {
+            if (!IsScaled)
+            {
+                m_opacitySlider.SetDPIScaleFont();
+                m_colorBar.SetDPIScaleFont();
+
+                foreach (var label in this.GetControls<UILabel>())
+                {
+                    label.SetDPIScaleFont();
+                }
+
+                foreach (var label in this.GetControls<UITextBox>())
+                {
+                    label.SetDPIScaleFont();
+                }
+
+                btnOK.SetDPIScaleFont();
+                btnCancel.SetDPIScaleFont();
+            }
+
+            base.SetDPIScale();
+        }
+
         public void Translate()
         {
             btnOK.Text = UILocalize.OK;

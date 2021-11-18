@@ -178,6 +178,7 @@ namespace Sunny.UI
             item.TreeView.ExpandAll();
             item.CanSelectRootNode = CanSelectRootNode;
             item.Translate();
+            item.SetDPIScale();
             ItemForm.Show(this);
         }
 

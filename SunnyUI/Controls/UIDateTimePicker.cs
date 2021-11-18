@@ -63,7 +63,6 @@ namespace Sunny.UI
         [Description("日期输入时，显示今日按钮"), Category("SunnyUI")]
         public bool ShowToday { get; set; }
 
-
         public UIDatetimePicker()
         {
             InitializeComponent();
@@ -153,6 +152,7 @@ namespace Sunny.UI
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;
             item.Translate();
+            item.SetDPIScale();
             ItemForm.Show(this);
         }
 
