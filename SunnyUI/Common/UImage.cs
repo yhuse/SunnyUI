@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+#pragma warning disable CA1416 // 验证平台兼容性
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -394,7 +395,9 @@ namespace Sunny.UI
         /// <returns>Image</returns>
         public static Image GetImageFromUrl(string url)
         {
+#pragma warning disable SYSLIB0014 // 类型或成员已过时
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(url));
+#pragma warning restore SYSLIB0014 // 类型或成员已过时
             req.Method = "GET";
             req.UserAgent = " Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
             req.ContentType = "application/x-www-form-urlencoded";
