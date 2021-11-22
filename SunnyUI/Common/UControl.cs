@@ -323,28 +323,32 @@ namespace Sunny.UI
             return control.CreateGraphics().DpiX / 96.0f;
         }
 
-        // public static Font DPIScaleFont(this Control control)
-        // {
-        //     return new Font(control.Font.FontFamily, control.Font.Size / control.DPIScale(),
-        //            control.Font.Style, control.Font.Unit, control.Font.GdiCharSet);
-        // }
-
         public static Font DPIScaleFont(this Control control, Font font)
         {
-            return new Font(font.FontFamily, font.Size / control.DPIScale(),
-                   font.Style, font.Unit, font.GdiCharSet);
+            if (UIStyles.DPIScale)
+                return new Font(font.FontFamily, font.Size / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+            else
+                return font;
         }
 
         public static Font DPIScaleFont(this Font font)
         {
-            using Control control = new();
-            return new Font(font.FontFamily, font.Size / control.DPIScale(),
-                font.Style, font.Unit, font.GdiCharSet);
+            if (UIStyles.DPIScale)
+            {
+                using Control control = new();
+                return new Font(font.FontFamily, font.Size / control.DPIScale(),
+                    font.Style, font.Unit, font.GdiCharSet);
+            }
+            else
+            {
+                return font;
+            }
         }
 
         public static void SetDPIScaleFont(this Control control)
         {
-            if (!control.DPIScale().Equals(1))
+            if (!UIStyles.DPIScale) return;
+            if (!control.DPIScale().EqualsFloat(1))
             {
                 if (control is IStyleInterface ctrl)
                 {
