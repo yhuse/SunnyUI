@@ -18,6 +18,7 @@
  *
  * 2021-04-20: V3.0.3 增加文件说明
  * 2021-09-24: V3.0.7 文字显示方向与Column列显示方向一致
+ * 2021-11-22: V3.0.9 修复一处可能不显示的问题 
 ******************************************************************************/
 
 using System;
@@ -123,6 +124,7 @@ namespace Sunny.UI
                     if (rect.Left == 0 && rect.Width == 0) continue;
                     switch (align)
                     {
+                        case DataGridViewContentAlignment.NotSet:
                         case DataGridViewContentAlignment.TopLeft:
                         case DataGridViewContentAlignment.MiddleLeft:
                         case DataGridViewContentAlignment.BottomLeft:
