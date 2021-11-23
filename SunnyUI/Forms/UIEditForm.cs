@@ -43,42 +43,42 @@ namespace Sunny.UI
 
         private readonly UIEditOption Option;
 
-        public UIEditForm(UIEditOption option)
+        protected override void OnShown(EventArgs e)
         {
-            InitializeComponent();
+            base.OnShown(e);
 
-            btnOK.Text = UILocalize.OK;
-            btnCancel.Text = UILocalize.Cancel;
+        }
 
-            Option = option;
-            if (option == null || option.Infos.Count == 0) return;
+        private void InitEditor()
+        {
+            if (Option == null || Option.Infos.Count == 0) return;
 
-            base.Text = option.Text;
+            base.Text = Option.Text;
             int top = 55;
 
             List<Control> ctrls = new List<Control>();
 
-            if (option.AutoLabelWidth)
+            if (Option.AutoLabelWidth)
             {
                 float size = 0;
-                foreach (var info in option.Infos)
+                foreach (var info in Option.Infos)
                 {
                     SizeF sf = info.Text.MeasureString(UIFontColor.Font);
                     size = Math.Max(sf.Width, size);
                 }
 
-                option.LabelWidth = (int)size + 1 + 50;
+                Option.LabelWidth = (int)size + 1 + 50;
             }
 
-            Width = option.LabelWidth + option.ValueWidth + 28;
+            Width = Option.LabelWidth + Option.ValueWidth + 28;
 
-            foreach (var info in option.Infos)
+            foreach (var info in Option.Infos)
             {
                 UILabel label = new UILabel();
                 label.Text = info.Text;
                 label.AutoSize = false;
                 label.Left = 5;
-                label.Width = option.LabelWidth - 25;
+                label.Width = Option.LabelWidth - 25;
                 label.Height = 29;
                 label.Top = top;
                 label.TextAlign = ContentAlignment.MiddleRight;
@@ -212,9 +212,9 @@ namespace Sunny.UI
 
                 if (ctrl != null)
                 {
-                    ctrl.Left = option.LabelWidth;
+                    ctrl.Left = Option.LabelWidth;
                     if (info.EditType != EditType.Switch)
-                        ctrl.Width = info.HalfWidth ? option.ValueWidth / 2 : option.ValueWidth;
+                        ctrl.Width = info.HalfWidth ? Option.ValueWidth / 2 : Option.ValueWidth;
                     ctrl.Top = top;
                     ctrl.Parent = this;
                     ctrl.Name = "Edit_" + info.DataPropertyName;
@@ -241,6 +241,17 @@ namespace Sunny.UI
             tabIndex++;
             btnCancel.TabIndex = tabIndex;
             btnOK.ShowFocusLine = btnCancel.ShowFocusLine = true;
+        }
+
+        public UIEditForm(UIEditOption option)
+        {
+            InitializeComponent();
+
+            btnOK.Text = UILocalize.OK;
+            btnCancel.Text = UILocalize.Cancel;
+
+            Option = option;
+            InitEditor();
         }
 
         public object this[string dataPropertyName]

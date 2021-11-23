@@ -19,7 +19,6 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-#pragma warning disable CA1416 // 验证平台兼容性
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -376,7 +376,7 @@ namespace Sunny.UI
 
                 if (con.Controls.Count > 0)
                 {
-                    list.AddRange(GetAllControls(con));
+                    list.AddRange(GetAllDPIScaleControls(con));
                 }
             }
 

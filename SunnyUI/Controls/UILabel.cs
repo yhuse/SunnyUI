@@ -44,7 +44,7 @@ namespace Sunny.UI
 
         private int angle;
 
-        [DefaultValue(0),Category("SunnyUI"),Description("居中时旋转角度")]
+        [DefaultValue(0), Category("SunnyUI"), Description("居中时旋转角度")]
         public int Angle
         {
             get => angle;
@@ -56,7 +56,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        public bool IsScaled { get; set; }
 
         public void SetDPIScale()
         {
