@@ -104,12 +104,10 @@
             this.LineChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.LineChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.LineChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.LineChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.Location = new System.Drawing.Point(30, 55);
             this.LineChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.LineChart.Name = "LineChart";
             this.LineChart.Size = new System.Drawing.Size(670, 430);
-            this.LineChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.TabIndex = 35;
             this.LineChart.Text = "uiLineChart1";
             this.LineChart.PointValue += new Sunny.UI.UILineChart.OnPointValue(this.LineChart_PointValue);

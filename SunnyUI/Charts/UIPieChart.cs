@@ -158,7 +158,7 @@ namespace Sunny.UI
             {
                 var pie = series[pieIndex];
                 RectangleF rect = GetSeriesRect(pie);
-                using Font tmp = LegendFont.DPIScaleFont();
+                using Font tmp = this.DPIScaleFont(Font, LegendFontSize);
                 for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                 {
                     Color color = ChartStyle.GetColor(azIndex);
@@ -177,8 +177,8 @@ namespace Sunny.UI
                         string name = Option.Legend != null ? Option.Legend.Data[azIndex] + " : " : "";
                         if (pie.Data[azIndex].Value > 0)
                         {
-                            string text = name + pie.Data[azIndex].Value.ToString("F0");
-                            SizeF sf = g.MeasureString(text, SubFont);
+                            string text = name + pie.Data[azIndex].Value.ToString("F0");                
+                            SizeF sf = g.MeasureString(text, tmp);
                             PointF pf;
                             int added = 9;
                             if (az >= 0 && az < 90)
@@ -191,7 +191,7 @@ namespace Sunny.UI
                                 pf = new PointF((float)(DrawCenter(pie).X - RadiusSize(pie) * x - added) - sf.Width, (float)(DrawCenter(pie).Y - RadiusSize(pie) * y) - sf.Height - added);
 
                             if (pie.Data[azIndex].Value > 0)
-                                g.DrawString(text, SubFont, color, pf.X, pf.Y);
+                                g.DrawString(text, tmp, color, pf.X, pf.Y);
                         }
                     }
                 }

@@ -142,7 +142,7 @@ namespace Sunny.UI
         private void DrawSeries(Graphics g, List<UIDoughnutSeries> series)
         {
             if (series == null || series.Count == 0) return;
-            using Font tmp = LegendFont.DPIScaleFont();
+            using Font tmp = this. DPIScaleFont(Font, LegendFontSize);
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];

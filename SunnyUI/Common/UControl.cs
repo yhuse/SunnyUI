@@ -326,9 +326,37 @@ namespace Sunny.UI
         public static Font DPIScaleFont(this Control control, Font font)
         {
             if (UIStyles.DPIScale)
-                return new Font(font.FontFamily, font.Size / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, font.Size / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, font.Size / control.DPIScale());
+            }
             else
-                return font;
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, font.Size, font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, font.Size);
+            }
+        }
+
+        public static Font DPIScaleFont(this Control control, Font font, float fontSize)
+        {
+            if (UIStyles.DPIScale)
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, fontSize / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, fontSize / control.DPIScale());
+            }
+            else
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, fontSize, font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, fontSize);
+            }
         }
 
         public static Font DPIScaleFont(this Font font)
@@ -336,8 +364,7 @@ namespace Sunny.UI
             if (UIStyles.DPIScale)
             {
                 using Control control = new();
-                return new Font(font.FontFamily, font.Size / control.DPIScale(),
-                    font.Style, font.Unit, font.GdiCharSet);
+                return control.DPIScaleFont(font);
             }
             else
             {

@@ -217,7 +217,7 @@ namespace Sunny.UI
             }
 
             if (XScale == null || YScale == null) return;
-            using Font tmp = SubFont.DPIScaleFont();
+            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
             //X Tick
             if (Option.XAxis.AxisTick.Show)
             {
@@ -534,7 +534,7 @@ namespace Sunny.UI
         private void DrawAxisScales(Graphics g)
         {
             if (YScale == null) return;
-            using Font tmp = SubFont.DPIScaleFont();
+            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
             foreach (var line in Option.YAxisScaleLines)
             {
                 float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
@@ -669,7 +669,7 @@ namespace Sunny.UI
                         {
                             using (Graphics g = this.CreateGraphics())
                             {
-                                using Font tmp = SubFont.DPIScaleFont();
+                                using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
                                 SizeF sf = g.MeasureString(sb.ToString(), tmp);
                                 tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
                             }

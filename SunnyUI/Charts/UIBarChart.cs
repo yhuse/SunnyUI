@@ -485,7 +485,7 @@ namespace Sunny.UI
                 }
             }
 
-            using Font tmp = SubFont.DPIScaleFont();
+            using Font tmp = this.DPIScaleFont(Font,SubTextFontSize);
 
             if (Option.XAxis.AxisLabel.Show)
             {
@@ -575,7 +575,7 @@ namespace Sunny.UI
                     g.DrawLine(pn, DrawOrigin.X, pos, Width - Option.Grid.Right, pos);
                 }
 
-                using Font tmp = SubFont.DPIScaleFont();
+                using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
                 SizeF sf = g.MeasureString(line.Name, tmp);
 
                 if (line.Left == UILeftAlignment.Left)
@@ -602,7 +602,7 @@ namespace Sunny.UI
 
             for (int i = 0; i < Option.XAxis.Data.Count; i++)
             {
-                using Font tmp = SubFont.DPIScaleFont();
+                using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
                 Bars[0][i].Size = g.MeasureString(Bars[0][i].Tips, tmp);
             }
         }

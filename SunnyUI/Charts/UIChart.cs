@@ -169,12 +169,27 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (tip != null && !tip.Font.Equals(legendFont))
-            {
-                tip.Font = legendFont.DPIScaleFont();
-            }
-
             DrawOption(e.Graphics);
+        }
+
+        [Category("SunnyUI")]
+        [DefaultValue(9)]
+        public float LegendFontSize { get; set; } = 9.0f;
+
+        [Category("SunnyUI")]
+        [DefaultValue(9)]
+        public float SubTextFontSize { get; set; } = 9.0f;
+
+        [Category("SunnyUI")]
+        [DefaultValue(9)]
+        public float TipsFontSize { get; set; } = 9.0f;
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+
+            if (tip != null)
+                tip.Font = this.DPIScaleFont(Font, TipsFontSize);
         }
 
         protected virtual void DrawOption(Graphics g)
@@ -197,33 +212,11 @@ namespace Sunny.UI
         [DefaultValue(8)]
         public int TextInterval { get; set; } = 8;
 
-        private Font subFont = UIFontColor.SubFont;
+        [Browsable(false), Obsolete("已过时，用SubTextFontSize代替")]
+        public Font SubFont { get; set; }
 
-        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
-        public Font SubFont
-        {
-            get => subFont;
-            set
-            {
-                subFont = value;
-                Invalidate();
-            }
-        }
-
-        private Font legendFont = UIFontColor.SubFont;
-
-        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
-        public Font LegendFont
-        {
-            get => legendFont;
-            set
-            {
-                legendFont = value;
-                if (tip != null) tip.Font = subFont;
-                Invalidate();
-            }
-        }
-
+        [Browsable(false), Obsolete("已过时，用LegendFontSize代替")]
+        public Font LegendFont { get; set; }
         protected void DrawTitle(Graphics g, UITitle title)
         {
             if (title == null) return;
@@ -246,7 +239,7 @@ namespace Sunny.UI
 
             g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
 
-            using Font tmp = SubFont.DPIScaleFont();
+            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
             SizeF sfs = g.MeasureString(title.SubText, tmp);
             switch (title.Left)
             {
@@ -273,7 +266,7 @@ namespace Sunny.UI
             float maxWidth = 0;
             float oneHeight = 0;
 
-            using Font tmp = LegendFont.DPIScaleFont();
+            using Font tmp = this.DPIScaleFont(Font, LegendFontSize);
             foreach (var data in legend.Data)
             {
                 SizeF sf = g.MeasureString(data, tmp);

@@ -44,13 +44,11 @@
             this.PieChart.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.PieChart.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.PieChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.PieChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PieChart.Location = new System.Drawing.Point(30, 55);
             this.PieChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.PieChart.Name = "PieChart";
             this.PieChart.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.PieChart.Size = new System.Drawing.Size(670, 430);
-            this.PieChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PieChart.TabIndex = 20;
             this.PieChart.Text = "uiPieChart1";
             // 
