@@ -189,7 +189,10 @@ namespace Sunny.UI
             base.OnFontChanged(e);
 
             if (tip != null)
+            {
+                tip.IsScaled = true;
                 tip.Font = this.DPIScaleFont(Font, TipsFontSize);
+            }
         }
 
         protected virtual void DrawOption(Graphics g)
