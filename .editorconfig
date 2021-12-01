@@ -5,3 +5,6 @@ dotnet_diagnostic.IDE0090.severity = none
 
 # CA1416: 验证平台兼容性
 dotnet_diagnostic.CA1416.severity = none
+
+# CA822: 可标记为Static
+dotnet_diagnostic.CA1822.severity = none

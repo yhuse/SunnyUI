@@ -22,6 +22,7 @@
  * 2021-07-18: V3.0.5 修复OnLoad在加载时重复加载两次的问题，增加Final函数，每次页面切换，退出页面都会执行
  * 2021-08-17: V3.0.6 增加TitleFont属性
  * 2021-08-24: V3.0.6 修复OnLoad在加载时重复加载两次的问题
+ * 2021-12-01: V3.0.9 增加FeedBack和SetParam函数，用于多页面传值
 ******************************************************************************/
 
 using System;
@@ -622,6 +623,16 @@ namespace Sunny.UI
         public new bool MaximizeBox
         {
             get; set;
+        }
+
+        public void Feedback(object sender, params object[] objects)
+        {
+            Frame?.Feedback(this, PageIndex, objects);
+        }
+
+        public virtual void SetParam(int fromPageIndex, params object[] objects)
+        {
+
         }
 
         #region 一些辅助窗口

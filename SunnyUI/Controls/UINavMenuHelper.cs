@@ -334,6 +334,46 @@ namespace Sunny.UI
             }
         }
 
+        public UIPage GetPage(int pageIndex)
+        {
+            if (pageIndex < 0) return null;
+            foreach (var item in PageItems)
+            {
+                if (item.Value.PageIndex == pageIndex && item.Key != null)
+                {
+                    var tabPage = item.Key;
+                    var pages = tabPage.GetControls<UIPage>();
+                    for (int i = 0; i < pages.Count; i++)
+                    {
+                        if (pages[i].PageIndex == pageIndex)
+                            return pages[i];
+                    }
+                }
+            }   
+
+            return null;
+        }
+
+        public UIPage GetPage(Guid guid)
+        {
+            if (guid == Guid.Empty) return null;
+            foreach (var item in PageItems)
+            {
+                if (item.Value.PageGuid == guid && item.Key != null)
+                {
+                    var tabPage = item.Key;
+                    var pages = tabPage.GetControls<UIPage>();
+                    for (int i = 0; i < pages.Count; i++)
+                    {
+                        if (pages[i].PageGuid == guid)
+                            return pages[i];
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public bool RemovePage(int pageIndex)
         {
             if (pageIndex < 0) return false;

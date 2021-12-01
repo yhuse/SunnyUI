@@ -1854,19 +1854,19 @@ namespace Sunny.UI
 
         public UITabControl MainTabControl { get; set; }
 
-        public UIPage AddPage(UIPage page, int index)
+        public virtual UIPage AddPage(UIPage page, int index)
         {
             page.PageIndex = index;
             return AddPage(page);
         }
 
-        public UIPage AddPage(UIPage page, Guid guid)
+        public virtual UIPage AddPage(UIPage page, Guid guid)
         {
             page.PageGuid = guid;
             return AddPage(page);
         }
 
-        public UIPage AddPage(UIPage page)
+        public virtual UIPage AddPage(UIPage page)
         {
             page.Frame = this;
             MainTabControl?.AddPage(page);
@@ -1883,18 +1883,28 @@ namespace Sunny.UI
             MainTabControl?.SelectPage(guid);
         }
 
-        public bool RemovePage(int pageIndex)
+        public virtual bool RemovePage(int pageIndex)
         {
             return MainTabControl?.RemovePage(pageIndex) ?? false;
         }
 
-        public bool RemovePage(Guid guid)
+        public virtual bool RemovePage(Guid guid)
         {
             return MainTabControl?.RemovePage(guid) ?? false;
         }
 
         public virtual void Feedback(object sender, int pageIndex, params object[] objects)
         {
+        }
+
+        public virtual UIPage GetPage(int pageIndex)
+        {
+            return MainTabControl?.GetPage(pageIndex);
+        }
+
+        public virtual UIPage GetPage(Guid guid)
+        {
+            return MainTabControl?.GetPage(guid);
         }
 
         #endregion IFrame实现
