@@ -213,7 +213,9 @@ namespace Sunny.UI
                     }
                 }
             })
-            { IsBackground = true, Name = "T_Showing" }.Start();
+            { 
+                IsBackground = true, Name = "T_Showing" 
+            }.Start();
         }
 
         static void layer_Showing(object sender, EventArgs e)
@@ -292,6 +294,8 @@ namespace Sunny.UI
             return point;
         }
 
+        static Font tmpFont;
+
         /// <summary>
         /// 创建消息窗图像，同时输出内容区，用于外部定位
         /// </summary>
@@ -302,7 +306,8 @@ namespace Sunny.UI
             var iconBounds = Rectangle.Empty;
             var textBounds = Rectangle.Empty;
             Font font = style.TextFont ?? DefaultFont;
-            using Font tmp = font.DPIScaleFont();
+            if (tmpFont == null || !tmpFont.Size.EqualsFloat(font.DPIScaleFontSize()))
+                tmpFont = font.DPIScaleFont();
 
             if (style.Icon != null)
             {
@@ -319,7 +324,7 @@ namespace Sunny.UI
                     textBounds.X += style.IconSpacing;
                 }
 
-                textBounds.Size = Size.Truncate(GraphicsUtils.MeasureString(text, tmp, 0, DefStringFormat));
+                textBounds.Size = Size.Truncate(GraphicsUtils.MeasureString(text, tmpFont, 0, DefStringFormat));
                 size.Width += textBounds.Width;
 
                 if (size.Height < textBounds.Height)
@@ -373,7 +378,7 @@ namespace Sunny.UI
                 {
                     textBrush = new SolidBrush(style.TextColor);
                     //DEBUG: g.DrawRectangle(new Border(Color.Red){ Width=1, Direction= Direction.Inner}.Pen, textBounds);
-                    g.DrawString(text, tmp, textBrush, textBounds.Location, DefStringFormat);
+                    g.DrawString(text, tmpFont, textBrush, textBounds.Location, DefStringFormat);
                 }
 
                 g.Flush(FlushIntention.Sync);
