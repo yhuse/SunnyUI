@@ -176,20 +176,41 @@ namespace Sunny.UI
             }
         }
 
+        Font tmpFont;
+
+        private Font TempFont
+        {
+            get
+            {
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
+                {
+                    tmpFont?.Dispose();
+                    tmpFont = TipsFont.DPIScaleFont();
+                }
+
+                return tmpFont;
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            tmpFont?.Dispose();
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
             {
-                using Font tmpFont = TipsFont.DPIScaleFont();
                 e.Graphics.SetHighQuality();
-                SizeF sf = e.Graphics.MeasureString(TipsText, tmpFont);
+                SizeF sf = e.Graphics.MeasureString(TipsText, TempFont);
                 float sfMax = Math.Max(sf.Width, sf.Height);
                 float x = Width - 1 - 2 - sfMax;
                 float y = 1 + 1;
                 e.Graphics.FillEllipse(TipsColor, x, y, sfMax, sfMax);
-                e.Graphics.DrawString(TipsText, tmpFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+                e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
             }
 
             if (Focused && ShowFocusLine)
