@@ -53,12 +53,6 @@ namespace Sunny.UI
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            foreach (var key in linked.Keys)
-                linked[key]?.Dispose();
-        }
-
         private UILine.LineDirection direction = UILine.LineDirection.Horizontal;
 
         [DefaultValue(UILine.LineDirection.Horizontal)]
