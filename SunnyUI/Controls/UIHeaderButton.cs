@@ -21,6 +21,7 @@
  * 2021-06-01: V3.0.4 增加图片与文字的位置
  * 2021-06-22: V3.0.4 增加ShowSelected，是否显示选中状态
  * 2021-09-21: V3.0.7 增加Disabled颜色
+ * 2021-12-07: V3.0.9 更改图片自动刷新
 ******************************************************************************/
 
 using System;
@@ -249,9 +250,19 @@ namespace Sunny.UI
             set => SetForeSelectedColor(value);
         }
 
+        private Image image;
+
         [DefaultValue(null)]
         [Description("图片"), Category("SunnyUI")]
-        public Image Image { get; set; }
+        public Image Image
+        {
+            get => image;
+            set
+            {
+                image = value;
+                Invalidate();
+            }
+        }
 
         private int _symbol = FontAwesomeIcons.fa_check;
 
