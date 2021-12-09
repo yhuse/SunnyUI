@@ -52,8 +52,8 @@ namespace Sunny.UI
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            TempTitleFont?.Dispose();
-            TempFont?.Dispose();
+            tmpTitleFont?.Dispose();
+            tmpFont?.Dispose();
         }
 
         [DefaultValue(typeof(Font), "微软雅黑, 9pt"), Description("字体"), Category("SunnyUI")]

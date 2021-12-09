@@ -57,6 +57,13 @@ namespace Sunny.UI
             tip.MouseEnter += Tip_MouseEnter;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            tmpFont?.Dispose();
+            tmpLegendFont?.Dispose();
+        }
+
         private void Tip_MouseEnter(object sender, EventArgs e)
         {
             tip.Visible = false;
@@ -195,6 +202,38 @@ namespace Sunny.UI
             }
         }
 
+        Font tmpFont;
+
+        protected Font TempFont
+        {
+            get
+            {
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(SubTextFontSize / this.DPIScale()))
+                {
+                    tmpFont?.Dispose();
+                    tmpFont = this.DPIScaleFont(Font, SubTextFontSize);
+                }
+
+                return tmpFont;
+            }
+        }
+
+        Font tmpLegendFont;
+
+        protected Font TempLegendFont
+        {
+            get
+            {
+                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(LegendFontSize / this.DPIScale()))
+                {
+                    tmpLegendFont?.Dispose();
+                    tmpLegendFont = this.DPIScaleFont(Font, SubTextFontSize);
+                }
+
+                return tmpLegendFont;
+            }
+        }
+
         protected virtual void DrawOption(Graphics g)
         {
         }
@@ -242,8 +281,7 @@ namespace Sunny.UI
 
             g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
 
-            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
-            SizeF sfs = g.MeasureString(title.SubText, tmp);
+            SizeF sfs = g.MeasureString(title.SubText, TempFont);
             switch (title.Left)
             {
                 case UILeftAlignment.Left: left = TextInterval; break;
@@ -257,7 +295,7 @@ namespace Sunny.UI
                 case UITopAlignment.Bottom: top = top - sf.Height; break;
             }
 
-            g.DrawString(title.SubText, tmp, ChartStyle.ForeColor, left, top);
+            g.DrawString(title.SubText, TempFont, ChartStyle.ForeColor, left, top);
         }
 
         protected void DrawLegend(Graphics g, UILegend legend)
@@ -269,10 +307,9 @@ namespace Sunny.UI
             float maxWidth = 0;
             float oneHeight = 0;
 
-            using Font tmp = this.DPIScaleFont(Font, LegendFontSize);
             foreach (var data in legend.Data)
             {
-                SizeF sf = g.MeasureString(data, tmp);
+                SizeF sf = g.MeasureString(data, TempLegendFont);
                 totalHeight += sf.Height;
                 totalWidth += sf.Width;
                 totalWidth += 20;
@@ -311,7 +348,7 @@ namespace Sunny.UI
             for (int i = 0; i < legend.DataCount; i++)
             {
                 var data = legend.Data[i];
-                SizeF sf = g.MeasureString(data, tmp);
+                SizeF sf = g.MeasureString(data, TempLegendFont);
                 Color color = ChartStyle.GetColor(i);
 
                 if (legend.Colors.Count > 0 && i >= 0 && i < legend.Colors.Count)
@@ -320,7 +357,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Horizontal)
                 {
                     g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, tmp, color, startLeft + 20, top);
+                    g.DrawString(data, TempLegendFont, color, startLeft + 20, top);
                     startLeft += 22;
                     startLeft += sf.Width;
                 }
@@ -328,7 +365,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Vertical)
                 {
                     g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, tmp, color, left + 20, startTop);
+                    g.DrawString(data, TempLegendFont, color, left + 20, startTop);
                     startTop += oneHeight;
                 }
             }

@@ -217,7 +217,7 @@ namespace Sunny.UI
             }
 
             if (XScale == null || YScale == null) return;
-            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
+
             //X Tick
             if (Option.XAxis.AxisTick.Show)
             {
@@ -245,8 +245,8 @@ namespace Sunny.UI
                                 label = XLabels[i].ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
                         }
 
-                        SizeF sf = g.MeasureString(label, tmp);
-                        g.DrawString(label, tmp, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        SizeF sf = g.MeasureString(label, TempFont);
+                        g.DrawString(label, TempFont, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                     }
 
                     if (x.Equals(DrawOrigin.X)) continue;
@@ -260,8 +260,8 @@ namespace Sunny.UI
                     }
                 }
 
-                SizeF sfName = g.MeasureString(Option.XAxis.Name, tmp);
-                g.DrawString(Option.XAxis.Name, tmp, ForeColor,
+                SizeF sfName = g.MeasureString(Option.XAxis.Name, TempFont);
+                g.DrawString(Option.XAxis.Name, TempFont, ForeColor,
                     DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f,
                     DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfName.Height);
             }
@@ -279,9 +279,9 @@ namespace Sunny.UI
                     if (Option.YAxis.AxisLabel.Show)
                     {
                         string label = YLabels[i].ToString(YScale.Format);
-                        SizeF sf = g.MeasureString(label, tmp);
+                        SizeF sf = g.MeasureString(label, TempFont);
                         widthMax = Math.Max(widthMax, sf.Width);
-                        g.DrawString(label, tmp, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
+                        g.DrawString(label, TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
                     }
 
                     if (y.Equals(DrawOrigin.Y)) continue;
@@ -295,10 +295,10 @@ namespace Sunny.UI
                     }
                 }
 
-                SizeF sfName = g.MeasureString(Option.YAxis.Name, tmp);
+                SizeF sfName = g.MeasureString(Option.YAxis.Name, TempFont);
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
-                g.DrawStringRotateAtCenter(Option.YAxis.Name, tmp, ForeColor, new PointF(xx, yy), 270);
+                g.DrawStringRotateAtCenter(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
             }
         }
 
@@ -534,7 +534,7 @@ namespace Sunny.UI
         private void DrawAxisScales(Graphics g)
         {
             if (YScale == null) return;
-            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
+
             foreach (var line in Option.YAxisScaleLines)
             {
                 float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
@@ -546,14 +546,14 @@ namespace Sunny.UI
                 }
 
 
-                SizeF sf = g.MeasureString(line.Name, tmp);
+                SizeF sf = g.MeasureString(line.Name, TempFont);
 
                 if (line.Left == UILeftAlignment.Left)
-                    g.DrawString(line.Name, tmp, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+                    g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
                 if (line.Left == UILeftAlignment.Center)
-                    g.DrawString(line.Name, tmp, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
+                    g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
                 if (line.Left == UILeftAlignment.Right)
-                    g.DrawString(line.Name, tmp, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
+                    g.DrawString(line.Name, TempFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
             }
 
             int idx = 0;
@@ -567,7 +567,7 @@ namespace Sunny.UI
                     g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
                 }
 
-                SizeF sf = g.MeasureString(line.Name, tmp);
+                SizeF sf = g.MeasureString(line.Name, TempFont);
                 float x = pos - sf.Width;
                 if (x < Option.Grid.Left) x = pos + 2;
                 float y = Option.Grid.Top + 4 + sf.Height * idx;
@@ -578,7 +578,7 @@ namespace Sunny.UI
                 }
 
                 idx++;
-                g.DrawString(line.Name, tmp, line.Color, x, y);
+                g.DrawString(line.Name, TempFont, line.Color, x, y);
             }
         }
 
@@ -669,8 +669,7 @@ namespace Sunny.UI
                         {
                             using (Graphics g = this.CreateGraphics())
                             {
-                                using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
-                                SizeF sf = g.MeasureString(sb.ToString(), tmp);
+                                SizeF sf = g.MeasureString(sb.ToString(), TempFont);
                                 tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
                             }
 

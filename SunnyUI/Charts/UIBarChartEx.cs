@@ -453,7 +453,6 @@ namespace Sunny.UI
         protected override void DrawSeries(Graphics g, List<UIBarSeries> series)
         {
             if (series == null || series.Count == 0) return;
-            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
 
             for (int i = 0; i < Bars.Count; i++)
             {
@@ -466,13 +465,13 @@ namespace Sunny.UI
                     {
                         if (s.BarName.Count > 0 && j < s.BarName.Count)
                         {
-                            SizeF sf = g.MeasureString(s.BarName[j], tmp);
+                            SizeF sf = g.MeasureString(s.BarName[j], TempFont);
                             if (s.Data[j] >= 0)
-                                g.DrawString(s.BarName[j], tmp, ChartStyle.ForeColor,
+                                g.DrawString(s.BarName[j], TempFont, ChartStyle.ForeColor,
                                     bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                     bars[j].Rect.Bottom + 1);
                             else
-                                g.DrawString(s.BarName[j], tmp, ChartStyle.ForeColor,
+                                g.DrawString(s.BarName[j], TempFont, ChartStyle.ForeColor,
                                     bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                     bars[j].Rect.Top - sf.Height);
                         }
@@ -480,28 +479,23 @@ namespace Sunny.UI
 
                     if (s.ShowValue)
                     {
-                        Font fontShow = null;
-                        if (s.ShowValueFontSize > 0) fontShow = new Font(tmp.Name, s.ShowValueFontSize);
-
                         string value = s.Data[j].ToString("F" + Option.YAxis.AxisLabel.DecimalCount);
-                        SizeF sf = g.MeasureString(value, fontShow ?? tmp);
+                        SizeF sf = g.MeasureString(value, TempFont);
                         if (s.Data[j] < 0)
-                            g.DrawString(value, fontShow ?? tmp, bars[j].Color,
+                            g.DrawString(value, TempFont, bars[j].Color,
                                 bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                 bars[j].Rect.Bottom + 1);
                         else
-                            g.DrawString(value, fontShow ?? tmp, bars[j].Color,
+                            g.DrawString(value, TempFont, bars[j].Color,
                                 bars[j].Rect.Left + bars[j].Rect.Width / 2 - sf.Width / 2,
                                 bars[j].Rect.Top - sf.Height);
-
-                        fontShow?.Dispose();
                     }
                 }
             }
 
             for (int i = 0; i < Option.Series.Count; i++)
             {
-                Bars[i][0].Size = g.MeasureString(Bars[i][0].Tips, tmp);
+                Bars[i][0].Size = g.MeasureString(Bars[i][0].Tips, TempFont);
             }
         }
 
@@ -579,7 +573,6 @@ namespace Sunny.UI
                 }
             }
 
-            using Font tmp = this.DPIScaleFont(Font, SubTextFontSize);
             //绘制X轴标签
             if (Option.XAxis.AxisLabel.Show)
             {
@@ -589,12 +582,12 @@ namespace Sunny.UI
                     foreach (var data in Option.Series)
                     {
                         float w = DrawSize.Width * data.Data.Count * 1.0f / DataCount;
-                        SizeF sf = g.MeasureString(data.Name, tmp);
+                        SizeF sf = g.MeasureString(data.Name, TempFont);
                         if (Option.XAxis.AxisLabel.Angle != 0)
-                            g.DrawString(data.Name, tmp, ChartStyle.ForeColor, new PointF(start + w / 2.0f - 10, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
+                            g.DrawString(data.Name, TempFont, ChartStyle.ForeColor, new PointF(start + w / 2.0f - 10, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
                                 new StringFormat() { Alignment = StringAlignment.Center }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
                         else
-                            g.DrawString(data.Name, tmp, ChartStyle.ForeColor, start + w / 2.0f - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
+                            g.DrawString(data.Name, TempFont, ChartStyle.ForeColor, start + w / 2.0f - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
                         start += w;
                     }
                 }
@@ -603,18 +596,18 @@ namespace Sunny.UI
                     float start = DrawOrigin.X + DrawBarWidth / 2.0f;
                     foreach (var data in Option.Series)
                     {
-                        SizeF sf = g.MeasureString(data.Name, tmp);
+                        SizeF sf = g.MeasureString(data.Name, TempFont);
                         if (Option.XAxis.AxisLabel.Angle != 0)
-                            g.DrawString(data.Name, tmp, ChartStyle.ForeColor, new PointF(start - 10, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
+                            g.DrawString(data.Name, TempFont, ChartStyle.ForeColor, new PointF(start - 10, DrawOrigin.Y + Option.Grid.Bottom / 2.0f),
                             new StringFormat() { Alignment = StringAlignment.Center }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
                         else
-                            g.DrawString(data.Name, tmp, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
+                            g.DrawString(data.Name, TempFont, ChartStyle.ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance);
                         start += DrawBarWidth;
                     }
                 }
 
-                SizeF sfName = g.MeasureString(Option.XAxis.Name, tmp);
-                g.DrawString(Option.XAxis.Name, tmp, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance + sfName.Height);
+                SizeF sfName = g.MeasureString(Option.XAxis.Name, TempFont);
+                g.DrawString(Option.XAxis.Name, TempFont, ChartStyle.ForeColor, DrawOrigin.X + (DrawSize.Width - sfName.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + Option.XAxis.AxisTick.Distance + sfName.Height);
             }
 
             //绘制Y轴刻度
@@ -661,20 +654,20 @@ namespace Sunny.UI
 
                 if (Option.YAxis.AxisLabel.AutoFormat)
                     Option.YAxis.AxisLabel.DecimalCount = YAxisDecimalCount;
-                  
+
                 for (int i = YAxisStart; i <= YAxisEnd; i++)
                 {
                     string label = Option.YAxis.AxisLabel.GetLabel(i * YAxisInterval, idx);
-                    SizeF sf = g.MeasureString(label, tmp);
+                    SizeF sf = g.MeasureString(label, TempFont);
                     wmax = Math.Max(wmax, sf.Width);
-                    g.DrawString(label, tmp, ChartStyle.ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
+                    g.DrawString(label, TempFont, ChartStyle.ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, start - sf.Height / 2.0f);
                     start -= DrawBarHeight;
                 }
 
-                SizeF sfname = g.MeasureString(Option.YAxis.Name, tmp);
+                SizeF sfname = g.MeasureString(Option.YAxis.Name, TempFont);
                 int x = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfname.Height);
                 int y = (int)(Option.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(Option.YAxis.Name, tmp, ChartStyle.ForeColor, new Point(x, y),
+                g.DrawString(Option.YAxis.Name, TempFont, ChartStyle.ForeColor, new Point(x, y),
                     new StringFormat() { Alignment = StringAlignment.Center }, 270);
             }
         }

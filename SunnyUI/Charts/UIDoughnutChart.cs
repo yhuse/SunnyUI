@@ -142,7 +142,7 @@ namespace Sunny.UI
         private void DrawSeries(Graphics g, List<UIDoughnutSeries> series)
         {
             if (series == null || series.Count == 0) return;
-            using Font tmp = this. DPIScaleFont(Font, LegendFontSize);
+
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];
@@ -159,7 +159,7 @@ namespace Sunny.UI
                     else
                         g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
 
-                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, tmp);
+                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, TempFont);
 
                     if (pie.Label.Show && ActiveAzIndex == azIndex)
                     {
