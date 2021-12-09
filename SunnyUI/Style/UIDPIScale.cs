@@ -32,24 +32,6 @@ namespace Sunny.UI
             return control.CreateGraphics().DpiX / 96.0f;
         }
 
-        public static Font DPIScaleFont(this Control control, Font font)
-        {
-            if (UIStyles.DPIScale)
-            {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, font.Size / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
-                else
-                    return new Font(font.FontFamily, font.Size / control.DPIScale());
-            }
-            else
-            {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, font.Size, font.Style, font.Unit, font.GdiCharSet);
-                else
-                    return new Font(font.FontFamily, font.Size);
-            }
-        }
-
         public static float DPIScaleFontSize(this Control control, Font font)
         {
             if (UIStyles.DPIScale)
@@ -60,11 +42,21 @@ namespace Sunny.UI
 
         public static float DPIScaleFontSize(this Font font)
         {
+            return font.Size.DPIScaleFontSize();
+        }
+
+        public static float DPIScaleFontSize(this float fontSize)
+        {
             using Control control = new();
             if (UIStyles.DPIScale)
-                return font.Size / control.DPIScale();
+                return fontSize / control.DPIScale();
             else
-                return font.Size;
+                return fontSize;
+        }
+
+        public static Font DPIScaleFont(this Control control, Font font)
+        {
+            return control.DPIScaleFont(font, font.Size);
         }
 
         public static Font DPIScaleFont(this Control control, Font font, float fontSize)

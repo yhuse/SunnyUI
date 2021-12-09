@@ -80,6 +80,12 @@ namespace Sunny.UI
             SetScrollInfo();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            tmpFont?.Dispose();
+        }
+
         [Browsable(false)]
         public bool IsScaled { get; private set; }
 
@@ -623,8 +629,7 @@ namespace Sunny.UI
 
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid() && TreeNodeSymbols.NotContainsKey(e.Node))
                 {
-                    var tmpFont = this.DPIScaleFont(TipsFont);
-                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), tmpFont);
+                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
                     float tipsLeft = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - sfMax - sfMax;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
@@ -635,17 +640,31 @@ namespace Sunny.UI
                         if (MenuHelper[e.Node].TipsCustom)
                         {
                             e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), tmpFont, MenuHelper[e.Node].TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
                         }
                         else
                         {
                             e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), tmpFont, TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
                         }
                     }
-
-                    tmpFont.Dispose();
                 }
+            }
+        }
+
+        Font tmpFont;
+
+        private Font TempFont
+        {
+            get
+            {
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
+                {
+                    tmpFont?.Dispose();
+                    tmpFont = this.DPIScaleFont(TipsFont);
+                }
+
+                return tmpFont;
             }
         }
 
