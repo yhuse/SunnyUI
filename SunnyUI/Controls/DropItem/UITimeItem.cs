@@ -587,12 +587,12 @@ namespace Sunny.UI
         {
             time = new DateTime(DateTime.MinValue.Year, DateTime.MinValue.Month, DateTime.MinValue.Day, Hour, Minute, Second);
             DoValueChanged(this, time);
-            CloseParent();
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         public override void SetStyle(UIBaseStyle style)

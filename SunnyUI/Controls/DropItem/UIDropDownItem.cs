@@ -88,19 +88,19 @@ namespace Sunny.UI
         /// <summary>
         /// 关闭弹出窗口
         /// </summary>
-        protected void CloseParent()
+        public void Close()
         {
             UIDropDown parent = (UIDropDown)Parent;
             parent?.Close();
         }
 
-        public void Close()
-        {
-            CloseParent();
-        }
-
         public virtual void SetStyle(UIBaseStyle style)
         {
+        }
+
+        public virtual void InitShow()
+        {
+
         }
     }
 }

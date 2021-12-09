@@ -57,6 +57,26 @@ namespace Sunny.UI
             }
         }
 
+        public static Size Size(this SizeF size)
+        {
+            return new Size(size.Width.RoundEx(), size.Height.RoundEx());
+        }
+
+        public static Point Point(this PointF point)
+        {
+            return new Point(point.X.RoundEx(), point.Y.RoundEx());
+        }
+
+        public static Size Add(this Size size, int width, int height)
+        {
+            return new Size(size.Width + width, size.Height + height);
+        }
+
+        public static SizeF Add(this SizeF size, float width, float height)
+        {
+            return new SizeF(size.Width + width, size.Height + height);
+        }
+
         /// <summary>
         /// 点是否在区域内
         /// </summary>
@@ -126,7 +146,7 @@ namespace Sunny.UI
         /// 提供一个Graphics，常用于需要计算文字大小时
         /// </summary>
         /// <returns>大小</returns>
-        public static Graphics Graphics()
+        private static Graphics Graphics()
         {
             if (TempGraphics == null)
             {

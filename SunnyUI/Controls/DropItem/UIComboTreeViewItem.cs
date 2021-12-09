@@ -145,7 +145,7 @@ namespace Sunny.UI
                 if (e.Node.Nodes.Count == 0 || CanSelectRootNode)
                 {
                     DoValueChanged(this, e.Node);
-                    CloseParent();
+                    Close();
                 }
             }
         }
@@ -159,13 +159,13 @@ namespace Sunny.UI
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         private void btnOK_Click(object sender, System.EventArgs e)
         {
             DoValueChanged(this, treeView.Nodes);
-            CloseParent();
+            Close();
         }
     }
 }

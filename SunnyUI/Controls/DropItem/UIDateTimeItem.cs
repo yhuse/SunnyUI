@@ -1089,14 +1089,14 @@ namespace Sunny.UI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             DateTime time = new DateTime(Date.Year, Date.Month, Date.Day, Hour, Minute, Second);
             DoValueChanged(this, time);
-            CloseParent();
+            Close();
         }
 
         private void hc_DoubleClick(object sender, EventArgs e)

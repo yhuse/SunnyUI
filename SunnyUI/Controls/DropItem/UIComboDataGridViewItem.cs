@@ -262,12 +262,12 @@ namespace Sunny.UI
                     DoValueChanged(this, dataGridView.SelectedIndex);
             }
 
-            CloseParent();
+            Close();
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         public bool ShowFilter
@@ -316,6 +316,19 @@ namespace Sunny.UI
             edtFilter.Text = "";
             btnSearch.PerformClick();
             DoValueChanged(this, null);
+        }
+
+        public override void InitShow()
+        {
+            if (ShowFilter)
+            {
+                edtFilter.Focus();
+                edtFilter.SelectAll();
+            }
+            else
+            {
+                btnOK.Focus();
+            }
         }
     }
 }

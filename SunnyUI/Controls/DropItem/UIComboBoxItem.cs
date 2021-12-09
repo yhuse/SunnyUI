@@ -44,7 +44,7 @@ namespace Sunny.UI
 
         private void ListBox_Click(object sender, EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Sunny.UI
         {
             if (e.KeyCode == System.Windows.Forms.Keys.Enter || e.KeyCode == System.Windows.Forms.Keys.Space)
             {
-                CloseParent();
+                Close();
             }
         }
     }

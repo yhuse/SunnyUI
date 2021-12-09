@@ -592,7 +592,7 @@ namespace Sunny.UI
             {
                 date = new DateTime(Year, Month, 1);
                 DoValueChanged(this, Date);
-                CloseParent();
+                Close();
             }
             else
             {
@@ -667,7 +667,7 @@ namespace Sunny.UI
             {
                 date = new DateTime(Year, 1, 1);
                 DoValueChanged(this, Date);
-                CloseParent();
+                Close();
             }
             else
             {
@@ -771,7 +771,7 @@ namespace Sunny.UI
             }
 
             DoValueChanged(this, Date);
-            CloseParent();
+            Close();
         }
 
         public Color PrimaryColor { get; set; } = UIColor.Blue;

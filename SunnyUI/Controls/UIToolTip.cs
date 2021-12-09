@@ -174,32 +174,27 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        var bmp = new Bitmap(e.ToolTipSize.Width, e.ToolTipSize.Height);
-                        var g = Graphics.FromImage(bmp);
                         int symbolWidth = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
-
-
                         SizeF titleSize = new SizeF(0, 0);
                         if (tooltip.Title.IsValid())
                         {
-                            titleSize = g.MeasureString(tooltip.Title, TempTitleFont);
+                            titleSize = GDI.MeasureString(tooltip.Title, TempTitleFont);
                         }
 
-                        SizeF textSize = g.MeasureString(tooltip.ToolTipText, TempTitleFont);
+                        SizeF textSize = GDI.MeasureString(tooltip.ToolTipText, TempFont);
                         int allWidth = (int)Math.Max(textSize.Width, titleSize.Width) + 10;
                         if (symbolWidth > 0) allWidth = allWidth + symbolWidth + 5;
                         int allHeight = titleSize.Height > 0 ?
                             (int)titleSize.Height + (int)textSize.Height + 15 :
                             (int)textSize.Height + 10;
                         e.ToolTipSize = new Size(allWidth, allHeight);
-                        bmp.Dispose();
                     }
                 }
             }
             else
             {
-                SizeF sf = GDI.MeasureString(GetToolTip(e.AssociatedControl), TempTitleFont);
-                e.ToolTipSize = new Size((int)sf.Width + 10, (int)sf.Height + 10);
+                SizeF sf = GDI.MeasureString(GetToolTip(e.AssociatedControl), TempFont);
+                e.ToolTipSize = sf.Size().Add(10, 10);
             }
         }
 
@@ -269,13 +264,13 @@ namespace Sunny.UI
                         e.Bounds.Width - 5, 5 + titleSize.Height + 3);
                 }
 
-                e.Graphics.DrawString(e.ToolTipText, TempTitleFont, ForeColor,
+                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor,
                     tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5,
                     titleSize.Height > 0 ? 10 + titleSize.Height : 5);
             }
             else
             {
-                e.Graphics.DrawString(e.ToolTipText, TempTitleFont, ForeColor, 5, 5);
+                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor, 5, 5);
             }
         }
 

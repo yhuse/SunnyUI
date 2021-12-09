@@ -578,13 +578,13 @@ namespace Sunny.UI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CloseParent();
+            Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             DoValueChanged(this, SelectedColor);
-            CloseParent();
+            Close();
         }
 
         private void m_colorSample_Paint(object sender, System.Windows.Forms.PaintEventArgs e)

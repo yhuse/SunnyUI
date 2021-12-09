@@ -301,6 +301,7 @@ namespace Sunny.UI
         protected override void OnOpened(EventArgs e)
         {
             Item.Focus();
+            Item.InitShow();
             base.OnOpened(e);
         }
 
