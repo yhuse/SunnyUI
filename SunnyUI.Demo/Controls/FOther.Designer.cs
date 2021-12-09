@@ -44,6 +44,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel3.AutoSize = true;
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.IsScaled = false;
             this.uiLabel3.Location = new System.Drawing.Point(31, 136);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(138, 21);
@@ -55,6 +56,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.IsScaled = false;
             this.uiLabel2.Location = new System.Drawing.Point(211, 95);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(138, 21);
@@ -66,16 +68,19 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.IsScaled = false;
             this.uiLabel1.Location = new System.Drawing.Point(31, 95);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(138, 21);
             this.uiLabel1.TabIndex = 77;
             this.uiLabel1.Text = "鼠标移过来看提示";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiToolTip1.SetToolTip(this.uiLabel1, "赠人玫瑰手有余香");
             // 
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.IsScaled = false;
             this.uiLine7.Location = new System.Drawing.Point(30, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -90,6 +95,7 @@ namespace Sunny.UI.Demo
             this.uiScrollingText2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiScrollingText2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiScrollingText2.IsScaled = false;
             this.uiScrollingText2.Location = new System.Drawing.Point(381, 129);
             this.uiScrollingText2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText2.Name = "uiScrollingText2";
@@ -103,6 +109,7 @@ namespace Sunny.UI.Demo
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
+            this.uiScrollingText1.IsScaled = false;
             this.uiScrollingText1.Location = new System.Drawing.Point(381, 88);
             this.uiScrollingText1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText1.Name = "uiScrollingText1";
@@ -116,6 +123,7 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.IsScaled = false;
             this.uiLine6.Location = new System.Drawing.Point(381, 55);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -130,6 +138,7 @@ namespace Sunny.UI.Demo
             this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
+            this.uiToolTip1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             // 
             // FOther
             // 
