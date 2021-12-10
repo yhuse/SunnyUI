@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-08-14: V2.2.7 增加字体调整
+ * 2020-12-10: V3.0.9 增加Readonly属性
 ******************************************************************************/
 
 using System;
@@ -131,6 +132,8 @@ namespace Sunny.UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (ReadOnly) return;
+
             Value += Step;
             if (edit.Visible)
             {
@@ -141,6 +144,8 @@ namespace Sunny.UI
 
         private void btnDec_Click(object sender, EventArgs e)
         {
+            if (ReadOnly) return;
+
             Value -= Step;
             if (edit.Visible)
             {
@@ -260,6 +265,8 @@ namespace Sunny.UI
         private Color pnlColor;
         private void pnlValue_DoubleClick(object sender, EventArgs e)
         {
+            if (ReadOnly) return;
+
             edit.Left = 1;
             edit.Top = (pnlValue.Height - edit.Height) / 2;
             edit.Width = pnlValue.Width - 2;
@@ -272,5 +279,9 @@ namespace Sunny.UI
             edit.Focus();
             edit.SelectAll();
         }
+
+        [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
+        public bool ReadOnly { get; set; }
     }
 }
