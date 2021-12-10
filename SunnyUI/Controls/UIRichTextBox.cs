@@ -74,6 +74,11 @@ namespace Sunny.UI
             return edit;
         }
 
+        public void Clear()
+        {
+            edit.Clear();
+        }
+
         public RichTextBox RichTextBox => edit;
 
         public override Color BackColor { get => edit.BackColor; set { edit.BackColor = base.BackColor = value; } }

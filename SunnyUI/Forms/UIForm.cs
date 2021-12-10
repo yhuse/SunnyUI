@@ -1415,7 +1415,7 @@ namespace Sunny.UI
         {
             if (CloseAskString.IsValid())
             {
-                if (!this.ShowAskDialog(CloseAskString))
+                if (!this.ShowAskDialog(CloseAskString, false))
                 {
                     e.Cancel = true;
                 }

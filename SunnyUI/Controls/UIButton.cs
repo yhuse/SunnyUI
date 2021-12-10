@@ -22,6 +22,7 @@
  * 2020-08-22: V2.2.7 空格键按下press背景效果，添加双击事件，解决因快速点击导致过慢问题
  * 2020-09-14: V2.2.7 Tips颜色可设置
  * 2021-07-18: V3.0.5 增加ShowFocusColor，用来显示Focus状态
+ * 2021-12-11: V3.0.9 增加了渐变色
 ******************************************************************************/
 
 using System;
@@ -76,8 +77,22 @@ namespace Sunny.UI
 
         protected override void OnClick(EventArgs e)
         {
+            Form form = FindFormInternal();
+            if (form != null) form.DialogResult = DialogResult;
+
             Focus();
             base.OnClick(e);
+        }
+
+        internal Form FindFormInternal()
+        {
+            Control cur = this;
+            while (cur != null && !(cur is Form))
+            {
+                cur = cur.Parent;
+            }
+
+            return (Form)cur;
         }
 
         private bool showTips = false;
@@ -139,13 +154,23 @@ namespace Sunny.UI
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
-            if (!selected)
+            if (FillColorGradient)
             {
-                base.OnPaintFill(g, path);
+                if (IsHover || IsPress || Selected)
+                {
+                    base.OnPaintFill(g, path);
+                }
+                else
+                {
+                    LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                    br.GammaCorrection = true;
+                    g.FillPath(br, path);
+                    br.Dispose();
+                }
             }
             else
             {
-                g.FillPath(FillSelectedColor, path);
+                base.OnPaintFill(g, path);
             }
         }
 
@@ -272,6 +297,32 @@ namespace Sunny.UI
         {
             get => fillColor;
             set => SetFillColor(value);
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color FillColor2
+        {
+            get => fillColor2;
+            set => SetFillColor2(value);
+        }
+
+        [Description("填充颜色渐变"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool FillColorGradient
+        {
+            get => fillColorGradient;
+            set
+            {
+                if (fillColorGradient != value)
+                {
+                    fillColorGradient = value;
+                    Invalidate();
+                }
+            }
         }
 
         /// <summary>

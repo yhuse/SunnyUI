@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2021-05-09: V3.0.3 增加双缓冲，减少闪烁
  * 2021-09-03: V3.0.6 支持背景图片显示
+ * 2021-12-11: V3.0.9 增加了渐变色
 ******************************************************************************/
 
 using System;
@@ -264,6 +265,53 @@ namespace Sunny.UI
             }
         }
 
+        private bool fillColorGradient;
+
+        [Description("填充颜色渐变"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool FillColorGradient
+        {
+            get => fillColorGradient;
+            set
+            {
+                if (fillColorGradient != value)
+                {
+                    fillColorGradient = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 设置填充颜色
+        /// </summary>
+        /// <param name="value">颜色</param>
+        protected void SetFillColor2(Color value)
+        {
+            if (fillColor2 != value)
+            {
+                fillColor2 = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 填充颜色
+        /// </summary>
+        protected Color fillColor2 = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color FillColor2
+        {
+            get => fillColor2;
+            set => SetFillColor2(value);
+        }
+
         protected void SetFillDisableColor(Color color)
         {
             fillDisableColor = color;
@@ -468,10 +516,25 @@ namespace Sunny.UI
         {
             Color color = GetFillColor();
 
-            if (RadiusSides == UICornerRadiusSides.None)
-                g.Clear(color);
+            if (fillColorGradient)
+            {
+                LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                br.GammaCorrection = true;
+
+                if (RadiusSides == UICornerRadiusSides.None)
+                    g.FillRectangle(br, ClientRectangle);
+                else
+                    g.FillPath(br, path);
+
+                br.Dispose();
+            }
             else
-                g.FillPath(color, path);
+            {
+                if (RadiusSides == UICornerRadiusSides.None)
+                    g.Clear(color);
+                else
+                    g.FillPath(color, path);
+            }
         }
 
         protected virtual void AfterSetFillColor(Color color)
@@ -521,7 +584,7 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            fillColor = uiColor.PlainColor;
+            fillColor2 = fillColor = uiColor.PlainColor;
             rectColor = uiColor.RectColor;
             foreColor = uiColor.PanelForeColor;
 

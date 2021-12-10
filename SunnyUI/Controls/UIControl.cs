@@ -261,6 +261,7 @@ namespace Sunny.UI
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
             fillColor = uiColor.ButtonFillColor;
+            fillColor2 = uiColor.ButtonFillColor2;
             rectColor = uiColor.RectColor;
             foreColor = uiColor.ButtonForeColor;
 
@@ -352,7 +353,7 @@ namespace Sunny.UI
             if (IsDisposed) return;
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides);
+            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides, RectSize);
 
             //填充背景色
             if (ShowFill && fillColor.IsValid())
@@ -452,6 +453,29 @@ namespace Sunny.UI
             g.FillPath(color, path);
         }
 
+        private int rectSize = 1;
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("边框宽度"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int RectSize
+        {
+            get => rectSize;
+            set
+            {
+                int v = value;
+                if (v > 2) v = 2;
+                if (v < 1) v = 1;
+                if (rectSize != v)
+                {
+                    rectSize = v;
+                    Invalidate();
+                }
+            }
+        }
+
         private void PaintRectDisableSides(Graphics g)
         {
             //IsRadius为False时，显示左侧边线
@@ -472,85 +496,86 @@ namespace Sunny.UI
             //IsRadius为True时，显示右下圆角
             bool RadiusRightBottom = RadiusSides.GetValue(UICornerRadiusSides.RightBottom);
 
-            var ShowRadius = RadiusSides > 0;
-            using (Pen pen = new Pen(GetFillColor()))
-            using (Pen penR = new Pen(GetRectColor()))
+            var ShowRadius = RadiusSides > 0;//肯定少有一个角显示圆角
+
+            if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+            {
+                g.DrawLine(GetRectColor(), 0, 0, 0, Height - 1);
+            }
+
+            if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
+            {
+                g.DrawLine(GetRectColor(), 0, 0, Width - 1, 0);
+            }
+
+            if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
+            {
+                g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height - 1);
+            }
+
+            if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
+            {
+                g.DrawLine(GetRectColor(), 0, Height - 1, Width - 1, Height - 1);
+            }
+
+            if (!ShowRectLeft)
             {
                 if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
                 {
-                    g.DrawLine(penR, 0, 0, 0, Height - 1);
+                    g.DrawLine(GetFillColor(), 0, RectSize, 0, Height - 1 - RectSize);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), 1, RectSize, 1, Height - 1 - RectSize);
                 }
+            }
 
+            if (!ShowRectTop)
+            {
                 if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
                 {
-                    g.DrawLine(penR, 0, 0, Width - 1, 0);
+                    g.DrawLine(GetFillColor(), RectSize, 0, Width - 1 - RectSize, 0);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, 1, Width - 1 - RectSize, 1);
                 }
+            }
 
+            if (!ShowRectRight)
+            {
                 if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
                 {
-                    g.DrawLine(penR, Width - 1, 0, Width - 1, Height - 1);
+                    g.DrawLine(GetFillColor(), Width - 1, RectSize, Width - 1, Height - 1 - RectSize);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), Width - 2, RectSize, Width - 2, Height - 1 - RectSize);
                 }
+            }
 
+            if (!ShowRectBottom)
+            {
                 if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
                 {
-                    g.DrawLine(penR, 0, Height - 1, Width - 1, Height - 1);
+                    g.DrawLine(GetFillColor(), RectSize, Height - 1, Width - 1 - RectSize, Height - 1);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, Height - 2, Width - 1 - RectSize, Height - 2);
                 }
+            }
 
-                if (!ShowRectLeft)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                    {
-                        g.DrawLine(pen, 0, 1, 0, Height - 2);
-                    }
-                }
+            if (!ShowRectLeft && !ShowRectTop)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), 0, 0, RectSize, RectSize);
+            }
 
-                if (!ShowRectTop)
-                {
-                    if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
-                    {
-                        g.DrawLine(pen, 1, 0, Width - 2, 0);
-                    }
-                }
+            if (!ShowRectRight && !ShowRectTop)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, 0, RectSize, RectSize);
+            }
 
-                if (!ShowRectRight)
-                {
-                    if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
-                    {
-                        g.DrawLine(pen, Width - 1, 1, Width - 1, Height - 2);
-                    }
-                }
+            if (!ShowRectLeft && !ShowRectBottom)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), 0, Height - 1 - RectSize, RectSize, RectSize);
+            }
 
-                if (!ShowRectBottom)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
-                    {
-                        g.DrawLine(pen, 1, Height - 1, Width - 2, Height - 1);
-                    }
-                }
-
-                if (!ShowRectLeft && !ShowRectTop)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, 0, 0, 0, 1);
-                }
-
-                if (!ShowRectRight && !ShowRectTop)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, Width - 1, 0, Width - 1, 1);
-                }
-
-                if (!ShowRectLeft && !ShowRectBottom)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, 0, Height - 1, 0, Height - 2);
-                }
-
-                if (!ShowRectRight && !ShowRectBottom)
-                {
-                    if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, Width - 1, Height - 1, Width - 1, Height - 2);
-                }
+            if (!ShowRectRight && !ShowRectBottom)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, Height - 1 - RectSize, RectSize, RectSize);
             }
         }
 
@@ -561,8 +586,7 @@ namespace Sunny.UI
         /// <param name="path">路径</param>
         protected virtual void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            Color color = GetRectColor();
-            g.DrawPath(color, path);
+            g.DrawPath(GetRectColor(), path, true, RectSize);
             PaintRectDisableSides(g);
         }
 
@@ -593,10 +617,17 @@ namespace Sunny.UI
         /// </summary>
         protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
 
+        protected bool fillColorGradient = false;
+
         /// <summary>
         /// 填充颜色
         /// </summary>
         protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
+
+        /// <summary>
+        /// 填充颜色
+        /// </summary>
+        protected Color fillColor2 = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
 
         /// <summary>
         /// 字体颜色
@@ -805,6 +836,20 @@ namespace Sunny.UI
             if (fillColor != value)
             {
                 fillColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 设置填充颜色
+        /// </summary>
+        /// <param name="value">颜色</param>
+        protected void SetFillColor2(Color value)
+        {
+            if (fillColor2 != value)
+            {
+                fillColor2 = value;
                 _style = UIStyle.Custom;
                 Invalidate();
             }
