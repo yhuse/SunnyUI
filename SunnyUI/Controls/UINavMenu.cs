@@ -22,6 +22,7 @@
  * 2021-06-14: V3.0.4 增加右侧图标
  * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头
  * 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
+ * 2021-12-13: V3.0.9 选中项可设置背景色渐变
 ******************************************************************************/
 
 using System;
@@ -29,6 +30,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -291,6 +293,53 @@ namespace Sunny.UI
             }
         }
 
+        private bool fillColorGradient;
+
+        [Description("填充颜色渐变"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool SelectedColorGradient
+        {
+            get => fillColorGradient;
+            set
+            {
+                if (fillColorGradient != value)
+                {
+                    fillColorGradient = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 设置填充颜色
+        /// </summary>
+        /// <param name="value">颜色</param>
+        private void SetFillColor2(Color value)
+        {
+            if (selectedColor2 != value)
+            {
+                selectedColor2 = value;
+                menuStyle = UIMenuStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 填充颜色
+        /// </summary>
+        private Color selectedColor2 = Color.FromArgb(36, 36, 36);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "36, 36, 36")]
+        public Color SelectedColor2
+        {
+            get => selectedColor2;
+            set => SetFillColor2(value);
+        }
+
         private Color selectedHighColor = UIColor.Blue;
 
         /// <summary>
@@ -372,6 +421,7 @@ namespace Sunny.UI
             BackColor = uiColor.BackColor;
             fillColor = uiColor.BackColor;
             selectedColor = uiColor.SelectedColor;
+            selectedColor2 = uiColor.SelectedColor2;
             foreColor = uiColor.UnSelectedForeColor;
             hoverColor = uiColor.HoverColor;
             secondBackColor = uiColor.SecondBackColor;
@@ -556,8 +606,26 @@ namespace Sunny.UI
                 SizeF sf = e.Graphics.MeasureString(e.Node.Text, Font);
                 if (e.Node == SelectedNode)
                 {
-                    e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
-                        new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                    if (SelectedColorGradient)
+                    {
+                        if ((e.State & TreeNodeStates.Hot) != 0)
+                        {
+                            e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+
+                        }
+                        else
+                        {
+                            LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
+                            br.GammaCorrection = true;
+                            e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                            br.Dispose();
+                        }
+                    }
+                    else
+                    {
+                        e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
+                           new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                    }
 
                     e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                     e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));

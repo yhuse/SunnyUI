@@ -21,6 +21,7 @@
  * 2021-05-09: V3.0.3 增加双缓冲，减少闪烁
  * 2021-09-03: V3.0.6 支持背景图片显示
  * 2021-12-11: V3.0.9 增加了渐变色
+ * 2021-12-13: V3.0.9 边框线宽可设置1或者2
 ******************************************************************************/
 
 using System;
@@ -371,7 +372,7 @@ namespace Sunny.UI
             if (IsDisposed) return;
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides);
+            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides, RectSize);
 
             //填充背景色
             if (BackgroundImage == null && ShowFill && fillColor.IsValid())
@@ -406,8 +407,12 @@ namespace Sunny.UI
 
         protected virtual void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            Color color = GetRectColor();
+            g.DrawPath(GetRectColor(), path, true, RectSize);
+            PaintRectDisableSides(g);
+        }
 
+        private void PaintRectDisableSides(Graphics g)
+        {
             //IsRadius为False时，显示左侧边线
             bool ShowRectLeft = RectSides.GetValue(ToolStripStatusLabelBorderSides.Left);
             //IsRadius为False时，显示上侧边线
@@ -426,89 +431,86 @@ namespace Sunny.UI
             //IsRadius为True时，显示右下圆角
             bool RadiusRightBottom = RadiusSides.GetValue(UICornerRadiusSides.RightBottom);
 
-            if (RadiusSides == UICornerRadiusSides.None)
-                g.DrawRectangle(new Pen(color), 0, 0, Width - 1, Height - 1);
-            else
-                g.DrawPath(color, path);
+            var ShowRadius = RadiusSides > 0;//肯定少有一个角显示圆角
 
-            using (Pen pen = new Pen(fillColor))
-            using (Pen penR = new Pen(rectColor))
+            if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
             {
-                if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                {
-                    g.DrawLine(penR, 0, 0, 0, Height - 1);
-                }
+                g.DrawLine(GetRectColor(), 0, 0, 0, Height - 1);
+            }
 
-                if (!ShowRadius || (ShowRadius && !RadiusRightTop && !RadiusLeftTop))
-                {
-                    g.DrawLine(penR, 0, 0, Width - 1, 0);
-                }
+            if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
+            {
+                g.DrawLine(GetRectColor(), 0, 0, Width - 1, 0);
+            }
 
-                if (!ShowRadius || (ShowRadius && !RadiusRightTop && !RadiusRightBottom))
-                {
-                    g.DrawLine(penR, Width - 1, 0, Width - 1, Height - 1);
-                }
+            if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
+            {
+                g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height - 1);
+            }
 
-                if (!ShowRectLeft)
-                {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                    {
-                        g.DrawLine(pen, 0, 1, 0, Height - 2);
-                    }
-                }
+            if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
+            {
+                g.DrawLine(GetRectColor(), 0, Height - 1, Width - 1, Height - 1);
+            }
 
-                if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusRightBottom))
+            if (!ShowRectLeft)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
                 {
-                    g.DrawLine(penR, 0, Height - 1, Width - 1, Height - 1);
+                    g.DrawLine(GetFillColor(), 0, RectSize, 0, Height - 1 - RectSize);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), 1, RectSize, 1, Height - 1 - RectSize);
                 }
+            }
 
-                if (!ShowRectTop)
+            if (!ShowRectTop)
+            {
+                if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
                 {
-                    if (!ShowRadius || (ShowRadius && !RadiusRightTop && !RadiusLeftTop))
-                    {
-                        g.DrawLine(pen, 1, 0, Width - 2, 0);
-                    }
+                    g.DrawLine(GetFillColor(), RectSize, 0, Width - 1 - RectSize, 0);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, 1, Width - 1 - RectSize, 1);
                 }
+            }
 
-                if (!ShowRectRight)
+            if (!ShowRectRight)
+            {
+                if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
                 {
-                    if (!ShowRadius || (ShowRadius && !RadiusRightTop && !RadiusRightBottom))
-                    {
-                        g.DrawLine(pen, Width - 1, 1, Width - 1, Height - 2);
-                    }
+                    g.DrawLine(GetFillColor(), Width - 1, RectSize, Width - 1, Height - 1 - RectSize);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), Width - 2, RectSize, Width - 2, Height - 1 - RectSize);
                 }
+            }
 
-                if (!ShowRectBottom)
+            if (!ShowRectBottom)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
                 {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusRightBottom))
-                    {
-                        g.DrawLine(pen, 1, Height - 1, Width - 2, Height - 1);
-                    }
+                    g.DrawLine(GetFillColor(), RectSize, Height - 1, Width - 1 - RectSize, Height - 1);
+                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, Height - 2, Width - 1 - RectSize, Height - 2);
                 }
+            }
 
-                if (!ShowRectLeft && !ShowRectTop)
-                {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, 0, 0, 0, 1);
-                }
+            if (!ShowRectLeft && !ShowRectTop)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), 0, 0, RectSize, RectSize);
+            }
 
-                if (!ShowRectRight && !ShowRectTop)
-                {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, Width - 1, 0, Width - 1, 1);
-                }
+            if (!ShowRectRight && !ShowRectTop)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, 0, RectSize, RectSize);
+            }
 
-                if (!ShowRectLeft && !ShowRectBottom)
-                {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, 0, Height - 1, 0, Height - 2);
-                }
+            if (!ShowRectLeft && !ShowRectBottom)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), 0, Height - 1 - RectSize, RectSize, RectSize);
+            }
 
-                if (!ShowRectRight && !ShowRectBottom)
-                {
-                    if (!ShowRadius || (ShowRadius && !RadiusLeftBottom && !RadiusLeftTop))
-                        g.DrawLine(pen, Width - 1, Height - 1, Width - 1, Height - 2);
-                }
+            if (!ShowRectRight && !ShowRectBottom)
+            {
+                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, Height - 1 - RectSize, RectSize, RectSize);
             }
         }
 
@@ -695,5 +697,28 @@ namespace Sunny.UI
         public delegate void OnTextAlignmentChange(object sender, ContentAlignment alignment);
 
         public event OnTextAlignmentChange TextAlignmentChange;
+
+        private int rectSize = 1;
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("边框宽度"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int RectSize
+        {
+            get => rectSize;
+            set
+            {
+                int v = value;
+                if (v > 2) v = 2;
+                if (v < 1) v = 1;
+                if (rectSize != v)
+                {
+                    rectSize = v;
+                    Invalidate();
+                }
+            }
+        }
     }
 }
