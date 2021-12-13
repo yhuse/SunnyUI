@@ -34,10 +34,10 @@ namespace Sunny.UI.Demo
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FEdit frm = new FEdit();
-            frm.ShowDialog();
+            frm.ShowDialogWithMask();
             if (frm.IsOK)
             {
-                this.ShowSuccessDialog(frm.Person.ToString());
+                ShowSuccessDialog(frm.Person.ToString());
             }
 
             frm.Dispose();

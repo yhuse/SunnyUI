@@ -20,6 +20,7 @@
  * 2020-05-05: V2.2.5 增加下拉选择框，进度提升窗体
  * 2021-05-09: V3.0.3 增加RemovePage接口，更改GetTopMost为原生接口TopMost
  * 2021-06-27: V3.0.4 增加一个反馈的接口，Feedback，Page可将对象反馈给Frame
+ * 2021-12-13: V3.0.9 增加全屏遮罩，Form的ShowDialogWithMask()扩展方法
 ******************************************************************************/
 
 using System;
@@ -173,32 +174,18 @@ namespace Sunny.UI
         {
             Point pt = SystemEx.GetCursorPos();
             Rectangle screen = Screen.GetBounds(pt);
-
-            Form mask = null;
-            if (showMask)
-            {
-                mask = new Form();
-                mask.FormBorderStyle = FormBorderStyle.None;
-                mask.BackColor = Color.FromArgb(0, 0, 0);
-                mask.Opacity = 0.5;
-                mask.ShowInTaskbar = false;
-                mask.StartPosition = FormStartPosition.Manual;
-                mask.Bounds = screen;
-                mask.Show();
-                mask.TopMost = true;
-                Application.DoEvents();
-            }
-
             UIMessageForm frm = new UIMessageForm();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
-            frm.TopMost = showMask || topMost;
-            frm.ShowDialog();
+
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
+
             bool isOk = frm.IsOK;
             frm.Dispose();
-
-            mask?.Close();
             return isOk;
         }
     }
@@ -535,6 +522,76 @@ namespace Sunny.UI
 
     public static class FormEx
     {
+        internal class FMask : Form
+        {
+            public FMask()
+            {
+                this.SuspendLayout();
+                this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                this.BackColor = Color.Black;
+                this.ClientSize = new System.Drawing.Size(800, 450);
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                this.Name = "FMask";
+                this.Opacity = 0.5D;
+                this.ShowInTaskbar = false;
+                this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+                this.Text = "FMask";
+                this.TopMost = true;
+                this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FMask_MouseClick);
+                this.ResumeLayout(false);
+            }
+
+            protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+            {
+                int num = 256;
+                int num2 = 260;
+                if (msg.Msg == num | msg.Msg == num2)
+                {
+                    if (keyData == Keys.Escape)
+                    {
+                        Close();
+                    }
+                }
+
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            private void FMask_MouseClick(object sender, MouseEventArgs e)
+            {
+                Close();
+            }
+
+            private System.ComponentModel.IContainer components = null;
+
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing && (components != null))
+                {
+                    components.Dispose();
+                }
+
+                base.Dispose(disposing);
+            }
+        }
+
+        public static DialogResult ShowDialogWithMask(this Form form)
+        {
+            Point pt = SystemEx.GetCursorPos();
+            Rectangle screen = Screen.GetBounds(pt);
+            FMask mask = new FMask();
+            mask.Bounds = screen;
+            mask.Show();
+
+            form.ShowInTaskbar = false;
+            form.TopMost = true;
+            DialogResult dr = form.ShowDialog();
+            mask.Dispose();
+
+            return dr;
+        }
+
+        [Obsolete("已弃用，直接调用Form的ShowDialogWithMask扩展方法")]
         public static Form ShowFullMask(this Form form)
         {
             Point pt = SystemEx.GetCursorPos();
@@ -552,6 +609,7 @@ namespace Sunny.UI
             return mask;
         }
 
+        [Obsolete("已弃用，直接调用Form的ShowDialogWithMask扩展方法")]
         public static Form ShowControlMask(this Control control)
         {
             bool topmost = false;
@@ -581,6 +639,7 @@ namespace Sunny.UI
             return mask;
         }
 
+        [Obsolete("已弃用，直接调用Form的ShowDialogWithMask扩展方法")]
         public static void EndShow(this Form maskForm)
         {
             if (maskForm.Tag is Form form)
@@ -589,6 +648,7 @@ namespace Sunny.UI
             }
         }
 
+        [Obsolete("已弃用，直接调用Form的ShowDialogWithMask扩展方法")]
         public static void ShowInMask(this Form frm, Form maskForm)
         {
             frm.StartPosition = FormStartPosition.Manual;
