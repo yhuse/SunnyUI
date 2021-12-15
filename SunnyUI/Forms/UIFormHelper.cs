@@ -243,7 +243,8 @@ namespace Sunny.UI
 
     public static class UIInputDialog
     {
-        public static bool InputStringDialog(ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputStringDialog(ref string value, bool checkEmpty = true,
+            string desc = "请输入字符串：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -252,7 +253,10 @@ namespace Sunny.UI
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;
             frm.CheckInputEmpty = checkEmpty;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.Text;
@@ -262,22 +266,26 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputStringDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
+        public static bool InputStringDialog(this UIForm form, ref string value, bool checkEmpty = true,
+            string desc = "请输入字符串：", bool showMask = false)
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputStringDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：")
+        public static bool InputStringDialog(this UIPage form, ref string value, bool checkEmpty = true,
+            string desc = "请输入字符串：", bool showMask = false)
         {
-            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputStringDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputStringDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：", UIStyle style = UIStyle.Blue)
+        public static bool InputStringDialog(this Form form, ref string value, bool checkEmpty = true,
+            string desc = "请输入字符串：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputStringDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputStringDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputPasswordDialog(ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputPasswordDialog(ref string value, bool checkEmpty = true,
+            string desc = "请输入密码：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -286,7 +294,10 @@ namespace Sunny.UI
             frm.Label.Text = desc;
             frm.Editor.PasswordChar = '*';
             frm.CheckInputEmpty = checkEmpty;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.Text;
@@ -296,22 +307,26 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputPasswordDialog(this UIForm form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
+        public static bool InputPasswordDialog(this UIForm form, ref string value, bool checkEmpty = true,
+            string desc = "请输入密码：", bool showMask = false)
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputPasswordDialog(this UIPage form, ref string value, bool checkEmpty = true, string desc = "请输入密码：")
+        public static bool InputPasswordDialog(this UIPage form, ref string value, bool checkEmpty = true,
+            string desc = "请输入密码：", bool showMask = false)
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputPasswordDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputPasswordDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入密码：", UIStyle style = UIStyle.Blue)
+        public static bool InputPasswordDialog(this Form form, ref string value, bool checkEmpty = true,
+            string desc = "请输入密码：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputPasswordDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputPasswordDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputIntegerDialog(ref int value, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -321,7 +336,10 @@ namespace Sunny.UI
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;
             frm.CheckInputEmpty = checkEmpty;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.IntValue;
@@ -331,7 +349,8 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputIntegerDialog(ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputIntegerDialog(ref int value, int minimum, int maximum, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -346,7 +365,10 @@ namespace Sunny.UI
             frm.Editor.Maximum = maximum;
             frm.Editor.HasMaximum = true;
             frm.Editor.HasMinimum = true;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.IntValue;
@@ -356,37 +378,44 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputIntegerDialog(this UIForm form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputIntegerDialog(this UIForm form, ref int value, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(this UIPage form, ref int value, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputIntegerDialog(this UIPage form, ref int value, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(this Form form, ref int value, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        public static bool InputIntegerDialog(this Form form, ref int value, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputIntegerDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(this UIForm form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputIntegerDialog(this UIForm form, ref int value, int minimum, int maximum, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(this UIPage form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputIntegerDialog(this UIPage form, ref int value, int minimum, int maximum, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputIntegerDialog(this Form form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        public static bool InputIntegerDialog(this Form form, ref int value, int minimum, int maximum, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputIntegerDialog(ref value, minimum, maximum, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputDoubleDialog(ref double value, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -397,7 +426,10 @@ namespace Sunny.UI
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;
             frm.CheckInputEmpty = checkEmpty;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.DoubleValue;
@@ -407,7 +439,8 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputDoubleDialog(ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false)
+        public static bool InputDoubleDialog(ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool topMost = false, bool showMask = false)
         {
             UIInputForm frm = new UIInputForm();
             frm.TopMost = topMost;
@@ -422,7 +455,10 @@ namespace Sunny.UI
             frm.Editor.Maximum = maximum;
             frm.Editor.HasMaximum = true;
             frm.Editor.HasMinimum = true;
-            frm.ShowDialog();
+            if (showMask)
+                frm.ShowDialogWithMask();
+            else
+                frm.ShowDialog();
             if (frm.IsOK)
             {
                 value = frm.Editor.DoubleValue;
@@ -432,34 +468,40 @@ namespace Sunny.UI
             return false;
         }
 
-        public static bool InputDoubleDialog(this UIForm form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputDoubleDialog(this UIForm form, ref double value, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(this UIPage form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputDoubleDialog(this UIPage form, ref double value, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(this Form form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        public static bool InputDoubleDialog(this Form form, ref double value, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, decimals, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(this UIForm form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputDoubleDialog(this UIForm form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(this UIPage form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：")
+        public static bool InputDoubleDialog(this UIPage form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", bool showMask = false)
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, form != null ? form.Style : UIStyle.Blue, form != null && form.TopMost, showMask);
         }
 
-        public static bool InputDoubleDialog(this Form form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", UIStyle style = UIStyle.Blue)
+        public static bool InputDoubleDialog(this Form form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true,
+            string desc = "请输入数字：", UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, style, form != null && form.TopMost);
+            return InputDoubleDialog(ref value, minimum, maximum, decimals, checkEmpty, desc, style, form != null && form.TopMost, showMask);
         }
     }
 

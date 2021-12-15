@@ -64,7 +64,7 @@ namespace Sunny.UI.Demo
         private void btnStringInput_Click(object sender, EventArgs e)
         {
             string value = "请输入字符串";
-            if (this.InputStringDialog(ref value))
+            if (this.InputStringDialog(ref value, true, "请输入字符串：", true))
             {
                 ShowInfoDialog(value);
             }
