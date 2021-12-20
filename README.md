@@ -1,4 +1,18 @@
-﻿![SunnyUI](https://images.gitee.com/uploads/images/2021/0324/213615_54240ba9_416720.png "SunnyUI.png")
+## 🎉 2021年度OSC中国开源最受欢迎项目评选
+
+![2021年度OSC中国开源最受欢迎项目评选](https://gitee.com/dotnetchina/home/raw/master/assets/osc/2021osc.png)
+
+### 投票规则
+
+投票时间：2021年12月18日~2021年12月26日；**每个用户持有 5 票，同一项目只能投一票；分享后可增加一票。**
+
+| [投 SunnyUI 一票](https://www.oschina.net/project/top_cn_2021/?id=548) |[投 IoTSharp 一票](https://www.oschina.net/project/top_cn_2021/?id=302) | [投 CoreShop 一票](https://www.oschina.net/project/top_cn_2021/?id=580) | 
+| ---- | ---- | ---- |
+| [![SunnUI](https://gitee.com/dotnetchina/home/raw/master/assets/osc/2021SunnUI.png)](https://www.oschina.net/project/top_cn_2021/?id=548) |[![IoTSharp](https://gitee.com/dotnetchina/home/raw/master/assets/osc/2021IoTSharp.png)](https://www.oschina.net/project/top_cn_2021/?id=302) | [![CoreShop](https://gitee.com/dotnetchina/home/raw/master/assets/osc/2021CoreShop.png)](https://www.oschina.net/project/top_cn_2021/?id=580) | 
+
+请为他们投上一票 🤞🤞🤞
+﻿
+![SunnyUI](https://images.gitee.com/uploads/images/2021/0324/213615_54240ba9_416720.png "SunnyUI.png")
 
 [![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
 [![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)
