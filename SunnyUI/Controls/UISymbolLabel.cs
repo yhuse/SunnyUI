@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-04-23: V2.2.4 增加UISymbolLabel
+ * 2021-12-24: V3.0.9 修复Dock和AutoSize同时设置的Bug
 ******************************************************************************/
 
 using System;
@@ -219,10 +220,12 @@ namespace Sunny.UI
             SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
             SizeF TextSize = e.Graphics.MeasureString(Text, Font);
 
-            if (autoSize)
+            if (Dock == DockStyle.None && autoSize)
             {
-                Width = (int)(SymbolSize + ImageInterval * 3 + TextSize.Width);
-                Height = (int)Math.Max(SymbolSize, TextSize.Height);
+                int width = (int)(SymbolSize + ImageInterval * 3 + TextSize.Width);
+                int height = (int)Math.Max(SymbolSize, TextSize.Height);
+                if (Width != width) Width = width;
+                if (Height != height) Height = height;
             }
 
             if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.TopRight)
