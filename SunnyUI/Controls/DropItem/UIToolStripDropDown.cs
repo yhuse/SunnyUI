@@ -17,6 +17,7 @@
  * 创建日期: 2021-07-10
  *
  * 2021-07-10: V3.0.4 增加文件说明
+ * 2021-12-27: V3.0.9 增加一个显示方法
 ******************************************************************************/
 
 using System;
@@ -78,7 +79,32 @@ namespace Sunny.UI
         /// <param name="area">区域</param>
         public void Show(Control control, Rectangle area, Point offset)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
             itemForm.Show(control, area, offset);
+        }
+
+        public void Show(Control control, Point offset)
+        {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
+            itemForm.Show(control, offset);
+        }
+
+        public void Show(Control control, int x, int y)
+        {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
+            itemForm.Show(control, x, y);
         }
 
         /// <summary>
@@ -88,6 +114,11 @@ namespace Sunny.UI
         /// <param name="size">大小</param>
         public void Show(Control control, Size size)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
             itemForm.Show(control, size);
         }
 
@@ -98,6 +129,11 @@ namespace Sunny.UI
         /// <param name="size">大小</param>
         public void Show(Control control, Size size, Point offset)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
             itemForm.Show(control, size, offset);
         }
 
@@ -107,6 +143,11 @@ namespace Sunny.UI
         /// <param name="control">Control</param>
         public void Show(Control control)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
             itemForm.Show(control);
         }
 
