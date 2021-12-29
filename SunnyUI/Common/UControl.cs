@@ -25,7 +25,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -43,17 +42,14 @@ namespace Sunny.UI
             timer.Start();
         }
 
-        public static Point LocationOnScreen(this Control ctrl)
+        public static Rectangle ScreenRectangle(this Control ctrl)
         {
-            Point point = new Point(0, 0);
-            do
-            {
-                point.Offset(ctrl.Location);
-                ctrl = ctrl.Parent;
-            }
-            while (ctrl != null);
+            return ctrl.RectangleToScreen(ctrl.ClientRectangle);
+        }
 
-            return point;
+        public static Point ScreenLocation(this Control ctrl)
+        {
+            return ctrl.PointToScreen(new Point(0, 0));
         }
 
         public static Form RootForm(this Control ctrl)
@@ -318,7 +314,7 @@ namespace Sunny.UI
 
             return list;
         }
-        
+
         /// <summary>
         /// 查找包含接口名称的控件列表
         /// </summary>

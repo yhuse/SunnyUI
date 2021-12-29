@@ -24,6 +24,7 @@
  * 2021-07-29: V3.0.5 增加多选行
  * 2021-07-30: V3.0.5 选中项显示方角
  * 2021-08-04: V3.0.5 增加Items变更的事件
+ * 2021-12-29: V3.0.9 增加修改文字颜色
 ******************************************************************************/
 
 using System;
@@ -418,6 +419,15 @@ namespace Sunny.UI
             if (bar != null)
             {
                 bar.FillColor = color;
+            }
+        }
+
+        protected override void AfterSetForeColor(Color color)
+        {
+            base.AfterSetForeColor(color);
+            if (listbox != null)
+            {
+                listbox.ForeColor = color;
             }
         }
 

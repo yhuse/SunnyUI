@@ -673,7 +673,7 @@ namespace Sunny.UI
             mask.Tag = baseForm;
             mask.Text = topmost.ToString();
 
-            var pt = control.LocationOnScreen();
+            var pt = control.ScreenLocation();
             mask.Left = pt.X;
             mask.Top = pt.Y;
             mask.Show();
