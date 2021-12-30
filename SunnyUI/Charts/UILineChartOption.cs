@@ -33,6 +33,8 @@ namespace Sunny.UI
 
         public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
+        public UIAxis Y2Axis { get; set; } = new UIAxis(UIAxisType.Value);
+
         public UILineToolTip ToolTip { get; set; } = new UILineToolTip();
 
         public void Dispose()
@@ -44,13 +46,13 @@ namespace Sunny.UI
 
         public UIAxisType XAxisType { get; set; } = UIAxisType.Value;
 
-        public UIAxisType YAxisType { get; set; } = UIAxisType.Value;
-
         public ConcurrentDictionary<string, UILineSeries> Series = new ConcurrentDictionary<string, UILineSeries>();
 
         public readonly List<UIScaleLine> XAxisScaleLines = new List<UIScaleLine>();
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
+
+        public readonly List<UIScaleLine> Y2AxisScaleLines = new List<UIScaleLine>();
 
         public UILineWarningArea GreaterWarningArea { get; set; }
         public UILineWarningArea LessWarningArea { get; set; }
@@ -63,10 +65,10 @@ namespace Sunny.UI
             return series;
         }
 
-        public UILineSeries AddSeries(string name)
+        public UILineSeries AddSeries(string name, bool isY2 = false)
         {
             if (name.IsNullOrEmpty()) return null;
-            UILineSeries series = new UILineSeries(name);
+            UILineSeries series = new UILineSeries(name, isY2);
             AddSeries(series);
             return series;
         }
@@ -192,6 +194,20 @@ namespace Sunny.UI
             return cnt;
         }
 
+        public bool HaveY2
+        {
+            get
+            {
+                if (AllDataCount() == 0) return false;
+                foreach (var series in Series.Values)
+                {
+                    if (series.IsY2) return true;
+                }
+
+                return false;
+            }
+        }
+
         public void GetAllDataYRange(out double min, out double max)
         {
             if (AllDataCount() == 0)
@@ -205,6 +221,42 @@ namespace Sunny.UI
                 max = double.MinValue;
                 foreach (var series in Series.Values)
                 {
+                    if (series.IsY2) continue;
+                    if (series.DataCount > 0)
+                    {
+                        if (series.ContainsNan)
+                        {
+                            foreach (var d in series.YData)
+                            {
+                                if (d.IsNan() || d.IsInfinity()) continue;
+                                min = Math.Min(min, d);
+                                max = Math.Max(max, d);
+                            }
+                        }
+                        else
+                        {
+                            min = Math.Min(min, series.YData.Min());
+                            max = Math.Max(max, series.YData.Max());
+                        }
+                    }
+                }
+            }
+        }
+
+        public void GetAllDataY2Range(out double min, out double max)
+        {
+            if (!HaveY2)
+            {
+                min = 0;
+                max = 1;
+            }
+            else
+            {
+                min = double.MaxValue;
+                max = double.MinValue;
+                foreach (var series in Series.Values)
+                {
+                    if (!series.IsY2) continue;
                     if (series.DataCount > 0)
                     {
                         if (series.ContainsNan)
@@ -290,17 +342,21 @@ namespace Sunny.UI
 
         public bool ContainsNan { get; private set; }
 
-        public UILineSeries(string name)
+        public bool IsY2 { get; private set; }
+
+        public UILineSeries(string name, bool isY2 = false)
         {
             Name = name;
             Color = UIColor.Blue;
+            IsY2 = isY2;
         }
 
-        public UILineSeries(string name, Color color)
+        public UILineSeries(string name, Color color, bool isY2 = false)
         {
             Name = name;
             Color = color;
             CustomColor = true;
+            IsY2 = isY2;
         }
 
         public readonly List<double> XData = new List<double>();

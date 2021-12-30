@@ -39,6 +39,9 @@ namespace Sunny.UI
             Width = 400;
             Height = 300;
 
+            SubFont = UIFontColor.CreateSubFont();
+            LegendFont = UIFontColor.CreateSubFont();
+
             tip.Parent = this;
             tip.Height = 32;
             tip.Width = 200;
@@ -46,7 +49,7 @@ namespace Sunny.UI
             tip.Top = 1;
             tip.StyleCustomMode = true;
             tip.Style = UIStyle.Custom;
-            tip.Font = UIFontColor.SubFont;
+            tip.Font = UIFontColor.CreateSubFont();
             tip.RadiusSides = UICornerRadiusSides.None;
             tip.Visible = false;
 
@@ -55,6 +58,13 @@ namespace Sunny.UI
             tip.ForeColor = UIChartStyles.Plain.ForeColor;
             tip.Visible = false;
             tip.MouseEnter += Tip_MouseEnter;
+            tip.VisibleChanged += Tip_VisibleChanged;
+        }
+
+        private void Tip_VisibleChanged(object sender, EventArgs e)
+        {
+            tip.IsScaled = true;
+            tip.Font = this.DPIScaleFont(Font, SubFont.Size);
         }
 
         protected override void Dispose(bool disposing)
@@ -180,27 +190,16 @@ namespace Sunny.UI
         }
 
         [Category("SunnyUI")]
-        [DefaultValue(9)]
-        public float LegendFontSize { get; set; } = 9.0f;
+        [DefaultValue(9), Browsable(false)]
+        public float LegendFontSize { get; set; } = 9;
 
         [Category("SunnyUI")]
-        [DefaultValue(9)]
-        public float SubTextFontSize { get; set; } = 9.0f;
+        [DefaultValue(9), Browsable(false)]
+        public float SubTextFontSize { get; set; } = 9;
 
         [Category("SunnyUI")]
-        [DefaultValue(9)]
-        public float TipsFontSize { get; set; } = 9.0f;
-
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-
-            if (tip != null)
-            {
-                tip.IsScaled = true;
-                tip.Font = this.DPIScaleFont(Font, TipsFontSize);
-            }
-        }
+        [DefaultValue(9), Browsable(false)]
+        public float TipsFontSize { get; set; } = 9;
 
         Font tmpFont;
 
@@ -208,10 +207,12 @@ namespace Sunny.UI
         {
             get
             {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(SubTextFontSize / this.DPIScale()))
+                float size = SubFont != null ? SubFont.Size : SubTextFontSize;
+
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / this.DPIScale()))
                 {
                     tmpFont?.Dispose();
-                    tmpFont = this.DPIScaleFont(Font, SubTextFontSize);
+                    tmpFont = this.DPIScaleFont(Font, size);
                 }
 
                 return tmpFont;
@@ -224,10 +225,12 @@ namespace Sunny.UI
         {
             get
             {
-                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(LegendFontSize / this.DPIScale()))
+                float size = LegendFont != null ? LegendFont.Size : LegendFontSize;
+
+                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / this.DPIScale()))
                 {
                     tmpLegendFont?.Dispose();
-                    tmpLegendFont = this.DPIScaleFont(Font, SubTextFontSize);
+                    tmpLegendFont = this.DPIScaleFont(Font, size);
                 }
 
                 return tmpLegendFont;
@@ -254,10 +257,10 @@ namespace Sunny.UI
         [DefaultValue(8)]
         public int TextInterval { get; set; } = 8;
 
-        [Browsable(false), Obsolete("已过时，用SubTextFontSize代替")]
+        [Browsable(true)]
         public Font SubFont { get; set; }
 
-        [Browsable(false), Obsolete("已过时，用LegendFontSize代替")]
+        [Browsable(true)]
         public Font LegendFont { get; set; }
         protected void DrawTitle(Graphics g, UITitle title)
         {

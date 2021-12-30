@@ -175,5 +175,51 @@ namespace Sunny.UI.Demo
         {
             uiSymbolButton1.PerformClick();
         }
+
+        private void uiSymbolButton3_Click_1(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            UILineOption option = new UILineOption();
+            option.ToolTip.Visible = true;
+            option.Title = new UITitle();
+            option.Title.Text = "SunnyUI";
+            option.Title.SubText = "LineChart";
+
+            var series = option.AddSeries(new UILineSeries("Line1"));
+            series.Add(0, 1.2);
+            series.Add(1, 2.2);
+            series.Add(2, 3.2);
+            series.Add(3, 4.2);
+            series.Add(4, 3.2);
+            series.Add(5, 2.2);
+            series.Symbol = UILinePointSymbol.Square;
+            series.SymbolSize = 4;
+            series.SymbolLineWidth = 2;
+            series.SymbolColor = Color.Red;
+
+            series = option.AddSeries(new UILineSeries("Line2", Color.Lime, true));
+            series.Add(3, 13.3);
+            series.Add(4, 12.3);
+            series.Add(5, 12.3);
+            series.Add(6, 11.3);
+            series.Add(7, 12.3);
+            series.Add(8, 14.3);
+            series.Symbol = UILinePointSymbol.Star;
+            series.SymbolSize = 4;
+            series.SymbolLineWidth = 2;
+            series.Smooth = true;
+
+            option.XAxis.Name = "日期";
+            option.YAxis.Name = "数值";
+            option.Y2Axis.Name = "数值";
+
+            option.YAxis.AxisLabel.DecimalCount = 1;
+            option.YAxis.AxisLabel.AutoFormat = false;
+            option.Y2Axis.AxisLabel.DecimalCount = 1;
+            option.Y2Axis.AxisLabel.AutoFormat = false;
+
+            LineChart.SetOption(option);
+        }
     }
 }

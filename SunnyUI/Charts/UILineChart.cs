@@ -24,6 +24,7 @@
  * 2021-08-23: V3.0.6 增加可只显示点的模式
  * 2021-10-02: V3.0.8 支持数据包括Nan，修改自定义最大值最小值为无穷时出错的问题
  * 2021-10-14: V3.0.8 修改图线显示超出范围的问题
+ * 2021-12-30: V3.0.9 增加双Y坐标轴
 ******************************************************************************/
 
 using System;
@@ -66,7 +67,10 @@ namespace Sunny.UI
 
             foreach (var series in Option.Series.Values)
             {
-                series.CalcData(this, XScale, YScale);
+                if (series.IsY2)
+                    series.CalcData(this, XScale, Y2Scale);
+                else
+                    series.CalcData(this, XScale, YScale);
             }
 
             NeedDraw = true;
@@ -85,7 +89,9 @@ namespace Sunny.UI
 
         protected UIScale XScale;
         protected UIScale YScale;
+        protected UIScale Y2Scale;
         private double[] YLabels;
+        private double[] Y2Labels;
         private double[] XLabels;
 
         protected void CalcAxises()
@@ -96,6 +102,7 @@ namespace Sunny.UI
                 XScale = new UILinearScale();
 
             YScale = new UILinearScale();
+            Y2Scale = new UILinearScale();
 
             //Y轴
             {
@@ -114,6 +121,26 @@ namespace Sunny.UI
 
                 YScale.AxisChange();
                 YLabels = YScale.CalcLabels();
+            }
+
+            //Y2轴
+            if (Option.HaveY2)
+            {
+                Option.GetAllDataY2Range(out double min, out double max);
+                if (min > 0 && max > 0 && !Option.Y2Axis.Scale) min = 0;
+                if (min < 0 && max < 0 && !Option.Y2Axis.Scale) max = 0;
+                Y2Scale.SetRange(min, max);
+                if (!Option.Y2Axis.MaxAuto) Y2Scale.Max = Option.Y2Axis.Max;
+                if (!Option.Y2Axis.MinAuto) Y2Scale.Min = Option.Y2Axis.Min;
+
+                if (Y2Scale.Max.IsNanOrInfinity() || Y2Scale.Min.IsNanOrInfinity())
+                {
+                    Y2Scale.Max = max;
+                    Y2Scale.Min = min;
+                }
+
+                Y2Scale.AxisChange();
+                Y2Labels = Y2Scale.CalcLabels();
             }
 
             //X轴
@@ -216,7 +243,7 @@ namespace Sunny.UI
                 g.DrawLine(ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
             }
 
-            if (XScale == null || YScale == null) return;
+            if (XScale == null || YScale == null || Y2Scale == null) return;
 
             //X Tick
             if (Option.XAxis.AxisTick.Show)
@@ -225,7 +252,7 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float x = labels[i];
-                    if (x <= Option.Grid.Left || x >= Width - Option.Grid.Right) continue;
+                    if (x < Option.Grid.Left || x > Width - Option.Grid.Right) continue;
 
                     if (Option.XAxis.AxisLabel.Show)
                     {
@@ -247,8 +274,10 @@ namespace Sunny.UI
 
                         SizeF sf = g.MeasureString(label, TempFont);
                         g.DrawString(label, TempFont, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+
                     }
 
+                    g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
                     if (x.Equals(DrawOrigin.X)) continue;
                     if (x.Equals(DrawOrigin.X + DrawSize.Width)) continue;
 
@@ -274,7 +303,7 @@ namespace Sunny.UI
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float y = labels[i];
-                    if (y <= Option.Grid.Top || y >= Height - Option.Grid.Bottom) continue;
+                    if (y < Option.Grid.Top || y > Height - Option.Grid.Bottom) continue;
 
                     if (Option.YAxis.AxisLabel.Show)
                     {
@@ -284,6 +313,7 @@ namespace Sunny.UI
                         g.DrawString(label, TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
                     }
 
+                    g.DrawLine(ForeColor, DrawOrigin.X, y, DrawOrigin.X - Option.YAxis.AxisTick.Length, y);
                     if (y.Equals(DrawOrigin.Y)) continue;
                     if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
 
@@ -299,6 +329,42 @@ namespace Sunny.UI
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
                 g.DrawStringRotateAtCenter(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
+            }
+
+            //Y2 Tick
+            if (Option.HaveY2 && Option.Y2Axis.AxisTick.Show)
+            {
+                float[] labels = Y2Scale.CalcYPixels(Y2Labels, DrawOrigin.Y, DrawSize.Height);
+                float widthMax = 0;
+                for (int i = 0; i < labels.Length; i++)
+                {
+                    float y = labels[i];
+                    if (y < Option.Grid.Top || y > Height - Option.Grid.Bottom) continue;
+
+                    if (Option.Y2Axis.AxisLabel.Show)
+                    {
+                        string label = Y2Labels[i].ToString(Y2Scale.Format);
+                        SizeF sf = g.MeasureString(label, TempFont);
+                        widthMax = Math.Max(widthMax, sf.Width);
+                        g.DrawString(label, TempFont, ForeColor, Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, y - sf.Height / 2.0f);
+                    }
+
+                    g.DrawLine(ForeColor, Width - Option.Grid.Right, y, Width - Option.Grid.Right + Option.YAxis.AxisTick.Length, y);
+                    if (y.Equals(DrawOrigin.Y)) continue;
+                    if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
+
+                    using (Pen pn = new Pen(ForeColor))
+                    {
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        //g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
+                    }
+                }
+
+                SizeF sfName = g.MeasureString(Option.Y2Axis.Name, TempFont);
+                float xx = Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length + widthMax + sfName.Height / 2.0f;
+                float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
+                g.DrawStringRotateAtCenter(Option.Y2Axis.Name, TempFont, ForeColor, new PointF(xx, yy), 90);
             }
         }
 
@@ -374,7 +440,7 @@ namespace Sunny.UI
             float wLeft = Option.Grid.Left;
             float wRight = Width - Option.Grid.Right;
 
-            if (Option.GreaterWarningArea == null && Option.LessWarningArea == null)
+            if ((Option.GreaterWarningArea == null && Option.LessWarningArea == null) || Option.HaveY2)
             {
                 foreach (var series in Option.Series.Values)
                 {
@@ -534,6 +600,7 @@ namespace Sunny.UI
         private void DrawAxisScales(Graphics g)
         {
             if (YScale == null) return;
+            if (Option.HaveY2) return;
 
             foreach (var line in Option.YAxisScaleLines)
             {

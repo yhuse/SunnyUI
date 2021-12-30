@@ -707,10 +707,20 @@ namespace Sunny.UI
         /// </summary>
         public static readonly Font Font = new Font("微软雅黑", 12, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
 
+        public static Font CreateFont()
+        {
+            return new Font("微软雅黑", 12, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+        }
+
         /// <summary>
         /// 默认字体
         /// </summary>
         public static readonly Font SubFont = new Font("微软雅黑", 9, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+
+        public static Font CreateSubFont()
+        {
+            return new Font("微软雅黑", 9, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+        }
 
         /// <summary>
         /// 主要颜色
