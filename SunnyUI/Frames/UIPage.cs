@@ -23,6 +23,7 @@
  * 2021-08-17: V3.0.6 增加TitleFont属性
  * 2021-08-24: V3.0.6 修复OnLoad在加载时重复加载两次的问题
  * 2021-12-01: V3.0.9 增加FeedBack和SetParam函数，用于多页面传值
+ * 2021-12-30: V3.0.9 增加NeedReload，页面切换是否需要重载Load
 ******************************************************************************/
 
 using System;
@@ -31,7 +32,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sunny.UI
 {
@@ -292,8 +292,22 @@ namespace Sunny.UI
 
         public void ReLoad()
         {
-            if (IsShown) OnLoad(EventArgs.Empty);
+            if (IsShown)
+            {
+                if (NeedReload)
+                    OnLoad(EventArgs.Empty);
+                else
+                    Init();
+            }
         }
+
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("页面切换是否需要重载Load"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool NeedReload { get; set; }
 
         // private void EventLoad()
         // {
