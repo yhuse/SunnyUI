@@ -153,6 +153,8 @@ namespace Sunny.UI
 
         public List<string> Data = new List<string>();
 
+        public bool ShowGridLine { get; set; } = true;
+
         public void Clear()
         {
             Data.Clear();

@@ -29,6 +29,10 @@ namespace Sunny.UI
 {
     public sealed class UILineOption : UIOption, IDisposable
     {
+        public bool ShowZeroLine { get; set; } = true;
+
+        public bool ShowZeroValue { get; set; } = false;
+
         public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
         public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);

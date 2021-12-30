@@ -94,6 +94,11 @@ namespace Sunny.UI
         public int Right { get; set; } = 60;
         public int Top { get; set; } = 60;
         public int Bottom { get; set; } = 60;
+
+        public bool LeftShow { get; set; } = true;
+        public bool RightShow { get; set; } = true;
+        public bool TopShow { get; set; } = true;
+        public bool BottomShow { get; set; } = true;
     }
 
     public enum UIOrient

@@ -25,6 +25,7 @@
  * 2021-10-02: V3.0.8 支持数据包括Nan，修改自定义最大值最小值为无穷时出错的问题
  * 2021-10-14: V3.0.8 修改图线显示超出范围的问题
  * 2021-12-30: V3.0.9 增加双Y坐标轴
+ * 2021-12-31: V3.0.9 增加坐标线、图线边框等是否显示的设置
 ******************************************************************************/
 
 using System;
@@ -162,11 +163,6 @@ namespace Sunny.UI
                 UIOption option = BaseOption ?? EmptyOption;
                 return (UILineOption)option;
             }
-
-            // set
-            // {
-            //     SetOption(value);
-            // }
         }
 
         protected override void CreateEmptyOption()
@@ -221,12 +217,8 @@ namespace Sunny.UI
                 bmpLess = new Bitmap(Width, Height);
             }
 
-            // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Shadow) DrawToolTip(g);
-
             DrawTitle(g, Option.Title);
-
             DrawSeries(g);
-            // if (BarOption.ToolTip != null && BarOption.ToolTip.AxisPointer.Type == UIAxisPointerType.Line) DrawToolTip(g);
             DrawLegend(g, Option.Legend);
             DrawAxis(g);
             DrawAxisScales(g);
@@ -236,17 +228,33 @@ namespace Sunny.UI
 
         private void DrawAxis(Graphics g)
         {
-            g.DrawRectangle(ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
+            if (Option.Grid.LeftShow)
+                g.DrawLine(ForeColor, Option.Grid.Left, Option.Grid.Top, Option.Grid.Left, Height - Option.Grid.Bottom);
+            if (Option.Grid.TopShow)
+                g.DrawLine(ForeColor, Option.Grid.Left, Option.Grid.Top, Width - Option.Grid.Right, Option.Grid.Top);
+            if (Option.Grid.RightShow)
+                g.DrawLine(ForeColor, Width - Option.Grid.Right, Option.Grid.Top, Width - Option.Grid.Right, Height - Option.Grid.Bottom);
+            if (Option.Grid.BottomShow)
+                g.DrawLine(ForeColor, Option.Grid.Left, Height - Option.Grid.Bottom, Width - Option.Grid.Right, Height - Option.Grid.Bottom);
+
             float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
             if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
             {
-                g.DrawLine(ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+                if (Option.ShowZeroLine)
+                {
+                    g.DrawLine(ForeColor, DrawOrigin.X, zeroPos, DrawOrigin.X + DrawSize.Width, zeroPos);
+                }
+
+                if (Option.ShowZeroValue)
+                {
+                    SizeF sf = g.MeasureString("0", TempFont);
+                    g.DrawString("0", TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, zeroPos - sf.Height / 2.0f);
+                }
             }
 
             if (XScale == null || YScale == null || Y2Scale == null) return;
 
-            //X Tick
-            if (Option.XAxis.AxisTick.Show)
+            //X Tick           
             {
                 float[] labels = XScale.CalcXPixels(XLabels, DrawOrigin.X, DrawSize.Width);
                 for (int i = 0; i < labels.Length; i++)
@@ -277,15 +285,22 @@ namespace Sunny.UI
 
                     }
 
-                    g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                    if (Option.XAxis.AxisTick.Show)
+                    {
+                        g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                    }
+
                     if (x.Equals(DrawOrigin.X)) continue;
                     if (x.Equals(DrawOrigin.X + DrawSize.Width)) continue;
 
-                    using (Pen pn = new Pen(ForeColor))
+                    if (Option.XAxis.ShowGridLine)
                     {
-                        pn.DashStyle = DashStyle.Dash;
-                        pn.DashPattern = new float[] { 3, 3 };
-                        g.DrawLine(pn, x, DrawOrigin.Y, x, Option.Grid.Top);
+                        using (Pen pn = new Pen(ForeColor))
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                            g.DrawLine(pn, x, DrawOrigin.Y, x, Option.Grid.Top);
+                        }
                     }
                 }
 
@@ -295,8 +310,7 @@ namespace Sunny.UI
                     DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfName.Height);
             }
 
-            //Y Tick
-            if (Option.YAxis.AxisTick.Show)
+            //Y Tick            
             {
                 float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
                 float widthMax = 0;
@@ -305,23 +319,31 @@ namespace Sunny.UI
                     float y = labels[i];
                     if (y < Option.Grid.Top || y > Height - Option.Grid.Bottom) continue;
 
+                    string label = YLabels[i].ToString(YScale.Format);
+                    SizeF sf = g.MeasureString(label, TempFont);
+                    widthMax = Math.Max(widthMax, sf.Width);
+
                     if (Option.YAxis.AxisLabel.Show)
                     {
-                        string label = YLabels[i].ToString(YScale.Format);
-                        SizeF sf = g.MeasureString(label, TempFont);
-                        widthMax = Math.Max(widthMax, sf.Width);
                         g.DrawString(label, TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, y - sf.Height / 2.0f);
                     }
 
-                    g.DrawLine(ForeColor, DrawOrigin.X, y, DrawOrigin.X - Option.YAxis.AxisTick.Length, y);
+                    if (Option.YAxis.AxisTick.Show)
+                    {
+                        g.DrawLine(ForeColor, DrawOrigin.X, y, DrawOrigin.X - Option.YAxis.AxisTick.Length, y);
+                    }
+
                     if (y.Equals(DrawOrigin.Y)) continue;
                     if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
 
-                    using (Pen pn = new Pen(ForeColor))
+                    if (Option.YAxis.ShowGridLine)
                     {
-                        pn.DashStyle = DashStyle.Dash;
-                        pn.DashPattern = new float[] { 3, 3 };
-                        g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
+                        using (Pen pn = new Pen(ForeColor))
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                            g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
+                        }
                     }
                 }
 
@@ -332,7 +354,7 @@ namespace Sunny.UI
             }
 
             //Y2 Tick
-            if (Option.HaveY2 && Option.Y2Axis.AxisTick.Show)
+            if (Option.HaveY2)
             {
                 float[] labels = Y2Scale.CalcYPixels(Y2Labels, DrawOrigin.Y, DrawSize.Height);
                 float widthMax = 0;
@@ -349,7 +371,11 @@ namespace Sunny.UI
                         g.DrawString(label, TempFont, ForeColor, Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, y - sf.Height / 2.0f);
                     }
 
-                    g.DrawLine(ForeColor, Width - Option.Grid.Right, y, Width - Option.Grid.Right + Option.YAxis.AxisTick.Length, y);
+                    if (Option.Y2Axis.AxisTick.Show)
+                    {
+                        g.DrawLine(ForeColor, Width - Option.Grid.Right, y, Width - Option.Grid.Right + Option.YAxis.AxisTick.Length, y);
+                    }
+
                     if (y.Equals(DrawOrigin.Y)) continue;
                     if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
 
