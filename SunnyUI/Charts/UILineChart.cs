@@ -91,9 +91,6 @@ namespace Sunny.UI
         protected UIScale XScale;
         protected UIScale YScale;
         protected UIScale Y2Scale;
-        private double[] YLabels;
-        private double[] Y2Labels;
-        private double[] XLabels;
 
         protected void CalcAxises()
         {
@@ -113,6 +110,11 @@ namespace Sunny.UI
                 YScale.SetRange(min, max);
                 if (!Option.YAxis.MaxAuto) YScale.Max = Option.YAxis.Max;
                 if (!Option.YAxis.MinAuto) YScale.Min = Option.YAxis.Min;
+                if (Option.YAxis.HaveCustomLabels)
+                {
+                    YScale.Max = Option.YAxis.CustomLabels.Stop;
+                    YScale.Min = Option.YAxis.CustomLabels.Start;
+                }
 
                 if (YScale.Max.IsNanOrInfinity() || YScale.Min.IsNanOrInfinity())
                 {
@@ -121,7 +123,6 @@ namespace Sunny.UI
                 }
 
                 YScale.AxisChange();
-                YLabels = YScale.CalcLabels();
             }
 
             //Y2轴
@@ -134,6 +135,12 @@ namespace Sunny.UI
                 if (!Option.Y2Axis.MaxAuto) Y2Scale.Max = Option.Y2Axis.Max;
                 if (!Option.Y2Axis.MinAuto) Y2Scale.Min = Option.Y2Axis.Min;
 
+                if (Option.Y2Axis.HaveCustomLabels)
+                {
+                    Y2Scale.Max = Option.Y2Axis.CustomLabels.Stop;
+                    Y2Scale.Min = Option.Y2Axis.CustomLabels.Start;
+                }
+
                 if (Y2Scale.Max.IsNanOrInfinity() || Y2Scale.Min.IsNanOrInfinity())
                 {
                     Y2Scale.Max = max;
@@ -141,7 +148,6 @@ namespace Sunny.UI
                 }
 
                 Y2Scale.AxisChange();
-                Y2Labels = Y2Scale.CalcLabels();
             }
 
             //X轴
@@ -150,8 +156,14 @@ namespace Sunny.UI
                 XScale.SetRange(min, max);
                 if (!Option.XAxis.MaxAuto) XScale.Max = Option.XAxis.Max;
                 if (!Option.XAxis.MinAuto) XScale.Min = Option.XAxis.Min;
+
+                if (Option.XAxis.HaveCustomLabels)
+                {
+                    XScale.Max = Option.XAxis.CustomLabels.Stop;
+                    XScale.Min = Option.XAxis.CustomLabels.Start;
+                }
+
                 XScale.AxisChange();
-                XLabels = XScale.CalcLabels();
             }
         }
 
@@ -256,7 +268,9 @@ namespace Sunny.UI
 
             //X Tick           
             {
+                double[] XLabels = Option.XAxis.HaveCustomLabels ? Option.XAxis.CustomLabels.LabelValues() : XScale.CalcLabels();
                 float[] labels = XScale.CalcXPixels(XLabels, DrawOrigin.X, DrawSize.Width);
+
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float x = labels[i];
@@ -282,7 +296,6 @@ namespace Sunny.UI
 
                         SizeF sf = g.MeasureString(label, TempFont);
                         g.DrawString(label, TempFont, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
-
                     }
 
                     if (Option.XAxis.AxisTick.Show)
@@ -312,6 +325,7 @@ namespace Sunny.UI
 
             //Y Tick            
             {
+                double[] YLabels = Option.YAxis.HaveCustomLabels ? Option.YAxis.CustomLabels.LabelValues() : YScale.CalcLabels();
                 float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
                 float widthMax = 0;
                 for (int i = 0; i < labels.Length; i++)
@@ -356,6 +370,7 @@ namespace Sunny.UI
             //Y2 Tick
             if (Option.HaveY2)
             {
+                double[] Y2Labels = Option.Y2Axis.HaveCustomLabels ? Option.Y2Axis.CustomLabels.LabelValues() : Y2Scale.CalcLabels();
                 float[] labels = Y2Scale.CalcYPixels(Y2Labels, DrawOrigin.Y, DrawSize.Height);
                 float widthMax = 0;
                 for (int i = 0; i < labels.Length; i++)
@@ -635,6 +650,12 @@ namespace Sunny.UI
 
                     using (Pen pn = new Pen(line.Color, line.Size))
                     {
+                        if (line.DashDot)
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                        }
+
                         g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
                     }
 
@@ -659,6 +680,12 @@ namespace Sunny.UI
 
                     using (Pen pn = new Pen(line.Color, line.Size))
                     {
+                        if (line.DashDot)
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                        }
+
                         g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
                     }
 
@@ -682,6 +709,12 @@ namespace Sunny.UI
 
                     using (Pen pn = new Pen(line.Color, line.Size))
                     {
+                        if (line.DashDot)
+                        {
+                            pn.DashStyle = DashStyle.Dash;
+                            pn.DashPattern = new float[] { 3, 3 };
+                        }
+
                         g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
                     }
 

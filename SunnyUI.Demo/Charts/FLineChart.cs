@@ -221,10 +221,12 @@ namespace Sunny.UI.Demo
 
 
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
-            option.Y2AxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 12 });
+            option.Y2AxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 12, DashDot = true });
 
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Lime, Name = "3", Value = 3 });
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "6", Value = 6 });
+
+            option.XAxis.CustomLabels = new CustomLabels(0, 2, 10);
 
             LineChart.SetOption(option);
         }

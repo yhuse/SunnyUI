@@ -159,6 +159,93 @@ namespace Sunny.UI
         {
             Data.Clear();
         }
+
+        public CustomLabels CustomLabels;
+
+        public bool HaveCustomLabels
+        {
+            get => CustomLabels != null && CustomLabels.Count > 0;
+        }
+    }
+
+    public class CustomLabels
+    {
+        public double Start { get; set; }
+
+        public double Interval { get; set; }
+
+        public int Count { get; set; }
+
+        public double IntervalMilliseconds { get; set; }
+
+        public UIAxisType AxisType { get; set; }
+
+        public List<string> Labels = new List<string>();
+
+        public double[] LabelValues()
+        {
+            double[] values = new double[Count + 1];
+
+            for (int i = 0; i <= Count; i++)
+            {
+                if (AxisType == UIAxisType.DateTime)
+                {
+                    DateTimeInt64 dateTime = new DateTimeInt64(Start);
+                    dateTime.AddMilliseconds(IntervalMilliseconds * i);
+                    values[i] = dateTime.DoubleValue;
+                }
+                else
+                {
+                    values[i] = Start + Interval * i;
+                }
+            }
+
+            return values;
+        }
+
+        public double Stop
+        {
+            get
+            {
+                if (AxisType == UIAxisType.DateTime)
+                {
+                    DateTimeInt64 dateTime = new DateTimeInt64(Start);
+                    dateTime.AddMilliseconds(IntervalMilliseconds * Count);
+                    return dateTime.DoubleValue;
+                }
+                else
+                {
+                    return Start + Interval * Count;
+                }
+            }
+        }
+
+        public CustomLabels(double start, double interval, int count)
+        {
+            Start = start;
+            Interval = Math.Abs(interval);
+            Count = Math.Max(2, count);
+            AxisType = UIAxisType.Value;
+        }
+
+        public CustomLabels(DateTime start, int intervalMilliseconds, int count)
+        {
+            Start = new DateTimeInt64(start);
+            IntervalMilliseconds = Math.Abs(intervalMilliseconds);
+            Count = Math.Max(2, count);
+            AxisType = UIAxisType.DateTime;
+        }
+
+        public void SetLabels(string[] labels)
+        {
+            Labels.Clear();
+            Labels.AddRange(labels);
+        }
+
+        public void AddLabel(string label)
+        {
+            Labels.Add(label);
+        }
     }
 
     public class UIAxisLabel

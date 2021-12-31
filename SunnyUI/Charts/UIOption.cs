@@ -19,6 +19,7 @@
  * 2020-06-06: V2.2.5 增加文件说明
 ******************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -49,6 +50,27 @@ namespace Sunny.UI
         public float Size { get; set; } = 1.0f;
 
         public object Tag { get; set; }
+
+        public bool DashDot { get; set; }
+
+        public UIScaleLine()
+        {
+
+        }
+
+        public UIScaleLine(string name, double value, Color color)
+        {
+            Name = name;
+            Color = color;
+            Value = value;
+        }
+
+        public UIScaleLine(string name, DateTime value, Color color)
+        {
+            Name = name;
+            Color = color;
+            Value = new DateTimeInt64(value);
+        }
     }
 
     public class UILegend

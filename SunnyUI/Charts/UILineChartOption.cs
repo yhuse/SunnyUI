@@ -167,26 +167,6 @@ namespace Sunny.UI
             }
         }
 
-        public void SetLabels(string[] labels)
-        {
-            XAxis.Clear();
-            if (XAxis.Type == UIAxisType.Category)
-            {
-                foreach (var label in labels)
-                {
-                    AddLabel(label);
-                }
-            }
-        }
-
-        public void AddLabel(string label)
-        {
-            if (XAxis.Type == UIAxisType.Category)
-            {
-                XAxis.Data.Add(label);
-            }
-        }
-
         public int AllDataCount()
         {
             int cnt = 0;
