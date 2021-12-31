@@ -625,54 +625,79 @@ namespace Sunny.UI
 
         private void DrawAxisScales(Graphics g)
         {
-            if (YScale == null) return;
-            if (Option.HaveY2) return;
-
-            foreach (var line in Option.YAxisScaleLines)
-            {
-                float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
-                if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
-
-                using (Pen pn = new Pen(line.Color, line.Size))
+            if (YScale != null)
+                foreach (var line in Option.YAxisScaleLines)
                 {
-                    g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
+                    float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+
+
+                    if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
+
+                    using (Pen pn = new Pen(line.Color, line.Size))
+                    {
+                        g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
+                    }
+
+                    SizeF sf = g.MeasureString(line.Name, TempFont);
+
+                    if (Option.Y2AxisScaleLines != null)
+                        line.Left = UILeftAlignment.Left;
+
+                    if (line.Left == UILeftAlignment.Left)
+                        g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+                    if (line.Left == UILeftAlignment.Center)
+                        g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
+                    if (line.Left == UILeftAlignment.Right)
+                        g.DrawString(line.Name, TempFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
                 }
 
+            if (Y2Scale != null)
+                foreach (var line in Option.Y2AxisScaleLines)
+                {
+                    float pos = Y2Scale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+                    if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
 
-                SizeF sf = g.MeasureString(line.Name, TempFont);
+                    using (Pen pn = new Pen(line.Color, line.Size))
+                    {
+                        g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
+                    }
 
-                if (line.Left == UILeftAlignment.Left)
-                    g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
-                if (line.Left == UILeftAlignment.Center)
-                    g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
-                if (line.Left == UILeftAlignment.Right)
-                    g.DrawString(line.Name, TempFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
-            }
+
+                    SizeF sf = g.MeasureString(line.Name, TempFont);
+                    line.Left = UILeftAlignment.Right;
+                    if (line.Left == UILeftAlignment.Left)
+                        g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + 4, pos - 2 - sf.Height);
+                    if (line.Left == UILeftAlignment.Center)
+                        g.DrawString(line.Name, TempFont, line.Color, DrawOrigin.X + (Width - Option.Grid.Left - Option.Grid.Right - sf.Width) / 2, pos - 2 - sf.Height);
+                    if (line.Left == UILeftAlignment.Right)
+                        g.DrawString(line.Name, TempFont, line.Color, Width - sf.Width - 4 - Option.Grid.Right, pos - 2 - sf.Height);
+                }
 
             int idx = 0;
-            foreach (var line in Option.XAxisScaleLines)
-            {
-                float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
-                if (pos <= Option.Grid.Left || pos >= Width - Option.Grid.Right) continue;
-
-                using (Pen pn = new Pen(line.Color, line.Size))
+            if (XScale != null)
+                foreach (var line in Option.XAxisScaleLines)
                 {
-                    g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
-                }
+                    float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
+                    if (pos <= Option.Grid.Left || pos >= Width - Option.Grid.Right) continue;
 
-                SizeF sf = g.MeasureString(line.Name, TempFont);
-                float x = pos - sf.Width;
-                if (x < Option.Grid.Left) x = pos + 2;
-                float y = Option.Grid.Top + 4 + sf.Height * idx;
-                if (y > Height - Option.Grid.Bottom)
-                {
-                    idx = 0;
-                    y = Option.Grid.Top + 4 + sf.Height * idx;
-                }
+                    using (Pen pn = new Pen(line.Color, line.Size))
+                    {
+                        g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
+                    }
 
-                idx++;
-                g.DrawString(line.Name, TempFont, line.Color, x, y);
-            }
+                    SizeF sf = g.MeasureString(line.Name, TempFont);
+                    float x = pos - sf.Width;
+                    if (x < Option.Grid.Left) x = pos + 2;
+                    float y = Option.Grid.Top + 4 + sf.Height * idx;
+                    if (y > Height - Option.Grid.Bottom)
+                    {
+                        idx = 0;
+                        y = Option.Grid.Top + 4 + sf.Height * idx;
+                    }
+
+                    idx++;
+                    g.DrawString(line.Name, TempFont, line.Color, x, y);
+                }
         }
 
         private readonly List<UILineSelectPoint> selectPoints = new List<UILineSelectPoint>();
