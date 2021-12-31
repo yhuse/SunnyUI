@@ -469,7 +469,8 @@ namespace Sunny.UI
         Triangle,
         Circle,
         Plus,
-        Star
+        Star,
+        Round
     }
 
     public struct UILineSelectPoint

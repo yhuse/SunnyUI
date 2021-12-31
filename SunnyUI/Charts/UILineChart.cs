@@ -585,6 +585,7 @@ namespace Sunny.UI
                 if (series.Symbol != UILinePointSymbol.None)
                 {
                     using (Brush br = new SolidBrush(FillColor))
+                    using (Brush br1 = new SolidBrush(color))
                     using (Pen pn = new Pen(color, series.SymbolLineWidth))
                     {
                         foreach (var p in series.Points)
@@ -630,6 +631,10 @@ namespace Sunny.UI
                                     g.SetHighQuality();
                                     g.FillEllipse(br, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
                                     g.DrawEllipse(pn, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                    break;
+                                case UILinePointSymbol.Round:
+                                    g.SetHighQuality();
+                                    g.FillEllipse(br1, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
                                     break;
                                 case UILinePointSymbol.Plus:
                                     g.DrawLine(pn, p.X - series.SymbolSize, p.Y, p.X + series.SymbolSize, p.Y);

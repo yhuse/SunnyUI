@@ -64,7 +64,8 @@ namespace Sunny.UI
         private void Tip_VisibleChanged(object sender, EventArgs e)
         {
             tip.IsScaled = true;
-            tip.Font = this.DPIScaleFont(Font, SubFont.Size);
+            float size = SubFont != null ? SubFont.Size : SubTextFontSize;
+            tip.Font = this.DPIScaleFont(Font, size);
         }
 
         protected override void Dispose(bool disposing)
