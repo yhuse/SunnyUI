@@ -246,6 +246,17 @@ namespace Sunny.UI
         {
             Labels.Add(label);
         }
+
+        public void ClearLabels()
+        {
+            Labels.Clear();
+        }
+
+        public string GetLabel(int i)
+        {
+            if (i < Labels.Count) return Labels[i];
+            else return string.Empty;
+        }
     }
 
     public class UIAxisLabel

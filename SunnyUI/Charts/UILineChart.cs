@@ -26,6 +26,8 @@
  * 2021-10-14: V3.0.8 修改图线显示超出范围的问题
  * 2021-12-30: V3.0.9 增加双Y坐标轴
  * 2021-12-31: V3.0.9 增加坐标线、图线边框等是否显示的设置
+ * 2021-12-31: V3.0.9 增加自定义坐标轴刻度
+ * 2021-12-31: V3.0.9 X轴支持字符串显示
 ******************************************************************************/
 
 using System;
@@ -271,6 +273,7 @@ namespace Sunny.UI
                 double[] XLabels = Option.XAxis.HaveCustomLabels ? Option.XAxis.CustomLabels.LabelValues() : XScale.CalcLabels();
                 float[] labels = XScale.CalcXPixels(XLabels, DrawOrigin.X, DrawSize.Width);
 
+                float xr = 0;
                 for (int i = 0; i < labels.Length; i++)
                 {
                     float x = labels[i];
@@ -294,8 +297,19 @@ namespace Sunny.UI
                                 label = XLabels[i].ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
                         }
 
+                        if (Option.XAxis.HaveCustomLabels && Option.XAxis.CustomLabels.GetLabel(i).IsValid())
+                        {
+                            label = Option.XAxis.CustomLabels.GetLabel(i);
+                        }
+
                         SizeF sf = g.MeasureString(label, TempFont);
-                        g.DrawString(label, TempFont, ForeColor, x - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        float xx = x - sf.Width / 2.0f;
+
+                        if (xx > xr && xx + sf.Width < Width)
+                        {
+                            xr = xx + sf.Width;
+                            g.DrawString(label, TempFont, ForeColor, xx, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        }
                     }
 
                     if (Option.XAxis.AxisTick.Show)

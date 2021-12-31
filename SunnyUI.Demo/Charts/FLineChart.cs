@@ -219,14 +219,17 @@ namespace Sunny.UI.Demo
             option.Y2Axis.AxisLabel.DecimalCount = 1;
             option.Y2Axis.AxisLabel.AutoFormat = false;
 
-
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
             option.Y2AxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 12, DashDot = true });
 
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Lime, Name = "3", Value = 3 });
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "6", Value = 6 });
 
-            option.XAxis.CustomLabels = new CustomLabels(0, 2, 10);
+            option.XAxis.CustomLabels = new CustomLabels(1, 1, 11);
+            for (int i = 1; i <= 12; i++)
+            {
+                option.XAxis.CustomLabels.AddLabel(i + "月");
+            }
 
             LineChart.SetOption(option);
         }
