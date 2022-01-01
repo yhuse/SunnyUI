@@ -71,6 +71,8 @@ namespace Sunny.UI.Demo
 
             option.ToolTip.AxisPointer.Type = UIAxisPointerType.Shadow;
 
+            option.ShowValue = true;
+
             BarChart.SetOption(option);
 
             uiSymbolButton2.Enabled = true;

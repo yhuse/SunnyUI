@@ -19,6 +19,7 @@
  * 2020-06-06: V2.2.5 增加文件说明
  * 2020-08-21: V2.2.7 可设置柱状图最小宽度
  * 2021-07-22: V3.0.5 增加更新数据的方法
+ * 2021-01-01: V3.0.9 增加柱子上显示数值
 ******************************************************************************/
 
 using System;
@@ -207,7 +208,9 @@ namespace Sunny.UI
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(xx, DrawOrigin.Y - h, ww, h),
-                            Color = color
+                            Value = series.Data[j],
+                            Color = color,
+                            Top = true
                         });
                     }
                     else if (YAxisEnd <= 0)
@@ -216,7 +219,9 @@ namespace Sunny.UI
                         Bars[i].Add(new BarInfo()
                         {
                             Rect = new RectangleF(xx, Option.Grid.Top + 1, ww, h - 1),
-                            Color = color
+                            Value = series.Data[j],
+                            Color = color,
+                            Top = false
                         });
                     }
                     else
@@ -243,7 +248,9 @@ namespace Sunny.UI
                             Bars[i].Add(new BarInfo()
                             {
                                 Rect = new RectangleF(xx, DrawOrigin.Y - lowH - h, ww, h),
-                                Color = color
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = true
                             });
                         }
                         else
@@ -252,7 +259,9 @@ namespace Sunny.UI
                             Bars[i].Add(new BarInfo()
                             {
                                 Rect = new RectangleF(xx, DrawOrigin.Y - lowH + 1, ww, h - 1),
-                                Color = color
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = false
                             });
                         }
                     }
@@ -594,6 +603,27 @@ namespace Sunny.UI
                 foreach (var info in bars)
                 {
                     g.FillRectangle(info.Color, info.Rect);
+
+                    if (Option.ShowValue)
+                    {
+                        string value = info.Value.ToString(Option.ToolTip.ValueFormat);
+                        SizeF sf = g.MeasureString(value, TempFont);
+                        if (info.Top)
+                        {
+                            float top = info.Rect.Top - sf.Height;
+                            if (top > Option.Grid.Top)
+                            {
+                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, top);
+                            }
+                        }
+                        else
+                        {
+                            if (info.Rect.Bottom + sf.Height + Option.Grid.Bottom < Height)
+                            {
+                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, info.Rect.Bottom);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -612,6 +642,10 @@ namespace Sunny.UI
             public SizeF Size { get; set; }
 
             public Color Color { get; set; }
+
+            public double Value { get; set; }
+
+            public bool Top { get; set; }
         }
     }
 }

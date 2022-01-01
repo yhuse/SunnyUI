@@ -41,6 +41,8 @@ namespace Sunny.UI
 
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
+        public bool ShowValue { get; set; }
+
         /// <summary>
         /// BarChartEx用，固定每个序列Bar个数
         /// </summary>
