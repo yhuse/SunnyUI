@@ -168,6 +168,42 @@ namespace Sunny.UI
         {
             get => CustomLabels != null && CustomLabels.Count > 0;
         }
+
+        public void SetMinValue(double min)
+        {
+            Min = min;
+            MinAuto = false;
+        }
+
+        public void SetMaxValue(double max)
+        {
+            Max = max;
+            MaxAuto = false;
+        }
+
+        public void SetRange(double min, double max)
+        {
+            SetMinValue(min);
+            SetMaxValue(max);
+        }
+
+        public void SetMinValue(DateTime min)
+        {
+            Min = new DateTimeInt64(min);
+            MinAuto = false;
+        }
+
+        public void SetMaxValue(DateTime max)
+        {
+            Max = new DateTimeInt64(max);
+            MaxAuto = false;
+        }
+
+        public void SetRange(DateTime min, DateTime max)
+        {
+            SetMinValue(min);
+            SetMaxValue(max);
+        }
     }
 
     public class CustomLabels

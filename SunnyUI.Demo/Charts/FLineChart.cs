@@ -64,9 +64,11 @@ namespace Sunny.UI.Demo
             option.YAxis.AxisLabel.DecimalCount = 1;
             option.YAxis.AxisLabel.AutoFormat = false;
 
-            option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(3).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(3)) });
-            option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = dt.AddHours(6).DateTimeString(), Value = new DateTimeInt64(dt.AddHours(6)) });
+            option.XAxisScaleLines.Add(new UIScaleLine(dt.AddHours(3).DateTimeString(), dt.AddHours(3), Color.Red));
+            option.XAxisScaleLines.Add(new UIScaleLine(dt.AddHours(6).DateTimeString(), dt.AddHours(6), Color.Red));
 
+            //设置X轴显示范围
+            option.XAxis.SetRange(dt, dt.AddHours(8));
             LineChart.SetOption(option);
         }
 
@@ -225,6 +227,7 @@ namespace Sunny.UI.Demo
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Lime, Name = "3", Value = 3 });
             option.XAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "6", Value = 6 });
 
+            //设置坐标轴为自定义标签
             option.XAxis.CustomLabels = new CustomLabels(1, 1, 11);
             for (int i = 1; i <= 12; i++)
             {
