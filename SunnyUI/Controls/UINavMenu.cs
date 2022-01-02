@@ -23,6 +23,7 @@
  * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头
  * 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
  * 2021-12-13: V3.0.9 选中项可设置背景色渐变
+ * 2022-01-02: V3.0.9 滚动条可设置颜色
 ******************************************************************************/
 
 using System;
@@ -80,6 +81,45 @@ namespace Sunny.UI
             Controls.Add(Bar);
             Version = UIGlobal.Version;
             SetScrollInfo();
+        }
+
+        [Description("滚动条填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Silver")]
+        public Color ScrollBarColor
+        {
+            get => Bar.ForeColor;
+            set
+            {
+                menuStyle = UIMenuStyle.Custom;
+                Bar.ForeColor = value;
+                Invalidate();
+            }
+        }
+
+        [Description("滚动条移上填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Silver")]
+        public Color ScrollBarHoverColor
+        {
+            get => Bar.HoverColor;
+            set
+            {
+                menuStyle = UIMenuStyle.Custom;
+                Bar.HoverColor = value;
+                Invalidate();
+            }
+        }
+
+        [Description("滚动条按下填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Silver")]
+        public Color ScrollBarPressColor
+        {
+            get => Bar.PressColor;
+            set
+            {
+                menuStyle = UIMenuStyle.Custom;
+                Bar.PressColor = value;
+                Invalidate();
+            }
         }
 
         protected override void Dispose(bool disposing)
