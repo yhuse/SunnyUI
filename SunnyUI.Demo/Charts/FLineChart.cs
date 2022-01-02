@@ -54,8 +54,8 @@ namespace Sunny.UI.Demo
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
 
-            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
-            option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 2.2 });
+            option.YAxisScaleLines.Add(new UIScaleLine("上限", 3.5, Color.Red));
+            option.YAxisScaleLines.Add(new UIScaleLine("下限", 2.2, Color.Gold));
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";

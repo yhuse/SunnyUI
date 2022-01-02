@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2021-05-06: V3.0.3 更新Active状态改变时触发ValueChanged事件
  * 2021-09-14: V3.0.7 增加Disabled颜色
+ * 2022-01-02: V3.0.9 增加是否只读属性
 ******************************************************************************/
 
 using System;
@@ -58,6 +59,10 @@ namespace Sunny.UI
             inActiveColor = Color.Gray;
             fillColor = Color.White;
         }
+
+        [DefaultValue(false)]
+        [Description("是否只读"), Category("SunnyUI")]
+        public bool ReadOnly { get; set; }
 
         private UISwitchShape switchShape = UISwitchShape.Round;
 
@@ -173,7 +178,7 @@ namespace Sunny.UI
 
         protected override void OnClick(EventArgs e)
         {
-            Active = !Active;
+            if (!ReadOnly) Active = !Active;
             base.OnClick(e);
         }
 
