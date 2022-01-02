@@ -189,7 +189,11 @@ namespace Sunny.UI
                     edit.DropDownStyle = UIDropDownStyle.DropDownList;
                     edit.TreeView.Nodes.Clear();
                     edit.TreeView.Nodes.AddRange((TreeNode[])info.DataSource);
-                    edit.TreeView.SelectedNode = (TreeNode)info.Value;
+                    if (info.Value != null)
+                    {
+                        edit.TreeView.SelectedNode = (TreeNode)info.Value;
+                        edit.Text = edit.TreeView.SelectedNode.Text;
+                    }
                 }
 
                 if (info.EditType == EditType.ComboCheckedListBox)
