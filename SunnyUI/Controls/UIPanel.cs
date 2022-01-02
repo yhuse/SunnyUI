@@ -54,7 +54,7 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
         }
 
-        [Browsable(false)]
+        [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
 
         public virtual void SetDPIScale()

@@ -46,7 +46,7 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
-        [Browsable(false)]
+        [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
 
         public virtual void SetDPIScale()
