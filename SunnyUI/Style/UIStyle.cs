@@ -792,6 +792,16 @@ namespace Sunny.UI
 
     public static class UIStyleHelper
     {
+        /// <summary>
+        /// 主题的调色板
+        /// </summary>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        public static UIBaseStyle Colors(this UIStyle style)
+        {
+            return UIStyles.GetStyleColor(style);
+        }
+
         public static bool IsCustom(this UIStyle style)
         {
             return style.Equals(UIStyle.Custom);
