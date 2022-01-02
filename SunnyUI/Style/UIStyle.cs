@@ -705,22 +705,22 @@ namespace Sunny.UI
         /// <summary>
         /// 默认字体
         /// </summary>
-        public static readonly Font Font = new Font("微软雅黑", 12, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
-
-        public static Font CreateFont()
+        public static Font Font()
         {
-            return new Font("微软雅黑", 12, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+            return new Font("微软雅黑", FontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
         }
+
+        public static float FontSize = 12;
 
         /// <summary>
-        /// 默认字体
+        /// 默认二级字体
         /// </summary>
-        public static readonly Font SubFont = new Font("微软雅黑", 9, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
-
-        public static Font CreateSubFont()
+        public static Font SubFont()
         {
-            return new Font("微软雅黑", 9, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+            return new Font("微软雅黑", SubFontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
         }
+
+        public static float SubFontSize = 9;
 
         /// <summary>
         /// 主要颜色

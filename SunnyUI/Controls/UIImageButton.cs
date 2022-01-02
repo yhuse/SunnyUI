@@ -166,7 +166,7 @@ namespace Sunny.UI
             Height = 35;
             Version = UIGlobal.Version;
             Cursor = Cursors.Hand;
-            base.Font = UIFontColor.Font;
+            base.Font = UIFontColor.Font();
         }
 
         /// <summary>

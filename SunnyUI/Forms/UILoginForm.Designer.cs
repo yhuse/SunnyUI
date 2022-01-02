@@ -170,7 +170,7 @@
             this.lblSubText.Name = "lblSubText";
             this.lblSubText.Size = new System.Drawing.Size(310, 26);
             this.lblSubText.TabIndex = 7;
-            this.lblSubText.Text = "SunnyUI V2.2.5";
+            this.lblSubText.Text = "SunnyUI";
             this.lblSubText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // uiLabel1

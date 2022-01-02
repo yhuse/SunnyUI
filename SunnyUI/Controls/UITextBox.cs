@@ -55,7 +55,7 @@ namespace Sunny.UI
             CalcEditHeight();
             Height = MinHeight;
             ShowText = false;
-            Font = UIFontColor.Font;
+            Font = UIFontColor.Font();
             Padding = new Padding(0);
             MinimumSize = new Size(1, 16);
 

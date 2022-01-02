@@ -46,7 +46,7 @@ namespace Sunny.UI
         {
             BackgroundColor = UIColor.White;
             GridColor = UIColor.Blue;
-            base.Font = UIFontColor.Font;
+            base.Font = UIFontColor.Font();
             base.DoubleBuffered = true;
 
             VBar.Parent = this;

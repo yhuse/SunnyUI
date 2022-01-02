@@ -42,7 +42,7 @@ namespace Sunny.UI
         {
             //设置为单选边框
             BorderStyle = BorderStyle.FixedSingle;
-            base.Font = UIFontColor.Font;
+            base.Font = UIFontColor.Font();
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;

@@ -474,7 +474,7 @@ namespace Sunny.UI
         /// <summary>
         /// 标题字体
         /// </summary>
-        private Font titleFont = UIFontColor.Font;
+        private Font titleFont = UIFontColor.Font();
 
         /// <summary>
         /// 标题字体

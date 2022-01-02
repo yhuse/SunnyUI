@@ -50,7 +50,7 @@ namespace Sunny.UI
             SetStyleFlags();
             Padding = new Padding(0, 0, 30, 2);
 
-            edit.Font = UIFontColor.Font;
+            edit.Font = UIFontColor.Font();
             edit.Left = 3;
             edit.Top = 3;
             edit.Text = String.Empty;

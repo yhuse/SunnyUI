@@ -32,7 +32,7 @@ namespace Sunny.UI
         {
             Version = UIGlobal.Version;
 
-            base.Font = UIFontColor.Font;
+            base.Font = UIFontColor.Font();
             base.ForeColor = UIFontColor.Primary;
             base.BackColor = Color.White;
             DrawMode = DrawMode.OwnerDrawFixed;

@@ -49,7 +49,7 @@ namespace Sunny.UI
             InitializeComponent();
             Version = UIGlobal.Version;
             AutoScaleMode = AutoScaleMode.None;
-            base.Font = UIFontColor.Font;
+            base.Font = UIFontColor.Font();
             base.MinimumSize = new System.Drawing.Size(1, 1);
             SetStyleFlags(true, false);
         }

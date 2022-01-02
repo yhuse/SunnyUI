@@ -39,7 +39,7 @@ namespace Sunny.UI
     public static class UIMessageTip
     {
         //默认字体。当样式中的Font==null时用该字体替换
-        static readonly Font DefaultFont = UIFontColor.Font;
+        static readonly Font DefaultFont = UIFontColor.Font();
         //文本格式。用于测量和绘制
         static readonly StringFormat DefStringFormat = StringFormat.GenericTypographic;
 
@@ -213,8 +213,9 @@ namespace Sunny.UI
                     }
                 }
             })
-            { 
-                IsBackground = true, Name = "T_Showing" 
+            {
+                IsBackground = true,
+                Name = "T_Showing"
             }.Start();
         }
 
@@ -625,7 +626,7 @@ namespace Sunny.UI
                 Width = 2
             };
             IconSpacing = 5;
-            TextFont = UIFontColor.Font;
+            TextFont = UIFontColor.Font();
             var fontName = TextFont.Name;
             if (fontName == "宋体") { TextOffset = new Point(1, 1); }
             TextColor = Color.Black;

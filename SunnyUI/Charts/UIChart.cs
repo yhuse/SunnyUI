@@ -39,8 +39,8 @@ namespace Sunny.UI
             Width = 400;
             Height = 300;
 
-            SubFont = UIFontColor.CreateSubFont();
-            LegendFont = UIFontColor.CreateSubFont();
+            SubFont = UIFontColor.SubFont();
+            LegendFont = UIFontColor.SubFont();
 
             tip.Parent = this;
             tip.Height = 32;
@@ -49,7 +49,7 @@ namespace Sunny.UI
             tip.Top = 1;
             tip.StyleCustomMode = true;
             tip.Style = UIStyle.Custom;
-            tip.Font = UIFontColor.CreateSubFont();
+            tip.Font = UIFontColor.SubFont();
             tip.RadiusSides = UICornerRadiusSides.None;
             tip.Visible = false;
 
@@ -64,7 +64,7 @@ namespace Sunny.UI
         private void Tip_VisibleChanged(object sender, EventArgs e)
         {
             tip.IsScaled = true;
-            float size = SubFont != null ? SubFont.Size : SubTextFontSize;
+            float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
             tip.Font = this.DPIScaleFont(Font, size);
         }
 
@@ -190,25 +190,13 @@ namespace Sunny.UI
             DrawOption(e.Graphics);
         }
 
-        [Category("SunnyUI")]
-        [DefaultValue(9), Browsable(false)]
-        public float LegendFontSize { get; set; } = 9;
-
-        [Category("SunnyUI")]
-        [DefaultValue(9), Browsable(false)]
-        public float SubTextFontSize { get; set; } = 9;
-
-        [Category("SunnyUI")]
-        [DefaultValue(9), Browsable(false)]
-        public float TipsFontSize { get; set; } = 9;
-
         Font tmpFont;
 
         protected Font TempFont
         {
             get
             {
-                float size = SubFont != null ? SubFont.Size : SubTextFontSize;
+                float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
 
                 if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / this.DPIScale()))
                 {
@@ -226,7 +214,7 @@ namespace Sunny.UI
         {
             get
             {
-                float size = LegendFont != null ? LegendFont.Size : LegendFontSize;
+                float size = LegendFont != null ? LegendFont.Size : UIFontColor.SubFontSize;
 
                 if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / this.DPIScale()))
                 {

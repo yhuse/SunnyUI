@@ -63,7 +63,7 @@ namespace Sunny.UI
                 float size = 0;
                 foreach (var info in Option.Infos)
                 {
-                    SizeF sf = info.Text.MeasureString(UIFontColor.Font);
+                    SizeF sf = info.Text.MeasureString(Font);
                     size = Math.Max(sf.Width, size);
                 }
 

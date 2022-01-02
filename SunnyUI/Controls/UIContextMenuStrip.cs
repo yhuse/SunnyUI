@@ -32,7 +32,7 @@ namespace Sunny.UI
 
         public UIContextMenuStrip()
         {
-            Font = UIFontColor.Font;
+            Font = UIFontColor.Font();
             RenderMode = ToolStripRenderMode.Professional;
             Renderer = new ToolStripProfessionalRenderer(ColorTable);
             Version = UIGlobal.Version;

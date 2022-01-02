@@ -52,7 +52,7 @@ namespace Sunny.UI
 
             ItemSize = new Size(150, 40);
             DrawMode = TabDrawMode.OwnerDrawFixed;
-            Font = UIFontColor.Font;
+            Font = UIFontColor.Font();
             AfterSetFillColor(FillColor);
             Version = UIGlobal.Version;
 

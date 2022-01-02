@@ -61,7 +61,7 @@ namespace Sunny.UI
             //ShowRootLines = false;
 
             DoubleBuffered = true;
-            Font = UIFontColor.Font;
+            Font = UIFontColor.Font();
             //CheckBoxes = false;
             ItemHeight = 50;
             BackColor = Color.FromArgb(56, 56, 56);
@@ -260,10 +260,10 @@ namespace Sunny.UI
             }
         }
 
-        private Font tipsFont = new Font("Microsoft Sans Serif", 9);
+        private Font tipsFont = UIFontColor.SubFont();
 
         [Description("角标文字字体"), Category("SunnyUI")]
-        [DefaultValue(typeof(Font), "Microsoft Sans Serif, 9pt")]
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
         public Font TipsFont
         {
             get => tipsFont;

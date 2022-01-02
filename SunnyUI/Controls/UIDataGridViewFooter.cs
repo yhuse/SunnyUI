@@ -40,7 +40,7 @@ namespace Sunny.UI
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
 
-            Font = UIFontColor.Font;
+            Font = UIFontColor.Font();
             foreColor = UIFontColor.Primary;
             fillColor = UIColor.LightBlue;
         }
