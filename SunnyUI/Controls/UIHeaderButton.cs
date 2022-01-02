@@ -22,6 +22,7 @@
  * 2021-06-22: V3.0.4 增加ShowSelected，是否显示选中状态
  * 2021-09-21: V3.0.7 增加Disabled颜色
  * 2021-12-07: V3.0.9 更改图片自动刷新
+ * 2022-01-02: V3.0.9 增加角标
 ******************************************************************************/
 
 using System;
@@ -63,6 +64,90 @@ namespace Sunny.UI
             fillDisableColor = fillColor;
             foreDisableColor = foreColor;
             rectDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
+        }
+
+        private bool showTips = false;
+
+        [Description("是否显示角标"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool ShowTips
+        {
+            get
+            {
+                return showTips;
+            }
+            set
+            {
+                if (showTips != value)
+                {
+                    showTips = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        private string tipsText = "";
+
+        [Description("角标文字"), Category("SunnyUI")]
+        [DefaultValue("")]
+        public string TipsText
+        {
+            get { return tipsText; }
+            set
+            {
+                if (tipsText != value)
+                {
+                    tipsText = value;
+                    if (ShowTips)
+                    {
+                        Invalidate();
+                    }
+                }
+            }
+        }
+
+        private Color tipsColor = Color.Red;
+
+        [Description("角标背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Red")]
+        public Color TipsColor
+        {
+            get => tipsColor;
+            set
+            {
+                tipsColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color tipsForeColor = Color.White;
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI"), Description("角标文字颜色")]
+        public Color TipsForeColor
+        {
+            get => tipsForeColor;
+            set
+            {
+                tipsForeColor = value;
+                Invalidate();
+            }
+        }
+
+        private Font tipsFont = UIFontColor.SubFont();
+
+        [Description("角标文字字体"), Category("SunnyUI")]
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
+        public Font TipsFont
+        {
+            get { return tipsFont; }
+            set
+            {
+                if (!tipsFont.Equals(value))
+                {
+                    tipsFont = value;
+                    Invalidate();
+                }
+            }
         }
 
         private bool isClick;
@@ -598,6 +683,33 @@ namespace Sunny.UI
                         #endregion
                     }
                     break;
+            }
+
+            if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
+            {
+                e.Graphics.SetHighQuality();
+                sf = e.Graphics.MeasureString(TipsText, TempFont);
+                float sfMax = Math.Max(sf.Width, sf.Height);
+                float x = Width - 1 - 2 - sfMax;
+                float y = 1 + 1;
+                e.Graphics.FillEllipse(TipsColor, x, y, sfMax, sfMax);
+                e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+            }
+        }
+
+        Font tmpFont;
+
+        private Font TempFont
+        {
+            get
+            {
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
+                {
+                    tmpFont?.Dispose();
+                    tmpFont = TipsFont.DPIScaleFont();
+                }
+
+                return tmpFont;
             }
         }
 

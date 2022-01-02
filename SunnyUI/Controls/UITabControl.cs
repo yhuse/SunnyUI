@@ -23,10 +23,12 @@
  * 2021-06-08: V3.0.4 Tab页标题选中高亮颜色增加可调整高度
  * 2021-07-14: V3.0.5 支持Tab在下方显示
  * 2021-08-14: V3.0.6 增加DisposeTabPageAfterRemove标志，移除TabPage后，是否自动销毁TabPage
+ * 2022-01-02: V3.0.9 增加角标
 ******************************************************************************/
 
 using Sunny.UI.Win32;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -60,6 +62,65 @@ namespace Sunny.UI
             timer = new Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
+        }
+
+        private ConcurrentDictionary<TabPage, string> TipsTexts = new ConcurrentDictionary<TabPage, string>();
+
+        public void SetTipsText(TabPage tabPage, string tipsText)
+        {
+            if (TipsTexts.ContainsKey(tabPage))
+                TipsTexts[tabPage] = tipsText;
+            else
+                TipsTexts.TryAdd(tabPage, tipsText);
+        }
+
+        private string GetTipsText(TabPage tabPage)
+        {
+            return TipsTexts.ContainsKey(tabPage) ? TipsTexts[tabPage] : string.Empty;
+        }
+
+        private Color tipsColor = Color.Red;
+
+        [Description("角标背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Red")]
+        public Color TipsColor
+        {
+            get => tipsColor;
+            set
+            {
+                tipsColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color tipsForeColor = Color.White;
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI"), Description("角标文字颜色")]
+        public Color TipsForeColor
+        {
+            get => tipsForeColor;
+            set
+            {
+                tipsForeColor = value;
+                Invalidate();
+            }
+        }
+
+        private Font tipsFont = UIFontColor.SubFont();
+
+        [Description("角标文字字体"), Category("SunnyUI")]
+        [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
+        public Font TipsFont
+        {
+            get { return tipsFont; }
+            set
+            {
+                if (!tipsFont.Equals(value))
+                {
+                    tipsFont = value;
+                    Invalidate();
+                }
+            }
         }
 
         [Browsable(false)]
@@ -134,6 +195,10 @@ namespace Sunny.UI
         public UIPage GetPage(int pageIndex) => Helper.GetPage(pageIndex);
 
         public UIPage GetPage(Guid guid) => Helper.GetPage(guid);
+
+        public void SetTipsText(int pageIndex, string tipsText) => Helper.SetTipsText(pageIndex, tipsText);
+
+        public void SetTipsText(Guid guid, string tipsText) => Helper.SetTipsText(guid, tipsText);
 
         public void AddPages(params UIPage[] pages)
         {
@@ -475,6 +540,7 @@ namespace Sunny.UI
                 {
                     TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y + 2, ItemSize.Width, ItemSize.Height);
                 }
+
                 Bitmap bmp = new Bitmap(TabRect.Width, TabRect.Height);
                 Graphics g = Graphics.FromImage(bmp);
 
@@ -528,6 +594,20 @@ namespace Sunny.UI
                     }
                 }
 
+                string TipsText = GetTipsText(TabPages[index]);
+                if (Enabled && TipsText.IsValid())
+                {
+                    g.SetHighQuality();
+                    sf = g.MeasureString(TipsText, TempFont);
+                    float sfMax = Math.Max(sf.Width, sf.Height);
+                    float x = TabRect.Width - 1 - 2 - sfMax;
+                    if (showActiveCloseButton || ShowCloseButton)
+                        x -= 24;
+                    float y = 1 + 1;
+                    g.FillEllipse(TipsColor, x, y, sfMax, sfMax);
+                    g.DrawString(TipsText, TempFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+                }
+
                 if (RightToLeftLayout && RightToLeft == RightToLeft.Yes)
                 {
                     bmp = bmp.HorizontalFlip();
@@ -535,6 +615,22 @@ namespace Sunny.UI
 
                 e.Graphics.DrawImage(bmp, TabRect.Left, TabRect.Top);
                 bmp.Dispose();
+            }
+        }
+
+        Font tmpFont;
+
+        private Font TempFont
+        {
+            get
+            {
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
+                {
+                    tmpFont?.Dispose();
+                    tmpFont = TipsFont.DPIScaleFont();
+                }
+
+                return tmpFont;
             }
         }
 

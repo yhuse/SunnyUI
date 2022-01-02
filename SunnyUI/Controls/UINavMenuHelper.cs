@@ -191,6 +191,18 @@ namespace Sunny.UI
             }
         }
 
+        public void SetTipsText(int pageIndex, string tipsText)
+        {
+            TabPage tabPage = CreateTabIfNotExists(pageIndex);
+            tabControl.SetTipsText(tabPage, tipsText);
+        }
+
+        public void SetTipsText(Guid pageGuid, string tipsText)
+        {
+            TabPage tabPage = CreateTabIfNotExists(pageGuid);
+            tabControl.SetTipsText(tabPage, tipsText);
+        }
+
         public UIPage AddPage(int pageIndex, UIPage page)
         {
             page.PageIndex = pageIndex;

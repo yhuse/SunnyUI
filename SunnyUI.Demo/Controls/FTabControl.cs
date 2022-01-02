@@ -5,6 +5,8 @@
         public FTabControl()
         {
             InitializeComponent();
+
+            uiTabControl1.SetTipsText(tabPage2, "6");
         }
 
         private bool uiTabControl1_BeforeRemoveTabPage(object sender, int index)
