@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SunnyUI.Net")]
 [assembly: AssemblyProduct("SunnyUI.Demo")]
-[assembly: AssemblyCopyright("Copyright ©SunnyUI.Net 2012-2021")]
+[assembly: AssemblyCopyright("Copyright ©SunnyUI.Net 2012-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
