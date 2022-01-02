@@ -560,6 +560,11 @@ namespace Sunny.UI
         {
             UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
         }
+
+        public static void ShowNotifier(string desc, EventHandler clickEvent, UINotifierType type = UINotifierType.INFO, string title = "Notifier", int timeout = 0)
+        {
+            UINotifier.Show(desc, type, title, false, timeout, null, clickEvent);
+        }
     }
 
     public static class FormEx

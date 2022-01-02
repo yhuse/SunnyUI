@@ -489,7 +489,7 @@ namespace Sunny.UI
         // Show the note: it is the startup of the creation process of the note
         //-------------------------------------------------------------------------------------------------------------------------------
         public static short Show(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier",
-                                 bool isDialog = false, int timeout = 0, Form inApp = null)
+                                 bool isDialog = false, int timeout = 0, Form inApp = null, EventHandler clickevent = null)
         {
             if (NotifierAlreadyPresent(desc, type, title, isDialog, out var updated_note_id, out var updated_note_occurence))
             {
@@ -503,6 +503,8 @@ namespace Sunny.UI
                                             isDialog,
                                             timeout,
                                             inApp);
+                if (clickevent != null)
+                    not.ItemClick = clickevent;
                 not.SetDPIScale();
                 not.Show();                                                         // Show the note
 
@@ -753,6 +755,14 @@ namespace Sunny.UI
         {
             closeAllToolStripMenuItem.Text = UILocalize.CloseAll;
         }
+
+        private void noteContent_Click(object sender, EventArgs e)
+        {
+            ItemClick?.Invoke(this, e);
+            Close();
+        }
+
+        public event EventHandler ItemClick;
     }   // Close Class
 
     /// <summary>

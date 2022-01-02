@@ -1848,6 +1848,26 @@ namespace Sunny.UI
             UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
         }
 
+        public void ShowInfoNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.INFO, UILocalize.InfoTitle, timeout);
+        }
+
+        public void ShowSuccessNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.OK, UILocalize.SuccessTitle, timeout);
+        }
+
+        public void ShowWarningNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.WARNING, UILocalize.WarningTitle, timeout);
+        }
+
+        public void ShowErrorNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.ERROR, UILocalize.ErrorTitle, timeout);
+        }
+
         #endregion 一些辅助窗口
 
         #region IFrame实现

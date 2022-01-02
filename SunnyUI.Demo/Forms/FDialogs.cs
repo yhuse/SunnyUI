@@ -109,7 +109,12 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton2_Click(object sender, EventArgs e)
         {
-            ShowInfoNotifier("Info");
+            ShowInfoNotifier("Info", InfoNotifierClick);
+        }
+
+        private void InfoNotifierClick(object sender, EventArgs e)
+        {
+            ShowInfoTip("嗨，你点击了右下角的弹窗消息");
         }
 
         private void uiSymbolButton6_Click(object sender, EventArgs e)

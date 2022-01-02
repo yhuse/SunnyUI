@@ -56,6 +56,7 @@
             this.noteContent.TabIndex = 3;
             this.noteContent.Text = "Description";
             this.noteContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.noteContent.Click += new System.EventHandler(this.noteContent_Click);
             // 
             // noteDate
             // 
@@ -64,7 +65,7 @@
             this.noteDate.Image = global::Sunny.UI.Properties.Resources.notifier;
             this.noteDate.Location = new System.Drawing.Point(11, 97);
             this.noteDate.Name = "noteDate";
-            this.noteDate.Size = new System.Drawing.Size(18, 15);
+            this.noteDate.Size = new System.Drawing.Size(13, 9);
             this.noteDate.TabIndex = 4;
             this.noteDate.Text = "- -";
             // 
@@ -102,13 +103,13 @@
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeAllToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(146, 34);
+            this.menu.Size = new System.Drawing.Size(120, 26);
             // 
             // closeAllToolStripMenuItem
             // 
             this.closeAllToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(145, 30);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.closeAllToolStripMenuItem.Text = "Close All";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.onMenuCloseAllClick);
             // 
@@ -131,7 +132,7 @@
             this.idLabel.Image = global::Sunny.UI.Properties.Resources.notifier;
             this.idLabel.Location = new System.Drawing.Point(296, 103);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(35, 15);
+            this.idLabel.Size = new System.Drawing.Size(21, 9);
             this.idLabel.TabIndex = 7;
             this.idLabel.Text = "0000";
             this.idLabel.Visible = false;
@@ -140,7 +141,6 @@
             // 
             this.icon.BackColor = System.Drawing.Color.White;
             this.icon.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.icon.IsScaled = false;
             this.icon.Location = new System.Drawing.Point(10, 51);
             this.icon.MinimumSize = new System.Drawing.Size(1, 1);
             this.icon.Name = "icon";
