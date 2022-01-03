@@ -85,6 +85,8 @@ namespace Sunny.UI.Demo
 
             //选中第一个节点
             Aside.SelectPage(1002);
+
+            Text = Version + " Build " + Properties.Resources.BuildDate;
         }
 
         private void Header_MenuItemClick(string text, int menuIndex, int pageIndex)

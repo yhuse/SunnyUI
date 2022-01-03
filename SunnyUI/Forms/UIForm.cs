@@ -27,6 +27,7 @@
  * 2021-08-17: V3.0.6 增加TitleFont属性
  * 2021-08-17: V3.0.6 适应主屏幕任务栏在屏幕各个方向均可
  * 2021-08-17: V3.0.8 增加IFrame接口
+ * 2022-01-03: V3.0.9 标题栏按钮可以设置颜色
 ******************************************************************************/
 
 using System;
@@ -41,8 +42,6 @@ namespace Sunny.UI
 {
     public partial class UIForm : Form, IStyleInterface, ITranslate, IFrame
     {
-        private readonly UIButton btn = new UIButton();
-
         public readonly Guid Guid = Guid.NewGuid();
 
         public UIForm()
@@ -946,19 +945,17 @@ namespace Sunny.UI
                 if (InControlBox)
                 {
                     if (ShowRadius)
-                        e.Graphics.FillRoundRectangle(UIColor.Red, ControlBoxRect, 5);
+                        e.Graphics.FillRoundRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect, 5);
                     else
-                        e.Graphics.FillRectangle(UIColor.Red, ControlBoxRect);
+                        e.Graphics.FillRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect);
                 }
 
-                //e.Graphics.DrawFontImage(61453, 24, Color.White, ControlBoxRect, 1);
-
-                e.Graphics.DrawLine(Color.White,
+                e.Graphics.DrawLine(controlBoxForeColor,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5);
-                e.Graphics.DrawLine(Color.White,
+                e.Graphics.DrawLine(controlBoxForeColor,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
@@ -970,42 +967,37 @@ namespace Sunny.UI
                 if (InMaxBox)
                 {
                     if (ShowRadius)
-                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MaximizeBoxRect, 5);
+                        e.Graphics.FillRoundRectangle(ControlBoxFillHoverColor, MaximizeBoxRect, 5);
                     else
-                        e.Graphics.FillRectangle(btn.FillHoverColor, MaximizeBoxRect);
+                        e.Graphics.FillRectangle(ControlBoxFillHoverColor, MaximizeBoxRect);
                 }
-
-                // e.Graphics.DrawFontImage(
-                //     windowState == FormWindowState.Maximized
-                //         ? FontAwesomeIcons.fa_window_restore
-                //         : FontAwesomeIcons.fa_window_maximize, 24, Color.White, MaximizeBoxRect, 1);
 
                 if (WindowState == FormWindowState.Maximized)
                 {
-                    e.Graphics.DrawRectangle(Color.White,
+                    e.Graphics.DrawRectangle(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
                         7, 7);
 
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 1,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
 
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 2,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4);
 
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3);
 
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 + 3,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 + 3,
@@ -1014,7 +1006,7 @@ namespace Sunny.UI
 
                 if (WindowState == FormWindowState.Normal)
                 {
-                    e.Graphics.DrawRectangle(Color.White,
+                    e.Graphics.DrawRectangle(controlBoxForeColor,
                         MaximizeBoxRect.Left + MaximizeBoxRect.Width / 2 - 5,
                         MaximizeBoxRect.Top + MaximizeBoxRect.Height / 2 - 4,
                         10, 9);
@@ -1026,17 +1018,16 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     if (ShowRadius)
-                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, MinimizeBoxRect, 5);
+                        e.Graphics.FillRoundRectangle(ControlBoxFillHoverColor, MinimizeBoxRect, 5);
                     else
-                        e.Graphics.FillRectangle(btn.FillHoverColor, MinimizeBoxRect);
+                        e.Graphics.FillRectangle(ControlBoxFillHoverColor, MinimizeBoxRect);
                 }
 
-                e.Graphics.DrawLine(Color.White,
+                e.Graphics.DrawLine(controlBoxForeColor,
                     MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 - 6,
                     MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2,
                     MinimizeBoxRect.Left + MinimizeBoxRect.Width / 2 + 5,
                     MinimizeBoxRect.Top + MinimizeBoxRect.Height / 2);
-                //e.Graphics.DrawFontImage(62161, 24, Color.White, MinimizeBoxRect, 1);
             }
 
             if (ExtendBox)
@@ -1044,20 +1035,20 @@ namespace Sunny.UI
                 if (InExtendBox)
                 {
                     if (ShowRadius)
-                        e.Graphics.FillRoundRectangle(btn.FillHoverColor, ExtendBoxRect, 5);
+                        e.Graphics.FillRoundRectangle(ControlBoxFillHoverColor, ExtendBoxRect, 5);
                     else
-                        e.Graphics.FillRectangle(btn.FillHoverColor, ExtendBoxRect);
+                        e.Graphics.FillRectangle(ControlBoxFillHoverColor, ExtendBoxRect);
                 }
 
                 if (ExtendSymbol == 0)
                 {
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 5 - 1,
                         ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
                         ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
                         ExtendBoxRect.Top + ExtendBoxRect.Height / 2 + 3);
 
-                    e.Graphics.DrawLine(Color.White,
+                    e.Graphics.DrawLine(controlBoxForeColor,
                         ExtendBoxRect.Left + ExtendBoxRect.Width / 2 + 5 - 1,
                         ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
                         ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
@@ -1065,7 +1056,7 @@ namespace Sunny.UI
                 }
                 else
                 {
-                    e.Graphics.DrawFontImage(extendSymbol, ExtendSymbolSize, Color.White, ExtendBoxRect, ExtendSymbolOffset.X, ExtendSymbolOffset.Y);
+                    e.Graphics.DrawFontImage(extendSymbol, ExtendSymbolSize, controlBoxForeColor, ExtendBoxRect, ExtendSymbolOffset.X, ExtendSymbolOffset.Y);
                 }
             }
 
@@ -1138,13 +1129,67 @@ namespace Sunny.UI
             get; set;
         }
 
+        private Color controlBoxForeColor = Color.White;
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏按钮颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "White")]
+        public Color ControlBoxForeColor
+        {
+            get => controlBoxForeColor;
+            set
+            {
+                if (controlBoxForeColor != value)
+                {
+                    controlBoxForeColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color controlBoxFillHoverColor = Color.FromArgb(111, 168, 255);
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "111, 168, 255")]
+        public Color ControlBoxFillHoverColor
+        {
+            get => controlBoxFillHoverColor;
+            set
+            {
+                if (ControlBoxFillHoverColor != value)
+                {
+                    controlBoxFillHoverColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color controlBoxCloseFillHoverColor = Color.Red;
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏关闭按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "Red")]
+        public Color ControlBoxCloseFillHoverColor
+        {
+            get => controlBoxCloseFillHoverColor;
+            set
+            {
+                if (controlBoxCloseFillHoverColor != value)
+                {
+                    controlBoxCloseFillHoverColor = value;
+                    Invalidate();
+                }
+            }
+        }
+
         public void SetStyle(UIStyle style)
         {
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
-            btn.SetStyle(style);
-
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
+            UIBaseStyle uiColor = style.Colors();
             if (!uiColor.IsCustom()) SetStyleColor(uiColor);
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
@@ -1155,6 +1200,8 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
+            controlBoxForeColor = uiColor.ButtonForeColor;
+            controlBoxFillHoverColor = uiColor.ButtonFillHoverColor;
             rectColor = uiColor.RectColor;
             foreColor = UIFontColor.Primary;
             BackColor = uiColor.PlainColor;
