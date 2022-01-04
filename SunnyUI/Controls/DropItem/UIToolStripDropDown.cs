@@ -41,6 +41,15 @@ namespace Sunny.UI
             itemForm.Opening += ItemForm_Opening;
         }
 
+        public Size ItemSize => itemForm.Size;
+
+        public Rectangle ItemBounds => itemForm.Bounds;
+
+        public void Close()
+        {
+            itemForm.Close();
+        }
+
         private void ItemForm_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Opening?.Invoke(this, e);
