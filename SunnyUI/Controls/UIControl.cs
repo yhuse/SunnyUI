@@ -279,7 +279,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        private UIStyle _style = UIStyle.Blue;
+        protected UIStyle _style = UIStyle.Blue;
 
         /// <summary>
         /// 主题样式

@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-07-26: V2.2.6 增加Image属性，增加图片和文字的摆放位置
+ * 2022-01-05: V3.0.9 字体图标增加颜色设置
 ******************************************************************************/
 
 using System;
@@ -52,6 +53,29 @@ namespace Sunny.UI
                 _symbolSize = Math.Min(value, 128);
                 Invalidate();
             }
+        }
+
+        private Color symbolColor = Color.White;
+        [Description("图标颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color SymbolColor
+        {
+            get => symbolColor;
+            set
+            {
+                if (symbolColor != value)
+                {
+                    symbolColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            symbolColor = uiColor.ButtonForeColor;
+            base.SetStyleColor(uiColor);
         }
 
         [DefaultValue(null)]
@@ -215,7 +239,7 @@ namespace Sunny.UI
                     {
                         if (Symbol > 0 && Image == null)
                         {
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
                                 new RectangleF(
                                     (Width - ImageSize.Width) / 2.0f,
                                     Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f,
@@ -237,7 +261,7 @@ namespace Sunny.UI
 
                     if (Symbol > 0 && Image == null)
                     {
-                        e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
                             new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
@@ -308,7 +332,7 @@ namespace Sunny.UI
 
                     if (Symbol > 0 && Image == null)
                     {
-                        e.Graphics.DrawFontImage(Symbol, SymbolSize, color,
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
                             new RectangleF(left, top, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
