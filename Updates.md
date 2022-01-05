@@ -1,5 +1,49 @@
 ﻿\+ 增加    \* 修改    \- 删除    
     
+#### 2022\-01\-05 V3.1.0    
+\+ ChineseColors: 中国传统颜色    
+\+ UITexture: 增加主题背景纹理类    
+\+ BmpFile: 24bit真彩色位图数据结构类    
+\+ BigEndianBinaryWriter: 大端字节序的二进制写入器    
+\+ IFrame: 创建文档    
+\* UIStyle: 完善控件支持DPI自适应缩放。    
+\* UITreeView: 节点点击时同步父节点和子节点的状态    
+\* UILine: 增加线的样式，支持透明背景    
+\* UISymbolButton: 字体图标增加颜色设置    
+\* UIForm: 标题栏按钮可以设置颜色    
+\* UIForm: 右下角弹窗增加点击交互    
+\* UINavMenu: 滚动条可设置颜色    
+\* UIEditForm: AddComboTreeView 加默认值    
+\* UISwitch: 增加是否只读属性    
+\* UILineChart: 简化了设置坐标轴范围的函数    
+\* UIHeaderButton: 增加角标    
+\* UITabControl: 增加角标    
+\* UIBarChart: 增加柱子上显示数值    
+\* UILineChart: X轴支持字符串显示    
+\* UILineChart: 增加自定义坐标轴刻度    
+\* UILineChart: 双坐标轴增加纵横参考线    
+\* UILineChart: 增加双Y坐标轴    
+\* UILineChart: 增加坐标线、图线边框等是否显示的设置    
+\* UIPage: 增加NeedReload，页面切换是否需要重载Load    
+\* UIListBox: 增加修改文字颜色    
+\* UISymbolLabel: 修复Dock和AutoSize同时设置的Bug    
+\* UIInputDialog: 输入框增加半透明遮罩    
+\* UIForm: 增加全屏遮罩，Form的ShowDialogWithMask()扩展方法    
+\* UINavMenu: 选中项可设置背景色渐变    
+\* UIButton: 增加了渐变色    
+\* UIPanel: 增加了渐变色    
+\* UIDoubleUpDown: 增加Readonly属性    
+\* UINavMenu: 修改了一处可能的出错    
+\* UIComboDataGridView: 有过滤输入框时默认Focus    
+\* UIChart: 修改可能显示出错的问题    
+\* UIToolTip: 修复默认显示    
+\* UIHeaderButton: 更改图片自动刷新    
+\* UIPipe: 修正界面设计器删除不了的问题    
+\* UIMessageTip: 修复可能出错的问题    
+\* UIPage: 增加FeedBack和SetParam函数，用于多页面传值    
+\* UIChart: 修复编辑器显示时出错的问题    
+\* UIDataGridViewFooter: 修复一处可能不显示的问题    
+    
 #### 2021\-11\-19 V3.0.9    
 \+ SunnyUI: 增加.Net6版本的支持    
 \+ UIStyle: 全部SunnyUI控件支持DPI自适应缩放    
