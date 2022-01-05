@@ -21,6 +21,7 @@
  * 2020-08-12: V2.2.7 更新可设置背景色
  * 2021-07-19: V3.0.5 调整了显示CheckBoxes时图片位置
  * 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
+ * 2022-01-05: V3.0.9 TreeNodeStateSync: 节点点击时同步父节点和子节点的状态
 ******************************************************************************/
 
 using System;
@@ -72,6 +73,15 @@ namespace Sunny.UI
             view.KeyUp += View_KeyUp;
             view.AfterLabelEdit += View_AfterLabelEdit;
         }
+
+        [Description("节点点击时同步父节点和子节点的状态"), Category("SunnyUI")]
+        [DefaultValue(true)]
+        public bool TreeNodeStateSync
+        {
+            get => view.TreeNodeStateSync;
+            set => view.TreeNodeStateSync = value;
+        }
+
 
         private void View_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
@@ -742,7 +752,7 @@ namespace Sunny.UI
                     }
                     if (CheckBoxes)
                     {
-                        if (e.Node.Parent != null && DicNodeStatus.ContainsKey(e.Node.Parent.GetHashCode()) && !DicNodeStatus[e.Node.Parent.GetHashCode()])
+                        if (TreeNodeStateSync && e.Node.Parent != null && DicNodeStatus.ContainsKey(e.Node.Parent.GetHashCode()) && !DicNodeStatus[e.Node.Parent.GetHashCode()])
                         {
                             SetParentNodeCheckedState(e.Node);
                         }
@@ -951,17 +961,16 @@ namespace Sunny.UI
             {
 
                 base.OnAfterCheck(e);
-                if (e.Action == TreeViewAction.ByMouse) //鼠标点击
+                if (e.Action == TreeViewAction.ByMouse && TreeNodeStateSync) //鼠标点击
                 {
                     DicNodeStatus[e.Node.GetHashCode()] = false;
 
                     SetChildNodeCheckedState(e.Node, e.Node.Checked);
-
                     SetParentNodeCheckedState(e.Node, true);
-
                 }
-
             }
+
+            public bool TreeNodeStateSync { get; set; } = true;
 
             private void SetParentNodeCheckedState(TreeNode currNode, bool ByMouse = false)
             {
@@ -1020,8 +1029,6 @@ namespace Sunny.UI
                     }
                 }
             }
-
-
         }
     }
 }
