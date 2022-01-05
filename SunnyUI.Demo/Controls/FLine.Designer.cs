@@ -46,6 +46,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiLine11.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiLine11.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine11.LineDashStyle = Sunny.UI.UILineDashStyle.DashDotDot;
             this.uiLine11.LineSize = 2;
             this.uiLine11.Location = new System.Drawing.Point(578, 55);
             this.uiLine11.MinimumSize = new System.Drawing.Size(16, 16);
@@ -59,6 +60,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiLine10.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine10.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine10.Location = new System.Drawing.Point(521, 55);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
@@ -70,6 +72,7 @@ namespace Sunny.UI.Demo
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine7.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine7.LineSize = 3;
             this.uiLine7.Location = new System.Drawing.Point(30, 413);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
@@ -82,6 +85,7 @@ namespace Sunny.UI.Demo
             // uiLine8
             // 
             this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine8.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine8.LineSize = 2;
             this.uiLine8.Location = new System.Drawing.Point(30, 378);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
@@ -94,6 +98,7 @@ namespace Sunny.UI.Demo
             // uiLine9
             // 
             this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine9.LineDashStyle = Sunny.UI.UILineDashStyle.DashDot;
             this.uiLine9.Location = new System.Drawing.Point(30, 340);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -105,6 +110,7 @@ namespace Sunny.UI.Demo
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.LineSize = 3;
             this.uiLine4.Location = new System.Drawing.Point(30, 265);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
@@ -117,6 +123,7 @@ namespace Sunny.UI.Demo
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.Dot;
             this.uiLine5.LineSize = 2;
             this.uiLine5.Location = new System.Drawing.Point(30, 230);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
@@ -128,6 +135,7 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(30, 192);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -139,6 +147,7 @@ namespace Sunny.UI.Demo
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.LineSize = 3;
             this.uiLine3.Location = new System.Drawing.Point(30, 113);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
@@ -151,6 +160,7 @@ namespace Sunny.UI.Demo
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.LineSize = 2;
             this.uiLine2.Location = new System.Drawing.Point(30, 78);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
@@ -163,6 +173,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";

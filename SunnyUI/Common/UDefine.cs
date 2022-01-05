@@ -22,4 +22,15 @@ namespace Sunny.UI
         Triangle,
         Circle
     }
+
+    public enum UILineDashStyle
+    {
+        Solid,
+        Dash,
+        Dot,
+        DashDot,
+        DashDotDot,
+        Custom,
+        None
+    }
 }
