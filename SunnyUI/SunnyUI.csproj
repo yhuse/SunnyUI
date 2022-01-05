@@ -17,6 +17,10 @@
         <RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageIcon>SunnyUI.png</PackageIcon>
+        <SignAssembly>False</SignAssembly>
+        <AssemblyOriginatorKeyFile>D:\MyDocuments\SunnyUI.pfx</AssemblyOriginatorKeyFile>
+        <DelaySign>False</DelaySign>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

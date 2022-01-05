@@ -271,7 +271,7 @@ namespace Sunny.UI.Demo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 20220103 的本地化字符串。
+        ///   查找类似 20220105 的本地化字符串。
         /// </summary>
         internal static string BuildDate {
             get {
