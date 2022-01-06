@@ -28,6 +28,7 @@
  * 2021-12-31: V3.0.9 增加坐标线、图线边框等是否显示的设置
  * 2021-12-31: V3.0.9 增加自定义坐标轴刻度
  * 2021-12-31: V3.0.9 X轴支持字符串显示
+ * 2022-01-06: V3.1.0 支持FillColor透明
 ******************************************************************************/
 
 using System;
@@ -474,20 +475,23 @@ namespace Sunny.UI
         {
             if (YScale == null) return;
 
-            using (Graphics graphics = bmp.Graphics())
-            {
-                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            }
+            bmp?.Dispose();
+            bmp = new Bitmap(Width, Height);
 
-            using (Graphics graphics = bmpGreater.Graphics())
-            {
-                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            }
-
-            using (Graphics graphics = bmpLess.Graphics())
-            {
-                graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            }
+            //using (Graphics graphics = bmp.Graphics())
+            //{
+            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
+            //}
+            //
+            //using (Graphics graphics = bmpGreater.Graphics())
+            //{
+            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
+            //}
+            //
+            //using (Graphics graphics = bmpLess.Graphics())
+            //{
+            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
+            //}
 
             int idx = 0;
             float wTop = Option.Grid.Top;
@@ -511,6 +515,12 @@ namespace Sunny.UI
             }
             else
             {
+                bmpGreater?.Dispose();
+                bmpGreater = new Bitmap(Width, Height);
+
+                bmpLess?.Dispose();
+                bmpLess = new Bitmap(Width, Height);
+
                 foreach (var series in Option.Series.Values)
                 {
                     Color color = series.Color;
@@ -571,8 +581,6 @@ namespace Sunny.UI
 
             g.DrawImage(bmp, new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)),
              new Rectangle((int)wLeft, (int)wTop, (int)(wRight - wLeft), (int)(wBottom - wTop)), GraphicsUnit.Pixel);
-
-
         }
 
         private void DrawPointSymbols(Graphics g)
