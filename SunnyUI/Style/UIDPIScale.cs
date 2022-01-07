@@ -29,7 +29,17 @@ namespace Sunny.UI
     {
         public static float DPIScale(this Control control)
         {
-            return control.CreateGraphics().DpiX / 96.0f;
+            try
+            {
+                if (control != null)
+                    return control.CreateGraphics().DpiX / 96.0f;
+                else
+                    return GDI.Graphics().DpiX / 96.0f;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public static float DPIScaleFontSize(this Control control, Font font)

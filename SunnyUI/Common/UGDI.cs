@@ -146,7 +146,7 @@ namespace Sunny.UI
         /// 提供一个Graphics，常用于需要计算文字大小时
         /// </summary>
         /// <returns>大小</returns>
-        private static Graphics Graphics()
+        public static Graphics Graphics()
         {
             if (TempGraphics == null)
             {
