@@ -29,6 +29,7 @@
  * 2021-09-07: V3.0.6 增加按钮
  * 2021-10-14: V3.0.8 调整最小高度限制
  * 2021-10-15: V3.0.8 支持修改背景色
+ * 2022-01-07: V3.1.0 按钮支持自定义颜色
 ******************************************************************************/
 
 using System;
@@ -758,6 +759,21 @@ namespace Sunny.UI
                 bar.FillColor = fillColor;
             }
 
+            if (btn != null)
+            {
+                btn.ForeColor = uiColor.ButtonForeColor;
+                btn.FillColor = uiColor.ButtonFillColor;
+                btn.RectColor = uiColor.RectColor;
+
+                btn.FillHoverColor = uiColor.ButtonFillHoverColor;
+                btn.RectHoverColor = uiColor.RectHoverColor;
+                btn.ForeHoverColor = uiColor.ButtonForeHoverColor;
+
+                btn.FillPressColor = uiColor.ButtonFillPressColor;
+                btn.RectPressColor = uiColor.RectPressColor;
+                btn.ForePressColor = uiColor.ButtonForePressColor;
+            }
+
             Invalidate();
         }
 
@@ -1146,6 +1162,123 @@ namespace Sunny.UI
         {
             get => btn.SymbolOffset;
             set => btn.SymbolOffset = value;
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("按钮填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ButtonFillColor
+        {
+            get => btn.FillColor;
+            set
+            {
+                btn.FillColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("按钮字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color ButtonForeColor
+        {
+            get => btn.ForeColor;
+            set
+            {
+                btn.ForeColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("按钮边框颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ButtonRectColor
+        {
+            get => btn.RectColor;
+            set
+            {
+                btn.RectColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [Description("按钮鼠标移上时填充颜色")]
+        public Color ButtonFillHoverColor
+        {
+            get => btn.FillHoverColor;
+            set
+            {
+                btn.FillHoverColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("按钮鼠标移上时字体颜色")]
+        public Color ButtonForeHoverColor
+        {
+            get => btn.ForeHoverColor;
+            set
+            {
+                btn.ForeHoverColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [Description("鼠标移上时边框颜色")]
+        public Color ButtonRectHoverColor
+        {
+            get => btn.RectHoverColor;
+            set
+            {
+                btn.RectHoverColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时填充颜色")]
+        public Color ButtonFillPressColor
+        {
+            get => btn.FillPressColor;
+            set
+            {
+                btn.FillPressColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时字体颜色")]
+        public Color ButtonForePressColor
+        {
+            get => btn.ForePressColor;
+            set
+            {
+                btn.ForePressColor = value;
+                _style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时边框颜色")]
+        public Color ButtonRectPressColor
+        {
+            get => btn.RectPressColor;
+            set
+            {
+                btn.RectPressColor = value;
+                _style = UIStyle.Custom;
+            }
         }
     }
 }
