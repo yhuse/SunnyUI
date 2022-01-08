@@ -1974,6 +1974,17 @@ namespace Sunny.UI
             return MainTabControl?.GetPage(guid);
         }
 
+        public virtual bool ExistPage(int pageIndex)
+        {
+            return GetPage(pageIndex) != null;
+        }
+
+        public virtual bool ExistPage(Guid guid)
+        {
+            return GetPage(guid) != null;
+        }
+
+
         #endregion IFrame实现
     }
 }
