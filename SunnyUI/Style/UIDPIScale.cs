@@ -27,6 +27,11 @@ namespace Sunny.UI
 {
     public static class UIDPIScale
     {
+        public static float DPIScale()
+        {
+            return GDI.Graphics().DpiX / 96.0f;
+        }
+
         public static float DPIScale(this Control control)
         {
             try
@@ -57,9 +62,8 @@ namespace Sunny.UI
 
         public static float DPIScaleFontSize(this float fontSize)
         {
-            using Control control = new();
             if (UIStyles.DPIScale)
-                return fontSize / control.DPIScale();
+                return fontSize / DPIScale();
             else
                 return fontSize;
         }
@@ -67,6 +71,24 @@ namespace Sunny.UI
         public static Font DPIScaleFont(this Control control, Font font)
         {
             return control.DPIScaleFont(font, font.Size);
+        }
+
+        public static Font DPIScaleFont(this Font font)
+        {
+            if (UIStyles.DPIScale)
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, font.Size / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, font.Size / DPIScale());
+            }
+            else
+            {
+                if (font.GdiCharSet == 134)
+                    return new Font(font.FontFamily, font.Size, font.Style, font.Unit, font.GdiCharSet);
+                else
+                    return new Font(font.FontFamily, font.Size);
+            }
         }
 
         public static Font DPIScaleFont(this Control control, Font font, float fontSize)
@@ -87,23 +109,10 @@ namespace Sunny.UI
             }
         }
 
-        public static Font DPIScaleFont(this Font font)
-        {
-            if (UIStyles.DPIScale)
-            {
-                using Control control = new();
-                return control.DPIScaleFont(font);
-            }
-            else
-            {
-                return font;
-            }
-        }
-
         public static void SetDPIScaleFont(this Control control)
         {
             if (!UIStyles.DPIScale) return;
-            if (!control.DPIScale().EqualsFloat(1))
+            if (!DPIScale().EqualsFloat(1))
             {
                 if (control is IStyleInterface ctrl)
                 {

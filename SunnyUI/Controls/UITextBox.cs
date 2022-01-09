@@ -507,7 +507,7 @@ namespace Sunny.UI
 
         private void CalcEditHeight()
         {
-            TextBox edt = new();
+            TextBox edt = new TextBox();
             edt.Font = edit.Font.DPIScaleFont();
             MinHeight = edt.PreferredHeight;
             edt.BorderStyle = BorderStyle.None;
