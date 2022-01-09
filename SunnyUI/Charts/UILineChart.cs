@@ -29,6 +29,7 @@
  * 2021-12-31: V3.0.9 增加自定义坐标轴刻度
  * 2021-12-31: V3.0.9 X轴支持字符串显示
  * 2022-01-06: V3.1.0 支持FillColor透明
+ * 2022-01-09: V3.1.0 双坐标轴支持选区域缩放
 ******************************************************************************/
 
 using System;
@@ -113,7 +114,7 @@ namespace Sunny.UI
                 YScale.SetRange(min, max);
                 if (!Option.YAxis.MaxAuto) YScale.Max = Option.YAxis.Max;
                 if (!Option.YAxis.MinAuto) YScale.Min = Option.YAxis.Min;
-                if (Option.YAxis.HaveCustomLabels)
+                if (BaseArea == null && Option.YAxis.HaveCustomLabels)
                 {
                     YScale.Max = Option.YAxis.CustomLabels.Stop;
                     YScale.Min = Option.YAxis.CustomLabels.Start;
@@ -138,7 +139,7 @@ namespace Sunny.UI
                 if (!Option.Y2Axis.MaxAuto) Y2Scale.Max = Option.Y2Axis.Max;
                 if (!Option.Y2Axis.MinAuto) Y2Scale.Min = Option.Y2Axis.Min;
 
-                if (Option.Y2Axis.HaveCustomLabels)
+                if (BaseArea == null && Option.Y2Axis.HaveCustomLabels)
                 {
                     Y2Scale.Max = Option.Y2Axis.CustomLabels.Stop;
                     Y2Scale.Min = Option.Y2Axis.CustomLabels.Start;
@@ -160,7 +161,7 @@ namespace Sunny.UI
                 if (!Option.XAxis.MaxAuto) XScale.Max = Option.XAxis.Max;
                 if (!Option.XAxis.MinAuto) XScale.Min = Option.XAxis.Min;
 
-                if (Option.XAxis.HaveCustomLabels)
+                if (BaseArea == null && Option.XAxis.HaveCustomLabels)
                 {
                     XScale.Max = Option.XAxis.CustomLabels.Stop;
                     XScale.Min = Option.XAxis.CustomLabels.Start;
@@ -935,6 +936,14 @@ namespace Sunny.UI
                 BaseArea.XMaxAuto = Option.XAxis.MaxAuto;
                 BaseArea.YMinAuto = Option.YAxis.MinAuto;
                 BaseArea.YMaxAuto = Option.YAxis.MaxAuto;
+
+                if (Option.HaveY2)
+                {
+                    BaseArea.Y2Min = Y2Scale.Min;
+                    BaseArea.Y2Max = Y2Scale.Max;
+                    BaseArea.Y2MinAuto = Option.Y2Axis.MinAuto;
+                    BaseArea.Y2MaxAuto = Option.Y2Axis.MaxAuto;
+                }
             }
         }
 
@@ -949,6 +958,13 @@ namespace Sunny.UI
             zoomArea.XMax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
             zoomArea.YMax = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
             zoomArea.YMin = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+
+            if (Option.HaveY2)
+            {
+                zoomArea.Y2Max = Y2Scale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+                zoomArea.Y2Min = Y2Scale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+            }
+
             AddZoomArea(zoomArea);
         }
 
@@ -962,6 +978,12 @@ namespace Sunny.UI
             if (zoomArea.XMax - zoomArea.XMin >= MaxInterval) return;
             if (zoomArea.YMax - zoomArea.YMin >= MaxInterval) return;
 
+            if (Option.HaveY2)
+            {
+                if (zoomArea.Y2Max - zoomArea.Y2Min <= MinInterval) return;
+                if (zoomArea.Y2Max - zoomArea.Y2Min >= MaxInterval) return;
+            }
+
             ZoomAreas.Add(zoomArea);
             Zoom(zoomArea);
         }
@@ -972,10 +994,19 @@ namespace Sunny.UI
             Option.XAxis.Max = zoomArea.XMax;
             Option.YAxis.Max = zoomArea.YMax;
             Option.YAxis.Min = zoomArea.YMin;
+
             Option.XAxis.MinAuto = zoomArea.XMinAuto;
             Option.XAxis.MaxAuto = zoomArea.XMaxAuto;
             Option.YAxis.MinAuto = zoomArea.YMinAuto;
             Option.YAxis.MaxAuto = zoomArea.YMaxAuto;
+
+            if (Option.HaveY2)
+            {
+                Option.Y2Axis.Max = zoomArea.Y2Max;
+                Option.Y2Axis.Min = zoomArea.Y2Min;
+                Option.Y2Axis.MinAuto = zoomArea.Y2MinAuto;
+                Option.Y2Axis.MaxAuto = zoomArea.Y2MaxAuto;
+            }
 
             CalcData();
             Invalidate();
@@ -990,10 +1021,20 @@ namespace Sunny.UI
             Option.XAxis.Max = BaseArea.XMax;
             Option.YAxis.Min = BaseArea.YMin;
             Option.YAxis.Max = BaseArea.YMax;
+
             Option.XAxis.MinAuto = BaseArea.XMinAuto;
             Option.XAxis.MaxAuto = BaseArea.XMaxAuto;
             Option.YAxis.MinAuto = BaseArea.YMinAuto;
             Option.YAxis.MaxAuto = BaseArea.YMaxAuto;
+
+            if (Option.HaveY2)
+            {
+                Option.Y2Axis.Min = BaseArea.Y2Min;
+                Option.Y2Axis.Max = BaseArea.Y2Max;
+                Option.Y2Axis.MinAuto = BaseArea.Y2MinAuto;
+                Option.Y2Axis.MaxAuto = BaseArea.Y2MaxAuto;
+            }
+
             BaseArea = null;
             CalcData();
             Invalidate();
