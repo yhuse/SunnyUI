@@ -203,6 +203,7 @@ namespace Sunny.UI
             {
                 if (style.Value() >= UIStyle.Blue.Value() && style.Value() <= UIStyle.Office2010Black.Value())
                 {
+                    if (style == UIStyle.DarkBlue) continue;
                     styles.Add(style);
                 }
             }

@@ -910,8 +910,9 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             foreach (var button in buttons.Values)
             {
+                button.SetStyleColor(uiColor);
                 button.FillColor = uiColor.PlainColor;
-                button.ForeColor = uiColor.RectColor;
+                button.SymbolColor = button.ForeColor = uiColor.RectColor;
                 button.FillSelectedColor = uiColor.ButtonFillColor;
             }
 
