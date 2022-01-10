@@ -548,13 +548,19 @@ namespace Sunny.UI
             }
         }
 
-        public override void SetRectColor(Color color)
+        public override void SetStyleColor(UIBaseStyle uiColor)
         {
-            base.SetRectColor(color);
-            RectColor = color;
-            b1.SymbolColor = b2.SymbolColor = b3.SymbolColor = b4.SymbolColor = color;
-            b1.ForeColor = b2.ForeColor = b3.ForeColor = b4.ForeColor = color;
-            TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = color;
+            base.SetStyleColor(uiColor);
+            b1.SetStyleColor(uiColor);
+            b2.SetStyleColor(uiColor);
+            b3.SetStyleColor(uiColor);
+            b4.SetStyleColor(uiColor);
+
+            b1.FillColor = b2.FillColor = b3.FillColor = b4.FillColor = TopPanel.FillColor;
+            RectColor = uiColor.RectColor;
+            b1.SymbolColor = b2.SymbolColor = b3.SymbolColor = b4.SymbolColor = uiColor.RectColor;
+            b1.ForeColor = b2.ForeColor = b3.ForeColor = b4.ForeColor = uiColor.RectColor;
+            TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = uiColor.RectColor;
         }
 
         private void p2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
@@ -741,6 +747,13 @@ namespace Sunny.UI
 
         private void p3_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            if (e.Location.Y <= 30)
+            {
+                activeDay = -1;
+                p3.Invalidate();
+                return;
+            }
+
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
             int x = e.Location.X / width;
@@ -758,6 +771,7 @@ namespace Sunny.UI
 
         private void p3_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            if (e.Location.Y <= 30) return;
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
             int x = e.Location.X / width;

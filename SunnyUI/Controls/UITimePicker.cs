@@ -150,6 +150,7 @@ namespace Sunny.UI
             item.Time = Value;
             item.Translate();
             item.SetDPIScale();
+            item.SetStyleColor(UIStyles.ActiveStyleColor);
             ItemForm.Show(this);
         }
     }

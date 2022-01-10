@@ -158,6 +158,7 @@ namespace Sunny.UI
             item.PrimaryColor = RectColor;
             item.Translate();
             item.SetDPIScale();
+            item.SetStyleColor(UIStyles.ActiveStyleColor);
             ItemForm.Show(this);
         }
 

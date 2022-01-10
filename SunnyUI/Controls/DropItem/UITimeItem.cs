@@ -602,13 +602,27 @@ namespace Sunny.UI
             btnCancel.SetStyleColor(style);
         }
 
-        public override void SetRectColor(Color color)
+        public override void SetStyleColor(UIBaseStyle uiColor)
         {
-            base.SetRectColor(color);
-            RectColor = color;
-            h1.ForeColor = h2.ForeColor = color;
-            m1.ForeColor = m2.ForeColor = color;
-            s1.ForeColor = s2.ForeColor = color;
+            base.SetStyleColor(uiColor);
+
+            h1.SetStyleColor(uiColor);
+            h2.SetStyleColor(uiColor);
+            m1.SetStyleColor(uiColor);
+            m2.SetStyleColor(uiColor);
+            s1.SetStyleColor(uiColor);
+            s2.SetStyleColor(uiColor);
+
+            FillColor = Color.White;
+            h1.FillColor = h2.FillColor = m1.FillColor = m2.FillColor = s1.FillColor = s2.FillColor = Color.White;
+
+            RectColor = uiColor.RectColor;
+            h1.ForeColor = h2.ForeColor = RectColor;
+            m1.ForeColor = m2.ForeColor = RectColor;
+            s1.ForeColor = s2.ForeColor = RectColor;
+            h1.SymbolColor = h2.SymbolColor = RectColor;
+            m1.SymbolColor = m2.SymbolColor = RectColor;
+            s1.SymbolColor = s2.SymbolColor = RectColor;
         }
 
         private void hc_DoubleClick(object sender, EventArgs e)
