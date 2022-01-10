@@ -84,6 +84,19 @@ namespace Sunny.UI
         }
 
         [Description("滚动条填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "56, 56, 56")]
+        public Color ScrollFillColor
+        {
+            get => Bar.FillColor;
+            set
+            {
+                menuStyle = UIMenuStyle.Custom;
+                Bar.FillColor = value;
+                Invalidate();
+            }
+        }
+
+        [Description("滚动条填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Silver")]
         public Color ScrollBarColor
         {
