@@ -72,9 +72,81 @@ namespace Sunny.UI
             }
         }
 
+        private Color symbolHoverColor = Color.White;
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("图标鼠标移上时字体颜色")]
+        public Color SymbolHoverColor
+        {
+            get => symbolHoverColor;
+            set
+            {
+                if (symbolHoverColor != value)
+                {
+                    symbolHoverColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color symbolPressColor = Color.White;
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("图标鼠标按下时字体颜色")]
+        public Color SymbolPressColor
+        {
+            get => symbolPressColor;
+            set
+            {
+                if (symbolPressColor != value)
+                {
+                    symbolPressColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color symbolDisableColor = Color.FromArgb(109, 109, 103);
+        [DefaultValue(typeof(Color), "109, 109, 103"), Category("SunnyUI")]
+        [Description("图标不可用时字体颜色")]
+        public Color SymbolDisableColor
+        {
+            get => symbolDisableColor;
+            set
+            {
+                if (symbolDisableColor != value)
+                {
+                    symbolDisableColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color symbolSelectedColor = Color.White;
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("图标选中时字体颜色")]
+        public Color SymbolSelectedColor
+        {
+            get => symbolSelectedColor;
+            set
+            {
+                if (symbolSelectedColor != value)
+                {
+                    symbolSelectedColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             symbolColor = uiColor.ButtonForeColor;
+            symbolHoverColor = uiColor.ButtonForeHoverColor;
+            symbolPressColor = uiColor.ButtonForePressColor;
+            symbolDisableColor = uiColor.ForeDisableColor;
+            symbolSelectedColor = uiColor.ButtonForeSelectedColor;
             base.SetStyleColor(uiColor);
         }
 
@@ -211,6 +283,25 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 获取字体颜色
+        /// </summary>
+        /// <returns>颜色</returns>
+        protected Color GetSymbolForeColor()
+        {
+            //文字
+            Color color = symbolColor;
+            if (IsHover)
+                color = symbolHoverColor;
+            if (IsPress)
+                color = symbolPressColor;
+            if (selected)
+                color = symbolSelectedColor;
+            if (ShowFocusColor && Focused)
+                color = symbolPressColor;
+            return Enabled ? color : symbolDisableColor;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             //重绘父类
@@ -239,7 +330,7 @@ namespace Sunny.UI
                     {
                         if (Symbol > 0 && Image == null)
                         {
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
                                 new RectangleF(
                                     (Width - ImageSize.Width) / 2.0f,
                                     Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f,
@@ -261,7 +352,7 @@ namespace Sunny.UI
 
                     if (Symbol > 0 && Image == null)
                     {
-                        e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
                             new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
@@ -332,7 +423,7 @@ namespace Sunny.UI
 
                     if (Symbol > 0 && Image == null)
                     {
-                        e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor,
+                        e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
                             new RectangleF(left, top, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 

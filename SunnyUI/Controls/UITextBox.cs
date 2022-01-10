@@ -1189,7 +1189,7 @@ namespace Sunny.UI
             get => btn.ForeColor;
             set
             {
-                btn.ForeColor = value;
+                btn.SymbolColor = btn.ForeColor = value;
                 _style = UIStyle.Custom;
             }
         }

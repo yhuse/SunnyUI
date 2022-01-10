@@ -552,6 +552,7 @@ namespace Sunny.UI
         {
             base.SetRectColor(color);
             RectColor = color;
+            b1.SymbolColor = b2.SymbolColor = b3.SymbolColor = b4.SymbolColor = color;
             b1.ForeColor = b2.ForeColor = b3.ForeColor = b4.ForeColor = color;
             TopPanel.RectColor = p1.RectColor = p2.RectColor = p3.RectColor = color;
         }

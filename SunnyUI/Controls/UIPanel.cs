@@ -22,6 +22,7 @@
  * 2021-09-03: V3.0.6 支持背景图片显示
  * 2021-12-11: V3.0.9 增加了渐变色
  * 2021-12-13: V3.0.9 边框线宽可设置1或者2
+ * 2022-01-10: V3.1.0 调整边框和圆角的绘制
 ******************************************************************************/
 
 using System;
@@ -407,8 +408,36 @@ namespace Sunny.UI
 
         protected virtual void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            g.DrawPath(GetRectColor(), path, true, RectSize);
-            PaintRectDisableSides(g);
+            if (RectSides == ToolStripStatusLabelBorderSides.None)
+            {
+                return;
+            }
+
+            if (RadiusSides == UICornerRadiusSides.None || Radius == 0)
+            {
+                //IsRadius为False时，显示左侧边线
+                bool ShowRectLeft = RectSides.GetValue(ToolStripStatusLabelBorderSides.Left);
+                //IsRadius为False时，显示上侧边线
+                bool ShowRectTop = RectSides.GetValue(ToolStripStatusLabelBorderSides.Top);
+                //IsRadius为False时，显示右侧边线
+                bool ShowRectRight = RectSides.GetValue(ToolStripStatusLabelBorderSides.Right);
+                //IsRadius为False时，显示下侧边线
+                bool ShowRectBottom = RectSides.GetValue(ToolStripStatusLabelBorderSides.Bottom);
+
+                if (ShowRectLeft)
+                    g.DrawLine(GetRectColor(), RectSize - 1, 0, RectSize - 1, Height, false, RectSize);
+                if (ShowRectTop)
+                    g.DrawLine(GetRectColor(), 0, RectSize - 1, Width, RectSize - 1, false, RectSize);
+                if (ShowRectRight)
+                    g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height, false, RectSize);
+                if (ShowRectBottom)
+                    g.DrawLine(GetRectColor(), 0, Height - 1, Width, Height - 1, false, RectSize);
+            }
+            else
+            {
+                g.DrawPath(GetRectColor(), path, true, RectSize);
+                PaintRectDisableSides(g);
+            }
         }
 
         private void PaintRectDisableSides(Graphics g)
@@ -431,86 +460,27 @@ namespace Sunny.UI
             //IsRadius为True时，显示右下圆角
             bool RadiusRightBottom = RadiusSides.GetValue(UICornerRadiusSides.RightBottom);
 
-            var ShowRadius = RadiusSides > 0;//肯定少有一个角显示圆角
+            var ShowRadius = RadiusSides > 0 && Radius > 0;//肯定少有一个角显示圆角
+            if (!ShowRadius) return;
 
-            if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
+            if (!ShowRectLeft && !RadiusLeftBottom && !RadiusLeftTop)
             {
-                g.DrawLine(GetRectColor(), 0, 0, 0, Height - 1);
+                g.DrawLine(GetFillColor(), RectSize - 1, 0, RectSize - 1, Height, false, RectSize);
             }
 
-            if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
+            if (!ShowRectTop && !RadiusRightTop && !RadiusLeftTop)
             {
-                g.DrawLine(GetRectColor(), 0, 0, Width - 1, 0);
+                g.DrawLine(GetFillColor(), 0, RectSize - 1, Width, RectSize - 1, false, RectSize);
             }
 
-            if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
+            if (!ShowRectRight && !RadiusRightTop && !RadiusRightBottom)
             {
-                g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height - 1);
+                g.DrawLine(GetFillColor(), Width - 1, 0, Width - 1, Height, false, RectSize);
             }
 
-            if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
+            if (!ShowRectBottom && !RadiusLeftBottom && !RadiusRightBottom)
             {
-                g.DrawLine(GetRectColor(), 0, Height - 1, Width - 1, Height - 1);
-            }
-
-            if (!ShowRectLeft)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                {
-                    g.DrawLine(GetFillColor(), 0, RectSize, 0, Height - 1 - RectSize);
-                    if (RectSize == 2) g.DrawLine(GetFillColor(), 1, RectSize, 1, Height - 1 - RectSize);
-                }
-            }
-
-            if (!ShowRectTop)
-            {
-                if (!ShowRadius || (!RadiusRightTop && !RadiusLeftTop))
-                {
-                    g.DrawLine(GetFillColor(), RectSize, 0, Width - 1 - RectSize, 0);
-                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, 1, Width - 1 - RectSize, 1);
-                }
-            }
-
-            if (!ShowRectRight)
-            {
-                if (!ShowRadius || (!RadiusRightTop && !RadiusRightBottom))
-                {
-                    g.DrawLine(GetFillColor(), Width - 1, RectSize, Width - 1, Height - 1 - RectSize);
-                    if (RectSize == 2) g.DrawLine(GetFillColor(), Width - 2, RectSize, Width - 2, Height - 1 - RectSize);
-                }
-            }
-
-            if (!ShowRectBottom)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusRightBottom))
-                {
-                    g.DrawLine(GetFillColor(), RectSize, Height - 1, Width - 1 - RectSize, Height - 1);
-                    if (RectSize == 2) g.DrawLine(GetFillColor(), RectSize, Height - 2, Width - 1 - RectSize, Height - 2);
-                }
-            }
-
-            if (!ShowRectLeft && !ShowRectTop)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                    g.FillRectangle(GetFillColor(), 0, 0, RectSize, RectSize);
-            }
-
-            if (!ShowRectRight && !ShowRectTop)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, 0, RectSize, RectSize);
-            }
-
-            if (!ShowRectLeft && !ShowRectBottom)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                    g.FillRectangle(GetFillColor(), 0, Height - 1 - RectSize, RectSize, RectSize);
-            }
-
-            if (!ShowRectRight && !ShowRectBottom)
-            {
-                if (!ShowRadius || (!RadiusLeftBottom && !RadiusLeftTop))
-                    g.FillRectangle(GetFillColor(), Width - 1 - RectSize, Height - 1 - RectSize, RectSize, RectSize);
+                g.DrawLine(GetFillColor(), 0, Height - 1, Width, Height - 1, false, RectSize);
             }
         }
 
