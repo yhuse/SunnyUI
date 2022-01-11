@@ -246,14 +246,29 @@ namespace Sunny.UI
             this.Name = "UIComboDataGridViewItem";
             this.Size = new System.Drawing.Size(569, 333);
             this.panel.ResumeLayout(false);
+            this.dataGridView.DataSourceChanged += DataGridView_DataSourceChanged;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.pFilter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
+        private void DataGridView_DataSourceChanged(object sender, System.EventArgs e)
+        {
+            if (dataGridView.RowCount > 0)
+            {
+                dataGridView.SelectedIndex = 0;
+            }
+            else
+            {
+                dataGridView.ClearSelection();
+            }
+        }
+
         private void btnOK_Click(object sender, System.EventArgs e)
         {
+            //UIMessageTip.ShowOk(dataGridView.SelectedIndex.ToString(), 3000);
+            //UConsole.WriteConsole("所选行:"+dataGridView.SelectedIndex.ToString(),e,sender);
             if (dataGridView.RowCount > 0 && dataGridView.SelectedIndex >= 0)
             {
                 if (ShowFilter)
@@ -315,6 +330,8 @@ namespace Sunny.UI
         {
             edtFilter.Text = "";
             btnSearch.PerformClick();
+            dataGridView.SelectedIndex = -1;
+            dataGridView.ClearSelection();
             DoValueChanged(this, null);
         }
 
