@@ -176,6 +176,7 @@ namespace Sunny.UI
                 if (radius != value)
                 {
                     radius = Math.Max(0, value);
+                    radius = Math.Min(radius, Math.Min(Width, Height));
                     Invalidate();
                 }
             }
