@@ -627,7 +627,7 @@ namespace Sunny.UI
         {
             base.OnDataSourceChanged(e);
             SetScrollInfo();
-            selectedIndex = -1;
+            //selectedIndex = -1;
         }
 
         public delegate void OnSelectIndexChange(object sender, int index);
