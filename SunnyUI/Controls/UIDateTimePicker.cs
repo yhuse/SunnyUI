@@ -116,9 +116,7 @@ namespace Sunny.UI
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             Value = (DateTime)value;
-            Text = Value.ToString(dateFormat);
             Invalidate();
-            ValueChanged?.Invoke(this, Value);
         }
 
         private readonly UIDateTimeItem item = new UIDateTimeItem();
@@ -137,7 +135,12 @@ namespace Sunny.UI
                 if (value < new DateTime(1900, 1, 1))
                     value = new DateTime(1900, 1, 1);
                 Text = value.ToString(dateFormat);
-                item.Date = value;
+
+                if (item.Date != value)
+                {
+                    item.Date = value;
+                    ValueChanged?.Invoke(this, Value);
+                }
             }
         }
 

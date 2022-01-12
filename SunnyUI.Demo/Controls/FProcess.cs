@@ -22,5 +22,20 @@
             uiProcessBar2.Value = uiProcessBar1.Value = value;
             uiProcessBar3.Value = uiRoundProcess2.Value = uiRoundProcess1.Value = value;
         }
+
+        private void uiTrackBar1_ValueChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void uiTrackBar3_ValueChanged(object sender, System.EventArgs e)
+        {
+            uiTrackBar4.Value = uiTrackBar3.Value;
+        }
+
+        private void uiTrackBar4_ValueChanged(object sender, System.EventArgs e)
+        {
+            uiTrackBar5.Value = uiTrackBar4.Value;
+        }
     }
 }

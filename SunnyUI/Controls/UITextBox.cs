@@ -1228,7 +1228,7 @@ namespace Sunny.UI
             get => btn.ForeHoverColor;
             set
             {
-                btn.ForeHoverColor = value;
+                btn.SymbolHoverColor = btn.ForeHoverColor = value;
                 _style = UIStyle.Custom;
             }
         }
@@ -1264,7 +1264,7 @@ namespace Sunny.UI
             get => btn.ForePressColor;
             set
             {
-                btn.ForePressColor = value;
+                btn.SymbolPressColor = btn.ForePressColor = value;
                 _style = UIStyle.Custom;
             }
         }

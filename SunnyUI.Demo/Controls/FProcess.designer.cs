@@ -118,6 +118,7 @@ namespace Sunny.UI.Demo
             this.uiTrackBar4.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar4.TabIndex = 98;
             this.uiTrackBar4.Text = "uiTrackBar4";
+            this.uiTrackBar4.ValueChanged += new System.EventHandler(this.uiTrackBar4_ValueChanged);
             // 
             // uiTrackBar3
             // 
@@ -129,6 +130,7 @@ namespace Sunny.UI.Demo
             this.uiTrackBar3.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar3.TabIndex = 97;
             this.uiTrackBar3.Text = "uiTrackBar3";
+            this.uiTrackBar3.ValueChanged += new System.EventHandler(this.uiTrackBar3_ValueChanged);
             // 
             // uiTrackBar2
             // 
@@ -146,6 +148,7 @@ namespace Sunny.UI.Demo
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(29, 287);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -192,6 +195,7 @@ namespace Sunny.UI.Demo
             // uiLine9
             // 
             this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine9.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine9.Location = new System.Drawing.Point(29, 147);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -227,6 +231,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(381, 54);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -248,6 +253,7 @@ namespace Sunny.UI.Demo
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine5.Location = new System.Drawing.Point(28, 369);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -266,10 +272,12 @@ namespace Sunny.UI.Demo
             this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar1.TabIndex = 86;
             this.uiTrackBar1.Text = "uiTrackBar1";
+            this.uiTrackBar1.ValueChanged += new System.EventHandler(this.uiTrackBar1_ValueChanged);
             // 
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.Location = new System.Drawing.Point(381, 147);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -291,6 +299,7 @@ namespace Sunny.UI.Demo
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.Location = new System.Drawing.Point(30, 54);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -327,6 +336,7 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(527, 287);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";

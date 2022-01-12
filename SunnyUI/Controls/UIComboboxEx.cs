@@ -26,6 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [ToolboxItem(false)]
     public class UIComboboxEx : ComboBox, IStyleInterface
     {
         public UIComboboxEx()
