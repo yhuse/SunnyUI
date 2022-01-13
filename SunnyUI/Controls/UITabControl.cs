@@ -24,6 +24,7 @@
  * 2021-07-14: V3.0.5 支持Tab在下方显示
  * 2021-08-14: V3.0.6 增加DisposeTabPageAfterRemove标志，移除TabPage后，是否自动销毁TabPage
  * 2022-01-02: V3.0.9 增加角标
+ * 2022-01-13: V3.1.0 修改删除页面时的页面跳转
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -62,6 +63,8 @@ namespace Sunny.UI
             timer = new Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
+
+            DisposeTabPageAfterRemove = true;
         }
 
         private ConcurrentDictionary<TabPage, string> TipsTexts = new ConcurrentDictionary<TabPage, string>();
@@ -696,7 +699,7 @@ namespace Sunny.UI
             get; set;
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         [Description("移除TabPage后，是否自动销毁TabPage"), Category("SunnyUI")]
         public bool DisposeTabPageAfterRemove
         {
@@ -723,14 +726,15 @@ namespace Sunny.UI
                 }
             }
 
+            SelectedTab = TabPages[index > 0 ? index - 1 : 0];
             TabPages.Remove(tabPage);
             AfterRemoveTabPage?.Invoke(this, index);
 
-            if (TabCount > 0)
-            {
-                if (index == 0) SelectedIndex = 0;
-                if (index > 0) SelectedIndex = index - 1;
-            }
+            //if (TabCount > 0)
+            //{
+            //    if (index == 0) SelectedIndex = 0;
+            //    if (index > 0) SelectedIndex = index - 1;
+            //}
 
             if (DisposeTabPageAfterRemove) tabPage.Dispose();
         }
