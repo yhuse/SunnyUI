@@ -104,6 +104,7 @@ namespace Sunny.UI.Demo
             this.uiComboTreeView3.CheckBoxes = true;
             this.uiComboTreeView3.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboTreeView3.FillColor = System.Drawing.Color.White;
+            this.uiComboTreeView3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboTreeView3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboTreeView3.Location = new System.Drawing.Point(544, 213);
             this.uiComboTreeView3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -148,6 +149,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiComboTreeView4.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboTreeView4.FillColor = System.Drawing.Color.White;
+            this.uiComboTreeView4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboTreeView4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboTreeView4.Location = new System.Drawing.Point(386, 213);
             this.uiComboTreeView4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -193,6 +195,7 @@ namespace Sunny.UI.Demo
             this.uiComboTreeView2.CheckBoxes = true;
             this.uiComboTreeView2.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboTreeView2.FillColor = System.Drawing.Color.White;
+            this.uiComboTreeView2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboTreeView2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboTreeView2.Location = new System.Drawing.Point(544, 169);
             this.uiComboTreeView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -220,6 +223,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(386, 134);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -232,6 +236,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiComboTreeView1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboTreeView1.FillColor = System.Drawing.Color.White;
+            this.uiComboTreeView1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboTreeView1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboTreeView1.Location = new System.Drawing.Point(386, 169);
             this.uiComboTreeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -258,6 +263,7 @@ namespace Sunny.UI.Demo
             // uiLine8
             // 
             this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine8.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine8.Location = new System.Drawing.Point(30, 257);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine8.Name = "uiLine8";
@@ -270,6 +276,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiDatetimePicker1.CanEmpty = true;
             this.uiDatetimePicker1.FillColor = System.Drawing.Color.White;
+            this.uiDatetimePicker1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiDatetimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatetimePicker1.Location = new System.Drawing.Point(30, 292);
             this.uiDatetimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -290,6 +297,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiColorPicker1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiColorPicker1.FillColor = System.Drawing.Color.White;
+            this.uiColorPicker1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiColorPicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiColorPicker1.Location = new System.Drawing.Point(388, 89);
             this.uiColorPicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -307,6 +315,7 @@ namespace Sunny.UI.Demo
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine7.Location = new System.Drawing.Point(388, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -318,6 +327,7 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(30, 336);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -330,6 +340,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiTimePicker1.CanEmpty = true;
             this.uiTimePicker1.FillColor = System.Drawing.Color.White;
+            this.uiTimePicker1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTimePicker1.Location = new System.Drawing.Point(30, 371);
             this.uiTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -349,6 +360,7 @@ namespace Sunny.UI.Demo
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.Location = new System.Drawing.Point(30, 134);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -360,6 +372,7 @@ namespace Sunny.UI.Demo
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(30, 55);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -373,6 +386,7 @@ namespace Sunny.UI.Demo
             this.uiDatePicker1.CanEmpty = true;
             this.uiDatePicker1.DateFormat = "yyyy";
             this.uiDatePicker1.FillColor = System.Drawing.Color.White;
+            this.uiDatePicker1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiDatePicker1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker1.Location = new System.Drawing.Point(30, 169);
             this.uiDatePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -397,6 +411,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox2.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboBox2.DropDownWidth = 300;
             this.uiComboBox2.FillColor = System.Drawing.Color.White;
+            this.uiComboBox2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboBox2.Location = new System.Drawing.Point(188, 89);
             this.uiComboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -411,6 +426,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiComboBox1.DataSource = null;
             this.uiComboBox1.FillColor = System.Drawing.Color.White;
+            this.uiComboBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboBox1.Items.AddRange(new object[] {
             "1",
@@ -437,6 +453,7 @@ namespace Sunny.UI.Demo
             this.uiDatePicker2.CanEmpty = true;
             this.uiDatePicker2.DateFormat = "yyyy-MM";
             this.uiDatePicker2.FillColor = System.Drawing.Color.White;
+            this.uiDatePicker2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiDatePicker2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker2.Location = new System.Drawing.Point(188, 169);
             this.uiDatePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -458,6 +475,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiDatePicker3.CanEmpty = true;
             this.uiDatePicker3.FillColor = System.Drawing.Color.White;
+            this.uiDatePicker3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiDatePicker3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDatePicker3.Location = new System.Drawing.Point(30, 213);
             this.uiDatePicker3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -473,10 +491,12 @@ namespace Sunny.UI.Demo
             this.uiDatePicker3.Text = "2020-04-16";
             this.uiDatePicker3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiDatePicker3.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
+            this.uiDatePicker3.ValueChanged += new Sunny.UI.UIDatePicker.OnDateTimeChanged(this.uiDatePicker3_ValueChanged);
             // 
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.Location = new System.Drawing.Point(386, 257);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -489,6 +509,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiComboDataGridView1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboDataGridView1.FillColor = System.Drawing.Color.White;
+            this.uiComboDataGridView1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboDataGridView1.FilterColomnName = null;
             this.uiComboDataGridView1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboDataGridView1.Location = new System.Drawing.Point(386, 292);

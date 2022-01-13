@@ -92,7 +92,8 @@ namespace Sunny.UI
             try
             {
                 DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
-                Value = dt;
+                if (Value != dt)
+                    Value = dt;
             }
             catch
             {
@@ -127,8 +128,9 @@ namespace Sunny.UI
                 if (item.Time != value)
                 {
                     item.Time = value;
-                    ValueChanged?.Invoke(this, Value);
                 }
+
+                ValueChanged?.Invoke(this, Value);
             }
         }
 

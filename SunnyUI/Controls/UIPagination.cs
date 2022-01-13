@@ -86,6 +86,9 @@ namespace Sunny.UI
         public UIPagination()
         {
             InitializeComponent();
+            p1.RectSides = ToolStripStatusLabelBorderSides.None;
+            p1.RadiusSides = UICornerRadiusSides.None;
+
             SetStyleFlags(true, false);
 
             ShowText = false;
@@ -115,6 +118,12 @@ namespace Sunny.UI
             }
 
             Translate();
+        }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            p1.FillColor = p1.RectColor = color;
         }
 
         protected override void OnFontChanged(EventArgs e)

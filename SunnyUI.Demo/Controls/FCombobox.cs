@@ -83,6 +83,7 @@ namespace Sunny.UI.Demo
         private void uiDatetimePicker1_ValueChanged(object sender, System.DateTime value)
         {
             Console.WriteLine(value);
+            uiDatePicker3.Value = value;
         }
 
         private void uiColorPicker1_Click(object sender, System.EventArgs e)
@@ -120,6 +121,11 @@ namespace Sunny.UI.Demo
         private void uiComboDataGridView1_SelectIndexChange_1(object sender, int index)
         {
             uiComboDataGridView1.Text = dt.Rows[index]["Column1"].ToString();
+        }
+
+        private void uiDatePicker3_ValueChanged(object sender, DateTime value)
+        {
+            ShowInfoTip(uiDatePicker3.Value.DateString());
         }
     }
 }
