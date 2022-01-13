@@ -97,9 +97,12 @@ namespace Sunny.UI
             set
             {
                 value = CheckMaxMin(value);
-                _value = value;
-                pnlValue.Text = _value.ToString();
-                ValueChanged?.Invoke(this, _value);
+                if (_value != value)
+                {
+                    _value = value;
+                    pnlValue.Text = _value.ToString();
+                    ValueChanged?.Invoke(this, _value);
+                }
             }
         }
 

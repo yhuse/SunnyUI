@@ -89,10 +89,14 @@ namespace Sunny.UI
             get => posValue;
             set
             {
-                posValue = Math.Max(value, 0);
-                posValue = Math.Min(posValue, maximum);
-                ValueChanged?.Invoke(this, posValue);
-                Invalidate();
+                value = Math.Max(value, 0);
+                value = Math.Min(value, maximum);
+                if (posValue != value)
+                {
+                    posValue = value;
+                    ValueChanged?.Invoke(this, posValue);
+                    Invalidate();
+                }
             }
         }
 

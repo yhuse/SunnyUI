@@ -125,10 +125,9 @@ namespace Sunny.UI
                 if (trackBarValue != v)
                 {
                     trackBarValue = v;
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
                     Invalidate();
                 }
-
-                ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

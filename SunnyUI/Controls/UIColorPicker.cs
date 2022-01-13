@@ -80,9 +80,12 @@ namespace Sunny.UI
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            Value = (Color)value;
-            Invalidate();
-            ValueChanged?.Invoke(this, Value);
+            if (Value != (Color)value)
+            {
+                Value = (Color)value;
+                Invalidate();
+                ValueChanged?.Invoke(this, Value);
+            }
         }
 
         private readonly UIColorItem item = new UIColorItem();

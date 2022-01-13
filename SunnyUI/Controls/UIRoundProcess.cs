@@ -151,11 +151,15 @@ namespace Sunny.UI
             get => posValue;
             set
             {
-                posValue = Math.Max(value, 0);
-                posValue = Math.Min(posValue, maximum);
-                Text = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
-                ValueChanged?.Invoke(this, posValue);
-                Invalidate();
+                value = Math.Max(value, 0);
+                value = Math.Min(value, maximum);
+                if (posValue != value)
+                {
+                    posValue = value;
+                    Text = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
+                    ValueChanged?.Invoke(this, posValue);
+                    Invalidate();
+                }
             }
         }
 
