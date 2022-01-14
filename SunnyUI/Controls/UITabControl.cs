@@ -65,6 +65,7 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
 
             DisposeTabPageAfterRemove = true;
+            AutoClosePage = true;
         }
 
         private ConcurrentDictionary<TabPage, string> TipsTexts = new ConcurrentDictionary<TabPage, string>();
@@ -692,7 +693,7 @@ namespace Sunny.UI
 
         public event OnAfterRemoveTabPage AfterRemoveTabPage;
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         [Description("多页面框架时，包含UIPage，在点击Tab页关闭时关闭UIPage"), Category("SunnyUI")]
         public bool AutoClosePage
         {
@@ -714,19 +715,26 @@ namespace Sunny.UI
             }
 
             TabPage tabPage = TabPages[index];
-
-            if (AutoClosePage)
+            var pages = tabPage.GetControls<UIPage>();
+            for (int i = 0; i < pages.Count; i++)
             {
-                var pages = tabPage.GetControls<UIPage>();
-                for (int i = 0; i < pages.Count; i++)
+                if (AutoClosePage)
                 {
                     pages[i].Final();
                     pages[i].Dispose();
                     pages[i] = null;
                 }
+                else
+                {
+                    pages[i].Parent = null;
+                }
             }
 
-            SelectedTab = TabPages[index > 0 ? index - 1 : 0];
+            if (TabCount > 1 && index > 0)
+            {
+                SelectedTab = TabPages[index - 1];
+            }
+
             TabPages.Remove(tabPage);
             AfterRemoveTabPage?.Invoke(this, index);
 
