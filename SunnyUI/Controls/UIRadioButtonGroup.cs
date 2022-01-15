@@ -97,7 +97,8 @@ namespace Sunny.UI
                         Font = Font,
                         Parent = this,
                         Tag = i,
-                        Style = Style
+                        Style = Style,
+                        IsScaled = IsScaled
                     };
 
                     button.ValueChanged += Button_ValueChanged;

@@ -117,7 +117,7 @@ namespace Sunny.UI
                     box.Parent = this;
                     box.Tag = i;
                     box.Style = Style;
-
+                    box.IsScaled = IsScaled;
                     box.ValueChanged += Box_ValueChanged;
                     boxes.Add(box);
                 }
