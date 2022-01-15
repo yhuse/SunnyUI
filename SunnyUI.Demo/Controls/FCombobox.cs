@@ -126,6 +126,7 @@ namespace Sunny.UI.Demo
         private void uiDatePicker3_ValueChanged(object sender, DateTime value)
         {
             ShowInfoTip(uiDatePicker3.Value.DateString());
+            Console.WriteLine(uiDatePicker3.Value);
         }
     }
 }

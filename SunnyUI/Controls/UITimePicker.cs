@@ -73,7 +73,7 @@ namespace Sunny.UI
                 try
                 {
                     DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
-                    Value = dt;
+                    if (Value != dt) Value = dt;
                 }
                 catch
                 {
@@ -92,8 +92,7 @@ namespace Sunny.UI
             try
             {
                 DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
-                if (Value != dt)
-                    Value = dt;
+                if (Value != dt) Value = dt;
             }
             catch
             {

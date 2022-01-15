@@ -81,7 +81,7 @@ namespace Sunny.UI
                 try
                 {
                     DateTime dt = Text.ToDateTime(DateFormat);
-                    Value = dt;
+                    if (Value != dt) Value = dt;
                 }
                 catch
                 {
@@ -100,8 +100,7 @@ namespace Sunny.UI
             try
             {
                 DateTime dt = Text.ToDateTime(DateFormat);
-                if (Value != dt)
-                    Value = dt;
+                if (Value != dt) Value = dt;
             }
             catch
             {
