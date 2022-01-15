@@ -164,6 +164,19 @@ namespace Sunny.UI
 
             return null;
         }
+
+        public TreeNode GetTreeNode(Guid guid)
+        {
+            foreach (var pair in Items)
+            {
+                if (pair.Value.PageGuid == guid)
+                {
+                    return pair.Key;
+                }
+            }
+
+            return null;
+        }
     }
 
     public class UITabControlHelper

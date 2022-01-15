@@ -22,6 +22,7 @@ namespace Sunny.UI.Demo
         private void FButton_Load(object sender, EventArgs e)
         {
             Console.WriteLine("1. FButton_Load");
+
         }
 
         //放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换，进入页面都会执行。

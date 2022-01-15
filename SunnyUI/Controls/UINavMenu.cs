@@ -27,7 +27,6 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -889,27 +888,21 @@ namespace Sunny.UI
 
         public void SelectPage(int pageIndex)
         {
-            AllNodes.Clear();
-            GetAllNodes(Nodes);
-            if (AllNodes.ContainsKey(pageIndex))
+            var node = MenuHelper.GetTreeNode(pageIndex);
+            if (node != null)
             {
-                SelectedNode = AllNodes[pageIndex];
+                SelectedNode = node;
                 ShowSelectedNode();
             }
         }
 
-        private readonly ConcurrentDictionary<int, TreeNode> AllNodes = new ConcurrentDictionary<int, TreeNode>();
-
-        private void GetAllNodes(TreeNodeCollection nodes)
+        public void SelectPage(Guid pageGuid)
         {
-            foreach (TreeNode node in nodes)
+            var node = MenuHelper.GetTreeNode(pageGuid);
+            if (node != null)
             {
-                if (MenuHelper.GetPageIndex(node) >= 0)
-                {
-                    AllNodes.TryAddOrUpdate(MenuHelper.GetPageIndex(node), node);
-                }
-
-                GetAllNodes(node.Nodes);
+                SelectedNode = node;
+                ShowSelectedNode();
             }
         }
 
