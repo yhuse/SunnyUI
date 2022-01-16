@@ -22,6 +22,7 @@
  * 2021-06-03: V3.0.4 更新了数据绑定相关代码
  * 2021-08-03: V3.0.5 Items.Clear后清除显示
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
+ * 2022-01-16: V3.1.0 增加了下拉框颜色设置
 ******************************************************************************/
 
 using System;
@@ -333,6 +334,34 @@ namespace Sunny.UI
             {
                 ShowDropDown();
             }
+        }
+
+        [DefaultValue(typeof(Color), "White")]
+        public Color ItemFillColor
+        {
+            get => ListBox.FillColor;
+            set => ListBox.FillColor = value;
+        }
+
+        [DefaultValue(typeof(Color), "48, 48, 48")]
+        public Color ItemForeColor
+        {
+            get => ListBox.ForeColor;
+            set => ListBox.ForeColor = value;
+        }
+
+        [DefaultValue(typeof(Color), "235, 243, 255")]
+        public Color ItemSelectForeColor
+        {
+            get => ListBox.ItemSelectForeColor;
+            set => ListBox.ItemSelectForeColor = value;
+        }
+
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ItemSelectBackColor
+        {
+            get => ListBox.ItemSelectBackColor;
+            set => ListBox.ItemSelectBackColor = value;
         }
     }
 }
