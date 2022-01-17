@@ -363,5 +363,12 @@ namespace Sunny.UI
             get => ListBox.ItemSelectBackColor;
             set => ListBox.ItemSelectBackColor = value;
         }
+
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ItemHoverColor
+        {
+            get => ListBox.HoverColor;
+            set => ListBox.HoverColor = value;
+        }
     }
 }

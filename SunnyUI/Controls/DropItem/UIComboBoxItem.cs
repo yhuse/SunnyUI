@@ -53,7 +53,7 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         public override void SetRectColor(Color color)
         {
-            listBox.ItemSelectBackColor = color;
+            //listBox.ItemSelectBackColor = color;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         public override void SetFillColor(Color color)
         {
-            ListBox.ItemSelectForeColor = color;
+            //ListBox.ItemSelectForeColor = color;
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
