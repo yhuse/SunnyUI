@@ -70,6 +70,7 @@ namespace Sunny.UI
             set
             {
                 watermark = value;
+                WaterMark_Toggle(null, null);
                 Invalidate();
                 //Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
             }
