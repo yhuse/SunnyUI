@@ -26,13 +26,13 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace Sunny.UI
 {
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
+    [Designer("System.Windows.Forms.Design.TreeViewDesigner, " + AssemblyRefEx.SystemDesign)]
     public sealed partial class UINavBar : ScrollableControl, IStyleInterface
     {
         public readonly TreeView Menu = new TreeView();
@@ -308,7 +308,7 @@ namespace Sunny.UI
         [Localizable(true)]
         [MergableProperty(false)]
         [Description("菜单栏显示节点集合"), Category("SunnyUI")]
-        [Editor("System.Windows.Forms.Design.TreeNodeCollectionEditor", typeof(UITypeEditor))]
+        //[Editor("System.Windows.Forms.Design.TreeNodeCollectionEditor", typeof(UITypeEditor))]
         public TreeNodeCollection Nodes => Menu.Nodes;
 
         [DefaultValue(null)]

@@ -201,7 +201,7 @@ namespace Sunny.UI
         /// 图标字符
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(61447), Description("图标"), Category("SunnyUI")]
         public int Symbol
         {

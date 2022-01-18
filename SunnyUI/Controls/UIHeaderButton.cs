@@ -352,7 +352,7 @@ namespace Sunny.UI
         private int _symbol = FontAwesomeIcons.fa_check;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(61452)]
         [Description("字体图标"), Category("SunnyUI")]
         public int Symbol

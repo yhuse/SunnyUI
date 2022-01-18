@@ -141,7 +141,7 @@ namespace Sunny.UI
         private int extendSymbol;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Editor(typeof(UIImagePropertyEditor), typeof(UITypeEditor))]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(0)]
         [Description("扩展按钮字体图标"), Category("SunnyUI")]
         public int ExtendSymbol
