@@ -758,8 +758,11 @@ namespace Sunny.UI
 
         private void noteContent_Click(object sender, EventArgs e)
         {
-            ItemClick?.Invoke(this, e);
-            Close();
+            if (ItemClick != null)
+            {
+                ItemClick.Invoke(this, e);
+                closeMe();
+            }
         }
 
         public event EventHandler ItemClick;
