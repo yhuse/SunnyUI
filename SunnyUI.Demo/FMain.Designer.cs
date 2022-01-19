@@ -52,6 +52,9 @@
             this.Aside.LineColor = System.Drawing.Color.Black;
             this.Aside.Location = new System.Drawing.Point(2, 145);
             this.Aside.MenuStyle = Sunny.UI.UIMenuStyle.Black;
+            this.Aside.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Aside.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Aside.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Aside.ShowOneNode = true;
             this.Aside.ShowSecondBackColor = true;
             this.Aside.ShowTips = true;
@@ -147,11 +150,11 @@
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 35, 2, 2);
             this.ShowDragStretch = true;
-            this.ShowIcon = true;
             this.ShowRadius = false;
             this.ShowShadow = true;
             this.Text = "SunnyUI.Net";
             this.Selecting += new Sunny.UI.UIMainFrame.OnSelecting(this.FMain_Selecting);
+            this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.FMain_HotKeyEventHandler);
             this.Controls.SetChildIndex(this.Header, 0);
             this.Controls.SetChildIndex(this.Aside, 0);
             this.Header.ResumeLayout(false);

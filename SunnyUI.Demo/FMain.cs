@@ -87,6 +87,8 @@ namespace Sunny.UI.Demo
             Aside.SelectPage(1002);
 
             Text = Version + " Build " + Properties.Resources.BuildDate;
+
+            RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
         }
 
         private void Header_MenuItemClick(string text, int menuIndex, int pageIndex)
@@ -120,6 +122,14 @@ namespace Sunny.UI.Demo
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://gitee.com/yhuse/SunnyUI");
+        }
+
+        private void FMain_HotKeyEventHandler(object sender, HotKeyEventArgs e)
+        {
+            if (e.hotKey.ModifierKey == UI.ModifierKeys.Shift && e.hotKey.Key == Keys.F8)
+            {
+                ShowInfoTip("您按下了全局系统热键 Shift+F8");
+            }
         }
     }
 }
