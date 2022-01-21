@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIGrid.cs
+ * 文件名称: UIDataGridView.cs
  * 文件说明: 表格
  * 当前版本: V3.1
  * 创建日期: 2020-01-01
@@ -27,6 +27,7 @@
  * 2021-04-29: V3.0.3 设置数据行头部颜色
  * 2021-05-22: V3.0.4 增加了一个RowHeight，默认23
  * 2021-06-27: V3.0.4 自定义单元格颜色
+ * 2022-01-21: V3.1.0 更新单选时选中值SelectedIndex值
 ******************************************************************************/
 
 using System;
@@ -380,7 +381,6 @@ namespace Sunny.UI
             Page
         }
 
-
         protected override void OnRowsAdded(DataGridViewRowsAddedEventArgs e)
         {
             base.OnRowsAdded(e);
@@ -595,73 +595,72 @@ namespace Sunny.UI
             }
         }
 
-        private int selectedIndex = -1;
-
         [Browsable(false)]
         public int SelectedIndex
         {
-            get => selectedIndex;
+            get
+            {
+                if (SelectedRows.Count > 0)
+                    return SelectedRows[0].Index;
+                else
+                    return -1;
+            }
             set
             {
                 if (Rows.Count == 0)
                 {
-                    selectedIndex = -1;
                     return;
                 }
 
                 if (value >= 0 && value < Rows.Count)
                 {
+                    foreach (DataGridViewRow row in SelectedRows)
+                    {
+                        row.Selected = false;
+                    }
+
                     Rows[value].Selected = true;
-                    selectedIndex = value;
                     FirstDisplayedScrollingRowIndex = value;
+
+                    if (selectedIndex >= 0 && selectedIndex <= Rows.Count)
+                        jumpIndex = selectedIndex;
+
+                    selectedIndex = value;
                     SelectIndexChange?.Invoke(this, value);
-                }
-                else
-                {
-                    selectedIndex = -1;
                 }
             }
         }
+
+        private int jumpIndex = -1;
 
         protected override void OnDataSourceChanged(EventArgs e)
         {
             base.OnDataSourceChanged(e);
             SetScrollInfo();
-            //selectedIndex = -1;
         }
 
         public delegate void OnSelectIndexChange(object sender, int index);
 
         public event OnSelectIndexChange SelectIndexChange;
 
-        protected override void OnCellClick(DataGridViewCellEventArgs e)
+        protected override void OnRowEnter(DataGridViewCellEventArgs e)
         {
-            base.OnCellClick(e);
+            base.OnRowEnter(e);
 
-            if (e.RowIndex >= 0 && selectedIndex != e.RowIndex)
+            if (e.RowIndex == jumpIndex)
+            {
+                jumpIndex = -1;
+                return;
+            }
+
+            if (selectedIndex != e.RowIndex)
             {
                 selectedIndex = e.RowIndex;
                 SelectIndexChange?.Invoke(this, e.RowIndex);
             }
         }
 
-        // protected override void OnGridColorChanged(EventArgs e)
-        // {
-        //     base.OnGridColorChanged(e);
-        //     _style = UIStyle.Custom;
-        // }
-        //
-        // protected override void OnDefaultCellStyleChanged(EventArgs e)
-        // {
-        //     base.OnDefaultCellStyleChanged(e);
-        //     _style = UIStyle.Custom;
-        // }
-        //
-        // protected override void OnColumnDefaultCellStyleChanged(DataGridViewColumnEventArgs e)
-        // {
-        //     base.OnColumnDefaultCellStyleChanged(e);
-        //     _style = UIStyle.Custom;
-        // }
+        private int selectedIndex = -1;
 
         public DataGridViewColumn AddColumn(string columnName, string dataPropertyName, int fillWeight = 100, DataGridViewContentAlignment alignment = DataGridViewContentAlignment.MiddleCenter, bool readOnly = true)
         {
