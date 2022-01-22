@@ -711,6 +711,14 @@ namespace Sunny.UI
             return new Font("微软雅黑", FontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
         }
 
+        /// <summary>
+        /// 默认字体
+        /// </summary>
+        public static Font Font(float fontSize)
+        {
+            return new Font("微软雅黑", fontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+        }
+
         public static float FontSize = 12;
 
         /// <summary>
