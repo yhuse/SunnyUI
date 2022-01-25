@@ -150,11 +150,21 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
         }
 
+        private Image image;
+
         [DefaultValue(null)]
         [Description("图片"), Category("SunnyUI")]
         public Image Image
         {
-            get; set;
+            get => image;
+            set
+            {
+                if (image != value)
+                {
+                    image = value;
+                    Invalidate();
+                }
+            }
         }
 
         private ContentAlignment imageAlign = ContentAlignment.MiddleCenter;

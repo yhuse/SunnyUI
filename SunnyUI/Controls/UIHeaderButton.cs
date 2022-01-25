@@ -344,8 +344,11 @@ namespace Sunny.UI
             get => image;
             set
             {
-                image = value;
-                Invalidate();
+                if (image != value)
+                {
+                    image = value;
+                    Invalidate();
+                }
             }
         }
 
