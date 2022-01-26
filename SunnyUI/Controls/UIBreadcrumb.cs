@@ -17,6 +17,7 @@
  * 创建日期: 2021-04-10
  *
  * 2021-04-10: V3.0.2 增加文件说明
+ * 2022-01-26: V3.1.0 增加两端对齐，AlignBothEnds
 ******************************************************************************/
 
 using System;
@@ -54,13 +55,30 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private bool alignBothEnds;
+
+        [DefaultValue(false)]
+        [Description("显示时两端对齐"), Category("SunnyUI")]
+        public bool AlignBothEnds
+        {
+            get => alignBothEnds;
+            set
+            {
+                if (alignBothEnds != value)
+                {
+                    alignBothEnds = value;
+                    Invalidate();
+                }
+            }
+        }
+
         public delegate void OnValueChanged(object sender, int value);
 
         public event OnValueChanged ItemIndexChanged;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
-        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("列表项"), Category("SunnyUI")]
         public UIObjectCollection Items => items;
@@ -100,7 +118,7 @@ namespace Sunny.UI
             float width = 0;
             if (Items.Count == 0)
             {
-                SizeF sf = g.MeasureString("Item0", Font);
+                SizeF sf = g.MeasureString(Text, Font);
                 width = sf.Width + Height + 6;
                 if (itemWidth < width) itemWidth = (int)width;
                 List<PointF> points = new List<PointF>();
@@ -117,7 +135,7 @@ namespace Sunny.UI
                     g.FillPolygon(br, points.ToArray());
                 }
 
-                g.DrawString("Item0", Font, ForeColor, (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                g.DrawString(Text, Font, ForeColor, (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
             }
             else
             {
@@ -136,13 +154,35 @@ namespace Sunny.UI
                 {
                     SizeF sf = g.MeasureString(item.ToString(), Font);
                     List<PointF> points = new List<PointF>();
-                    points.Add(new PointF(begin + 3, 0));
-                    points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, 0));
-                    points.Add(new PointF(begin + itemWidth - 3, Height / 2.0f));
-                    points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, Height));
-                    points.Add(new PointF(begin + 3, Height));
-                    points.Add(new PointF(begin + 3 + Height / 2.0f, Height / 2.0f));
-                    points.Add(new PointF(begin + 3, 0));
+
+                    if (index == 0 && AlignBothEnds)
+                    {
+                        points.Add(new PointF(begin + 3, 0));
+                        points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, 0));
+                        points.Add(new PointF(begin + itemWidth - 3, Height / 2.0f));
+                        points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, Height));
+                        points.Add(new PointF(begin + 3, Height));
+                        points.Add(new PointF(begin + 3, 0));
+                    }
+                    else if (index == Items.Count - 1 && AlignBothEnds)
+                    {
+                        points.Add(new PointF(begin + 3, 0));
+                        points.Add(new PointF(begin + itemWidth - 3, 0));
+                        points.Add(new PointF(begin + itemWidth - 3, Height));
+                        points.Add(new PointF(begin + 3, Height));
+                        points.Add(new PointF(begin + 3 + Height / 2.0f, Height / 2.0f));
+                        points.Add(new PointF(begin + 3, 0));
+                    }
+                    else
+                    {
+                        points.Add(new PointF(begin + 3, 0));
+                        points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, 0));
+                        points.Add(new PointF(begin + itemWidth - 3, Height / 2.0f));
+                        points.Add(new PointF(begin + itemWidth - 3 - Height / 2.0f, Height));
+                        points.Add(new PointF(begin + 3, Height));
+                        points.Add(new PointF(begin + 3 + Height / 2.0f, Height / 2.0f));
+                        points.Add(new PointF(begin + 3, 0));
+                    }
 
                     Point[] pts = new Point[points.Count];
                     for (int i = 0; i < points.Count; i++)
