@@ -691,5 +691,11 @@ namespace Sunny.UI
                 }
             }
         }
+
+        protected override void OnScroll(ScrollEventArgs se)
+        {
+            base.OnScroll(se);
+            if (AutoScroll) Invalidate();
+        }
     }
 }
