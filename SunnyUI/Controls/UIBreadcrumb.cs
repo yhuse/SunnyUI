@@ -18,6 +18,7 @@
  *
  * 2021-04-10: V3.0.2 增加文件说明
  * 2022-01-26: V3.1.0 增加两端对齐，AlignBothEnds
+ * 2022-01-26: V3.1.0 增加未选中步骤文字颜色
 ******************************************************************************/
 
 using System;
@@ -204,7 +205,7 @@ namespace Sunny.UI
                         g.FillPolygon(br, points.ToArray());
                     }
 
-                    g.DrawString(item.ToString(), Font, ForeColor, begin + (itemWidth - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                    g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor, begin + (itemWidth - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
 
                     begin = begin + itemWidth - 3 - Height / 2.0f + Interval;
                     index++;
@@ -264,6 +265,28 @@ namespace Sunny.UI
             set => SetRectColor(value);
         }
 
+        private Color unSelectedForeColor = Color.White;
+
+        /// <summary>
+        ///     未选节点颜色
+        /// </summary>
+        [Description("未选节点文字颜色")]
+        [Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color UnSelectedForeColor
+        {
+            get => unSelectedForeColor;
+            set
+            {
+                if (unSelectedForeColor != value)
+                {
+                    unSelectedForeColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
         /// <summary>
         ///     字体颜色
         /// </summary>
@@ -280,7 +303,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             fillColor = uiColor.PrimaryColor;
-            foreColor = uiColor.ButtonForeColor;
+            unSelectedForeColor = foreColor = uiColor.ButtonForeColor;
             rectColor = uiColor.GridSelectedColor;
             Invalidate();
         }
