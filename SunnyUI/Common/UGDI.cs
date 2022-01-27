@@ -57,6 +57,17 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 根据背景色判断前景色
+        /// </summary>
+        /// <param name="backColor"></param>
+        /// <returns></returns>
+        public static Color ForeColor(Color backColor)
+        {
+            double gray = (0.299 * backColor.R + 0.587 * backColor.G + 0.114 * backColor.B) / 255;
+            return gray > 0.5 ? Color.Black : Color.White;
+        }
+
         public static Size Size(this SizeF size)
         {
             return new Size(size.Width.RoundEx(), size.Height.RoundEx());
