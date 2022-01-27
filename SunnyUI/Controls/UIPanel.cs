@@ -23,6 +23,7 @@
  * 2021-12-11: V3.0.9 增加了渐变色
  * 2021-12-13: V3.0.9 边框线宽可设置1或者2
  * 2022-01-10: V3.1.0 调整边框和圆角的绘制
+ * 2022-01-27: V3.1.0 禁止显示滚动条
 ******************************************************************************/
 
 using System;
@@ -692,10 +693,7 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnScroll(ScrollEventArgs se)
-        {
-            base.OnScroll(se);
-            if (AutoScroll) Invalidate();
-        }
+        [Browsable(false)]
+        public new bool AutoScroll { get; set; } = false;
     }
 }
