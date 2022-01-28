@@ -123,9 +123,27 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(1)]
+        private int decLength = 1;
+
+        [DefaultValue(1), Browsable(false)]
         [Description("小数位数"), Category("SunnyUI")]
-        public int Decimal { get; set; } = 1;
+        public int Decimal
+        {
+            get => decLength;
+            set
+            {
+                decLength = Math.Max(value, 0);
+                pnlValue.Text = _value.ToString("F" + decLength);
+            }
+        }
+
+        [Description("显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int DecimalPlaces
+        {
+            get => Decimal;
+            set => Decimal = value;
+        }
 
         private double step = 0.1;
 
