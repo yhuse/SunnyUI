@@ -17,6 +17,8 @@
             {
                 components.Dispose();
             }
+
+            ItemForm?.Dispose();
             base.Dispose(disposing);
         }
 
