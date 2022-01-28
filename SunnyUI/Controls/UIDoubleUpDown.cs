@@ -279,8 +279,8 @@ namespace Sunny.UI
             pnlColor = pnlValue.FillColor;
             pnlValue.FillColor = Color.White;
             edit.TextAlign = HorizontalAlignment.Center;
-            edit.Text = pnlValue.Text;
             edit.DecLength = Decimal;
+            edit.DoubleValue = Value;
             edit.BringToFront();
             edit.Visible = true;
             edit.Focus();

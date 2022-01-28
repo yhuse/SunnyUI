@@ -272,7 +272,7 @@ namespace Sunny.UI
                     if (_uiEditType == UITextBox.UIEditType.Double)
                     {
                         mask = DecimalToMask(decLength);
-                        Text = mask;
+                        Text = DoubleValue.ToString(mask);
                         Invalidate();
                     }
                 }

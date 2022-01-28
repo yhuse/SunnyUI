@@ -204,7 +204,7 @@ namespace Sunny.UI.Demo
             this.uiDoubleUpDown1.TabIndex = 8;
             this.uiDoubleUpDown1.Text = "uiDoubleUpDown1";
             this.uiDoubleUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiDoubleUpDown1.Value = 0D;
+            this.uiDoubleUpDown1.Value = 10D;
             // 
             // uiLabel3
             // 
@@ -298,6 +298,7 @@ namespace Sunny.UI.Demo
             this.uiIntegerUpDown1.TabIndex = 7;
             this.uiIntegerUpDown1.Text = "_uiIntegerUpDown1";
             this.uiIntegerUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiIntegerUpDown1.Value = 10;
             // 
             // uiToolTip1
             // 
