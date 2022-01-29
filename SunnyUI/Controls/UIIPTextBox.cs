@@ -370,8 +370,7 @@ namespace Sunny.UI
             // 
             // UIIPTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.txt4);
             this.Controls.Add(this.txt3);
             this.Controls.Add(this.txt2);
@@ -380,6 +379,7 @@ namespace Sunny.UI
             this.Name = "UIIPTextBox";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Size = new System.Drawing.Size(150, 29);
+            this.Style = Sunny.UI.UIStyle.Custom;
             this.SizeChanged += new System.EventHandler(this.UIIPTextBox_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
