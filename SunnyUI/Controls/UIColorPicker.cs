@@ -58,7 +58,7 @@ namespace Sunny.UI
         public UIColorPicker()
         {
             InitializeComponent();
-            //ShowText = false;
+            ShowText = false;
             Value = UIColor.Blue;
         }
 

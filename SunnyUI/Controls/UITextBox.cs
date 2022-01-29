@@ -53,13 +53,13 @@ namespace Sunny.UI
         {
             InitializeComponent();
             SetStyleFlags();
-            CalcEditHeight();
-            Height = MinHeight;
+
             ShowText = false;
             Font = UIFontColor.Font();
             Padding = new Padding(0);
             MinimumSize = new Size(1, 16);
 
+            edit.AutoSize = false;
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4;
             edit.Width = Width - 8;
@@ -98,6 +98,7 @@ namespace Sunny.UI
             Controls.Add(edit);
             fillColor = Color.White;
             Width = 150;
+            Height = 29;
 
             bar.Parent = this;
             bar.Dock = DockStyle.None;
@@ -467,7 +468,6 @@ namespace Sunny.UI
             base.OnFontChanged(e);
             edit.IsScaled = true;
             edit.Font = Font;
-            CalcEditHeight();
             SizeChange();
             Invalidate();
         }
@@ -502,18 +502,8 @@ namespace Sunny.UI
             }
         }
 
-        private int MinHeight;
-        private int MaxHeight;
-
-        private void CalcEditHeight()
-        {
-            TextBox edt = new TextBox();
-            edt.Font = edit.Font.DPIScaleFont();
-            MinHeight = edt.PreferredHeight;
-            edt.BorderStyle = BorderStyle.None;
-            MaxHeight = edt.PreferredHeight * 2 + MinHeight - edt.PreferredHeight;
-            edt.Dispose();
-        }
+        int MinHeight;
+        int MaxHeight;
 
         private void SizeChange()
         {
@@ -522,21 +512,14 @@ namespace Sunny.UI
 
             if (!multiline)
             {
-                if (Height < 12) Height = MinHeight;
+                MinHeight = edit.PreferredHeight + RectSize * 2;
+                MaxHeight = edit.PreferredHeight * 2;
+
+                if (Height < MinHeight) Height = MinHeight;
                 if (Height > MaxHeight) Height = MaxHeight;
 
-                if (Height < MinHeight)
-                {
-                    edit.AutoSize = false;
-                    edit.Height = Height - 3;
-                    edit.Top = 2;
-                }
-                else
-                {
-                    edit.AutoSize = true;
-                    edit.Height = MinHeight;
-                    edit.Top = (Height - edit.Height) / 2 + 1;
-                }
+                edit.Height = Math.Min(Height - RectSize * 2, edit.PreferredHeight);
+                edit.Top = (Height - edit.Height) / 2;
 
                 if (icon == null && Symbol == 0)
                 {
