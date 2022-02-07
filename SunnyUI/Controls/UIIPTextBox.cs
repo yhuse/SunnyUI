@@ -53,9 +53,6 @@ namespace Sunny.UI
             }
         }
 
-        const int MinHeight = 20;
-        const int MaxHeight = 60;
-
         private void Txt_Leave(object sender, EventArgs e)
         {
             TextBox t = (TextBox)sender;
@@ -403,8 +400,8 @@ namespace Sunny.UI
             txt3.Left = txt2.Right + 5;
             txt4.Left = txt3.Right + 5;
 
-            if (Height < MinHeight) Height = MinHeight;
-            if (Height > MaxHeight) Height = MaxHeight;
+            if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
+            if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
 
             txt1.Height = Math.Min(Height - RectSize * 2, txt1.PreferredHeight);
             txt2.Height = Math.Min(Height - RectSize * 2, txt2.PreferredHeight);

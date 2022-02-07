@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-08-14: V2.2.7 增加字体调整
  * 2020-12-10: V3.0.9 增加Readonly属性
+ * 2022-02-07: V3.1.0 增加圆角控制
 ******************************************************************************/
 
 using System;
@@ -286,5 +287,30 @@ namespace Sunny.UI
         [DefaultValue(false)]
         [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
+
+        protected override void OnRadiusSidesChange()
+        {
+            if (btnDec == null || btnAdd == null) return;
+
+            btnDec.RadiusSides =
+                 (RadiusSides.HasFlag(UICornerRadiusSides.LeftTop) ? UICornerRadiusSides.LeftTop : UICornerRadiusSides.None) |
+                 (RadiusSides.HasFlag(UICornerRadiusSides.LeftBottom) ? UICornerRadiusSides.LeftBottom : UICornerRadiusSides.None);
+            btnAdd.RadiusSides =
+                (RadiusSides.HasFlag(UICornerRadiusSides.RightTop) ? UICornerRadiusSides.RightTop : UICornerRadiusSides.None) |
+                (RadiusSides.HasFlag(UICornerRadiusSides.RightBottom) ? UICornerRadiusSides.RightBottom : UICornerRadiusSides.None);
+        }
+
+        protected override void OnRadiusChanged(int value)
+        {
+            if (btnDec == null || btnAdd == null) return;
+            btnDec.Radius = btnAdd.Radius = value;
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
+            if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
+        }
     }
 }

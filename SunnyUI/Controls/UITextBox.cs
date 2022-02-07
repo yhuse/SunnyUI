@@ -503,8 +503,7 @@ namespace Sunny.UI
             }
         }
 
-        const int MinHeight = 20;
-        const int MaxHeight = 60;
+
 
         private void SizeChange()
         {
@@ -514,8 +513,8 @@ namespace Sunny.UI
 
             if (!multiline)
             {
-                if (Height < MinHeight) Height = MinHeight;
-                if (Height > MaxHeight) Height = MaxHeight;
+                if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
+                if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
 
                 edit.Height = Math.Min(Height - RectSize * 2, edit.PreferredHeight);
                 edit.Top = (Height - edit.Height) / 2;
@@ -1048,7 +1047,7 @@ namespace Sunny.UI
             get => iconSize;
             set
             {
-                iconSize = Math.Min(MinHeight, value);
+                iconSize = Math.Min(UIGlobal.EditorMinHeight, value);
                 SizeChange();
                 Invalidate();
             }
@@ -1109,7 +1108,7 @@ namespace Sunny.UI
             set
             {
                 _symbolSize = Math.Max(value, 16);
-                _symbolSize = Math.Min(value, MinHeight);
+                _symbolSize = Math.Min(value, UIGlobal.EditorMaxHeight);
                 SizeChange();
                 Invalidate();
             }

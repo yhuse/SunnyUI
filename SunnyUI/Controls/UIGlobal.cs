@@ -32,5 +32,8 @@ namespace Sunny.UI
         /// 版本
         /// </summary>
         public static string Version = Resources.Name + " " + Resources.Version;
+
+        public const int EditorMinHeight = 20;
+        public const int EditorMaxHeight = 60;
     }
 }
