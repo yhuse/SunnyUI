@@ -49,15 +49,20 @@ namespace Sunny.UI
         private readonly UIScrollBar bar = new UIScrollBar();
         private readonly UISymbolButton btn = new UISymbolButton();
 
+
         public UITextBox()
         {
             InitializeComponent();
+            InitializeComponentEnd = true;
             SetStyleFlags();
 
             ShowText = false;
             Font = UIFontColor.Font();
             Padding = new Padding(0);
             MinimumSize = new Size(1, 16);
+
+            Width = 150;
+            Height = 29;
 
             edit.AutoSize = false;
             edit.Top = (Height - edit.Height) / 2;
@@ -97,8 +102,6 @@ namespace Sunny.UI
             edit.Invalidate();
             Controls.Add(edit);
             fillColor = Color.White;
-            Width = 150;
-            Height = 29;
 
             bar.Parent = this;
             bar.Dock = DockStyle.None;
@@ -280,8 +283,6 @@ namespace Sunny.UI
         {
             DoubleClick?.Invoke(this, e);
         }
-
-
 
         private void Edit_Click(object sender, EventArgs e)
         {
@@ -502,19 +503,17 @@ namespace Sunny.UI
             }
         }
 
-        int MinHeight;
-        int MaxHeight;
+        const int MinHeight = 20;
+        const int MaxHeight = 60;
 
         private void SizeChange()
         {
+            if (!InitializeComponentEnd) return;
             if (edit == null) return;
             if (btn == null) return;
 
             if (!multiline)
             {
-                MinHeight = edit.PreferredHeight + RectSize * 2;
-                MaxHeight = edit.PreferredHeight * 2;
-
                 if (Height < MinHeight) Height = MinHeight;
                 if (Height > MaxHeight) Height = MaxHeight;
 

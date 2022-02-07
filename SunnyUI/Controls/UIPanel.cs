@@ -45,6 +45,7 @@ namespace Sunny.UI
         protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
         protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
         protected Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).PanelForeColor;
+        protected bool InitializeComponentEnd;
 
         public UIPanel()
         {

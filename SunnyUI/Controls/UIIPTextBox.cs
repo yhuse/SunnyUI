@@ -20,13 +20,10 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -38,9 +35,12 @@ namespace Sunny.UI
         public UIIPTextBox()
         {
             InitializeComponent();
+            InitializeComponentEnd = true;
 
             SetStyleFlags();
             ShowText = false;
+            Width = 150;
+            Height = 29;
 
             UIIPTextBox_SizeChanged(null, null);
             foreach (TextBox txt in Controls.OfType<TextBox>())
@@ -52,6 +52,9 @@ namespace Sunny.UI
                 txt.Leave += Txt_Leave;
             }
         }
+
+        const int MinHeight = 20;
+        const int MaxHeight = 60;
 
         private void Txt_Leave(object sender, EventArgs e)
         {
@@ -400,9 +403,6 @@ namespace Sunny.UI
             txt3.Left = txt2.Right + 5;
             txt4.Left = txt3.Right + 5;
 
-            int MinHeight = txt1.PreferredHeight + RectSize * 2;
-            int MaxHeight = txt1.PreferredHeight * 2;
-
             if (Height < MinHeight) Height = MinHeight;
             if (Height > MaxHeight) Height = MaxHeight;
 
@@ -417,6 +417,7 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
+            if (!InitializeComponentEnd) return;
             if (txt1 == null || txt2 == null || txt3 == null || txt4 == null) return;
             txt1.Font = txt2.Font = txt3.Font = txt4.Font = Font;
             UIIPTextBox_SizeChanged(null, null);
