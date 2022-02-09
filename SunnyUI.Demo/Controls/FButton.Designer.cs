@@ -355,7 +355,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton21.Name = "uiSymbolButton21";
             this.uiSymbolButton21.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton21.Size = new System.Drawing.Size(46, 35);
-            this.uiSymbolButton21.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton21.Symbol = 61520;
             this.uiSymbolButton21.TabIndex = 98;
             this.uiSymbolButton21.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -369,7 +368,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton13.Name = "uiSymbolButton13";
             this.uiSymbolButton13.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiSymbolButton13.Size = new System.Drawing.Size(46, 35);
-            this.uiSymbolButton13.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton13.Symbol = 61518;
             this.uiSymbolButton13.TabIndex = 97;
             this.uiSymbolButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1156,6 +1154,7 @@ namespace Sunny.UI.Demo
             this.uiButton1.Text = "White";
             this.uiButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton1.TipsText = "1";
+            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // uiToolTip1
             // 

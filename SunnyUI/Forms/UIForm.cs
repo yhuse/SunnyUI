@@ -28,6 +28,7 @@
  * 2021-08-17: V3.0.6 适应主屏幕任务栏在屏幕各个方向均可
  * 2021-08-17: V3.0.8 增加IFrame接口
  * 2022-01-03: V3.0.9 标题栏按钮可以设置颜色
+ * 2022-02-09: V3.1.0 增加页面间传值方法SetParamToPage
 ******************************************************************************/
 
 using System;
@@ -1921,19 +1922,19 @@ namespace Sunny.UI
 
         public UITabControl MainTabControl { get; set; }
 
-        public virtual UIPage AddPage(UIPage page, int index)
+        public UIPage AddPage(UIPage page, int index)
         {
             page.PageIndex = index;
             return AddPage(page);
         }
 
-        public virtual UIPage AddPage(UIPage page, Guid guid)
+        public UIPage AddPage(UIPage page, Guid guid)
         {
             page.PageGuid = guid;
             return AddPage(page);
         }
 
-        public virtual UIPage AddPage(UIPage page)
+        public UIPage AddPage(UIPage page)
         {
             page.Frame = this;
             MainTabControl?.AddPage(page);
@@ -1950,40 +1951,53 @@ namespace Sunny.UI
             MainTabControl?.SelectPage(guid);
         }
 
-        public virtual bool RemovePage(int pageIndex)
+        public bool RemovePage(int pageIndex)
         {
             return MainTabControl?.RemovePage(pageIndex) ?? false;
         }
 
-        public virtual bool RemovePage(Guid guid)
+        public bool RemovePage(Guid guid)
         {
             return MainTabControl?.RemovePage(guid) ?? false;
         }
 
-        public virtual void Feedback(object sender, int pageIndex, params object[] objects)
+        public virtual void FeedbackFormPage(int fromPageIndex, params object[] objects)
         {
         }
 
-        public virtual UIPage GetPage(int pageIndex)
+        public UIPage GetPage(int pageIndex)
         {
             return MainTabControl?.GetPage(pageIndex);
         }
 
-        public virtual UIPage GetPage(Guid guid)
+        public UIPage GetPage(Guid guid)
         {
             return MainTabControl?.GetPage(guid);
         }
 
-        public virtual bool ExistPage(int pageIndex)
+        public bool ExistPage(int pageIndex)
         {
             return GetPage(pageIndex) != null;
         }
 
-        public virtual bool ExistPage(Guid guid)
+        public bool ExistPage(Guid guid)
         {
             return GetPage(guid) != null;
         }
 
+        public bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects)
+        {
+            UIPage page = GetPage(toPageIndex);
+            if (page == null) return false;
+            return page.SetParam(fromPageIndex, objects);
+        }
+
+        public bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects)
+        {
+            UIPage page = GetPage(toPageGuid);
+            if (page == null) return false;
+            return page.SetParam(fromPageGuid, objects);
+        }
 
         #endregion IFrame实现
     }

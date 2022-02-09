@@ -47,10 +47,14 @@ namespace Sunny.UI
 
         bool RemovePage(Guid guid);
 
-        void Feedback(object sender, int pageIndex, params object[] objects);
+        void FeedbackFormPage(int fromPageIndex, params object[] objects);
 
         bool ExistPage(int index);
 
         bool ExistPage(Guid guid);
+
+        bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects);
+
+        bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects);
     }
 }

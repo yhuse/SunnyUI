@@ -639,14 +639,19 @@ namespace Sunny.UI
             get; set;
         }
 
-        public void Feedback(object sender, params object[] objects)
+        public void FeedbackToFrame(params object[] objects)
         {
-            Frame?.Feedback(this, PageIndex, objects);
+            Frame?.FeedbackFormPage(PageIndex, objects);
         }
 
-        public virtual void SetParam(int fromPageIndex, params object[] objects)
+        public virtual bool SetParam(int fromPageIndex, params object[] objects)
         {
+            return false;
+        }
 
+        public virtual bool SetParam(Guid fromPageGuid, params object[] objects)
+        {
+            return false;
         }
 
         #region 一些辅助窗口

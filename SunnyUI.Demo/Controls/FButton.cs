@@ -63,5 +63,12 @@ namespace Sunny.UI.Demo
         {
             Frame.SelectPage(5000);
         }
+
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            //传值给页面1001
+            //设置FAvatar的Label文字
+            Frame.SetParamToPage(1001, PageIndex, "你好");
+        }
     }
 }
