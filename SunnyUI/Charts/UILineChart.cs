@@ -30,6 +30,7 @@
  * 2021-12-31: V3.0.9 X轴支持字符串显示
  * 2022-01-06: V3.1.0 支持FillColor透明
  * 2022-01-09: V3.1.0 双坐标轴支持选区域缩放
+ * 2022-02-09: V3.1.0 增加图线隐藏
 ******************************************************************************/
 
 using System;
@@ -427,7 +428,7 @@ namespace Sunny.UI
 
         protected virtual void DrawSeries(Graphics g, Color color, UILineSeries series)
         {
-            if (series.Points.Count == 0)
+            if (series.Points.Count == 0 || !series.Visible)
             {
                 return;
             }
@@ -588,6 +589,8 @@ namespace Sunny.UI
         {
             foreach (var series in Option.Series.Values)
             {
+                if (series.Points.Count == 0 || !series.Visible) continue;
+
                 Color color = series.Color;
                 if (series.SymbolColor.IsValid()) color = series.SymbolColor;
 
@@ -775,6 +778,7 @@ namespace Sunny.UI
                 foreach (var series in Option.Series.Values)
                 {
                     if (series.DataCount == 0) continue;
+                    if (!series.Visible) continue;
                     if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
                     {
                         UILineSelectPoint point = new UILineSelectPoint();

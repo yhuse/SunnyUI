@@ -69,83 +69,59 @@ namespace Sunny.UI
             return series;
         }
 
-        public UILineSeries AddSeries(string name, bool isY2 = false)
+        public UILineSeries AddSeries(string seriesName, bool isY2 = false)
         {
-            if (name.IsNullOrEmpty()) return null;
-            UILineSeries series = new UILineSeries(name, isY2);
+            if (seriesName.IsNullOrEmpty()) return null;
+            UILineSeries series = new UILineSeries(seriesName, isY2);
             AddSeries(series);
             return series;
         }
 
-        public void AddData(string name, double x, double y)
+        public void AddData(string seriesName, double x, double y)
         {
-            if (!Series.ContainsKey(name)) return;
-            Series[name].Add(x, y);
+            if (!Series.ContainsKey(seriesName)) return;
+            Series[seriesName].Add(x, y);
         }
 
-        public void AddData(string name, DateTime x, double y)
+        public void AddData(string seriesName, DateTime x, double y)
         {
-            if (!Series.ContainsKey(name)) return;
-            Series[name].Add(x, y);
+            if (!Series.ContainsKey(seriesName)) return;
+            Series[seriesName].Add(x, y);
         }
 
-        public void AddData(string name, string x, double y)
-        {
-            if (!Series.ContainsKey(name)) return;
-            Series[name].Add(x, y);
-        }
-
-        public void AddData(string name, List<double> x, List<double> y)
+        public void AddData(string seriesName, List<double> x, List<double> y)
         {
             if (x.Count != y.Count) return;
             for (int i = 0; i < x.Count; i++)
             {
-                AddData(name, x[i], y[i]);
+                AddData(seriesName, x[i], y[i]);
             }
         }
 
-        public void AddData(string name, List<DateTime> x, List<double> y)
+        public void AddData(string seriesName, List<DateTime> x, List<double> y)
         {
             if (x.Count != y.Count) return;
             for (int i = 0; i < x.Count; i++)
             {
-                AddData(name, x[i], y[i]);
+                AddData(seriesName, x[i], y[i]);
             }
         }
 
-        public void AddData(string name, List<string> x, List<double> y)
-        {
-            if (x.Count != y.Count) return;
-            for (int i = 0; i < x.Count; i++)
-            {
-                AddData(name, x[i], y[i]);
-            }
-        }
-
-        public void AddData(string name, double[] x, double[] y)
+        public void AddData(string seriesName, double[] x, double[] y)
         {
             if (x.Length != y.Length) return;
             for (int i = 0; i < x.Length; i++)
             {
-                AddData(name, x[i], y[i]);
+                AddData(seriesName, x[i], y[i]);
             }
         }
 
-        public void AddData(string name, DateTime[] x, double[] y)
+        public void AddData(string seriesName, DateTime[] x, double[] y)
         {
             if (x.Length != y.Length) return;
             for (int i = 0; i < x.Length; i++)
             {
-                AddData(name, x[i], y[i]);
-            }
-        }
-
-        public void AddData(string name, string[] x, double[] y)
-        {
-            if (x.Length != y.Length) return;
-            for (int i = 0; i < x.Length; i++)
-            {
-                AddData(name, x[i], y[i]);
+                AddData(seriesName, x[i], y[i]);
             }
         }
 
@@ -159,11 +135,11 @@ namespace Sunny.UI
             Series.Clear();
         }
 
-        public void Clear(string name)
+        public void Clear(string seriesName)
         {
-            if (Series.ContainsKey(name))
+            if (Series.ContainsKey(seriesName))
             {
-                Series[name].Clear();
+                Series[seriesName].Clear();
             }
         }
 
@@ -327,6 +303,8 @@ namespace Sunny.UI
         public bool ContainsNan { get; private set; }
 
         public bool IsY2 { get; private set; }
+
+        public bool Visible { get; set; } = true;
 
         public UILineSeries(string name, bool isY2 = false)
         {

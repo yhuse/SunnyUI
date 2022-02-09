@@ -328,10 +328,6 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             if (Width <= 0 || Height <= 0) return;
