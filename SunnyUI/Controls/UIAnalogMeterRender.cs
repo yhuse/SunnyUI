@@ -170,18 +170,7 @@ namespace Sunny.UI
     {
         public override bool DrawBackground(Graphics gr, RectangleF rc)
         {
-            if (this.AnalogMeter == null)
-                return false;
-
-            Color c = this.AnalogMeter.Parent.BackColor;
-            SolidBrush br = new SolidBrush(c);
-            Pen pen = new Pen(c);
-
-            Rectangle _rcTmp = new Rectangle(0, 0, this.AnalogMeter.Width, this.AnalogMeter.Height);
-            gr.DrawRectangle(pen, _rcTmp);
-            gr.FillRectangle(br, rc);
-
-            return true;
+            return false;
         }
 
         public override bool DrawBody(Graphics Gr, RectangleF rc)
