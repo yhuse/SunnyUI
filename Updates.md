@@ -1,4 +1,43 @@
-﻿\+ 增加    \* 修改    \- 删除    
+\+ 增加    \* 修改    \- 删除    
+    
+#### 2022\-02\-12 V3.1.1    
+\+ UIIPTextBox: 增加IP地址输入框    
+\+ UISmoothLabel: 平滑文字带边框的标签    
+\* UIAnalogMeter: 支持背景透明色    
+\* UIForm: 增加页面间传值方法SetParamToPage    
+\* UILineChart: 增加图线隐藏    
+\* UIIntegerUpDown: 增加圆角控制    
+\* UIDoubleUpDown: 增加圆角控制    
+\* UITextBox: 修正编辑框高度    
+\* UIDoubleUpDown: 修正默认值不为0时，编辑值为0的问题    
+\* UIPanel: 禁止显示滚动条    
+\* UITextBox: 关闭设计期水印文字显示    
+\* UIBreadcrumb: 增加未选中步骤文字颜色    
+\* UIBreadcrumb: 增加两端对齐，AlignBothEnds    
+\* UISymbolButton: 设置完图片即可更新    
+\* UIDataGridView: 更新单选时选中值SelectedIndex值    
+\* UINotifiler: 修改了点击事件    
+\* UIComboBox: 增加了下拉框颜色设置    
+\* UINavMenu: SelectPage增加Guid接口    
+\* UITabControl: 修改删除页面时的页面跳转    
+\* UIControl: 设置圆角的范围    
+\* UIPanel: 设置圆角的范围    
+\* UINavMenu: 设置滚动条背景色    
+\* UIPagination: 修复按钮图标配色    
+\* UILine: 修复了文本为空不显示的问题    
+\* UIPanel: 调整边框和圆角的绘制    
+\* UIControl: 调整边框和圆角的绘制    
+\* UILineChart: 双坐标轴支持选区域缩放    
+\* IFrame：增加了判断页面是否存在的代码    
+\* UITextBox: 按钮支持自定义颜色    
+\* UILineChart: 支持FillColor透明    
+\* 源码兼容VS2019编译    
+\* 修复了日期时间选择框下拉框的按钮配色    
+\* 修复日期选择控件值切换响应两次    
+\* Demo增加全局热键    
+\* 修改部分控件小数位数属性名称为DecimalPlaces    
+\* 字体图标选择界面，增加搜索框，搜索结果标红显示    
+\* 下拉控件增加内存释放    
     
 #### 2022\-01\-05 V3.1.0    
 \+ ChineseColors: 中国传统颜色    
@@ -359,9 +398,9 @@
 \* UIButton: 增加ShowFocusLine，可获得焦点并显示  
 
 #### 2020.05.05 V2.2.5  
-\+ 增加页面框架
-\+ 增加下拉框窗体，进度提升窗体  
-\+ UITreeView  
+\+ 增加页面框架    
+\+ 增加下拉框窗体，进度提升窗体    
+\+ UITreeView    
 
 #### 2020.04.25 V2.2.4  
 \* 更新主题风格类，各控件主题颜色调用不交叉，便于新增主题  
