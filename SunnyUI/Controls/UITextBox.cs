@@ -30,6 +30,7 @@
  * 2021-10-14: V3.0.8 调整最小高度限制
  * 2021-10-15: V3.0.8 支持修改背景色
  * 2022-01-07: V3.1.0 按钮支持自定义颜色
+ * 2022-02-16: V3.1.1 增加了只读的颜色设置
 ******************************************************************************/
 
 using System;
@@ -275,7 +276,7 @@ namespace Sunny.UI
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
-            edit.BackColor = Enabled ? FillColor : FillDisableColor;
+            edit.BackColor = GetFillColor();
             edit.Enabled = Enabled;
         }
 
@@ -529,8 +530,6 @@ namespace Sunny.UI
             }
         }
 
-
-
         private void SizeChange()
         {
             if (!InitializeComponentEnd) return;
@@ -614,11 +613,13 @@ namespace Sunny.UI
         [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly
         {
-            get => edit.ReadOnly;
+            get => isReadOnly;
             set
             {
+                isReadOnly = value;
                 edit.ReadOnly = value;
-                edit.BackColor = Enabled ? FillColor : FillDisableColor;
+                edit.BackColor = GetFillColor();
+                Invalidate();
             }
         }
 
@@ -764,8 +765,9 @@ namespace Sunny.UI
             if (uiColor.IsCustom()) return;
 
             fillColor = uiColor.EditorBackColor;
-            edit.BackColor = Enabled ? fillColor : FillDisableColor;
-            edit.ForeColor = foreColor = UIFontColor.Primary;
+            foreColor = UIFontColor.Primary;
+            edit.BackColor = GetFillColor();
+            edit.ForeColor = GetForeColor();
 
             if (bar != null)
             {
@@ -796,13 +798,25 @@ namespace Sunny.UI
         protected override void AfterSetForeColor(Color color)
         {
             base.AfterSetForeColor(color);
-            edit.ForeColor = color;
+            edit.ForeColor = GetForeColor();
         }
 
         protected override void AfterSetFillColor(Color color)
         {
             base.AfterSetFillColor(color);
-            edit.BackColor = Enabled ? color : FillDisableColor;
+            edit.BackColor = GetFillColor();
+        }
+
+        protected override void AfterSetFillReadOnlyColor(Color color)
+        {
+            base.AfterSetFillReadOnlyColor(color);
+            edit.BackColor = GetFillColor();
+        }
+
+        protected override void AfterSetForeReadOnlyColor(Color color)
+        {
+            base.AfterSetForeReadOnlyColor(color);
+            edit.ForeColor = GetForeColor();
         }
 
         public enum UIEditType

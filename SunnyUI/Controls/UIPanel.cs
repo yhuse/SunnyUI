@@ -70,6 +70,8 @@ namespace Sunny.UI
             }
         }
 
+        protected bool isReadOnly;
+
         protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -407,7 +409,7 @@ namespace Sunny.UI
 
         protected virtual void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            g.DrawString(Text, Font, Enabled ? foreColor : foreDisableColor, Size, Padding, TextAlignment);
+            g.DrawString(Text, Font, GetForeColor(), Size, Padding, TextAlignment);
         }
 
         protected virtual void OnPaintRect(Graphics g, GraphicsPath path)
@@ -525,6 +527,18 @@ namespace Sunny.UI
         {
         }
 
+        protected virtual void AfterSetFillReadOnlyColor(Color color)
+        {
+        }
+
+        protected virtual void AfterSetRectReadOnlyColor(Color color)
+        {
+        }
+
+        protected virtual void AfterSetForeReadOnlyColor(Color color)
+        {
+        }
+
         /// <summary>
         /// 自定义主题风格
         /// </summary>
@@ -597,7 +611,9 @@ namespace Sunny.UI
         protected void SetFillReadOnlyColor(Color color)
         {
             fillReadOnlyColor = color;
+            AfterSetFillReadOnlyColor(color);
             _style = UIStyle.Custom;
+            Invalidate();
         }
 
         /// <summary>
@@ -607,7 +623,9 @@ namespace Sunny.UI
         protected void SetRectReadOnlyColor(Color color)
         {
             rectReadOnlyColor = color;
+            AfterSetRectReadOnlyColor(color);
             _style = UIStyle.Custom;
+            Invalidate();
         }
 
         /// <summary>
@@ -617,7 +635,9 @@ namespace Sunny.UI
         protected void SetForeReadOnlyColor(Color color)
         {
             foreReadOnlyColor = color;
+            AfterSetForeReadOnlyColor(color);
             _style = UIStyle.Custom;
+            Invalidate();
         }
 
         /// <summary>
@@ -671,17 +691,17 @@ namespace Sunny.UI
 
         protected Color GetRectColor()
         {
-            return Enabled ? rectColor : rectDisableColor;
+            return Enabled ? (isReadOnly ? rectReadOnlyColor : rectColor) : rectDisableColor;
         }
 
         protected Color GetForeColor()
         {
-            return Enabled ? foreColor : foreDisableColor;
+            return Enabled ? (isReadOnly ? foreReadOnlyColor : foreColor) : foreDisableColor;
         }
 
         protected Color GetFillColor()
         {
-            return Enabled ? fillColor : fillDisableColor;
+            return Enabled ? (isReadOnly ? fillReadOnlyColor : fillColor) : fillDisableColor;
         }
 
         /// <summary>
