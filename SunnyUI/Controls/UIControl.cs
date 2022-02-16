@@ -401,6 +401,8 @@ namespace Sunny.UI
                 color = rectSelectedColor;
             if (ShowFocusColor && Focused)
                 color = rectPressColor;
+            if (isReadOnly)
+                color = rectReadOnlyColor;
             return Enabled ? color : rectDisableColor;
         }
 
@@ -411,6 +413,8 @@ namespace Sunny.UI
             get;
             set;
         }
+
+        protected bool isReadOnly;
 
         /// <summary>
         /// 获取字体颜色
@@ -428,6 +432,8 @@ namespace Sunny.UI
                 color = foreSelectedColor;
             if (ShowFocusColor && Focused)
                 color = forePressColor;
+            if (isReadOnly)
+                color = foreReadOnlyColor;
             return Enabled ? color : foreDisableColor;
         }
 
@@ -447,6 +453,8 @@ namespace Sunny.UI
                 color = fillSelectedColor;
             if (ShowFocusColor && Focused)
                 color = fillPressColor;
+            if (isReadOnly)
+                color = fillReadOnlyColor;
             return Enabled ? color : fillDisableColor;
         }
 
