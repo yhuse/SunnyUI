@@ -568,7 +568,7 @@ namespace Sunny.UI
         /// <summary>
         /// 深蓝
         /// </summary>
-        public static readonly Color DarkBlue = Color.FromArgb(15, 40, 70);
+        public static readonly Color DarkBlue = Color.FromArgb(26, 82, 137);
 
         /// <summary>
         /// 白

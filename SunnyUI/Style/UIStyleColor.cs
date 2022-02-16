@@ -537,63 +537,47 @@ namespace Sunny.UI
     public class UIDarkBlueStyle : UIBaseStyle
     {
         public override UIStyle Name => UIStyle.DarkBlue;
-        public override Color PrimaryColor => Color.FromArgb(30, 32, 135);
-        public override Color RegularColor => Color.FromArgb(120, 148, 182);
-        public override Color SecondaryColor => Color.FromArgb(120, 148, 182);
-        public override Color PlainColor => Color.FromArgb(30, 32, 135);
-        public override Color ButtonFillColor => Color.FromArgb(2, 167, 240);
-        public override Color ButtonFillColor2 => Color.FromArgb(6, 13, 192);
-        public override Color ButtonFillHoverColor => Color.FromArgb(128, 255, 255);
-        public override Color ButtonFillPressColor => Color.FromArgb(108, 255, 255);
-        public override Color ButtonForeColor => Color.FromArgb(242, 242, 242);
+        public override Color ButtonFillColor => Color.FromArgb(26, 82, 137);
+        public override Color ButtonFillColor2 => Color.FromArgb(4, 41, 87);
+        public override Color ButtonFillHoverColor => Color.FromArgb(15, 61, 112);
+        public override Color ButtonFillPressColor => Color.FromArgb(4, 41, 87);
+        public override Color ButtonFillSelectedColor => this.ButtonFillPressColor;
+        public override Color ButtonForeColor => Color.FromArgb(157, 197, 205);
         public override Color ButtonForeHoverColor => UIFontColor.Primary;
         public override Color ButtonForePressColor => UIFontColor.Primary;
-        public override Color RectSelectedColor => Color.FromArgb(128, 255, 255);
         public override Color ButtonForeSelectedColor => UIFontColor.Primary;
-        public override Color ButtonFillSelectedColor => Color.FromArgb(128, 255, 255);
-        public override Color RectColor => Color.FromArgb(128, 255, 255);
-        public override Color RectHoverColor => Color.FromArgb(128, 255, 255);
-        public override Color RectPressColor => Color.FromArgb(128, 255, 255);
-        public override Color LabelForeColor => UIFontColor.Plain;
-        public override Color DropDownControlColor => UIFontColor.Primary;
         public override Color CheckBoxColor => UIColor.Blue;
-
-        public override Color TitleColor => Color.FromArgb(130, 130, 130);
-        public override Color TitleForeColor => Color.White;
-        public override Color LineForeColor => UIFontColor.Plain;
         public override Color ContextMenuColor => UIColor.RegularGray;
-
-        public override Color GridStripeOddColor => UIColor.RegularGray;
+        public override Color DropDownControlColor => this.ButtonForeColor;
         public override Color GridSelectedColor => UIFontColor.Plain;
-
         public override Color GridSelectedForeColor => UIColor.White;
-
+        public override Color GridStripeOddColor => UIColor.RegularGray;
+        public override Color LabelForeColor => this.ButtonForeColor;
+        public override Color LineForeColor => this.ButtonForeColor;
         public override Color ListItemSelectBackColor => UIColor.Blue;
         public override Color ListItemSelectForeColor => UIColor.LightBlue;
-
-        public override Color ProgressIndicatorColor => UIColor.Blue;
-
-        public override Color ProcessBarFillColor => PlainColor;
-
+        public override Color PlainColor => UIColor.DarkBlue;
+        public override Color PrimaryColor => UIColor.DarkBlue;
+        public override Color ProcessBarFillColor => this.PlainColor;
         public override Color ProcessBarForeColor => UIColor.RegularGray;
-
+        public override Color ProgressIndicatorColor => UIColor.Blue;
+        public override Color RectColor => Color.FromArgb(110, 202, 236);
+        public override Color RectHoverColor => this.RectColor;
+        public override Color RectPressColor => this.RectColor;
+        public override Color RectSelectedColor => this.RectColor;
+        public override Color RegularColor => Color.FromArgb(120, 148, 182);
         public override Color ScrollBarForeColor => UIColor.RegularGray;
-
+        public override Color SecondaryColor => Color.FromArgb(120, 148, 182);
         public override Color SwitchActiveColor => UIColor.DarkBlue;
-
-        public override Color SwitchInActiveColor => UIFontColor.Plain;
-
         public override Color SwitchFillColor => Color.White;
-
+        public override Color SwitchInActiveColor => UIFontColor.Plain;
+        public override Color TitleColor => this.PrimaryColor;
+        public override Color TitleForeColor => this.ButtonForeColor;
         public override Color TrackBarForeColor => UIColor.Blue;
-
         public override Color TrackBarRectColor => UIColor.Blue;
-
         public override Color TrackDisableColor => Color.Silver;
-
-        public override Color TreeViewSelectedColor => UIFontColor.Secondary;
-
         public override Color TreeViewHoverColor => UIFontColor.Plain;
+        public override Color TreeViewSelectedColor => UIFontColor.Secondary;
     }
 
     public class UIBlackStyle : UIBaseStyle

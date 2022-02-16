@@ -399,14 +399,21 @@ namespace Sunny.UI
             }
         }
 
+        private Color titleColor;
+
         /// <summary>
         /// 标题栏颜色
         /// </summary>
         [Description("标题栏颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "80, 160, 255")]
         public Color TitleColor
         {
-            get => RectColor;
-            set => RectColor = value;
+            get => titleColor;
+            set
+            {
+                titleColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -1206,6 +1213,7 @@ namespace Sunny.UI
             rectColor = uiColor.RectColor;
             foreColor = UIFontColor.Primary;
             BackColor = uiColor.PlainColor;
+            titleColor = uiColor.TitleColor;
             titleForeColor = uiColor.TitleForeColor;
             Invalidate();
         }

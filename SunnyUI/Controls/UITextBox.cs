@@ -49,7 +49,6 @@ namespace Sunny.UI
         private readonly UIScrollBar bar = new UIScrollBar();
         private readonly UISymbolButton btn = new UISymbolButton();
 
-
         public UITextBox()
         {
             InitializeComponent();
@@ -139,6 +138,33 @@ namespace Sunny.UI
 
                 AfterSetFillColor(value);
             }
+        }
+
+        /// <summary>
+        /// 字体只读颜色
+        /// </summary>
+        public Color ForeReadOnlyColor
+        {
+            get => foreReadOnlyColor;
+            set => SetForeReadOnlyColor(value);
+        }
+
+        /// <summary>
+        /// 边框只读颜色
+        /// </summary>
+        public Color RectReadOnlyColor
+        {
+            get => rectReadOnlyColor;
+            set => SetRectReadOnlyColor(value);
+        }
+
+        /// <summary>
+        /// 填充只读颜色
+        /// </summary>
+        public Color FillReadOnlyColor
+        {
+            get => fillReadOnlyColor;
+            set => SetFillReadOnlyColor(value);
         }
 
         private void Btn_Click(object sender, EventArgs e)

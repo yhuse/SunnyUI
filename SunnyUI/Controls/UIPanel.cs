@@ -24,6 +24,7 @@
  * 2021-12-13: V3.0.9 边框线宽可设置1或者2
  * 2022-01-10: V3.1.0 调整边框和圆角的绘制
  * 2022-01-27: V3.1.0 禁止显示滚动条
+ * 2022-02-16: V3.1.1 基类增加只读颜色设置
 ******************************************************************************/
 
 using System;
@@ -566,7 +567,57 @@ namespace Sunny.UI
             fillDisableColor = uiColor.FillDisableColor;
             rectDisableColor = uiColor.RectDisableColor;
             foreDisableColor = uiColor.ForeDisableColor;
+
+            fillReadOnlyColor = uiColor.FillDisableColor;
+            rectReadOnlyColor = uiColor.RectDisableColor;
+            foreReadOnlyColor = uiColor.ForeDisableColor;
             Invalidate();
+        }
+
+        /// <summary>
+        /// 字体只读颜色
+        /// </summary>
+        protected Color foreReadOnlyColor = UIStyle.Blue.Colors().ForeDisableColor;
+
+        /// <summary>
+        /// 边框只读颜色
+        /// </summary>
+        protected Color rectReadOnlyColor = UIStyle.Blue.Colors().RectDisableColor;
+
+
+        /// <summary>
+        /// 填充只读颜色
+        /// </summary>
+        protected Color fillReadOnlyColor = UIStyle.Blue.Colors().FillDisableColor;
+
+        /// <summary>
+        /// 设置填充只读颜色
+        /// </summary>
+        /// <param name="color">颜色</param>
+        protected void SetFillReadOnlyColor(Color color)
+        {
+            fillReadOnlyColor = color;
+            _style = UIStyle.Custom;
+        }
+
+        /// <summary>
+        /// 设置边框只读颜色
+        /// </summary>
+        /// <param name="color">颜色</param>
+        protected void SetRectReadOnlyColor(Color color)
+        {
+            rectReadOnlyColor = color;
+            _style = UIStyle.Custom;
+        }
+
+        /// <summary>
+        /// 设置字体只读颜色
+        /// </summary>
+        /// <param name="color">颜色</param>
+        protected void SetForeReadOnlyColor(Color color)
+        {
+            foreReadOnlyColor = color;
+            _style = UIStyle.Custom;
         }
 
         /// <summary>
