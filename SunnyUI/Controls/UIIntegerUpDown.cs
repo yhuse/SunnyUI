@@ -312,5 +312,32 @@ namespace Sunny.UI
             if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
             if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
         }
+
+        protected override void AfterSetRectColor(Color color)
+        {
+            base.AfterSetRectColor(color);
+            if (btnAdd == null || btnDec == null) return;
+            btnAdd.FillColor = btnDec.FillColor = color;
+            btnAdd.RectColor = btnDec.RectColor = color;
+        }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (pnlValue == null) return;
+            pnlValue.FillColor = color;
+        }
+
+        private int buttonWidth = 29;
+        public int ButtonWidth
+        {
+            get => buttonWidth;
+            set
+            {
+                buttonWidth = Math.Max(value, 29);
+                if (btnAdd == null || btnDec == null) return;
+                btnAdd.Width = btnDec.Width = buttonWidth;
+            }
+        }
     }
 }
