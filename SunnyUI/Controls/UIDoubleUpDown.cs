@@ -22,6 +22,7 @@
  * 2020-12-10: V3.0.9 增加Readonly属性
  * 2022-01-28: V3.1.0 修正默认值不为0时，编辑值为0的问题
  * 2022-02-07: V3.1.0 增加圆角控制
+ * 2022-02-24: V3.1.1 可以设置按钮大小和颜色
 ******************************************************************************/
 
 using System;
@@ -334,6 +335,33 @@ namespace Sunny.UI
             base.OnSizeChanged(e);
             if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
             if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
+        }
+
+        protected override void AfterSetRectColor(Color color)
+        {
+            base.AfterSetRectColor(color);
+            if (btnAdd == null || btnDec == null) return;
+            btnAdd.FillColor = btnDec.FillColor = color;
+            btnAdd.RectColor = btnDec.RectColor = color;
+        }
+
+        protected override void AfterSetFillColor(Color color)
+        {
+            base.AfterSetFillColor(color);
+            if (pnlValue == null) return;
+            pnlValue.FillColor = color;
+        }
+
+        private int buttonWidth = 29;
+        public int ButtonWidth
+        {
+            get => buttonWidth;
+            set
+            {
+                buttonWidth = Math.Max(value, 29);
+                if (btnAdd == null || btnDec == null) return;
+                btnAdd.Width = btnDec.Width = buttonWidth;
+            }
         }
     }
 }
