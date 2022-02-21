@@ -276,7 +276,7 @@ namespace Sunny.UI
             }
         }
 
-        public bool IsOK { get; private set; }
+        public bool IsOK { get; protected set; }
 
         [Category("SunnyUI"), Description("确定按钮点击事件")]
         public event EventHandler ButtonOkClick;
