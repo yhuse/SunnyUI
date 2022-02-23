@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-05-25: V3.0.4 支持可改背景色
  * 2021-07-29: V3.0.5 修改滚动条没有文字时自动隐藏
+ * 2022-02-23: V3.1.1 增加了一些原生的属性和事件
 ******************************************************************************/
 
 using System;
@@ -48,6 +49,8 @@ namespace Sunny.UI
             edit.KeyDown += EditOnKeyDown;
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
+            edit.DoubleClick += Edit_DoubleClick;
+            edit.Click += Edit_Click;
 
             bar.Parent = this;
             bar.Style = UIStyle.Custom;
@@ -67,6 +70,110 @@ namespace Sunny.UI
             edit.SelectionChanged += Edit_SelectionChanged;
 
             edit.ScrollBars = RichTextBoxScrollBars.Vertical;
+
+            edit.Leave += Edit_Leave;
+            edit.Validated += Edit_Validated;
+            edit.Validating += Edit_Validating;
+            edit.GotFocus += Edit_GotFocus;
+            edit.LostFocus += Edit_LostFocus;
+            edit.MouseLeave += Edit_MouseLeave;
+            edit.MouseDown += Edit_MouseDown;
+            edit.MouseUp += Edit_MouseUp;
+            edit.MouseMove += Edit_MouseMove;
+        }
+
+        public new event EventHandler Leave;
+        public new event EventHandler Validated;
+        public new event CancelEventHandler Validating;
+        public new event EventHandler GotFocus;
+        public new event EventHandler LostFocus;
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
+        public new event EventHandler MouseLeave;
+
+        private void Edit_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMove?.Invoke(this, e);
+        }
+
+        private void Edit_MouseUp(object sender, MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
+        }
+
+        private void Edit_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        private void Edit_MouseLeave(object sender, EventArgs e)
+        {
+            MouseLeave?.Invoke(this, e);
+        }
+
+        private void Edit_LostFocus(object sender, EventArgs e)
+        {
+            LostFocus?.Invoke(this, e);
+        }
+
+        private void Edit_GotFocus(object sender, EventArgs e)
+        {
+            GotFocus?.Invoke(this, e);
+        }
+
+        private void Edit_Validating(object sender, CancelEventArgs e)
+        {
+            Validating?.Invoke(this, e);
+        }
+
+        private void Edit_Validated(object sender, EventArgs e)
+        {
+            Validated?.Invoke(this, e);
+        }
+
+        private void Edit_Leave(object sender, EventArgs e)
+        {
+            Leave?.Invoke(this, e);
+        }
+
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            Click?.Invoke(this, e);
+        }
+
+        public new event EventHandler DoubleClick;
+        public new event EventHandler Click;
+
+        [
+            DefaultValue(false),
+            RefreshProperties(RefreshProperties.Repaint),
+            Browsable(false), EditorBrowsable(EditorBrowsableState.Never),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)
+        ]
+        public override bool AutoSize
+        {
+            get => edit.AutoSize;
+            set => edit.AutoSize = value;
+        }
+
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public override Image BackgroundImage
+        {
+            get => edit.BackgroundImage;
+            set => edit.BackgroundImage = value;
+        }
+
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public override ImageLayout BackgroundImageLayout
+        {
+            get => edit.BackgroundImageLayout;
+            set => edit.BackgroundImageLayout = value;
+        }
+
+        private void Edit_DoubleClick(object sender, EventArgs e)
+        {
+            DoubleClick?.Invoke(this, e);
         }
 
         public Control ExToolTipControl()
