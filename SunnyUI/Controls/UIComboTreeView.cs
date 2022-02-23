@@ -175,7 +175,7 @@ namespace Sunny.UI
         private void UIComboTreeView_ButtonClick(object sender, EventArgs e)
         {
             ItemForm.Size = ItemSize;
-            item.TreeView.ExpandAll();
+            //item.TreeView.ExpandAll();
             item.CanSelectRootNode = CanSelectRootNode;
             item.Translate();
             item.SetDPIScale();
