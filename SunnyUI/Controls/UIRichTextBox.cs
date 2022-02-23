@@ -157,20 +157,6 @@ namespace Sunny.UI
             set => edit.AutoSize = value;
         }
 
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override Image BackgroundImage
-        {
-            get => edit.BackgroundImage;
-            set => edit.BackgroundImage = value;
-        }
-
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageLayout BackgroundImageLayout
-        {
-            get => edit.BackgroundImageLayout;
-            set => edit.BackgroundImageLayout = value;
-        }
-
         private void Edit_DoubleClick(object sender, EventArgs e)
         {
             DoubleClick?.Invoke(this, e);
