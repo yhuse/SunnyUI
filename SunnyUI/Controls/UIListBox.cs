@@ -25,6 +25,7 @@
  * 2021-07-30: V3.0.5 选中项显示方角
  * 2021-08-04: V3.0.5 增加Items变更的事件
  * 2021-12-29: V3.0.9 增加修改文字颜色
+ * 2022-02-23: V3.1.1 按键上下移动选择项目时，滚动条跟谁
 ******************************************************************************/
 
 using System;
@@ -710,6 +711,12 @@ namespace Sunny.UI
                 }
             }
             //SetScrollInfo();
+        }
+
+        protected override void OnSelectedIndexChanged(EventArgs e)
+        {
+            base.OnSelectedIndexChanged(e);
+            SetScrollInfo();
         }
 
         public void SetScrollInfo()
