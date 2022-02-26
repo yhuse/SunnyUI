@@ -55,7 +55,7 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (AutoSize)
+            if (AutoSize && Dock == DockStyle.None)
             {
                 SizeF sf = Text.MeasureString(Font);
                 int w = (int)sf.Width + ImageSize + 3;

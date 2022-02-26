@@ -23,6 +23,7 @@
  * 2020-09-14: V2.2.7 Tips颜色可设置
  * 2021-07-18: V3.0.5 增加ShowFocusColor，用来显示Focus状态
  * 2021-12-11: V3.0.9 增加了渐变色
+ * 2022-02-26: V3.1.1 增加了AutoSize属性
 ******************************************************************************/
 
 using System;
@@ -60,6 +61,20 @@ namespace Sunny.UI
             fillPressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillPressColor;
             fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+        }
+
+        private bool autoSize;
+
+        [Browsable(true), DefaultValue(false)]
+        [Description("自动大小"), Category("SunnyUI")]
+        public override bool AutoSize
+        {
+            get => autoSize;
+            set
+            {
+                autoSize = value;
+                Invalidate();
+            }
         }
 
         private bool isClick;
@@ -226,6 +241,13 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
+            if (autoSize && Dock == DockStyle.None)
+            {
+                SizeF sf = e.Graphics.MeasureString(Text, Font);
+                if (Width != (int)(sf.Width) + 6) Width = (int)(sf.Width) + 6;
+                if (Height != (int)(sf.Height) + 6) Height = (int)(sf.Height) + 6;
+            }
 
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
             {

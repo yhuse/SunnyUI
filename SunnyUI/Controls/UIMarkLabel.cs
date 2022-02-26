@@ -119,7 +119,7 @@ namespace Sunny.UI
             base.OnPaint(e);
 
             SizeF TextSize = e.Graphics.MeasureString(Text, Font);
-            if (autoSize)
+            if (autoSize && Dock == DockStyle.None)
             {
                 float width = (MarkPos == UIMarkPos.Left || MarkPos == UIMarkPos.Right) ?
                     TextSize.Width + MarkSize + 2 : TextSize.Width;

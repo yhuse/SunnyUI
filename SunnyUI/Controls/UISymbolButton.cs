@@ -42,6 +42,16 @@ namespace Sunny.UI
             ShowText = false;
         }
 
+        private bool autoSize;
+
+        [Browsable(false)]
+        [Description("自动大小"), Category("SunnyUI")]
+        public override bool AutoSize
+        {
+            get => autoSize;
+            set => autoSize = false;
+        }
+
         [DefaultValue(24)]
         [Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
