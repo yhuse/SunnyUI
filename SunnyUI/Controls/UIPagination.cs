@@ -644,7 +644,6 @@ namespace Sunny.UI
             // 
             // edtPage
             // 
-            this.edtPage.ButtonSymbol = 61761;
             this.edtPage.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtPage.DoubleValue = 10D;
             this.edtPage.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));

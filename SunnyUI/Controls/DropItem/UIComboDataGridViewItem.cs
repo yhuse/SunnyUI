@@ -210,7 +210,6 @@ namespace Sunny.UI
             // 
             this.edtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtFilter.ButtonSymbol = 61761;
             this.edtFilter.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtFilter.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.edtFilter.Location = new System.Drawing.Point(17, 10);

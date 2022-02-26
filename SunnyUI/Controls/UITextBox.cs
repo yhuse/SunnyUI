@@ -91,7 +91,8 @@ namespace Sunny.UI
             btn.Parent = this;
             btn.Visible = false;
             btn.Text = "";
-            btn.Symbol = 61761;
+            btn.Symbol = 361761;
+            btn.SymbolOffset = new Point(0, 1);
             btn.Top = 1;
             btn.Height = 25;
             btn.Width = 29;
@@ -1170,7 +1171,7 @@ namespace Sunny.UI
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
-        [DefaultValue(0)]
+        [DefaultValue(361761)]
         [Description("按钮字体图标"), Category("SunnyUI")]
         public int ButtonSymbol
         {
