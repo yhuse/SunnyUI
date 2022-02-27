@@ -600,10 +600,7 @@ namespace Sunny.UI
         {
             get
             {
-                if (SelectedRows.Count > 0)
-                    return SelectedRows[0].Index;
-                else
-                    return -1;
+                return CurrentRow != null ? CurrentRow.Index : -1;
             }
             set
             {
