@@ -604,6 +604,7 @@ namespace Sunny.UI
             }
             set
             {
+                //BindingContext[DataSource].Position = value;
                 if (Rows.Count == 0)
                 {
                     return;

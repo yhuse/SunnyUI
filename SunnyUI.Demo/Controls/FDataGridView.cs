@@ -82,5 +82,10 @@ namespace Sunny.UI.Demo
             uiDataGridViewFooter1["Column3"] = "Column3_" + pageIndex;
             uiDataGridViewFooter1["Column4"] = "Column4_" + pageIndex;
         }
+
+        private void uiDataGridView1_SelectIndexChange(object sender, int index)
+        {
+            index.WriteConsole("SelectedIndex");
+        }
     }
 }

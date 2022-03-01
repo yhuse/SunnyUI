@@ -94,6 +94,7 @@ namespace Sunny.UI.Demo
             this.uiDataGridView1.ShowRect = false;
             this.uiDataGridView1.Size = new System.Drawing.Size(800, 351);
             this.uiDataGridView1.TabIndex = 3;
+            this.uiDataGridView1.SelectIndexChange += new Sunny.UI.UIDataGridView.OnSelectIndexChange(this.uiDataGridView1_SelectIndexChange);
             // 
             // uiDataGridViewFooter1
             // 
@@ -114,6 +115,7 @@ namespace Sunny.UI.Demo
             this.uiPagination1.ActivePage = 20;
             this.uiPagination1.CausesValidation = false;
             this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiPagination1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiPagination1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPagination1.Location = new System.Drawing.Point(0, 415);
             this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
