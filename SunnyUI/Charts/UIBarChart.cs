@@ -20,6 +20,7 @@
  * 2020-08-21: V2.2.7 可设置柱状图最小宽度
  * 2021-07-22: V3.0.5 增加更新数据的方法
  * 2021-01-01: V3.0.9 增加柱子上显示数值
+ * 2022-03-08: V3.1.1 增加X轴文字倾斜
 ******************************************************************************/
 
 using System;
@@ -500,8 +501,12 @@ namespace Sunny.UI
                 foreach (var data in Option.XAxis.Data)
                 {
                     SizeF sf = g.MeasureString(data, TempFont);
-                    g.DrawString(data, TempFont, ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
-                    start += DrawBarWidth;
+                    int angle = (Option.XAxis.AxisLabel.Angle + 36000) % 360;
+                    if (angle > 0 && angle <= 90)
+                        g.DrawString(data, TempFont, ForeColor, new PointF(start, DrawOrigin.Y),
+                            new StringFormat() { Alignment = StringAlignment.Far }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
+                    else
+                        g.DrawString(data, TempFont, ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length); start += DrawBarWidth;
                 }
 
                 SizeF sfname = g.MeasureString(Option.XAxis.Name, TempFont);

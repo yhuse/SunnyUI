@@ -51,17 +51,19 @@ namespace Sunny.UI.Demo
 
             option.XAxis.Data.Add("D1");
             option.XAxis.Data.Add("D2");
-            option.XAxis.Data.Add("D3");
+            option.XAxis.Data.Add("D223");
             option.XAxis.Data.Add("D4");
             option.XAxis.Data.Add("D5");
             option.XAxis.Data.Add("D6");
-            option.XAxis.Data.Add("D7");
+            option.XAxis.Data.Add("D7333");
             option.XAxis.Data.Add("D8");
 
             option.ToolTip.Visible = true;
             option.YAxis.Scale = true;
 
             option.XAxis.Name = "日期";
+            option.XAxis.AxisLabel.Angle = 60;//(0° ~ 90°)
+
             option.YAxis.Name = "数值";
             option.YAxis.AxisLabel.DecimalCount = 1;
             option.YAxis.AxisLabel.AutoFormat = false;
