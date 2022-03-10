@@ -11,13 +11,14 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIDatePicker.cs
+ * 文件名称: UIColorPicker.cs
  * 文件说明: 颜色选择框
  * 当前版本: V3.1
  * 创建日期: 2020-05-29
  *
  * 2020-05-31: V2.2.5 增加文件
  * 2021-03-13: V3.0.2 增加单击事件以选中颜色
+ * 2022-03-10: V3.1.1 修复选中颜色不显示
  ******************************************************************************
  * 文件名称: UIColorPicker.cs
  * 文件说明: Color picker with color wheel and eye dropper
@@ -58,7 +59,6 @@ namespace Sunny.UI
         public UIColorPicker()
         {
             InitializeComponent();
-            ShowText = false;
             Value = UIColor.Blue;
         }
 
@@ -113,6 +113,7 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, System.Drawing.Drawing2D.GraphicsPath path)
         {
             base.OnPaintFore(g, path);
+            if (Text.IsValid()) Text = "";
             var pathColor = g.CreateRoundedRectanglePath(new Rectangle(3, 3, Width - 32, Height - 7), 3, UICornerRadiusSides.All);
             g.FillPath(Value, pathColor);
         }
@@ -120,6 +121,7 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
             if (DropDownStyle != UIDropDownStyle.DropDownList)
                 DropDownStyle = UIDropDownStyle.DropDownList;
         }
