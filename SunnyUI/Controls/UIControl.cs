@@ -177,7 +177,6 @@ namespace Sunny.UI
                 if (radius != value)
                 {
                     radius = Math.Max(0, value);
-                    radius = Math.Min(radius, Math.Min(Width, Height));
                     Invalidate();
                 }
             }
@@ -543,6 +542,7 @@ namespace Sunny.UI
         /// <param name="path">路径</param>
         protected virtual void OnPaintRect(Graphics g, GraphicsPath path)
         {
+            radius = Math.Min(radius, Math.Min(Width, Height));
             if (RadiusSides == UICornerRadiusSides.None || Radius == 0)
             {
                 //IsRadius为False时，显示左侧边线
