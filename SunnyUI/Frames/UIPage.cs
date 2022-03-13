@@ -92,6 +92,12 @@ namespace Sunny.UI
             }
         }
 
+        public void ReSetDPIScale()
+        {
+            IsScaled = false;
+            SetDPIScale();
+        }
+
         public void Render()
         {
             SetStyle(UIStyles.Style);

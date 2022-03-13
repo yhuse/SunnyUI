@@ -56,5 +56,7 @@ namespace Sunny.UI
         bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects);
 
         bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects);
+        void Init();
+        void Final();
     }
 }

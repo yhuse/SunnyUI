@@ -93,6 +93,12 @@ namespace Sunny.UI
             }
         }
 
+        public void ReSetDPIScale()
+        {
+            IsScaled = false;
+            SetDPIScale();
+        }
+
         [DefaultValue(true)]
         [Description("是否点击标题栏可以移动窗体"), Category("SunnyUI")]
         public bool Movable { get; set; } = true;
