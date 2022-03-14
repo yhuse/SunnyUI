@@ -65,10 +65,11 @@ namespace Sunny.UI.Demo
             Header.SetNodeSymbol(Header.Nodes[3], 362614);
             parent = Aside.CreateNode("工控", 362614, 24, pageIndex);
             //直接关联（默认自动生成GUID）
-            Aside.CreateChildNode(parent, AddPage(new FPipe()));
-            Aside.CreateChildNode(parent, AddPage(new FMeter()));
-            Aside.CreateChildNode(parent, AddPage(new FLed()));
-            Aside.CreateChildNode(parent, AddPage(new FLight()));
+
+            Aside.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FPipe")));
+            Aside.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FMeter")));
+            Aside.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FLed")));
+            Aside.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FLight")));
 
             Header.SetNodeSymbol(Header.Nodes[4], 61502);
             var styles = UIStyles.PopularStyles();
@@ -80,15 +81,26 @@ namespace Sunny.UI.Demo
             Header.CreateChildNode(Header.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
             //直接增加一个页面，不在左侧列表显示
             AddPage(new FColorful());
-
             AddPage(new FCommon());
 
             //选中第一个节点
             Aside.SelectPage(1002);
 
             Text = Version + " Build " + Properties.Resources.BuildDate;
-
             RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
+        }
+
+        /// <summary>
+        /// 创建对象实例
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fullName">命名空间.类型名</param>
+        /// <returns></returns>
+        public static T CreateInstance<T>(string fullName)
+        {
+            Type o = Type.GetType(fullName);
+            dynamic obj = Activator.CreateInstance(o, true);
+            return (T)obj;//类型转换并返回
         }
 
         private void Header_MenuItemClick(string text, int menuIndex, int pageIndex)
