@@ -54,6 +54,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox6
             // 
+            this.uiTextBox6.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox6.ButtonWidth = 100;
             this.uiTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
@@ -76,6 +77,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox5
             // 
+            this.uiTextBox5.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox5.ButtonWidth = 100;
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
@@ -98,6 +100,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox4
             // 
+            this.uiTextBox4.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox4.ButtonWidth = 100;
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
@@ -113,6 +116,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox4.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
+            this.uiTextBox4.ShowScrollBar = true;
             this.uiTextBox4.Size = new System.Drawing.Size(308, 226);
             this.uiTextBox4.TabIndex = 5;
             this.uiTextBox4.Text = "Blog: https://www.cnblogs.com/yhuse\r\nGitee: https://gitee.com/yhuse/SunnyUI\r\nGitH" +
@@ -148,6 +152,7 @@ namespace Sunny.UI.Demo
             // uiRichTextBox1
             // 
             this.uiRichTextBox1.AutoWordSelection = true;
+            this.uiRichTextBox1.BackColor = System.Drawing.Color.White;
             this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
             this.uiRichTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -228,6 +233,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox3
             // 
+            this.uiTextBox3.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox3.ButtonWidth = 100;
             this.uiTextBox3.CanEmpty = true;
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -262,6 +268,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox2
             // 
+            this.uiTextBox2.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox2.ButtonWidth = 100;
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -322,7 +329,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox1
             // 
-            this.uiTextBox1.ButtonSymbol = 361761;
+            this.uiTextBox1.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiTextBox1.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));

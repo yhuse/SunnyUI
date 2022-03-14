@@ -20,6 +20,7 @@
  * 2021-05-25: V3.0.4 支持可改背景色
  * 2021-07-29: V3.0.5 修改滚动条没有文字时自动隐藏
  * 2022-02-23: V3.1.1 增加了一些原生的属性和事件
+ * 2022-03-14: V3.1.1 增加滚动条的颜色设置
 ******************************************************************************/
 
 using System;
@@ -174,7 +175,7 @@ namespace Sunny.UI
 
         public RichTextBox RichTextBox => edit;
 
-        public override Color BackColor { get => edit.BackColor; set { edit.BackColor = base.BackColor = value; } }
+        //public override Color BackColor { get => edit.BackColor; set { edit.BackColor = base.BackColor = value; } }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
@@ -263,18 +264,60 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            edit.BackColor = fillColor = Color.White;
-            edit.ForeColor = foreColor = UIFontColor.Primary;
+            fillColor = uiColor.EditorBackColor;
+            foreColor = UIFontColor.Primary;
+            edit.BackColor = GetFillColor();
+            edit.ForeColor = GetForeColor();
 
             if (bar != null)
             {
                 bar.ForeColor = uiColor.PrimaryColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
-                bar.FillColor = Color.White;
+                bar.FillColor = fillColor;
+                scrollBarColor = uiColor.PrimaryColor;
+                scrollBarBackColor = fillColor;
             }
 
             Invalidate();
+        }
+
+        private Color scrollBarColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => scrollBarColor;
+            set
+            {
+                scrollBarColor = value;
+                bar.HoverColor = bar.PressColor = bar.ForeColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarBackColor = Color.White;
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color ScrollBarBackColor
+        {
+            get => scrollBarBackColor;
+            set
+            {
+                scrollBarBackColor = value;
+                bar.FillColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
         }
 
         protected override void AfterSetForeColor(Color color)
@@ -287,6 +330,7 @@ namespace Sunny.UI
         {
             base.AfterSetFillColor(color);
             edit.BackColor = color;
+            bar.FillColor = color;
         }
 
         private void EditOnKeyPress(object sender, KeyPressEventArgs e)

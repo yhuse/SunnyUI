@@ -776,6 +776,8 @@ namespace Sunny.UI
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
                 bar.FillColor = fillColor;
+                scrollBarColor = uiColor.PrimaryColor;
+                scrollBarBackColor = fillColor;
             }
 
             if (btn != null)
@@ -796,6 +798,43 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private Color scrollBarColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => scrollBarColor;
+            set
+            {
+                scrollBarColor = value;
+                bar.HoverColor = bar.PressColor = bar.ForeColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarBackColor = Color.White;
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color ScrollBarBackColor
+        {
+            get => scrollBarBackColor;
+            set
+            {
+                scrollBarBackColor = value;
+                bar.FillColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
         protected override void AfterSetForeColor(Color color)
         {
             base.AfterSetForeColor(color);
@@ -806,6 +845,7 @@ namespace Sunny.UI
         {
             base.AfterSetFillColor(color);
             edit.BackColor = GetFillColor();
+            bar.FillColor = color;
         }
 
         protected override void AfterSetFillReadOnlyColor(Color color)
