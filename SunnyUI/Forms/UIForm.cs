@@ -399,7 +399,7 @@ namespace Sunny.UI
             set
             {
                 titleHeight = Math.Max(value, 31);
-                Padding = new Padding(0, showTitle ? titleHeight : 0, 0, 0);
+                Padding = new Padding(Padding.Left, showTitle ? titleHeight : Padding.Top, Padding.Right, Padding.Bottom);
                 Invalidate();
                 CalcSystemBoxPos();
             }
