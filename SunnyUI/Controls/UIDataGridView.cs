@@ -107,6 +107,14 @@ namespace Sunny.UI
             if (!IsScaled)
             {
                 this.SetDPIScaleFont();
+                if (ColumnHeadersDefaultCellStyle.Font != null)
+                    ColumnHeadersDefaultCellStyle.Font = ColumnHeadersDefaultCellStyle.Font.DPIScaleFont();
+                if (RowHeadersDefaultCellStyle.Font != null)
+                    RowHeadersDefaultCellStyle.Font = RowHeadersDefaultCellStyle.Font.DPIScaleFont();
+                if (DefaultCellStyle.Font != null)
+                    DefaultCellStyle.Font = DefaultCellStyle.Font.DPIScaleFont();
+                if (RowsDefaultCellStyle.Font != null)
+                    RowsDefaultCellStyle.Font = RowsDefaultCellStyle.Font.DPIScaleFont();
                 IsScaled = true;
             }
         }
@@ -180,7 +188,6 @@ namespace Sunny.UI
             }
         }
 
-
         [Description("行高"), Category("SunnyUI")]
         [DefaultValue(23)]
         public int RowHeight
@@ -188,10 +195,12 @@ namespace Sunny.UI
             get => RowTemplate.Height;
             set
             {
-                int rowHeight = Math.Max(23, value);
-                RowTemplate.Height = rowHeight;
-                RowTemplate.MinimumHeight = rowHeight;
-                AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                if (value > 23)
+                {
+                    RowTemplate.Height = Math.Max(23, value);
+                    RowTemplate.MinimumHeight = Math.Max(23, value);
+                    AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                }
             }
         }
 
@@ -494,7 +503,6 @@ namespace Sunny.UI
             set
             {
                 AlternatingRowsDefaultCellStyle.BackColor = value;
-                HBar.FillColor = VBar.FillColor = value;
                 Invalidate();
             }
         }
@@ -519,9 +527,16 @@ namespace Sunny.UI
             RowHeadersDefaultCellStyle.SelectionBackColor = uiColor.RectColor;
             RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
-            //数据行选中颜色
+            //数据单元格选中颜色
             DefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;
             DefaultCellStyle.SelectionForeColor = uiColor.GridSelectedForeColor;
+            DefaultCellStyle.BackColor = uiColor.GridStripeEvenColor;
+            DefaultCellStyle.ForeColor = UIFontColor.Primary;
+
+            //数据行选中颜色            
+            RowsDefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;
+            RowsDefaultCellStyle.SelectionForeColor = uiColor.GridSelectedForeColor;
+            RowsDefaultCellStyle.ForeColor = UIFontColor.Primary;
 
             GridColor = RectColor = uiColor.RectColor;
             RowsDefaultCellStyle.BackColor = UIColor.White;

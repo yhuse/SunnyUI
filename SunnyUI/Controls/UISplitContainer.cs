@@ -242,6 +242,13 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Invalidate();
+            Invalidate(SplitterRectangle);
+        }
+
         public void Expand()
         {
             if (_collapsePanel != UICollapsePanel.None &&

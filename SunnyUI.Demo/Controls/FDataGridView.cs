@@ -31,6 +31,8 @@ namespace Sunny.UI.Demo
 
             //设置分页控件每页数量
             uiPagination1.PageSize = 50;
+
+            uiDataGridView1.SelectIndexChange += uiDataGridView1_SelectIndexChange;
         }
 
         public override void Init()
