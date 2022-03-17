@@ -57,8 +57,9 @@
             this.Controls.Add(this.uiSymbolLabel1);
             this.Name = "FTitlePage1";
             this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.PageIndex = 1001;
             this.ShowTitle = true;
-            this.Text = "FPage1";
+            this.Text = "FPage2";
             this.ResumeLayout(false);
 
         }

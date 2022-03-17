@@ -35,6 +35,9 @@
             this.btnAHM = new Sunny.UI.UIImageButton();
             this.btnHMF = new Sunny.UI.UIImageButton();
             this.btnHM = new Sunny.UI.UIImageButton();
+            this.uiLine1 = new Sunny.UI.UILine();
+            this.uiLine2 = new Sunny.UI.UILine();
+            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnAM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAHMF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHAMF)).BeginInit();
@@ -50,7 +53,7 @@
             this.btnAM.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnAM.Image = global::Sunny.UI.Demo.Properties.Resources.AM;
             this.btnAM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AM1;
-            this.btnAM.Location = new System.Drawing.Point(30, 385);
+            this.btnAM.Location = new System.Drawing.Point(30, 234);
             this.btnAM.Name = "btnAM";
             this.btnAM.Size = new System.Drawing.Size(160, 120);
             this.btnAM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -65,7 +68,7 @@
             this.btnAHMF.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnAHMF.Image = global::Sunny.UI.Demo.Properties.Resources.AHMF;
             this.btnAHMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AHMF1;
-            this.btnAHMF.Location = new System.Drawing.Point(430, 385);
+            this.btnAHMF.Location = new System.Drawing.Point(398, 234);
             this.btnAHMF.Name = "btnAHMF";
             this.btnAHMF.Size = new System.Drawing.Size(160, 120);
             this.btnAHMF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -80,7 +83,7 @@
             this.btnHAMF.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnHAMF.Image = global::Sunny.UI.Demo.Properties.Resources.HAMF;
             this.btnHAMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HAMF1;
-            this.btnHAMF.Location = new System.Drawing.Point(230, 225);
+            this.btnHAMF.Location = new System.Drawing.Point(582, 90);
             this.btnHAMF.Name = "btnHAMF";
             this.btnHAMF.Size = new System.Drawing.Size(160, 120);
             this.btnHAMF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -95,7 +98,7 @@
             this.btnHAM.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnHAM.Image = global::Sunny.UI.Demo.Properties.Resources.HAM;
             this.btnHAM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HAM1;
-            this.btnHAM.Location = new System.Drawing.Point(30, 225);
+            this.btnHAM.Location = new System.Drawing.Point(398, 90);
             this.btnHAM.Name = "btnHAM";
             this.btnHAM.Size = new System.Drawing.Size(160, 120);
             this.btnHAM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -110,7 +113,7 @@
             this.btnAHM.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnAHM.Image = global::Sunny.UI.Demo.Properties.Resources.AHM;
             this.btnAHM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AHM1;
-            this.btnAHM.Location = new System.Drawing.Point(230, 385);
+            this.btnAHM.Location = new System.Drawing.Point(214, 234);
             this.btnAHM.Name = "btnAHM";
             this.btnAHM.Size = new System.Drawing.Size(160, 120);
             this.btnAHM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -125,7 +128,7 @@
             this.btnHMF.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnHMF.Image = global::Sunny.UI.Demo.Properties.Resources.HMF;
             this.btnHMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HMF1;
-            this.btnHMF.Location = new System.Drawing.Point(230, 65);
+            this.btnHMF.Location = new System.Drawing.Point(214, 90);
             this.btnHMF.Name = "btnHMF";
             this.btnHMF.Size = new System.Drawing.Size(160, 120);
             this.btnHMF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -140,7 +143,7 @@
             this.btnHM.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnHM.Image = global::Sunny.UI.Demo.Properties.Resources.HM;
             this.btnHM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HM1;
-            this.btnHM.Location = new System.Drawing.Point(30, 65);
+            this.btnHM.Location = new System.Drawing.Point(30, 90);
             this.btnHM.Name = "btnHM";
             this.btnHM.Size = new System.Drawing.Size(160, 120);
             this.btnHM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -150,11 +153,52 @@
             this.btnHM.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnHM.Click += new System.EventHandler(this.btnHM_Click);
             // 
+            // uiLine1
+            // 
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
+            this.uiLine1.Location = new System.Drawing.Point(30, 55);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(712, 20);
+            this.uiLine1.TabIndex = 78;
+            this.uiLine1.Text = "内置模板";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLine2
+            // 
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
+            this.uiLine2.Location = new System.Drawing.Point(30, 379);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(712, 20);
+            this.uiLine2.TabIndex = 79;
+            this.uiLine2.Text = "自定义模板";
+            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSymbolButton1
+            // 
+            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 417);
+            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.Size = new System.Drawing.Size(160, 120);
+            this.uiSymbolButton1.Symbol = 110;
+            this.uiSymbolButton1.SymbolSize = 120;
+            this.uiSymbolButton1.TabIndex = 80;
+            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            // 
             // FFrames
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(892, 627);
+            this.Controls.Add(this.uiSymbolButton1);
+            this.Controls.Add(this.uiLine2);
+            this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.btnAM);
             this.Controls.Add(this.btnAHMF);
             this.Controls.Add(this.btnHAMF);
@@ -188,5 +232,8 @@
         private UIImageButton btnAHM;
         private UIImageButton btnHMF;
         private UIImageButton btnHM;
+        private UILine uiLine1;
+        private UILine uiLine2;
+        private UISymbolButton uiSymbolButton1;
     }
 }

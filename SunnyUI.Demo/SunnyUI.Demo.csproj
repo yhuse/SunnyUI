@@ -131,6 +131,12 @@
     <Compile Include="Controls\FSplitContainer.designer.cs">
       <DependentUpon>FSplitContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Frames\FCustomMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frames\FCustomMain.Designer.cs">
+      <DependentUpon>FCustomMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Industrial\FLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -409,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FSplitContainer.resx">
       <DependentUpon>FSplitContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frames\FCustomMain.resx">
+      <DependentUpon>FCustomMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Industrial\FLight.resx">
       <DependentUpon>FLight.cs</DependentUpon>

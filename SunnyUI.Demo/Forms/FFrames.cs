@@ -50,5 +50,12 @@ namespace Sunny.UI.Demo
         {
             ShowFrame(new FAsideHeaderMainFooter());
         }
+
+        private void uiSymbolButton1_Click(object sender, System.EventArgs e)
+        {
+            FCustomMain main = new FCustomMain();
+            main.ShowDialog();
+            main.Dispose();
+        }
     }
 }
