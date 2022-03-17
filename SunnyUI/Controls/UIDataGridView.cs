@@ -74,12 +74,17 @@ namespace Sunny.UI
             ColumnHeadersDefaultCellStyle.BackColor = UIColor.Blue;
             ColumnHeadersDefaultCellStyle.ForeColor = UIColor.White;
             ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            ColumnHeadersDefaultCellStyle.Font = UIFontColor.Font();
 
             //行头部颜色
             RowHeadersDefaultCellStyle.BackColor = UIColor.LightBlue;
             RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
             RowHeadersDefaultCellStyle.SelectionBackColor = UIColor.Blue;
             RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            RowHeadersDefaultCellStyle.Font = UIFontColor.Font();
+
+            RowsDefaultCellStyle.Font = UIFontColor.Font();
+            DefaultCellStyle.Font = UIFontColor.Font();
 
             //标题行行高，与OnColumnAdded事件配合
             ColumnHeadersHeight = 32;
@@ -106,7 +111,6 @@ namespace Sunny.UI
         {
             if (!IsScaled)
             {
-                this.SetDPIScaleFont();
                 if (ColumnHeadersDefaultCellStyle.Font != null)
                     ColumnHeadersDefaultCellStyle.Font = ColumnHeadersDefaultCellStyle.Font.DPIScaleFont();
                 if (RowHeadersDefaultCellStyle.Font != null)

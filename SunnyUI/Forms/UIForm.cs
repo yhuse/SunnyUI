@@ -86,7 +86,14 @@ namespace Sunny.UI
 
                 foreach (Control control in this.GetAllDPIScaleControls())
                 {
-                    control.SetDPIScaleFont();
+                    if (control is UIDataGridView dgv)
+                    {
+                        dgv.SetDPIScale();
+                    }
+                    else
+                    {
+                        control.SetDPIScaleFont();
+                    }
                 }
 
                 IsScaled = true;
