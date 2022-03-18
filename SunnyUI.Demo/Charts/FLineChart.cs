@@ -48,7 +48,6 @@ namespace Sunny.UI.Demo
             series.Symbol = UILinePointSymbol.Star;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
-            series.Smooth = true;
             series.ShowLine = !cbPoints.Checked;
 
             option.GreaterWarningArea = new UILineWarningArea(3.5);
@@ -107,7 +106,6 @@ namespace Sunny.UI.Demo
             option.Title.Text = "SunnyUI";
             option.Title.SubText = "LineChart";
             var series = option.AddSeries(new UILineSeries("Line1"));
-            series.Smooth = true;
 
             option.XAxis.AxisLabel.DecimalCount = 1;
             option.XAxis.AxisLabel.AutoFormat = false;
@@ -210,7 +208,6 @@ namespace Sunny.UI.Demo
             series.Symbol = UILinePointSymbol.Star;
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
-            series.Smooth = true;
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";

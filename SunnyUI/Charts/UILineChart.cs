@@ -203,8 +203,6 @@ namespace Sunny.UI
                 series.Add(i, 6 * Math.Cos(i * 5 * Math.PI / 180));
             }
 
-            series.Smooth = true;
-
             option.XAxis.Name = "数值";
             option.YAxis.Name = "数值";
 

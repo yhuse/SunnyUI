@@ -45,7 +45,6 @@ namespace Sunny.UI.Demo.Charts
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
-            series.Smooth = true;
 
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
