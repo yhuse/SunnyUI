@@ -18,6 +18,7 @@
  *
  * 2020-04-23: V2.2.4 增加UISymbolLabel
  * 2021-12-24: V3.0.9 修复Dock和AutoSize同时设置的Bug
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -43,8 +44,8 @@ namespace Sunny.UI
         {
             SetStyleFlags(true, false);
             ShowRect = false;
-            foreColor = UIFontColor.Primary;
-            symbolColor = UIFontColor.Primary;
+            symbolColor = UIStyles.Blue.LabelForeColor;
+            foreColor = UIStyles.Blue.LabelForeColor;
             Width = 170;
             Height = 35;
         }
@@ -207,7 +208,8 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            symbolColor = foreColor = uiColor.LabelForeColor;
+            symbolColor = uiColor.LabelForeColor;
+            foreColor = uiColor.LabelForeColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)

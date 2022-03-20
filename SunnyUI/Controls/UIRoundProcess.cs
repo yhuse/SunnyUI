@@ -17,7 +17,8 @@
  * 创建日期: 2021-04-08
  *
  * 2021-04-08: V3.0.2 增加文件说明
- * 2021-10-18: V3.0.8 增加显示小数位数 
+ * 2021-10-18: V3.0.8 增加显示小数位数
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -42,9 +43,10 @@ namespace Sunny.UI
             Inner = 30;
             Outer = 50;
 
-            fillColor = UIColor.Blue;
-            rectColor = Color.FromArgb(155, 200, 255);
-            foreColor = UIColor.Blue;
+            fillColor = UIStyles.Blue.ProcessBarForeColor;
+            foreColor = UIStyles.Blue.ProcessBarForeColor;
+            rectColor = UIStyles.Blue.ProcessBackColor;
+
             ShowText = false;
             ShowRect = false;
         }
@@ -123,7 +125,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("进度条背景色")]
         [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "155, 200, 255")]
+        [DefaultValue(typeof(Color), "185, 217, 255")]
         public Color ProcessBackColor
         {
             get => rectColor;
@@ -186,12 +188,13 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.RectColor;
-            foreColor = uiColor.RectColor;
-            rectColor = uiColor.GridSelectedColor;
-            Invalidate();
+
+            fillColor = uiColor.ProcessBarForeColor;
+            foreColor = uiColor.ProcessBarForeColor;
+            rectColor = uiColor.ProcessBackColor;
         }
 
+        [DefaultValue(false)]
         public bool ShowProcess
         {
             get => ShowText;

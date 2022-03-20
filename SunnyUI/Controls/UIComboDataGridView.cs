@@ -77,7 +77,7 @@ namespace Sunny.UI
             base.OnFontChanged(e);
             if (item != null) item.DataGridView.Font = Font;
         }
-
+        [DefaultValue(false)]
         public bool ShowFilter { get; set; }
 
         private readonly UIComboDataGridViewItem item = new UIComboDataGridViewItem();
@@ -103,6 +103,7 @@ namespace Sunny.UI
                 SelectIndexChange(this, value.ToString().ToInt());
         }
 
+        [DefaultValue(null)]
         public string FilterColomnName { get; set; }
     }
 }

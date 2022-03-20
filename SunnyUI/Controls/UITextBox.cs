@@ -146,6 +146,7 @@ namespace Sunny.UI
         /// <summary>
         /// 字体只读颜色
         /// </summary>
+        [DefaultValue(typeof(Color), "109, 109, 103")]
         public Color ForeReadOnlyColor
         {
             get => foreReadOnlyColor;
@@ -155,6 +156,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框只读颜色
         /// </summary>
+        [DefaultValue(typeof(Color), "173, 178, 181")]
         public Color RectReadOnlyColor
         {
             get => rectReadOnlyColor;
@@ -164,6 +166,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充只读颜色
         /// </summary>
+        [DefaultValue(typeof(Color), "244, 244, 244")]
         public Color FillReadOnlyColor
         {
             get => fillReadOnlyColor;
@@ -637,7 +640,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最大值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最大值。"), Category("SunnyUI")]
-        [DefaultValue(int.MaxValue)]
+        [DefaultValue(2147483647D)]
         public double Maximum
         {
             get => edit.MaxValue;
@@ -648,7 +651,7 @@ namespace Sunny.UI
         /// 当InputType为数字类型时，能输入的最小值
         /// </summary>
         [Description("当InputType为数字类型时，能输入的最小值。"), Category("SunnyUI")]
-        [DefaultValue(int.MinValue)]
+        [DefaultValue(-2147483648D)]
         public double Minimum
         {
             get => edit.MinValue;
@@ -764,8 +767,6 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
 
-            if (uiColor.IsCustom()) return;
-
             fillColor = uiColor.EditorBackColor;
             foreColor = UIFontColor.Primary;
             edit.BackColor = GetFillColor();
@@ -788,15 +789,13 @@ namespace Sunny.UI
                 btn.RectColor = uiColor.RectColor;
 
                 btn.FillHoverColor = uiColor.ButtonFillHoverColor;
-                btn.RectHoverColor = uiColor.RectHoverColor;
+                btn.RectHoverColor = uiColor.ButtonRectHoverColor;
                 btn.ForeHoverColor = uiColor.ButtonForeHoverColor;
 
                 btn.FillPressColor = uiColor.ButtonFillPressColor;
-                btn.RectPressColor = uiColor.RectPressColor;
+                btn.RectPressColor = uiColor.ButtonRectPressColor;
                 btn.ForePressColor = uiColor.ButtonForePressColor;
             }
-
-            Invalidate();
         }
 
         private Color scrollBarColor = Color.FromArgb(80, 160, 255);
@@ -1228,7 +1227,7 @@ namespace Sunny.UI
             set => btn.SymbolSize = value;
         }
 
-        [DefaultValue(typeof(Point), "0, 0")]
+        [DefaultValue(typeof(Point), "0, 1")]
         [Description("按钮字体图标的偏移位置"), Category("SunnyUI")]
         public Point ButtonSymbolOffset
         {
@@ -1281,7 +1280,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
         [Description("按钮鼠标移上时填充颜色")]
         public Color ButtonFillHoverColor
         {
@@ -1305,7 +1304,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
         [Description("鼠标移上时边框颜色")]
         public Color ButtonRectHoverColor
         {
@@ -1317,7 +1316,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("按钮鼠标按下时填充颜色")]
         public Color ButtonFillPressColor
         {
@@ -1341,7 +1340,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("按钮鼠标按下时边框颜色")]
         public Color ButtonRectPressColor
         {

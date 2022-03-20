@@ -129,60 +129,6 @@ namespace Sunny.UI
         Purple = 9,
 
         /// <summary>
-        /// Office蓝
-        /// </summary>
-        [DisplayText("Office2010Blue")]
-        Office2010Blue = 101,
-
-        /// <summary>
-        /// Office银
-        /// </summary>
-        [DisplayText("Office2010Silver")]
-        Office2010Silver = 102,
-
-        /// <summary>
-        /// Office黑
-        /// </summary>
-        [DisplayText("Office2010Black")]
-        Office2010Black = 103,
-
-        /// <summary>
-        /// 浅蓝
-        /// </summary>
-        [DisplayText("LightBlue")]
-        LightBlue = 201,
-
-        /// <summary>
-        /// 浅绿
-        /// </summary>
-        [DisplayText("LightGreen")]
-        LightGreen = 202,
-
-        /// <summary>
-        /// 浅橙
-        /// </summary>
-        [DisplayText("LightOrange")]
-        LightOrange = 203,
-
-        /// <summary>
-        /// 浅红
-        /// </summary>
-        [DisplayText("LightRed")]
-        LightRed = 204,
-
-        /// <summary>
-        /// 浅灰
-        /// </summary>
-        [DisplayText("LightGray")]
-        LightGray = 205,
-
-        /// <summary>
-        /// 浅紫
-        /// </summary>
-        [DisplayText("LightPurple")]
-        LightPurple = 209,
-
-        /// <summary>
         /// 多彩的
         /// </summary>
         [DisplayText("Colorful")]
@@ -201,9 +147,9 @@ namespace Sunny.UI
             List<UIStyle> styles = new List<UIStyle>();
             foreach (UIStyle style in Enum.GetValues(typeof(UIStyle)))
             {
-                if (style.Value() >= UIStyle.Blue.Value() && style.Value() <= UIStyle.Office2010Black.Value())
+                if (style.Value() >= UIStyle.Blue.Value() && style.Value() < UIStyle.Colorful.Value())
                 {
-                    if (style == UIStyle.DarkBlue) continue;
+                    //if (style == UIStyle.DarkBlue) continue;
                     styles.Add(style);
                 }
             }
@@ -224,22 +170,12 @@ namespace Sunny.UI
         /// <summary>
         /// 蓝
         /// </summary>
-        private static readonly UIBaseStyle Blue = new UIBlueStyle();
-
-        /// <summary>
-        /// 浅蓝
-        /// </summary>
-        private static readonly UIBaseStyle LightBlue = new UILightBlueStyle();
+        public static readonly UIBaseStyle Blue = new UIBlueStyle();
 
         /// <summary>
         /// 橙
         /// </summary>
-        private static readonly UIBaseStyle Orange = new UIOrangeStyle();
-
-        /// <summary>
-        /// 浅橙
-        /// </summary>
-        private static readonly UIBaseStyle LightOrange = new UILightOrangeStyle();
+        public static readonly UIBaseStyle Orange = new UIOrangeStyle();
 
         /// <summary>
         /// 灰
@@ -247,29 +183,14 @@ namespace Sunny.UI
         private static readonly UIBaseStyle Gray = new UIGrayStyle();
 
         /// <summary>
-        /// 浅灰
-        /// </summary>
-        private static readonly UIBaseStyle LightGray = new UILightGrayStyle();
-
-        /// <summary>
         /// 绿
         /// </summary>
-        private static readonly UIBaseStyle Green = new UIGreenStyle();
-
-        /// <summary>
-        /// 浅绿
-        /// </summary>
-        private static readonly UIBaseStyle LightGreen = new UILightGreenStyle();
+        public static readonly UIBaseStyle Green = new UIGreenStyle();
 
         /// <summary>
         /// 红
         /// </summary>
-        private static readonly UIBaseStyle Red = new UIRedStyle();
-
-        /// <summary>
-        /// 浅红
-        /// </summary>
-        private static readonly UIBaseStyle LightRed = new UILightRedStyle();
+        public static readonly UIBaseStyle Red = new UIRedStyle();
 
         /// <summary>
         /// 深蓝
@@ -282,34 +203,14 @@ namespace Sunny.UI
         private static readonly UIBaseStyle Black = new UIBlackStyle();
 
         /// <summary>
-        /// Office蓝
-        /// </summary>
-        private static readonly UIBaseStyle Office2010Blue = new UIOffice2010BlueStyle();
-
-        /// <summary>
-        /// Office银
-        /// </summary>
-        private static readonly UIBaseStyle Office2010Silver = new UIOffice2010SilverStyle();
-
-        /// <summary>
         /// 紫
         /// </summary>
         private static readonly UIBaseStyle Purple = new UIPurpleStyle();
 
         /// <summary>
-        /// 浅紫
-        /// </summary>
-        private static readonly UIBaseStyle LightPurple = new UILightPurpleStyle();
-
-        /// <summary>
         /// 多彩
         /// </summary>
         private static readonly UIColorfulStyle Colorful = new UIColorfulStyle();
-
-        /// <summary>
-        /// Office黑
-        /// </summary>
-        private static readonly UIBaseStyle Office2010Black = new UIOffice2010BlackStyle();
 
         public static void InitColorful(Color styleColor, Color foreColor)
         {
@@ -331,23 +232,14 @@ namespace Sunny.UI
         {
             AddStyle(Custom);
             AddStyle(Blue);
-            AddStyle(LightBlue);
             AddStyle(Orange);
-            AddStyle(LightOrange);
             AddStyle(Gray);
-            AddStyle(LightGray);
             AddStyle(Green);
-            AddStyle(LightGreen);
             AddStyle(Red);
-            AddStyle(LightRed);
             AddStyle(DarkBlue);
             AddStyle(Black);
             AddStyle(White);
             AddStyle(Purple);
-            AddStyle(LightPurple);
-            AddStyle(Office2010Blue);
-            AddStyle(Office2010Silver);
-            AddStyle(Office2010Black);
             AddStyle(Colorful);
 
             MenuColors.TryAdd(UIMenuStyle.Custom, new UIMenuCustomColor());
@@ -568,7 +460,7 @@ namespace Sunny.UI
         /// <summary>
         /// 深蓝
         /// </summary>
-        public static readonly Color DarkBlue = Color.FromArgb(26, 82, 137);
+        public static readonly Color DarkBlue = Color.FromArgb(14, 30, 63);
 
         /// <summary>
         /// 白

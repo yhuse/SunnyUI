@@ -103,18 +103,17 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
 
-
             if (btnOK != null)
             {
                 btnOK.FillColor = BackColor;
-                btnOK.RectColor = Color.FromArgb(36, uiColor.RectColor);
+                btnOK.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
                 btnOK.ForeColor = uiColor.LabelForeColor;
             }
 
             if (btnCancel != null)
             {
                 btnCancel.FillColor = BackColor;
-                btnCancel.RectColor = Color.FromArgb(36, uiColor.RectColor);
+                btnCancel.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
                 btnCancel.ForeColor = uiColor.LabelForeColor;
             }
 

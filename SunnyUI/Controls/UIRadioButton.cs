@@ -20,6 +20,7 @@
  * 2020-04-16: V2.2.1 增加ReadOnly属性
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2021-04-26: V3.0.3 增加默认事件CheckedChanged
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -48,8 +49,9 @@ namespace Sunny.UI
             Cursor = Cursors.Hand;
             ShowRect = false;
             Size = new Size(150, 29);
-            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxForeColor;
-            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).CheckBoxColor;
+
+            foreColor = UIStyles.Blue.CheckBoxForeColor;
+            fillColor = UIStyles.Blue.CheckBoxColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -224,7 +226,6 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             fillColor = uiColor.CheckBoxColor;
             foreColor = uiColor.CheckBoxForeColor;
-            Invalidate();
         }
 
         [DefaultValue(0)]

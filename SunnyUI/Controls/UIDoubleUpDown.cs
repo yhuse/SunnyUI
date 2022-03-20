@@ -111,7 +111,7 @@ namespace Sunny.UI
 
         private double _value;
 
-        [DefaultValue(0)]
+        [DefaultValue(0D)]
         [Description("选中数值"), Category("SunnyUI")]
         public double Value
         {
@@ -353,6 +353,7 @@ namespace Sunny.UI
         }
 
         private int buttonWidth = 29;
+        [DefaultValue(29)]
         public int ButtonWidth
         {
             get => buttonWidth;

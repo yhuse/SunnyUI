@@ -17,6 +17,7 @@
  * 创建日期: 2021-03-07
  *
  * 2021-03-07: V3.0.2 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -33,6 +34,7 @@ namespace Sunny.UI
         public UIMarkLabel()
         {
             Padding = new Padding(MarkSize + 2, 0, 0, 0);
+            markColor = UIStyles.Blue.MarkLabelForeColor;
         }
 
         private bool autoSize;
@@ -93,7 +95,7 @@ namespace Sunny.UI
         }
 
 
-        private Color markColor = UIColor.Blue;
+        private Color markColor;
 
         [Description("标签颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
@@ -110,7 +112,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            markColor = uiColor.RectColor;
+            markColor = uiColor.MarkLabelForeColor;
             Invalidate();
         }
 

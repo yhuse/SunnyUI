@@ -35,51 +35,31 @@ namespace Sunny.UI.Demo
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
+            this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
             this.uiPagination1 = new Sunny.UI.UIPagination();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // uiDataGridViewFooter1
             // 
-            this.uiDataGridViewFooter1.DataGridView = null;
+            this.uiDataGridViewFooter1.DataGridView = this.uiDataGridView1;
             this.uiDataGridViewFooter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiDataGridViewFooter1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiDataGridViewFooter1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiDataGridViewFooter1.Location = new System.Drawing.Point(0, 386);
             this.uiDataGridViewFooter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiDataGridViewFooter1.Name = "uiDataGridViewFooter1";
             this.uiDataGridViewFooter1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiDataGridViewFooter1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiDataGridViewFooter1.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiDataGridViewFooter1.Size = new System.Drawing.Size(800, 29);
             this.uiDataGridViewFooter1.TabIndex = 5;
             this.uiDataGridViewFooter1.Text = "uiDataGridViewFooter1";
             // 
-            // uiPagination1
-            // 
-            this.uiPagination1.ActivePage = 20;
-            this.uiPagination1.CausesValidation = false;
-            this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiPagination1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiPagination1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiPagination1.Location = new System.Drawing.Point(0, 415);
-            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPagination1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiPagination1.Name = "uiPagination1";
-            this.uiPagination1.PagerCount = 11;
-            this.uiPagination1.PageSize = 50;
-            this.uiPagination1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.uiPagination1.Size = new System.Drawing.Size(800, 35);
-            this.uiPagination1.TabIndex = 4;
-            this.uiPagination1.Text = "uiDataGridPage1";
-            this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiPagination1.TotalCount = 40000;
-            this.uiPagination1.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.uiPagination1_PageChanged);
-            // 
             // uiDataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.uiDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.uiDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -96,7 +76,7 @@ namespace Sunny.UI.Demo
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
@@ -107,7 +87,7 @@ namespace Sunny.UI.Demo
             this.uiDataGridView1.Location = new System.Drawing.Point(0, 35);
             this.uiDataGridView1.Name = "uiDataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -117,14 +97,38 @@ namespace Sunny.UI.Demo
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.uiDataGridView1.RowTemplate.Height = 23;
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.ShowGridLine = true;
             this.uiDataGridView1.Size = new System.Drawing.Size(800, 351);
+            this.uiDataGridView1.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.TabIndex = 6;
+            // 
+            // uiPagination1
+            // 
+            this.uiPagination1.ActivePage = 20;
+            this.uiPagination1.CausesValidation = false;
+            this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiPagination1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.uiPagination1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.uiPagination1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPagination1.Location = new System.Drawing.Point(0, 415);
+            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPagination1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPagination1.Name = "uiPagination1";
+            this.uiPagination1.PagerCount = 11;
+            this.uiPagination1.PageSize = 50;
+            this.uiPagination1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiPagination1.Size = new System.Drawing.Size(800, 35);
+            this.uiPagination1.TabIndex = 4;
+            this.uiPagination1.Text = "uiDataGridPage1";
+            this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiPagination1.TotalCount = 40000;
+            this.uiPagination1.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.uiPagination1_PageChanged);
             // 
             // FDataGridView
             // 

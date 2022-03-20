@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -46,7 +47,7 @@ namespace Sunny.UI
             ShowText = false;
             ShowRect = false;
 
-            foreColor = UIColor.Blue;
+            foreColor = UIStyles.Blue.ProgressIndicatorColor;
         }
 
         protected override void Dispose(bool disposing)
@@ -71,7 +72,6 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             foreColor = uiColor.ProgressIndicatorColor;
             ClearImage();
-            Invalidate();
         }
 
         private int Index;

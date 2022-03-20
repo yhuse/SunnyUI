@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -41,7 +42,8 @@ namespace Sunny.UI
 
             MinimumSize = MaximumSize = new Size(300, 80);
 
-            ForeColor = UIFontColor.Primary;
+            foreColor = UIFontColor.Primary;
+            fillColor = UIColor.Blue;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -120,9 +122,8 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            foreColor = UIFontColor.Primary;
-            fillColor = uiColor.MenuSelectedColor;
-            Invalidate();
+            foreColor = uiColor.LogoForeColor;
+            fillColor = uiColor.LogoFillColor;
         }
 
         /// <summary>

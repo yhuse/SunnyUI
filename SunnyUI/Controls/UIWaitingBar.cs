@@ -17,6 +17,7 @@
  * 创建日期: 2020-07-20
  *
  * 2020-07-20: V2.2.6 新增等待滚动条控件
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -38,12 +39,13 @@ namespace Sunny.UI
             Size = new Size(300, 29);
             ShowText = false;
 
-            fillColor = UIColor.LightBlue;
-            foreColor = UIColor.Blue;
             timer = new Timer();
             timer.Interval = 200;
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            fillColor = UIStyles.Blue.ProcessBarFillColor;
+            foreColor = UIStyles.Blue.ProcessBarForeColor;
         }
 
         protected override void Dispose(bool disposing)
@@ -142,7 +144,6 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             fillColor = uiColor.ProcessBarFillColor;
             foreColor = uiColor.ProcessBarForeColor;
-            Invalidate();
         }
     }
 }

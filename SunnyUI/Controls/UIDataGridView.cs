@@ -499,7 +499,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         [Description("奇数行显示颜色"), Category("SunnyUI")]
         public Color StripeOddColor
         {
@@ -513,17 +513,21 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
             //列头部颜色
-            ColumnHeadersDefaultCellStyle.BackColor = uiColor.TitleColor;
-            ColumnHeadersDefaultCellStyle.ForeColor = uiColor.TitleForeColor;
-            ColumnHeadersDefaultCellStyle.SelectionBackColor = uiColor.TitleColor;
+            ColumnHeadersDefaultCellStyle.BackColor = uiColor.GridTitleColor;
+            ColumnHeadersDefaultCellStyle.ForeColor = uiColor.GridTitleForeColor;
+            ColumnHeadersDefaultCellStyle.SelectionBackColor = uiColor.GridTitleColor;
 
             //行头部颜色
             RowHeadersDefaultCellStyle.BackColor = uiColor.PlainColor;
@@ -542,7 +546,8 @@ namespace Sunny.UI
             RowsDefaultCellStyle.SelectionForeColor = uiColor.GridSelectedForeColor;
             RowsDefaultCellStyle.ForeColor = UIFontColor.Primary;
 
-            GridColor = RectColor = uiColor.RectColor;
+            GridColor = uiColor.GridLineColor;
+            RectColor = uiColor.RectColor;
             RowsDefaultCellStyle.BackColor = UIColor.White;
             AlternatingRowsDefaultCellStyle.BackColor = UIColor.LightBlue;
 
@@ -551,8 +556,6 @@ namespace Sunny.UI
 
             HBar.FillColor = VBar.FillColor = uiColor.GridStripeOddColor;
             HBar.ForeColor = VBar.ForeColor = uiColor.PrimaryColor;
-
-            Invalidate();
         }
 
         /// <summary>

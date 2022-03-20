@@ -109,7 +109,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("字体颜色")]
         [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "54, 54, 54")]
         public override Color ForeColor
         {
             get => foreColor;
@@ -132,7 +132,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("填充颜色")]
         [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "244, 244, 244")]
         public Color FillColor
         {
             get => fillColor;

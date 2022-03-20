@@ -21,6 +21,7 @@
  * 2021-03-20: V3.0.2 增加可设置背景图片
  * 2021-06-08: V3.0.4 标题选中高亮颜色增加可调整高度
  * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头，增加选中项圆角
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -48,7 +49,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            //SetStyle(ControlStyles.ResizeRedraw, true);
+
             DoubleBuffered = true;
             UpdateStyles();
             Font = UIFontColor.Font();
@@ -58,6 +59,9 @@ namespace Sunny.UI
             Width = 500;
             Height = 110;
             Version = UIGlobal.Version;
+
+            selectedForeColor = UIStyles.Blue.NavBarMenuSelectedColor;
+            selectedHighColor = UIStyles.Blue.NavBarMenuSelectedColor;
         }
 
         [Browsable(false)]
@@ -178,18 +182,13 @@ namespace Sunny.UI
             get => foreColor;
             set
             {
-                foreColor = value;
-                _menuStyle = UIMenuStyle.Custom;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (foreColor != value)
+                {
+                    foreColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
-        }
-
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            _menuStyle = UIMenuStyle.Custom;
-            _style = UIStyle.Custom;
         }
 
         private Color backColor = Color.FromArgb(56, 56, 56);
@@ -201,10 +200,12 @@ namespace Sunny.UI
             get => backColor;
             set
             {
-                backColor = value;
-                _menuStyle = UIMenuStyle.Custom;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (backColor != value)
+                {
+                    backColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -226,8 +227,12 @@ namespace Sunny.UI
             get => menuSelectedColor;
             set
             {
-                menuSelectedColor = value;
-                _menuStyle = UIMenuStyle.Custom;
+                if (menuSelectedColor != value)
+                {
+                    menuSelectedColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -243,8 +248,12 @@ namespace Sunny.UI
             get => menuHoverColor;
             set
             {
-                menuHoverColor = value;
-                _menuStyle = UIMenuStyle.Custom;
+                if (menuHoverColor != value)
+                {
+                    menuHoverColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -261,10 +270,18 @@ namespace Sunny.UI
             get => selectedHighColor;
             set
             {
-                selectedHighColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (selectedHighColor != value)
+                {
+                    selectedHighColor = value;
+                    SetStyleCustom();
+                }
             }
+        }
+
+        private void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         private int selectedHighColorSize = 4;
@@ -402,8 +419,7 @@ namespace Sunny.UI
                 if (selectedForeColor != value)
                 {
                     selectedForeColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -692,15 +708,19 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            selectedForeColor = selectedHighColor = uiColor.MenuSelectedColor;
-            Invalidate();
+            selectedForeColor = uiColor.NavBarMenuSelectedColor;
+            selectedHighColor = uiColor.NavBarMenuSelectedColor;
         }
 
         /// <summary>

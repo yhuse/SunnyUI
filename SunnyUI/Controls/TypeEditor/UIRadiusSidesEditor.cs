@@ -89,6 +89,7 @@ namespace Sunny.UI
         /// <summary>
         /// 属性窗体
         /// </summary>
+        [ToolboxItem(false)]
         public class UICornerRadiusSidesUI : UIDropEditorUI
         {
             private TableLayoutPanel tableLayoutPanel1;

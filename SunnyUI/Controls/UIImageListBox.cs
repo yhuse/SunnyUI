@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-05-21: V2.2.5 增加鼠标滑过高亮
  * 2021-08-07: V3.0.5 从文件载入图片，并且解除占用
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -212,7 +213,7 @@ namespace Sunny.UI
                 bar.FillColor = Color.White;
             }
 
-            hoverColor = uiColor.TreeViewHoverColor;
+            hoverColor = uiColor.ListItemHoverColor;
             if (listbox != null)
             {
                 listbox.HoverColor = hoverColor;
@@ -300,7 +301,7 @@ namespace Sunny.UI
             set => listbox.ItemSelectBackColor = value;
         }
 
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         [Description("选中项字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
@@ -334,7 +335,7 @@ namespace Sunny.UI
 
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
-        [DefaultValue(typeof(Color), "155, 200, 255")]
+        [DefaultValue(typeof(Color), "220, 236, 255")]
         [Description("鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
@@ -537,8 +538,12 @@ namespace Sunny.UI
 
             public void SetStyle(UIStyle style)
             {
-                UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-                if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+                if (!style.IsCustom())
+                {
+                    SetStyleColor(style.Colors());
+                    Invalidate();
+                }
+
                 _style = style;
             }
 
@@ -546,7 +551,6 @@ namespace Sunny.UI
             {
                 ItemSelectBackColor = uiColor.ListItemSelectBackColor;
                 ItemSelectForeColor = uiColor.ListItemSelectForeColor;
-                Invalidate();
             }
 
             [Category("SunnyUI"), Description("The border color used to paint the control.")]

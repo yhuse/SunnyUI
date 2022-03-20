@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-01-05: V3.0.9 增加线的样式，支持透明背景
  * 2022-01-10: V3.1.0 修复了文本为空不显示的问题
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -36,8 +37,8 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             Size = new Size(360, 29);
             MinimumSize = new Size(1, 1);
-            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).LineForeColor;
-            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
+            foreColor = UIStyles.Blue.LineForeColor;
+            fillColor = UIStyles.Blue.LineFillColor;
         }
 
         public enum LineDirection
@@ -84,10 +85,10 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.PlainColor;
-            rectColor = uiColor.RectColor;
+
+            rectColor = uiColor.LineRectColor;
             foreColor = uiColor.LineForeColor;
-            Invalidate();
+            fillColor = uiColor.LineFillColor;
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace Sunny.UI
 
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
-
+            //
         }
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
@@ -168,8 +169,6 @@ namespace Sunny.UI
             {
                 pen.DashStyle = (DashStyle)((int)LineDashStyle);
             }
-
-
 
             if (Direction == LineDirection.Horizontal)
             {
@@ -284,7 +283,7 @@ namespace Sunny.UI
 
         UILineDashStyle lineDashStyle = UILineDashStyle.None;
         [Description("线的样式"), Category("SunnyUI")]
-        [DefaultValue("None")]
+        [DefaultValue(UILineDashStyle.None)]
         public UILineDashStyle LineDashStyle
         {
             get => lineDashStyle;
@@ -302,7 +301,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;

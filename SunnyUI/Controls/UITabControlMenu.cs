@@ -44,6 +44,10 @@ namespace Sunny.UI
             AfterSetFillColor(FillColor);
             Size = new Size(450, 270);
             Version = UIGlobal.Version;
+
+            tabSelectedForeColor = UIStyles.Blue.TabControlTabSelectedColor;
+            tabSelectedHighColor = UIStyles.Blue.TabControlTabSelectedColor;
+            _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
         [Browsable(false)]
@@ -95,16 +99,18 @@ namespace Sunny.UI
         /// 当使用边框时填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("当使用边框时填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => _fillColor;
             set
             {
-                _fillColor = value;
-                AfterSetFillColor(value);
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (_fillColor != value)
+                {
+                    _fillColor = value;
+                    AfterSetFillColor(value);
+                    SetStyleCustom();
+                }
             }
         }
 
@@ -118,9 +124,12 @@ namespace Sunny.UI
             get => tabBackColor;
             set
             {
-                tabBackColor = value;
-                _menuStyle = UIMenuStyle.Custom;
-                Invalidate();
+                if (tabBackColor != value)
+                {
+                    tabBackColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -136,9 +145,12 @@ namespace Sunny.UI
             get => tabSelectedColor;
             set
             {
-                tabSelectedColor = value;
-                _menuStyle = UIMenuStyle.Custom;
-                Invalidate();
+                if (tabSelectedColor != value)
+                {
+                    tabSelectedColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -154,9 +166,11 @@ namespace Sunny.UI
             get => tabSelectedForeColor;
             set
             {
-                tabSelectedForeColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (tabSelectedForeColor != value)
+                {
+                    tabSelectedForeColor = value;
+                    SetStyleCustom();
+                }
             }
         }
 
@@ -172,9 +186,12 @@ namespace Sunny.UI
             get => tabUnSelectedForeColor;
             set
             {
-                tabUnSelectedForeColor = value;
-                _menuStyle = UIMenuStyle.Custom;
-                Invalidate();
+                if (tabUnSelectedForeColor != value)
+                {
+                    tabUnSelectedForeColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -191,9 +208,11 @@ namespace Sunny.UI
             get => tabSelectedHighColor;
             set
             {
-                tabSelectedHighColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (tabSelectedHighColor != value)
+                {
+                    tabSelectedHighColor = value;
+                    SetStyleCustom();
+                }
             }
         }
 
@@ -228,16 +247,26 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            tabSelectedForeColor = tabSelectedHighColor = uiColor.MenuSelectedColor;
-            _fillColor = uiColor.PlainColor;
-            Invalidate();
+            tabSelectedForeColor = uiColor.TabControlTabSelectedColor;
+            tabSelectedHighColor = uiColor.TabControlTabSelectedColor;
+            _fillColor = uiColor.TabControlBackColor;
+        }
+
+        private void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;

@@ -21,6 +21,7 @@
  * 2021-12-13: V3.0.9 边框线宽可设置1或者2
  * 2022-01-10: V3.1.0 调整边框和圆角的绘制
  * 2022-02-16: V3.1.1 基类增加只读颜色设置
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -47,6 +48,8 @@ namespace Sunny.UI
             Size = new Size(100, 35);
             base.MinimumSize = new Size(1, 1);
         }
+
+        protected bool selected;
 
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
@@ -252,8 +255,12 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -265,24 +272,28 @@ namespace Sunny.UI
         {
             fillColor = uiColor.ButtonFillColor;
             fillColor2 = uiColor.ButtonFillColor2;
-            rectColor = uiColor.RectColor;
             foreColor = uiColor.ButtonForeColor;
+            rectColor = uiColor.ButtonRectColor;
 
             fillDisableColor = uiColor.FillDisableColor;
-            rectDisableColor = uiColor.RectDisableColor;
             foreDisableColor = uiColor.ForeDisableColor;
+            rectDisableColor = uiColor.RectDisableColor;
 
             fillReadOnlyColor = uiColor.FillDisableColor;
             rectReadOnlyColor = uiColor.RectDisableColor;
             foreReadOnlyColor = uiColor.ForeDisableColor;
 
-            fillPressColor = fillHoverColor = fillColor;
-            rectPressColor = rectHoverColor = rectColor;
-            forePressColor = foreHoverColor = foreColor;
+            fillHoverColor = fillColor;
+            foreHoverColor = foreColor;
+            rectHoverColor = rectColor;
 
-            fillSelectedColor = uiColor.ButtonFillSelectedColor;
+            fillPressColor = fillColor;
+            forePressColor = foreColor;
+            rectPressColor = rectColor;
 
-            Invalidate();
+            fillSelectedColor = fillColor;
+            foreSelectedColor = foreColor;
+            rectSelectedColor = rectColor;
         }
 
         protected UIStyle _style = UIStyle.Blue;
@@ -588,133 +599,138 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 选中颜色
-        /// </summary>
-        protected Color fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
-
-        /// <summary>
-        /// 边框颜色
-        /// </summary>
-        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
-
-        protected bool fillColorGradient = false;
-
-        /// <summary>
         /// 填充颜色
         /// </summary>
-        protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
-
-        /// <summary>
-        /// 填充颜色
-        /// </summary>
-        protected Color fillColor2 = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
-
-        /// <summary>
-        /// 字体颜色
-        /// </summary>
-        protected Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeColor;
-
-        /// <summary>
-        /// 字体鼠标移上颜色
-        /// </summary>
-        protected Color foreHoverColor;
-
-        /// <summary>
-        /// 字体鼠标按下颜色
-        /// </summary>
-        protected Color forePressColor;
-
-        /// <summary>
-        /// 字体不可用颜色
-        /// </summary>
-        protected Color foreDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).ForeDisableColor;
-
-        /// <summary>
-        /// 字体只读颜色
-        /// </summary>
-        protected Color foreReadOnlyColor = UIStyle.Blue.Colors().ForeDisableColor;
-
-        /// <summary>
-        /// 边框鼠标移上颜色
-        /// </summary>
-        protected Color rectHoverColor;
-
-        /// <summary>
-        /// 边框鼠标按下颜色
-        /// </summary>
-        protected Color rectPressColor;
-
-        /// <summary>
-        /// 边框不可用颜色
-        /// </summary>
-        protected Color rectDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
-
-        /// <summary>
-        /// 边框只读颜色
-        /// </summary>
-        protected Color rectReadOnlyColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
+        protected Color fillColor = UIStyles.Blue.ButtonFillColor;
 
         /// <summary>
         /// 填充鼠标移上颜色
         /// </summary>
-        protected Color fillHoverColor;
+        protected Color fillHoverColor = UIStyles.Blue.ButtonFillColor;
 
         /// <summary>
         /// 填充鼠标按下颜色
         /// </summary>
-        protected Color fillPressColor;
+        protected Color fillPressColor = UIStyles.Blue.ButtonFillColor;
+
+        /// <summary>
+        /// 选中颜色
+        /// </summary>
+        protected Color fillSelectedColor = UIStyles.Blue.ButtonFillColor;
 
         /// <summary>
         /// 填充不可用颜色
         /// </summary>
-        protected Color fillDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).FillDisableColor;
+        protected Color fillDisableColor = UIStyles.Blue.FillDisableColor;
 
         /// <summary>
         /// 填充只读颜色
         /// </summary>
-        protected Color fillReadOnlyColor = UIStyles.GetStyleColor(UIStyle.Blue).FillDisableColor;
+        protected Color fillReadOnlyColor = UIStyles.Blue.FillDisableColor;
+
+        /// <summary>
+        /// 填充颜色
+        /// </summary>
+        protected Color fillColor2 = UIStyles.Blue.ButtonFillColor2;
+
+        protected bool fillColorGradient = false;
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        protected Color rectColor = UIStyles.Blue.ButtonRectColor;
+
+        /// <summary>
+        /// 边框鼠标移上颜色
+        /// </summary>
+        protected Color rectHoverColor = UIStyles.Blue.ButtonRectColor;
+
+        /// <summary>
+        /// 边框鼠标按下颜色
+        /// </summary>
+        protected Color rectPressColor = UIStyles.Blue.ButtonRectColor;
+
+        /// <summary>
+        /// 边框选中颜色
+        /// </summary>
+        protected Color rectSelectedColor = UIStyles.Blue.ButtonRectColor;
+
+        /// <summary>
+        /// 边框不可用颜色
+        /// </summary>
+        protected Color rectDisableColor = UIStyles.Blue.RectDisableColor;
+
+        /// <summary>
+        /// 边框只读颜色
+        /// </summary>
+        protected Color rectReadOnlyColor = UIStyles.Blue.RectDisableColor;
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        protected Color foreColor = UIStyles.Blue.ButtonForeColor;
+
+        /// <summary>
+        /// 字体鼠标移上颜色
+        /// </summary>
+        protected Color foreHoverColor = UIStyles.Blue.ButtonForeColor;
+
+        /// <summary>
+        /// 字体鼠标按下颜色
+        /// </summary>
+        protected Color forePressColor = UIStyles.Blue.ButtonForeColor;
+
+        /// <summary>
+        /// 字体选中颜色
+        /// </summary>
+        protected Color foreSelectedColor = UIStyles.Blue.ButtonForeColor;
+
+        /// <summary>
+        /// 字体不可用颜色
+        /// </summary>
+        protected Color foreDisableColor = UIStyles.Blue.ForeDisableColor;
+
+        /// <summary>
+        /// 字体只读颜色
+        /// </summary>
+        protected Color foreReadOnlyColor = UIStyles.Blue.ForeDisableColor;
 
         /// <summary>
         /// 设置选中颜色
         /// </summary>
-        /// <param name="value">颜色</param>
-        protected void SetFillSelectedColor(Color value)
+        /// <param name="color">颜色</param>
+        protected void SetFillSelectedColor(Color color)
         {
-            if (fillSelectedColor != value)
+            if (fillSelectedColor != color)
             {
-                fillSelectedColor = value;
-                Invalidate();
+                fillSelectedColor = color;
+                SetStyleCustom();
             }
         }
 
-        protected bool selected;
-        protected Color foreSelectedColor;
-
         /// <summary>
         /// 设置选中颜色
         /// </summary>
-        /// <param name="value">颜色</param>
-        protected void SetForeSelectedColor(Color value)
+        /// <param name="color">颜色</param>
+        protected void SetForeSelectedColor(Color color)
         {
-            if (foreSelectedColor != value)
+            if (foreSelectedColor != color)
             {
-                foreSelectedColor = value;
-                Invalidate();
+                foreSelectedColor = color;
+                SetStyleCustom();
             }
         }
 
-        protected Color rectSelectedColor;
-
         /// <summary>
         /// 设置选中颜色
         /// </summary>
-        /// <param name="value">颜色</param>
-        protected void SetRectSelectedColor(Color value)
+        /// <param name="color">颜色</param>
+        protected void SetRectSelectedColor(Color color)
         {
-            if (rectSelectedColor != value)
+            if (rectSelectedColor != color)
             {
-                rectSelectedColor = value;
-                Invalidate();
+                rectSelectedColor = color;
+                SetStyleCustom();
             }
         }
 
@@ -722,10 +738,13 @@ namespace Sunny.UI
         /// 设置填充鼠标移上颜色
         /// </summary>
         /// <param name="color">颜色</param>
-        protected void SetFillHoveColor(Color color)
+        protected void SetFillHoverColor(Color color)
         {
-            fillHoverColor = color;
-            _style = UIStyle.Custom;
+            if (fillHoverColor != color)
+            {
+                fillHoverColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -734,8 +753,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetFillPressColor(Color color)
         {
-            fillPressColor = color;
-            _style = UIStyle.Custom;
+            if (fillPressColor != color)
+            {
+                fillPressColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -744,8 +766,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetFillDisableColor(Color color)
         {
-            fillDisableColor = color;
-            _style = UIStyle.Custom;
+            if (fillDisableColor != color)
+            {
+                fillDisableColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
@@ -754,18 +779,24 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetFillReadOnlyColor(Color color)
         {
-            fillReadOnlyColor = color;
-            _style = UIStyle.Custom;
+            if (fillReadOnlyColor != color)
+            {
+                fillReadOnlyColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
         /// 设备边框鼠标移上颜色
         /// </summary>
         /// <param name="color">颜色</param>
-        protected void SetRectHoveColor(Color color)
+        protected void SetRectHoverColor(Color color)
         {
-            rectHoverColor = color;
-            _style = UIStyle.Custom;
+            if (rectHoverColor != color)
+            {
+                rectHoverColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -774,8 +805,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetRectPressColor(Color color)
         {
-            rectPressColor = color;
-            _style = UIStyle.Custom;
+            if (rectPressColor != color)
+            {
+                rectPressColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -784,8 +818,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetRectDisableColor(Color color)
         {
-            rectDisableColor = color;
-            _style = UIStyle.Custom;
+            if (rectDisableColor != color)
+            {
+                rectDisableColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
@@ -794,18 +831,24 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetRectReadOnlyColor(Color color)
         {
-            rectReadOnlyColor = color;
-            _style = UIStyle.Custom;
+            if (rectReadOnlyColor != color)
+            {
+                rectReadOnlyColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
         /// 设置字体鼠标移上颜色
         /// </summary>
         /// <param name="color">颜色</param>
-        protected void SetForeHoveColor(Color color)
+        protected void SetForeHoverColor(Color color)
         {
-            foreHoverColor = color;
-            _style = UIStyle.Custom;
+            if (foreHoverColor != color)
+            {
+                foreHoverColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -814,8 +857,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetForePressColor(Color color)
         {
-            forePressColor = color;
-            _style = UIStyle.Custom;
+            if (forePressColor != color)
+            {
+                forePressColor = color;
+                SetStyleCustom(false);
+            }
         }
 
         /// <summary>
@@ -824,8 +870,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetForeDisableColor(Color color)
         {
-            foreDisableColor = color;
-            _style = UIStyle.Custom;
+            if (foreDisableColor != color)
+            {
+                foreDisableColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
@@ -834,8 +883,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         protected void SetForeReadonlyColor(Color color)
         {
-            foreReadOnlyColor = color;
-            _style = UIStyle.Custom;
+            if (foreReadOnlyColor != color)
+            {
+                foreReadOnlyColor = color;
+                SetStyleCustom();
+            }
         }
 
         /// <summary>
@@ -847,8 +899,7 @@ namespace Sunny.UI
             if (rectColor != value)
             {
                 rectColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -861,8 +912,7 @@ namespace Sunny.UI
             if (fillColor != value)
             {
                 fillColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -875,8 +925,7 @@ namespace Sunny.UI
             if (fillColor2 != value)
             {
                 fillColor2 = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -889,9 +938,14 @@ namespace Sunny.UI
             if (foreColor != value)
             {
                 foreColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         /// <summary>引发 <see cref="E:System.Windows.Forms.Control.GotFocus" /> 事件。</summary>

@@ -22,6 +22,7 @@
  * 2021-07-19: V3.0.5 调整了显示CheckBoxes时图片位置
  * 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
  * 2022-01-05: V3.0.9 TreeNodeStateSync: 节点点击时同步父节点和子节点的状态
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -179,8 +180,6 @@ namespace Sunny.UI
                 Bar.HoverColor = uiColor.ButtonFillHoverColor;
                 Bar.PressColor = uiColor.ButtonFillPressColor;
             }
-
-            Invalidate();
         }
 
         protected override void AfterSetFillColor(Color color)
@@ -233,6 +232,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
+        [DefaultValue(null)]
         public TreeNode SelectedNode
         {
             get => view.SelectedNode;
@@ -715,31 +715,36 @@ namespace Sunny.UI
                 if (node == null || CurrentNode == node) return;
 
                 var g = CreateGraphics();
-                if (CurrentNode != null)
-                    OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode,
-                        new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height),
-                        TreeNodeStates.Default));
+                if (CurrentNode != null && CurrentNode != SelectedNode)
+                {
+                    ClearCurrentNode(g);
+                }
 
-                CurrentNode = node;
-                OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode,
-                    new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
+                if (node != SelectedNode)
+                {
+                    CurrentNode = node;
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
+                }
+
                 g.Dispose();
             }
 
             protected override void OnMouseLeave(EventArgs e)
             {
                 var g = CreateGraphics();
-                if (CurrentNode != null)
-                {
-                    OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode,
-                        new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height),
-                        TreeNodeStates.Default));
-                    CurrentNode = null;
-                }
-
+                ClearCurrentNode(g);
                 g.Dispose();
             }
 
+            private void ClearCurrentNode(Graphics g)
+            {
+                if (CurrentNode != null && CurrentNode != SelectedNode)
+                {
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
+                    CurrentNode = null;
+                }
+            }
 
             protected override void OnDrawNode(DrawTreeNodeEventArgs e)
             {
@@ -794,7 +799,7 @@ namespace Sunny.UI
 
                             if (e.Node == SelectedNode)
                             {
-                                e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
+                                e.Graphics.FillRectangle(SelectedColor,
                                     new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
 
                                 e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft,

@@ -24,6 +24,7 @@
  * 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
  * 2021-12-13: V3.0.9 选中项可设置背景色渐变
  * 2022-01-02: V3.0.9 滚动条可设置颜色
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -80,6 +81,9 @@ namespace Sunny.UI
             Controls.Add(Bar);
             Version = UIGlobal.Version;
             SetScrollInfo();
+
+            selectedForeColor = UIStyles.Blue.NavMenuMenuSelectedColor;
+            selectedHighColor = UIStyles.Blue.NavMenuMenuSelectedColor;
         }
 
         [Description("滚动条填充颜色"), Category("SunnyUI")]
@@ -183,13 +187,6 @@ namespace Sunny.UI
             MenuHelper.Clear();
         }
 
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            menuStyle = UIMenuStyle.Custom;
-            _style = UIStyle.Custom;
-        }
-
         private Color backColor = Color.FromArgb(56, 56, 56);
 
         [DefaultValue(typeof(Color), "56, 56, 56")]
@@ -199,10 +196,12 @@ namespace Sunny.UI
             get => backColor;
             set
             {
-                backColor = value;
-                menuStyle = UIMenuStyle.Custom;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (backColor != value)
+                {
+                    backColor = value;
+                    menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
             }
         }
 
@@ -247,35 +246,6 @@ namespace Sunny.UI
                 }
             }
         }
-
-        // /// <summary>
-        // /// SizeChange导致treeNode闪屏
-        // /// </summary>
-        // const int TVM_SETEXTENDEDSTYLE = 0x112C;
-        // const int TVS_EX_DOUBLEBUFFER = 0x0004;
-        //
-        // private void UpdateExtendedStyles()
-        // {
-        //     int style = 0;
-        //
-        //     if (DoubleBuffered)
-        //         style |= TVS_EX_DOUBLEBUFFER;
-        //
-        //     if (Style != 0)
-        //         Win32.User.SendMessage(Handle, TVM_SETEXTENDEDSTYLE, new IntPtr(TVS_EX_DOUBLEBUFFER), new IntPtr(style));
-        // }
-        //
-        // protected override void OnHandleCreated(EventArgs e)
-        // {
-        //     base.OnHandleCreated(e);
-        //     UpdateExtendedStyles();
-        // }
-
-        //protected override void OnSizeChanged(EventArgs e)
-        //{
-        //    base.OnSizeChanged(e);
-        //    SetScrollInfo();
-        //}
 
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
@@ -406,8 +376,7 @@ namespace Sunny.UI
             set
             {
                 selectedHighColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -420,8 +389,11 @@ namespace Sunny.UI
             get => hoverColor;
             set
             {
-                hoverColor = value;
-                menuStyle = UIMenuStyle.Custom;
+                if (hoverColor != value)
+                {
+                    hoverColor = value;
+                    menuStyle = UIMenuStyle.Custom;
+                }
             }
         }
 
@@ -439,15 +411,19 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            selectedForeColor = selectedHighColor = uiColor.MenuSelectedColor;
-            Invalidate();
+            selectedForeColor = uiColor.NavMenuMenuSelectedColor;
+            selectedHighColor = uiColor.NavMenuMenuSelectedColor;
         }
 
         private UIMenuStyle menuStyle = UIMenuStyle.Black;
@@ -489,6 +465,12 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
+        }
+
         private Color selectedForeColor = UIColor.Blue;
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
@@ -501,8 +483,7 @@ namespace Sunny.UI
                 if (selectedForeColor != value)
                 {
                     selectedForeColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -521,25 +502,33 @@ namespace Sunny.UI
             }
 
             Graphics g = CreateGraphics();
-            if (CurrentNode != null)
+            if (CurrentNode != null && CurrentNode != SelectedNode)
             {
-                OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
+                ClearCurrentNode(g);
             }
 
-            CurrentNode = node;
-            OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
+            if (node != SelectedNode)
+            {
+                CurrentNode = node;
+                OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
+            }
+
             g.Dispose();
+        }
+
+        private void ClearCurrentNode(Graphics g)
+        {
+            if (CurrentNode != null && CurrentNode != SelectedNode)
+            {
+                OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
+                CurrentNode = null;
+            }
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             Graphics g = CreateGraphics();
-            if (CurrentNode != null)
-            {
-                OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
-                CurrentNode = null;
-            }
-
+            ClearCurrentNode(g);
             g.Dispose();
         }
 
@@ -598,8 +587,11 @@ namespace Sunny.UI
             get => showSecondBackColor;
             set
             {
-                showSecondBackColor = value;
-                Invalidate();
+                if (ShowSecondBackColor != value)
+                {
+                    showSecondBackColor = value;
+                    Invalidate();
+                }
             }
         }
 
@@ -615,7 +607,6 @@ namespace Sunny.UI
                 if (secondBackColor != value)
                 {
                     secondBackColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
             }
@@ -660,23 +651,14 @@ namespace Sunny.UI
                 {
                     if (SelectedColorGradient)
                     {
-                        if ((e.State & TreeNodeStates.Hot) != 0)
-                        {
-                            e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-
-                        }
-                        else
-                        {
-                            LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
-                            br.GammaCorrection = true;
-                            e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                            br.Dispose();
-                        }
+                        LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
+                        br.GammaCorrection = true;
+                        e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                        br.Dispose();
                     }
                     else
                     {
-                        e.Graphics.FillRectangle((e.State & TreeNodeStates.Hot) != 0 ? HoverColor : SelectedColor,
-                           new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                        e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
                     }
 
                     e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);

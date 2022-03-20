@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-04-11: V3.0.2 增加垂直显示方式
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -43,9 +44,11 @@ namespace Sunny.UI
 
             ShowText = false;
             ShowRect = false;
-            fillColor = UIColor.LightBlue;
-            foreColor = UIColor.Blue;
-            rectColor = UIColor.Blue;
+
+            rectDisableColor = UIStyles.Blue.TrackDisableColor;
+            rectColor = UIStyles.Blue.TrackBarRectColor;
+            fillColor = UIStyles.Blue.TrackBarFillColor;
+            foreColor = UIStyles.Blue.TrackBarForeColor;
         }
 
         public enum BarDirection
@@ -134,11 +137,11 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
             rectDisableColor = uiColor.TrackDisableColor;
             rectColor = uiColor.TrackBarRectColor;
             fillColor = uiColor.TrackBarFillColor;
             foreColor = uiColor.TrackBarForeColor;
-            Invalidate();
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
@@ -266,7 +269,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;
@@ -295,7 +298,7 @@ namespace Sunny.UI
             set => SetRectColor(value);
         }
 
-        [DefaultValue(typeof(Color), "173, 178, 181")]
+        [DefaultValue(typeof(Color), "Silver")]
         [Description("不可用时颜色"), Category("SunnyUI")]
         public Color DisableColor
         {

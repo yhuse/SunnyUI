@@ -38,7 +38,6 @@ namespace Sunny.UI
             SetStyleFlags(true, false, true);
             Height = 29;
             RadiusSides = UICornerRadiusSides.None;
-            RectSides = ToolStripStatusLabelBorderSides.None;
 
             Font = UIFontColor.Font();
             foreColor = UIFontColor.Primary;
@@ -98,7 +97,7 @@ namespace Sunny.UI
             {
                 if (dgv.ShowGridLine)
                 {
-                    g.DrawLine(dgv.GridColor, 0, 0, 0, Height);
+                    //g.DrawLine(dgv.GridColor, 0, 0, 0, Height);
                 }
 
                 foreach (DataGridViewColumn column in dgv.Columns)
@@ -111,8 +110,8 @@ namespace Sunny.UI
                     {
                         g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Left - minleft, Height);
                         g.DrawLine(dgv.GridColor, rect.Right - minleft, 0, rect.Right - minleft, Height);
-                        g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Right - minleft, 0);
-                        g.DrawLine(dgv.GridColor, rect.Left - minleft, Height - 1, rect.Right - minleft, Height - 1);
+                        //g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Right - minleft, 0);
+                        //g.DrawLine(dgv.GridColor, rect.Left - minleft, Height - 1, rect.Right - minleft, Height - 1);
                     }
 
                     string str = this[column.Name];
@@ -184,7 +183,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;

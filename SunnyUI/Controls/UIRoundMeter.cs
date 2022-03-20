@@ -189,7 +189,7 @@ namespace Sunny.UI
         /// <summary>
         /// 角度
         /// </summary>
-        [DefaultValue(0)]
+        [DefaultValue(0D)]
         [Description("角度"), Category("SunnyUI")]
         public double Angle
         {

@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -62,14 +63,17 @@ namespace Sunny.UI
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            ForeColor = uiColor.LabelForeColor;
-            Invalidate();
+            foreColor = uiColor.ImageButtonForeColor;
         }
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 

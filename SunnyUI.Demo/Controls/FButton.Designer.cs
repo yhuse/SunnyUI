@@ -75,12 +75,6 @@ namespace Sunny.UI.Demo
             this.uiButton16 = new Sunny.UI.UIButton();
             this.uiButton17 = new Sunny.UI.UIButton();
             this.uiButton18 = new Sunny.UI.UIButton();
-            this.uiButton7 = new Sunny.UI.UIButton();
-            this.uiButton8 = new Sunny.UI.UIButton();
-            this.uiButton9 = new Sunny.UI.UIButton();
-            this.uiButton10 = new Sunny.UI.UIButton();
-            this.uiButton11 = new Sunny.UI.UIButton();
-            this.uiButton12 = new Sunny.UI.UIButton();
             this.uiButton4 = new Sunny.UI.UIButton();
             this.uiButton5 = new Sunny.UI.UIButton();
             this.uiButton6 = new Sunny.UI.UIButton();
@@ -99,7 +93,7 @@ namespace Sunny.UI.Demo
             // uiSwitch3
             // 
             this.uiSwitch3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSwitch3.Location = new System.Drawing.Point(275, 476);
+            this.uiSwitch3.Location = new System.Drawing.Point(275, 426);
             this.uiSwitch3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch3.Name = "uiSwitch3";
             this.uiSwitch3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
@@ -113,7 +107,7 @@ namespace Sunny.UI.Demo
             this.uiSwitch4.ActiveText = "On";
             this.uiSwitch4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSwitch4.InActiveText = "Off";
-            this.uiSwitch4.Location = new System.Drawing.Point(193, 476);
+            this.uiSwitch4.Location = new System.Drawing.Point(193, 426);
             this.uiSwitch4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch4.Name = "uiSwitch4";
             this.uiSwitch4.Size = new System.Drawing.Size(75, 29);
@@ -124,20 +118,21 @@ namespace Sunny.UI.Demo
             // uiSymbolButton26
             // 
             this.uiSymbolButton26.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton26.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton26.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton26.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton26.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton26.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton26.Image = global::Sunny.UI.Demo.Properties.Resources.save;
             this.uiSymbolButton26.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiSymbolButton26.Location = new System.Drawing.Point(486, 315);
+            this.uiSymbolButton26.Location = new System.Drawing.Point(486, 265);
             this.uiSymbolButton26.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton26.Name = "uiSymbolButton26";
             this.uiSymbolButton26.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
-            this.uiSymbolButton26.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton26.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton26.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton26.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton26.Style = Sunny.UI.UIStyle.LightBlue;
+            this.uiSymbolButton26.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton26.StyleCustomMode = true;
             this.uiSymbolButton26.Symbol = 61530;
             this.uiSymbolButton26.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -149,20 +144,21 @@ namespace Sunny.UI.Demo
             // uiSymbolButton25
             // 
             this.uiSymbolButton25.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton25.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton25.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton25.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton25.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton25.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiSymbolButton25.Image = global::Sunny.UI.Demo.Properties.Resources.relationship;
             this.uiSymbolButton25.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.uiSymbolButton25.Location = new System.Drawing.Point(600, 315);
+            this.uiSymbolButton25.Location = new System.Drawing.Point(600, 265);
             this.uiSymbolButton25.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton25.Name = "uiSymbolButton25";
             this.uiSymbolButton25.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.uiSymbolButton25.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton25.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton25.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton25.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton25.Style = Sunny.UI.UIStyle.LightBlue;
+            this.uiSymbolButton25.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton25.StyleCustomMode = true;
             this.uiSymbolButton25.Symbol = 61453;
             this.uiSymbolButton25.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -180,7 +176,7 @@ namespace Sunny.UI.Demo
             this.uiImageButton4.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton4.ImageOffset = new System.Drawing.Point(12, 5);
             this.uiImageButton4.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
-            this.uiImageButton4.Location = new System.Drawing.Point(630, 470);
+            this.uiImageButton4.Location = new System.Drawing.Point(630, 420);
             this.uiImageButton4.Name = "uiImageButton4";
             this.uiImageButton4.Size = new System.Drawing.Size(70, 61);
             this.uiImageButton4.TabIndex = 111;
@@ -195,7 +191,7 @@ namespace Sunny.UI.Demo
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.save0;
             this.uiImageButton3.ImageHover = global::Sunny.UI.Demo.Properties.Resources.save;
             this.uiImageButton3.ImagePress = global::Sunny.UI.Demo.Properties.Resources.save0;
-            this.uiImageButton3.Location = new System.Drawing.Point(546, 473);
+            this.uiImageButton3.Location = new System.Drawing.Point(546, 423);
             this.uiImageButton3.Name = "uiImageButton3";
             this.uiImageButton3.Size = new System.Drawing.Size(43, 35);
             this.uiImageButton3.TabIndex = 110;
@@ -209,7 +205,7 @@ namespace Sunny.UI.Demo
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.relationship0;
             this.uiImageButton2.ImageHover = global::Sunny.UI.Demo.Properties.Resources.relationship;
             this.uiImageButton2.ImagePress = global::Sunny.UI.Demo.Properties.Resources.relationship0;
-            this.uiImageButton2.Location = new System.Drawing.Point(495, 473);
+            this.uiImageButton2.Location = new System.Drawing.Point(495, 423);
             this.uiImageButton2.Name = "uiImageButton2";
             this.uiImageButton2.Size = new System.Drawing.Size(43, 35);
             this.uiImageButton2.TabIndex = 109;
@@ -223,7 +219,7 @@ namespace Sunny.UI.Demo
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
             this.uiImageButton1.ImageHover = global::Sunny.UI.Demo.Properties.Resources.dashboard;
             this.uiImageButton1.ImagePress = global::Sunny.UI.Demo.Properties.Resources.dashboard0;
-            this.uiImageButton1.Location = new System.Drawing.Point(395, 473);
+            this.uiImageButton1.Location = new System.Drawing.Point(395, 423);
             this.uiImageButton1.Name = "uiImageButton1";
             this.uiImageButton1.Size = new System.Drawing.Size(94, 35);
             this.uiImageButton1.TabIndex = 108;
@@ -233,9 +229,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
+            this.uiLine5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine5.Location = new System.Drawing.Point(388, 447);
+            this.uiLine5.Location = new System.Drawing.Point(388, 397);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
             this.uiLine5.Size = new System.Drawing.Size(312, 20);
@@ -246,7 +243,7 @@ namespace Sunny.UI.Demo
             // uiSwitch2
             // 
             this.uiSwitch2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSwitch2.Location = new System.Drawing.Point(112, 476);
+            this.uiSwitch2.Location = new System.Drawing.Point(112, 426);
             this.uiSwitch2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch2.Name = "uiSwitch2";
             this.uiSwitch2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
@@ -256,9 +253,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
+            this.uiLine4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine4.Location = new System.Drawing.Point(30, 447);
+            this.uiLine4.Location = new System.Drawing.Point(30, 397);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
             this.uiLine4.Size = new System.Drawing.Size(312, 20);
@@ -271,7 +269,7 @@ namespace Sunny.UI.Demo
             this.uiSwitch1.ActiveText = "On";
             this.uiSwitch1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSwitch1.InActiveText = "Off";
-            this.uiSwitch1.Location = new System.Drawing.Point(30, 476);
+            this.uiSwitch1.Location = new System.Drawing.Point(30, 426);
             this.uiSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch1.Name = "uiSwitch1";
             this.uiSwitch1.Size = new System.Drawing.Size(75, 29);
@@ -282,11 +280,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton24
             // 
             this.uiSymbolButton24.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton24.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton24.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton24.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton24.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton24.Location = new System.Drawing.Point(654, 395);
+            this.uiSymbolButton24.Location = new System.Drawing.Point(654, 345);
             this.uiSymbolButton24.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton24.Name = "uiSymbolButton24";
             this.uiSymbolButton24.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
+            this.uiSymbolButton24.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton24.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton24.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton24.Size = new System.Drawing.Size(46, 35);
@@ -297,11 +301,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton23
             // 
             this.uiSymbolButton23.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton23.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton23.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton23.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton23.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton23.Location = new System.Drawing.Point(608, 395);
+            this.uiSymbolButton23.Location = new System.Drawing.Point(608, 345);
             this.uiSymbolButton23.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton23.Name = "uiSymbolButton23";
             this.uiSymbolButton23.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton23.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton23.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton23.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton23.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton23.Symbol = 61544;
             this.uiSymbolButton23.TabIndex = 102;
@@ -310,11 +320,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton22
             // 
             this.uiSymbolButton22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton22.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton22.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton22.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton22.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton22.Location = new System.Drawing.Point(562, 395);
+            this.uiSymbolButton22.Location = new System.Drawing.Point(562, 345);
             this.uiSymbolButton22.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton22.Name = "uiSymbolButton22";
             this.uiSymbolButton22.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton22.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton22.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton22.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton22.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton22.Symbol = 61508;
             this.uiSymbolButton22.TabIndex = 101;
@@ -323,11 +339,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton19
             // 
             this.uiSymbolButton19.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton19.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton19.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton19.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton19.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton19.Location = new System.Drawing.Point(516, 395);
+            this.uiSymbolButton19.Location = new System.Drawing.Point(516, 345);
             this.uiSymbolButton19.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton19.Name = "uiSymbolButton19";
             this.uiSymbolButton19.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
+            this.uiSymbolButton19.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton19.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton19.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton19.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton19.Symbol = 61543;
             this.uiSymbolButton19.TabIndex = 100;
@@ -336,11 +358,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton20
             // 
             this.uiSymbolButton20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton20.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton20.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton20.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton20.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton20.Location = new System.Drawing.Point(352, 395);
+            this.uiSymbolButton20.Location = new System.Drawing.Point(352, 345);
             this.uiSymbolButton20.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton20.Name = "uiSymbolButton20";
             this.uiSymbolButton20.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
+            this.uiSymbolButton20.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton20.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton20.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton20.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton20.Symbol = 61522;
             this.uiSymbolButton20.TabIndex = 99;
@@ -349,11 +377,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton21
             // 
             this.uiSymbolButton21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton21.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton21.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton21.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton21.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton21.Location = new System.Drawing.Point(306, 395);
+            this.uiSymbolButton21.Location = new System.Drawing.Point(306, 345);
             this.uiSymbolButton21.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton21.Name = "uiSymbolButton21";
             this.uiSymbolButton21.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton21.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton21.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton21.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton21.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton21.Symbol = 61520;
             this.uiSymbolButton21.TabIndex = 98;
@@ -362,11 +396,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton13
             // 
             this.uiSymbolButton13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton13.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton13.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton13.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton13.Location = new System.Drawing.Point(260, 395);
+            this.uiSymbolButton13.Location = new System.Drawing.Point(260, 345);
             this.uiSymbolButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton13.Name = "uiSymbolButton13";
             this.uiSymbolButton13.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton13.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton13.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton13.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton13.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton13.Symbol = 61518;
             this.uiSymbolButton13.TabIndex = 97;
@@ -375,11 +415,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton14
             // 
             this.uiSymbolButton14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton14.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton14.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton14.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton14.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton14.Location = new System.Drawing.Point(214, 395);
+            this.uiSymbolButton14.Location = new System.Drawing.Point(214, 345);
             this.uiSymbolButton14.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton14.Name = "uiSymbolButton14";
             this.uiSymbolButton14.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton14.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton14.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton14.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton14.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton14.Symbol = 61514;
             this.uiSymbolButton14.TabIndex = 96;
@@ -388,11 +434,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton15
             // 
             this.uiSymbolButton15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton15.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton15.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton15.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton15.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton15.Location = new System.Drawing.Point(168, 395);
+            this.uiSymbolButton15.Location = new System.Drawing.Point(168, 345);
             this.uiSymbolButton15.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton15.Name = "uiSymbolButton15";
             this.uiSymbolButton15.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton15.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton15.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton15.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton15.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton15.Symbol = 61513;
             this.uiSymbolButton15.TabIndex = 95;
@@ -401,11 +453,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton16
             // 
             this.uiSymbolButton16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton16.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton16.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton16.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton16.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton16.Location = new System.Drawing.Point(122, 395);
+            this.uiSymbolButton16.Location = new System.Drawing.Point(122, 345);
             this.uiSymbolButton16.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton16.Name = "uiSymbolButton16";
             this.uiSymbolButton16.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton16.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton16.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton16.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton16.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton16.Symbol = 61517;
             this.uiSymbolButton16.TabIndex = 94;
@@ -414,11 +472,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton17
             // 
             this.uiSymbolButton17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton17.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton17.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton17.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton17.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton17.Location = new System.Drawing.Point(76, 395);
+            this.uiSymbolButton17.Location = new System.Drawing.Point(76, 345);
             this.uiSymbolButton17.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton17.Name = "uiSymbolButton17";
             this.uiSymbolButton17.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiSymbolButton17.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton17.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton17.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton17.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton17.Symbol = 61516;
             this.uiSymbolButton17.TabIndex = 93;
@@ -427,11 +491,17 @@ namespace Sunny.UI.Demo
             // uiSymbolButton18
             // 
             this.uiSymbolButton18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton18.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton18.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton18.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton18.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton18.Location = new System.Drawing.Point(30, 395);
+            this.uiSymbolButton18.Location = new System.Drawing.Point(30, 345);
             this.uiSymbolButton18.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton18.Name = "uiSymbolButton18";
             this.uiSymbolButton18.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
+            this.uiSymbolButton18.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton18.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton18.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton18.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton18.Symbol = 61515;
             this.uiSymbolButton18.TabIndex = 92;
@@ -439,9 +509,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
+            this.uiLine3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine3.Location = new System.Drawing.Point(30, 365);
+            this.uiLine3.Location = new System.Drawing.Point(30, 315);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(670, 20);
@@ -454,20 +525,20 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton7.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton7.IsCircle = true;
-            this.uiSymbolButton7.Location = new System.Drawing.Point(235, 315);
+            this.uiSymbolButton7.Location = new System.Drawing.Point(235, 265);
             this.uiSymbolButton7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton7.Name = "uiSymbolButton7";
             this.uiSymbolButton7.Padding = new System.Windows.Forms.Padding(7, 7, 4, 4);
             this.uiSymbolButton7.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton7.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton7.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Red;
             this.uiSymbolButton7.StyleCustomMode = true;
@@ -480,20 +551,20 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiSymbolButton8.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton8.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiSymbolButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiSymbolButton8.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton8.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton8.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton8.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton8.IsCircle = true;
-            this.uiSymbolButton8.Location = new System.Drawing.Point(194, 315);
+            this.uiSymbolButton8.Location = new System.Drawing.Point(194, 265);
             this.uiSymbolButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton8.Name = "uiSymbolButton8";
             this.uiSymbolButton8.Padding = new System.Windows.Forms.Padding(7, 9, 0, 0);
             this.uiSymbolButton8.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiSymbolButton8.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton8.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Orange;
             this.uiSymbolButton8.StyleCustomMode = true;
@@ -506,20 +577,20 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolButton9.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton9.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiSymbolButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiSymbolButton9.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton9.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton9.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton9.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton9.IsCircle = true;
-            this.uiSymbolButton9.Location = new System.Drawing.Point(153, 315);
+            this.uiSymbolButton9.Location = new System.Drawing.Point(153, 265);
             this.uiSymbolButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton9.Name = "uiSymbolButton9";
             this.uiSymbolButton9.Padding = new System.Windows.Forms.Padding(6, 8, 0, 0);
             this.uiSymbolButton9.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiSymbolButton9.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton9.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Green;
             this.uiSymbolButton9.StyleCustomMode = true;
@@ -530,16 +601,22 @@ namespace Sunny.UI.Demo
             // uiSymbolButton10
             // 
             this.uiSymbolButton10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton10.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton10.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton10.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton10.ForeSelectedColor = System.Drawing.Color.Empty;
             this.uiSymbolButton10.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton10.IsCircle = true;
-            this.uiSymbolButton10.Location = new System.Drawing.Point(112, 315);
+            this.uiSymbolButton10.Location = new System.Drawing.Point(112, 265);
             this.uiSymbolButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton10.Name = "uiSymbolButton10";
             this.uiSymbolButton10.Padding = new System.Windows.Forms.Padding(6, 9, 0, 0);
+            this.uiSymbolButton10.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton10.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton10.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiSymbolButton10.Size = new System.Drawing.Size(35, 35);
+            this.uiSymbolButton10.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton10.StyleCustomMode = true;
             this.uiSymbolButton10.TabIndex = 87;
             this.uiSymbolButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -549,20 +626,20 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton11.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton11.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton11.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton11.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton11.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton11.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton11.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton11.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton11.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.uiSymbolButton11.IsCircle = true;
-            this.uiSymbolButton11.Location = new System.Drawing.Point(71, 315);
+            this.uiSymbolButton11.Location = new System.Drawing.Point(71, 265);
             this.uiSymbolButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton11.Name = "uiSymbolButton11";
             this.uiSymbolButton11.Padding = new System.Windows.Forms.Padding(7, 10, 0, 0);
             this.uiSymbolButton11.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton11.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton11.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton11.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton11.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton11.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton11.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton11.Size = new System.Drawing.Size(35, 35);
             this.uiSymbolButton11.Style = Sunny.UI.UIStyle.Red;
             this.uiSymbolButton11.StyleCustomMode = true;
@@ -576,22 +653,24 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton12.FillColor = System.Drawing.Color.White;
             this.uiSymbolButton12.FillColor2 = System.Drawing.Color.White;
-            this.uiSymbolButton12.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton12.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton12.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton12.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton12.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton12.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiSymbolButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(98)))), ((int)(((byte)(102)))));
-            this.uiSymbolButton12.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiSymbolButton12.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
-            this.uiSymbolButton12.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
+            this.uiSymbolButton12.ForeColor = System.Drawing.Color.Black;
+            this.uiSymbolButton12.ForeHoverColor = System.Drawing.Color.Black;
+            this.uiSymbolButton12.ForePressColor = System.Drawing.Color.Black;
+            this.uiSymbolButton12.ForeSelectedColor = System.Drawing.Color.Black;
             this.uiSymbolButton12.IsCircle = true;
-            this.uiSymbolButton12.Location = new System.Drawing.Point(30, 315);
+            this.uiSymbolButton12.Location = new System.Drawing.Point(30, 265);
             this.uiSymbolButton12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton12.Name = "uiSymbolButton12";
-            this.uiSymbolButton12.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
-            this.uiSymbolButton12.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton12.RectColor = System.Drawing.Color.White;
+            this.uiSymbolButton12.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton12.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton12.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiSymbolButton12.Size = new System.Drawing.Size(35, 35);
-            this.uiSymbolButton12.Style = Sunny.UI.UIStyle.White;
+            this.uiSymbolButton12.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton12.StyleCustomMode = true;
             this.uiSymbolButton12.Symbol = 61442;
             this.uiSymbolButton12.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(98)))), ((int)(((byte)(102)))));
@@ -606,17 +685,17 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton6.Location = new System.Drawing.Point(600, 265);
+            this.uiSymbolButton6.Location = new System.Drawing.Point(600, 215);
             this.uiSymbolButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton6.Name = "uiSymbolButton6";
             this.uiSymbolButton6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton6.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton6.Style = Sunny.UI.UIStyle.Red;
             this.uiSymbolButton6.StyleCustomMode = true;
@@ -630,17 +709,17 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiSymbolButton5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiSymbolButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiSymbolButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton5.Location = new System.Drawing.Point(486, 265);
+            this.uiSymbolButton5.Location = new System.Drawing.Point(486, 215);
             this.uiSymbolButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton5.Name = "uiSymbolButton5";
             this.uiSymbolButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiSymbolButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiSymbolButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiSymbolButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton5.Style = Sunny.UI.UIStyle.Orange;
             this.uiSymbolButton5.StyleCustomMode = true;
@@ -654,17 +733,17 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolButton3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiSymbolButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiSymbolButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton3.Location = new System.Drawing.Point(372, 265);
+            this.uiSymbolButton3.Location = new System.Drawing.Point(372, 215);
             this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton3.Name = "uiSymbolButton3";
             this.uiSymbolButton3.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiSymbolButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiSymbolButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiSymbolButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiSymbolButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiSymbolButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiSymbolButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton3.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton3.Style = Sunny.UI.UIStyle.Green;
             this.uiSymbolButton3.StyleCustomMode = true;
@@ -676,13 +755,19 @@ namespace Sunny.UI.Demo
             // uiSymbolButton4
             // 
             this.uiSymbolButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton4.ForeSelectedColor = System.Drawing.Color.Empty;
-            this.uiSymbolButton4.Location = new System.Drawing.Point(258, 265);
+            this.uiSymbolButton4.Location = new System.Drawing.Point(258, 215);
             this.uiSymbolButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton4.Name = "uiSymbolButton4";
+            this.uiSymbolButton4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton4.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton4.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiSymbolButton4.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton4.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton4.StyleCustomMode = true;
             this.uiSymbolButton4.Symbol = 61529;
             this.uiSymbolButton4.TabIndex = 81;
@@ -694,17 +779,17 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiSymbolButton2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton2.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton2.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton2.Location = new System.Drawing.Point(144, 265);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(144, 215);
             this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
             this.uiSymbolButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiSymbolButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiSymbolButton2.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiSymbolButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiSymbolButton2.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Red;
             this.uiSymbolButton2.StyleCustomMode = true;
@@ -716,13 +801,19 @@ namespace Sunny.UI.Demo
             // uiSymbolButton1
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiSymbolButton1.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSymbolButton1.ForeSelectedColor = System.Drawing.Color.Empty;
-            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 265);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(30, 215);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiSymbolButton1.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiSymbolButton1.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiSymbolButton1.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton1.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton1.StyleCustomMode = true;
             this.uiSymbolButton1.TabIndex = 79;
             this.uiSymbolButton1.Text = "OK";
@@ -730,9 +821,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine2.Location = new System.Drawing.Point(30, 235);
+            this.uiLine2.Location = new System.Drawing.Point(30, 185);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(670, 16);
@@ -742,6 +834,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
@@ -757,18 +850,18 @@ namespace Sunny.UI.Demo
             this.uiButton13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton13.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiButton13.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton13.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiButton13.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton13.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiButton13.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiButton13.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiButton13.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton13.Location = new System.Drawing.Point(600, 185);
+            this.uiButton13.Location = new System.Drawing.Point(600, 135);
             this.uiButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton13.Name = "uiButton13";
             this.uiButton13.Radius = 35;
             this.uiButton13.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton13.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiButton13.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton13.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiButton13.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiButton13.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiButton13.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton13.Size = new System.Drawing.Size(100, 35);
             this.uiButton13.Style = Sunny.UI.UIStyle.Red;
             this.uiButton13.StyleCustomMode = true;
@@ -781,18 +874,18 @@ namespace Sunny.UI.Demo
             this.uiButton14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton14.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiButton14.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton14.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiButton14.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton14.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiButton14.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiButton14.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiButton14.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton14.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton14.Location = new System.Drawing.Point(486, 185);
+            this.uiButton14.Location = new System.Drawing.Point(486, 135);
             this.uiButton14.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton14.Name = "uiButton14";
             this.uiButton14.Radius = 35;
             this.uiButton14.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton14.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiButton14.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton14.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiButton14.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiButton14.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiButton14.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton14.Size = new System.Drawing.Size(100, 35);
             this.uiButton14.Style = Sunny.UI.UIStyle.Orange;
             this.uiButton14.StyleCustomMode = true;
@@ -805,18 +898,18 @@ namespace Sunny.UI.Demo
             this.uiButton15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton15.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.uiButton15.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton15.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(160)))), ((int)(((byte)(165)))));
-            this.uiButton15.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton15.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
+            this.uiButton15.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.uiButton15.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+            this.uiButton15.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton15.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton15.Location = new System.Drawing.Point(372, 185);
+            this.uiButton15.Location = new System.Drawing.Point(372, 135);
             this.uiButton15.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton15.Name = "uiButton15";
             this.uiButton15.Radius = 35;
             this.uiButton15.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton15.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(160)))), ((int)(((byte)(165)))));
-            this.uiButton15.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton15.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
+            this.uiButton15.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.uiButton15.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+            this.uiButton15.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton15.Size = new System.Drawing.Size(100, 35);
             this.uiButton15.Style = Sunny.UI.UIStyle.Gray;
             this.uiButton15.StyleCustomMode = true;
@@ -829,18 +922,18 @@ namespace Sunny.UI.Demo
             this.uiButton16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton16.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiButton16.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton16.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiButton16.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton16.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiButton16.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiButton16.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiButton16.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton16.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton16.Location = new System.Drawing.Point(258, 185);
+            this.uiButton16.Location = new System.Drawing.Point(258, 135);
             this.uiButton16.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton16.Name = "uiButton16";
             this.uiButton16.Radius = 35;
             this.uiButton16.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton16.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiButton16.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton16.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiButton16.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiButton16.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiButton16.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton16.Size = new System.Drawing.Size(100, 35);
             this.uiButton16.Style = Sunny.UI.UIStyle.Green;
             this.uiButton16.StyleCustomMode = true;
@@ -851,14 +944,20 @@ namespace Sunny.UI.Demo
             // uiButton17
             // 
             this.uiButton17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton17.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton17.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiButton17.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton17.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton17.ForeSelectedColor = System.Drawing.Color.Empty;
-            this.uiButton17.Location = new System.Drawing.Point(144, 185);
+            this.uiButton17.Location = new System.Drawing.Point(144, 135);
             this.uiButton17.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton17.Name = "uiButton17";
             this.uiButton17.Radius = 35;
+            this.uiButton17.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton17.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton17.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiButton17.Size = new System.Drawing.Size(100, 35);
+            this.uiButton17.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton17.StyleCustomMode = true;
             this.uiButton17.TabIndex = 72;
             this.uiButton17.Text = "Blue";
@@ -867,169 +966,38 @@ namespace Sunny.UI.Demo
             // uiButton18
             // 
             this.uiButton18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton18.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton18.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiButton18.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton18.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton18.Location = new System.Drawing.Point(30, 185);
+            this.uiButton18.Location = new System.Drawing.Point(30, 135);
             this.uiButton18.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton18.Name = "uiButton18";
             this.uiButton18.Radius = 35;
+            this.uiButton18.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton18.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiButton18.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton18.Size = new System.Drawing.Size(100, 35);
             this.uiButton18.TabIndex = 71;
             this.uiButton18.Text = "Round";
             this.uiButton18.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // uiButton7
-            // 
-            this.uiButton7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.uiButton7.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.uiButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton7.Location = new System.Drawing.Point(600, 135);
-            this.uiButton7.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton7.Name = "uiButton7";
-            this.uiButton7.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton7.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton7.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton7.Size = new System.Drawing.Size(100, 35);
-            this.uiButton7.Style = Sunny.UI.UIStyle.LightRed;
-            this.uiButton7.StyleCustomMode = true;
-            this.uiButton7.TabIndex = 70;
-            this.uiButton7.Text = "LightRed";
-            this.uiButton7.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // uiButton8
-            // 
-            this.uiButton8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.uiButton8.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.uiButton8.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton8.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton8.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton8.Location = new System.Drawing.Point(486, 135);
-            this.uiButton8.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton8.Name = "uiButton8";
-            this.uiButton8.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton8.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton8.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton8.Size = new System.Drawing.Size(100, 35);
-            this.uiButton8.Style = Sunny.UI.UIStyle.LightOrange;
-            this.uiButton8.StyleCustomMode = true;
-            this.uiButton8.TabIndex = 69;
-            this.uiButton8.Text = "LightOrange";
-            this.uiButton8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // uiButton9
-            // 
-            this.uiButton9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.uiButton9.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.uiButton9.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton9.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton9.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton9.Location = new System.Drawing.Point(372, 135);
-            this.uiButton9.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton9.Name = "uiButton9";
-            this.uiButton9.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton9.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton9.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton9.Size = new System.Drawing.Size(100, 35);
-            this.uiButton9.Style = Sunny.UI.UIStyle.LightGray;
-            this.uiButton9.StyleCustomMode = true;
-            this.uiButton9.TabIndex = 68;
-            this.uiButton9.Text = "LightGray";
-            this.uiButton9.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // uiButton10
-            // 
-            this.uiButton10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiButton10.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiButton10.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton10.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton10.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton10.Location = new System.Drawing.Point(258, 135);
-            this.uiButton10.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton10.Name = "uiButton10";
-            this.uiButton10.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton10.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton10.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton10.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton10.Size = new System.Drawing.Size(100, 35);
-            this.uiButton10.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiButton10.StyleCustomMode = true;
-            this.uiButton10.TabIndex = 67;
-            this.uiButton10.Text = "LightGreen";
-            this.uiButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton10.Click += new System.EventHandler(this.uiButton10_Click);
-            // 
-            // uiButton11
-            // 
-            this.uiButton11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton11.ForeSelectedColor = System.Drawing.Color.Empty;
-            this.uiButton11.Location = new System.Drawing.Point(144, 135);
-            this.uiButton11.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton11.Name = "uiButton11";
-            this.uiButton11.RectSelectedColor = System.Drawing.Color.Empty;
-            this.uiButton11.Size = new System.Drawing.Size(100, 35);
-            this.uiButton11.StyleCustomMode = true;
-            this.uiButton11.TabIndex = 66;
-            this.uiButton11.Text = "LightBlue";
-            this.uiButton11.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // uiButton12
-            // 
-            this.uiButton12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton12.FillColor = System.Drawing.Color.White;
-            this.uiButton12.FillColor2 = System.Drawing.Color.White;
-            this.uiButton12.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiButton12.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiButton12.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(98)))), ((int)(((byte)(102)))));
-            this.uiButton12.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiButton12.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
-            this.uiButton12.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
-            this.uiButton12.Location = new System.Drawing.Point(30, 135);
-            this.uiButton12.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton12.Name = "uiButton12";
-            this.uiButton12.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
-            this.uiButton12.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
-            this.uiButton12.Size = new System.Drawing.Size(100, 35);
-            this.uiButton12.Style = Sunny.UI.UIStyle.White;
-            this.uiButton12.StyleCustomMode = true;
-            this.uiButton12.TabIndex = 65;
-            this.uiButton12.Text = "White";
-            this.uiButton12.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiButton4
             // 
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiButton4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton4.Location = new System.Drawing.Point(600, 85);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
             this.uiButton4.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.uiButton4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
-            this.uiButton4.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
-            this.uiButton4.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(87)))), ((int)(((byte)(89)))));
+            this.uiButton4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.uiButton4.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiButton4.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton4.ShowFocusLine = true;
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
             this.uiButton4.Style = Sunny.UI.UIStyle.Red;
@@ -1043,17 +1011,17 @@ namespace Sunny.UI.Demo
             this.uiButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiButton5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton5.Location = new System.Drawing.Point(486, 85);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
             this.uiButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.uiButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
-            this.uiButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
-            this.uiButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(137)))), ((int)(((byte)(43)))));
+            this.uiButton5.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(175)))), ((int)(((byte)(83)))));
+            this.uiButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
+            this.uiButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton5.ShowFocusLine = true;
             this.uiButton5.Size = new System.Drawing.Size(100, 35);
             this.uiButton5.Style = Sunny.UI.UIStyle.Orange;
@@ -1067,17 +1035,17 @@ namespace Sunny.UI.Demo
             this.uiButton6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.uiButton6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(160)))), ((int)(((byte)(165)))));
-            this.uiButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
+            this.uiButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.uiButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+            this.uiButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton6.Location = new System.Drawing.Point(372, 85);
             this.uiButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton6.Name = "uiButton6";
             this.uiButton6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(160)))), ((int)(((byte)(165)))));
-            this.uiButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
-            this.uiButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(123)))), ((int)(((byte)(129)))));
+            this.uiButton6.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.uiButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+            this.uiButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton6.ShowFocusLine = true;
             this.uiButton6.Size = new System.Drawing.Size(100, 35);
             this.uiButton6.Style = Sunny.UI.UIStyle.Gray;
@@ -1091,17 +1059,17 @@ namespace Sunny.UI.Demo
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiButton3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton3.Location = new System.Drawing.Point(258, 85);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.uiButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.uiButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.uiButton3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(203)))), ((int)(((byte)(83)))));
+            this.uiButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
+            this.uiButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton3.ShowFocusLine = true;
             this.uiButton3.Size = new System.Drawing.Size(100, 35);
             this.uiButton3.Style = Sunny.UI.UIStyle.Green;
@@ -1113,15 +1081,21 @@ namespace Sunny.UI.Demo
             // uiButton2
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiButton2.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiButton2.ForeSelectedColor = System.Drawing.Color.Empty;
             this.uiButton2.Location = new System.Drawing.Point(144, 85);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
+            this.uiButton2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
+            this.uiButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiButton2.RectSelectedColor = System.Drawing.Color.Empty;
             this.uiButton2.ShowFocusLine = true;
             this.uiButton2.ShowTips = true;
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiButton2.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 60;
             this.uiButton2.Text = "Blue";
@@ -1133,19 +1107,21 @@ namespace Sunny.UI.Demo
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.FillColor = System.Drawing.Color.White;
             this.uiButton1.FillColor2 = System.Drawing.Color.White;
-            this.uiButton1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiButton1.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiButton1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uiButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.uiButton1.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(98)))), ((int)(((byte)(102)))));
-            this.uiButton1.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiButton1.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
-            this.uiButton1.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
+            this.uiButton1.ForeColor = System.Drawing.Color.Black;
+            this.uiButton1.ForeHoverColor = System.Drawing.Color.Black;
+            this.uiButton1.ForePressColor = System.Drawing.Color.Black;
+            this.uiButton1.ForeSelectedColor = System.Drawing.Color.Black;
             this.uiButton1.Location = new System.Drawing.Point(30, 85);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
-            this.uiButton1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(219)))), ((int)(((byte)(227)))));
-            this.uiButton1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(222)))), ((int)(((byte)(255)))));
+            this.uiButton1.RectColor = System.Drawing.Color.White;
+            this.uiButton1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uiButton1.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.uiButton1.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiButton1.ShowFocusLine = true;
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
             this.uiButton1.Style = Sunny.UI.UIStyle.White;
@@ -1169,7 +1145,7 @@ namespace Sunny.UI.Demo
             this.uiSwitch5.Enabled = false;
             this.uiSwitch5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiSwitch5.InActiveText = "Off";
-            this.uiSwitch5.Location = new System.Drawing.Point(30, 520);
+            this.uiSwitch5.Location = new System.Drawing.Point(30, 470);
             this.uiSwitch5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch5.Name = "uiSwitch5";
             this.uiSwitch5.Size = new System.Drawing.Size(75, 29);
@@ -1181,7 +1157,7 @@ namespace Sunny.UI.Demo
             this.uiSwitch6.Active = true;
             this.uiSwitch6.Enabled = false;
             this.uiSwitch6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSwitch6.Location = new System.Drawing.Point(112, 520);
+            this.uiSwitch6.Location = new System.Drawing.Point(112, 470);
             this.uiSwitch6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch6.Name = "uiSwitch6";
             this.uiSwitch6.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
@@ -1241,12 +1217,6 @@ namespace Sunny.UI.Demo
             this.Controls.Add(this.uiButton16);
             this.Controls.Add(this.uiButton17);
             this.Controls.Add(this.uiButton18);
-            this.Controls.Add(this.uiButton7);
-            this.Controls.Add(this.uiButton8);
-            this.Controls.Add(this.uiButton9);
-            this.Controls.Add(this.uiButton10);
-            this.Controls.Add(this.uiButton11);
-            this.Controls.Add(this.uiButton12);
             this.Controls.Add(this.uiButton4);
             this.Controls.Add(this.uiButton5);
             this.Controls.Add(this.uiButton6);
@@ -1314,12 +1284,6 @@ namespace Sunny.UI.Demo
         private UIButton uiButton16;
         private UIButton uiButton17;
         private UIButton uiButton18;
-        private UIButton uiButton7;
-        private UIButton uiButton8;
-        private UIButton uiButton9;
-        private UIButton uiButton10;
-        private UIButton uiButton11;
-        private UIButton uiButton12;
         private UIButton uiButton4;
         private UIButton uiButton5;
         private UIButton uiButton6;

@@ -21,6 +21,7 @@
  * 2021-05-06: V3.0.3 更新Active状态改变时触发ValueChanged事件
  * 2021-09-14: V3.0.7 增加Disabled颜色
  * 2022-01-02: V3.0.9 增加是否只读属性
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -55,9 +56,14 @@ namespace Sunny.UI
             Width = 75;
             ShowText = false;
             ShowRect = false;
-            foreColor = Color.White;
+
             inActiveColor = Color.Gray;
             fillColor = Color.White;
+
+            rectColor = UIStyles.Blue.SwitchActiveColor;
+            fillColor = UIStyles.Blue.SwitchFillColor;
+            inActiveColor = UIStyles.Blue.SwitchInActiveColor;
+            rectDisableColor = UIStyles.Blue.SwitchRectDisableColor;
         }
 
         [DefaultValue(false)]
@@ -198,11 +204,11 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
             rectColor = uiColor.SwitchActiveColor;
             fillColor = uiColor.SwitchFillColor;
             inActiveColor = uiColor.SwitchInActiveColor;
-            rectDisableColor = uiColor.RectDisableColor;
-            Invalidate();
+            rectDisableColor = uiColor.SwitchRectDisableColor;
         }
 
         [Description("不可用颜色"), Category("SunnyUI")]

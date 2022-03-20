@@ -25,6 +25,7 @@
  * 2022-01-10: V3.1.0 调整边框和圆角的绘制
  * 2022-01-27: V3.1.0 禁止显示滚动条
  * 2022-02-16: V3.1.1 基类增加只读颜色设置
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -43,9 +44,10 @@ namespace Sunny.UI
     public partial class UIPanel : UserControl, IStyleInterface
     {
         private int radius = 5;
-        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
-        protected Color fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
-        protected Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).PanelForeColor;
+        protected Color rectColor = UIStyles.Blue.PanelRectColor;
+        protected Color fillColor = UIStyles.Blue.PanelFillColor;
+        protected Color foreColor = UIStyles.Blue.PanelForeColor;
+        protected Color fillColor2 = UIStyles.Blue.PanelFillColor2;
         protected bool InitializeComponentEnd;
 
         public UIPanel()
@@ -239,8 +241,7 @@ namespace Sunny.UI
                 {
                     rectColor = value;
                     RectColorChanged?.Invoke(this, null);
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
 
                 AfterSetRectColor(value);
@@ -251,7 +252,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get
@@ -264,8 +265,7 @@ namespace Sunny.UI
                 {
                     fillColor = value;
                     FillColorChanged?.Invoke(this, null);
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
 
                 AfterSetFillColor(value);
@@ -298,21 +298,15 @@ namespace Sunny.UI
             if (fillColor2 != value)
             {
                 fillColor2 = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
-
-        /// <summary>
-        /// 填充颜色
-        /// </summary>
-        protected Color fillColor2 = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillColor;
 
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor2
         {
             get => fillColor2;
@@ -322,19 +316,19 @@ namespace Sunny.UI
         protected void SetFillDisableColor(Color color)
         {
             fillDisableColor = color;
-            _style = UIStyle.Custom;
+            SetStyleCustom();
         }
 
         protected void SetRectDisableColor(Color color)
         {
             rectDisableColor = color;
-            _style = UIStyle.Custom;
+            SetStyleCustom();
         }
 
         protected void SetForeDisableColor(Color color)
         {
             foreDisableColor = color;
-            _style = UIStyle.Custom;
+            SetStyleCustom();
         }
 
         private bool showText = true;
@@ -574,8 +568,9 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            fillColor2 = fillColor = uiColor.PlainColor;
-            rectColor = uiColor.RectColor;
+            fillColor2 = uiColor.PanelFillColor2;
+            fillColor = uiColor.PanelFillColor;
+            rectColor = uiColor.PanelRectColor;
             foreColor = uiColor.PanelForeColor;
 
             fillDisableColor = uiColor.FillDisableColor;
@@ -589,22 +584,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 字体只读颜色
-        /// </summary>
-        protected Color foreReadOnlyColor = UIStyle.Blue.Colors().ForeDisableColor;
-
-        /// <summary>
-        /// 边框只读颜色
-        /// </summary>
-        protected Color rectReadOnlyColor = UIStyle.Blue.Colors().RectDisableColor;
-
-
-        /// <summary>
-        /// 填充只读颜色
-        /// </summary>
-        protected Color fillReadOnlyColor = UIStyle.Blue.Colors().FillDisableColor;
-
-        /// <summary>
         /// 设置填充只读颜色
         /// </summary>
         /// <param name="color">颜色</param>
@@ -612,8 +591,7 @@ namespace Sunny.UI
         {
             fillReadOnlyColor = color;
             AfterSetFillReadOnlyColor(color);
-            _style = UIStyle.Custom;
-            Invalidate();
+            SetStyleCustom();
         }
 
         /// <summary>
@@ -624,8 +602,7 @@ namespace Sunny.UI
         {
             rectReadOnlyColor = color;
             AfterSetRectReadOnlyColor(color);
-            _style = UIStyle.Custom;
-            Invalidate();
+            SetStyleCustom();
         }
 
         /// <summary>
@@ -636,8 +613,7 @@ namespace Sunny.UI
         {
             foreReadOnlyColor = color;
             AfterSetForeReadOnlyColor(color);
-            _style = UIStyle.Custom;
-            Invalidate();
+            SetStyleCustom();
         }
 
         /// <summary>
@@ -652,8 +628,7 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 AfterSetForeColor(value);
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -685,9 +660,24 @@ namespace Sunny.UI
         {
         }
 
-        protected Color foreDisableColor = Color.FromArgb(109, 109, 103);
-        protected Color rectDisableColor = Color.FromArgb(173, 178, 181);
-        protected Color fillDisableColor = Color.FromArgb(244, 244, 244);
+        protected Color foreDisableColor = UIStyles.Blue.ForeDisableColor;
+        protected Color rectDisableColor = UIStyles.Blue.RectDisableColor;
+        protected Color fillDisableColor = UIStyles.Blue.FillDisableColor;
+        /// <summary>
+        /// 字体只读颜色
+        /// </summary>
+        protected Color foreReadOnlyColor = UIStyles.Blue.ForeDisableColor;
+
+        /// <summary>
+        /// 边框只读颜色
+        /// </summary>
+        protected Color rectReadOnlyColor = UIStyles.Blue.RectDisableColor;
+
+
+        /// <summary>
+        /// 填充只读颜色
+        /// </summary>
+        protected Color fillReadOnlyColor = UIStyles.Blue.FillDisableColor;
 
         protected Color GetRectColor()
         {
@@ -767,5 +757,11 @@ namespace Sunny.UI
 
         [Browsable(false)]
         public new bool AutoScroll { get; set; } = false;
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
+        }
     }
 }

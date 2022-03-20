@@ -20,9 +20,9 @@
  * 2020-04-23: V2.2.4 增加UISymbolLabel
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-11-12: V3.0.8 增加文字旋转角度
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -39,7 +39,7 @@ namespace Sunny.UI
             base.Font = UIFontColor.Font();
             Version = UIGlobal.Version;
             base.TextAlign = ContentAlignment.MiddleLeft;
-            ForeColorChanged += UILabel_ForeColorChanged;
+            foreColor = UIStyles.Blue.LabelForeColor;
         }
 
         private int angle;
@@ -67,13 +67,6 @@ namespace Sunny.UI
             }
         }
 
-        private void UILabel_ForeColorChanged(object sender, EventArgs e)
-        {
-            _style = UIStyle.Custom;
-        }
-
-        private Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).LabelForeColor;
-
         /// <summary>
         /// Tag字符串
         /// </summary>
@@ -81,6 +74,7 @@ namespace Sunny.UI
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
+        private Color foreColor;
         /// <summary>
         /// 字体颜色
         /// </summary>
@@ -91,17 +85,30 @@ namespace Sunny.UI
             get => foreColor;
             set
             {
-                foreColor = value;
-                Invalidate();
+                if (foreColor != value)
+                {
+                    foreColor = value;
+                    SetStyleCustom();
+                }
             }
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         public string Version { get; }
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -115,7 +122,6 @@ namespace Sunny.UI
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
             ForeColor = uiColor.LabelForeColor;
-            Invalidate();
         }
 
         private UIStyle _style = UIStyle.Blue;
@@ -128,12 +134,6 @@ namespace Sunny.UI
         {
             get => _style;
             set => SetStyle(value);
-        }
-
-        protected override void OnForeColorChanged(EventArgs e)
-        {
-            base.OnForeColorChanged(e);
-            _style = UIStyle.Custom;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -162,7 +162,9 @@ namespace Sunny.UI
 
             ActiveLinkColor = UIColor.Orange;
             VisitedLinkColor = UIColor.Red;
-            LinkColor = UIColor.Blue;
+
+            foreColor = UIStyles.Blue.LabelForeColor;
+            base.LinkColor = linkColor = UIColor.Blue;
         }
 
         [Browsable(false)]
@@ -195,16 +197,20 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            ForeColor = uiColor.LabelForeColor;
-            LinkColor = uiColor.LabelForeColor;
-            Invalidate();
+            foreColor = uiColor.LabelForeColor;
+            linkColor = uiColor.PrimaryColor;
+            base.LinkColor = linkColor;
         }
 
         private UIStyle _style = UIStyle.Blue;
@@ -219,10 +225,49 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        protected override void OnForeColorChanged(EventArgs e)
+        private Color foreColor;
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "48, 48, 48")]
+        public override Color ForeColor
         {
-            base.OnForeColorChanged(e);
+            get => foreColor;
+            set
+            {
+                if (foreColor != value)
+                {
+                    foreColor = value;
+                    SetStyleCustom();
+                }
+            }
+        }
+
+        private void SetStyleCustom(bool needRefresh = true)
+        {
             _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
+        }
+
+        private Color linkColor;
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public new Color LinkColor
+        {
+            get => linkColor;
+            set
+            {
+                if (linkColor != value)
+                {
+                    linkColor = value;
+                    base.LinkColor = value;
+                    SetStyleCustom();
+                }
+            }
         }
     }
 }

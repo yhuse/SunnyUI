@@ -19,6 +19,7 @@
  * 2021-04-10: V3.0.2 增加文件说明
  * 2022-01-26: V3.1.0 增加两端对齐，AlignBothEnds
  * 2022-01-26: V3.1.0 增加未选中步骤文字颜色
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -215,7 +216,7 @@ namespace Sunny.UI
 
         private int itemWidth;
 
-        [DefaultValue(120)]
+        [DefaultValue(160)]
         [Description("节点宽度"), Category("SunnyUI")]
         public int ItemWidth
         {
@@ -258,7 +259,7 @@ namespace Sunny.UI
         /// </summary>
         [Description("未选节点颜色")]
         [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "155, 200, 255")]
+        [DefaultValue(typeof(Color), "185, 217, 255")]
         public Color UnSelectedColor
         {
             get => rectColor;
@@ -281,8 +282,7 @@ namespace Sunny.UI
                 if (unSelectedForeColor != value)
                 {
                     unSelectedForeColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -302,10 +302,9 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.PrimaryColor;
-            unSelectedForeColor = foreColor = uiColor.ButtonForeColor;
-            rectColor = uiColor.GridSelectedColor;
-            Invalidate();
+
+            unSelectedForeColor = uiColor.ButtonForeColor;
+            rectColor = uiColor.BreadcrumbUnSelectedColor;
         }
 
         protected override void OnMouseClick(MouseEventArgs e)

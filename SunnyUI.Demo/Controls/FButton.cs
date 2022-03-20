@@ -49,11 +49,6 @@ namespace Sunny.UI.Demo
             Console.WriteLine("4. FButton_Final");
         }
 
-        private void uiButton10_Click(object sender, EventArgs e)
-        {
-            uiButton10.Selected = !uiButton10.Selected;
-        }
-
         private void uiSwitch1_ValueChanged(object sender, bool value)
         {
             Console.WriteLine(uiSwitch1.Active);

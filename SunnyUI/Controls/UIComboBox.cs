@@ -350,7 +350,7 @@ namespace Sunny.UI
             set => ListBox.ForeColor = value;
         }
 
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color ItemSelectForeColor
         {
             get => ListBox.ItemSelectForeColor;
@@ -364,7 +364,7 @@ namespace Sunny.UI
             set => ListBox.ItemSelectBackColor = value;
         }
 
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "220, 236, 255")]
         public Color ItemHoverColor
         {
             get => ListBox.HoverColor;

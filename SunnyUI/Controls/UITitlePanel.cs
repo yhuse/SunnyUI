@@ -65,14 +65,16 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             ShowText = false;
             CalcSystemBoxPos();
+
+            titleColor = UIStyles.Blue.PanelTitleColor;
+            titleForeColor = UIStyles.Blue.PanelTitleForeColor;
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            titleColor = uiColor.TitleColor;
-            titleForeColor = uiColor.TitleForeColor;
-            Invalidate();
+            titleColor = uiColor.PanelTitleColor;
+            titleForeColor = uiColor.PanelTitleForeColor;
         }
 
         private HorizontalAlignment textAlign = HorizontalAlignment.Center;

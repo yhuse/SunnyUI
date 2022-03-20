@@ -17,6 +17,7 @@
  * 创建日期: 2022-01-22
  *
  * 2022-01-22: V3.1.0 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 
@@ -37,6 +38,10 @@ namespace Sunny.UI
         {
             base.Font = UIFontColor.Font(36);
             Version = UIGlobal.Version;
+
+            foreColor = UIStyles.Blue.SmoothLabelForeColor;
+            rectColor = UIStyles.Blue.SmoothLabelRectColor;
+
             drawPath = new GraphicsPath();
             drawPen = new Pen(new SolidBrush(rectColor), rectSize);
             forecolorBrush = new SolidBrush(ForeColor);
@@ -73,7 +78,7 @@ namespace Sunny.UI
             }
         }
 
-        private Color foreColor = UIStyles.GetStyleColor(UIStyle.Blue).LabelForeColor;
+        private Color foreColor;
 
         // <summary>
         /// Tag字符串
@@ -94,17 +99,26 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 forecolorBrush.Color = foreColor;
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         public string Version { get; }
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -117,11 +131,12 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            foreColor = uiColor.ButtonForeColor;
+            foreColor = uiColor.SmoothLabelForeColor;
+            rectColor = uiColor.SmoothLabelRectColor;
+
             forecolorBrush.Color = foreColor;
-            rectColor = uiColor.ButtonFillColor;
-            if (rectSize != 0) drawPen.Color = rectColor;
-            Invalidate();
+            if (rectSize != 0)
+                drawPen.Color = rectColor;
         }
 
         private UIStyle _style = UIStyle.Blue;
@@ -148,7 +163,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        protected Color rectColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
+        protected Color rectColor;
 
         /// <summary>
         /// 边框颜色
@@ -168,8 +183,7 @@ namespace Sunny.UI
                     rectColor = value;
                     if (rectSize != 0) drawPen.Color = rectColor;
                     RectColorChanged?.Invoke(this, null);
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }

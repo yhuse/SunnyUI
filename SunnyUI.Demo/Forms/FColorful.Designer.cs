@@ -47,9 +47,10 @@ namespace Sunny.UI.Demo
             // uiPanel1
             // 
             this.uiPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(190)))), ((int)(((byte)(172)))));
+            this.uiPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel1.ForeColor = System.Drawing.Color.White;
-            this.uiPanel1.Location = new System.Drawing.Point(23, 56);
+            this.uiPanel1.Location = new System.Drawing.Point(173, 56);
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
@@ -64,14 +65,15 @@ namespace Sunny.UI.Demo
             // 
             // uiPanel2
             // 
-            this.uiPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(0)))));
+            this.uiPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(0)))));
+            this.uiPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel2.ForeColor = System.Drawing.Color.White;
-            this.uiPanel2.Location = new System.Drawing.Point(173, 56);
+            this.uiPanel2.Location = new System.Drawing.Point(323, 56);
             this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(0)))));
+            this.uiPanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(0)))));
             this.uiPanel2.Size = new System.Drawing.Size(120, 100);
             this.uiPanel2.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel2.StyleCustomMode = true;
@@ -83,9 +85,10 @@ namespace Sunny.UI.Demo
             // uiPanel3
             // 
             this.uiPanel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(190)))), ((int)(((byte)(60)))));
+            this.uiPanel3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel3.ForeColor = System.Drawing.Color.White;
-            this.uiPanel3.Location = new System.Drawing.Point(473, 56);
+            this.uiPanel3.Location = new System.Drawing.Point(473, 174);
             this.uiPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel3.Name = "uiPanel3";
@@ -101,9 +104,10 @@ namespace Sunny.UI.Demo
             // uiPanel4
             // 
             this.uiPanel4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(80)))));
+            this.uiPanel4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel4.ForeColor = System.Drawing.Color.White;
-            this.uiPanel4.Location = new System.Drawing.Point(323, 56);
+            this.uiPanel4.Location = new System.Drawing.Point(623, 174);
             this.uiPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel4.Name = "uiPanel4";
@@ -119,6 +123,7 @@ namespace Sunny.UI.Demo
             // uiPanel5
             // 
             this.uiPanel5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(98)))), ((int)(((byte)(161)))));
+            this.uiPanel5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel5.ForeColor = System.Drawing.Color.White;
             this.uiPanel5.Location = new System.Drawing.Point(623, 56);
@@ -136,14 +141,15 @@ namespace Sunny.UI.Demo
             // 
             // uiPanel6
             // 
-            this.uiPanel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(94)))), ((int)(((byte)(99)))));
+            this.uiPanel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
+            this.uiPanel6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel6.ForeColor = System.Drawing.Color.White;
-            this.uiPanel6.Location = new System.Drawing.Point(473, 174);
+            this.uiPanel6.Location = new System.Drawing.Point(473, 56);
             this.uiPanel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel6.Name = "uiPanel6";
-            this.uiPanel6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(94)))), ((int)(((byte)(99)))));
+            this.uiPanel6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             this.uiPanel6.Size = new System.Drawing.Size(120, 100);
             this.uiPanel6.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel6.StyleCustomMode = true;
@@ -155,6 +161,7 @@ namespace Sunny.UI.Demo
             // uiPanel7
             // 
             this.uiPanel7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(126)))), ((int)(((byte)(164)))));
+            this.uiPanel7.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel7.ForeColor = System.Drawing.Color.White;
             this.uiPanel7.Location = new System.Drawing.Point(323, 174);
@@ -173,6 +180,7 @@ namespace Sunny.UI.Demo
             // uiPanel8
             // 
             this.uiPanel8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(188)))), ((int)(((byte)(212)))));
+            this.uiPanel8.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel8.ForeColor = System.Drawing.Color.White;
             this.uiPanel8.Location = new System.Drawing.Point(173, 174);
@@ -191,6 +199,7 @@ namespace Sunny.UI.Demo
             // uiPanel9
             // 
             this.uiPanel9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            this.uiPanel9.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel9.ForeColor = System.Drawing.Color.White;
             this.uiPanel9.Location = new System.Drawing.Point(23, 174);
@@ -209,9 +218,10 @@ namespace Sunny.UI.Demo
             // uiPanel10
             // 
             this.uiPanel10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.uiPanel10.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel10.ForeColor = System.Drawing.Color.White;
-            this.uiPanel10.Location = new System.Drawing.Point(623, 174);
+            this.uiPanel10.Location = new System.Drawing.Point(23, 56);
             this.uiPanel10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel10.Name = "uiPanel10";
@@ -237,6 +247,7 @@ namespace Sunny.UI.Demo
             // uiPanel11
             // 
             this.uiPanel11.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            this.uiPanel11.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiPanel11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiPanel11.ForeColor = System.Drawing.Color.White;
             this.uiPanel11.Location = new System.Drawing.Point(23, 340);
@@ -265,7 +276,6 @@ namespace Sunny.UI.Demo
             // FColorful
             // 
             this.AllowShowTitle = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(776, 543);
             this.Controls.Add(this.uiLabel2);

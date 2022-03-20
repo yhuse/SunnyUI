@@ -45,7 +45,6 @@ namespace Sunny.UI.Demo
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiLabel4 = new Sunny.UI.UILabel();
             this.uiLine5 = new Sunny.UI.UILine();
-            this.label1 = new System.Windows.Forms.Label();
             this.uiSmoothLabel1 = new Sunny.UI.UISmoothLabel();
             this.uiSmoothLabel2 = new Sunny.UI.UISmoothLabel();
             this.uiLine6 = new Sunny.UI.UILine();
@@ -92,6 +91,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
+            this.uiLine4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.Location = new System.Drawing.Point(30, 208);
@@ -141,6 +141,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
+            this.uiLine3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.Location = new System.Drawing.Point(30, 133);
@@ -153,6 +154,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(381, 55);
@@ -165,6 +167,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
@@ -180,9 +183,8 @@ namespace Sunny.UI.Demo
             this.uiLinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiLinkLabel1.AutoSize = true;
             this.uiLinkLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLinkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLinkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.uiLinkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLinkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiLinkLabel1.Location = new System.Drawing.Point(394, 90);
             this.uiLinkLabel1.Name = "uiLinkLabel1";
             this.uiLinkLabel1.Size = new System.Drawing.Size(146, 21);
@@ -238,6 +240,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
+            this.uiLine5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine5.Location = new System.Drawing.Point(30, 290);
@@ -247,15 +250,6 @@ namespace Sunny.UI.Demo
             this.uiLine5.TabIndex = 49;
             this.uiLine5.Text = "UILabel（旋转角度）";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(522, 171);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 21);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "label1";
             // 
             // uiSmoothLabel1
             // 
@@ -277,6 +271,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
+            this.uiLine6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(381, 290);
@@ -295,7 +290,6 @@ namespace Sunny.UI.Demo
             this.Controls.Add(this.uiLine6);
             this.Controls.Add(this.uiSmoothLabel2);
             this.Controls.Add(this.uiSmoothLabel1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.uiLine5);
             this.Controls.Add(this.uiLabel4);
             this.Controls.Add(this.uiLabel3);
@@ -339,7 +333,6 @@ namespace Sunny.UI.Demo
         private UILabel uiLabel3;
         private UILabel uiLabel4;
         private UILine uiLine5;
-        private System.Windows.Forms.Label label1;
         private UISmoothLabel uiSmoothLabel1;
         private UISmoothLabel uiSmoothLabel2;
         private UILine uiLine6;

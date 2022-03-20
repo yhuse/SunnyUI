@@ -88,6 +88,7 @@ namespace Sunny.UI
         ]
         public object Tag { get; set; }
 
+        [DefaultValue(null)]
         public string TagString { get; set; }
 
         /// <summary>

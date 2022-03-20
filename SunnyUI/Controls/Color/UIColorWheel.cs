@@ -295,8 +295,12 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -306,9 +310,8 @@ namespace Sunny.UI
         /// <param name="uiColor"></param>
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            FrameColor = uiColor.RectColor;
-            BackColor = uiColor.PlainColor;
-            Invalidate();
+            FrameColor = uiColor.ColorWheelFrameColor;
+            BackColor = uiColor.ColorWheelBackColor;
         }
 
         /// <summary>

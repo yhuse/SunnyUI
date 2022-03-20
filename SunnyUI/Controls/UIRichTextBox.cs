@@ -278,8 +278,6 @@ namespace Sunny.UI
                 scrollBarColor = uiColor.PrimaryColor;
                 scrollBarBackColor = fillColor;
             }
-
-            Invalidate();
         }
 
         private Color scrollBarColor = Color.FromArgb(80, 160, 255);
@@ -644,7 +642,7 @@ namespace Sunny.UI
             set => edit.AllowDrop = value;
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool AutoWordSelection
         {
             get => edit.AllowDrop;
@@ -839,6 +837,7 @@ namespace Sunny.UI
             set => edit.ZoomFactor = value;
         }
 
+        [DefaultValue(true)]
         public bool WordWrap
         {
             get => edit.WordWrap;

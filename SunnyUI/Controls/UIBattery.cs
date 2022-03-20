@@ -18,6 +18,7 @@
  *
  * 2020-06-04: V2.2.5 增加文件
  * 2021-06-18: V3.0.4 修改可自定义背景色
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -120,7 +121,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     默认电量颜色
+        /// 默认电量颜色
         /// </summary>
         [Description("默认电量颜色")]
         [Category("SunnyUI")]
@@ -132,11 +133,11 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     填充颜色，当值为背景色或透明色或空值则不填充
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色")]
         [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;
@@ -146,7 +147,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.PlainColor;
+            fillColor = uiColor.BatteryFillColor;
         }
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)

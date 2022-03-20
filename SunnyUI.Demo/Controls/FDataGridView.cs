@@ -36,6 +36,10 @@ namespace Sunny.UI.Demo
             uiPagination1.PageSize = 50;
 
             uiDataGridView1.SelectIndexChange += uiDataGridView1_SelectIndexChange;
+
+            uiDataGridView1.ShowGridLine = true;
+            //设置统计绑定的表格
+            uiDataGridViewFooter1.DataGridView = uiDataGridView1;
         }
 
         public override void Init()

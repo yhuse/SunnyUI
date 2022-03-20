@@ -17,6 +17,7 @@
  * 创建日期: 2020-08-29
  *
  * 2020-08-29: V2.2.7 新增水平滚动条
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -37,13 +38,14 @@ namespace Sunny.UI
             ShowRect = false;
             Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
 
-            fillColor = UIColor.LightBlue;
-            foreColor = UIColor.Blue;
-            fillHoverColor = Color.FromArgb(111, 168, 255);
-            fillPressColor = Color.FromArgb(74, 131, 229);
+            fillColor = UIStyles.Blue.ScrollBarFillColor;
+            foreColor = UIStyles.Blue.ScrollBarForeColor;
+            fillHoverColor = UIStyles.Blue.ScrollBarFillHoverColor;
+            fillPressColor = UIStyles.Blue.ScrollBarFillPressColor;
         }
 
         private int maximum = 100;
+        [DefaultValue(100)]
         public int Maximum
         {
             get => maximum;
@@ -54,11 +56,13 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(10)]
         public int LargeChange { get; set; } = 10;
 
         private int thisValue;
         public event EventHandler ValueChanged;
 
+        [DefaultValue(0)]
         public int Value
         {
             get => thisValue;
@@ -71,6 +75,7 @@ namespace Sunny.UI
         }
 
         private int boundsHeight = 10;
+        [DefaultValue(10)]
         public int BoundsHeight
         {
             get => boundsHeight;
@@ -226,11 +231,11 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.PlainColor;
+
+            fillColor = uiColor.ScrollBarFillColor;
             foreColor = uiColor.ScrollBarForeColor;
-            fillHoverColor = uiColor.ButtonFillHoverColor;
-            fillPressColor = uiColor.ButtonFillPressColor;
-            Invalidate();
+            fillHoverColor = uiColor.ScrollBarFillHoverColor;
+            fillPressColor = uiColor.ScrollBarFillPressColor;
         }
 
 
@@ -249,7 +254,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;
@@ -257,15 +262,15 @@ namespace Sunny.UI
         }
 
         [Description("鼠标移上颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "111, 168, 255")]
+        [DefaultValue(typeof(Color), "115, 179, 255")]
         public Color HoverColor
         {
             get => fillHoverColor;
-            set => SetFillHoveColor(value);
+            set => SetFillHoverColor(value);
         }
 
         [Description("鼠标按下颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "74, 131, 229")]
+        [DefaultValue(typeof(Color), "64, 128, 204")]
         public Color PressColor
         {
             get => fillPressColor;

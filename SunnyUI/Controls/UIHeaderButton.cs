@@ -23,6 +23,7 @@
  * 2021-09-21: V3.0.7 增加Disabled颜色
  * 2021-12-07: V3.0.9 更改图片自动刷新
  * 2022-01-02: V3.0.9 增加角标
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -51,19 +52,19 @@ namespace Sunny.UI
             RectSides = ToolStripStatusLabelBorderSides.None;
             Padding = new Padding(0, 8, 0, 3);
 
-            foreHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeHoverColor;
-            forePressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForePressColor;
-            foreSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonForeSelectedColor;
-
-            fillHoverColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillHoverColor;
-            fillPressColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillPressColor;
-            fillSelectedColor = UIStyles.GetStyleColor(UIStyle.Blue).ButtonFillSelectedColor;
-
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+
+            foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
+            forePressColor = UIStyles.Blue.ButtonForePressColor;
+            foreSelectedColor = UIStyles.Blue.ButtonForeSelectedColor;
+
+            fillHoverColor = UIStyles.Blue.ButtonFillHoverColor;
+            fillPressColor = UIStyles.Blue.ButtonFillPressColor;
+            fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
 
             fillDisableColor = fillColor;
             foreDisableColor = foreColor;
-            rectDisableColor = UIStyles.GetStyleColor(UIStyle.Blue).RectDisableColor;
+            rectDisableColor = UIStyles.Blue.RectDisableColor;
         }
 
         private bool showTips = false;
@@ -225,6 +226,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
             fillHoverColor = uiColor.ButtonFillHoverColor;
             foreHoverColor = uiColor.ButtonForeHoverColor;
 
@@ -237,8 +239,6 @@ namespace Sunny.UI
             rectDisableColor = uiColor.RectDisableColor;
             fillDisableColor = fillColor;
             foreDisableColor = foreColor;
-
-            Invalidate();
         }
 
         [Description("不可用颜色"), Category("SunnyUI")]
@@ -287,15 +287,15 @@ namespace Sunny.UI
             set => SetForeDisableColor(value);
         }
 
-        [DefaultValue(typeof(Color), "111, 168, 255"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
         [Description("鼠标移上时填充颜色")]
         public Color FillHoverColor
         {
             get => fillHoverColor;
-            set => SetFillHoveColor(value);
+            set => SetFillHoverColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("鼠标按下时填充颜色")]
         public Color FillPressColor
         {
@@ -308,7 +308,7 @@ namespace Sunny.UI
         public Color ForeHoverColor
         {
             get => foreHoverColor;
-            set => SetForeHoveColor(value);
+            set => SetForeHoverColor(value);
         }
 
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
@@ -319,7 +319,7 @@ namespace Sunny.UI
             set => SetForePressColor(value);
         }
 
-        [DefaultValue(typeof(Color), "74, 131, 229"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("选中时填充颜色")]
         public Color FillSelectedColor
         {

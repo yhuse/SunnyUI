@@ -212,6 +212,7 @@ namespace Sunny.UI
         /// <summary>
         /// 获取输入的IP地址
         /// </summary>
+        [DefaultValue(null)]
         public IPAddress Value
         {
             get => _value;
@@ -231,8 +232,6 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-
-            if (uiColor.IsCustom()) return;
 
             fillColor = uiColor.EditorBackColor;
             foreColor = UIFontColor.Primary;

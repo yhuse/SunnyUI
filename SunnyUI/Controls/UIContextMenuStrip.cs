@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -36,6 +37,9 @@ namespace Sunny.UI
             RenderMode = ToolStripRenderMode.Professional;
             Renderer = new ToolStripProfessionalRenderer(ColorTable);
             Version = UIGlobal.Version;
+
+            ColorTable.SetStyleColor(UIStyles.Blue);
+            BackColor = UIStyles.Blue.ContextMenuColor;
         }
 
         [Browsable(false), DefaultValue(false)]
@@ -75,8 +79,12 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -84,7 +92,6 @@ namespace Sunny.UI
         {
             ColorTable.SetStyleColor(uiColor);
             BackColor = uiColor.ContextMenuColor;
-            Invalidate();
         }
 
         public string Version { get; }
@@ -125,7 +132,7 @@ namespace Sunny.UI
             StyleColor = color;
         }
 
-        public override Color MenuItemSelected => StyleColor.MenuSelectedColor;
+        public override Color MenuItemSelected => StyleColor.ContextMenuSelectedColor;
 
         public override Color MenuItemPressedGradientBegin => StyleColor.ButtonFillPressColor;
 
@@ -133,7 +140,7 @@ namespace Sunny.UI
 
         public override Color MenuItemPressedGradientEnd => StyleColor.ButtonFillPressColor;
 
-        public override Color MenuBorder => StyleColor.RectColor;
+        public override Color MenuBorder => StyleColor.ButtonRectColor;
 
         public override Color MenuItemBorder => StyleColor.PrimaryColor;
 

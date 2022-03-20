@@ -127,6 +127,7 @@ namespace Sunny.UI
 
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
+            //
         }
 
         protected override void OnPaint(PaintEventArgs e)

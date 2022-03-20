@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -67,8 +68,8 @@ namespace Sunny.UI
             ShowText = false;
             ShowRect = false;
 
-            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).AvatarFillColor;
-            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).AvatarForeColor;
+            fillColor = UIStyles.Blue.AvatarFillColor;
+            foreColor = UIStyles.Blue.AvatarForeColor;
         }
 
         private int avatarSize = 60;
@@ -113,9 +114,9 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
             fillColor = uiColor.AvatarFillColor;
             foreColor = uiColor.AvatarForeColor;
-            Invalidate();
         }
 
         private UIIcon icon = UIIcon.Symbol;

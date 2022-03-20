@@ -55,7 +55,6 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
-            base.BackColor = UIColor.LightBlue;
             TopLevel = false;
             if (this.Register()) SetStyle(UIStyles.Style);
 
@@ -68,6 +67,12 @@ namespace Sunny.UI
 
             Version = UIGlobal.Version;
             SetDPIScale();
+
+            BackColor = UIStyles.Blue.PageBackColor;
+            _rectColor = UIStyles.Blue.PageRectColor;
+            ForeColor = UIStyles.Blue.PageForeColor;
+            titleFillColor = UIStyles.Blue.PageTitleFillColor;
+            titleForeColor = UIStyles.Blue.PageTitleForeColor;
         }
 
         [Browsable(false)]
@@ -322,21 +327,6 @@ namespace Sunny.UI
         [DefaultValue(false)]
         public bool NeedReload { get; set; }
 
-        // private void EventLoad()
-        // {
-        //     Type type = this.GetType().BaseType;
-        //     while (type.Name != "Form")
-        //     {
-        //         type = type.BaseType;
-        //     }
-        //
-        //     FieldInfo targetMethod = type.GetField("EVENT_LOAD", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-        //     object obj = (object)targetMethod.GetValue(this);
-        //
-        //     EventHandler handler = (EventHandler)this.Events[obj];
-        //     handler?.Invoke(this, EventArgs.Empty);
-        // }
-
         public virtual void Final()
         {
             Finalize?.Invoke(this, new EventArgs());
@@ -347,8 +337,12 @@ namespace Sunny.UI
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
             this.ResumeLayout();
@@ -358,10 +352,12 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            BackColor = uiColor.PlainColor;
-            RectColor = uiColor.RectColor;
-            ForeColor = UIFontColor.Primary;
-            Invalidate();
+            BackColor = uiColor.PageBackColor;
+            _rectColor = uiColor.PageRectColor;
+            ForeColor = uiColor.PageForeColor;
+            titleFillColor = uiColor.PageTitleFillColor;
+            titleForeColor = uiColor.PageTitleForeColor;
+
         }
 
         protected virtual void AfterSetFillColor(Color color)

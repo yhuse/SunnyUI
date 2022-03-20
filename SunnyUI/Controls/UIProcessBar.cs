@@ -21,6 +21,7 @@
  * 2021-08-07: V3.0.5 增加垂直方向的进度显示
  * 2021-08-14: V3.0.6 修改不显示百分比时，显示数值
  * 2021-10-14: V3.0.8 调整最小高度为3
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -232,14 +233,13 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             fillColor = uiColor.ProcessBarFillColor;
             foreColor = uiColor.ProcessBarForeColor;
-            Invalidate();
         }
 
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "235, 243, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;

@@ -17,6 +17,7 @@
  * 创建日期: 2021-04-11
  *
  * 2021-04-11: V3.0.2 增加文件说明
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System.Collections;
@@ -35,7 +36,7 @@ namespace Sunny.UI
         {
             SetStyleFlags(true, false);
             ShowText = ShowRect = ShowFill = false;
-            foreColor = UIColor.Blue;
+            foreColor = UIStyles.Blue.LedLabelForeColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -179,8 +180,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            foreColor = uiColor.RectColor;
-            Invalidate();
+            foreColor = uiColor.LedLabelForeColor;
         }
     }
 }

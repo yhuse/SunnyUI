@@ -18,6 +18,7 @@
  *
  * 2020-06-29: V2.2.6 新增控件
  * 2021-07-16: V3.0.5 增加属性控制开启滚动
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -40,8 +41,8 @@ namespace Sunny.UI
         public UIScrollingText()
         {
             SetStyleFlags(true, false);
-            fillColor = UIStyles.GetStyleColor(UIStyle.Blue).PlainColor;
-            foreColor = UIStyles.GetStyleColor(UIStyle.Blue).RectColor;
+            fillColor = UIStyles.Blue.ScrollingTextFillColor;
+            foreColor = UIStyles.Blue.ScrollingTextForeColor;
             Reset();
 
             timer = new Timer();
@@ -254,16 +255,15 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            fillColor = uiColor.PlainColor;
-            foreColor = uiColor.RectColor;
-            Invalidate();
+            fillColor = uiColor.ScrollingTextFillColor;
+            foreColor = uiColor.ScrollingTextForeColor;
         }
 
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color FillColor
         {
             get => fillColor;
@@ -274,7 +274,7 @@ namespace Sunny.UI
         /// 字体颜色
         /// </summary>
         [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
         public override Color ForeColor
         {
             get => foreColor;

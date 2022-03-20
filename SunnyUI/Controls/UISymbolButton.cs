@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-07-26: V2.2.6 增加Image属性，增加图片和文字的摆放位置
  * 2022-01-05: V3.0.9 字体图标增加颜色设置
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -76,8 +77,7 @@ namespace Sunny.UI
                 if (symbolColor != value)
                 {
                     symbolColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -93,8 +93,7 @@ namespace Sunny.UI
                 if (symbolHoverColor != value)
                 {
                     symbolHoverColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom(false);
                 }
             }
         }
@@ -110,8 +109,7 @@ namespace Sunny.UI
                 if (symbolPressColor != value)
                 {
                     symbolPressColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom(false);
                 }
             }
         }
@@ -127,8 +125,7 @@ namespace Sunny.UI
                 if (symbolDisableColor != value)
                 {
                     symbolDisableColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -144,20 +141,20 @@ namespace Sunny.UI
                 if (symbolSelectedColor != value)
                 {
                     symbolSelectedColor = value;
-                    _style = UIStyle.Custom;
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
+            base.SetStyleColor(uiColor);
+
             symbolColor = uiColor.ButtonForeColor;
             symbolHoverColor = uiColor.ButtonForeHoverColor;
             symbolPressColor = uiColor.ButtonForePressColor;
-            symbolDisableColor = uiColor.ForeDisableColor;
             symbolSelectedColor = uiColor.ButtonForeSelectedColor;
-            base.SetStyleColor(uiColor);
+            symbolDisableColor = uiColor.ForeDisableColor;
         }
 
         private Image image;

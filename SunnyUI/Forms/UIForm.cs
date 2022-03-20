@@ -29,6 +29,7 @@
  * 2021-08-17: V3.0.8 增加IFrame接口
  * 2022-01-03: V3.0.9 标题栏按钮可以设置颜色
  * 2022-02-09: V3.1.0 增加页面间传值方法SetParamToPage
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -68,6 +69,15 @@ namespace Sunny.UI
             FormBorderStyle = FormBorderStyle.None;
             m_aeroEnabled = false;
             showTitleIcon = false;
+
+            controlBoxForeColor = UIStyles.Blue.FormControlBoxForeColor;
+            controlBoxFillHoverColor = UIStyles.Blue.FormControlBoxFillHoverColor;
+            ControlBoxCloseFillHoverColor = UIStyles.Blue.FormControlBoxCloseFillHoverColor;
+            rectColor = UIStyles.Blue.FormRectColor;
+            foreColor = UIStyles.Blue.FormForeColor;
+            BackColor = UIStyles.Blue.FormBackColor;
+            titleColor = UIStyles.Blue.FormTitleColor;
+            titleForeColor = UIStyles.Blue.FormTitleForeColor;
         }
 
         [Browsable(false)]
@@ -423,16 +433,18 @@ namespace Sunny.UI
             get => titleColor;
             set
             {
-                titleColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (titleColor != value)
+                {
+                    titleColor = value;
+                    SetStyleCustom();
+                }
             }
         }
 
         /// <summary>
         /// 标题颜色
         /// </summary>
-        private Color titleForeColor = Color.White;
+        private Color titleForeColor;
 
         /// <summary>
         /// 标题颜色
@@ -443,9 +455,11 @@ namespace Sunny.UI
             get => titleForeColor;
             set
             {
-                titleForeColor = value;
-                _style = UIStyle.Custom;
-                Invalidate();
+                if (titleForeColor != value)
+                {
+                    titleForeColor = value;
+                    SetStyleCustom();
+                }
             }
         }
 
@@ -540,9 +554,9 @@ namespace Sunny.UI
             }
         }
 
-        protected Color foreColor = UIFontColor.Primary;
+        protected Color foreColor;
 
-        protected Color rectColor = UIColor.Blue;
+        protected Color rectColor;
 
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
@@ -557,9 +571,8 @@ namespace Sunny.UI
                 if (foreColor != value)
                 {
                     foreColor = value;
-                    _style = UIStyle.Custom;
                     AfterSetForeColor(ForeColor);
-                    Invalidate();
+                    SetStyleCustom();
                 }
             }
         }
@@ -577,8 +590,7 @@ namespace Sunny.UI
                 rectColor = value;
                 AfterSetRectColor(value);
                 RectColorChanged?.Invoke(this, EventArgs.Empty);
-                _style = UIStyle.Custom;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -903,12 +915,9 @@ namespace Sunny.UI
                 return;
             }
 
-            //Color showTitleColor = IsDesignMode || IsActive ? rectColor : Color.FromArgb(173, 178, 181);
-            Color showTitleColor = rectColor;
-
             if (ShowTitle)
             {
-                e.Graphics.FillRectangle(showTitleColor, 0, 0, Width, TitleHeight);
+                e.Graphics.FillRectangle(titleColor, 0, 0, Width, TitleHeight);
             }
 
             if (ShowRect)
@@ -944,14 +953,14 @@ namespace Sunny.UI
                         };
                 }
 
-                e.Graphics.DrawLines(showTitleColor, points);
+                e.Graphics.DrawLines(rectColor, points);
 
                 if (!unShowRadius)
                 {
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, 1), new Point(1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
-                    e.Graphics.DrawLine(Color.FromArgb(120, showTitleColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, 1), new Point(1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
+                    e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
                 }
             }
 
@@ -1169,11 +1178,11 @@ namespace Sunny.UI
             }
         }
 
-        private Color controlBoxFillHoverColor = Color.FromArgb(111, 168, 255);
+        private Color controlBoxFillHoverColor;
         /// <summary>
         /// 标题栏颜色
         /// </summary>
-        [Description("标题栏按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "111, 168, 255")]
+        [Description("标题栏按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "115, 179, 255")]
         public Color ControlBoxFillHoverColor
         {
             get => controlBoxFillHoverColor;
@@ -1188,7 +1197,7 @@ namespace Sunny.UI
             }
         }
 
-        private Color controlBoxCloseFillHoverColor = Color.Red;
+        private Color controlBoxCloseFillHoverColor;
         /// <summary>
         /// 标题栏颜色
         /// </summary>
@@ -1210,8 +1219,13 @@ namespace Sunny.UI
         {
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
-            UIBaseStyle uiColor = style.Colors();
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
             UIStyleChanged?.Invoke(this, new EventArgs());
             this.ResumeLayout();
@@ -1221,14 +1235,20 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            controlBoxForeColor = uiColor.ButtonForeColor;
-            controlBoxFillHoverColor = uiColor.ButtonFillHoverColor;
-            rectColor = uiColor.RectColor;
-            foreColor = UIFontColor.Primary;
-            BackColor = uiColor.PlainColor;
-            titleColor = uiColor.TitleColor;
-            titleForeColor = uiColor.TitleForeColor;
-            Invalidate();
+            controlBoxForeColor = UIStyles.Blue.FormControlBoxForeColor;
+            controlBoxFillHoverColor = UIStyles.Blue.FormControlBoxFillHoverColor;
+            ControlBoxCloseFillHoverColor = UIStyles.Blue.FormControlBoxCloseFillHoverColor;
+            rectColor = uiColor.FormRectColor;
+            foreColor = uiColor.FormForeColor;
+            BackColor = uiColor.FormBackColor;
+            titleColor = uiColor.FormTitleColor;
+            titleForeColor = uiColor.FormTitleForeColor;
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         protected override void OnLocationChanged(EventArgs e)

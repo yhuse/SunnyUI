@@ -330,6 +330,7 @@ namespace Sunny.UI
         }
 
         private int buttonWidth = 29;
+        [DefaultValue(29)]
         public int ButtonWidth
         {
             get => buttonWidth;

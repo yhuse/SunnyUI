@@ -27,6 +27,7 @@
  * 2021-12-29: V3.0.9 增加修改文字颜色
  * 2022-02-23: V3.1.1 按键上下移动选择项目时，滚动条跟随
  * 2022-03-08: V3.1.1 修复在选中某一项后，清除选中项需要两次操作
+ * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
 using System;
@@ -400,7 +401,7 @@ namespace Sunny.UI
                 bar.FillColor = Color.White;
             }
 
-            hoverColor = uiColor.TreeViewHoverColor;
+            hoverColor = uiColor.ListItemHoverColor;
             if (listbox != null)
             {
                 listbox.HoverColor = hoverColor;
@@ -479,7 +480,7 @@ namespace Sunny.UI
             set => listbox.ItemSelectBackColor = value;
         }
 
-        [DefaultValue(typeof(Color), "White")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
         [Description("列表项选中字体颜色"), Category("SunnyUI")]
         public Color ItemSelectForeColor
         {
@@ -513,7 +514,7 @@ namespace Sunny.UI
 
         private Color hoverColor = Color.FromArgb(155, 200, 255);
 
-        [DefaultValue(typeof(Color), "155, 200, 255")]
+        [DefaultValue(typeof(Color), "220, 236, 255")]
         [Description("列表项鼠标移上颜色"), Category("SunnyUI")]
         public Color HoverColor
         {
@@ -576,7 +577,7 @@ namespace Sunny.UI
 
         public event EventHandler ValueMemberChanged;
 
-        [DefaultValue(null)]
+        [DefaultValue("")]
         [Description("格式说明符，指示显示值的方式")]
         public string FormatString
         {
@@ -811,8 +812,12 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
         }
 
@@ -820,7 +825,6 @@ namespace Sunny.UI
         {
             ItemSelectBackColor = uiColor.ListItemSelectBackColor;
             ItemSelectForeColor = uiColor.ListItemSelectForeColor;
-            Invalidate();
         }
 
         [Category("SunnyUI"), Description("The border color used to paint the control.")]
