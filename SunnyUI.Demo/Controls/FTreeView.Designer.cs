@@ -81,7 +81,6 @@ namespace Sunny.UI.Demo
             // 
             // uiTreeView1
             // 
-            this.uiTreeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.uiTreeView1.CheckBoxes = true;
             this.uiTreeView1.FillColor = System.Drawing.Color.White;
             this.uiTreeView1.Font = new System.Drawing.Font("微软雅黑", 12F);

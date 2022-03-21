@@ -109,6 +109,7 @@ namespace Sunny.UI
         //ContextMenu
         public virtual Color ContextMenuColor { get; protected set; }
         public virtual Color ContextMenuSelectedColor { get; protected set; }
+        public virtual Color ContextMenuForeColor { get; protected set; }
 
         //ScrollBar
         public virtual Color ScrollBarFillColor { get; protected set; }
@@ -180,10 +181,19 @@ namespace Sunny.UI
         public virtual Color ListItemSelectBackColor { get; protected set; }
         public virtual Color ListItemSelectForeColor { get; protected set; }
         public virtual Color ListItemHoverColor { get; protected set; }
+        public virtual Color ListBarFillColor { get; protected set; }
+        public virtual Color ListBarForeColor { get; protected set; }
+        public virtual Color ListBackColor { get; protected set; }
+        public virtual Color ListForeColor { get; protected set; }
 
         //TreeView
         public virtual Color TreeViewSelectedColor { get; protected set; }
         public virtual Color TreeViewHoverColor { get; protected set; }
+        public virtual Color TreeViewBarFillColor { get; protected set; }
+        public virtual Color TreeViewBarForeColor { get; protected set; }
+        public virtual Color TreeViewForeColor { get; protected set; }
+        public virtual Color TreeViewBackColor { get; protected set; }
+        public virtual Color TreeViewLineColor { get; protected set; }
 
         //TextBox
         public virtual Color EditorBackColor { get; protected set; }
@@ -196,6 +206,19 @@ namespace Sunny.UI
         public virtual Color GridLineColor { get; protected set; }
         public virtual Color GridTitleColor { get; protected set; }
         public virtual Color GridTitleForeColor { get; protected set; }
+        public virtual Color GridForeColor { get; protected set; }
+        public virtual Color GridBarFillColor { get; protected set; }
+        public virtual Color GridBarForeColor { get; protected set; }
+
+        //DataGridViewFooter
+        public virtual Color DataGridViewFooterForeColor { get; protected set; }
+
+        //Pagination
+        public virtual Color PaginationForeColor { get; protected set; }
+
+        //FlowLayoutPanel
+        public virtual Color FlowLayoutPanelBarFillColor { get; protected set; }
+        public virtual Color FlowLayoutPanelBarForeColor { get; protected set; }
 
         protected virtual void Init(Color color, UIStyle style, Color foreColor)
         {
@@ -216,11 +239,14 @@ namespace Sunny.UI
 
             GridSelectedColor = colors[3];
             GridSelectedForeColor = UIFontColor.Primary;
-            GridStripeEvenColor = foreColor;
+            GridStripeEvenColor = Color.White;
             GridStripeOddColor = PlainColor;
             GridLineColor = PrimaryColor;
             GridTitleColor = PrimaryColor;
             GridTitleForeColor = foreColor;
+            GridForeColor = UIFontColor.Primary;
+            GridBarFillColor = PlainColor;
+            GridBarForeColor = PrimaryColor;
 
             FormTitleColor = PrimaryColor;
             FormTitleForeColor = foreColor;
@@ -293,6 +319,7 @@ namespace Sunny.UI
 
             ContextMenuColor = PlainColor;
             ContextMenuSelectedColor = PrimaryColor;
+            ContextMenuForeColor = UIFontColor.Primary;
 
             ScrollBarFillColor = PlainColor;
             ScrollBarForeColor = PrimaryColor;
@@ -330,13 +357,29 @@ namespace Sunny.UI
             ListItemSelectBackColor = PrimaryColor;
             ListItemSelectForeColor = PlainColor;
             ListItemHoverColor = colors[3];
+            ListBarFillColor = PlainColor;
+            ListBarForeColor = PrimaryColor;
+            ListBackColor = Color.White;
+            ListForeColor = UIFontColor.Primary;
 
             TreeViewSelectedColor = PrimaryColor;
             TreeViewHoverColor = colors[3];
+            TreeViewBarFillColor = PlainColor;
+            TreeViewBarForeColor = PrimaryColor;
+            TreeViewForeColor = UIFontColor.Primary;
+            TreeViewBackColor = Color.White;
+            TreeViewLineColor = UIFontColor.Primary;
 
             EditorBackColor = UIColor.White;
 
             NavMenuMenuSelectedColor = PrimaryColor;
+
+            DataGridViewFooterForeColor = UIFontColor.Primary;
+
+            PaginationForeColor = PrimaryColor;
+
+            FlowLayoutPanelBarFillColor = PlainColor;
+            FlowLayoutPanelBarForeColor = PrimaryColor;
         }
 
         public virtual void LoadFromFile()
@@ -429,7 +472,100 @@ namespace Sunny.UI
     {
         public UIDarkBlueStyle()
         {
-            base.Init(UIColor.DarkBlue, UIStyle.DarkBlue, Color.White);
+            base.Init(UIColor.Blue, UIStyle.DarkBlue, Color.White);
+
+            PrimaryColor = UIColor.DarkBlue;
+            RectColor = Color.FromArgb(18, 58, 92);
+            PlainColor = UIColor.DarkBlue;
+            Color ForeColor = Color.White;
+
+            Color[] colors = Color.White.GradientColors(PrimaryColor, 16);
+            Color[] colors1 = PrimaryColor.GradientColors(Color.Black, 16);
+
+            FormTitleColor = colors1[2];
+            FormTitleForeColor = ForeColor;
+            FormForeColor = ForeColor;
+            FormRectColor = RectColor;
+            FormControlBoxFillHoverColor = colors[12];
+            FormControlBoxCloseFillHoverColor = UIColor.Red;
+            FormBackColor = PrimaryColor;
+            FormControlBoxForeColor = ForeColor;
+
+            PageBackColor = PlainColor;
+            PageRectColor = PrimaryColor;
+            PageForeColor = ForeColor;
+            PageTitleFillColor = Color.FromArgb(76, 76, 76);
+            PageTitleForeColor = ForeColor;
+
+            AvatarFillColor = Color.Silver;
+            AvatarForeColor = PrimaryColor;
+
+            LabelForeColor = ForeColor;
+
+            LineForeColor = ForeColor;
+            LineFillColor = PlainColor;
+            LineRectColor = ForeColor;
+
+            CheckBoxForeColor = ForeColor;
+
+            ContextMenuColor = Color.FromArgb(18, 58, 92);
+            ContextMenuSelectedColor = Color.FromArgb(80, 160, 255);
+            ContextMenuForeColor = ForeColor;
+
+            PanelForeColor = ForeColor;
+            PanelRectColor = RectColor;
+            PanelFillColor = PlainColor;
+            PanelFillColor2 = PlainColor;
+            PanelTitleColor = FormTitleColor;
+            PanelTitleForeColor = ForeColor;
+
+            TrackBarFillColor = PlainColor;
+            TrackBarForeColor = UIColor.Blue;
+            TrackBarRectColor = UIColor.Blue;
+            TrackDisableColor = Color.Silver;
+
+            BreadcrumbUnSelectedColor = Color.Silver;
+
+            ImageButtonForeColor = ForeColor;
+
+            BatteryFillColor = PrimaryColor;
+
+            DataGridViewFooterForeColor = ForeColor;
+
+            GridSelectedColor = colors[13];
+            GridSelectedForeColor = ForeColor;
+            GridStripeEvenColor = PlainColor;
+            GridStripeOddColor = PlainColor;
+            GridLineColor = RectColor;
+            GridTitleColor = Color.FromArgb(16, 45, 92);
+            GridTitleForeColor = ForeColor;
+            GridForeColor = ForeColor;
+            GridBarFillColor = PlainColor;
+            GridBarForeColor = ForeColor;
+
+            TreeViewSelectedColor = PrimaryColor;
+            TreeViewHoverColor = colors[13];
+            TreeViewBarFillColor = PlainColor;
+            TreeViewBarForeColor = ForeColor;
+            TreeViewForeColor = ForeColor;
+            TreeViewBackColor = PlainColor;
+            TreeViewLineColor = ForeColor;
+
+            PaginationForeColor = ForeColor;
+
+            FlowLayoutPanelBarFillColor = PlainColor;
+            FlowLayoutPanelBarForeColor = ForeColor;
+
+            ListItemSelectBackColor = UIColor.Blue;
+            ListItemSelectForeColor = ForeColor;
+            ListItemHoverColor = colors[13];
+            ListBarFillColor = PlainColor;
+            ListBarForeColor = ForeColor;
+            ListBackColor = PlainColor;
+            ListForeColor = ForeColor;
+
+            ScrollBarFillColor = PlainColor;
+            ScrollBarForeColor = ForeColor;
         }
     }
 

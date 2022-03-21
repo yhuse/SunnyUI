@@ -56,6 +56,7 @@ namespace Sunny.UI
             VBar.ForeColor = UIColor.Blue;
             VBar.StyleCustomMode = true;
             VBar.ValueChanged += VBarValueChanged;
+            VBar.ShowLeftLine = true;
 
             HBar.Parent = this;
             HBar.Visible = false;
@@ -88,11 +89,6 @@ namespace Sunny.UI
 
             //标题行行高，与OnColumnAdded事件配合
             ColumnHeadersHeight = 32;
-
-            //数据行行高
-            // RowTemplate.Height = 29;
-            // RowTemplate.MinimumHeight = 29;
-            // AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
             //设置奇偶数行颜色
             StripeEvenColor = UIColor.White;
@@ -351,17 +347,6 @@ namespace Sunny.UI
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            /*if (VBar.Visible)
-            {
-                if (e.Delta > 10)
-                {
-                    VBar.SetValue(VBar.Value - VBar.Maximum / 20);
-                }
-                else if (e.Delta < -10)
-                {
-                    VBar.SetValue(VBar.Value + VBar.Maximum / 20);
-                }
-            }*/
 
             if (VBar.Visible && ScrollMode == UIDataGridViewScrollMode.Page)
             {
@@ -524,6 +509,8 @@ namespace Sunny.UI
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
+            BackgroundColor = uiColor.PlainColor;
+
             //列头部颜色
             ColumnHeadersDefaultCellStyle.BackColor = uiColor.GridTitleColor;
             ColumnHeadersDefaultCellStyle.ForeColor = uiColor.GridTitleForeColor;
@@ -531,31 +518,32 @@ namespace Sunny.UI
 
             //行头部颜色
             RowHeadersDefaultCellStyle.BackColor = uiColor.PlainColor;
-            RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
+            RowHeadersDefaultCellStyle.ForeColor = uiColor.GridForeColor;
             RowHeadersDefaultCellStyle.SelectionBackColor = uiColor.RectColor;
-            RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            RowHeadersDefaultCellStyle.SelectionForeColor = uiColor.GridForeColor;
 
             //数据单元格选中颜色
             DefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;
             DefaultCellStyle.SelectionForeColor = uiColor.GridSelectedForeColor;
             DefaultCellStyle.BackColor = uiColor.GridStripeEvenColor;
-            DefaultCellStyle.ForeColor = UIFontColor.Primary;
+            DefaultCellStyle.ForeColor = uiColor.GridForeColor;
 
             //数据行选中颜色            
             RowsDefaultCellStyle.SelectionBackColor = uiColor.GridSelectedColor;
             RowsDefaultCellStyle.SelectionForeColor = uiColor.GridSelectedForeColor;
-            RowsDefaultCellStyle.ForeColor = UIFontColor.Primary;
+            RowsDefaultCellStyle.ForeColor = uiColor.GridForeColor;
 
             GridColor = uiColor.GridLineColor;
             RectColor = uiColor.RectColor;
-            RowsDefaultCellStyle.BackColor = UIColor.White;
-            AlternatingRowsDefaultCellStyle.BackColor = UIColor.LightBlue;
+            RowsDefaultCellStyle.BackColor = uiColor.GridStripeEvenColor;
+            AlternatingRowsDefaultCellStyle.BackColor = uiColor.GridStripeOddColor;
 
             StripeEvenColor = uiColor.GridStripeEvenColor;
             StripeOddColor = uiColor.GridStripeOddColor;
 
-            HBar.FillColor = VBar.FillColor = uiColor.GridStripeOddColor;
-            HBar.ForeColor = VBar.ForeColor = uiColor.PrimaryColor;
+            HBar.FillColor = VBar.FillColor = uiColor.GridBarFillColor;
+            HBar.ForeColor = VBar.ForeColor = uiColor.GridBarForeColor;
+            VBar.RectColor = uiColor.RectColor;
         }
 
         /// <summary>

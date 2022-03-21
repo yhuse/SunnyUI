@@ -85,6 +85,8 @@ namespace Sunny.UI.Demo
             option.AddComboCheckedListBox("checkedList", "选择", checkedItems, "CCC");
 
             UIEditForm frm = new UIEditForm(option);
+            frm.ReSetDPIScale();
+            frm.Style = UIStyles.Style;
             frm.CheckedData += Frm_CheckedData;
             frm.ShowDialog();
 

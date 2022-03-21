@@ -395,10 +395,10 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (bar != null)
             {
-                bar.ForeColor = uiColor.PrimaryColor;
+                bar.ForeColor = uiColor.ListBarForeColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
-                bar.FillColor = Color.White;
+                bar.FillColor = uiColor.ListBarFillColor;
             }
 
             hoverColor = uiColor.ListItemHoverColor;
@@ -406,10 +406,11 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
-                listbox.BackColor = Color.White;
+                listbox.BackColor = uiColor.ListBackColor;
+                listbox.ForeColor = uiColor.ListForeColor;
             }
 
-            fillColor = Color.White;
+            fillColor = uiColor.ListBackColor;
         }
 
         protected override void AfterSetFillColor(Color color)
@@ -418,11 +419,6 @@ namespace Sunny.UI
             if (listbox != null)
             {
                 listbox.BackColor = color;
-            }
-
-            if (bar != null)
-            {
-                bar.FillColor = color;
             }
         }
 

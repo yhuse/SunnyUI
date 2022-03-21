@@ -54,21 +54,14 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox6
             // 
-            this.uiTextBox6.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox6.ButtonWidth = 100;
             this.uiTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox6.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox6.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox6.Location = new System.Drawing.Point(117, 167);
             this.uiTextBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox6.Maximum = 2147483647D;
-            this.uiTextBox6.Minimum = -2147483648D;
             this.uiTextBox6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox6.Name = "uiTextBox6";
             this.uiTextBox6.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox6.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox6.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox6.Symbol = 61461;
             this.uiTextBox6.TabIndex = 2;
@@ -77,22 +70,15 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox5
             // 
-            this.uiTextBox5.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox5.ButtonWidth = 100;
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox5.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox5.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox5.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox5.Icon = global::Sunny.UI.Demo.Properties.Resources.Home_32x32;
             this.uiTextBox5.Location = new System.Drawing.Point(117, 128);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox5.Maximum = 2147483647D;
-            this.uiTextBox5.Minimum = -2147483648D;
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox5.Name = "uiTextBox5";
             this.uiTextBox5.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox5.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox5.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox5.TabIndex = 1;
             this.uiTextBox5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,22 +86,15 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox4
             // 
-            this.uiTextBox4.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox4.ButtonWidth = 100;
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox4.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox4.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox4.Location = new System.Drawing.Point(30, 325);
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox4.Maximum = 2147483647D;
-            this.uiTextBox4.Minimum = -2147483648D;
             this.uiTextBox4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox4.Multiline = true;
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox4.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox4.ShowScrollBar = true;
             this.uiTextBox4.Size = new System.Drawing.Size(308, 226);
             this.uiTextBox4.TabIndex = 5;
@@ -128,7 +107,6 @@ namespace Sunny.UI.Demo
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.Location = new System.Drawing.Point(388, 286);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -140,7 +118,6 @@ namespace Sunny.UI.Demo
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(30, 286);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -151,10 +128,7 @@ namespace Sunny.UI.Demo
             // 
             // uiRichTextBox1
             // 
-            this.uiRichTextBox1.AutoWordSelection = true;
-            this.uiRichTextBox1.BackColor = System.Drawing.Color.White;
             this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
-            this.uiRichTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiRichTextBox1.Location = new System.Drawing.Point(388, 325);
             this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -167,12 +141,10 @@ namespace Sunny.UI.Demo
     ": https://github.com/yhuse/SunnyUI\nSunnyUI.Net 系列文章目录\n欢迎交流，QQ群： 56829229 (SunnyU" +
     "I技术交流群)，请给源码项目点个Star吧！！！";
             this.uiRichTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiRichTextBox1.WordWrap = true;
             // 
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine5.Location = new System.Drawing.Point(388, 132);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -184,7 +156,6 @@ namespace Sunny.UI.Demo
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.Location = new System.Drawing.Point(388, 55);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -196,7 +167,6 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -207,8 +177,6 @@ namespace Sunny.UI.Demo
             // 
             // uiDoubleUpDown1
             // 
-            this.uiDoubleUpDown1.ButtonWidth = 29;
-            this.uiDoubleUpDown1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiDoubleUpDown1.Location = new System.Drawing.Point(388, 167);
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -233,22 +201,15 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox3
             // 
-            this.uiTextBox3.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox3.ButtonWidth = 100;
             this.uiTextBox3.CanEmpty = true;
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox3.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTextBox3.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox3.Location = new System.Drawing.Point(117, 245);
             this.uiTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox3.Maximum = 2147483647D;
-            this.uiTextBox3.Minimum = -2147483648D;
             this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox3.Name = "uiTextBox3";
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox3.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox3.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox3.TabIndex = 4;
             this.uiTextBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -268,15 +229,11 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox2
             // 
-            this.uiTextBox2.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox2.ButtonWidth = 100;
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.DoubleValue = 5D;
-            this.uiTextBox2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox2.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTextBox2.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox2.IntValue = 5;
             this.uiTextBox2.Location = new System.Drawing.Point(117, 206);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -285,7 +242,6 @@ namespace Sunny.UI.Demo
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.uiTextBox2.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 3;
             this.uiTextBox2.Text = "5";
@@ -306,8 +262,6 @@ namespace Sunny.UI.Demo
             // 
             // uiIntegerUpDown1
             // 
-            this.uiIntegerUpDown1.ButtonWidth = 29;
-            this.uiIntegerUpDown1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiIntegerUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiIntegerUpDown1.Location = new System.Drawing.Point(388, 89);
             this.uiIntegerUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -329,19 +283,12 @@ namespace Sunny.UI.Demo
             // 
             // uiTextBox1
             // 
-            this.uiTextBox1.ButtonSymbolOffset = new System.Drawing.Point(0, 1);
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTextBox1.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.uiTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox1.ForeReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(103)))));
             this.uiTextBox1.Location = new System.Drawing.Point(117, 89);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox1.Maximum = 2147483647D;
-            this.uiTextBox1.Minimum = -2147483648D;
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox1.Name = "uiTextBox1";
-            this.uiTextBox1.RectReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(178)))), ((int)(((byte)(181)))));
             this.uiTextBox1.ShowButton = true;
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 52;
@@ -353,7 +300,6 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(388, 211);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -364,7 +310,6 @@ namespace Sunny.UI.Demo
             // 
             // uiipTextBox1
             // 
-            this.uiipTextBox1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiipTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiipTextBox1.Location = new System.Drawing.Point(388, 245);
             this.uiipTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -374,7 +319,6 @@ namespace Sunny.UI.Demo
             this.uiipTextBox1.Size = new System.Drawing.Size(150, 29);
             this.uiipTextBox1.TabIndex = 55;
             this.uiipTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiipTextBox1.Value = null;
             // 
             // FTextBox
             // 

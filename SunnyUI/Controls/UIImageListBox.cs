@@ -41,10 +41,8 @@ namespace Sunny.UI
 
         public UIImageListBox()
         {
-            InitializeComponent();
             SetStyleFlags(true, false);
             ShowText = false;
-
             Padding = new Padding(2);
 
             bar.ValueChanged += Bar_ValueChanged;
@@ -69,11 +67,11 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
         }
 
-
         public Control ExToolTipControl()
         {
             return listbox;
         }
+
         public int IndexFromPoint(Point p)
         {
             return listbox.IndexFromPoint(p);
@@ -90,11 +88,6 @@ namespace Sunny.UI
             if (listbox != null)
             {
                 listbox.BackColor = color;
-            }
-
-            if (bar != null)
-            {
-                bar.FillColor = color;
             }
         }
 
@@ -207,10 +200,10 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (bar != null)
             {
-                bar.ForeColor = uiColor.PrimaryColor;
+                bar.ForeColor = uiColor.ListBarForeColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
-                bar.FillColor = Color.White;
+                bar.FillColor = uiColor.ListBarFillColor;
             }
 
             hoverColor = uiColor.ListItemHoverColor;
@@ -218,10 +211,11 @@ namespace Sunny.UI
             {
                 listbox.HoverColor = hoverColor;
                 listbox.SetStyleColor(uiColor);
-                listbox.BackColor = Color.White;
+                listbox.BackColor = uiColor.ListBackColor;
+                listbox.ForeColor = uiColor.ListForeColor;
             }
 
-            fillColor = Color.White;
+            fillColor = uiColor.ListBackColor;
         }
 
         private int LastCount;
@@ -244,11 +238,6 @@ namespace Sunny.UI
         {
             base.OnRadiusChanged(value);
             Padding = new Padding(Math.Max(2, value / 2));
-        }
-
-        protected override void OnPaintFill(Graphics g, GraphicsPath path)
-        {
-            g.Clear(Color.White);
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]

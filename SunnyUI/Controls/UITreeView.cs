@@ -86,7 +86,6 @@ namespace Sunny.UI
             set => view.TreeNodeStateSync = value;
         }
 
-
         private void View_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
             AfterLabelEdit?.Invoke(this, e);
@@ -163,20 +162,20 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (view != null)
             {
-                view.SelectedForeColor = UIColor.White;
-                view.FillColor = view.BackColor = fillColor = UIColor.White;
+                view.SelectedForeColor = uiColor.TreeViewForeColor;
+                view.FillColor = view.BackColor = fillColor = uiColor.TreeViewBackColor;
 
                 rectColor = uiColor.RectColor;
                 view.SelectedColor = uiColor.TreeViewSelectedColor;
-                view.ForeColor = foreColor = UIFontColor.Primary;
+                view.ForeColor = foreColor = uiColor.TreeViewForeColor;
                 view.HoverColor = uiColor.TreeViewHoverColor;
+                LineColor = uiColor.TreeViewLineColor;
             }
 
             if (Bar != null)
             {
-                Bar.FillColor = UIColor.White;
-
-                Bar.ForeColor = uiColor.PrimaryColor;
+                Bar.FillColor = uiColor.TreeViewBarFillColor;
+                Bar.ForeColor = uiColor.TreeViewBarForeColor;
                 Bar.HoverColor = uiColor.ButtonFillHoverColor;
                 Bar.PressColor = uiColor.ButtonFillPressColor;
             }

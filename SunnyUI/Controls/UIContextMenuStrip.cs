@@ -92,6 +92,7 @@ namespace Sunny.UI
         {
             ColorTable.SetStyleColor(uiColor);
             BackColor = uiColor.ContextMenuColor;
+            ForeColor = uiColor.ContextMenuForeColor;
         }
 
         public string Version { get; }

@@ -40,8 +40,9 @@ namespace Sunny.UI
             RadiusSides = UICornerRadiusSides.None;
 
             Font = UIFontColor.Font();
-            foreColor = UIFontColor.Primary;
-            fillColor = UIColor.LightBlue;
+            foreColor = UIStyles.Blue.DataGridViewFooterForeColor;
+            fillColor = UIStyles.Blue.PlainColor;
+            rectColor = UIStyles.Blue.RectColor;
         }
 
         private UIDataGridView dgv;
@@ -95,11 +96,6 @@ namespace Sunny.UI
         {
             if (dgv != null && dgv.ColumnCount > 0 && dgv.RowCount > 0)
             {
-                if (dgv.ShowGridLine)
-                {
-                    //g.DrawLine(dgv.GridColor, 0, 0, 0, Height);
-                }
-
                 foreach (DataGridViewColumn column in dgv.Columns)
                 {
                     Rectangle rect = dgv.GetCellDisplayRectangle(column.Index, 0, false);
@@ -110,8 +106,6 @@ namespace Sunny.UI
                     {
                         g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Left - minleft, Height);
                         g.DrawLine(dgv.GridColor, rect.Right - minleft, 0, rect.Right - minleft, Height);
-                        //g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Right - minleft, 0);
-                        //g.DrawLine(dgv.GridColor, rect.Left - minleft, Height - 1, rect.Right - minleft, Height - 1);
                     }
 
                     string str = this[column.Name];
@@ -164,8 +158,6 @@ namespace Sunny.UI
 
                             break;
                     }
-
-
                 }
             }
         }
@@ -173,10 +165,9 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            foreColor = UIFontColor.Primary;
+            foreColor = uiColor.DataGridViewFooterForeColor;
             fillColor = uiColor.PlainColor;
-
-            Invalidate();
+            rectColor = uiColor.RectColor;
         }
 
         /// <summary>

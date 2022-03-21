@@ -918,6 +918,7 @@ namespace Sunny.UI
             if (ShowTitle)
             {
                 e.Graphics.FillRectangle(titleColor, 0, 0, Width, TitleHeight);
+                e.Graphics.DrawLine(RectColor, 0, titleHeight, Width, titleHeight);
             }
 
             if (ShowRect)
@@ -1235,9 +1236,9 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
-            controlBoxForeColor = UIStyles.Blue.FormControlBoxForeColor;
-            controlBoxFillHoverColor = UIStyles.Blue.FormControlBoxFillHoverColor;
-            ControlBoxCloseFillHoverColor = UIStyles.Blue.FormControlBoxCloseFillHoverColor;
+            controlBoxForeColor = uiColor.FormControlBoxForeColor;
+            controlBoxFillHoverColor = uiColor.FormControlBoxFillHoverColor;
+            ControlBoxCloseFillHoverColor = uiColor.FormControlBoxCloseFillHoverColor;
             rectColor = uiColor.FormRectColor;
             foreColor = uiColor.FormForeColor;
             BackColor = uiColor.FormBackColor;

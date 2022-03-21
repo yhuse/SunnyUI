@@ -173,6 +173,21 @@ namespace Sunny.UI
             DrawUpDownArrow(e.Graphics, up_state, GetUpRect(), true);
             DrawUpDownArrow(e.Graphics, down_state, GetDownRect(), false);
             DrawValueBar(e.Graphics, value_state);
+            if (ShowLeftLine)
+            {
+                e.Graphics.DrawLine(RectColor, 0, 0, 0, Height);
+            }
+        }
+
+        private bool showLeftLine;
+        [DefaultValue(false)]
+        public bool ShowLeftLine
+        {
+            get => showLeftLine; set
+            {
+                showLeftLine = value;
+                Invalidate();
+            }
         }
 
         private void DrawValueBar(Graphics g, DrawItemState state)
@@ -450,6 +465,17 @@ namespace Sunny.UI
         {
             get => foreColor;
             set => SetForeColor(value);
+        }
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color RectColor
+        {
+            get => rectColor;
+            set => SetRectColor(value);
         }
 
         /// <summary>

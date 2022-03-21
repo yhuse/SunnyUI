@@ -135,6 +135,8 @@ namespace Sunny.UI
 
             Color color = Enabled ? TitleColor : UIDisableColor.Fill;
             g.FillPath(color, path);
+            if (Height > TitleHeight)
+                g.DrawLine(RectColor, 0, TitleHeight, Width, TitleHeight);
 
             color = Enabled ? TitleForeColor : UIFontColor.Regular;
             SizeF sf = g.MeasureString(Text, Font);

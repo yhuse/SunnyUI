@@ -901,12 +901,12 @@ namespace Sunny.UI
             {
                 button.SetStyleColor(uiColor);
                 button.FillColor = uiColor.PlainColor;
-                button.SymbolColor = button.ForeColor = uiColor.RectColor;
+                button.SymbolColor = button.ForeColor = uiColor.PaginationForeColor;
                 button.FillSelectedColor = uiColor.ButtonFillColor;
             }
 
             btnSelect.FillColor = uiColor.PlainColor;
-            btnSelect.ForeColor = uiColor.RectColor;
+            btnSelect.ForeColor = uiColor.PaginationForeColor;
             btnSelect.FillSelectedColor = uiColor.ButtonFillColor;
         }
 

@@ -560,8 +560,12 @@ namespace Sunny.UI
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 
-            UIBaseStyle uiColor = UIStyles.GetStyleColor(style);
-            if (!uiColor.IsCustom()) SetStyleColor(uiColor);
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
             _style = style;
             this.ResumeLayout();
         }
@@ -580,7 +584,6 @@ namespace Sunny.UI
             fillReadOnlyColor = uiColor.FillDisableColor;
             rectReadOnlyColor = uiColor.RectDisableColor;
             foreReadOnlyColor = uiColor.ForeDisableColor;
-            Invalidate();
         }
 
         /// <summary>

@@ -251,30 +251,19 @@ namespace Sunny.UI
         {
         }
 
-
-
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
             Panel.BackColor = uiColor.PlainColor;
+
+            HBar.FillColor = VBar.FillColor = uiColor.FlowLayoutPanelBarFillColor;
+            scrollBarColor = HBar.ForeColor = VBar.ForeColor = uiColor.FlowLayoutPanelBarForeColor;
         }
 
         protected override void AfterSetFillColor(Color color)
         {
             base.AfterSetFillColor(color);
             Panel.BackColor = color;
-            VBar.FillColor = color;
-            HBar.FillColor = color;
-        }
-
-        protected override void AfterSetForeColor(Color color)
-        {
-            base.AfterSetForeColor(color);
-
-            if (!StyleCustomMode)
-            {
-                scrollBarColor = color;
-            }
         }
 
         private Color scrollBarColor = Color.FromArgb(80, 160, 255);
