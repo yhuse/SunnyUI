@@ -19,6 +19,18 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Translate();
+            dataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
+            edtFilter.TextChanged += EdtFilter_TextChanged;
+        }
+
+        private void EdtFilter_TextChanged(object sender, System.EventArgs e)
+        {
+            btnSearch_Click(null, null);
+        }
+
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnOK.PerformClick();
         }
 
         public override void SetDPIScale()
