@@ -105,28 +105,37 @@ namespace Sunny.UI
         Gray = 5,
 
         /// <summary>
-        /// 白
+        /// 紫
         /// </summary>
-        [DisplayText("White")]
-        White = 6,
+        [DisplayText("Purple")]
+        Purple = 6,
+
+        /// <summary>
+        /// LayuiGreen
+        /// </summary>
+        LayuiGreen = 7,
+
+        /// <summary>
+        /// LayuiRed
+        /// </summary>
+        LayuiRed = 8,
+
+        /// <summary>
+        /// LayuiOrange
+        /// </summary>
+        LayuiOrange = 9,
 
         /// <summary>
         /// 深蓝
         /// </summary>
         [DisplayText("DarkBlue")]
-        DarkBlue = 7,
+        DarkBlue = 101,
 
         /// <summary>
         /// 黑
         /// </summary>
         [DisplayText("Black")]
-        Black = 8,
-
-        /// <summary>
-        /// 紫
-        /// </summary>
-        [DisplayText("Purple")]
-        Purple = 9,
+        Black = 102,
 
         /// <summary>
         /// 多彩的
@@ -149,7 +158,6 @@ namespace Sunny.UI
             {
                 if (style.Value() >= UIStyle.Blue.Value() && style.Value() < UIStyle.Colorful.Value())
                 {
-                    //if (style == UIStyle.DarkBlue) continue;
                     styles.Add(style);
                 }
             }
@@ -161,11 +169,6 @@ namespace Sunny.UI
         /// 自定义
         /// </summary>
         private static readonly UIBaseStyle Custom = new UICustomStyle();
-
-        /// <summary>
-        /// 白
-        /// </summary>
-        private static readonly UIBaseStyle White = new UIWhiteStyle();
 
         /// <summary>
         /// 蓝
@@ -237,9 +240,14 @@ namespace Sunny.UI
             AddStyle(Green);
             AddStyle(Red);
             AddStyle(DarkBlue);
+
+            AddStyle(new UIBaseStyle().Init(UIColor.LayuiGreen, UIStyle.LayuiGreen, Color.White, UIFontColor.Primary));
+            AddStyle(new UIBaseStyle().Init(UIColor.LayuiRed, UIStyle.LayuiRed, Color.White, UIFontColor.Primary));
+            AddStyle(new UIBaseStyle().Init(UIColor.LayuiOrange, UIStyle.LayuiOrange, Color.White, UIFontColor.Primary));
+
             AddStyle(Black);
-            AddStyle(White);
             AddStyle(Purple);
+
             AddStyle(Colorful);
 
             MenuColors.TryAdd(UIMenuStyle.Custom, new UIMenuCustomColor());
@@ -456,6 +464,36 @@ namespace Sunny.UI
         /// 橙
         /// </summary>
         public static readonly Color Orange = Color.FromArgb(220, 155, 40);
+
+        /// <summary>
+        /// LayuiGreen
+        /// </summary>
+        public static readonly Color LayuiGreen = Color.FromArgb(0, 150, 136);
+
+        /// <summary>
+        /// LayuiRed
+        /// </summary>
+        public static readonly Color LayuiRed = Color.FromArgb(255, 87, 34);
+
+        /// <summary>
+        /// LayuiOrange
+        /// </summary>
+        public static readonly Color LayuiOrange = Color.FromArgb(255, 184, 0);
+
+        /// <summary>
+        /// LayuiCyan
+        /// </summary>
+        public static readonly Color LayuiCyan = Color.FromArgb(46, 57, 79);
+
+        /// <summary>
+        /// LayuiCyan
+        /// </summary>
+        public static readonly Color LayuiBlue = Color.FromArgb(69, 149, 255);
+
+        /// <summary>
+        /// LayuiCyan
+        /// </summary>
+        public static readonly Color LayuiBlack = Color.FromArgb(52, 55, 66);
 
         /// <summary>
         /// 深蓝
