@@ -253,7 +253,7 @@ namespace Sunny.UI
 
         protected void SetStyleCustom(bool needRefresh = true)
         {
-            _styleCustomMode = true;
+            _style = UIStyle.Custom;
             if (needRefresh) Invalidate();
         }
 
@@ -263,7 +263,7 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public void SetStyle(UIStyle style)
         {
-            if (!StyleCustomMode && !_style.IsCustom())
+            if (!style.IsCustom())
             {
                 SetStyleColor(style.Colors());
                 Invalidate();
@@ -272,28 +272,12 @@ namespace Sunny.UI
             _style = style;
         }
 
-        private bool _styleCustomMode;
-
         /// <summary>
         /// 自定义主题风格
         /// </summary>
         [DefaultValue(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode
-        {
-            get => _styleCustomMode;
-            set
-            {
-                if (_styleCustomMode != value)
-                {
-                    _styleCustomMode = value;
-                    if (!_styleCustomMode)
-                    {
-                        SetStyle(_style);
-                    }
-                }
-            }
-        }
+        public bool StyleCustomMode { get; set; }
 
         /// <summary>
         /// 设置主题样式颜色
