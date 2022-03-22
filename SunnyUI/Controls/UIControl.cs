@@ -93,16 +93,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 自定义主题风格
-        /// </summary>
-        [DefaultValue(false)]
-        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// 是否在设计期
         /// </summary>
         protected bool IsDesignMode
@@ -249,19 +239,60 @@ namespace Sunny.UI
             get;
         }
 
+        protected UIStyle _style = UIStyle.Blue;
+
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _styleCustomMode = true;
+            if (needRefresh) Invalidate();
+        }
+
         /// <summary>
         /// 设置主题样式
         /// </summary>
         /// <param name="style">主题样式</param>
         public void SetStyle(UIStyle style)
         {
-            if (!style.IsCustom())
+            if (!StyleCustomMode && !_style.IsCustom())
             {
                 SetStyleColor(style.Colors());
                 Invalidate();
             }
 
             _style = style;
+        }
+
+        private bool _styleCustomMode;
+
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
+        public bool StyleCustomMode
+        {
+            get => _styleCustomMode;
+            set
+            {
+                if (_styleCustomMode != value)
+                {
+                    _styleCustomMode = value;
+                    if (!_styleCustomMode)
+                    {
+                        SetStyle(_style);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -294,18 +325,6 @@ namespace Sunny.UI
             fillSelectedColor = fillColor;
             foreSelectedColor = foreColor;
             rectSelectedColor = rectColor;
-        }
-
-        protected UIStyle _style = UIStyle.Blue;
-
-        /// <summary>
-        /// 主题样式
-        /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
-        public UIStyle Style
-        {
-            get => _style;
-            set => SetStyle(value);
         }
 
         /// <summary>
@@ -940,12 +959,6 @@ namespace Sunny.UI
                 foreColor = value;
                 SetStyleCustom();
             }
-        }
-
-        protected void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         /// <summary>引发 <see cref="E:System.Windows.Forms.Control.GotFocus" /> 事件。</summary>

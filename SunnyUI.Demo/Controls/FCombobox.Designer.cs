@@ -510,7 +510,7 @@ namespace Sunny.UI.Demo
             this.uiComboDataGridView1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.uiComboDataGridView1.FillColor = System.Drawing.Color.White;
             this.uiComboDataGridView1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiComboDataGridView1.FilterColomnName = null;
+            this.uiComboDataGridView1.FilterColumnName = null;
             this.uiComboDataGridView1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiComboDataGridView1.Location = new System.Drawing.Point(386, 292);
             this.uiComboDataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

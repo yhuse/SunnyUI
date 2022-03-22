@@ -45,7 +45,7 @@ namespace Sunny.UI.Demo
 
             uiComboDataGridView1.ShowFilter = true;
             uiComboDataGridView1.DataGridView.DataSource = dt;
-            uiComboDataGridView1.FilterColomnName = "Column1"; //不设置则全部列过滤
+            uiComboDataGridView1.FilterColumnName = "Column1"; //不设置则全部列过滤
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)

@@ -755,7 +755,6 @@ namespace Sunny.UI.Demo
             this.uiButton13.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton13.Size = new System.Drawing.Size(100, 35);
             this.uiButton13.Style = Sunny.UI.UIStyle.Red;
-            this.uiButton13.StyleCustomMode = true;
             this.uiButton13.TabIndex = 76;
             this.uiButton13.Text = "Red";
             this.uiButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -878,7 +877,6 @@ namespace Sunny.UI.Demo
             this.uiButton4.ShowFocusLine = true;
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
             this.uiButton4.Style = Sunny.UI.UIStyle.Red;
-            this.uiButton4.StyleCustomMode = true;
             this.uiButton4.TabIndex = 64;
             this.uiButton4.Text = "Red";
             this.uiButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

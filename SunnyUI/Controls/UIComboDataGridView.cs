@@ -49,7 +49,7 @@ namespace Sunny.UI
 
         private void UIComboDataGridView_ButtonClick(object sender, EventArgs e)
         {
-            item.FilterColomnName = FilterColomnName;
+            item.FilterColumnName = FilterColumnName;
             item.ShowFilter = ShowFilter;
             ItemForm.Size = ItemSize;
             item.ShowButtons = true;
@@ -104,6 +104,6 @@ namespace Sunny.UI
         }
 
         [DefaultValue(null)]
-        public string FilterColomnName { get; set; }
+        public string FilterColumnName { get; set; }
     }
 }

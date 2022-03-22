@@ -47,7 +47,7 @@ namespace Sunny.UI
             set => panel.Visible = value;
         }
 
-        public string FilterColomnName { get; set; }
+        public string FilterColumnName { get; set; }
 
         public UIDataGridView DataGridView => dataGridView;
 
@@ -299,9 +299,9 @@ namespace Sunny.UI
             }
             else
             {
-                if (FilterColomnName.IsValid())
+                if (FilterColumnName.IsValid())
                 {
-                    string str = FilterColomnName + " like '%" + edtFilter.Text + "%'";
+                    string str = FilterColumnName + " like '%" + edtFilter.Text + "%'";
                     filter = str;
                 }
                 else
