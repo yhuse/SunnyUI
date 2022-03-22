@@ -642,6 +642,11 @@ namespace Sunny.UI
         /// 其他颜色
         /// </summary>
         public static readonly Color Plain = Color.Silver;
+
+        /// <summary>
+        /// 白色
+        /// </summary>
+        public static readonly Color White = Color.FromArgb(248, 248, 248);
     }
 
     /// <summary>

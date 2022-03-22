@@ -220,13 +220,16 @@ namespace Sunny.UI
         public virtual Color FlowLayoutPanelBarFillColor { get; protected set; }
         public virtual Color FlowLayoutPanelBarForeColor { get; protected set; }
 
-        protected virtual void Init(Color color, UIStyle style, Color foreColor)
+        protected Color ForeColor { get; set; }
+
+        protected virtual void Init(Color color, UIStyle style, Color reverseColor, Color foreColor)
         {
             Name = style;
 
             FillDisableColor = Color.FromArgb(244, 244, 244);
             RectDisableColor = Color.FromArgb(173, 178, 181);
             ForeDisableColor = Color.FromArgb(109, 109, 103);
+            ForeColor = foreColor;
 
             PrimaryColor = color;
             RectColor = color;
@@ -238,31 +241,31 @@ namespace Sunny.UI
             RegularColor = colors[10];
 
             GridSelectedColor = colors[3];
-            GridSelectedForeColor = UIFontColor.Primary;
-            GridStripeEvenColor = Color.White;
+            GridSelectedForeColor = foreColor;
+            GridStripeEvenColor = colors[0];
             GridStripeOddColor = PlainColor;
-            GridLineColor = PrimaryColor;
+            GridLineColor = colors[13];
             GridTitleColor = PrimaryColor;
-            GridTitleForeColor = foreColor;
-            GridForeColor = UIFontColor.Primary;
+            GridTitleForeColor = reverseColor;
+            GridForeColor = foreColor;
             GridBarFillColor = PlainColor;
             GridBarForeColor = PrimaryColor;
 
             FormTitleColor = PrimaryColor;
-            FormTitleForeColor = foreColor;
-            FormForeColor = UIFontColor.Primary;
+            FormTitleForeColor = reverseColor;
+            FormForeColor = foreColor;
             FormRectColor = PrimaryColor;
             FormControlBoxFillHoverColor = colors[12];
             FormControlBoxCloseFillHoverColor = UIColor.Red;
             FormBackColor = PlainColor;
             FormControlBoxForeColor = Color.White;
 
-            PanelForeColor = UIFontColor.Primary;
+            PanelForeColor = foreColor;
             PanelRectColor = PrimaryColor;
             PanelFillColor = PlainColor;
             PanelFillColor2 = PlainColor;
             PanelTitleColor = PrimaryColor;
-            PanelTitleForeColor = foreColor;
+            PanelTitleForeColor = reverseColor;
 
             ButtonFillColor = PrimaryColor;
             ButtonFillHoverColor = colors[12];
@@ -270,10 +273,10 @@ namespace Sunny.UI
             ButtonFillSelectedColor = colors1[3];
             ButtonFillColor2 = ButtonFillColor;
 
-            ButtonForeColor = foreColor;
-            ButtonForeHoverColor = foreColor;
-            ButtonForePressColor = foreColor;
-            ButtonForeSelectedColor = foreColor;
+            ButtonForeColor = reverseColor;
+            ButtonForeHoverColor = reverseColor;
+            ButtonForePressColor = reverseColor;
+            ButtonForeSelectedColor = reverseColor;
 
             ButtonRectColor = PrimaryColor;
             ButtonRectHoverColor = colors[12];
@@ -287,15 +290,15 @@ namespace Sunny.UI
             AvatarFillColor = Color.Silver;
             AvatarForeColor = PrimaryColor;
 
-            ImageButtonForeColor = UIFontColor.Primary;
+            ImageButtonForeColor = foreColor;
 
             CheckBoxColor = PrimaryColor;
-            CheckBoxForeColor = UIFontColor.Primary;
+            CheckBoxForeColor = foreColor;
 
-            LogoForeColor = UIFontColor.Primary;
+            LogoForeColor = foreColor;
             LogoFillColor = PrimaryColor;
 
-            LineForeColor = UIFontColor.Primary;
+            LineForeColor = foreColor;
             LineFillColor = PlainColor;
             LineRectColor = PrimaryColor;
 
@@ -309,17 +312,17 @@ namespace Sunny.UI
             SwitchFillColor = Color.White;
             SwitchRectDisableColor = RectDisableColor;
 
-            LabelForeColor = UIFontColor.Primary;
+            LabelForeColor = foreColor;
 
             LabelRotateFrameColor = ButtonRectColor;
-            LabelRotateForeColor = UIFontColor.Primary;
+            LabelRotateForeColor = foreColor;
 
             ColorWheelFrameColor = ButtonRectColor;
             ColorWheelBackColor = PlainColor;
 
             ContextMenuColor = PlainColor;
             ContextMenuSelectedColor = PrimaryColor;
-            ContextMenuForeColor = UIFontColor.Primary;
+            ContextMenuForeColor = foreColor;
 
             ScrollBarFillColor = PlainColor;
             ScrollBarForeColor = PrimaryColor;
@@ -341,7 +344,7 @@ namespace Sunny.UI
 
             PageBackColor = PlainColor;
             PageRectColor = PrimaryColor;
-            PageForeColor = UIFontColor.Primary;
+            PageForeColor = foreColor;
             PageTitleFillColor = Color.FromArgb(76, 76, 76);
             PageTitleForeColor = Color.White;
 
@@ -352,7 +355,7 @@ namespace Sunny.UI
             TabControlTabSelectedColor = PrimaryColor;
             TabControlBackColor = PlainColor;
 
-            DropDownControlColor = UIFontColor.Primary;
+            DropDownControlColor = foreColor;
 
             ListItemSelectBackColor = PrimaryColor;
             ListItemSelectForeColor = PlainColor;
@@ -360,21 +363,21 @@ namespace Sunny.UI
             ListBarFillColor = PlainColor;
             ListBarForeColor = PrimaryColor;
             ListBackColor = Color.White;
-            ListForeColor = UIFontColor.Primary;
+            ListForeColor = foreColor;
 
             TreeViewSelectedColor = PrimaryColor;
             TreeViewHoverColor = colors[3];
             TreeViewBarFillColor = PlainColor;
             TreeViewBarForeColor = PrimaryColor;
-            TreeViewForeColor = UIFontColor.Primary;
+            TreeViewForeColor = foreColor;
             TreeViewBackColor = Color.White;
-            TreeViewLineColor = UIFontColor.Primary;
+            TreeViewLineColor = foreColor;
 
             EditorBackColor = UIColor.White;
 
             NavMenuMenuSelectedColor = PrimaryColor;
 
-            DataGridViewFooterForeColor = UIFontColor.Primary;
+            DataGridViewFooterForeColor = foreColor;
 
             PaginationForeColor = PrimaryColor;
 
@@ -398,7 +401,7 @@ namespace Sunny.UI
     {
         public UIPurpleStyle()
         {
-            base.Init(UIColor.Purple, UIStyle.Purple, Color.White);
+            base.Init(UIColor.Purple, UIStyle.Purple, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -406,12 +409,12 @@ namespace Sunny.UI
     {
         public UIColorfulStyle()
         {
-            base.Init(Color.FromArgb(0, 190, 172), UIStyle.Colorful, Color.White);
+            base.Init(Color.FromArgb(0, 190, 172), UIStyle.Colorful, Color.White, UIFontColor.Primary);
         }
 
         public void Init(Color styleColor, Color foreColor)
         {
-            Init(styleColor, UIStyle.Colorful, foreColor);
+            Init(styleColor, UIStyle.Colorful, foreColor, UIFontColor.Primary);
         }
     }
 
@@ -424,7 +427,7 @@ namespace Sunny.UI
     {
         public UIBlueStyle()
         {
-            base.Init(UIColor.Blue, UIStyle.Blue, Color.White);
+            base.Init(UIColor.Blue, UIStyle.Blue, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -432,7 +435,7 @@ namespace Sunny.UI
     {
         public UIGreenStyle()
         {
-            base.Init(UIColor.Green, UIStyle.Green, Color.White);
+            base.Init(UIColor.Green, UIStyle.Green, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -440,7 +443,7 @@ namespace Sunny.UI
     {
         public UIRedStyle()
         {
-            base.Init(UIColor.Red, UIStyle.Red, Color.White);
+            base.Init(UIColor.Red, UIStyle.Red, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -448,7 +451,7 @@ namespace Sunny.UI
     {
         public UIOrangeStyle()
         {
-            base.Init(UIColor.Orange, UIStyle.Orange, Color.White);
+            base.Init(UIColor.Orange, UIStyle.Orange, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -456,7 +459,7 @@ namespace Sunny.UI
     {
         public UIGrayStyle()
         {
-            base.Init(UIColor.Gray, UIStyle.Gray, Color.White);
+            base.Init(UIColor.Gray, UIStyle.Gray, Color.White, UIFontColor.Primary);
         }
     }
 
@@ -464,7 +467,7 @@ namespace Sunny.UI
     {
         public UIWhiteStyle()
         {
-            base.Init(UIColor.White, UIStyle.White, Color.Black);
+            base.Init(UIColor.White, UIStyle.White, Color.Black, UIFontColor.Primary);
         }
     }
 
@@ -472,7 +475,7 @@ namespace Sunny.UI
     {
         public UIDarkBlueStyle()
         {
-            base.Init(UIColor.Blue, UIStyle.DarkBlue, Color.White);
+            base.Init(UIColor.Blue, UIStyle.DarkBlue, Color.White, UIFontColor.White);
 
             PrimaryColor = UIColor.DarkBlue;
             RectColor = Color.FromArgb(18, 58, 92);
@@ -566,6 +569,11 @@ namespace Sunny.UI
 
             ScrollBarFillColor = PlainColor;
             ScrollBarForeColor = ForeColor;
+
+            ScrollingTextFillColor = PlainColor;
+            ScrollingTextForeColor = ForeColor;
+
+            LogoForeColor = UIFontColor.Primary;
         }
     }
 
@@ -573,7 +581,8 @@ namespace Sunny.UI
     {
         public UIBlackStyle()
         {
-            base.Init(UIColor.Black, UIStyle.Black, Color.White);
+            base.Init(UIColor.Black, UIStyle.Black, Color.White, UIFontColor.Primary);
+            ContextMenuForeColor = Color.FromArgb(80, 80, 80);
         }
     }
 }
