@@ -70,3 +70,7 @@ SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织�
 
   - 参考Element，包括7种常用框架风格，只需几行简单的代码即可创建多页面程序，其支撑组件包括UIForm，UIPage，UIFrame，集合常用控件库即可快速开发WinForm应用程序。
 ![多页面框架](https://images.gitee.com/uploads/images/2020/0627/210832_a1a766ac_416720.png "21.png")
+
+#### 项目说明
+- 个人学习交流免费，商业应用需要授权。个人承接外包项目、个人开发商业项目等，公司内部使用、开发项目等均属于商业应用范畴。联系QQ：**17612584** 咨询授权事宜。      
+- 禁止使用SunnyUI控件库开发或运营赌博、色情、贷款、反动等一切违法应用，或使用从事其他非法目的违法犯罪行为。因此产生的法律责任与SunnyUI无关。     
