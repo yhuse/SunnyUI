@@ -577,9 +577,9 @@ namespace Sunny.UI
         {
             base.Init(UIColor.Blue, UIStyle.Black, Color.White, UIFontColor.Primary);
 
-            PrimaryColor = UIColor.Black;
+            PrimaryColor = Color.FromArgb(24, 24, 24);
             RectColor = Color.FromArgb(18, 58, 92);
-            PlainColor = UIColor.Black;
+            PlainColor = Color.FromArgb(24, 24, 24);
             Color ForeColor = Color.White;
 
             Color[] colors = Color.White.GradientColors(PrimaryColor, 16);

@@ -269,7 +269,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton24.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton24.Name = "uiSymbolButton24";
             this.uiSymbolButton24.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
-            this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.uiSymbolButton24.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.uiSymbolButton24.Size = new System.Drawing.Size(46, 35);
             this.uiSymbolButton24.Symbol = 61473;
@@ -841,6 +841,7 @@ namespace Sunny.UI.Demo
             this.uiButton17.Name = "uiButton17";
             this.uiButton17.Radius = 35;
             this.uiButton17.Size = new System.Drawing.Size(100, 35);
+            this.uiButton17.StyleCustomMode = true;
             this.uiButton17.TabIndex = 72;
             this.uiButton17.Text = "Blue";
             this.uiButton17.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -964,6 +965,7 @@ namespace Sunny.UI.Demo
             this.uiButton2.ShowFocusLine = true;
             this.uiButton2.ShowTips = true;
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 60;
             this.uiButton2.Text = "Blue";
             this.uiButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -972,29 +974,14 @@ namespace Sunny.UI.Demo
             // uiButton1
             // 
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton1.FillColor = System.Drawing.Color.White;
-            this.uiButton1.FillColor2 = System.Drawing.Color.White;
-            this.uiButton1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.uiButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.uiButton1.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton1.ForeColor = System.Drawing.Color.Black;
-            this.uiButton1.ForeHoverColor = System.Drawing.Color.Black;
-            this.uiButton1.ForePressColor = System.Drawing.Color.Black;
-            this.uiButton1.ForeSelectedColor = System.Drawing.Color.Black;
             this.uiButton1.Location = new System.Drawing.Point(30, 85);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
-            this.uiButton1.RectColor = System.Drawing.Color.White;
-            this.uiButton1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.uiButton1.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.uiButton1.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.uiButton1.ShowFocusLine = true;
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
-            this.uiButton1.Style = Sunny.UI.UIStyle.Gray;
-            this.uiButton1.StyleCustomMode = true;
             this.uiButton1.TabIndex = 59;
-            this.uiButton1.Text = "White";
+            this.uiButton1.Text = "System";
             this.uiButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton1.TipsText = "1";
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
