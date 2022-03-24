@@ -80,6 +80,8 @@ namespace Sunny.UI
                 TipsTexts[tabPage] = tipsText;
             else
                 TipsTexts.TryAdd(tabPage, tipsText);
+
+            Invalidate();
         }
 
         private string GetTipsText(TabPage tabPage)

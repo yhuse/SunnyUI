@@ -25,6 +25,7 @@
  * 2021-12-13: V3.0.9 选中项可设置背景色渐变
  * 2022-01-02: V3.0.9 滚动条可设置颜色
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-03-24: V3.1.1 修复TipsText显示位置
 ******************************************************************************/
 
 using System;
@@ -734,6 +735,7 @@ namespace Sunny.UI
                     SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
                     float tipsLeft = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - sfMax - sfMax;
+                    if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
                     if (MenuHelper[e.Node] != null)

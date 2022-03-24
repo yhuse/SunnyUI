@@ -38,7 +38,7 @@ namespace Sunny.UI.Demo
             Aside.CreateChildNode(parent, AddPage(new FOther(), ++pageIndex));
             //示例设置某个节点的小红点提示
             Aside.ShowTips = true;
-            Aside.SetNodeTipsText(parent.Nodes[0], "6", Color.Red, Color.White);
+            Aside.SetNodeTipsText(Aside.Nodes[0], "6", Color.Red, Color.White);
             Aside.SetNodeTipsText(parent.Nodes[1], " ", Color.Lime, Color.White);
 
             pageIndex = 2000;
