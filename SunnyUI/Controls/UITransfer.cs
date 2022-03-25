@@ -231,8 +231,6 @@ namespace Sunny.UI
 
             l1.BackColor = fillColor;
             l2.BackColor = fillColor;
-
-            Invalidate();
         }
 
         /// <summary>

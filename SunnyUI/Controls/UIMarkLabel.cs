@@ -94,7 +94,6 @@ namespace Sunny.UI
             Bottom
         }
 
-
         private Color markColor;
 
         [Description("标签颜色"), Category("SunnyUI")]
@@ -113,7 +112,6 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             markColor = uiColor.MarkLabelForeColor;
-            Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)

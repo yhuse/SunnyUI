@@ -357,7 +357,6 @@ namespace Sunny.UI
             ForeColor = uiColor.PageForeColor;
             titleFillColor = uiColor.PageTitleFillColor;
             titleForeColor = uiColor.PageTitleForeColor;
-
         }
 
         protected virtual void AfterSetFillColor(Color color)

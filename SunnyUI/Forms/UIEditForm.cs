@@ -43,12 +43,6 @@ namespace Sunny.UI
 
         private readonly UIEditOption Option;
 
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-
-        }
-
         private void InitEditor()
         {
             if (Option == null || Option.Infos.Count == 0) return;
