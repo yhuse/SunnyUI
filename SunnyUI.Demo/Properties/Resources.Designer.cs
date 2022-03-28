@@ -271,15 +271,6 @@ namespace Sunny.UI.Demo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 20220212 的本地化字符串。
-        /// </summary>
-        internal static string BuildDate {
-            get {
-                return ResourceManager.GetString("BuildDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap ChartDarkStyle {

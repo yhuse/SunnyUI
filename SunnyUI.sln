@@ -6,11 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SunnyUI", "SunnyUI\SunnyUI.csproj", "{AB1CB247-E20B-4CBE-B269-570ADDD96C53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunnyUI.Demo", "SunnyUI.Demo\SunnyUI.Demo.csproj", "{6AE19B87-C2AA-4C56-BC26-1C343F30FF58}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AB1CB247-E20B-4CBE-B269-570ADDD96C53} = {AB1CB247-E20B-4CBE-B269-570ADDD96C53}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SunnyUI.Net5.Demo", "SunnyUI.Net5.Demo\SunnyUI.Net5.Demo.csproj", "{9DC83AA6-73F5-4EEB-9D63-C1C26260840C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +21,6 @@ Global
 		{6AE19B87-C2AA-4C56-BC26-1C343F30FF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AE19B87-C2AA-4C56-BC26-1C343F30FF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AE19B87-C2AA-4C56-BC26-1C343F30FF58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DC83AA6-73F5-4EEB-9D63-C1C26260840C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DC83AA6-73F5-4EEB-9D63-C1C26260840C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DC83AA6-73F5-4EEB-9D63-C1C26260840C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DC83AA6-73F5-4EEB-9D63-C1C26260840C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

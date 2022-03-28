@@ -86,7 +86,7 @@ namespace Sunny.UI.Demo
             //选中第一个节点
             Aside.SelectPage(1002);
 
-            Text = Version + " Build " + Properties.Resources.BuildDate;
+            Text = Version;
             RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
 
             //根据页面类型获取页面
