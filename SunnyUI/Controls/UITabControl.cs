@@ -223,6 +223,10 @@ namespace Sunny.UI
 
         public void AddPage(Guid guid, UITabControlMenu page) => Helper.AddPage(guid, page);
 
+        public T GetPage<T>() where T : UIPage => Helper.GetPage<T>();
+
+        public List<T> GetPages<T>() where T : UIPage => Helper.GetPages<T>();
+
         public string Version
         {
             get;

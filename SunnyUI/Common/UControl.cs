@@ -36,10 +36,11 @@ namespace Sunny.UI
     /// </summary>
     public static class ControlEx
     {
-        public static void ReStart(this Timer timer)
+        public static Timer ReStart(this Timer timer)
         {
             timer.Stop();
             timer.Start();
+            return timer;
         }
 
         public static Rectangle ScreenRectangle(this Control ctrl)
@@ -61,6 +62,27 @@ namespace Sunny.UI
             }
 
             return ctrl as Form;
+        }
+
+        public static Control SettingToCenter(this Control ctrl)
+        {
+            return ctrl.SettingToXCenter().SettingToYCenter();
+        }
+
+        public static Control SettingToXCenter(this Control ctrl)
+        {
+            if (ctrl != null && ctrl.Parent != null)
+                ctrl.Left = (ctrl.Parent.Width - ctrl.Width) / 2;
+
+            return ctrl;
+        }
+
+        public static Control SettingToYCenter(this Control ctrl)
+        {
+            if (ctrl != null && ctrl.Parent != null)
+                ctrl.Top = (ctrl.Parent.Height - ctrl.Height) / 2;
+
+            return ctrl;
         }
 
         public static Form GetParentForm(this Control ctrl)
@@ -124,15 +146,17 @@ namespace Sunny.UI
             return pt;
         }
 
-        public static void ShowContextMenuStrip(this Control ctrl, ContextMenuStrip menu, Point offset)
+        public static ContextMenuStrip ShowContextMenuStrip(this Control ctrl, ContextMenuStrip menu, Point offset)
         {
             //设置显示的位置为鼠标所在的位置
             menu.Show(ctrl, offset);
+            return menu;
         }
 
-        public static void ShowContextMenuStrip(this Control ctrl, ContextMenuStrip menu, int offsetX, int offsetY)
+        public static ContextMenuStrip ShowContextMenuStrip(this Control ctrl, ContextMenuStrip menu, int offsetX, int offsetY)
         {
             menu.Show(ctrl, offsetX, offsetY);
+            return menu;
         }
 
         //https://www.codeproject.com/Tips/1264882/Extension-Methods-for-Multiple-Control-Tags

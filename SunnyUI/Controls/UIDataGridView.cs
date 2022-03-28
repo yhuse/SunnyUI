@@ -783,5 +783,10 @@ namespace Sunny.UI
             column.SortMode = sortMode;
             return column;
         }
+
+        public static bool IsDBNull(this DataGridViewCell cell)
+        {
+            return cell.Value is DBNull;
+        }
     }
 }

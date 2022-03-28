@@ -88,6 +88,14 @@ namespace Sunny.UI.Demo
 
             Text = Version + " Build " + Properties.Resources.BuildDate;
             RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
+
+            //根据页面类型获取页面
+            FButton page = GetPage<FButton>();
+            page?.Text.WriteConsole();
+
+            //根据页面索引获取页面
+            UIPage page1 = GetPage(1002);
+            page1?.Text.WriteConsole();
         }
 
         /// <summary>

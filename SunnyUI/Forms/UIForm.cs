@@ -30,6 +30,7 @@
  * 2022-01-03: V3.0.9 标题栏按钮可以设置颜色
  * 2022-02-09: V3.1.0 增加页面间传值方法SetParamToPage
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-03-28: V3.1.1 增加了查找页面的方法
 ******************************************************************************/
 
 using System;
@@ -1978,57 +1979,44 @@ namespace Sunny.UI
 
         public UIPage AddPage(UIPage page)
         {
+            SetDefaultTabControl();
             page.Frame = this;
             MainTabControl?.AddPage(page);
             return page;
         }
 
-        public virtual void SelectPage(int pageIndex)
+        private UIForm SetDefaultTabControl()
         {
-            MainTabControl?.SelectPage(pageIndex);
+            if (MainTabControl == null)
+            {
+                List<UITabControl> ctrls = this.GetControls<UITabControl>();
+                if (ctrls.Count == 1) MainTabControl = ctrls[0];
+            }
+
+            return this;
         }
 
-        public virtual void SelectPage(Guid guid)
-        {
-            MainTabControl?.SelectPage(guid);
-        }
+        public virtual void SelectPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.SelectPage(pageIndex);
 
-        public bool RemovePage(int pageIndex)
-        {
-            return MainTabControl?.RemovePage(pageIndex) ?? false;
-        }
+        public virtual void SelectPage(Guid guid) => SetDefaultTabControl().MainTabControl?.SelectPage(guid);
 
-        public bool RemovePage(Guid guid)
-        {
-            return MainTabControl?.RemovePage(guid) ?? false;
-        }
+        public bool RemovePage(int pageIndex) => MainTabControl?.RemovePage(pageIndex) ?? false;
 
-        public virtual void FeedbackFormPage(int fromPageIndex, params object[] objects)
-        {
-        }
+        public bool RemovePage(Guid guid) => MainTabControl?.RemovePage(guid) ?? false;
 
-        public UIPage GetPage(int pageIndex)
-        {
-            return MainTabControl?.GetPage(pageIndex);
-        }
+        public virtual void FeedbackFormPage(int fromPageIndex, params object[] objects) { }
 
-        public UIPage GetPage(Guid guid)
-        {
-            return MainTabControl?.GetPage(guid);
-        }
+        public UIPage GetPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.GetPage(pageIndex);
 
-        public bool ExistPage(int pageIndex)
-        {
-            return GetPage(pageIndex) != null;
-        }
+        public UIPage GetPage(Guid guid) => SetDefaultTabControl().MainTabControl?.GetPage(guid);
 
-        public bool ExistPage(Guid guid)
-        {
-            return GetPage(guid) != null;
-        }
+        public bool ExistPage(int pageIndex) => GetPage(pageIndex) != null;
+
+        public bool ExistPage(Guid guid) => GetPage(guid) != null;
 
         public bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects)
         {
+            SetDefaultTabControl();
             UIPage page = GetPage(toPageIndex);
             if (page == null) return false;
             return page.SetParam(fromPageIndex, objects);
@@ -2036,10 +2024,15 @@ namespace Sunny.UI
 
         public bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects)
         {
+            SetDefaultTabControl();
             UIPage page = GetPage(toPageGuid);
             if (page == null) return false;
             return page.SetParam(fromPageGuid, objects);
         }
+
+        public T GetPage<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPage<T>();
+
+        public List<T> GetPages<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPages<T>();
 
         #endregion IFrame实现
     }

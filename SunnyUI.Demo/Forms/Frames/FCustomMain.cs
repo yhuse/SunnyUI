@@ -8,7 +8,8 @@
 
             //新建一个窗体，改继承Form为UIForm
             //窗体上只要放一个UITabControl，并关联到UIForm，这样多页面框架就已经打好了，其余的可以自由发挥
-            MainTabControl = uiTabControl1;
+            //窗体上如果只有一个UITabControl，也会自动关联，超过一个需要手动关联
+            //MainTabControl = uiTabControl1;
 
             //有三个UIPage，分别为：
             //FPage1，其属性PageIndex为1001
@@ -17,7 +18,7 @@
 
             //设置FTitlePage1为主页面，不能被关闭
             var mainPage = new FPage1();
-            MainTabControl.MainPage = mainPage.Text = "主页";
+            uiTabControl1.MainPage = mainPage.Text = "主页";
             AddPage(mainPage);
         }
 

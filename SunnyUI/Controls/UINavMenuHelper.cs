@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -377,6 +378,32 @@ namespace Sunny.UI
             }
 
             return null;
+        }
+
+        public T GetPage<T>() where T : UIPage
+        {
+            List<T> result = GetPages<T>();
+            return result.Count > 0 ? result[0] : null;
+        }
+
+        public List<T> GetPages<T>() where T : UIPage
+        {
+            List<T> result = new List<T>();
+            foreach (var item in PageItems)
+            {
+                if (item.Key != null)
+                {
+                    var tabPage = item.Key;
+                    var pages = tabPage.GetControls<UIPage>();
+                    for (int i = 0; i < pages.Count; i++)
+                    {
+                        if (pages[i] is T pg)
+                            result.Add(pg);
+                    }
+                }
+            }
+
+            return result;
         }
 
         public UIPage GetPage(Guid guid)
