@@ -1,5 +1,40 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-03\-28 V3.1.2
+**此版本改动较大，请关注更新日志**  
+\- UIComboboxEx: 删除，其源码见：[https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Controls/UIComboboxEx.cs](https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Controls/UIComboboxEx.cs)    
+\- UITitlePage: 删除，其源码见：[https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Frames/UITitlePage.cs](https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Frames/UITitlePage.cs)    
+\- UIStyle: 删除内置主题：White、Office2010Blue、Office2010Silver、Office2010Black、LightBlue、LightGreen、LightOrange、LightRed、LightGray、LightPurple    
+\+ UISytle: 增加内置主题：LayuiGreen、LayuiRed、LayuiOrange     
+\* UIStyle: 调整内置主题配色：DarkBlue、Black    
+\* UIStyle: 重构主题配色代码    
+\* UIForm: 增加了查找页面的方法    
+\* UINavMenu: 修复TipsText显示位置    
+\* UIComboDataGridView: 增加自动过滤、单元格双击选中    
+\* UIComboDataGridView: 修改拼写错误，FilterColomnName改为FilterColumnName    
+\* UILineChart: 默认图线平滑关闭    
+\* UIDataGridView: 更新DPI缩放对控件的适配    
+\* UISplitContainer: 更新按钮刷新    
+\* UIForm: 修改TitleHeight后窗体仍然保持可拖拽调节大小    
+\* UITextBox: 增加滚动条的颜色设置    
+\* UIRichTextBox: 增加滚动条的颜色设置    
+\* UIForm: 增加DPI强制缩放的函数ReSetDPIScale    
+\* UIPanel: 修复Radius设置不能超过35的问题    
+\* UIControl: 修复Radius设置不能超过35的问题    
+\* UIColorPicker: 修复选中颜色不显示    
+\* UIBarChart: 增加X轴文字倾斜    
+\* UIListBox: 修复在选中某一项后，清除选中项需要两次操作    
+\* UIDataGridView: 更新单选时选中值SelectedIndex值    
+\* UIButton: 增加了AutoSize属性    
+\* UIComboTreeView: 节点默认不自动展开    
+\* UIRichTextBox: 增加了一些原生的属性和事件    
+\* UIListBox: 按键上下移动选择项目时，滚动条跟随    
+\* UIEditForm: 继承后可修改IsOK    
+\* UIDoubleUpDown: 可以设置按钮大小和颜色    
+\* UIIntegerUpDown: 可以设置按钮大小和颜色    
+\* UITextBox: 增加了只读的颜色设置    
+\* UIControl: 基类增加只读颜色设置    
+
 #### 2022\-02\-12 V3.1.1    
 \+ UIIPTextBox: 增加IP地址输入框    
 \+ UISmoothLabel: 平滑文字带边框的标签    
