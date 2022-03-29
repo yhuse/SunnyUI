@@ -555,6 +555,8 @@ namespace Sunny.UI
             b2.SetStyleColor(uiColor);
             b3.SetStyleColor(uiColor);
             b4.SetStyleColor(uiColor);
+            fillColor = Color.White;
+            foreColor = uiColor.DropDownPanelForeColor;
 
             b1.FillColor = b2.FillColor = b3.FillColor = b4.FillColor = TopPanel.FillColor;
             RectColor = uiColor.RectColor;

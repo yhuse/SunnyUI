@@ -605,7 +605,7 @@ namespace Sunny.UI
             e.Graphics.FillRectangle(c, r);
         }
 
-        public override void SetStyle(UIBaseStyle uiColor)
+        public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
             RectColor = uiColor.RectColor;

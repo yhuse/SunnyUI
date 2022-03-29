@@ -961,7 +961,13 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            FillColor = Color.White;
+
+            btnOK.SetStyleColor(uiColor);
+            btnCancel.SetStyleColor(uiColor);
+
+            fillColor = Color.White;
+            foreColor = uiColor.DropDownPanelForeColor;
+
             b1.SetStyleColor(uiColor);
             b2.SetStyleColor(uiColor);
             b3.SetStyleColor(uiColor);
@@ -987,13 +993,6 @@ namespace Sunny.UI
             h1.SymbolColor = h2.SymbolColor = RectColor;
             mm1.SymbolColor = mm2.SymbolColor = RectColor;
             s1.SymbolColor = s2.SymbolColor = RectColor;
-        }
-
-        public override void SetStyle(UIBaseStyle style)
-        {
-            base.SetStyle(style);
-            btnOK.SetStyleColor(style);
-            btnCancel.SetStyleColor(style);
         }
 
         private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)

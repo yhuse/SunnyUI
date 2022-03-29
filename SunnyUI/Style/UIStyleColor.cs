@@ -174,8 +174,10 @@ namespace Sunny.UI
         public virtual Color PanelTitleColor { get; protected set; }
         public virtual Color PanelTitleForeColor { get; protected set; }
 
-        //DrawDownControl
+        //DropDownControl
         public virtual Color DropDownControlColor { get; protected set; }
+        public virtual Color DropDownPanelFillColor { get; protected set; }
+        public virtual Color DropDownPanelForeColor { get; protected set; }
 
         //ListBox
         public virtual Color ListItemSelectBackColor { get; protected set; }
@@ -221,6 +223,8 @@ namespace Sunny.UI
         public virtual Color FlowLayoutPanelBarForeColor { get; protected set; }
 
         protected Color ForeColor { get; set; }
+
+        public UIBaseStyle DropDownStyle { get; protected set; }
 
         public virtual UIBaseStyle Init(Color color, UIStyle style, Color reverseColor, Color foreColor)
         {
@@ -356,6 +360,8 @@ namespace Sunny.UI
             TabControlBackColor = PlainColor;
 
             DropDownControlColor = foreColor;
+            DropDownPanelFillColor = PlainColor;
+            DropDownPanelForeColor = foreColor;
 
             ListItemSelectBackColor = PrimaryColor;
             ListItemSelectForeColor = PlainColor;
@@ -383,6 +389,8 @@ namespace Sunny.UI
 
             FlowLayoutPanelBarFillColor = PlainColor;
             FlowLayoutPanelBarForeColor = PrimaryColor;
+
+            DropDownStyle = this;
 
             return this;
         }
@@ -568,6 +576,12 @@ namespace Sunny.UI
             ScrollingTextForeColor = ForeColor;
 
             LogoForeColor = UIFontColor.Primary;
+
+            DropDownControlColor = ForeColor;
+            DropDownPanelFillColor = UIColor.LightBlue;
+            DropDownPanelForeColor = UIFontColor.Primary;
+
+            DropDownStyle = UIStyles.Blue;
         }
     }
 
@@ -674,6 +688,12 @@ namespace Sunny.UI
             ScrollingTextForeColor = ForeColor;
 
             LogoForeColor = UIFontColor.Primary;
+
+            DropDownControlColor = ForeColor;
+            DropDownPanelFillColor = UIColor.LightBlue;
+            DropDownPanelForeColor = UIFontColor.Primary;
+
+            DropDownStyle = UIStyles.Blue;
         }
     }
 }

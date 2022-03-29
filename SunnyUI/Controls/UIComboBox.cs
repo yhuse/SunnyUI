@@ -208,7 +208,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            ListBox.SetStyleColor(uiColor);
+            ListBox.SetStyleColor(uiColor.DropDownStyle);
         }
 
         public object DataSource

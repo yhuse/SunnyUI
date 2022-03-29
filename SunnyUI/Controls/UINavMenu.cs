@@ -765,7 +765,7 @@ namespace Sunny.UI
                 if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
                 {
                     tmpFont?.Dispose();
-                    tmpFont = this.DPIScaleFont(TipsFont);
+                    tmpFont = TipsFont.DPIScaleFont();
                 }
 
                 return tmpFont;

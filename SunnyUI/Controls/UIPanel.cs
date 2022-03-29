@@ -697,6 +697,7 @@ namespace Sunny.UI
             return Enabled ? (isReadOnly ? fillReadOnlyColor : fillColor) : fillDisableColor;
         }
 
+
         /// <summary>
         /// 屏蔽原属性，获取或设置一个值，该值指示是否在 Windows 任务栏中显示窗体。
         /// </summary>

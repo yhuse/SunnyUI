@@ -65,7 +65,7 @@ namespace Sunny.UI
         {
             tip.IsScaled = true;
             float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
-            tip.Font = this.DPIScaleFont(Font, size);
+            tip.Font = this.Font.DPIScaleFont(size);
         }
 
         protected override void Dispose(bool disposing)
@@ -201,7 +201,7 @@ namespace Sunny.UI
                 if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {
                     tmpFont?.Dispose();
-                    tmpFont = this.DPIScaleFont(Font, size);
+                    tmpFont = this.Font.DPIScaleFont(size);
                 }
 
                 return tmpFont;
@@ -219,7 +219,7 @@ namespace Sunny.UI
                 if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {
                     tmpLegendFont?.Dispose();
-                    tmpLegendFont = this.DPIScaleFont(Font, size);
+                    tmpLegendFont = this.Font.DPIScaleFont(size);
                 }
 
                 return tmpLegendFont;

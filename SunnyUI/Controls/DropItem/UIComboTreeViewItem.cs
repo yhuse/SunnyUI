@@ -150,8 +150,9 @@ namespace Sunny.UI
             }
         }
 
-        public override void SetStyle(UIBaseStyle style)
+        public override void SetStyleColor(UIBaseStyle style)
         {
+            base.SetStyleColor(style);
             treeView.Style = style.Name;
             panel.Style = style.Name;
             btnOK.Style = style.Name;

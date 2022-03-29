@@ -286,7 +286,7 @@ namespace Sunny.UI
 
             if (!edit.Visible)
             {
-                base.OnPaintFore(g, path);
+                g.DrawString(Text, Font, GetForeColor(), Size, Padding, TextAlignment);
             }
 
             g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));
@@ -367,7 +367,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
-            foreColor = uiColor.DropDownControlColor;
+            foreColor = uiColor.DropDownPanelForeColor;
             edit.BackColor = fillColor = Color.White;
         }
 
@@ -394,7 +394,7 @@ namespace Sunny.UI
                     ItemForm.SetRectColor(rectColor);
                     ItemForm.SetFillColor(fillColor);
                     ItemForm.SetForeColor(foreColor);
-                    ItemForm.SetStyle(UIStyles.ActiveStyleColor);
+                    ItemForm.SetStyle(UIStyles.ActiveStyleColor.DropDownStyle);
                 }
 
                 DropDown?.Invoke(this, e);

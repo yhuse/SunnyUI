@@ -344,7 +344,7 @@ namespace Sunny.UI
 
         public void SetStyle(UIBaseStyle style)
         {
-            Item?.SetStyle(style);
+            Item?.SetStyleColor(style);
         }
     }
 }

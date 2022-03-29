@@ -595,16 +595,12 @@ namespace Sunny.UI
             Close();
         }
 
-        public override void SetStyle(UIBaseStyle style)
-        {
-            base.SetStyle(style);
-            btnOK.SetStyleColor(style);
-            btnCancel.SetStyleColor(style);
-        }
-
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
+            btnOK.SetStyleColor(uiColor);
+            btnCancel.SetStyleColor(uiColor);
 
             h1.SetStyleColor(uiColor);
             h2.SetStyleColor(uiColor);

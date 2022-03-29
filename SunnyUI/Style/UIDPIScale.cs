@@ -37,7 +37,7 @@ namespace Sunny.UI
             return DPIScale().EqualsFloat(1);
         }
 
-        public static float DPIScaleFontSize(this Control control, Font font)
+        internal static float DPIScaleFontSize(this Font font)
         {
             if (UIStyles.DPIScale)
                 return font.Size / DPIScale();
@@ -45,43 +45,12 @@ namespace Sunny.UI
                 return font.Size;
         }
 
-        public static float DPIScaleFontSize(this Font font)
+        internal static Font DPIScaleFont(this Font font)
         {
-            return font.Size.DPIScaleFontSize();
+            return DPIScaleFont(font, font.Size);
         }
 
-        public static float DPIScaleFontSize(this float fontSize)
-        {
-            if (UIStyles.DPIScale)
-                return fontSize / DPIScale();
-            else
-                return fontSize;
-        }
-
-        public static Font DPIScaleFont(this Control control, Font font)
-        {
-            return control.DPIScaleFont(font, font.Size);
-        }
-
-        public static Font DPIScaleFont(this Font font)
-        {
-            if (UIStyles.DPIScale)
-            {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, font.Size / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
-                else
-                    return new Font(font.FontFamily, font.Size / DPIScale());
-            }
-            else
-            {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, font.Size, font.Style, font.Unit, font.GdiCharSet);
-                else
-                    return new Font(font.FontFamily, font.Size);
-            }
-        }
-
-        public static Font DPIScaleFont(this Control control, Font font, float fontSize)
+        internal static Font DPIScaleFont(this Font font, float fontSize)
         {
             if (UIStyles.DPIScale)
             {
@@ -99,7 +68,7 @@ namespace Sunny.UI
             }
         }
 
-        public static void SetDPIScaleFont(this Control control)
+        internal static void SetDPIScaleFont(this Control control)
         {
             if (!UIStyles.DPIScale) return;
             if (!UIDPIScale.DPIScaleIsOne())
@@ -107,12 +76,12 @@ namespace Sunny.UI
                 if (control is IStyleInterface ctrl)
                 {
                     if (!ctrl.IsScaled)
-                        control.Font = control.DPIScaleFont(control.Font);
+                        control.Font = control.Font.DPIScaleFont();
                 }
             }
         }
 
-        public static List<Control> GetAllDPIScaleControls(this Control control)
+        internal static List<Control> GetAllDPIScaleControls(this Control control)
         {
             var list = new List<Control>();
             foreach (Control con in control.Controls)

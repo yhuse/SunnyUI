@@ -264,6 +264,18 @@ namespace Sunny.UI
 
         }
 
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            base.SetStyleColor(uiColor);
+            pFilter.SetStyleColor(uiColor.DropDownStyle);
+            dataGridView.SetStyleColor(uiColor.DropDownStyle);
+            panel.SetStyleColor(uiColor.DropDownStyle);
+            edtFilter.SetStyleColor(uiColor.DropDownStyle);
+            btnOK.SetStyleColor(uiColor.DropDownStyle);
+            btnSearch.SetStyleColor(uiColor.DropDownStyle);
+            btnClear.SetStyleColor(uiColor.DropDownStyle);
+        }
+
         private void DataGridView_DataSourceChanged(object sender, System.EventArgs e)
         {
             if (dataGridView.RowCount > 0)

@@ -94,10 +94,6 @@ namespace Sunny.UI
             parent?.Close();
         }
 
-        public virtual void SetStyle(UIBaseStyle style)
-        {
-        }
-
         public virtual void InitShow()
         {
 

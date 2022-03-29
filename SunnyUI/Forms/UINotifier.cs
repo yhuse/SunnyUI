@@ -50,9 +50,9 @@ namespace Sunny.UI
             {
                 this.SetDPIScaleFont();
 
-                noteTitle.Font = noteTitle.DPIScaleFont(noteTitle.Font);
-                noteContent.Font = noteContent.DPIScaleFont(noteContent.Font);
-                noteDate.Font = noteDate.DPIScaleFont(noteDate.Font);
+                noteTitle.Font = noteTitle.Font.DPIScaleFont();
+                noteContent.Font = noteContent.Font.DPIScaleFont();
+                noteDate.Font = noteDate.Font.DPIScaleFont();
 
                 foreach (Control control in this.GetAllDPIScaleControls())
                 {
@@ -385,7 +385,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private void onMenuClick(object sender, EventArgs e)
         {
-            closeAllToolStripMenuItem.Font = menu.DPIScaleFont(menu.Font);
+            closeAllToolStripMenuItem.Font = menu.Font.DPIScaleFont();
             menu.Show(buttonMenu, new Point(0, buttonMenu.Height));
         }
 
