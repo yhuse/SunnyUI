@@ -14,7 +14,6 @@ namespace Sunny.UI.Demo
             t1.C = 768;
             t1.D = DateTime.Now;
             t1.E = new Point(100, 200);
-            t1.F = new MapperT3("Struct String", '\n', new MapperT4("I am T4"));
             t1.G = new Size(100, 200);
             t1.H = new List<string>() { "AA", "BB" };
             t1.I = new string[2] { "AA", "BB" };
@@ -38,8 +37,6 @@ namespace Sunny.UI.Demo
 
         public Point E { get; set; }
 
-        public MapperT3 F { get; set; }
-
         public Size G { get; set; }
 
         public List<string> H { get; set; }
@@ -59,29 +56,12 @@ namespace Sunny.UI.Demo
 
         public Point E { get; set; }
 
-        public MapperT3 F { get; set; }
-
         [MapperIgnore]
         public Size G { get; set; }
 
         public List<string> H { get; set; }
 
         public string[] I { get; set; }
-    }
-
-    public struct MapperT3
-    {
-        public string String { get; set; }
-        public char Char { get; set; }
-
-        public MapperT4 T4 { get; set; }
-
-        public MapperT3(string str, char c, MapperT4 t4)
-        {
-            String = str;
-            Char = c;
-            T4 = t4;
-        }
     }
 
     public class MapperT4

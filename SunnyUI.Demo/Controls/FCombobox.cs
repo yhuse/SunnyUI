@@ -108,8 +108,9 @@ namespace Sunny.UI.Demo
 
         private void uiComboDataGridView1_ValueChanged(object sender, object value)
         {
-            if (value is DataGridViewRow row)
+            if (value is DataGridViewRow)
             {
+                DataGridViewRow row = (DataGridViewRow)value;
                 uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
             }
             else

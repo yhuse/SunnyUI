@@ -91,11 +91,13 @@ namespace Sunny.UI.Demo
 
             //根据页面类型获取页面
             FButton page = GetPage<FButton>();
-            page?.Text.WriteConsole();
+            if (page != null)
+                page.Text.WriteConsole();
 
             //根据页面索引获取页面
             UIPage page1 = GetPage(1002);
-            page1?.Text.WriteConsole();
+            if (page1 != null)
+                page1.Text.WriteConsole();
         }
 
         /// <summary>
@@ -131,7 +133,8 @@ namespace Sunny.UI.Demo
 
         private void FMain_Selecting(object sender, TabControlCancelEventArgs e, UIPage page)
         {
-            Console.WriteLine(page?.Text);
+            if (page != null)
+                Console.WriteLine(page.Text);
         }
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)

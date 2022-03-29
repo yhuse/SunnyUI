@@ -21,8 +21,9 @@ namespace Sunny.UI.Demo
         private void Item_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            if (item.Tag != null && item.Tag is UIStyle style)
+            if (item.Tag != null && item.Tag is UIStyle)
             {
+                UIStyle style = (UIStyle)item.Tag;
                 this.Style = style;
             }
         }
