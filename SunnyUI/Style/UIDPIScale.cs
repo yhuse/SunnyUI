@@ -32,25 +32,15 @@ namespace Sunny.UI
             return GDI.Graphics().DpiX / 96.0f;
         }
 
-        public static float DPIScale(this Control control)
+        public static bool DPIScaleIsOne()
         {
-            try
-            {
-                if (control != null)
-                    return control.CreateGraphics().DpiX / 96.0f;
-                else
-                    return GDI.Graphics().DpiX / 96.0f;
-            }
-            catch
-            {
-                return 1;
-            }
+            return DPIScale().EqualsFloat(1);
         }
 
         public static float DPIScaleFontSize(this Control control, Font font)
         {
             if (UIStyles.DPIScale)
-                return font.Size / control.DPIScale();
+                return font.Size / DPIScale();
             else
                 return font.Size;
         }
@@ -96,9 +86,9 @@ namespace Sunny.UI
             if (UIStyles.DPIScale)
             {
                 if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, fontSize / control.DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                    return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
                 else
-                    return new Font(font.FontFamily, fontSize / control.DPIScale());
+                    return new Font(font.FontFamily, fontSize / DPIScale());
             }
             else
             {
@@ -112,7 +102,7 @@ namespace Sunny.UI
         public static void SetDPIScaleFont(this Control control)
         {
             if (!UIStyles.DPIScale) return;
-            if (!DPIScale().EqualsFloat(1))
+            if (!UIDPIScale.DPIScaleIsOne())
             {
                 if (control is IStyleInterface ctrl)
                 {

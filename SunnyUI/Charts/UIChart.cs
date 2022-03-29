@@ -198,7 +198,7 @@ namespace Sunny.UI
             {
                 float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
 
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / this.DPIScale()))
+                if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {
                     tmpFont?.Dispose();
                     tmpFont = this.DPIScaleFont(Font, size);
@@ -216,7 +216,7 @@ namespace Sunny.UI
             {
                 float size = LegendFont != null ? LegendFont.Size : UIFontColor.SubFontSize;
 
-                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / this.DPIScale()))
+                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {
                     tmpLegendFont?.Dispose();
                     tmpLegendFont = this.DPIScaleFont(Font, size);

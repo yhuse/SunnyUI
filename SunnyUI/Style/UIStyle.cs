@@ -415,13 +415,13 @@ namespace Sunny.UI
         {
             foreach (var form in Forms.Values)
             {
-                if (!form.DPIScale().EqualsFloat(1))
+                if (!UIDPIScale.DPIScaleIsOne())
                     form.SetDPIScale();
             }
 
             foreach (var page in Pages.Values)
             {
-                if (!page.DPIScale().EqualsFloat(1))
+                if (!UIDPIScale.DPIScaleIsOne())
                     page.SetDPIScale();
             }
         }

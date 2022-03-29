@@ -90,7 +90,7 @@ namespace Sunny.UI
             {
                 this.SetDPIScaleFont();
 
-                if (!this.DPIScale().Equals(1))
+                if (!UIDPIScale.DPIScaleIsOne())
                 {
                     TitleFont = this.DPIScaleFont(TitleFont);
                 }
