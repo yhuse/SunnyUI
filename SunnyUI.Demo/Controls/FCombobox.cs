@@ -108,14 +108,21 @@ namespace Sunny.UI.Demo
 
         private void uiComboDataGridView1_ValueChanged(object sender, object value)
         {
-            if (value is DataGridViewRow)
+            if (value == null)
             {
-                DataGridViewRow row = (DataGridViewRow)value;
-                uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
+                uiComboDataGridView1.Text = "";
             }
             else
             {
-                uiComboDataGridView1.Text = "";
+                if (value is DataGridViewRow)
+                {
+                    DataGridViewRow row = (DataGridViewRow)value;
+                    uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
+                }
+                else
+                {
+                    uiComboDataGridView1.Text = "";
+                }
             }
         }
 

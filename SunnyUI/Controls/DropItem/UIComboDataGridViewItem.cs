@@ -295,7 +295,7 @@ namespace Sunny.UI
             if (dataGridView.RowCount > 0 && dataGridView.SelectedIndex >= 0)
             {
                 if (ShowFilter)
-                    DoValueChanged(this, dataGridView.SelectedRows[0]);
+                    DoValueChanged(this, dataGridView.SelectedRows.Count>0 ? dataGridView.SelectedRows[0] : null);
                 else
                     DoValueChanged(this, dataGridView.SelectedIndex);
             }
