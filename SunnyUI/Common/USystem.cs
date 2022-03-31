@@ -133,12 +133,16 @@ namespace Sunny.UI
         /// <param name="ms">The ms.</param>
         public static void Delay(int ms)
         {
-            int start = Environment.TickCount;
-            while (Environment.TickCount - start < ms)
-            {
-                System.Threading.Thread.Sleep(1);
-                Application.DoEvents();
-            }
+            System.Threading.Thread.Sleep(Math.Max(0, ms));
+        }
+
+        /// <summary>
+        /// 是否64位
+        /// </summary>
+        /// <returns></returns>
+        public static bool Is64bitApp()
+        {
+            return IntPtr.Size == 8;
         }
 
         /// <summary>

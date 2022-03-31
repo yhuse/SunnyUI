@@ -210,7 +210,7 @@ namespace Sunny.UI
             return colors;
         }
 
-        public static void Smooth(this Graphics g, bool smooth = true)
+        public static Graphics Smooth(this Graphics g, bool smooth = true)
         {
             if (smooth)
             {
@@ -220,6 +220,8 @@ namespace Sunny.UI
             {
                 g.SetDefaultQuality();
             }
+
+            return g;
         }
 
 
@@ -336,22 +338,24 @@ namespace Sunny.UI
         /// 设置GDI高质量模式抗锯齿
         /// </summary>
         /// <param name="g"></param>
-        public static void SetHighQuality(this Graphics g)
+        public static Graphics SetHighQuality(this Graphics g)
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;  //使绘图质量最高，即消除锯齿
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.CompositingQuality = CompositingQuality.HighQuality;
+            return g;
         }
 
         /// <summary>
         /// 设置GDI默认值
         /// </summary>
         /// <param name="g"></param>
-        public static void SetDefaultQuality(this Graphics g)
+        public static Graphics SetDefaultQuality(this Graphics g)
         {
             g.SmoothingMode = SmoothingMode.Default;
             g.InterpolationMode = InterpolationMode.Default;
             g.CompositingQuality = CompositingQuality.Default;
+            return g;
         }
 
         public static string ToHTML(this Color color)

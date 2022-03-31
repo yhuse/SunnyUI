@@ -209,7 +209,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="filename">文件名</param>
         /// <returns>结果</returns>
-        public static FileInfo FileInfo(this string filename)
+        public static FileInfo FileInfo(string filename)
         {
             return File.Exists(filename) ? new FileInfo(filename) : null;
         }
@@ -254,7 +254,8 @@ namespace Sunny.UI
         /// <returns>是否运行</returns>
         public static bool IsRun(string filename)
         {
-            return filename.FileInfo().IsRun();
+            FileInfo info = FileInfo(filename);
+            return info == null ? false : info.IsRun();
         }
 
         /// <summary>
@@ -492,7 +493,8 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool TryDelete(string file)
         {
-            return file.FileInfo().TryDelete();
+            FileInfo info = FileInfo(file);
+            return info == null ? false : info.TryDelete();
         }
 
         /// <summary>

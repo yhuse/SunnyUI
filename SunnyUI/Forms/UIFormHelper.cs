@@ -665,7 +665,6 @@ namespace Sunny.UI
             {
                 topmost = baseForm.TopMost;
                 baseForm.TopMost = true;
-                Application.DoEvents();
             }
 
             Form mask = new Form();
