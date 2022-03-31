@@ -25,6 +25,7 @@
  * 2021-12-11: V3.0.9 增加了渐变色
  * 2022-02-26: V3.1.1 增加了AutoSize属性
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-03-31: V3.1.2 是否显示浅色背景
 ******************************************************************************/
 
 using System;
@@ -62,6 +63,21 @@ namespace Sunny.UI
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
             fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+        }
+
+        [DefaultValue(false)]
+        [Description("是否显示浅色背景"), Category("SunnyUI")]
+        public bool LightStyle
+        {
+            get => lightStyle;
+            set
+            {
+                if (lightStyle != value)
+                {
+                    lightStyle = value;
+                    Invalidate();
+                }
+            }
         }
 
         private bool autoSize;

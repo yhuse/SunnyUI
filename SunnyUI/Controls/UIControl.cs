@@ -364,6 +364,8 @@ namespace Sunny.UI
             }
         }
 
+        protected bool lightStyle;
+
         /// <summary>
         /// OnPaint
         /// </summary>
@@ -436,7 +438,7 @@ namespace Sunny.UI
         protected Color GetForeColor()
         {
             //文字
-            Color color = foreColor;
+            Color color = lightStyle ? _style.Colors().ButtonForeLightColor : foreColor;
             if (IsHover)
                 color = foreHoverColor;
             if (IsPress)
@@ -457,7 +459,7 @@ namespace Sunny.UI
         protected Color GetFillColor()
         {
             //填充
-            Color color = fillColor;
+            Color color = lightStyle ? _style.Colors().ButtonFillLightColor : fillColor;
             if (IsHover)
                 color = fillHoverColor;
             if (IsPress)

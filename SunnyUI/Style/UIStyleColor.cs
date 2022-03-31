@@ -46,6 +46,8 @@ namespace Sunny.UI
         public virtual Color ButtonFillPressColor { get; protected set; }
         public virtual Color ButtonFillSelectedColor { get; protected set; }
         public virtual Color ButtonFillColor2 { get; protected set; }
+        public virtual Color ButtonFillLightColor { get; protected set; }
+        public virtual Color ButtonForeLightColor { get; protected set; }
 
         public virtual Color ButtonForeColor { get; protected set; }
         public virtual Color ButtonForeHoverColor { get; protected set; }
@@ -276,6 +278,8 @@ namespace Sunny.UI
             ButtonFillPressColor = colors1[3];
             ButtonFillSelectedColor = colors1[3];
             ButtonFillColor2 = ButtonFillColor;
+            ButtonFillLightColor = PlainColor;
+            ButtonForeLightColor = PrimaryColor;
 
             ButtonForeColor = reverseColor;
             ButtonForeHoverColor = reverseColor;
@@ -496,6 +500,9 @@ namespace Sunny.UI
             FormBackColor = PrimaryColor;
             FormControlBoxForeColor = ForeColor;
 
+            ButtonFillLightColor = UIStyles.Blue.PlainColor;
+            ButtonForeLightColor = UIStyles.Blue.PrimaryColor;
+
             PageBackColor = PlainColor;
             PageRectColor = PrimaryColor;
             PageForeColor = ForeColor;
@@ -607,6 +614,9 @@ namespace Sunny.UI
             FormControlBoxCloseFillHoverColor = UIColor.Red;
             FormBackColor = PrimaryColor;
             FormControlBoxForeColor = ForeColor;
+
+            ButtonFillLightColor = UIStyles.Blue.PlainColor;
+            ButtonForeLightColor = UIStyles.Blue.PrimaryColor;
 
             PageBackColor = PlainColor;
             PageRectColor = PrimaryColor;

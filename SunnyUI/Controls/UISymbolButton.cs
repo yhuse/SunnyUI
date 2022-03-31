@@ -307,7 +307,7 @@ namespace Sunny.UI
         protected Color GetSymbolForeColor()
         {
             //文字
-            Color color = symbolColor;
+            Color color = lightStyle ? _style.Colors().ButtonForeLightColor : symbolColor;
             if (IsHover)
                 color = symbolHoverColor;
             if (IsPress)
