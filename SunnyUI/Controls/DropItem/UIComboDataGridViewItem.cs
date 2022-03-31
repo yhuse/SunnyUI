@@ -295,7 +295,7 @@ namespace Sunny.UI
             if (dataGridView.RowCount > 0 && dataGridView.SelectedIndex >= 0)
             {
                 if (ShowFilter)
-                    DoValueChanged(this, dataGridView.SelectedRows.Count>0 ? dataGridView.SelectedRows[0] : null);
+                    DoValueChanged(this, dataGridView.SelectedRows.Count > 0 ? dataGridView.SelectedRows[0] : null);
                 else
                     DoValueChanged(this, dataGridView.SelectedIndex);
             }
@@ -335,7 +335,7 @@ namespace Sunny.UI
                     {
                         if (column.Visible)
                         {
-                            strings.Add(column.HeaderText + " like '%" + edtFilter.Text + "%'");
+                            strings.Add(column.DataPropertyName + " like '%" + edtFilter.Text + "%'");
                         }
                     }
 
