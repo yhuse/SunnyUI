@@ -24,6 +24,7 @@
  * 2022-01-05: V3.0.9 TreeNodeStateSync: 节点点击时同步父节点和子节点的状态
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-04-01: V3.1.2 增加水平滚动条
+ * 2022-04-01: V3.1.2 自定义行颜色，可通过代码给颜色值，SetNodePainter
 ******************************************************************************/
 
 using System;
@@ -84,7 +85,7 @@ namespace Sunny.UI
             view.AfterLabelEdit += View_AfterLabelEdit;
         }
 
-        public void AddNodePainter(TreeNode node, Color backColor, Color foreColor)
+        public void SetNodePainter(TreeNode node, Color backColor, Color foreColor)
         {
             if (view.IsNull()) return;
             if (view.Painter.ContainsKey(node))
@@ -96,6 +97,8 @@ namespace Sunny.UI
             {
                 view.Painter.TryAdd(node, new UITreeNodePainter() { BackColor = backColor, ForeColor = foreColor });
             }
+
+            view.Invalidate();
         }
 
         public void ClearNodePainter(TreeNode node)
@@ -104,6 +107,7 @@ namespace Sunny.UI
             if (view.Painter.ContainsKey(node))
             {
                 view.Painter.TryRemove(node, out _);
+                view.Invalidate();
             }
         }
 
@@ -111,6 +115,7 @@ namespace Sunny.UI
         {
             if (view.IsNull()) return;
             view.Painter.Clear();
+            view.Invalidate();
         }
 
         [Description("节点点击时同步父节点和子节点的状态"), Category("SunnyUI")]
@@ -899,30 +904,39 @@ namespace Sunny.UI
                         var checkboxColor = ForeColor;
                         if (e.Node != null)
                         {
-
-                            if (e.Node == SelectedNode)
+                            if (Painter.ContainsKey(e.Node))
                             {
-                                e.Graphics.FillRectangle(SelectedColor,
-                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-
-                                e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft,
-                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
-
-                                checkboxColor = SelectedForeColor;
-                            }
-                            else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
-                            {
-                                e.Graphics.FillRectangle(HoverColor,
-                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
-                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+                                e.Graphics.FillRectangle(Painter[e.Node].BackColor,
+                                       new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, Painter[e.Node].ForeColor, drawLeft,
+                                       e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                             }
                             else
                             {
-                                e.Graphics.FillRectangle(FillColor,
-                                    new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
-                                    e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+                                if (e.Node == SelectedNode)
+                                {
+                                    e.Graphics.FillRectangle(SelectedColor,
+                                        new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+
+                                    e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft,
+                                        e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+
+                                    checkboxColor = SelectedForeColor;
+                                }
+                                else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
+                                {
+                                    e.Graphics.FillRectangle(HoverColor,
+                                        new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
+                                        e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+                                }
+                                else
+                                {
+                                    e.Graphics.FillRectangle(FillColor,
+                                        new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft,
+                                        e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
+                                }
                             }
 
                             if (haveImage)

@@ -74,6 +74,7 @@ namespace Sunny.UI
                      ControlStyles.OptimizedDoubleBuffer, true);
             _lastDistance = SplitterDistance;
             SplitterWidth = 10;
+            MinimumSize = new Size(20, 20);
         }
 
         private Color barColor = Color.FromArgb(56, 56, 56);
