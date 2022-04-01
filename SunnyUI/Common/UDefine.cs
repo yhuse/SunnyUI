@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -32,5 +33,11 @@ namespace Sunny.UI
         DashDotDot,
         Custom,
         None
+    }
+
+    public class UITreeNodePainter
+    {
+        public Color BackColor;
+        public Color ForeColor;
     }
 }

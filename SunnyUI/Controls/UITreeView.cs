@@ -28,6 +28,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -56,6 +57,7 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             ShowText = false;
             view.HBar = HBar;
+            view.Bar = Bar;
             SetScrollInfo();
 
             view.BeforeCheck += View_BeforeCheck;
@@ -80,6 +82,35 @@ namespace Sunny.UI
             view.KeyDown += View_KeyDown;
             view.KeyUp += View_KeyUp;
             view.AfterLabelEdit += View_AfterLabelEdit;
+        }
+
+        public void AddNodePainter(TreeNode node, Color backColor, Color foreColor)
+        {
+            if (view.IsNull()) return;
+            if (view.Painter.ContainsKey(node))
+            {
+                view.Painter[node].BackColor = backColor;
+                view.Painter[node].ForeColor = foreColor;
+            }
+            else
+            {
+                view.Painter.TryAdd(node, new UITreeNodePainter() { BackColor = backColor, ForeColor = foreColor });
+            }
+        }
+
+        public void ClearNodePainter(TreeNode node)
+        {
+            if (view.IsNull()) return;
+            if (view.Painter.ContainsKey(node))
+            {
+                view.Painter.TryRemove(node, out _);
+            }
+        }
+
+        public void ClearAllNodePainter(TreeNode node)
+        {
+            if (view.IsNull()) return;
+            view.Painter.Clear();
         }
 
         [Description("节点点击时同步父节点和子节点的状态"), Category("SunnyUI")]
@@ -131,7 +162,6 @@ namespace Sunny.UI
         {
             KeyPress?.Invoke(this, e);
         }
-
 
         private void View_MouseLeave(object sender, EventArgs e)
         {
@@ -581,11 +611,13 @@ namespace Sunny.UI
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
+            if (!ScrollBarVisible || !HScrollBarVisible) return;
             base.OnMouseWheel(e);
 
             if (e.Delta > 10)
                 ScrollBarInfo.ScrollUp(view.Handle);
-            else if (e.Delta < -10) ScrollBarInfo.ScrollDown(view.Handle);
+            else if (e.Delta < -10)
+                ScrollBarInfo.ScrollDown(view.Handle);
 
             SetScrollInfo();
         }
@@ -701,7 +733,6 @@ namespace Sunny.UI
         private void HBar_ValueChanged(object sender, EventArgs e)
         {
             ScrollBarInfo.SetHorScrollValue(view.Handle, HBar.Value);
-            //view.Invalidate();
         }
 
         private void view_AfterExpand(object sender, TreeViewEventArgs e)
@@ -726,7 +757,10 @@ namespace Sunny.UI
 
         internal class TreeViewEx : TreeView
         {
+            public ConcurrentDictionary<TreeNode, UITreeNodePainter> Painter = new ConcurrentDictionary<TreeNode, UITreeNodePainter>();
+
             public UIHorScrollBar HBar;
+            public UIScrollBar Bar;
 
             private TreeNode CurrentNode;
 
@@ -1035,6 +1069,15 @@ namespace Sunny.UI
                     return;
                 }
 
+                if (!Bar.Visible)
+                {
+                    if (m.Msg == 522)
+                    {
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                }
+
                 base.WndProc(ref m);
             }
 
@@ -1042,7 +1085,6 @@ namespace Sunny.UI
 
             protected override void OnAfterCheck(TreeViewEventArgs e)
             {
-
                 base.OnAfterCheck(e);
                 if (e.Action == TreeViewAction.ByMouse && TreeNodeStateSync) //鼠标点击
                 {
@@ -1058,9 +1100,11 @@ namespace Sunny.UI
             private void SetParentNodeCheckedState(TreeNode currNode, bool ByMouse = false)
             {
                 if (currNode.Parent == null)
+                {
                     return;
-                TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
+                }
 
+                TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
                 var count = parentNode.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
 
                 //判断节点Checked是否改变，只有改变时才赋值，否则不变更，以防止频繁触发OnAfterCheck事件
@@ -1093,7 +1137,6 @@ namespace Sunny.UI
                         SetParentNodeCheckedState(parentNode, true); //递归调用
                     }
                 }
-
             }
 
             //选中节点之后，选中节点的所有子节点
