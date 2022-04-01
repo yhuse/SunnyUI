@@ -23,6 +23,7 @@
  * 2021-08-26: V3.0.6 CheckBoxes增加三态，感谢群友：笑口常开 
  * 2022-01-05: V3.0.9 TreeNodeStateSync: 节点点击时同步父节点和子节点的状态
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-04-01: V3.1.2 增加水平滚动条
 ******************************************************************************/
 
 using System;
@@ -43,8 +44,10 @@ namespace Sunny.UI
     public sealed class UITreeView : UIPanel, IToolTip
     {
         private UIScrollBar Bar;
+        private UIHorScrollBar HBar;
 
         private bool ScrollBarVisible;
+        private bool HScrollBarVisible;
         private TreeViewEx view;
 
         public UITreeView()
@@ -52,6 +55,7 @@ namespace Sunny.UI
             InitializeComponent();
             SetStyleFlags(true, false);
             ShowText = false;
+            view.HBar = HBar;
             SetScrollInfo();
 
             view.BeforeCheck += View_BeforeCheck;
@@ -179,6 +183,14 @@ namespace Sunny.UI
                 Bar.HoverColor = uiColor.ButtonFillHoverColor;
                 Bar.PressColor = uiColor.ButtonFillPressColor;
             }
+
+            if (HBar != null)
+            {
+                HBar.FillColor = uiColor.TreeViewBarFillColor;
+                HBar.ForeColor = uiColor.TreeViewBarForeColor;
+                HBar.HoverColor = uiColor.ButtonFillHoverColor;
+                HBar.PressColor = uiColor.ButtonFillPressColor;
+            }
         }
 
         protected override void AfterSetFillColor(Color color)
@@ -193,6 +205,11 @@ namespace Sunny.UI
             if (Bar != null)
             {
                 Bar.FillColor = color;
+            }
+
+            if (HBar != null)
+            {
+                HBar.FillColor = color;
             }
         }
 
@@ -535,11 +552,21 @@ namespace Sunny.UI
             view.Width = Width - 4;
             view.Height = Height - 4;
 
-            if (Bar == null) return;
-            Bar.Top = 2;
-            Bar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
-            Bar.Width = ScrollBarInfo.VerticalScrollBarWidth();
-            Bar.Height = Height - 4;
+            if (Bar != null)
+            {
+                Bar.Top = 2;
+                Bar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
+                Bar.Width = ScrollBarInfo.VerticalScrollBarWidth();
+                Bar.Height = Height - 4;
+            }
+
+            if (HBar != null)
+            {
+                HBar.Left = 2;
+                HBar.Top = Height - ScrollBarInfo.HorizontalScrollBarHeight() - 2;
+                HBar.Width = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 2 - 2;
+                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight();
+            }
         }
 
         protected override void OnFontChanged(EventArgs e)
@@ -572,7 +599,7 @@ namespace Sunny.UI
 
         public void SetScrollInfo()
         {
-            if (view == null || Bar == null) return;
+            if (view == null || Bar == null || HBar == null) return;
 
             if (Nodes.Count == 0)
             {
@@ -581,8 +608,10 @@ namespace Sunny.UI
             }
 
             var si = ScrollBarInfo.GetInfo(view.Handle);
+            var si1 = ScrollBarInfo.GetHorInfo(view.Handle);
 
             SetPos();
+
             Bar.Maximum = si.ScrollMax;
             Bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
             Bar.Value = si.nPos;
@@ -593,12 +622,24 @@ namespace Sunny.UI
                 ScrollBarVisible = Bar.Visible;
                 Invalidate();
             }
+
+            HBar.Maximum = si1.ScrollMax;
+            HBar.Visible = si1.ScrollMax > 0 && si1.nMax > 0 && si1.nPage > 0;
+            HBar.Value = si1.nPos;
+            HBar.BringToFront();
+
+            if (HScrollBarVisible != HBar.Visible)
+            {
+                HScrollBarVisible = HBar.Visible;
+                Invalidate();
+            }
         }
 
         private void InitializeComponent()
         {
             view = new TreeViewEx();
             Bar = new UIScrollBar();
+            HBar = new UIHorScrollBar();
             SuspendLayout();
             //
             // view
@@ -630,9 +671,22 @@ namespace Sunny.UI
             Bar.Visible = false;
             Bar.ValueChanged += Bar_ValueChanged;
             //
+            // HBar
+            //
+            HBar.Font = new Font("微软雅黑", 12F);
+            HBar.Location = new Point(247, 3);
+            HBar.Name = "HBar";
+            HBar.Size = new Size(173, 19);
+            HBar.Style = UIStyle.Custom;
+            HBar.StyleCustomMode = true;
+            HBar.TabIndex = 3;
+            HBar.Visible = false;
+            HBar.ValueChanged += HBar_ValueChanged;
+            //
             // UITreeViewEx
             //
             Controls.Add(Bar);
+            Controls.Add(HBar);
             Controls.Add(view);
             FillColor = Color.White;
             Style = UIStyle.Custom;
@@ -642,6 +696,12 @@ namespace Sunny.UI
         private void Bar_ValueChanged(object sender, EventArgs e)
         {
             ScrollBarInfo.SetScrollValue(view.Handle, Bar.Value);
+        }
+
+        private void HBar_ValueChanged(object sender, EventArgs e)
+        {
+            ScrollBarInfo.SetHorScrollValue(view.Handle, HBar.Value);
+            //view.Invalidate();
         }
 
         private void view_AfterExpand(object sender, TreeViewEventArgs e)
@@ -666,6 +726,8 @@ namespace Sunny.UI
 
         internal class TreeViewEx : TreeView
         {
+            public UIHorScrollBar HBar;
+
             private TreeNode CurrentNode;
 
             private bool showLines;
@@ -757,6 +819,7 @@ namespace Sunny.UI
                     {
                         DicNodeStatus.Add(e.Node.GetHashCode(), false);
                     }
+
                     if (CheckBoxes)
                     {
                         if (TreeNodeStateSync && e.Node.Parent != null && DicNodeStatus.ContainsKey(e.Node.Parent.GetHashCode()) && !DicNodeStatus[e.Node.Parent.GetHashCode()])
@@ -764,7 +827,11 @@ namespace Sunny.UI
                             SetParentNodeCheckedState(e.Node);
                         }
                     }
-                    if (BorderStyle == BorderStyle.Fixed3D) BorderStyle = BorderStyle.FixedSingle;
+
+                    if (BorderStyle == BorderStyle.Fixed3D)
+                    {
+                        BorderStyle = BorderStyle.FixedSingle;
+                    }
 
                     if (e.Node == null || e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0)
                     {
@@ -772,9 +839,13 @@ namespace Sunny.UI
                     }
                     else
                     {
+                        int drawLeft;
+                        if (!HBar.Visible)
+                            drawLeft = e.Bounds.X + (e.Node.Level + 1) * Indent + 3;
+                        else
+                            drawLeft = -(int)(Width * HBar.Value * 1.0 / HBar.Maximum) + (e.Node.Level + 1) * Indent + 3;
 
-                        var drawLeft = (e.Node.Level + 1) * Indent + 3;
-                        var checkBoxLeft = (e.Node.Level + 1) * Indent + 1;
+                        var checkBoxLeft = drawLeft - 2;
                         var imageLeft = drawLeft;
                         var haveImage = false;
                         var sf = e.Graphics.MeasureString(e.Node.Text, Font);
@@ -785,8 +856,7 @@ namespace Sunny.UI
                             imageLeft += 16;
                         }
 
-                        if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 &&
-                            e.Node.ImageIndex < ImageList.Images.Count)
+                        if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 && e.Node.ImageIndex < ImageList.Images.Count)
                         {
                             haveImage = true;
                             drawLeft += ImageList.ImageSize.Width + 6;
@@ -834,8 +904,6 @@ namespace Sunny.UI
 
                             if (CheckBoxes)
                             {
-
-
                                 if (!e.Node.Checked)
                                 {
                                     e.Graphics.DrawRectangle(checkboxColor,
@@ -872,7 +940,11 @@ namespace Sunny.UI
                         }
 
                         var lineY = e.Bounds.Y + e.Node.Bounds.Height / 2 - 1;
-                        var lineX = 3 + e.Node.Level * Indent + 9;
+                        int lineX;
+                        if (!HBar.Visible)
+                            lineX = 3 + e.Node.Level * Indent + 9;
+                        else
+                            lineX = -(int)(Width * HBar.Value * 1.0 / HBar.Maximum) + 3 + e.Node.Level * Indent + 9;
 
                         if (ShowLinesEx)
                         {
@@ -926,7 +998,11 @@ namespace Sunny.UI
                             }
                         }
 
-                        lineX = 3 + e.Node.Level * Indent + 9;
+                        if (!HBar.Visible)
+                            lineX = 3 + e.Node.Level * Indent + 9;
+                        else
+                            lineX = -(int)(Width * HBar.Value * 1.0 / HBar.Maximum) + 3 + e.Node.Level * Indent + 9;
+
                         //绘制左侧+号
                         if (ShowPlusMinus && e.Node.Nodes.Count > 0)
                         {
@@ -981,7 +1057,6 @@ namespace Sunny.UI
 
             private void SetParentNodeCheckedState(TreeNode currNode, bool ByMouse = false)
             {
-
                 if (currNode.Parent == null)
                     return;
                 TreeNode parentNode = currNode.Parent; //获得当前节点的父节点
@@ -1020,7 +1095,6 @@ namespace Sunny.UI
                 }
 
             }
-
 
             //选中节点之后，选中节点的所有子节点
             private void SetChildNodeCheckedState(TreeNode currNode, bool state)

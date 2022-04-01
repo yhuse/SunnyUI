@@ -65,6 +65,15 @@ namespace Sunny.UI
             return si;
         }
 
+        public static SCROLLINFO GetHorInfo(IntPtr handle)
+        {
+            SCROLLINFO si = new SCROLLINFO();
+            si.cbSize = Marshal.SizeOf(si);
+            si.fMask = SIF_DISABLENOSCROLL | SIF_ALL;
+            User.GetScrollInfo(handle, User.SB_HORZ, ref si);
+            return si;
+        }
+
         /// <summary>
         /// 设置控件滚动条滚动值
         /// </summary>
@@ -76,6 +85,19 @@ namespace Sunny.UI
             info.nPos = value;
             User.SetScrollInfo(handle, User.SB_VERT, ref info, true);
             User.PostMessage(handle, User.WM_VSCROLL, MakeLong(User.SB_THUMBTRACK, highPart: (short)info.nPos), 0);
+        }
+
+        /// <summary>
+        /// 设置控件滚动条滚动值
+        /// </summary>
+        /// <param name="handle">控件句柄</param>
+        /// <param name="value">滚动值</param>
+        public static void SetHorScrollValue(IntPtr handle, int value)
+        {
+            SCROLLINFO info = GetHorInfo(handle);
+            info.nPos = value;
+            User.SetScrollInfo(handle, User.SB_HORZ, ref info, true);
+            User.PostMessage(handle, User.WM_HSCROLL, MakeLong(User.SB_THUMBTRACK, highPart: (short)info.nPos), 0);
         }
 
         /// <summary>
@@ -100,6 +122,12 @@ namespace Sunny.UI
         {
             if (!ctrl.IsHandleCreated) return false;
             return (Sunny.UI.Win32.User.GetWindowLong(ctrl.Handle, User.GWL_STYLE) & User.WS_VSCROLL) != 0;
+        }
+
+        public static bool IsHorizontalScrollBarVisible(Control ctrl)
+        {
+            if (!ctrl.IsHandleCreated) return false;
+            return (Sunny.UI.Win32.User.GetWindowLong(ctrl.Handle, User.GWL_STYLE) & User.WS_HSCROLL) != 0;
         }
     }
 }

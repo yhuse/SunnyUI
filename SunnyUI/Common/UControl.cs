@@ -43,6 +43,16 @@ namespace Sunny.UI
             return timer;
         }
 
+        public static bool IsNull(this Control ctrl)
+        {
+            return ctrl == null;
+        }
+
+        public static bool IsValid(this Control ctrl)
+        {
+            return ctrl != null;
+        }
+
         public static Rectangle ScreenRectangle(this Control ctrl)
         {
             return ctrl.RectangleToScreen(ctrl.ClientRectangle);

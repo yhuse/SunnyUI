@@ -273,7 +273,7 @@ namespace Sunny.UI
         {
             isScrollUp = up;
             largeChange = large;
-            timer.Start();
+            //timer.Start();
         }
 
         private void StopScroll()
@@ -297,7 +297,7 @@ namespace Sunny.UI
                     if (Value > 0)
                     {
                         left_state = DrawItemState.Selected;
-                        ScrollLeft(false);
+                        ScrollLeft(true);
                         StartScroll(true, false);
                     }
                     break;
@@ -312,7 +312,7 @@ namespace Sunny.UI
                     if (Value < Maximum)
                     {
                         right_state = DrawItemState.Selected;
-                        ScrollRight(false);
+                        ScrollRight(true);
                         StartScroll(false, false);
                     }
                     break;
@@ -331,7 +331,7 @@ namespace Sunny.UI
                 case 5:
                     if (Value < Maximum)
                     {
-                        ScrollRight(false);
+                        ScrollRight(true);
                         if (IsPress)
                         {
                             StartScroll(false, true);
