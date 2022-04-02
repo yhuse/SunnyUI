@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 
 namespace Sunny.UI
 {
@@ -58,5 +59,9 @@ namespace Sunny.UI
         bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects);
         void Init();
         void Final();
+
+        T GetPage<T>() where T : UIPage;
+
+        List<T> GetPages<T>() where T : UIPage;
     }
 }
