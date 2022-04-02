@@ -21,6 +21,8 @@ namespace Sunny.UI.Demo
             person.Birthday = new DateTime(2002, 1, 1);
 
             FEdit frm = new FEdit();
+            frm.ReSetDPIScale();
+            frm.Style = UIStyles.Style;
             frm.Person = person;
             frm.ShowDialog();
             if (frm.IsOK)
@@ -34,6 +36,8 @@ namespace Sunny.UI.Demo
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FEdit frm = new FEdit();
+            frm.ReSetDPIScale();
+            frm.Style = UIStyles.Style;
             frm.ShowDialogWithMask();
             if (frm.IsOK)
             {
