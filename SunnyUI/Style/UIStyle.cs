@@ -113,16 +113,19 @@ namespace Sunny.UI
         /// <summary>
         /// LayuiGreen
         /// </summary>
+        [DisplayText("LayuiGreen")]
         LayuiGreen = 7,
 
         /// <summary>
         /// LayuiRed
         /// </summary>
+        [DisplayText("LayuiRed")]
         LayuiRed = 8,
 
         /// <summary>
         /// LayuiOrange
         /// </summary>
+        [DisplayText("LayuiOrange")]
         LayuiOrange = 9,
 
         /// <summary>
@@ -183,7 +186,7 @@ namespace Sunny.UI
         /// <summary>
         /// 灰
         /// </summary>
-        private static readonly UIBaseStyle Gray = new UIGrayStyle();
+        public static readonly UIBaseStyle Gray = new UIGrayStyle();
 
         /// <summary>
         /// 绿
@@ -198,17 +201,17 @@ namespace Sunny.UI
         /// <summary>
         /// 深蓝
         /// </summary>
-        private static readonly UIBaseStyle DarkBlue = new UIDarkBlueStyle();
+        public static readonly UIBaseStyle DarkBlue = new UIDarkBlueStyle();
 
         /// <summary>
         /// 黑
         /// </summary>
-        private static readonly UIBaseStyle Black = new UIBlackStyle();
+        public static readonly UIBaseStyle Black = new UIBlackStyle();
 
         /// <summary>
         /// 紫
         /// </summary>
-        private static readonly UIBaseStyle Purple = new UIPurpleStyle();
+        public static readonly UIBaseStyle Purple = new UIPurpleStyle();
 
         /// <summary>
         /// 多彩
