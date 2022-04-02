@@ -24,6 +24,7 @@
  * 2021-08-24: V3.0.6 修复OnLoad在加载时重复加载两次的问题
  * 2021-12-01: V3.0.9 增加FeedBack和SetParam函数，用于多页面传值
  * 2021-12-30: V3.0.9 增加NeedReload，页面切换是否需要重载Load
+ * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
 ******************************************************************************/
 
 using System;
@@ -305,6 +306,7 @@ namespace Sunny.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
             IsShown = true;
         }
 
