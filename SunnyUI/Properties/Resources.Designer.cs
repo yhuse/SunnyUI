@@ -181,30 +181,12 @@ namespace Sunny.UI.Properties {
         }
         
         /// <summary>
-        ///   查找类似 SunnyUI.Net 的本地化字符串。
-        /// </summary>
-        internal static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap notifier {
             get {
                 object obj = ResourceManager.GetObject("notifier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 V3.1.2 的本地化字符串。
-        /// </summary>
-        internal static string Version {
-            get {
-                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         

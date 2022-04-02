@@ -19,8 +19,6 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-using Sunny.UI.Properties;
-
 namespace Sunny.UI
 {
     /// <summary>
@@ -31,7 +29,7 @@ namespace Sunny.UI
         /// <summary>
         /// 版本
         /// </summary>
-        public static string Version = Resources.Name + " " + Resources.Version;
+        public const string Version = "SunnyUI.Net V3.1.2";
 
         public const int EditorMinHeight = 20;
         public const int EditorMaxHeight = 60;

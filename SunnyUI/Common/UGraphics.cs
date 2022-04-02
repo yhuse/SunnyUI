@@ -778,6 +778,7 @@ namespace Sunny.UI
 
         public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align)
         {
+            if (str.IsNullOrEmpty()) return;
             SizeF sf = g.MeasureString(str, font);
             using (Brush br = color.Brush())
             {
@@ -823,11 +824,12 @@ namespace Sunny.UI
             }
         }
 
-        public static void DrawString(this Graphics g, string s, Font font, Color color, RectangleF rect, StringFormat format, float angle)
+        public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             using (Brush br = color.Brush())
             {
-                g.DrawStringRotateAtCenter(s, font, color, rect.Center(), (int)angle);
+                g.DrawStringRotateAtCenter(text, font, color, rect.Center(), (int)angle);
                 //g.DrawString(s, font, br, layoutRectangle, format, angle);
             }
         }
@@ -843,6 +845,7 @@ namespace Sunny.UI
         /// <param name="angle">角度</param>
         public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             using (Brush br = color.Brush())
             {
                 g.DrawStringRotateAtCenter(text, font, br, centerPoint, angle);
@@ -860,6 +863,7 @@ namespace Sunny.UI
         /// <param name="angle">角度</param>
         public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             SizeF sf = g.MeasureString(text, font);
             float x1 = centerPoint.X - sf.Width / 2.0f;
             float y1 = centerPoint.Y - sf.Height / 2.0f;
@@ -890,6 +894,7 @@ namespace Sunny.UI
         /// <param name="angle">角度</param>
         public static void DrawString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             // Save the matrix
             Matrix mtxSave = g.Transform;
 
@@ -903,11 +908,12 @@ namespace Sunny.UI
             g.Transform = mtxSave;
         }
 
-        public static void DrawString(this Graphics g, string s, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
+        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             using (Brush br = color.Brush())
             {
-                g.DrawString(s, font, br, rotatePoint, format, angle);
+                g.DrawString(text, font, br, rotatePoint, format, angle);
             }
         }
 
@@ -923,6 +929,7 @@ namespace Sunny.UI
         /// <param name="angle">角度</param>
         public static void DrawString(this Graphics g, string text, Font font, Brush brush, RectangleF rect, StringFormat format, float angle)
         {
+            if (text.IsNullOrEmpty()) return;
             g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
         }
 

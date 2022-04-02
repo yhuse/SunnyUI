@@ -1293,6 +1293,8 @@ namespace Sunny.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
+
             CalcSystemBoxPos();
             SetRadius();
             isShow = true;
