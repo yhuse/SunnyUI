@@ -29,7 +29,7 @@ namespace Sunny.UI
     {
         public static float DPIScale()
         {
-            return GDI.Graphics().DpiX / 96.0f;
+            return GDI.Graphics().DpiX / 96.0f / (UIStyles.FontSize / 12.0f);
         }
 
         public static bool DPIScaleIsOne()

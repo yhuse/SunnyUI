@@ -154,6 +154,8 @@ namespace Sunny.UI
     {
         public static bool DPIScale { get; set; }
 
+        public static float FontSize { get; set; } = 12;
+
         public static List<UIStyle> PopularStyles()
         {
             List<UIStyle> styles = new List<UIStyle>();

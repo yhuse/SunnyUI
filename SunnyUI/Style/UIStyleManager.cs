@@ -75,5 +75,12 @@ namespace Sunny.UI
             get => UIStyles.DPIScale;
             set => UIStyles.DPIScale = value;
         }
+
+        [DefaultValue(12f), Description("DPI缩放开启后，可调字体大小，默认12"), Category("SunnyUI")]
+        public float FontSize
+        {
+            get => UIStyles.FontSize;
+            set => UIStyles.FontSize = value;
+        }
     }
 }
