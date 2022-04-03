@@ -617,7 +617,8 @@ namespace Sunny.UI
             if (ActiveIndex == -1) return;
             SelectedIndex = ActiveIndex;
             Invalidate();
-
+            if (SelectedIndex < 0) return;
+            if (SelectedIndex >= Nodes.Count) return;
             if (Nodes[selectedIndex].Nodes.Count == 0)
             {
                 return;
