@@ -51,7 +51,7 @@
             this.Aside.ItemHeight = 36;
             this.Aside.LineColor = System.Drawing.Color.Black;
             this.Aside.Location = new System.Drawing.Point(2, 145);
-            this.Aside.MenuStyle = Sunny.UI.UIMenuStyle.Black;
+            this.Aside.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             this.Aside.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Aside.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Aside.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -118,7 +118,9 @@
             // 
             // uiContextMenuStrip1
             // 
+            this.uiContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.IsScaled = true;
             this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.关于ToolStripMenuItem,
             this.关于ToolStripMenuItem1});

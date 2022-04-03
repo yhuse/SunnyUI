@@ -21,8 +21,7 @@ namespace Sunny.UI.Demo
             person.Birthday = new DateTime(2002, 1, 1);
 
             FEdit frm = new FEdit();
-            frm.ReSetDPIScale();
-            frm.Style = UIStyles.Style;
+            frm.Render();
             frm.Person = person;
             frm.ShowDialog();
             if (frm.IsOK)
@@ -36,8 +35,7 @@ namespace Sunny.UI.Demo
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FEdit frm = new FEdit();
-            frm.ReSetDPIScale();
-            frm.Style = UIStyles.Style;
+            frm.Render();
             frm.ShowDialogWithMask();
             if (frm.IsOK)
             {
@@ -89,8 +87,7 @@ namespace Sunny.UI.Demo
             option.AddComboCheckedListBox("checkedList", "选择", checkedItems, "CCC");
 
             UIEditForm frm = new UIEditForm(option);
-            frm.ReSetDPIScale();
-            frm.Style = UIStyles.Style;
+            frm.Render();
             frm.CheckedData += Frm_CheckedData;
             frm.ShowDialog();
 

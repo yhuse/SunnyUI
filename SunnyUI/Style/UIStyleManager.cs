@@ -58,6 +58,7 @@ namespace Sunny.UI
         /// </summary>
         public UIStyleManager()
         {
+            Version = UIGlobal.Version;
         }
 
         /// <summary>
@@ -67,6 +68,7 @@ namespace Sunny.UI
         public UIStyleManager(IContainer container) : this()
         {
             container.Add(this);
+            Version = UIGlobal.Version;
         }
 
         [DefaultValue(false), Description("DPI缩放"), Category("SunnyUI")]
@@ -81,6 +83,14 @@ namespace Sunny.UI
         {
             get => UIStyles.FontSize;
             set => UIStyles.FontSize = value;
+        }
+
+        /// <summary>
+        /// 版本
+        /// </summary>
+        public string Version
+        {
+            get;
         }
     }
 }
