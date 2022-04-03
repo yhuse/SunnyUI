@@ -1,5 +1,23 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-04\-03 V3.1.3    
+\+ UIStyle: 增加全局字体大小设置    
+\+ UIUserControl: 增加用户控件基类    
+\+ FastLZ: FastLZ压缩解压类    
+\* UIForm: 默认设置AutoScaleMode为None    
+\* UIPage: 默认设置AutoScaleMode为None    
+\* UIUserControl: 默认设置AutoScaleMode为None    
+\* UITreeView: 增加水平滚动条    
+\* UITreeView: 垂直滚动条未显示时禁止鼠标滚轮滚动刷新    
+\* UITreeView: 自定义行颜色，可通过代码给颜色值，SetNodePainter    
+\* 编译SunnyUI.Demo为VS2010可编译版本    
+\* UIDPIScale: DPI重构下拉框组件配色    
+\* UIComboDataGridView: 修复一处点击清除按钮后确定出错    
+\* UIComboDataGridView: 更新了FilterColumnName为空时的过滤出错    
+\* UIButton: 增加是否显示浅色背景LightStyle    
+\* IFrame: 增加两个接口    
+\* UIStyle: 修改等待窗体与主题配色一致    
+    
 #### 2022\-03\-28 V3.1.2
 **此版本改动较大，请关注更新日志**  
 \- UIComboboxEx: 删除，其源码见：[https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Controls/UIComboboxEx.cs](https://gitee.com/yhuse/SunnyUI/blob/V3.0.8/SunnyUI/Controls/UIComboboxEx.cs)    
