@@ -224,6 +224,9 @@ namespace Sunny.UI
         public virtual Color FlowLayoutPanelBarFillColor { get; protected set; }
         public virtual Color FlowLayoutPanelBarForeColor { get; protected set; }
 
+        //SplitContainer
+        public virtual Color SplitContainerArrowColor { get; protected set; }
+
         protected Color ForeColor { get; set; }
 
         public UIBaseStyle DropDownStyle { get; protected set; }
@@ -245,6 +248,8 @@ namespace Sunny.UI
             PlainColor = colors[1];
             SecondaryColor = colors[5];
             RegularColor = colors[10];
+
+            SplitContainerArrowColor = PrimaryColor;
 
             GridSelectedColor = colors[3];
             GridSelectedForeColor = foreColor;
@@ -589,6 +594,8 @@ namespace Sunny.UI
             DropDownPanelForeColor = UIFontColor.Primary;
 
             DropDownStyle = UIStyles.Blue;
+
+            SplitContainerArrowColor = UIColor.Blue;
         }
     }
 
@@ -704,6 +711,8 @@ namespace Sunny.UI
             DropDownPanelForeColor = UIFontColor.Primary;
 
             DropDownStyle = UIStyles.Blue;
+
+            SplitContainerArrowColor = UIColor.Blue;
         }
     }
 }

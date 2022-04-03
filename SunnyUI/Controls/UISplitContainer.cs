@@ -17,6 +17,7 @@
  * 创建日期: 2021-10-30
  *
  * 2021-10-30: V3.0.8 增加文件说明
+ * 2022-04-03: V3.1.3 增加主题样式
 ******************************************************************************/
 using System;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UISplitContainer : SplitContainer
+    public class UISplitContainer : SplitContainer, IStyleInterface
     {
         private enum UIMouseType
         {
@@ -75,6 +76,13 @@ namespace Sunny.UI
             _lastDistance = SplitterDistance;
             SplitterWidth = 10;
             MinimumSize = new Size(20, 20);
+            Version = UIGlobal.Version;
+        }
+
+        protected void SetStyleCustom(bool needRefresh = true)
+        {
+            _style = UIStyle.Custom;
+            if (needRefresh) Invalidate();
         }
 
         private Color barColor = Color.FromArgb(56, 56, 56);
@@ -129,7 +137,7 @@ namespace Sunny.UI
             set
             {
                 arrowColor = value;
-                Invalidate();
+                SetStyleCustom();
             }
         }
 
@@ -218,6 +226,46 @@ namespace Sunny.UI
                 }
             }
         }
+
+        protected UIStyle _style = UIStyle.Blue;
+
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
+        public bool StyleCustomMode { get; set; }
+
+        /// <summary>
+        /// 版本
+        /// </summary>
+        public string Version
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString
+        {
+            get; set;
+        }
+
+        [Browsable(false), DefaultValue(false)]
+        public bool IsScaled { get; set; }
 
         public void Collapse()
         {
@@ -535,6 +583,31 @@ namespace Sunny.UI
                     collapseRect.Width,
                     DefaultArrowWidth);
             }
+        }
+
+        public void SetStyleColor(UIBaseStyle uiColor)
+        {
+            arrowColor = uiColor.SplitContainerArrowColor;
+        }
+
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="style">主题样式</param>
+        public void SetStyle(UIStyle style)
+        {
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
+            _style = style;
+        }
+
+        public void SetDPIScale()
+        {
+            //
         }
     }
 }
