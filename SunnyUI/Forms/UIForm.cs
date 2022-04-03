@@ -112,7 +112,7 @@ namespace Sunny.UI
             }
         }
 
-        public void ReSetDPIScale()
+        public void ResetDPIScale()
         {
             IsScaled = false;
             SetDPIScale();

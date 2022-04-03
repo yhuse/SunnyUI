@@ -55,6 +55,7 @@ namespace Sunny.UI
             thread = new Thread(delegate ()
             {
                 form = new UIWaitForm(desc);
+                form.Render();
                 if (IsRun) Application.Run(form);
             });
 
@@ -139,6 +140,7 @@ namespace Sunny.UI
             thread = new Thread(delegate ()
             {
                 form = new UIStatusForm(max, desc, decimalCount);
+                form.Render();
                 form.VisibleChanged += WaitForm_VisibleChanged;
                 Application.Run(form);
                 IsRun = false;
