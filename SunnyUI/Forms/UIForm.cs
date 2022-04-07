@@ -115,8 +115,30 @@ namespace Sunny.UI
             }
         }
 
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(DesignedSize.Width, DesignedSize.Height, 0, 0);
+            }
+
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
+
+            DesignSizeChanged?.Invoke(this, DesignedRect);
+        }
+
         [DefaultValue(typeof(Size), "0, 0")]
         [Description("设计界面大小"), Category("SunnyUI")]
+        public Size DesignedSize
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         private void SetControlScale()
@@ -134,7 +156,11 @@ namespace Sunny.UI
                     UIDPIScale.SetControlScale(control, scale);
                 }
             }
+
+            ControlScaleChanged?.Invoke(this, scale);
         }
+
+        public event OnControlScaleChanged ControlScaleChanged;
 
         public void ResetDPIScale()
         {
@@ -1329,13 +1355,7 @@ namespace Sunny.UI
             SetDesignedSize();
         }
 
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this); ;
-            }
-        }
+        public event OnDesignSizeChanged DesignSizeChanged;
 
         /// <summary>
         /// 是否显示圆角

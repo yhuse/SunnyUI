@@ -85,12 +85,6 @@ namespace Sunny.UI
             set => UIStyles.FontSize = value;
         }
 
-        public bool ControlScale
-        {
-            get => UIStyles.ControlScale;
-            set => UIStyles.ControlScale = value;
-        }
-
         /// <summary>
         /// 版本
         /// </summary>

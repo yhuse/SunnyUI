@@ -77,6 +77,14 @@ namespace Sunny.UI
         public int Width { get; }
         public int Height { get; }
 
+        public ControlScaleInfo(int width, int height, int xInterval, int yInterval)
+        {
+            Width = width;
+            Height = height;
+            XInterval = xInterval;
+            YInterval = yInterval;
+        }
+
         public ControlScaleInfo(Control control)
         {
             Width = control.Width;

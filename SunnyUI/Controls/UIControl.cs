@@ -49,7 +49,7 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
-        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         protected override void OnVisibleChanged(EventArgs e)

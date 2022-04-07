@@ -44,7 +44,7 @@ namespace Sunny.UI
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
         private Color foreColor = UIFontColor.Primary;
 
-        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]

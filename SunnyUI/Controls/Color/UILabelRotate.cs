@@ -11,7 +11,7 @@ namespace Sunny.UI
         private ContentAlignment m_rotatePointAlignment = ContentAlignment.MiddleCenter;
         private ContentAlignment m_textAlignment = ContentAlignment.MiddleLeft;
 
-        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         [DefaultValue(false), Category("SunnyUI"), Description("½ûÖ¹¿Ø¼þ¸úËæ´°ÌåËõ·Å")]

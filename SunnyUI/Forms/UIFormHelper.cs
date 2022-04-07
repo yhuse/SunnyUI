@@ -30,6 +30,10 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    public delegate void OnControlScaleChanged(object sender, float scale);
+
+    public delegate void OnDesignSizeChanged(object sender, ControlScaleInfo info);
+
     public static class UIMessageDialog
     {
         /// <summary>

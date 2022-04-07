@@ -46,7 +46,7 @@ namespace Sunny.UI
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ForbidControlScale { get; set; }
 
-        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         protected override void OnVisibleChanged(EventArgs e)
@@ -191,7 +191,7 @@ namespace Sunny.UI
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ForbidControlScale { get; set; }
 
-        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        [Browsable(false)]
         public ControlScaleInfo DesignedRect { get; private set; }
 
         protected override void OnVisibleChanged(EventArgs e)
