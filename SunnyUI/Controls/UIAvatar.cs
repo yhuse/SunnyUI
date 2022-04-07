@@ -73,6 +73,7 @@ namespace Sunny.UI
         }
 
         private int avatarSize = 60;
+        private int baseAvatorSize = 60;
 
         [DefaultValue(60), Description("头像大小"), Category("SunnyUI")]
         public int AvatarSize
@@ -80,6 +81,7 @@ namespace Sunny.UI
             get => avatarSize;
             set
             {
+                baseAvatorSize = value;
                 avatarSize = value;
                 Invalidate();
             }
@@ -177,6 +179,7 @@ namespace Sunny.UI
         }
 
         private int symbolSize = 45;
+        private int baseSymbolSize = 45;
 
         /// <summary>
         /// 图标大小
@@ -191,6 +194,7 @@ namespace Sunny.UI
                 {
                     symbolSize = Math.Max(value, 16);
                     symbolSize = Math.Min(value, 128);
+                    baseSymbolSize = symbolSize;
                     Invalidate();
                 }
             }
@@ -354,7 +358,9 @@ namespace Sunny.UI
 
         public void SetControlScale(float scale)
         {
-            throw new NotImplementedException();
+            avatarSize = UIDPIScale.Calc(baseAvatorSize, scale);
+            symbolSize = UIDPIScale.Calc(baseSymbolSize, scale);
+            Invalidate();
         }
     }
 }

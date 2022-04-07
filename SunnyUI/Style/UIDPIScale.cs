@@ -106,7 +106,7 @@ namespace Sunny.UI
             return list;
         }
 
-        private static int Calc(int size, float scale)
+        internal static int Calc(int size, float scale)
         {
             return (int)(size * scale + 0.5);
         }
