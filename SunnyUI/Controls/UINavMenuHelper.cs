@@ -334,30 +334,48 @@ namespace Sunny.UI
             return CreateTabIfNotExists(new NavMenuItem(guid));
         }
 
-        public void SelectPage(int pageIndex)
+        public bool SelectPage(int pageIndex)
         {
-            if (pageIndex < 0) return;
+            if (pageIndex < 0)
+            {
+                return false;
+            }
+
             foreach (var item in PageItems)
             {
                 if (item.Value.PageIndex == pageIndex && item.Key != null)
                 {
                     if (tabControl.TabPages.Contains(item.Key))
+                    {
                         tabControl.SelectTab(item.Key);
+                        return true;
+                    }
                 }
             }
+
+            return false;
         }
 
-        public void SelectPage(Guid guid)
+        public bool SelectPage(Guid guid)
         {
-            if (guid == Guid.Empty) return;
+            if (guid == Guid.Empty)
+            {
+                return false;
+            }
+
             foreach (var item in PageItems)
             {
                 if (item.Value.PageGuid == guid && item.Key != null)
                 {
                     if (tabControl.TabPages.Contains(item.Key))
+                    {
                         tabControl.SelectTab(item.Key);
+                        return true;
+                    }
                 }
             }
+
+            return false;
         }
 
         public UIPage GetPage(int pageIndex)

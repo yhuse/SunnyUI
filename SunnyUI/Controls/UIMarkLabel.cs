@@ -29,7 +29,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public class UIMarkLabel : UILabel
+    public sealed class UIMarkLabel : UILabel
     {
         public UIMarkLabel()
         {

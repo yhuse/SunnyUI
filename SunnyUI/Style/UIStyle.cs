@@ -23,8 +23,6 @@
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
 ******************************************************************************/
 
-using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
@@ -61,6 +59,53 @@ namespace Sunny.UI
         bool IsScaled { get; }
 
         void SetDPIScale();
+
+        ControlScaleInfo DesignedRect { get; }
+
+        bool ForbidControlScale { get; set; }
+    }
+
+    public interface IControlScale
+    {
+        void SetControlScale(float scale);
+    }
+
+    public struct ControlScaleInfo
+    {
+        public int XInterval { get; }
+        public int YInterval { get; }
+        public int Width { get; }
+        public int Height { get; }
+
+        public ControlScaleInfo(Control control)
+        {
+            Width = control.Width;
+            Height = control.Height;
+            XInterval = 0;
+            YInterval = 0;
+            if (control.Parent != null)
+            {
+                if ((control.Anchor & AnchorStyles.Left) == AnchorStyles.Left)
+                {
+                    XInterval = control.Left;
+                }
+
+                if ((control.Anchor & AnchorStyles.Right) == AnchorStyles.Right)
+                {
+                    XInterval = control.Parent.Width - control.Right;
+                }
+
+                if ((control.Anchor & AnchorStyles.Top) == AnchorStyles.Top)
+                {
+                    YInterval = control.Top;
+                }
+
+                if ((control.Anchor & AnchorStyles.Bottom) == AnchorStyles.Bottom)
+                {
+                    YInterval = control.Parent.Height - control.Bottom;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -145,299 +190,6 @@ namespace Sunny.UI
         /// </summary>
         [DisplayText("Colorful")]
         Colorful = 999
-    }
-
-    /// <summary>
-    /// 主题样式管理类
-    /// </summary>
-    public static class UIStyles
-    {
-        public static bool DPIScale { get; set; }
-
-        public static float FontSize { get; set; } = 12;
-
-        public static List<UIStyle> PopularStyles()
-        {
-            List<UIStyle> styles = new List<UIStyle>();
-            foreach (UIStyle style in Enum.GetValues(typeof(UIStyle)))
-            {
-                if (style.Value() >= UIStyle.Blue.Value() && style.Value() < UIStyle.Colorful.Value())
-                {
-                    styles.Add(style);
-                }
-            }
-
-            return styles;
-        }
-
-        /// <summary>
-        /// 自定义
-        /// </summary>
-        private static readonly UIBaseStyle Custom = new UICustomStyle();
-
-        /// <summary>
-        /// 蓝
-        /// </summary>
-        public static readonly UIBaseStyle Blue = new UIBlueStyle();
-
-        /// <summary>
-        /// 橙
-        /// </summary>
-        public static readonly UIBaseStyle Orange = new UIOrangeStyle();
-
-        /// <summary>
-        /// 灰
-        /// </summary>
-        public static readonly UIBaseStyle Gray = new UIGrayStyle();
-
-        /// <summary>
-        /// 绿
-        /// </summary>
-        public static readonly UIBaseStyle Green = new UIGreenStyle();
-
-        /// <summary>
-        /// 红
-        /// </summary>
-        public static readonly UIBaseStyle Red = new UIRedStyle();
-
-        /// <summary>
-        /// 深蓝
-        /// </summary>
-        public static readonly UIBaseStyle DarkBlue = new UIDarkBlueStyle();
-
-        /// <summary>
-        /// 黑
-        /// </summary>
-        public static readonly UIBaseStyle Black = new UIBlackStyle();
-
-        /// <summary>
-        /// 紫
-        /// </summary>
-        public static readonly UIBaseStyle Purple = new UIPurpleStyle();
-
-        /// <summary>
-        /// 多彩
-        /// </summary>
-        private static readonly UIColorfulStyle Colorful = new UIColorfulStyle();
-
-        public static void InitColorful(Color styleColor, Color foreColor)
-        {
-            Colorful.Init(styleColor, foreColor);
-            Style = UIStyle.Colorful;
-            SetStyle(Style);
-        }
-
-        private static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
-        private static readonly ConcurrentDictionary<Guid, UIForm> Forms = new ConcurrentDictionary<Guid, UIForm>();
-        private static readonly ConcurrentDictionary<Guid, UIPage> Pages = new ConcurrentDictionary<Guid, UIPage>();
-
-        /// <summary>
-        /// 菜单颜色集合
-        /// </summary>
-        public static readonly ConcurrentDictionary<UIMenuStyle, UIMenuColor> MenuColors = new ConcurrentDictionary<UIMenuStyle, UIMenuColor>();
-
-        static UIStyles()
-        {
-            AddStyle(Custom);
-            AddStyle(Blue);
-            AddStyle(Orange);
-            AddStyle(Gray);
-            AddStyle(Green);
-            AddStyle(Red);
-            AddStyle(DarkBlue);
-
-            AddStyle(new UIBaseStyle().Init(UIColor.LayuiGreen, UIStyle.LayuiGreen, Color.White, UIFontColor.Primary));
-            AddStyle(new UIBaseStyle().Init(UIColor.LayuiRed, UIStyle.LayuiRed, Color.White, UIFontColor.Primary));
-            AddStyle(new UIBaseStyle().Init(UIColor.LayuiOrange, UIStyle.LayuiOrange, Color.White, UIFontColor.Primary));
-
-            AddStyle(Black);
-            AddStyle(Purple);
-
-            AddStyle(Colorful);
-
-            MenuColors.TryAdd(UIMenuStyle.Custom, new UIMenuCustomColor());
-            MenuColors.TryAdd(UIMenuStyle.Black, new UIMenuBlackColor());
-            MenuColors.TryAdd(UIMenuStyle.White, new UIMenuWhiteColor());
-        }
-
-        /// <summary>
-        /// 主题样式整数值
-        /// </summary>
-        /// <param name="style">主题样式</param>
-        /// <returns>整数值</returns>
-        public static int Value(this UIStyle style)
-        {
-            return (int)style;
-        }
-
-        /// <summary>
-        /// 注册窗体
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        /// <param name="form">窗体</param>
-        public static bool Register(Guid guid, UIForm form)
-        {
-            if (!Forms.ContainsKey(guid))
-            {
-                Forms.TryAddOrUpdate(guid, form);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册页面
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        /// <param name="page">页面</param>
-        public static bool Register(Guid guid, UIPage page)
-        {
-            if (!Pages.ContainsKey(guid))
-            {
-                Pages.TryAddOrUpdate(guid, page);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册窗体
-        /// </summary>
-        /// <param name="form">窗体</param>
-        public static bool Register(this UIForm form)
-        {
-            if (!Forms.ContainsKey(form.Guid))
-            {
-                Forms.TryAddOrUpdate(form.Guid, form);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册页面
-        /// </summary>
-        /// <param name="page">页面</param>
-        public static bool Register(this UIPage page)
-        {
-            if (!Pages.ContainsKey(page.Guid))
-            {
-                Pages.TryAddOrUpdate(page.Guid, page);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 反注册窗体
-        /// </summary>
-        /// <param name="form">窗体</param>
-        public static void UnRegister(this UIForm form)
-        {
-            Forms.TryRemove(form.Guid, out _);
-        }
-
-        /// <summary>
-        /// 反注册页面
-        /// </summary>
-        /// <param name="page">页面</param>
-        public static void UnRegister(this UIPage page)
-        {
-            Pages.TryRemove(page.Guid, out _);
-        }
-
-        /// <summary>
-        /// 反注册窗体、页面
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        public static void UnRegister(Guid guid)
-        {
-            if (Forms.ContainsKey(guid))
-                Forms.TryRemove(guid, out _);
-
-            if (Pages.ContainsKey(guid))
-                Pages.TryRemove(guid, out _);
-
-        }
-
-        /// <summary>
-        /// 获取主题样式
-        /// </summary>
-        /// <param name="style">主题样式名称</param>
-        /// <returns>主题样式</returns>
-        public static UIBaseStyle GetStyleColor(UIStyle style)
-        {
-            if (Styles.ContainsKey(style))
-            {
-                return Styles[style];
-            }
-
-            Style = UIStyle.Blue;
-            return Styles[Style];
-        }
-
-        public static UIBaseStyle ActiveStyleColor => GetStyleColor(Style);
-
-        private static void AddStyle(UIBaseStyle uiColor)
-        {
-            if (Styles.ContainsKey(uiColor.Name))
-            {
-                MessageBox.Show(uiColor.Name + " is already exist.");
-            }
-
-            Styles.TryAdd(uiColor.Name, uiColor);
-        }
-
-        /// <summary>
-        /// 主题样式
-        /// </summary>
-        public static UIStyle Style { get; private set; } = UIStyle.Blue;
-
-        /// <summary>
-        /// 设置主题样式
-        /// </summary>
-        /// <param name="style">主题样式</param>
-        public static void SetStyle(UIStyle style)
-        {
-            Style = style;
-
-            foreach (var form in Forms.Values)
-            {
-                form.Style = style;
-            }
-
-            foreach (var page in Pages.Values)
-            {
-                page.Style = style;
-            }
-        }
-
-        public static void SetDPIScale()
-        {
-            foreach (var form in Forms.Values)
-            {
-                if (!UIDPIScale.DPIScaleIsOne())
-                    form.SetDPIScale();
-            }
-
-            foreach (var page in Pages.Values)
-            {
-                if (!UIDPIScale.DPIScaleIsOne())
-                    page.SetDPIScale();
-            }
-        }
-
-        public static void Translate()
-        {
-            foreach (var form in Forms.Values)
-            {
-                form.Translate();
-            }
-        }
     }
 
     /// <summary>

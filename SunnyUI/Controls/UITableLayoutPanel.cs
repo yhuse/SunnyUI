@@ -21,19 +21,26 @@
 ******************************************************************************/
 
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UITableLayoutPanel : TableLayoutPanel, IStyleInterface
+    public sealed class UITableLayoutPanel : TableLayoutPanel, IStyleInterface
     {
         public UITableLayoutPanel()
         {
             Version = UIGlobal.Version;
         }
 
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
         [Browsable(false)]
         public bool IsScaled { get; private set; }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
 
         public void SetDPIScale()
         {
@@ -66,7 +73,7 @@ namespace Sunny.UI
             get; set;
         }
 
-        protected UIStyle _style = UIStyle.Blue;
+        private UIStyle _style = UIStyle.Blue;
 
         /// <summary>
         /// 主题样式

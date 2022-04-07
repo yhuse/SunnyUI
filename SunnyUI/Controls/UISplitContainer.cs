@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UISplitContainer : SplitContainer, IStyleInterface
+    public sealed class UISplitContainer : SplitContainer, IStyleInterface
     {
         private enum UIMouseType
         {
@@ -68,6 +68,9 @@ namespace Sunny.UI
         private UIMouseType _uiMouseType;
         private readonly object EventCollapseClick = new object();
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
         public UISplitContainer()
         {
             SetStyle(ControlStyles.UserPaint |
@@ -79,7 +82,24 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
-        protected void SetStyleCustom(bool needRefresh = true)
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
+        }
+
+        private void SetStyleCustom(bool needRefresh = true)
         {
             _style = UIStyle.Custom;
             if (needRefresh) Invalidate();
@@ -163,9 +183,9 @@ namespace Sunny.UI
             }
         }
 
-        protected virtual int DefaultCollapseWidth => 80;
+        private int DefaultCollapseWidth => 80;
 
-        protected virtual int DefaultArrowWidth => 24;
+        private int DefaultArrowWidth => 24;
 
         private Rectangle CollapseRect
         {
@@ -227,7 +247,7 @@ namespace Sunny.UI
             }
         }
 
-        protected UIStyle _style = UIStyle.Blue;
+        private UIStyle _style = UIStyle.Blue;
 
         /// <summary>
         /// 主题样式
@@ -317,7 +337,7 @@ namespace Sunny.UI
             }
         }
 
-        protected virtual void OnCollapseClick(EventArgs e)
+        private void OnCollapseClick(EventArgs e)
         {
             SplitPanelState = SplitPanelState == UISplitPanelState.Collapsed ?
                 UISplitPanelState.Expanded : UISplitPanelState.Collapsed;
@@ -384,7 +404,7 @@ namespace Sunny.UI
             }
         }
 
-        protected Point[] GetHandlePoints()
+        private Point[] GetHandlePoints()
         {
             bool bCollapsed = SplitPanelState == UISplitPanelState.Collapsed;
 

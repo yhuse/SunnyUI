@@ -82,6 +82,9 @@ namespace Sunny.UI
             titleForeColor = UIStyles.Blue.FormTitleForeColor;
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
         [Browsable(false)]
         public bool IsScaled { get; private set; }
 
@@ -109,6 +112,27 @@ namespace Sunny.UI
                 }
 
                 IsScaled = true;
+            }
+        }
+
+        [DefaultValue(typeof(Size), "0, 0")]
+        [Description("设计界面大小"), Category("SunnyUI")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        private void SetControlScale()
+        {
+            if (ForbidControlScale) return;
+            if (!UIStyles.DPIScale || !UIStyles.ControlScale) return;
+            if (DesignedRect.Width == 0 || DesignedRect.Height == 0) return;
+            if (Width == 0 || Height == 0) return;
+            float scale = Math.Min(Width * 1.0f / DesignedRect.Width, Height * 1.0f / DesignedRect.Height);
+            if (scale.EqualsFloat(0)) return;
+            foreach (Control control in this.GetAllDPIScaleControls())
+            {
+                if (control is IStyleInterface)
+                {
+                    UIDPIScale.SetControlScale(control, scale);
+                }
             }
         }
 
@@ -1220,6 +1244,7 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
+            if (DesignMode) return;
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 
@@ -1267,6 +1292,7 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
+            SetControlScale();
             CalcSystemBoxPos();
 
             if (isShow)
@@ -1300,6 +1326,15 @@ namespace Sunny.UI
             SetRadius();
             isShow = true;
             SetDPIScale();
+            SetDesignedSize();
+        }
+
+        protected virtual void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this); ;
+            }
         }
 
         /// <summary>
@@ -1990,18 +2025,43 @@ namespace Sunny.UI
 
         private UIForm SetDefaultTabControl()
         {
-            if (MainTabControl == null)
+            List<UITabControl> ctrls = this.GetControls<UITabControl>();
+            if (ctrls.Count == 1)
             {
-                List<UITabControl> ctrls = this.GetControls<UITabControl>();
-                if (ctrls.Count == 1) MainTabControl = ctrls[0];
+                if (MainTabControl == null)
+                {
+                    MainTabControl = ctrls[0];
+                }
+
+                List<UINavMenu> Menus = this.GetControls<UINavMenu>();
+                if (Menus.Count == 1 && Menus[0].TabControl == null)
+                {
+                    Menus[0].TabControl = ctrls[0];
+                }
+
+                List<UINavBar> Bars = this.GetControls<UINavBar>();
+                if (Bars.Count == 1 && Bars[0].TabControl == null)
+                {
+                    Bars[0].TabControl = ctrls[0];
+                }
             }
 
             return this;
         }
 
-        public virtual void SelectPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.SelectPage(pageIndex);
+        public virtual bool SelectPage(int pageIndex)
+        {
+            SetDefaultTabControl();
+            if (MainTabControl == null) return false;
+            return MainTabControl.SelectPage(pageIndex);
+        }
 
-        public virtual void SelectPage(Guid guid) => SetDefaultTabControl().MainTabControl?.SelectPage(guid);
+        public virtual bool SelectPage(Guid guid)
+        {
+            SetDefaultTabControl();
+            if (MainTabControl == null) return false;
+            return MainTabControl.SelectPage(guid);
+        }
 
         public bool RemovePage(int pageIndex) => MainTabControl?.RemovePage(pageIndex) ?? false;
 

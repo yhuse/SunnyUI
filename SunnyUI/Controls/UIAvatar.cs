@@ -35,7 +35,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Symbol")]
     [ToolboxItem(true)]
-    public sealed class UIAvatar : UIControl, ISymbol
+    public sealed class UIAvatar : UIControl, ISymbol, IControlScale
     {
         /// <summary>
         /// 头像图标类型
@@ -350,6 +350,11 @@ namespace Sunny.UI
             }
 
             PaintAgain?.Invoke(this, e);
+        }
+
+        public void SetControlScale(float scale)
+        {
+            throw new NotImplementedException();
         }
     }
 }

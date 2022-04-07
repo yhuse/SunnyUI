@@ -609,6 +609,12 @@ namespace Sunny.UI
     {
         private UIScrollBar bar;
 
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
         /// <summary>
         /// Tag字符串
         /// </summary>

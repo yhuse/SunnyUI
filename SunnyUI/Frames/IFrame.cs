@@ -34,9 +34,9 @@ namespace Sunny.UI
 
         UIPage AddPage(UIPage page);
 
-        void SelectPage(int pageIndex);
+        bool SelectPage(int pageIndex);
 
-        void SelectPage(Guid guid);
+        bool SelectPage(Guid guid);
 
         UIPage GetPage(int pageIndex);
 
@@ -57,7 +57,9 @@ namespace Sunny.UI
         bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects);
 
         bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects);
+
         void Init();
+
         void Final();
 
         T GetPage<T>() where T : UIPage;

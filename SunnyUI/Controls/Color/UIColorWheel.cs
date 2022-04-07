@@ -33,6 +33,12 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("½ûÖ¹¿Ø¼þ¸úËæ´°ÌåËõ·Å")]
+        public bool ForbidControlScale { get; set; }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
         [Browsable(false)]
         public bool IsScaled { get; private set; }
 

@@ -23,6 +23,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,6 +41,26 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
             base.TextAlign = ContentAlignment.MiddleLeft;
             foreColor = UIStyles.Blue.LabelForeColor;
+        }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        protected virtual void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
         }
 
         private int angle;
@@ -165,6 +186,26 @@ namespace Sunny.UI
 
             foreColor = UIStyles.Blue.LabelForeColor;
             base.LinkColor = linkColor = UIColor.Blue;
+        }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
         }
 
         [Browsable(false)]

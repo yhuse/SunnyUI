@@ -37,11 +37,12 @@ namespace Sunny.UI
             Aside.TabControl = MainTabControl;
         }
 
-        public override void SelectPage(int pageIndex)
+        public override bool SelectPage(int pageIndex)
         {
-            base.SelectPage(pageIndex);
+            bool result = base.SelectPage(pageIndex);
             TreeNode node = Aside.GetTreeNode(pageIndex);
             if (node != null) Aside.SelectedNode = node;
+            return result;
         }
     }
 }

@@ -72,6 +72,26 @@ namespace Sunny.UI
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
+        }
+
         private ConcurrentDictionary<TabPage, string> TipsTexts = new ConcurrentDictionary<TabPage, string>();
 
         public void SetTipsText(TabPage tabPage, string tipsText)
@@ -192,9 +212,9 @@ namespace Sunny.UI
         [Description("是否禁用Ctrl+Tab"), Category("SunnyUI")]
         public bool ForbidCtrlTab { get; set; } = true;
 
-        public void SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
+        public bool SelectPage(int pageIndex) => Helper.SelectPage(pageIndex);
 
-        public void SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
+        public bool SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
 
         public void AddPage(UIPage page) => Helper.AddPage(page);
 

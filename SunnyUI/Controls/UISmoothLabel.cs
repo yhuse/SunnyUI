@@ -32,7 +32,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public class UISmoothLabel : Label, IStyleInterface
+    public sealed class UISmoothLabel : Label, IStyleInterface
     {
         public UISmoothLabel()
         {
@@ -48,6 +48,9 @@ namespace Sunny.UI
             Size = new Size(300, 60);
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -58,6 +61,23 @@ namespace Sunny.UI
             }
 
             base.Dispose(disposing);
+        }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
         }
 
         private PointF point;
@@ -103,7 +123,7 @@ namespace Sunny.UI
             }
         }
 
-        protected void SetStyleCustom(bool needRefresh = true)
+        private void SetStyleCustom(bool needRefresh = true)
         {
             _style = UIStyle.Custom;
             if (needRefresh) Invalidate();
@@ -129,7 +149,7 @@ namespace Sunny.UI
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
-        public virtual void SetStyleColor(UIBaseStyle uiColor)
+        public void SetStyleColor(UIBaseStyle uiColor)
         {
             foreColor = uiColor.SmoothLabelForeColor;
             rectColor = uiColor.SmoothLabelRectColor;
@@ -163,7 +183,7 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        protected Color rectColor;
+        private Color rectColor;
 
         /// <summary>
         /// 边框颜色

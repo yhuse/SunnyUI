@@ -42,6 +42,12 @@ namespace Sunny.UI
             BackColor = UIStyles.Blue.ContextMenuColor;
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
 

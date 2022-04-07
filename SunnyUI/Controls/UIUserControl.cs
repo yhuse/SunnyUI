@@ -50,11 +50,15 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
 
         public virtual void SetDPIScale()
         {
+            if (DesignMode) return;
             if (!IsScaled)
             {
                 this.SetDPIScaleFont();
@@ -341,10 +345,26 @@ namespace Sunny.UI
             }
         }
 
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
         protected override void OnVisibleChanged(EventArgs e)
         {
             base.OnVisibleChanged(e);
-            if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
+            if (AutoScaleMode == AutoScaleMode.Font)
+            {
+                AutoScaleMode = AutoScaleMode.None;
+            }
+
+            SetDesignedSize();
+        }
+
+        protected virtual void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)

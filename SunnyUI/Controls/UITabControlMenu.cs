@@ -50,6 +50,26 @@ namespace Sunny.UI
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
+        [Browsable(false), DefaultValue(typeof(Size), "0, 0")]
+        public ControlScaleInfo DesignedRect { get; private set; }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ForbidControlScale { get; set; }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            SetDesignedSize();
+        }
+
+        private void SetDesignedSize()
+        {
+            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            {
+                DesignedRect = new ControlScaleInfo(this);
+            }
+        }
+
         [Browsable(false)]
         public bool IsScaled { get; private set; }
 
