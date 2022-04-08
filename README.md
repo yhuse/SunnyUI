@@ -25,8 +25,7 @@ SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织�
 - 源码编译环境：    
   1. **VS2019** 16.8+ （16.8.0是支持.Net5的最低版本）    
   2. **VS2022**，安装.NetFramework4.0目标包的方法见：https://www.cnblogs.com/yhuse/p/15536393.html    
-- 动态库应用环境：    
-  **VS2010**及以上均可：    
+- 动态库应用环境： **VS2010**及以上均可，支持.Net Framework 4.0+、.Net 5、.Net 6    
   1. 推荐通过Nuget安装：Install-Package SunnyUI，或者通过Nuget搜索SunnyUI安装。    
   2. 不支持（.Net Framework 4 **Client Profile**）。     
     
