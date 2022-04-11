@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UIDataGridView : DataGridView, IStyleInterface
+    public class UIDataGridView : DataGridView, IStyleInterface, IZoomScale
     {
         private readonly UIScrollBar VBar = new UIScrollBar();
         private readonly UIHorScrollBarEx HBar = new UIHorScrollBarEx();
@@ -101,23 +101,14 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public virtual void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         [Browsable(false)]

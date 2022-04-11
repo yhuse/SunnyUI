@@ -21,7 +21,6 @@
 ******************************************************************************/
 
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -34,13 +33,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
-        [Browsable(false)]
         public bool IsScaled { get; private set; }
-
-        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
 
         public void SetDPIScale()
         {

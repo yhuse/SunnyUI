@@ -31,7 +31,7 @@ namespace Sunny.UI
 {
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner))]
     [DefaultEvent("Click"), DefaultProperty("Text")]
-    public partial class UIUserControl : UserControl, IStyleInterface
+    public partial class UIUserControl : UserControl, IStyleInterface, IZoomScale
     {
         private int radius = 5;
         protected Color rectColor = UIStyles.Blue.PanelRectColor;
@@ -51,7 +51,15 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
+
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public virtual void SetZoomScale(float scale)
+        {
+
+        }
 
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
@@ -345,25 +353,12 @@ namespace Sunny.UI
             }
         }
 
-        [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
         protected override void OnVisibleChanged(EventArgs e)
         {
             base.OnVisibleChanged(e);
             if (AutoScaleMode == AutoScaleMode.Font)
             {
                 AutoScaleMode = AutoScaleMode.None;
-            }
-
-            SetDesignedSize();
-        }
-
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
             }
         }
 

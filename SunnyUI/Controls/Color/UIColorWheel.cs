@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(false)]
-    public sealed class UIColorWheel : Control, IStyleInterface
+    public sealed class UIColorWheel : Control, IStyleInterface, IZoomScale
     {
         public event EventHandler SelectedColorChanged;
 
@@ -34,10 +34,15 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("½ûÖ¹¿Ø¼þ¸úËæ´°ÌåËõ·Å")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public void SetZoomScale(float scale)
+        {
+
+        }
 
         [Browsable(false)]
         public bool IsScaled { get; private set; }

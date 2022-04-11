@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UITabControl : TabControl, IStyleInterface
+    public sealed class UITabControl : TabControl, IStyleInterface, IZoomScale
     {
         private readonly UITabControlHelper Helper;
         private int DrawedIndex = -1;
@@ -73,23 +73,14 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         private ConcurrentDictionary<TabPage, string> TipsTexts = new ConcurrentDictionary<TabPage, string>();

@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UITabControlMenu : TabControl, IStyleInterface
+    public sealed class UITabControlMenu : TabControl, IStyleInterface, IZoomScale
     {
         public UITabControlMenu()
         {
@@ -50,24 +50,15 @@ namespace Sunny.UI
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
-        [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
 
-        private void SetDesignedSize()
+        public void SetZoomScale(float scale)
         {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
+
         }
 
         [Browsable(false)]

@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UISplitContainer : SplitContainer, IStyleInterface
+    public sealed class UISplitContainer : SplitContainer, IStyleInterface, IZoomScale
     {
         private enum UIMouseType
         {
@@ -68,9 +68,6 @@ namespace Sunny.UI
         private UIMouseType _uiMouseType;
         private readonly object EventCollapseClick = new object();
 
-        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
-
         public UISplitContainer()
         {
             SetStyle(ControlStyles.UserPaint |
@@ -82,21 +79,15 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ZoomScaleDisabled { get; set; }
+
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         private void SetStyleCustom(bool needRefresh = true)

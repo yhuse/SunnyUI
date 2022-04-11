@@ -38,7 +38,7 @@ namespace Sunny.UI
     {
         public static bool DPIScale { get; set; }
 
-        public static bool ControlScale { get; set; }
+        public static bool ZoomScale { get; set; }
 
         public static float FontSize { get; set; } = 12;
 

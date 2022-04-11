@@ -35,7 +35,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Symbol")]
     [ToolboxItem(true)]
-    public sealed class UIAvatar : UIControl, ISymbol, IControlScale
+    public sealed class UIAvatar : UIControl, ISymbol, IZoomScale
     {
         /// <summary>
         /// 头像图标类型
@@ -356,10 +356,11 @@ namespace Sunny.UI
             PaintAgain?.Invoke(this, e);
         }
 
-        public void SetControlScale(float scale)
+        public override void SetZoomScale(float scale)
         {
-            avatarSize = UIDPIScale.Calc(baseAvatorSize, scale);
-            symbolSize = UIDPIScale.Calc(baseSymbolSize, scale);
+            base.SetZoomScale(scale);
+            avatarSize = UIZoomScale.Calc(baseAvatorSize, scale);
+            symbolSize = UIZoomScale.Calc(baseSymbolSize, scale);
             Invalidate();
         }
     }

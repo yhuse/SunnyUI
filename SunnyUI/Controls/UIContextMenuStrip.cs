@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UIContextMenuStrip : ContextMenuStrip, IStyleInterface
+    public sealed class UIContextMenuStrip : ContextMenuStrip, IStyleInterface, IZoomScale
     {
         public ContextMenuColorTable ColorTable = new ContextMenuColorTable();
 
@@ -43,10 +43,15 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public void SetZoomScale(float scale)
+        {
+
+        }
 
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }

@@ -30,7 +30,7 @@ namespace Sunny.UI
     /// <summary>
     /// 图像按钮
     /// </summary>
-    public sealed class UIImageButton : PictureBox, IStyleInterface
+    public sealed class UIImageButton : PictureBox, IStyleInterface, IZoomScale
     {
         private bool IsPress;
         private bool IsHover;
@@ -44,24 +44,15 @@ namespace Sunny.UI
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
         private Color foreColor = UIFontColor.Primary;
 
-        [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
 
-        private void SetDesignedSize()
+        public void SetZoomScale(float scale)
         {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
+
         }
 
         /// <summary>

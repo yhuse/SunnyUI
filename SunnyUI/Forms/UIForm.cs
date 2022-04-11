@@ -83,7 +83,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
         public bool IsScaled { get; private set; }
@@ -115,52 +115,52 @@ namespace Sunny.UI
             }
         }
 
-        private void SetDesignedSize()
+        private void SetZoomScaleRect()
         {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            if (ZoomScaleRect.Width == 0 && ZoomScaleRect.Height == 0)
             {
-                DesignedRect = new ControlScaleInfo(DesignedSize.Width, DesignedSize.Height, 0, 0);
+                ZoomScaleRect = new Rectangle(ZoomScaleSize.Width, ZoomScaleSize.Height, 0, 0);
             }
 
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
+            if (ZoomScaleRect.Width == 0 && ZoomScaleRect.Height == 0)
             {
-                DesignedRect = new ControlScaleInfo(this);
+                ZoomScaleRect = new Rectangle(Left, Top, Width, Height);
             }
 
-            DesignSizeChanged?.Invoke(this, DesignedRect);
+            ZoomScaleRectChanged?.Invoke(this, ZoomScaleRect);
         }
 
         [DefaultValue(typeof(Size), "0, 0")]
         [Description("设计界面大小"), Category("SunnyUI")]
-        public Size DesignedSize
+        public Size ZoomScaleSize
         {
             get;
             set;
         }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        private void SetControlScale()
+        private void SetZoomScale()
         {
-            if (ForbidControlScale) return;
-            if (!UIStyles.DPIScale || !UIStyles.ControlScale) return;
-            if (DesignedRect.Width == 0 || DesignedRect.Height == 0) return;
+            if (ZoomScaleDisabled) return;
+            if (!UIStyles.DPIScale || !UIStyles.ZoomScale) return;
+            if (ZoomScaleRect.Width == 0 || ZoomScaleRect.Height == 0) return;
             if (Width == 0 || Height == 0) return;
-            float scale = Math.Min(Width * 1.0f / DesignedRect.Width, Height * 1.0f / DesignedRect.Height);
+            float scale = Math.Min(Width * 1.0f / ZoomScaleRect.Width, Height * 1.0f / ZoomScaleRect.Height);
             if (scale.EqualsFloat(0)) return;
-            foreach (Control control in this.GetAllDPIScaleControls())
+            foreach (Control control in this.GetAllZoomScaleControls())
             {
-                if (control is IStyleInterface)
+                if (control is IZoomScale ctrl)
                 {
-                    UIDPIScale.SetControlScale(control, scale);
+                    UIZoomScale.SetZoomScale(control, scale);
                 }
             }
 
-            ControlScaleChanged?.Invoke(this, scale);
+            ZoomScaleChanged?.Invoke(this, scale);
         }
 
-        public event OnControlScaleChanged ControlScaleChanged;
+        public event OnZoomScaleChanged ZoomScaleChanged;
 
         public void ResetDPIScale()
         {
@@ -1318,7 +1318,7 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            SetControlScale();
+            SetZoomScale();
             CalcSystemBoxPos();
 
             if (isShow)
@@ -1352,10 +1352,10 @@ namespace Sunny.UI
             SetRadius();
             isShow = true;
             SetDPIScale();
-            SetDesignedSize();
+            SetZoomScaleRect();
         }
 
-        public event OnDesignSizeChanged DesignSizeChanged;
+        public event OnZoomScaleRectChanged ZoomScaleRectChanged;
 
         /// <summary>
         /// 是否显示圆角

@@ -36,7 +36,7 @@ namespace Sunny.UI
     /// 控件基类
     /// </summary>
     [ToolboxItem(false)]
-    public class UIControl : Control, IStyleInterface
+    public class UIControl : Control, IStyleInterface, IZoomScale
     {
         /// <summary>
         /// 构造函数
@@ -49,25 +49,16 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
-        [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
-
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
-        }
-
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
+
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public virtual void SetZoomScale(float scale)
+        {
+
+        }
 
         protected bool selected;
 

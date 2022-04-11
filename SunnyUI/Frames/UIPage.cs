@@ -37,7 +37,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("Initialize")]
-    public partial class UIPage : Form, IStyleInterface, ISymbol
+    public partial class UIPage : Form, IStyleInterface, ISymbol, IZoomScale
     {
         public readonly Guid Guid = Guid.NewGuid();
         private Color _rectColor = UIColor.Blue;
@@ -77,23 +77,14 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public virtual void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         [Browsable(false)]

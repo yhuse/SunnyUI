@@ -23,7 +23,6 @@
  * 2022-03-19: V3.1.1 重构主题配色
 ******************************************************************************/
 
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -33,7 +32,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public class UILabel : Label, IStyleInterface
+    public class UILabel : Label, IStyleInterface, IZoomScale
     {
         public UILabel()
         {
@@ -44,23 +43,14 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public virtual void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        protected virtual void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         private int angle;
@@ -173,7 +163,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UILinkLabel : LinkLabel, IStyleInterface
+    public sealed class UILinkLabel : LinkLabel, IStyleInterface, IZoomScale
     {
         public UILinkLabel()
         {
@@ -189,23 +179,14 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         [Browsable(false)]

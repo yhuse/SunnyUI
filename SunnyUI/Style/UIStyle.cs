@@ -59,61 +59,6 @@ namespace Sunny.UI
         bool IsScaled { get; }
 
         void SetDPIScale();
-
-        ControlScaleInfo DesignedRect { get; }
-
-        bool ForbidControlScale { get; set; }
-    }
-
-    public interface IControlScale
-    {
-        void SetControlScale(float scale);
-    }
-
-    public struct ControlScaleInfo
-    {
-        public int XInterval { get; }
-        public int YInterval { get; }
-        public int Width { get; }
-        public int Height { get; }
-
-        public ControlScaleInfo(int width, int height, int xInterval, int yInterval)
-        {
-            Width = width;
-            Height = height;
-            XInterval = xInterval;
-            YInterval = yInterval;
-        }
-
-        public ControlScaleInfo(Control control)
-        {
-            Width = control.Width;
-            Height = control.Height;
-            XInterval = 0;
-            YInterval = 0;
-            if (control.Parent != null)
-            {
-                if ((control.Anchor & AnchorStyles.Left) == AnchorStyles.Left)
-                {
-                    XInterval = control.Left;
-                }
-
-                if ((control.Anchor & AnchorStyles.Right) == AnchorStyles.Right)
-                {
-                    XInterval = control.Parent.Width - control.Right;
-                }
-
-                if ((control.Anchor & AnchorStyles.Top) == AnchorStyles.Top)
-                {
-                    YInterval = control.Top;
-                }
-
-                if ((control.Anchor & AnchorStyles.Bottom) == AnchorStyles.Bottom)
-                {
-                    YInterval = control.Parent.Height - control.Bottom;
-                }
-            }
-        }
     }
 
     /// <summary>

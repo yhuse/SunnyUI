@@ -34,7 +34,7 @@ namespace Sunny.UI
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
     [Designer("System.Windows.Forms.Design.TreeViewDesigner, " + AssemblyRefEx.SystemDesign)]
-    public sealed partial class UINavBar : ScrollableControl, IStyleInterface
+    public sealed partial class UINavBar : ScrollableControl, IStyleInterface, IZoomScale
     {
         public readonly TreeView Menu = new TreeView();
 
@@ -65,23 +65,16 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
 
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
-
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
+            _nodeInterval = UIZoomScale.Calc(baseNodeInterval, scale);
+            nodeSize = UIZoomScale.Calc(baseNodeSize, scale);
+            Invalidate();
         }
 
         [Browsable(false)]
@@ -562,6 +555,7 @@ namespace Sunny.UI
         }
 
         private int _nodeInterval = 100;
+        private int baseNodeInterval = 100;
 
         [DefaultValue(100)]
         [Description("显示菜单边距"), Category("SunnyUI")]
@@ -572,13 +566,14 @@ namespace Sunny.UI
             {
                 if (_nodeInterval != value)
                 {
-                    _nodeInterval = value;
+                    baseNodeInterval = _nodeInterval = value;
                     Invalidate();
                 }
             }
         }
 
         private Size nodeSize = new Size(130, 45);
+        private Size baseNodeSize = new Size(130, 45);
 
         [DefaultValue(typeof(Size), "130, 45")]
         [Description("显示菜单大小"), Category("SunnyUI")]
@@ -589,7 +584,7 @@ namespace Sunny.UI
             {
                 if (nodeSize != value)
                 {
-                    nodeSize = value;
+                    baseNodeSize = nodeSize = value;
                     Invalidate();
                 }
             }

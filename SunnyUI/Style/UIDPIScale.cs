@@ -95,7 +95,6 @@ namespace Sunny.UI
                 if (con is UIPagination) continue;
                 if (con is UIRichTextBox) continue;
                 if (con is UITreeView) continue;
-                if (con is UINavBar) continue;
 
                 if (con.Controls.Count > 0)
                 {
@@ -106,86 +105,29 @@ namespace Sunny.UI
             return list;
         }
 
-        internal static int Calc(int size, float scale)
+        internal static List<Control> GetAllZoomScaleControls(this Control control)
         {
-            return (int)(size * scale + 0.5);
-        }
-
-        internal static void SetControlScale(Control control, float scale)
-        {
-            if (scale.EqualsFloat(0)) return;
-
-            if (control is IStyleInterface ctrl)
+            var list = new List<Control>();
+            foreach (Control con in control.Controls)
             {
-                if (ctrl.ForbidControlScale)
+                if (con is IZoomScale)
+                    list.Add(con);
+
+                if (con is UITextBox) continue;
+                if (con is UIDropControl) continue;
+                if (con is UIListBox) continue;
+                if (con is UIImageListBox) continue;
+                if (con is UIPagination) continue;
+                if (con is UIRichTextBox) continue;
+                if (con is UITreeView) continue;
+
+                if (con.Controls.Count > 0)
                 {
-                    return;
-                }
-
-                if (control is IControlScale sc)
-                {
-                    sc.SetControlScale(scale);
-                }
-
-                if (control.Dock == DockStyle.Fill)
-                {
-                    return;
-                }
-
-                var rect = ctrl.DesignedRect;
-                switch (control.Dock)
-                {
-                    case DockStyle.None:
-                        control.Height = Calc(rect.Height, scale);
-                        control.Width = Calc(rect.Width, scale);
-
-                        if (control.Parent != null)
-                        {
-                            if ((control.Anchor & AnchorStyles.Left) == AnchorStyles.Left)
-                            {
-                                control.Left = Calc(rect.XInterval, scale);
-                            }
-
-                            if ((control.Anchor & AnchorStyles.Right) == AnchorStyles.Right)
-                            {
-                                int right = Calc(rect.XInterval, scale);
-                                control.Left = control.Parent.Width - right - control.Width;
-                            }
-
-                            if ((control.Anchor & AnchorStyles.Top) == AnchorStyles.Top)
-                            {
-                                if (control.Parent is UIForm form && form.ShowTitle)
-                                    control.Top = Calc(rect.YInterval - form.TitleHeight, scale) + form.TitleHeight;
-                                else
-                                    control.Top = Calc(rect.YInterval, scale);
-                            }
-
-                            if ((control.Anchor & AnchorStyles.Bottom) == AnchorStyles.Bottom)
-                            {
-                                int bottom = Calc(rect.YInterval, scale);
-                                control.Top = control.Parent.Height - bottom - control.Height;
-                            }
-                        }
-
-                        break;
-                    case DockStyle.Top:
-                        control.Height = Calc(rect.Height, scale);
-                        break;
-                    case DockStyle.Bottom:
-                        control.Height = Calc(rect.Height, scale);
-                        break;
-                    case DockStyle.Left:
-                        control.Width = Calc(rect.Width, scale);
-                        break;
-                    case DockStyle.Right:
-                        control.Width = Calc(rect.Width, scale);
-                        break;
-                    case DockStyle.Fill:
-                        break;
-                    default:
-                        break;
+                    list.AddRange(GetAllZoomScaleControls(con));
                 }
             }
+
+            return list;
         }
     }
 }

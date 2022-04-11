@@ -338,15 +338,9 @@ namespace Sunny.UI
         }
 
         [ToolboxItem(false)]
-        private sealed class ImageListBox : ListBox, IStyleInterface
+        private sealed class ImageListBox : ListBox
         {
             private UIScrollBar bar;
-
-            [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-            public bool ForbidControlScale { get; set; }
-
-            [Browsable(false)]
-            public ControlScaleInfo DesignedRect { get; private set; }
 
             /// <summary>
             /// Tag字符串

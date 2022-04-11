@@ -39,16 +39,13 @@ namespace Sunny.UI
 {
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
-    public sealed class UINavMenu : TreeView, IStyleInterface
+    public sealed class UINavMenu : TreeView, IStyleInterface, IZoomScale
     {
         public delegate void OnMenuItemClick(TreeNode node, NavMenuItem item, int pageIndex);
 
         public event OnMenuItemClick MenuItemClick;
 
         private readonly UIScrollBar Bar = new UIScrollBar();
-
-        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
 
         public UINavMenu()
         {
@@ -90,21 +87,15 @@ namespace Sunny.UI
             selectedHighColor = UIStyles.Blue.NavMenuMenuSelectedColor;
         }
 
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ZoomScaleDisabled { get; set; }
+
         [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
+        public Rectangle ZoomScaleRect { get; set; }
 
-        protected override void OnVisibleChanged(EventArgs e)
+        public void SetZoomScale(float scale)
         {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
 
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         [Description("滚动条填充颜色"), Category("SunnyUI")]

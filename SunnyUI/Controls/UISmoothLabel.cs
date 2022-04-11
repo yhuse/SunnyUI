@@ -32,7 +32,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UISmoothLabel : Label, IStyleInterface
+    public sealed class UISmoothLabel : Label, IStyleInterface, IZoomScale
     {
         public UISmoothLabel()
         {
@@ -49,7 +49,15 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
-        public bool ForbidControlScale { get; set; }
+        public bool ZoomScaleDisabled { get; set; }
+
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public void SetZoomScale(float scale)
+        {
+
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -61,23 +69,6 @@ namespace Sunny.UI
             }
 
             base.Dispose(disposing);
-        }
-
-        [Browsable(false)]
-        public ControlScaleInfo DesignedRect { get; private set; }
-
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            base.OnVisibleChanged(e);
-            SetDesignedSize();
-        }
-
-        private void SetDesignedSize()
-        {
-            if (DesignedRect.Width == 0 && DesignedRect.Height == 0)
-            {
-                DesignedRect = new ControlScaleInfo(this);
-            }
         }
 
         private PointF point;
