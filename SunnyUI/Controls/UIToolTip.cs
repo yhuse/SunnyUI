@@ -71,6 +71,15 @@ namespace Sunny.UI
         [DefaultValue(typeof(Size), "100, 70"), Description("不自动缩放时大小"), Category("SunnyUI")]
         public Size Size { get; set; } = new Size(100, 70);
 
+        public new void SetToolTip(Control control, string caption)
+        {
+            base.SetToolTip(control, caption);
+            if (control is IToolTip toolTip)
+            {
+                base.SetToolTip(toolTip.ExToolTipControl(), caption);
+            }
+        }
+
         public void SetToolTip(Control control, string caption, string title, int symbol, int symbolSize,
             Color symbolColor)
         {

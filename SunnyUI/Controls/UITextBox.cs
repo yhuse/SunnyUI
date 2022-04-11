@@ -32,6 +32,7 @@
  * 2022-01-07: V3.1.0 按钮支持自定义颜色
  * 2022-02-16: V3.1.1 增加了只读的颜色设置
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
+ * 2022-04-11: V3.1.3 增加对按钮设置ToolTip
 ******************************************************************************/
 
 using System;
@@ -117,6 +118,11 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        public void SetButtonToolTip(ToolTip toolTip, string tipText)
+        {
+            toolTip.SetToolTip(btn, tipText);
         }
 
         /// <summary>
