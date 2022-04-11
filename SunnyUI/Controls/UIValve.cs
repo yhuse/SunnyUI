@@ -31,7 +31,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Active")]
     [DefaultEvent("ActiveChanged")]
-    public class UIValve : Control
+    public sealed class UIValve : Control, IZoomScale
     {
         public UIValve()
         {
@@ -41,6 +41,18 @@ namespace Sunny.UI
             fillColor = Color.White;
             valveColor = UIColor.Blue;
             Version = UIGlobal.Version;
+            ZoomScaleDisabled = true;
+        }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ZoomScaleDisabled { get; set; }
+
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public void SetZoomScale(float scale)
+        {
+
         }
 
         protected override void OnClick(EventArgs e)

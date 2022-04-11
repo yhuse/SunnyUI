@@ -67,6 +67,12 @@ namespace Sunny.UI
             rectDisableColor = UIStyles.Blue.RectDisableColor;
         }
 
+        public override void SetZoomScale(float scale)
+        {
+            base.SetZoomScale(scale);
+            circleSize = UIZoomScale.Calc(baseCircleSize, scale);
+        }
+
         private bool showTips = false;
 
         [Description("是否显示角标"), Category("SunnyUI")]
@@ -435,6 +441,7 @@ namespace Sunny.UI
         }
 
         private int circleSize = 50;
+        private int baseCircleSize = 50;
 
         [DefaultValue(50)]
         [Description("字体图标背景大小"), Category("SunnyUI")]
@@ -443,7 +450,7 @@ namespace Sunny.UI
             get => circleSize;
             set
             {
-                circleSize = value;
+                baseCircleSize = circleSize = value;
                 Invalidate();
             }
         }

@@ -46,6 +46,8 @@ namespace Sunny.UI
 
             l1.ItemsCountChange += L1_ItemsCountChange;
             l2.ItemsCountChange += L2_ItemsCountChange;
+            l1.ZoomScaleDisabled = l2.ZoomScaleDisabled = true;
+            b1.ZoomScaleDisabled = b2.ZoomScaleDisabled = b3.ZoomScaleDisabled = b4.ZoomScaleDisabled = true;
         }
 
         [DefaultValue(true)]

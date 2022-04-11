@@ -78,6 +78,7 @@ namespace Sunny.UI
             Bar.ForeColor = Color.Silver;
             Bar.HoverColor = Color.Silver;
             Bar.PressColor = Color.Silver;
+            Bar.ZoomScaleDisabled = true;
 
             Controls.Add(Bar);
             Version = UIGlobal.Version;

@@ -57,7 +57,7 @@ namespace Sunny.UI
 
         public virtual void SetZoomScale(float scale)
         {
-
+            radius = UIZoomScale.Calc(baseRadius, scale);
         }
 
         protected bool selected;
@@ -167,6 +167,7 @@ namespace Sunny.UI
         }
 
         private int radius = 5;
+        private int baseRadius = 5;
 
         /// <summary>
         /// 圆角角度
@@ -180,7 +181,7 @@ namespace Sunny.UI
             {
                 if (radius != value)
                 {
-                    radius = Math.Max(0, value);
+                    baseRadius = radius = Math.Max(0, value);
                     Invalidate();
                 }
             }

@@ -12,7 +12,7 @@ namespace Sunny.UI
         bool ZoomScaleDisabled { get; set; }
     }
 
-    internal static class UIZoomScale
+    public static class UIZoomScale
     {
         public static Rectangle Create(Control control)
         {
@@ -60,12 +60,12 @@ namespace Sunny.UI
             }
         }
 
-        internal static int Calc(int size, float scale)
+        public static int Calc(int size, float scale)
         {
             return (int)(size * scale + 0.5);
         }
 
-        internal static Size Calc(Size size, float scale)
+        public static Size Calc(Size size, float scale)
         {
             return new Size(Calc(size.Width, scale), Calc(size.Height, scale));
         }

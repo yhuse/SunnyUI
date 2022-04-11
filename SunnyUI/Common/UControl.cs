@@ -74,12 +74,12 @@ namespace Sunny.UI
             return ctrl as Form;
         }
 
-        public static Control SettingToCenter(this Control ctrl)
+        public static Control SetToTheCenterOfParent(this Control ctrl)
         {
-            return ctrl.SettingToXCenter().SettingToYCenter();
+            return ctrl.SetToTheHorizontalCenterOfParent().SetToTheVerticalCenterOfParent();
         }
 
-        public static Control SettingToXCenter(this Control ctrl)
+        public static Control SetToTheHorizontalCenterOfParent(this Control ctrl)
         {
             if (ctrl != null && ctrl.Parent != null)
                 ctrl.Left = (ctrl.Parent.Width - ctrl.Width) / 2;
@@ -87,7 +87,7 @@ namespace Sunny.UI
             return ctrl;
         }
 
-        public static Control SettingToYCenter(this Control ctrl)
+        public static Control SetToTheVerticalCenterOfParent(this Control ctrl)
         {
             if (ctrl != null && ctrl.Parent != null)
                 ctrl.Top = (ctrl.Parent.Height - ctrl.Height) / 2;

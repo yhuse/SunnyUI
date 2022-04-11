@@ -34,7 +34,7 @@ namespace Sunny.UI
     /// provide a sleek looking representation of an LED light that is sizable,
     /// has a transparent background and can be set to different colors.
     /// </summary>
-    public class UILedBulb : Control
+    public class UILedBulb : Control, IZoomScale
     {
         #region Public and Private Members
 
@@ -43,6 +43,17 @@ namespace Sunny.UI
         private readonly Color _reflectionColor = Color.FromArgb(180, 255, 255, 255);
         private readonly Color[] _surroundColor = new Color[] { Color.FromArgb(0, 255, 255, 255) };
         private readonly Timer timer;
+
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ZoomScaleDisabled { get; set; }
+
+        [Browsable(false)]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        public void SetZoomScale(float scale)
+        {
+
+        }
 
         protected override void Dispose(bool disposing)
         {

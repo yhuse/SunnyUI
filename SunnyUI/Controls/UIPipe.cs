@@ -41,6 +41,7 @@ namespace Sunny.UI
             Style = UIStyle.Custom;
             Width = 200;
             Height = 16;
+            ZoomScaleDisabled = true;
         }
 
         private ConcurrentDictionary<UIPipe, Bitmap> linked = new ConcurrentDictionary<UIPipe, Bitmap>();
