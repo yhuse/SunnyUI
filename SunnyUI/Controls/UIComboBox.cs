@@ -23,9 +23,11 @@
  * 2021-08-03: V3.0.5 Items.Clear后清除显示
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
  * 2022-01-16: V3.1.0 增加了下拉框颜色设置
+ * 2022-04-13: V3.1.3 根据Text自动选中SelectIndex
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
@@ -43,8 +45,8 @@ namespace Sunny.UI
         {
             InitializeComponent();
             ListBox.SelectedIndexChanged += Box_SelectedIndexChanged;
-            ListBox.DataSourceChanged += Box_DataSourceChanged;
-            ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
+            //ListBox.DataSourceChanged += Box_DataSourceChanged;
+            //ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
             ListBox.ItemsClear += ListBox_ItemsClear;
@@ -52,6 +54,18 @@ namespace Sunny.UI
             edit.TextChanged += Edit_TextChanged;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        private void InitStrings()
+        {
+            if (DropDownStyle == UIDropDownStyle.DropDown && DataSource != null && DisplayMember.IsValid())
+            {
+                strings.Clear();
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    strings.Add(GetItemText(Items[i]));
+                }
+            }
         }
 
         public Control ExToolTipControl()
@@ -106,6 +120,17 @@ namespace Sunny.UI
         private void Edit_TextChanged(object sender, EventArgs e)
         {
             TextChanged?.Invoke(this, e);
+            if (Text.IsValid() && DropDownStyle == UIDropDownStyle.DropDown && !SelectTextChange)
+            {
+                if (DataSource == null)
+                {
+                    SelectedIndex = Items.IndexOf(Text);
+                }
+                else
+                {
+                    SelectedIndex = strings.IndexOf(Text);
+                }
+            }
         }
 
         private void ListBox_SelectedValueChanged(object sender, EventArgs e)
@@ -121,16 +146,23 @@ namespace Sunny.UI
         private void Box_DisplayMemberChanged(object sender, EventArgs e)
         {
             DisplayMemberChanged?.Invoke(this, e);
+            InitStrings();
         }
 
         private void Box_DataSourceChanged(object sender, EventArgs e)
         {
             DataSourceChanged?.Invoke(this, e);
+            InitStrings();
         }
+
+        private bool SelectTextChange;
 
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Text = ListBox.GetItemText(ListBox.SelectedItem);
+            SelectTextChange = true;
+            if (ListBox.SelectedItem != null)
+                Text = ListBox.GetItemText(ListBox.SelectedItem);
+            SelectTextChange = false;
             SelectedIndexChanged?.Invoke(this, e);
         }
 
@@ -199,10 +231,14 @@ namespace Sunny.UI
             UIComboBox_ButtonClick(this, EventArgs.Empty);
         }
 
+        List<string> strings = new List<string>();
+
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
             if (Items.Count > 0)
+            {
                 ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+            }
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)
@@ -214,7 +250,11 @@ namespace Sunny.UI
         public object DataSource
         {
             get => ListBox.DataSource;
-            set => ListBox.DataSource = value;
+            set
+            {
+                ListBox.DataSource = value;
+                Box_DataSourceChanged(this, EventArgs.Empty);
+            }
         }
 
         [DefaultValue(150)]
@@ -273,7 +313,11 @@ namespace Sunny.UI
         public string DisplayMember
         {
             get => ListBox.DisplayMember;
-            set => ListBox.DisplayMember = value;
+            set
+            {
+                ListBox.DisplayMember = value;
+                Box_DisplayMemberChanged(this, EventArgs.Empty);
+            }
         }
 
         [Description("获取或设置指示显示值的方式的格式说明符字符。"), Category("SunnyUI")]
