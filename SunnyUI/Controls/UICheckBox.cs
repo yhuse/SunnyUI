@@ -131,9 +131,13 @@ namespace Sunny.UI
             get => _checked;
             set
             {
-                _checked = value;
-                ValueChanged?.Invoke(this, _checked);
-                CheckedChanged?.Invoke(this, new EventArgs());
+                if (_checked != value)
+                {
+                    _checked = value;
+                    ValueChanged?.Invoke(this, _checked);
+                    CheckedChanged?.Invoke(this, new EventArgs());
+                }
+
                 Invalidate();
             }
         }
