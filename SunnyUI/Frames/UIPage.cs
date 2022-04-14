@@ -76,6 +76,24 @@ namespace Sunny.UI
             titleForeColor = UIStyles.Blue.PageTitleForeColor;
         }
 
+        public UIPage SetPageIndex(int pageIndex)
+        {
+            PageIndex = pageIndex;
+            return this;
+        }
+
+        public UIPage SetPageGuid(Guid pageGuid)
+        {
+            PageGuid = pageGuid;
+            return this;
+        }
+
+        public UIPage SetText(string text)
+        {
+            Text = text;
+            return this;
+        }
+
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
 

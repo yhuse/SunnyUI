@@ -17,8 +17,8 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-04-14: V3.1.3 重构扩展函数
 ******************************************************************************/
-
 
 using System;
 using System.Collections.Concurrent;
@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class NavMenuHelper
+    internal class NavMenuHelper
     {
         public NavMenuItem this[TreeNode node]
         {
@@ -326,12 +326,12 @@ namespace Sunny.UI
 
         private TabPage CreateTabIfNotExists(int pageIndex)
         {
-            return CreateTabIfNotExists(new NavMenuItem(pageIndex));
+            return CreateTabIfNotExists(new NavMenuItem("", pageIndex));
         }
 
         private TabPage CreateTabIfNotExists(Guid guid)
         {
-            return CreateTabIfNotExists(new NavMenuItem(guid));
+            return CreateTabIfNotExists(new NavMenuItem("", guid));
         }
 
         public bool SelectPage(int pageIndex)
@@ -532,14 +532,10 @@ namespace Sunny.UI
             Text = text;
         }
 
-        public NavMenuItem(int pageIndex)
-        {
-            PageIndex = pageIndex;
-        }
-
-        public NavMenuItem(Guid guid)
+        public NavMenuItem(string text, Guid guid)
         {
             PageGuid = guid;
+            Text = text;
         }
     }
 }

@@ -592,11 +592,15 @@ namespace Sunny.UI
         /// 是否显示表格线
         /// </summary>
         [Description("是否显示表格线"), Category("SunnyUI")]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool ShowGridLine
         {
             get => CellBorderStyle == DataGridViewCellBorderStyle.Single;
-            set => CellBorderStyle = value ? DataGridViewCellBorderStyle.Single : DataGridViewCellBorderStyle.None;
+            set
+            {
+                CellBorderStyle = value ? DataGridViewCellBorderStyle.Single : DataGridViewCellBorderStyle.None;
+                VBar.ShowLeftLine = value;
+            }
         }
 
         private Color _rectColor = UIColor.Blue;
