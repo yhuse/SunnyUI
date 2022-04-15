@@ -30,10 +30,6 @@
         {
             this.SuspendLayout();
             // 
-            // edit
-            // 
-            this.edit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edit_KeyDown);
-            // 
             // UIComboBox
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;

@@ -184,7 +184,7 @@ namespace Sunny.UI
         public bool DroppedDown => itemForm is { Visible: true };
 
         private int symbolNormal = 61703;
-        private int dropSymbol = 61703;
+        protected int dropSymbol = 61703;
 
         [DefaultValue(61703)]
         [Description("正常显示时字体图标"), Category("SunnyUI")]
@@ -228,9 +228,15 @@ namespace Sunny.UI
                 {
                     _dropDownStyle = value;
                     edit.Visible = value == UIDropDownStyle.DropDown;
+                    DropDownStyleChanged();
                     Invalidate();
                 }
             }
+        }
+
+        protected virtual void DropDownStyleChanged()
+        {
+
         }
 
         public event EventHandler ButtonClick;

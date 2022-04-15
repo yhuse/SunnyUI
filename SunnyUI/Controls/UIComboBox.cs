@@ -24,6 +24,7 @@
  * 2021-08-15: V3.0.6 重写了水印文字的画法，并增加水印文字颜色
  * 2022-01-16: V3.1.0 增加了下拉框颜色设置
  * 2022-04-13: V3.1.3 根据Text自动选中SelectIndex
+ * 2022-04-15: V3.1.3 增加过滤
 ******************************************************************************/
 
 using System;
@@ -51,20 +52,130 @@ namespace Sunny.UI
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
             ListBox.ItemsClear += ListBox_ItemsClear;
             ListBox.ItemsRemove += ListBox_ItemsRemove;
+
             edit.TextChanged += Edit_TextChanged;
+            edit.KeyDown += Edit_KeyDown;
             DropDownWidth = 150;
             fullControlSelect = true;
         }
+
+        private void ShowDropDownFilter()
+        {
+            FilterItemForm.AutoClose = false;
+            if (!FilterItemForm.Visible)
+            {
+                FilterItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+                edit.Focus();
+            }
+        }
+
+        private void Edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (ShowFilter)
+            {
+                int cnt = filterForm.ListBox.Items.Count;
+                int idx = filterForm.ListBox.SelectedIndex;
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    ShowDropDownFilter();
+                    if (cnt > 0)
+                    {
+                        if (e.KeyCode == Keys.Down)
+                        {
+                            if (idx < cnt - 1)
+                                filterForm.ListBox.SelectedIndex++;
+                        }
+
+                        if (e.KeyCode == Keys.Up)
+                        {
+                            if (idx > 0)
+                                filterForm.ListBox.SelectedIndex--;
+                        }
+                    }
+                }
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    FilterItemForm.Close();
+                }
+                else if (e.KeyCode == Keys.Return)
+                {
+                    if (FilterItemForm.Visible)
+                    {
+                        if (cnt > 0 && idx >= 0 && idx < cnt)
+                        {
+                            SelectTextChange = true;
+                            Text = filterForm.ListBox.GetItemText(filterForm.ListBox.Items[idx]);
+                            edit.SelectionStart = Text.Length;
+                            SelectedValueChanged?.Invoke(this, EventArgs.Empty);
+                            SelectTextChange = false;
+                        }
+
+                        FilterItemForm.Close();
+                    }
+                    else
+                    {
+                        ShowDropDownFilter();
+                    }
+                }
+                else
+                {
+                    base.OnKeyDown(e);
+                }
+            }
+            else
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ShowDropDown();
+                }
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    ItemForm.Close();
+                }
+                else
+                {
+                    base.OnKeyDown(e);
+                }
+            }
+        }
+
+        private bool showFilter;
+
+        [DefaultValue(false)]
+        [Description("显示过滤"), Category("SunnyUI")]
+        public bool ShowFilter
+        {
+            get => showFilter;
+            set
+            {
+                showFilter = value;
+                if (value)
+                {
+                    DropDownStyle = UIDropDownStyle.DropDown;
+                }
+            }
+        }
+
+        [DefaultValue(false)]
+        [Description("过滤显示最大条目数"), Category("SunnyUI")]
+        public int FilterMaxCount { get; set; } = 50;
+
+        protected override void DropDownStyleChanged()
+        {
+            if (DropDownStyle == UIDropDownStyle.DropDownList)
+            {
+                showFilter = false;
+            }
+        }
+
+        CurrencyManager dataManager;
 
         private void InitStrings()
         {
             if (DropDownStyle == UIDropDownStyle.DropDown && DataSource != null && DisplayMember.IsValid())
             {
-                strings.Clear();
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    strings.Add(GetItemText(Items[i]));
-                }
+                dataManager = (CurrencyManager)BindingContext[DataSource, new BindingMemberInfo(DisplayMember).BindingPath];
             }
         }
 
@@ -120,15 +231,64 @@ namespace Sunny.UI
         private void Edit_TextChanged(object sender, EventArgs e)
         {
             TextChanged?.Invoke(this, e);
-            if (Text.IsValid() && DropDownStyle == UIDropDownStyle.DropDown && !SelectTextChange)
+            if (DropDownStyle == UIDropDownStyle.DropDownList) return;
+
+            if (!ShowFilter)
             {
-                if (DataSource == null)
+                if (SelectTextChange) return;
+                if (Text.IsValid())
                 {
-                    SelectedIndex = Items.IndexOf(Text);
+                    ListBox.ListBox.Text = Text;
                 }
                 else
                 {
-                    SelectedIndex = strings.IndexOf(Text);
+                    SelectTextChange = true;
+                    SelectedIndex = -1;
+                    edit.Text = "";
+                    SelectTextChange = false;
+                }
+            }
+            else
+            {
+                if (edit.Focused && Text.IsValid())
+                {
+                    ShowDropDownFilter();
+                }
+
+                filterForm.ListBox.Items.Clear();
+                if (Text.IsValid())
+                {
+                    if (DataSource == null)
+                    {
+                        foreach (var item in Items)
+                        {
+                            if (item.ToString().Contains(Text))
+                            {
+                                filterForm.ListBox.Items.Add(item.ToString());
+                                if (filterForm.ListBox.Items.Count > FilterMaxCount) break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (dataManager != null)
+                        {
+                            List<object> list = new List<object>();
+                            for (int i = 0; i < Items.Count; i++)
+                            {
+                                if (GetItemText(dataManager.List[i]).ToString().Contains(Text))
+                                {
+                                    list.Add(dataManager.List[i]);
+                                    if (list.Count > FilterMaxCount) break;
+                                }
+                            }
+
+                            foreach (var item in list)
+                            {
+                                filterForm.ListBox.Items.Add(GetItemText(item));
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -160,7 +320,7 @@ namespace Sunny.UI
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectTextChange = true;
-            if (ListBox.SelectedItem != null)
+            if (ListBox.SelectedItem != null && !ShowFilter)
                 Text = ListBox.GetItemText(ListBox.SelectedItem);
             SelectTextChange = false;
             SelectedIndexChanged?.Invoke(this, e);
@@ -178,17 +338,44 @@ namespace Sunny.UI
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            //if (SelectedIndex != ListBox.SelectedIndex)
-            //{
-            //    SelectedIndex = ListBox.SelectedIndex;
-            //    //Box_SelectedIndexChanged(null, null);
-            //    Invalidate();
-            //}
-
             Invalidate();
         }
 
         private readonly UIComboBoxItem dropForm = new UIComboBoxItem();
+        private readonly UIComboBoxItem filterForm = new UIComboBoxItem();
+
+        private UIDropDown filterItemForm;
+
+        private UIDropDown FilterItemForm
+        {
+            get
+            {
+                if (filterItemForm == null)
+                {
+                    filterItemForm = new UIDropDown(filterForm);
+
+                    if (filterItemForm != null)
+                    {
+                        //filterItemForm.ValueChanged += FilterItemForm_ValueChanged;
+                        filterItemForm.VisibleChanged += FilterItemForm_VisibleChanged;
+                        //filterItemForm.Closed += FilterItemForm_Closed;
+                    }
+                }
+
+                return filterItemForm;
+            }
+        }
+
+        private void FilterItemForm_VisibleChanged(object sender, EventArgs e)
+        {
+            dropSymbol = SymbolNormal;
+            if (filterItemForm.Visible)
+            {
+                dropSymbol = SymbolDropDown;
+            }
+
+            Invalidate();
+        }
 
         protected override void CreateInstance()
         {
@@ -204,6 +391,11 @@ namespace Sunny.UI
         private UIListBox ListBox
         {
             get => dropForm.ListBox;
+        }
+
+        private ListBox FilterListBox
+        {
+            get => dropForm.ListBox.ListBox;
         }
 
         [DefaultValue(25)]
@@ -224,6 +416,11 @@ namespace Sunny.UI
             {
                 ListBox.Font = Font;
             }
+
+            if (filterForm != null)
+            {
+                filterForm.ListBox.Font = Font;
+            }
         }
 
         public void ShowDropDown()
@@ -231,13 +428,25 @@ namespace Sunny.UI
             UIComboBox_ButtonClick(this, EventArgs.Empty);
         }
 
-        List<string> strings = new List<string>();
-
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
-            if (Items.Count > 0)
+            if (!ShowFilter)
             {
-                ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+                if (Items.Count > 0)
+                {
+                    ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+                }
+            }
+            else
+            {
+                if (FilterItemForm.Visible)
+                {
+                    FilterItemForm.Close();
+                }
+                else
+                {
+                    ShowDropDownFilter();
+                }
             }
         }
 
@@ -355,26 +564,22 @@ namespace Sunny.UI
         ]
         public object SelectedValue
         {
-            get => ListBox.SelectedValue;
-            set => ListBox.SelectedValue = value;
+            get => ShowFilter ? FilterListBox.SelectedValue : ListBox.SelectedValue;
+            set
+            {
+                if (!ShowFilter)
+                    ListBox.SelectedValue = value;
+            }
         }
 
         public string GetItemText(object item)
         {
-            return ListBox.GetItemText(item);
+            return ShowFilter ? FilterListBox.GetItemText(item) : ListBox.GetItemText(item);
         }
 
         private void UIComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                ShowDropDown();
-            }
-        }
-
-        private void edit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && !ShowFilter)
             {
                 ShowDropDown();
             }
