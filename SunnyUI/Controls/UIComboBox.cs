@@ -381,17 +381,11 @@ namespace Sunny.UI
                     if (filterItemForm != null)
                     {
                         filterItemForm.VisibleChanged += FilterItemForm_VisibleChanged;
-                        filterItemForm.ValueChanged += FilterItemForm_ValueChanged;
                     }
                 }
 
                 return filterItemForm;
             }
-        }
-
-        private void FilterItemForm_ValueChanged(object sender, object value)
-        {
-            //
         }
 
         private void FilterItemForm_VisibleChanged(object sender, EventArgs e)
@@ -482,6 +476,8 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             ListBox.SetStyleColor(uiColor.DropDownStyle);
+            FilterListBox.SetStyleColor(uiColor.DropDownStyle);
+            FilterItemForm.SetStyle(uiColor.DropDownStyle);
         }
 
         public object DataSource

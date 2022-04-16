@@ -28,6 +28,7 @@
  * 2021-05-22: V3.0.4 增加了一个RowHeight，默认23
  * 2021-06-27: V3.0.4 自定义单元格颜色
  * 2022-01-21: V3.1.0 更新单选时选中值SelectedIndex值
+ * 2022-04-16: V3.1.3 增加滚动条的颜色设置
 ******************************************************************************/
 
 using System;
@@ -555,6 +556,26 @@ namespace Sunny.UI
             HBar.FillColor = VBar.FillColor = uiColor.GridBarFillColor;
             HBar.ForeColor = VBar.ForeColor = uiColor.GridBarForeColor;
             VBar.RectColor = uiColor.RectColor;
+
+            if (HBar != null)
+            {
+                HBar.ForeColor = uiColor.PrimaryColor;
+                HBar.HoverColor = uiColor.ButtonFillHoverColor;
+                HBar.PressColor = uiColor.ButtonFillPressColor;
+                HBar.FillColor = uiColor.GridBarFillColor;
+                scrollBarColor = uiColor.PrimaryColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
+            }
+
+            if (VBar != null)
+            {
+                VBar.ForeColor = uiColor.PrimaryColor;
+                VBar.HoverColor = uiColor.ButtonFillHoverColor;
+                VBar.PressColor = uiColor.ButtonFillPressColor;
+                VBar.FillColor = uiColor.GridBarFillColor;
+                scrollBarColor = uiColor.PrimaryColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
+            }
         }
 
         /// <summary>
@@ -782,6 +803,46 @@ namespace Sunny.UI
         [DefaultValue(false)]
         [Description("编辑输入时，用Enter键代替Tab键跳到下一个单元格"), Category("SunnyUI")]
         public bool EnterAsTab { get; set; }
+
+        private Color scrollBarColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => scrollBarColor;
+            set
+            {
+                scrollBarColor = value;
+                HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
+                VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarBackColor = Color.FromArgb(243, 249, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        public Color ScrollBarBackColor
+        {
+            get => scrollBarBackColor;
+            set
+            {
+                scrollBarBackColor = value;
+                HBar.FillColor = value;
+                VBar.FillColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
     }
 
     public static class UIDataGridViewHelper
