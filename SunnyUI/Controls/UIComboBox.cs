@@ -25,6 +25,7 @@
  * 2022-01-16: V3.1.0 增加了下拉框颜色设置
  * 2022-04-13: V3.1.3 根据Text自动选中SelectIndex
  * 2022-04-15: V3.1.3 增加过滤
+ * 2022-04-16: V3.1.3 过滤下拉控跟随主题配色
 ******************************************************************************/
 
 using System;
@@ -417,7 +418,7 @@ namespace Sunny.UI
 
         private UIListBox FilterListBox
         {
-            get => dropForm.ListBox;
+            get => filterForm.ListBox;
         }
 
         [DefaultValue(25)]
@@ -477,7 +478,6 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             ListBox.SetStyleColor(uiColor.DropDownStyle);
             FilterListBox.SetStyleColor(uiColor.DropDownStyle);
-            FilterItemForm.SetStyle(uiColor.DropDownStyle);
         }
 
         public object DataSource
@@ -610,7 +610,7 @@ namespace Sunny.UI
 
         public string GetItemText(object item)
         {
-            return ShowFilter ? FilterListBox.GetItemText(item) : ListBox.GetItemText(item);
+            return ListBox.GetItemText(item);
         }
 
         private void UIComboBox_KeyDown(object sender, KeyEventArgs e)
