@@ -46,17 +46,28 @@ namespace Sunny.UI
         {
             InitializeComponent();
             ListBox.SelectedIndexChanged += Box_SelectedIndexChanged;
-            //ListBox.DataSourceChanged += Box_DataSourceChanged;
-            //ListBox.DisplayMemberChanged += Box_DisplayMemberChanged;
             ListBox.ValueMemberChanged += Box_ValueMemberChanged;
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
             ListBox.ItemsClear += ListBox_ItemsClear;
             ListBox.ItemsRemove += ListBox_ItemsRemove;
 
+            filterForm.BeforeListClick += ListBox_Click;
+
             edit.TextChanged += Edit_TextChanged;
             edit.KeyDown += Edit_KeyDown;
             DropDownWidth = 150;
             fullControlSelect = true;
+        }
+
+        private void ListBox_Click(object sender, EventArgs e)
+        {
+            SelectTextChange = true;
+            filterSelectedItem = filterList[(int)sender];
+            filterSelectedValue = GetItemText(filterSelectedItem);
+            Text = filterSelectedValue.ToString();
+            edit.SelectionStart = Text.Length;
+            SelectedValueChanged?.Invoke(this, EventArgs.Empty);
+            SelectTextChange = false;
         }
 
         private void ShowDropDownFilter()
@@ -105,7 +116,9 @@ namespace Sunny.UI
                         if (cnt > 0 && idx >= 0 && idx < cnt)
                         {
                             SelectTextChange = true;
-                            Text = filterForm.ListBox.GetItemText(filterForm.ListBox.Items[idx]);
+                            filterSelectedItem = filterList[idx];
+                            filterSelectedValue = GetItemText(filterSelectedItem);
+                            Text = filterSelectedValue.ToString();
                             edit.SelectionStart = Text.Length;
                             SelectedValueChanged?.Invoke(this, EventArgs.Empty);
                             SelectTextChange = false;
@@ -140,6 +153,8 @@ namespace Sunny.UI
             }
         }
 
+        private object filterSelectedItem;
+        private object filterSelectedValue;
         private bool showFilter;
 
         [DefaultValue(false)]
@@ -171,7 +186,7 @@ namespace Sunny.UI
 
         CurrencyManager dataManager;
 
-        private void InitStrings()
+        private void SetDataConnection()
         {
             if (DropDownStyle == UIDropDownStyle.DropDown && DataSource != null && DisplayMember.IsValid())
             {
@@ -258,14 +273,16 @@ namespace Sunny.UI
                 filterForm.ListBox.Items.Clear();
                 if (Text.IsValid())
                 {
+                    filterList.Clear();
+
                     if (DataSource == null)
                     {
                         foreach (var item in Items)
                         {
                             if (item.ToString().Contains(Text))
                             {
-                                filterForm.ListBox.Items.Add(item.ToString());
-                                if (filterForm.ListBox.Items.Count > FilterMaxCount) break;
+                                filterList.Add(item.ToString());
+                                if (filterList.Count > FilterMaxCount) break;
                             }
                         }
                     }
@@ -273,29 +290,36 @@ namespace Sunny.UI
                     {
                         if (dataManager != null)
                         {
-                            List<object> list = new List<object>();
                             for (int i = 0; i < Items.Count; i++)
                             {
                                 if (GetItemText(dataManager.List[i]).ToString().Contains(Text))
                                 {
-                                    list.Add(dataManager.List[i]);
-                                    if (list.Count > FilterMaxCount) break;
+                                    filterList.Add(dataManager.List[i]);
+                                    if (filterList.Count > FilterMaxCount) break;
                                 }
-                            }
-
-                            foreach (var item in list)
-                            {
-                                filterForm.ListBox.Items.Add(GetItemText(item));
                             }
                         }
                     }
+
+                    foreach (var item in filterList)
+                    {
+                        filterForm.ListBox.Items.Add(GetItemText(item));
+                    }
+                }
+                else
+                {
+                    filterSelectedItem = null;
+                    filterSelectedValue = null;
                 }
             }
         }
 
+        List<object> filterList = new List<object>();
+
         private void ListBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            SelectedValueChanged?.Invoke(this, e);
+            if (!ShowFilter)
+                SelectedValueChanged?.Invoke(this, e);
         }
 
         private void Box_ValueMemberChanged(object sender, EventArgs e)
@@ -306,13 +330,13 @@ namespace Sunny.UI
         private void Box_DisplayMemberChanged(object sender, EventArgs e)
         {
             DisplayMemberChanged?.Invoke(this, e);
-            InitStrings();
+            SetDataConnection();
         }
 
         private void Box_DataSourceChanged(object sender, EventArgs e)
         {
             DataSourceChanged?.Invoke(this, e);
-            InitStrings();
+            SetDataConnection();
         }
 
         private bool SelectTextChange;
@@ -356,14 +380,18 @@ namespace Sunny.UI
 
                     if (filterItemForm != null)
                     {
-                        //filterItemForm.ValueChanged += FilterItemForm_ValueChanged;
                         filterItemForm.VisibleChanged += FilterItemForm_VisibleChanged;
-                        //filterItemForm.Closed += FilterItemForm_Closed;
+                        filterItemForm.ValueChanged += FilterItemForm_ValueChanged;
                     }
                 }
 
                 return filterItemForm;
             }
+        }
+
+        private void FilterItemForm_ValueChanged(object sender, object value)
+        {
+            //
         }
 
         private void FilterItemForm_VisibleChanged(object sender, EventArgs e)
@@ -393,9 +421,9 @@ namespace Sunny.UI
             get => dropForm.ListBox;
         }
 
-        private ListBox FilterListBox
+        private UIListBox FilterListBox
         {
-            get => dropForm.ListBox.ListBox;
+            get => dropForm.ListBox;
         }
 
         [DefaultValue(25)]
@@ -403,7 +431,7 @@ namespace Sunny.UI
         public int ItemHeight
         {
             get => ListBox.ItemHeight;
-            set => ListBox.ItemHeight = value;
+            set => FilterListBox.ItemHeight = ListBox.ItemHeight = value;
         }
 
         [DefaultValue(8)]
@@ -481,16 +509,28 @@ namespace Sunny.UI
         [Description("选中索引"), Category("SunnyUI")]
         public int SelectedIndex
         {
-            get => ListBox.SelectedIndex;
-            set => ListBox.SelectedIndex = value;
+            get => ShowFilter ? -1 : ListBox.SelectedIndex;
+            set
+            {
+                if (!ShowFilter)
+                {
+                    ListBox.SelectedIndex = value;
+                }
+            }
         }
 
         [Browsable(false), Bindable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("选中项"), Category("SunnyUI")]
         public object SelectedItem
         {
-            get => ListBox.SelectedItem;
-            set => ListBox.SelectedItem = value;
+            get => ShowFilter ? filterSelectedItem : ListBox.SelectedItem;
+            set
+            {
+                if (!ShowFilter)
+                {
+                    ListBox.SelectedItem = value;
+                }
+            }
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -536,7 +576,7 @@ namespace Sunny.UI
         public string FormatString
         {
             get => ListBox.FormatString;
-            set => ListBox.FormatString = value;
+            set => FilterListBox.FormatString = ListBox.FormatString = value;
         }
 
         [Description("获取或设置指示显示值是否可以进行格式化操作。"), Category("SunnyUI")]
@@ -544,7 +584,7 @@ namespace Sunny.UI
         public bool FormattingEnabled
         {
             get => ListBox.FormattingEnabled;
-            set => ListBox.FormattingEnabled = value;
+            set => FilterListBox.FormattingEnabled = ListBox.FormattingEnabled = value;
         }
 
         [Description("获取或设置要为此列表框实际值的属性。"), Category("SunnyUI")]
@@ -564,7 +604,7 @@ namespace Sunny.UI
         ]
         public object SelectedValue
         {
-            get => ShowFilter ? FilterListBox.SelectedValue : ListBox.SelectedValue;
+            get => ShowFilter ? filterSelectedValue : ListBox.SelectedValue;
             set
             {
                 if (!ShowFilter)
@@ -589,35 +629,35 @@ namespace Sunny.UI
         public Color ItemFillColor
         {
             get => ListBox.FillColor;
-            set => ListBox.FillColor = value;
+            set => FilterListBox.FillColor = ListBox.FillColor = value;
         }
 
         [DefaultValue(typeof(Color), "48, 48, 48")]
         public Color ItemForeColor
         {
             get => ListBox.ForeColor;
-            set => ListBox.ForeColor = value;
+            set => FilterListBox.ForeColor = ListBox.ForeColor = value;
         }
 
         [DefaultValue(typeof(Color), "243, 249, 255")]
         public Color ItemSelectForeColor
         {
             get => ListBox.ItemSelectForeColor;
-            set => ListBox.ItemSelectForeColor = value;
+            set => FilterListBox.ItemSelectForeColor = ListBox.ItemSelectForeColor = value;
         }
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color ItemSelectBackColor
         {
             get => ListBox.ItemSelectBackColor;
-            set => ListBox.ItemSelectBackColor = value;
+            set => FilterListBox.ItemSelectBackColor = ListBox.ItemSelectBackColor = value;
         }
 
         [DefaultValue(typeof(Color), "220, 236, 255")]
         public Color ItemHoverColor
         {
             get => ListBox.HoverColor;
-            set => ListBox.HoverColor = value;
+            set => FilterListBox.HoverColor = ListBox.HoverColor = value;
         }
     }
 }

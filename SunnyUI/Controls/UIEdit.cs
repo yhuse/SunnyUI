@@ -160,7 +160,6 @@ namespace Sunny.UI
                     e.Handled = true;
                 }
 
-
                 if (e.KeyData == Keys.Up)
                 {
                     if (EnterAsTab)

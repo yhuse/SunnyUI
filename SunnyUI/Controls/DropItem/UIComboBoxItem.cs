@@ -44,8 +44,14 @@ namespace Sunny.UI
 
         private void ListBox_Click(object sender, EventArgs e)
         {
-            Close();
+            if (listBox.SelectedIndex >= 0)
+            {
+                BeforeListClick?.Invoke(listBox.SelectedIndex, EventArgs.Empty);
+                Close();
+            }
         }
+
+        public event EventHandler BeforeListClick;
 
         /// <summary>
         /// 设置边框颜色
