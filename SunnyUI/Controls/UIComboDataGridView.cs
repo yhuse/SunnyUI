@@ -19,6 +19,7 @@
  * 2020-09-01: V3.0.6 增加文件说明
  * 2021-11-05: V3.0.8 增加过滤
  * 2022-03-22: V3.1.1 增加自动过滤、单元格双击选中
+ * 2022-04-16: V3.1.3 增加行多选
 ******************************************************************************/
 
 using System;
@@ -45,7 +46,6 @@ namespace Sunny.UI
             this.ButtonClick += UIComboDataGridView_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private void UIComboDataGridView_ButtonClick(object sender, EventArgs e)
@@ -78,6 +78,7 @@ namespace Sunny.UI
             base.OnFontChanged(e);
             if (item != null) item.DataGridView.Font = Font;
         }
+
         [DefaultValue(false)]
         public bool ShowFilter { get; set; }
 
@@ -88,20 +89,36 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        [DefaultValue(false), Description("行多选"), Category("SunnyUI")]
+        public bool MultiSelect
+        {
+            get => DataGridView.MultiSelect;
+            set => DataGridView.MultiSelect = value;
+        }
+
         public UIDataGridView DataGridView => item.DataGridView;
 
         public event OnSelectIndexChange SelectIndexChange;
 
         public delegate void OnValueChanged(object sender, object value);
+        public delegate void OnValuesChanged(object sender, DataGridViewSelectedRowCollection value);
 
         public event OnValueChanged ValueChanged;
+        public event OnValuesChanged MultiValueChanged;
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            if (ShowFilter)
-                ValueChanged?.Invoke(this, value);
+            if (MultiSelect)
+            {
+                MultiValueChanged?.Invoke(this, (DataGridViewSelectedRowCollection)value);
+            }
             else
-                SelectIndexChange(this, value.ToString().ToInt());
+            {
+                if (ShowFilter)
+                    ValueChanged?.Invoke(this, value);
+                else
+                    SelectIndexChange(this, value.ToString().ToInt());
+            }
         }
 
         [DefaultValue(null)]

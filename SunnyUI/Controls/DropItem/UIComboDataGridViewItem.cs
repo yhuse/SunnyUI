@@ -30,7 +30,8 @@ namespace Sunny.UI
 
         private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnOK.PerformClick();
+            if (!dataGridView.MultiSelect)
+                btnOK.PerformClick();
         }
 
         public override void SetDPIScale()
@@ -294,10 +295,17 @@ namespace Sunny.UI
             //UConsole.WriteConsole("所选行:"+dataGridView.SelectedIndex.ToString(),e,sender);
             if (dataGridView.RowCount > 0 && dataGridView.SelectedIndex >= 0)
             {
-                if (ShowFilter)
-                    DoValueChanged(this, dataGridView.SelectedRows.Count > 0 ? dataGridView.SelectedRows[0] : null);
+                if (dataGridView.MultiSelect)
+                {
+                    DoValueChanged(this, dataGridView.SelectedRows);
+                }
                 else
-                    DoValueChanged(this, dataGridView.SelectedIndex);
+                {
+                    if (ShowFilter)
+                        DoValueChanged(this, dataGridView.SelectedRows.Count > 0 ? dataGridView.SelectedRows[0] : null);
+                    else
+                        DoValueChanged(this, dataGridView.SelectedIndex);
+                }
             }
 
             Close();
