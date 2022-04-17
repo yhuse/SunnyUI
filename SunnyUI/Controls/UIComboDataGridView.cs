@@ -101,16 +101,13 @@ namespace Sunny.UI
         public event OnSelectIndexChange SelectIndexChange;
 
         public delegate void OnValueChanged(object sender, object value);
-        public delegate void OnValuesChanged(object sender, DataGridViewSelectedRowCollection value);
-
         public event OnValueChanged ValueChanged;
-        public event OnValuesChanged MultiValueChanged;
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             if (MultiSelect)
             {
-                MultiValueChanged?.Invoke(this, (DataGridViewSelectedRowCollection)value);
+                ValueChanged?.Invoke(this, value);
             }
             else
             {
