@@ -14,7 +14,7 @@ namespace Sunny.UI.Demo
         }
 
         /// <summary>
-        /// 放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换，进入页面都会执行。
+        /// 放在 [窗体Load (NeedReload = true)] 的内容每次页面切换，进入页面都会执行。
         /// 这三个选一个用就行了。
         /// </summary>
         /// <param name="sender"></param>
@@ -25,14 +25,14 @@ namespace Sunny.UI.Demo
 
         }
 
-        //放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换，进入页面都会执行。
+        //放在 [窗体Load (NeedReload = true)] 的内容每次页面切换，进入页面都会执行。
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             Console.WriteLine("3. FButton_OnLoad");
         }
 
-        //放在 [窗体Load、重载OnLoad、重载Init] 的内容每次页面切换，进入页面都会执行。
+        //放在 [重载Init] 的内容每次页面切换，进入页面都会执行。
         public override void Init()
         {
             base.Init();

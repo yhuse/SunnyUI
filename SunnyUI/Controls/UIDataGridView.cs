@@ -271,7 +271,7 @@ namespace Sunny.UI
             CellBorderStyle = DataGridViewCellBorderStyle.None;
 
             //禁止行多选
-            //MultiSelect = false;
+            MultiSelect = false;
 
             //不显示数据行标题
             RowHeadersVisible = false;

@@ -29,7 +29,7 @@ namespace Sunny.UI
         /// <summary>
         /// 版本
         /// </summary>
-        public const string Version = "SunnyUI.Net V3.1.3";
+        public const string Version = "SunnyUI.Net V3.1.5";
 
         public const int EditorMinHeight = 20;
         public const int EditorMaxHeight = 60;

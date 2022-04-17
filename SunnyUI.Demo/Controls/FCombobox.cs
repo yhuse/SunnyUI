@@ -12,16 +12,27 @@ namespace Sunny.UI.Demo
             InitializeComponent();
 
             IList<Info> infoList = new List<Info>();
-            Info info1 = new Info() { Id = "1", Name = "张三" };
-            Info info2 = new Info() { Id = "2", Name = "李四" };
-            Info info3 = new Info() { Id = "3", Name = "王五" };
-            infoList.Add(info1);
-            infoList.Add(info2);
-            infoList.Add(info3);
+            for (int i = 0; i < 120; i++)
+            {
+                infoList.Add(new Info() { Id = i.ToString(), Name = "节点" + i });
+            }
 
             uiComboBox2.ValueMember = "Id";
             uiComboBox2.DisplayMember = "Name";
             uiComboBox2.DataSource = infoList;
+
+            uiComboBox3.ValueMember = "Id";
+            uiComboBox3.DisplayMember = "Name";
+            uiComboBox3.DataSource = infoList;
+
+            dt.Columns.Add("Column1", typeof(string));
+            dt.Columns.Add("Column2", typeof(string));
+            dt.Columns.Add("Column3", typeof(string));
+
+            for (int i = 0; i < 100; i++)
+            {
+                dt.Rows.Add("A" + i.ToString("D2"), "B" + (i + 1).ToString("D2"), "C" + (i + 2).ToString("D2"));
+            }
 
             uiComboDataGridView1.DataGridView.Init();
             uiComboDataGridView1.ItemSize = new System.Drawing.Size(360, 240);
@@ -30,22 +41,20 @@ namespace Sunny.UI.Demo
             uiComboDataGridView1.DataGridView.AddColumn("Column3", "Column3");
             uiComboDataGridView1.DataGridView.ReadOnly = true;
             uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
-
-
-            dt.Columns.Add("Column1", typeof(string));
-            dt.Columns.Add("Column2", typeof(string));
-            dt.Columns.Add("Column3", typeof(string));
-
-            for (int i = 0; i < 100; i++)
-            {
-                dt.Rows.Add("A" + i.ToString("D2"),
-                    "B" + (i + 1).ToString("D2"),
-                    "C" + (i + 2).ToString("D2"));
-            }
-
             uiComboDataGridView1.ShowFilter = true;
             uiComboDataGridView1.DataGridView.DataSource = dt;
             uiComboDataGridView1.FilterColumnName = "Column1"; //不设置则全部列过滤
+
+            uiComboDataGridView2.DataGridView.Init();
+            uiComboDataGridView2.DataGridView.MultiSelect = true;//设置可多选
+            uiComboDataGridView2.ItemSize = new System.Drawing.Size(360, 240);
+            uiComboDataGridView2.DataGridView.AddColumn("Column1", "Column1");
+            uiComboDataGridView2.DataGridView.AddColumn("Column2", "Column2");
+            uiComboDataGridView2.DataGridView.AddColumn("Column3", "Column3");
+            uiComboDataGridView2.DataGridView.ReadOnly = true;
+            uiComboDataGridView2.ShowFilter = true;
+            uiComboDataGridView2.DataGridView.DataSource = dt;
+            uiComboDataGridView2.FilterColumnName = "Column1"; //不设置则全部列过滤
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
@@ -59,15 +68,11 @@ namespace Sunny.UI.Demo
         {
             public string Id { get; set; }
             public string Name { get; set; }
-        }
 
-        private void uiComboBox1_DropDown(object sender, System.EventArgs e)
-        {
-            uiComboBox1.Items.Clear();
-            uiComboBox1.Items.Add("100");
-            uiComboBox1.Items.Add("101");
-            uiComboBox1.Items.Add("102");
-            uiComboBox1.Items.Add("103");
+            public override string ToString()
+            {
+                return "ID: " + Id + ", Name: " + Name;
+            }
         }
 
         private void uiDatePicker1_ValueChanged(object sender, System.DateTime value)
@@ -135,6 +140,41 @@ namespace Sunny.UI.Demo
         {
             ShowInfoTip(uiDatePicker3.Value.DateString());
             Console.WriteLine(uiDatePicker3.Value);
+        }
+
+        private void uiComboBox3_SelectedValueChanged(object sender, EventArgs e)
+        {
+            uiComboBox3.SelectedValue.WriteConsole();
+            uiComboBox3.SelectedItem.WriteConsole();
+            uiComboBox3.Text.WriteConsole();
+        }
+
+        private void uiComboBox4_SelectedValueChanged(object sender, EventArgs e)
+        {
+            uiComboBox4.SelectedValue.WriteConsole();
+            uiComboBox4.SelectedItem.WriteConsole();
+            uiComboBox4.Text.WriteConsole();
+        }
+
+        private void uiComboDataGridView2_ValueChanged(object sender, object value)
+        {
+            if (value == null)
+            {
+                uiComboDataGridView2.Text = "";
+            }
+            else
+            {
+                uiComboDataGridView2.Text = "";
+                if (value is DataGridViewSelectedRowCollection collection)
+                {
+                    foreach (var item in collection)
+                    {
+                        DataGridViewRow row = (DataGridViewRow)item;
+                        uiComboDataGridView2.Text += row.Cells["Column1"].Value.ToString();
+                        uiComboDataGridView2.Text += "; ";
+                    }
+                }
+            }
         }
     }
 }

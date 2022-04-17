@@ -89,13 +89,6 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
-        [DefaultValue(false), Description("行多选"), Category("SunnyUI")]
-        public bool MultiSelect
-        {
-            get => DataGridView.MultiSelect;
-            set => DataGridView.MultiSelect = value;
-        }
-
         public UIDataGridView DataGridView => item.DataGridView;
 
         public event OnSelectIndexChange SelectIndexChange;
@@ -105,7 +98,7 @@ namespace Sunny.UI
 
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
-            if (MultiSelect)
+            if (DataGridView.MultiSelect)
             {
                 ValueChanged?.Invoke(this, value);
             }
