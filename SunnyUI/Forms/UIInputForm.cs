@@ -60,8 +60,7 @@ namespace Sunny.UI
         protected override void DoEnter()
         {
             if (btnCancel.Focused || btnOK.Focused) return;
-
-            btnOK_Click(null, null);
+            btnOK.PerformClick();
         }
 
         private void UIInputForm_Shown(object sender, System.EventArgs e)

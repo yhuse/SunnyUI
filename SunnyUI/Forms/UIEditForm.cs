@@ -21,6 +21,7 @@
  * 2021-05-19: V3.0.3 动态生成表单，增加校验方法 
  * 2021-10-26: V3.0.8 代码生成增加ComboTreeView类型
  * 2021-10-28: V3.0.8 代码生成增加ComboCheckedListBox类型
+ * 2022-04-18: V3.1.5 修改一处Show引起的无法获取控件值的问题
 ******************************************************************************/
 
 using System;
@@ -294,30 +295,38 @@ namespace Sunny.UI
             set => btnCancel.Enabled = value;
         }
 
-        protected void btnOK_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
             if (!CheckData())
             {
                 return;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                IsOK = true;
             }
 
             if (CheckedData != null)
             {
                 if (!CheckedData.Invoke(this, new EditFormEventArgs(this)))
                 {
+                    DialogResult = DialogResult.None;
+                    IsOK = false;
                     return;
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    IsOK = true;
                 }
             }
 
             if (ButtonOkClick != null)
             {
+                DialogResult = DialogResult.None;
+                IsOK = false;
                 ButtonOkClick.Invoke(sender, e);
-            }
-            else
-            {
-                DialogResult = DialogResult.OK;
-                IsOK = true;
-                Close();
             }
         }
 
