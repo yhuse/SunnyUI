@@ -1,5 +1,23 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-04\-18 V3.1.5    
+\* UIComboDataGridView: 增加行多选    
+\* UIComboBox: 增加过滤，ShowFilter    
+\* UIDataGridView: 增加滚动条的颜色设置    
+\* UIComboBox: 过滤下拉控跟随主题配色    
+\* UINavBar: 重构扩展函数    
+\* UINavMenu: 重构扩展函数    
+\* UIComboBox: 根据Text自动选中SelectIndex    
+\* UICheckBox: 值相同时不响应值改变事件    
+\* UITextBox: 增加对按钮设置ToolTip    
+\* UIStyle: 增加属性以期控件跟随窗体缩放    
+\* UIAvator: 增加缩放    
+\* UISplitContainer: 增加主题样式    
+\* UIPage: 调整了标题的最小高度    
+\* UIForm: 调整了标题的最小高度    
+\* UITitlePanel: 调整了标题的最小高度    
+\* UINavBar: 修复一处索引引起的出错    
+    
 #### 2022\-04\-03 V3.1.3    
 \+ UIStyle: 增加全局字体大小设置    
 \+ UIUserControl: 增加用户控件基类    
