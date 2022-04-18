@@ -25,6 +25,7 @@
  * 2021-08-14: V3.0.6 增加DisposeTabPageAfterRemove标志，移除TabPage后，是否自动销毁TabPage
  * 2022-01-02: V3.0.9 增加角标
  * 2022-01-13: V3.1.0 修改删除页面时的页面跳转
+ * 2022-04-18: V3.1.5 关闭按钮增加鼠标移入的效果
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -574,6 +575,8 @@ namespace Sunny.UI
             }
         }
 
+        private ConcurrentDictionary<int, bool> CloseRects = new ConcurrentDictionary<int, bool>();
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -633,7 +636,13 @@ namespace Sunny.UI
                 {
                     if (ShowCloseButton || (ShowActiveCloseButton && index == SelectedIndex))
                     {
-                        g.DrawFontImage(77, 28, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, new Rectangle(TabRect.Width - 28, 0, 24, TabRect.Height));
+                        Color color = TabUnSelectedForeColor;
+                        if (CloseRects.ContainsKey(index) && CloseRects[index])
+                        {
+                            color = tabSelectedForeColor;
+                        }
+
+                        g.DrawFontImage(77, 28, color, new Rectangle(TabRect.Width - 28, 0, 24, TabRect.Height));
                     }
                 }
 
@@ -668,6 +677,29 @@ namespace Sunny.UI
 
                 e.Graphics.DrawImage(bmp, TabRect.Left, TabRect.Top);
                 bmp.Dispose();
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (ShowActiveCloseButton || ShowCloseButton)
+            {
+                for (int index = 0; index <= TabCount - 1; index++)
+                {
+                    Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, ItemSize.Width, ItemSize.Height);
+                    Rectangle closeRect = new Rectangle(TabRect.Right - 28, 0, 28, TabRect.Height);
+                    bool inrect = e.Location.InRect(closeRect);
+                    if (!CloseRects.ContainsKey(index))
+                        CloseRects.TryAdd(index, false);
+
+                    if (inrect != CloseRects[index])
+                    {
+                        CloseRects[index] = inrect;
+                        Invalidate();
+                    }
+                }
             }
         }
 
@@ -819,6 +851,7 @@ namespace Sunny.UI
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
             base.OnSelectedIndexChanged(e);
+            CloseRects.Clear();
             Init();
             if (ShowActiveCloseButton && !ShowCloseButton)
             {
