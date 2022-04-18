@@ -113,21 +113,11 @@ namespace Sunny.UI.Demo
 
         private void uiComboDataGridView1_ValueChanged(object sender, object value)
         {
-            if (value == null)
+            uiComboDataGridView1.Text = "";
+            if (value != null && value is DataGridViewRow)
             {
-                uiComboDataGridView1.Text = "";
-            }
-            else
-            {
-                if (value is DataGridViewRow)
-                {
-                    DataGridViewRow row = (DataGridViewRow)value;
-                    uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
-                }
-                else
-                {
-                    uiComboDataGridView1.Text = "";
-                }
+                DataGridViewRow row = (DataGridViewRow)value;
+                uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
             }
         }
 
@@ -158,21 +148,15 @@ namespace Sunny.UI.Demo
 
         private void uiComboDataGridView2_ValueChanged(object sender, object value)
         {
-            if (value == null)
+            uiComboDataGridView2.Text = "";
+            if (value != null && value is DataGridViewSelectedRowCollection)
             {
-                uiComboDataGridView2.Text = "";
-            }
-            else
-            {
-                uiComboDataGridView2.Text = "";
-                if (value is DataGridViewSelectedRowCollection collection)
+                DataGridViewSelectedRowCollection collection = (DataGridViewSelectedRowCollection)value;
+                foreach (var item in collection)
                 {
-                    foreach (var item in collection)
-                    {
-                        DataGridViewRow row = (DataGridViewRow)item;
-                        uiComboDataGridView2.Text += row.Cells["Column1"].Value.ToString();
-                        uiComboDataGridView2.Text += "; ";
-                    }
+                    DataGridViewRow row = (DataGridViewRow)item;
+                    uiComboDataGridView2.Text += row.Cells["Column1"].Value.ToString();
+                    uiComboDataGridView2.Text += "; ";
                 }
             }
         }
