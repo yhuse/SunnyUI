@@ -31,6 +31,7 @@
  * 2022-01-06: V3.1.0 支持FillColor透明
  * 2022-01-09: V3.1.0 双坐标轴支持选区域缩放
  * 2022-02-09: V3.1.0 增加图线隐藏
+ * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
 ******************************************************************************/
 
 using System;
@@ -452,17 +453,17 @@ namespace Sunny.UI
                 using (Pen pen = new Pen(color, series.Width))
                 {
                     g.SetHighQuality();
-                    if (series.ContainsNan || !series.Smooth)
+                    //if (series.ContainsNan || !series.Smooth)
+                    //{
+                    for (int i = 0; i < series.Points.Count - 1; i++)
                     {
-                        for (int i = 0; i < series.Points.Count - 1; i++)
-                        {
-                            g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
-                        }
+                        g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
                     }
-                    else
-                    {
-                        g.DrawCurve(pen, series.Points.ToArray());
-                    }
+                    //}
+                    //else
+                    //{
+                    //    g.DrawCurve(pen, series.Points.ToArray());
+                    //}
 
                     g.SetDefaultQuality();
                 }
