@@ -90,6 +90,7 @@ namespace Sunny.UI
 
         public void SetDPIScale()
         {
+            if (DesignMode) return;
             if (!IsScaled && UIStyles.DPIScale)
             {
                 this.SetDPIScaleFont();
@@ -1270,7 +1271,6 @@ namespace Sunny.UI
 
         public void SetStyle(UIStyle style)
         {
-            if (DesignMode) return;
             this.SuspendLayout();
             UIStyleHelper.SetChildUIStyle(this, style);
 

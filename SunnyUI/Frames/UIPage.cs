@@ -111,7 +111,6 @@ namespace Sunny.UI
         public void SetDPIScale()
         {
             if (DesignMode) return;
-
             if (!IsScaled)
             {
                 this.SetDPIScaleFont();
