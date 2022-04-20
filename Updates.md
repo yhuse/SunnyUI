@@ -1,5 +1,15 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-04\-20 V3.1.8    
+\* UIComboBox: 过滤文字为空时，下拉框显示所有数据列表    
+\* UISplitContainer: 修复调用Collapse()后，展开/收回操作失效    
+\* UITabControl: 不显示标签页时屏蔽左右键    
+\* UILineChart: 关闭Smooth绘制，数值差距大或者持续缩放会出错    
+\* UIForm: 可拖拽时Padding.Top增加1，解决一些显示问题    
+\* UIForm: 修复一处设置错误    
+\* UITabControl: 关闭按钮增加鼠标移入的效果    
+\* UIEditForm: 修改一处Show引起的无法获取控件值的问题    
+    
 #### 2022\-04\-18 V3.1.5    
 \* UIComboDataGridView: 增加行多选    
 \* UIComboBox: 增加过滤，ShowFilter    
