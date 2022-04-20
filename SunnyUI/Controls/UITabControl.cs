@@ -26,6 +26,7 @@
  * 2022-01-02: V3.0.9 增加角标
  * 2022-01-13: V3.1.0 修改删除页面时的页面跳转
  * 2022-04-18: V3.1.5 关闭按钮增加鼠标移入的效果
+ * 2022-04-20: V3.1.5 不显示标签页时屏蔽左右键
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -198,6 +199,25 @@ namespace Sunny.UI
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (!TabVisible)
+            {
+                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    base.OnKeyDown(e);
+                }
+            }
+            else
+            {
+                base.OnKeyDown(e);
+            }
         }
 
         [DefaultValue(true)]
