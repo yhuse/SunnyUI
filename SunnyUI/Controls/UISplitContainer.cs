@@ -18,6 +18,7 @@
  *
  * 2021-10-30: V3.0.8 增加文件说明
  * 2022-04-03: V3.1.3 增加主题样式
+ * 2022-04-20: V3.1.5 修复调用Collapse()后，展开/收回操作失效
 ******************************************************************************/
 using System;
 using System.ComponentModel;
@@ -298,6 +299,7 @@ namespace Sunny.UI
                     SplitterDistance = width - SplitterWidth - Padding.Vertical;
                 }
 
+                _splitPanelState = UISplitPanelState.Collapsed;
                 Invalidate(SplitterRectangle);
             }
         }
@@ -311,8 +313,7 @@ namespace Sunny.UI
 
         public void Expand()
         {
-            if (_collapsePanel != UICollapsePanel.None &&
-                SplitPanelState == UISplitPanelState.Collapsed)
+            if (_collapsePanel != UICollapsePanel.None && SplitPanelState == UISplitPanelState.Collapsed)
             {
                 if (_collapsePanel == UICollapsePanel.Panel1)
                 {
@@ -324,6 +325,7 @@ namespace Sunny.UI
                 }
 
                 SplitterDistance = _lastDistance;
+                _splitPanelState = UISplitPanelState.Expanded;
                 Invalidate(SplitterRectangle);
             }
         }
