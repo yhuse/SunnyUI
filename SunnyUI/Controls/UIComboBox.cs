@@ -89,12 +89,13 @@ namespace Sunny.UI
         {
             if (ShowFilter)
             {
-                int cnt = filterForm.ListBox.Items.Count;
-                int idx = filterForm.ListBox.SelectedIndex;
-
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    ShowDropDownFilter();
+                    if (!FilterItemForm.Visible)
+                        ShowDropDownFilter();
+                    int cnt = filterForm.ListBox.Items.Count;
+                    int idx = filterForm.ListBox.SelectedIndex;
+
                     if (cnt > 0)
                     {
                         if (e.KeyCode == Keys.Down)
@@ -118,6 +119,9 @@ namespace Sunny.UI
                 {
                     if (FilterItemForm.Visible)
                     {
+                        int cnt = filterForm.ListBox.Items.Count;
+                        int idx = filterForm.ListBox.SelectedIndex;
+
                         if (cnt > 0 && idx >= 0 && idx < cnt)
                         {
                             SelectTextChange = true;
@@ -277,11 +281,11 @@ namespace Sunny.UI
                     ShowDropDownFilter();
                 }
 
-                filterForm.ListBox.Items.Clear();
-                filterList.Clear();
-
                 if (Text.IsValid())
                 {
+                    filterForm.ListBox.Items.Clear();
+                    filterList.Clear();
+
                     if (DataSource == null)
                     {
                         foreach (var item in Items)
@@ -322,8 +326,17 @@ namespace Sunny.UI
             }
         }
 
+        public void HideFilterForm()
+        {
+            if (FilterItemForm.Visible)
+                FilterItemForm.Close();
+        }
+
         private void FillFilterTextEmpty()
         {
+            filterForm.ListBox.Items.Clear();
+            filterList.Clear();
+
             if (DataSource == null)
             {
                 foreach (var item in Items)

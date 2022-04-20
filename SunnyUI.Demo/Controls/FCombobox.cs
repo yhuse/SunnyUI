@@ -57,6 +57,13 @@ namespace Sunny.UI.Demo
             uiComboDataGridView2.FilterColumnName = "Column1"; //不设置则全部列过滤
         }
 
+        public override void Final()
+        {
+            base.Final();
+            uiComboBox3.HideFilterForm();
+            uiComboBox4.HideFilterForm();
+        }
+
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
         {
             uiComboDataGridView1.Text = dt.Rows[index]["Column1"].ToString();
