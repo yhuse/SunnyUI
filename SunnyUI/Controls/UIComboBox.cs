@@ -26,6 +26,7 @@
  * 2022-04-13: V3.1.3 根据Text自动选中SelectIndex
  * 2022-04-15: V3.1.3 增加过滤
  * 2022-04-16: V3.1.3 过滤下拉控跟随主题配色
+ * 2020-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
 ******************************************************************************/
 
 using System;
@@ -73,6 +74,9 @@ namespace Sunny.UI
 
         private void ShowDropDownFilter()
         {
+            if (Text.IsNullOrEmpty() && ShowFilter)
+                FillFilterTextEmpty();
+
             FilterItemForm.AutoClose = false;
             if (!FilterItemForm.Visible)
             {
@@ -173,9 +177,9 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(100)]
         [Description("过滤显示最大条目数"), Category("SunnyUI")]
-        public int FilterMaxCount { get; set; } = 50;
+        public int FilterMaxCount { get; set; } = 100;
 
         protected override void DropDownStyleChanged()
         {
@@ -189,6 +193,8 @@ namespace Sunny.UI
 
         private void SetDataConnection()
         {
+            if (!ShowFilter) return;
+
             if (DropDownStyle == UIDropDownStyle.DropDown && DataSource != null && DisplayMember.IsValid())
             {
                 dataManager = (CurrencyManager)BindingContext[DataSource, new BindingMemberInfo(DisplayMember).BindingPath];
@@ -272,10 +278,10 @@ namespace Sunny.UI
                 }
 
                 filterForm.ListBox.Items.Clear();
+                filterList.Clear();
+
                 if (Text.IsValid())
                 {
-                    filterList.Clear();
-
                     if (DataSource == null)
                     {
                         foreach (var item in Items)
@@ -309,9 +315,36 @@ namespace Sunny.UI
                 }
                 else
                 {
+                    FillFilterTextEmpty();
                     filterSelectedItem = null;
                     filterSelectedValue = null;
                 }
+            }
+        }
+
+        private void FillFilterTextEmpty()
+        {
+            if (DataSource == null)
+            {
+                foreach (var item in Items)
+                {
+                    filterList.Add(item.ToString());
+                }
+            }
+            else
+            {
+                if (dataManager != null)
+                {
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        filterList.Add(dataManager.List[i]);
+                    }
+                }
+            }
+
+            foreach (var item in filterList)
+            {
+                filterForm.ListBox.Items.Add(GetItemText(item));
             }
         }
 
