@@ -29,7 +29,6 @@ namespace Sunny.UI.Demo
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点8");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点9");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点10");
@@ -62,10 +61,8 @@ namespace Sunny.UI.Demo
             treeNode17,
             treeNode18,
             treeNode19});
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTreeView));
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiTreeView1 = new Sunny.UI.UITreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // uiLine1
@@ -78,14 +75,14 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 21;
             this.uiLine1.Text = "UITreeView";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiTreeView1
             // 
             this.uiTreeView1.CheckBoxes = true;
             this.uiTreeView1.FillColor = System.Drawing.Color.White;
             this.uiTreeView1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTreeView1.ImageIndex = 0;
-            this.uiTreeView1.ImageList = this.imageList1;
+            this.uiTreeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiTreeView1.Location = new System.Drawing.Point(30, 89);
             this.uiTreeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTreeView1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -141,23 +138,13 @@ namespace Sunny.UI.Demo
             treeNode15,
             treeNode16,
             treeNode20});
-            this.uiTreeView1.SelectedImageIndex = 0;
-            this.uiTreeView1.SelectedNode = null;
             this.uiTreeView1.ShowLines = true;
+            this.uiTreeView1.ShowText = false;
             this.uiTreeView1.Size = new System.Drawing.Size(266, 313);
             this.uiTreeView1.TabIndex = 20;
             this.uiTreeView1.Text = null;
             this.uiTreeView1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "16x16_blend.png");
-            this.imageList1.Images.SetKeyName(1, "16x16_bookmark.png");
-            this.imageList1.Images.SetKeyName(2, "16x16_bookmark_add.png");
-            this.imageList1.Images.SetKeyName(3, "16x16_bookmark_add2.png");
-            this.imageList1.Images.SetKeyName(4, "16x16_bookmark_folder.png");
+            this.uiTreeView1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FTreeView
             // 
@@ -179,6 +166,5 @@ namespace Sunny.UI.Demo
 
         private UILine uiLine1;
         private UITreeView uiTreeView1;
-        private System.Windows.Forms.ImageList imageList1;
     }
 }

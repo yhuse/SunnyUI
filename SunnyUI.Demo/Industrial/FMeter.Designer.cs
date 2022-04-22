@@ -29,9 +29,7 @@ namespace Sunny.UI.Demo
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMeter));
-            this.uiMillisecondTimer1 = new Sunny.UI.UIMillisecondTimer(this.components);
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.uiAnalogMeter1 = new Sunny.UI.UIAnalogMeter();
             this.uiLine9 = new Sunny.UI.UILine();
@@ -40,12 +38,6 @@ namespace Sunny.UI.Demo
             this.uiRoundMeter1 = new Sunny.UI.UIRoundMeter();
             this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // uiMillisecondTimer1
-            // 
-            this.uiMillisecondTimer1.Interval = 100;
-            this.uiMillisecondTimer1.TagString = null;
-            this.uiMillisecondTimer1.Tick += new System.EventHandler(this.uiMillisecondTimer1_Tick);
             // 
             // uiPanel1
             // 
@@ -68,7 +60,9 @@ namespace Sunny.UI.Demo
             this.uiPanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel1.StyleCustomMode = true;
             this.uiPanel1.TabIndex = 69;
+            this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiPanel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAnalogMeter1
             // 
@@ -81,16 +75,16 @@ namespace Sunny.UI.Demo
             this.uiAnalogMeter1.Name = "uiAnalogMeter1";
             this.uiAnalogMeter1.Renderer = null;
             this.uiAnalogMeter1.Size = new System.Drawing.Size(140, 140);
+            this.uiAnalogMeter1.Style = Sunny.UI.UIStyle.Custom;
             this.uiAnalogMeter1.TabIndex = 73;
             this.uiAnalogMeter1.Text = "uiAnalogMeter1";
             this.uiAnalogMeter1.Value = 0D;
+            this.uiAnalogMeter1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine9
             // 
             this.uiLine9.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine9.FillColor = System.Drawing.Color.Transparent;
             this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine9.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine9.Location = new System.Drawing.Point(381, 20);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -99,10 +93,10 @@ namespace Sunny.UI.Demo
             this.uiLine9.TabIndex = 72;
             this.uiLine9.Text = "UIAnalogMeter";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiRoundMeter2
             // 
-            this.uiRoundMeter2.Angle = 0D;
             this.uiRoundMeter2.AngleImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter2.AngleImage")));
             this.uiRoundMeter2.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundMeter2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter2.BackgroundImage")));
@@ -113,15 +107,15 @@ namespace Sunny.UI.Demo
             this.uiRoundMeter2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundMeter2.Name = "uiRoundMeter2";
             this.uiRoundMeter2.Size = new System.Drawing.Size(140, 140);
+            this.uiRoundMeter2.Style = Sunny.UI.UIStyle.Custom;
             this.uiRoundMeter2.TabIndex = 71;
             this.uiRoundMeter2.Text = "uiRoundMeter2";
+            this.uiRoundMeter2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine6
             // 
             this.uiLine6.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine6.FillColor = System.Drawing.Color.Transparent;
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(30, 20);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -130,21 +124,23 @@ namespace Sunny.UI.Demo
             this.uiLine6.TabIndex = 70;
             this.uiLine6.Text = "UIRoundMeter";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiRoundMeter1
             // 
-            this.uiRoundMeter1.Angle = 0D;
             this.uiRoundMeter1.AngleImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter1.AngleImage")));
             this.uiRoundMeter1.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundMeter1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter1.BackgroundImage")));
             this.uiRoundMeter1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.uiRoundMeter1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundMeter1.Location = new System.Drawing.Point(30, 51);
+            this.uiRoundMeter1.Location = new System.Drawing.Point(30, 56);
             this.uiRoundMeter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundMeter1.Name = "uiRoundMeter1";
-            this.uiRoundMeter1.Size = new System.Drawing.Size(150, 150);
+            this.uiRoundMeter1.Size = new System.Drawing.Size(140, 140);
+            this.uiRoundMeter1.Style = Sunny.UI.UIStyle.Custom;
             this.uiRoundMeter1.TabIndex = 69;
             this.uiRoundMeter1.Text = "uiRoundMeter1";
+            this.uiRoundMeter1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FMeter
             // 
@@ -163,7 +159,6 @@ namespace Sunny.UI.Demo
         }
 
         #endregion
-        private UIMillisecondTimer uiMillisecondTimer1;
         private UIPanel uiPanel1;
         private UIAnalogMeter uiAnalogMeter1;
         private UILine uiLine9;

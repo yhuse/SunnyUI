@@ -1,5 +1,4 @@
-﻿using Sunny.UI;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
