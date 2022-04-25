@@ -182,6 +182,7 @@ namespace Sunny.UI
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
+            frm.TopMost = topMost;
 
             if (showMask)
                 frm.ShowDialogWithMask();
