@@ -25,6 +25,7 @@
  * 2021-12-01: V3.0.9 增加FeedBack和SetParam函数，用于多页面传值
  * 2021-12-30: V3.0.9 增加NeedReload，页面切换是否需要重载Load
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
+ * 2022-04-26: V3.1.8 屏蔽一些属性
 ******************************************************************************/
 
 using System;
@@ -74,6 +75,115 @@ namespace Sunny.UI
             ForeColor = UIStyles.Blue.PageForeColor;
             titleFillColor = UIStyles.Blue.PageTitleFillColor;
             titleForeColor = UIStyles.Blue.PageTitleForeColor;
+            base.WindowState = FormWindowState.Normal;
+            base.TopMost = false;
+            base.FormBorderStyle = FormBorderStyle.None;
+            base.AutoScroll = false;
+            base.ShowIcon = false;
+            base.ShowInTaskbar = false;
+            base.StartPosition = FormStartPosition.Manual;
+            base.SizeGripStyle = SizeGripStyle.Hide;
+        }
+
+        [Browsable(false)]
+        public new IButtonControl AcceptButton
+        {
+            get => base.AcceptButton;
+            set => base.AcceptButton = value;
+        }
+
+        [Browsable(false)]
+        public new IButtonControl CancelButton
+        {
+            get => base.CancelButton;
+            set => base.CancelButton = value;
+        }
+
+        [Browsable(false)]
+        public new SizeGripStyle SizeGripStyle
+        {
+            get => base.SizeGripStyle;
+            set => base.SizeGripStyle = SizeGripStyle.Hide;
+        }
+
+        [Browsable(false)]
+        public new FormStartPosition StartPosition
+        {
+            get => base.StartPosition;
+            set => base.StartPosition = FormStartPosition.Manual;
+        }
+
+        [Browsable(false)]
+        public new bool AutoScroll
+        {
+            get => base.AutoScroll;
+            set => base.AutoScroll = false;
+        }
+
+        [Browsable(false)]
+        public new bool ShowIcon
+        {
+            get => base.ShowIcon;
+            set => base.ShowIcon = false;
+        }
+
+        [Browsable(false)]
+        public new bool ShowInTaskbar
+        {
+            get => base.ShowInTaskbar;
+            set => base.ShowInTaskbar = false;
+        }
+
+        [Browsable(false)]
+        public new bool IsMdiContainer
+        {
+            get => base.IsMdiContainer;
+            set => base.IsMdiContainer = false;
+        }
+
+        //不显示FormBorderStyle属性
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new FormBorderStyle FormBorderStyle
+        {
+            get
+            {
+                return base.FormBorderStyle;
+            }
+            set
+            {
+                if (!Enum.IsDefined(typeof(FormBorderStyle), value))
+                    throw new InvalidEnumArgumentException(nameof(value), (int)value, typeof(FormBorderStyle));
+                base.FormBorderStyle = FormBorderStyle.None;
+            }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new bool TopMost
+        {
+            get => base.TopMost;
+            set => base.TopMost = false;
+        }
+
+        /// <summary>
+        /// 不显示WindowState属性
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new FormWindowState WindowState
+        {
+            get
+            {
+                return base.WindowState;
+            }
+            set
+            {
+                base.WindowState = FormWindowState.Normal;
+            }
         }
 
         public UIPage SetPageIndex(int pageIndex)

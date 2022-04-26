@@ -82,6 +82,13 @@ namespace Sunny.UI
             titleForeColor = UIStyles.Blue.FormTitleForeColor;
         }
 
+        [Browsable(false)]
+        public new bool IsMdiContainer
+        {
+            get => base.IsMdiContainer;
+            set => base.IsMdiContainer = false;
+        }
+
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
 
