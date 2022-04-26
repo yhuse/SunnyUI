@@ -29,9 +29,11 @@
  * 2021-06-27: V3.0.4 自定义单元格颜色
  * 2022-01-21: V3.1.0 更新单选时选中值SelectedIndex值
  * 2022-04-16: V3.1.3 增加滚动条的颜色设置
+ * 2022-04-26: V3.1.8 解决原生控件DataSource绑定List，并且List为空，出现”索引-1没有值“错误
 ******************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -99,6 +101,23 @@ namespace Sunny.UI
             HorizontalScrollBar.ValueChanged += HorizontalScrollBar_ValueChanged;
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
+        }
+
+        [
+            DefaultValue(null),
+            RefreshProperties(RefreshProperties.Repaint),
+            AttributeProvider(typeof(IListSource)),
+            Description("提示 DataGridView 控件的数据源。")
+        ]
+        public new object DataSource
+        {
+            get => base.DataSource;
+            set
+            {
+                //解决原生控件DataSource绑定List，并且List为空，出现”索引-1没有值“错误。
+                if (value is IList list && list.Count == 0) return;
+                base.DataSource = value;
+            }
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
