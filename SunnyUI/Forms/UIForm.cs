@@ -32,6 +32,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-03-28: V3.1.1 增加了查找页面的方法
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
+ * 2022-04-26: V3.1.8 屏蔽一些属性
 ******************************************************************************/
 
 using System;
@@ -87,6 +88,13 @@ namespace Sunny.UI
         {
             get => base.IsMdiContainer;
             set => base.IsMdiContainer = false;
+        }
+
+        [Browsable(false)]
+        public new bool AutoScroll
+        {
+            get => base.AutoScroll;
+            set => base.AutoScroll = false;
         }
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
