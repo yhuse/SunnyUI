@@ -638,8 +638,9 @@ namespace Sunny.UI
             get => CellBorderStyle == DataGridViewCellBorderStyle.Single;
             set
             {
-                CellBorderStyle = value ? DataGridViewCellBorderStyle.Single : DataGridViewCellBorderStyle.None;
-                VBar.ShowLeftLine = value;
+                if (value && CellBorderStyle != DataGridViewCellBorderStyle.Single)
+                    CellBorderStyle = DataGridViewCellBorderStyle.Single;
+                VBar.ShowLeftLine = CellBorderStyle == DataGridViewCellBorderStyle.Single;
             }
         }
 
