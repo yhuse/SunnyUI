@@ -27,6 +27,7 @@
  * 2022-04-15: V3.1.3 增加过滤
  * 2022-04-16: V3.1.3 过滤下拉控跟随主题配色
  * 2020-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
+ * 2020-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
 ******************************************************************************/
 
 using System;
@@ -65,8 +66,8 @@ namespace Sunny.UI
         {
             SelectTextChange = true;
             filterSelectedItem = filterList[(int)sender];
-            filterSelectedValue = GetItemText(filterSelectedItem);
-            Text = filterSelectedValue.ToString();
+            filterSelectedValue = GetItemValue(filterSelectedItem);
+            Text = GetItemText(filterSelectedItem).ToString();
             edit.SelectionStart = Text.Length;
             SelectedValueChanged?.Invoke(this, EventArgs.Empty);
             SelectTextChange = false;
@@ -126,8 +127,8 @@ namespace Sunny.UI
                         {
                             SelectTextChange = true;
                             filterSelectedItem = filterList[idx];
-                            filterSelectedValue = GetItemText(filterSelectedItem);
-                            Text = filterSelectedValue.ToString();
+                            filterSelectedValue = GetItemValue(filterSelectedItem);
+                            Text = GetItemText(filterSelectedItem).ToString();
                             edit.SelectionStart = Text.Length;
                             SelectedValueChanged?.Invoke(this, EventArgs.Empty);
                             SelectTextChange = false;
@@ -203,6 +204,23 @@ namespace Sunny.UI
             {
                 dataManager = (CurrencyManager)BindingContext[DataSource, new BindingMemberInfo(DisplayMember).BindingPath];
             }
+        }
+
+        private object GetItemValue(object item)
+        {
+            if (dataManager == null)
+                return item;
+
+            if (ValueMember.IsNullOrWhiteSpace())
+                return null;
+
+            PropertyDescriptor descriptor = dataManager.GetItemProperties().Find(ValueMemberBindingMemberInfo.BindingField, true);
+            if (descriptor is not null)
+            {
+                return descriptor.GetValue(item);
+            }
+
+            return null;
         }
 
         public Control ExToolTipControl()
@@ -322,6 +340,7 @@ namespace Sunny.UI
                     FillFilterTextEmpty();
                     filterSelectedItem = null;
                     filterSelectedValue = null;
+                    SelectedValueChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -635,8 +654,14 @@ namespace Sunny.UI
         public string ValueMember
         {
             get => ListBox.ValueMember;
-            set => ListBox.ValueMember = value;
+            set
+            {
+                ListBox.ValueMember = value;
+                ValueMemberBindingMemberInfo = new BindingMemberInfo(value);
+            }
         }
+
+        BindingMemberInfo ValueMemberBindingMemberInfo;
 
         [
             DefaultValue(null),
