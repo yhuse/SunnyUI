@@ -22,6 +22,7 @@
  * 2020-12-10: V3.0.9 增加Readonly属性
  * 2022-02-07: V3.1.0 增加圆角控制
  * 2022-02-24: V3.1.1 可以设置按钮大小和颜色
+ * 2022-05-05: V3.1.8 增加禁止输入属性
 ******************************************************************************/
 
 using System;
@@ -50,6 +51,10 @@ namespace Sunny.UI
             edit.Leave += Edit_Leave;
             pnlValue.Paint += PnlValue_Paint;
         }
+
+        [DefaultValue(false)]
+        [Description("禁止输入"), Category("SunnyUI")]
+        public bool ForbidInput { get; set; }
 
         public Control ExToolTipControl()
         {
@@ -137,6 +142,7 @@ namespace Sunny.UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (ForbidInput) return;
             if (ReadOnly) return;
 
             Value += Step;
