@@ -33,6 +33,7 @@
  * 2022-03-28: V3.1.1 增加了查找页面的方法
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
  * 2022-04-26: V3.1.8 屏蔽一些属性
+ * 2022-05-06: V3.1.8 可拖拽时Padding可以调整大小
 ******************************************************************************/
 
 using System;
@@ -1641,7 +1642,7 @@ namespace Sunny.UI
                 {
                     ShowRect = true;
                     ShowRadius = false;
-                    Padding = new Padding(2, showTitle ? TitleHeight + 1 : 2, 2, 2);
+                    Padding = new Padding(Math.Max(Padding.Left, 2), showTitle ? TitleHeight + 1 : 2, Math.Max(Padding.Right, 2), Math.Max(Padding.Bottom, 2));
                 }
                 else
                 {
