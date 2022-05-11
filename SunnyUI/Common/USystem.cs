@@ -132,7 +132,7 @@ namespace Sunny.UI
         /// Delays the specified ms.
         /// </summary>
         /// <param name="ms">The ms.</param>
-        public static void Sleep(int ms)
+        public static void Delay(int ms)
         {
             var sw = Stopwatch.StartNew();
             var sleepMs = ms - 16;

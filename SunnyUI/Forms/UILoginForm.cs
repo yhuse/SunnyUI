@@ -15,7 +15,7 @@ namespace Sunny.UI
         }
 
         [Description("顶部标题"), Category("SunnyUI")]
-        [DefaultValue(null)]
+        [DefaultValue("SunnyUI.Net")]
         public string Title
         {
             get => lblTitle.Text;
@@ -23,11 +23,19 @@ namespace Sunny.UI
         }
 
         [Description("底部说明"), Category("SunnyUI")]
-        [DefaultValue(null)]
+        [DefaultValue("SunnyUI")]
         public string SubText
         {
             get => lblSubText.Text;
             set => lblSubText.Text = value;
+        }
+
+        [Description("用户登录"), Category("SunnyUI")]
+        [DefaultValue("用户登录")]
+        public string LoginText
+        {
+            get => uiLine1.Text;
+            set => uiLine1.Text = value;
         }
 
         private UILoginImage loginImage;
@@ -112,6 +120,38 @@ namespace Sunny.UI
         {
             get => edtPassword.Text;
             set => edtPassword.Text = value;
+        }
+
+        [DefaultValue("请输入账号")]
+        [Description("账号水印文字"), Category("SunnyUI")]
+        public string UserNameWatermark
+        {
+            get => edtUser.Watermark;
+            set => edtUser.Watermark = value;
+        }
+
+        [DefaultValue(null)]
+        [Description("请输入密码"), Category("SunnyUI")]
+        public string PasswordWatermark
+        {
+            get => edtPassword.Watermark;
+            set => edtPassword.Watermark = value;
+        }
+
+        [DefaultValue(null)]
+        [Description("登录"), Category("SunnyUI")]
+        public string ButtonLoginText
+        {
+            get => btnLogin.Text;
+            set => btnLogin.Text = value;
+        }
+
+        [DefaultValue(null)]
+        [Description("取消"), Category("SunnyUI")]
+        public string ButtonCancelText
+        {
+            get => btnCancel.Text;
+            set => btnCancel.Text = value;
         }
     }
 }
