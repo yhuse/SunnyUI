@@ -26,6 +26,7 @@
  * 2021-12-30: V3.0.9 增加NeedReload，页面切换是否需要重载Load
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
  * 2022-04-26: V3.1.8 屏蔽一些属性
+ * 2022-05-11: V3.1.8 ShowTitle时，可调整Padding
 ******************************************************************************/
 
 using System;
@@ -677,7 +678,7 @@ namespace Sunny.UI
             set
             {
                 titleHeight = Math.Max(value, 19);
-                Padding = new Padding(Padding.Left, titleHeight, Padding.Right, Padding.Bottom);
+                Padding = new Padding(Padding.Left, ShowTitle ? Math.Max(titleHeight, Padding.Top) : 0, Padding.Right, Padding.Bottom);
                 CalcSystemBoxPos();
                 Invalidate();
             }
@@ -713,7 +714,7 @@ namespace Sunny.UI
 
             if (AllowShowTitle)
             {
-                Padding = new Padding(Padding.Left, titleHeight, Padding.Right, Padding.Bottom);
+                Padding = new Padding(Padding.Left, Math.Max(titleHeight, Padding.Top), Padding.Right, Padding.Bottom);
             }
         }
 
@@ -739,7 +740,7 @@ namespace Sunny.UI
             set
             {
                 showTitle = value;
-                Padding = new Padding(Padding.Left, value ? titleHeight : 0, Padding.Right, Padding.Bottom);
+                Padding = new Padding(Padding.Left, value ? Math.Max(titleHeight, Padding.Top) : 0, Padding.Right, Padding.Bottom);
                 Invalidate();
             }
         }
