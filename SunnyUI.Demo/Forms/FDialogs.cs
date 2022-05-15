@@ -214,12 +214,6 @@ namespace Sunny.UI.Demo
         private void uiSymbolButton13_Click(object sender, EventArgs e)
         {
             string dir = "";
-            if (DirEx.SelectDir("系统打开文件夹", ref dir))
-            {
-                UIMessageTip.ShowOk(dir);
-            }
-
-            dir = "";
             if (DirEx.SelectDirEx("扩展打开文件夹", ref dir))
             {
                 UIMessageTip.ShowOk(dir);
