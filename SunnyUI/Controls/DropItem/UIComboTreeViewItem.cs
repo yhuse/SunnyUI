@@ -29,6 +29,7 @@ namespace Sunny.UI
             set
             {
                 treeView.CheckBoxes = value;
+                treeView.NodeClickChangeCheckBoxes = value;
                 panel.Visible = CheckBoxes;
             }
         }
