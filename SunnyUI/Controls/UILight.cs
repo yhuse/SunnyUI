@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-06-19: V3.0.4 增加方形显示，优化渐变色
  * 2021-08-07: V3.0.5 默认不显示灯光亮线
+ * 2022-05-15: V3.1.8 增加文字显示
 ******************************************************************************/
 
 using System;
@@ -45,7 +46,7 @@ namespace Sunny.UI
         {
             SetStyleFlags(true, false);
             ShowRect = false;
-            ShowText = false;
+            base.ShowText = false;
             Radius = Width = Height = 35;
         }
 
@@ -69,6 +70,23 @@ namespace Sunny.UI
         }
 
         private int interval = 500;
+
+        /// <summary>
+        /// 是否显示文字
+        /// </summary>
+        [Description("是否显示文字"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public new  bool ShowText
+        {
+            get => base.ShowText;
+            set => base.ShowText = value;
+        }
+
+        protected override void OnPaintFore(Graphics g, GraphicsPath path)
+        {
+            SizeF sf = g.MeasureString(Text, Font);
+            g.DrawString(Text, Font, ForeColor, Width / 2 - sf.Width / 2, Height / 2 - sf.Height / 2);
+        }
 
         [DefaultValue(500), Description("显示间隔"), Category("SunnyUI")]
         public int Interval
