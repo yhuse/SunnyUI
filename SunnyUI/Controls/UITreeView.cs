@@ -26,6 +26,7 @@
  * 2022-04-01: V3.1.2 增加水平滚动条
  * 2022-04-01: V3.1.2 自定义行颜色，可通过代码给颜色值，SetNodePainter
  * 2022-05-15: V3.1.8 修复了一个设计期显示错误
+ * 2022-05-15: V3.1.8 增加了点击文字改变CheckBox状态的NodeClickChangeCheckBoxes
 ******************************************************************************/
 
 using System;
@@ -125,6 +126,14 @@ namespace Sunny.UI
         {
             get => view.TreeNodeStateSync;
             set => view.TreeNodeStateSync = value;
+        }
+
+        [Description("点击文字改变CheckBox状态"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool NodeClickChangeCheckBoxes
+        {
+            get => view.NodeClickChangeCheckBoxes;
+            set => view.NodeClickChangeCheckBoxes = value;
         }
 
         private void View_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -1165,6 +1174,27 @@ namespace Sunny.UI
                         DicNodeStatus[tn.GetHashCode()] = false;
                         tn.Checked = state;
                         SetChildNodeCheckedState(tn, state);//递归调用子节点的子节点
+                    }
+                }
+            }
+
+            public bool NodeClickChangeCheckBoxes { get; set; }
+
+            protected override void OnNodeMouseClick(TreeNodeMouseClickEventArgs e)
+            {
+                base.OnNodeMouseClick(e);
+                if (CheckBoxes && NodeClickChangeCheckBoxes)
+                {
+                    int drawLeft = e.Node.Bounds.X;
+                    if (ImageList != null)
+                        drawLeft -= ImageList.ImageSize.Width;
+
+                    if (e.Location.X > drawLeft)
+                    {
+                        e.Node.Checked = !e.Node.Checked;
+                        DicNodeStatus[e.Node.GetHashCode()] = false;
+                        SetChildNodeCheckedState(e.Node, e.Node.Checked);
+                        SetParentNodeCheckedState(e.Node, true);
                     }
                 }
             }
