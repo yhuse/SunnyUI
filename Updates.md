@@ -1,5 +1,24 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-05\-15 V3.1.9    
+\* UIComboBox: 过滤时修复ValueMember绑定值的显示    
+\* UIComboTreeView: 显示CheckBoxes时自己选中节点文字可切换状态    
+\* UITreeView: 增加了点击文字改变CheckBox状态的NodeClickChangeCheckBoxes    
+\* UITreeView: 修复了一个设计期显示错误    
+\* UIListBox: 增加滚动条颜色设置    
+\* UILight: 增加文字显示    
+\* UILoginForm: 将文本资源放入窗体属性    
+\* UITabControl: 修复屏蔽左右键后其他控件无法使用左右键的问题    
+\* UIPage: ShowTitle时，可调整Padding    
+\* UIForm: 可拖拽时Padding可以调整大小    
+\* UIDoubleUpDown: 增加禁止输入属性    
+\* UIIntegerUpDown: 增加禁止输入属性    
+\* UIDataGridView：ShowGridLine属性更新    
+\* UIForm: 屏蔽一些属性    
+\* UIPage: 屏蔽一些属性    
+\* UIDataGridView: 解决原生控件DataSource绑定List，并且List为空，出现”索引-1没有值“错误    
+\* 更新弹窗不置顶的Bug    
+    
 #### 2022\-04\-20 V3.1.8    
 \* UIComboBox: 过滤文字为空时，下拉框显示所有数据列表    
 \* UISplitContainer: 修复调用Collapse()后，展开/收回操作失效    
