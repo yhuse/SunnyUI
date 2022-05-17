@@ -296,6 +296,7 @@ namespace Sunny.UI
         public static List<T> GetControls<T>(this Control ctrl, bool includeChild = false) where T : Control
         {
             List<T> values = new List<T>();
+            if (ctrl.IsNull()) return values;
 
             foreach (Control obj in ctrl.Controls)
             {

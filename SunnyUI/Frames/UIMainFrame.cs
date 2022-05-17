@@ -18,6 +18,7 @@
  *
  * 2020-05-05: V2.2.5 页面框架基类
  * 2021-08-17: V3.0.8 删除IFrame接口，移到父类UIForm
+ * 2022-05-17: V3.1.9 修复了显示页面关闭按钮，移除最后一个页面出错的问题
 ******************************************************************************/
 
 using System;
@@ -89,7 +90,7 @@ namespace Sunny.UI
 
         private void MainContainer_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            if (Selecting != null)
+            if (Selecting != null && e.TabPage != null)
             {
                 List<UIPage> pages = e.TabPage.GetControls<UIPage>();
                 Selecting?.Invoke(this, e, pages.Count == 0 ? null : pages[0]);
