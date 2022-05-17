@@ -259,6 +259,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static Control GetControl(this Control ctrl, string childName)
         {
+            if (ctrl.IsNull()) return null;
             //if the input control's name equals the input controlName,return the control
             if (ctrl.Name == childName)
             {
@@ -277,6 +278,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static T GetControl<T>(this Control ctrl, string childName) where T : Control
         {
+            if (ctrl.IsNull()) return null;
             if (ctrl.Name == childName)
             {
                 return ctrl as T;
@@ -323,6 +325,7 @@ namespace Sunny.UI
         public static List<Control> GetControls(this Control ctrl, string mask)
         {
             List<Control> values = new List<Control>();
+            if (ctrl.IsNull()) return values;
 
             foreach (Control obj in ctrl.Controls)
             {
@@ -338,6 +341,8 @@ namespace Sunny.UI
         public static List<Control> GetAllControls(this Control control)
         {
             var list = new List<Control>();
+            if (control.IsNull()) return list;
+
             foreach (Control con in control.Controls)
             {
                 list.Add(con);
@@ -360,6 +365,7 @@ namespace Sunny.UI
         public static List<Control> GetInterfaceControls(this Control ctrl, string interfaceName, bool includeChild = false)
         {
             List<Control> values = new List<Control>();
+            if (ctrl.IsNull()) return values;
 
             foreach (Control obj in ctrl.Controls)
             {
