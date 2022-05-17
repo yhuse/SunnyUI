@@ -28,6 +28,7 @@
  * 2022-04-18: V3.1.5 关闭按钮增加鼠标移入的效果
  * 2022-04-20: V3.1.5 不显示标签页时屏蔽左右键
  * 2022-05-11: V3.1.8 修复屏蔽左右键后其他控件无法使用左右键的问题
+ * 2022-05-17: V3.1.9 修复了一个首页无法关闭的问题
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -872,6 +873,12 @@ namespace Sunny.UI
             {
                 timer.Start();
             }
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            timer?.Start();
         }
 
         private int LastIndex;
