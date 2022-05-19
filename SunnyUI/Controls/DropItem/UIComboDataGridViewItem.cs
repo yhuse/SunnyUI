@@ -95,7 +95,7 @@ namespace Sunny.UI
             this.panel.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel.Name = "panel";
             this.panel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.panel.Size = new System.Drawing.Size(569, 44);
             this.panel.TabIndex = 2;
@@ -206,7 +206,7 @@ namespace Sunny.UI
             this.pFilter.MinimumSize = new System.Drawing.Size(1, 1);
             this.pFilter.Name = "pFilter";
             this.pFilter.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.pFilter.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.pFilter.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.pFilter.Size = new System.Drawing.Size(569, 44);
             this.pFilter.TabIndex = 4;
@@ -247,7 +247,7 @@ namespace Sunny.UI
             // 
             // edtFilter
             // 
-            this.edtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtFilter.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtFilter.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -351,7 +351,7 @@ namespace Sunny.UI
                     List<string> strings = new List<string>();
                     foreach (DataGridViewColumn column in dataGridView.Columns)
                     {
-                        if (column.Visible)
+                        if (column.Visible && column.DataPropertyName.IsValid())
                         {
                             strings.Add(column.DataPropertyName + " like '%" + edtFilter.Text + "%'");
                         }
