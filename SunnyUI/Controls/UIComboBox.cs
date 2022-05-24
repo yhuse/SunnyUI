@@ -26,8 +26,9 @@
  * 2022-04-13: V3.1.3 根据Text自动选中SelectIndex
  * 2022-04-15: V3.1.3 增加过滤
  * 2022-04-16: V3.1.3 过滤下拉控跟随主题配色
- * 2020-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
- * 2020-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
+ * 2022-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
+ * 2022-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
+ * 2022-05-24: V3.1.9 Selceted=-1，清除文本
 ******************************************************************************/
 
 using System;
@@ -410,10 +411,18 @@ namespace Sunny.UI
         private void Box_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectTextChange = true;
-            if (ListBox.SelectedItem != null && !ShowFilter)
-                Text = ListBox.GetItemText(ListBox.SelectedItem);
+            if (!ShowFilter)
+            {
+                if (ListBox.SelectedItem != null)
+                    Text = ListBox.GetItemText(ListBox.SelectedItem);
+                else
+                    Text = "";
+            }
+
             SelectTextChange = false;
-            SelectedIndexChanged?.Invoke(this, e);
+
+            if (!Wana_1)
+                SelectedIndexChanged?.Invoke(this, e);
         }
 
         public event EventHandler SelectedIndexChanged;
@@ -575,10 +584,19 @@ namespace Sunny.UI
             {
                 if (!ShowFilter)
                 {
+                    if (DataSource != null && value == -1 && SelectedIndex > 0)
+                    {
+                        Wana_1 = true;
+                        SelectedIndex = 0;
+                        Wana_1 = false;
+                    }
+
                     ListBox.SelectedIndex = value;
                 }
             }
         }
+
+        private bool Wana_1;
 
         [Browsable(false), Bindable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Description("选中项"), Category("SunnyUI")]
