@@ -809,7 +809,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("SunnyUI")]
+        [Description("滚动条填充颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color ScrollBarColor
         {
@@ -827,7 +827,7 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色"), Category("SunnyUI")]
+        [Description("滚动条背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "White")]
         public Color ScrollBarBackColor
         {
