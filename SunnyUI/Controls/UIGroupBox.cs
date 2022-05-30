@@ -18,8 +18,10 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
+ * 2022-05-30: V3.1.9 修复Padding设置
 ******************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -74,9 +76,18 @@ namespace Sunny.UI
                 if (_titleTop != value)
                 {
                     _titleTop = value;
-                    Padding = new Padding(0, value + 16, 0, 0);
+                    Padding = new Padding(Padding.Left, Math.Max(value + 16, Padding.Top), Padding.Right, Padding.Bottom);
                     Invalidate();
                 }
+            }
+        }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            base.OnPaddingChanged(e);
+            if (Padding.Top != Math.Max(TitleTop + 16, Padding.Top))
+            {
+                Padding = new Padding(Padding.Left, Math.Max(TitleTop + 16, Padding.Top), Padding.Right, Padding.Bottom);
             }
         }
 
