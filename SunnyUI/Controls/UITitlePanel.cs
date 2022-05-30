@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-07-30: V2.2.6 增加可收缩选项
  * 2020-09-03: V3.0.6 增加标题文字颜色
+ * 2022-05-30: V3.1.9 修复Padding设置
 ******************************************************************************/
 
 using System;
@@ -42,10 +43,22 @@ namespace Sunny.UI
             get => _titleHeight;
             set
             {
-                _titleHeight = Math.Max(19, value);
-                Padding = new Padding(0, value, 0, 0);
-                CalcSystemBoxPos();
-                Invalidate();
+                if (_titleHeight != value)
+                {
+                    _titleHeight = Math.Max(19, value);
+                    Padding = new Padding(Padding.Left, Math.Max(value, Padding.Top), Padding.Right, Padding.Bottom);
+                    CalcSystemBoxPos();
+                    Invalidate();
+                }
+            }
+        }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            base.OnPaddingChanged(e);
+            if (Padding.Top != Math.Max(TitleHeight, Padding.Top))
+            {
+                Padding = new Padding(Padding.Left, Math.Max(TitleHeight, Padding.Top), Padding.Right, Padding.Bottom);
             }
         }
 
