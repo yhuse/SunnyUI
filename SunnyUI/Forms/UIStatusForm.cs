@@ -36,7 +36,7 @@ namespace Sunny.UI
         public UIStatusForm(int max, string desc, int decimalPlaces = 1)
         {
             InitializeComponent();
-
+            Text = UILocalize.InfoTitle;
             Maximum = max;
             Description = desc;
             Value = 0;
