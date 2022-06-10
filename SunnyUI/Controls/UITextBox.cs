@@ -33,6 +33,7 @@
  * 2022-02-16: V3.1.1 增加了只读的颜色设置
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
  * 2022-04-11: V3.1.3 增加对按钮设置ToolTip
+ * 2022-06-10: V3.1.9 尺寸改变时重绘
 ******************************************************************************/
 
 using System;
@@ -56,7 +57,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             InitializeComponentEnd = true;
-            SetStyleFlags();
+            SetStyleFlags(true, true, true);
 
             ShowText = false;
             Font = UIFontColor.Font();
@@ -513,6 +514,7 @@ namespace Sunny.UI
 
         protected override void OnSizeChanged(EventArgs e)
         {
+            base.OnSizeChanged(e);
             SizeChange();
         }
 

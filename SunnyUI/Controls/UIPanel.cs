@@ -26,6 +26,7 @@
  * 2022-01-27: V3.1.0 禁止显示滚动条
  * 2022-02-16: V3.1.1 基类增加只读颜色设置
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-06-10: V3.1.9 尺寸改变时重绘
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -41,7 +42,7 @@ namespace Sunny.UI
             base.Font = UIFontColor.Font();
             base.MinimumSize = new System.Drawing.Size(1, 1);
             showText = true;
-            SetStyleFlags(true, false);
+            SetStyleFlags(true, false, true);
         }
 
         /// <summary>
