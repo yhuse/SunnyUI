@@ -98,11 +98,12 @@ namespace Sunny.UI
             {
                 foreach (DataGridViewColumn column in dgv.Columns)
                 {
+                    bool ShowGridLine = dgv.CellBorderStyle == DataGridViewCellBorderStyle.Single;
                     Rectangle rect = dgv.GetCellDisplayRectangle(column.Index, 0, false);
-                    int minleft = dgv.ShowGridLine ? 1 : 0;
+                    int minleft = ShowGridLine ? 1 : 0;
 
                     if (rect.Left == minleft && rect.Width == 0) continue;
-                    if (rect.Left >= minleft && dgv.ShowGridLine)
+                    if (rect.Left >= minleft && ShowGridLine)
                     {
                         g.DrawLine(dgv.GridColor, rect.Left - minleft, 0, rect.Left - minleft, Height);
                         g.DrawLine(dgv.GridColor, rect.Right - minleft, 0, rect.Right - minleft, Height);

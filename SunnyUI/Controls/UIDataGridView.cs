@@ -31,6 +31,13 @@
  * 2022-04-16: V3.1.3 增加滚动条的颜色设置
  * 2022-04-26: V3.1.8 解决原生控件DataSource绑定List，并且List为空，出现”索引-1没有值“错误
  * 2022-06-10: V3.1.9 不再判断DataSource绑定List为空，出现”索引-1没有值“用户自行判断
+ * 2022-06-11: V3.1.9 隐藏 ShowRect, 设置原生属性：
+ *                    BorderStyle = BorderStyle.FixedSingle;
+ * 2022-06-11: V3.1.9 隐藏 ShowGridLine, 设置原生属性：
+ *                    CellBorderStyle = DataGridViewCellBorderStyle.Single;
+ * 2022-06-11: V3.1.9 隐藏 RowHeight, 用 SetRowHeight() 代替，或设置原生属性：
+ *                    AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
+ *                    RowTemplate.Height 设置为高度
 ******************************************************************************/
 
 using System;
@@ -102,23 +109,6 @@ namespace Sunny.UI
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
         }
-
-        //[
-        //    DefaultValue(null),
-        //    RefreshProperties(RefreshProperties.Repaint),
-        //    AttributeProvider(typeof(IListSource)),
-        //    Description("提示 DataGridView 控件的数据源。")
-        //]
-        //public new object DataSource
-        //{
-        //    get => base.DataSource;
-        //    set
-        //    {
-        //        //解决原生控件DataSource绑定List，并且List为空，出现”索引-1没有值“错误。
-        //        if (value is IList list && list.Count == 0) return;
-        //        base.DataSource = value;
-        //    }
-        //}
 
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
@@ -219,44 +209,31 @@ namespace Sunny.UI
             }
         }
 
-        [Description("行高"), Category("SunnyUI")]
-        [DefaultValue(23)]
-        public int RowHeight
+        //[Description("行高"), Category("SunnyUI")]
+        //[DefaultValue(23)]
+        [Browsable(false)]
+        [Obsolete("RowHeight 已过时，请用 SetRowHeight() 代替。", false)]
+        public int RowHeight { get; set; }
+        //{
+        //    get => RowTemplate.Height;
+        //    set
+        //    {
+        //        AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+        //        RowTemplate.Height = Math.Max(23, value);
+        //    }
+        //}
+
+        public void SetRowHeight(int height)
         {
-            get => RowTemplate.Height;
-            set
-            {
-                if (value > 23)
-                {
-                    RowTemplate.Height = Math.Max(23, value);
-                    RowTemplate.MinimumHeight = Math.Max(23, value);
-                    AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-                }
-            }
+            AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            RowTemplate.Height = height;
         }
 
-        /*
-        private bool showRowIndex;
-
-        [Description("显示行号"), Category("SunnyUI")]
-        [DefaultValue(false)]
-        public bool ShowRowIndex
+        public void SetColumnHeadersHeight(int height)
         {
-            get => showRowIndex;
-            set
-            {
-                showRowIndex = value;
-                if (value) RowHeadersVisible = true;
-                Invalidate();
-            }
+            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            ColumnHeadersHeight = height;
         }
-
-        protected override void OnRowStateChanged(int rowIndex, DataGridViewRowStateChangedEventArgs e)
-        {
-            base.OnRowStateChanged(rowIndex, e);
-            if (ShowRowIndex) e.Row.HeaderCell.Value = (e.Row.Index + 1).ToString();
-        }
-        */
 
         private void HorizontalScrollBar_VisibleChanged(object sender, EventArgs e)
         {
@@ -367,7 +344,7 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            if (ShowRect)
+            if (BorderStyle == BorderStyle.FixedSingle)
             {
                 Color color = RectColor;
                 color = Enabled ? color : UIDisableColor.Fill;
@@ -448,7 +425,7 @@ namespace Sunny.UI
                 return;
             }
 
-            if (ShowRect)
+            if (BorderStyle == BorderStyle.FixedSingle)
             {
                 VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
                 VBar.Top = 1;
@@ -616,32 +593,42 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示边框
         /// </summary>
-        [Description("是否显示边框"), Category("SunnyUI")]
-        [DefaultValue(true)]
-        public bool ShowRect
-        {
-            get => BorderStyle == BorderStyle.FixedSingle;
-            set
-            {
-                BorderStyle = value ? BorderStyle.FixedSingle : BorderStyle.None;
-                Invalidate();
-            }
-        }
+        //[Description("是否显示边框"), Category("SunnyUI")]
+        //[DefaultValue(true)]
+        [Browsable(false)]
+        [Obsolete("ShowRect 已过时，用原生属性：BorderStyle = BorderStyle.FixedSingle 代替。")]
+        public bool ShowRect { get; set; }
+        //{
+        //    get => BorderStyle == BorderStyle.FixedSingle;
+        //    set
+        //    {
+        //        BorderStyle = value ? BorderStyle.FixedSingle : BorderStyle.None;
+        //        Invalidate();
+        //    }
+        //}
 
         /// <summary>
         /// 是否显示表格线
         /// </summary>
-        [Description("是否显示表格线"), Category("SunnyUI")]
-        [DefaultValue(true)]
-        public bool ShowGridLine
+        //[Description("是否显示表格线"), Category("SunnyUI")]
+        //[DefaultValue(true)]
+        //[Browsable(false)]
+        [Obsolete("ShowGridLine 已过时，用原生属性：CellBorderStyle = DataGridViewCellBorderStyle.Single 代替。")]
+        public bool ShowGridLine { get; set; }
+        //{
+        //    get => CellBorderStyle == DataGridViewCellBorderStyle.Single;
+        //    set
+        //    {
+        //        if (value && CellBorderStyle != DataGridViewCellBorderStyle.Single)
+        //            CellBorderStyle = DataGridViewCellBorderStyle.Single;
+        //        VBar.ShowLeftLine = CellBorderStyle == DataGridViewCellBorderStyle.Single;
+        //    }
+        //}
+
+        protected override void OnCellBorderStyleChanged(EventArgs e)
         {
-            get => CellBorderStyle == DataGridViewCellBorderStyle.Single;
-            set
-            {
-                if (value && CellBorderStyle != DataGridViewCellBorderStyle.Single)
-                    CellBorderStyle = DataGridViewCellBorderStyle.Single;
-                VBar.ShowLeftLine = CellBorderStyle == DataGridViewCellBorderStyle.Single;
-            }
+            base.OnCellBorderStyleChanged(e);
+            VBar.ShowLeftLine = CellBorderStyle == DataGridViewCellBorderStyle.Single;
         }
 
         private Color _rectColor = UIColor.Blue;

@@ -80,12 +80,10 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.Grid.RowHeight = 29;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Grid.RowTemplate.Height = 29;
             this.Grid.SelectedIndex = -1;
-            this.Grid.ShowGridLine = true;
             this.Grid.Size = new System.Drawing.Size(1034, 511);
             this.Grid.TabIndex = 0;
             // 
