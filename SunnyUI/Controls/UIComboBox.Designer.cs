@@ -17,6 +17,8 @@
             {
                 components.Dispose();
             }
+
+            HideFilterForm();
             base.Dispose(disposing);
         }
 

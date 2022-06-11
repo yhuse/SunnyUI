@@ -79,6 +79,12 @@ namespace Sunny.UI
             if (Text.IsNullOrEmpty() && ShowFilter)
                 FillFilterTextEmpty();
 
+            foreach (var item in Parent.GetControls<UIComboBox>())
+            {
+                if (!item.Equals(this))
+                    item.HideFilterForm();
+            }
+
             FilterItemForm.AutoClose = false;
             if (!FilterItemForm.Visible)
             {
