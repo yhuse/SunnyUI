@@ -222,7 +222,7 @@ namespace Sunny.UI
                 return null;
 
             PropertyDescriptor descriptor = dataManager.GetItemProperties().Find(ValueMemberBindingMemberInfo.BindingField, true);
-            if (descriptor is not null)
+            if (descriptor != null)
             {
                 return descriptor.GetValue(item);
             }

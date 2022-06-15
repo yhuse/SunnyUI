@@ -57,6 +57,11 @@ namespace Sunny.UI
             }
         }
 
+        public static bool IsLightColor(this Color color)
+        {
+            return (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255 > 0.5;
+        }
+
         /// <summary>
         /// 根据背景色判断前景色
         /// </summary>
