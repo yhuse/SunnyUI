@@ -38,6 +38,9 @@ namespace Sunny.UI.Demo
             this.uiScrollingText1 = new Sunny.UI.UIScrollingText();
             this.uiLine6 = new Sunny.UI.UILine();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.uiLine1 = new Sunny.UI.UILine();
+            this.uiVerificationCode1 = new Sunny.UI.UIVerificationCode();
+            this.uiVerificationCode2 = new Sunny.UI.UIVerificationCode();
             this.SuspendLayout();
             // 
             // uiLabel3
@@ -50,6 +53,7 @@ namespace Sunny.UI.Demo
             this.uiLabel3.TabIndex = 79;
             this.uiLabel3.Text = "鼠标移过来看提示";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel2
             // 
@@ -61,6 +65,7 @@ namespace Sunny.UI.Demo
             this.uiLabel2.TabIndex = 78;
             this.uiLabel2.Text = "鼠标移过来看提示";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel1
             // 
@@ -73,6 +78,7 @@ namespace Sunny.UI.Demo
             this.uiLabel1.Text = "鼠标移过来看提示";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiToolTip1.SetToolTip(this.uiLabel1, "赠人玫瑰手有余香");
+            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine7
             // 
@@ -84,6 +90,7 @@ namespace Sunny.UI.Demo
             this.uiLine7.TabIndex = 76;
             this.uiLine7.Text = "UIToolTip";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiScrollingText2
             // 
@@ -95,6 +102,7 @@ namespace Sunny.UI.Demo
             this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 75;
             this.uiScrollingText2.Text = "赠人玫瑰手有余香";
+            this.uiScrollingText2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiScrollingText1
             // 
@@ -111,6 +119,7 @@ namespace Sunny.UI.Demo
             this.uiScrollingText1.StyleCustomMode = true;
             this.uiScrollingText1.TabIndex = 74;
             this.uiScrollingText1.Text = "赠人玫瑰手有余香";
+            this.uiScrollingText1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine6
             // 
@@ -122,6 +131,7 @@ namespace Sunny.UI.Demo
             this.uiLine6.TabIndex = 73;
             this.uiLine6.Text = "UIScrollingText";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiToolTip1
             // 
@@ -131,11 +141,47 @@ namespace Sunny.UI.Demo
             this.uiToolTip1.OwnerDraw = true;
             this.uiToolTip1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             // 
+            // uiLine1
+            // 
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Location = new System.Drawing.Point(30, 187);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(319, 20);
+            this.uiLine1.TabIndex = 80;
+            this.uiLine1.Text = "UIVerificationCode";
+            this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // uiVerificationCode1
+            // 
+            this.uiVerificationCode1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiVerificationCode1.Location = new System.Drawing.Point(30, 225);
+            this.uiVerificationCode1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiVerificationCode1.Name = "uiVerificationCode1";
+            this.uiVerificationCode1.Size = new System.Drawing.Size(100, 35);
+            this.uiVerificationCode1.TabIndex = 81;
+            this.uiVerificationCode1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // uiVerificationCode2
+            // 
+            this.uiVerificationCode2.CodeLength = 6;
+            this.uiVerificationCode2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiVerificationCode2.Location = new System.Drawing.Point(148, 225);
+            this.uiVerificationCode2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiVerificationCode2.Name = "uiVerificationCode2";
+            this.uiVerificationCode2.Size = new System.Drawing.Size(140, 35);
+            this.uiVerificationCode2.TabIndex = 82;
+            this.uiVerificationCode2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
             // FOther
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.uiVerificationCode2);
+            this.Controls.Add(this.uiVerificationCode1);
+            this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.uiLabel3);
             this.Controls.Add(this.uiLabel2);
             this.Controls.Add(this.uiLabel1);
@@ -162,5 +208,8 @@ namespace Sunny.UI.Demo
         private UIScrollingText uiScrollingText1;
         private UILine uiLine6;
         private UIToolTip uiToolTip1;
+        private UILine uiLine1;
+        private UIVerificationCode uiVerificationCode1;
+        private UIVerificationCode uiVerificationCode2;
     }
 }

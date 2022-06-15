@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0-windows;net472;net40</TargetFrameworks>
+        <TargetFrameworks>net472;net40</TargetFrameworks>
         <LangVersion>8.0</LangVersion>
         <ProjectGuid>{AB1CB247-E20B-4CBE-B269-570ADDD96C53}</ProjectGuid>
         <UseWindowsForms>true</UseWindowsForms>

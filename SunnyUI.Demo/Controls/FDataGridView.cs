@@ -37,7 +37,6 @@ namespace Sunny.UI.Demo
 
             uiDataGridView1.SelectIndexChange += uiDataGridView1_SelectIndexChange;
 
-            uiDataGridView1.ShowGridLine = true;
             //设置统计绑定的表格
             uiDataGridViewFooter1.DataGridView = uiDataGridView1;
         }

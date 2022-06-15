@@ -102,7 +102,6 @@ namespace Sunny.UI.Demo
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.uiDataGridView1.RowTemplate.Height = 23;
             this.uiDataGridView1.SelectedIndex = -1;
-            this.uiDataGridView1.ShowGridLine = true;
             this.uiDataGridView1.Size = new System.Drawing.Size(800, 351);
             this.uiDataGridView1.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.TabIndex = 6;
