@@ -19,6 +19,7 @@
  * 2021-07-29: V3.0.5 修复SelectedNode=null的问题
  * 2021-11-11: V3.0.0 增加文件说明
  * 2022-05-15: V3.0.8 显示CheckBoxes时自己选中节点文字可切换状态
+ * 2022-06-16: V3.2.0 增加下拉框宽度、高度
 ******************************************************************************/
 
 using System;
@@ -53,7 +54,17 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            DropDownWidth = 250;
+            DropDownHeight = 220;
         }
+
+        [DefaultValue(250)]
+        [Description("下拉框宽度"), Category("SunnyUI")]
+        public int DropDownWidth { get; set; }
+
+        [DefaultValue(220)]
+        [Description("下拉框高度"), Category("SunnyUI")]
+        public int DropDownHeight { get; set; }
 
         public Control ExToolTipControl()
         {
@@ -180,7 +191,8 @@ namespace Sunny.UI
             item.CanSelectRootNode = CanSelectRootNode;
             item.Translate();
             item.SetDPIScale();
-            ItemForm.Show(this);
+            //ItemForm.Show(this);
+            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
         }
 
         [DefaultValue(typeof(Size), "250, 220"), Description("下拉弹框界面大小"), Category("SunnyUI")]

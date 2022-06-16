@@ -20,7 +20,7 @@
  * 2021-11-05: V3.0.8 增加过滤
  * 2022-03-22: V3.1.1 增加自动过滤、单元格双击选中
  * 2022-04-16: V3.1.3 增加行多选
- * 2022-06-16: V3.2.0 增加下拉框宽度
+ * 2022-06-16: V3.2.0 增加下拉框宽度、高度
 ******************************************************************************/
 
 using System;
@@ -48,12 +48,17 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            DropDownWidth = 333;
+            DropDownWidth = 500;
+            DropDownHeight = 300;
         }
 
-        [DefaultValue(333)]
+        [DefaultValue(500)]
         [Description("下拉框宽度"), Category("SunnyUI")]
         public int DropDownWidth { get; set; }
+
+        [DefaultValue(300)]
+        [Description("下拉框高度"), Category("SunnyUI")]
+        public int DropDownHeight { get; set; }
 
         private void UIComboDataGridView_ButtonClick(object sender, EventArgs e)
         {
@@ -64,7 +69,7 @@ namespace Sunny.UI
             item.SetDPIScale();
             item.Translate();
             //ItemForm.Show(this);
-            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
         }
 
         [DefaultValue(typeof(Size), "320, 240"), Description("下拉弹框界面大小"), Category("SunnyUI")]
