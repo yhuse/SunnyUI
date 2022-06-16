@@ -1,5 +1,26 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-06\-16 V3.2.0    
+\+ UIVerificationCode: 增加验证码控件    
+\* NuGet发布版本去除.Net5 Winform支持，可自行编译    
+\* UIBarChart: 重写Y轴坐标显示    
+\* UIForm: 弹窗默认关闭半透明遮罩    
+\* UICombobox: 增加了几个关闭过滤窗体的地方    
+\* UIDataGridView: 恢复几个原生属性：    
+\*     隐藏 ShowRect, 设置原生属性：BorderStyle = BorderStyle.FixedSingle;    
+\*     隐藏 ShowGridLine, 设置原生属性：CellBorderStyle = DataGridViewCellBorderStyle.Single;    
+\*     隐藏 RowHeight, 用 SetRowHeight() 代替，或设置原生属性：AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None，RowTemplate.Height 设置为高度     
+\*     不再判断DataSource绑定List为空，出现”索引-1没有值“用户自行判断    
+\* UITextBox: 尺寸改变时重绘    
+\* UIPanel: 尺寸改变时重绘    
+\* UIStatusForm: 标题栏国际化    
+\* 修改了控件属性注释    
+\* UIComboBox: Selceted=-1，清除文本    
+\* UIComboDataGridView: 修复过滤时，列未绑定DataPropertyName出错的问题    
+\* UITabControl: 修复了一个首页无法关闭的问题    
+\* ControlEx: 更新几个函数    
+\* UIMainFrame: 修复了显示页面关闭按钮，移除最后一个页面出错的问题    
+    
 #### 2022\-05\-15 V3.1.9    
 \* UIComboBox: 过滤时修复ValueMember绑定值的显示    
 \* UIComboTreeView: 显示CheckBoxes时自己选中节点文字可切换状态    
