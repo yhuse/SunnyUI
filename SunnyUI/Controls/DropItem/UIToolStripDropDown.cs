@@ -201,4 +201,23 @@ namespace Sunny.UI
             itemForm.SetStyle(style);
         }
     }
+
+    public delegate void OnComboDataGridViewFilterChanged(object sender, UIComboDataGridViewArgs e);
+
+    public class UIComboDataGridViewArgs : EventArgs
+    {
+        public string FilterText { get; set; }
+        public int FilterCount { get; set; }
+
+        public UIComboDataGridViewArgs()
+        {
+
+        }
+
+        public UIComboDataGridViewArgs(string filterText, int filterCount)
+        {
+            FilterText = filterText;
+            FilterCount = filterCount;
+        }
+    }
 }

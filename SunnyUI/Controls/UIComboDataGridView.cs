@@ -21,6 +21,7 @@
  * 2022-03-22: V3.1.1 增加自动过滤、单元格双击选中
  * 2022-04-16: V3.1.3 增加行多选
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
+ * 2022-06-19: V3.2.0 增加FilterChanged，输出过滤文字和记录条数
 ******************************************************************************/
 
 using System;
@@ -52,6 +53,8 @@ namespace Sunny.UI
             DropDownHeight = 300;
         }
 
+        public event OnComboDataGridViewFilterChanged FilterChanged;
+
         [DefaultValue(500)]
         [Description("下拉框宽度"), Category("SunnyUI")]
         public int DropDownWidth { get; set; }
@@ -70,6 +73,12 @@ namespace Sunny.UI
             item.Translate();
             //ItemForm.Show(this);
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
+            item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;
+        }
+
+        private void Item_ComboDataGridViewFilterChanged(object sender, UIComboDataGridViewArgs e)
+        {
+            FilterChanged?.Invoke(this, e);
         }
 
         [DefaultValue(typeof(Size), "320, 240"), Description("下拉弹框界面大小"), Category("SunnyUI")]
