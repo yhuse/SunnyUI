@@ -15,6 +15,8 @@ namespace Sunny.UI
         private UISymbolButton btnClear;
         private UIDataGridView dataGridView;
 
+        public event OnComboDataGridViewFilterChanged ComboDataGridViewFilterChanged;
+
         public UIComboDataGridViewItem()
         {
             InitializeComponent();
@@ -364,6 +366,8 @@ namespace Sunny.UI
             {
                 table.DefaultView.RowFilter = filter;
             }
+
+            ComboDataGridViewFilterChanged?.Invoke(this, new UIComboDataGridViewArgs(edtFilter.Text, dataGridView.RowCount));
         }
 
         private void btnClear_Click(object sender, System.EventArgs e)
