@@ -42,6 +42,8 @@ namespace Sunny.UI
             MaxLength = 10;
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
+
+            CreateInstance();
         }
 
         [DefaultValue(false)]

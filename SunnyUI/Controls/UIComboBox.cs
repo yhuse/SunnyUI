@@ -61,6 +61,8 @@ namespace Sunny.UI
             edit.KeyDown += Edit_KeyDown;
             DropDownWidth = 150;
             fullControlSelect = true;
+
+            CreateInstance();
         }
 
         private void ListBox_Click(object sender, EventArgs e)

@@ -39,6 +39,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             fullControlSelect = true;
+            CreateInstance();
         }
 
         private void InitializeComponent()

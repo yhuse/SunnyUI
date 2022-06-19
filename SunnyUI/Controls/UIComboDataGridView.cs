@@ -79,6 +79,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             fullControlSelect = true;
+            CreateInstance();
         }
 
         public Control ExToolTipControl()

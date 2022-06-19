@@ -60,6 +60,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Value = UIColor.Blue;
+            CreateInstance();
         }
 
         private void UIColorPicker_ButtonClick(object sender, EventArgs e)

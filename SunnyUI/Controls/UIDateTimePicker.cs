@@ -72,6 +72,8 @@ namespace Sunny.UI
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
             MaxLength = 19;
+
+            CreateInstance();
         }
 
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
