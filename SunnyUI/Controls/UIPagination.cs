@@ -58,8 +58,6 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, UISymbolButton> buttons =
             new ConcurrentDictionary<int, UISymbolButton>();
-
-        private UIComboBox cb1;
         private CurrencyManager dataManager;
 
         private object dataSource;
@@ -386,14 +384,13 @@ namespace Sunny.UI
             this.btnSelect = new Sunny.UI.UISymbolButton();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel1 = new Sunny.UI.UILabel();
-            this.cb1 = new Sunny.UI.UIComboBox();
             this.p1.SuspendLayout();
             this.SuspendLayout();
             // 
             // b0
             // 
             this.b0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b0.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b0.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.b0.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.b0.Location = new System.Drawing.Point(3, 3);
             this.b0.MinimumSize = new System.Drawing.Size(1, 1);
@@ -407,11 +404,13 @@ namespace Sunny.UI
             this.b0.TagString = "<";
             this.b0.Text = "上一页";
             this.b0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.b0.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b0.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b1
             // 
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b1.Location = new System.Drawing.Point(81, 3);
             this.b1.MinimumSize = new System.Drawing.Size(1, 1);
             this.b1.Name = "b1";
@@ -420,11 +419,13 @@ namespace Sunny.UI
             this.b1.Symbol = 0;
             this.b1.TabIndex = 1;
             this.b1.Text = "0";
+            this.b1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b3
             // 
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b3.Location = new System.Drawing.Point(145, 3);
             this.b3.MinimumSize = new System.Drawing.Size(1, 1);
             this.b3.Name = "b3";
@@ -433,11 +434,13 @@ namespace Sunny.UI
             this.b3.Symbol = 0;
             this.b3.TabIndex = 3;
             this.b3.Text = "0";
+            this.b3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b2
             // 
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b2.Location = new System.Drawing.Point(113, 3);
             this.b2.MinimumSize = new System.Drawing.Size(1, 1);
             this.b2.Name = "b2";
@@ -446,11 +449,13 @@ namespace Sunny.UI
             this.b2.Symbol = 0;
             this.b2.TabIndex = 2;
             this.b2.Text = "0";
+            this.b2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b7
             // 
             this.b7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b7.Location = new System.Drawing.Point(273, 3);
             this.b7.MinimumSize = new System.Drawing.Size(1, 1);
             this.b7.Name = "b7";
@@ -459,11 +464,13 @@ namespace Sunny.UI
             this.b7.Symbol = 0;
             this.b7.TabIndex = 7;
             this.b7.Text = "0";
+            this.b7.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b6
             // 
             this.b6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b6.Location = new System.Drawing.Point(241, 3);
             this.b6.MinimumSize = new System.Drawing.Size(1, 1);
             this.b6.Name = "b6";
@@ -472,11 +479,13 @@ namespace Sunny.UI
             this.b6.Symbol = 0;
             this.b6.TabIndex = 6;
             this.b6.Text = "0";
+            this.b6.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b5
             // 
             this.b5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b5.Location = new System.Drawing.Point(209, 3);
             this.b5.MinimumSize = new System.Drawing.Size(1, 1);
             this.b5.Name = "b5";
@@ -485,11 +494,13 @@ namespace Sunny.UI
             this.b5.Symbol = 0;
             this.b5.TabIndex = 5;
             this.b5.Text = "0";
+            this.b5.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b4
             // 
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b4.Location = new System.Drawing.Point(177, 3);
             this.b4.MinimumSize = new System.Drawing.Size(1, 1);
             this.b4.Name = "b4";
@@ -498,11 +509,13 @@ namespace Sunny.UI
             this.b4.Symbol = 0;
             this.b4.TabIndex = 4;
             this.b4.Text = "0";
+            this.b4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b15
             // 
             this.b15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b15.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b15.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b15.Location = new System.Drawing.Point(529, 3);
             this.b15.MinimumSize = new System.Drawing.Size(1, 1);
             this.b15.Name = "b15";
@@ -511,11 +524,13 @@ namespace Sunny.UI
             this.b15.Symbol = 0;
             this.b15.TabIndex = 15;
             this.b15.Text = "0";
+            this.b15.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b15.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b14
             // 
             this.b14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b14.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b14.Location = new System.Drawing.Point(497, 3);
             this.b14.MinimumSize = new System.Drawing.Size(1, 1);
             this.b14.Name = "b14";
@@ -524,11 +539,13 @@ namespace Sunny.UI
             this.b14.Symbol = 0;
             this.b14.TabIndex = 14;
             this.b14.Text = "0";
+            this.b14.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b14.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b13
             // 
             this.b13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b13.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b13.Location = new System.Drawing.Point(465, 3);
             this.b13.MinimumSize = new System.Drawing.Size(1, 1);
             this.b13.Name = "b13";
@@ -537,11 +554,13 @@ namespace Sunny.UI
             this.b13.Symbol = 0;
             this.b13.TabIndex = 13;
             this.b13.Text = "0";
+            this.b13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b12
             // 
             this.b12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b12.Location = new System.Drawing.Point(433, 3);
             this.b12.MinimumSize = new System.Drawing.Size(1, 1);
             this.b12.Name = "b12";
@@ -550,11 +569,13 @@ namespace Sunny.UI
             this.b12.Symbol = 0;
             this.b12.TabIndex = 12;
             this.b12.Text = "0";
+            this.b12.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b12.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b11
             // 
             this.b11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b11.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b11.Location = new System.Drawing.Point(401, 3);
             this.b11.MinimumSize = new System.Drawing.Size(1, 1);
             this.b11.Name = "b11";
@@ -563,11 +584,13 @@ namespace Sunny.UI
             this.b11.Symbol = 0;
             this.b11.TabIndex = 11;
             this.b11.Text = "0";
+            this.b11.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b10
             // 
             this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b10.Location = new System.Drawing.Point(369, 3);
             this.b10.MinimumSize = new System.Drawing.Size(1, 1);
             this.b10.Name = "b10";
@@ -576,11 +599,13 @@ namespace Sunny.UI
             this.b10.Symbol = 0;
             this.b10.TabIndex = 10;
             this.b10.Text = "0";
+            this.b10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b9
             // 
             this.b9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b9.Location = new System.Drawing.Point(337, 3);
             this.b9.MinimumSize = new System.Drawing.Size(1, 1);
             this.b9.Name = "b9";
@@ -589,11 +614,13 @@ namespace Sunny.UI
             this.b9.Symbol = 0;
             this.b9.TabIndex = 9;
             this.b9.Text = "0";
+            this.b9.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b8
             // 
             this.b8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.b8.Location = new System.Drawing.Point(305, 3);
             this.b8.MinimumSize = new System.Drawing.Size(1, 1);
             this.b8.Name = "b8";
@@ -602,11 +629,13 @@ namespace Sunny.UI
             this.b8.Symbol = 0;
             this.b8.TabIndex = 8;
             this.b8.Text = "0";
+            this.b8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // b16
             // 
             this.b16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b16.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b16.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.b16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.b16.Location = new System.Drawing.Point(561, 3);
             this.b16.MinimumSize = new System.Drawing.Size(1, 1);
@@ -620,6 +649,8 @@ namespace Sunny.UI
             this.b16.TagString = ">";
             this.b16.Text = "下一页";
             this.b16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.b16.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b16.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.b16.LocationChanged += new System.EventHandler(this.b16_LocationChanged);
             // 
             // p1
@@ -628,8 +659,7 @@ namespace Sunny.UI
             this.p1.Controls.Add(this.btnSelect);
             this.p1.Controls.Add(this.uiLabel2);
             this.p1.Controls.Add(this.uiLabel1);
-            this.p1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.p1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.p1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p1.Location = new System.Drawing.Point(727, 3);
             this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.p1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -640,34 +670,35 @@ namespace Sunny.UI
             this.p1.TabIndex = 17;
             this.p1.Text = null;
             this.p1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.p1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.p1.LocationChanged += new System.EventHandler(this.p1_LocationChanged);
             // 
             // edtPage
             // 
             this.edtPage.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtPage.DoubleValue = 10D;
-            this.edtPage.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.edtPage.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.edtPage.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtPage.HasMinimum = true;
             this.edtPage.IntValue = 10;
             this.edtPage.Location = new System.Drawing.Point(28, 0);
             this.edtPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.edtPage.Maximum = 2147483647D;
             this.edtPage.Minimum = 1D;
             this.edtPage.MinimumEnabled = true;
             this.edtPage.MinimumSize = new System.Drawing.Size(1, 1);
             this.edtPage.Name = "edtPage";
             this.edtPage.Padding = new System.Windows.Forms.Padding(5);
+            this.edtPage.ShowText = false;
             this.edtPage.Size = new System.Drawing.Size(53, 29);
             this.edtPage.TabIndex = 1;
             this.edtPage.Text = "10";
             this.edtPage.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.edtPage.Type = Sunny.UI.UITextBox.UIEditType.Integer;
+            this.edtPage.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // btnSelect
             // 
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSelect.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSelect.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnSelect.Location = new System.Drawing.Point(111, 0);
             this.btnSelect.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnSelect.Name = "btnSelect";
@@ -675,57 +706,38 @@ namespace Sunny.UI
             this.btnSelect.Symbol = 0;
             this.btnSelect.TabIndex = 3;
             this.btnSelect.Text = "确定";
+            this.btnSelect.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSelect.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // uiLabel2
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.uiLabel2.Location = new System.Drawing.Point(81, 4);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(23, 20);
             this.uiLabel2.TabIndex = 2;
             this.uiLabel2.Text = "页";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.uiLabel1.Location = new System.Drawing.Point(5, 4);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(23, 20);
             this.uiLabel1.TabIndex = 0;
             this.uiLabel1.Text = "第";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cb1
-            // 
-            this.cb1.DataSource = null;
-            this.cb1.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cb1.FillColor = System.Drawing.Color.White;
-            this.cb1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cb1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cb1.Items.AddRange(new object[] {
-            "20条/页",
-            "50条/页",
-            "100条/页",
-            "200条/页"});
-            this.cb1.Location = new System.Drawing.Point(951, 3);
-            this.cb1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cb1.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cb1.Name = "cb1";
-            this.cb1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cb1.Size = new System.Drawing.Size(103, 29);
-            this.cb1.TabIndex = 19;
-            this.cb1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cb1.Visible = false;
+            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // UIPagination
             // 
-            this.Controls.Add(this.cb1);
             this.Controls.Add(this.p1);
             this.Controls.Add(this.b16);
             this.Controls.Add(this.b15);
@@ -966,7 +978,6 @@ namespace Sunny.UI
 
         private void p1_LocationChanged(object sender, EventArgs e)
         {
-            cb1.Left = p1.Right;
             PageLocationChanged?.Invoke(p1.Right, EventArgs.Empty);
         }
 

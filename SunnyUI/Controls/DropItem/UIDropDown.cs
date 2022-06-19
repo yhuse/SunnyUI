@@ -93,21 +93,30 @@ namespace Sunny.UI
             AutoSize = false;
             DoubleBuffered = true;
             //ResizeRedraw = true;
-            ToolStripControlHost _host = new ToolStripControlHost(item);
-            Padding = Margin = _host.Padding = _host.Margin = Padding.Empty;
-            item.MinimumSize = item.Size;
-            item.MaximumSize = item.Size;
-            Size = item.Size;
-            TabStop = item.TabStop = true;
-            item.Location = Point.Empty;
-            Items.Add(_host);
-            item.Disposed += (sender, e) =>
-            {
-                item = null;
-                Dispose(true);
-            };
 
-            item.RegionChanged += (sender, e) => UpdateRegion();
+            try
+            {
+                ToolStripControlHost _host = new ToolStripControlHost(item);
+                Padding = Margin = _host.Padding = _host.Margin = Padding.Empty;
+                item.MinimumSize = item.Size;
+                item.MaximumSize = item.Size;
+                Size = item.Size;
+                TabStop = item.TabStop = true;
+                item.Location = Point.Empty;
+                Items.Add(_host);
+                item.RegionChanged += (sender, e) => UpdateRegion();
+
+                item.Disposed += (sender, e) =>
+                {
+                    item = null;
+                    Dispose(true);
+                };
+            }
+            catch
+            {
+
+            }
+
             UpdateRegion();
         }
 
