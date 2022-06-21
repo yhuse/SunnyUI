@@ -160,7 +160,17 @@ namespace Sunny.UI
 
                 return itemForm;
             }
-            set => itemForm = value;
+            set
+            {
+                itemForm = value;
+
+                if (itemForm != null)
+                {
+                    itemForm.ValueChanged += ItemForm_ValueChanged;
+                    itemForm.VisibleChanged += ItemForm_VisibleChanged;
+                    itemForm.Closed += ItemForm_Closed;
+                }
+            }
         }
 
         private void ItemForm_Closed(object sender, ToolStripDropDownClosedEventArgs e)
