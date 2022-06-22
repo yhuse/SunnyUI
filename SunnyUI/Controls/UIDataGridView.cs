@@ -38,6 +38,7 @@
  * 2022-06-11: V3.1.9 隐藏 RowHeight, 用 SetRowHeight() 代替，或设置原生属性：
  *                    AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
  *                    RowTemplate.Height 设置为高度
+ * 2022-06-22: V3.2.0 删除 ShowRect、ShowGridLine、RowHeight三个属性
 ******************************************************************************/
 
 using System;
@@ -208,20 +209,6 @@ namespace Sunny.UI
                 CellStyles.Remove(key);
             }
         }
-
-        //[Description("行高"), Category("SunnyUI")]
-        //[DefaultValue(23)]
-        [Browsable(false)]
-        [Obsolete("RowHeight 已过时，请用 SetRowHeight() 代替。", false)]
-        public int RowHeight { get; set; }
-        //{
-        //    get => RowTemplate.Height;
-        //    set
-        //    {
-        //        AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-        //        RowTemplate.Height = Math.Max(23, value);
-        //    }
-        //}
 
         public void SetRowHeight(int height)
         {
@@ -589,41 +576,6 @@ namespace Sunny.UI
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
-
-        /// <summary>
-        /// 是否显示边框
-        /// </summary>
-        //[Description("是否显示边框"), Category("SunnyUI")]
-        //[DefaultValue(true)]
-        [Browsable(false)]
-        [Obsolete("ShowRect 已过时，用原生属性：BorderStyle = BorderStyle.FixedSingle 代替。")]
-        public bool ShowRect { get; set; }
-        //{
-        //    get => BorderStyle == BorderStyle.FixedSingle;
-        //    set
-        //    {
-        //        BorderStyle = value ? BorderStyle.FixedSingle : BorderStyle.None;
-        //        Invalidate();
-        //    }
-        //}
-
-        /// <summary>
-        /// 是否显示表格线
-        /// </summary>
-        //[Description("是否显示表格线"), Category("SunnyUI")]
-        //[DefaultValue(true)]
-        //[Browsable(false)]
-        [Obsolete("ShowGridLine 已过时，用原生属性：CellBorderStyle = DataGridViewCellBorderStyle.Single 代替。")]
-        public bool ShowGridLine { get; set; }
-        //{
-        //    get => CellBorderStyle == DataGridViewCellBorderStyle.Single;
-        //    set
-        //    {
-        //        if (value && CellBorderStyle != DataGridViewCellBorderStyle.Single)
-        //            CellBorderStyle = DataGridViewCellBorderStyle.Single;
-        //        VBar.ShowLeftLine = CellBorderStyle == DataGridViewCellBorderStyle.Single;
-        //    }
-        //}
 
         protected override void OnCellBorderStyleChanged(EventArgs e)
         {

@@ -46,7 +46,6 @@ namespace Sunny.UI
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;
-            JoinEvents(true);
         }
 
         [Browsable(false), DefaultValue(false)]
@@ -76,8 +75,6 @@ namespace Sunny.UI
             }
         }
 
-        private Boolean waterMarkTextEnabled;
-
         private Color _waterMarkColor = Color.Gray;
         public Color WaterMarkColor
         {
@@ -87,58 +84,6 @@ namespace Sunny.UI
                 _waterMarkColor = value;
                 Invalidate();
             }
-        }
-
-        protected override void OnCreateControl()
-        {
-            base.OnCreateControl();
-            WaterMark_Toggle(null, null);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if (waterMarkTextEnabled)
-            {
-                e.Graphics.FillRectangle(BackColor, Bounds);
-                e.Graphics.DrawString(Watermark, Font, WaterMarkColor, new PointF(0.0F, 0.0F));
-            }
-
-            base.OnPaint(e);
-        }
-
-        private void JoinEvents(Boolean join)
-        {
-            if (join)
-            {
-                TextChanged += WaterMark_Toggle;
-                LostFocus += WaterMark_Toggle;
-                GotFocus += WaterMark_Toggle;
-                MouseDown += WaterMark_Toggle;
-            }
-        }
-
-        private void WaterMark_Toggle(object sender, EventArgs args)
-        {
-            if (Text.Length <= 0)
-                EnableWaterMark();
-            else
-                DisableWaterMark();
-        }
-
-        private void EnableWaterMark()
-        {
-            //Enable OnPaint event handler
-            SetStyle(ControlStyles.UserPaint, Watermark.IsValid());
-            waterMarkTextEnabled = Watermark.IsValid();
-            //OnPaint right now
-            Refresh();
-        }
-
-        private void DisableWaterMark()
-        {
-            //Disable OnPaint event handler
-            waterMarkTextEnabled = false;
-            SetStyle(ControlStyles.UserPaint, false);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
