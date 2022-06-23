@@ -27,6 +27,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-03-24: V3.1.1 修复TipsText显示位置
  * 2022-04-14: V3.1.3 重构扩展函数
+ * 2022-06-23: V3.2.0 绘制节点字体图标增加偏移SymbolOffset
 ******************************************************************************/
 
 using System;
@@ -649,8 +650,7 @@ namespace Sunny.UI
 
                         for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
                         {
-                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor,
-                                new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
                         }
                     }
                 }
@@ -667,8 +667,7 @@ namespace Sunny.UI
 
                         for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
                         {
-                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor,
-                                new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
                         }
                     }
                 }
@@ -690,7 +689,8 @@ namespace Sunny.UI
                     {
                         SizeF fiSize = e.Graphics.GetFontImageSize(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node));
                         Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2);
+                        Point offset = MenuHelper.GetSymbolOffset(e.Node);
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f + offset.X, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2 + offset.Y);
                     }
                     else
                     {
@@ -1017,6 +1017,12 @@ namespace Sunny.UI
             return this;
         }
 
+        public UINavMenu SetNodeSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 24)
+        {
+            MenuHelper.SetSymbol(node, symbol, symbolOffset, symbolSize);
+            return this;
+        }
+
         public UINavMenu SetNodeImageIndex(TreeNode node, int imageIndex)
         {
             node.ImageIndex = imageIndex;
@@ -1055,6 +1061,13 @@ namespace Sunny.UI
             return node;
         }
 
+        public TreeNode CreateNode(string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex)
+        {
+            var node = CreateNode(text, pageIndex);
+            SetNodeSymbol(node, symbol, symbolOffset, symbolSize);
+            return node;
+        }
+
         private TreeNode CreateNode(NavMenuItem item)
         {
             TreeNode node = new TreeNode(item.Text);
@@ -1078,7 +1091,7 @@ namespace Sunny.UI
             var childNode = CreateChildNode(parent, new NavMenuItem(page));
             if (page.Symbol > 0)
             {
-                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolSize);
+                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolOffset, page.SymbolSize);
             }
 
             return childNode;
@@ -1088,6 +1101,13 @@ namespace Sunny.UI
         {
             var node = CreateChildNode(parent, text, pageIndex);
             SetNodeSymbol(node, symbol, symbolSize);
+            return node;
+        }
+
+        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex)
+        {
+            var node = CreateChildNode(parent, text, pageIndex);
+            SetNodeSymbol(node, symbol, symbolOffset, symbolSize);
             return node;
         }
 

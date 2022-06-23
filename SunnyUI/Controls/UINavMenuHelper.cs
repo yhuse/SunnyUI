@@ -66,6 +66,11 @@ namespace Sunny.UI
             return this[node] == null ? 0 : Items[node].SymbolSize;
         }
 
+        public Point GetSymbolOffset(TreeNode node)
+        {
+            return this[node] == null ? new Point(0, 0) : Items[node].SymbolOffset;
+        }
+
         public int GetPageIndex(TreeNode node)
         {
             return this[node] == null ? -1 : Items[node].PageIndex;
@@ -121,6 +126,17 @@ namespace Sunny.UI
             CreateIfNotExist(node);
             Items[node].Symbol = symbol;
             Items[node].SymbolSize = symbolSize;
+            node.TreeView.Invalidate();
+        }
+
+        public void SetSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 32)
+        {
+            if (node == null) return;
+
+            CreateIfNotExist(node);
+            Items[node].Symbol = symbol;
+            Items[node].SymbolSize = symbolSize;
+            Items[node].SymbolOffset = symbolOffset;
             node.TreeView.Invalidate();
         }
 
