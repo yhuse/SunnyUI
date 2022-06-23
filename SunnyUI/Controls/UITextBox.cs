@@ -34,6 +34,7 @@
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
  * 2022-04-11: V3.1.3 增加对按钮设置ToolTip
  * 2022-06-10: V3.1.9 尺寸改变时重绘
+ * 2022-06-23: V3.2.0 重写水印文字，解决不同背景色下泛白的问题
 ******************************************************************************/
 
 using System;
@@ -484,6 +485,14 @@ namespace Sunny.UI
         {
             get => edit.WaterMarkColor;
             set => edit.WaterMarkColor = value;
+        }
+
+        [DefaultValue(typeof(Color), "Gray")]
+        [Description("水印文字激活颜色"), Category("SunnyUI")]
+        public Color WatermarkActiveColor
+        {
+            get => edit.WaterMarkActiveForeColor;
+            set => edit.WaterMarkActiveForeColor = value;
         }
 
         public void SelectAll()

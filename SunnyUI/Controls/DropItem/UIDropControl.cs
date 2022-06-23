@@ -140,6 +140,14 @@ namespace Sunny.UI
             set => edit.WaterMarkColor = value;
         }
 
+        [DefaultValue(typeof(Color), "Gray")]
+        [Description("水印文字激活颜色"), Category("SunnyUI")]
+        public Color WatermarkActiveColor
+        {
+            get => edit.WaterMarkActiveForeColor;
+            set => edit.WaterMarkActiveForeColor = value;
+        }
+
         private UIDropDown itemForm;
 
         protected UIDropDown ItemForm

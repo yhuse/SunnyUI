@@ -46,6 +46,108 @@ namespace Sunny.UI
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;
+
+            waterMarkBrush = new SolidBrush(_waterMarkActiveColor);
+            waterMarkContainer = null;
+
+            DrawWaterMark();
+            this.Enter += new EventHandler(ThisHasFocus);
+            this.Leave += new EventHandler(ThisWasLeaved);
+            this.TextChanged += new EventHandler(ThisTextChanged);
+        }
+
+        private void DrawWaterMark()
+        {
+            if (this.waterMarkContainer == null && this.TextLength <= 0)
+            {
+                waterMarkContainer = new Panel();
+                waterMarkContainer.Paint += new PaintEventHandler(waterMarkContainer_Paint);
+                waterMarkContainer.Invalidate();
+                waterMarkContainer.Click += new EventHandler(waterMarkContainer_Click);
+                this.Controls.Add(waterMarkContainer);
+            }
+        }
+
+        private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
+        {
+            waterMarkContainer.Location = new Point(2, 0);
+            waterMarkContainer.Height = this.Height;
+            waterMarkContainer.Width = this.Width;
+            waterMarkContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+            if (this.ContainsFocus)
+            {
+                waterMarkBrush = new SolidBrush(this._waterMarkActiveColor);
+            }
+            else
+            {
+                waterMarkBrush = new SolidBrush(this._waterMarkColor);
+            }
+
+            Graphics g = e.Graphics;
+            g.DrawString(this._waterMarkText, Font, waterMarkBrush, new PointF(-2f, 1f));//Take a look at that point
+        }
+
+        private void RemoveWaterMark()
+        {
+            if (waterMarkContainer != null)
+            {
+                Controls.Remove(waterMarkContainer);
+                waterMarkContainer = null;
+            }
+        }
+
+        private void ThisHasFocus(object sender, EventArgs e)
+        {
+            waterMarkBrush = new SolidBrush(this._waterMarkActiveColor);
+
+            if (this.TextLength <= 0)
+            {
+                RemoveWaterMark();
+                DrawWaterMark();
+            }
+        }
+
+        private void ThisWasLeaved(object sender, EventArgs e)
+        {
+            if (this.TextLength > 0)
+            {
+                RemoveWaterMark();
+            }
+            else
+            {
+                Invalidate();
+            }
+        }
+
+        private void ThisTextChanged(object sender, EventArgs e)
+        {
+            if (this.TextLength > 0)
+            {
+                RemoveWaterMark();
+            }
+            else
+            {
+                DrawWaterMark();
+            }
+        }
+
+        private void waterMarkContainer_Click(object sender, EventArgs e)
+        {
+            this.Focus();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            DrawWaterMark();
+        }
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            base.OnInvalidated(e);
+            if (waterMarkContainer != null)
+                waterMarkContainer.Invalidate();
         }
 
         [Browsable(false), DefaultValue(false)]
@@ -60,18 +162,19 @@ namespace Sunny.UI
             }
         }
 
-        private string watermark;
+        private Panel waterMarkContainer;
+        private SolidBrush waterMarkBrush;
+
+        private string _waterMarkText = "";
 
         [DefaultValue(null)]
         public string Watermark
         {
-            get => watermark;
+            get => _waterMarkText;
             set
             {
-                watermark = value;
-                //WaterMark_Toggle(null, null);
+                _waterMarkText = value;
                 Invalidate();
-                //Win32.User.SendMessage(Handle, 0x1501, (int)IntPtr.Zero, value);
             }
         }
 
@@ -82,6 +185,18 @@ namespace Sunny.UI
             set
             {
                 _waterMarkColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color _waterMarkActiveColor = Color.Gray;
+
+        public Color WaterMarkActiveForeColor
+        {
+            get => _waterMarkActiveColor;
+            set
+            {
+                _waterMarkActiveColor = value;
                 Invalidate();
             }
         }
