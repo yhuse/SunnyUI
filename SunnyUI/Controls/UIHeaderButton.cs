@@ -67,6 +67,10 @@ namespace Sunny.UI
             rectDisableColor = UIStyles.Blue.RectDisableColor;
         }
 
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
         public override void SetZoomScale(float scale)
         {
             base.SetZoomScale(scale);
@@ -198,6 +202,9 @@ namespace Sunny.UI
 
         private int _symbolSize = 48;
 
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
         [DefaultValue(48)]
         [Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
@@ -217,6 +224,9 @@ namespace Sunny.UI
 
         private Color symbolColor = Color.White;
 
+        /// <summary>
+        /// 字体图标颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "White")]
         [Description("字体图标颜色"), Category("SunnyUI")]
         public Color SymbolColor
@@ -229,6 +239,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
@@ -360,6 +374,9 @@ namespace Sunny.UI
 
         private int _symbol = FontAwesomeIcons.fa_check;
 
+        /// <summary>
+        /// 字体图标
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(61452)]
@@ -390,6 +407,9 @@ namespace Sunny.UI
 
         private Point symbolOffset = new Point(0, 0);
 
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
         [DefaultValue(typeof(Point), "0, 0")]
         [Description("字体图标的偏移位置"), Category("SunnyUI")]
         public Point SymbolOffset
@@ -455,6 +475,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制填充颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             if (!selected)

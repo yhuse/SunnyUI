@@ -780,6 +780,10 @@ namespace Sunny.UI
             set => edit.MaxLength = Math.Max(value, 1);
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
@@ -1167,6 +1171,10 @@ namespace Sunny.UI
         }
 
         public Color _symbolColor = UIFontColor.Primary;
+
+        /// <summary>
+        /// 字体图标颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "48, 48, 48")]
         [Description("字体图标颜色"), Category("SunnyUI")]
         public Color SymbolColor
@@ -1181,6 +1189,9 @@ namespace Sunny.UI
 
         private int _symbol;
 
+        /// <summary>
+        /// 字体图标
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(0)]
@@ -1198,6 +1209,9 @@ namespace Sunny.UI
 
         private int _symbolSize = 24;
 
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
         [DefaultValue(24)]
         [Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
@@ -1214,6 +1228,9 @@ namespace Sunny.UI
 
         private Point symbolOffset = new Point(0, 0);
 
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
         [DefaultValue(typeof(Point), "0, 0")]
         [Description("字体图标的偏移位置"), Category("SunnyUI")]
         public Point SymbolOffset

@@ -223,6 +223,9 @@ namespace Sunny.UI
 
         public class SymbolValue
         {
+            /// <summary>
+            /// 字体图标
+            /// </summary>
             public int Symbol { get; set; }
 
             public UISymbolType SymbolType { get; set; }
@@ -296,12 +299,21 @@ namespace Sunny.UI
             lbl.Image = FontImageHelper.CreateImage(symbol.Symbol + (int)symbol.SymbolType * 100000, 28, UIColor.Blue);
         }
 
+        /// <summary>
+        /// 字体图标
+        /// </summary>
         public int Symbol { get; set; }
 
         public UISymbolType SymbolType { get; set; }
 
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
         public Point SymbolOffset { get; set; }
 
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
         public int SymbolSize { get; set; } = 28;
 
         private void lbl_DoubleClick(object sender, EventArgs e)

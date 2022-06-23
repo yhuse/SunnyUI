@@ -76,12 +76,17 @@ namespace Sunny.UI
         /// </summary>
         [Description("是否显示文字"), Category("SunnyUI")]
         [DefaultValue(false)]
-        public new  bool ShowText
+        public new bool ShowText
         {
             get => base.ShowText;
             set => base.ShowText = value;
         }
 
+        /// <summary>
+        /// 绘制前景颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             SizeF sf = g.MeasureString(Text, Font);
@@ -145,6 +150,11 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 绘制填充颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             int ShowSize = Math.Min(Width, Height);

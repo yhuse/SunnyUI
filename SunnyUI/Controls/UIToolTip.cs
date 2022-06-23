@@ -289,12 +289,24 @@ namespace Sunny.UI
             public string Title { get; set; }
             public string ToolTipText { get; set; }
 
+            /// <summary>
+            /// 字体图标
+            /// </summary>
             public int Symbol { get; set; }
 
+            /// <summary>
+            /// 字体图标大小
+            /// </summary>
             public int SymbolSize { get; set; } = 32;
 
+            /// <summary>
+            /// 字体图标的偏移位置
+            /// </summary>
             public Point SymbolOffset { get; set; } = new Point(0, 0);
 
+            /// <summary>
+            /// 字体图标颜色
+            /// </summary>
             public Color SymbolColor { get; set; } = UIChartStyles.Dark.ForeColor;
         }
     }

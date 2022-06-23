@@ -75,6 +75,9 @@ namespace Sunny.UI
         private int avatarSize = 60;
         private int baseAvatorSize = 60;
 
+        /// <summary>
+        /// 头像大小
+        /// </summary>
         [DefaultValue(60), Description("头像大小"), Category("SunnyUI")]
         public int AvatarSize
         {
@@ -182,9 +185,9 @@ namespace Sunny.UI
         private int baseSymbolSize = 45;
 
         /// <summary>
-        /// 图标大小
+        /// 字体图标大小
         /// </summary>
-        [DefaultValue(45), Description("图标大小"), Category("SunnyUI")]
+        [DefaultValue(45), Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => symbolSize;
@@ -203,11 +206,11 @@ namespace Sunny.UI
         private int symbol = 61447;
 
         /// <summary>
-        /// 图标字符
+        /// 字体图标
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
-        [DefaultValue(61447), Description("图标"), Category("SunnyUI")]
+        [DefaultValue(61447), Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {
             get => symbol;
@@ -223,6 +226,9 @@ namespace Sunny.UI
 
         private Point symbolOffset = new Point(0, 0);
 
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
         [DefaultValue(typeof(Point), "0, 0")]
         [Description("字体图标的偏移位置"), Category("SunnyUI")]
         public Point SymbolOffset
@@ -237,6 +243,9 @@ namespace Sunny.UI
 
         private Point textOffset = new Point(0, 0);
 
+        /// <summary>
+        /// 文字的偏移位置
+        /// </summary>
         [DefaultValue(typeof(Point), "0, 0")]
         [Description("文字的偏移位置"), Category("SunnyUI")]
         public Point TextOffset
@@ -251,8 +260,11 @@ namespace Sunny.UI
 
         private Point imageOffset = new Point(0, 0);
 
+        /// <summary>
+        /// 图片的偏移位置
+        /// </summary>
         [DefaultValue(typeof(Point), "0, 0")]
-        [Description("文字的偏移位置"), Category("SunnyUI")]
+        [Description("图片的偏移位置"), Category("SunnyUI")]
         public Point ImageOffset
         {
             get => imageOffset;
@@ -264,10 +276,10 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// OnPaintFill
+        /// 绘制填充颜色
         /// </summary>
-        /// <param name="g">g</param>
-        /// <param name="path">path</param>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             Rectangle rect = new Rectangle((Width - avatarSize) / 2, (Height - avatarSize) / 2, avatarSize, avatarSize);
@@ -284,12 +296,21 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 水平偏移
+        /// </summary>
         [Browsable(false), DefaultValue(0), Description("水平偏移"), Category("SunnyUI")]
         public int OffsetX { get; set; } = 0;
 
+        /// <summary>
+        /// 垂直偏移
+        /// </summary>
         [Browsable(false), DefaultValue(0), Description("垂直偏移"), Category("SunnyUI")]
         public int OffsetY { get; set; } = 0;
 
+        /// <summary>
+        /// 继续绘制
+        /// </summary>
         public event PaintEventHandler PaintAgain;
 
         /// <summary>
@@ -356,6 +377,10 @@ namespace Sunny.UI
             PaintAgain?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
         public override void SetZoomScale(float scale)
         {
             base.SetZoomScale(scale);

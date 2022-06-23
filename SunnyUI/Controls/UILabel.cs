@@ -42,12 +42,22 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.LabelForeColor;
         }
 
+        /// <summary>
+        /// 禁止控件跟随窗体缩放
+        /// </summary>
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
 
+        /// <summary>
+        /// 控件缩放前在其容器里的位置
+        /// </summary>
         [Browsable(false)]
         public Rectangle ZoomScaleRect { get; set; }
 
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
         public virtual void SetZoomScale(float scale)
         {
 
@@ -178,12 +188,22 @@ namespace Sunny.UI
             base.LinkColor = linkColor = UIColor.Blue;
         }
 
+        /// <summary>
+        /// 禁止控件跟随窗体缩放
+        /// </summary>
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
 
+        /// <summary>
+        /// 控件缩放前在其容器里的位置
+        /// </summary>
         [Browsable(false)]
         public Rectangle ZoomScaleRect { get; set; }
 
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
         public void SetZoomScale(float scale)
         {
 

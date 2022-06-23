@@ -5,10 +5,20 @@ namespace Sunny.UI
 {
     public interface IZoomScale
     {
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
         void SetZoomScale(float scale);
 
+        /// <summary>
+        /// 控件缩放前在其容器里的位置
+        /// </summary>
         Rectangle ZoomScaleRect { get; set; }
 
+        /// <summary>
+        /// 禁止控件跟随窗体缩放
+        /// </summary>
         bool ZoomScaleDisabled { get; set; }
     }
 
@@ -70,6 +80,11 @@ namespace Sunny.UI
             return new Size(Calc(size.Width, scale), Calc(size.Height, scale));
         }
 
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="control">控件</param>
+        /// <param name="scale">缩放比例</param>
         internal static void SetZoomScale(Control control, float scale)
         {
             if (scale.EqualsFloat(0)) return;

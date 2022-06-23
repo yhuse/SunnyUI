@@ -304,6 +304,11 @@ namespace Sunny.UI
             edit.Width = Width - Padding.Left - Padding.Right;
         }
 
+        /// <summary>
+        /// 绘制前景颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             SizeChange();
@@ -388,6 +393,10 @@ namespace Sunny.UI
             set => edit.SelectionStart = value;
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);

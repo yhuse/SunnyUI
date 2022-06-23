@@ -288,10 +288,17 @@ namespace Sunny.UI
         public Color Color { get; set; }
 
         public UILinePointSymbol Symbol { get; set; } = UILinePointSymbol.None;
+
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
         public int SymbolSize { get; set; } = 4;
 
         public int SymbolLineWidth { get; set; } = 1;
 
+        /// <summary>
+        /// 字体图标颜色
+        /// </summary>
         public Color SymbolColor { get; set; } = Color.Empty;
 
         public bool CustomColor { get; set; }

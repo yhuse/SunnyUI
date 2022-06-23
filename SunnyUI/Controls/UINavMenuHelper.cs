@@ -503,10 +503,19 @@ namespace Sunny.UI
 
         public int SelectedImageIndex { get; set; } = -1;
 
+        /// <summary>
+        /// 字体图标
+        /// </summary>
         public int Symbol { get; set; }
 
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
         public int SymbolSize { get; set; } = 24;
 
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
         public Point SymbolOffset { get; set; } = new Point(0, 0);
 
         public int PageIndex { get; set; }

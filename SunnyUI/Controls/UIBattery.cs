@@ -28,6 +28,9 @@ using System.Drawing.Drawing2D;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 电池电量图标
+    /// </summary>
     [DefaultProperty("Power")]
     [ToolboxItem(true)]
     public sealed class UIBattery : UIControl
@@ -44,6 +47,9 @@ namespace Sunny.UI
 
         private int symbolSize = 36;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UIBattery()
         {
             SetStyleFlags(true, false);
@@ -64,7 +70,10 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(36), Description("图标大小"), Category("SunnyUI")]
+        /// <summary>
+        /// 字体图标大小
+        /// </summary>
+        [DefaultValue(36), Description("字体图标大小"), Category("SunnyUI")]
         public int SymbolSize
         {
             get => symbolSize;
@@ -144,17 +153,31 @@ namespace Sunny.UI
             set => SetFillColor(value);
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
             fillColor = uiColor.BatteryFillColor;
         }
 
+        /// <summary>
+        /// 绘制填充颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             g.FillPath(fillColor, path);
         }
 
+        /// <summary>
+        /// 绘制前景颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             var fa_battery_empty = 0xf244;

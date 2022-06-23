@@ -228,6 +228,10 @@ namespace Sunny.UI
             set => decimalCount = Math.Max(value, 0);
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);

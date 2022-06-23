@@ -169,6 +169,11 @@ namespace Sunny.UI
 
         public event OnValueChanged ValueChanged;
 
+        /// <summary>
+        /// 绘制填充颜色
+        /// </summary>
+        /// <param name="g">绘图图面</param>
+        /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             int iin = Math.Min(inner, outer);
@@ -185,6 +190,10 @@ namespace Sunny.UI
             g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value * 1.0f / Maximum * 360.0f);
         }
 
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
