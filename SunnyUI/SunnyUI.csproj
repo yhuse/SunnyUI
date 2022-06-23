@@ -21,6 +21,7 @@
         <AssemblyOriginatorKeyFile>D:\MyDocuments\SunnyUI.pfx</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

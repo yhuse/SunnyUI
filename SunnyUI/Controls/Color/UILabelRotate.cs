@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     [ToolboxItem(false)]
     public class LabelRotate : Control, IStyleInterface, IZoomScale
     {
@@ -261,4 +263,7 @@ namespace Sunny.UI
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

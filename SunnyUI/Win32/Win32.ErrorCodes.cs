@@ -1,5 +1,7 @@
 namespace Sunny.UI.Win32
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public abstract class ERROR
     {
         public const int CACHE_E_FIRST = unchecked((int)0x80040170);
@@ -925,5 +927,7 @@ namespace Sunny.UI.Win32
         public const int VIEW_S_FIRST = 0x40140;
         public const int VIEW_S_LAST = 0x4014F;
     }
-}
 
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
+}

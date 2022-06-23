@@ -91,7 +91,7 @@ namespace Sunny.UI
 
         private Color foreColor;
 
-        // <summary>
+        /// <summary>
         /// Tag字符串
         /// </summary>
         [DefaultValue(null)]

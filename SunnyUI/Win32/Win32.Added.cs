@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 
 namespace Sunny.UI.Win32
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public static class Win32Helper
     {
         public static readonly IntPtr TRUE = new IntPtr(1);
@@ -38,9 +40,9 @@ namespace Sunny.UI.Win32
                 //获取缓冲区地址
                 IntPtr byteAddress = Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0);
                 //打开一个已存在的进程对象  0x1F0FFF 最高权限
-                IntPtr hProcess =Kernel.OpenProcess(0x1F0FFF, false, GetPidByProcessName(processName));
+                IntPtr hProcess = Kernel.OpenProcess(0x1F0FFF, false, GetPidByProcessName(processName));
                 //将制定内存中的值读入缓冲区
-                Kernel.ReadProcessMemory(hProcess, (IntPtr)baseAddress, byteAddress, buffer.Length,System.IntPtr.Zero);
+                Kernel.ReadProcessMemory(hProcess, (IntPtr)baseAddress, byteAddress, buffer.Length, System.IntPtr.Zero);
                 //关闭操作
                 Kernel.CloseHandle(hProcess);
             }
@@ -185,4 +187,7 @@ namespace Sunny.UI.Win32
 
         public delegate void TimerSetEventCallback(int uTimerID, uint uMsg, uint dwUser, UIntPtr dw1, UIntPtr dw2);
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

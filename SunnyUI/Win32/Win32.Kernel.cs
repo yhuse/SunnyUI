@@ -7,6 +7,8 @@ using HWND = System.IntPtr;
 
 namespace Sunny.UI.Win32
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public struct OVERLAPPED
     {
         public int Internal;
@@ -2394,4 +2396,7 @@ namespace Sunny.UI.Win32
         public const string SE_TCB_NAME = "SeTcbPrivilege";
         public const string SE_UNSOLICITED_INPUT_NAME = "SeUnsolicitedInputPrivilege";
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

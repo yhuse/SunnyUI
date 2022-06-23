@@ -4,10 +4,11 @@ using System.Text;
 using HANDLE = System.IntPtr;
 using HDC = System.IntPtr;
 using HWND = System.IntPtr;
-#pragma warning disable CS0618 // 类型或成员已过时
 
 namespace Sunny.UI.Win32
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public struct CBTACTIVATESTRUCT
     {
         public int fMouse;
@@ -2537,4 +2538,7 @@ namespace Sunny.UI.Win32
         public const string SZDDESYS_TOPIC = "System";
         public const string SZDDE_ITEM_ITEMLIST = "TopicItemList";
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

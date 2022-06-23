@@ -4,6 +4,8 @@ using HWND = System.IntPtr;
 
 namespace Sunny.UI.Win32
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public struct DRAGINFO
     {
         public int uSize;
@@ -186,4 +188,7 @@ namespace Sunny.UI.Win32
         public const int SHGNLI_PIDL = 0x1;
         public const int SHGNLI_PREFIXNAME = 0x2;
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

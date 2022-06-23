@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+#pragma warning disable CS0618 // 类型或成员已过时
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     internal class ColorSlider : LabelRotate
     {
         public event EventHandler SelectedValueChanged;
@@ -301,4 +303,7 @@ namespace Sunny.UI
             SelectedHSLColor = m_selectedColor;
         }
     }
+
+#pragma warning restore CS0618 // 类型或成员已过时
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }
