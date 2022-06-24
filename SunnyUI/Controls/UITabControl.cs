@@ -604,6 +604,10 @@ namespace Sunny.UI
 
         private ConcurrentDictionary<int, bool> CloseRects = new ConcurrentDictionary<int, bool>();
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

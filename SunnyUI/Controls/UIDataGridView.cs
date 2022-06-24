@@ -337,6 +337,10 @@ namespace Sunny.UI
             SetBarPosition();
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

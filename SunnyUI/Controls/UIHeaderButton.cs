@@ -174,6 +174,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             Focus();
@@ -583,6 +587,10 @@ namespace Sunny.UI
             base.OnKeyUp(e);
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             //重绘父类

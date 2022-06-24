@@ -157,6 +157,10 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (TextAlign == ContentAlignment.MiddleCenter && Angle != 0 && !AutoSize)

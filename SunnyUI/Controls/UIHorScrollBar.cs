@@ -162,6 +162,10 @@ namespace Sunny.UI
             return new Rectangle(17, 1, Width - 17 * 2, Height - 2);
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(fillColor);

@@ -163,6 +163,10 @@ namespace Sunny.UI
             DoubleClick?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return edit;

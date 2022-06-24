@@ -34,6 +34,9 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 颜色选择框
+    /// </summary>
     [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
     public sealed class UIColorPicker : UIDropControl
@@ -52,10 +55,21 @@ namespace Sunny.UI
             this.PerformLayout();
         }
 
+        /// <summary>
+        /// 颜色改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">颜色</param>
         public delegate void OnColorChanged(object sender, Color value);
 
+        /// <summary>
+        /// 颜色改变事件
+        /// </summary>
         public event OnColorChanged ValueChanged;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UIColorPicker()
         {
             InitializeComponent();
@@ -71,6 +85,9 @@ namespace Sunny.UI
             ItemForm.Show(this);
         }
 
+        /// <summary>
+        /// 整个控件点击下拉选择颜色
+        /// </summary>
         [DefaultValue(false)]
         [Description("整个控件点击下拉选择颜色"), Category("SunnyUI")]
         public bool FullControlSelect
@@ -79,6 +96,11 @@ namespace Sunny.UI
             set => fullControlSelect = value;
         }
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             if (Value != (Color)value)
@@ -91,6 +113,9 @@ namespace Sunny.UI
 
         private readonly UIColorItem item = new UIColorItem();
 
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         protected override void CreateInstance()
         {
             ItemForm = new UIDropDown(item);
@@ -98,6 +123,9 @@ namespace Sunny.UI
 
         private Color selectColor;
 
+        /// <summary>
+        /// 选中颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "80, 160, 255")]
         [Description("选中颜色"), Category("SunnyUI")]
         public Color Value
@@ -124,6 +152,10 @@ namespace Sunny.UI
             g.FillPath(Value, pathColor);
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

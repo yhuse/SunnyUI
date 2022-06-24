@@ -372,6 +372,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (!Visible || Width <= 0 || Height <= 0) return;

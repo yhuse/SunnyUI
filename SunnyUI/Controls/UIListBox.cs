@@ -177,6 +177,10 @@ namespace Sunny.UI
             KeyPress?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return listbox;

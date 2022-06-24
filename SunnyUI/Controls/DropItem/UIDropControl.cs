@@ -224,6 +224,11 @@ namespace Sunny.UI
         {
         }
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         protected virtual void ItemForm_ValueChanged(object sender, object value)
         {
         }
@@ -418,6 +423,10 @@ namespace Sunny.UI
 
         protected bool fullControlSelect;
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             if (!ReadOnly)

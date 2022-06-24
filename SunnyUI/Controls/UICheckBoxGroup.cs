@@ -41,7 +41,7 @@ namespace Sunny.UI
         /// <summary>
         /// 值切换事件
         /// </summary>
-        /// <param name="sender">sender</param>
+        /// <param name="sender">控件</param>
         /// <param name="index">索引</param>
         /// <param name="text">文字</param>
         /// <param name="isChecked">是否选中</param>
@@ -52,6 +52,9 @@ namespace Sunny.UI
         /// </summary>
         public event OnValueChanged ValueChanged;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UICheckBoxGroup()
         {
             items.CountChange += Items_CountChange;
@@ -62,6 +65,11 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 获取和设置条目值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public bool this[int index]
         {
             get => GetItemCheckState(index);
@@ -87,6 +95,9 @@ namespace Sunny.UI
             boxes.Clear();
         }
 
+        /// <summary>
+        /// 清除所有条目
+        /// </summary>
         public void Clear()
         {
             Items.Clear();
@@ -94,6 +105,9 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 条目列表
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
@@ -124,6 +138,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -157,6 +175,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 选中状态列表
+        /// </summary>
         [Browsable(false)]
         public List<int> SelectedIndexes
         {
@@ -189,6 +210,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 设置条目状态
+        /// </summary>
+        /// <param name="index">索引</param>
+        /// <param name="isChecked">是否选中</param>
         public void SetItemCheckState(int index, bool isChecked)
         {
             if (index >= 0 && index < boxes.Count)
@@ -197,6 +223,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 获取条目状态
+        /// </summary>
+        /// <param name="index">索引</param>
+        /// <returns>是否选中</returns>
         public bool GetItemCheckState(int index)
         {
             if (index >= 0 && index < items.Count)
@@ -205,6 +236,9 @@ namespace Sunny.UI
             return false;
         }
 
+        /// <summary>
+        /// 所有选中条目列表
+        /// </summary>
         [Browsable(false)]
         public List<object> SelectedItems
         {
@@ -226,6 +260,9 @@ namespace Sunny.UI
 
         private int columnCount = 1;
 
+        /// <summary>
+        /// 显示列的个数
+        /// </summary>
         [DefaultValue(1)]
         [Description("显示列的个数"), Category("SunnyUI")]
         public int ColumnCount
@@ -240,6 +277,9 @@ namespace Sunny.UI
 
         private Size _itemSize = new Size(150, 35);
 
+        /// <summary>
+        /// 显示项的大小
+        /// </summary>
         [DefaultValue(typeof(Size), "150, 35")]
         [Description("显示项的大小"), Category("SunnyUI")]
         public Size ItemSize
@@ -254,6 +294,9 @@ namespace Sunny.UI
 
         private Point startPos = new Point(12, 12);
 
+        /// <summary>
+        /// 显示项的起始位置
+        /// </summary>
         [DefaultValue(typeof(Point), "12, 12")]
         [Description("显示项的起始位置"), Category("SunnyUI")]
         public Point StartPos
@@ -266,8 +309,12 @@ namespace Sunny.UI
             }
         }
 
-        public int columnInterval;
 
+        private int columnInterval;
+
+        /// <summary>
+        /// 显示项列之间的间隔
+        /// </summary>
         [DefaultValue(0)]
         [Description("显示项列之间的间隔"), Category("SunnyUI")]
         public int ColumnInterval
@@ -282,6 +329,9 @@ namespace Sunny.UI
 
         private int rowInterval;
 
+        /// <summary>
+        /// 显示项行之间的间隔
+        /// </summary>
         [DefaultValue(0)]
         [Description("显示项行之间的间隔"), Category("SunnyUI")]
         public int RowInterval

@@ -67,6 +67,10 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return listbox;

@@ -31,11 +31,17 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 复选框
+    /// </summary>
     [DefaultEvent("CheckedChanged")]
     [DefaultProperty("Checked")]
     [ToolboxItem(true)]
     public class UICheckBox : UIControl
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UICheckBox()
         {
             SetStyleFlags();
@@ -48,6 +54,10 @@ namespace Sunny.UI
             fillColor = UIStyles.Blue.CheckBoxColor;
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -63,6 +73,9 @@ namespace Sunny.UI
 
         private bool autoSize;
 
+        /// <summary>
+        /// 自动大小
+        /// </summary>
         [Browsable(true)]
         [Description("自动大小"), Category("SunnyUI")]
         public override bool AutoSize
@@ -75,13 +88,24 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         public delegate void OnValueChanged(object sender, bool value);
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
         public event OnValueChanged ValueChanged;
 
         private int _imageSize = 16;
         private int _imageInterval = 3;
 
+        /// <summary>
+        /// 图标大小
+        /// </summary>
         [DefaultValue(16)]
         [Description("图标大小"), Category("SunnyUI")]
         public int ImageSize
@@ -95,6 +119,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 是否只读
+        /// </summary>
         [DefaultValue(false)]
         [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
@@ -110,6 +137,9 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
+        /// <summary>
+        /// 图标与文字之间间隔
+        /// </summary>
         [DefaultValue(3)]
         [Description("图标与文字之间间隔"), Category("SunnyUI")]
         public int ImageInterval
@@ -124,6 +154,9 @@ namespace Sunny.UI
 
         private bool _checked;
 
+        /// <summary>
+        /// 是否选中
+        /// </summary>
         [Description("是否选中"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool Checked
@@ -142,6 +175,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
         public event EventHandler CheckedChanged;
 
         /// <summary>
@@ -201,6 +237,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             if (!ReadOnly)

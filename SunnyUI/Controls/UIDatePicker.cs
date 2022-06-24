@@ -79,6 +79,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return edit;
@@ -124,6 +128,11 @@ namespace Sunny.UI
 
         public event OnDateTimeChanged ValueChanged;
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             Value = (DateTime)value;
@@ -132,6 +141,9 @@ namespace Sunny.UI
 
         private readonly UIDateItem item = new UIDateItem();
 
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         protected override void CreateInstance()
         {
             ItemForm = new UIDropDown(item);

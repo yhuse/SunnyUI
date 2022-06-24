@@ -167,6 +167,10 @@ namespace Sunny.UI
             return clip;
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(fillColor);

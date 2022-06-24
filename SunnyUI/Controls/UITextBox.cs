@@ -230,6 +230,10 @@ namespace Sunny.UI
             MouseLeave?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return edit;
@@ -1155,6 +1159,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

@@ -38,11 +38,17 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 按钮
+    /// </summary>
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
     [ToolboxItem(true)]
     public class UIButton : UIControl, IButtonControl
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UIButton()
         {
             SetStyleFlags();
@@ -65,6 +71,9 @@ namespace Sunny.UI
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
         }
 
+        /// <summary>
+        /// 是否显示浅色背景
+        /// </summary>
         [DefaultValue(false)]
         [Description("是否显示浅色背景"), Category("SunnyUI")]
         public bool LightStyle
@@ -82,6 +91,9 @@ namespace Sunny.UI
 
         private bool autoSize;
 
+        /// <summary>
+        /// 自动大小
+        /// </summary>
         [Browsable(true), DefaultValue(false)]
         [Description("自动大小"), Category("SunnyUI")]
         public override bool AutoSize
@@ -96,6 +108,9 @@ namespace Sunny.UI
 
         private bool isClick;
 
+        /// <summary>
+        /// 调用点击事件
+        /// </summary>
         public void PerformClick()
         {
             if (isClick) return;
@@ -107,6 +122,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             Form form = FindFormInternal();
@@ -129,6 +148,9 @@ namespace Sunny.UI
 
         private bool showTips = false;
 
+        /// <summary>
+        /// 是否显示角标
+        /// </summary>
         [Description("是否显示角标"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool ShowTips
@@ -149,6 +171,9 @@ namespace Sunny.UI
 
         private string tipsText = "";
 
+        /// <summary>
+        /// 角标文字
+        /// </summary>
         [Description("角标文字"), Category("SunnyUI")]
         [DefaultValue("")]
         public string TipsText
@@ -169,6 +194,9 @@ namespace Sunny.UI
 
         private Font tipsFont = UIFontColor.SubFont();
 
+        /// <summary>
+        /// 角标文字字体
+        /// </summary>
         [Description("角标文字字体"), Category("SunnyUI")]
         [DefaultValue(typeof(Font), "微软雅黑, 9pt")]
         public Font TipsFont
@@ -213,6 +241,9 @@ namespace Sunny.UI
 
         private Color tipsColor = Color.Red;
 
+        /// <summary>
+        /// 角标背景颜色
+        /// </summary>
         [Description("角标背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "Red")]
         public Color TipsColor
@@ -227,6 +258,9 @@ namespace Sunny.UI
 
         private Color tipsForeColor = Color.White;
 
+        /// <summary>
+        /// 角标文字颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI"), Description("角标文字颜色")]
         public Color TipsForeColor
         {
@@ -254,12 +288,20 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
+        /// <param name="disposing">释放参数</param>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
             tmpFont?.Dispose();
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -357,6 +399,9 @@ namespace Sunny.UI
             set => SetFillColor2(value);
         }
 
+        /// <summary>
+        /// 填充颜色渐变
+        /// </summary>
         [Description("填充颜色渐变"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool FillColorGradient
@@ -394,6 +439,9 @@ namespace Sunny.UI
             set => SetForeColor(value);
         }
 
+        /// <summary>
+        /// 不可用时填充颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "244, 244, 244"), Category("SunnyUI")]
         [Description("不可用时填充颜色")]
         public Color FillDisableColor
@@ -402,6 +450,9 @@ namespace Sunny.UI
             set => SetFillDisableColor(value);
         }
 
+        /// <summary>
+        /// 不可用时边框颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "173, 178, 181"), Category("SunnyUI")]
         [Description("不可用时边框颜色")]
         public Color RectDisableColor
@@ -410,6 +461,9 @@ namespace Sunny.UI
             set => SetRectDisableColor(value);
         }
 
+        /// <summary>
+        /// 不可用时字体颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "109, 109, 103"), Category("SunnyUI")]
         [Description("不可用时字体颜色")]
         public Color ForeDisableColor
@@ -418,6 +472,9 @@ namespace Sunny.UI
             set => SetForeDisableColor(value);
         }
 
+        /// <summary>
+        /// 鼠标移上时填充颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
         [Description("鼠标移上时填充颜色")]
         public Color FillHoverColor
@@ -426,6 +483,9 @@ namespace Sunny.UI
             set => SetFillHoverColor(value);
         }
 
+        /// <summary>
+        /// 鼠标按下时填充颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("鼠标按下时填充颜色")]
         public Color FillPressColor
@@ -434,6 +494,9 @@ namespace Sunny.UI
             set => SetFillPressColor(value);
         }
 
+        /// <summary>
+        /// 鼠标移上时字体颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         [Description("鼠标移上时字体颜色")]
         public Color ForeHoverColor
@@ -442,6 +505,9 @@ namespace Sunny.UI
             set => SetForeHoverColor(value);
         }
 
+        /// <summary>
+        /// 鼠标按下时字体颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         [Description("鼠标按下时字体颜色")]
         public Color ForePressColor
@@ -450,6 +516,9 @@ namespace Sunny.UI
             set => SetForePressColor(value);
         }
 
+        /// <summary>
+        /// 鼠标移上时边框颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
         [Description("鼠标移上时边框颜色")]
         public Color RectHoverColor
@@ -458,6 +527,9 @@ namespace Sunny.UI
             set => SetRectHoverColor(value);
         }
 
+        /// <summary>
+        /// 鼠标按下时边框颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("鼠标按下时边框颜色")]
         public Color RectPressColor
@@ -466,6 +538,9 @@ namespace Sunny.UI
             set => SetRectPressColor(value);
         }
 
+        /// <summary>
+        /// 选中时填充颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("选中时填充颜色")]
         public Color FillSelectedColor
@@ -474,6 +549,9 @@ namespace Sunny.UI
             set => SetFillSelectedColor(value);
         }
 
+        /// <summary>
+        /// 选中时字体颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
         [Description("选中时字体颜色")]
         public Color ForeSelectedColor
@@ -482,6 +560,9 @@ namespace Sunny.UI
             set => SetForeSelectedColor(value);
         }
 
+        /// <summary>
+        /// 选中时边框颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
         [Description("选中时边框颜色")]
         public Color RectSelectedColor
@@ -490,6 +571,10 @@ namespace Sunny.UI
             set => SetRectSelectedColor(value);
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -497,6 +582,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载鼠标抬起事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -504,6 +593,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
@@ -512,6 +605,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载鼠标进入事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -519,14 +616,25 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 通知控件它是默认按钮
+        /// </summary>
+        /// <param name="value"></param>
         public void NotifyDefault(bool value)
         {
         }
 
+        /// <summary>
+        /// 指定标识符以指示对话框的返回值
+        /// </summary>
         [DefaultValue(DialogResult.None)]
         [Description("指定标识符以指示对话框的返回值"), Category("SunnyUI")]
         public DialogResult DialogResult { get; set; } = DialogResult.None;
 
+        /// <summary>
+        /// 键盘按下事件
+        /// </summary>
+        /// <param name="e">按键参数</param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (Focused && e.KeyCode == Keys.Space)
@@ -539,6 +647,10 @@ namespace Sunny.UI
             base.OnKeyDown(e);
         }
 
+        /// <summary>
+        /// 键盘抬起事件
+        /// </summary>
+        /// <param name="e">按键参数</param>
         protected override void OnKeyUp(KeyEventArgs e)
         {
             IsPress = false;
@@ -547,6 +659,9 @@ namespace Sunny.UI
             base.OnKeyUp(e);
         }
 
+        /// <summary>
+        /// 显示激活时边框线
+        /// </summary>
         [DefaultValue(false)]
         [Description("显示激活时边框线"), Category("SunnyUI")]
         public bool ShowFocusLine { get; set; }

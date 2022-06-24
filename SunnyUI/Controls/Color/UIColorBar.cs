@@ -116,6 +116,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// ÖØÔØ»æÍ¼
+        /// </summary>
+        /// <param name="e">»æÍ¼²ÎÊı</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

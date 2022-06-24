@@ -49,6 +49,10 @@ namespace Sunny.UI
             fillColor = uiColor.PlainColor;
         }
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);

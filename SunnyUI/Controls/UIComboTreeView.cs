@@ -67,6 +67,10 @@ namespace Sunny.UI
         [Description("下拉框高度"), Category("SunnyUI")]
         public int DropDownHeight { get; set; }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return edit;
@@ -124,6 +128,9 @@ namespace Sunny.UI
 
         private readonly UIComboTreeViewItem item = new UIComboTreeViewItem();
 
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         protected override void CreateInstance()
         {
             ItemForm = new UIDropDown(item);
@@ -146,6 +153,11 @@ namespace Sunny.UI
         public event OnNodeSelected NodeSelected;
         public event OnNodesSelected NodesSelected;
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             if (!CheckBoxes)

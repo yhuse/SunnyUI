@@ -107,6 +107,10 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        /// <summary>
+        /// ÷ÿ‘ÿªÊÕº
+        /// </summary>
+        /// <param name="e">ªÊÕº≤Œ ˝</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.FillRectangle(BackColor, ClientRectangle);

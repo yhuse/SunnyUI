@@ -40,12 +40,18 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 组合框
+    /// </summary>
     [DefaultProperty("Items")]
     [DefaultEvent("SelectedIndexChanged")]
     [ToolboxItem(true)]
     [LookupBindingProperties("DataSource", "DisplayMember", "ValueMember", "SelectedValue")]
     public sealed partial class UIComboBox : UIDropControl, IToolTip
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UIComboBox()
         {
             InitializeComponent();
@@ -176,6 +182,9 @@ namespace Sunny.UI
         private object filterSelectedValue;
         private bool showFilter;
 
+        /// <summary>
+        /// 显示过滤
+        /// </summary>
         [DefaultValue(false)]
         [Description("显示过滤"), Category("SunnyUI")]
         public bool ShowFilter
@@ -191,10 +200,16 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 过滤显示最大条目数
+        /// </summary>
         [DefaultValue(100)]
         [Description("过滤显示最大条目数"), Category("SunnyUI")]
         public int FilterMaxCount { get; set; } = 100;
 
+        /// <summary>
+        /// 下拉状态改变事件
+        /// </summary>
         protected override void DropDownStyleChanged()
         {
             if (DropDownStyle == UIDropDownStyle.DropDownList)
@@ -232,6 +247,10 @@ namespace Sunny.UI
             return null;
         }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return edit;
@@ -443,6 +462,11 @@ namespace Sunny.UI
 
         public event EventHandler SelectedValueChanged;
 
+        /// <summary>
+        /// 值改变事件
+        /// </summary>
+        /// <param name="sender">控件</param>
+        /// <param name="value">值</param>
         protected override void ItemForm_ValueChanged(object sender, object value)
         {
             Invalidate();
@@ -482,6 +506,9 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         protected override void CreateInstance()
         {
             ItemForm = new UIDropDown(dropForm);

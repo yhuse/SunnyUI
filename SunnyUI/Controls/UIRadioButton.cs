@@ -54,6 +54,10 @@ namespace Sunny.UI
             fillColor = UIStyles.Blue.CheckBoxColor;
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -221,6 +225,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             if (!ReadOnly)

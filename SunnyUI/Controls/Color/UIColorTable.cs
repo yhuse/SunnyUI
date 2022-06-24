@@ -247,6 +247,10 @@ namespace Sunny.UI
                 SetIndex(index);
         }
 
+        /// <summary>
+        /// ÷ÿ‘ÿªÊÕº
+        /// </summary>
+        /// <param name="e">ªÊÕº≤Œ ˝</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             Size = new Size(253, 148);

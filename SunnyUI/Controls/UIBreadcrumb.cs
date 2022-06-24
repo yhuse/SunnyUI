@@ -33,11 +33,17 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 面包屑导航条
+    /// </summary>
     [ToolboxItem(true)]
     [DefaultEvent("ItemIndexChanged")]
     [DefaultProperty("ItemIndex")]
     public class UIBreadcrumb : UIControl
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public UIBreadcrumb()
         {
             items.CountChange += Items_CountChange;
@@ -59,6 +65,9 @@ namespace Sunny.UI
 
         private bool alignBothEnds;
 
+        /// <summary>
+        /// 显示时两端对齐
+        /// </summary>
         [DefaultValue(false)]
         [Description("显示时两端对齐"), Category("SunnyUI")]
         public bool AlignBothEnds
@@ -74,10 +83,21 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 步骤值变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="value"></param>
         public delegate void OnValueChanged(object sender, int value);
 
+        /// <summary>
+        /// 步骤值变化事件
+        /// </summary>
         public event OnValueChanged ItemIndexChanged;
 
+        /// <summary>
+        /// 步骤条目列表
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Localizable(true)]
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
@@ -89,11 +109,17 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, Point[]> ClickArea = new ConcurrentDictionary<int, Point[]>();
 
+        /// <summary>
+        /// 步骤个数
+        /// </summary>
         [Browsable(false)]
         public int Count => Items.Count;
 
         private int itemIndex = -1;
 
+        /// <summary>
+        /// 当前节点索引
+        /// </summary>
         [DefaultValue(-1)]
         [Description("当前节点索引"), Category("SunnyUI")]
         public int ItemIndex
@@ -221,6 +247,9 @@ namespace Sunny.UI
 
         private int itemWidth;
 
+        /// <summary>
+        /// 节点宽度
+        /// </summary>
         [DefaultValue(160)]
         [Description("节点宽度"), Category("SunnyUI")]
         public int ItemWidth
@@ -235,6 +264,9 @@ namespace Sunny.UI
 
         private int interval = 1;
 
+        /// <summary>
+        /// 节点间隔
+        /// </summary>
         [DefaultValue(1)]
         [Description("节点间隔"), Category("SunnyUI")]
         public int Interval
@@ -248,7 +280,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     已选节点颜色
+        /// 已选节点颜色
         /// </summary>
         [Description("已选节点颜色")]
         [Category("SunnyUI")]
@@ -260,7 +292,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     未选节点颜色
+        /// 未选节点颜色
         /// </summary>
         [Description("未选节点颜色")]
         [Category("SunnyUI")]
@@ -274,7 +306,7 @@ namespace Sunny.UI
         private Color unSelectedForeColor = Color.White;
 
         /// <summary>
-        ///     未选节点颜色
+        /// 未选节点文字颜色
         /// </summary>
         [Description("未选节点文字颜色")]
         [Category("SunnyUI")]
@@ -293,7 +325,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        ///     字体颜色
+        /// 字体颜色
         /// </summary>
         [Description("字体颜色")]
         [Category("SunnyUI")]
@@ -316,6 +348,10 @@ namespace Sunny.UI
             rectColor = uiColor.BreadcrumbUnSelectedColor;
         }
 
+        /// <summary>
+        /// 鼠标点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);

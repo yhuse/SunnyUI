@@ -137,8 +137,9 @@ namespace Sunny.UI
         #region Methods
 
         /// <summary>
-        /// Handles the Paint event for this UserControl
+        /// 重载绘图
         /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             // Create an offscreen graphics object for double buffering

@@ -328,6 +328,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// ÖØÔØ»æÍ¼
+        /// </summary>
+        /// <param name="e">»æÍ¼²ÎÊı</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (Width <= 0 || Height <= 0) return;

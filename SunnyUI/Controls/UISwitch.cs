@@ -182,6 +182,10 @@ namespace Sunny.UI
             set => SetRectColor(value);
         }
 
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
             if (!ReadOnly) Active = !Active;

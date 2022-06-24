@@ -389,9 +389,9 @@ namespace Sunny.UI
         protected bool lightStyle;
 
         /// <summary>
-        /// OnPaint
+        /// 重载绘图
         /// </summary>
-        /// <param name="e">e</param>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (!Visible || Width <= 0 || Height <= 0) return;

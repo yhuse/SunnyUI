@@ -346,6 +346,10 @@ namespace Sunny.UI
             return Enabled ? color : symbolDisableColor;
         }
 
+        /// <summary>
+        /// 重载绘图
+        /// </summary>
+        /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             //重绘父类

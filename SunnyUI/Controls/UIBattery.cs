@@ -58,6 +58,9 @@ namespace Sunny.UI
             Height = 24;
         }
 
+        /// <summary>
+        /// 电量
+        /// </summary>
         [DefaultValue(100), Description("电量"), Category("SunnyUI")]
         public int Power
         {
@@ -85,6 +88,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 多种颜色显示电量
+        /// </summary>
         [DefaultValue(true), Description("多种颜色"), Category("SunnyUI")]
         public bool MultiColor
         {
@@ -96,6 +102,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 电量为空颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "230, 80, 80"), Description("电量为空颜色"), Category("SunnyUI")]
         public Color ColorEmpty
         {
@@ -107,6 +116,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 电量少时颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "220, 155, 40"), Description("电量少时颜色"), Category("SunnyUI")]
         public Color ColorDanger
         {
@@ -118,6 +130,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 电量安全颜色
+        /// </summary>
         [DefaultValue(typeof(Color), "110, 190, 40"), Description("电量安全颜色"), Category("SunnyUI")]
         public Color ColorSafe
         {

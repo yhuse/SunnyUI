@@ -59,6 +59,10 @@ namespace Sunny.UI
         [Description("禁止输入"), Category("SunnyUI")]
         public bool ForbidInput { get; set; }
 
+        /// <summary>
+        /// 需要额外设置ToolTip的控件
+        /// </summary>
+        /// <returns>控件</returns>
         public Control ExToolTipControl()
         {
             return pnlValue;
