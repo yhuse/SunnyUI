@@ -37,6 +37,9 @@ namespace Sunny.UI
             Series.Add(series);
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             foreach (var series in Series)
@@ -75,6 +78,9 @@ namespace Sunny.UI
             Series.Add(series);
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             foreach (var series in Series)
@@ -147,6 +153,9 @@ namespace Sunny.UI
             Data.Add(new UIPieSeriesData(name, value, color));
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Data.Clear();
@@ -199,6 +208,9 @@ namespace Sunny.UI
             Data.Add(new UIPieSeriesData(name, value, color));
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Data.Clear();

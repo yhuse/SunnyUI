@@ -194,6 +194,10 @@ namespace Sunny.UI
 
         private bool InControlBox;
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             bool inControlBox = e.Location.InRect(ControlBoxRect);
@@ -206,6 +210,10 @@ namespace Sunny.UI
             base.OnMouseMove(e);
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
@@ -314,6 +322,10 @@ namespace Sunny.UI
             base.OnMouseClick(e);
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);

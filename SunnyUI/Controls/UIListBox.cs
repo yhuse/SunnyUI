@@ -367,6 +367,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
@@ -374,6 +378,10 @@ namespace Sunny.UI
             listbox.Font = Font;
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);

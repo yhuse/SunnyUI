@@ -187,6 +187,10 @@ namespace Sunny.UI
             edit.ContextMenuStrip = ContextMenuStrip;
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
@@ -260,6 +264,10 @@ namespace Sunny.UI
             edit.Focus();
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             ActiveControl = edit;

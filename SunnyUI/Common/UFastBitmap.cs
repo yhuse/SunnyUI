@@ -187,8 +187,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// Disposes of this fast bitmap object and releases any pending resources.
-        /// The underlying bitmap is not disposes, and is unlocked, if currently locked
+        /// 析构函数
         /// </summary>
         public void Dispose()
         {
@@ -866,7 +865,7 @@ namespace Sunny.UI
             }
 
             /// <summary>
-            /// Disposes of this FastBitmapLocker, essentially unlocking the underlying fast bitmap
+            /// 析构函数
             /// </summary>
             public void Dispose()
             {

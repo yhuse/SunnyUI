@@ -76,6 +76,10 @@ namespace Sunny.UI
             return edit;
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);

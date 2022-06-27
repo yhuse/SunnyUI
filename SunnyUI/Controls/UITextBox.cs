@@ -516,6 +516,10 @@ namespace Sunny.UI
             SetScrollInfo();
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
@@ -525,6 +529,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -772,6 +780,10 @@ namespace Sunny.UI
 
         public bool IsEmpty => edit.Text == "";
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             ActiveControl = edit;

@@ -65,6 +65,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Active = false;

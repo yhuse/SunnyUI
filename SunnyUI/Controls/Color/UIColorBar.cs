@@ -133,6 +133,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -141,6 +145,10 @@ namespace Sunny.UI
                 SetPercent(mousepoint);
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);

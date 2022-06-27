@@ -622,6 +622,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
@@ -645,6 +649,10 @@ namespace Sunny.UI
             SetScrollInfo();
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -826,6 +834,10 @@ namespace Sunny.UI
                 }
             }
 
+            /// <summary>
+            /// 重载鼠标移动事件
+            /// </summary>
+            /// <param name="e">鼠标参数</param>
             protected override void OnMouseMove(MouseEventArgs e)
             {
                 base.OnMouseMove(e);
@@ -847,6 +859,10 @@ namespace Sunny.UI
                 g.Dispose();
             }
 
+            /// <summary>
+            /// 重载鼠标离开事件
+            /// </summary>
+            /// <param name="e">鼠标参数</param>
             protected override void OnMouseLeave(EventArgs e)
             {
                 var g = CreateGraphics();

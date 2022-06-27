@@ -132,7 +132,10 @@ namespace Sunny.UI
             return new Rectangle(Width - 17, 1, 16, Height - 2);
         }
 
-
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -162,6 +165,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标抬起事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -169,6 +176,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
@@ -176,6 +187,10 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        /// <summary>
+        /// 重载鼠标进入事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -216,6 +231,10 @@ namespace Sunny.UI
 
         private bool inLeftArea, inRightArea, inCenterArea;
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);

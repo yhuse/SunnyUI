@@ -25,22 +25,49 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 柱状图配置类
+    /// </summary>
     public sealed class UIBarOption : UIOption, IDisposable
     {
+        /// <summary>
+        /// X轴
+        /// </summary>
         public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Category);
 
+        /// <summary>
+        /// 工具提示
+        /// </summary>
         public UIBarToolTip ToolTip { get; set; } = new UIBarToolTip();
 
+        /// <summary>
+        /// Y轴
+        /// </summary>
         public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
 
+        /// <summary>
+        /// 序列
+        /// </summary>
         public List<UIBarSeries> Series = new List<UIBarSeries>();
 
+        /// <summary>
+        /// 绘图表格
+        /// </summary>
         public UIChartGrid Grid = new UIChartGrid();
 
+        /// <summary>
+        /// X轴自定义刻度线
+        /// </summary>
         public readonly List<UIScaleLine> XAxisScaleLines = new List<UIScaleLine>();
 
+        /// <summary>
+        /// Y轴自定义刻度线
+        /// </summary>
         public readonly List<UIScaleLine> YAxisScaleLines = new List<UIScaleLine>();
 
+        /// <summary>
+        /// 显示值
+        /// </summary>
         public bool ShowValue { get; set; }
 
         /// <summary>
@@ -62,6 +89,9 @@ namespace Sunny.UI
             Series.Add(series);
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             foreach (var series in Series)
@@ -428,6 +458,9 @@ namespace Sunny.UI
             AddData(value, color);
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Data.Clear();

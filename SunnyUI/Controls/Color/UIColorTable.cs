@@ -236,6 +236,10 @@ namespace Sunny.UI
             Invalidate(GetSelectedItemRect());
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);

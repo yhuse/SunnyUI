@@ -124,6 +124,10 @@ namespace Sunny.UI
             p1.FillColor = p1.RectColor = color;
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);

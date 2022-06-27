@@ -104,6 +104,10 @@ namespace Sunny.UI
             base.WndProc(ref m);
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             if (Bar != null && Bar.Visible)
@@ -391,6 +395,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -398,6 +406,10 @@ namespace Sunny.UI
             MouseIndex = IndexFromPoint(e.Location);
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);

@@ -50,6 +50,10 @@ namespace Sunny.UI
     {
         protected bool NeedDraw;
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -65,6 +69,9 @@ namespace Sunny.UI
         [Browsable(false)]
         public Rectangle DrawRect => new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
 
+        /// <summary>
+        /// 计算数据用于显示
+        /// </summary>
         protected override void CalcData()
         {
             NeedDraw = false;
@@ -173,6 +180,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 图表参数
+        /// </summary>
         [Browsable(false), DefaultValue(null)]
         public UILineOption Option
         {
@@ -183,6 +193,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 默认创建空的图表参数
+        /// </summary>
         protected override void CreateEmptyOption()
         {
             if (emptyOption != null) return;
@@ -210,6 +223,10 @@ namespace Sunny.UI
             emptyOption = option;
         }
 
+        /// <summary>
+        /// 绘制图表参数
+        /// </summary>
+        /// <param name="g">绘制图面</param>
         protected override void DrawOption(Graphics g)
         {
             if (Option == null) return;
@@ -766,6 +783,10 @@ namespace Sunny.UI
         private readonly List<UILineSelectPoint> selectPoints = new List<UILineSelectPoint>();
         private readonly List<UILineSelectPoint> selectPointsTemp = new List<UILineSelectPoint>();
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -892,6 +913,10 @@ namespace Sunny.UI
 
         private Point StartPoint, StopPoint;
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -909,6 +934,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标抬起事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -1059,6 +1088,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);

@@ -32,6 +32,9 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     public sealed class UIPieChart : UIChart
     {
+        /// <summary>
+        /// 默认创建空的图表参数
+        /// </summary>
         protected override void CreateEmptyOption()
         {
             if (emptyOption != null) return;
@@ -64,6 +67,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -81,6 +88,10 @@ namespace Sunny.UI
             CalcData();
         }
 
+        /// <summary>
+        /// 绘制图表参数
+        /// </summary>
+        /// <param name="g">绘制图面</param>
         protected override void DrawOption(Graphics g)
         {
             if (Option == null) return;
@@ -91,6 +102,9 @@ namespace Sunny.UI
 
         private bool AllIsZero;
 
+        /// <summary>
+        /// 计算数据用于显示
+        /// </summary>
         protected override void CalcData()
         {
             Angles.Clear();
@@ -200,6 +214,9 @@ namespace Sunny.UI
 
         private readonly ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>> Angles = new ConcurrentDictionary<int, ConcurrentDictionary<int, Angle>>();
 
+        /// <summary>
+        /// 图表参数
+        /// </summary>
         [Browsable(false), DefaultValue(null)]
         public UIPieOption Option
         {
@@ -215,6 +232,10 @@ namespace Sunny.UI
             // }
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);

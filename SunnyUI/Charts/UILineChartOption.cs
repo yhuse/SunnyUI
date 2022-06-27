@@ -41,6 +41,9 @@ namespace Sunny.UI
 
         public UILineToolTip ToolTip { get; set; } = new UILineToolTip();
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Clear();

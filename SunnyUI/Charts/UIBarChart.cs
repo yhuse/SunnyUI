@@ -35,17 +35,27 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 柱状图
+    /// </summary>
     [ToolboxItem(true)]
     public class UIBarChart : UIChart
     {
-        protected bool NeedDraw;
+        private bool NeedDraw;
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
             CalcData();
         }
 
+        /// <summary>
+        /// 刷新显示
+        /// </summary>
         public override void Refresh()
         {
             base.Refresh();
@@ -57,6 +67,12 @@ namespace Sunny.UI
             CalcData();
         }
 
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="seriesName">序列名称</param>
+        /// <param name="index">序号</param>
+        /// <param name="value">值</param>
         public void Update(string seriesName, int index, double value)
         {
             var series = Option[seriesName];
@@ -68,6 +84,9 @@ namespace Sunny.UI
 
         UILinearScale YScale = new UILinearScale();
 
+        /// <summary>
+        /// 计算数据用于显示
+        /// </summary>
         protected override void CalcData()
         {
             Bars.Clear();
@@ -209,20 +228,20 @@ namespace Sunny.UI
             }
         }
 
-        protected Point DrawOrigin => new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
-        protected Size DrawSize => new Size(Width - Option.Grid.Left - Option.Grid.Right, Height - Option.Grid.Top - Option.Grid.Bottom);
-        protected Rectangle DrawRect => new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
+        private Point DrawOrigin => new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
+        private Size DrawSize => new Size(Width - Option.Grid.Left - Option.Grid.Right, Height - Option.Grid.Top - Option.Grid.Bottom);
+        private Rectangle DrawRect => new Rectangle(Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
 
-        protected int selectIndex = -1;
-        protected float DrawBarWidth;
-        protected double YAxisStart;
-        protected double YAxisEnd;
-        protected double YAxisInterval;
-        protected int YAxisDecimalCount;
-        protected readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
+        private int selectIndex = -1;
+        private float DrawBarWidth;
+        private double YAxisStart;
+        private double YAxisEnd;
+        private double YAxisInterval;
+        private int YAxisDecimalCount;
+        private readonly ConcurrentDictionary<int, List<BarInfo>> Bars = new ConcurrentDictionary<int, List<BarInfo>>();
 
         [DefaultValue(-1), Browsable(false)]
-        protected int SelectIndex
+        private int SelectIndex
         {
             get => selectIndex;
             set
@@ -237,6 +256,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -281,6 +304,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 图表参数
+        /// </summary>
         [Browsable(false), DefaultValue(null)]
         public UIBarOption Option
         {
@@ -291,6 +317,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 默认创建空的图表参数
+        /// </summary>
         protected override void CreateEmptyOption()
         {
             if (emptyOption != null) return;
@@ -338,6 +367,10 @@ namespace Sunny.UI
             emptyOption = option;
         }
 
+        /// <summary>
+        /// 绘制图表参数
+        /// </summary>
+        /// <param name="g">绘制图面</param>
         protected override void DrawOption(Graphics g)
         {
             if (Option == null) return;
@@ -354,6 +387,10 @@ namespace Sunny.UI
             DrawAxisScales(g);
         }
 
+        /// <summary>
+        /// 绘制工具提示
+        /// </summary>
+        /// <param name="g">绘制图面</param>
         protected virtual void DrawToolTip(Graphics g)
         {
             if (selectIndex < 0) return;
@@ -370,6 +407,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制坐标轴
+        /// </summary>
+        /// <param name="g">绘制图面</param>
         protected virtual void DrawAxis(Graphics g)
         {
             g.FillRectangle(FillColor, Option.Grid.Left, 1, Width - Option.Grid.Left - Option.Grid.Right, Option.Grid.Top);
@@ -468,6 +509,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制序列
+        /// </summary>
+        /// <param name="g">绘制图面</param>
+        /// <param name="series">序列</param>
         protected virtual void DrawSeries(Graphics g, List<UIBarSeries> series)
         {
             if (series == null || series.Count == 0) return;
@@ -508,7 +554,8 @@ namespace Sunny.UI
             }
         }
 
-        protected class BarInfo
+
+        private class BarInfo
         {
             public RectangleF Rect { get; set; }
 

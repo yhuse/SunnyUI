@@ -254,9 +254,9 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// OnSizeChanged
+        /// 重载控件尺寸变更
         /// </summary>
-        /// <param name="e">e</param>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             if (Item != null)

@@ -964,7 +964,9 @@ namespace Sunny.UI
         /// </summary>
         public static bool IsValid(Border border) => border != null && border.IsValid();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose() => Pen?.Dispose();
     }
 
@@ -1381,8 +1383,9 @@ namespace Sunny.UI
         }
 
         bool _disposed;
+
         /// <summary>
-        /// 释放窗体
+        /// 析构函数
         /// </summary>
         public void Dispose()
         {

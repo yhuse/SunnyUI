@@ -307,6 +307,10 @@ namespace Sunny.UI
             UIIPTextBox_SizeChanged(null, null);
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             ActiveControl = txt1;
@@ -418,6 +422,10 @@ namespace Sunny.UI
             txt1.Top = txt2.Top = txt3.Top = txt4.Top = (Height - txt1.Height) / 2;
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);

@@ -167,6 +167,9 @@ namespace Sunny.UI
             public string Value { get; set; }
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             Stop();

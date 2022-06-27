@@ -778,6 +778,10 @@ namespace Sunny.UI
         /// </summary>
         private Point mouseOffset;
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -829,6 +833,10 @@ namespace Sunny.UI
         /// </summary>
         private long TopBorderStayTicks;
 
+        /// <summary>
+        /// 重载鼠标抬起事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -861,6 +869,10 @@ namespace Sunny.UI
             FormMoveMouseDown = false;
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (FormMoveMouseDown && !MousePosition.Equals(mouseOffset))
@@ -946,6 +958,10 @@ namespace Sunny.UI
             base.OnMouseMove(e);
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
@@ -1346,6 +1362,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);

@@ -114,6 +114,10 @@ namespace Sunny.UI
         public new event MouseEventHandler MouseUp;
         public new event MouseEventHandler MouseMove;
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
@@ -121,6 +125,10 @@ namespace Sunny.UI
             listbox.Font = Font;
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -409,6 +417,10 @@ namespace Sunny.UI
                 SetScrollInfo();
             }
 
+            /// <summary>
+            /// 重载控件尺寸变更
+            /// </summary>
+            /// <param name="e">参数</param>
             protected override void OnSizeChanged(EventArgs e)
             {
                 if (Bar != null && Bar.Visible)
@@ -728,12 +740,20 @@ namespace Sunny.UI
                 }
             }
 
+            /// <summary>
+            /// 重载鼠标移动事件
+            /// </summary>
+            /// <param name="e">鼠标参数</param>
             protected override void OnMouseMove(MouseEventArgs e)
             {
                 base.OnMouseMove(e);
                 MouseIndex = IndexFromPoint(e.Location);
             }
 
+            /// <summary>
+            /// 重载鼠标离开事件
+            /// </summary>
+            /// <param name="e">鼠标参数</param>
             protected override void OnMouseLeave(EventArgs e)
             {
                 base.OnMouseLeave(e);
@@ -772,6 +792,9 @@ namespace Sunny.UI
                 return Description + ", " + ImagePath;
             }
 
+            /// <summary>
+            /// 析构函数
+            /// </summary>
             public void Dispose()
             {
                 Image?.Dispose();

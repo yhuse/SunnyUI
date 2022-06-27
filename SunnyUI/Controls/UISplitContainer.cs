@@ -314,6 +314,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 重载控件尺寸变更
+        /// </summary>
+        /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -476,6 +480,10 @@ namespace Sunny.UI
             return new Point[0];
         }
 
+        /// <summary>
+        /// 重载鼠标移动事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             //如果鼠标的左键没有按下，重置鼠标状态
@@ -532,6 +540,10 @@ namespace Sunny.UI
             base.OnMouseMove(e);
         }
 
+        /// <summary>
+        /// 重载鼠标离开事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.Cursor = Cursors.Default;
@@ -539,6 +551,10 @@ namespace Sunny.UI
             base.OnMouseLeave(e);
         }
 
+        /// <summary>
+        /// 重载鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             Rectangle collapseRect = CollapseRect;
@@ -566,6 +582,10 @@ namespace Sunny.UI
             Invalidate(SplitterRectangle);
         }
 
+        /// <summary>
+        /// 重载鼠标抬起事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);

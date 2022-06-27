@@ -134,6 +134,9 @@ namespace Sunny.UI
             return cnt;
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         public void Dispose()
         {
             timer.Stop();
