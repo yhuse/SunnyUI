@@ -149,13 +149,6 @@ namespace Sunny.UI
             return region;
         }
 
-        public static Color Alpha(this Color color, int alpha)
-        {
-            alpha = Math.Max(0, alpha);
-            alpha = Math.Min(255, alpha);
-            return Color.FromArgb(alpha, color);
-        }
-
         private static Graphics TempGraphics;
 
         /// <summary>

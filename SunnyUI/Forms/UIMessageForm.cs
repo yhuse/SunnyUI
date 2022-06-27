@@ -65,14 +65,15 @@ namespace Sunny.UI
 
             if (_showCancel)
             {
-                btnOK.RectSides = ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
+                //btnOK.RectSides = ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
+                //btnOK.RectSides = btnCancel.RectSides = ToolStripStatusLabelBorderSides.All;
                 btnOK.Width = btnCancel.Width = Width / 2 - 2;
                 btnCancel.Left = btnOK.Left + btnOK.Width - 1;
                 btnCancel.Width = Width - btnCancel.Left - 2;
             }
             else
             {
-                btnOK.RectSides = ToolStripStatusLabelBorderSides.Top;
+                //btnOK.RectSides = ToolStripStatusLabelBorderSides.Top;
                 btnOK.Width = Width - 4;
             }
 
@@ -131,12 +132,12 @@ namespace Sunny.UI
 
         private void btnOK_MouseEnter(object sender, EventArgs e)
         {
-            ((UIButton)sender).RadiusSides = UICornerRadiusSides.All;
+            //((UIButton)sender).RadiusSides = UICornerRadiusSides.All;
         }
 
         private void btnOK_MouseLeave(object sender, EventArgs e)
         {
-            ((UIButton)sender).RadiusSides = UICornerRadiusSides.None;
+            //((UIButton)sender).RadiusSides = UICornerRadiusSides.None;
         }
 
         public void ShowMessage(string message, string title, bool showCancel, UIStyle style = UIStyle.Blue)
@@ -145,7 +146,8 @@ namespace Sunny.UI
             Text = title;
             lbMsg.Text = message;
             ShowCancel = showCancel;
-            btnOK.ShowFocusLine = btnCancel.ShowFocusLine = showCancel;
+            //btnOK.ShowFocusLine = btnCancel.ShowFocusLine = showCancel;
+            btnOK.ShowFocusColor = btnCancel.ShowFocusColor = showCancel;
         }
     }
 }

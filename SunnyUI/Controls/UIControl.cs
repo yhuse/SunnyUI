@@ -437,7 +437,7 @@ namespace Sunny.UI
             if (selected)
                 color = rectSelectedColor;
             if (ShowFocusColor && Focused)
-                color = rectPressColor;
+                color = rectHoverColor;
             if (isReadOnly)
                 color = rectReadOnlyColor;
             return Enabled ? color : rectDisableColor;
@@ -468,7 +468,7 @@ namespace Sunny.UI
             if (selected)
                 color = foreSelectedColor;
             if (ShowFocusColor && Focused)
-                color = forePressColor;
+                color = foreHoverColor;
             if (isReadOnly)
                 color = foreReadOnlyColor;
             return Enabled ? color : foreDisableColor;
@@ -489,7 +489,7 @@ namespace Sunny.UI
             if (selected)
                 color = fillSelectedColor;
             if (ShowFocusColor && Focused)
-                color = fillPressColor;
+                color = fillHoverColor;
             if (isReadOnly)
                 color = fillReadOnlyColor;
             return Enabled ? color : fillDisableColor;

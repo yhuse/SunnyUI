@@ -37,17 +37,17 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnCancel.Location = new System.Drawing.Point(224, 220);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.btnCancel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)));
             this.btnCancel.Size = new System.Drawing.Size(224, 48);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "取消";
+            this.btnCancel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.TipsText = null;
+            this.btnCancel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseEnter += new System.EventHandler(this.btnOK_MouseEnter);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnOK_MouseLeave);
@@ -56,17 +56,17 @@
             // 
             this.btnOK.BackColor = System.Drawing.Color.Transparent;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnOK.Location = new System.Drawing.Point(2, 220);
             this.btnOK.Margin = new System.Windows.Forms.Padding(0);
             this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnOK.Name = "btnOK";
-            this.btnOK.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.btnOK.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.btnOK.Size = new System.Drawing.Size(223, 48);
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "确定";
+            this.btnOK.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.TipsText = null;
+            this.btnOK.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             this.btnOK.MouseEnter += new System.EventHandler(this.btnOK_MouseEnter);
             this.btnOK.MouseLeave += new System.EventHandler(this.btnOK_MouseLeave);
@@ -98,6 +98,7 @@
             this.Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
             this.ShowInTaskbar = false;
             this.Text = "UIMsgBox";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 450, 270);
             this.ResumeLayout(false);
 
         }
