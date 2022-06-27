@@ -49,6 +49,8 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
+        public bool Disabled => !Enabled;
+
         /// <summary>
         /// 禁止控件跟随窗体缩放
         /// </summary>

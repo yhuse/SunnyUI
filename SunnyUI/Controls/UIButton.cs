@@ -221,7 +221,7 @@ namespace Sunny.UI
         {
             if (FillColorGradient)
             {
-                if (IsHover || IsPress || Selected)
+                if (IsHover || IsPress || Selected || Disabled)
                 {
                     base.OnPaintFill(g, path);
                 }
