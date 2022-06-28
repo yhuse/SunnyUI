@@ -359,5 +359,6 @@ namespace Sunny.UI
                 btnAdd.Width = btnDec.Width = buttonWidth;
             }
         }
+        public override Color ForeColor { get => pnlValue.ForeColor; set => pnlValue.ForeColor = value; }
     }
 }
