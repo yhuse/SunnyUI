@@ -50,6 +50,7 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
         }
 
+        [Browsable(false)]
         public bool Disabled => !Enabled;
 
         /// <summary>

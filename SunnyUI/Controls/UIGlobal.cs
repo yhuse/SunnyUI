@@ -19,6 +19,8 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using System;
+
 namespace Sunny.UI
 {
     /// <summary>
@@ -34,4 +36,21 @@ namespace Sunny.UI
         public const int EditorMinHeight = 20;
         public const int EditorMaxHeight = 60;
     }
+
+    public class UIDateTimeArgs : EventArgs
+    {
+        public DateTime DateTime { get; set; }
+
+        public UIDateTimeArgs()
+        {
+
+        }
+
+        public UIDateTimeArgs(DateTime datetime)
+        {
+            DateTime = datetime;
+        }
+    }
+
+    public delegate void OnDateTimeChanged(object sender, UIDateTimeArgs e);
 }

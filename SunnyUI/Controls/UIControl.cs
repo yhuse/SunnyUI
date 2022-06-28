@@ -49,6 +49,7 @@ namespace Sunny.UI
             base.MinimumSize = new Size(1, 1);
         }
 
+        [Browsable(false)]
         public bool Disabled => !Enabled;
 
         /// <summary>

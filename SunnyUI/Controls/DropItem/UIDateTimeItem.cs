@@ -779,8 +779,11 @@ namespace Sunny.UI
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
-            TabControl.SelectedTab = tabPage1;
-            activeDay = -1;
+            if (TabControl.SelectedIndex > 0)
+            {
+                TabControl.SelectedIndex--;
+                activeDay = -1;
+            }
         }
 
         private void SetYears(int iy)
