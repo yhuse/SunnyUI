@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-07-03: V2.2.6 修正调整ItemSize无效的Bug
  * 2020-07-04: V2.2.6 可以设置初始选中值
+ * 2022-06-30: V3.2.0 设置条目状态前判断是否创建
 ******************************************************************************/
 
 using System;
@@ -217,6 +218,7 @@ namespace Sunny.UI
         /// <param name="isChecked">是否选中</param>
         public void SetItemCheckState(int index, bool isChecked)
         {
+            CreateBoxes();
             if (index >= 0 && index < boxes.Count)
             {
                 boxes[index].Checked = isChecked;
