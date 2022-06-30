@@ -108,6 +108,10 @@ namespace Sunny.UI
         /// </summary>
         public uint ImportantColors { get; set; }
 
+        /// <summary>
+        /// 以图片初始化类
+        /// </summary>
+        /// <param name="bitmap">图片</param>
         public void Init(Bitmap bitmap)
         {
             Head = 0x4D42;
@@ -123,6 +127,11 @@ namespace Sunny.UI
             FileSize = BitmapDataOffset + BitmapDataSize;
         }
 
+        /// <summary>
+        /// 以宽高初始化类
+        /// </summary>
+        /// <param name="width">宽</param>
+        /// <param name="height">高</param>
         public void Init(int width, int height)
         {
             Head = 0x4D42;
@@ -139,6 +148,9 @@ namespace Sunny.UI
         }
     }
 
+    /// <summary>
+    /// 24bit 真彩色位图文件
+    /// </summary>
     public class BmpFile
     {
         BmpHead head;
@@ -205,13 +217,24 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 二进制数据
+        /// </summary>
         public byte[] Data => data;
 
+        /// <summary>
+        /// 保存文件
+        /// </summary>
+        /// <param name="fileName">文件名</param>
         public void SaveToFile(string fileName)
         {
             File.WriteAllBytes(fileName, data);
         }
 
+        /// <summary>
+        /// 图片
+        /// </summary>
+        /// <returns>图片</returns>
         public Bitmap Bitmap()
         {
             MemoryStream ms = new MemoryStream(data);

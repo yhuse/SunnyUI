@@ -28,11 +28,7 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sunny.UI
 {
@@ -60,6 +56,9 @@ namespace Sunny.UI
         public static extern int FastLZ_Decompress(void* input, int length, void* output, int maxout);
     }
 
+    /// <summary>
+    /// FastLZ压缩解压类
+    /// </summary>
     public static unsafe class FastLZ
     {
         /// <summary>
@@ -71,6 +70,13 @@ namespace Sunny.UI
             return IntPtr.Size == 8;
         }
 
+        /// <summary>
+        /// 压缩
+        /// </summary>
+        /// <param name="input">输入</param>
+        /// <param name="begin">起始位置</param>
+        /// <param name="len">长度</param>
+        /// <returns>压缩结果</returns>
         public static byte[] Compress(byte[] input, int begin, int len)
         {
             byte[] output = new byte[input.Length];
@@ -84,6 +90,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 压缩
+        /// </summary>
+        /// <param name="level">压缩级别</param>
+        /// <param name="input">输入</param>
+        /// <param name="begin">起始位置</param>
+        /// <param name="len">长度</param>
+        /// <returns>压缩结果</returns>
         public static byte[] Compress(int level, byte[] input, int begin, int len)
         {
             byte[] output = new byte[input.Length];
@@ -97,6 +111,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 解压缩
+        /// </summary>
+        /// <param name="input">输入</param>
+        /// <param name="begin">起始位置</param>
+        /// <param name="length">长度</param>
+        /// <param name="maxout">解压结果最大长度</param>
+        /// <returns>解压缩结果</returns>
         public static byte[] Decompress(byte[] input, int begin, int length, int maxout)
         {
             byte[] output = new byte[maxout];

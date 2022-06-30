@@ -13,10 +13,23 @@ namespace Sunny.UI
     /// </summary>
     public class FolderNameEditorEx : UITypeEditor
     {
+        /// <summary>
+        /// GetEditStyle
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
             return UITypeEditorEditStyle.Modal;
         }
+
+        /// <summary>
+        /// EditValue
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="provider"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             FolderBrowserDialogEx browser = new FolderBrowserDialogEx();

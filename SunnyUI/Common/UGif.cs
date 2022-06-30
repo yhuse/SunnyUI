@@ -41,8 +41,15 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// GIF图片帮助类
+    /// </summary>
     public class Gif : IDisposable
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="fileName">文件名</param>
         public Gif(string fileName)
         {
             timer = new Timer();
@@ -54,6 +61,10 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="img">图片</param>
         public Gif(Image img)
         {
             timer = new Timer();
@@ -79,11 +90,18 @@ namespace Sunny.UI
             ShowImage = null;
         }
 
+        /// <summary>
+        /// 是否循环
+        /// </summary>
         public bool Loop
         {
             get; set;
         }
 
+        /// <summary>
+        /// 跳帧
+        /// </summary>
+        /// <param name="frameIndex">帧号</param>
         public void JumpToFrame(int frameIndex)
         {
             if (ImageCount == 0) return;
@@ -142,8 +160,16 @@ namespace Sunny.UI
             timer.Enabled = IsGif && active;
         }
 
+        /// <summary>
+        /// 图片切换事件
+        /// </summary>
+        /// <param name="sender">对象</param>
+        /// <param name="image">图片</param>
         public delegate void OnImageChanged(object sender, Image image);
 
+        /// <summary>
+        /// 图片切换事件
+        /// </summary>
         public event OnImageChanged ImageChanged;
 
         private readonly Timer timer;
@@ -151,8 +177,15 @@ namespace Sunny.UI
         private Image image;
 
         private int ImageCount => image == null ? 0 : image.GifFrameCount();
+
+        /// <summary>
+        /// 图片是否是GIF图片
+        /// </summary>
         public bool IsGif => ImageCount > 0;
 
+        /// <summary>
+        /// 图片
+        /// </summary>
         public Image Image
         {
             get => image;
@@ -171,6 +204,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 刷新
+        /// </summary>
         public void Invalidate()
         {
             if (!Active)
@@ -181,6 +217,10 @@ namespace Sunny.UI
 
         private int FrameIndex;
         private bool active;
+
+        /// <summary>
+        /// 图片动画
+        /// </summary>
         public bool Active
         {
             get => active;
@@ -193,13 +233,26 @@ namespace Sunny.UI
         }
     }
 
+    /// <summary>
+    /// GIF图片帮助类
+    /// </summary>
     public static class GifHelper
     {
+        /// <summary>
+        /// 获取图像框架的维度
+        /// </summary>
+        /// <param name="img">图片</param>
+        /// <returns>图像框架的维度</returns>
         public static FrameDimension GifFrameDimension(this Image img)
         {
             return new FrameDimension(img.FrameDimensionsList[0]);
         }
 
+        /// <summary>
+        /// 获取图像的帧数
+        /// </summary>
+        /// <param name="img">图像</param>
+        /// <returns>帧数</returns>
         public static int GifFrameCount(this Image img)
         {
             if (img == null) return 0;
@@ -207,6 +260,11 @@ namespace Sunny.UI
             return img.GetFrameCount(fd);
         }
 
+        /// <summary>
+        /// 获取图像的帧间隔
+        /// </summary>
+        /// <param name="img">图像</param>
+        /// <returns>帧间隔</returns>
         public static int GifFrameInterval(this Image img)
         {
             FrameDimension dim = new FrameDimension(img.FrameDimensionsList[0]);

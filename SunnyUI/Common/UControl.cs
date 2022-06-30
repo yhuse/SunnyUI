@@ -36,6 +36,11 @@ namespace Sunny.UI
     /// </summary>
     public static class ControlEx
     {
+        /// <summary>
+        /// 定时器重置
+        /// </summary>
+        /// <param name="timer">定时器</param>
+        /// <returns>定时器</returns>
         public static Timer ReStart(this Timer timer)
         {
             timer.Stop();
@@ -43,26 +48,51 @@ namespace Sunny.UI
             return timer;
         }
 
+        /// <summary>
+        /// 控件是否为空
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>是否为空</returns>
         public static bool IsNull(this Control ctrl)
         {
             return ctrl == null;
         }
 
+        /// <summary>
+        /// 控件是否有效
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>是否有效</returns>
         public static bool IsValid(this Control ctrl)
         {
             return ctrl != null;
         }
 
+        /// <summary>
+        /// 控件位于屏幕的区域
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>区域</returns>
         public static Rectangle ScreenRectangle(this Control ctrl)
         {
             return ctrl.RectangleToScreen(ctrl.ClientRectangle);
         }
 
+        /// <summary>
+        /// 控件位于屏幕的位置
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>位置</returns>
         public static Point ScreenLocation(this Control ctrl)
         {
             return ctrl.PointToScreen(new Point(0, 0));
         }
 
+        /// <summary>
+        /// 控件的根窗体
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>根窗体</returns>
         public static Form RootForm(this Control ctrl)
         {
             if (ctrl == null) return null;
@@ -74,11 +104,21 @@ namespace Sunny.UI
             return ctrl as Form;
         }
 
+        /// <summary>
+        /// 设置控件位于容器的中心
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>控件</returns>
         public static Control SetToTheCenterOfParent(this Control ctrl)
         {
             return ctrl.SetToTheHorizontalCenterOfParent().SetToTheVerticalCenterOfParent();
         }
 
+        /// <summary>
+        /// 设置控件位于容器的水平方向的中心
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>控件</returns>
         public static Control SetToTheHorizontalCenterOfParent(this Control ctrl)
         {
             if (ctrl != null && ctrl.Parent != null)
@@ -87,6 +127,11 @@ namespace Sunny.UI
             return ctrl;
         }
 
+        /// <summary>
+        /// 设置控件位于容器的垂直方向的中心
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>控件</returns>
         public static Control SetToTheVerticalCenterOfParent(this Control ctrl)
         {
             if (ctrl != null && ctrl.Parent != null)
@@ -95,26 +140,11 @@ namespace Sunny.UI
             return ctrl;
         }
 
-        public static Form GetParentForm(this Control ctrl)
-        {
-            while (!IsForm(ctrl.Parent))
-            {
-                ctrl = ctrl.Parent;
-            }
-
-            return ctrl.Parent as Form;
-        }
-
-        private static bool IsForm(Control ctrl)
-        {
-            return ctrl is Form;
-        }
-
         /// <summary>
-        /// 边框宽度
+        /// 窗体边框宽度
         /// </summary>
-        /// <param name="form"></param>
-        /// <returns></returns>
+        /// <param name="form">窗体</param>
+        /// <returns>边框宽度</returns>
         public static int BorderSize(this Form form)
         {
             return (form.Width - form.ClientSize.Width) / 2;
@@ -123,8 +153,8 @@ namespace Sunny.UI
         /// <summary>
         /// 标题栏高度
         /// </summary>
-        /// <param name="form"></param>
-        /// <returns></returns>
+        /// <param name="form">窗体</param>
+        /// <returns>标题栏高度</returns>
         public static int TitleHeight(this Form form)
         {
             return (form.Height - form.ClientSize.Height) - form.BorderSize();

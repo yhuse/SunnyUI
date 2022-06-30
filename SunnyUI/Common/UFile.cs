@@ -770,6 +770,11 @@ namespace Sunny.UI
             return crc.ToString("X").PadLeft(8, '0');
         }
 
+        /// <summary>
+        /// 文件名是否有效
+        /// </summary>
+        /// <param name="name">文件名</param>
+        /// <returns>是否有效</returns>
         public static bool IsValidFileName(string name)
         {
             if (name.IsNullOrEmpty())
