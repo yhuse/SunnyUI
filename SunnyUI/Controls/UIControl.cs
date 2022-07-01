@@ -516,7 +516,7 @@ namespace Sunny.UI
         private int rectSize = 1;
 
         /// <summary>
-        /// 边框颜色
+        /// 边框宽度
         /// </summary>
         [Description("边框宽度"), Category("SunnyUI")]
         [DefaultValue(1)]
