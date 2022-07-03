@@ -1,5 +1,23 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-07\-03 V3.2.1    
+\+ UIGifAvatar: Gif动态头像    
+\+ UICalendar: 增加日历控件    
+\* UITextBox: 重写水印文字，解决不同背景色下泛白的问题    
+\* 增加XML文档文件    
+\* UICheckBoxGroup: 设置条目状态前判断是否创建    
+\* UIDoubleUpDown: 修复了不能设置字体颜色的bug    
+\* UIIntegerUpDown: 修复了不能设置字体颜色的bug    
+\* UISymbolButton: 修复了出现颜色不填充问题    
+\* UIMessageBox: 询问窗口的Focus按钮的绘制线换成背景色    
+\* UINavMenu: 绘制节点字体图标增加偏移SymbolOffset    
+\* UIDataGridView: 删除 ShowRect、ShowGridLine、RowHeight三个属性    
+\* UIDropDown: 解决下拉控件关闭报错    
+\* UITabControl: 多页面框架关闭页面时执行UIPage的FormClosed事件    
+\* UIComboDataGridView: 增加FilterChanged，输出过滤文字和记录条数    
+\* UIComboTreeView: 增加下拉框宽度、高度    
+\* UIComboDataGridView: 增加下拉框宽度    
+    
 #### 2022\-06\-16 V3.2.0    
 \+ UIVerificationCode: 增加验证码控件    
 \* NuGet发布版本去除.Net5 Winform支持，可自行编译    
