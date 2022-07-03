@@ -41,6 +41,8 @@ namespace Sunny.UI.Demo
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiVerificationCode1 = new Sunny.UI.UIVerificationCode();
             this.uiVerificationCode2 = new Sunny.UI.UIVerificationCode();
+            this.uiCalendar1 = new Sunny.UI.UICalendar();
+            this.uiLine2 = new Sunny.UI.UILine();
             this.SuspendLayout();
             // 
             // uiLabel3
@@ -144,7 +146,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.Location = new System.Drawing.Point(30, 187);
+            this.uiLine1.Location = new System.Drawing.Point(381, 187);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
             this.uiLine1.Size = new System.Drawing.Size(319, 20);
@@ -156,7 +158,7 @@ namespace Sunny.UI.Demo
             // uiVerificationCode1
             // 
             this.uiVerificationCode1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiVerificationCode1.Location = new System.Drawing.Point(30, 225);
+            this.uiVerificationCode1.Location = new System.Drawing.Point(381, 225);
             this.uiVerificationCode1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiVerificationCode1.Name = "uiVerificationCode1";
             this.uiVerificationCode1.Size = new System.Drawing.Size(100, 35);
@@ -167,18 +169,48 @@ namespace Sunny.UI.Demo
             // 
             this.uiVerificationCode2.CodeLength = 6;
             this.uiVerificationCode2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiVerificationCode2.Location = new System.Drawing.Point(148, 225);
+            this.uiVerificationCode2.Location = new System.Drawing.Point(499, 225);
             this.uiVerificationCode2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiVerificationCode2.Name = "uiVerificationCode2";
             this.uiVerificationCode2.Size = new System.Drawing.Size(140, 35);
             this.uiVerificationCode2.TabIndex = 82;
             this.uiVerificationCode2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
+            // uiCalendar1
+            // 
+            this.uiCalendar1.Date = new System.DateTime(2022, 7, 3, 0, 0, 0, 0);
+            this.uiCalendar1.FillColor = System.Drawing.Color.White;
+            this.uiCalendar1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiCalendar1.Location = new System.Drawing.Point(30, 225);
+            this.uiCalendar1.MinimumSize = new System.Drawing.Size(240, 180);
+            this.uiCalendar1.Name = "uiCalendar1";
+            this.uiCalendar1.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiCalendar1.Size = new System.Drawing.Size(319, 240);
+            this.uiCalendar1.TabIndex = 83;
+            this.uiCalendar1.Text = "uiCalendar1";
+            this.uiCalendar1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiCalendar1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.uiCalendar1.OnDateTimeChanged += new Sunny.UI.OnDateTimeChanged(this.uiCalendar1_OnDateTimeChanged);
+            // 
+            // uiLine2
+            // 
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Location = new System.Drawing.Point(30, 187);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(319, 20);
+            this.uiLine2.TabIndex = 84;
+            this.uiLine2.Text = "UIVerificationCode";
+            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
             // FOther
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.uiLine2);
+            this.Controls.Add(this.uiCalendar1);
             this.Controls.Add(this.uiVerificationCode2);
             this.Controls.Add(this.uiVerificationCode1);
             this.Controls.Add(this.uiLine1);
@@ -211,5 +243,7 @@ namespace Sunny.UI.Demo
         private UILine uiLine1;
         private UIVerificationCode uiVerificationCode1;
         private UIVerificationCode uiVerificationCode2;
+        private UICalendar uiCalendar1;
+        private UILine uiLine2;
     }
 }

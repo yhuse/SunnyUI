@@ -9,7 +9,7 @@
         <Description>SunnyUI.Net 是基于.Net Framework 4.0~4.8、.Net 6 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。</Description>
         <Copyright>CopyRight © SunnyUI.Net 2012-2022</Copyright>
         <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
-        <Version>3.2.0</Version>
+        <Version>3.2.1</Version>
         <Authors>ShenYonghua</Authors>
         <Company>SunnyUI.Net</Company>
         <PackageId>SunnyUI</PackageId>
@@ -17,11 +17,11 @@
         <RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
         <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
         <PackageIcon>SunnyUI.png</PackageIcon>
-        <SignAssembly>False</SignAssembly>
+        <SignAssembly>True</SignAssembly>
         <AssemblyOriginatorKeyFile>D:\MyDocuments\SunnyUI.pfx</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <GenerateDocumentationFile>False</GenerateDocumentationFile>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

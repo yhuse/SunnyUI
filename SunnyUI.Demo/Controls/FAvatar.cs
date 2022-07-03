@@ -7,6 +7,18 @@
             InitializeComponent();
         }
 
+        public override void Init()
+        {
+            base.Init();
+            uiGifAvatar1.Active = true;
+        }
+
+        public override void Final()
+        {
+            base.Final();
+            uiGifAvatar1.Active = false;
+        }
+
         private void uiAvatar4_Click(object sender, System.EventArgs e)
         {
             uiContextMenuStrip1.Show(uiAvatar4, 0, uiAvatar4.Height);
