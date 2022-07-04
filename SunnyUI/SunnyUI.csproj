@@ -17,7 +17,7 @@
         <RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
         <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
         <PackageIcon>SunnyUI.png</PackageIcon>
-        <SignAssembly>True</SignAssembly>
+        <SignAssembly>False</SignAssembly>
         <AssemblyOriginatorKeyFile>D:\MyDocuments\SunnyUI.pfx</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

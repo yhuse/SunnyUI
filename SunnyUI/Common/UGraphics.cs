@@ -27,8 +27,20 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// GDI扩展类
+    /// </summary>
     public static class GraphicsEx
     {
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format)
         {
             using (Brush br = color.Brush())
@@ -37,6 +49,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect)
         {
             using (Brush br = color.Brush())
@@ -45,6 +65,15 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, StringFormat format)
         {
             using (Brush br = color.Brush())
@@ -53,6 +82,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect)
         {
             using (Brush br = color.Brush())
@@ -61,6 +98,15 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, float x, float y)
         {
             using (Brush br = color.Brush())
@@ -69,13 +115,38 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt">位置</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, Point pt)
         => g.DrawString(text, font, color, pt.X, pt.Y);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt">位置</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, PointF pt)
         => g.DrawString(text, font, color, pt.X, pt.Y);
 
-
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, float x, float y, StringFormat format)
         {
             using (Brush br = color.Brush())
@@ -84,13 +155,38 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt">位置</param>
+        /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, PointF pt, StringFormat format)
         => g.DrawString(text, font, color, pt.X, pt.Y, format);
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt">位置</param>
+        /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, Point pt, StringFormat format)
         => g.DrawString(text, font, color, pt.X, pt.Y, format);
 
-
+        /// <summary>
+        /// 绘制多条直线连接
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLines(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -101,6 +197,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制多条直线连接
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLines(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -111,6 +215,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawCurve(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -121,6 +233,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawCurve(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -131,6 +251,17 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制直线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x1">点1水平位置</param>
+        /// <param name="y1">点1垂直位置</param>
+        /// <param name="x2">点2水平位置</param>
+        /// <param name="y2">点2垂直位置</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, int x1, int y1, int x2, int y2, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -141,9 +272,29 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制直线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt1">点1</param>
+        /// <param name="pt2">点2</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, Point pt1, Point pt2, bool smooth = false, float penWidth = 1)
         => g.DrawLine(color, pt1.X, pt1.Y, pt2.X, pt2.Y, smooth, penWidth);
 
+        /// <summary>
+        /// 绘制直线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x1">点1水平位置</param>
+        /// <param name="y1">点1垂直位置</param>
+        /// <param name="x2">点2水平位置</param>
+        /// <param name="y2">点2垂直位置</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -154,9 +305,31 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制直线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt1">点1</param>
+        /// <param name="pt2">点2</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, PointF pt1, PointF pt2, bool smooth = false, float penWidth = 1)
         => g.DrawLine(color, pt1.X, pt1.Y, pt2.X, pt2.Y, smooth, penWidth);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, int x, int y, int width, int height, int startAngle, int sweepAngle, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -167,6 +340,19 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制弧线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -177,14 +363,47 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制弧线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
          => g.DrawArc(color, rect.X, rect.Y, rect.Width, rect.Height, startAngle, sweepAngle, smooth, penWidth);
 
-
+        /// <summary>
+        /// 绘制弧线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, RectangleF rect, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
          => g.DrawArc(color, rect.X, rect.Y, rect.Width, rect.Height, startAngle, sweepAngle, smooth, penWidth);
 
-
+        /// <summary>
+        /// 绘制贝塞尔曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x1">点1水平位置</param>
+        /// <param name="y1">点1垂直位置</param>
+        /// <param name="x2">点2水平位置</param>
+        /// <param name="y2">点2垂直位置</param>
+        /// <param name="x3">点3水平位置</param>
+        /// <param name="y3">点3垂直位置</param>
+        /// <param name="x4">点4水平位置</param>
+        /// <param name="y4">点4垂直位置</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawBezier(this Graphics g, Color color, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -195,12 +414,42 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制贝塞尔曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt1">点1</param>
+        /// <param name="pt2">点2</param>
+        /// <param name="pt3">点3</param>
+        /// <param name="pt4">点4</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawBezier(this Graphics g, Color color, PointF pt1, PointF pt2, PointF pt3, PointF pt4, bool smooth = true, float penWidth = 1)
             => g.DrawBezier(color, pt1.X, pt1.Y, pt2.X, pt2.Y, pt3.X, pt3.Y, pt4.X, pt4.Y, smooth, penWidth);
 
+        /// <summary>
+        /// 绘制贝塞尔曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pt1">点1</param>
+        /// <param name="pt2">点2</param>
+        /// <param name="pt3">点3</param>
+        /// <param name="pt4">点4</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawBezier(this Graphics g, Color color, Point pt1, Point pt2, Point pt3, Point pt4, bool smooth = true, float penWidth = 1)
           => g.DrawBezier(color, pt1.X, pt1.Y, pt2.X, pt2.Y, pt3.X, pt3.Y, pt4.X, pt4.Y, smooth, penWidth);
 
+        /// <summary>
+        /// 绘制贝塞尔曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawBeziers(this Graphics g, Color color, PointF[] points, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -211,6 +460,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制贝塞尔曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawBeziers(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -221,6 +478,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制闭合曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawClosedCurve(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -231,6 +496,16 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制闭合曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="tension">张力</param>
+        /// <param name="fillmode">填充模式</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawClosedCurve(this Graphics g, Color color, Point[] points, float tension, FillMode fillmode, bool smooth = true, float penWidth = 1)
         {
             using (Pen pen = color.Pen(penWidth))
@@ -241,6 +516,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充闭合曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
         public static void FillClosedCurve(this Graphics g, Color color, Point[] points, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -251,6 +533,15 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充闭合曲线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="fillmode">填充模式</param>
+        /// <param name="tension">张力</param>
+        /// <param name="smooth">平滑</param>
         public static void FillClosedCurve(this Graphics g, Color color, Point[] points, FillMode fillmode, float tension, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -261,6 +552,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充路径
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="path">路径</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -271,6 +569,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制路径
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="path">路径</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -281,6 +587,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -291,6 +604,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="fillMode">填充模式</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, PointF[] points, FillMode fillMode, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -301,6 +622,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, Point[] points, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -311,6 +639,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="fillMode">填充模式</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, Point[] points, FillMode fillMode, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -321,6 +657,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -331,6 +675,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制多边形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="points">点列表</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPolygon(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -341,6 +693,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -351,6 +710,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -361,6 +728,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true)
         {
             using (SolidBrush sb = color.Brush())
@@ -371,6 +745,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -381,20 +763,67 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, int left, int top, int width, int height, bool smooth = true)
          => g.FillEllipse(color, new Rectangle(left, top, width, height), smooth);
 
+        /// <summary>
+        /// 绘制椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, int left, int top, int width, int height, bool smooth = true, float penWidth = 1)
          => g.DrawEllipse(color, new Rectangle(left, top, width, height), smooth, penWidth);
 
-
+        /// <summary>
+        /// 填充椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, float left, float top, float width, float height, bool smooth = true)
          => g.FillEllipse(color, new RectangleF(left, top, width, height), smooth);
 
-
+        /// <summary>
+        /// 绘制椭圆
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, float left, float top, float width, float height, bool smooth = true, float penWidth = 1)
         => g.DrawEllipse(color, new RectangleF(left, top, width, height), smooth, penWidth);
 
+        /// <summary>
+        /// 填充矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false)
         {
             using (SolidBrush sb = color.Brush())
@@ -405,6 +834,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -415,6 +852,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false)
         {
             using (SolidBrush sb = color.Brush())
@@ -425,6 +869,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -435,21 +887,67 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, int left, int top, int width, int height, bool smooth = false)
         => g.FillRectangle(color, new Rectangle(left, top, width, height), smooth);
 
+        /// <summary>
+        /// 绘制矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, int left, int top, int width, int height, bool smooth = false, float penWidth = 1)
         => g.DrawRectangle(color, new Rectangle(left, top, width, height), smooth, penWidth);
 
-
+        /// <summary>
+        /// 填充矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, float left, float top, float width, float height, bool smooth = false)
         => g.FillRectangle(color, new RectangleF(left, top, width, height), smooth);
 
-
+        /// <summary>
+        /// 绘制矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, float left, float top, float width, float height, bool smooth = false, float penWidth = 1)
         => g.DrawRectangle(color, new RectangleF(left, top, width, height), smooth, penWidth);
 
-
+        /// <summary>
+        /// 填充矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rects">多个矩形</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangles(this Graphics g, Color color, Rectangle[] rects, bool smooth = false)
         {
             using (SolidBrush sb = color.Brush())
@@ -460,6 +958,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充多个矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rects">多个矩形</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRectangles(this Graphics g, Color color, RectangleF[] rects, bool smooth = false)
         {
             using (SolidBrush sb = color.Brush())
@@ -470,6 +975,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制图形形状
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="region">图形形状</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRegion(this Graphics g, Color color, Region region, bool smooth = false)
         {
             using (SolidBrush sb = color.Brush())
@@ -480,7 +992,14 @@ namespace Sunny.UI
             }
         }
 
-
+        /// <summary>
+        /// 绘制多个矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rects">多个矩形</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangles(this Graphics g, Color color, Rectangle[] rects, bool smooth = false, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -491,6 +1010,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制多个矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rects">多个矩形</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRectangles(this Graphics g, Color color, RectangleF[] rects, bool smooth = false, float penWidth = 1)
         {
             using (Pen pn = color.Pen(penWidth))
@@ -501,6 +1028,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="pen">画笔</param>
+        /// <param name="rect">区域</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void DrawRoundRectangle(this Graphics g, Pen pen, Rectangle rect, int cornerRadius, bool smooth = true)
         {
             g.Smooth(smooth);
@@ -519,6 +1054,14 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        /// <summary>
+        /// 填充圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="brush">画刷</param>
+        /// <param name="rect">区域</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRoundRectangle(this Graphics g, Brush brush, Rectangle rect, int cornerRadius, bool smooth = true)
         {
             g.Smooth(smooth);
@@ -537,16 +1080,47 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        /// <summary>
+        /// 绘制圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="pen">画笔</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void DrawRoundRectangle(this Graphics g, Pen pen, int left, int top, int width, int height, int cornerRadius, bool smooth = true)
         {
             g.DrawRoundRectangle(pen, new Rectangle(left, top, width, height), cornerRadius, smooth);
         }
 
+        /// <summary>
+        /// 填充圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="brush">画刷</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRoundRectangle(this Graphics g, Brush brush, int left, int top, int width, int height, int cornerRadius, bool smooth = true)
         {
             g.FillRoundRectangle(brush, new Rectangle(left, top, width, height), cornerRadius, smooth);
         }
 
+        /// <summary>
+        /// 绘制圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true, float penWidth = 1)
         {
             if (cornerRadius > 0)
@@ -562,6 +1136,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
             if (cornerRadius > 0)
@@ -577,18 +1159,61 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawRoundRectangle(this Graphics g, Color color, int left, int top, int width, int height, int cornerRadius, bool smooth = true, float penWidth = 1)
         => g.DrawRoundRectangle(color, new Rectangle(left, top, width, height), cornerRadius, smooth, penWidth);
 
+        /// <summary>
+        /// 填充圆角矩形
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="left">左边距</param>
+        /// <param name="top">顶边距</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="cornerRadius">圆角大小</param>
+        /// <param name="smooth">平滑</param>
         public static void FillRoundRectangle(this Graphics g, Color color, int left, int top, int width, int height, int cornerRadius, bool smooth = true)
         => g.FillRoundRectangle(color, new Rectangle(left, top, width, height), cornerRadius, smooth);
 
+        /// <summary>
+        /// 绘制十字线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="crossSize">十字线大小</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawCross(this Graphics g, Color color, Point center, int crossSize = 3, float penWidth = 1)
         {
             g.DrawLine(color, center.X - crossSize, center.Y, center.X + crossSize, center.Y, false, penWidth);
             g.DrawLine(color, center.X, center.Y - crossSize, center.X, center.Y + crossSize, false, penWidth);
         }
 
+        /// <summary>
+        /// 绘制扇面区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="d1">距离1</param>
+        /// <param name="d2">距离2</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             if (d1.Equals(0))
@@ -603,6 +1228,18 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制扇面区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="d1">距离1</param>
+        /// <param name="d2">距离2</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             if (d1.Equals(0))
@@ -617,6 +1254,17 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充扇面区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="d1">距离1</param>
+        /// <param name="d2">距离2</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillFan(this Graphics g, Color color, Point center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
             if (d1.Equals(0))
@@ -631,6 +1279,17 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充扇面区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="center">中心点</param>
+        /// <param name="d1">距离1</param>
+        /// <param name="d2">距离2</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillFan(this Graphics g, Color color, PointF center, float d1, float d2, float startAngle, float sweepAngle, bool smooth = true)
         {
             if (d1.Equals(0))
@@ -645,6 +1304,18 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 填充扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true)
         {
             g.Smooth(smooth);
@@ -656,9 +1327,30 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        /// <summary>
+        /// 填充扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPie(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true)
         => g.FillPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
 
+        /// <summary>
+        /// 填充扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true)
         {
             g.Smooth(smooth);
@@ -670,24 +1362,86 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        /// <summary>
+        /// 填充扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
         public static void FillPie(this Graphics g, Color color, RectangleF rect, float startAngle, float sweepAngle, bool smooth = true)
         => g.FillPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth);
 
+        /// <summary>
+        /// 绘制点
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="size">大小</param>
         public static void DrawPoint(this Graphics g, Color color, int x, int y, float size)
         => g.FillEllipse(color, x - size / 2.0f, y - size / 2.0f, size, size);
 
+        /// <summary>
+        /// 绘制点
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="size">大小</param>
         public static void DrawPoint(this Graphics g, Color color, float x, float y, float size)
         => g.FillEllipse(color, x - size / 2.0f, y - size / 2.0f, size, size);
 
+        /// <summary>
+        /// 绘制点
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="point">点</param>
+        /// <param name="size">大小</param>
         public static void DrawPoint(this Graphics g, Color color, Point point, float size)
         => g.DrawPoint(color, point.X, point.Y, size);
 
+        /// <summary>
+        /// 绘制点
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="point">点</param>
+        /// <param name="size">大小</param>
         public static void DrawPoint(this Graphics g, Color color, PointF point, float size)
         => g.DrawPoint(color, point.X, point.Y, size);
 
+        /// <summary>
+        /// 绘制扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPie(this Graphics g, Color color, Rectangle rect, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         => g.DrawPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth, penWidth);
 
+        /// <summary>
+        /// 绘制扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPie(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             g.Smooth(smooth);
@@ -699,9 +1453,32 @@ namespace Sunny.UI
             g.Smooth(false);
         }
 
+        /// <summary>
+        /// 绘制扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPie(this Graphics g, Color color, RectangleF rect, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         => g.DrawPie(color, rect.Left, rect.Top, rect.Width, rect.Height, startAngle, sweepAngle, smooth, penWidth);
 
+        /// <summary>
+        /// 绘制扇形区域
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="startAngle">起始角度</param>
+        /// <param name="sweepAngle">扫过角度</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawPie(this Graphics g, Color color, int x, int y, int width, int height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
             g.Smooth(smooth);
@@ -717,10 +1494,10 @@ namespace Sunny.UI
         /// 九宫切图背景填充，#，http://st233.com/blog.php?id=24
         /// 例如按钮是图片分成九个区域 然后只需要将四角填充到目标区域 其余的拉伸就可以了
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="img"></param>
-        /// <param name="rect"></param>
-        /// <param name="angleSize"></param>
+        /// <param name="g">绘图图元</param>
+        /// <param name="img">图片</param>
+        /// <param name="rect">区域</param>
+        /// <param name="angleSize">角度</param>
         public static void DrawImageWithNineCut(this Graphics g, Image img, Rectangle rect, int angleSize = 5)
         {
             //填充四个角
@@ -747,6 +1524,18 @@ namespace Sunny.UI
                 new Rectangle(angleSize, angleSize, img.Width - angleSize * 2, img.Height - angleSize * 2), GraphicsUnit.Pixel);
         }
 
+        /// <summary>
+        /// 九宫切图背景填充
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="img">图片</param>
+        /// <param name="destWidth">目标宽度</param>
+        /// <param name="destHeight">目标高度</param>
+        /// <param name="cutLeft">裁剪左侧大小</param>
+        /// <param name="cutRight">裁剪右侧大小</param>
+        /// <param name="cutTop">裁剪顶部大小</param>
+        /// <param name="cutBottom">裁剪底部大小</param>
+        /// <param name="iZoom">缩放比例</param>
         public static void DrawImageWithNineCut(this Graphics g, Image img, int destWidth, int destHeight, int cutLeft, int cutRight, int cutTop, int cutBottom, int iZoom = 1)
         {
             iZoom = Math.Max(1, iZoom);
@@ -776,6 +1565,16 @@ namespace Sunny.UI
                new Rectangle(cutLeft, cutTop, img.Width - cutLeft - cutRight, img.Height - cutTop - cutBottom), GraphicsUnit.Pixel);
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="str">字符串</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="size">大小</param>
+        /// <param name="padding">边距</param>
+        /// <param name="align">位置位置</param>
         public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align)
         {
             if (str.IsNullOrEmpty()) return;
@@ -824,6 +1623,16 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="format">格式</param>
+        /// <param name="angle">角度</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format, float angle)
         {
             if (text.IsNullOrEmpty()) return;
@@ -837,7 +1646,7 @@ namespace Sunny.UI
         /// <summary>
         /// 以文字中心点为原点，旋转文字
         /// </summary>
-        /// <param name="g">Graphics</param>
+        /// <param name="g">绘图图元</param>
         /// <param name="text">文字</param>
         /// <param name="font">字体</param>
         /// <param name="color">颜色</param>
@@ -855,7 +1664,7 @@ namespace Sunny.UI
         /// <summary>
         /// 以文字中心点为原点，旋转文字
         /// </summary>
-        /// <param name="g">Graphics</param>
+        /// <param name="g">绘图图元</param>
         /// <param name="text">文字</param>
         /// <param name="font">字体</param>
         /// <param name="brush">笔刷</param>
@@ -885,7 +1694,7 @@ namespace Sunny.UI
         /// <summary>
         /// 以旋转点为原点，旋转文字
         /// </summary>
-        /// <param name="g">Graphics</param>
+        /// <param name="g">绘图图元</param>
         /// <param name="text">文本</param>
         /// <param name="font">字体</param>
         /// <param name="brush">填充</param>
@@ -908,6 +1717,16 @@ namespace Sunny.UI
             g.Transform = mtxSave;
         }
 
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rotatePoint">旋转点</param>
+        /// <param name="format">格式</param>
+        /// <param name="angle">角度</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
         {
             if (text.IsNullOrEmpty()) return;
@@ -920,7 +1739,7 @@ namespace Sunny.UI
         /// <summary>
         /// 绘制根据矩形旋转文本
         /// </summary>
-        /// <param name="g">Graphics</param>
+        /// <param name="g">绘图图元</param>
         /// <param name="text">文本</param>
         /// <param name="font">字体</param>
         /// <param name="brush">填充</param>
@@ -933,12 +1752,31 @@ namespace Sunny.UI
             g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
         }
 
+        /// <summary>
+        /// 绘制两点连线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="color">颜色</param>
+        /// <param name="pf1">点1</param>
+        /// <param name="pf2">点2</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
+        /// <param name="penWidth">笔宽</param>
         public static void DrawTwoPoints(this Graphics g, Color color, PointF pf1, PointF pf2, Rectangle rect, bool smooth = true, float penWidth = 1)
         {
             using Pen pen = color.Pen(penWidth);
             DrawTwoPoints(g, pen, pf1, pf2, rect, smooth);
         }
 
+        /// <summary>
+        /// 绘制两点连线
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="pen">画笔</param>
+        /// <param name="pf1">点1</param>
+        /// <param name="pf2">点2</param>
+        /// <param name="rect">区域</param>
+        /// <param name="smooth">平滑</param>
         public static void DrawTwoPoints(this Graphics g, Pen pen, PointF pf1, PointF pf2, Rectangle rect, bool smooth = true)
         {
             if (pf1.X.IsNan() || pf1.Y.IsNan() || pf2.X.IsNan() || pf2.Y.IsNan()) return;
@@ -1081,7 +1919,7 @@ namespace Sunny.UI
         /// <summary>
         /// 以center为中心，绘制箭头，正北0°，顺时针0°到359°
         /// </summary>
-        /// <param name="g">Graphics</param>
+        /// <param name="g">绘图图元</param>
         /// <param name="color">颜色</param>
         /// <param name="center">中心点</param>
         /// <param name="arrowSize">箭头尺寸</param>

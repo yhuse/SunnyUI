@@ -28,6 +28,9 @@ namespace Sunny.UI
 {
     public sealed partial class UIMessageForm : UIForm
     {
+        /// <summary>
+        /// 消息提示窗体
+        /// </summary>
         public UIMessageForm()
         {
             InitializeComponent();
@@ -36,6 +39,9 @@ namespace Sunny.UI
             btnCancel.Text = UILocalize.Cancel;
         }
 
+        /// <summary>
+        /// 是否OK
+        /// </summary>
         public bool IsOK
         {
             get; private set;
@@ -43,6 +49,9 @@ namespace Sunny.UI
 
         private bool _showCancel = true;
 
+        /// <summary>
+        /// 显示取消按钮
+        /// </summary>
         public bool ShowCancel
         {
             get => _showCancel;
@@ -84,6 +93,9 @@ namespace Sunny.UI
             btnCancel.Left = btnOK.Right - 1;
         }
 
+        /// <summary>
+        /// 回车事件
+        /// </summary>
         protected override void DoEnter()
         {
             base.DoEnter();
@@ -144,6 +156,13 @@ namespace Sunny.UI
             //((UIButton)sender).RadiusSides = UICornerRadiusSides.None;
         }
 
+        /// <summary>
+        /// 显示消息提示窗体
+        /// </summary>
+        /// <param name="message">消息</param>
+        /// <param name="title">标题</param>
+        /// <param name="showCancel">显示取消按钮</param>
+        /// <param name="style">主题风格</param>
         public void ShowMessage(string message, string title, bool showCancel, UIStyle style = UIStyle.Blue)
         {
             Style = style;
