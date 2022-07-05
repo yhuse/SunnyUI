@@ -34,6 +34,23 @@ namespace Sunny.UI
 
     public delegate void OnZoomScaleRectChanged(object sender, Rectangle info);
 
+    public class UIPageEventArgs : EventArgs
+    {
+        public UIPage Page { get; set; }
+
+        public UIPageEventArgs()
+        {
+
+        }
+
+        public UIPageEventArgs(UIPage page)
+        {
+            Page = page;
+        }
+    }
+
+    public delegate void OnUIPageChanged(object sender, UIPageEventArgs e);
+
     public static class UIMessageDialog
     {
         /// <summary>

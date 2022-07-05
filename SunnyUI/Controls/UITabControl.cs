@@ -77,6 +77,12 @@ namespace Sunny.UI
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
+        [Browsable(false)]
+        public IFrame Frame
+        {
+            get; set;
+        }
+
         /// <summary>
         /// 禁止控件跟随窗体缩放
         /// </summary>
@@ -235,8 +241,6 @@ namespace Sunny.UI
 
         public bool SelectPage(Guid pageGuid) => Helper.SelectPage(pageGuid);
 
-        public void AddPage(UIPage page) => Helper.AddPage(page);
-
         public bool RemovePage(int pageIndex) => Helper.RemovePage(pageIndex);
 
         public bool RemovePage(Guid guid) => Helper.RemovePage(guid);
@@ -252,6 +256,12 @@ namespace Sunny.UI
         public void AddPages(params UIPage[] pages)
         {
             foreach (var page in pages) AddPage(page);
+        }
+
+        public void AddPage(UIPage page)
+        {
+            Helper.AddPage(page);
+            Frame?.DealPageAdded(page);
         }
 
         public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
@@ -840,10 +850,17 @@ namespace Sunny.UI
             {
                 if (AutoClosePage)
                 {
-                    pages[i].Final();
-                    pages[i].Close();
-                    pages[i].Dispose();
-                    pages[i] = null;
+                    Frame.DealPageRemoved(pages[i]);
+
+                    try
+                    {
+                        pages[i].Final();
+                        pages[i].Close();
+                        pages[i].Dispose();
+                        pages[i] = null;
+                    }
+                    catch
+                    { }
                 }
                 else
                 {

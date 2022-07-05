@@ -35,6 +35,7 @@
  * 2022-04-26: V3.1.8 屏蔽一些属性
  * 2022-05-06: V3.1.8 可拖拽时Padding可以调整大小
  * 2022-06-11: V3.1.9 弹窗默认关闭半透明遮罩
+ * 2022-07-05: V3.2.1 多页面框架增加PageAdded，PageSelected，PageRemoved事件
 ******************************************************************************/
 
 using System;
@@ -2072,7 +2073,18 @@ namespace Sunny.UI
 
         #region IFrame实现
 
-        public UITabControl MainTabControl { get; set; }
+        private UITabControl mainTabControl;
+
+        [DefaultValue(null)]
+        public UITabControl MainTabControl
+        {
+            get => mainTabControl;
+            set
+            {
+                mainTabControl = value;
+                mainTabControl.Frame = this;
+            }
+        }
 
         public UIPage AddPage(UIPage page, int index)
         {
@@ -2089,6 +2101,12 @@ namespace Sunny.UI
         public UIPage AddPage(UIPage page)
         {
             SetDefaultTabControl();
+
+            if (MainTabControl == null)
+            {
+                throw (new ApplicationException("未指定MainTabControl，无法承载多页面。"));
+            }
+
             page.Frame = this;
             MainTabControl?.AddPage(page);
             return page;
@@ -2167,6 +2185,25 @@ namespace Sunny.UI
         public T GetPage<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPage<T>();
 
         public List<T> GetPages<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPages<T>();
+
+        public event OnUIPageChanged PageAdded;
+
+        public void DealPageAdded(UIPage page)
+        {
+            PageAdded?.Invoke(this, new UIPageEventArgs(page));
+        }
+
+        public event OnUIPageChanged PageSelected;
+        public void DealPageSelected(UIPage page)
+        {
+            PageSelected?.Invoke(this, new UIPageEventArgs(page));
+        }
+
+        public event OnUIPageChanged PageRemoved;
+        public void DealPageRemoved(UIPage page)
+        {
+            PageRemoved?.Invoke(this, new UIPageEventArgs(page));
+        }
 
         #endregion IFrame实现
     }
