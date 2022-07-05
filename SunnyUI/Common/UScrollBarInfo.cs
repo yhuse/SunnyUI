@@ -26,14 +26,19 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 滚动条信息获取类
+    /// </summary>
     public static class ScrollBarInfo
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
         public const int SIF_RANGE = 1;
         public const int SIF_PAGE = 2;
         public const int SIF_POS = 4;
         public const int SIF_TRACKPOS = 16;
         public const int SIF_DISABLENOSCROLL = 8;
         public const int SIF_ALL = SIF_RANGE | SIF_PAGE | SIF_POS | SIF_TRACKPOS;
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
         //私有方法
         private static uint MakeLong(short lowPart, short highPart)
@@ -41,18 +46,26 @@ namespace Sunny.UI
             return (ushort)lowPart | (uint)(highPart << 16);
         }
 
+        /// <summary>
+        /// 垂直滚动条宽度
+        /// </summary>
+        /// <returns>宽度</returns>
         public static int VerticalScrollBarWidth()
         {
             return SystemInformation.VerticalScrollBarWidth;
         }
 
+        /// <summary>
+        /// 水平滚动条高度
+        /// </summary>
+        /// <returns>高度</returns>
         public static int HorizontalScrollBarHeight()
         {
             return SystemInformation.HorizontalScrollBarHeight;
         }
 
         /// <summary>
-        /// 获取控件滚动条信息
+        /// 获取垂直控件滚动条信息
         /// </summary>
         /// <param name="handle">控件句柄</param>
         /// <returns>信息结构</returns>
@@ -65,6 +78,11 @@ namespace Sunny.UI
             return si;
         }
 
+        /// <summary>
+        /// 获取水平控件滚动条信息
+        /// </summary>
+        /// <param name="handle">控件句柄</param>
+        /// <returns>信息结构</returns>
         public static SCROLLINFO GetHorInfo(IntPtr handle)
         {
             SCROLLINFO si = new SCROLLINFO();
@@ -118,12 +136,22 @@ namespace Sunny.UI
             User.SendMessage(handle, User.WM_VSCROLL, User.SB_LINEDOWN, 0);
         }
 
+        /// <summary>
+        /// 垂直滚动条是否显示
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>垂直滚动条是否显示</returns>
         public static bool IsVerticalScrollBarVisible(Control ctrl)
         {
             if (!ctrl.IsHandleCreated) return false;
             return (Sunny.UI.Win32.User.GetWindowLong(ctrl.Handle, User.GWL_STYLE) & User.WS_VSCROLL) != 0;
         }
 
+        /// <summary>
+        /// 水平滚动条是否显示
+        /// </summary>
+        /// <param name="ctrl">控件</param>
+        /// <returns>水平滚动条是否显示</returns>
         public static bool IsHorizontalScrollBarVisible(Control ctrl)
         {
             if (!ctrl.IsHandleCreated) return false;

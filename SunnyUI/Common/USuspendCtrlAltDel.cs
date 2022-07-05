@@ -34,6 +34,9 @@ namespace Sunny.UI
     /// </summary>
     public static class SuspendCtrlAltDelete
     {
+        /// <summary>
+        /// 获取权限
+        /// </summary>
         public static void GetSeDebugPrivilege()
         {
             IntPtr hToken;
@@ -78,6 +81,9 @@ namespace Sunny.UI
             CloseHandle(hToken);
         }
 
+        /// <summary>
+        /// 挂起
+        /// </summary>
         public static void Suspend()
         {
             Process[] processes = Process.GetProcesses();
@@ -93,6 +99,9 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 恢复
+        /// </summary>
         public static void Resume()
         {
             Process[] processes = Process.GetProcesses();

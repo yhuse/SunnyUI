@@ -21,8 +21,14 @@
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 多语翻译接口
+    /// </summary>
     public interface ITranslate
     {
+        /// <summary>
+        /// 多语翻译接口
+        /// </summary>
         void Translate();
     }
 }

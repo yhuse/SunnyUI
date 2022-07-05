@@ -31,9 +31,19 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 形状
+    /// </summary>
     public enum UIShape
     {
+        /// <summary>
+        /// 圆形
+        /// </summary>
         Circle,
+
+        /// <summary>
+        /// 方形
+        /// </summary>
         Square
     }
 
@@ -54,7 +64,7 @@ namespace Sunny.UI
         /// All Files|*.*
         /// ------
         /// </summary>
-        /// <returns></returns>
+        /// <returns>图片过滤字符串</returns>
         public static string GetImageFilter()
         {
             StringBuilder allImageExtensions = new StringBuilder();
@@ -84,6 +94,11 @@ namespace Sunny.UI
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 根据文件名利用内存流生成图片，加载后文件不占用
+        /// </summary>
+        /// <param name="path">文件名</param>
+        /// <returns>图片</returns>
         public static Image FromFile(string path)
         {
             if (File.Exists(path))
@@ -104,6 +119,12 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 设置图片不透明度
+        /// </summary>
+        /// <param name="img">图片</param>
+        /// <param name="opacity">不透明度</param>
+        /// <returns>图片</returns>
         public static Bitmap ChangeOpacity(Image img, float opacity)
         {
             Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
@@ -117,7 +138,14 @@ namespace Sunny.UI
             return bmp;
         }
 
-        public static ImageList GetToolbarImageList(Type type, Image bitmap, Size imageSize, Color transparentColor)
+        /// <summary>
+        /// 获取工具栏图片列表
+        /// </summary>
+        /// <param name="bitmap">图片</param>
+        /// <param name="imageSize">单图大小</param>
+        /// <param name="transparentColor">透明度</param>
+        /// <returns>图片列表</returns>
+        public static ImageList GetToolbarImageList(Image bitmap, Size imageSize, Color transparentColor)
         {
             ImageList imageList = new ImageList();
             imageList.ImageSize = imageSize;
@@ -127,6 +155,13 @@ namespace Sunny.UI
             return imageList;
         }
 
+        /// <summary>
+        /// 图片截取
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <param name="size">大小</param>
+        /// <param name="shape">形状</param>
+        /// <returns>图片</returns>
         public static Bitmap Split(this Image image, int size, UIShape shape)
         {
             //截图画板
@@ -158,6 +193,12 @@ namespace Sunny.UI
             return result;
         }
 
+        /// <summary>
+        /// 图片截取
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <param name="path">路径</param>
+        /// <returns>图片</returns>
         public static Bitmap Split(this Image image, GraphicsPath path)
         {
             //截图画板
@@ -175,6 +216,11 @@ namespace Sunny.UI
             return result;
         }
 
+        /// <summary>
+        /// 图片的绘图图元
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <returns>绘图图元</returns>
         public static Graphics Graphics(this Image image)
         {
             return System.Drawing.Graphics.FromImage(image);
@@ -183,8 +229,8 @@ namespace Sunny.UI
         /// <summary>
         /// 图像水平翻转
         /// </summary>
-        /// <param name="image">原来图像</param>
-        /// <returns></returns>
+        /// <param name="image">原图像</param>
+        /// <returns>图像</returns>
         public static Bitmap HorizontalFlip(this Bitmap image)
         {
             try
@@ -206,8 +252,8 @@ namespace Sunny.UI
         /// <summary>
         /// 图像垂直翻转
         /// </summary>
-        /// <param name="image">原来图像</param>
-        /// <returns></returns>
+        /// <param name="image">原图像</param>
+        /// <returns>图像</returns>
         public static Bitmap VerticalFlip(this Bitmap image)
         {
             try
@@ -575,6 +621,12 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 从Base64数据绘图
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="base64Image">Base64</param>
+        /// <param name="rect">区域</param>
         public static void DrawImageFromBase64(this Graphics g, string base64Image, Rectangle rect)
         {
             using (var ms = new System.IO.MemoryStream(Convert.FromBase64String(base64Image)))
@@ -585,6 +637,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 绘制透明图片
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="alpha">透明度</param>
+        /// <param name="image">图片</param>
+        /// <param name="rect">区域</param>
         public static void DrawTransparentImage(this Graphics g, float alpha, Image image, Rectangle rect)
         {
             var colorMatrix = new ColorMatrix { Matrix33 = alpha };
@@ -594,6 +653,14 @@ namespace Sunny.UI
             imageAttributes.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="rect"></param>
+        /// <param name="bodyColor"></param>
+        /// <param name="strokeColor"></param>
+        /// <param name="strokeThickness"></param>
         public static void DrawStrokedRectangle(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
             using (var bodyBrush = new SolidBrush(bodyColor))
@@ -611,6 +678,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="rect"></param>
+        /// <param name="bodyColor"></param>
+        /// <param name="strokeColor"></param>
+        /// <param name="strokeThickness"></param>
         public static void DrawStrokedEllipse(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
             using (var bodyBrush = new SolidBrush(bodyColor))
@@ -628,6 +703,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 图片转Baase64字符串
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <returns>字符串</returns>
         public static string ToBase64(this Image image)
         {
             using (var toBase64 = new MemoryStream())
@@ -638,6 +718,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// Base64字符串转图片
+        /// </summary>
+        /// <param name="base64Image">字符串</param>
+        /// <returns>图片</returns>
         public static Image ToImage(string base64Image)
         {
             using (var toImage = new System.IO.MemoryStream(Convert.FromBase64String(base64Image)))
@@ -646,6 +731,12 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 图片存为图标
+        /// </summary>
+        /// <param name="img">图片</param>
+        /// <param name="size">大小</param>
+        /// <returns>图标</returns>
         public static Icon SaveToIcon(this Image img, int size = 16)
         {
             byte[] pngiconheader = new byte[] { 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

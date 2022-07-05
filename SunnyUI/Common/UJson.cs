@@ -28,8 +28,17 @@ using System.Web.Script.Serialization;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// Json扩展类
+    /// </summary>
     public static class Json
     {
+        /// <summary>
+        /// 反序列化字符串为对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="input">字符串</param>
+        /// <returns>对象</returns>
         public static T Deserialize<T>(string input)
         {
             try
@@ -48,6 +57,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 序列号对象为字符串
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <returns>字符串</returns>
         public static string Serialize(object obj)
         {
 #if NETFRAMEWORK
@@ -58,12 +72,26 @@ namespace Sunny.UI
 #endif
         }
 
+        /// <summary>
+        /// 从文件读取字符串反序列化为对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="filename">文件名</param>
+        /// <param name="encoding">文件编码</param>
+        /// <returns>对象</returns>
         public static T DeserializeFromFile<T>(string filename, Encoding encoding)
         {
             string jsonStr = File.ReadAllText(filename, encoding);
             return Deserialize<T>(jsonStr);
         }
 
+        /// <summary>
+        /// 序列号对象为字符串并保存到文件
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <param name="filename">文件名</param>
+        /// <param name="encoding">文件编码</param>
+        /// <returns>字符串</returns>
         public static string SerializeToFile(object obj, string filename, Encoding encoding)
         {
             string jsonStr = Serialize(obj);

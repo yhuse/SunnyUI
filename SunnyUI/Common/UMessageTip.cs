@@ -33,6 +33,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     /// <summary>
     /// 轻便消息窗
     /// </summary>
@@ -1967,4 +1968,6 @@ namespace Sunny.UI
 
         #endregion
     }
+
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }

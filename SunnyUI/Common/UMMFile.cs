@@ -67,11 +67,27 @@ using System.Threading;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 多进程通信类
+    /// </summary>
     public sealed class MMFile : BackgroundWorkerEx, IDisposable
     {
+        /// <summary>
+        /// 内存文件名
+        /// </summary>
         public string MapName { get; }
+
+        /// <summary>
+        /// 大小
+        /// </summary>
         public int Capacity { get; }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="mapName">内存文件名</param>
+        /// <param name="capacity">大小</param>
+        /// <exception cref="Exception">报错消息</exception>
         public MMFile(string mapName, int capacity = 4096)
         {
             if (!FileEx.IsValidFileName(mapName))
@@ -91,8 +107,14 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 消息回调
+        /// </summary>
         public event MMFileEventHandler OnMessage;
 
+        /// <summary>
+        /// 线程运行
+        /// </summary>
         protected override void DoWorker()
         {
             try
@@ -109,6 +131,11 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 给目标内存文件写字符串
+        /// </summary>
+        /// <param name="dest">目标内存文件名</param>
+        /// <param name="message">消息字符串</param>
         public void Write(string dest, string message)
         {
             var mmf = MemoryMappedFile.CreateOrOpen(dest, Capacity, MemoryMappedFileAccess.ReadWrite);
@@ -184,18 +211,42 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         ~MMFile()
         {
             Dispose();
         }
     }
 
+    /// <summary>
+    /// 回调事件定义
+    /// </summary>
+    /// <param name="sender">对象</param>
+    /// <param name="e">事件</param>
     public delegate void MMFileEventHandler(object sender, MMFileEventArgs e);
+
+    /// <summary>
+    /// 内存文件事件
+    /// </summary>
     public class MMFileEventArgs : EventArgs
     {
+        /// <summary>
+        /// 消息来源
+        /// </summary>
         public string Source { get; set; }
+
+        /// <summary>
+        /// 消息字符串
+        /// </summary>
         public string Value { get; set; }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="source">消息来源</param>
+        /// <param name="value">消息字符串</param>
         public MMFileEventArgs(string source, string value)
         {
             Source = source;

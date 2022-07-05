@@ -27,6 +27,9 @@ using System.Reflection;
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 轻量级的对象映射框架
+    /// </summary>
     public static class Mapper
     {
         private static void Execute<T1, T2>(T1 source, T2 dest)
@@ -157,6 +160,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// T1映射到T2
+        /// </summary>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <typeparam name="T2">T2</typeparam>
+        /// <param name="source">源</param>
+        /// <param name="dest">目标</param>
         public static void MapperTo<T1, T2>(this T1 source, T2 dest)
             where T1 : class
             where T2 : class
@@ -164,6 +174,13 @@ namespace Sunny.UI
             Execute(source, dest);
         }
 
+        /// <summary>
+        /// T1从T2映射
+        /// </summary>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <typeparam name="T2">T2</typeparam>
+        /// <param name="source">源</param>
+        /// <param name="dest">目标</param>
         public static void MapperFrom<T1, T2>(this T1 dest, T2 source)
             where T1 : class
             where T2 : class
@@ -171,6 +188,11 @@ namespace Sunny.UI
             Execute(source, dest);
         }
 
+        /// <summary>
+        /// 获取数组的类类型
+        /// </summary>
+        /// <param name="t">类型</param>
+        /// <returns>类类型</returns>
         public static Type GetArrayElementType(this Type t)
         {
             if (!t.IsArray) return null;

@@ -22,6 +22,9 @@
 
 namespace Sunny.UI
 {
+    /// <summary>
+    /// 多语言字符串定义
+    /// </summary>
     public static class UILocalize
     {
         /// <summary>
@@ -94,37 +97,135 @@ namespace Sunny.UI
         /// </summary>
         public static string SystemProcessing = "系统正在处理中，请稍候...";
 
+        /// <summary>
+        /// 星期一
+        /// </summary>
         public static string Monday = "一";
+
+        /// <summary>
+        /// 星期二
+        /// </summary>
         public static string Tuesday = "二";
+
+        /// <summary>
+        /// 星期三
+        /// </summary>
         public static string Wednesday = "三";
+
+        /// <summary>
+        /// 星期四
+        /// </summary>
         public static string Thursday = "四";
+
+        /// <summary>
+        /// 星期五
+        /// </summary>
         public static string Friday = "五";
+
+        /// <summary>
+        /// 星期六
+        /// </summary>
         public static string Saturday = "六";
+
+        /// <summary>
+        /// 星期日
+        /// </summary>
         public static string Sunday = "日";
 
+        /// <summary>
+        /// 上一页
+        /// </summary>
         public static string Prev = "上一页";
+
+        /// <summary>
+        /// 下一页
+        /// </summary>
         public static string Next = "下一页";
+
+        /// <summary>
+        /// 第
+        /// </summary>
         public static string SelectPageLeft = "第";
+
+        /// <summary>
+        /// 页
+        /// </summary>
         public static string SelectPageRight = "页";
 
+        /// <summary>
+        /// 一月
+        /// </summary>
         public static string January = "一月";
+
+        /// <summary>
+        /// 二月
+        /// </summary>
         public static string February = "二月";
+
+        /// <summary>
+        /// 三月
+        /// </summary>
         public static string March = "三月";
+
+        /// <summary>
+        /// 四月
+        /// </summary>
         public static string April = "四月";
+
+        /// <summary>
+        /// 五月
+        /// </summary>
         public static string May = "五月";
+
+        /// <summary>
+        /// 六月
+        /// </summary>
         public static string June = "六月";
+
+        /// <summary>
+        /// 七月
+        /// </summary>
         public static string July = "七月";
+
+        /// <summary>
+        /// 八月
+        /// </summary>
         public static string August = "八月";
+
+        /// <summary>
+        /// 九月
+        /// </summary>
         public static string September = "九月";
+
+        /// <summary>
+        /// 十月
+        /// </summary>
         public static string October = "十月";
+
+        /// <summary>
+        /// 十一月
+        /// </summary>
         public static string November = "十一月";
+
+        /// <summary>
+        /// 十二月
+        /// </summary>
         public static string December = "十二月";
 
+        /// <summary>
+        /// 今天
+        /// </summary>
         public static string Today = "今天";
     }
 
+    /// <summary>
+    /// 多语言字符串帮助类
+    /// </summary>
     public static class UILocalizeHelper
     {
+        /// <summary>
+        /// 设置为英文
+        /// </summary>
         public static void SetEN()
         {
             UILocalize.InfoTitle = "Info";
@@ -173,6 +274,9 @@ namespace Sunny.UI
             UIStyles.Translate();
         }
 
+        /// <summary>
+        /// 设置为中文
+        /// </summary>
         public static void SetCH()
         {
             UILocalize.InfoTitle = "提示";

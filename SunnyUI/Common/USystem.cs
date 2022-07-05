@@ -58,17 +58,23 @@ namespace Sunny.UI
                 User.SetProcessDPIAware();
         }
 
+        /// <summary>
+        /// 工具栏可用
+        /// </summary>
         public static void EnabledTaskManager()
         {
             RegistryDisableTaskMgr(0);
         }
 
+        /// <summary>
+        /// 工具栏不可用
+        /// </summary>
         public static void DisabledTaskManager()
         {
             RegistryDisableTaskMgr(1);
         }
 
-        public static void RegistryDisableTaskMgr(int value)
+        private static void RegistryDisableTaskMgr(int value)
         {
             string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
             RegistryKey mKey = Registry.CurrentUser.CreateSubKey(subKey);
@@ -76,6 +82,9 @@ namespace Sunny.UI
             mKey?.Dispose();
         }
 
+        /// <summary>
+        /// 设置键盘鼠标钩子超时
+        /// </summary>
         public static void RegistryHooksTimeout()
         {
             string subKey = @"Control Panel\Desktop";
@@ -106,6 +115,13 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 线程安全调用
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="control">控件</param>
+        /// <param name="method">方法</param>
+        /// <returns>类型</returns>
         public static T ThreadSafeCall<T>(this Control control, Func<T> method)
         {
             if (control.InvokeRequired)
@@ -150,7 +166,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否64位
         /// </summary>
-        /// <returns></returns>
+        /// <returns>是否64位</returns>
         public static bool Is64bitApp()
         {
             return IntPtr.Size == 8;
@@ -330,7 +346,7 @@ namespace Sunny.UI
             HandleRunningInstance(instance, showStyle);
         }
 
-        public static Process RunningInstance()
+        private static Process RunningInstance()
         {
             Process currentProcess = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(currentProcess.ProcessName);

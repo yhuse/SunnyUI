@@ -62,7 +62,6 @@ to represent the company, product, or service to which they refer.
 
 namespace Sunny.UI
 {
-#pragma warning disable CS0618 // 类型或成员已过时
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     /// <summary>
     /// FontAwesome.ttf V4.7
@@ -1251,6 +1250,5 @@ namespace Sunny.UI
         public const int icon_clipboard = 0xe0e6;
     }
 
-#pragma warning restore CS0618 // 类型或成员已过时
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 }
