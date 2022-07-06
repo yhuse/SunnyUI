@@ -454,7 +454,7 @@ namespace Sunny.UI
         public virtual void Init()
         {
             Initialize?.Invoke(this, new EventArgs());
-            Frame.DealPageSelected(this);
+            Frame?.DealPageSelected(this);
         }
 
         protected override void OnLoad(EventArgs e)

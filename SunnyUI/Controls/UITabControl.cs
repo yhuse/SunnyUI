@@ -850,7 +850,7 @@ namespace Sunny.UI
             {
                 if (AutoClosePage)
                 {
-                    Frame.DealPageRemoved(pages[i]);
+                    Frame?.DealPageRemoved(pages[i]);
 
                     try
                     {
