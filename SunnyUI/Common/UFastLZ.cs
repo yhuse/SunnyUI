@@ -25,6 +25,8 @@
  * compressed form.
  *
  * 2022-03-31: V3.1.2 增加文件说明
+ * 2022-07-07: V3.2.1 增加了扩展的自定义压缩解压方法
+ * 2022-07-07: V3.2.1 增加内置FastLZx86.dll、FastLZx64.dll资源文件
  ******************************************************************************
  * 压缩函数
  * int fastlz_compress_level(int level, const void* input, int length, void* output);
@@ -53,11 +55,23 @@
  ******************************************************************************
  * 扩展CompressEx，DecompressEx
  * 扩展压缩结果增加16个字节头部和8个字节尾部，以!开头，\r\n结尾
- * 16个字节头部:8字节标识(!FastLZ )+4字节(输出缓冲区的所能容纳的最大长度maxout)+4字节(当前数据大小)
- * 8个字节尾部:4字节(保留)+1字节(*)+1字节(CRC,累加和,0不判断)+2字节(\r\n)
+ * 20个字节头部:
+ *    4字节标识(!FLZ)
+ *    4字节时间戳高位，精确到秒Seconds，这是Unix时间戳，以Jan1st1970开始的秒数（可空）
+ *    4字节时间戳低位，能够精确到毫秒Milliseconds（可空）
+ *    4字节(输出缓冲区的所能容纳的最大长度maxout)
+ *    4字节(当前数据大小)
+ * 8个字节尾部:
+ *    4字节序号（可空）
+ *    1字节(*)
+ *    1字节(CRC,累加和,0不判断)
+ *    2字节(\r\n)
+ ******************************************************************************
+ * FastLZx86.dll、FastLZx64.dll见项目 https://gitee.com/yhuse/SunnyUI.FastLZ
 ******************************************************************************/
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Sunny.UI
@@ -168,9 +182,35 @@ namespace Sunny.UI
             }
         }
 
-        private static byte[] ExHead = "!FastLZ".ToEnBytes(8);
-        private const int ExHeadAllLength = 16;
+        private static byte[] ExHead = "!FLZ".ToEnBytes(4);
+        private const int ExHeadAllLength = 20;
         private const int ExTailAllLength = 8;
+        private static DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        /// <summary>
+        /// 压缩(扩展）
+        /// </summary>
+        /// <param name="input">输入</param>
+        /// <param name="begin">起始位置</param>
+        /// <param name="length">长度</param>
+        /// <param name="datetime">时间</param>
+        /// <param name="index">索引</param>
+        /// <returns>压缩结果</returns>
+        public static byte[] CompressEx(byte[] input, int begin, int length, DateTime dateTime, int index)
+        {
+            byte[] result = CompressEx(input, begin, length);
+            if (result.Length > 0)
+            {
+                TimeSpan span = dateTime - Jan1st1970;
+                int totalSeconds = (int)span.TotalSeconds;
+                int milliseconds = span.Milliseconds;
+                Array.Copy(BitConverter.GetBytes(totalSeconds), 0, result, 4, 4);
+                Array.Copy(BitConverter.GetBytes(milliseconds), 0, result, 8, 4);
+                Array.Copy(BitConverter.GetBytes(index), 0, result, result.Length - 8, 4);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// 压缩(扩展）
@@ -189,18 +229,21 @@ namespace Sunny.UI
             {
                 int outlen = Is64bitApp() ? FastLZx64.FastLZ_Compress(pSrc1, length, pSrc2) : FastLZx86.FastLZ_Compress(pSrc1, length, pSrc2);
                 result = new byte[outlen + ExHeadAllLength + ExTailAllLength];
+
                 Array.Copy(ExHead, 0, result, 0, ExHead.Length);
-                Array.Copy(BitConverter.GetBytes((int)output.Length), 0, result, 8, 4);
-                Array.Copy(BitConverter.GetBytes((int)outlen), 0, result, 12, 4);
-                Array.Copy(output, 0, result, 16, outlen);
-                result[result.Length - 1 - 7] = 0;  //保留
-                result[result.Length - 1 - 6] = 0;  //保留
-                result[result.Length - 1 - 5] = 0;  //保留
-                result[result.Length - 1 - 4] = 0;  //保留
-                result[result.Length - 1 - 3] = 42; //*
-                result[result.Length - 1 - 2] = 0;  //CRC
-                result[result.Length - 1 - 1] = 13; //\r
-                result[result.Length - 1 - 0] = 10; //\n
+                Array.Copy(BitConverter.GetBytes((int)0), 0, result, 4, 4);
+                Array.Copy(BitConverter.GetBytes((int)0), 0, result, 8, 4);
+                Array.Copy(BitConverter.GetBytes((int)output.Length), 0, result, 12, 4);
+                Array.Copy(BitConverter.GetBytes((int)outlen), 0, result, 16, 4);
+
+                Array.Copy(output, 0, result, ExHeadAllLength, outlen);
+                Array.Copy(BitConverter.GetBytes((int)0), 0, result, result.Length - 8, 4);
+
+                result[result.Length - 4] = 42; //*
+                result[result.Length - 3] = 0;  //CRC
+                result[result.Length - 2] = 13; //\r
+                result[result.Length - 1] = 10; //\n
+
                 return result;
             }
         }
@@ -219,7 +262,7 @@ namespace Sunny.UI
             if (begin + length > input.Length) return result;
             if (input[begin] != 33) return result;
             if (input[begin + length - 4] != 42) return result;
-            if (length != BitConverter.ToInt32(input, begin + 12) + ExHeadAllLength + ExTailAllLength) return result;
+            if (length != BitConverter.ToInt32(input, begin + 16) + ExHeadAllLength + ExTailAllLength) return result;
 
             byte[] output = new byte[BitConverter.ToInt32(input, begin + ExHead.Length)];
             fixed (byte* pSrc1 = &input[begin + ExHeadAllLength])
@@ -230,6 +273,68 @@ namespace Sunny.UI
                 result = new byte[outlen];
                 Array.Copy(output, 0, result, 0, outlen);
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// 解压缩(扩展）
+        /// </summary>
+        /// <param name="input">输入</param>
+        /// <param name="begin">起始位置</param>
+        /// <param name="length">长度</param>
+        /// <param name="datetime">时间</param>
+        /// <param name="index">索引</param>
+        /// <returns>解压缩结果</returns>
+        public static byte[] DecompressEx(byte[] input, int begin, int length, out DateTime datetime, out int index)
+        {
+            byte[] result = DecompressEx(input, begin, length);
+
+            datetime = Jan1st1970;
+            index = 0;
+            if (result.Length > 0)
+            {
+                datetime = Jan1st1970.AddSeconds(BitConverter.ToInt32(input, begin + 4)).AddMilliseconds(BitConverter.ToInt32(input, begin + 8));
+                index = BitConverter.ToInt32(input, begin + length - 8);
+            }
+
+            return result;
+        }
+
+        public static bool CheckFastLZDll()
+        {
+            if (File.Exists(DirEx.CurrentDir() + "FastLZx86.dll") && File.Exists(DirEx.CurrentDir() + "FastLZx64.dll")) return true;
+
+            try
+            {
+                CreateResourceToFile(DirEx.CurrentDir() + "FastLZx86.dll", "Sunny.UI.Common.FastLZx86.dat");
+                CreateResourceToFile(DirEx.CurrentDir() + "FastLZx64.dll", "Sunny.UI.Common.FastLZx64.dat");
+            }
+            catch
+            {
+                return false;
+            }
+
+            return File.Exists(DirEx.CurrentDir() + "FastLZx86.dll") && File.Exists(DirEx.CurrentDir() + "FastLZx64.dll");
+        }
+
+        /// <summary>
+        /// 从系统资源中保存字体文件
+        /// </summary>
+        /// <param name="file">字体文件名</param>
+        /// <param name="resource">资源名称</param>
+        private static void CreateResourceToFile(string file, string resource)
+        {
+            if (!File.Exists(file))
+            {
+                Stream fontStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
+                if (fontStream != null)
+                {
+                    byte[] buffer = new byte[fontStream.Length];
+                    fontStream.Read(buffer, 0, (int)fontStream.Length);
+                    fontStream.Close();
+
+                    File.WriteAllBytes(file, buffer);
+                }
             }
         }
     }
