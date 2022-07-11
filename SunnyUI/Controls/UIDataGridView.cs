@@ -39,6 +39,7 @@
  *                    AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
  *                    RowTemplate.Height 设置为高度
  * 2022-06-22: V3.2.0 删除 ShowRect、ShowGridLine、RowHeight三个属性
+ * 2022-07-11: V3.2.1 修复一处滚动条的显示位置
 ******************************************************************************/
 
 using System;
@@ -440,7 +441,7 @@ namespace Sunny.UI
 
                 HBar.Left = 2;
                 HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
-                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
+                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 3;
                 HBar.Top = Height - HBar.Height - 2;
                 HBar.BringToFront();
             }
