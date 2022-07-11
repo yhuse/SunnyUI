@@ -318,20 +318,20 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 从系统资源中保存字体文件
+        /// 从系统资源中保存文件
         /// </summary>
-        /// <param name="file">字体文件名</param>
+        /// <param name="file">文件名</param>
         /// <param name="resource">资源名称</param>
         private static void CreateResourceToFile(string file, string resource)
         {
             if (!File.Exists(file))
             {
-                Stream fontStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
-                if (fontStream != null)
+                Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
+                if (stream != null)
                 {
-                    byte[] buffer = new byte[fontStream.Length];
-                    fontStream.Read(buffer, 0, (int)fontStream.Length);
-                    fontStream.Close();
+                    byte[] buffer = new byte[stream.Length];
+                    stream.Read(buffer, 0, (int)stream.Length);
+                    stream.Close();
 
                     File.WriteAllBytes(file, buffer);
                 }

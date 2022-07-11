@@ -32,6 +32,7 @@
  * 2022-01-09: V3.1.0 双坐标轴支持选区域缩放
  * 2022-02-09: V3.1.0 增加图线隐藏
  * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
+ * 2022-07-11: V3.2.1 修改两个点时可以不显示连接线
 ******************************************************************************/
 
 using System;
@@ -455,15 +456,15 @@ namespace Sunny.UI
                 return;
             }
 
-            if (series.Points.Count == 2)
-            {
-                using (Pen pen = new Pen(color, series.Width))
-                {
-                    g.DrawTwoPoints(pen, series.Points[0], series.Points[1], DrawRect);
-                }
-
-                return;
-            }
+            //if (series.Points.Count == 2)
+            //{
+            //    using (Pen pen = new Pen(color, series.Width))
+            //    {
+            //        g.DrawTwoPoints(pen, series.Points[0], series.Points[1], DrawRect);
+            //    }
+            //
+            //    return;
+            //}
 
             if (series.ShowLine || series.Symbol == UILinePointSymbol.None)
             {
