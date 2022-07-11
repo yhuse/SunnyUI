@@ -451,12 +451,13 @@ namespace Sunny.UI
 
             if (bar != null)
             {
-                bar.ForeColor = uiColor.PrimaryColor;
+                bar.ForeColor = uiColor.ListBarForeColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
                 bar.PressColor = uiColor.ButtonFillPressColor;
-                bar.FillColor = uiColor.GridBarFillColor;
-                scrollBarColor = uiColor.PrimaryColor;
-                scrollBarBackColor = uiColor.GridBarFillColor;
+                bar.FillColor = uiColor.ListBarFillColor;
+
+                scrollBarColor = uiColor.ListBarForeColor;
+                scrollBarBackColor = uiColor.ListBarFillColor;
             }
 
             hoverColor = uiColor.ListItemHoverColor;

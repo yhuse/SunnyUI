@@ -40,6 +40,7 @@
  *                    RowTemplate.Height 设置为高度
  * 2022-06-22: V3.2.0 删除 ShowRect、ShowGridLine、RowHeight三个属性
  * 2022-07-11: V3.2.1 修复一处滚动条的显示位置
+ * 2022-07-11: V3.2.1 增加滚动条边框线的设置
 ******************************************************************************/
 
 using System;
@@ -439,10 +440,10 @@ namespace Sunny.UI
                 VBar.Height = Height - 2;
                 VBar.BringToFront();
 
-                HBar.Left = 2;
+                HBar.Left = 1;
                 HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
-                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 3;
-                HBar.Top = Height - HBar.Height - 2;
+                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
+                HBar.Top = Height - HBar.Height - 1;
                 HBar.BringToFront();
             }
             else
@@ -555,27 +556,25 @@ namespace Sunny.UI
             StripeEvenColor = uiColor.GridStripeEvenColor;
             StripeOddColor = uiColor.GridStripeOddColor;
 
-            HBar.FillColor = VBar.FillColor = uiColor.GridBarFillColor;
-            HBar.ForeColor = VBar.ForeColor = uiColor.GridBarForeColor;
-            VBar.RectColor = uiColor.RectColor;
-
             if (HBar != null)
             {
-                HBar.ForeColor = uiColor.PrimaryColor;
+                HBar.ForeColor = uiColor.GridBarForeColor;
                 HBar.HoverColor = uiColor.ButtonFillHoverColor;
                 HBar.PressColor = uiColor.ButtonFillPressColor;
                 HBar.FillColor = uiColor.GridBarFillColor;
-                scrollBarColor = uiColor.PrimaryColor;
+                //HBar.RectColor = uiColor.RectColor;
+                scrollBarColor = uiColor.GridBarForeColor;
                 scrollBarBackColor = uiColor.GridBarFillColor;
             }
 
             if (VBar != null)
             {
-                VBar.ForeColor = uiColor.PrimaryColor;
+                VBar.ForeColor = uiColor.GridBarForeColor;
                 VBar.HoverColor = uiColor.ButtonFillHoverColor;
                 VBar.PressColor = uiColor.ButtonFillPressColor;
                 VBar.FillColor = uiColor.GridBarFillColor;
-                scrollBarColor = uiColor.PrimaryColor;
+                scrollBarRectColor = VBar.RectColor = uiColor.RectColor;
+                scrollBarColor = uiColor.GridBarForeColor;
                 scrollBarBackColor = uiColor.GridBarFillColor;
             }
         }
@@ -797,6 +796,20 @@ namespace Sunny.UI
                 scrollBarColor = value;
                 HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
                 VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarRectColor = Color.FromArgb(80, 160, 255);
+
+        public Color ScrollBarRectColor
+        {
+            get => scrollBarRectColor;
+            set
+            {
+                scrollBarRectColor = value;
+                VBar.RectColor = value;
                 _style = UIStyle.Custom;
                 Invalidate();
             }
