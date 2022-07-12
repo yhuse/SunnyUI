@@ -87,6 +87,12 @@ namespace Sunny.UI
             view.AfterLabelEdit += View_AfterLabelEdit;
         }
 
+        internal int DrawLeft(TreeNode node)
+        {
+            if (view == null || node == null) return 0;
+            return view.DrawLeft(node);
+        }
+
         public void SetNodePainter(TreeNode node, Color backColor, Color foreColor)
         {
             if (view.IsNull()) return;
@@ -878,6 +884,17 @@ namespace Sunny.UI
                     OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Default));
                     CurrentNode = null;
                 }
+            }
+
+            public int DrawLeft(TreeNode node)
+            {
+                int drawLeft;
+                if (!HBar.Visible)
+                    drawLeft = (node.Level + 1) * Indent + 3;
+                else
+                    drawLeft = -(int)(Width * HBar.Value * 1.0 / HBar.Maximum) + (node.Level + 1) * Indent + 3;
+
+                return drawLeft;
             }
 
             protected override void OnDrawNode(DrawTreeNodeEventArgs e)

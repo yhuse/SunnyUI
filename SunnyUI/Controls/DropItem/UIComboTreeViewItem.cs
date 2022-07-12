@@ -143,10 +143,13 @@ namespace Sunny.UI
         {
             if (!treeView.CheckBoxes)
             {
-                if (e.Node.Nodes.Count == 0 || CanSelectRootNode)
+                if (e.Location.X > treeView.DrawLeft(e.Node))
                 {
-                    DoValueChanged(this, e.Node);
-                    Close();
+                    if (e.Node.Nodes.Count == 0 || CanSelectRootNode)
+                    {
+                        DoValueChanged(this, e.Node);
+                        Close();
+                    }
                 }
             }
         }

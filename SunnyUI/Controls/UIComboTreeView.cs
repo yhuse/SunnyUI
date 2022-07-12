@@ -20,6 +20,7 @@
  * 2021-11-11: V3.0.0 增加文件说明
  * 2022-05-15: V3.0.8 显示CheckBoxes时自己选中节点文字可切换状态
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
+ * 2022-07-12: V3.2.1 修复CanSelectRootNode时可以展开子节点
 ******************************************************************************/
 
 using System;
@@ -40,6 +41,8 @@ namespace Sunny.UI
             InitializeComponent();
             fullControlSelect = true;
             CreateInstance();
+            DropDownWidth = 250;
+            DropDownHeight = 220;
         }
 
         private void InitializeComponent()
@@ -54,9 +57,6 @@ namespace Sunny.UI
             this.ButtonClick += this.UIComboTreeView_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
-
-            DropDownWidth = 250;
-            DropDownHeight = 220;
         }
 
         [DefaultValue(250)]

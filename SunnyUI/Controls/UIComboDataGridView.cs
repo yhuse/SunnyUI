@@ -48,9 +48,6 @@ namespace Sunny.UI
             this.ButtonClick += UIComboDataGridView_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
-
-            DropDownWidth = 500;
-            DropDownHeight = 300;
         }
 
         public event OnComboDataGridViewFilterChanged FilterChanged;
@@ -89,6 +86,8 @@ namespace Sunny.UI
             InitializeComponent();
             fullControlSelect = true;
             CreateInstance();
+            DropDownWidth = 500;
+            DropDownHeight = 300;
         }
 
         /// <summary>
