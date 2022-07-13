@@ -37,6 +37,32 @@ namespace Sunny.UI
     public static class FileEx
     {
         /// <summary>
+        /// 调用WINAPIf复制文件
+        /// </summary>
+        /// <param name="sourceFileName"></param>
+        /// <param name="targetFileName"></param>
+        /// <param name="bFailIfExists"></param>
+        /// <returns></returns>
+        public static bool Copy(this string sourceFileName, string targetFileName, bool bFailIfExists = true)
+        {
+            if (File.Exists(sourceFileName))
+            {
+                return Win32.Kernel.CopyFile(sourceFileName, targetFileName, bFailIfExists);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 调用WINAPI删除文件
+        /// </summary>
+        /// <param name="lpFileName">文件</param>
+        public static int DeleteFile(string lpFileName)
+        {
+            return Win32.Kernel.DeleteFile(lpFileName);
+        }
+
+        /// <summary>
         /// 打开文件夹对话框
         /// </summary>
         /// <param name="filename">返回True时，获取文件名</param>

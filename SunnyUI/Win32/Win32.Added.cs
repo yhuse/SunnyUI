@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace Sunny.UI.Win32
@@ -161,6 +163,10 @@ namespace Sunny.UI.Win32
 
     public partial class Kernel
     {
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        public static extern Int32 CompareStringEx(string localeName, int flags, string str1, int count1, string str2,
+                int count2, IntPtr versionInformation, IntPtr reserved, int param);
+
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenThread(int dwDesiredAccess, bool bInheritHandle, IntPtr dwThreadId);
 
@@ -177,6 +183,49 @@ namespace Sunny.UI.Win32
         //从指定内存中读取字节集数据
         [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, IntPtr lpNumberOfBytesRead);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool CopyFile(string lpExistingFileName, string lpNewFileName, bool bFailIfExists);
+    }
+
+    internal class NatualOrderingComparer : IComparer<string>
+    {
+        static readonly Int32 NORM_IGNORECASE = 0x00000001;
+        static readonly Int32 NORM_IGNORENONSPACE = 0x00000002;
+        static readonly Int32 NORM_IGNORESYMBOLS = 0x00000004;
+        static readonly Int32 LINGUISTIC_IGNORECASE = 0x00000010;
+        static readonly Int32 LINGUISTIC_IGNOREDIACRITIC = 0x00000020;
+        static readonly Int32 NORM_IGNOREKANATYPE = 0x00010000;
+        static readonly Int32 NORM_IGNOREWIDTH = 0x00020000;
+        static readonly Int32 NORM_LINGUISTIC_CASING = 0x08000000;
+        static readonly Int32 SORT_STRINGSORT = 0x00001000;
+        static readonly Int32 SORT_DIGITSASNUMBERS = 0x00000008;
+
+        static readonly String LOCALE_NAME_USER_DEFAULT = null;
+        static readonly String LOCALE_NAME_INVARIANT = String.Empty;
+        static readonly String LOCALE_NAME_SYSTEM_DEFAULT = "!sys-default-locale";
+
+        readonly String locale;
+
+        public NatualOrderingComparer() : this(CultureInfo.CurrentCulture)
+        {
+        }
+
+        public NatualOrderingComparer(CultureInfo cultureInfo)
+        {
+            if (cultureInfo.IsNeutralCulture)
+                this.locale = LOCALE_NAME_INVARIANT;
+            else
+                this.locale = cultureInfo.Name;
+        }
+
+        public Int32 Compare(String x, String y)
+        {
+            // CompareStringEx return 1, 2, or 3. Subtract 2 to get the return value.
+            return Kernel.CompareStringEx(this.locale, SORT_DIGITSASNUMBERS, // Add other flags if required.
+              x, x.Length, y, y.Length, IntPtr.Zero, IntPtr.Zero, 0) - 2;
+        }
     }
 
     public partial class WinMM

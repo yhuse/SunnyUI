@@ -1,4 +1,8 @@
-﻿namespace Sunny.UI
+﻿using Sunny.UI.Win32;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Sunny.UI
 {
     /// <summary>
     /// 其他
@@ -63,6 +67,22 @@
         public static bool IsNanOrInfinity(this float d)
         {
             return d.IsNan() || d.IsInfinity();
+        }
+
+        /// <summary>
+        /// 自然排序
+        /// </summary>
+        /// <param name="strs">字符串列表</param>
+        /// <returns>自然排序结果</returns>
+        /// var names = new [] { "2.log", "10.log", "1.log" };
+        /// 排序结果：
+        /// 1.log
+        /// 2.log
+        /// 10.log
+        public static IOrderedEnumerable<string> NatualOrdering(this IEnumerable<string> strs)
+        {
+            if (strs == null) return null;
+            return strs.OrderBy(s => s, new NatualOrderingComparer());
         }
     }
 }

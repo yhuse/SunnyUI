@@ -33,6 +33,28 @@ namespace Sunny.UI
     public static class DirEx
     {
         /// <summary>
+        /// 调用WINAPI删除文件夹
+        /// </summary>
+        /// <param name="directory">文件夹</param>
+        public static void Delete(this string directory)
+        {
+            if (Directory.Exists(directory))
+            {
+                var files = Directory.EnumerateFiles(directory, "*", SearchOption.AllDirectories);
+                foreach (string file in files)
+                {
+                    Win32.Kernel.DeleteFile(file);
+                }
+
+                var directories = Directory.EnumerateDirectories(directory, "*", SearchOption.AllDirectories);
+                foreach (string dir in directories)
+                {
+                    Directory.Delete(dir, true);
+                }
+            }
+        }
+
+        /// <summary>
         /// 当前可执行文件路径，末尾包括文件夹分隔符(windows为\，linux为/)
         /// </summary>
         /// <returns>结果</returns>
