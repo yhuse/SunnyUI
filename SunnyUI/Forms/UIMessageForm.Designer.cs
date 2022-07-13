@@ -30,7 +30,7 @@
         {
             this.btnCancel = new Sunny.UI.UIButton();
             this.btnOK = new Sunny.UI.UIButton();
-            this.lbMsg = new System.Windows.Forms.RichTextBox();
+            this.lbMsg = new Sunny.UI.UIRichTextBox();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -74,15 +74,21 @@
             // lbMsg
             // 
             this.lbMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.lbMsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbMsg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.lbMsg.FillColor = System.Drawing.Color.White;
+            this.lbMsg.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbMsg.Location = new System.Drawing.Point(14, 50);
+            this.lbMsg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lbMsg.MinimumSize = new System.Drawing.Size(1, 1);
             this.lbMsg.Name = "lbMsg";
+            this.lbMsg.Padding = new System.Windows.Forms.Padding(2);
+            this.lbMsg.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.lbMsg.ReadOnly = true;
-            this.lbMsg.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.lbMsg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.lbMsg.ShowText = false;
             this.lbMsg.Size = new System.Drawing.Size(422, 158);
             this.lbMsg.TabIndex = 7;
-            this.lbMsg.Text = "";
+            this.lbMsg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbMsg.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // UIMessageForm
             // 
@@ -107,6 +113,6 @@
 
         private UIButton btnCancel;
         private UIButton btnOK;
-        private System.Windows.Forms.RichTextBox lbMsg;
+        private UIRichTextBox lbMsg;
     }
 }

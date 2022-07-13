@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-11-09: V3.0.8 多个按钮显示时增加FocusLine
+ * 2022-07-13: V3.2.1 消息弹窗文本增加滚动条
 ******************************************************************************/
 
 using System;
@@ -141,8 +142,10 @@ namespace Sunny.UI
             if (lbMsg != null)
             {
                 lbMsg.ForeColor = uiColor.LabelForeColor;
-                lbMsg.BackColor = BackColor;
+                lbMsg.BackColor = uiColor.PlainColor;
+                lbMsg.FillColor = uiColor.PlainColor;
                 lbMsg.SelectionColor = RectColor;
+                lbMsg.ScrollBarColor = uiColor.RectColor;
             }
         }
 
