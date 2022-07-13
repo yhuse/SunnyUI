@@ -191,20 +191,20 @@ namespace Sunny.UI.Win32
 
     internal class NatualOrderingComparer : IComparer<string>
     {
-        static readonly Int32 NORM_IGNORECASE = 0x00000001;
-        static readonly Int32 NORM_IGNORENONSPACE = 0x00000002;
-        static readonly Int32 NORM_IGNORESYMBOLS = 0x00000004;
-        static readonly Int32 LINGUISTIC_IGNORECASE = 0x00000010;
-        static readonly Int32 LINGUISTIC_IGNOREDIACRITIC = 0x00000020;
-        static readonly Int32 NORM_IGNOREKANATYPE = 0x00010000;
-        static readonly Int32 NORM_IGNOREWIDTH = 0x00020000;
-        static readonly Int32 NORM_LINGUISTIC_CASING = 0x08000000;
-        static readonly Int32 SORT_STRINGSORT = 0x00001000;
+        //static readonly Int32 NORM_IGNORECASE = 0x00000001;
+        //static readonly Int32 NORM_IGNORENONSPACE = 0x00000002;
+        //static readonly Int32 NORM_IGNORESYMBOLS = 0x00000004;
+        //static readonly Int32 LINGUISTIC_IGNORECASE = 0x00000010;
+        //static readonly Int32 LINGUISTIC_IGNOREDIACRITIC = 0x00000020;
+        //static readonly Int32 NORM_IGNOREKANATYPE = 0x00010000;
+        //static readonly Int32 NORM_IGNOREWIDTH = 0x00020000;
+        //static readonly Int32 NORM_LINGUISTIC_CASING = 0x08000000;
+        //static readonly Int32 SORT_STRINGSORT = 0x00001000;
         static readonly Int32 SORT_DIGITSASNUMBERS = 0x00000008;
 
-        static readonly String LOCALE_NAME_USER_DEFAULT = null;
+        //static readonly String LOCALE_NAME_USER_DEFAULT = null;
         static readonly String LOCALE_NAME_INVARIANT = String.Empty;
-        static readonly String LOCALE_NAME_SYSTEM_DEFAULT = "!sys-default-locale";
+        //static readonly String LOCALE_NAME_SYSTEM_DEFAULT = "!sys-default-locale";
 
         readonly String locale;
 

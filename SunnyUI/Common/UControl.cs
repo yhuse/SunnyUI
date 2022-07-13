@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -543,12 +544,64 @@ namespace Sunny.UI
         public static void Disabled(this Control ctrl)
         {
             ctrl.Enabled = false;
-            ctrl.Hide();
         }
 
         public static void Invisible(this Control ctrl)
         {
             ctrl.Visible = false;
+        }
+
+        private static ConcurrentDictionary<string, Point> DragCtrlsPosition = new ConcurrentDictionary<string, Point>();
+        private static ConcurrentDictionary<string, bool> DragCtrlsMouseDown = new ConcurrentDictionary<string, bool>();
+        private static List<string> DragCtrlsAlreadyDrag = new List<string>();
+
+        public static void AddDragEvent(this Control ctrl)
+        {
+            if (DragCtrlsPosition.NotContainsKey(ctrl.Name))
+            {
+                DragCtrlsPosition.TryAdd(ctrl.Name, new Point());
+                DragCtrlsMouseDown.TryAdd(ctrl.Name, false);
+
+                if (DragCtrlsAlreadyDrag.Contains(ctrl.Name)) return;
+                DragCtrlsAlreadyDrag.Add(ctrl.Name);
+
+                ctrl.MouseDown += (s, e) =>
+                {
+                    if (DragCtrlsMouseDown.ContainsKey(ctrl.Name))
+                        DragCtrlsMouseDown[ctrl.Name] = true;
+
+                    if (DragCtrlsPosition.ContainsKey(ctrl.Name))
+                        DragCtrlsPosition[ctrl.Name] = new Point(e.X, e.Y);
+                };
+
+                ctrl.MouseUp += (s, e) =>
+                {
+                    if (DragCtrlsMouseDown.ContainsKey(ctrl.Name))
+                        DragCtrlsMouseDown[ctrl.Name] = false;
+                };
+
+                ctrl.MouseMove += (s, e) =>
+                {
+                    if (DragCtrlsMouseDown.ContainsKey(ctrl.Name) && DragCtrlsPosition.ContainsKey(ctrl.Name))
+                    {
+                        if (DragCtrlsMouseDown[ctrl.Name])
+                        {
+                            int left = ctrl.Left + e.X - DragCtrlsPosition[ctrl.Name].X;
+                            int top = ctrl.Top + e.Y - DragCtrlsPosition[ctrl.Name].Y;
+                            ctrl.Location = new Point(left, top);
+                        }
+                    }
+                };
+            }
+        }
+
+        public static void RemoveDragEvent(this Control ctrl)
+        {
+            if (DragCtrlsPosition.ContainsKey(ctrl.Name))
+            {
+                DragCtrlsPosition.TryRemove(ctrl.Name, out _);
+                DragCtrlsMouseDown.TryRemove(ctrl.Name, out _);
+            }
         }
     }
 }
