@@ -36,9 +36,11 @@
  * 2022-05-06: V3.1.8 可拖拽时Padding可以调整大小
  * 2022-06-11: V3.1.9 弹窗默认关闭半透明遮罩
  * 2022-07-05: V3.2.1 多页面框架增加PageAdded，PageSelected，PageRemoved事件
+ * 2022-07-14: V3.2.1 增加UnRegisterHotKey，卸载全局热键
 ******************************************************************************/
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -1690,20 +1692,31 @@ namespace Sunny.UI
 
         public void RegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
         {
-            if (hotKeys == null) hotKeys = new Dictionary<int, HotKey>();
+            if (hotKeys == null) hotKeys = new ConcurrentDictionary<int, HotKey>();
 
             int id = HotKey.CalculateID(modifierKey, key);
             if (!hotKeys.ContainsKey(id))
             {
                 HotKey newHotkey = new HotKey(modifierKey, key);
-                this.hotKeys.Add(id, newHotkey);
+                hotKeys.TryAdd(id, newHotkey);
                 Win32.User.RegisterHotKey(Handle, id, (int)newHotkey.ModifierKey, (int)newHotkey.Key);
+            }
+        }
+
+        public void UnRegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
+        {
+            if (hotKeys == null) return;
+            int id = HotKey.CalculateID(modifierKey, key);
+            if (hotKeys.ContainsKey(id))
+            {
+                hotKeys.TryRemove(id, out _);
+                Win32.User.UnregisterHotKey(Handle, id);
             }
         }
 
         public event HotKeyEventHandler HotKeyEventHandler;
 
-        private Dictionary<int, HotKey> hotKeys;
+        private ConcurrentDictionary<int, HotKey> hotKeys;
 
         #region 拉拽调整窗体大小
 
