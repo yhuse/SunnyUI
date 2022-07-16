@@ -135,6 +135,7 @@ namespace Sunny.UI
         private void waterMarkContainer_Click(object sender, EventArgs e)
         {
             this.Focus();
+            base.OnClick(EventArgs.Empty);
         }
 
         /// <summary>
