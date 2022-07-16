@@ -17,6 +17,7 @@
  * 创建日期: 2020-10-01
  *
  * 2020-10-01: V2.2.8 完成曲线图表设置类
+ * 2022-07-15: V3.2.1 增加移除线的操作
 ******************************************************************************/
 
 using System;
@@ -66,7 +67,10 @@ namespace Sunny.UI
 
         public UILineSeries AddSeries(UILineSeries series)
         {
+            if (series == null) return null;
             if (series.Name.IsNullOrEmpty()) return null;
+            if (ExistsSeries(series.Name)) return series;
+
             series.Index = Series.Count;
             Series.TryAdd(series.Name, series);
             return series;
@@ -75,9 +79,25 @@ namespace Sunny.UI
         public UILineSeries AddSeries(string seriesName, bool isY2 = false)
         {
             if (seriesName.IsNullOrEmpty()) return null;
+            if (ExistsSeries(seriesName)) return Series[seriesName];
+
             UILineSeries series = new UILineSeries(seriesName, isY2);
             AddSeries(series);
             return series;
+        }
+
+        public bool ExistsSeries(string seriesName)
+        {
+            return seriesName.IsValid() && Series.ContainsKey(seriesName);
+        }
+
+        public void RemoveSeries(string seriesName)
+        {
+            if (ExistsSeries(seriesName))
+            {
+                Clear(seriesName);
+                Series.TryRemove(seriesName, out _);
+            }
         }
 
         public void AddData(string seriesName, double x, double y)
