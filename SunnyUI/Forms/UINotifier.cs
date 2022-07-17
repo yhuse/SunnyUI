@@ -28,9 +28,10 @@
 //      If you are looking for something professional, you can do it by yourself and of course share it!
 //
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -80,7 +81,7 @@ namespace Sunny.UI
             }
         }
 
-        private static readonly List<UINotifier> Notes = new List<UINotifier>(); // Keep a list of the opened Notifiers
+        private static readonly ConcurrentDictionary<short, UINotifier> Notes = new ConcurrentDictionary<short, UINotifier>(); // Keep a list of the opened Notifiers
 
         private NoteLocation noteLocation;                              // Note position
         private short ID;                    // Note ID
@@ -116,11 +117,10 @@ namespace Sunny.UI
             InApplication = insideMe;
 
             InitializeComponent();
-
-            foreach (var nt in Notes)                                   // Use the latest available ID from the note list
-                if (nt.ID > ID)
-                    ID = nt.ID;
-            ID++;                                                       // Set the Note ID
+            if (Notes.Count == 0)
+                ID = 1;
+            else
+                ID = (short)(Notes.Keys.Max() + 1);                                                       // Set the Note ID
 
             if (insideMe != null && !inAppNoteExists())                 // Register the drag and resize events
             {
@@ -144,7 +144,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private void inApp_LocationChanged(object sender, EventArgs e)
         {
-            foreach (var note in Notes)
+            foreach (var note in Notes.Values)
             {
                 if (note.InApplication != null)
                 {
@@ -414,7 +414,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private void closeMe()
         {
-            Notes.Remove(this);
+            Notes.TryRemove(this.ID, out _);
             Close();
 
             if (Notes.Count == 0)
@@ -426,11 +426,12 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private bool inAppNoteExists()
         {
-            foreach (var note in Notes)
+            foreach (var note in Notes.Values)
             {
                 if (note.InApplication != null)
                     return true;
             }
+
             return false;
         }
 
@@ -439,12 +440,10 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private bool isLocationAlreadyUsed(NoteLocation location, UINotifier note)
         {
-            foreach (var p in Notes)
-                if (p.Left == location.X &&
-                    p.Top == location.Y)
+            foreach (var p in Notes.Values)
+                if (p.Left == location.X && p.Top == location.Y)
                 {
-                    if (note.InApplication != null &&
-                        p.ID == note.ID)
+                    if (note.InApplication != null && p.ID == note.ID)
                         return false;
                     return true;
                 }
@@ -456,10 +455,12 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         public static void CloseAll()
         {
-            for (int i = Notes.Count - 1; i >= 0; i--)
+            foreach (var note in Notes.Values)
             {
-                Notes[i].closeMe();
+                note.closeMe();
             }
+
+            Notes.Clear();
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------
@@ -518,7 +519,7 @@ namespace Sunny.UI
                     timer.RunWorkerAsync(not);                                      // Timer (temporary notes)
                 }
 
-                Notes.Add(not);                                                     // Add to our collection of Notifiers
+                Notes.TryAdd(not.ID, not);                                                     // Add to our collection of Notifiers
                 updated_note_id = not.ID;
             }
 
@@ -535,7 +536,7 @@ namespace Sunny.UI
             updated_note_id = 0;
             updated_note_occurence = 0;
 
-            foreach (var note in Notes)
+            foreach (var note in Notes.Values)
             {
                 short occurence = 0;
                 string filteredTitle = note.Title;
@@ -574,7 +575,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         public static void Update(short ID, string desc, UINotifierType noteType, string title)
         {
-            foreach (var note in Notes)
+            foreach (var note in Notes.Values)
             {
                 if (note.Tag != null &&                                     // Get the node
                     note.Tag.Equals("__Notifier|" + ID.ToString("X4")))
@@ -689,7 +690,7 @@ namespace Sunny.UI
                     break;
             }
 
-            Notes.Add(note);                                                    // Add to our collection of Notifiers
+            Notes.TryAdd(note.ID, note);                                                    // Add to our collection of Notifiers
             note.ShowInTaskbar = false;
             note.ShowDialog();
 
