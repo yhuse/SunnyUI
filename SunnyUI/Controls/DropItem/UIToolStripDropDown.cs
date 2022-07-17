@@ -31,7 +31,7 @@ namespace Sunny.UI
     {
         private UIDropDown itemForm;
 
-        public UIToolStripDropDown(UIDropDownItem item)
+        public UIToolStripDropDown(UIDropDownItem item, bool autoClose = true)
         {
             itemForm = new UIDropDown(item);
             itemForm.ValueChanged += ItemForm_ValueChanged;
@@ -39,6 +39,7 @@ namespace Sunny.UI
             itemForm.Closed += ItemForm_Closed;
             itemForm.Opened += ItemForm_Opened;
             itemForm.Opening += ItemForm_Opening;
+            itemForm.AutoClose = autoClose;
         }
 
         public Size ItemSize => itemForm.Size;

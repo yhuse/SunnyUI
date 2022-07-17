@@ -52,5 +52,14 @@ namespace Sunny.UI
         }
     }
 
+    public class UITextBoxSelectionArgs : EventArgs
+    {
+        public int SelectionStart { get; set; }
+
+        public string Text { get; set; }
+    }
+
+    public delegate void OnSelectionChanged(object sender, UITextBoxSelectionArgs e);
+
     public delegate void OnDateTimeChanged(object sender, UIDateTimeArgs e);
 }

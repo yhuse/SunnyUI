@@ -206,6 +206,20 @@ namespace Sunny.UI
             }
         }
 
+        public event OnSelectionChanged SelectionChanged;
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+            SelectionChanged?.Invoke(this, new UITextBoxSelectionArgs() { SelectionStart = this.SelectionStart, Text = this.Text });
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            SelectionChanged?.Invoke(this, new UITextBoxSelectionArgs() { SelectionStart = this.SelectionStart, Text = this.Text });
+        }
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (!Multiline)

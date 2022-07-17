@@ -87,7 +87,7 @@ namespace Sunny.UI
             view.AfterLabelEdit += View_AfterLabelEdit;
         }
 
-        internal int DrawLeft(TreeNode node)
+        public int DrawLeft(TreeNode node)
         {
             if (view == null || node == null) return 0;
             return view.DrawLeft(node);

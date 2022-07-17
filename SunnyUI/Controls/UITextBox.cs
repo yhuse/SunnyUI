@@ -35,6 +35,7 @@
  * 2022-04-11: V3.1.3 增加对按钮设置ToolTip
  * 2022-06-10: V3.1.9 尺寸改变时重绘
  * 2022-06-23: V3.2.0 重写水印文字，解决不同背景色下泛白的问题
+ * 2022-07-17: V3.2.1 增加SelectionChanged事件
 ******************************************************************************/
 
 using System;
@@ -91,6 +92,7 @@ namespace Sunny.UI
             edit.MouseDown += Edit_MouseDown;
             edit.MouseUp += Edit_MouseUp;
             edit.MouseMove += Edit_MouseMove;
+            edit.SelectionChanged += Edit_SelectionChanged;
 
             btn.Parent = this;
             btn.Visible = false;
@@ -121,6 +123,13 @@ namespace Sunny.UI
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
+
+        private void Edit_SelectionChanged(object sender, UITextBoxSelectionArgs e)
+        {
+            SelectionChanged?.Invoke(this, e);
+        }
+
+        public event OnSelectionChanged SelectionChanged;
 
         public void SetButtonToolTip(ToolTip toolTip, string tipText)
         {
