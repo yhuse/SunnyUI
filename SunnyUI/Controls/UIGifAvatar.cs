@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -130,6 +131,8 @@ namespace Sunny.UI
                 Active = atv;
             }
         }
+
+        private ConcurrentDictionary<int, Image> Images = new ConcurrentDictionary<int, Image>();
 
         private int avatarSize = 120;
 

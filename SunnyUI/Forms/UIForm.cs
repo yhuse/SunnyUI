@@ -37,6 +37,7 @@
  * 2022-06-11: V3.1.9 弹窗默认关闭半透明遮罩
  * 2022-07-05: V3.2.1 多页面框架增加PageAdded，PageSelected，PageRemoved事件
  * 2022-07-14: V3.2.1 增加UnRegisterHotKey，卸载全局热键
+ * 2022-07-25: V3.2.2 多页面框架增加程序关闭时调用UIPage的Final和FormClosed事件
 ******************************************************************************/
 
 using System;
@@ -1621,6 +1622,21 @@ namespace Sunny.UI
                 if (!this.ShowAskDialog(CloseAskString, false))
                 {
                     e.Cancel = true;
+                }
+            }
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+
+            if (MainTabControl != null)
+            {
+                foreach (var item in MainTabControl.GetControls<UIPage>(true))
+                {
+                    item.Final();
+                    item.Close();
+                    item.Dispose();
                 }
             }
         }
