@@ -1,5 +1,22 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-07\-25 V3.2.2    
+\* UIForm: 多页面框架增加PageAdded，PageSelected，PageRemoved事件    
+\* UIComboBox: 屏蔽FormatString的编辑器    
+\* UIFormHelper: 解决ShowNotifier打开多个，全部关闭时出错的问题    
+\* UITextBox: 增加SelectionChanged事件    
+\* UITextBox: 修复Click点击事件    
+\* UILineChartOption: 增加移除线的操作    
+\* UIForm: 增加UnRegisterHotKey，卸载全局热键    
+\* UIMessageBox: 消息弹窗文本增加滚动条    
+\* UIComboTreeView: 修复CanSelectRootNode时可以展开子节点    
+\* UIDataGridView: 增加滚动条边框线的设置    
+\* UIDataGridView: 修复一处滚动条的显示位置    
+\* UILineChart: 修改两个点时可以不显示连接线    
+\* FastLZ: 增加了扩展的自定义压缩解压方法    
+\* 增加几个通用函数    
+\* 增加XML文档文件    
+    
 #### 2022\-07\-03 V3.2.1    
 \+ UIGifAvatar: Gif动态头像    
 \+ UICalendar: 增加日历控件    
