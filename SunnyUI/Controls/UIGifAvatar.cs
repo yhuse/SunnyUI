@@ -17,6 +17,7 @@
  * 创建日期: 2022-07-01
  *
  * 2022-07-01: V3.2.0 增加文件说明
+ * 2022-07-25: V3.2.2 重写图片刷新流程，减少内存及GC
 ******************************************************************************/
 
 using System;
@@ -47,6 +48,7 @@ namespace Sunny.UI
         ~UIGifAvatar()
         {
             Active = false;
+            Clear();
         }
 
         /// <summary>
@@ -124,12 +126,43 @@ namespace Sunny.UI
                         }
                     }
 
-                    ShowImage();
+                    CalcImages();
                     Invalidate();
                 }
 
                 Active = atv;
             }
+        }
+
+        private void Clear()
+        {
+            foreach (var item in Images.Values)
+            {
+                item.Dispose();
+            }
+        }
+
+        private void CalcImages()
+        {
+            FrameIndex = -1;
+            Clear();
+
+            if (Image == null) return;
+
+            Images.Clear();
+            if (!IsGif)
+            {
+                Images.TryAdd(0, ScaleImage(0));
+            }
+            else
+            {
+                for (int i = 0; i < ImageCount; i++)
+                {
+                    Images.TryAdd(i, ScaleImage(i));
+                }
+            }
+
+            FrameIndex = 0;
         }
 
         private ConcurrentDictionary<int, Image> Images = new ConcurrentDictionary<int, Image>();
@@ -143,11 +176,10 @@ namespace Sunny.UI
             set
             {
                 avatarSize = value;
-                ShowImage();
+                CalcImages();
                 Invalidate();
             }
         }
-
 
         private int ImageCount;
         public bool IsGif => ImageCount > 0;
@@ -178,96 +210,66 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            ShowImage();
+            CalcImages();
             Invalidate();
         }
 
-        private Image RoundImage;
-
-        public void ShowImage()
-        {
-            int size = avatarSize;
-            if (Image == null)
-            {
-                return;
-            }
-
-            if (RoundImage != null)
-            {
-                if (RoundImage.Width != Width || RoundImage.Height != Height)
-                {
-                    RoundImage.Dispose();
-                    RoundImage = null;
-                }
-            }
-
-            if (RoundImage == null)
-            {
-                RoundImage = new Bitmap(Width, Height);
-            }
-
-            Graphics g = Graphics.FromImage(RoundImage);
-            g.Clear(FillColor);
-
-            float sc1 = Image.Width * 1.0f / size;
-            float sc2 = Image.Height * 1.0f / size;
-            int drawSize = Math.Min(Width, Height);
-            Image bmp = ScaleImage(Math.Min(sc1, sc2));
-            if (bmp != null)
-            {
-                g.DrawImage(bmp, (drawSize - avatarSize) / 2, (drawSize - avatarSize) / 2);
-                bmp.Dispose();
-            }
-
-            g.DrawEllipse(rectColor, new Rectangle((drawSize - AvatarSize) / 2, (drawSize - AvatarSize) / 2,
-                AvatarSize, AvatarSize), true, RectSize);
-        }
-
-        public bool ShowScore { get; set; } = true;
-
-        private Image ScaleImage(float size)
+        private Image ScaleImage(int frameIndex)
         {
             if (Image == null)
             {
                 return null;
             }
 
+            var img = new Bitmap(Width, Height);
+            Graphics g = img.Graphics();
+            g.Clear(FillColor);
+
+            float size = avatarSize;
+            float sc1 = Image.Width * 1.0f / size;
+            float sc2 = Image.Height * 1.0f / size;
+            size = Math.Min(sc1, sc2);
+
+            Bitmap scaleImage;
+            Bitmap result;
             if (!IsGif)
             {
-                Bitmap scaleImage = ((Bitmap)Image).ResizeImage((int)(Image.Width * 1.0 / size + 0.5),
-               (int)(Image.Height * 1.0 / size + 0.5));
-                Bitmap result = scaleImage.Split(avatarSize, UIShape.Circle);
-                scaleImage.Dispose();
-                return result;
+                scaleImage = ((Bitmap)Image).ResizeImage((int)(Image.Width * 1.0 / size + 0.5), (int)(Image.Height * 1.0 / size + 0.5));
+                result = scaleImage.Split(avatarSize, UIShape.Circle);
             }
             else
             {
                 FrameDimension fd = new FrameDimension(Image.FrameDimensionsList[0]);
-                Image.SelectActiveFrame(fd, FrameIndex);
+                Image.SelectActiveFrame(fd, frameIndex);
                 Bitmap imageEx = new Bitmap(Image.Width, Image.Height);
-                Graphics g = Graphics.FromImage(imageEx);
-                g.DrawImage(Image, new Point(0, 0));
-                Bitmap scaleImage = imageEx.ResizeImage((int)(Image.Width * 1.0 / size + 0.5), (int)(Image.Height * 1.0 / size + 0.5));
-                Bitmap result = scaleImage.Split(avatarSize, UIShape.Circle);
-                scaleImage.Dispose();
+                Graphics gx = Graphics.FromImage(imageEx);
+                gx.DrawImage(Image, new Point(0, 0));
+                scaleImage = imageEx.ResizeImage((int)(Image.Width * 1.0 / size + 0.5), (int)(Image.Height * 1.0 / size + 0.5));
+                result = scaleImage.Split(avatarSize, UIShape.Circle);
                 imageEx.Dispose();
-                return result;
             }
+
+            int drawSize = Math.Min(Width, Height);
+            g.DrawImage(result, (drawSize - avatarSize) / 2, (drawSize - avatarSize) / 2);
+            g.DrawEllipse(rectColor, new Rectangle((drawSize - AvatarSize) / 2, (drawSize - AvatarSize) / 2, AvatarSize, AvatarSize), true, RectSize);
+            scaleImage.Dispose();
+            result.Dispose();
+
+            return img;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            if (RoundImage != null)
-            {
-                e.Graphics.DrawImage(RoundImage, 0, 0);
-            }
-            else
+            if (Image == null || FrameIndex < 0 || FrameIndex >= Images.Count)
             {
                 int drawSize = Math.Min(Width, Height);
                 e.Graphics.FillEllipse(Color.Silver, new Rectangle((drawSize - AvatarSize) / 2, (drawSize - AvatarSize) / 2,
                     AvatarSize, AvatarSize), true);
+            }
+            else
+            {
+                e.Graphics.DrawImage(Images[FrameIndex], 0, 0);
             }
         }
 
@@ -286,7 +288,6 @@ namespace Sunny.UI
                     FrameIndex = 0;
                 }
 
-                ShowImage();
                 Invalidate();
             }
 
