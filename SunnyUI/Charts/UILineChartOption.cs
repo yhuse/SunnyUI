@@ -493,6 +493,8 @@ namespace Sunny.UI
         public double Y { get; set; }
 
         public Point Location { get; set; }
+
+        public bool IsY2 { get; set; }
     }
 
     public class UILineWarningArea

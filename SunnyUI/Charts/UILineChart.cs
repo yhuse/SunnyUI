@@ -33,6 +33,7 @@
  * 2022-02-09: V3.1.0 增加图线隐藏
  * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
  * 2022-07-11: V3.2.1 修改两个点时可以不显示连接线
+ * 2022-07-26: V3.2.2 修复双Y轴数据点提示文字显示
 ******************************************************************************/
 
 using System;
@@ -809,6 +810,7 @@ namespace Sunny.UI
                         point.X = x;
                         point.Y = y;
                         point.Location = new Point((int)series.Points[index].X, (int)series.Points[index].Y);
+                        point.IsY2 = series.IsY2;
                         selectPointsTemp.Add(point);
                     }
                 }
@@ -858,8 +860,11 @@ namespace Sunny.UI
                         else
                             sb.Append(point.X.ToString("F" + Option.XAxis.AxisLabel.DecimalCount));
                         sb.Append('\n');
-                        sb.Append(
-                            Option.YAxis.Name + ": " + point.Y.ToString("F" + Option.YAxis.AxisLabel.DecimalCount));
+
+                        if (point.IsY2)
+                            sb.Append(Option.Y2Axis.Name + ": " + point.Y.ToString("F" + Option.Y2Axis.AxisLabel.DecimalCount));
+                        else
+                            sb.Append(Option.YAxis.Name + ": " + point.Y.ToString("F" + Option.YAxis.AxisLabel.DecimalCount));
                         idx++;
                     }
 
