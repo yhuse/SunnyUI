@@ -64,8 +64,15 @@ namespace Sunny.UI
                 waterMarkContainer.Paint += new PaintEventHandler(waterMarkContainer_Paint);
                 waterMarkContainer.Invalidate();
                 waterMarkContainer.Click += new EventHandler(waterMarkContainer_Click);
+                waterMarkContainer.DoubleClick += WaterMarkContainer_DoubleClick;
                 this.Controls.Add(waterMarkContainer);
             }
+        }
+
+        private void WaterMarkContainer_DoubleClick(object sender, EventArgs e)
+        {
+            this.Focus();
+            base.OnDoubleClick(EventArgs.Empty);
         }
 
         private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
