@@ -444,7 +444,7 @@ namespace Sunny.UI
             frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Double;
-            frm.Editor.DecLength = decimals;
+            frm.Editor.DecimalPlaces = decimals;
             frm.Editor.DoubleValue = value;
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;
@@ -469,7 +469,7 @@ namespace Sunny.UI
             frm.TopMost = topMost;
             frm.Style = style;
             frm.Editor.Type = UITextBox.UIEditType.Double;
-            frm.Editor.DecLength = decimals;
+            frm.Editor.DecimalPlaces = decimals;
             frm.Editor.DoubleValue = value;
             frm.Text = UILocalize.InputTitle;
             frm.Label.Text = desc;

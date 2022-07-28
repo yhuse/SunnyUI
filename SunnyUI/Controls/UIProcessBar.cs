@@ -227,15 +227,6 @@ namespace Sunny.UI
 
         private int decimalCount = 1;
 
-        [Description("显示文字小数位数"), Category("SunnyUI")]
-        [DefaultValue(1), Browsable(false)]
-        [Obsolete("请用DecimalPlaces代替。")]
-        public int DecimalCount
-        {
-            get => decimalCount;
-            set => decimalCount = Math.Max(value, 0);
-        }
-
         /// <summary>
         /// 设置主题样式
         /// </summary>

@@ -133,16 +133,16 @@ namespace Sunny.UI
             {
                 value = CheckMaxMin(value);
                 _value = value;
-                pnlValue.Text = _value.ToString("F" + Decimal);
+                pnlValue.Text = _value.ToString("F" + decLength);
                 ValueChanged?.Invoke(this, _value);
             }
         }
 
         private int decLength = 1;
 
-        [DefaultValue(1), Browsable(false)]
-        [Description("小数位数"), Category("SunnyUI")]
-        public int Decimal
+        [Description("显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(1)]
+        public int DecimalPlaces
         {
             get => decLength;
             set
@@ -150,14 +150,6 @@ namespace Sunny.UI
                 decLength = Math.Max(value, 0);
                 pnlValue.Text = _value.ToString("F" + decLength);
             }
-        }
-
-        [Description("显示文字小数位数"), Category("SunnyUI")]
-        [DefaultValue(1)]
-        public int DecimalPlaces
-        {
-            get => Decimal;
-            set => Decimal = value;
         }
 
         private double step = 0.1;
@@ -314,7 +306,7 @@ namespace Sunny.UI
             pnlColor = pnlValue.FillColor;
             pnlValue.FillColor = Color.White;
             edit.TextAlign = HorizontalAlignment.Center;
-            edit.DecLength = Decimal;
+            edit.DecLength = decLength;
             edit.DoubleValue = Value;
             edit.BringToFront();
             edit.Visible = true;

@@ -754,24 +754,12 @@ namespace Sunny.UI
             set => edit.Text = value;
         }
 
-        /// <summary>
-        /// 当InputType为数字类型时，小数位数。
-        /// </summary>
-        [Description("当InputType为数字类型时，小数位数。")]
-        [DefaultValue(2), Category("SunnyUI")]
-        [Browsable(false)]
-        public int DecLength
-        {
-            get => edit.DecLength;
-            set => edit.DecLength = Math.Max(value, 0);
-        }
-
         [Description("浮点数，显示文字小数位数"), Category("SunnyUI")]
         [DefaultValue(2)]
         public int DecimalPlaces
         {
-            get => DecLength;
-            set => DecLength = value;
+            get => edit.DecLength;
+            set => edit.DecLength = Math.Max(value, 0);
         }
 
         [DefaultValue(false)]
