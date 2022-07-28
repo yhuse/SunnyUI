@@ -23,6 +23,7 @@
  * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头，增加选中项圆角
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-04-14: V3.1.3 重构扩展函数
+ * 2022-07-28: V3.2.2 删除界面此控件的编辑器 
 ******************************************************************************/
 
 using System;
@@ -34,7 +35,6 @@ namespace Sunny.UI
 {
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
-    [Designer("System.Windows.Forms.Design.TreeViewDesigner, " + AssemblyRefEx.SystemDesign)]
     public sealed partial class UINavBar : ScrollableControl, IStyleInterface, IZoomScale
     {
         public readonly TreeView Menu = new TreeView();
