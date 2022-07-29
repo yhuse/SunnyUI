@@ -411,6 +411,11 @@ namespace Sunny.UI
 
     public class UIBarSeries : IDisposable
     {
+        public UIBarSeries(int decimalPlaces = 0)
+        {
+            DecimalPlaces = decimalPlaces;
+        }
+
         public string Name { get; set; }
 
         public int MaxWidth { get; set; } = int.MaxValue;
@@ -422,6 +427,13 @@ namespace Sunny.UI
         public readonly List<double> Data = new List<double>();
 
         public readonly List<Color> Colors = new List<Color>();
+
+        private int _decimalPlaces = 0;
+        public int DecimalPlaces
+        {
+            get => _decimalPlaces;
+            set => _decimalPlaces = Math.Max(0, value);
+        }
 
         public bool ShowBarName { get; set; }
 

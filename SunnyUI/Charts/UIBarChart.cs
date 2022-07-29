@@ -22,6 +22,7 @@
  * 2021-01-01: V3.0.9 增加柱子上显示数值
  * 2022-03-08: V3.1.1 增加X轴文字倾斜
  * 2022-05-27: V3.1.9 重写Y轴坐标显示
+ * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至数据序列Series.DecimalPlaces
 ******************************************************************************/
 
 using System;
@@ -194,7 +195,8 @@ namespace Sunny.UI
                             Rect = new RectangleF(xx, VPos, ww, (YZeroPos - VPos)),
                             Value = series.Data[j],
                             Color = color,
-                            Top = true
+                            Top = true,
+                            Series = series,
                         });
                     }
                     else
@@ -204,7 +206,8 @@ namespace Sunny.UI
                             Rect = new RectangleF(xx, YZeroPos, ww, (VPos - YZeroPos)),
                             Value = series.Data[j],
                             Color = color,
-                            Top = false
+                            Top = false,
+                            Series = series,
                         });
                     }
 
@@ -220,7 +223,7 @@ namespace Sunny.UI
                     foreach (var series in Option.Series)
                     {
                         str += '\n';
-                        //str += series.Name + " : " + series.Data[i].ToString(Option.ToolTip.ValueFormat);
+                        str += series.Name + " : " + series.Data[i].ToString("F" + series.DecimalPlaces);
                     }
 
                     Bars[0][i].Tips = str;
@@ -527,23 +530,23 @@ namespace Sunny.UI
 
                     if (Option.ShowValue)
                     {
-                        //string value = info.Value.ToString(Option.ToolTip.ValueFormat);
-                        //SizeF sf = g.MeasureString(value, TempFont);
-                        //if (info.Top)
-                        //{
-                        //    float top = info.Rect.Top - sf.Height;
-                        //    if (top > Option.Grid.Top)
-                        //    {
-                        //        g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, top);
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    if (info.Rect.Bottom + sf.Height + Option.Grid.Bottom < Height)
-                        //    {
-                        //        g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, info.Rect.Bottom);
-                        //    }
-                        //}
+                        string value = info.Value.ToString("F" + info.Series.DecimalPlaces);
+                        SizeF sf = g.MeasureString(value, TempFont);
+                        if (info.Top)
+                        {
+                            float top = info.Rect.Top - sf.Height;
+                            if (top > Option.Grid.Top)
+                            {
+                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, top);
+                            }
+                        }
+                        else
+                        {
+                            if (info.Rect.Bottom + sf.Height + Option.Grid.Bottom < Height)
+                            {
+                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, info.Rect.Bottom);
+                            }
+                        }
                     }
                 }
             }
@@ -568,6 +571,8 @@ namespace Sunny.UI
             public double Value { get; set; }
 
             public bool Top { get; set; }
+
+            public UIBarSeries Series { get; set; }
         }
     }
 }
