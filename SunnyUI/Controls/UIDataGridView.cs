@@ -41,6 +41,8 @@
  * 2022-06-22: V3.2.0 删除 ShowRect、ShowGridLine、RowHeight三个属性
  * 2022-07-11: V3.2.1 修复一处滚动条的显示位置
  * 2022-07-11: V3.2.1 增加滚动条边框线的设置
+ * 2022-07-28: V3.2.2 修复了ScrollBars为None时仍然显示滚动条的问题
+ * 2022-07-28: V3.2.2 修复了单行时表格高度低时，垂直滚动条拖拽至底部出错的问题
 ******************************************************************************/
 
 using System;
@@ -286,7 +288,11 @@ namespace Sunny.UI
 
         private void VBarValueChanged(object sender, EventArgs e)
         {
-            FirstDisplayedScrollingRowIndex = VBar.Value;
+            if (RowCount == 0) return;
+            int idx = VBar.Value;
+            if (idx < 0) idx = 0;
+            if (idx >= RowCount) idx = RowCount - 1;
+            FirstDisplayedScrollingRowIndex = idx;
         }
 
         private void HorizontalScrollBar_ValueChanged(object sender, EventArgs e)
@@ -316,7 +322,7 @@ namespace Sunny.UI
             {
                 VBar.Maximum = RowCount - DisplayedRowCount(false);
                 VBar.Value = FirstDisplayedScrollingRowIndex;
-                VBar.Visible = true;
+                VBar.Visible = ScrollBars == ScrollBars.Vertical || ScrollBars == ScrollBars.Both;
             }
             else
             {
@@ -329,7 +335,7 @@ namespace Sunny.UI
                 HBar.Value = HorizontalScrollBar.Value;
                 HBar.BoundsWidth = HorizontalScrollBar.LargeChange;
                 HBar.LargeChange = HorizontalScrollBar.LargeChange;//.Maximum / VisibleColumnCount();
-                HBar.Visible = true;
+                HBar.Visible = ScrollBars == ScrollBars.Horizontal || ScrollBars == ScrollBars.Both;
             }
             else
             {
