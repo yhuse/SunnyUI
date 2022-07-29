@@ -64,6 +64,13 @@ namespace Sunny.UI
                 return null;
             }
         }
+
+        private int decimalPlaces = 0;
+        public int DecimalPlaces
+        {
+            get => decimalPlaces;
+            set => decimalPlaces = Math.Max(0, value);
+        }
     }
 
     public class UIDoughnutOption : UIOption, IDisposable
@@ -105,6 +112,13 @@ namespace Sunny.UI
                 return null;
             }
         }
+
+        private int decimalPlaces = 0;
+        public int DecimalPlaces
+        {
+            get => decimalPlaces;
+            set => decimalPlaces = Math.Max(0, value);
+        }
     }
 
     public class UIPieToolTip : UIChartToolTip
@@ -112,7 +126,6 @@ namespace Sunny.UI
         public UIPieToolTip()
         {
             Formatter = "{{a}}" + '\n' + "{{b}} : {{c}} ({{d}}%)";
-            ValueFormat = "F0";
             Visible = true;
         }
     }

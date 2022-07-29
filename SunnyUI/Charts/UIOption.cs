@@ -36,8 +36,6 @@ namespace Sunny.UI
         public bool Visible { get; set; }
 
         public string Formatter { get; set; }
-
-        public string ValueFormat { get; set; }
     }
 
     public class UIScaleLine

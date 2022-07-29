@@ -18,6 +18,7 @@
  *
  * 2020-06-06: V2.2.5 增加文件说明
  * 2021-07-22: V3.0.5 增加更新数据的方法
+ * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至Option.DecimalPlaces
 ******************************************************************************/
 
 using System;
@@ -134,7 +135,7 @@ namespace Sunny.UI
                             UITemplate template = new UITemplate(Option.ToolTip.Formatter);
                             template.Set("a", pie.Name);
                             template.Set("b", pie.Data[i].Name);
-                            template.Set("c", pie.Data[i].Value.ToString(Option.ToolTip.ValueFormat));
+                            template.Set("c", pie.Data[i].Value.ToString("F" + Option.DecimalPlaces));
                             template.Set("d", percent.ToString("F2"));
                             text = template.Render();
                         }

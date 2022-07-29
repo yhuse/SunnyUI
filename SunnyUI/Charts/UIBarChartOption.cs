@@ -125,7 +125,6 @@ namespace Sunny.UI
         public UIBarToolTip()
         {
             Formatter = "{{b}} : {{c}}";
-            ValueFormat = "F0";
         }
     }
 

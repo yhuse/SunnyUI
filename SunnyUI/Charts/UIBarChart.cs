@@ -220,7 +220,7 @@ namespace Sunny.UI
                     foreach (var series in Option.Series)
                     {
                         str += '\n';
-                        str += series.Name + " : " + series.Data[i].ToString(Option.ToolTip.ValueFormat);
+                        //str += series.Name + " : " + series.Data[i].ToString(Option.ToolTip.ValueFormat);
                     }
 
                     Bars[0][i].Tips = str;
@@ -527,23 +527,23 @@ namespace Sunny.UI
 
                     if (Option.ShowValue)
                     {
-                        string value = info.Value.ToString(Option.ToolTip.ValueFormat);
-                        SizeF sf = g.MeasureString(value, TempFont);
-                        if (info.Top)
-                        {
-                            float top = info.Rect.Top - sf.Height;
-                            if (top > Option.Grid.Top)
-                            {
-                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, top);
-                            }
-                        }
-                        else
-                        {
-                            if (info.Rect.Bottom + sf.Height + Option.Grid.Bottom < Height)
-                            {
-                                g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, info.Rect.Bottom);
-                            }
-                        }
+                        //string value = info.Value.ToString(Option.ToolTip.ValueFormat);
+                        //SizeF sf = g.MeasureString(value, TempFont);
+                        //if (info.Top)
+                        //{
+                        //    float top = info.Rect.Top - sf.Height;
+                        //    if (top > Option.Grid.Top)
+                        //    {
+                        //        g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, top);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    if (info.Rect.Bottom + sf.Height + Option.Grid.Bottom < Height)
+                        //    {
+                        //        g.DrawString(value, TempFont, info.Color, info.Rect.Center().X - sf.Width / 2, info.Rect.Bottom);
+                        //    }
+                        //}
                     }
                 }
             }
