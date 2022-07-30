@@ -23,6 +23,7 @@
  * 2022-03-08: V3.1.1 增加X轴文字倾斜
  * 2022-05-27: V3.1.9 重写Y轴坐标显示
  * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至数据序列Series.DecimalPlaces
+ * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至AxisLabel.DecimalPlaces
 ******************************************************************************/
 
 using System;
@@ -479,10 +480,7 @@ namespace Sunny.UI
 
                 if (Option.YAxis.AxisLabel.Show)
                 {
-                    if (Option.YAxis.AxisLabel.AutoFormat)
-                        Option.YAxis.AxisLabel.DecimalCount = YAxisDecimalCount;
-
-                    string label = YLabels[i].ToString("F" + Option.YAxis.AxisLabel.DecimalCount);
+                    string label = YLabels[i].ToString(Option.YAxis.AxisLabel.DecimalPlaces >= 0 ? "F" + Option.YAxis.AxisLabel.DecimalPlaces : YScale.Format);
                     SizeF sf = g.MeasureString(label, TempFont);
                     g.DrawString(label, TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, labels[i] - sf.Height / 2.0f);
                 }

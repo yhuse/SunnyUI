@@ -221,7 +221,7 @@ namespace Sunny.UI
 
         public string GetLabel(int i)
         {
-            if (i < Labels.Count) return Labels[i];
+            if (i >= 0 && i < Labels.Count) return Labels[i];
             else return string.Empty;
         }
     }
@@ -235,17 +235,44 @@ namespace Sunny.UI
 
         public int Angle { get; set; } = 0;
 
-        /// <summary>
-        /// 小数位个数，Formatter不为空时以Formatter为准
-        /// </summary>
-        public int DecimalCount { get; set; } = 0;
+        private int decimalPlaces = -1;
 
         /// <summary>
-        /// 日期格式化字符串，Formatter不为空时以Formatter为准
+        /// 小数位个数
         /// </summary>
-        public string DateTimeFormat { get; set; } = "HH:mm";
+        public int DecimalPlaces
+        {
+            get => decimalPlaces;
+            set => decimalPlaces = Math.Max(0, value);
+        }
 
-        public bool AutoFormat { get; set; } = true;
+        private string dateTimeFormat = "";
+
+        /// <summary>
+        /// 日期格式化字符串
+        /// </summary>
+        public string DateTimeFormat
+        {
+            get => dateTimeFormat;
+            set
+            {
+                try
+                {
+                    DateTime.Now.ToString(value);
+                    dateTimeFormat = value;
+                }
+                catch
+                {
+                    dateTimeFormat = "";
+                }
+            }
+        }
+
+        public void ClearFormat()
+        {
+            dateTimeFormat = "";
+            decimalPlaces = -1;
+        }
     }
 
     public class UIAxisTick

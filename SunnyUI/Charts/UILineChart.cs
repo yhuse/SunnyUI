@@ -34,7 +34,10 @@
  * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
  * 2022-07-11: V3.2.1 修改两个点时可以不显示连接线
  * 2022-07-26: V3.2.2 修复双Y轴数据点提示文字显示
- * 2022-07-30: V3.2.2 数据显示的小数位数重构调整至数据序列Series.XAxisDecimalPlaces，XAxisDateTimeFormat，YAxisDecimalPlaces
+ * 2022-07-30: V3.2.2 数据显示的小数位数重构调整至数据序列Series.XAxisDecimalPlaces，YAxisDecimalPlaces
+ * 2022-07-30: V3.2.2 数据显示的日期格式重构调整至数据序列Series.XAxisDateTimeFormat
+ * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至AxisLabel.DecimalPlaces
+ * 2022-07-30: V3.2.2 坐标轴的日期格式重构调整至AxisLabel.DateTimeFormat
 ******************************************************************************/
 
 using System;
@@ -306,17 +309,17 @@ namespace Sunny.UI
                         string label;
                         if (Option.XAxisType == UIAxisType.DateTime)
                         {
-                            if (Option.XAxis.AxisLabel.AutoFormat)
+                            if (Option.XAxis.AxisLabel.DateTimeFormat.IsNullOrEmpty())
                                 label = new DateTimeInt64(XLabels[i]).ToString(XScale.Format);
                             else
                                 label = new DateTimeInt64(XLabels[i]).ToString(Option.XAxis.AxisLabel.DateTimeFormat);
                         }
                         else
                         {
-                            if (Option.XAxis.AxisLabel.AutoFormat)
+                            if (Option.XAxis.AxisLabel.DecimalPlaces < 0)
                                 label = XLabels[i].ToString(XScale.Format);
                             else
-                                label = XLabels[i].ToString("F" + Option.XAxis.AxisLabel.DecimalCount);
+                                label = XLabels[i].ToString("F" + Option.XAxis.AxisLabel.DecimalPlaces);
                         }
 
                         if (Option.XAxis.HaveCustomLabels && Option.XAxis.CustomLabels.GetLabel(i).IsValid())
@@ -369,7 +372,12 @@ namespace Sunny.UI
                     float y = labels[i];
                     if (y < Option.Grid.Top || y > Height - Option.Grid.Bottom) continue;
 
-                    string label = YLabels[i].ToString(YScale.Format);
+                    string label;
+                    if (Option.YAxis.AxisLabel.DecimalPlaces < 0)
+                        label = YLabels[i].ToString(YScale.Format);
+                    else
+                        label = YLabels[i].ToString("F" + Option.YAxis.AxisLabel.DecimalPlaces);
+
                     SizeF sf = g.MeasureString(label, TempFont);
                     widthMax = Math.Max(widthMax, sf.Width);
 
@@ -416,7 +424,12 @@ namespace Sunny.UI
 
                     if (Option.Y2Axis.AxisLabel.Show)
                     {
-                        string label = Y2Labels[i].ToString(Y2Scale.Format);
+                        string label;
+                        if (Option.Y2Axis.AxisLabel.DecimalPlaces < 0)
+                            label = Y2Labels[i].ToString(Y2Scale.Format);
+                        else
+                            label = Y2Labels[i].ToString("F" + Option.Y2Axis.AxisLabel.DecimalPlaces);
+
                         SizeF sf = g.MeasureString(label, TempFont);
                         widthMax = Math.Max(widthMax, sf.Width);
                         g.DrawString(label, TempFont, ForeColor, Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, y - sf.Height / 2.0f);
@@ -823,10 +836,21 @@ namespace Sunny.UI
                         sb.Append('\n');
                         sb.Append(Option.XAxis.Name + ": ");
 
-                        if (Option.XAxisType == UIAxisType.DateTime)
-                            sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
-                        else
-                            sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
+                        string customlabel = "";
+                        if (Option.XAxis.HaveCustomLabels)
+                        {
+                            int ci = (int)point.X;
+                            customlabel = Option.XAxis.CustomLabels.GetLabel(ci);
+                            sb.Append(customlabel);
+                        }
+
+                        if (customlabel.IsNullOrEmpty())
+                        {
+                            if (Option.XAxisType == UIAxisType.DateTime)
+                                sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
+                            else
+                                sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
+                        }
 
                         sb.Append('\n');
 

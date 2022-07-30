@@ -331,6 +331,13 @@ namespace Sunny.UI
             YAxisDecimalPlaces = yAxisDecimalPlaces;
         }
 
+        public void ClearValueFormat()
+        {
+            _dateTimeFormat = "";
+            _xAxisDecimalPlaces = -1;
+            _yAxisDecimalPlaces = -1;
+        }
+
         private int _xAxisDecimalPlaces = -1;
         public int XAxisDecimalPlaces
         {
