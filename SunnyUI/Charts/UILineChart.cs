@@ -34,6 +34,7 @@
  * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
  * 2022-07-11: V3.2.1 修改两个点时可以不显示连接线
  * 2022-07-26: V3.2.2 修复双Y轴数据点提示文字显示
+ * 2022-07-30: V3.2.2 数据显示的小数位数重构调整至数据序列Series.XAxisDecimalPlaces，XAxisDateTimeFormat，YAxisDecimalPlaces
 ******************************************************************************/
 
 using System;
@@ -457,32 +458,15 @@ namespace Sunny.UI
                 return;
             }
 
-            //if (series.Points.Count == 2)
-            //{
-            //    using (Pen pen = new Pen(color, series.Width))
-            //    {
-            //        g.DrawTwoPoints(pen, series.Points[0], series.Points[1], DrawRect);
-            //    }
-            //
-            //    return;
-            //}
-
             if (series.ShowLine || series.Symbol == UILinePointSymbol.None)
             {
                 using (Pen pen = new Pen(color, series.Width))
                 {
                     g.SetHighQuality();
-                    //if (series.ContainsNan || !series.Smooth)
-                    //{
                     for (int i = 0; i < series.Points.Count - 1; i++)
                     {
                         g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
                     }
-                    //}
-                    //else
-                    //{
-                    //    g.DrawCurve(pen, series.Points.ToArray());
-                    //}
 
                     g.SetDefaultQuality();
                 }
@@ -497,21 +481,6 @@ namespace Sunny.UI
 
             bmp?.Dispose();
             bmp = new Bitmap(Width, Height);
-
-            //using (Graphics graphics = bmp.Graphics())
-            //{
-            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            //}
-            //
-            //using (Graphics graphics = bmpGreater.Graphics())
-            //{
-            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            //}
-            //
-            //using (Graphics graphics = bmpLess.Graphics())
-            //{
-            //    graphics.FillRectangle(FillColor, 0, 0, Width, Height);
-            //}
 
             int idx = 0;
             float wTop = Option.Grid.Top;
@@ -804,13 +773,11 @@ namespace Sunny.UI
                     if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
                     {
                         UILineSelectPoint point = new UILineSelectPoint();
-                        point.SeriesIndex = series.Index;
-                        point.Name = series.Name;
+                        point.Series = series;
                         point.Index = index;
                         point.X = x;
                         point.Y = y;
                         point.Location = new Point((int)series.Points[index].X, (int)series.Points[index].Y);
-                        point.IsY2 = series.IsY2;
                         selectPointsTemp.Add(point);
                     }
                 }
@@ -822,16 +789,16 @@ namespace Sunny.UI
                 }
                 else
                 {
-                    Dictionary<string, UILineSelectPoint> points = selectPoints.ToDictionary(p => p.Name);
+                    Dictionary<string, UILineSelectPoint> points = selectPoints.ToDictionary(p => p.Series.Name);
                     foreach (var point in selectPointsTemp)
                     {
-                        if (!points.ContainsKey(point.Name))
+                        if (!points.ContainsKey(point.Series.Name))
                         {
                             isNew = true;
                             break;
                         }
 
-                        if (points[point.Name].Index != point.Index)
+                        if (points[point.Series.Name].Index != point.Index)
                         {
                             isNew = true;
                             break;
@@ -844,7 +811,7 @@ namespace Sunny.UI
                     selectPoints.Clear();
                     StringBuilder sb = new StringBuilder();
                     int idx = 0;
-                    Dictionary<int, UILineSelectPoint> dictionary = selectPointsTemp.ToDictionary(p => p.SeriesIndex);
+                    Dictionary<int, UILineSelectPoint> dictionary = selectPointsTemp.ToDictionary(p => p.Series.Index);
                     List<UILineSelectPoint> points = dictionary.SortedValues();
                     foreach (var point in points)
                     {
@@ -852,19 +819,22 @@ namespace Sunny.UI
 
                         if (idx > 0) sb.Append('\n');
 
-                        sb.Append(point.Name);
+                        sb.Append(point.Series.Name);
                         sb.Append('\n');
                         sb.Append(Option.XAxis.Name + ": ");
+
                         if (Option.XAxisType == UIAxisType.DateTime)
-                            sb.Append(new DateTimeInt64(point.X).ToString(Option.XAxis.AxisLabel.DateTimeFormat));
+                            sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
                         else
-                            sb.Append(point.X.ToString("F" + Option.XAxis.AxisLabel.DecimalCount));
+                            sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
+
                         sb.Append('\n');
 
-                        if (point.IsY2)
-                            sb.Append(Option.Y2Axis.Name + ": " + point.Y.ToString("F" + Option.Y2Axis.AxisLabel.DecimalCount));
+                        if (point.Series.IsY2)
+                            sb.Append(Option.Y2Axis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : Y2Scale.Format));
                         else
-                            sb.Append(Option.YAxis.Name + ": " + point.Y.ToString("F" + Option.YAxis.AxisLabel.DecimalCount));
+                            sb.Append(Option.YAxis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : YScale.Format));
+
                         idx++;
                     }
 

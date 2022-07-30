@@ -304,6 +304,66 @@ namespace Sunny.UI
 
     public class UILineSeries
     {
+        public UILineSeries(string name, bool isY2 = false)
+        {
+            Name = name;
+            Color = UIColor.Blue;
+            IsY2 = isY2;
+        }
+
+        public UILineSeries(string name, Color color, bool isY2 = false)
+        {
+            Name = name;
+            Color = color;
+            CustomColor = true;
+            IsY2 = isY2;
+        }
+
+        public void SetValueFormat(int xAxisDecimalPlaces, int yAxisDecimalPlaces)
+        {
+            XAxisDecimalPlaces = xAxisDecimalPlaces;
+            YAxisDecimalPlaces = yAxisDecimalPlaces;
+        }
+
+        public void SetValueFormat(string xAxisDateTimeFormat, int yAxisDecimalPlaces)
+        {
+            XAxisDateTimeFormat = xAxisDateTimeFormat;
+            YAxisDecimalPlaces = yAxisDecimalPlaces;
+        }
+
+        private int _xAxisDecimalPlaces = -1;
+        public int XAxisDecimalPlaces
+        {
+            get => _xAxisDecimalPlaces;
+            set => _xAxisDecimalPlaces = Math.Max(0, value);
+        }
+
+        private int _yAxisDecimalPlaces = -1;
+        public int YAxisDecimalPlaces
+        {
+            get => _yAxisDecimalPlaces;
+            set => _yAxisDecimalPlaces = Math.Max(0, value);
+        }
+
+        private string _dateTimeFormat = "";
+
+        public string XAxisDateTimeFormat
+        {
+            get => _dateTimeFormat;
+            set
+            {
+                try
+                {
+                    DateTime.Now.ToString(value);
+                    _dateTimeFormat = value;
+                }
+                catch
+                {
+                    _dateTimeFormat = "";
+                }
+            }
+        }
+
         public int Index { get; set; }
         public string Name { get; private set; }
 
@@ -335,21 +395,6 @@ namespace Sunny.UI
         public bool IsY2 { get; private set; }
 
         public bool Visible { get; set; } = true;
-
-        public UILineSeries(string name, bool isY2 = false)
-        {
-            Name = name;
-            Color = UIColor.Blue;
-            IsY2 = isY2;
-        }
-
-        public UILineSeries(string name, Color color, bool isY2 = false)
-        {
-            Name = name;
-            Color = color;
-            CustomColor = true;
-            IsY2 = isY2;
-        }
 
         public readonly List<double> XData = new List<double>();
 
@@ -483,9 +528,6 @@ namespace Sunny.UI
 
     public struct UILineSelectPoint
     {
-        public int SeriesIndex { get; set; }
-        public string Name { get; set; }
-
         public int Index { get; set; }
 
         public double X { get; set; }
@@ -494,7 +536,7 @@ namespace Sunny.UI
 
         public Point Location { get; set; }
 
-        public bool IsY2 { get; set; }
+        public UILineSeries Series { get; set; }
     }
 
     public class UILineWarningArea
