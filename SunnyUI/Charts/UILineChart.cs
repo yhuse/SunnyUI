@@ -34,10 +34,10 @@
  * 2022-04-19: V3.1.5 关闭Smooth绘制，数值差距大或者持续缩放会出错
  * 2022-07-11: V3.2.1 修改两个点时可以不显示连接线
  * 2022-07-26: V3.2.2 修复双Y轴数据点提示文字显示
- * 2022-07-30: V3.2.2 数据显示的小数位数重构调整至数据序列Series.XAxisDecimalPlaces，YAxisDecimalPlaces
- * 2022-07-30: V3.2.2 数据显示的日期格式重构调整至数据序列Series.XAxisDateTimeFormat
- * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至AxisLabel.DecimalPlaces
- * 2022-07-30: V3.2.2 坐标轴的日期格式重构调整至AxisLabel.DateTimeFormat
+ * 2022-07-30: V3.2.2 数据显示的小数位数重构调整至数据序列 Series.XAxisDecimalPlaces，YAxisDecimalPlaces
+ * 2022-07-30: V3.2.2 数据显示的日期格式重构调整至数据序列 Series.XAxisDateTimeFormat
+ * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces
+ * 2022-07-30: V3.2.2 坐标轴的日期格式重构调整至坐标轴标签 AxisLabel.DateTimeFormat
 ******************************************************************************/
 
 using System;

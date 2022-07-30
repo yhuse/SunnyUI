@@ -40,11 +40,6 @@ namespace Sunny.UI
 
     public class UIAxis
     {
-        public UIAxis()
-        {
-
-        }
-
         public UIAxis(UIAxisType axisType)
         {
             Type = axisType;
@@ -53,13 +48,6 @@ namespace Sunny.UI
         public string Name { get; set; }
 
         public UIAxisType Type { get; }
-
-        /// <summary>
-        /// 坐标轴的分割段数，需要注意的是这个分割段数只是个预估值
-        /// 最后实际显示的段数会在这个基础上根据分割后坐标轴刻度显示的易读程度作调整。
-        /// 在类目轴中无效。
-        /// </summary>
-        public int SplitNumber { get; set; } = 5;
 
         /// <summary>
         /// 是否是脱离 0 值比例。设置成 true 后坐标刻度不会强制包含零刻度。在双数值轴的散点图中比较有用。
@@ -278,11 +266,6 @@ namespace Sunny.UI
     public class UIAxisTick
     {
         /// <summary>
-        /// 类目轴中在为 true 的时候有效，可以保证刻度线和标签对齐。
-        /// </summary>
-        public bool AlignWithLabel { get; set; }
-
-        /// <summary>
         /// 是否显示坐标轴刻度。
         /// </summary>
         public bool Show { get; set; } = true;
@@ -291,16 +274,6 @@ namespace Sunny.UI
         /// 坐标轴刻度的长度。
         /// </summary>
         public int Length { get; set; } = 5;
-
-        /// <summary>
-        /// 坐标轴刻度的显示间隔，在类目轴中有效。默认同 axisLabel.interval 一样。
-        /// 默认会采用标签不重叠的策略间隔显示标签。
-        /// 可以设置成 0 强制显示所有标签。
-        /// 如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。
-        /// </summary>
-        public int Interval { get; set; } = 0;
-
-        public int Distance { get; set; } = 0;
     }
 
     public class UIScaleLine
@@ -311,8 +284,6 @@ namespace Sunny.UI
         public UILeftAlignment Left { get; set; } = UILeftAlignment.Left;
 
         public float Size { get; set; } = 1.0f;
-
-        public object Tag { get; set; }
 
         public bool DashDot { get; set; }
 
