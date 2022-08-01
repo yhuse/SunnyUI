@@ -738,7 +738,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(0)]
-        [Description("整形返回值"), Category("SunnyUI")]
+        [Description("整型返回值"), Category("SunnyUI")]
         public int IntValue
         {
             get => edit.IntValue;
@@ -763,7 +763,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(false)]
-        [Description("整形或浮点输入时，是否可空显示"), Category("SunnyUI")]
+        [Description("整型或浮点输入时，是否可空显示"), Category("SunnyUI")]
         public bool CanEmpty
         {
             get => edit.CanEmpty;

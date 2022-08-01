@@ -666,7 +666,7 @@ namespace Sunny.UI
         {
             base.OnLeave(e);
 
-            //如果为整形,为空时自动为0
+            //如果为整型,为空时自动为0
             if (_uiEditType == UITextBox.UIEditType.Integer)
             {
                 if (Text == "" && CanEmpty) return;
