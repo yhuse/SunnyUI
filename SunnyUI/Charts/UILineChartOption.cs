@@ -181,7 +181,7 @@ namespace Sunny.UI
         {
             get
             {
-                if (AllDataCount() == 0) return false;
+                //if (AllDataCount() == 0) return false;
                 foreach (var series in Series.Values)
                 {
                     if (series.IsY2) return true;
@@ -235,26 +235,34 @@ namespace Sunny.UI
             }
             else
             {
-                min = double.MaxValue;
-                max = double.MinValue;
-                foreach (var series in Series.Values)
+                if (AllDataCount() == 0)
                 {
-                    if (!series.IsY2) continue;
-                    if (series.DataCount > 0)
+                    min = 0;
+                    max = 1;
+                }
+                else
+                {
+                    min = double.MaxValue;
+                    max = double.MinValue;
+                    foreach (var series in Series.Values)
                     {
-                        if (series.ContainsNan)
+                        if (!series.IsY2) continue;
+                        if (series.DataCount > 0)
                         {
-                            foreach (var d in series.YData)
+                            if (series.ContainsNan)
                             {
-                                if (d.IsNan() || d.IsInfinity()) continue;
-                                min = Math.Min(min, d);
-                                max = Math.Max(max, d);
+                                foreach (var d in series.YData)
+                                {
+                                    if (d.IsNan() || d.IsInfinity()) continue;
+                                    min = Math.Min(min, d);
+                                    max = Math.Max(max, d);
+                                }
                             }
-                        }
-                        else
-                        {
-                            min = Math.Min(min, series.YData.Min());
-                            max = Math.Max(max, series.YData.Max());
+                            else
+                            {
+                                min = Math.Min(min, series.YData.Min());
+                                max = Math.Max(max, series.YData.Max());
+                            }
                         }
                     }
                 }
