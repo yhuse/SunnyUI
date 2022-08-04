@@ -166,6 +166,18 @@ namespace Sunny.UI
             }
         }
 
+        public int AllDataCount(bool isY2)
+        {
+            int cnt = 0;
+            foreach (var series in Series.Values)
+            {
+                if (series.IsY2 != isY2) continue;
+                cnt += series.DataCount;
+            }
+
+            return cnt;
+        }
+
         public int AllDataCount()
         {
             int cnt = 0;
@@ -181,7 +193,6 @@ namespace Sunny.UI
         {
             get
             {
-                //if (AllDataCount() == 0) return false;
                 foreach (var series in Series.Values)
                 {
                     if (series.IsY2) return true;
@@ -193,7 +204,7 @@ namespace Sunny.UI
 
         public void GetAllDataYRange(out double min, out double max)
         {
-            if (AllDataCount() == 0)
+            if (AllDataCount(false) == 0)
             {
                 min = 0;
                 max = 1;
@@ -235,7 +246,7 @@ namespace Sunny.UI
             }
             else
             {
-                if (AllDataCount() == 0)
+                if (AllDataCount(true) == 0)
                 {
                     min = 0;
                     max = 1;
