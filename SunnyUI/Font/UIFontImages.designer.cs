@@ -75,7 +75,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 46);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(541, 456);
+            this.tabControl1.Size = new System.Drawing.Size(705, 456);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -84,7 +84,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(533, 430);
+            this.tabPage1.Size = new System.Drawing.Size(697, 430);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Custom";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -95,16 +95,16 @@
             this.lpCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lpCustom.Location = new System.Drawing.Point(3, 3);
             this.lpCustom.Name = "lpCustom";
-            this.lpCustom.Size = new System.Drawing.Size(527, 424);
+            this.lpCustom.Size = new System.Drawing.Size(691, 424);
             this.lpCustom.TabIndex = 1;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lpAwesome);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(533, 426);
+            this.tabPage2.Size = new System.Drawing.Size(697, 430);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "FontAwesomeV4";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -116,18 +116,18 @@
             this.lpAwesome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.lpAwesome.Location = new System.Drawing.Point(3, 3);
             this.lpAwesome.Name = "lpAwesome";
-            this.lpAwesome.Size = new System.Drawing.Size(527, 420);
+            this.lpAwesome.Size = new System.Drawing.Size(691, 424);
             this.lpAwesome.TabIndex = 1;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.lpV5Solid);
-            this.tabPage5.Location = new System.Drawing.Point(4, 26);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(533, 426);
+            this.tabPage5.Size = new System.Drawing.Size(697, 430);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "FontAwesomeV5";
+            this.tabPage5.Text = "V5Solid";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // lpV5Solid
@@ -137,16 +137,16 @@
             this.lpV5Solid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.lpV5Solid.Location = new System.Drawing.Point(3, 3);
             this.lpV5Solid.Name = "lpV5Solid";
-            this.lpV5Solid.Size = new System.Drawing.Size(527, 420);
+            this.lpV5Solid.Size = new System.Drawing.Size(691, 424);
             this.lpV5Solid.TabIndex = 3;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.lpElegant);
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(533, 426);
+            this.tabPage3.Size = new System.Drawing.Size(697, 430);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "ElegantFont";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -158,16 +158,16 @@
             this.lpElegant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.lpElegant.Location = new System.Drawing.Point(3, 3);
             this.lpElegant.Name = "lpElegant";
-            this.lpElegant.Size = new System.Drawing.Size(527, 420);
+            this.lpElegant.Size = new System.Drawing.Size(691, 424);
             this.lpElegant.TabIndex = 2;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.lpV5Brands);
-            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(533, 426);
+            this.tabPage4.Size = new System.Drawing.Size(697, 430);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "V5Brands";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -179,16 +179,16 @@
             this.lpV5Brands.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.lpV5Brands.Location = new System.Drawing.Point(3, 3);
             this.lpV5Brands.Name = "lpV5Brands";
-            this.lpV5Brands.Size = new System.Drawing.Size(527, 420);
+            this.lpV5Brands.Size = new System.Drawing.Size(691, 424);
             this.lpV5Brands.TabIndex = 3;
             // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.lpV5Regular);
-            this.tabPage6.Location = new System.Drawing.Point(4, 26);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(533, 426);
+            this.tabPage6.Size = new System.Drawing.Size(697, 430);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "V5Regular";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -200,7 +200,7 @@
             this.lpV5Regular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.lpV5Regular.Location = new System.Drawing.Point(3, 3);
             this.lpV5Regular.Name = "lpV5Regular";
-            this.lpV5Regular.Size = new System.Drawing.Size(527, 420);
+            this.lpV5Regular.Size = new System.Drawing.Size(691, 424);
             this.lpV5Regular.TabIndex = 3;
             // 
             // bg1
@@ -235,7 +235,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(541, 46);
+            this.panel1.Size = new System.Drawing.Size(705, 46);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -268,10 +268,10 @@
             // UIFontImages
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(541, 502);
+            this.ClientSize = new System.Drawing.Size(705, 502);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("宋体", 9F);
             this.Name = "UIFontImages";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Symbols";

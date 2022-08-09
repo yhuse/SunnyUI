@@ -39,6 +39,9 @@ namespace Sunny.UI
         private readonly ConcurrentQueue<Label> FontAwesomeV5SolidLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV5BrandsLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV5RegularLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> LineAwesomeSolidLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> LineAwesomeBrandsLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> LineAwesomeRegularLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -106,6 +109,36 @@ namespace Sunny.UI
             while (!FontAwesomeV5BrandsLabels.IsEmpty)
             {
                 if (FontAwesomeV5BrandsLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Brands.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (!LineAwesomeSolidLabels.IsEmpty)
+            {
+                if (LineAwesomeSolidLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Solid.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (!LineAwesomeRegularLabels.IsEmpty)
+            {
+                if (LineAwesomeRegularLabels.TryDequeue(out Label lbl))
+                {
+                    lpV5Regular.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (!LineAwesomeBrandsLabels.IsEmpty)
+            {
+                if (LineAwesomeBrandsLabels.TryDequeue(out Label lbl))
                 {
                     lpV5Brands.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;

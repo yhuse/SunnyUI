@@ -38,12 +38,9 @@ namespace Sunny.UI
         FontAwesomeV4 = 0,
         FontAwesomeV5Brands = 1,
         FontAwesomeV5Regular = 2,
-        FontAwesomeV5Solid = 3
-    }
-
-    public enum ImageFont
-    {
-        FontAwesome,
-        Elegant
+        FontAwesomeV5Solid = 3,
+        LineAwesomeBrands = 4,
+        LineAwesomeRegular = 5,
+        LineAwesomeSolid = 6
     }
 }
