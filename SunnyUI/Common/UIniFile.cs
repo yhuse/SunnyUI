@@ -128,13 +128,13 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public string Read(string section, string key, string Default)
         {
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[2048];
             if (Default == null)
             {
                 Default = "";
             }
 
-            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(Default), buffer, 1024, FileName);
+            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(Default), buffer, buffer.Length, FileName);
             //必须设定0（系统默认的代码页）的编码方式，否则无法支持中文
             return IniEncoding.GetString(buffer, 0, bufLen).Trim();
         }
