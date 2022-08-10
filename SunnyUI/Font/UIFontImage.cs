@@ -63,21 +63,6 @@ namespace Sunny.UI
         /// </summary>
         public static readonly FontImages FontAwesomeV5Solid;
 
-        /// <summary>
-        /// FontAwesomeV5Brands
-        /// </summary>
-        public static readonly FontImages LineAwesomeBrands;
-
-        /// <summary>
-        /// FontAwesomeV5Regular
-        /// </summary>
-        public static readonly FontImages LineAwesomeRegular;
-
-        /// <summary>
-        /// FontAwesomeV5Solid
-        /// </summary>
-        public static readonly FontImages LineAwesomeSolid;
-
         //public const int FontAwesomeV4Count = 786; 
         //public const int ElegantIconsCount = 360;
         //public const int FontAwesomeV5RegularCount = 151;
@@ -97,9 +82,6 @@ namespace Sunny.UI
             FontAwesomeV5Brands = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-brands-400.ttf"));
             FontAwesomeV5Regular = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-regular-400.ttf"));
             FontAwesomeV5Solid = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-solid-900.ttf"));
-            LineAwesomeBrands = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.la-brands-400.ttf"));
-            LineAwesomeRegular = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.la-regular-400.ttf"));
-            LineAwesomeSolid = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.la-solid-900.ttf"));
         }
 
         private static byte[] ReadFontFileFromResource(string name)
@@ -235,12 +217,6 @@ namespace Sunny.UI
                     return FontAwesomeV5Regular.GetFont(symbolValue, imageSize);
                 case UISymbolType.FontAwesomeV5Solid:
                     return FontAwesomeV5Solid.GetFont(symbolValue, imageSize);
-                case UISymbolType.LineAwesomeBrands:
-                    return LineAwesomeBrands.GetFont(symbolValue, imageSize);
-                case UISymbolType.LineAwesomeRegular:
-                    return LineAwesomeRegular.GetFont(symbolValue, imageSize);
-                case UISymbolType.LineAwesomeSolid:
-                    return LineAwesomeSolid.GetFont(symbolValue, imageSize);
                 default:
                     if (symbol > 0xF000)
                         return FontAwesomeV4.GetFont(symbolValue, imageSize);

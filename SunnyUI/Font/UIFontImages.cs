@@ -39,9 +39,6 @@ namespace Sunny.UI
         private readonly ConcurrentQueue<Label> FontAwesomeV5SolidLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV5BrandsLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV5RegularLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> LineAwesomeSolidLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> LineAwesomeBrandsLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> LineAwesomeRegularLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -109,36 +106,6 @@ namespace Sunny.UI
             while (!FontAwesomeV5BrandsLabels.IsEmpty)
             {
                 if (FontAwesomeV5BrandsLabels.TryDequeue(out Label lbl))
-                {
-                    lpV5Brands.Controls.Add(lbl);
-                    SymbolValue symbol = (SymbolValue)lbl.Tag;
-                    toolTip.SetToolTip(lbl, symbol.ToString());
-                }
-            }
-
-            while (!LineAwesomeSolidLabels.IsEmpty)
-            {
-                if (LineAwesomeSolidLabels.TryDequeue(out Label lbl))
-                {
-                    lpV5Solid.Controls.Add(lbl);
-                    SymbolValue symbol = (SymbolValue)lbl.Tag;
-                    toolTip.SetToolTip(lbl, symbol.ToString());
-                }
-            }
-
-            while (!LineAwesomeRegularLabels.IsEmpty)
-            {
-                if (LineAwesomeRegularLabels.TryDequeue(out Label lbl))
-                {
-                    lpV5Regular.Controls.Add(lbl);
-                    SymbolValue symbol = (SymbolValue)lbl.Tag;
-                    toolTip.SetToolTip(lbl, symbol.ToString());
-                }
-            }
-
-            while (!LineAwesomeBrandsLabels.IsEmpty)
-            {
-                if (LineAwesomeBrandsLabels.TryDequeue(out Label lbl))
                 {
                     lpV5Brands.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;
@@ -361,74 +328,46 @@ namespace Sunny.UI
             }
         }
 
-        private void bg_DoWork(object sender, DoWorkEventArgs e)
+        private void LoadLabels(Type type, ConcurrentQueue<Label> labels, UISymbolType symbolType)
         {
-            var t = typeof(FontAwesomeIcons);
-            foreach (var fieldInfo in t.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
                 var obj = fieldInfo.GetRawConstantValue();
-                if (obj != null)
+                if (obj is int value)
                 {
-                    int value = obj.ToString().ToInt();
-                    FontAwesomeV4Labels.Enqueue(CreateLabel(fieldInfo.Name, value, UISymbolType.FontAwesomeV4));
+                    labels.Enqueue(CreateLabel(fieldInfo.Name, value, symbolType));
                 }
             }
+        }
+
+        private void bg_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //public const int FontAwesomeV4Count = 786; 
+            LoadLabels(typeof(FontAwesomeIcons), FontAwesomeV4Labels, UISymbolType.FontAwesomeV4);
         }
 
         private void bg2_DoWork(object sender, DoWorkEventArgs e)
         {
-            var t = typeof(FontElegantIcons);
-            foreach (var fieldInfo in t.GetFields())
-            {
-                var obj = fieldInfo.GetRawConstantValue();
-                if (obj != null)
-                {
-                    int value = obj.ToString().ToInt();
-                    ElegantIconsLabels.Enqueue(CreateLabel(fieldInfo.Name, value, UISymbolType.FontAwesomeV4));
-                }
-            }
+            //public const int ElegantIconsCount = 360;
+            LoadLabels(typeof(FontElegantIcons), ElegantIconsLabels, UISymbolType.FontAwesomeV4);
         }
 
         private void bg3_DoWork(object sender, DoWorkEventArgs e)
         {
-            var t = typeof(FontAweSomeV5Brands);
-            foreach (var fieldInfo in t.GetFields())
-            {
-                var obj = fieldInfo.GetRawConstantValue();
-                if (obj != null)
-                {
-                    int value = obj.ToString().ToInt();
-                    FontAwesomeV5BrandsLabels.Enqueue(CreateLabel(fieldInfo.Name, value, UISymbolType.FontAwesomeV5Brands));
-                }
-            }
+            //public const int FontAwesomeV5BrandsCount = 457;
+            LoadLabels(typeof(FontAweSomeV5Brands), FontAwesomeV5BrandsLabels, UISymbolType.FontAwesomeV5Brands);
         }
 
         private void bg4_DoWork(object sender, DoWorkEventArgs e)
         {
-            var t = typeof(FontAweSomeV5Regular);
-            foreach (var fieldInfo in t.GetFields())
-            {
-                var obj = fieldInfo.GetRawConstantValue();
-                if (obj != null)
-                {
-                    int value = obj.ToString().ToInt();
-                    FontAwesomeV5RegularLabels.Enqueue(CreateLabel(fieldInfo.Name, value, UISymbolType.FontAwesomeV5Regular));
-                }
-            }
+            //public const int FontAwesomeV5RegularCount = 151;
+            LoadLabels(typeof(FontAweSomeV5Regular), FontAwesomeV5RegularLabels, UISymbolType.FontAwesomeV5Regular);
         }
 
         private void bg5_DoWork(object sender, DoWorkEventArgs e)
         {
-            var t = typeof(FontAweSomeV5Solid);
-            foreach (var fieldInfo in t.GetFields())
-            {
-                var obj = fieldInfo.GetRawConstantValue();
-                if (obj != null)
-                {
-                    int value = obj.ToString().ToInt();
-                    FontAwesomeV5SolidLabels.Enqueue(CreateLabel(fieldInfo.Name, value, UISymbolType.FontAwesomeV5Solid));
-                }
-            }
+            //public const int FontAwesomeV5SolidCount = 1001;
+            LoadLabels(typeof(FontAweSomeV5Solid), FontAwesomeV5SolidLabels, UISymbolType.FontAwesomeV5Solid);
         }
 
         int findCount = 0;
