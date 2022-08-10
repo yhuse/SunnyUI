@@ -24,6 +24,7 @@
  * 2022-05-27: V3.1.9 重写Y轴坐标显示
  * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至数据序列 Series.DecimalPlaces
  * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces
+ * 2022-08-10: V3.2.2 修复Y轴显示名称
 ******************************************************************************/
 
 using System;
@@ -450,12 +451,16 @@ namespace Sunny.UI
                         g.DrawString(data, TempFont, ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length); start += DrawBarWidth;
                 }
 
-                SizeF sfname = g.MeasureString(Option.XAxis.Name, TempFont);
-                g.DrawString(Option.XAxis.Name, TempFont, ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfname.Height);
+                if (Option.XAxis.Name.IsValid())
+                {
+                    SizeF sfname = g.MeasureString(Option.XAxis.Name, TempFont);
+                    g.DrawString(Option.XAxis.Name, TempFont, ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfname.Height);
+                }
             }
 
             double[] YLabels = YScale.CalcLabels();
             float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
+            float wmax = 0;
             for (int i = 0; i < labels.Length; i++)
             {
                 if (labels[i] > DrawOrigin.Y) continue;
@@ -482,8 +487,18 @@ namespace Sunny.UI
                 {
                     string label = YLabels[i].ToString(Option.YAxis.AxisLabel.DecimalPlaces >= 0 ? "F" + Option.YAxis.AxisLabel.DecimalPlaces : YScale.Format);
                     SizeF sf = g.MeasureString(label, TempFont);
+                    wmax = Math.Max(wmax, sf.Width);
                     g.DrawString(label, TempFont, ForeColor, DrawOrigin.X - Option.YAxis.AxisTick.Length - sf.Width, labels[i] - sf.Height / 2.0f);
                 }
+            }
+
+            if (Option.YAxis.AxisLabel.Show && Option.YAxis.Name.IsValid())
+            {
+                SizeF sfname = g.MeasureString(Option.YAxis.Name, TempFont);
+                int x = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfname.Height);
+                int y = (int)(Option.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
+                g.DrawString(Option.YAxis.Name, TempFont, ForeColor, new Point(x, y),
+                    new StringFormat() { Alignment = StringAlignment.Center }, 270);
             }
         }
 
