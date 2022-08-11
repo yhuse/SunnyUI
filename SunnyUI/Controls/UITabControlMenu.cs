@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-08-11: V3.0.2 重写ItemSize，将宽、高调整为正常显示
 ******************************************************************************/
 
 using System;
@@ -38,7 +39,7 @@ namespace Sunny.UI
             DoubleBuffered = true;
             UpdateStyles();
 
-            ItemSize = new Size(40, 200);
+            base.ItemSize = new Size(40, 200);
             DrawMode = TabDrawMode.OwnerDrawFixed;
             Font = UIFontColor.Font();
             AfterSetFillColor(FillColor);
@@ -48,6 +49,17 @@ namespace Sunny.UI
             tabSelectedForeColor = UIStyles.Blue.TabControlTabSelectedColor;
             tabSelectedHighColor = UIStyles.Blue.TabControlTabSelectedColor;
             _fillColor = UIStyles.Blue.TabControlBackColor;
+        }
+
+        [DefaultValue(typeof(Size), "200, 40")]
+        public new Size ItemSize
+        {
+            get => new Size(base.ItemSize.Height, base.ItemSize.Width);
+            set
+            {
+                base.ItemSize = new Size(value.Height, value.Width);
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -346,7 +358,7 @@ namespace Sunny.UI
             e.Graphics.Clear(TabBackColor);
             for (int index = 0; index <= TabCount - 1; index++)
             {
-                Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, ItemSize.Height + 4, ItemSize.Width);
+                Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, base.ItemSize.Height + 4, base.ItemSize.Width);
                 SizeF sf = e.Graphics.MeasureString(TabPages[index].Text, Font);
                 int textLeft = 4 + 6 + 4 + (ImageList?.ImageSize.Width ?? 0);
                 if (TextAlignment == HorizontalAlignment.Right)
