@@ -44,7 +44,6 @@ namespace Sunny.UI
 {
     [DefaultEvent("AfterSelect")]
     [DefaultProperty("Nodes")]
-    [Designer("System.Windows.Forms.Design.TreeViewDesigner, " + AssemblyRefEx.SystemDesign)]
     public sealed class UITreeView : UIPanel, IToolTip
     {
         private UIScrollBar Bar;
