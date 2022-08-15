@@ -71,6 +71,9 @@ namespace Sunny.UI.Demo
             option.Series.Clear();
             option.Series.Add(series);
 
+            //显示数据小数位数
+            option.DecimalPlaces = 1;
+
             //设置Option
             PieChart.SetOption(option);
 

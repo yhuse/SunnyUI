@@ -273,7 +273,6 @@ namespace Sunny.UI.Demo
             this.uiGifAvatar1.Location = new System.Drawing.Point(30, 340);
             this.uiGifAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGifAvatar1.Name = "uiGifAvatar1";
-            this.uiGifAvatar1.ShowScore = true;
             this.uiGifAvatar1.Size = new System.Drawing.Size(128, 128);
             this.uiGifAvatar1.TabIndex = 38;
             this.uiGifAvatar1.Text = "uiGifAvatar1";

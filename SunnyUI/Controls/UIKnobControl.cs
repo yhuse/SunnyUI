@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIKnobControl.cs
+ * 文件名称: UIKnob.cs
  * 文件说明: C# Knob Control using Windows Forms
  * 文件作者: Fabrice Lacharme
  * 开源协议: CPOL
@@ -93,7 +93,7 @@ namespace Sunny.UI
     /// <summary>
     /// Summary description for KnobControl.
     /// </summary>
-    public class UIKnobControl : UserControl, IStyleInterface, IZoomScale
+    public class UIKnob : UserControl, IStyleInterface, IZoomScale
     {
         /// <summary> 
         /// Required designer variable.
@@ -552,7 +552,7 @@ namespace Sunny.UI
 
         #endregion properties
 
-        public UIKnobControl()
+        public UIKnob()
         {
             // This call is required by the Windows.Forms Form Designer.
             DottedPen = new Pen(GetDarkColor(this.BackColor, 40))
@@ -688,7 +688,7 @@ namespace Sunny.UI
         /// Mouse up event: display new value
         /// </summary>
         /// <param name="e"></param>
-		protected override void OnMouseUp(MouseEventArgs e)
+        protected override void OnMouseUp(MouseEventArgs e)
         {
             if (IsPointinRectangle(new Point(e.X, e.Y), rKnob))
             {
@@ -712,7 +712,7 @@ namespace Sunny.UI
         /// Mouse move event: drag the pointer to the mouse position
         /// </summary>
         /// <param name="e"></param>
-		protected override void OnMouseMove(MouseEventArgs e)
+        protected override void OnMouseMove(MouseEventArgs e)
         {
             //--------------------------------------
             //  Following Handles Knob Rotating     

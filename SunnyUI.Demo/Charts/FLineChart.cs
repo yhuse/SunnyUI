@@ -37,6 +37,8 @@ namespace Sunny.UI.Demo
             series.SymbolLineWidth = 2;
             series.SymbolColor = Color.Red;
             series.ShowLine = !cbPoints.Checked;
+            //数据点显示小数位数
+            series.YAxisDecimalPlaces = 2;
 
             series = option.AddSeries(new UILineSeries("Line2", Color.Lime));
             series.Add(dt.AddHours(3), 3.3);
@@ -49,6 +51,8 @@ namespace Sunny.UI.Demo
             series.SymbolSize = 4;
             series.SymbolLineWidth = 2;
             series.ShowLine = !cbPoints.Checked;
+            //数据点显示小数位数
+            series.YAxisDecimalPlaces = 1;
 
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);
@@ -58,10 +62,11 @@ namespace Sunny.UI.Demo
 
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
+            //X轴坐标轴显示格式化
             option.XAxis.AxisLabel.DateTimeFormat = "yyyy-MM-dd HH:mm";
-            option.XAxis.AxisLabel.AutoFormat = false;
-            option.YAxis.AxisLabel.DecimalCount = 1;
-            option.YAxis.AxisLabel.AutoFormat = false;
+
+            //Y轴坐标轴显示小数位数
+            option.YAxis.AxisLabel.DecimalPlaces = 1;
 
             option.XAxisScaleLines.Add(new UIScaleLine(dt.AddHours(3).DateTimeString(), dt.AddHours(3), Color.Red));
             option.XAxisScaleLines.Add(new UIScaleLine(dt.AddHours(6).DateTimeString(), dt.AddHours(6), Color.Red));
@@ -91,7 +96,7 @@ namespace Sunny.UI.Demo
             StringBuilder sb = new StringBuilder();
             foreach (var point in points)
             {
-                sb.Append(point.Name + ", " + point.Index + ", " + point.X + ", " + point.Y);
+                sb.Append(point.Series.Name + ", " + point.Index + ", " + point.X + ", " + point.Y);
             }
 
             Console.WriteLine(sb.ToString());
@@ -107,10 +112,9 @@ namespace Sunny.UI.Demo
             option.Title.SubText = "LineChart";
             var series = option.AddSeries(new UILineSeries("Line1"));
 
-            option.XAxis.AxisLabel.DecimalCount = 1;
-            option.XAxis.AxisLabel.AutoFormat = false;
-            option.YAxis.AxisLabel.DecimalCount = 1;
-            option.YAxis.AxisLabel.AutoFormat = false;
+            //坐标轴显示小数位数
+            option.XAxis.AxisLabel.DecimalPlaces = 1;
+            option.YAxis.AxisLabel.DecimalPlaces = 1;
             LineChart.SetOption(option);
             timer1.Start();
         }
@@ -125,10 +129,7 @@ namespace Sunny.UI.Demo
 
             if (index > 50)
             {
-                LineChart.Option.XAxis.Max = index + 20;
-                LineChart.Option.XAxis.MaxAuto = false;
-                LineChart.Option.XAxis.Min = index - 50;
-                LineChart.Option.XAxis.MinAuto = false;
+                LineChart.Option.XAxis.SetRange(index - 50, index + 20);
             }
 
             LineChart.Refresh();
@@ -164,9 +165,7 @@ namespace Sunny.UI.Demo
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
             option.XAxis.AxisLabel.DateTimeFormat = "yyyy-MM-dd HH:mm";
-            option.XAxis.AxisLabel.AutoFormat = false;
-            option.YAxis.AxisLabel.DecimalCount = 1;
-            option.YAxis.AxisLabel.AutoFormat = false;
+            option.YAxis.AxisLabel.DecimalPlaces = 1;
 
             LineChart.SetOption(option);
         }
@@ -212,11 +211,6 @@ namespace Sunny.UI.Demo
             option.XAxis.Name = "日期";
             option.YAxis.Name = "数值";
             option.Y2Axis.Name = "数值";
-
-            option.YAxis.AxisLabel.DecimalCount = 1;
-            option.YAxis.AxisLabel.AutoFormat = false;
-            option.Y2Axis.AxisLabel.DecimalCount = 1;
-            option.Y2Axis.AxisLabel.AutoFormat = false;
 
             option.YAxisScaleLines.Add(new UIScaleLine() { Color = Color.Red, Name = "上限", Value = 3.5 });
             option.Y2AxisScaleLines.Add(new UIScaleLine() { Color = Color.Gold, Name = "下限", Value = 12, DashDot = true });
