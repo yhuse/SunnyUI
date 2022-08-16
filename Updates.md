@@ -1,7 +1,7 @@
 \+ 增加    \* 修改    \- 删除    
     
 #### 2022\-08\-16 V3.2.3
- **关于图表数据显示格式化已经重构，需重点关注，可参考Demo：**     
+ **〇〇 关于图表数据显示格式化已经重构，需重点关注，可参考Demo：**     
 \* UILineChart: 数据显示的小数位数重构调整至数据序列 Series.XAxisDecimalPlaces，YAxisDecimalPlaces    
 \* UILineChart: 数据显示的日期格式重构调整至数据序列 Series.XAxisDateTimeFormat    
 \* UILineChart: 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces    
@@ -11,9 +11,9 @@
 \* UIDoughnutChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
 \* UIPieChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
 \* UIDoubleUpDown, UIProcessBar, UITextBox: 小数位数统一改名为DecimalPlaces    
- **UITabControlMenu需要重新设置ItemSize**  
+ **〇〇 UITabControlMenu需要重新设置ItemSize：**  
 \* UITabControlMenu: 重写ItemSize，将宽、高调整为正常显示    
- **其他更新内容：**     
+ **〇〇 其他更新内容：**     
 \* UITreeView: 去掉窗体控件的默认设计器    
 \* UINavBar: 删除界面此控件的编辑器    
 \+ UIKnob: 新增控件    
