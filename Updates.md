@@ -1,5 +1,35 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-08\-16 V3.2.3
+ **关于图表数据显示格式化已经重构，需重点关注，可参考Demo：**     
+\* UILineChart: 数据显示的小数位数重构调整至数据序列 Series.XAxisDecimalPlaces，YAxisDecimalPlaces    
+\* UILineChart: 数据显示的日期格式重构调整至数据序列 Series.XAxisDateTimeFormat    
+\* UILineChart: 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces    
+\* UILineChart: 坐标轴的日期格式重构调整至坐标轴标签 AxisLabel.DateTimeFormat    
+\* UIBarChart: 数据显示的小数位数重构调整至数据序列 Series.DecimalPlaces    
+\* UIBarChart: 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces    
+\* UIDoughnutChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
+\* UIPieChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
+\* UIDoubleUpDown, UIProcessBar, UITextBox: 小数位数统一改名为DecimalPlaces    
+ **UITabControlMenu需要重新设置ItemSize**  
+\* UITabControlMenu: 重写ItemSize，将宽、高调整为正常显示    
+ **其他更新内容：**     
+\* UITreeView: 去掉窗体控件的默认设计器    
+\* UINavBar: 删除界面此控件的编辑器    
+\+ UIKnob: 新增控件    
+\* UIBarChart: 修复Y轴显示名称    
+\* IniFile: 读数据缓存增加到2048，但还是不建议Ini文件保存过长的数据    
+\* UILineChart: 修复双Y轴时，数据为空，刷新出错的问题    
+\* UITextBox: 修改了描述错别字    
+\* UIChartOption: 清理一些无用的属性    
+\* UIDataGridView: 修复了ScrollBars为None时仍然显示滚动条的问题    
+\* UITextBox: 修复了有水印文字时，不响应Click和DoubleClick事件的问题    
+\* UILineChart: 修复双Y轴数据点提示文字显示    
+\* UIGifAvatar: 重写图片刷新流程，减少内存及GC    
+\* UIForm: 多页面框架增加程序关闭时调用UIPage的Final和FormClosed事件    
+\+ 增加LineAweSome字体图标，测试下看看效果    
+\- 删除LineAweSome字体图标，经过测试显示效果不理想    
+      
 #### 2022\-07\-25 V3.2.2    
 \* UIForm: 多页面框架增加PageAdded，PageSelected，PageRemoved事件    
 \* UIComboBox: 屏蔽FormatString的编辑器    
