@@ -234,6 +234,12 @@ namespace Sunny.UI
                         }
                     }
                 }
+
+                if (min > max)
+                {
+                    min = 0;
+                    max = 1;
+                }
             }
         }
 
@@ -275,6 +281,12 @@ namespace Sunny.UI
                                 max = Math.Max(max, series.YData.Max());
                             }
                         }
+                    }
+
+                    if (min > max)
+                    {
+                        min = 0;
+                        max = 1;
                     }
                 }
             }

@@ -297,6 +297,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false, float penWidth = 1)
         {
+            if (y1.IsNanOrInfinity() || y2.IsNanOrInfinity() || x1.IsNanOrInfinity() || x2.IsNanOrInfinity()) return;
+
             using (Pen pen = color.Pen(penWidth))
             {
                 g.Smooth(smooth);
