@@ -25,6 +25,7 @@
  * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至数据序列 Series.DecimalPlaces
  * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces
  * 2022-08-10: V3.2.2 修复Y轴显示名称
+ * 2022-08-17: V3.2.3 增加数据可为Nan
 ******************************************************************************/
 
 using System;
@@ -33,7 +34,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -107,9 +107,19 @@ namespace Sunny.UI
             {
                 if (series.Data.Count > 0)
                 {
-                    min = Math.Min(min, series.Data.Min());
-                    max = Math.Max(max, series.Data.Max());
+                    for (int i = 0; i < series.Data.Count; i++)
+                    {
+                        if (series.Data[i].IsNanOrInfinity()) continue;
+                        min = Math.Min(min, series.Data[i]);
+                        max = Math.Max(max, series.Data[i]);
+                    }
                 }
+            }
+
+            if (min > max)
+            {
+                min = 0;
+                max = 1;
             }
 
             if (min > 0 && max > 0 && !Option.YAxis.Scale) min = 0;
@@ -468,6 +478,8 @@ namespace Sunny.UI
                 if (Option.YAxis.AxisTick.Show)
                 {
                     g.DrawLine(ForeColor, DrawOrigin.X, labels[i], DrawOrigin.X - Option.YAxis.AxisTick.Length, labels[i]);
+
+                    if (YLabels[i].IsNanOrInfinity()) continue;
                     if (!YLabels[i].EqualsDouble(0))
                     {
                         using (Pen pn = new Pen(ForeColor))
