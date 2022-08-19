@@ -28,6 +28,7 @@
  * 2022-03-24: V3.1.1 修复TipsText显示位置
  * 2022-04-14: V3.1.3 重构扩展函数
  * 2022-06-23: V3.2.0 绘制节点字体图标增加偏移SymbolOffset
+ * 2022-08-19: V3.2.3 修复选中节点右侧图标前景色
 ******************************************************************************/
 
 using System;
@@ -668,7 +669,7 @@ namespace Sunny.UI
 
                         for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
                         {
-                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, SelectedForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
                         }
                     }
                 }
