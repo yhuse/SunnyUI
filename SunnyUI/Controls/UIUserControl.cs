@@ -29,6 +29,7 @@ using System.Windows.Forms;
 #pragma warning disable 1591
 namespace Sunny.UI
 {
+    [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner))]
     [DefaultEvent("Click"), DefaultProperty("Text")]
     public partial class UIUserControl : UserControl, IStyleInterface, IZoomScale
     {
