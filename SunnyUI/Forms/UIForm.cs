@@ -2196,36 +2196,43 @@ namespace Sunny.UI
 
         public bool ExistPage(Guid pageGuid) => GetPage(pageGuid) != null;
 
-        public bool SendParamToPage(int pageIndex, UIPage sourcePage, object value)
+        public bool SendParamToPage(int pageIndex, UIPageParamsArgs e)
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageIndex);
-            if (page == null) return false;
-            return page.DoReceiveParams(new UIPageParamsArgs(sourcePage, value, UIParamSourceType.Page));
+            page?.DoReceiveParams(e);
+            return e.Handled;
         }
 
-        public bool SendParamToPage(Guid pageGuid, UIPage sourcePage, object value)
+        public bool SendParamToPage(Guid pageGuid, UIPageParamsArgs e)
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageGuid);
-            if (page == null) return false;
-            return page.DoReceiveParams(new UIPageParamsArgs(sourcePage, value, UIParamSourceType.Page));
+            page?.DoReceiveParams(e);
+            return e.Handled;
         }
 
         public bool SendParamToPage(int pageIndex, object value)
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageIndex);
-            if (page == null) return false;
-            return page.DoReceiveParams(new UIPageParamsArgs(null, value, UIParamSourceType.Frame));
+            var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
+            page?.DoReceiveParams(args);
+            return args.Handled;
         }
 
-        public bool DoReceiveParams(UIPageParamsArgs e)
+        public bool SendParamToPage(Guid pageGuid, object value)
         {
-            bool result = false;
-            if (ReceiveParams != null)
-                result = ReceiveParams.Invoke(this, e);
-            return result;
+            SetDefaultTabControl();
+            UIPage page = GetPage(pageGuid);
+            var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
+            page?.DoReceiveParams(args);
+            return args.Handled;
+        }
+
+        public void DoReceiveParams(UIPageParamsArgs e)
+        {
+            ReceiveParams?.Invoke(this, e);
         }
 
         public event OnReceiveParams ReceiveParams;

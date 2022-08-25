@@ -62,33 +62,4 @@ namespace Sunny.UI
     public delegate void OnSelectionChanged(object sender, UITextBoxSelectionArgs e);
 
     public delegate void OnDateTimeChanged(object sender, UIDateTimeArgs e);
-
-    public class UIPageParamsArgs : EventArgs
-    {
-        public UIPage Page { get; set; }
-
-        public object Value { get; set; }
-
-        public UIParamSourceType SourceType { get; set; }
-
-        public UIPageParamsArgs()
-        {
-
-        }
-
-        public UIPageParamsArgs(UIPage page, object value, UIParamSourceType sourceType)
-        {
-            Page = page;
-            Value = value;
-            SourceType = sourceType;
-        }
-    }
-
-    public enum UIParamSourceType
-    {
-        Frame,
-        Page
-    }
-
-    public delegate bool OnReceiveParams(object sender, UIPageParamsArgs e);
 }

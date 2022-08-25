@@ -834,28 +834,28 @@ namespace Sunny.UI
 
         public bool SendParamToFrame(object value)
         {
-            if (Frame == null) return false;
-            return Frame.DoReceiveParams(new UIPageParamsArgs(this, value, UIParamSourceType.Page));
+            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
+            Frame?.DoReceiveParams(args);
+            return args.Handled;
         }
 
         public bool SendParamToPage(int pageIndex, object value)
         {
-            if (Frame == null) return false;
-            return Frame.SendParamToPage(pageIndex, this, value);
+            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
+            Frame?.SendParamToPage(pageIndex, args);
+            return args.Handled;
         }
 
         public bool SendParamToPage(Guid pageGuid, object value)
         {
-            if (Frame == null) return false;
-            return Frame.SendParamToPage(pageGuid, this, value);
+            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
+            Frame?.SendParamToPage(pageGuid, args);
+            return args.Handled;
         }
 
-        public bool DoReceiveParams(UIPageParamsArgs e)
+        public void DoReceiveParams(UIPageParamsArgs e)
         {
-            bool result = false;
-            if (ReceiveParams != null)
-                result = ReceiveParams.Invoke(this, e);
-            return result;
+            ReceiveParams?.Invoke(this, e);
         }
 
         public event OnReceiveParams ReceiveParams;
