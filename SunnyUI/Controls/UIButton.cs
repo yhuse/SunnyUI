@@ -26,9 +26,11 @@
  * 2022-02-26: V3.1.1 增加了AutoSize属性
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-03-31: V3.1.2 是否显示浅色背景
+ * 2022-08-25: V3.2.3 增加同一个容器的相同GroupIndex的按钮控件的Selected单选
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -352,6 +354,38 @@ namespace Sunny.UI
                 {
                     selected = value;
                     Invalidate();
+
+                    if (value && Parent != null)
+                    {
+                        if (this is UISymbolButton)
+                        {
+                            List<UISymbolButton> buttons = Parent.GetControls<UISymbolButton>();
+
+                            foreach (var box in buttons)
+                            {
+                                if (box == this) continue;
+                                if (box.GroupIndex != GroupIndex) continue;
+                                if (box.Selected) box.Selected = false;
+                            }
+
+                            return;
+                        }
+
+                        if (this is UIButton)
+                        {
+                            List<UIButton> buttons = Parent.GetControls<UIButton>();
+
+                            foreach (var box in buttons)
+                            {
+                                if (box is UISymbolButton) continue;
+                                if (box == this) continue;
+                                if (box.GroupIndex != GroupIndex) continue;
+                                if (box.Selected) box.Selected = false;
+                            }
+
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -665,5 +699,9 @@ namespace Sunny.UI
         [DefaultValue(false)]
         [Description("显示激活时边框线"), Category("SunnyUI")]
         public bool ShowFocusLine { get; set; }
+
+        [DefaultValue(0)]
+        [Description("分组编号"), Category("SunnyUI")]
+        public int GroupIndex { get; set; }
     }
 }
