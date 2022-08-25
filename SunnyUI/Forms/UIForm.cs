@@ -38,6 +38,9 @@
  * 2022-07-05: V3.2.1 多页面框架增加PageAdded，PageSelected，PageRemoved事件
  * 2022-07-14: V3.2.1 增加UnRegisterHotKey，卸载全局热键
  * 2022-07-25: V3.2.2 多页面框架增加程序关闭时调用UIPage的Final和FormClosed事件
+ * 2022-08-25: V3.2.3 重构多页面框架传值删除SetParamToPage
+ * 2022-08-25: V3.2.3 重构多页面框架传值：框架发送给页面 SendParamToPage 函数
+ * 2022-08-25: V3.2.3 重构多页面框架传值：接收页面传值 ReceiveParams 事件
 ******************************************************************************/
 
 using System;
@@ -2115,15 +2118,15 @@ namespace Sunny.UI
             }
         }
 
-        public UIPage AddPage(UIPage page, int index)
+        public UIPage AddPage(UIPage page, int pageIndex)
         {
-            page.PageIndex = index;
+            page.PageIndex = pageIndex;
             return AddPage(page);
         }
 
-        public UIPage AddPage(UIPage page, Guid guid)
+        public UIPage AddPage(UIPage page, Guid pageGuid)
         {
-            page.PageGuid = guid;
+            page.PageGuid = pageGuid;
             return AddPage(page);
         }
 
@@ -2174,42 +2177,58 @@ namespace Sunny.UI
             return MainTabControl.SelectPage(pageIndex);
         }
 
-        public virtual bool SelectPage(Guid guid)
+        public virtual bool SelectPage(Guid pageGuid)
         {
             SetDefaultTabControl();
             if (MainTabControl == null) return false;
-            return MainTabControl.SelectPage(guid);
+            return MainTabControl.SelectPage(pageGuid);
         }
 
         public bool RemovePage(int pageIndex) => MainTabControl?.RemovePage(pageIndex) ?? false;
 
-        public bool RemovePage(Guid guid) => MainTabControl?.RemovePage(guid) ?? false;
-
-        public virtual void FeedbackFormPage(int fromPageIndex, params object[] objects) { }
+        public bool RemovePage(Guid pageGuid) => MainTabControl?.RemovePage(pageGuid) ?? false;
 
         public UIPage GetPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.GetPage(pageIndex);
 
-        public UIPage GetPage(Guid guid) => SetDefaultTabControl().MainTabControl?.GetPage(guid);
+        public UIPage GetPage(Guid pageGuid) => SetDefaultTabControl().MainTabControl?.GetPage(pageGuid);
 
         public bool ExistPage(int pageIndex) => GetPage(pageIndex) != null;
 
-        public bool ExistPage(Guid guid) => GetPage(guid) != null;
+        public bool ExistPage(Guid pageGuid) => GetPage(pageGuid) != null;
 
-        public bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects)
+        public bool SendParamToPage(int pageIndex, UIPage sourcePage, object value)
         {
             SetDefaultTabControl();
-            UIPage page = GetPage(toPageIndex);
+            UIPage page = GetPage(pageIndex);
             if (page == null) return false;
-            return page.SetParam(fromPageIndex, objects);
+            return page.DoReceiveParams(new UIPageParamsArgs(sourcePage, value, UIParamSourceType.Page));
         }
 
-        public bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects)
+        public bool SendParamToPage(Guid pageGuid, UIPage sourcePage, object value)
         {
             SetDefaultTabControl();
-            UIPage page = GetPage(toPageGuid);
+            UIPage page = GetPage(pageGuid);
             if (page == null) return false;
-            return page.SetParam(fromPageGuid, objects);
+            return page.DoReceiveParams(new UIPageParamsArgs(sourcePage, value, UIParamSourceType.Page));
         }
+
+        public bool SendParamToPage(int pageIndex, object value)
+        {
+            SetDefaultTabControl();
+            UIPage page = GetPage(pageIndex);
+            if (page == null) return false;
+            return page.DoReceiveParams(new UIPageParamsArgs(null, value, UIParamSourceType.Frame));
+        }
+
+        public bool DoReceiveParams(UIPageParamsArgs e)
+        {
+            bool result = false;
+            if (ReceiveParams != null)
+                result = ReceiveParams.Invoke(this, e);
+            return result;
+        }
+
+        public event OnReceiveParams ReceiveParams;
 
         public T GetPage<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPage<T>();
 

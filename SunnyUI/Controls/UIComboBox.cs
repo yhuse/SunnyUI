@@ -29,6 +29,7 @@
  * 2022-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
  * 2022-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
  * 2022-05-24: V3.1.9 Selceted=-1，清除文本
+ * 2022-08-25: V3.2.3 下拉框边框可设置颜色
 ******************************************************************************/
 
 using System;
@@ -781,6 +782,13 @@ namespace Sunny.UI
         {
             get => ListBox.HoverColor;
             set => FilterListBox.HoverColor = ListBox.HoverColor = value;
+        }
+
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ItemRectColor
+        {
+            get => ListBox.RectColor;
+            set => ListBox.RectColor = value;
         }
     }
 }

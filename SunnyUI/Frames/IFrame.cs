@@ -28,35 +28,35 @@ namespace Sunny.UI
     {
         UITabControl MainTabControl { get; }
 
-        UIPage AddPage(UIPage page, int index);
+        UIPage AddPage(UIPage page, int pageIndex);
 
-        UIPage AddPage(UIPage page, Guid guid);
+        UIPage AddPage(UIPage page, Guid pageGuid);
 
         UIPage AddPage(UIPage page);
 
         bool SelectPage(int pageIndex);
 
-        bool SelectPage(Guid guid);
+        bool SelectPage(Guid pageGuid);
 
         UIPage GetPage(int pageIndex);
 
-        UIPage GetPage(Guid guid);
+        UIPage GetPage(Guid pageGuid);
 
         bool TopMost { get; set; }
 
         bool RemovePage(int pageIndex);
 
-        bool RemovePage(Guid guid);
+        bool RemovePage(Guid pageGuid);
 
-        void FeedbackFormPage(int fromPageIndex, params object[] objects);
+        bool ExistPage(int pageIndex);
 
-        bool ExistPage(int index);
+        bool ExistPage(Guid pageGuid);
 
-        bool ExistPage(Guid guid);
+        public bool SendParamToPage(int pageIndex, UIPage sourcePage, object value);
 
-        bool SetParamToPage(int toPageIndex, int fromPageIndex, params object[] objects);
+        public bool SendParamToPage(Guid pageGuid, UIPage sourcePage, object value);
 
-        bool SetParamToPage(Guid toPageGuid, Guid fromPageGuid, params object[] objects);
+        public bool DoReceiveParams(UIPageParamsArgs e);
 
         void Init();
 

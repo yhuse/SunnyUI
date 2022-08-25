@@ -28,6 +28,10 @@
  * 2022-04-26: V3.1.8 屏蔽一些属性
  * 2022-05-11: V3.1.8 ShowTitle时，可调整Padding
  * 2022-06-11: V3.1.9 弹窗默认关闭半透明遮罩
+ * 2022-08-25: V3.2.3 重构多页面框架传值删除SetParam，FeedbackToFrame
+ * 2022-08-25: V3.2.3 重构多页面框架传值：页面发送给框架 SendParamToFrame 函数
+ * 2022-08-25: V3.2.3 重构多页面框架传值：页面发送给框架 SendParamToPage 函数
+ * 2022-08-25: V3.2.3 重构多页面框架传值：接收框架、页面传值 ReceiveParams 事件
 ******************************************************************************/
 
 using System;
@@ -828,20 +832,33 @@ namespace Sunny.UI
             get; set;
         }
 
-        public void FeedbackToFrame(params object[] objects)
+        public bool SendParamToFrame(object value)
         {
-            Frame?.FeedbackFormPage(PageIndex, objects);
+            if (Frame == null) return false;
+            return Frame.DoReceiveParams(new UIPageParamsArgs(this, value, UIParamSourceType.Page));
         }
 
-        public virtual bool SetParam(int fromPageIndex, params object[] objects)
+        public bool SendParamToPage(int pageIndex, object value)
         {
-            return false;
+            if (Frame == null) return false;
+            return Frame.SendParamToPage(pageIndex, this, value);
         }
 
-        public virtual bool SetParam(Guid fromPageGuid, params object[] objects)
+        public bool SendParamToPage(Guid pageGuid, object value)
         {
-            return false;
+            if (Frame == null) return false;
+            return Frame.SendParamToPage(pageGuid, this, value);
         }
+
+        public bool DoReceiveParams(UIPageParamsArgs e)
+        {
+            bool result = false;
+            if (ReceiveParams != null)
+                result = ReceiveParams.Invoke(this, e);
+            return result;
+        }
+
+        public event OnReceiveParams ReceiveParams;
 
         #region 一些辅助窗口
 
