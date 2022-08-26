@@ -2200,7 +2200,7 @@ namespace Sunny.UI
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageIndex);
-            page?.DoReceiveParams(e);
+            page?.DealReceiveParams(e);
             return e.Handled;
         }
 
@@ -2208,7 +2208,7 @@ namespace Sunny.UI
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageGuid);
-            page?.DoReceiveParams(e);
+            page?.DealReceiveParams(e);
             return e.Handled;
         }
 
@@ -2217,7 +2217,7 @@ namespace Sunny.UI
             SetDefaultTabControl();
             UIPage page = GetPage(pageIndex);
             var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
-            page?.DoReceiveParams(args);
+            page?.DealReceiveParams(args);
             return args.Handled;
         }
 
@@ -2226,11 +2226,11 @@ namespace Sunny.UI
             SetDefaultTabControl();
             UIPage page = GetPage(pageGuid);
             var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
-            page?.DoReceiveParams(args);
+            page?.DealReceiveParams(args);
             return args.Handled;
         }
 
-        public void DoReceiveParams(UIPageParamsArgs e)
+        public virtual void DealReceiveParams(UIPageParamsArgs e)
         {
             ReceiveParams?.Invoke(this, e);
         }

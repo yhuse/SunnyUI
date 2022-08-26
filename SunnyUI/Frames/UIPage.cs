@@ -835,7 +835,7 @@ namespace Sunny.UI
         public bool SendParamToFrame(object value)
         {
             var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
-            Frame?.DoReceiveParams(args);
+            Frame?.DealReceiveParams(args);
             return args.Handled;
         }
 
@@ -853,7 +853,7 @@ namespace Sunny.UI
             return args.Handled;
         }
 
-        public void DoReceiveParams(UIPageParamsArgs e)
+        public virtual void DealReceiveParams(UIPageParamsArgs e)
         {
             ReceiveParams?.Invoke(this, e);
         }

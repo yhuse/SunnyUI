@@ -56,7 +56,7 @@ namespace Sunny.UI
 
         bool SendParamToPage(Guid pageGuid, UIPageParamsArgs e);
 
-        void DoReceiveParams(UIPageParamsArgs e);
+        void DealReceiveParams(UIPageParamsArgs e);
 
         void Init();
 
