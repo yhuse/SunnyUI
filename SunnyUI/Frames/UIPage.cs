@@ -832,28 +832,42 @@ namespace Sunny.UI
             get; set;
         }
 
+        internal event OnReceiveParams OnFrameDealPageParams;
+
         public bool SendParamToFrame(object value)
         {
-            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
-            Frame?.DealReceiveParams(args);
+            var args = new UIPageParamsArgs(this, null, value);
+            OnFrameDealPageParams?.Invoke(this, args);
             return args.Handled;
         }
 
         public bool SendParamToPage(int pageIndex, object value)
         {
-            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
-            Frame?.SendParamToPage(pageIndex, args);
+            UIPage page = Frame.GetPage(pageIndex);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageIndex);
+            }
+
+            var args = new UIPageParamsArgs(this, page, value);
+            OnFrameDealPageParams?.Invoke(this, args);
             return args.Handled;
         }
 
         public bool SendParamToPage(Guid pageGuid, object value)
         {
-            var args = new UIPageParamsArgs(this, value, UIParamSourceType.Page);
-            Frame?.SendParamToPage(pageGuid, args);
+            UIPage page = Frame.GetPage(pageGuid);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageGuid);
+            }
+
+            var args = new UIPageParamsArgs(this, page, value);
+            OnFrameDealPageParams?.Invoke(this, args);
             return args.Handled;
         }
 
-        public virtual void DealReceiveParams(UIPageParamsArgs e)
+        internal void DealReceiveParams(UIPageParamsArgs e)
         {
             ReceiveParams?.Invoke(this, e);
         }

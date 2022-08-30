@@ -2140,6 +2140,7 @@ namespace Sunny.UI
             }
 
             page.Frame = this;
+            page.OnFrameDealPageParams += Page_OnFrameDealPageParams;
             MainTabControl?.AddPage(page);
             return page;
         }
@@ -2196,27 +2197,16 @@ namespace Sunny.UI
 
         public bool ExistPage(Guid pageGuid) => GetPage(pageGuid) != null;
 
-        public bool SendParamToPage(int pageIndex, UIPageParamsArgs e)
-        {
-            SetDefaultTabControl();
-            UIPage page = GetPage(pageIndex);
-            page?.DealReceiveParams(e);
-            return e.Handled;
-        }
-
-        public bool SendParamToPage(Guid pageGuid, UIPageParamsArgs e)
-        {
-            SetDefaultTabControl();
-            UIPage page = GetPage(pageGuid);
-            page?.DealReceiveParams(e);
-            return e.Handled;
-        }
-
         public bool SendParamToPage(int pageIndex, object value)
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageIndex);
-            var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageIndex);
+            }
+
+            var args = new UIPageParamsArgs(null, page, value);
             page?.DealReceiveParams(args);
             return args.Handled;
         }
@@ -2225,14 +2215,27 @@ namespace Sunny.UI
         {
             SetDefaultTabControl();
             UIPage page = GetPage(pageGuid);
-            var args = new UIPageParamsArgs(null, value, UIParamSourceType.Frame);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageGuid);
+            }
+
+            var args = new UIPageParamsArgs(null, page, value);
             page?.DealReceiveParams(args);
             return args.Handled;
         }
 
-        public virtual void DealReceiveParams(UIPageParamsArgs e)
+        private void Page_OnFrameDealPageParams(object sender, UIPageParamsArgs e)
         {
-            ReceiveParams?.Invoke(this, e);
+            if (e == null) return;
+            if (e.DestPage == null)
+            {
+                ReceiveParams?.Invoke(this, e);
+            }
+            else
+            {
+                e.DestPage?.DealReceiveParams(e);
+            }
         }
 
         public event OnReceiveParams ReceiveParams;

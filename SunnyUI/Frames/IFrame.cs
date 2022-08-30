@@ -52,12 +52,6 @@ namespace Sunny.UI
 
         bool ExistPage(Guid pageGuid);
 
-        bool SendParamToPage(int pageIndex, UIPageParamsArgs e);
-
-        bool SendParamToPage(Guid pageGuid, UIPageParamsArgs e);
-
-        void DealReceiveParams(UIPageParamsArgs e);
-
         void Init();
 
         void Final();
@@ -75,11 +69,11 @@ namespace Sunny.UI
 
     public class UIPageParamsArgs : EventArgs
     {
-        public UIPage Page { get; set; }
+        public UIPage SourcePage { get; set; }
+
+        public UIPage DestPage { get; set; }
 
         public object Value { get; set; }
-
-        public UIParamSourceType SourceType { get; set; }
 
         public bool Handled { get; set; } = false;
 
@@ -88,18 +82,12 @@ namespace Sunny.UI
 
         }
 
-        public UIPageParamsArgs(UIPage page, object value, UIParamSourceType sourceType)
+        public UIPageParamsArgs(UIPage sourcePage, UIPage destPage, object value)
         {
-            Page = page;
+            SourcePage = sourcePage;
+            DestPage = destPage;
             Value = value;
-            SourceType = sourceType;
         }
-    }
-
-    public enum UIParamSourceType
-    {
-        Frame,
-        Page
     }
 
     public delegate void OnReceiveParams(object sender, UIPageParamsArgs e);
