@@ -21,6 +21,7 @@
  * 2020-05-21: V2.2.5 增加鼠标滑过高亮
  * 2021-08-07: V3.0.5 从文件载入图片，并且解除占用
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-08-30: V3.2.3 增加了一些事件
 ******************************************************************************/
 
 using System;
@@ -65,6 +66,57 @@ namespace Sunny.UI
             listbox.MouseDown += Listbox_MouseDown;
             listbox.MouseUp += Listbox_MouseUp;
             listbox.MouseMove += Listbox_MouseMove;
+
+            listbox.MouseClick += Listbox_MouseClick;
+            listbox.KeyPress += Listbox_KeyPress;
+            listbox.KeyDown += Listbox_KeyDown;
+            listbox.KeyUp += Listbox_KeyUp;
+            listbox.MouseEnter += Listbox_MouseEnter;
+            listbox.MouseLeave += Listbox_MouseLeave;
+            listbox.DrawItem += Listbox_DrawItem;
+        }
+
+        public event DrawItemEventHandler DrawItem;
+        public new event EventHandler MouseLeave;
+        public new event EventHandler MouseEnter;
+        public new event KeyPressEventHandler KeyPress;
+        public new event KeyEventHandler KeyDown;
+        public new event KeyEventHandler KeyUp;
+        public new event MouseEventHandler MouseClick;
+
+        private void Listbox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            DrawItem?.Invoke(sender, e);
+        }
+
+        private void Listbox_MouseLeave(object sender, EventArgs e)
+        {
+            MouseLeave?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseEnter(object sender, EventArgs e)
+        {
+            MouseEnter?.Invoke(this, e);
+        }
+
+        private void Listbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            MouseClick?.Invoke(this, e);
+        }
+
+        private void Listbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            KeyUp?.Invoke(this, e);
+        }
+
+        private void Listbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(this, e);
+        }
+
+        private void Listbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPress?.Invoke(this, e);
         }
 
         /// <summary>
