@@ -59,12 +59,6 @@ namespace Sunny.UI
         T GetPage<T>() where T : UIPage;
 
         List<T> GetPages<T>() where T : UIPage;
-
-        void DealPageAdded(UIPage page);
-
-        void DealPageSelected(UIPage page);
-
-        void DealPageRemoved(UIPage page);
     }
 
     public class UIPageParamsArgs : EventArgs

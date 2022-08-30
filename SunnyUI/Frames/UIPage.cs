@@ -455,10 +455,11 @@ namespace Sunny.UI
             get; set;
         }
 
+        internal event OnUIPageChanged PageSelected;
         public virtual void Init()
         {
             Initialize?.Invoke(this, new EventArgs());
-            Frame?.DealPageSelected(this);
+            PageSelected?.Invoke(this, new UIPageEventArgs(this));
         }
 
         protected override void OnLoad(EventArgs e)

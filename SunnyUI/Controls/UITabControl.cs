@@ -261,8 +261,11 @@ namespace Sunny.UI
         public void AddPage(UIPage page)
         {
             Helper.AddPage(page);
-            Frame?.DealPageAdded(page);
+            PageAdded?.Invoke(this, new UIPageEventArgs(page));
         }
+
+        internal event OnUIPageChanged PageAdded;
+        internal event OnUIPageChanged PageRemoved;
 
         public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
 
@@ -850,7 +853,7 @@ namespace Sunny.UI
             {
                 if (AutoClosePage)
                 {
-                    Frame?.DealPageRemoved(pages[i]);
+                    PageRemoved?.Invoke(this, new UIPageEventArgs(pages[i]));
 
                     try
                     {

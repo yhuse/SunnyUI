@@ -2115,6 +2115,9 @@ namespace Sunny.UI
             {
                 mainTabControl = value;
                 mainTabControl.Frame = this;
+
+                mainTabControl.PageAdded += DealPageAdded;
+                mainTabControl.PageRemoved += DealPageRemoved;
             }
         }
 
@@ -2141,6 +2144,7 @@ namespace Sunny.UI
 
             page.Frame = this;
             page.OnFrameDealPageParams += Page_OnFrameDealPageParams;
+            page.PageSelected += DealPageSelected;
             MainTabControl?.AddPage(page);
             return page;
         }
@@ -2246,21 +2250,21 @@ namespace Sunny.UI
 
         public event OnUIPageChanged PageAdded;
 
-        public void DealPageAdded(UIPage page)
+        internal void DealPageAdded(object sender, UIPageEventArgs e)
         {
-            PageAdded?.Invoke(this, new UIPageEventArgs(page));
+            PageAdded?.Invoke(this, e);
         }
 
         public event OnUIPageChanged PageSelected;
-        public void DealPageSelected(UIPage page)
+        internal void DealPageSelected(object sender, UIPageEventArgs e)
         {
-            PageSelected?.Invoke(this, new UIPageEventArgs(page));
+            PageSelected?.Invoke(this, e);
         }
 
         public event OnUIPageChanged PageRemoved;
-        public void DealPageRemoved(UIPage page)
+        internal void DealPageRemoved(object sender, UIPageEventArgs e)
         {
-            PageRemoved?.Invoke(this, new UIPageEventArgs(page));
+            PageRemoved?.Invoke(this, e);
         }
 
         #endregion IFrame实现
