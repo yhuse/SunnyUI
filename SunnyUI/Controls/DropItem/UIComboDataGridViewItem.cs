@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -365,7 +365,7 @@ namespace Sunny.UI
                     filter = string.Join(" or ", strings);
                 }
             }
-
+            filter = filter.Replace("*", "[*]");
             if (dataGridView.DataSource is DataTable table)
             {
                 table.DefaultView.RowFilter = filter;
