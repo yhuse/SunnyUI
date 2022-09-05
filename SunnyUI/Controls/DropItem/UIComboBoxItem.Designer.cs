@@ -48,7 +48,7 @@
             this.listBox.Size = new System.Drawing.Size(184, 210);
             this.listBox.TabIndex = 3;
             this.listBox.Text = null;
-            this.listBox.ItemClick += new System.EventHandler(this.ListBox_Click);
+            this.listBox.Click += new System.EventHandler(this.ListBox_Click);
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             this.listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_KeyDown);
             // 

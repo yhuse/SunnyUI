@@ -118,8 +118,8 @@ namespace Sunny.UI
             this.l1.Size = new System.Drawing.Size(210, 348);
             this.l1.TabIndex = 7;
             this.l1.Text = null;
-            this.l1.ItemClick += new System.EventHandler(this.l1_ItemClick);
-            this.l1.ItemDoubleClick += new System.EventHandler(this.l1_DoubleClick);
+            this.l1.Click += new System.EventHandler(this.l1_ItemClick);
+            this.l1.DoubleClick += new System.EventHandler(this.l1_DoubleClick);
             // 
             // l2
             // 
@@ -137,8 +137,8 @@ namespace Sunny.UI
             this.l2.Size = new System.Drawing.Size(210, 348);
             this.l2.TabIndex = 8;
             this.l2.Text = null;
-            this.l2.ItemClick += new System.EventHandler(this.l2_ItemClick);
-            this.l2.ItemDoubleClick += new System.EventHandler(this.l2_DoubleClick);
+            this.l2.Click += new System.EventHandler(this.l2_ItemClick);
+            this.l2.DoubleClick += new System.EventHandler(this.l2_DoubleClick);
             // 
             // UITransfer
             // 

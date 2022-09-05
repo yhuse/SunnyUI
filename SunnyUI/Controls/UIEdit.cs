@@ -78,7 +78,7 @@ namespace Sunny.UI
         private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
         {
             waterMarkContainer.Visible = Watermark.IsValid();
-            waterMarkContainer.Location = new Point(2, 0);
+            waterMarkContainer.Location = new Point(3, 0);
             waterMarkContainer.Height = this.Height;
             waterMarkContainer.Width = this.Width;
             waterMarkContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
