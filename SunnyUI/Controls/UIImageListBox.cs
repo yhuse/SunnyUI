@@ -22,6 +22,7 @@
  * 2021-08-07: V3.0.5 从文件载入图片，并且解除占用
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-08-30: V3.2.3 增加了一些事件
+ * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
 ******************************************************************************/
 
 using System;
@@ -68,6 +69,7 @@ namespace Sunny.UI
             listbox.MouseMove += Listbox_MouseMove;
 
             listbox.MouseClick += Listbox_MouseClick;
+            listbox.MouseDoubleClick += Listbox_MouseDoubleClick;
             listbox.KeyPress += Listbox_KeyPress;
             listbox.KeyDown += Listbox_KeyDown;
             listbox.KeyUp += Listbox_KeyUp;
@@ -83,6 +85,13 @@ namespace Sunny.UI
         public new event KeyEventHandler KeyDown;
         public new event KeyEventHandler KeyUp;
         public new event MouseEventHandler MouseClick;
+
+        public new event MouseEventHandler MouseDoubleClick;
+
+        private void Listbox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MouseDoubleClick?.Invoke(this, e);
+        }
 
         private void Listbox_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -201,22 +210,20 @@ namespace Sunny.UI
 
         private void Listbox_DoubleClick(object sender, EventArgs e)
         {
-            if (SelectedItem != null)
-                ItemDoubleClick?.Invoke(this, e);
+            DoubleClick?.Invoke(this, e);
         }
 
         private void Listbox_Click(object sender, EventArgs e)
         {
-            if (SelectedItem != null)
-                ItemClick?.Invoke(this, e);
+            Click?.Invoke(this, e);
         }
 
         [Browsable(false)]
         public int Count => Items.Count;
 
-        public event EventHandler ItemClick;
+        public new event EventHandler Click;
 
-        public event EventHandler ItemDoubleClick;
+        public new event EventHandler DoubleClick;
 
         public event EventHandler ItemsCountChange;
 

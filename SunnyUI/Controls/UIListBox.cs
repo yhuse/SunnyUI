@@ -29,6 +29,7 @@
  * 2022-03-08: V3.1.1 修复在选中某一项后，清除选中项需要两次操作
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-05-15: V3.1.8 增加滚动条颜色设置
+ * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
 ******************************************************************************/
 
 using System;
@@ -88,10 +89,18 @@ namespace Sunny.UI
             listbox.MouseEnter += Listbox_MouseEnter;
             listbox.MouseLeave += Listbox_MouseLeave;
             listbox.DrawItem += Listbox_DrawItem;
+            listbox.MouseDoubleClick += Listbox_MouseDoubleClick;
 
             timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public new event MouseEventHandler MouseDoubleClick;
+
+        private void Listbox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MouseDoubleClick?.Invoke(this, e);
         }
 
         private Color scrollBarColor = Color.FromArgb(80, 160, 255);
@@ -402,19 +411,17 @@ namespace Sunny.UI
 
         private void Listbox_DoubleClick(object sender, EventArgs e)
         {
-            if (SelectedItem != null)
-                ItemDoubleClick?.Invoke(this, e);
+            DoubleClick?.Invoke(this, e);
         }
 
         private void Listbox_Click(object sender, EventArgs e)
         {
-            if (SelectedItem != null)
-                ItemClick?.Invoke(this, e);
+            Click?.Invoke(this, e);
         }
 
-        public event EventHandler ItemClick;
+        public new event EventHandler Click;
 
-        public event EventHandler ItemDoubleClick;
+        public new event EventHandler DoubleClick;
 
         public event EventHandler ItemsCountChange;
 
