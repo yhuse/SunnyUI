@@ -77,6 +77,7 @@ namespace Sunny.UI
 
         private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
         {
+            waterMarkContainer.Visible = Watermark.IsValid();
             waterMarkContainer.Location = new Point(2, 0);
             waterMarkContainer.Height = this.Height;
             waterMarkContainer.Width = this.Width;
@@ -158,8 +159,12 @@ namespace Sunny.UI
         protected override void OnInvalidated(InvalidateEventArgs e)
         {
             base.OnInvalidated(e);
+
             if (waterMarkContainer != null)
+            {
+                waterMarkContainer.Visible = Watermark.IsValid();
                 waterMarkContainer.Invalidate();
+            }
         }
 
         [Browsable(false), DefaultValue(false)]
