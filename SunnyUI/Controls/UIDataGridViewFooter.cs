@@ -19,9 +19,9 @@
  * 2021-04-20: V3.0.3 增加文件说明
  * 2021-09-24: V3.0.7 文字显示方向与Column列显示方向一致
  * 2021-11-22: V3.0.9 修复一处可能不显示的问题 
+ * 2022-09-05: V3.2.3 重构文字显示
 ******************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -54,10 +54,14 @@ namespace Sunny.UI
                 dgv = value;
                 if (dgv != null)
                 {
-                    dgv.ColumnWidthChanged += Dgv_ColumnWidthChanged;
-                    dgv.HorizontalScrollBarChanged += Dgv_HorizontalScrollBarChanged;
+                    dgv.Paint += Dgv_Paint;
                 }
             }
+        }
+
+        private void Dgv_Paint(object sender, PaintEventArgs e)
+        {
+            Invalidate();
         }
 
         public void Clear()
@@ -82,16 +86,6 @@ namespace Sunny.UI
             }
         }
 
-        private void Dgv_HorizontalScrollBarChanged(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
-
-        private void Dgv_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            Invalidate();
-        }
-
         /// <summary>
         /// 绘制前景颜色
         /// </summary>
@@ -104,7 +98,9 @@ namespace Sunny.UI
                 foreach (DataGridViewColumn column in dgv.Columns)
                 {
                     bool ShowGridLine = dgv.CellBorderStyle == DataGridViewCellBorderStyle.Single;
-                    Rectangle rect = dgv.GetCellDisplayRectangle(column.Index, 0, false);
+                    Rectangle rect = dgv.GetColumnDisplayRectangle(column.Index, false);
+                    if (rect.Width == 0) continue;
+                    rect = new Rectangle(rect.Right - column.Width, rect.Top, column.Width, rect.Height);
                     int minleft = ShowGridLine ? 1 : 0;
 
                     if (rect.Left == minleft && rect.Width == 0) continue;
