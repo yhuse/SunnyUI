@@ -51,7 +51,7 @@ namespace Sunny.UI
             Padding = new Padding(0, 0, 30, 2);
 
             edit.Font = UIFontColor.Font();
-            edit.Left = 3;
+            edit.Left = 4;
             edit.Top = 3;
             edit.Text = String.Empty;
             edit.ForeColor = UIFontColor.Primary;
@@ -313,8 +313,8 @@ namespace Sunny.UI
         private void SizeChange()
         {
             edit.Top = (Height - edit.Height) / 2;
-            edit.Left = 3 + Padding.Left;
-            edit.Width = Width - Padding.Left - Padding.Right;
+            edit.Left = 4 + Padding.Left;
+            edit.Width = Width - Padding.Left - Padding.Right - 4;
         }
 
         /// <summary>
