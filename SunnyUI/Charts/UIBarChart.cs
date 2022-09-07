@@ -26,6 +26,7 @@
  * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces
  * 2022-08-10: V3.2.2 修复Y轴显示名称
  * 2022-08-17: V3.2.3 增加数据可为Nan
+ * 2022-09-07: V3.2.3 Option.YAxis.ShowGridLine为false时，不显示水平表格虚线
 ******************************************************************************/
 
 using System;
@@ -480,6 +481,7 @@ namespace Sunny.UI
                     g.DrawLine(ForeColor, DrawOrigin.X, labels[i], DrawOrigin.X - Option.YAxis.AxisTick.Length, labels[i]);
 
                     if (YLabels[i].IsNanOrInfinity()) continue;
+                    if (!Option.YAxis.ShowGridLine) continue;
                     if (!YLabels[i].EqualsDouble(0))
                     {
                         using (Pen pn = new Pen(ForeColor))
