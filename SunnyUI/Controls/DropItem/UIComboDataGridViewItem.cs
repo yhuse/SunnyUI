@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -365,10 +366,18 @@ namespace Sunny.UI
                     filter = string.Join(" or ", strings);
                 }
             }
+
             filter = filter.Replace("*", "[*]");
             if (dataGridView.DataSource is DataTable table)
             {
-                table.DefaultView.RowFilter = filter;
+                try
+                {
+                    table.DefaultView.RowFilter = filter;
+                }
+                catch (Exception ex)
+                {
+                    UIMessageTip.ShowError(ex.Message);
+                }
             }
 
             ComboDataGridViewFilterChanged?.Invoke(this, new UIComboDataGridViewArgs(edtFilter.Text, dataGridView.RowCount));
