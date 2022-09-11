@@ -154,5 +154,12 @@ namespace Sunny.UI.Demo
                 ShowInfoTip("您按下了全局系统热键 Shift+F8");
             }
         }
+
+        private void FMain_ReceiveParams(object sender, UIPageParamsArgs e)
+        {
+            Text = e.Value.ToString();
+
+            SendParamToPage(1001, "传值给页面");
+        }
     }
 }

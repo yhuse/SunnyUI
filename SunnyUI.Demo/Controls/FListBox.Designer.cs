@@ -78,7 +78,7 @@ namespace Sunny.UI.Demo
             this.uiListBox1.TabIndex = 27;
             this.uiListBox1.Text = "uiListBox1";
             this.uiListBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBox_DrawItem);
-            this.uiListBox1.ItemDoubleClick += new System.EventHandler(this.uiListBox1_ItemDoubleClick);
+            this.uiListBox1.DoubleClick += new System.EventHandler(this.uiListBox1_ItemDoubleClick);
             // 
             // uiLine2
             // 
@@ -117,7 +117,7 @@ namespace Sunny.UI.Demo
             this.uiImageListBox1.TabIndex = 24;
             this.uiImageListBox1.Text = "uiImageListBox1";
             this.uiImageListBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiImageListBox1.ItemDoubleClick += new System.EventHandler(this.uiImageListBox1_ItemDoubleClick);
+            this.uiImageListBox1.DoubleClick += new System.EventHandler(this.uiImageListBox1_ItemDoubleClick);
             // 
             // FListBox
             // 

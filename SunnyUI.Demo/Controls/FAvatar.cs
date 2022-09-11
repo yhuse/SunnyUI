@@ -24,16 +24,20 @@
             uiContextMenuStrip1.Show(uiAvatar4, 0, uiAvatar4.Height);
         }
 
-        public override bool SetParam(int fromPageIndex, params object[] objects)
+        private void FAvatar_ReceiveParams(object sender, UIPageParamsArgs e)
         {
-            if (fromPageIndex == 1002 && objects.Length == 1)
+            if (e.SourcePage != null && e.SourcePage.PageIndex == 1002)
             {
-                uiLabel1.Text = objects[0].ToString();
-                return true;
+                //来自页面1002的传值
+                uiLabel1.Text = e.Value.ToString();
+                e.Handled = true;
             }
-            else
+
+            if (e.SourcePage == null)
             {
-                return false;
+                //来自页面框架的传值
+                uiLabel4.Text = e.Value.ToString();
+                e.Handled = true;
             }
         }
     }

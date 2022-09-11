@@ -161,6 +161,7 @@
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1024, 720);
             this.Selecting += new Sunny.UI.UIMainFrame.OnSelecting(this.FMain_Selecting);
             this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.FMain_HotKeyEventHandler);
+            this.ReceiveParams += new Sunny.UI.OnReceiveParams(this.FMain_ReceiveParams);
             this.Controls.SetChildIndex(this.Header, 0);
             this.Controls.SetChildIndex(this.Aside, 0);
             this.Header.ResumeLayout(false);

@@ -303,6 +303,7 @@ namespace Sunny.UI.Demo
             this.ShowTitle = true;
             this.Symbol = 61447;
             this.Text = "Avatar";
+            this.ReceiveParams += new Sunny.UI.OnReceiveParams(this.FAvatar_ReceiveParams);
             this.uiContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
