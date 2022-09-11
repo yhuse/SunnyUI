@@ -41,6 +41,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值删除SetParamToPage
  * 2022-08-25: V3.2.3 重构多页面框架传值：框架发送给页面 SendParamToPage 函数
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收页面传值 ReceiveParams 事件
+ * 2022-09-11: V3.2.3 修复继承页面可响应WM_HOTKEY消息
 ******************************************************************************/
 
 using System;
@@ -1681,7 +1682,6 @@ namespace Sunny.UI
                     return cp;
                 }
 
-                cp.ExStyle |= 0x02000000;
                 return base.CreateParams;
             }
         }
@@ -1725,6 +1725,7 @@ namespace Sunny.UI
         public void UnRegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
         {
             if (hotKeys == null) return;
+
             int id = HotKey.CalculateID(modifierKey, key);
             if (hotKeys.ContainsKey(id))
             {
@@ -1741,23 +1742,22 @@ namespace Sunny.UI
 
         protected override void WndProc(ref Message m)
         {
-            switch (m.Msg)
+            if (m.Msg == Win32.User.WM_ERASEBKGND)
             {
-                case Win32.User.WM_ERASEBKGND:
-                    m.Result = IntPtr.Zero;
-                    break;
-
-                case Win32.User.WM_HOTKEY:
-                    int hotKeyId = (int)(m.WParam);
-                    if (hotKeys.ContainsKey(hotKeyId))
-                        HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
-
-                    break;
-
-                default:
-                    base.WndProc(ref m);
-                    break;
+                m.Result = IntPtr.Zero;
+                return;
             }
+
+            if (m.Msg == Win32.User.WM_HOTKEY)
+            {
+                int hotKeyId = (int)(m.WParam);
+                if (hotKeys != null && hotKeys.ContainsKey(hotKeyId))
+                {
+                    HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+                }
+            }
+
+            base.WndProc(ref m);
 
             if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
             {
@@ -1771,7 +1771,8 @@ namespace Sunny.UI
                         m.Result = (IntPtr)Win32.User.HTTOPLEFT;
                     else if (vPoint.Y >= ClientSize.Height - dragSize)
                         m.Result = (IntPtr)Win32.User.HTBOTTOMLEFT;
-                    else m.Result = (IntPtr)Win32.User.HTLEFT;
+                    else
+                        m.Result = (IntPtr)Win32.User.HTLEFT;
                 }
                 else if (vPoint.X >= ClientSize.Width - dragSize)
                 {
@@ -1779,7 +1780,8 @@ namespace Sunny.UI
                         m.Result = (IntPtr)Win32.User.HTTOPRIGHT;
                     else if (vPoint.Y >= ClientSize.Height - dragSize)
                         m.Result = (IntPtr)Win32.User.HTBOTTOMRIGHT;
-                    else m.Result = (IntPtr)Win32.User.HTRIGHT;
+                    else
+                        m.Result = (IntPtr)Win32.User.HTRIGHT;
                 }
                 else if (vPoint.Y <= dragSize)
                 {
