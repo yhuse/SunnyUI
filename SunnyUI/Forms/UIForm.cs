@@ -1527,20 +1527,18 @@ namespace Sunny.UI
             int num2 = 260;
             if (msg.Msg == num | msg.Msg == num2)
             {
-                if (keyData == (Keys)262259 && IsForbidAltF4)
+                if (keyData == (Keys.Alt | Keys.F4) && IsForbidAltF4)
                 {
                     //屏蔽Alt+F4
                     return true;
                 }
 
-                if (keyData != Keys.Enter)
+                if (keyData == Keys.Escape)
                 {
-                    if (keyData == Keys.Escape)
-                    {
-                        DoEsc();
-                    }
+                    DoEsc();
                 }
-                else
+
+                if (keyData == Keys.Enter)
                 {
                     DoEnter();
                 }
