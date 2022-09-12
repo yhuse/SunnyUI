@@ -1,7 +1,35 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-09\-11 V3.2.4    
+**:star: 重构多页面框架传值**     
+\* UIForm: 重构多页面框架传值：删除SetParamToPage    
+\* UIForm: 重构多页面框架传值：框架发送给页面 SendParamToPage 函数    
+\* UIForm: 重构多页面框架传值：接收页面传值 ReceiveParams 事件    
+\* UIPage: 重构多页面框架传值：删除SetParam，FeedbackToFrame    
+\* UIPage: 重构多页面框架传值：页面发送给框架 SendParamToFrame 函数    
+\* UIPage: 重构多页面框架传值：页面发送给框架 SendParamToPage 函数    
+\* UIPage: 重构多页面框架传值：接收框架、页面传值 ReceiveParams 事件    
+**:star: UIListBox: 修复Click，DoubleClick事件**         
+\* UIListBox: 修复Click，DoubleClick事件，替换ItemClick，ItemDoubleClick    
+**:star: 其他更新内容：**     
+\* UIForm: 修复继承页面可响应WM_HOTKEY消息    
+\* UIComboDataGridView: 增加过滤字异常判断    
+\* UIBarChart: Option.YAxis.ShowGridLine为false时，不显示水平表格虚线    
+\* 下拉框控件文字位置微调，和文本框显示位置一致    
+\* UITextBox: 修复了无水印文字时，光标有时不显示的问题    
+\* UIDataGridViewFooter: 重构文字显示    
+\* UIProcessBar: 修改最大值至少为1    
+\* UIImageListBox: 增加了一些事件    
+\* UIForm: 重构页面添加、选择、删除事件    
+\* UIComboBox: 下拉框边框可设置颜色    
+\* UIButton: 增加同一个容器的相同GroupIndex的按钮控件的Selected单选    
+\* UINavMenu: 修复选中节点右侧图标前景色    
+\* UIBarChart: 增加数据可为Nan    
+\* UILineChart: 修复数据全为Nan时绘制出错    
+\* 增加UIKnob的Demo    
+        
 #### 2022\-08\-16 V3.2.3
- **〇〇 关于图表数据显示格式化已经重构，需重点关注，可参考Demo：**     
+**:star: 关于图表数据显示格式化已经重构，需重点关注，可参考Demo：**     
 \* UILineChart: 数据显示的小数位数重构调整至数据序列 Series.XAxisDecimalPlaces，YAxisDecimalPlaces    
 \* UILineChart: 数据显示的日期格式重构调整至数据序列 Series.XAxisDateTimeFormat    
 \* UILineChart: 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces    
@@ -11,9 +39,9 @@
 \* UIDoughnutChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
 \* UIPieChart: 数据显示的小数位数重构调整至Option.DecimalPlaces    
 \* UIDoubleUpDown, UIProcessBar, UITextBox: 小数位数统一改名为DecimalPlaces    
- **〇〇 UITabControlMenu需要重新设置ItemSize：**  
+**:star: UITabControlMenu需要重新设置ItemSize：**  
 \* UITabControlMenu: 重写ItemSize，将宽、高调整为正常显示    
- **〇〇 其他更新内容：**     
+**:star: 其他更新内容：**     
 \* UITreeView: 去掉窗体控件的默认设计器    
 \* UINavBar: 删除界面此控件的编辑器    
 \+ UIKnob: 新增控件    
@@ -29,7 +57,7 @@
 \* UIForm: 多页面框架增加程序关闭时调用UIPage的Final和FormClosed事件    
 \+ 增加LineAweSome字体图标，测试下看看效果    
 \- 删除LineAweSome字体图标，经过测试显示效果不理想    
-      
+            
 #### 2022\-07\-25 V3.2.2    
 \* UIForm: 多页面框架增加PageAdded，PageSelected，PageRemoved事件    
 \* UIComboBox: 屏蔽FormatString的编辑器    
