@@ -21,9 +21,9 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Text;
 
 namespace Sunny.UI
 {
@@ -66,7 +66,7 @@ namespace Sunny.UI
                     }
                 }
 
-                IniFile ini = new IniFile(filename);
+                IniFile ini = new IniFile(filename, Encoding.Unicode);
                 foreach (var ident in idents.Values)
                 {
                     if (ident.IsList)
@@ -75,12 +75,12 @@ namespace Sunny.UI
                         NameValueCollection list = ini.GetSectionValues(ident.Section + "-" + ident.Key);
                         foreach (var pair in list)
                         {
-                            ident.Values.Add(ini.Read(ident.Section + "-" + ident.Key, pair.ToString(), ""));
+                            ident.Values.Add(ini.ReadString(ident.Section + "-" + ident.Key, pair.ToString(), ""));
                         }
                     }
                     else
                     {
-                        ident.Value = ini.Read(ident.Section, ident.Key, "");
+                        ident.Value = ini.ReadString(ident.Section, ident.Key, "");
                     }
                 }
 
@@ -118,56 +118,15 @@ namespace Sunny.UI
             }
 
             ConfigHelper.SaveConfigValue(Current, idents);
-            List<string> strs = new List<string> { ";<!--" + Description + "-->", "" };
-            Dictionary<string, List<Ident>> listidents = new Dictionary<string, List<Ident>>();
+            IniFile ini = new IniFile(filename, Encoding.Unicode);
+            ini.BeginUpdate();
+
             foreach (var ident in idents.Values)
             {
-                string section = ident.IsList ? ident.Section + "-" + ident.Key : ident.Section;
-
-                if (!listidents.ContainsKey(section))
-                {
-                    listidents.Add(section, new List<Ident>());
-                }
-
-                listidents[section].Add(ident);
+                ini.Write(ident.Section, ident.Key, ident.Value);
             }
 
-            foreach (var values in listidents)
-            {
-                strs.Add("[" + values.Key + "]");
-
-                SortedList<int, Ident> slist = new SortedList<int, Ident>();
-                foreach (var ident in values.Value)
-                {
-                    slist.Add(ident.Index, ident);
-                }
-
-                foreach (var ident in slist.Values)
-                {
-                    if (!ident.Description.IsNullOrEmpty())
-                    {
-                        strs.Add(";<!--" + ident.Description + "-->");
-                    }
-
-                    if (ident.IsList)
-                    {
-                        for (int i = 0; i < ident.Values.Count; i++)
-                        {
-                            strs.Add("Value" + i + "=" + ident.Values[i]);
-                        }
-                    }
-                    else
-                    {
-                        strs.Add(ident.Key + "=" + ident.Value);
-                    }
-                }
-
-                strs.Add("");
-            }
-
-            listidents.Clear();
-            DirEx.CreateDir(Path.GetDirectoryName(filename));
-            File.WriteAllLines(filename, strs.ToArray(), IniBase.IniEncoding);
+            ini.EndUpdate();
         }
 
         #endregion 加载
