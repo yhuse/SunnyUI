@@ -74,7 +74,7 @@ namespace Sunny.UI
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
             base.OnContextMenuStripChanged(e);
-            edit.ContextMenuStrip = ContextMenuStrip;
+            if (edit != null) edit.ContextMenuStrip = ContextMenuStrip;
         }
 
         [Browsable(false)]

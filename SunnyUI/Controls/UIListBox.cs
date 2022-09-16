@@ -343,7 +343,7 @@ namespace Sunny.UI
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
             base.OnContextMenuStripChanged(e);
-            listbox.ContextMenuStrip = ContextMenuStrip;
+            if (listbox != null) listbox.ContextMenuStrip = ContextMenuStrip;
         }
 
         private void Listbox_MouseMove(object sender, MouseEventArgs e)

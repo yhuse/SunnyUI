@@ -39,6 +39,7 @@
  * 2022-07-28: V3.2.2 修复了有水印文字时，不响应Click和DoubleClick事件的问题
  * 2022-09-05: V3.2.3 修复了无水印文字时，光标有时不显示的问题
  * 2022-09-16: V3.2.4 支持自定义右键菜单
+ * 2022-09-16: V3.2.4 修改右侧Button可能不显示的问题
 ******************************************************************************/
 
 using System;
@@ -142,7 +143,7 @@ namespace Sunny.UI
         protected override void OnContextMenuStripChanged(EventArgs e)
         {
             base.OnContextMenuStripChanged(e);
-            edit.ContextMenuStrip = ContextMenuStrip;
+            if (edit != null) edit.ContextMenuStrip = ContextMenuStrip;
         }
 
         /// <summary>
@@ -209,21 +210,15 @@ namespace Sunny.UI
         [DefaultValue(29), Category("SunnyUI"), Description("按钮宽度")]
         public int ButtonWidth { get => btn.Width; set { btn.Width = Math.Max(20, value); SizeChange(); } }
 
+        private bool showButton = false;
         [DefaultValue(false), Category("SunnyUI"), Description("显示按钮")]
         public bool ShowButton
         {
-            get => btn.Visible;
+            get => showButton;
             set
             {
-                if (Multiline)
-                {
-                    btn.Visible = false;
-                }
-                else
-                {
-                    btn.Visible = value;
-                }
-
+                showButton = !multiline && value;
+                if (btn.IsValid()) btn.Visible = showButton;
                 SizeChange();
             }
         }
@@ -407,7 +402,7 @@ namespace Sunny.UI
             }
         }
 
-        private bool multiline;
+        private bool multiline = false;
 
         [DefaultValue(false)]
         public bool Multiline

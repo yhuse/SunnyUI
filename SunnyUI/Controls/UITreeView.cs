@@ -86,6 +86,12 @@ namespace Sunny.UI
             view.AfterLabelEdit += View_AfterLabelEdit;
         }
 
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            if (view != null) view.ContextMenuStrip = ContextMenuStrip;
+        }
+
         public int DrawLeft(TreeNode node)
         {
             if (view == null || node == null) return 0;

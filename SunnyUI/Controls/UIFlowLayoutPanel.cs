@@ -64,6 +64,12 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            if (Panel != null) Panel.ContextMenuStrip = ContextMenuStrip;
+        }
+
         /// <summary>
         /// 重载字体变更
         /// </summary>

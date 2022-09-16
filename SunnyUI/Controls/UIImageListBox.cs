@@ -88,6 +88,12 @@ namespace Sunny.UI
 
         public new event MouseEventHandler MouseDoubleClick;
 
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            if (listbox != null) listbox.ContextMenuStrip = ContextMenuStrip;
+        }
+
         private void Listbox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             MouseDoubleClick?.Invoke(this, e);
