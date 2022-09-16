@@ -18,7 +18,8 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
- * 2020-07-05: V2.2.6 更新KeyDown、KeyUp、KeyPress事件。
+ * 2020-07-05: V2.2.6 更新KeyDown、KeyUp、KeyPress事件
+ * 2022-09-16: V3.2.4 支持自定义右键菜单
 ******************************************************************************/
 
 using System;
@@ -68,6 +69,12 @@ namespace Sunny.UI
             fillColor = Color.White;
             edit.BackColor = Color.White;
             MouseMove += UIDropControl_MouseMove;
+        }
+
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            edit.ContextMenuStrip = ContextMenuStrip;
         }
 
         [Browsable(false)]
