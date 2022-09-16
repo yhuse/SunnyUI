@@ -24,6 +24,7 @@
  * 2022-02-07: V3.1.0 增加圆角控制
  * 2022-02-24: V3.1.1 可以设置按钮大小和颜色
  * 2022-05-05: V3.1.8 增加禁止输入属性
+ * 2022-09-16: V3.2.4 增加是否可以双击输入属性
 ******************************************************************************/
 
 using System;
@@ -294,11 +295,16 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(true)]
+        [Description("是否可以双击输入"), Category("SunnyUI")]
+        public bool Inputable { get; set; } = true;
+
         private readonly UIEdit edit = new UIEdit();
         private Color pnlColor;
         private void pnlValue_DoubleClick(object sender, EventArgs e)
         {
             if (ReadOnly) return;
+            if (!Inputable) return;
 
             edit.Left = 1;
             edit.Top = (pnlValue.Height - edit.Height) / 2;
