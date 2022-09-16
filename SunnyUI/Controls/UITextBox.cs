@@ -38,6 +38,7 @@
  * 2022-07-17: V3.2.1 增加SelectionChanged事件
  * 2022-07-28: V3.2.2 修复了有水印文字时，不响应Click和DoubleClick事件的问题
  * 2022-09-05: V3.2.3 修复了无水印文字时，光标有时不显示的问题
+ * 2022-09-16: V3.2.4 支持自定义右键菜单
 ******************************************************************************/
 
 using System;
@@ -136,6 +137,12 @@ namespace Sunny.UI
         public void SetButtonToolTip(ToolTip toolTip, string tipText)
         {
             toolTip.SetToolTip(btn, tipText);
+        }
+
+        protected override void OnContextMenuStripChanged(EventArgs e)
+        {
+            base.OnContextMenuStripChanged(e);
+            edit.ContextMenuStrip = ContextMenuStrip;
         }
 
         /// <summary>

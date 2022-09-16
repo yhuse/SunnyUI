@@ -603,5 +603,21 @@ namespace Sunny.UI
                 DragCtrlsMouseDown.TryRemove(ctrl.Name, out _);
             }
         }
+
+        public static void ClearEvents(object instance)
+        {
+            var events = instance.GetType().GetEvents(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+            foreach (var eventInfo in events)
+            {
+                var fieldInfo = instance.GetType().GetField(eventInfo.Name, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                if (fieldInfo.GetValue(instance) is Delegate eventHandler)
+                {
+                    foreach (var invocatedDelegate in eventHandler.GetInvocationList())
+                    {
+                        eventInfo.GetRemoveMethod(fieldInfo.IsPrivate).Invoke(instance, new object[] { invocatedDelegate });
+                    }
+                }
+            }
+        }
     }
 }
