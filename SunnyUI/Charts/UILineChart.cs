@@ -39,6 +39,7 @@
  * 2022-07-30: V3.2.2 坐标轴的小数位数重构调整至坐标轴标签 AxisLabel.DecimalPlaces
  * 2022-07-30: V3.2.2 坐标轴的日期格式重构调整至坐标轴标签 AxisLabel.DateTimeFormat
  * 2022-08-17: V3.2.3 修复数据全为Nan时绘制出错
+ * 2022-09-19: V3.2.4 增加鼠标可框选缩放属性MouseZoom
 ******************************************************************************/
 
 using System;
@@ -897,7 +898,7 @@ namespace Sunny.UI
             }
             else
             {
-                if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                if (MouseZoom && e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
                     e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
                 {
                     StopPoint = e.Location;
@@ -922,14 +923,14 @@ namespace Sunny.UI
         {
             base.OnMouseDown(e);
 
-            if (e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+            if (MouseZoom && e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
                 e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
             {
                 IsMouseDown = true;
                 StartPoint = StopPoint = e.Location;
             }
 
-            if (e.Button == MouseButtons.Right && ContextMenuStrip == null)
+            if (MouseZoom && e.Button == MouseButtons.Right && ContextMenuStrip == null)
             {
                 ZoomBack();
             }
@@ -942,13 +943,18 @@ namespace Sunny.UI
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            if (IsMouseDown)
+
+            if (MouseZoom && IsMouseDown)
             {
                 IsMouseDown = false;
                 Invalidate();
                 Zoom();
             }
         }
+
+        [DefaultValue(true)]
+        [Description("鼠标可框选缩放"), Category("SunnyUI")]
+        public bool MouseZoom { get; set; } = true;
 
         public bool IsZoom { get; private set; }
         private readonly List<ZoomArea> ZoomAreas = new List<ZoomArea>();
