@@ -22,6 +22,7 @@
  * 2021-09-14: V3.0.7 增加Disabled颜色
  * 2022-01-02: V3.0.9 增加是否只读属性
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-09-26: V3.2.4 修复了Readonly时，双击还可以改变值的问题
 ******************************************************************************/
 
 using System;
@@ -108,7 +109,7 @@ namespace Sunny.UI
             get => activeValue;
             set
             {
-                if (activeValue != value)
+                if (!ReadOnly && activeValue != value)
                 {
                     activeValue = value;
                     ValueChanged?.Invoke(this, value);
@@ -188,7 +189,7 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
-            if (!ReadOnly) Active = !Active;
+            Active = !Active;
             base.OnClick(e);
         }
 
