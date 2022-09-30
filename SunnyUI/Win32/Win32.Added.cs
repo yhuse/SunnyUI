@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Sunny.UI.Win32
@@ -10,6 +11,22 @@ namespace Sunny.UI.Win32
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
     public static class Win32Helper
     {
+        /// <summary>
+        /// 自然排序
+        /// </summary>
+        /// <param name="strs">字符串列表</param>
+        /// <returns>自然排序结果</returns>
+        /// var names = new [] { "2.log", "10.log", "1.log" };
+        /// 排序结果：
+        /// 1.log
+        /// 2.log
+        /// 10.log
+        public static IOrderedEnumerable<string> NatualOrdering(this IEnumerable<string> strs)
+        {
+            if (strs == null) return null;
+            return strs.OrderBy(s => s, new NatualOrderingComparer());
+        }
+
         public static readonly IntPtr TRUE = new IntPtr(1);
 
         public static IntPtr IntPtr(this int value)

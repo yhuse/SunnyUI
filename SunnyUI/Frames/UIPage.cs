@@ -371,13 +371,16 @@ namespace Sunny.UI
         {
             get
             {
+#if NETFRAMEWORK
                 var ReturnFlag = false;
                 if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                     ReturnFlag = true;
                 else if (Process.GetCurrentProcess().ProcessName == "devenv")
                     ReturnFlag = true;
-
                 return ReturnFlag;
+#else
+                return IsAncestorSiteInDesignMode;
+#endif
             }
         }
 
