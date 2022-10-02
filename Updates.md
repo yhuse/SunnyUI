@@ -1,5 +1,16 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-10\-01 V3.2.5    
+\* UISwitch: 修复了Readonly时，双击还可以改变值的问题    
+\* UILineChart: 增加鼠标可框选缩放属性MouseZoom    
+\* UIIntegerUpDown: 增加是否可以双击输入属性    
+\* UIDoubleUpDown: 增加是否可以双击输入属性    
+\* UITextBox: 修改右侧Button可能不显示的问题    
+\* UIDropControl: 支持自定义右键菜单    
+\* UITextBox: 支持自定义右键菜单    
+\* UIniFile: 修改IniFile，改WinApi读取为直接C#代码读取    
+\- JsonConfig: 删除JsonConfig，Json可以直接对象序列化字符串保存。JsonConfig有点鸡肋了    
+    
 #### 2022\-09\-11 V3.2.4    
 **:star: 重构多页面框架传值**     
 \* UIForm: 重构多页面框架传值：删除SetParamToPage    
