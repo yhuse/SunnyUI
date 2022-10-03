@@ -1,5 +1,8 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-10\-03 V3.2.6       
+\* UIniFile: 修改IniFile，恢复为WinApi读取，以保证与以前配置文件兼容    
+    
 #### 2022\-10\-01 V3.2.5    
 \* UISwitch: 修复了Readonly时，双击还可以改变值的问题    
 \* UILineChart: 增加鼠标可框选缩放属性MouseZoom    
