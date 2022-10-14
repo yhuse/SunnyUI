@@ -65,6 +65,19 @@ namespace Sunny.UI
         private bool isScrollUp = true;
         private bool largeChange = true;
 
+        private int fillWidth = 6;
+
+        [DefaultValue(6)]
+        public int FillWidth
+        {
+            get => fillWidth;
+            set
+            {
+                fillWidth = Math.Max(6, value);
+                Invalidate();
+            }
+        }
+
         public event EventHandler ValueChanged;
 
         protected override void Dispose(bool disposing)
@@ -141,7 +154,8 @@ namespace Sunny.UI
 
         private Rectangle GetValueRect()
         {
-            return new Rectangle(Width / 2 - 3, ValueToPos(scrollValue), 6, barHeight);
+            int w = Math.Min(Width - 2, FillWidth);
+            return new Rectangle(Width / 2 - FillWidth / 2, ValueToPos(scrollValue), FillWidth, barHeight);
         }
 
         private int ValueToPos(int value)

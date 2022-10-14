@@ -43,6 +43,7 @@
  * 2022-07-11: V3.2.1 增加滚动条边框线的设置
  * 2022-07-28: V3.2.2 修复了ScrollBars为None时仍然显示滚动条的问题
  * 2022-07-28: V3.2.2 修复了单行时表格高度低时，垂直滚动条拖拽至底部出错的问题
+ * 2022-10-14: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -113,6 +114,32 @@ namespace Sunny.UI
             HorizontalScrollBar.ValueChanged += HorizontalScrollBar_ValueChanged;
             VerticalScrollBar.VisibleChanged += VerticalScrollBar_VisibleChanged;
             HorizontalScrollBar.VisibleChanged += HorizontalScrollBar_VisibleChanged;
+        }
+
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (VBar != null) VBar.FillWidth = value;
+            }
         }
 
         /// <summary>
@@ -438,11 +465,13 @@ namespace Sunny.UI
                 return;
             }
 
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+
             if (BorderStyle == BorderStyle.FixedSingle)
             {
-                VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
+                VBar.Left = Width - barWidth - 2;
                 VBar.Top = 1;
-                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+                VBar.Width = barWidth + 1;
                 VBar.Height = Height - 2;
                 VBar.BringToFront();
 
@@ -454,9 +483,9 @@ namespace Sunny.UI
             }
             else
             {
-                VBar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 1;
+                VBar.Left = Width - barWidth - 1;
                 VBar.Top = 0;
-                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+                VBar.Width = barWidth + 1;
                 VBar.Height = Height;
                 VBar.BringToFront();
 
