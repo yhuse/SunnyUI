@@ -32,6 +32,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值：页面发送给框架 SendParamToFrame 函数
  * 2022-08-25: V3.2.3 重构多页面框架传值：页面发送给框架 SendParamToPage 函数
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收框架、页面传值 ReceiveParams 事件
+ * 2022-10-28: V3.2.6 标题栏增加扩展按钮
 ******************************************************************************/
 
 using System;
@@ -57,6 +58,21 @@ namespace Sunny.UI
         public IFrame Frame
         {
             get; set;
+        }
+
+        private bool extendBox;
+
+        [DefaultValue(false)]
+        [Description("显示扩展按钮"), Category("SunnyUI")]
+        public bool ExtendBox
+        {
+            get => extendBox;
+            set
+            {
+                extendBox = showTitle && value;
+                CalcSystemBoxPos();
+                Invalidate();
+            }
         }
 
         public UIPage()
@@ -379,7 +395,7 @@ namespace Sunny.UI
                     ReturnFlag = true;
                 return ReturnFlag;
 #else
-                return IsAncestorSiteInDesignMode;
+                return DesignMode || IsAncestorSiteInDesignMode;
 #endif
             }
         }
@@ -529,11 +545,32 @@ namespace Sunny.UI
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
         {
+            controlBoxForeColor = uiColor.FormControlBoxForeColor;
+            controlBoxFillHoverColor = uiColor.FormControlBoxFillHoverColor;
+            ControlBoxCloseFillHoverColor = uiColor.FormControlBoxCloseFillHoverColor;
             BackColor = uiColor.PageBackColor;
             _rectColor = uiColor.PageRectColor;
             ForeColor = uiColor.PageForeColor;
             titleFillColor = uiColor.PageTitleFillColor;
             titleForeColor = uiColor.PageTitleForeColor;
+        }
+
+        private Color controlBoxCloseFillHoverColor;
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏关闭按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "Red")]
+        public Color ControlBoxCloseFillHoverColor
+        {
+            get => controlBoxCloseFillHoverColor;
+            set
+            {
+                if (controlBoxCloseFillHoverColor != value)
+                {
+                    controlBoxCloseFillHoverColor = value;
+                    Invalidate();
+                }
+            }
         }
 
         protected virtual void AfterSetFillColor(Color color)
@@ -590,19 +627,129 @@ namespace Sunny.UI
             {
                 if (InControlBox)
                 {
-                    e.Graphics.FillRectangle(UIColor.Red, ControlBoxRect);
+                    e.Graphics.FillRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect);
                 }
 
-                e.Graphics.DrawLine(Color.White,
+                e.Graphics.DrawLine(controlBoxForeColor,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5);
-                e.Graphics.DrawLine(Color.White,
+                e.Graphics.DrawLine(controlBoxForeColor,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 - 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 + 5,
                     ControlBoxRect.Left + ControlBoxRect.Width / 2 + 5,
                     ControlBoxRect.Top + ControlBoxRect.Height / 2 - 5);
+            }
+
+            if (ExtendBox)
+            {
+                if (InExtendBox)
+                {
+                    e.Graphics.FillRectangle(ControlBoxFillHoverColor, ExtendBoxRect);
+                }
+
+                if (ExtendSymbol == 0)
+                {
+                    e.Graphics.DrawLine(controlBoxForeColor,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 5 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 + 3);
+
+                    e.Graphics.DrawLine(controlBoxForeColor,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 + 5 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 - 2,
+                        ExtendBoxRect.Left + ExtendBoxRect.Width / 2 - 1,
+                        ExtendBoxRect.Top + ExtendBoxRect.Height / 2 + 3);
+                }
+                else
+                {
+                    e.Graphics.DrawFontImage(extendSymbol, ExtendSymbolSize, controlBoxForeColor, ExtendBoxRect, ExtendSymbolOffset.X, ExtendSymbolOffset.Y);
+                }
+            }
+        }
+
+        private Color controlBoxForeColor = Color.White;
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏按钮颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "White")]
+        public Color ControlBoxForeColor
+        {
+            get => controlBoxForeColor;
+            set
+            {
+                if (controlBoxForeColor != value)
+                {
+                    controlBoxForeColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Color controlBoxFillHoverColor;
+        /// <summary>
+        /// 标题栏颜色
+        /// </summary>
+        [Description("标题栏按钮移上背景颜色"), Category("SunnyUI"), DefaultValue(typeof(Color), "115, 179, 255")]
+        public Color ControlBoxFillHoverColor
+        {
+            get => controlBoxFillHoverColor;
+            set
+            {
+                if (ControlBoxFillHoverColor != value)
+                {
+                    controlBoxFillHoverColor = value;
+                    _style = UIStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Point extendSymbolOffset = new Point(0, 0);
+
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("扩展按钮字体图标偏移量"), Category("SunnyUI")]
+        public Point ExtendSymbolOffset
+        {
+            get => extendSymbolOffset;
+            set
+            {
+                extendSymbolOffset = value;
+                Invalidate();
+            }
+        }
+
+        private int _extendSymbolSize = 24;
+
+        [DefaultValue(24)]
+        [Description("扩展按钮字体图标大小"), Category("SunnyUI")]
+        public int ExtendSymbolSize
+        {
+            get => _extendSymbolSize;
+            set
+            {
+                _extendSymbolSize = Math.Max(value, 16);
+                _extendSymbolSize = Math.Min(value, 128);
+                Invalidate();
+            }
+        }
+
+        private int extendSymbol;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
+        [DefaultValue(0)]
+        [Description("扩展按钮字体图标"), Category("SunnyUI")]
+        public int ExtendSymbol
+        {
+            get => extendSymbol;
+            set
+            {
+                extendSymbol = value;
+                Invalidate();
             }
         }
 
@@ -618,8 +765,30 @@ namespace Sunny.UI
                     Close();
                     AfterClose();
                 }
+
+                if (InExtendBox)
+                {
+                    InExtendBox = false;
+                    if (ExtendMenu != null)
+                    {
+                        this.ShowContextMenuStrip(ExtendMenu, ExtendBoxRect.Left, TitleHeight - 1);
+                    }
+                    else
+                    {
+                        ExtendBoxClick?.Invoke(this, EventArgs.Empty);
+                    }
+                }
             }
         }
+
+        [DefaultValue(null)]
+        [Description("扩展按钮菜单"), Category("SunnyUI")]
+        public UIContextMenuStrip ExtendMenu
+        {
+            get; set;
+        }
+
+        public event EventHandler ExtendBoxClick;
 
         private void AfterClose()
         {
@@ -733,6 +902,7 @@ namespace Sunny.UI
         }
 
         private bool InControlBox;
+        private bool InExtendBox;
 
         /// <summary>
         /// 重载鼠标移动事件
@@ -742,16 +912,39 @@ namespace Sunny.UI
         {
             base.OnMouseMove(e);
 
-            if (ShowTitle && ControlBox)
+            if (ShowTitle)
             {
-                bool inControlBox = e.Location.InRect(ControlBoxRect);
-
-                if (inControlBox != InControlBox)
+                if (ControlBox)
                 {
-                    InControlBox = inControlBox;
-                    Invalidate();
+                    bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    if (inControlBox != InControlBox)
+                    {
+                        InControlBox = inControlBox;
+                        Invalidate();
+                    }
+                }
+
+                if (ExtendBox)
+                {
+                    bool inExtendBox = e.Location.InRect(ExtendBoxRect);
+                    if (inExtendBox != InExtendBox)
+                    {
+                        InExtendBox = inExtendBox;
+                        Invalidate();
+                    }
                 }
             }
+            else
+            {
+                InControlBox = InExtendBox = false;
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            InExtendBox = InControlBox = false;
+            Invalidate();
         }
 
         protected override void OnPaddingChanged(EventArgs e)
@@ -797,9 +990,34 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private Rectangle ExtendBoxRect;
+
         private void CalcSystemBoxPos()
         {
-            ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
+            if (ControlBox)
+            {
+                ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
+            }
+            else
+            {
+                ControlBoxRect = new Rectangle(Width + 1, Height + 1, 1, 1);
+            }
+
+            if (ExtendBox)
+            {
+                if (ControlBox)
+                {
+                    ExtendBoxRect = new Rectangle(ControlBoxRect.Left - 28 - 2, ControlBoxRect.Top, 28, 28);
+                }
+                else
+                {
+                    ExtendBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
+                }
+            }
+            else
+            {
+                ExtendBoxRect = new Rectangle(Width + 1, Height + 1, 1, 1);
+            }
         }
 
         private Rectangle ControlBoxRect;
