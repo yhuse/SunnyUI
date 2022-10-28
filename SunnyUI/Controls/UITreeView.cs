@@ -27,6 +27,7 @@
  * 2022-04-01: V3.1.2 自定义行颜色，可通过代码给颜色值，SetNodePainter
  * 2022-05-15: V3.1.8 修复了一个设计期显示错误
  * 2022-05-15: V3.1.8 增加了点击文字改变CheckBox状态的NodeClickChangeCheckBoxes
+ * 2022-10-28: V3.2.6 TreeNode支持imagekey绑定图标
 ******************************************************************************/
 
 using System;
@@ -951,7 +952,13 @@ namespace Sunny.UI
                             imageLeft += 16;
                         }
 
-                        if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 && e.Node.ImageIndex < ImageList.Images.Count)
+                        if (ImageList != null && ImageList.Images.Count > 0 && ImageList.Images.ContainsIndex(e.Node.ImageIndex))
+                        {
+                            haveImage = true;
+                            drawLeft += ImageList.ImageSize.Width + 6;
+                        }
+
+                        if (!haveImage && ImageList != null && ImageList.Images.Count > 0 && ImageList.Images.ContainsKey(e.Node.ImageKey))
                         {
                             haveImage = true;
                             drawLeft += ImageList.ImageSize.Width + 6;
@@ -997,13 +1004,22 @@ namespace Sunny.UI
 
                             if (haveImage)
                             {
-                                if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 &&
-                                    e.Node.SelectedImageIndex < ImageList.Images.Count)
-                                    e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft,
-                                        e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
-                                else
-                                    e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft,
-                                        e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                                Image image = null;
+                                if (ImageList.Images.ContainsIndex(e.Node.ImageIndex))
+                                    image = ImageList.Images[e.Node.ImageIndex];
+                                if (image == null && ImageList.Images.ContainsKey(e.Node.ImageKey))
+                                    image = ImageList.Images[e.Node.ImageKey];
+
+                                if (e.Node == SelectedNode)
+                                {
+                                    if (ImageList.Images.ContainsIndex(e.Node.SelectedImageIndex))
+                                        image = ImageList.Images[e.Node.SelectedImageIndex];
+                                    if (image == null && ImageList.Images.ContainsKey(e.Node.SelectedImageKey))
+                                        image = ImageList.Images[e.Node.SelectedImageKey];
+                                }
+
+                                if (image != null)
+                                    e.Graphics.DrawImage(image, imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
                             }
 
                             if (CheckBoxes)
