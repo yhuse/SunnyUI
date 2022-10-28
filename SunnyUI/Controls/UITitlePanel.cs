@@ -21,6 +21,7 @@
  * 2020-07-30: V2.2.6 增加可收缩选项
  * 2020-09-03: V3.0.6 增加标题文字颜色
  * 2022-05-30: V3.1.9 修复Padding设置
+ * 2022-10-28: V3.2.6 箭头图标可设置颜色
 ******************************************************************************/
 
 using System;
@@ -90,6 +91,7 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+            symbolColor = uiColor.ButtonForeColor;
             titleColor = uiColor.PanelTitleColor;
             titleForeColor = uiColor.PanelTitleForeColor;
         }
@@ -187,8 +189,28 @@ namespace Sunny.UI
                         g.FillRectangle(UIStyles.ActiveStyleColor.ButtonFillHoverColor, ControlBoxRect);
                 }
 
-                g.DrawFontImage(Collapsed ? 61703 : 61702, 24, color,
+                g.DrawFontImage(Collapsed ? 61703 : 61702, 24, SymbolColor,
                     new Rectangle(ControlBoxRect.Left + 2, ControlBoxRect.Top, ControlBoxRect.Width, ControlBoxRect.Height));
+            }
+        }
+
+        private Color symbolColor = Color.White;
+
+        /// <summary>
+        /// 字体图标颜色
+        /// </summary>
+        [Description("图标颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color SymbolColor
+        {
+            get => symbolColor;
+            set
+            {
+                if (symbolColor != value)
+                {
+                    symbolColor = value;
+                    SetStyleCustom();
+                }
             }
         }
 
