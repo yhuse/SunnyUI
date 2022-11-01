@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-11-01: V3.2.6 增加读取字符串长度到4096，增加文件编码
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -46,13 +47,13 @@ namespace Sunny.UI
         /// <summary>
         /// Ini文件编码格式
         /// </summary>
-        public static readonly Encoding IniEncoding = Encoding.Default;
+        public Encoding IniEncoding { get; set; } = Encoding.Default;
 
         /// <summary>
         /// 类的构造函数，文件名必须是完全路径，不能是相对路径
         /// </summary>
         /// <param name="fileName">文件名</param>
-        protected IniBase(string fileName)
+        public IniBase(string fileName)
         {
             //必须是完全路径，不能是相对路径
             FileName = fileName;
@@ -66,6 +67,11 @@ namespace Sunny.UI
                     sw.WriteLine("");
                 }
             }
+        }
+
+        public IniBase(string fileName, Encoding encoding) : this(fileName)
+        {
+            IniEncoding = encoding;
         }
 
         /// <summary>
@@ -128,7 +134,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public string Read(string section, string key, string Default)
         {
-            byte[] buffer = new byte[2048];
+            byte[] buffer = new byte[4096];
             if (Default == null)
             {
                 Default = "";
@@ -796,6 +802,11 @@ namespace Sunny.UI
         /// <param name="fileName">文件名</param>
         public IniFile(string fileName) : base(fileName)
         {
+        }
+
+        public IniFile(string fileName, Encoding encoding) : base(fileName, encoding)
+        {
+
         }
     }
 }

@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-11-01: V3.2.6 增加文件编码，通过Load传入
 ******************************************************************************/
 
 using System;
@@ -24,6 +25,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Text;
 
 namespace Sunny.UI
 {
@@ -34,6 +36,17 @@ namespace Sunny.UI
     public class IniConfig<TConfig> : BaseConfig<TConfig> where TConfig : IniConfig<TConfig>, new()
     {
         #region 加载
+
+        /// <summary>
+        /// Ini文件编码格式
+        /// </summary>
+        public Encoding IniEncoding { get; private set; } = Encoding.Default;
+
+        public bool Load(string fileName, Encoding encoding)
+        {
+            IniEncoding = encoding;
+            return Load(fileName);
+        }
 
         /// <summary>加载指定配置文件</summary>
         /// <param name="filename">文件名</param>
@@ -66,7 +79,7 @@ namespace Sunny.UI
                     }
                 }
 
-                IniFile ini = new IniFile(filename);
+                IniFile ini = new IniFile(filename, IniEncoding);
                 foreach (var ident in idents.Values)
                 {
                     if (ident.IsList)
@@ -167,7 +180,7 @@ namespace Sunny.UI
 
             listidents.Clear();
             DirEx.CreateDir(Path.GetDirectoryName(filename));
-            File.WriteAllLines(filename, strs.ToArray(), IniBase.IniEncoding);
+            File.WriteAllLines(filename, strs.ToArray(), IniEncoding);
         }
 
         #endregion 加载
