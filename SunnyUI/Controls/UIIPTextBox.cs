@@ -17,6 +17,7 @@
  * 创建日期: 2022-01-29
  *
  * 2022-01-29: V3.1.0 增加文件说明
+ * 2022-11-02: V3.2.6 增加TextChanged事件
 ******************************************************************************/
 
 using System;
@@ -50,8 +51,16 @@ namespace Sunny.UI
                 txt.KeyPress += Txt_KeyPress;
                 txt.TextChanged += Txt_TextChanged;
                 txt.Leave += Txt_Leave;
+                txt.TextChanged += Txt_TextChanged1;
             }
         }
+
+        private void Txt_TextChanged1(object sender, EventArgs e)
+        {
+            TextChanged?.Invoke(this, e);
+        }
+
+        public new event EventHandler TextChanged;
 
         private void Txt_Leave(object sender, EventArgs e)
         {
