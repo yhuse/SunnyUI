@@ -30,6 +30,7 @@
 * 2022-06-23: V3.2.0 绘制节点字体图标增加偏移SymbolOffset
 * 2022-08-19: V3.2.3 修复选中节点右侧图标前景色
 * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+* 2022-11-03: V3.2.6 重写了节点右侧图标的绘制
 ******************************************************************************/
 
 using System;
@@ -687,35 +688,11 @@ namespace Sunny.UI
 
                     e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                     e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));
-
-                    if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
-                    {
-                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
-                        if (e.Node.Nodes.Count > 0) symbolRight -= 32;
-                        int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
-
-                        for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
-                        {
-                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, SelectedForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
-                        }
-                    }
                 }
                 else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
                 {
                     e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
                     e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
-
-                    if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
-                    {
-                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
-                        if (e.Node.Nodes.Count > 0) symbolRight -= 32;
-                        int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
-
-                        for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
-                        {
-                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, ForeColor, new Rectangle(firstLeft + i * 32, e.Bounds.Top, 32, e.Bounds.Height));
-                        }
-                    }
                 }
                 else
                 {
@@ -729,6 +706,23 @@ namespace Sunny.UI
                     e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                 }
 
+                //画右侧图标
+                Color rightSymbolColor = ForeColor;
+                if (e.Node == SelectedNode) rightSymbolColor = SelectedForeColor;
+                if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
+                {
+                    int size = e.Node.Nodes.Count > 0 ? 24 : 0;
+                    int left = Width - size - 6;
+                    if (Bar.Visible) left -= Bar.Width;
+
+                    int firstLeft = left - TreeNodeSymbols[e.Node].Count * 30;
+                    for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
+                    {
+                        e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, rightSymbolColor, new Rectangle(firstLeft + i * 30, e.Bounds.Top, 30, e.Bounds.Height));
+                    }
+                }
+
+                //画图片
                 if (haveImage)
                 {
                     if (MenuHelper.GetSymbol(e.Node) > 0)
@@ -756,13 +750,16 @@ namespace Sunny.UI
                     e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, left, e.Bounds.Y + (ItemHeight - 24) / 2);
                 }
 
-                if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid() && TreeNodeSymbols.NotContainsKey(e.Node))
+                //显示Tips圆圈
+                if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
                 {
                     SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
                     float tipsLeft = Width - sfMax - 16;
                     if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
                     if (Bar.Visible) tipsLeft -= Bar.Width;
+                    if (TreeNodeSymbols.ContainsKey(e.Node)) tipsLeft -= TreeNodeSymbols[e.Node].Count * 30;
+
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
                     if (MenuHelper[e.Node] != null)
@@ -833,48 +830,53 @@ namespace Sunny.UI
         protected override void OnNodeMouseClick(TreeNodeMouseClickEventArgs e)
         {
             base.OnNodeMouseClick(e);
+            if (e.Node == null) return;
 
-            if (e.Node.Nodes.Count > 0)
+            int size = e.Node.Nodes.Count > 0 ? 24 : 0;
+            int left = Width - size - 6;
+            if (Bar.Visible) left -= Bar.Width;
+
+            int firstLeft = 0;
+            if (TreeNodeSymbols.ContainsKey(e.Node))
+                firstLeft = left - TreeNodeSymbols[e.Node].Count * 30;
+
+            if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0 && e.X >= firstLeft && e.X < firstLeft + TreeNodeSymbols[e.Node].Count * 30)
             {
-                if (e.Node.IsExpanded)
+                int idx = (e.X - firstLeft) / 30;
+                if (idx >= 0 && idx < TreeNodeSymbols[e.Node].Count)
                 {
-                    e.Node.Collapse();
+                    NodeRightSymbolClick?.Invoke(this, e.Node, idx, TreeNodeSymbols[e.Node][idx]);
                 }
-                else
+            }
+            else
+            {
+                if (e.Node.Nodes.Count > 0)
                 {
-                    e.Node.Expand();
-                }
+                    if (e.Node.IsExpanded)
+                    {
+                        e.Node.Collapse();
+                    }
+                    else
+                    {
+                        e.Node.Expand();
+                    }
 
-                if (SelectedNode != null && SelectedNode == e.Node && e.Node.IsExpanded && ExpandSelectFirst && e.Node.Nodes.Count > 0)
-                {
-                    SelectedNode = e.Node.Nodes[0];
+                    if (SelectedNode != null && SelectedNode == e.Node && e.Node.IsExpanded && ExpandSelectFirst && e.Node.Nodes.Count > 0)
+                    {
+                        SelectedNode = e.Node.Nodes[0];
+                    }
+                    else
+                    {
+                        SelectedNode = e.Node;
+                    }
                 }
                 else
                 {
                     SelectedNode = e.Node;
                 }
-            }
-            else
-            {
-                SelectedNode = e.Node;
-            }
 
-            if (e.Node != null && TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
-            {
-                int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
-                if (e.Node.Nodes.Count > 0) symbolRight -= 32;
-                int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
-                if (e.X >= firstLeft && e.X < symbolRight)
-                {
-                    int idx = (e.X - firstLeft) / 32;
-                    if (idx >= 0 && idx < TreeNodeSymbols[e.Node].Count)
-                    {
-                        NodeRightSymbolClick?.Invoke(this, e.Node, idx, TreeNodeSymbols[e.Node][idx]);
-                    }
-                }
+                ShowSelectedNode();
             }
-
-            ShowSelectedNode();
         }
 
         public void SelectFirst()
