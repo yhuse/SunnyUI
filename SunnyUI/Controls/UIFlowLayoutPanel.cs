@@ -22,6 +22,7 @@
  * 2021-08-11: V3.0.5 删除点击的Focus事件
  * 2021-10-18: V3.0.8 增加Scroll事件
  * 2021-11-05: V3.0.8 修改不同DPI缩放滚动条未覆盖的问题
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -62,6 +63,32 @@ namespace Sunny.UI
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (VBar != null) VBar.FillWidth = value;
+            }
         }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
@@ -485,8 +512,9 @@ namespace Sunny.UI
                     added = Radius / 2;
                 }
 
-                VBar.Width = ScrollBarInfo.VerticalScrollBarWidth();
-                VBar.Left = Width - VBar.Width - added;
+                int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+                VBar.Width = barWidth;
+                VBar.Left = Width - barWidth - added;
                 VBar.Top = added;
                 VBar.Height = Height - added * 2;
 
