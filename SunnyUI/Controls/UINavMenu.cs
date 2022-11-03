@@ -1,34 +1,35 @@
 ﻿/******************************************************************************
- * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2022 ShenYongHua(沈永华).
- * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
- *
- * Blog:   https://www.cnblogs.com/yhuse
- * Gitee:  https://gitee.com/yhuse/SunnyUI
- * GitHub: https://github.com/yhuse/SunnyUI
- *
- * SunnyUI.dll can be used for free under the GPL-3.0 license.
- * If you use this code, please keep this note.
- * 如果您使用此代码，请保留此说明。
- ******************************************************************************
- * 文件名称: UINavMenu.cs
- * 文件说明: 导航菜单
- * 当前版本: V3.1
- * 创建日期: 2020-01-01
- *
- * 2020-01-01: V2.2.0 增加文件说明
- * 2020-07-01: V2.2.6 解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。
- * 2020-03-12: V3.0.2 增加设置二级菜单底色
- * 2021-06-14: V3.0.4 增加右侧图标
- * 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头
- * 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
- * 2021-12-13: V3.0.9 选中项可设置背景色渐变
- * 2022-01-02: V3.0.9 滚动条可设置颜色
- * 2022-03-19: V3.1.1 重构主题配色
- * 2022-03-24: V3.1.1 修复TipsText显示位置
- * 2022-04-14: V3.1.3 重构扩展函数
- * 2022-06-23: V3.2.0 绘制节点字体图标增加偏移SymbolOffset
- * 2022-08-19: V3.2.3 修复选中节点右侧图标前景色
+* SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+* CopyRight (C) 2012-2022 ShenYongHua(沈永华).
+* QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+*
+* Blog:   https://www.cnblogs.com/yhuse
+* Gitee:  https://gitee.com/yhuse/SunnyUI
+* GitHub: https://github.com/yhuse/SunnyUI
+*
+* SunnyUI.dll can be used for free under the GPL-3.0 license.
+* If you use this code, please keep this note.
+* 如果您使用此代码，请保留此说明。
+******************************************************************************
+* 文件名称: UINavMenu.cs
+* 文件说明: 导航菜单
+* 当前版本: V3.1
+* 创建日期: 2020-01-01
+*
+* 2020-01-01: V2.2.0 增加文件说明
+* 2020-07-01: V2.2.6 解决引发事件所有结点重绘导致闪烁；解决滚轮失效问题。
+* 2020-03-12: V3.0.2 增加设置二级菜单底色
+* 2021-06-14: V3.0.4 增加右侧图标
+* 2021-08-07: V3.0.5 显示/隐藏子节点提示箭头
+* 2021-08-27: V3.0.6 增加自定义TipsText显示的颜色 
+* 2021-12-13: V3.0.9 选中项可设置背景色渐变
+* 2022-01-02: V3.0.9 滚动条可设置颜色
+* 2022-03-19: V3.1.1 重构主题配色
+* 2022-03-24: V3.1.1 修复TipsText显示位置
+* 2022-04-14: V3.1.3 重构扩展函数
+* 2022-06-23: V3.2.0 绘制节点字体图标增加偏移SymbolOffset
+* 2022-08-19: V3.2.3 修复选中节点右侧图标前景色
+* 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -689,7 +690,7 @@ namespace Sunny.UI
 
                     if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
                     {
-                        int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
+                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
                         if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                         int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
 
@@ -706,7 +707,7 @@ namespace Sunny.UI
 
                     if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
                     {
-                        int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
+                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
                         if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                         int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
 
@@ -746,17 +747,22 @@ namespace Sunny.UI
                     }
                 }
 
+                //显示右侧下拉箭头
                 if (ShowItemsArrow && e.Node.Nodes.Count > 0)
                 {
-                    e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, Width - (Bar.Visible ? 50 : 30), e.Bounds.Y + (ItemHeight - 24) / 2);
+                    int size = 24;
+                    int left = Width - size - 6;
+                    if (Bar.Visible) left -= Bar.Width;
+                    e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, left, e.Bounds.Y + (ItemHeight - 24) / 2);
                 }
 
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid() && TreeNodeSymbols.NotContainsKey(e.Node))
                 {
                     SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
-                    float tipsLeft = Width - (ScrollBarVisible ? Bar.Width : 0) - sfMax - sfMax;
+                    float tipsLeft = Width - sfMax - 16;
                     if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
+                    if (Bar.Visible) tipsLeft -= Bar.Width;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
                     if (MenuHelper[e.Node] != null)
@@ -855,7 +861,7 @@ namespace Sunny.UI
 
             if (e.Node != null && TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
             {
-                int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
+                int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
                 if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                 int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
                 if (e.X >= firstLeft && e.X < symbolRight)
@@ -941,7 +947,7 @@ namespace Sunny.UI
             Bar.Maximum = si.ScrollMax;
             Bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
             Bar.Value = si.nPos;
-            Bar.Width = barWidth + 1;
+            Bar.Width = barWidth;
             Bar.BringToFront();
 
             if (ScrollBarVisible != Bar.Visible)
