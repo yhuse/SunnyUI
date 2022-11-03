@@ -51,7 +51,7 @@ namespace Sunny.UI
             get => maximum;
             set
             {
-                maximum = value.CheckLowerLimit(2);
+                maximum = value.GetLowerLimit(2);
                 Invalidate();
             }
         }
@@ -67,8 +67,8 @@ namespace Sunny.UI
             get => thisValue;
             set
             {
-                thisValue = value.CheckLowerLimit(0);
-                thisValue = value.CheckUpperLimit(Maximum - BoundsWidth);
+                thisValue = value.GetLowerLimit(0);
+                thisValue = value.GetUpperLimit(Maximum - BoundsWidth);
                 Invalidate();
             }
         }
@@ -80,7 +80,7 @@ namespace Sunny.UI
             get => boundsWidth;
             set
             {
-                boundsWidth = value.CheckLowerLimit(1);
+                boundsWidth = value.GetLowerLimit(1);
                 Invalidate();
             }
         }
@@ -143,14 +143,14 @@ namespace Sunny.UI
 
             if (inLeftArea)
             {
-                int value = (Value - LargeChange).CheckInRange(0, Maximum - BoundsWidth);
+                int value = (Value - LargeChange).GetLimit(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
 
             if (inRightArea)
             {
-                int value = (Value + LargeChange).CheckInRange(0, Maximum - BoundsWidth);
+                int value = (Value + LargeChange).GetLimit(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -159,7 +159,7 @@ namespace Sunny.UI
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
                 int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.CheckInRange(0, Maximum - BoundsWidth);
+                value = value.GetLimit(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -246,7 +246,7 @@ namespace Sunny.UI
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
                 int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.CheckInRange(0, Maximum - BoundsWidth);
+                value = value.GetLimit(0, Maximum - BoundsWidth);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }

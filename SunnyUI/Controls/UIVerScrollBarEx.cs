@@ -65,7 +65,7 @@ namespace Sunny.UI
             get => maximum;
             set
             {
-                maximum = value.CheckLowerLimit(2);
+                maximum = value.GetLowerLimit(2);
                 Invalidate();
             }
         }
@@ -82,8 +82,8 @@ namespace Sunny.UI
             get => thisValue;
             set
             {
-                thisValue = value.CheckLowerLimit(0);
-                thisValue = value.CheckUpperLimit(Maximum - BoundsHeight);
+                thisValue = value.GetLowerLimit(0);
+                thisValue = value.GetUpperLimit(Maximum - BoundsHeight);
                 Invalidate();
             }
         }
@@ -95,7 +95,7 @@ namespace Sunny.UI
             get => boundsHeight;
             set
             {
-                boundsHeight = value.CheckLowerLimit(1);
+                boundsHeight = value.GetLowerLimit(1);
                 Invalidate();
             }
         }
@@ -159,14 +159,14 @@ namespace Sunny.UI
 
             if (inLeftArea)
             {
-                int value = (Value - LargeChange).CheckInRange(0, Maximum - BoundsHeight);
+                int value = (Value - LargeChange).GetLimit(0, Maximum - BoundsHeight);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
 
             if (inRightArea)
             {
-                int value = (Value + LargeChange).CheckInRange(0, Maximum - BoundsHeight);
+                int value = (Value + LargeChange).GetLimit(0, Maximum - BoundsHeight);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -175,7 +175,7 @@ namespace Sunny.UI
             {
                 int y = BoundsHeight * (Height - 32) / Maximum;
                 int value = (e.Location.Y - y / 2) * maximum / (Height - 32);
-                value = value.CheckInRange(0, Maximum - BoundsHeight);
+                value = value.GetLimit(0, Maximum - BoundsHeight);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -262,7 +262,7 @@ namespace Sunny.UI
             {
                 int y = BoundsHeight * (Height - 32) / Maximum;
                 int value = (e.Location.Y - y / 2) * maximum / (Height - 32);
-                value = value.CheckInRange(0, Maximum - BoundsHeight);
+                value = value.GetLimit(0, Maximum - BoundsHeight);
                 Value = value;
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }

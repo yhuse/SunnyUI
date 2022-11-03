@@ -293,7 +293,7 @@ namespace Sunny.UI
         /// <typeparam name="T">T</typeparam>
         public void WriteStruct<T>(string section, string key, T value) where T : struct
         {
-            Write(section, key, value.StructToBytes());
+            Write(section, key, value.ToBytes());
         }
 
         /// <summary>

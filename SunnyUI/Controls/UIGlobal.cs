@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.Reflection;
 
 namespace Sunny.UI
 {
@@ -28,10 +29,12 @@ namespace Sunny.UI
     /// </summary>
     public static class UIGlobal
     {
+        //public const string Version = "SunnyUI.Net V3.2.6";
+
         /// <summary>
         /// 版本
         /// </summary>
-        public const string Version = "SunnyUI.Net V3.2.6";
+        public static string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public const int EditorMinHeight = 20;
         public const int EditorMaxHeight = 60;
