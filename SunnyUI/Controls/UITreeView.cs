@@ -28,6 +28,7 @@
  * 2022-05-15: V3.1.8 修复了一个设计期显示错误
  * 2022-05-15: V3.1.8 增加了点击文字改变CheckBox状态的NodeClickChangeCheckBoxes
  * 2022-10-28: V3.2.6 TreeNode支持imagekey绑定图标
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -85,6 +86,32 @@ namespace Sunny.UI
             view.KeyDown += View_KeyDown;
             view.KeyUp += View_KeyUp;
             view.AfterLabelEdit += View_AfterLabelEdit;
+        }
+
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (Bar != null) Bar.FillWidth = value;
+            }
         }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
@@ -617,11 +644,13 @@ namespace Sunny.UI
             view.Width = Width - 4;
             view.Height = Height - 4;
 
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+
             if (Bar != null)
             {
                 Bar.Top = 2;
-                Bar.Left = Width - ScrollBarInfo.VerticalScrollBarWidth() - 2;
-                Bar.Width = ScrollBarInfo.VerticalScrollBarWidth();
+                Bar.Left = Width - barWidth - 2;
+                Bar.Width = barWidth;
                 Bar.Height = Height - 4;
             }
 

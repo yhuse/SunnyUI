@@ -30,6 +30,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-05-15: V3.1.8 增加滚动条颜色设置
  * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -94,6 +95,32 @@ namespace Sunny.UI
             timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (bar != null) bar.FillWidth = value;
+            }
         }
 
         public new event MouseEventHandler MouseDoubleClick;
@@ -394,9 +421,16 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
+            SetScrollInfo();
+        }
+
+        private void SetScrollInfo()
+        {
             bar.Top = 2;
             bar.Height = Height - 4;
-            bar.Left = Width - bar.Width - 2;
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+            bar.Width = barWidth + 1;
+            bar.Left = Width - barWidth - 2;
         }
 
         private void Listbox_BeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e)
