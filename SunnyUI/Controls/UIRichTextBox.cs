@@ -21,6 +21,7 @@
  * 2021-07-29: V3.0.5 修改滚动条没有文字时自动隐藏
  * 2022-02-23: V3.1.1 增加了一些原生的属性和事件
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -92,6 +93,32 @@ namespace Sunny.UI
         public new event MouseEventHandler MouseUp;
         public new event MouseEventHandler MouseMove;
         public new event EventHandler MouseLeave;
+
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (bar != null) bar.FillWidth = value;
+            }
+        }
 
         private void Edit_MouseMove(object sender, MouseEventArgs e)
         {
@@ -418,7 +445,8 @@ namespace Sunny.UI
 
         public void SetScrollInfo()
         {
-            bar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 1, ScrollBarWidth);
+            bar.Width = barWidth;
             bar.Left = Width - bar.Width - 1;
             if (bar == null)
             {
