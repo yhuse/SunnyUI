@@ -30,6 +30,7 @@
  * 2022-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
  * 2022-05-24: V3.1.9 Selceted=-1，清除文本
  * 2022-08-25: V3.2.3 下拉框边框可设置颜色
+ * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
 ******************************************************************************/
 
 using System;
@@ -330,6 +331,10 @@ namespace Sunny.UI
 
                 if (Text.IsValid())
                 {
+                    string filterText = Text;
+                    if (TrimFilter)
+                        filterText = filterText.Trim();
+
                     filterForm.ListBox.Items.Clear();
                     filterList.Clear();
 
@@ -337,7 +342,7 @@ namespace Sunny.UI
                     {
                         foreach (var item in Items)
                         {
-                            if (item.ToString().Contains(Text))
+                            if (item.ToString().Contains(filterText))
                             {
                                 filterList.Add(item.ToString());
                                 if (filterList.Count > FilterMaxCount) break;
@@ -350,7 +355,7 @@ namespace Sunny.UI
                         {
                             for (int i = 0; i < Items.Count; i++)
                             {
-                                if (GetItemText(dataManager.List[i]).ToString().Contains(Text))
+                                if (GetItemText(dataManager.List[i]).ToString().Contains(filterText))
                                 {
                                     filterList.Add(dataManager.List[i]);
                                     if (filterList.Count > FilterMaxCount) break;
@@ -373,6 +378,10 @@ namespace Sunny.UI
                 }
             }
         }
+
+        [DefaultValue(false)]
+        [Description("过滤时删除字符串前面、后面的空格"), Category("SunnyUI")]
+        public bool TrimFilter { get; set; }
 
         public void HideFilterForm()
         {

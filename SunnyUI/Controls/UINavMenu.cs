@@ -91,6 +91,32 @@ namespace Sunny.UI
             selectedHighColor = UIStyles.Blue.NavMenuMenuSelectedColor;
         }
 
+        private int scrollBarWidth = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => scrollBarWidth;
+            set
+            {
+                scrollBarWidth = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleWidth = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => scrollBarHandleWidth;
+            set
+            {
+                scrollBarHandleWidth = value;
+                if (Bar != null) Bar.FillWidth = value;
+            }
+        }
+
         /// <summary>
         /// 禁止控件跟随窗体缩放
         /// </summary>
@@ -663,7 +689,7 @@ namespace Sunny.UI
 
                     if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
                     {
-                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                        int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
                         if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                         int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
 
@@ -680,7 +706,7 @@ namespace Sunny.UI
 
                     if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
                     {
-                        int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                        int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
                         if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                         int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
 
@@ -729,7 +755,7 @@ namespace Sunny.UI
                 {
                     SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
                     float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
-                    float tipsLeft = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - sfMax - sfMax;
+                    float tipsLeft = Width - (ScrollBarVisible ? Bar.Width : 0) - sfMax - sfMax;
                     if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
                     float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
@@ -829,7 +855,7 @@ namespace Sunny.UI
 
             if (e.Node != null && TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
             {
-                int symbolRight = Width - (ScrollBarVisible ? ScrollBarInfo.VerticalScrollBarWidth() : 0) - 3;
+                int symbolRight = Width - (ScrollBarVisible ? Bar.Width : 0) - 3;
                 if (e.Node.Nodes.Count > 0) symbolRight -= 32;
                 int firstLeft = symbolRight - TreeNodeSymbols[e.Node].Count * 32;
                 if (e.X >= firstLeft && e.X < symbolRight)
@@ -910,10 +936,12 @@ namespace Sunny.UI
                 return;
             }
 
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
             var si = ScrollBarInfo.GetInfo(Handle);
             Bar.Maximum = si.ScrollMax;
             Bar.Visible = si.ScrollMax > 0 && si.nMax > 0 && si.nPage > 0;
             Bar.Value = si.nPos;
+            Bar.Width = barWidth + 1;
             Bar.BringToFront();
 
             if (ScrollBarVisible != Bar.Visible)
