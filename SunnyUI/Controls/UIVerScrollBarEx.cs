@@ -16,8 +16,9 @@
  * 当前版本: V3.1
  * 创建日期: 2020-08-29
  *
- * 2020-08-29: V2.2.7 新增水平滚动条
+ * 2020-08-29: V2.2.7 新增垂直滚动条
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -42,6 +43,19 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.ScrollBarForeColor;
             fillHoverColor = UIStyles.Blue.ScrollBarFillHoverColor;
             fillPressColor = UIStyles.Blue.ScrollBarFillPressColor;
+        }
+
+        private int fillWidth = 6;
+
+        [DefaultValue(6)]
+        public int FillWidth
+        {
+            get => fillWidth;
+            set
+            {
+                fillWidth = Math.Max(6, value);
+                Invalidate();
+            }
         }
 
         private int maximum = 100;
@@ -117,7 +131,8 @@ namespace Sunny.UI
             int height = BoundsHeight * (Height - 32) / Maximum;
 
             g.SetHighQuality();
-            g.FillRoundRectangle(clr, new Rectangle(Width / 2 - 3, top, 6, height), 5);
+            int w = Math.Max(6, fillWidth);
+            g.FillRoundRectangle(clr, new Rectangle(Width / 2 - w / 2, top, w, height), 5);
             g.SetDefaultQuality();
         }
 
