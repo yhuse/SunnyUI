@@ -23,6 +23,7 @@
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
  * 2022-06-19: V3.2.0 增加FilterChanged，输出过滤文字和记录条数
  * 2022-09-08: V3.2.3 增加过滤字异常判断
+ * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
 ******************************************************************************/
 
 using System;
@@ -51,6 +52,10 @@ namespace Sunny.UI
             this.PerformLayout();
         }
 
+        [DefaultValue(false)]
+        [Description("过滤时删除字符串前面、后面的空格"), Category("SunnyUI")]
+        public bool TrimFilter { get; set; }
+
         public event OnComboDataGridViewFilterChanged FilterChanged;
 
         [DefaultValue(500)]
@@ -63,6 +68,7 @@ namespace Sunny.UI
 
         private void UIComboDataGridView_ButtonClick(object sender, EventArgs e)
         {
+            item.TrimFilter = TrimFilter;
             item.FilterColumnName = FilterColumnName;
             item.ShowFilter = ShowFilter;
             ItemForm.Size = ItemSize;

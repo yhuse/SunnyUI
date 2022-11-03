@@ -26,6 +26,8 @@ namespace Sunny.UI
             edtFilter.TextChanged += EdtFilter_TextChanged;
         }
 
+        public bool TrimFilter { get; set; }
+
         private void EdtFilter_TextChanged(object sender, System.EventArgs e)
         {
             btnSearch_Click(null, null);
@@ -341,7 +343,11 @@ namespace Sunny.UI
         private void btnSearch_Click(object sender, System.EventArgs e)
         {
             string filter = "";
-            if (edtFilter.Text.IsNullOrEmpty())
+            string filterText = edtFilter.Text;
+            if (TrimFilter)
+                filterText = filterText.Trim();
+
+            if (filterText.IsNullOrEmpty())
             {
                 filter = "";
             }
@@ -349,7 +355,7 @@ namespace Sunny.UI
             {
                 if (FilterColumnName.IsValid())
                 {
-                    string str = FilterColumnName + " like '%" + edtFilter.Text + "%'";
+                    string str = FilterColumnName + " like '%" + filterText + "%'";
                     filter = str;
                 }
                 else
@@ -359,7 +365,7 @@ namespace Sunny.UI
                     {
                         if (column.Visible && column.DataPropertyName.IsValid())
                         {
-                            strings.Add(column.DataPropertyName + " like '%" + edtFilter.Text + "%'");
+                            strings.Add(column.DataPropertyName + " like '%" + filterText + "%'");
                         }
                     }
 
@@ -380,7 +386,7 @@ namespace Sunny.UI
                 }
             }
 
-            ComboDataGridViewFilterChanged?.Invoke(this, new UIComboDataGridViewArgs(edtFilter.Text, dataGridView.RowCount));
+            ComboDataGridViewFilterChanged?.Invoke(this, new UIComboDataGridViewArgs(filterText, dataGridView.RowCount));
         }
 
         private void btnClear_Click(object sender, System.EventArgs e)
