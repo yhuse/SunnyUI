@@ -1,5 +1,24 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-11\-03 V3.2.8      
+\* UIDataGridView: 增加了可设置垂直滚动条宽度的属性    
+\* UITitlePanel: 箭头图标可设置颜色    
+\* UIPage: 标题栏增加扩展按钮    
+\* UITreeView: TreeNode支持imagekey绑定图标    
+\* UIniFile: 增加读取字符串长度到4096，增加文件编码    
+\* UIIPTextBox: 增加TextChanged事件    
+\* UIVerScrollBarEx: 增加了可设置垂直滚动条宽度的属性    
+\* UIImageListBox: 增加了可设置垂直滚动条宽度的属性    
+\* UIListBox: 增加了可设置垂直滚动条宽度的属性    
+\* UITreeView: 增加了可设置垂直滚动条宽度的属性    
+\* UIComboBox: 过滤时删除字符串前面、后面的空格    
+\* UIComboDataGridView: 过滤时删除字符串前面、后面的空格    
+\* UINavMenu: 增加了可设置垂直滚动条宽度的属性    
+\* UINavMenu: 重写了节点右侧图标的绘制    
+\* UIFlowLayoutPanel: 增加了可设置垂直滚动条宽度的属性    
+\* UIRichTextBox: 增加了可设置垂直滚动条宽度的属性    
+\* UITextBox: 增加了可设置垂直滚动条宽度的属性    
+    
 #### 2022\-10\-03 V3.2.6       
 \* UIniFile: 修改IniFile，恢复为WinApi读取，以保证与以前配置文件兼容    
     
