@@ -18,7 +18,7 @@
         <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
         <PackageIcon>SunnyUI.png</PackageIcon>
         <SignAssembly>False</SignAssembly>
-        <AssemblyOriginatorKeyFile>C:\Key\SunnyUI.pfx</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>C:\Users\Administrator\Documents\SunnyUI.pfx</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>

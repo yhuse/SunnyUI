@@ -34,7 +34,7 @@ namespace Sunny.UI
         /// <summary>
         /// 版本
         /// </summary>
-        public static string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        public static string Version = Assembly.GetExecutingAssembly().GetName().Name + " V" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public const int EditorMinHeight = 20;
         public const int EditorMaxHeight = 60;
