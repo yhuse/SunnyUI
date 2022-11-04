@@ -40,6 +40,7 @@ namespace Sunny.UI
         /// <summary>
         /// Ini文件编码格式
         /// </summary>
+        [ConfigIgnore]
         public Encoding IniEncoding { get; private set; } = Encoding.Default;
 
         public bool Load(string fileName, Encoding encoding)
