@@ -20,10 +20,12 @@
  * 2020-08-07: V2.2.7 可编辑输入，日期范围控制以防止出错
  * 2021-04-15: V3.0.3 增加ShowToday显示今日属性
  * 2021-08-14: V3.0.6 增加可选择年、年月、年月日
+ * 2022-11-08: V3.2.8 增加MaxDate,MinDate
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -44,6 +46,131 @@ namespace Sunny.UI
             TextChanged += UIDatePicker_TextChanged;
 
             CreateInstance();
+        }
+
+        private DateTime max = DateTime.MaxValue;
+        private DateTime min = DateTime.MinValue;
+
+        static internal DateTime EffectiveMaxDate(DateTime maxDate)
+        {
+            DateTime maxSupportedDate = DateTimePicker.MaximumDateTime;
+            if (maxDate > maxSupportedDate)
+            {
+                return maxSupportedDate;
+            }
+            return maxDate;
+        }
+
+        static internal DateTime EffectiveMinDate(DateTime minDate)
+        {
+            DateTime minSupportedDate = DateTimePicker.MinimumDateTime;
+            if (minDate < minSupportedDate)
+            {
+                return minSupportedDate;
+            }
+            return minDate;
+        }
+
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly DateTime MinDateTime = new DateTime(1753, 1, 1);
+
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly DateTime MaxDateTime = new DateTime(9998, 12, 31);
+
+        [DefaultValue(typeof(DateTime), "9998/12/31")]
+        [Description("最大日期"), Category("SunnyUI")]
+        public DateTime MaxDate
+        {
+            get
+            {
+                return EffectiveMaxDate(max);
+            }
+            set
+            {
+                if (value != max)
+                {
+                    if (value < EffectiveMinDate(min))
+                    {
+                        value = EffectiveMinDate(min);
+                    }
+
+                    // If trying to set the maximum greater than MaxDateTime, throw.
+                    if (value > MaximumDateTime)
+                    {
+                        value = MaximumDateTime;
+                    }
+
+                    max = value;
+
+                    //If Value (which was once valid) is suddenly greater than the max (since we just set it)
+                    //then adjust this...
+                    if (Value > max)
+                    {
+                        Value = max;
+                    }
+                }
+            }
+        }
+
+        [DefaultValue(typeof(DateTime), "1753/1/1")]
+        [Description("最小日期"), Category("SunnyUI")]
+        public DateTime MinDate
+        {
+            get
+            {
+                return EffectiveMinDate(min);
+            }
+            set
+            {
+                if (value != min)
+                {
+                    if (value > EffectiveMaxDate(max))
+                    {
+                        value = EffectiveMaxDate(max);
+                    }
+
+                    // If trying to set the minimum less than MinimumDateTime, throw.
+                    if (value < MinimumDateTime)
+                    {
+                        value = MinimumDateTime;
+                    }
+
+                    min = value;
+
+                    //If Value (which was once valid) is suddenly less than the min (since we just set it)
+                    //then adjust this...
+                    if (Value < min)
+                    {
+                        Value = min;
+                    }
+                }
+            }
+        }
+
+        internal static DateTime MaximumDateTime
+        {
+            get
+            {
+                DateTime maxSupportedDateTime = CultureInfo.CurrentCulture.Calendar.MaxSupportedDateTime;
+                if (maxSupportedDateTime.Year > MaxDateTime.Year)
+                {
+                    return MaxDateTime;
+                }
+                return maxSupportedDateTime;
+            }
+        }
+
+        internal static DateTime MinimumDateTime
+        {
+            get
+            {
+                DateTime minSupportedDateTime = CultureInfo.CurrentCulture.Calendar.MinSupportedDateTime;
+                if (minSupportedDateTime.Year < 1753)
+                {
+                    return new DateTime(1753, 1, 1);
+                }
+                return minSupportedDateTime;
+            }
         }
 
         [DefaultValue(false)]
@@ -177,6 +304,8 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             item.SetStyleColor(UIStyles.ActiveStyleColor);
+            item.max = MaxDate;
+            item.min = MinDate;
             ItemForm.Show(this);
         }
 

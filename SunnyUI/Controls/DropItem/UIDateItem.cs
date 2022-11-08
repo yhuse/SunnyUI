@@ -336,6 +336,9 @@ namespace Sunny.UI
             base.SetDPIScale();
         }
 
+        public DateTime max = DateTime.MaxValue;
+        public DateTime min = DateTime.MinValue;
+
         public void Translate()
         {
             months.Clear();
@@ -357,6 +360,18 @@ namespace Sunny.UI
         {
             if (TabControl.SelectedIndex > 0)
             {
+                if (TabControl.SelectedIndex == 2)
+                {
+                    if (new DateTime(Year, Month, 1) > max) return;
+                    if (new DateTime(Year, Month, 1).EndOfMonth() < min) return;
+                }
+
+                if (TabControl.SelectedIndex == 1)
+                {
+                    if (Year < min.Year) return;
+                    if (Year > max.Year) return;
+                }
+
                 TabControl.SelectedIndex--;
                 activeDay = -1;
             }
@@ -581,15 +596,21 @@ namespace Sunny.UI
                 int left = width * (i % 4);
                 int top = height * (i / 4);
 
-                SizeF sf = e.Graphics.MeasureString(months[i], Font);
-                if (i + 1 == Month)
+                Color color = ForeColor;
+                if (new DateTime(Year, i + 1, 1) > max || new DateTime(Year, i + 1, 1).EndOfMonth() < min)
                 {
-                    e.Graphics.DrawString(months[i], Font, PrimaryColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                    color = Color.DarkGray;
                 }
                 else
                 {
-                    e.Graphics.DrawString(months[i], Font, i == activeMonth ? PrimaryColor : ForeColor, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                    if (i + 1 == Month) color = PrimaryColor;
+                    if (i + 1 == Month) color = PrimaryColor;
+                    if (i == activeMonth) color = PrimaryColor;
+                    if (i == activeMonth) color = PrimaryColor;
                 }
+
+                SizeF sf = e.Graphics.MeasureString(months[i], Font);
+                e.Graphics.DrawString(months[i], Font, color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
             }
         }
 
@@ -601,6 +622,10 @@ namespace Sunny.UI
             int y = e.Location.Y / height;
             Month = x + y * 4 + 1;
             if (Month <= 0 || Month > 12) return;
+
+            if (new DateTime(Year, Month, 1) > max) return;
+            if (new DateTime(Year, Month, 1).EndOfMonth() < min) return;
+
             SetYearMonth(Year, Month);
             activeMonth = -1;
 
@@ -625,6 +650,11 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int im = x + y * 4;
+
+            if (im + 1 <= 0 || im + 1 > 12) return;
+            if (new DateTime(Year, im + 1, 1) > max) return;
+            if (new DateTime(Year, im + 1, 1).EndOfMonth() < min) return;
+
             if (activeMonth != im)
             {
                 activeMonth = im;
@@ -647,9 +677,21 @@ namespace Sunny.UI
 
                 SizeF sf = e.Graphics.MeasureString(years[i].ToString(), Font);
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
+                if (years[i] < min.Year || years[i] > max.Year)
+                {
+                    color = Color.DarkGray;
+                }
+                else
+                {
+                    if (years[i] == Year) color = PrimaryColor;
+                    if (years[i] == Year) color = PrimaryColor;
+                    if (i == activeYear) color = PrimaryColor;
+                    if (i == activeYear) color = PrimaryColor;
+                }
+
                 if (years[i] != 10000)
                 {
-                    e.Graphics.DrawString(years[i].ToString(), Font, (i == activeYear || years[i] == Year) ? PrimaryColor : color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                    e.Graphics.DrawString(years[i].ToString(), Font, color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
                 }
             }
         }
@@ -661,6 +703,10 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = e.Location.Y / height;
             int iy = x + y * 4;
+
+            if (years[iy] < min.Year) return;
+            if (years[iy] > max.Year) return;
+
             if (activeYear != iy)
             {
                 activeYear = iy;
@@ -676,6 +722,9 @@ namespace Sunny.UI
             int y = e.Location.Y / height;
             int iy = x + y * 4;
             if (iy < 0 || iy >= 12) return;
+            if (years[iy] < min.Year) return;
+            if (years[iy] > max.Year) return;
+
             Year = years[iy] > 9999 ? 9999 : years[iy];
             activeYear = -1;
 
@@ -723,6 +772,8 @@ namespace Sunny.UI
                 sf = e.Graphics.MeasureString(days[i].Day.ToString(), Font);
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
                 color = (days[i].DateString() == date.DateString()) ? PrimaryColor : color;
+                if (days[i] < min) color = Color.DarkGray;
+                if (days[i] > max) color = Color.DarkGray;
 
                 if (!maxDrawer)
                 {
@@ -768,6 +819,17 @@ namespace Sunny.UI
             int x = e.Location.X / width;
             int y = (e.Location.Y - 30) / height;
             int iy = x + y * 7;
+
+            if (iy.InRange(0, days.Count))
+            {
+                if (days[iy] < min) return;
+                if (days[iy] > max) return;
+            }
+            else
+            {
+                return;
+            }
+
             bool istoday = ShowToday && e.Location.Y > p3.Top + p3.Height - height && e.Location.X > p3.Left + width * 3;
 
             if (activeDay != iy || istoday != isToday)
@@ -787,11 +849,18 @@ namespace Sunny.UI
             int y = (e.Location.Y - 30) / height;
             int id = x + y * 7;
             if (id < 0 || id >= 42) return;
-            date = days[id].Date;
 
             if (ShowToday && e.Location.Y > p3.Height - height && e.Location.X > p3.Width - width * 4)
             {
+                if (DateTime.Now.Date < min) return;
+                if (DateTime.Now.Date > max) return;
                 date = DateTime.Now.Date;
+            }
+            else
+            {
+                if (days[id].Date < min) return;
+                if (days[id].Date > max) return;
+                date = days[id].Date;
             }
 
             DoValueChanged(this, Date);
