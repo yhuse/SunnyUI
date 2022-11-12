@@ -31,11 +31,11 @@ namespace Sunny.UI
     {
         private bool canEmpty;
         private int decLength = 2;
-        private bool hasMaxValue;
-        private bool hasMinValue;
+        //private bool hasMaxValue;
+        //private bool hasMinValue;
         private string mask = "0.00";
-        private double maxValue = int.MaxValue;
-        private double minValue = int.MinValue;
+        //private double maxValue = int.MaxValue;
+        //private double minValue = int.MinValue;
         private UITextBox.UIEditType _uiEditType = UITextBox.UIEditType.String;
 
         public UIEdit()
@@ -137,6 +137,14 @@ namespace Sunny.UI
             else
             {
                 DrawWaterMark();
+            }
+
+            if (Text.IsValid())
+            {
+                if (Type == UITextBox.UIEditType.Integer || Type == UITextBox.UIEditType.Double)
+                {
+                    CheckMaxMin();
+                }
             }
         }
 
@@ -369,35 +377,35 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false)]
-        public bool HasMaxValue
-        {
-            get => hasMaxValue;
-            set
-            {
-                if (hasMaxValue != value)
-                {
-                    hasMaxValue = value;
-                    CheckMaxMin();
-                    Invalidate();
-                }
-            }
-        }
+        [Browsable(false), DefaultValue(false)]
+        public bool HasMaxValue { get; set; }
+        //{
+        //    get => hasMaxValue;
+        //    set
+        //    {
+        //        if (hasMaxValue != value)
+        //        {
+        //            hasMaxValue = value;
+        //            CheckMaxMin();
+        //            Invalidate();
+        //        }
+        //    }
+        //}
 
-        [DefaultValue(false)]
-        public bool HasMinValue
-        {
-            get => hasMinValue;
-            set
-            {
-                if (hasMinValue != value)
-                {
-                    hasMinValue = value;
-                    CheckMaxMin();
-                    Invalidate();
-                }
-            }
-        }
+        [Browsable(false), DefaultValue(false)]
+        public bool HasMinValue { get; set; }
+        //{
+        //    get => hasMinValue;
+        //    set
+        //    {
+        //        if (hasMinValue != value)
+        //        {
+        //            hasMinValue = value;
+        //            CheckMaxMin();
+        //            Invalidate();
+        //        }
+        //    }
+        //}
 
         [DefaultValue(0)]
         public double DoubleValue
@@ -429,33 +437,33 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(int.MaxValue)]
-        public double MaxValue
-        {
-            get => maxValue;
-            set
-            {
-                maxValue = value;
-                if (maxValue < minValue)
-                    minValue = maxValue;
-                CheckMaxMin();
-                Invalidate();
-            }
-        }
-
-        [DefaultValue(int.MinValue)]
-        public double MinValue
-        {
-            get => minValue;
-            set
-            {
-                minValue = value;
-                if (minValue > maxValue)
-                    maxValue = minValue;
-                CheckMaxMin();
-                Invalidate();
-            }
-        }
+        //[DefaultValue(int.MaxValue)]
+        //public double MaxValue
+        //{
+        //    get => maxValue;
+        //    set
+        //    {
+        //        maxValue = value;
+        //        if (maxValue < minValue)
+        //            minValue = maxValue;
+        //        CheckMaxMin();
+        //        Invalidate();
+        //    }
+        //}
+        //
+        //[DefaultValue(int.MinValue)]
+        //public double MinValue
+        //{
+        //    get => minValue;
+        //    set
+        //    {
+        //        minValue = value;
+        //        if (minValue > maxValue)
+        //            maxValue = minValue;
+        //        CheckMaxMin();
+        //        Invalidate();
+        //    }
+        //}
 
         private string DecimalToMask(int iDecimal)
         {
@@ -581,46 +589,30 @@ namespace Sunny.UI
             if (_uiEditType == UITextBox.UIEditType.Integer)
             {
                 if (Text == "" && CanEmpty) return;
+                if (!int.TryParse(Text, out var a)) return;
 
-                if (!int.TryParse(Text, out var a))
-                    Text = @"0";
-
-                if (hasMaxValue)
-                {
-                    var m = (int)Math.Floor(maxValue);
-                    if (a > m)
-                        a = m;
-                }
-                if (hasMinValue)
-                {
-                    var m = (int)Math.Ceiling(minValue);
-                    if (a < m)
-                        a = m;
-                }
+                if (a > MaxValue)
+                    a = (int)MaxValue;
+                if (a < MinValue)
+                    a = (int)MinValue;
 
                 Text = a.ToString();
+                SelectionStart = Text.Length;
             }
 
             if (_uiEditType == UITextBox.UIEditType.Double)
             {
                 if (Text == "" && CanEmpty) return;
+                if (!double.TryParse(Text, out var a)) return;
 
-                if (!double.TryParse(Text, out var a))
-                    Text = a.ToString("f" + decLength);
+                if (a > MaxValue)
+                    a = MaxValue;
 
-                if (hasMaxValue)
-                {
-                    if (a > maxValue)
-                        a = maxValue;
-                }
-
-                if (hasMinValue)
-                {
-                    if (a < minValue)
-                        a = minValue;
-                }
+                if (a < MinValue)
+                    a = MinValue;
 
                 Text = a.ToString("f" + decLength);
+                SelectionStart = Text.Length;
             }
         }
 
@@ -688,24 +680,134 @@ namespace Sunny.UI
             {
                 if (Text == "" && CanEmpty) return;
 
-                if (StringIndexIsChar(Text, 0, '.'))
-                    Text = @"0" + Text;
-
-                if (StringIndexIsChar(Text, Text.Length - 1, '.'))
-                    Text = Text + @"0";
-
-                if (StringIndexIsChar(Text, 0, '+') || StringIndexIsChar(Text, 0, '+'))
-                    if (StringIndexIsChar(Text, 1, '.'))
-                        Text = Text.Insert(1, @"0");
+                //if (StringIndexIsChar(Text, 0, '.'))
+                //    Text = @"0" + Text;
+                //
+                //if (StringIndexIsChar(Text, Text.Length - 1, '.'))
+                //    Text = Text + @"0";
+                //
+                //if (StringIndexIsChar(Text, 0, '+') || StringIndexIsChar(Text, 0, '+'))
+                //    if (StringIndexIsChar(Text, 1, '.'))
+                //        Text = Text.Insert(1, @"0");
 
                 if (!double.TryParse(Text, out var doubleValue))
                     Text = mask;
-
-                Text = doubleValue.ToString("f" + decLength);
+                else
+                    Text = doubleValue.ToString("f" + decLength);
             }
 
-            CheckMaxMin();
+            //CheckMaxMin();
             //Invalidate();
+        }
+
+        private double max = int.MaxValue;
+        private double min = int.MinValue;
+
+        static internal double EffectiveMax(double _max)
+        {
+            double maxSupported = double.MaxValue;
+            if (_max > maxSupported)
+            {
+                return maxSupported;
+            }
+
+            return _max;
+        }
+
+        static internal double EffectiveMin(double _min)
+        {
+            double minSupported = double.MinValue;
+            if (_min < minSupported)
+            {
+                return minSupported;
+            }
+
+            return _min;
+        }
+
+        [DefaultValue(int.MaxValue)]
+        [Description("最大日期"), Category("SunnyUI")]
+        public double MaxValue
+        {
+            get
+            {
+                return EffectiveMax(max);
+            }
+            set
+            {
+                //if (value != max)
+                {
+                    if (value < EffectiveMin(min))
+                    {
+                        value = EffectiveMin(min);
+                    }
+
+                    // If trying to set the maximum greater than Max, throw.
+                    if (value > double.MaxValue)
+                    {
+                        value = double.MaxValue;
+                    }
+
+                    max = value;
+                    if (Type == UITextBox.UIEditType.Integer)
+                        max = Math.Min(max, int.MaxValue);
+
+                    //If Value (which was once valid) is suddenly greater than the max (since we just set it)
+                    //then adjust this...
+                    if (IntValue > max)
+                    {
+                        IntValue = (int)max;
+                    }
+
+                    if (DoubleValue > max)
+                    {
+                        DoubleValue = max;
+                    }
+                }
+            }
+        }
+
+        [DefaultValue(int.MinValue)]
+        [Description("最小日期"), Category("SunnyUI")]
+        public double MinValue
+        {
+            get
+            {
+                return EffectiveMin(min);
+            }
+            set
+            {
+                if (value != min)
+                {
+                    if (value > EffectiveMax(max))
+                    {
+                        value = EffectiveMax(max);
+                    }
+
+                    // If trying to set the minimum less than Min, throw.
+                    if (value < double.MinValue)
+                    {
+                        value = double.MinValue;
+                    }
+
+                    min = value;
+                    if (Type == UITextBox.UIEditType.Integer)
+                        min = Math.Max(min, int.MinValue);
+
+                    //If Value (which was once valid) is suddenly less than the min (since we just set it)
+                    //then adjust this...
+                    if (IntValue < min)
+                    {
+                        IntValue = (int)min;
+                    }
+
+                    if (DoubleValue < min)
+                    {
+                        min = value;
+                        DoubleValue = min;
+                    }
+                }
+            }
         }
     }
 }

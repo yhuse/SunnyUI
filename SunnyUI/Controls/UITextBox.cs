@@ -41,6 +41,7 @@
  * 2022-09-16: V3.2.4 支持自定义右键菜单
  * 2022-09-16: V3.2.4 修改右侧Button可能不显示的问题
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2022-11-12: V3.2.8 修改整数、浮点数大小离开判断为实时输入判断
 ******************************************************************************/
 
 using System;
@@ -545,7 +546,7 @@ namespace Sunny.UI
             edit.SelectAll();
         }
 
-        public void CheckMaxMin()
+        internal void CheckMaxMin()
         {
             edit.CheckMaxMin();
         }
@@ -728,7 +729,7 @@ namespace Sunny.UI
             set => edit.MinValue = value;
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("是否判断最大值显示"), Category("SunnyUI")]
         public bool MaximumEnabled
         {
@@ -736,7 +737,7 @@ namespace Sunny.UI
             set => HasMaximum = value;
         }
 
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("是否判断最小值显示"), Category("SunnyUI")]
         public bool MinimumEnabled
         {
