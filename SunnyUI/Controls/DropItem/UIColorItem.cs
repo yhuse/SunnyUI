@@ -259,8 +259,6 @@ namespace Sunny.UI
             this.edtA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtA.FillColor = System.Drawing.Color.White;
             this.edtA.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.edtA.HasMaximum = true;
-            this.edtA.HasMinimum = true;
             this.edtA.Location = new System.Drawing.Point(29, 197);
             this.edtA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtA.Maximum = 255D;
@@ -278,8 +276,6 @@ namespace Sunny.UI
             this.edtR.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtR.FillColor = System.Drawing.Color.White;
             this.edtR.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.edtR.HasMaximum = true;
-            this.edtR.HasMinimum = true;
             this.edtR.Location = new System.Drawing.Point(93, 197);
             this.edtR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtR.Maximum = 255D;
@@ -297,8 +293,6 @@ namespace Sunny.UI
             this.edtG.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtG.FillColor = System.Drawing.Color.White;
             this.edtG.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.edtG.HasMaximum = true;
-            this.edtG.HasMinimum = true;
             this.edtG.Location = new System.Drawing.Point(158, 197);
             this.edtG.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtG.Maximum = 255D;
@@ -316,8 +310,6 @@ namespace Sunny.UI
             this.edtB.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtB.FillColor = System.Drawing.Color.White;
             this.edtB.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.edtB.HasMaximum = true;
-            this.edtB.HasMinimum = true;
             this.edtB.Location = new System.Drawing.Point(222, 197);
             this.edtB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtB.Maximum = 255D;

@@ -682,12 +682,10 @@ namespace Sunny.UI
             this.edtPage.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtPage.DoubleValue = 10D;
             this.edtPage.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.edtPage.HasMinimum = true;
             this.edtPage.IntValue = 10;
             this.edtPage.Location = new System.Drawing.Point(28, 0);
             this.edtPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtPage.Minimum = 1D;
-            this.edtPage.MinimumEnabled = true;
             this.edtPage.MinimumSize = new System.Drawing.Size(1, 1);
             this.edtPage.Name = "edtPage";
             this.edtPage.Padding = new System.Windows.Forms.Padding(5);
@@ -816,7 +814,6 @@ namespace Sunny.UI
             b16.Visible = true;
 
             PageCount = TotalCount.Mod(PageSize) == 0 ? TotalCount / PageSize : TotalCount / PageSize + 1;
-            edtPage.HasMaximum = true;
             edtPage.Maximum = PageCount;
 
             if (activePage >= PageCount)

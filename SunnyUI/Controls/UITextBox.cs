@@ -42,6 +42,7 @@
  * 2022-09-16: V3.2.4 修改右侧Button可能不显示的问题
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-11-12: V3.2.8 修改整数、浮点数大小离开判断为实时输入判断
+ * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
 ******************************************************************************/
 
 using System;
@@ -727,38 +728,6 @@ namespace Sunny.UI
         {
             get => edit.MinValue;
             set => edit.MinValue = value;
-        }
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("是否判断最大值显示"), Category("SunnyUI")]
-        public bool MaximumEnabled
-        {
-            get => HasMaximum;
-            set => HasMaximum = value;
-        }
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("是否判断最小值显示"), Category("SunnyUI")]
-        public bool MinimumEnabled
-        {
-            get => HasMinimum;
-            set => HasMinimum = value;
-        }
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("是否判断最大值显示"), Category("SunnyUI")]
-        public bool HasMaximum
-        {
-            get => edit.HasMaxValue;
-            set => edit.HasMaxValue = value;
-        }
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("是否判断最小值显示"), Category("SunnyUI")]
-        public bool HasMinimum
-        {
-            get => edit.HasMinValue;
-            set => edit.HasMinValue = value;
         }
 
         [DefaultValue(0.00)]

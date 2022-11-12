@@ -386,8 +386,6 @@ namespace Sunny.UI
             frm.Editor.MaxLength = 11;
             frm.Editor.Minimum = minimum;
             frm.Editor.Maximum = maximum;
-            frm.Editor.HasMaximum = true;
-            frm.Editor.HasMinimum = true;
             if (showMask)
                 frm.ShowDialogWithMask();
             else
@@ -476,8 +474,6 @@ namespace Sunny.UI
             frm.CheckInputEmpty = checkEmpty;
             frm.Editor.Minimum = minimum;
             frm.Editor.Maximum = maximum;
-            frm.Editor.HasMaximum = true;
-            frm.Editor.HasMinimum = true;
             if (showMask)
                 frm.ShowDialogWithMask();
             else

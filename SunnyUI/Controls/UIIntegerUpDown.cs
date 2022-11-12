@@ -24,6 +24,8 @@
  * 2022-02-24: V3.1.1 可以设置按钮大小和颜色
  * 2022-05-05: V3.1.8 增加禁止输入属性
  * 2022-09-16: V3.2.4 增加是否可以双击输入属性
+ * 2022-11-12: V3.2.8 修改整数、浮点数大小离开判断为实时输入判断
+ * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
 ******************************************************************************/
 
 using System;
@@ -48,7 +50,6 @@ namespace Sunny.UI
             edit.Parent = pnlValue;
             edit.Visible = false;
             edit.BorderStyle = BorderStyle.None;
-            edit.TextChanged += Edit_TextChanged;
             edit.Leave += Edit_Leave;
             pnlValue.Paint += PnlValue_Paint;
         }
@@ -86,14 +87,7 @@ namespace Sunny.UI
             {
                 edit.Visible = false;
                 pnlValue.FillColor = pnlColor;
-            }
-        }
-
-        private void Edit_TextChanged(object sender, EventArgs e)
-        {
-            if (edit != null && edit.Visible)
-            {
-                Value = edit.Text.ToInt();
+                Value = edit.IntValue;
             }
         }
 
@@ -108,7 +102,7 @@ namespace Sunny.UI
             get => _value;
             set
             {
-                value = CheckMaxMin(value);
+                value = (int)edit.CheckMaxMin(value);
                 if (_value != value)
                 {
                     _value = value;
@@ -174,111 +168,20 @@ namespace Sunny.UI
             }
         }
 
-        private int _maximum = int.MaxValue;
-        private int _minimum = int.MinValue;
-
         [Description("最大值"), Category("SunnyUI")]
         [DefaultValue(int.MaxValue)]
         public int Maximum
         {
-            get => _maximum;
-            set
-            {
-                _maximum = value;
-                if (_maximum < _minimum)
-                    _minimum = _maximum;
-
-                Value = CheckMaxMin(Value);
-                edit.MaxValue = _maximum;
-                Invalidate();
-            }
+            get => (int)edit.MaxValue;
+            set => edit.MaxValue = value;
         }
 
         [Description("最小值"), Category("SunnyUI")]
         [DefaultValue(int.MinValue)]
         public int Minimum
         {
-            get => _minimum;
-            set
-            {
-                _minimum = value;
-                if (_minimum > _maximum)
-                    _maximum = _minimum;
-
-                Value = CheckMaxMin(Value);
-                edit.MinValue = _maximum;
-                Invalidate();
-            }
-        }
-
-        private int CheckMaxMin(int value)
-        {
-            if (hasMaximum)
-            {
-                if (value > _maximum)
-                    value = _maximum;
-            }
-
-            if (hasMinimum)
-            {
-                if (value < _minimum)
-                    value = _minimum;
-            }
-
-            return value;
-        }
-
-        [DefaultValue(false)]
-        [Description("是否判断最大值显示"), Category("SunnyUI")]
-        public bool MaximumEnabled
-        {
-            get => HasMaximum;
-            set => HasMaximum = value;
-        }
-
-        [DefaultValue(false)]
-        [Description("是否判断最小值显示"), Category("SunnyUI")]
-        public bool MinimumEnabled
-        {
-            get => HasMinimum;
-            set => HasMinimum = value;
-        }
-
-        private bool hasMaximum;
-        private bool hasMinimum;
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("检查最大值"), Category("SunnyUI")]
-        public bool HasMaximum
-        {
-            get => hasMaximum;
-            set
-            {
-                if (hasMaximum != value)
-                {
-                    hasMaximum = value;
-                    Value = CheckMaxMin(Value);
-                    edit.HasMaxValue = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        [DefaultValue(false), Browsable(false)]
-        [Description("检查最小值"), Category("SunnyUI")]
-        public bool HasMinimum
-        {
-            get => hasMinimum;
-            set
-            {
-                if (hasMinimum != value)
-                {
-                    hasMinimum = value;
-                    Value = CheckMaxMin(Value);
-                    edit.HasMinValue = value;
-                    Invalidate();
-                }
-            }
+            get => (int)edit.MinValue;
+            set => edit.MinValue = value;
         }
 
         [DefaultValue(true)]

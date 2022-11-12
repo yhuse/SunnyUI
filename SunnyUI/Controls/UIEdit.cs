@@ -377,36 +377,6 @@ namespace Sunny.UI
             }
         }
 
-        [Browsable(false), DefaultValue(false)]
-        public bool HasMaxValue { get; set; }
-        //{
-        //    get => hasMaxValue;
-        //    set
-        //    {
-        //        if (hasMaxValue != value)
-        //        {
-        //            hasMaxValue = value;
-        //            CheckMaxMin();
-        //            Invalidate();
-        //        }
-        //    }
-        //}
-
-        [Browsable(false), DefaultValue(false)]
-        public bool HasMinValue { get; set; }
-        //{
-        //    get => hasMinValue;
-        //    set
-        //    {
-        //        if (hasMinValue != value)
-        //        {
-        //            hasMinValue = value;
-        //            CheckMaxMin();
-        //            Invalidate();
-        //        }
-        //    }
-        //}
-
         [DefaultValue(0)]
         public double DoubleValue
         {
@@ -417,8 +387,8 @@ namespace Sunny.UI
             }
             set
             {
-                CheckMaxMin();
                 Text = value.ToString("f" + decLength);
+                CheckMaxMin();
             }
         }
 
@@ -432,8 +402,8 @@ namespace Sunny.UI
             }
             set
             {
-                CheckMaxMin();
                 Text = value.ToString();
+                CheckMaxMin();
             }
         }
 
@@ -584,6 +554,36 @@ namespace Sunny.UI
             return true;
         }
 
+        public double CheckMaxMin(double value)
+        {
+            if (_uiEditType == UITextBox.UIEditType.Integer)
+            {
+                if (value > MaxValue)
+                    value = (int)MaxValue;
+                if (value < MinValue)
+                    value = (int)MinValue;
+
+                Text = value.ToString();
+                SelectionStart = Text.Length;
+                return value;
+            }
+
+            if (_uiEditType == UITextBox.UIEditType.Double)
+            {
+                if (value > MaxValue)
+                    value = MaxValue;
+
+                if (value < MinValue)
+                    value = MinValue;
+
+                Text = value.ToString("f" + decLength);
+                SelectionStart = Text.Length;
+                return value;
+            }
+
+            return value;
+        }
+
         public void CheckMaxMin()
         {
             if (_uiEditType == UITextBox.UIEditType.Integer)
@@ -592,12 +592,18 @@ namespace Sunny.UI
                 if (!int.TryParse(Text, out var a)) return;
 
                 if (a > MaxValue)
+                {
                     a = (int)MaxValue;
-                if (a < MinValue)
-                    a = (int)MinValue;
+                    Text = a.ToString();
+                    SelectionStart = Text.Length;
+                }
 
-                Text = a.ToString();
-                SelectionStart = Text.Length;
+                if (a < MinValue)
+                {
+                    a = (int)MinValue;
+                    Text = a.ToString();
+                    SelectionStart = Text.Length;
+                }
             }
 
             if (_uiEditType == UITextBox.UIEditType.Double)
@@ -606,13 +612,18 @@ namespace Sunny.UI
                 if (!double.TryParse(Text, out var a)) return;
 
                 if (a > MaxValue)
+                {
                     a = MaxValue;
+                    Text = a.ToString("f" + decLength);
+                    SelectionStart = Text.Length;
+                }
 
                 if (a < MinValue)
+                {
                     a = MinValue;
-
-                Text = a.ToString("f" + decLength);
-                SelectionStart = Text.Length;
+                    Text = a.ToString("f" + decLength);
+                    SelectionStart = Text.Length;
+                }
             }
         }
 
