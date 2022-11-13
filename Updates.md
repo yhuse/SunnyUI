@@ -1,5 +1,22 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-11\-13 V3.2.9      
+\+ .Net7支持    
+**:star: 删除一些过时的方法**    
+\- UIFlowLayoutPanel: 删除AddControl、RemoveControl方法    
+\- UIDoubleUpDown: 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性    
+\- UIIntegerUpDown: 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性    
+\- UITextBox: 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性    
+**:star: 其他更新内容：**    
+\* UIHorScrollBarEx: 增加了可设置水平滚动条高度的属性    
+\* UIHorScrollBar: 增加了可设置水平滚动条高度的属性    
+\* UIComboBox: 增加不显示过滤可以自动调整下拉框宽度    
+\* UIFlowLayoutPanel: 增加滚动条背景色调整    
+\* UIIntegerUpDown: 修改整数离开判断为实时输入判断    
+\* UIDoubleUpDown: 修改浮点数大小离开判断为实时输入判断    
+\* UITextBox: 修改整数、浮点数大小离开判断为实时输入判断    
+\* UIDatePicker: 增加MaxDate,MinDate    
+    
 #### 2022\-11\-03 V3.2.8      
 \* UIDataGridView: 增加了可设置垂直滚动条宽度的属性    
 \* UITitlePanel: 箭头图标可设置颜色    
