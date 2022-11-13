@@ -31,6 +31,7 @@
  * 2022-05-24: V3.1.9 Selceted=-1，清除文本
  * 2022-08-25: V3.2.3 下拉框边框可设置颜色
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
+ * 2022-11-13: V3.2.8 增加不显示过滤可以自动调整下拉框宽度
 ******************************************************************************/
 
 using System;
@@ -570,13 +571,43 @@ namespace Sunny.UI
             UIComboBox_ButtonClick(this, EventArgs.Empty);
         }
 
+        [DefaultValue(false)]
+        [Description("不显示过滤可以自动调整下拉框宽度"), Category("SunnyUI")]
+        public bool DropDownAutoWidth { get; set; }
+
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
             if (!ShowFilter)
             {
                 if (Items.Count > 0)
                 {
-                    ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
+                    int dropWidth = Width;
+
+                    if (DropDownAutoWidth)
+                    {
+                        if (DataSource == null)
+                        {
+                            for (int i = 0; i < Items.Count; i++)
+                            {
+                                SizeF sf = GDI.MeasureString(Items[i].ToString(), Font);
+                                dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < Items.Count; i++)
+                            {
+                                SizeF sf = GDI.MeasureString(dropForm.ListBox.GetItemText(Items[i]), Font);
+                                dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        dropWidth = Math.Max(DropDownWidth, dropWidth);
+                    }
+
+                    ItemForm.Show(this, new Size(dropWidth, CalcItemFormHeight()));
                 }
             }
             else
