@@ -24,6 +24,7 @@
  * 2021-11-05: V3.0.8 修改不同DPI缩放滚动条未覆盖的问题
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-11-13: V3.2.8 增加滚动条背景色调整
+ * 2022-11-13: V3.2.8 删除AddControl、RemoveControl方法
 ******************************************************************************/
 
 using System;
@@ -233,30 +234,6 @@ namespace Sunny.UI
             if (Panel != null)
             {
                 Panel.Controls.Add(control);
-            }
-        }
-
-        [Obsolete("此方法已优化，用Add代替")]
-        public void AddControl(Control control)
-        {
-            if (control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            if (Panel != null)
-            {
-                Panel.Controls.Add(control);
-            }
-        }
-
-        [Obsolete("此方法已优化，用Remove代替")]
-        public void RemoveControl(Control control)
-        {
-            if (Panel != null)
-            {
-                if (Panel.Controls.Contains(control))
-                    Panel.Controls.Remove(control);
             }
         }
 
