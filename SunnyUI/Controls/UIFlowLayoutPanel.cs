@@ -23,6 +23,7 @@
  * 2021-10-18: V3.0.8 增加Scroll事件
  * 2021-11-05: V3.0.8 修改不同DPI缩放滚动条未覆盖的问题
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2022-11-13: V3.2.8 增加滚动条背景色调整
 ******************************************************************************/
 
 using System;
@@ -306,8 +307,25 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             Panel.BackColor = uiColor.PlainColor;
 
-            HBar.FillColor = VBar.FillColor = uiColor.FlowLayoutPanelBarFillColor;
-            scrollBarColor = HBar.ForeColor = VBar.ForeColor = uiColor.FlowLayoutPanelBarForeColor;
+            if (HBar != null)
+            {
+                HBar.ForeColor = uiColor.GridBarForeColor;
+                HBar.HoverColor = uiColor.ButtonFillHoverColor;
+                HBar.PressColor = uiColor.ButtonFillPressColor;
+                HBar.FillColor = uiColor.GridBarFillColor;
+                scrollBarColor = uiColor.GridBarForeColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
+            }
+
+            if (VBar != null)
+            {
+                VBar.ForeColor = uiColor.GridBarForeColor;
+                VBar.HoverColor = uiColor.ButtonFillHoverColor;
+                VBar.PressColor = uiColor.ButtonFillPressColor;
+                VBar.FillColor = uiColor.GridBarFillColor;
+                scrollBarColor = uiColor.GridBarForeColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
+            }
         }
 
         protected override void AfterSetFillColor(Color color)
@@ -329,8 +347,29 @@ namespace Sunny.UI
             set
             {
                 scrollBarColor = value;
-                VBar.ForeColor = value;
-                HBar.ForeColor = value;
+                HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
+                VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
+                _style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarBackColor = Color.FromArgb(243, 249, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        public Color ScrollBarBackColor
+        {
+            get => scrollBarBackColor;
+            set
+            {
+                scrollBarBackColor = value;
+                HBar.FillColor = value;
+                VBar.FillColor = value;
+                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
