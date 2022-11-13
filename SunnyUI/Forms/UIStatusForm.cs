@@ -19,7 +19,6 @@
  * 2020-05-05: V2.2.5 增加文件
 ******************************************************************************/
 
-using System;
 using System.ComponentModel;
 
 namespace Sunny.UI
@@ -101,14 +100,6 @@ namespace Sunny.UI
         }
 
         public int DecimalPlaces
-        {
-            get => processBar.DecimalPlaces;
-            set => processBar.DecimalPlaces = value;
-        }
-
-
-        [Obsolete("请用DecimalPlaces代替。")]
-        public int DecimalCount
         {
             get => processBar.DecimalPlaces;
             set => processBar.DecimalPlaces = value;
