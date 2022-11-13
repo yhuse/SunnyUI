@@ -18,6 +18,7 @@
  *
  * 2020-07-18: V2.2.6 新增水平滚动条
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-11-13: V3.2.8 增加了可设置水平滚动条高度的属性
 ******************************************************************************/
 
 using System;
@@ -48,6 +49,19 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.ScrollBarForeColor;
             fillHoverColor = UIStyles.Blue.ScrollBarFillHoverColor;
             fillPressColor = UIStyles.Blue.ScrollBarFillPressColor;
+        }
+
+        private int fillHeight = 6;
+
+        [DefaultValue(6)]
+        public int FillHeight
+        {
+            get => fillHeight;
+            set
+            {
+                fillHeight = Math.Max(6, value);
+                Invalidate();
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -138,7 +152,8 @@ namespace Sunny.UI
 
         private Rectangle GetValueRect()
         {
-            return new Rectangle(ValueToPos(scrollValue), Height / 2 - 3, barWidth, 6);
+            int h = Math.Min(Height - 2, FillHeight);
+            return new Rectangle(ValueToPos(scrollValue), Height / 2 - h / 2, barWidth, h);
         }
 
         private int ValueToPos(int value)

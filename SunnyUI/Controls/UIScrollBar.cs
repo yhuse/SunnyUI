@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 ******************************************************************************/
 
 using System;
@@ -155,7 +156,7 @@ namespace Sunny.UI
         private Rectangle GetValueRect()
         {
             int w = Math.Min(Width - 2, FillWidth);
-            return new Rectangle(Width / 2 - FillWidth / 2, ValueToPos(scrollValue), FillWidth, barHeight);
+            return new Rectangle(Width / 2 - w / 2, ValueToPos(scrollValue), w, barHeight);
         }
 
         private int ValueToPos(int value)
