@@ -43,6 +43,7 @@
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-11-12: V3.2.8 修改整数、浮点数大小离开判断为实时输入判断
  * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
+ * 2022-11-26: V3.2.9 增加MouseClick，MouseDoubleClick事件
 ******************************************************************************/
 
 using System;
@@ -100,6 +101,8 @@ namespace Sunny.UI
             edit.MouseUp += Edit_MouseUp;
             edit.MouseMove += Edit_MouseMove;
             edit.SelectionChanged += Edit_SelectionChanged;
+            edit.MouseClick += Edit_MouseClick;
+            edit.MouseDoubleClick += Edit_MouseDoubleClick;
 
             btn.Parent = this;
             btn.Visible = false;
@@ -129,6 +132,19 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        public new event EventHandler MouseDoubleClick;
+        public new event EventHandler MouseClick;
+
+        private void Edit_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MouseDoubleClick?.Invoke(this, e);
+        }
+
+        private void Edit_MouseClick(object sender, MouseEventArgs e)
+        {
+            MouseClick?.Invoke(this, e);
         }
 
         private int scrollBarWidth = 0;
