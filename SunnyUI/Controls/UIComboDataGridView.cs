@@ -24,6 +24,7 @@
  * 2022-06-19: V3.2.0 增加FilterChanged，输出过滤文字和记录条数
  * 2022-09-08: V3.2.3 增加过滤字异常判断
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
+ * 2022-11-18: V3.2.9 增加过滤框输入逐一过滤属性Filter1by1
 ******************************************************************************/
 
 using System;
@@ -52,6 +53,9 @@ namespace Sunny.UI
             this.PerformLayout();
         }
 
+        [DefaultValue(true), Description("过滤框输入逐一过滤"), Category("SunnyUI")]
+        public bool Filter1by1 { get; set; } = true;
+
         [DefaultValue(false)]
         [Description("过滤时删除字符串前面、后面的空格"), Category("SunnyUI")]
         public bool TrimFilter { get; set; }
@@ -75,6 +79,7 @@ namespace Sunny.UI
             item.ShowButtons = true;
             item.SetDPIScale();
             item.Translate();
+            item.Filter1by1 = Filter1by1;
             //ItemForm.Show(this);
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
             item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;

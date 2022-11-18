@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -26,10 +27,14 @@ namespace Sunny.UI
             edtFilter.TextChanged += EdtFilter_TextChanged;
         }
 
+        [DefaultValue(true), Description("过滤框输入逐一过滤"), Category("SunnyUI")]
+        public bool Filter1by1 { get; set; } = true;
+
         public bool TrimFilter { get; set; }
 
         private void EdtFilter_TextChanged(object sender, System.EventArgs e)
         {
+            if (!Filter1by1) return;
             btnSearch_Click(null, null);
         }
 
