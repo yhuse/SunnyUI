@@ -21,6 +21,7 @@
  * 2020-07-03: V2.2.6 修正调整ItemSize无效的Bug
  * 2020-07-04: V2.2.6 可以设置初始选中值
  * 2022-06-30: V3.2.0 设置条目状态前判断是否创建
+ * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
 ******************************************************************************/
 
 using System;
@@ -134,6 +135,7 @@ namespace Sunny.UI
                     box.Style = Style;
                     box.IsScaled = IsScaled;
                     box.ValueChanged += Box_ValueChanged;
+                    box.Text = Items[i]?.ToString();
                     boxes.Add(box);
                 }
             }

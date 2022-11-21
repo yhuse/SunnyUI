@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UICheckBoxGroup.cs
+ * 文件名称: UIRadioButtonGroup.cs
  * 文件说明: 单选框组
  * 当前版本: V3.1
  * 创建日期: 2020-01-01
@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-07-03: V2.2.6 修正调整ItemSize无效的Bug
  * 2020-07-04: V2.2.6 可以设置初始选中值
+ * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
 ******************************************************************************/
 
 using System;
@@ -98,7 +99,8 @@ namespace Sunny.UI
                         Parent = this,
                         Tag = i,
                         Style = Style,
-                        IsScaled = IsScaled
+                        IsScaled = IsScaled,
+                        Text = Items[i]?.ToString()
                     };
 
                     button.ValueChanged += Button_ValueChanged;
