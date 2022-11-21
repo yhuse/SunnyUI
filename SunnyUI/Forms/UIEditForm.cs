@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
  * CopyRight (C) 2012-2022 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
@@ -500,7 +500,7 @@ namespace Sunny.UI
 
         protected bool CheckRange(UITextBox edit, double min, double max, string desc)
         {
-            bool result = edit.DoubleValue >= min && edit.IntValue <= max;
+            bool result = edit.DoubleValue >= min && edit.DoubleValue <= max;
             if (!result)
             {
                 this.ShowWarningDialog(desc);
