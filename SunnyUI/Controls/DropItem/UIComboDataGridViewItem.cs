@@ -198,6 +198,7 @@ namespace Sunny.UI
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView.RowTemplate.Height = 25;
+            this.dataGridView.ScrollBarRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dataGridView.SelectedIndex = -1;
             this.dataGridView.Size = new System.Drawing.Size(569, 245);
             this.dataGridView.TabIndex = 3;
@@ -268,7 +269,9 @@ namespace Sunny.UI
             this.edtFilter.Size = new System.Drawing.Size(363, 25);
             this.edtFilter.TabIndex = 0;
             this.edtFilter.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.edtFilter.Watermark = "";
             this.edtFilter.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.edtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtFilter_KeyDown);
             // 
             // UIComboDataGridViewItem
             // 
@@ -414,6 +417,12 @@ namespace Sunny.UI
             {
                 btnOK.Focus();
             }
+        }
+
+        private void edtFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!Filter1by1 && e.KeyData == Keys.Enter)
+                btnSearch_Click(null, null);
         }
     }
 }
