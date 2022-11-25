@@ -18,6 +18,8 @@
  *
  * 2020-10-01: V2.2.8 完成曲线图表设置类
  * 2022-07-15: V3.2.1 增加移除线的操作
+ * 2022-11-25: V3.2.2 增加了线的最大点数设置，以及移除点数的设置
+ * 2022-11-25: V3.2.2 重构对象
 ******************************************************************************/
 
 using System;
@@ -166,7 +168,7 @@ namespace Sunny.UI
             }
         }
 
-        public int AllDataCount(bool isY2)
+        internal int AllDataCount(bool isY2)
         {
             int cnt = 0;
             foreach (var series in Series.Values)
@@ -178,7 +180,7 @@ namespace Sunny.UI
             return cnt;
         }
 
-        public int AllDataCount()
+        internal int AllDataCount()
         {
             int cnt = 0;
             foreach (var series in Series.Values)
@@ -202,7 +204,7 @@ namespace Sunny.UI
             }
         }
 
-        public void GetAllDataYRange(out double min, out double max)
+        internal void GetAllDataYRange(out double min, out double max)
         {
             if (AllDataCount(false) == 0)
             {
@@ -243,7 +245,7 @@ namespace Sunny.UI
             }
         }
 
-        public void GetAllDataY2Range(out double min, out double max)
+        internal void GetAllDataY2Range(out double min, out double max)
         {
             if (!HaveY2)
             {
@@ -292,7 +294,7 @@ namespace Sunny.UI
             }
         }
 
-        public void GetAllDataXRange(out double min, out double max)
+        internal void GetAllDataXRange(out double min, out double max)
         {
             if (AllDataCount() == 0)
             {
@@ -402,7 +404,7 @@ namespace Sunny.UI
             }
         }
 
-        public int Index { get; set; }
+        internal int Index { get; set; }
         public string Name { get; private set; }
 
         public float Width { get; set; } = 2;
@@ -434,15 +436,39 @@ namespace Sunny.UI
 
         public bool Visible { get; set; } = true;
 
-        public readonly List<double> XData = new List<double>();
+        internal readonly List<double> XData = new List<double>();
 
-        public readonly List<double> YData = new List<double>();
+        internal readonly List<double> YData = new List<double>();
 
-        public readonly List<PointF> Points = new List<PointF>();
+        internal readonly List<PointF> Points = new List<PointF>();
 
         private readonly List<double> PointsX = new List<double>();
 
         private readonly List<double> PointsY = new List<double>();
+
+        private int MaxCount = 0;
+
+        /// <summary>
+        /// 设置线的最大点数，0不限制
+        /// </summary>
+        /// <param name="maxCount">最大点数</param>
+        /// <returns>线</returns>
+        public UILineSeries SetMaxCount(int maxCount = 0)
+        {
+            MaxCount = Math.Max(maxCount, 0);
+            return this;
+        }
+
+        public UILineSeries Remove(int count)
+        {
+            if (count > 0 && XData.Count >= count)
+            {
+                XData.RemoveRange(0, count);
+                YData.RemoveRange(0, count);
+            }
+
+            return this;
+        }
 
         public int DataCount => XData.Count;
 
@@ -500,14 +526,14 @@ namespace Sunny.UI
             PointsY.Clear();
         }
 
-        public void AddPoint(PointF point)
+        private void AddPoint(PointF point)
         {
             Points.Add(point);
             PointsX.Add(point.X);
             PointsY.Add(point.Y);
         }
 
-        public void AddPoints(float[] x, float[] y)
+        private void AddPoints(float[] x, float[] y)
         {
             if (x.Length != y.Length) return;
             if (x.Length == 0) return;
@@ -517,7 +543,7 @@ namespace Sunny.UI
             }
         }
 
-        public void CalcData(UILineChart chart, UIScale XScale, UIScale YScale)
+        internal void CalcData(UILineChart chart, UIScale XScale, UIScale YScale)
         {
             ClearPoints();
             float[] x = XScale.CalcXPixels(XData.ToArray(), chart.DrawOrigin.X, chart.DrawSize.Width);
@@ -531,6 +557,9 @@ namespace Sunny.UI
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
+
+            if (MaxCount > 0 && XData.Count > MaxCount)
+                Remove(1);
         }
 
         public void Add(DateTime x, double y)
@@ -540,6 +569,9 @@ namespace Sunny.UI
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
+
+            if (MaxCount > 0 && XData.Count > MaxCount)
+                Remove(1);
         }
 
         public void Add(string x, double y)
@@ -549,6 +581,9 @@ namespace Sunny.UI
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
             YData.Add(y);
+
+            if (MaxCount > 0 && XData.Count > MaxCount)
+                Remove(1);
         }
     }
 
