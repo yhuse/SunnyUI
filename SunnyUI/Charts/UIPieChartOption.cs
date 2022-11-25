@@ -17,6 +17,7 @@
  * 创建日期: 2020-06-06
  *
  * 2020-06-06: V2.2.5 增加文件说明
+ * 2022-11-25: V3.2.2 重构对象
 ******************************************************************************/
 
 using System;
@@ -140,7 +141,7 @@ namespace Sunny.UI
 
         public UICenter Center { get; set; } = new UICenter(50, 50);
 
-        public readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
+        internal readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
 
         public UIPieSeriesLabel Label = new UIPieSeriesLabel();
 
@@ -207,7 +208,7 @@ namespace Sunny.UI
 
         public UICenter Center { get; set; } = new UICenter(50, 50);
 
-        public readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
+        internal readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
 
         public UIPieSeriesLabel Label = new UIPieSeriesLabel();
 

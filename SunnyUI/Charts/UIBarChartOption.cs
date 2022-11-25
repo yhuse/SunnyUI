@@ -17,6 +17,7 @@
  * 创建日期: 2020-06-06
  *
  * 2020-06-06: V2.2.5 增加文件说明
+ * 2022-11-25: V3.2.2 重构对象
 ******************************************************************************/
 
 using System;
@@ -151,11 +152,11 @@ namespace Sunny.UI
 
         public UISeriesType Type => UISeriesType.Bar;
 
-        public readonly List<string> BarName = new List<string>();
+        internal readonly List<string> BarName = new List<string>();
 
-        public readonly List<double> Data = new List<double>();
+        internal readonly List<double> Data = new List<double>();
 
-        public readonly List<Color> Colors = new List<Color>();
+        internal readonly List<Color> Colors = new List<Color>();
 
         private int _decimalPlaces = 0;
         public int DecimalPlaces
@@ -203,8 +204,7 @@ namespace Sunny.UI
         /// </summary>
         public void Dispose()
         {
-            Data.Clear();
-            Colors.Clear();
+            Clear();
         }
 
         public void Update(int index, double value)
