@@ -25,12 +25,14 @@
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-11-13: V3.2.8 增加滚动条背景色调整
  * 2022-11-13: V3.2.8 删除AddControl、RemoveControl方法
+ * 2022-11-25: V3.2.9 增加Get方法以获取控件
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -245,6 +247,39 @@ namespace Sunny.UI
             }
 
             Panel.Controls.Clear();
+        }
+
+        [Browsable(false)]
+        public ControlCollection AllControls => Panel.Controls;
+
+        public T Get<T>(string controlName) where T : Control
+        {
+            return Panel.GetControls<T>()?.Where(p => p.Name == controlName).FirstOrDefault();
+        }
+
+        public Control Get(string controlName)
+        {
+            return Panel.Controls.ContainsKey(controlName) ? Panel.Controls[controlName] : null;
+        }
+
+        public Control Get(int index)
+        {
+            return (index >= 0 && index < Panel.Controls.Count) ? Panel.Controls[index] : null;
+        }
+
+        [Browsable(false)]
+        public int ControlCount => AllControls.Count;
+
+        [Browsable(false)]
+        public Control this[string controlName]
+        {
+            get => Get(controlName);
+        }
+
+        [Browsable(false)]
+        public Control this[int index]
+        {
+            get => Get(index);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
