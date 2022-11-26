@@ -20,6 +20,7 @@
  * 2022-01-05: V3.0.9 增加线的样式，支持透明背景
  * 2022-01-10: V3.1.0 修复了文本为空不显示的问题
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-11-26: V3.2.9 水平方向文字不居中时，可设置线条渐变色
 ******************************************************************************/
 
 using System;
@@ -93,6 +94,7 @@ namespace Sunny.UI
             rectColor = uiColor.LineRectColor;
             foreColor = uiColor.LineForeColor;
             fillColor = uiColor.LineFillColor;
+            fillColor2 = uiColor.PanelFillColor2;
         }
 
         /// <summary>
@@ -244,13 +246,29 @@ namespace Sunny.UI
                             g.DrawLine(pen, x + sf.Width + 2, top, Width - 2 - Padding.Left - Padding.Right, top);
                             break;
                         default:
-                            g.DrawLine(pen, Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, top);
+                            if (LineColorGradient)
+                            {
+                                using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(Width, 0), LineColor, LineColor2);
+                                g.FillRectangle(br, new Rectangle(Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, LineSize));
+                            }
+                            else
+                            {
+                                g.DrawLine(pen, Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, top);
+                            }
                             break;
                     }
                 }
                 else
                 {
-                    g.DrawLine(pen, Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, top);
+                    if (LineColorGradient)
+                    {
+                        using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(Width, 0), LineColor, LineColor2);
+                        g.FillRectangle(br, new Rectangle(Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, LineSize));
+                    }
+                    else
+                    {
+                        g.DrawLine(pen, Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, top);
+                    }
                 }
 
                 switch (startCap)
@@ -323,14 +341,40 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 边框颜色
+        /// 线颜色
         /// </summary>
-        [Description("边框颜色"), Category("SunnyUI")]
+        [Description("线颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color LineColor
         {
             get => rectColor;
             set => SetRectColor(value);
+        }
+
+        /// <summary>
+        /// 线颜色2
+        /// </summary>
+        [Description("线颜色2"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        public Color LineColor2
+        {
+            get => fillColor2;
+            set => SetFillColor2(value);
+        }
+
+        [Description("线颜色渐变"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool LineColorGradient
+        {
+            get => fillColorGradient;
+            set
+            {
+                if (fillColorGradient != value)
+                {
+                    fillColorGradient = value;
+                    Invalidate();
+                }
+            }
         }
     }
 }
