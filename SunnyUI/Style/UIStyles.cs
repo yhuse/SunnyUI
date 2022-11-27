@@ -165,7 +165,7 @@ namespace Sunny.UI
         {
             if (!Forms.ContainsKey(guid))
             {
-                Forms.TryAddOrUpdate(guid, form);
+                Forms.Upsert(guid, form);
                 return true;
             }
 
@@ -181,7 +181,7 @@ namespace Sunny.UI
         {
             if (!Pages.ContainsKey(guid))
             {
-                Pages.TryAddOrUpdate(guid, page);
+                Pages.Upsert(guid, page);
                 return true;
             }
 
@@ -196,7 +196,7 @@ namespace Sunny.UI
         {
             if (!Forms.ContainsKey(form.Guid))
             {
-                Forms.TryAddOrUpdate(form.Guid, form);
+                Forms.Upsert(form.Guid, form);
                 return true;
             }
 
@@ -211,7 +211,7 @@ namespace Sunny.UI
         {
             if (!Pages.ContainsKey(page.Guid))
             {
-                Pages.TryAddOrUpdate(page.Guid, page);
+                Pages.Upsert(page.Guid, page);
                 return true;
             }
 

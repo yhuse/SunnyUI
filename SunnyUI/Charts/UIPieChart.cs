@@ -148,7 +148,7 @@ namespace Sunny.UI
                         }
                     }
 
-                    Angles[pieIndex].TryAddOrUpdate(i, new Angle(start, angle, text));
+                    Angles[pieIndex].Upsert(i, new Angle(start, angle, text));
                     start += angle;
                 }
             }

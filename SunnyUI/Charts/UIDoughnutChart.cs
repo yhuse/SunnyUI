@@ -148,7 +148,7 @@ namespace Sunny.UI
 
                     Angle pieAngle = new Angle(start, angle, text);
                     GetSeriesRect(pie, ref pieAngle);
-                    Angles[pieIndex].TryAddOrUpdate(i, pieAngle);
+                    Angles[pieIndex].Upsert(i, pieAngle);
                     start += angle;
                 }
             }
