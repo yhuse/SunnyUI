@@ -1,5 +1,20 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2022\-11\-28 V3.3.0       
+\+ .Net7支持    
+\* UILine: 水平方向文字不居中时，可设置线条渐变色    
+\* UILineChartOption: 增加了线的最大点数设置，以及移除点数的设置    
+\* UILineChartOption: 重构对象    
+\* UIBarChartOption: 重构对象    
+\* UIPieChartOption: 重构对象    
+\* UIFlowLayoutPanel: 增加Get方法以获取控件    
+\* UIEditForm: UITextBox类型为Double的时候会导致CheckRange无法验证最大值    
+\* UICheckBoxGroup: 修复未显示时切换节点文本为空的问题    
+\* UIRadioButtonGroup: 修复未显示时切换节点文本为空的问题    
+\* UIComboDataGridView: 过滤框输入增加回车确认    
+\* UIComboDataGridView: 增加过滤框输入逐一过滤属性Filter1by1    
+\* UITextBox: 增加MouseClick，MouseDoubleClick事件    
+    
 #### 2022\-11\-13 V3.2.9      
 \+ .Net7支持    
 **:star: 删除一些过时的方法**    
