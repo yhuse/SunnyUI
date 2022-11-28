@@ -69,18 +69,36 @@ namespace Sunny.UI
 
         public UILineSeries AddSeries(UILineSeries series)
         {
-            if (series == null) return null;
-            if (series.Name.IsNullOrEmpty()) return null;
+            if (series == null)
+            {
+                throw new NullReferenceException("series 不能为空");
+            }
+
+            if (series.Name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("series.Name 不能为空");
+            }
+
             if (ExistsSeries(series.Name)) return series;
 
-            series.Index = Series.Count;
+            int idx = 0;
+            foreach (var item in Series.Values)
+            {
+                idx = Math.Max(idx, item.Index);
+            }
+
+            series.Index = idx + 1;
             Series.TryAdd(series.Name, series);
             return series;
         }
 
         public UILineSeries AddSeries(string seriesName, bool isY2 = false)
         {
-            if (seriesName.IsNullOrEmpty()) return null;
+            if (seriesName.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("seriesName 不能为空");
+            }
+
             if (ExistsSeries(seriesName)) return Series[seriesName];
 
             UILineSeries series = new UILineSeries(seriesName, isY2);
@@ -339,6 +357,11 @@ namespace Sunny.UI
     {
         public UILineSeries(string name, bool isY2 = false)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Name = name;
             Color = UIColor.Blue;
             IsY2 = isY2;
@@ -346,6 +369,11 @@ namespace Sunny.UI
 
         public UILineSeries(string name, Color color, bool isY2 = false)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Name = name;
             Color = color;
             CustomColor = true;

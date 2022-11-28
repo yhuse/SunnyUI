@@ -87,6 +87,16 @@ namespace Sunny.UI
 
         public void AddSeries(UIBarSeries series)
         {
+            if (series == null)
+            {
+                throw new NullReferenceException("series 不能为空");
+            }
+
+            if (series.Name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("series.Name 不能为空");
+            }
+
             Series.Add(series);
         }
 
@@ -189,12 +199,22 @@ namespace Sunny.UI
 
         public void AddData(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             BarName.Add(name);
             AddData(value);
         }
 
         public void AddData(string name, double value, Color color)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             BarName.Add(name);
             AddData(value, color);
         }

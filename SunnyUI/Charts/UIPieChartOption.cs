@@ -34,6 +34,16 @@ namespace Sunny.UI
 
         public void AddSeries(UIPieSeries series)
         {
+            if (series == null)
+            {
+                throw new NullReferenceException("series 不能为空");
+            }
+
+            if (series.Name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("series.Name 不能为空");
+            }
+
             Series.Clear();
             Series.Add(series);
         }
@@ -82,6 +92,16 @@ namespace Sunny.UI
 
         public void AddSeries(UIDoughnutSeries series)
         {
+            if (series == null)
+            {
+                throw new NullReferenceException("series 不能为空");
+            }
+
+            if (series.Name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("series.Name 不能为空");
+            }
+
             Series.Clear();
             Series.Add(series);
         }
@@ -151,6 +171,11 @@ namespace Sunny.UI
 
         public void AddData(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             if (DataColorChange != null)
             {
                 Color color = DataColorChange.Invoke(value);
@@ -164,6 +189,11 @@ namespace Sunny.UI
 
         public void AddData(string name, double value, Color color)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Data.Add(new UIPieSeriesData(name, value, color));
         }
 
@@ -177,6 +207,11 @@ namespace Sunny.UI
 
         public void Update(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             foreach (var item in Data)
             {
                 if (item.Name == name)
@@ -214,11 +249,21 @@ namespace Sunny.UI
 
         public void AddData(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Data.Add(new UIPieSeriesData(name, value));
         }
 
         public void AddData(string name, double value, Color color)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Data.Add(new UIPieSeriesData(name, value, color));
         }
 
@@ -232,6 +277,11 @@ namespace Sunny.UI
 
         public void Update(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             foreach (var item in Data)
             {
                 if (item.Name == name)
@@ -250,12 +300,13 @@ namespace Sunny.UI
 
         public bool StyleCustomMode { get; private set; }
 
-        public UIPieSeriesData()
-        {
-        }
-
         public UIPieSeriesData(string name, double value)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Name = name;
             Value = value;
             StyleCustomMode = false;
@@ -263,6 +314,11 @@ namespace Sunny.UI
 
         public UIPieSeriesData(string name, double value, Color color)
         {
+            if (name.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("name 不能为空");
+            }
+
             Name = name;
             Value = value;
             Color = color;
