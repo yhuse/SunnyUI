@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-04-14: V3.1.3 重构扩展函数
+ * 2022-11-29: V3.3.0 重构RemovePage方法
 ******************************************************************************/
 
 using System;
@@ -396,19 +397,11 @@ namespace Sunny.UI
 
         public UIPage GetPage(int pageIndex)
         {
-            if (pageIndex < 0) return null;
-            foreach (var item in PageItems)
+            var pages = GetPages<UIPage>();
+            for (int i = 0; i < pages.Count; i++)
             {
-                if (item.Value.PageIndex == pageIndex && item.Key != null)
-                {
-                    var tabPage = item.Key;
-                    var pages = tabPage.GetControls<UIPage>();
-                    for (int i = 0; i < pages.Count; i++)
-                    {
-                        if (pages[i].PageIndex == pageIndex)
-                            return pages[i];
-                    }
-                }
+                if (pages[i].PageIndex == pageIndex)
+                    return pages[i];
             }
 
             return null;
@@ -428,7 +421,7 @@ namespace Sunny.UI
                 if (item.Key != null)
                 {
                     var tabPage = item.Key;
-                    var pages = tabPage.GetControls<UIPage>();
+                    var pages = tabPage.GetControls<T>();
                     for (int i = 0; i < pages.Count; i++)
                     {
                         if (pages[i] is T pg)
@@ -443,18 +436,11 @@ namespace Sunny.UI
         public UIPage GetPage(Guid guid)
         {
             if (guid == Guid.Empty) return null;
-            foreach (var item in PageItems)
+            var pages = GetPages<UIPage>();
+            for (int i = 0; i < pages.Count; i++)
             {
-                if (item.Value.PageGuid == guid && item.Key != null)
-                {
-                    var tabPage = item.Key;
-                    var pages = tabPage.GetControls<UIPage>();
-                    for (int i = 0; i < pages.Count; i++)
-                    {
-                        if (pages[i].PageGuid == guid)
-                            return pages[i];
-                    }
-                }
+                if (pages[i].PageGuid == guid)
+                    return pages[i];
             }
 
             return null;
@@ -462,13 +448,25 @@ namespace Sunny.UI
 
         public bool RemovePage(int pageIndex)
         {
-            if (pageIndex < 0) return false;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageIndex == pageIndex && item.Key != null)
+                if (item.Value.PageIndex == pageIndex)
                 {
-                    TabPage tabPage = item.Key;
-                    tabControl.RemoveTabPage(tabPage.TabIndex);
+                    UIPage page = GetPage(pageIndex);
+                    if (page != null)
+                    {
+                        TabPage tabpage = page.TabPage;
+                        page.Dispose();
+                        page = null;
+
+                        if (tabpage != null)
+                        {
+                            tabpage.Parent = null;
+                            tabpage.Dispose();
+                            tabpage = null;
+                        }
+                    }
+
                     PageItems.TryRemove(item.Key, out _);
                     return true;
                 }
@@ -482,10 +480,23 @@ namespace Sunny.UI
             if (guid == Guid.Empty) return false;
             foreach (var item in PageItems)
             {
-                if (item.Value.PageGuid == guid && item.Key != null)
+                if (item.Value.PageGuid == guid)
                 {
-                    TabPage tabPage = item.Key;
-                    tabControl.RemoveTabPage(tabPage.TabIndex);
+                    UIPage page = GetPage(guid);
+                    if (page != null)
+                    {
+                        TabPage tabpage = page.TabPage;
+                        page.Dispose();
+                        page = null;
+
+                        if (tabpage != null)
+                        {
+                            tabpage.Parent = null;
+                            tabpage.Dispose();
+                            tabpage = null;
+                        }
+                    }
+
                     PageItems.TryRemove(item.Key, out _);
                     return true;
                 }
