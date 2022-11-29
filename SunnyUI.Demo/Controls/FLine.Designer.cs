@@ -55,12 +55,12 @@ namespace Sunny.UI.Demo
             this.uiLine11.TabIndex = 23;
             this.uiLine11.Text = "uiLine11";
             this.uiLine11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine10
             // 
             this.uiLine10.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiLine10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine10.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine10.Location = new System.Drawing.Point(521, 55);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
@@ -68,11 +68,11 @@ namespace Sunny.UI.Demo
             this.uiLine10.TabIndex = 22;
             this.uiLine10.Text = "uiLine10";
             this.uiLine10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine7
             // 
             this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine7.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine7.LineSize = 3;
             this.uiLine7.Location = new System.Drawing.Point(30, 413);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
@@ -81,11 +81,11 @@ namespace Sunny.UI.Demo
             this.uiLine7.TabIndex = 21;
             this.uiLine7.Text = "文字右下";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.uiLine7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine8
             // 
             this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine8.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine8.LineSize = 2;
             this.uiLine8.Location = new System.Drawing.Point(30, 378);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
@@ -94,6 +94,7 @@ namespace Sunny.UI.Demo
             this.uiLine8.TabIndex = 20;
             this.uiLine8.Text = "文字右中";
             this.uiLine8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.uiLine8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine9
             // 
@@ -106,11 +107,11 @@ namespace Sunny.UI.Demo
             this.uiLine9.TabIndex = 19;
             this.uiLine9.Text = "文字右上";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.uiLine9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine4.LineSize = 3;
             this.uiLine4.Location = new System.Drawing.Point(30, 265);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
@@ -119,6 +120,7 @@ namespace Sunny.UI.Demo
             this.uiLine4.TabIndex = 18;
             this.uiLine4.Text = "文字中下";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.uiLine4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine5
             // 
@@ -131,11 +133,11 @@ namespace Sunny.UI.Demo
             this.uiLine5.Size = new System.Drawing.Size(443, 29);
             this.uiLine5.TabIndex = 17;
             this.uiLine5.Text = "文字居中";
+            this.uiLine5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(30, 192);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -143,11 +145,12 @@ namespace Sunny.UI.Demo
             this.uiLine6.TabIndex = 16;
             this.uiLine6.Text = "文字中上";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.uiLine6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
+            this.uiLine3.LineColorGradient = true;
             this.uiLine3.LineSize = 3;
             this.uiLine3.Location = new System.Drawing.Point(30, 113);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
@@ -156,11 +159,11 @@ namespace Sunny.UI.Demo
             this.uiLine3.TabIndex = 15;
             this.uiLine3.Text = "文字左下 LineSize=3";
             this.uiLine3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.uiLine3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.LineSize = 2;
             this.uiLine2.Location = new System.Drawing.Point(30, 78);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
@@ -169,11 +172,12 @@ namespace Sunny.UI.Demo
             this.uiLine2.TabIndex = 14;
             this.uiLine2.Text = "文字左中 LineSize=2";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
+            this.uiLine1.LineColorGradient = true;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -181,6 +185,7 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 13;
             this.uiLine1.Text = "文字左上 LineSize=1";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FLine
             // 

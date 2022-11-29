@@ -16,9 +16,6 @@ namespace Sunny.UI.Demo
             uiDataGridView1.AddColumn("Column3", "Column3");
             uiDataGridView1.AddColumn("Column4", "Column4");
 
-            //SunnyUI常用的初始化配置，看个人喜好用或者不用。
-            uiDataGridView1.Init();
-
             for (int i = 0; i < 3610; i++)
             {
                 Data data = new Data();

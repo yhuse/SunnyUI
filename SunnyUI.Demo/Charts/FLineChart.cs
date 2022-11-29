@@ -112,6 +112,9 @@ namespace Sunny.UI.Demo
             option.Title.SubText = "LineChart";
             var series = option.AddSeries(new UILineSeries("Line1"));
 
+            //设置曲线显示最大点数，超过后自动清理
+            series.SetMaxCount(50);
+
             //坐标轴显示小数位数
             option.XAxis.AxisLabel.DecimalPlaces = 1;
             option.YAxis.AxisLabel.DecimalPlaces = 1;

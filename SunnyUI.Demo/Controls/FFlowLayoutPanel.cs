@@ -26,11 +26,15 @@
             btn = new UIButton();
             btn.SetDPIScale();
             btn.Text = "Button" + index++.ToString("D2");
-            //btn.Click += Btn_Click;
+            btn.Name = btn.Text;
+            btn.Click += Btn_Click;
 
             //建议用封装的方法Add
             uiFlowLayoutPanel1.Add(btn);
-            //也可以用原生方法Controls.Add（不推荐）
+            //或者Panel.Controls.Add
+            //uiFlowLayoutPanel1.Panel.Controls.Add(btn);
+
+            //不能用原生方法Controls.Add
             //uiFlowLayoutPanel1.Controls.Add(btn);    
 
             uiButton3.Enabled = true;
@@ -49,6 +53,9 @@
             //或者用
             //uiFlowLayoutPanel1.Panel.Controls.Clear();
 
+            //不能用原生方法Controls.Clear
+            //uiFlowLayoutPanel1.Controls.Clear();
+
             uiButton3.Enabled = false;
         }
 
@@ -61,10 +68,25 @@
                 //或者用
                 //uiFlowLayoutPanel1.Panel.Controls.Remove(btn);
 
+                //不能用原生方法Controls.Remove
+                //uiFlowLayoutPanel1.Controls.Remove(btn);
+
                 btn = null;
             }
 
             uiButton3.Enabled = false;
+        }
+
+        private void uiButton4_Click(object sender, System.EventArgs e)
+        {
+            //根据名称获取
+            var btn = uiFlowLayoutPanel1.Get("Button01");
+
+            //通过控件名称索引获取
+            btn = uiFlowLayoutPanel1["Button01"];
+
+            //通过名称和类型获取
+            UIButton button = uiFlowLayoutPanel1.Get<UIButton>("Button01");
         }
     }
 }
