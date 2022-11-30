@@ -42,6 +42,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值：框架发送给页面 SendParamToPage 函数
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收页面传值 ReceiveParams 事件
  * 2022-09-11: V3.2.3 修复继承页面可响应WM_HOTKEY消息
+ * 2022-11-30: V3.3.0 增加RemoveAllPages函数
 ******************************************************************************/
 
 using System;
@@ -2192,6 +2193,8 @@ namespace Sunny.UI
         public bool RemovePage(int pageIndex) => MainTabControl?.RemovePage(pageIndex) ?? false;
 
         public bool RemovePage(Guid pageGuid) => MainTabControl?.RemovePage(pageGuid) ?? false;
+
+        public void RemoveAllPages(bool keepMainPage = true) => MainTabControl?.RemoveAllPages(keepMainPage);
 
         public UIPage GetPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.GetPage(pageIndex);
 

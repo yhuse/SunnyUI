@@ -446,6 +446,16 @@ namespace Sunny.UI
             return null;
         }
 
+        public void RemoveAllPages(bool keepMainPage = true)
+        {
+            var pages = GetPages<UIPage>();
+            foreach (var page in pages)
+            {
+                if (keepMainPage && page.TabPage?.Text == tabControl.MainPage) continue;
+                RemovePage(page.PageIndex);
+            }
+        }
+
         public bool RemovePage(int pageIndex)
         {
             foreach (var item in PageItems)
