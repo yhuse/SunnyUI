@@ -351,7 +351,7 @@ namespace Sunny.UI
             edit.Focus();
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             edit.Clear();
         }

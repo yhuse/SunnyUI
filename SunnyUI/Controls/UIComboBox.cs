@@ -32,6 +32,7 @@
  * 2022-08-25: V3.2.3 下拉框边框可设置颜色
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
  * 2022-11-13: V3.2.8 增加不显示过滤可以自动调整下拉框宽度
+ * 2022-11-30: V3.3.0 增加Clear方法
 ******************************************************************************/
 
 using System;
@@ -72,6 +73,19 @@ namespace Sunny.UI
             fullControlSelect = true;
 
             CreateInstance();
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            if (DataSource != null)
+            {
+                DataSource = null;
+            }
+            else
+            {
+                ListBox.Items.Clear();
+            }
         }
 
         private void ListBox_Click(object sender, EventArgs e)

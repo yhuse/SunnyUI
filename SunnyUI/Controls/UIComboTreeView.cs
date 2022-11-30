@@ -21,6 +21,7 @@
  * 2022-05-15: V3.0.8 显示CheckBoxes时自己选中节点文字可切换状态
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
  * 2022-07-12: V3.2.1 修复CanSelectRootNode时可以展开子节点
+ * 2022-11-30: V3.3.0 增加Clear方法
 ******************************************************************************/
 
 using System;
@@ -74,6 +75,12 @@ namespace Sunny.UI
         public Control ExToolTipControl()
         {
             return edit;
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            TreeView.Nodes.Clear();
         }
 
         /// <summary>

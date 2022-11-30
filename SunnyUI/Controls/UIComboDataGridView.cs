@@ -26,6 +26,7 @@
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
  * 2022-11-18: V3.2.9 增加过滤框输入逐一过滤属性Filter1by1
  * 2022-11-18: V3.2.9 过滤框输入增加回车确认
+ * 2022-11-30: V3.3.0 增加Clear方法
 ******************************************************************************/
 
 using System;
@@ -84,6 +85,12 @@ namespace Sunny.UI
             //ItemForm.Show(this);
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
             item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            DataGridView.DataSource = null;
         }
 
         private void Item_ComboDataGridViewFilterChanged(object sender, UIComboDataGridViewArgs e)
