@@ -18,6 +18,7 @@
  *
  * 2022-01-29: V3.1.0 增加文件说明
  * 2022-11-02: V3.2.6 增加TextChanged事件
+ * 2022-12-02: V3.3.0 删除TextChanged事件，增加ValueChanged事件
 ******************************************************************************/
 
 using System;
@@ -29,6 +30,8 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [DefaultProperty("Text")]
+    [DefaultEvent("ValueChanged")]
     public sealed partial class UIIPTextBox : UIPanel
     {
         private IPAddress _value;
@@ -51,16 +54,10 @@ namespace Sunny.UI
                 txt.KeyPress += Txt_KeyPress;
                 txt.TextChanged += Txt_TextChanged;
                 txt.Leave += Txt_Leave;
-                txt.TextChanged += Txt_TextChanged1;
             }
         }
 
-        private void Txt_TextChanged1(object sender, EventArgs e)
-        {
-            TextChanged?.Invoke(this, e);
-        }
-
-        public new event EventHandler TextChanged;
+        public event EventHandler ValueChanged;
 
         private void Txt_Leave(object sender, EventArgs e)
         {
@@ -200,9 +197,16 @@ namespace Sunny.UI
 
             string strIp = $"{txt1.Text}.{txt2.Text}.{txt3.Text}.{txt4.Text}";
 
-            if (!IPAddress.TryParse(strIp, out IPAddress ip)) return;
-
-            _value = ip;
+            if (IPAddress.TryParse(strIp, out IPAddress ip))
+            {
+                _value = ip;
+                ValueChanged?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                _value = null;
+                ValueChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         [Browsable(true)]
@@ -227,8 +231,9 @@ namespace Sunny.UI
             get => _value;
             set
             {
-                if (value == null)
-                    return;
+                _value = value;
+                ValueChanged?.Invoke(this, EventArgs.Empty);
+                if (value == null) return;
 
                 byte[] bytes = value.GetAddressBytes();
                 txt1.Text = bytes[0].ToString();
