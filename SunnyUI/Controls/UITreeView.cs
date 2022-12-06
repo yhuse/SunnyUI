@@ -29,6 +29,7 @@
  * 2022-05-15: V3.1.8 增加了点击文字改变CheckBox状态的NodeClickChangeCheckBoxes
  * 2022-10-28: V3.2.6 TreeNode支持imagekey绑定图标
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2022-12-06: V3.3.0 增加了可自定义行的颜色
 ******************************************************************************/
 
 using System;
@@ -258,13 +259,13 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             if (view != null)
             {
-                view.SelectedForeColor = uiColor.TreeViewForeColor;
+                selectedForeColor = view.SelectedForeColor = uiColor.TreeViewSelectedForeColor;
                 view.FillColor = view.BackColor = fillColor = uiColor.TreeViewBackColor;
 
                 rectColor = uiColor.RectColor;
-                view.SelectedColor = uiColor.TreeViewSelectedColor;
+                view.SelectedColor = selectedColor = uiColor.TreeViewSelectedColor;
                 view.ForeColor = foreColor = uiColor.TreeViewForeColor;
-                view.HoverColor = uiColor.TreeViewHoverColor;
+                hoverColor = view.HoverColor = uiColor.TreeViewHoverColor;
                 LineColor = uiColor.TreeViewLineColor;
             }
 
@@ -282,6 +283,42 @@ namespace Sunny.UI
                 HBar.ForeColor = uiColor.TreeViewBarForeColor;
                 HBar.HoverColor = uiColor.ButtonFillHoverColor;
                 HBar.PressColor = uiColor.ButtonFillPressColor;
+            }
+        }
+
+        private Color hoverColor = Color.FromArgb(220, 236, 255);
+        [DefaultValue(typeof(Color), "220, 236, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                view.HoverColor = hoverColor = value;
+                SetStyleCustom();
+            }
+        }
+
+        private Color selectedColor = Color.FromArgb(80, 160, 255);
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color SelectedColor
+        {
+            get => selectedColor;
+            set
+            {
+                view.SelectedColor = selectedColor = value;
+                SetStyleCustom();
+            }
+        }
+
+        public Color selectedForeColor = Color.White;
+        [DefaultValue(typeof(Color), "White")]
+        public Color SelectedForeColor
+        {
+            get => selectedForeColor;
+            set
+            {
+                view.SelectedForeColor = selectedForeColor = value;
+                SetStyleCustom();
             }
         }
 

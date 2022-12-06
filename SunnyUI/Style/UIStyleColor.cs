@@ -192,6 +192,7 @@ namespace Sunny.UI
         public virtual Color ListForeColor { get; protected set; }
 
         //TreeView
+        public virtual Color TreeViewSelectedForeColor { get; protected set; }
         public virtual Color TreeViewSelectedColor { get; protected set; }
         public virtual Color TreeViewHoverColor { get; protected set; }
         public virtual Color TreeViewBarFillColor { get; protected set; }
@@ -382,6 +383,7 @@ namespace Sunny.UI
             ListForeColor = foreColor;
 
             TreeViewSelectedColor = PrimaryColor;
+            TreeViewSelectedForeColor = Color.White;
             TreeViewHoverColor = colors[3];
             TreeViewBarFillColor = PlainColor;
             TreeViewBarForeColor = PrimaryColor;
@@ -566,6 +568,7 @@ namespace Sunny.UI
             TreeViewBarFillColor = PlainColor;
             TreeViewBarForeColor = ForeColor;
             TreeViewForeColor = ForeColor;
+            TreeViewSelectedForeColor = ForeColor;
             TreeViewBackColor = PlainColor;
             TreeViewLineColor = ForeColor;
 
@@ -683,6 +686,7 @@ namespace Sunny.UI
             TreeViewBarFillColor = PlainColor;
             TreeViewBarForeColor = ForeColor;
             TreeViewForeColor = ForeColor;
+            TreeViewSelectedForeColor = ForeColor;
             TreeViewBackColor = PlainColor;
             TreeViewLineColor = ForeColor;
 
