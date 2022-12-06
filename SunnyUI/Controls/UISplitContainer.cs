@@ -20,6 +20,7 @@
  * 2022-04-03: V3.1.3 增加主题样式
  * 2022-04-20: V3.1.5 修复调用Collapse()后，展开/收回操作失效
  * 2022-12-06: V3.3.0 去掉SplitterWidth限制
+ * 2022-12-06: V3.3.0 SplitterWidth值小的时不绘制箭头
 ******************************************************************************/
 using System;
 using System.ComponentModel;
@@ -387,32 +388,35 @@ namespace Sunny.UI
                 e.Graphics.SetDefaultQuality();
             }
 
-            switch (_collapsePanel)
+            if (SplitterWidth >= 9)
             {
-                case UICollapsePanel.Panel1:
-                    if (bHorizontal)
-                    {
-                        e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61703 : 61702,
-                            22, arrowColor, arrowRect);
-                    }
-                    else
-                    {
-                        e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61701 : 61700,
-                            22, arrowColor, arrowRect);
-                    }
-                    break;
-                case UICollapsePanel.Panel2:
-                    if (bHorizontal)
-                    {
-                        e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61702 : 61703,
-                            22, arrowColor, arrowRect);
-                    }
-                    else
-                    {
-                        e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61700 : 61701,
-                            22, arrowColor, arrowRect);
-                    }
-                    break;
+                switch (_collapsePanel)
+                {
+                    case UICollapsePanel.Panel1:
+                        if (bHorizontal)
+                        {
+                            e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61703 : 61702,
+                                22, arrowColor, arrowRect);
+                        }
+                        else
+                        {
+                            e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61701 : 61700,
+                                22, arrowColor, arrowRect);
+                        }
+                        break;
+                    case UICollapsePanel.Panel2:
+                        if (bHorizontal)
+                        {
+                            e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61702 : 61703,
+                                22, arrowColor, arrowRect);
+                        }
+                        else
+                        {
+                            e.Graphics.DrawFontImage(SplitPanelState == UISplitPanelState.Collapsed ? 61700 : 61701,
+                                22, arrowColor, arrowRect);
+                        }
+                        break;
+                }
             }
         }
 
