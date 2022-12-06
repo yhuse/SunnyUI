@@ -19,6 +19,7 @@
  * 2021-10-30: V3.0.8 增加文件说明
  * 2022-04-03: V3.1.3 增加主题样式
  * 2022-04-20: V3.1.5 修复调用Collapse()后，展开/收回操作失效
+ * 2022-12-06: V3.3.0 去掉SplitterWidth限制
 ******************************************************************************/
 using System;
 using System.ComponentModel;
@@ -75,7 +76,7 @@ namespace Sunny.UI
                      ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
             _lastDistance = SplitterDistance;
-            SplitterWidth = 10;
+            base.SplitterWidth = 11;
             MinimumSize = new Size(20, 20);
             Version = UIGlobal.Version;
         }
@@ -374,7 +375,7 @@ namespace Sunny.UI
                 return;
             }
 
-            if (SplitterWidth < 11) SplitterWidth = 11;
+            //if (SplitterWidth < 11) SplitterWidth = 11;
 
             Rectangle arrowRect = CalcArrowRect(CollapseRect);
             Color handleRectColor = _uiControlState == UIControlState.Hover ? handleHoverColor : HandleColor;
