@@ -85,6 +85,72 @@ namespace Sunny.UI
         }
     }
 
+    public class UIProcessIndicatorFormService
+    {
+        private static bool IsRun;
+
+        public static void ShowForm(int size = 100)
+        {
+            if (IsRun) return;
+            Instance.CreateForm(size);
+            IsRun = true;
+        }
+
+        public static void HideForm()
+        {
+            if (!IsRun) return;
+            Instance.CloseForm();
+            IsRun = false;
+        }
+
+        private static UIProcessIndicatorFormService _instance;
+        private static readonly object syncLock = new object();
+
+        private static UIProcessIndicatorFormService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        _instance = new UIProcessIndicatorFormService();
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+        private Thread thread;
+        private UIProcessIndicatorForm form;
+
+        private void CreateForm(int size = 200)
+        {
+            CloseForm();
+            thread = new Thread(delegate ()
+            {
+                form = new UIProcessIndicatorForm();
+                form.Size = new System.Drawing.Size(size, size);
+                form.ShowInTaskbar = false;
+                form.TopMost = true;
+                form.Render();
+                Application.Run(form);
+                IsRun = false;
+            });
+
+            thread.Start();
+        }
+
+        private void CloseForm()
+        {
+            if (form != null && form.Visible)
+            {
+                form.NeedClose = true;
+            }
+        }
+    }
+
     public class UIStatusFormService
     {
         private static bool IsRun;

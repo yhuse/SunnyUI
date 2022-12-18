@@ -1875,6 +1875,23 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 显示等待提示窗
+        /// </summary>
+        /// <param name="size">大小</param>
+        public void ShowProcessForm(int size = 200)
+        {
+            UIProcessIndicatorFormService.ShowForm(size);
+        }
+
+        /// <summary>
+        /// 隐藏等待提示窗
+        /// </summary>
+        public void HideProcessForm()
+        {
+            UIProcessIndicatorFormService.HideForm();
+        }
+
+        /// <summary>
         /// 正确信息提示框
         /// </summary>
         /// <param name="msg">信息</param>
