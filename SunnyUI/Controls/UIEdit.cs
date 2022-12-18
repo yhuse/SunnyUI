@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2022-12-18: V3.3.0 修复了一个最小值大于0是，显示类型为字符串Text为空仍有显示的问题
 ******************************************************************************/
 
 using System;
@@ -387,8 +388,11 @@ namespace Sunny.UI
             }
             set
             {
-                Text = value.ToString("f" + decLength);
-                CheckMaxMin();
+                if (Type == UITextBox.UIEditType.Double)
+                {
+                    Text = value.ToString("f" + decLength);
+                    CheckMaxMin();
+                }
             }
         }
 
@@ -402,38 +406,13 @@ namespace Sunny.UI
             }
             set
             {
-                Text = value.ToString();
-                CheckMaxMin();
+                if (Type == UITextBox.UIEditType.Integer)
+                {
+                    Text = value.ToString();
+                    CheckMaxMin();
+                }
             }
         }
-
-        //[DefaultValue(int.MaxValue)]
-        //public double MaxValue
-        //{
-        //    get => maxValue;
-        //    set
-        //    {
-        //        maxValue = value;
-        //        if (maxValue < minValue)
-        //            minValue = maxValue;
-        //        CheckMaxMin();
-        //        Invalidate();
-        //    }
-        //}
-        //
-        //[DefaultValue(int.MinValue)]
-        //public double MinValue
-        //{
-        //    get => minValue;
-        //    set
-        //    {
-        //        minValue = value;
-        //        if (minValue > maxValue)
-        //            maxValue = minValue;
-        //        CheckMaxMin();
-        //        Invalidate();
-        //    }
-        //}
 
         private string DecimalToMask(int iDecimal)
         {
