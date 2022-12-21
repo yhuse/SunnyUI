@@ -21,6 +21,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2021-04-26: V3.0.3 增加默认事件CheckedChanged
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-12-21: V3.3.0 修复CheckedChanged事件
 ******************************************************************************/
 
 using System;
@@ -137,30 +138,33 @@ namespace Sunny.UI
             get => _checked;
             set
             {
-                _checked = value;
-
-                if (value)
+                if (_checked != value)
                 {
-                    try
+                    _checked = value;
+
+                    if (value)
                     {
-                        if (Parent == null) return;
-                        List<UIRadioButton> buttons = Parent.GetControls<UIRadioButton>();
-                        foreach (var box in buttons)
+                        try
                         {
-                            if (box == this) continue;
-                            if (box.GroupIndex != GroupIndex) continue;
-                            if (box.Checked) box.Checked = false;
+                            if (Parent == null) return;
+                            List<UIRadioButton> buttons = Parent.GetControls<UIRadioButton>();
+                            foreach (var box in buttons)
+                            {
+                                if (box == this) continue;
+                                if (box.GroupIndex != GroupIndex) continue;
+                                if (box.Checked) box.Checked = false;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(@"UIRadioBox click error." + ex.Message);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(@"UIRadioBox click error." + ex.Message);
-                    }
-                }
 
-                ValueChanged?.Invoke(this, _checked);
-                CheckedChanged?.Invoke(this, new EventArgs());
-                Invalidate();
+                    ValueChanged?.Invoke(this, _checked);
+                    CheckedChanged?.Invoke(this, new EventArgs());
+                    Invalidate();
+                }
             }
         }
 
@@ -231,7 +235,7 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
-            if (!ReadOnly)
+            if (!ReadOnly && !Checked)
             {
                 Checked = true;
             }
