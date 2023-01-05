@@ -758,7 +758,7 @@ namespace Sunny.UI
             return column;
         }
 
-        public void ClearRows()
+        public virtual void ClearRows()
         {
             if (DataSource != null)
             {
@@ -768,12 +768,12 @@ namespace Sunny.UI
             Rows.Clear();
         }
 
-        public void ClearColumns()
+        public virtual void ClearColumns()
         {
             Columns.Clear();
         }
 
-        public void ClearAll()
+        public virtual void ClearAll()
         {
             ClearRows();
             ClearColumns();
