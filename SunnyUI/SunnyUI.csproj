@@ -7,7 +7,7 @@
         <UseWindowsForms>true</UseWindowsForms>
         <RootNamespace>Sunny.UI</RootNamespace>
         <Description>SunnyUI.Net 是基于.Net Framework 4.0~4.8、.Net6、.Net7 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。</Description>
-        <Copyright>CopyRight © SunnyUI.Net 2012-2022</Copyright>
+        <Copyright>CopyRight © SunnyUI.Net 2012-2023</Copyright>
         <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
         <Version>3.3.1</Version>
         <Authors>ShenYonghua</Authors>

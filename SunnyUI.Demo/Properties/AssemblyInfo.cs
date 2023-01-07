@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SunnyUI.Net")]
 [assembly: AssemblyProduct("SunnyUI.Demo")]
-[assembly: AssemblyCopyright("Copyright ©SunnyUI.Net 2012-2022")]
+[assembly: AssemblyCopyright("Copyright ©SunnyUI.Net 2012-2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
