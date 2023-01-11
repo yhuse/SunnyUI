@@ -26,6 +26,8 @@
  * 2022-11-13: V3.2.8 增加滚动条背景色调整
  * 2022-11-13: V3.2.8 删除AddControl、RemoveControl方法
  * 2022-11-25: V3.2.9 增加Get方法以获取控件
+ * 2023-01-11: V3.3.1 增加AutoScroll属性
+ * 2023-01-11: V3.3.1 修复只显示水平滚动条时，鼠标滚轮滚动水平滚动条不动的问题
 ******************************************************************************/
 
 using System;
@@ -67,6 +69,14 @@ namespace Sunny.UI
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        [DefaultValue(true)]
+        [Browsable(true)]
+        public new bool AutoScroll
+        {
+            get => Panel.AutoScroll;
+            set => Panel.AutoScroll = value;
         }
 
         private int scrollBarWidth = 0;
@@ -414,22 +424,23 @@ namespace Sunny.UI
 
         private void Panel_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta < 0)
-            {
-                if (Panel.VerticalScroll.Maximum > Panel.VerticalScroll.Value + 50)
-                    Panel.VerticalScroll.Value += 50;
-                else
-                    Panel.VerticalScroll.Value = Panel.VerticalScroll.Maximum;
-            }
-            else
-            {
-                if (Panel.VerticalScroll.Value > 50)
-                    Panel.VerticalScroll.Value -= 50;
-                else
-                    Panel.VerticalScroll.Value = 0;
-            }
+            //if (e.Delta < 0)
+            //{
+            //    if (Panel.VerticalScroll.Maximum > Panel.VerticalScroll.Value + 50)
+            //        Panel.VerticalScroll.Value += 50;
+            //    else
+            //        Panel.VerticalScroll.Value = Panel.VerticalScroll.Maximum;
+            //}
+            //else
+            //{
+            //    if (Panel.VerticalScroll.Value > 50)
+            //        Panel.VerticalScroll.Value -= 50;
+            //    else
+            //        Panel.VerticalScroll.Value = 0;
+            //}
 
             VBar.Value = Panel.VerticalScroll.Value;
+            HBar.Value = Panel.HorizontalScroll.Value;
         }
 
         private void VBar_ValueChanged(object sender, EventArgs e)
