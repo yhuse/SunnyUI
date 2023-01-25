@@ -43,6 +43,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收页面传值 ReceiveParams 事件
  * 2022-09-11: V3.2.3 修复继承页面可响应WM_HOTKEY消息
  * 2022-11-30: V3.3.0 增加RemoveAllPages函数
+ * 2023-01-25: V3.3.1 最大化后，关闭按钮扩大至原按钮右上角全部区域
 ******************************************************************************/
 
 using System;
@@ -692,6 +693,17 @@ namespace Sunny.UI
                     InControlBox = false;
                     Close();
                 }
+                //else
+                //{
+                //    if (ControlBox && WindowState == FormWindowState.Maximized)
+                //    {
+                //        if (MousePosition.X > ControlBoxRect.X)
+                //        {
+                //            InControlBox = false;
+                //            Close();
+                //        }
+                //    }
+                //}
 
                 if (InMinBox)
                 {
@@ -924,6 +936,12 @@ namespace Sunny.UI
                 if (FormBorderStyle == FormBorderStyle.None)
                 {
                     bool inControlBox = e.Location.InRect(ControlBoxRect);
+                    if (WindowState == FormWindowState.Maximized && ControlBox)
+                    {
+                        if (e.Location.X > ControlBoxRect.Left && e.Location.Y < TitleHeight)
+                            inControlBox = true;
+                    }
+
                     bool inMaxBox = e.Location.InRect(MaximizeBoxRect);
                     bool inMinBox = e.Location.InRect(MinimizeBoxRect);
                     bool inExtendBox = e.Location.InRect(ExtendBoxRect);
@@ -1084,10 +1102,17 @@ namespace Sunny.UI
             {
                 if (InControlBox)
                 {
-                    if (ShowRadius)
-                        e.Graphics.FillRoundRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect, 5);
+                    if (WindowState == FormWindowState.Maximized)
+                    {
+                        e.Graphics.FillRectangle(ControlBoxCloseFillHoverColor, new Rectangle(ControlBoxRect.Left, 0, Width - ControlBoxRect.Left, TitleHeight));
+                    }
                     else
-                        e.Graphics.FillRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect);
+                    {
+                        if (ShowRadius)
+                            e.Graphics.FillRoundRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect, 5);
+                        else
+                            e.Graphics.FillRectangle(ControlBoxCloseFillHoverColor, ControlBoxRect);
+                    }
                 }
 
                 e.Graphics.DrawLine(controlBoxForeColor,
