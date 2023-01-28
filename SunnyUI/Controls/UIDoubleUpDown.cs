@@ -27,6 +27,7 @@
  * 2022-09-16: V3.2.4 增加是否可以双击输入属性
  * 2022-11-12: V3.2.8 修改浮点数大小离开判断为实时输入判断
  * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
+ * 2023-01-28: V3.3.1 修改文本框数据输入数据变更事件为MouseLeave
 ******************************************************************************/
 
 using System;
@@ -53,7 +54,7 @@ namespace Sunny.UI
             edit.Parent = pnlValue;
             edit.Visible = false;
             edit.BorderStyle = BorderStyle.None;
-            edit.Leave += Edit_Leave;
+            edit.MouseLeave += Edit_Leave;
             pnlValue.Paint += PnlValue_Paint;
         }
 
