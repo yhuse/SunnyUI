@@ -31,6 +31,7 @@
 * 2022-08-19: V3.2.3 修复选中节点右侧图标前景色
 * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 * 2022-11-03: V3.2.6 重写了节点右侧图标的绘制
+* 2023-02-02: V3.3.1 修复了鼠标离开事件
 ******************************************************************************/
 
 using System;
@@ -592,6 +593,7 @@ namespace Sunny.UI
             Graphics g = CreateGraphics();
             ClearCurrentNode(g);
             g.Dispose();
+            base.OnMouseLeave(e);
         }
 
         private bool checkBoxes;
