@@ -22,12 +22,14 @@
  * 2022-01-10: V3.1.0 调整边框和圆角的绘制
  * 2022-02-16: V3.1.1 基类增加只读颜色设置
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-02-03: V3.3.1 增加WIN10系统响应触摸屏的按下和弹起事件
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -991,5 +993,48 @@ namespace Sunny.UI
             base.OnLostFocus(e);
             this.Invalidate();
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////  WndProc窗口程序：
+        //////  当按压屏幕时，产生一个WM_POINTERDOWN消息时，我们通过API函数 PostMessage 投送出一个WM_LBUTTONDOWN消息
+        //////  WM_LBUTTONDOWN消息会产生一个相对应的鼠标按下左键的事件，于是我们只要在mouse_down事件里写下处理过程即可
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region WndProc 窗口程序
+
+        [DllImport("user32.dll")]
+        public static extern int PostMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        const int WM_POINTERDOWN = 0x0246;
+        const int WM_POINTERUP = 0x0247;
+        const int WM_LBUTTONDOWN = 0x0201;
+        const int WM_LBUTTONUP = 0x0202;
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case WM_POINTERDOWN:
+                    break;
+                case WM_POINTERUP:
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    return;
+            }
+
+            switch (m.Msg)
+            {
+                case WM_POINTERDOWN:
+                    PostMessage(m.HWnd, WM_LBUTTONDOWN, (int)m.WParam, (int)m.LParam);
+                    break;
+                case WM_POINTERUP:
+                    PostMessage(m.HWnd, WM_LBUTTONUP, (int)m.WParam, (int)m.LParam);
+                    break;
+            }
+        }
+
+        #endregion
+
     }
 }
