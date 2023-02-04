@@ -22,6 +22,7 @@
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
  * 2022-07-12: V3.2.1 修复CanSelectRootNode时可以展开子节点
  * 2022-11-30: V3.3.0 增加Clear方法
+ * 2023-02-04: V3.3.1 下拉框增加多选按钮
 ******************************************************************************/
 
 using System;
@@ -216,7 +217,9 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             //ItemForm.Show(this);
-            ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
+            int width = DropDownWidth < Width ? Width : DropDownWidth;
+            width = Math.Max(250, width);
+            ItemForm.Show(this, new Size(width, DropDownHeight));
         }
 
         [DefaultValue(typeof(Size), "250, 220"), Description("下拉弹框界面大小"), Category("SunnyUI")]
