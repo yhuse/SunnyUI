@@ -347,7 +347,7 @@ namespace Sunny.UI
             {
                 symbol = 261527;
                 SizeF sf = g.GetFontImageSize(symbol, 24);
-                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f, 2, 2);
+                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f, 1, 1);
             }
             else
             {
