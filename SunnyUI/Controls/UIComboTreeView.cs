@@ -22,7 +22,7 @@
  * 2022-06-16: V3.2.0 增加下拉框宽度、高度
  * 2022-07-12: V3.2.1 修复CanSelectRootNode时可以展开子节点
  * 2022-11-30: V3.3.0 增加Clear方法
- * 2023-02-04: V3.3.1 下拉框增加多选按钮
+ * 2023-02-04: V3.3.1 下拉框增加显示全选选择框
 ******************************************************************************/
 
 using System;
@@ -60,6 +60,10 @@ namespace Sunny.UI
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        [DefaultValue(true)]
+        [Description("下拉框显示全选选择框"), Category("SunnyUI")]
+        public bool ShowSelectedAllCheckBox { get; set; } = true;
 
         [DefaultValue(250)]
         [Description("下拉框宽度"), Category("SunnyUI")]
@@ -219,6 +223,7 @@ namespace Sunny.UI
             //ItemForm.Show(this);
             int width = DropDownWidth < Width ? Width : DropDownWidth;
             width = Math.Max(250, width);
+            item.ShowSelectedAllCheckBox = ShowSelectedAllCheckBox;
             ItemForm.Show(this, new Size(width, DropDownHeight));
         }
 

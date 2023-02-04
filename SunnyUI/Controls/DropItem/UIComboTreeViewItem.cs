@@ -24,6 +24,12 @@ namespace Sunny.UI
             base.SetDPIScale();
         }
 
+        public bool ShowSelectedAllCheckBox
+        {
+            get => uiCheckBox1.Visible;
+            set => uiCheckBox1.Visible = value;
+        }
+
         [DefaultValue(false)]
         public bool CheckBoxes
         {
