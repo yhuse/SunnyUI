@@ -69,6 +69,8 @@ namespace Sunny.UI
             fillColor = Color.White;
             edit.BackColor = Color.White;
             MouseMove += UIDropControl_MouseMove;
+
+            ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
         protected override void OnContextMenuStripChanged(EventArgs e)
@@ -340,10 +342,53 @@ namespace Sunny.UI
 
             g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));
             Color color = GetRectColor();
-            SizeF sf = g.GetFontImageSize(dropSymbol, 24);
-            g.DrawFontImage(dropSymbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
+            int symbol = dropSymbol;
+            if (NeedDrawClearButton)
+            {
+                symbol = 261527;
+                SizeF sf = g.GetFontImageSize(symbol, 24);
+                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f, 2, 2);
+            }
+            else
+            {
+                SizeF sf = g.GetFontImageSize(symbol, 24);
+                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
+            }
+
             //g.DrawLine(RectColor, Width - 1, Radius / 2, Width - 1, Height - Radius);
         }
+
+        protected bool NeedDrawClearButton;
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (!showClearButton)
+            {
+                NeedDrawClearButton = false;
+                return;
+            }
+
+            bool inControlBox = e.Location.InRect(ControlBoxRect);
+            if (inControlBox != NeedDrawClearButton && Text.IsValid())
+            {
+                NeedDrawClearButton = inControlBox;
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            if (NeedDrawClearButton)
+            {
+                NeedDrawClearButton = false;
+                Invalidate();
+            }
+        }
+
+        Rectangle ControlBoxRect;
+        public bool showClearButton;
 
         protected override void OnGotFocus(EventArgs e)
         {

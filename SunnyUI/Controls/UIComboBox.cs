@@ -33,6 +33,7 @@
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
  * 2022-11-13: V3.2.8 增加不显示过滤可以自动调整下拉框宽度
  * 2022-11-30: V3.3.0 增加Clear方法
+ * 2023-02-04: V3.3.1 增加清除按钮
 ******************************************************************************/
 
 using System;
@@ -73,6 +74,14 @@ namespace Sunny.UI
             fullControlSelect = true;
 
             CreateInstance();
+        }
+
+        [DefaultValue(false)]
+        [Description("显示清除按钮"), Category("SunnyUI")]
+        public bool ShowClearButton
+        {
+            get => showClearButton;
+            set => showClearButton = value;
         }
 
         public override void Clear()
@@ -591,6 +600,19 @@ namespace Sunny.UI
 
         private void UIComboBox_ButtonClick(object sender, EventArgs e)
         {
+            if (NeedDrawClearButton)
+            {
+                NeedDrawClearButton = false;
+                Text = "";
+                if (!showFilter)
+                    dropForm.ListBox.SelectedIndex = -1;
+                else
+                    filterForm.ListBox.SelectedIndex = -1;
+                Invalidate();
+
+                return;
+            }
+
             if (!ShowFilter)
             {
                 if (Items.Count > 0)
