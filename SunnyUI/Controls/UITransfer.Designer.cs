@@ -52,6 +52,7 @@ namespace Sunny.UI
             this.b1.Symbol = 61697;
             this.b1.TabIndex = 3;
             this.b1.TipsText = null;
+            this.b1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.b1.Click += new System.EventHandler(this.b1_Click);
             // 
             // b2
@@ -68,6 +69,7 @@ namespace Sunny.UI
             this.b2.Symbol = 61701;
             this.b2.TabIndex = 4;
             this.b2.TipsText = null;
+            this.b2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.b2.Click += new System.EventHandler(this.b2_Click);
             // 
             // b3
@@ -84,6 +86,7 @@ namespace Sunny.UI
             this.b3.Symbol = 61700;
             this.b3.TabIndex = 5;
             this.b3.TipsText = null;
+            this.b3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.b3.Click += new System.EventHandler(this.b3_Click);
             // 
             // b4
@@ -100,6 +103,7 @@ namespace Sunny.UI
             this.b4.Symbol = 61696;
             this.b4.TabIndex = 6;
             this.b4.TipsText = null;
+            this.b4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.b4.Click += new System.EventHandler(this.b4_Click);
             // 
             // l1
@@ -108,16 +112,17 @@ namespace Sunny.UI
             this.l1.Dock = System.Windows.Forms.DockStyle.Left;
             this.l1.FillColor = System.Drawing.Color.White;
             this.l1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.l1.FormatString = "";
-            this.l1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.l1.Location = new System.Drawing.Point(1, 1);
             this.l1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.l1.MinimumSize = new System.Drawing.Size(1, 1);
             this.l1.Name = "l1";
             this.l1.Padding = new System.Windows.Forms.Padding(2);
+            this.l1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.l1.ShowText = false;
             this.l1.Size = new System.Drawing.Size(210, 348);
             this.l1.TabIndex = 7;
             this.l1.Text = null;
+            this.l1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.l1.Click += new System.EventHandler(this.l1_ItemClick);
             this.l1.DoubleClick += new System.EventHandler(this.l1_DoubleClick);
             // 
@@ -127,16 +132,17 @@ namespace Sunny.UI
             this.l2.Dock = System.Windows.Forms.DockStyle.Right;
             this.l2.FillColor = System.Drawing.Color.White;
             this.l2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.l2.FormatString = "";
-            this.l2.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.l2.Location = new System.Drawing.Point(289, 1);
             this.l2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.l2.MinimumSize = new System.Drawing.Size(1, 1);
             this.l2.Name = "l2";
             this.l2.Padding = new System.Windows.Forms.Padding(2);
+            this.l2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.l2.ShowText = false;
             this.l2.Size = new System.Drawing.Size(210, 348);
             this.l2.TabIndex = 8;
             this.l2.Text = null;
+            this.l2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.l2.Click += new System.EventHandler(this.l2_ItemClick);
             this.l2.DoubleClick += new System.EventHandler(this.l2_DoubleClick);
             // 
