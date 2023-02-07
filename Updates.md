@@ -1,5 +1,18 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-02\-07 V3.3.2    
+\+ UIControl: 增加WIN10系统响应触摸屏的按下和弹起事件    
+\* UIDropControl: 下拉框控件增加Tips小红点    
+\* UITextBox: 增加Tips小红点    
+\* UIComboBox: 增加清除按钮    
+\* UIComboTreeView: 下拉框增加显示全选选择框    
+\* UITransfer: 支持鼠标框选和Shift，Ctrl多选移动    
+\* UINavMenu: 修复了鼠标离开事件    
+\* UIIntegerUpDown: 修改文本框数据输入数据变更事件为MouseLeave    
+\* UIDoubleUpDown: 修改文本框数据输入数据变更事件为MouseLeave    
+\* UIFlowLayoutPanel: 增加AutoScroll属性    
+\* UIFlowLayoutPanel: 修复只显示水平滚动条时，鼠标滚轮滚动水平滚动条不动的问题    
+    
 #### 2023\-01\-07 V3.3.1    
 \+ UIProcessIndicatorForm: 增加等待窗体    
 \* UIDataGridView: 增加可重载的函数    
