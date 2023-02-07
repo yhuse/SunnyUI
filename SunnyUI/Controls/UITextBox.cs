@@ -44,6 +44,7 @@
  * 2022-11-12: V3.2.8 修改整数、浮点数大小离开判断为实时输入判断
  * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
  * 2022-11-26: V3.2.9 增加MouseClick，MouseDoubleClick事件
+ * 2023-02-07: V3.3.1 增加Tips小红点
 ******************************************************************************/
 
 using System;
@@ -132,6 +133,56 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private UIButton tipsBtn;
+        public void SetTipsText(ToolTip toolTip, string text)
+        {
+            if (tipsBtn == null)
+            {
+                tipsBtn = new UIButton();
+                tipsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+                tipsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.Location = new System.Drawing.Point(285, 519);
+                tipsBtn.MinimumSize = new System.Drawing.Size(1, 1);
+                tipsBtn.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+                tipsBtn.Size = new System.Drawing.Size(9, 9);
+                tipsBtn.Style = Sunny.UI.UIStyle.Red;
+                tipsBtn.StyleCustomMode = true;
+                tipsBtn.TabIndex = 118;
+                tipsBtn.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+                tipsBtn.Text = "";
+                tipsBtn.Click += TipsBtn_Click;
+
+                Controls.Add(tipsBtn);
+                tipsBtn.Location = new System.Drawing.Point(Width - 11, 2);
+                tipsBtn.BringToFront();
+            }
+
+            toolTip.SetToolTip(tipsBtn, text);
+        }
+
+        public event EventHandler TipsClick;
+        private void TipsBtn_Click(object sender, EventArgs e)
+        {
+            TipsClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void CloseTips()
+        {
+            if (tipsBtn != null)
+            {
+                tipsBtn.Click -= TipsBtn_Click;
+                tipsBtn.Dispose();
+                tipsBtn = null;
+            }
         }
 
         public new event EventHandler MouseDoubleClick;
