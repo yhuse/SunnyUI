@@ -646,6 +646,11 @@ namespace Sunny.UI
         {
             base.OnSizeChanged(e);
             SizeChange();
+
+            if (tipsBtn != null)
+            {
+                tipsBtn.Location = new System.Drawing.Point(Width - 11, 2);
+            }
         }
 
         protected override void OnPaddingChanged(EventArgs e)
