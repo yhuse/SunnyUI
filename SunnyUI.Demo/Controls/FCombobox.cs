@@ -55,13 +55,8 @@ namespace Sunny.UI.Demo
             uiComboDataGridView2.ShowFilter = true;
             uiComboDataGridView2.DataGridView.DataSource = dt;
             uiComboDataGridView2.FilterColumnName = "Column1"; //不设置则全部列过滤
-        }
 
-        public override void Final()
-        {
-            base.Final();
-            uiComboBox3.HideFilterForm();
-            uiComboBox4.HideFilterForm();
+            uiComboBox1.SetTipsText(uiToolTip1, "Hello World.");
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
@@ -166,6 +161,11 @@ namespace Sunny.UI.Demo
                     uiComboDataGridView2.Text += "; ";
                 }
             }
+        }
+
+        private void uiComboBox1_TipsClick(object sender, EventArgs e)
+        {
+            ShowInfoTip("Hello world.");
         }
     }
 }

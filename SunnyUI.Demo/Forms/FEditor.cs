@@ -36,7 +36,7 @@ namespace Sunny.UI.Demo
         {
             FEdit frm = new FEdit();
             frm.Render();
-            frm.ShowDialogWithMask();
+            frm.ShowDialog();
             if (frm.IsOK)
             {
                 ShowSuccessDialog(frm.Person.ToString());

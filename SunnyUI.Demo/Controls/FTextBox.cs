@@ -5,6 +5,9 @@
         public FTextBox()
         {
             InitializeComponent();
+
+            uiTextBox1.SetTipsText(uiToolTip1, "Hello World.");
+            uiTextBox5.SetTipsText(uiToolTip1, "Hello World.");
         }
 
         private void FTextBox_Shown(object sender, System.EventArgs e)
