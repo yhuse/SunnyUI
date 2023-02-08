@@ -994,6 +994,10 @@ namespace Sunny.UI
             this.Invalidate();
         }
 
+        [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool TouchPressClick { get; set; } = false;
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////  WndProc窗口程序：
         //////  当按压屏幕时，产生一个WM_POINTERDOWN消息时，我们通过API函数 PostMessage 投送出一个WM_LBUTTONDOWN消息
@@ -1012,25 +1016,32 @@ namespace Sunny.UI
 
         protected override void WndProc(ref Message m)
         {
-            switch (m.Msg)
+            if (TouchPressClick)
             {
-                case WM_POINTERDOWN:
-                    break;
-                case WM_POINTERUP:
-                    break;
-                default:
-                    base.WndProc(ref m);
-                    return;
-            }
+                switch (m.Msg)
+                {
+                    case WM_POINTERDOWN:
+                        break;
+                    case WM_POINTERUP:
+                        break;
+                    default:
+                        base.WndProc(ref m);
+                        return;
+                }
 
-            switch (m.Msg)
+                switch (m.Msg)
+                {
+                    case WM_POINTERDOWN:
+                        PostMessage(m.HWnd, WM_LBUTTONDOWN, (int)m.WParam, (int)m.LParam);
+                        break;
+                    case WM_POINTERUP:
+                        PostMessage(m.HWnd, WM_LBUTTONUP, (int)m.WParam, (int)m.LParam);
+                        break;
+                }
+            }
+            else
             {
-                case WM_POINTERDOWN:
-                    PostMessage(m.HWnd, WM_LBUTTONDOWN, (int)m.WParam, (int)m.LParam);
-                    break;
-                case WM_POINTERUP:
-                    PostMessage(m.HWnd, WM_LBUTTONUP, (int)m.WParam, (int)m.LParam);
-                    break;
+                base.WndProc(ref m);
             }
         }
 
