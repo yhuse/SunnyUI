@@ -45,6 +45,7 @@
  * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
  * 2022-11-26: V3.2.9 增加MouseClick，MouseDoubleClick事件
  * 2023-02-07: V3.3.1 增加Tips小红点
+ * 2023-02-10: V3.3.2 有水印时，系统响应触摸屏增加了TouchPressClick属性，默认关闭
 ******************************************************************************/
 
 using System;
@@ -133,6 +134,14 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool TouchPressClick
+        {
+            get => edit.TouchPressClick;
+            set => edit.TouchPressClick = value;
         }
 
         private UIButton tipsBtn;

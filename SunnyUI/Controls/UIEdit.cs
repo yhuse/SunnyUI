@@ -23,6 +23,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -61,7 +62,7 @@ namespace Sunny.UI
         {
             if (this.waterMarkContainer == null && this.TextLength <= 0)
             {
-                waterMarkContainer = new Panel();
+                waterMarkContainer = new PanelEx();
                 waterMarkContainer.Paint += new PaintEventHandler(waterMarkContainer_Paint);
                 waterMarkContainer.Invalidate();
                 waterMarkContainer.Click += new EventHandler(waterMarkContainer_Click);
@@ -188,7 +189,80 @@ namespace Sunny.UI
             }
         }
 
-        private Panel waterMarkContainer;
+        [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool TouchPressClick
+        {
+            get
+            {
+                if (waterMarkContainer != null)
+                    return waterMarkContainer.TouchPressClick;
+                return false;
+            }
+            set
+            {
+                if (waterMarkContainer != null)
+                    waterMarkContainer.TouchPressClick = value;
+            }
+        }
+
+        internal class PanelEx : Panel
+        {
+            [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+            [DefaultValue(false)]
+            public bool TouchPressClick { get; set; } = false;
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////  WndProc窗口程序：
+            //////  当按压屏幕时，产生一个WM_POINTERDOWN消息时，我们通过API函数 PostMessage 投送出一个WM_LBUTTONDOWN消息
+            //////  WM_LBUTTONDOWN消息会产生一个相对应的鼠标按下左键的事件，于是我们只要在mouse_down事件里写下处理过程即可
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            #region WndProc 窗口程序
+
+            [DllImport("user32.dll")]
+            public static extern int PostMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+            const int WM_POINTERDOWN = 0x0246;
+            const int WM_POINTERUP = 0x0247;
+            const int WM_LBUTTONDOWN = 0x0201;
+            const int WM_LBUTTONUP = 0x0202;
+
+            protected override void WndProc(ref Message m)
+            {
+                if (TouchPressClick)
+                {
+                    switch (m.Msg)
+                    {
+                        case WM_POINTERDOWN:
+                            break;
+                        case WM_POINTERUP:
+                            break;
+                        default:
+                            base.WndProc(ref m);
+                            return;
+                    }
+
+                    switch (m.Msg)
+                    {
+                        case WM_POINTERDOWN:
+                            PostMessage(m.HWnd, WM_LBUTTONDOWN, (int)m.WParam, (int)m.LParam);
+                            break;
+                        case WM_POINTERUP:
+                            PostMessage(m.HWnd, WM_LBUTTONUP, (int)m.WParam, (int)m.LParam);
+                            break;
+                    }
+                }
+                else
+                {
+                    base.WndProc(ref m);
+                }
+            }
+
+            #endregion
+        }
+
+        private PanelEx waterMarkContainer;
         private SolidBrush waterMarkBrush;
 
         private string _waterMarkText = "";
