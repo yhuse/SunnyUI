@@ -32,6 +32,7 @@
 * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
 * 2022-11-03: V3.2.6 重写了节点右侧图标的绘制
 * 2023-02-02: V3.3.1 修复了鼠标离开事件
+* 2023-02-10: V3.3.2 有子节点时，鼠标左键点击父级点展开/收缩，右键选中
 ******************************************************************************/
 
 using System;
@@ -854,20 +855,28 @@ namespace Sunny.UI
             {
                 if (e.Node.Nodes.Count > 0)
                 {
-                    if (e.Node.IsExpanded)
+                    if (e.Button == MouseButtons.Left)
                     {
-                        e.Node.Collapse();
-                    }
-                    else
-                    {
-                        e.Node.Expand();
+                        if (e.Node.IsExpanded)
+                        {
+                            e.Node.Collapse();
+                        }
+                        else
+                        {
+                            e.Node.Expand();
+                        }
+
+                        if (SelectedNode != null && SelectedNode == e.Node && e.Node.IsExpanded && ExpandSelectFirst && e.Node.Nodes.Count > 0)
+                        {
+                            SelectedNode = e.Node.Nodes[0];
+                        }
+                        else
+                        {
+                            SelectedNode = e.Node;
+                        }
                     }
 
-                    if (SelectedNode != null && SelectedNode == e.Node && e.Node.IsExpanded && ExpandSelectFirst && e.Node.Nodes.Count > 0)
-                    {
-                        SelectedNode = e.Node.Nodes[0];
-                    }
-                    else
+                    if (e.Button == MouseButtons.Right)
                     {
                         SelectedNode = e.Node;
                     }
