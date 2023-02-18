@@ -781,6 +781,8 @@ namespace Sunny.UI
                     }
                 }
             }
+
+            base.OnDrawNode(e);
         }
 
         Font tmpFont;
