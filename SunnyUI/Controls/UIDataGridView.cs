@@ -307,6 +307,28 @@ namespace Sunny.UI
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        private bool isLightMode = false;
+        public void LightMode()
+        {
+            AllowUserToAddRows = false;
+            AllowUserToDeleteRows = false;
+            AllowUserToResizeColumns = false;
+            AllowUserToResizeRows = false;
+            AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            BackgroundColor = System.Drawing.Color.White;
+            BorderStyle = System.Windows.Forms.BorderStyle.None;
+            CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            StripeOddColor = System.Drawing.Color.White;
+            ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
+            SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            GridColor = Color.LightGray;
+            isLightMode = true;
+        }
+
         private void VerticalScrollBar_ValueChanged(object sender, EventArgs e)
         {
             VBar.Value = FirstDisplayedScrollingRowIndex;
@@ -385,6 +407,11 @@ namespace Sunny.UI
                 Color color = RectColor;
                 color = Enabled ? color : UIDisableColor.Fill;
                 e.Graphics.DrawRectangle(color, new Rectangle(0, 0, Width - 1, Height - 1));
+            }
+
+            if (isLightMode)
+            {
+                e.Graphics.DrawLine(GridColor, 0, ColumnHeadersHeight - 1, Width, ColumnHeadersHeight - 1);
             }
         }
 
