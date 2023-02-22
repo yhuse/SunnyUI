@@ -38,6 +38,36 @@ namespace Sunny.UI
     public static class SystemEx
     {
         /// <summary>
+        /// 阻止系统电源选项里的系统睡眠，屏幕关闭。
+        /// </summary>
+        /// <param name="keepDisplayOn"></param>
+        public static void StartKeepDisplayOn(bool keepDisplayOn = true)
+        {
+            Kernel.SetThreadExecutionState(keepDisplayOn
+                  ? ExecutionState.Continuous | ExecutionState.SystemRequired | ExecutionState.DisplayRequired
+                  : ExecutionState.Continuous | ExecutionState.SystemRequired);
+        }
+
+        /// <summary>
+        /// 恢复系统电源选项里的系统睡眠，屏幕关闭。
+        /// </summary>
+        public static void RestoreDisplayState()
+        {
+            Kernel.SetThreadExecutionState(ExecutionState.Continuous);
+        }
+
+        /// <summary>
+        /// 重置系统计时器，临时性阻止系统睡眠和屏幕关闭。此效果类似于手动使用鼠标或键盘控制了一下电脑。
+        /// </summary>
+        /// <param name="keepDisplayOn"></param>
+        public static void ResetDisplayState(bool keepDisplayOn = true)
+        {
+            Kernel.SetThreadExecutionState(keepDisplayOn
+                ? ExecutionState.SystemRequired | ExecutionState.DisplayRequired
+                : ExecutionState.SystemRequired);
+        }
+
+        /// <summary>
         /// 获取程序当前窗口的大小和位置
         /// </summary>
         /// <returns></returns>
