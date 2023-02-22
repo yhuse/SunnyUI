@@ -24,6 +24,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-04-14: V3.1.3 重构扩展函数
  * 2022-07-28: V3.2.2 删除界面此控件的编辑器 
+ * 2023-02-22: V3.3.2 去除下拉菜单宽度调整
 ******************************************************************************/
 
 using System;
@@ -659,12 +660,12 @@ namespace Sunny.UI
                 }
             }
 
-            NavBarMenu.AutoSize = true;
-            if (NavBarMenu.Width < NodeSize.Width)
-            {
-                NavBarMenu.AutoSize = false;
-                NavBarMenu.Width = NodeSize.Width;
-            }
+            //NavBarMenu.AutoSize = true;
+            //if (NavBarMenu.Width < NodeSize.Width)
+            //{
+            //    NavBarMenu.AutoSize = false;
+            //    NavBarMenu.Width = NodeSize.Width;
+            //}
 
             foreach (ToolStripItem item in NavBarMenu.Items)
             {
