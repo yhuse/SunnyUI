@@ -254,6 +254,7 @@ namespace Sunny.UI
             }
 
             TabPage tabPage = CreateTabIfNotExists(new NavMenuItem(page));
+            page.Dock = DockStyle.Fill;
             page.TabPage = tabPage;
             tabPage.Controls.Add(page);
             tabPage.Text = page.Text;

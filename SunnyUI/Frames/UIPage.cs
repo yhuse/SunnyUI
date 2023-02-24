@@ -34,6 +34,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收框架、页面传值 ReceiveParams 事件
  * 2022-10-28: V3.2.6 标题栏增加扩展按钮
  * 2023-02-24: V3.3.2 增加PageDeselecting，取消页面选择时增加判断
+ * 2023-02-24: V3.3.2 取消设计期的Dock.Fill，改为运行时设置
 ******************************************************************************/
 
 using System;
@@ -88,7 +89,7 @@ namespace Sunny.UI
             SetStyle(ControlStyles.DoubleBuffer, true);
             UpdateStyles();
 
-            if (!IsDesignMode) base.Dock = DockStyle.Fill;
+            //if (!IsDesignMode) base.Dock = DockStyle.Fill;
 
             Version = UIGlobal.Version;
             SetDPIScale();
