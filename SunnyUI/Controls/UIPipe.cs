@@ -18,6 +18,7 @@
  *
  * 2020-07-26: V3.0.5 增加管道控件
  * 2021-07-29: V3.0.5 优化管道连接
+ * 2023-02-24: V3.3.2 修复了管道宽度调大后水流不显示的问题
 ******************************************************************************/
 
 using System;
@@ -600,9 +601,9 @@ namespace Sunny.UI
                         }
                     }
 
-                    if (rect.Width >= rect.Height && isShow)
+                    if (isShow)
                     {
-                        g.FillRoundRectangle(color, rect, Radius - 4);
+                        g.FillRoundRectangle(color, rect, Math.Min(rect.Width, rect.Height));
                     }
 
                     pos += FlowSize;
@@ -654,9 +655,9 @@ namespace Sunny.UI
                         }
                     }
 
-                    if (rect.Height >= rect.Width && isShow)
+                    if (isShow)
                     {
-                        g.FillRoundRectangle(color, rect, Radius - 4);
+                        g.FillRoundRectangle(color, rect, Math.Min(rect.Width, rect.Height));
                     }
 
                     pos += FlowSize;
