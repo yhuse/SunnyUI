@@ -33,6 +33,7 @@
  * 2022-08-25: V3.2.3 重构多页面框架传值：页面发送给框架 SendParamToPage 函数
  * 2022-08-25: V3.2.3 重构多页面框架传值：接收框架、页面传值 ReceiveParams 事件
  * 2022-10-28: V3.2.6 标题栏增加扩展按钮
+ * 2023-02-24: V3.3.2 增加PageDeselecting，取消页面选择时增加判断
 ******************************************************************************/
 
 using System;
@@ -105,6 +106,15 @@ namespace Sunny.UI
             base.ShowInTaskbar = false;
             base.StartPosition = FormStartPosition.Manual;
             base.SizeGripStyle = SizeGripStyle.Hide;
+        }
+
+        public event PageDeselectingEventHandler PageDeselecting;
+
+        internal bool OnPageDeselecting()
+        {
+            PageDeselectingEventArgs e = new PageDeselectingEventArgs(false, string.Empty);
+            PageDeselecting?.Invoke(this, e);
+            return e.Cancel;
         }
 
         [Browsable(false)]
@@ -235,7 +245,7 @@ namespace Sunny.UI
         /// <summary>
         /// 控件缩放前在其容器里的位置
         /// </summary>
-        [Browsable(false)]
+        [Browsable(false), DefaultValue(typeof(Rectangle), "0, 0, 0, 0")]
         public Rectangle ZoomScaleRect { get; set; }
 
         /// <summary>

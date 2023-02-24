@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -49,6 +50,20 @@ namespace Sunny.UI
             Page = page;
         }
     }
+
+    public class PageDeselectingEventArgs : CancelEventArgs
+    {
+        private string _cancelReason;
+
+        public PageDeselectingEventArgs(bool cancel, string cancelReason) : base(cancel)
+        {
+            _cancelReason = cancelReason;
+        }
+
+        public string CancelReason => _cancelReason;
+    }
+
+    public delegate void PageDeselectingEventHandler(object sender, PageDeselectingEventArgs e);
 
     public delegate void OnUIPageChanged(object sender, UIPageEventArgs e);
 

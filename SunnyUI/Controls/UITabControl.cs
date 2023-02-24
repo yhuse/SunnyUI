@@ -77,7 +77,7 @@ namespace Sunny.UI
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
 
-        [Browsable(false)]
+        [Browsable(false), DefaultValue(null)]
         public IFrame Frame
         {
             get; set;
@@ -92,7 +92,7 @@ namespace Sunny.UI
         /// <summary>
         /// 控件缩放前在其容器里的位置
         /// </summary>
-        [Browsable(false)]
+        [Browsable(false), DefaultValue(typeof(Rectangle), "0, 0, 0, 0")]
         public Rectangle ZoomScaleRect { get; set; }
 
         /// <summary>

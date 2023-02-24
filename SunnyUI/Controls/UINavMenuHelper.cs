@@ -358,6 +358,13 @@ namespace Sunny.UI
                 return false;
             }
 
+            List<UIPage> pages = tabControl.SelectedTab.GetControls<UIPage>();
+            if (pages.Count == 1)
+            {
+                bool isCancel = pages[0].OnPageDeselecting();
+                if (isCancel) return false;
+            }
+
             foreach (var item in PageItems)
             {
                 if (item.Value.PageIndex == pageIndex && item.Key != null)
@@ -378,6 +385,13 @@ namespace Sunny.UI
             if (guid == Guid.Empty)
             {
                 return false;
+            }
+
+            List<UIPage> pages = tabControl.SelectedTab.GetControls<UIPage>();
+            if (pages.Count == 1)
+            {
+                bool isCancel = pages[0].OnPageDeselecting();
+                if (isCancel) return false;
             }
 
             foreach (var item in PageItems)
