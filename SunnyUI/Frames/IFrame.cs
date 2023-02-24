@@ -59,6 +59,8 @@ namespace Sunny.UI
         T GetPage<T>() where T : UIPage;
 
         List<T> GetPages<T>() where T : UIPage;
+
+        UIPage SelectedPage { get; }
     }
 
     public class UIPageParamsArgs : EventArgs

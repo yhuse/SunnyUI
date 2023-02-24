@@ -44,6 +44,7 @@
  * 2022-09-11: V3.2.3 修复继承页面可响应WM_HOTKEY消息
  * 2022-11-30: V3.3.0 增加RemoveAllPages函数
  * 2023-01-25: V3.3.1 最大化后，关闭按钮扩大至原按钮右上角全部区域
+ * 2023-02-24: V3.3.2 修复PageSelected可能未显示选中页面的问题
 ******************************************************************************/
 
 using System;
@@ -2161,8 +2162,29 @@ namespace Sunny.UI
 
                 mainTabControl.PageAdded += DealPageAdded;
                 mainTabControl.PageRemoved += DealPageRemoved;
+                mainTabControl.Selecting += MainTabControl_Selecting;
             }
         }
+
+        private void MainTabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            if (pages.Count == 1)
+            {
+                SelectedPage = pages[0];
+                PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+            }
+            else
+            {
+                SelectedPage = null;
+                PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+            }
+        }
+
+        [Browsable(false)]
+        public UIPage SelectedPage { get; private set; }
+
+        public event OnUIPageChanged PageSelected;
 
         public UIPage AddPage(UIPage page, int pageIndex)
         {
@@ -2187,7 +2209,6 @@ namespace Sunny.UI
 
             page.Frame = this;
             page.OnFrameDealPageParams += Page_OnFrameDealPageParams;
-            page.PageSelected += DealPageSelected;
             MainTabControl?.AddPage(page);
             return page;
         }
@@ -2298,12 +2319,6 @@ namespace Sunny.UI
         internal void DealPageAdded(object sender, UIPageEventArgs e)
         {
             PageAdded?.Invoke(this, e);
-        }
-
-        public event OnUIPageChanged PageSelected;
-        internal void DealPageSelected(object sender, UIPageEventArgs e)
-        {
-            PageSelected?.Invoke(this, e);
         }
 
         public event OnUIPageChanged PageRemoved;
