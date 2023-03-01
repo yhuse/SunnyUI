@@ -380,6 +380,7 @@ namespace Sunny.UI
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4 + Padding.Left;
             edit.Width = Width - Padding.Left - Padding.Right - 4;
+            ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
         /// <summary>
