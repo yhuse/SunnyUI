@@ -55,7 +55,6 @@ namespace Sunny.UI.Demo
             this.uiLabel3.TabIndex = 79;
             this.uiLabel3.Text = "鼠标移过来看提示";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel2
             // 
@@ -67,7 +66,6 @@ namespace Sunny.UI.Demo
             this.uiLabel2.TabIndex = 78;
             this.uiLabel2.Text = "鼠标移过来看提示";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel1
             // 
@@ -80,7 +78,6 @@ namespace Sunny.UI.Demo
             this.uiLabel1.Text = "鼠标移过来看提示";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiToolTip1.SetToolTip(this.uiLabel1, "赠人玫瑰手有余香");
-            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine7
             // 
@@ -92,7 +89,6 @@ namespace Sunny.UI.Demo
             this.uiLine7.TabIndex = 76;
             this.uiLine7.Text = "UIToolTip";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiScrollingText2
             // 
@@ -104,7 +100,6 @@ namespace Sunny.UI.Demo
             this.uiScrollingText2.Size = new System.Drawing.Size(319, 35);
             this.uiScrollingText2.TabIndex = 75;
             this.uiScrollingText2.Text = "赠人玫瑰手有余香";
-            this.uiScrollingText2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiScrollingText1
             // 
@@ -121,7 +116,6 @@ namespace Sunny.UI.Demo
             this.uiScrollingText1.StyleCustomMode = true;
             this.uiScrollingText1.TabIndex = 74;
             this.uiScrollingText1.Text = "赠人玫瑰手有余香";
-            this.uiScrollingText1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine6
             // 
@@ -133,7 +127,6 @@ namespace Sunny.UI.Demo
             this.uiLine6.TabIndex = 73;
             this.uiLine6.Text = "UIScrollingText";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiToolTip1
             // 
@@ -153,7 +146,6 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 80;
             this.uiLine1.Text = "UIVerificationCode";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiVerificationCode1
             // 
@@ -163,7 +155,6 @@ namespace Sunny.UI.Demo
             this.uiVerificationCode1.Name = "uiVerificationCode1";
             this.uiVerificationCode1.Size = new System.Drawing.Size(100, 35);
             this.uiVerificationCode1.TabIndex = 81;
-            this.uiVerificationCode1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiVerificationCode2
             // 
@@ -174,7 +165,6 @@ namespace Sunny.UI.Demo
             this.uiVerificationCode2.Name = "uiVerificationCode2";
             this.uiVerificationCode2.Size = new System.Drawing.Size(140, 35);
             this.uiVerificationCode2.TabIndex = 82;
-            this.uiVerificationCode2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiCalendar1
             // 
@@ -189,7 +179,6 @@ namespace Sunny.UI.Demo
             this.uiCalendar1.TabIndex = 83;
             this.uiCalendar1.Text = "uiCalendar1";
             this.uiCalendar1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiCalendar1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiCalendar1.OnDateTimeChanged += new Sunny.UI.OnDateTimeChanged(this.uiCalendar1_OnDateTimeChanged);
             // 
             // uiLine2
@@ -200,9 +189,8 @@ namespace Sunny.UI.Demo
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(319, 20);
             this.uiLine2.TabIndex = 84;
-            this.uiLine2.Text = "UIVerificationCode";
+            this.uiLine2.Text = "UICalendar";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FOther
             // 

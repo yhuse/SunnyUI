@@ -31,11 +31,20 @@
 
             //建议用封装的方法Add
             uiFlowLayoutPanel1.Add(btn);
+
             //或者Panel.Controls.Add
             //uiFlowLayoutPanel1.Panel.Controls.Add(btn);
 
             //不能用原生方法Controls.Add
             //uiFlowLayoutPanel1.Controls.Add(btn);    
+
+            var box = new UIGroupBox();
+            box.Width = 100;
+            box.Height = uiFlowLayoutPanel2.Height - 32;
+            box.SetDPIScale();
+            box.Text = "Button" + index++.ToString("D2");
+            box.Name = box.Text;
+            uiFlowLayoutPanel2.Add(box);
 
             uiButton3.Enabled = true;
         }
@@ -50,6 +59,7 @@
         {
             //清除用Clear方法
             uiFlowLayoutPanel1.Clear();
+            uiFlowLayoutPanel2.Clear();
             //或者用
             //uiFlowLayoutPanel1.Panel.Controls.Clear();
 
