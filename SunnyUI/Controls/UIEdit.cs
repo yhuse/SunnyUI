@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-12-18: V3.3.0 修复了一个最小值大于0是，显示类型为字符串Text为空仍有显示的问题
+ * 2023-03-07: V3.3.3 修复了删除为空时小数位数和设置值不一致的问题
 ******************************************************************************/
 
 using System;
@@ -33,11 +34,6 @@ namespace Sunny.UI
     {
         private bool canEmpty;
         private int decLength = 2;
-        //private bool hasMaxValue;
-        //private bool hasMinValue;
-        private string mask = "0.00";
-        //private double maxValue = int.MaxValue;
-        //private double minValue = int.MinValue;
         private UITextBox.UIEditType _uiEditType = UITextBox.UIEditType.String;
 
         public UIEdit()
@@ -408,7 +404,7 @@ namespace Sunny.UI
                     case UITextBox.UIEditType.Double:
                         if (!CanEmpty)
                             if (!Text.IsDouble())
-                                Text = mask;
+                                Text = 0.ToString("f" + decLength);
                         break;
 
                     case UITextBox.UIEditType.Integer:
@@ -444,8 +440,7 @@ namespace Sunny.UI
 
                     if (_uiEditType == UITextBox.UIEditType.Double)
                     {
-                        mask = DecimalToMask(decLength);
-                        Text = DoubleValue.ToString(mask);
+                        Text = DoubleValue.ToString("f" + decLength);
                         Invalidate();
                     }
                 }
@@ -486,16 +481,6 @@ namespace Sunny.UI
                     CheckMaxMin();
                 }
             }
-        }
-
-        private string DecimalToMask(int iDecimal)
-        {
-            if (iDecimal == 0)
-                return "0";
-            var str = "0.";
-            for (int i = 1; i <= iDecimal; i++)
-                str = str + "0";
-            return str;
         }
 
         private int SubCharCount(string str, char subChar)
@@ -755,7 +740,7 @@ namespace Sunny.UI
                 //        Text = Text.Insert(1, @"0");
 
                 if (!double.TryParse(Text, out var doubleValue))
-                    Text = mask;
+                    Text = 0.ToString("f" + decLength);
                 else
                     Text = doubleValue.ToString("f" + decLength);
             }
