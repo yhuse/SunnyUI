@@ -1,5 +1,21 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-03\-05 V3.3.3    
+\+ UIMiniPagination: 新增迷你分页控件，只有分页按钮，无其他    
+\* UINavMenu: 有子节点时，鼠标左键点击父级点展开/收缩，右键选中    
+\* UITextBox: 有水印时，系统响应触摸屏增加了TouchPressClick属性，默认关闭    
+\* FastLZ: 修改加载库    
+\* UINavMenu: 增加可重绘DrawNode    
+\* UIDataGridView: 加了一个简洁显示的模式    
+\* 增加了Windows里阻止系统电源选项里的系统睡眠，屏幕关闭API    
+\* UINavBar: 去除下拉菜单宽度调整    
+\* UIScrollingText: 重写滚动逻辑    
+\* UIPipe: 修复了管道宽度调大后水流不显示的问题    
+\* UIForm: 修复PageSelected可能未显示选中页面的问题    
+\* UIPage: 增加PageDeselecting，取消页面选择时增加判断    
+\* UIPage: 取消设计期的Dock.Fill，改为运行时设置    
+\* UIDropControl: 下拉框类型的ClearButton在尺寸变化时，重新计算位置    
+    
 #### 2023\-02\-07 V3.3.2    
 \+ UIControl: 增加WIN10系统响应触摸屏的按下和弹起事件    
 \* UIDropControl: 下拉框控件增加Tips小红点    
