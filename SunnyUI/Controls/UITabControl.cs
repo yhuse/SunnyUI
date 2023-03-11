@@ -927,7 +927,7 @@ namespace Sunny.UI
             timer?.Start();
         }
 
-        private int LastIndex;
+        //private int LastIndex;
 
         public void Init()
         {
@@ -939,19 +939,19 @@ namespace Sunny.UI
             if (SelectedIndex >= 0)
             {
                 List<UIPage> pages;
-                if (LastIndex != SelectedIndex)
-                {
-                    if (LastIndex >= 0 && TabPages.Count > 0 && LastIndex < TabPages.Count)
-                    {
-                        pages = TabPages[LastIndex].GetControls<UIPage>();
-                        foreach (var page in pages)
-                        {
-                            page.Final();
-                        }
-                    }
-
-                    LastIndex = SelectedIndex;
-                }
+                //if (LastIndex != SelectedIndex)
+                //{
+                //    if (LastIndex >= 0 && TabPages.Count > 0 && LastIndex < TabPages.Count)
+                //    {
+                //        pages = TabPages[LastIndex].GetControls<UIPage>();
+                //        foreach (var page in pages)
+                //        {
+                //            page.Final();
+                //        }
+                //    }
+                //
+                //    LastIndex = SelectedIndex;
+                //}
 
                 pages = TabPages[SelectedIndex].GetControls<UIPage>();
                 foreach (var page in pages)

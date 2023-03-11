@@ -2168,6 +2168,9 @@ namespace Sunny.UI
 
         private void MainTabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
+            if (SelectedPage != null)
+                SelectedPage.Final();
+
             List<UIPage> pages = e.TabPage.GetControls<UIPage>();
             if (pages.Count == 1)
             {
