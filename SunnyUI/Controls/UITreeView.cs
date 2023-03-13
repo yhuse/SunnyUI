@@ -30,6 +30,7 @@
  * 2022-10-28: V3.2.6 TreeNode支持imagekey绑定图标
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-12-06: V3.3.0 增加了可自定义行的颜色
+ * 2023-03-13: V3.3.3 增加MouseDoubleClick和MouseClick事件
 ******************************************************************************/
 
 using System;
@@ -87,6 +88,30 @@ namespace Sunny.UI
             view.KeyDown += View_KeyDown;
             view.KeyUp += View_KeyUp;
             view.AfterLabelEdit += View_AfterLabelEdit;
+            view.MouseDoubleClick += View_MouseDoubleClick;
+            view.MouseClick += View_MouseClick;
+        }
+
+        public event NodeLabelEditEventHandler AfterLabelEdit;
+        public new event EventHandler MouseLeave;
+        public new event EventHandler MouseEnter;
+        public new event MouseEventHandler MouseMove;
+        public new event MouseEventHandler MouseDown;
+        public new event MouseEventHandler MouseUp;
+        public new event KeyPressEventHandler KeyPress;
+        public new event KeyEventHandler KeyDown;
+        public new event KeyEventHandler KeyUp;
+        public new event MouseEventHandler MouseDoubleClick;
+        public new event MouseEventHandler MouseClick;
+
+        private void View_MouseClick(object sender, MouseEventArgs e)
+        {
+            MouseClick?.Invoke(this, e);
+        }
+
+        private void View_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MouseDoubleClick?.Invoke(this, e);
         }
 
         private int scrollBarWidth = 0;
@@ -189,16 +214,6 @@ namespace Sunny.UI
         {
             return view;
         }
-
-        public event NodeLabelEditEventHandler AfterLabelEdit;
-        public new event EventHandler MouseLeave;
-        public new event EventHandler MouseEnter;
-        public new event MouseEventHandler MouseMove;
-        public new event MouseEventHandler MouseDown;
-        public new event MouseEventHandler MouseUp;
-        public new event KeyPressEventHandler KeyPress;
-        public new event KeyEventHandler KeyDown;
-        public new event KeyEventHandler KeyUp;
 
         [DefaultValue(false)]
         public bool LabelEdit
