@@ -35,6 +35,7 @@
  * 2022-10-28: V3.2.6 标题栏增加扩展按钮
  * 2023-02-24: V3.3.2 增加PageDeselecting，取消页面选择时增加判断
  * 2023-02-24: V3.3.2 取消设计期的Dock.Fill，改为运行时设置
+ * 2023-03-15: V3.3.3 重新梳理页面加载顺序
 ******************************************************************************/
 
 using System;
@@ -505,7 +506,7 @@ namespace Sunny.UI
             IsShown = true;
         }
 
-        public void ReLoad()
+        internal void ReLoad()
         {
             if (IsShown)
             {
