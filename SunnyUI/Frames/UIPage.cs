@@ -526,11 +526,6 @@ namespace Sunny.UI
         public virtual void Final()
         {
             Finalize?.Invoke(this, new EventArgs());
-
-            foreach (var item in this.GetControls<UIComboBox>(true))
-            {
-                item.HideFilterForm();
-            }
         }
 
         public void SetStyle(UIStyle style)

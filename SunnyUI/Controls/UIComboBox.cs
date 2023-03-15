@@ -34,6 +34,7 @@
  * 2022-11-13: V3.2.8 增加不显示过滤可以自动调整下拉框宽度
  * 2022-11-30: V3.3.0 增加Clear方法
  * 2023-02-04: V3.3.1 增加清除按钮
+ * 2023-03-15: V3.3.3 修改失去焦点自动关闭过滤下拉框
 ******************************************************************************/
 
 using System;
@@ -112,12 +113,6 @@ namespace Sunny.UI
         {
             if (Text.IsNullOrEmpty() && ShowFilter)
                 FillFilterTextEmpty();
-
-            foreach (var item in Parent.GetControls<UIComboBox>())
-            {
-                if (!item.Equals(this))
-                    item.HideFilterForm();
-            }
 
             FilterItemForm.AutoClose = false;
             if (!FilterItemForm.Visible)
@@ -407,12 +402,6 @@ namespace Sunny.UI
         [Description("过滤时删除字符串前面、后面的空格"), Category("SunnyUI")]
         public bool TrimFilter { get; set; }
 
-        public void HideFilterForm()
-        {
-            if (FilterItemForm.Visible)
-                FilterItemForm.Close();
-        }
-
         private void FillFilterTextEmpty()
         {
             filterForm.ListBox.Items.Clear();
@@ -592,6 +581,20 @@ namespace Sunny.UI
         public void ShowDropDown()
         {
             UIComboBox_ButtonClick(this, EventArgs.Empty);
+        }
+
+        public void HideDropDown()
+        {
+            if (!ShowFilter)
+            {
+                if (dropForm != null && dropForm.Visible)
+                    dropForm.Close();
+            }
+            else
+            {
+                if (FilterItemForm != null && FilterItemForm.Visible)
+                    FilterItemForm.Close();
+            }
         }
 
         [DefaultValue(false)]
@@ -823,6 +826,11 @@ namespace Sunny.UI
             {
                 ShowDropDown();
             }
+        }
+
+        private void edit_Leave(object sender, EventArgs e)
+        {
+            HideDropDown();
         }
 
         [DefaultValue(typeof(Color), "White")]

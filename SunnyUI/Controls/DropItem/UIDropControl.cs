@@ -445,7 +445,7 @@ namespace Sunny.UI
         }
 
         Rectangle ControlBoxRect;
-        public bool showClearButton;
+        protected bool showClearButton;
 
         protected override void OnGotFocus(EventArgs e)
         {
