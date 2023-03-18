@@ -587,8 +587,8 @@ namespace Sunny.UI
         {
             if (!ShowFilter)
             {
-                if (dropForm != null && dropForm.Visible)
-                    dropForm.Close();
+                if (ItemForm != null && ItemForm.Visible)
+                    ItemForm.Close();
             }
             else
             {

@@ -65,4 +65,12 @@ namespace Sunny.UI
     public delegate void OnSelectionChanged(object sender, UITextBoxSelectionArgs e);
 
     public delegate void OnDateTimeChanged(object sender, UIDateTimeArgs e);
+
+    public enum NumPadType
+    {
+        Text,
+        Integer,
+        Double,
+        IDNumber
+    }
 }
