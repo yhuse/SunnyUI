@@ -28,6 +28,7 @@
  * 2022-11-12: V3.2.8 修改浮点数大小离开判断为实时输入判断
  * 2022-11-12: V3.2.8 删除MaximumEnabled、MinimumEnabled、HasMaximum、HasMinimum属性
  * 2023-01-28: V3.3.1 修改文本框数据输入数据变更事件为MouseLeave
+ * 2023-03-24: V3.3.3 删除ForbidInput属性，使用Inputable属性
 ******************************************************************************/
 
 using System;
@@ -57,10 +58,6 @@ namespace Sunny.UI
             edit.MouseLeave += Edit_Leave;
             pnlValue.Paint += PnlValue_Paint;
         }
-
-        [DefaultValue(false)]
-        [Description("禁止输入"), Category("SunnyUI")]
-        public bool ForbidInput { get; set; }
 
         /// <summary>
         /// 需要额外设置ToolTip的控件
@@ -163,7 +160,6 @@ namespace Sunny.UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ForbidInput) return;
             if (ReadOnly) return;
 
             Value += Step;
