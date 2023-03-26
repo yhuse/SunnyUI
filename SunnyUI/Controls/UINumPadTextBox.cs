@@ -1,4 +1,26 @@
-﻿using System;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2023 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UINumPadTextBox.cs
+ * 文件说明: 模拟数字键盘输入框
+ * 当前版本: V3.3
+ * 创建日期: 2023-03-18
+ *
+ * 2023-03-18: V3.3.3 增加文件说明
+ * 2023-03-26: V3.3.3 增加默认事件ValueChanged，下键盘Enter事件相应此事件
+******************************************************************************/
+
+using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -6,6 +28,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [DefaultEvent("ValueChanged")]
     public class UINumPadTextBox : UIDropControl, IToolTip
     {
         public UINumPadTextBox()
@@ -16,6 +39,8 @@ namespace Sunny.UI
             fullControlSelect = true;
         }
 
+        public delegate void OnValueChanged(object sender, string value);
+        public event OnValueChanged ValueChanged;
         private NumPadType numPadType = NumPadType.Text;
 
         [DefaultValue(NumPadType.Text)]
@@ -125,6 +150,7 @@ namespace Sunny.UI
                     }
                     break;
                 case 13:
+                    ValueChanged?.Invoke(this, Text);
                     break;
                 default:
                     Win32.User.PostMessage(edit.Handle, WM_CHAR, (int)value, 0);
