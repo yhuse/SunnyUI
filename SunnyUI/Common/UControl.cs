@@ -388,7 +388,7 @@ namespace Sunny.UI
 
         internal static void HideComboDropDown(this Control ctrl)
         {
-            var ctrls = ctrl.RootForm().GetInterfaceControls("IHideDropDown", true);
+            var ctrls = ctrl.FindForm()?.GetInterfaceControls("IHideDropDown", true);
             foreach (var control in ctrls)
             {
                 if (control is IHideDropDown item)
