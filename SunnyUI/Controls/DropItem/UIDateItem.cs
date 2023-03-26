@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-05-29: V2.2.5 重写
  * 2020-07-04: V2.2.6 重写下拉窗体，缩短创建时间
+ * 2023-03-26: V3.3.3 修复下拉框鼠标移动位置的Bug
 ******************************************************************************/
 
 using System;
@@ -704,6 +705,8 @@ namespace Sunny.UI
             int y = e.Location.Y / height;
             int iy = x + y * 4;
 
+            if (iy < 0) return;
+            if (iy >= 12) return;
             if (years[iy] < min.Year) return;
             if (years[iy] > max.Year) return;
 
@@ -820,7 +823,7 @@ namespace Sunny.UI
             int y = (e.Location.Y - 30) / height;
             int iy = x + y * 7;
 
-            if (iy.InRange(0, days.Count))
+            if (iy.InRange(0, days.Count - 1))
             {
                 if (days[iy] < min) return;
                 if (days[iy] > max) return;
