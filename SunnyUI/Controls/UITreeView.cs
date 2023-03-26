@@ -31,6 +31,7 @@
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2022-12-06: V3.3.0 增加了可自定义行的颜色
  * 2023-03-13: V3.3.3 增加MouseDoubleClick和MouseClick事件
+ * 2023-03-26: V3.3.4 修改LabelEdit属性
 ******************************************************************************/
 
 using System;
@@ -219,7 +220,7 @@ namespace Sunny.UI
         public bool LabelEdit
         {
             get => view.LabelEdit;
-            set => view.LabelEdit = true;
+            set => view.LabelEdit = value;
         }
 
         private void View_KeyUp(object sender, KeyEventArgs e)
