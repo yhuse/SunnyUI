@@ -110,6 +110,12 @@ namespace Sunny.UI
             base.SizeGripStyle = SizeGripStyle.Hide;
         }
 
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            this.HideComboDropDown();
+        }
+
         public event PageDeselectingEventHandler PageDeselecting;
 
         internal bool OnPageDeselecting()

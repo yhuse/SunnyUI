@@ -213,7 +213,7 @@ namespace Sunny.UI
 
         public void Translate()
         {
-            List<Control> controls = this.GetTranslateControls("ITranslate");
+            List<Control> controls = this.GetInterfaceControls("ITranslate");
             foreach (var control in controls)
             {
                 if (control is ITranslate item)
@@ -683,6 +683,12 @@ namespace Sunny.UI
                 RectColorChanged?.Invoke(this, EventArgs.Empty);
                 SetStyleCustom();
             }
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            this.HideComboDropDown();
         }
 
         protected override void OnMouseClick(MouseEventArgs e)

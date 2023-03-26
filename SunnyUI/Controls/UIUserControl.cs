@@ -50,6 +50,12 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
         }
 
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            this.HideComboDropDown();
+        }
+
         [Browsable(false)]
         public bool Disabled => !Enabled;
 

@@ -537,7 +537,7 @@ namespace Sunny.UI
             return values;
         }
 
-        public static List<Control> GetTranslateControls(this Control ctrl, string interfaceName)
+        public static List<Control> GetInterfaceControls(this Control ctrl, string interfaceName)
         {
             List<Control> values = new List<Control>();
 
@@ -550,7 +550,7 @@ namespace Sunny.UI
 
                 if (obj.Controls.Count > 0)
                 {
-                    values.AddRange(obj.GetTranslateControls(interfaceName));
+                    values.AddRange(obj.GetInterfaceControls(interfaceName));
                 }
             }
 

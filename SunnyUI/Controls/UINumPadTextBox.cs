@@ -29,7 +29,7 @@ namespace Sunny.UI
 {
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]
-    public class UINumPadTextBox : UIDropControl, IToolTip
+    public class UINumPadTextBox : UIDropControl, IToolTip, IHideDropDown
     {
         public UINumPadTextBox()
         {

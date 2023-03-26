@@ -40,6 +40,11 @@ namespace Sunny.UI
         public const int EditorMaxHeight = 60;
     }
 
+    public interface IHideDropDown
+    {
+        public void HideDropDown();
+    }
+
     public class UIDateTimeArgs : EventArgs
     {
         public DateTime DateTime { get; set; }

@@ -386,6 +386,18 @@ namespace Sunny.UI
             return list;
         }
 
+        internal static void HideComboDropDown(this Control ctrl)
+        {
+            var ctrls = ctrl.RootForm().GetInterfaceControls("IHideDropDown", true);
+            foreach (var control in ctrls)
+            {
+                if (control is IHideDropDown item)
+                {
+                    item.HideDropDown();
+                }
+            }
+        }
+
         /// <summary>
         /// 查找包含接口名称的控件列表
         /// </summary>
