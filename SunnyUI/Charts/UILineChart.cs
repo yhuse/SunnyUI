@@ -40,6 +40,7 @@
  * 2022-07-30: V3.2.2 坐标轴的日期格式重构调整至坐标轴标签 AxisLabel.DateTimeFormat
  * 2022-08-17: V3.2.3 修复数据全为Nan时绘制出错
  * 2022-09-19: V3.2.4 增加鼠标可框选缩放属性MouseZoom
+ * 2023-03-26: V3.3.3 自定义X轴坐标时，点数据提示显示为原始值
 ******************************************************************************/
 
 using System;
@@ -839,12 +840,12 @@ namespace Sunny.UI
                         sb.Append(Option.XAxis.Name + ": ");
 
                         string customlabel = "";
-                        if (Option.XAxis.HaveCustomLabels)
-                        {
-                            int ci = (int)point.X;
-                            customlabel = Option.XAxis.CustomLabels.GetLabel(ci);
-                            sb.Append(customlabel);
-                        }
+                        //if (Option.XAxis.HaveCustomLabels)
+                        //{
+                        //    int ci = (int)((point.X - Option.XAxis.CustomLabels.Start) / Option.XAxis.CustomLabels.Interval);
+                        //    customlabel = Option.XAxis.CustomLabels.GetLabel(ci);
+                        //    sb.Append(customlabel);
+                        //}
 
                         if (customlabel.IsNullOrEmpty())
                         {
