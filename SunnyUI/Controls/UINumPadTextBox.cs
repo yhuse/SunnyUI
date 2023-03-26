@@ -18,6 +18,7 @@
  *
  * 2023-03-18: V3.3.3 增加文件说明
  * 2023-03-26: V3.3.3 增加默认事件ValueChanged，下键盘Enter事件相应此事件
+ * 2023-03-26: V3.3.4 增加了最大值、最小值等属性
 ******************************************************************************/
 
 using System;
@@ -267,6 +268,36 @@ namespace Sunny.UI
         {
             if (NumPadForm != null && NumPadForm.Visible)
                 NumPadForm.Close();
+        }
+
+        /// <summary>
+        /// 当InputType为数字类型时，能输入的最大值
+        /// </summary>
+        [Description("当InputType为数字类型时，能输入的最大值。"), Category("SunnyUI")]
+        [DefaultValue(2147483647D)]
+        public double Maximum
+        {
+            get => edit.MaxValue;
+            set => edit.MaxValue = value;
+        }
+
+        /// <summary>
+        /// 当InputType为数字类型时，能输入的最小值
+        /// </summary>
+        [Description("当InputType为数字类型时，能输入的最小值。"), Category("SunnyUI")]
+        [DefaultValue(-2147483648D)]
+        public double Minimum
+        {
+            get => edit.MinValue;
+            set => edit.MinValue = value;
+        }
+
+        [Description("浮点数，显示文字小数位数"), Category("SunnyUI")]
+        [DefaultValue(2)]
+        public int DecimalPlaces
+        {
+            get => edit.DecLength;
+            set => edit.DecLength = Math.Max(value, 0);
         }
     }
 }

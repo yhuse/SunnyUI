@@ -74,6 +74,14 @@ namespace Sunny.UI
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
+        [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool TouchPressClick
+        {
+            get => edit.TouchPressClick;
+            set => edit.TouchPressClick = value;
+        }
+
         private UIButton tipsBtn;
         public void SetTipsText(ToolTip toolTip, string text)
         {
