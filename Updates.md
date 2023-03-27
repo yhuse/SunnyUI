@@ -1,5 +1,18 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-03\-26 V3.3.4   
+\+ UINumPadTextBox: 增加模拟数字键盘输入框    
+\- UIIntegerUpDown: 删除ForbidInput属性，使用Inputable属性    
+\- UIDoubleUpDown: 删除ForbidInput属性，使用Inputable属性    
+\* UIEdit: 修复了删除为空时小数位数和设置值不一致的问题    
+\* UIPage: 调整了页面切换时Final和Init的顺序    
+\* UITreeView: 增加MouseDoubleClick和MouseClick事件    
+\* UIComboBox: 修改失去焦点自动关闭过滤下拉框    
+\* UIPage: 重新梳理页面加载顺序    
+\* UILineChart: 自定义X轴坐标时，点数据提示显示为原始值    
+\* UIDateItem: 修复下拉框鼠标移动位置的Bug    
+\* UINumPadTextBox: 增加默认事件ValueChanged，下键盘Enter事件相应此事件    
+    
 #### 2023\-03\-05 V3.3.3    
 \+ UIMiniPagination: 新增迷你分页控件，只有分页按钮，无其他    
 \* UINavMenu: 有子节点时，鼠标左键点击父级点展开/收缩，右键选中    
