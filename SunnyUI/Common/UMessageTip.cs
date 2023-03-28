@@ -12,7 +12,15 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UMessageTip.cs
- * 文件说明: UIMessageTip，轻快型消息提示窗
+ * 文件说明: 轻快型消息提示窗
+ * 当前版本: V3.1
+ * 创建日期: 2020-01-01
+ *
+ * 2020-01-01: V2.2.0 增加文件说明
+ * 2023-03-28: V3.3.4 解决了Release模式下GDI位图未释放的Bug
+******************************************************************************
+ * 文件名称: MessageTip.cs
+ * 文件说明: 轻快型消息提示窗
  * 文件作者: AhDung
  * 引用地址: https://www.cnblogs.com/ahdung/p/UIMessageTip.html
  * 当前版本: V2.0.0.2
@@ -20,7 +28,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -1406,7 +1413,7 @@ namespace Sunny.UI
                 }
 
                 //销毁窗体
-                Debug.WriteLineIf(!DestroyWindow(_hWnd), "Failed", "DestroyWindow");
+                DestroyWindow(_hWnd);
                 _hWnd = IntPtr.Zero;
 
                 //注销窗口类
@@ -1421,13 +1428,12 @@ namespace Sunny.UI
                     _wndClass = 0;
                 }
 
-                Debug.WriteLineIf(SelectObject(_dcMemory, _oldObj) == IntPtr.Zero, "Failed", "Restore _oldObj");
-                Debug.WriteLineIf(!DeleteDC(_dcMemory), "Failed", "Delete _dcMemory");
-                Debug.WriteLineIf(!DeleteObject(_hBmp), "Failed", "Delete _hBmp");
+                SelectObject(_dcMemory, _oldObj);
+                DeleteDC(_dcMemory);
+                DeleteObject(_hBmp);
                 _oldObj = IntPtr.Zero;
                 _dcMemory = IntPtr.Zero;
                 _hBmp = IntPtr.Zero;
-
                 _disposed = true;
             }
         }
