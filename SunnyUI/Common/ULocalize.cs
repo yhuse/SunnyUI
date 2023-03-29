@@ -216,6 +216,16 @@ namespace Sunny.UI
         /// 今天
         /// </summary>
         public static string Today = "今天";
+
+        /// <summary>
+        /// 搜索
+        /// </summary>
+        public static string Search = "搜索";
+
+        /// <summary>
+        /// 清除
+        /// </summary>
+        public static string Clear = "清除";
     }
 
     /// <summary>
@@ -271,6 +281,9 @@ namespace Sunny.UI
 
             UILocalize.Today = "Today";
 
+            UILocalize.Search = "Search";
+            UILocalize.Clear = "Clear";
+
             UIStyles.Translate();
         }
 
@@ -322,6 +335,9 @@ namespace Sunny.UI
             UILocalize.December = "十二月";
 
             UILocalize.Today = "今天";
+
+            UILocalize.Search = "搜索";
+            UILocalize.Clear = "清除";
 
             UIStyles.Translate();
         }
