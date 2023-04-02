@@ -607,12 +607,19 @@ namespace Sunny.UI
             {
                 NeedDrawClearButton = false;
                 Text = "";
-                if (!showFilter)
-                    dropForm.ListBox.SelectedIndex = -1;
-                else
-                    filterForm.ListBox.SelectedIndex = -1;
-                Invalidate();
 
+                if (!showFilter)
+                {
+                    while (dropForm.ListBox.SelectedIndex != -1)
+                        dropForm.ListBox.SelectedIndex = -1;
+                }
+                else
+                {
+                    while (filterForm.ListBox.SelectedIndex != -1)
+                        filterForm.ListBox.SelectedIndex = -1;
+                }
+
+                Invalidate();
                 return;
             }
 

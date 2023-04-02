@@ -23,6 +23,7 @@
  * 2022-07-12: V3.2.1 修复CanSelectRootNode时可以展开子节点
  * 2022-11-30: V3.3.0 增加Clear方法
  * 2023-02-04: V3.3.1 下拉框增加显示全选选择框
+ * 2023-04-02: V3.3.4 显示清除按钮
 ******************************************************************************/
 
 using System;
@@ -59,6 +60,14 @@ namespace Sunny.UI
             this.ButtonClick += this.UIComboTreeView_ButtonClick;
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        [DefaultValue(false)]
+        [Description("显示清除按钮"), Category("SunnyUI")]
+        public bool ShowClearButton
+        {
+            get => showClearButton;
+            set => showClearButton = value;
         }
 
         [DefaultValue(true)]
@@ -215,6 +224,15 @@ namespace Sunny.UI
 
         private void UIComboTreeView_ButtonClick(object sender, EventArgs e)
         {
+            if (NeedDrawClearButton)
+            {
+                NeedDrawClearButton = false;
+                Text = "";
+                TreeView.SelectedNode = null;
+                Invalidate();
+                return;
+            }
+
             ItemForm.Size = ItemSize;
             //item.TreeView.ExpandAll();
             item.CanSelectRootNode = CanSelectRootNode;
