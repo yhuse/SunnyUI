@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2023-04-02: V3.3.4 修复关闭弹窗null的Bug
 ******************************************************************************/
 
 using System;
@@ -388,7 +389,8 @@ namespace Sunny.UI
 
         internal static void HideComboDropDown(this Control ctrl)
         {
-            var ctrls = ctrl.FindForm()?.GetInterfaceControls("IHideDropDown", true);
+            var ctrls = ctrl?.FindForm()?.GetInterfaceControls("IHideDropDown", true);
+            if (ctrls == null) return;
             foreach (var control in ctrls)
             {
                 if (control is IHideDropDown item)
