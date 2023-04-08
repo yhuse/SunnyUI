@@ -1,5 +1,17 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-04\-08 V3.3.5    
+\*  **UMessageTip: 解决了Release模式下GDI位图未释放的Bug**     
+\* Demo: 重写FMain，从UIForm继承       
+\* UITreeView: 修改LabelEdit属性    
+\* 内置的一些容器增加关闭过滤下拉框的点击事件    
+\* UINumPadTextBox: 增加了最大值、最小值等属性    
+\* UGraphics: 重构了一遍绘图方法    
+\* UIComboDataGridViewItem: 增加多语翻译    
+\* UIComboTreeView: 显示清除按钮    
+\* UControl: 修复关闭弹窗null的Bug    
+\* UIDropControl: DropDownList时，显示水印文字    
+       
 #### 2023\-03\-26 V3.3.4   
 \+ UINumPadTextBox: 增加模拟数字键盘输入框    
 \- UIIntegerUpDown: 删除ForbidInput属性，使用Inputable属性    
