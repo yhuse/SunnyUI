@@ -21,6 +21,7 @@
  * 2020-07-05: V2.2.6 更新KeyDown、KeyUp、KeyPress事件
  * 2022-09-16: V3.2.4 支持自定义右键菜单
  * 2023-02-07: V3.3.1 增加Tips小红点
+ * 2023-04-08: V3.3.4 DropDownList时，显示水印文字
 ******************************************************************************/
 
 using System;
@@ -31,18 +32,6 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public enum UIDropDownStyle
-    {
-        /// <summary>
-        /// 通过单击下箭头指定显示列表，并指定文本部分可编辑。 这表示用户可以输入新的值，而不仅限于选择列表中现有的值。
-        /// </summary>
-        DropDown,
-        /// <summary>
-        /// 通过单击下箭头指定显示列表，并指定文本部分不可编辑。 这表示用户不能输入新的值。 只能选择列表中已有的值。
-        /// </summary>
-        DropDownList
-    }
-
     [ToolboxItem(false)]
     public partial class UIDropControl : UIPanel
     {
@@ -402,7 +391,10 @@ namespace Sunny.UI
 
             if (!edit.Visible)
             {
-                g.DrawString(Text, Font, GetForeColor(), Size, Padding, TextAlignment);
+                if (Text.IsValid())
+                    g.DrawString(Text, Font, GetForeColor(), Size, Padding, TextAlignment);
+                else if (Watermark.IsValid())
+                    g.DrawString(Watermark, Font, WatermarkColor, Size, Padding, TextAlignment, 6, 1);
             }
 
             g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));

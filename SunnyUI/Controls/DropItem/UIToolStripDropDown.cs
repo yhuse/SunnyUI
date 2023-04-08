@@ -221,4 +221,16 @@ namespace Sunny.UI
             FilterCount = filterCount;
         }
     }
+
+    public enum UIDropDownStyle
+    {
+        /// <summary>
+        /// 通过单击下箭头指定显示列表，并指定文本部分可编辑。 这表示用户可以输入新的值，而不仅限于选择列表中现有的值。
+        /// </summary>
+        DropDown,
+        /// <summary>
+        /// 通过单击下箭头指定显示列表，并指定文本部分不可编辑。 这表示用户不能输入新的值。 只能选择列表中已有的值。
+        /// </summary>
+        DropDownList
+    }
 }

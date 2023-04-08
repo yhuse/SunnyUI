@@ -1473,7 +1473,7 @@ namespace Sunny.UI
         /// <param name="size">大小</param>
         /// <param name="padding">边距</param>
         /// <param name="align">位置位置</param>
-        public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align)
+        public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align, int offsetX = 0, int offsetY = 0)
         {
             if (str.IsNullOrEmpty()) return;
             SizeF sf = g.MeasureString(str, font);
@@ -1481,40 +1481,40 @@ namespace Sunny.UI
             switch (align)
             {
                 case ContentAlignment.MiddleCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f,
-                        padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f);
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX,
+                        padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
                     break;
 
                 case ContentAlignment.TopLeft:
-                    g.DrawString(str, font, br, padding.Left, padding.Top);
+                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + offsetY);
                     break;
 
                 case ContentAlignment.TopCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f, padding.Top);
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, padding.Top + offsetY);
                     break;
 
                 case ContentAlignment.TopRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right, padding.Top);
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + offsetY);
                     break;
 
                 case ContentAlignment.MiddleLeft:
-                    g.DrawString(str, font, br, padding.Left, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f);
+                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
                     break;
 
                 case ContentAlignment.MiddleRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f);
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
                     break;
 
                 case ContentAlignment.BottomLeft:
-                    g.DrawString(str, font, br, padding.Left, size.Height - sf.Height - padding.Bottom);
+                    g.DrawString(str, font, br, padding.Left + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
                     break;
 
                 case ContentAlignment.BottomCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f, size.Height - sf.Height - padding.Bottom);
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
                     break;
 
                 case ContentAlignment.BottomRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right, size.Height - sf.Height - padding.Bottom);
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
                     break;
             }
         }
