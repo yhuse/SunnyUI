@@ -63,6 +63,8 @@
             this.uiLine9 = new Sunny.UI.UILine();
             this.uiLine10 = new Sunny.UI.UILine();
             this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
+            this.uiLine11 = new Sunny.UI.UILine();
+            this.uiSymbolButton12 = new Sunny.UI.UISymbolButton();
             this.SuspendLayout();
             // 
             // btnError
@@ -89,7 +91,6 @@
             this.btnError.TabIndex = 29;
             this.btnError.Text = "Error";
             this.btnError.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnError.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnError.Click += new System.EventHandler(this.btnError_Click);
             // 
             // btnWarn
@@ -116,7 +117,6 @@
             this.btnWarn.TabIndex = 28;
             this.btnWarn.Text = "Warn";
             this.btnWarn.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnWarn.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnWarn.Click += new System.EventHandler(this.btnWarn_Click);
             // 
             // btnSuccess
@@ -143,7 +143,6 @@
             this.btnSuccess.TabIndex = 27;
             this.btnSuccess.Text = "Success";
             this.btnSuccess.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSuccess.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnSuccess.Click += new System.EventHandler(this.btnSuccess_Click);
             // 
             // btnAsk
@@ -160,7 +159,6 @@
             this.btnAsk.TabIndex = 26;
             this.btnAsk.Text = "Query";
             this.btnAsk.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAsk.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnAsk.Click += new System.EventHandler(this.btnAsk_Click);
             // 
             // btnAuto
@@ -176,7 +174,6 @@
             this.btnAuto.TabIndex = 31;
             this.btnAuto.Text = "Auto";
             this.btnAuto.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAuto.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
             // btnStatus2
@@ -192,7 +189,6 @@
             this.btnStatus2.TabIndex = 36;
             this.btnStatus2.Text = "进度提示框";
             this.btnStatus2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStatus2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnStatus2.Click += new System.EventHandler(this.btnStatus2_Click);
             // 
             // btnInfo
@@ -219,7 +215,6 @@
             this.btnInfo.TabIndex = 37;
             this.btnInfo.Text = "Info";
             this.btnInfo.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnInfo.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnPasswordInput
@@ -235,7 +230,6 @@
             this.btnPasswordInput.TabIndex = 46;
             this.btnPasswordInput.Text = "密码输入框";
             this.btnPasswordInput.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnPasswordInput.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnPasswordInput.Click += new System.EventHandler(this.btnPasswordInput_Click);
             // 
             // btnDoubleInput
@@ -251,7 +245,6 @@
             this.btnDoubleInput.TabIndex = 45;
             this.btnDoubleInput.Text = "浮点数输入框";
             this.btnDoubleInput.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDoubleInput.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnDoubleInput.Click += new System.EventHandler(this.btnDoubleInput_Click);
             // 
             // btnIntInput
@@ -267,7 +260,6 @@
             this.btnIntInput.TabIndex = 44;
             this.btnIntInput.Text = "整数输入框";
             this.btnIntInput.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnIntInput.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnIntInput.Click += new System.EventHandler(this.btnIntInput_Click);
             // 
             // btnStringInput
@@ -283,7 +275,6 @@
             this.btnStringInput.TabIndex = 43;
             this.btnStringInput.Text = "字符串输入框";
             this.btnStringInput.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStringInput.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnStringInput.Click += new System.EventHandler(this.btnStringInput_Click);
             // 
             // uiLine1
@@ -296,7 +287,6 @@
             this.uiLine1.TabIndex = 47;
             this.uiLine1.Text = "UIMessageDialog";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine2
             // 
@@ -308,7 +298,6 @@
             this.uiLine2.TabIndex = 48;
             this.uiLine2.Text = "UIInputDialog";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine3
             // 
@@ -320,25 +309,23 @@
             this.uiLine3.TabIndex = 49;
             this.uiLine3.Text = "UIStatusForm";
             this.uiLine3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.Location = new System.Drawing.Point(372, 213);
+            this.uiLine4.Location = new System.Drawing.Point(543, 213);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
-            this.uiLine4.Size = new System.Drawing.Size(328, 20);
+            this.uiLine4.Size = new System.Drawing.Size(155, 20);
             this.uiLine4.TabIndex = 51;
             this.uiLine4.Text = "UISelectDialog";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton1
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(372, 245);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(543, 245);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -347,7 +334,6 @@
             this.uiSymbolButton1.TabIndex = 50;
             this.uiSymbolButton1.Text = "下拉选择框";
             this.uiSymbolButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
             // 
             // uiLine5
@@ -360,7 +346,6 @@
             this.uiLine5.TabIndex = 58;
             this.uiLine5.Text = "UINotifier";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton2
             // 
@@ -376,7 +361,6 @@
             this.uiSymbolButton2.TabIndex = 57;
             this.uiSymbolButton2.Text = "Info";
             this.uiSymbolButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
             // 
             // uiSymbolButton4
@@ -403,7 +387,6 @@
             this.uiSymbolButton4.TabIndex = 55;
             this.uiSymbolButton4.Text = "Error";
             this.uiSymbolButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton4.Click += new System.EventHandler(this.uiSymbolButton4_Click);
             // 
             // uiSymbolButton5
@@ -430,7 +413,6 @@
             this.uiSymbolButton5.TabIndex = 54;
             this.uiSymbolButton5.Text = "Warn";
             this.uiSymbolButton5.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton5.Click += new System.EventHandler(this.uiSymbolButton5_Click);
             // 
             // uiSymbolButton6
@@ -457,7 +439,6 @@
             this.uiSymbolButton6.TabIndex = 53;
             this.uiSymbolButton6.Text = "Success";
             this.uiSymbolButton6.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton6.Click += new System.EventHandler(this.uiSymbolButton6_Click);
             // 
             // uiLine6
@@ -470,7 +451,6 @@
             this.uiLine6.TabIndex = 59;
             this.uiLine6.Text = "ULocalize";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // btnEN
             // 
@@ -485,7 +465,6 @@
             this.btnEN.TabIndex = 61;
             this.btnEN.Text = "EN";
             this.btnEN.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnEN.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnEN.Click += new System.EventHandler(this.btnEN_Click);
             // 
             // btnCH
@@ -502,7 +481,6 @@
             this.btnCH.TabIndex = 60;
             this.btnCH.Text = "CH";
             this.btnCH.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCH.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnCH.Click += new System.EventHandler(this.btnCH_Click);
             // 
             // uiLine7
@@ -515,7 +493,6 @@
             this.uiLine7.TabIndex = 66;
             this.uiLine7.Text = "UIMessageTip";
             this.uiLine7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton7
             // 
@@ -541,7 +518,6 @@
             this.uiSymbolButton7.TabIndex = 64;
             this.uiSymbolButton7.Text = "Error";
             this.uiSymbolButton7.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton7.Click += new System.EventHandler(this.uiSymbolButton7_Click);
             // 
             // uiSymbolButton8
@@ -568,7 +544,6 @@
             this.uiSymbolButton8.TabIndex = 63;
             this.uiSymbolButton8.Text = "Warn";
             this.uiSymbolButton8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton8.Click += new System.EventHandler(this.uiSymbolButton8_Click);
             // 
             // uiSymbolButton9
@@ -595,7 +570,6 @@
             this.uiSymbolButton9.TabIndex = 62;
             this.uiSymbolButton9.Text = "Success";
             this.uiSymbolButton9.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton9.Click += new System.EventHandler(this.uiSymbolButton9_Click);
             // 
             // uiLine8
@@ -608,7 +582,6 @@
             this.uiLine8.TabIndex = 69;
             this.uiLine8.Text = "UILoginForm";
             this.uiLine8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton3
             // 
@@ -623,7 +596,6 @@
             this.uiSymbolButton3.TabIndex = 68;
             this.uiSymbolButton3.Text = "Login";
             this.uiSymbolButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click);
             // 
             // uiSymbolButton10
@@ -639,7 +611,6 @@
             this.uiSymbolButton10.TabIndex = 67;
             this.uiSymbolButton10.Text = "Login";
             this.uiSymbolButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton10.Click += new System.EventHandler(this.uiSymbolButton10_Click);
             // 
             // uiSymbolButton11
@@ -655,7 +626,6 @@
             this.uiSymbolButton11.TabIndex = 70;
             this.uiSymbolButton11.Text = "等待提示框";
             this.uiSymbolButton11.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton11.Click += new System.EventHandler(this.uiSymbolButton11_Click);
             // 
             // uiLine9
@@ -668,7 +638,6 @@
             this.uiLine9.TabIndex = 71;
             this.uiLine9.Text = "UIWaitingForm";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine10
             // 
@@ -680,7 +649,6 @@
             this.uiLine10.TabIndex = 74;
             this.uiLine10.Text = "选择文件夹";
             this.uiLine10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton13
             // 
@@ -695,14 +663,41 @@
             this.uiSymbolButton13.TabIndex = 72;
             this.uiSymbolButton13.Text = "选择文件夹";
             this.uiSymbolButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton13.Click += new System.EventHandler(this.uiSymbolButton13_Click);
+            // 
+            // uiLine11
+            // 
+            this.uiLine11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine11.Location = new System.Drawing.Point(372, 213);
+            this.uiLine11.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine11.Name = "uiLine11";
+            this.uiLine11.Size = new System.Drawing.Size(155, 20);
+            this.uiLine11.TabIndex = 78;
+            this.uiLine11.Text = "UIProcessForm";
+            this.uiLine11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiSymbolButton12
+            // 
+            this.uiSymbolButton12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton12.Location = new System.Drawing.Point(372, 245);
+            this.uiSymbolButton12.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton12.Name = "uiSymbolButton12";
+            this.uiSymbolButton12.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton12.Size = new System.Drawing.Size(155, 35);
+            this.uiSymbolButton12.Symbol = 61806;
+            this.uiSymbolButton12.TabIndex = 77;
+            this.uiSymbolButton12.Text = "等待提示框";
+            this.uiSymbolButton12.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton12.Click += new System.EventHandler(this.uiSymbolButton12_Click);
             // 
             // FDialogs
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 549);
+            this.Controls.Add(this.uiLine11);
+            this.Controls.Add(this.uiSymbolButton12);
             this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.uiLine10);
             this.Controls.Add(this.btnAsk);
@@ -784,5 +779,7 @@
         private UILine uiLine9;
         private UILine uiLine10;
         private UISymbolButton uiSymbolButton13;
+        private UILine uiLine11;
+        private UISymbolButton uiSymbolButton12;
     }
 }

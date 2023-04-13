@@ -219,5 +219,12 @@ namespace Sunny.UI.Demo
                 UIMessageTip.ShowOk(dir);
             }
         }
+
+        private void uiSymbolButton12_Click(object sender, EventArgs e)
+        {
+            ShowProcessForm(200);
+            Thread.Sleep(2000);
+            HideProcessForm();
+        }
     }
 }
