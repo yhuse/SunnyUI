@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-12-18: V3.3.0 修复了一个最小值大于0是，显示类型为字符串Text为空仍有显示的问题
  * 2023-03-07: V3.3.3 修复了删除为空时小数位数和设置值不一致的问题
+ * 2023-04-19: V3.3.5 修复了最大值最小值范围判断的问题
 ******************************************************************************/
 
 using System;
@@ -124,8 +125,11 @@ namespace Sunny.UI
             {
                 Invalidate();
             }
+
+            CheckMaxMin();
         }
 
+        private int textLength = 0;
         private void ThisTextChanged(object sender, EventArgs e)
         {
             if (this.TextLength > 0)
@@ -139,11 +143,13 @@ namespace Sunny.UI
 
             if (Text.IsValid())
             {
-                if (Type == UITextBox.UIEditType.Integer || Type == UITextBox.UIEditType.Double)
+                if (Text.Length > textLength && Type == UITextBox.UIEditType.Integer || Type == UITextBox.UIEditType.Double)
                 {
-                    CheckMaxMin();
+                    CheckMaxMin(true);
                 }
             }
+
+            textLength = Text.Length;
         }
 
         private void waterMarkContainer_Click(object sender, EventArgs e)
@@ -622,25 +628,40 @@ namespace Sunny.UI
             return value;
         }
 
-        public void CheckMaxMin()
+        public void CheckMaxMin(bool checkLen = false)
         {
             if (_uiEditType == UITextBox.UIEditType.Integer)
             {
                 if (Text == "" && CanEmpty) return;
                 if (!int.TryParse(Text, out var a)) return;
 
+                int tlen = Text.Replace("+", "").Replace("-", "").Length;
+                int mlen = MaxValue.ToString().Replace("+", "").Replace("-", "").Length;
+
                 if (a > MaxValue)
                 {
-                    a = (int)MaxValue;
-                    Text = a.ToString();
-                    SelectionStart = Text.Length;
+                    if (!checkLen || (checkLen && tlen >= mlen))
+                    {
+                        a = (int)MaxValue;
+                        Text = a.ToString();
+                        SelectionStart = Text.Length;
+                    }
                 }
 
+                mlen = MinValue.ToString().Replace("+", "").Replace("-", "").Length;
                 if (a < MinValue)
                 {
-                    a = (int)MinValue;
+                    if (!checkLen || (checkLen && tlen >= mlen))
+                    {
+                        a = (int)MinValue;
+                        Text = a.ToString();
+                        SelectionStart = Text.Length;
+                    }
+                }
+
+                if (!checkLen)
+                {
                     Text = a.ToString();
-                    SelectionStart = Text.Length;
                 }
             }
 
@@ -649,18 +670,33 @@ namespace Sunny.UI
                 if (Text == "" && CanEmpty) return;
                 if (!double.TryParse(Text, out var a)) return;
 
+                int tlen = Text.Replace("+", "").Replace("-", "").Length;
+                int mlen = MaxValue.ToString("f" + decLength).Replace("+", "").Replace("-", "").Length;
+
                 if (a > MaxValue)
                 {
-                    a = MaxValue;
-                    Text = a.ToString("f" + decLength);
-                    SelectionStart = Text.Length;
+                    if (!checkLen || (checkLen && tlen >= mlen))
+                    {
+                        a = MaxValue;
+                        Text = a.ToString("f" + decLength);
+                        SelectionStart = Text.Length;
+                    }
                 }
 
+                mlen = MinValue.ToString("f" + decLength).Replace("+", "").Replace("-", "").Length;
                 if (a < MinValue)
                 {
-                    a = MinValue;
+                    if (!checkLen || (checkLen && tlen >= mlen))
+                    {
+                        a = MinValue;
+                        Text = a.ToString("f" + decLength);
+                        SelectionStart = Text.Length;
+                    }
+                }
+
+                if (!checkLen)
+                {
                     Text = a.ToString("f" + decLength);
-                    SelectionStart = Text.Length;
                 }
             }
         }
