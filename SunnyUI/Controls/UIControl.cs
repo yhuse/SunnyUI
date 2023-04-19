@@ -303,12 +303,26 @@ namespace Sunny.UI
             _style = style;
         }
 
+        protected bool styleCustomMode = false;
         /// <summary>
         /// 自定义主题风格
         /// </summary>
         [DefaultValue(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode { get; set; }
+        public bool StyleCustomMode
+        {
+            get => styleCustomMode;
+            set
+            {
+                if (styleCustomMode != value)
+                {
+                    styleCustomMode = value;
+                    StyleCustomModeChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        public event EventHandler StyleCustomModeChanged;
 
         /// <summary>
         /// 设置主题样式颜色

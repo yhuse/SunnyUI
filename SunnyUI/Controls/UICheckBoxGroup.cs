@@ -22,6 +22,7 @@
  * 2020-07-04: V2.2.6 可以设置初始选中值
  * 2022-06-30: V3.2.0 设置条目状态前判断是否创建
  * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
+ * 2023-04-19: V3.3.5 设置选择项ForeColor
 ******************************************************************************/
 
 using System;
@@ -60,6 +61,15 @@ namespace Sunny.UI
         public UICheckBoxGroup()
         {
             items.CountChange += Items_CountChange;
+            StyleCustomModeChanged += UICheckBoxGroup_StyleCustomModeChanged;
+        }
+
+        private void UICheckBoxGroup_StyleCustomModeChanged(object sender, EventArgs e)
+        {
+            foreach (var item in boxes)
+            {
+                item.StyleCustomMode = styleCustomMode;
+            }
         }
 
         private void Items_CountChange(object sender, EventArgs e)
@@ -136,8 +146,19 @@ namespace Sunny.UI
                     box.IsScaled = IsScaled;
                     box.ValueChanged += Box_ValueChanged;
                     box.Text = Items[i]?.ToString();
+                    box.StyleCustomMode = StyleCustomMode;
+                    box.ForeColor = ForeColor;
                     boxes.Add(box);
                 }
+            }
+        }
+
+        protected override void AfterSetForeColor(Color color)
+        {
+            base.AfterSetForeColor(color);
+            foreach (var item in boxes)
+            {
+                item.ForeColor = color;
             }
         }
 

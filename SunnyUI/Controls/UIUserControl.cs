@@ -565,6 +565,7 @@ namespace Sunny.UI
         {
         }
 
+        protected bool styleCustomMode = false;
         /// <summary>
         /// 自定义主题风格
         /// </summary>
@@ -572,8 +573,18 @@ namespace Sunny.UI
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode
         {
-            get; set;
+            get => styleCustomMode;
+            set
+            {
+                if (styleCustomMode != value)
+                {
+                    styleCustomMode = value;
+                    StyleCustomModeChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
         }
+
+        public event EventHandler StyleCustomModeChanged;
 
         protected UIStyle _style = UIStyle.Blue;
 
