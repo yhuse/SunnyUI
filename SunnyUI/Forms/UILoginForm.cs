@@ -1,4 +1,26 @@
-﻿using Sunny.UI.Properties;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2023 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UILoginForm.cs
+ * 文件说明: 登录窗体基类
+ * 当前版本: V3.1
+ * 创建日期: 2020-01-01
+ *
+ * 2020-01-01: V2.2.0 增加文件说明
+ * 2023-04-19: V3.3.5 增加可选择显示时激活的控件
+******************************************************************************/
+
+using Sunny.UI.Properties;
 using System;
 using System.ComponentModel;
 
@@ -12,6 +34,29 @@ namespace Sunny.UI
         {
             InitializeComponent();
             lblSubText.Text = lblSubText.Version;
+        }
+
+        [Description("显示时激活的控件"), Category("SunnyUI")]
+        [DefaultValue(UILoginFormFocusControl.UserName)]
+        public UILoginFormFocusControl FocusControl { get; set; } = UILoginFormFocusControl.UserName;
+
+        private void UILoginForm_Shown(object sender, EventArgs e)
+        {
+            switch (FocusControl)
+            {
+                case UILoginFormFocusControl.UserName:
+                    edtUser.Focus();
+                    break;
+                case UILoginFormFocusControl.Password:
+                    edtPassword.Focus();
+                    break;
+                case UILoginFormFocusControl.ButtonLogin:
+                    btnLogin.Focus();
+                    break;
+                case UILoginFormFocusControl.ButtonCancel:
+                    btnCancel.Focus();
+                    break;
+            }
         }
 
         [Description("顶部标题"), Category("SunnyUI")]

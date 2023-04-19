@@ -36,6 +36,14 @@ namespace Sunny.UI
 
     public delegate void OnZoomScaleRectChanged(object sender, Rectangle info);
 
+    public enum UILoginFormFocusControl
+    {
+        UserName,
+        Password,
+        ButtonLogin,
+        ButtonCancel
+    }
+
     public class UIPageEventArgs : EventArgs
     {
         public UIPage Page { get; set; }
