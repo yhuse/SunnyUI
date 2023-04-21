@@ -34,7 +34,7 @@ namespace Sunny.UI
         /// <summary>
         /// X轴
         /// </summary>
-        public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Category);
+        public UIAxis XAxis { get; private set; } = new UIAxis(UIAxisType.Category);
 
         /// <summary>
         /// 工具提示
@@ -44,17 +44,17 @@ namespace Sunny.UI
         /// <summary>
         /// Y轴
         /// </summary>
-        public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
+        public UIAxis YAxis { get; private set; } = new UIAxis(UIAxisType.Value);
 
         /// <summary>
         /// 序列
         /// </summary>
-        public List<UIBarSeries> Series = new List<UIBarSeries>();
+        public readonly List<UIBarSeries> Series = new List<UIBarSeries>();
 
         /// <summary>
         /// 绘图表格
         /// </summary>
-        public UIChartGrid Grid = new UIChartGrid();
+        public readonly UIChartGrid Grid = new UIChartGrid();
 
         /// <summary>
         /// X轴自定义刻度线

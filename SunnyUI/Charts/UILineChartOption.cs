@@ -36,13 +36,13 @@ namespace Sunny.UI
 
         public bool ShowZeroValue { get; set; } = false;
 
-        public UIAxis XAxis { get; set; } = new UIAxis(UIAxisType.Value);
+        public UIAxis XAxis { get; private set; } = new UIAxis(UIAxisType.Value);
 
-        public UIAxis YAxis { get; set; } = new UIAxis(UIAxisType.Value);
+        public UIAxis YAxis { get; private set; } = new UIAxis(UIAxisType.Value);
 
-        public UIAxis Y2Axis { get; set; } = new UIAxis(UIAxisType.Value);
+        public UIAxis Y2Axis { get; private set; } = new UIAxis(UIAxisType.Value);
 
-        public UILineToolTip ToolTip { get; set; } = new UILineToolTip();
+        public UILineToolTip ToolTip { get; private set; } = new UILineToolTip();
 
         /// <summary>
         /// 析构函数

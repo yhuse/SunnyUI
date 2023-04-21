@@ -28,7 +28,7 @@ namespace Sunny.UI
 {
     public sealed class UIPieOption : UIOption, IDisposable
     {
-        public List<UIPieSeries> Series = new List<UIPieSeries>();
+        public readonly List<UIPieSeries> Series = new List<UIPieSeries>();
 
         public UIPieToolTip ToolTip { get; set; } = new UIPieToolTip();
 
@@ -86,7 +86,7 @@ namespace Sunny.UI
 
     public class UIDoughnutOption : UIOption, IDisposable
     {
-        public List<UIDoughnutSeries> Series = new List<UIDoughnutSeries>();
+        public readonly List<UIDoughnutSeries> Series = new List<UIDoughnutSeries>();
 
         public UIPieToolTip ToolTip { get; set; } = new UIPieToolTip();
 
@@ -163,7 +163,7 @@ namespace Sunny.UI
 
         internal readonly List<UIPieSeriesData> Data = new List<UIPieSeriesData>();
 
-        public UIPieSeriesLabel Label = new UIPieSeriesLabel();
+        public readonly UIPieSeriesLabel Label = new UIPieSeriesLabel();
 
         public delegate Color OnDataColorChangeEventHandler(double data);
 
