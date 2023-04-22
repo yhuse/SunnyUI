@@ -21,6 +21,7 @@
  * 2020-07-03: V2.2.6 修正调整ItemSize无效的Bug
  * 2020-07-04: V2.2.6 可以设置初始选中值
  * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
+ * 2023-04-22: V3.3.5 设置选择项ForeColor
 ******************************************************************************/
 
 using System;
@@ -43,6 +44,15 @@ namespace Sunny.UI
         public UIRadioButtonGroup()
         {
             items.CountChange += Items_CountChange;
+            StyleCustomModeChanged += UICheckBoxGroup_StyleCustomModeChanged;
+        }
+
+        private void UICheckBoxGroup_StyleCustomModeChanged(object sender, EventArgs e)
+        {
+            foreach (var item in buttons)
+            {
+                item.StyleCustomMode = styleCustomMode;
+            }
         }
 
         private void Items_CountChange(object sender, EventArgs e)
@@ -100,12 +110,23 @@ namespace Sunny.UI
                         Tag = i,
                         Style = Style,
                         IsScaled = IsScaled,
-                        Text = Items[i]?.ToString()
+                        Text = Items[i]?.ToString(),
+                        StyleCustomMode = StyleCustomMode,
+                        ForeColor = ForeColor
                     };
 
                     button.ValueChanged += Button_ValueChanged;
                     buttons.Add(button);
                 }
+            }
+        }
+
+        protected override void AfterSetForeColor(Color color)
+        {
+            base.AfterSetForeColor(color);
+            foreach (var item in buttons)
+            {
+                item.ForeColor = color;
             }
         }
 
