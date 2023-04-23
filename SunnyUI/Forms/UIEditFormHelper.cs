@@ -80,6 +80,8 @@ namespace Sunny.UI
         public string DisplayMember { get; set; }
 
         public string ValueMember { get; set; }
+
+        public int DecimalPlaces { get; set; } = 2;
     }
 
     public class UIEditOption
@@ -147,6 +149,26 @@ namespace Sunny.UI
                 Value = value,
                 Enabled = enabled,
                 HalfWidth = halfWidth
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddDouble(string dataPropertyName, string text, double value, int decimalPlaces, bool enabled = true, bool halfWidth = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.Double,
+                Text = text,
+                Value = value,
+                Enabled = enabled,
+                HalfWidth = halfWidth,
+                DecimalPlaces = decimalPlaces
             };
 
             Infos.Add(info);

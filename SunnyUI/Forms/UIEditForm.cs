@@ -22,6 +22,7 @@
  * 2021-10-26: V3.0.8 代码生成增加ComboTreeView类型
  * 2021-10-28: V3.0.8 代码生成增加ComboCheckedListBox类型
  * 2022-04-18: V3.1.5 修改一处Show引起的无法获取控件值的问题
+ * 2023-04-23: V3.3.5 代码生成增加，Double类型增加小数点位数
 ******************************************************************************/
 
 using System;
@@ -111,6 +112,7 @@ namespace Sunny.UI
                 {
                     ctrl = new UITextBox();
                     var edit = (UITextBox)ctrl;
+                    edit.DecimalPlaces = info.DecimalPlaces;
                     edit.Type = UITextBox.UIEditType.Double;
                     edit.DoubleValue = info.Value.ToString().ToDouble();
                     edit.EnterAsTab = true;
