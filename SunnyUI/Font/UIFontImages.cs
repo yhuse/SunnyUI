@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-01-28: V3.1.0 增加搜索框，搜索结果标红显示
+ * 2023-04-23: V3.3.5 增加搜索结果显示页面
 ******************************************************************************/
 
 using System;
@@ -42,6 +43,7 @@ namespace Sunny.UI
         private readonly ConcurrentQueue<Label> FontAwesomeV6SolidLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV6BrandsLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV6RegularLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> SearchLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -49,6 +51,12 @@ namespace Sunny.UI
         public UIFontImages()
         {
             InitializeComponent();
+            lblResult.DoubleBuffered();
+            lpAwesome.DoubleBuffered();
+            lpElegant.DoubleBuffered();
+            lpV6Brands.DoubleBuffered();
+            lpV6Regular.DoubleBuffered();
+            lpV6Solid.DoubleBuffered();
         }
 
         private void UIFontImages_Load(object sender, EventArgs e)
@@ -259,6 +267,7 @@ namespace Sunny.UI
                 Margin = new Padding(2)
             };
 
+            lbl.DoubleBuffered();
             lbl.Click += lbl_DoubleClick;
             lbl.MouseEnter += Lbl_MouseEnter;
             lbl.MouseLeave += Lbl_MouseLeave;
@@ -331,7 +340,7 @@ namespace Sunny.UI
             }
         }
 
-        private void LoadLabels(Type type, ConcurrentQueue<Label> labels, UISymbolType symbolType)
+        private void LoadLabels(Type type, ConcurrentQueue<Label> labels, UISymbolType symbolType, string filter = "")
         {
             ConcurrentDictionary<int, FieldInfo> dic = new ConcurrentDictionary<int, FieldInfo>();
             foreach (var fieldInfo in type.GetFields())
@@ -348,7 +357,10 @@ namespace Sunny.UI
 
             foreach (var value in list)
             {
-                labels.Enqueue(CreateLabel(dic[value].Name, value, symbolType));
+                if (filter == "")
+                    labels.Enqueue(CreateLabel(dic[value].Name, value, symbolType));
+                else if (dic[value].Name.ToUpper().Contains(filter.ToUpper()))
+                    labels.Enqueue(CreateLabel(dic[value].Name, value, symbolType));
             }
 
             dic.Clear();
@@ -368,99 +380,48 @@ namespace Sunny.UI
 
         private void bg3_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV6BrandsCount = 457;
             LoadLabels(typeof(FontAweSomeV6Brands), FontAwesomeV6BrandsLabels, UISymbolType.FontAwesomeV6Brands);
         }
 
         private void bg4_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV6RegularCount = 151;
             LoadLabels(typeof(FontAweSomeV6Regular), FontAwesomeV6RegularLabels, UISymbolType.FontAwesomeV6Regular);
         }
 
         private void bg5_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV6SolidCount = 1001;
             LoadLabels(typeof(FontAweSomeV6Solid), FontAwesomeV6SolidLabels, UISymbolType.FontAwesomeV6Solid);
         }
-
-        int findCount = 0;
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.IsNullOrEmpty()) return;
-            findCount = 0;
-            foreach (var item in lpV6Brands.Controls)
+            lblResult.Controls.Clear();
+            SearchLabels.Clear();
+
+            LoadLabels(typeof(FontAwesomeIcons), SearchLabels, UISymbolType.FontAwesomeV4, textBox1.Text);
+            LoadLabels(typeof(FontElegantIcons), SearchLabels, UISymbolType.FontAwesomeV4, textBox1.Text);
+            LoadLabels(typeof(FontAweSomeV6Brands), SearchLabels, UISymbolType.FontAwesomeV6Brands, textBox1.Text);
+            LoadLabels(typeof(FontAweSomeV6Regular), SearchLabels, UISymbolType.FontAwesomeV6Regular, textBox1.Text);
+            LoadLabels(typeof(FontAweSomeV6Solid), SearchLabels, UISymbolType.FontAwesomeV6Solid, textBox1.Text);
+
+            label1.Text = SearchLabels.Count + " results.";
+            while (!SearchLabels.IsEmpty)
             {
-                if (item is Label lbl)
+                if (SearchLabels.TryDequeue(out Label lbl))
                 {
-                    SetLabelFilter(lbl);
+                    lblResult.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
                 }
             }
 
-            foreach (var item in lpAwesome.Controls)
-            {
-                if (item is Label lbl)
-                {
-                    SetLabelFilter(lbl);
-                }
-            }
-
-            foreach (var item in lpElegant.Controls)
-            {
-                if (item is Label lbl)
-                {
-                    SetLabelFilter(lbl);
-                }
-            }
-
-            foreach (var item in lpV6Regular.Controls)
-            {
-                if (item is Label lbl)
-                {
-                    SetLabelFilter(lbl);
-                }
-            }
-
-            foreach (var item in lpV6Solid.Controls)
-            {
-                if (item is Label lbl)
-                {
-                    SetLabelFilter(lbl);
-                }
-            }
-
-            label1.Text = findCount + " results.";
-        }
-
-        private void SetLabelFilter(Label lbl)
-        {
-            SymbolValue symbol = (SymbolValue)lbl.Tag;
-            if (textBox1.Text.IsNullOrEmpty() || !symbol.Name.Contains(textBox1.Text))
-            {
-                if (symbol.IsRed)
-                    lbl.Image = FontImageHelper.CreateImage(symbol.Symbol + (int)symbol.SymbolType * 100000, 28, UIFontColor.Primary);
-
-                symbol.IsRed = false;
-            }
-            else
-            {
-                if (!symbol.IsRed)
-                    lbl.Image = FontImageHelper.CreateImage(symbol.Symbol + (int)symbol.SymbolType * 100000, 28, UIColor.Red);
-
-                symbol.IsRed = true;
-                findCount++;
-            }
+            tabControl1.SelectedTab = tabPage7;
         }
 
         private void UIFontImages_Shown(object sender, EventArgs e)
         {
             textBox1.Focus();
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

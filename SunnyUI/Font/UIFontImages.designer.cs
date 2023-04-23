@@ -34,14 +34,16 @@
             lpCustom = new System.Windows.Forms.FlowLayoutPanel();
             tabPage5 = new System.Windows.Forms.TabPage();
             lpV6Solid = new System.Windows.Forms.FlowLayoutPanel();
-            tabPage4 = new System.Windows.Forms.TabPage();
-            lpV6Brands = new System.Windows.Forms.FlowLayoutPanel();
             tabPage6 = new System.Windows.Forms.TabPage();
             lpV6Regular = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage4 = new System.Windows.Forms.TabPage();
+            lpV6Brands = new System.Windows.Forms.FlowLayoutPanel();
             tabPage2 = new System.Windows.Forms.TabPage();
             lpAwesome = new System.Windows.Forms.FlowLayoutPanel();
             tabPage3 = new System.Windows.Forms.TabPage();
             lpElegant = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage7 = new System.Windows.Forms.TabPage();
+            lblResult = new System.Windows.Forms.FlowLayoutPanel();
             bg1 = new System.ComponentModel.BackgroundWorker();
             timer = new System.Windows.Forms.Timer(components);
             toolTip = new System.Windows.Forms.ToolTip(components);
@@ -57,10 +59,11 @@
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage5.SuspendLayout();
-            tabPage4.SuspendLayout();
             tabPage6.SuspendLayout();
+            tabPage4.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage7.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,6 +75,7 @@
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage7);
             tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             tabControl1.ItemSize = new System.Drawing.Size(48, 24);
             tabControl1.Location = new System.Drawing.Point(0, 81);
@@ -121,27 +125,6 @@
             lpV6Solid.Size = new System.Drawing.Size(886, 572);
             lpV6Solid.TabIndex = 3;
             // 
-            // tabPage4
-            // 
-            tabPage4.Controls.Add(lpV6Brands);
-            tabPage4.Location = new System.Drawing.Point(4, 28);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            tabPage4.Size = new System.Drawing.Size(892, 578);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "V6 Brands";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // lpV6Brands
-            // 
-            lpV6Brands.AutoScroll = true;
-            lpV6Brands.Dock = System.Windows.Forms.DockStyle.Fill;
-            lpV6Brands.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
-            lpV6Brands.Location = new System.Drawing.Point(3, 3);
-            lpV6Brands.Name = "lpV6Brands";
-            lpV6Brands.Size = new System.Drawing.Size(886, 572);
-            lpV6Brands.TabIndex = 3;
-            // 
             // tabPage6
             // 
             tabPage6.Controls.Add(lpV6Regular);
@@ -162,6 +145,27 @@
             lpV6Regular.Name = "lpV6Regular";
             lpV6Regular.Size = new System.Drawing.Size(886, 572);
             lpV6Regular.TabIndex = 3;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(lpV6Brands);
+            tabPage4.Location = new System.Drawing.Point(4, 28);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            tabPage4.Size = new System.Drawing.Size(892, 578);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "V6 Brands";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // lpV6Brands
+            // 
+            lpV6Brands.AutoScroll = true;
+            lpV6Brands.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpV6Brands.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpV6Brands.Location = new System.Drawing.Point(3, 3);
+            lpV6Brands.Name = "lpV6Brands";
+            lpV6Brands.Size = new System.Drawing.Size(886, 572);
+            lpV6Brands.TabIndex = 3;
             // 
             // tabPage2
             // 
@@ -205,6 +209,27 @@
             lpElegant.Size = new System.Drawing.Size(886, 572);
             lpElegant.TabIndex = 2;
             // 
+            // tabPage7
+            // 
+            tabPage7.Controls.Add(lblResult);
+            tabPage7.Location = new System.Drawing.Point(4, 28);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            tabPage7.Size = new System.Drawing.Size(892, 578);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "Search result";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // lblResult
+            // 
+            lblResult.AutoScroll = true;
+            lblResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            lblResult.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lblResult.Location = new System.Drawing.Point(3, 3);
+            lblResult.Name = "lblResult";
+            lblResult.Size = new System.Drawing.Size(886, 572);
+            lblResult.TabIndex = 3;
+            // 
             // bg1
             // 
             bg1.DoWork += bg_DoWork;
@@ -245,7 +270,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label2.ForeColor = System.Drawing.Color.FromArgb(230, 80, 80);
+            label2.ForeColor = System.Drawing.Color.Blue;
             label2.Location = new System.Drawing.Point(12, 14);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(631, 16);
@@ -256,7 +281,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label1.ForeColor = System.Drawing.Color.FromArgb(230, 80, 80);
+            label1.ForeColor = System.Drawing.Color.Blue;
             label1.Location = new System.Drawing.Point(441, 48);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(87, 16);
@@ -282,7 +307,6 @@
             textBox1.Size = new System.Drawing.Size(317, 26);
             textBox1.TabIndex = 0;
             textBox1.KeyDown += textBox1_KeyDown;
-            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // UIFontImages
             // 
@@ -299,10 +323,11 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage5.ResumeLayout(false);
-            tabPage4.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
+            tabPage7.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -335,5 +360,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.FlowLayoutPanel lblResult;
     }
 }
