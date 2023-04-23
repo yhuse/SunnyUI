@@ -28,266 +28,284 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lpCustom = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lpAwesome = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.lpV5Solid = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.lpElegant = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.lpV5Brands = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.lpV5Regular = new System.Windows.Forms.FlowLayoutPanel();
-            this.bg1 = new System.ComponentModel.BackgroundWorker();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.bg2 = new System.ComponentModel.BackgroundWorker();
-            this.bg3 = new System.ComponentModel.BackgroundWorker();
-            this.bg4 = new System.ComponentModel.BackgroundWorker();
-            this.bg5 = new System.ComponentModel.BackgroundWorker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tabControl1 = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            lpCustom = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage5 = new System.Windows.Forms.TabPage();
+            lpV6Solid = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage4 = new System.Windows.Forms.TabPage();
+            lpV6Brands = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage6 = new System.Windows.Forms.TabPage();
+            lpV6Regular = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage2 = new System.Windows.Forms.TabPage();
+            lpAwesome = new System.Windows.Forms.FlowLayoutPanel();
+            tabPage3 = new System.Windows.Forms.TabPage();
+            lpElegant = new System.Windows.Forms.FlowLayoutPanel();
+            bg1 = new System.ComponentModel.BackgroundWorker();
+            timer = new System.Windows.Forms.Timer(components);
+            toolTip = new System.Windows.Forms.ToolTip(components);
+            bg2 = new System.ComponentModel.BackgroundWorker();
+            bg3 = new System.ComponentModel.BackgroundWorker();
+            bg4 = new System.ComponentModel.BackgroundWorker();
+            bg5 = new System.ComponentModel.BackgroundWorker();
+            panel1 = new System.Windows.Forms.Panel();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            textBox1 = new System.Windows.Forms.TextBox();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage6.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 46);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(705, 456);
-            this.tabControl1.TabIndex = 0;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage6);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControl1.ItemSize = new System.Drawing.Size(48, 24);
+            tabControl1.Location = new System.Drawing.Point(0, 81);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(900, 610);
+            tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lpCustom);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(697, 430);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Custom";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(lpCustom);
+            tabPage1.Location = new System.Drawing.Point(4, 28);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(892, 578);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Custom";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // lpCustom
             // 
-            this.lpCustom.AutoScroll = true;
-            this.lpCustom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpCustom.Location = new System.Drawing.Point(3, 3);
-            this.lpCustom.Name = "lpCustom";
-            this.lpCustom.Size = new System.Drawing.Size(691, 424);
-            this.lpCustom.TabIndex = 1;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.lpAwesome);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(697, 430);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "FontAwesomeV4";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lpAwesome
-            // 
-            this.lpAwesome.AutoScroll = true;
-            this.lpAwesome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpAwesome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.lpAwesome.Location = new System.Drawing.Point(3, 3);
-            this.lpAwesome.Name = "lpAwesome";
-            this.lpAwesome.Size = new System.Drawing.Size(691, 424);
-            this.lpAwesome.TabIndex = 1;
+            lpCustom.AutoScroll = true;
+            lpCustom.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpCustom.Location = new System.Drawing.Point(3, 3);
+            lpCustom.Name = "lpCustom";
+            lpCustom.Size = new System.Drawing.Size(886, 572);
+            lpCustom.TabIndex = 1;
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.lpV5Solid);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(697, 430);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "V5Solid";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            tabPage5.Controls.Add(lpV6Solid);
+            tabPage5.Location = new System.Drawing.Point(4, 28);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            tabPage5.Size = new System.Drawing.Size(892, 578);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "FontAwesome V6 Solid";
+            tabPage5.UseVisualStyleBackColor = true;
             // 
-            // lpV5Solid
+            // lpV6Solid
             // 
-            this.lpV5Solid.AutoScroll = true;
-            this.lpV5Solid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpV5Solid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.lpV5Solid.Location = new System.Drawing.Point(3, 3);
-            this.lpV5Solid.Name = "lpV5Solid";
-            this.lpV5Solid.Size = new System.Drawing.Size(691, 424);
-            this.lpV5Solid.TabIndex = 3;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.lpElegant);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(697, 430);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "ElegantFont";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // lpElegant
-            // 
-            this.lpElegant.AutoScroll = true;
-            this.lpElegant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpElegant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.lpElegant.Location = new System.Drawing.Point(3, 3);
-            this.lpElegant.Name = "lpElegant";
-            this.lpElegant.Size = new System.Drawing.Size(691, 424);
-            this.lpElegant.TabIndex = 2;
+            lpV6Solid.AutoScroll = true;
+            lpV6Solid.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpV6Solid.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpV6Solid.Location = new System.Drawing.Point(3, 3);
+            lpV6Solid.Name = "lpV6Solid";
+            lpV6Solid.Size = new System.Drawing.Size(886, 572);
+            lpV6Solid.TabIndex = 3;
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.lpV5Brands);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(697, 430);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "V5Brands";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            tabPage4.Controls.Add(lpV6Brands);
+            tabPage4.Location = new System.Drawing.Point(4, 28);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            tabPage4.Size = new System.Drawing.Size(892, 578);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "V6 Brands";
+            tabPage4.UseVisualStyleBackColor = true;
             // 
-            // lpV5Brands
+            // lpV6Brands
             // 
-            this.lpV5Brands.AutoScroll = true;
-            this.lpV5Brands.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpV5Brands.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.lpV5Brands.Location = new System.Drawing.Point(3, 3);
-            this.lpV5Brands.Name = "lpV5Brands";
-            this.lpV5Brands.Size = new System.Drawing.Size(691, 424);
-            this.lpV5Brands.TabIndex = 3;
+            lpV6Brands.AutoScroll = true;
+            lpV6Brands.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpV6Brands.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpV6Brands.Location = new System.Drawing.Point(3, 3);
+            lpV6Brands.Name = "lpV6Brands";
+            lpV6Brands.Size = new System.Drawing.Size(886, 572);
+            lpV6Brands.TabIndex = 3;
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.lpV5Regular);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(697, 430);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "V5Regular";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            tabPage6.Controls.Add(lpV6Regular);
+            tabPage6.Location = new System.Drawing.Point(4, 28);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            tabPage6.Size = new System.Drawing.Size(892, 578);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "V6 Regular";
+            tabPage6.UseVisualStyleBackColor = true;
             // 
-            // lpV5Regular
+            // lpV6Regular
             // 
-            this.lpV5Regular.AutoScroll = true;
-            this.lpV5Regular.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lpV5Regular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.lpV5Regular.Location = new System.Drawing.Point(3, 3);
-            this.lpV5Regular.Name = "lpV5Regular";
-            this.lpV5Regular.Size = new System.Drawing.Size(691, 424);
-            this.lpV5Regular.TabIndex = 3;
+            lpV6Regular.AutoScroll = true;
+            lpV6Regular.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpV6Regular.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpV6Regular.Location = new System.Drawing.Point(3, 3);
+            lpV6Regular.Name = "lpV6Regular";
+            lpV6Regular.Size = new System.Drawing.Size(886, 572);
+            lpV6Regular.TabIndex = 3;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(lpAwesome);
+            tabPage2.Location = new System.Drawing.Point(4, 28);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(892, 578);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "FontAwesome V4";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lpAwesome
+            // 
+            lpAwesome.AutoScroll = true;
+            lpAwesome.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpAwesome.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpAwesome.Location = new System.Drawing.Point(3, 3);
+            lpAwesome.Name = "lpAwesome";
+            lpAwesome.Size = new System.Drawing.Size(886, 572);
+            lpAwesome.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(lpElegant);
+            tabPage3.Location = new System.Drawing.Point(4, 28);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            tabPage3.Size = new System.Drawing.Size(892, 578);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "ElegantFont";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lpElegant
+            // 
+            lpElegant.AutoScroll = true;
+            lpElegant.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpElegant.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpElegant.Location = new System.Drawing.Point(3, 3);
+            lpElegant.Name = "lpElegant";
+            lpElegant.Size = new System.Drawing.Size(886, 572);
+            lpElegant.TabIndex = 2;
             // 
             // bg1
             // 
-            this.bg1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg_DoWork);
+            bg1.DoWork += bg_DoWork;
             // 
             // timer
             // 
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            timer.Tick += timer_Tick;
             // 
             // bg2
             // 
-            this.bg2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg2_DoWork);
+            bg2.DoWork += bg2_DoWork;
             // 
             // bg3
             // 
-            this.bg3.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg3_DoWork);
+            bg3.DoWork += bg3_DoWork;
             // 
             // bg4
             // 
-            this.bg4.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg4_DoWork);
+            bg4.DoWork += bg4_DoWork;
             // 
             // bg5
             // 
-            this.bg5.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg5_DoWork);
+            bg5.DoWork += bg5_DoWork;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(705, 46);
-            this.panel1.TabIndex = 0;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(textBox1);
+            panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(900, 81);
+            panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.ForeColor = System.Drawing.Color.FromArgb(230, 80, 80);
+            label2.Location = new System.Drawing.Point(12, 14);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(631, 16);
+            label2.TabIndex = 6;
+            label2.Text = "请输入图标的英文开始查询，Please enter the name of the Symbol to start search.";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(422, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "0 results.";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.FromArgb(230, 80, 80);
+            label1.Location = new System.Drawing.Point(441, 48);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(87, 16);
+            label1.TabIndex = 5;
+            label1.Text = "0 results.";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(336, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            button1.Location = new System.Drawing.Point(331, 42);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(93, 28);
+            button1.TabIndex = 4;
+            button1.Text = "Search";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(317, 21);
-            this.textBox1.TabIndex = 0;
+            textBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            textBox1.Location = new System.Drawing.Point(7, 43);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new System.Drawing.Size(317, 26);
+            textBox1.TabIndex = 0;
+            textBox1.KeyDown += textBox1_KeyDown;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // UIFontImages
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(705, 502);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("宋体", 9F);
-            this.Name = "UIFontImages";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Symbols";
-            this.Load += new System.EventHandler(this.UIFontImages_Load);
-            this.Shown += new System.EventHandler(this.UIFontImages_Shown);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(900, 691);
+            Controls.Add(tabControl1);
+            Controls.Add(panel1);
+            Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Name = "UIFontImages";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Symbols";
+            Load += UIFontImages_Load;
+            Shown += UIFontImages_Shown;
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage6.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -305,9 +323,9 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.FlowLayoutPanel lpV5Brands;
-        private System.Windows.Forms.FlowLayoutPanel lpV5Solid;
-        private System.Windows.Forms.FlowLayoutPanel lpV5Regular;
+        private System.Windows.Forms.FlowLayoutPanel lpV6Brands;
+        private System.Windows.Forms.FlowLayoutPanel lpV6Solid;
+        private System.Windows.Forms.FlowLayoutPanel lpV6Regular;
         private System.ComponentModel.BackgroundWorker bg2;
         private System.ComponentModel.BackgroundWorker bg3;
         private System.ComponentModel.BackgroundWorker bg4;
@@ -316,5 +334,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

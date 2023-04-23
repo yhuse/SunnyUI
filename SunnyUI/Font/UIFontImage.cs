@@ -20,6 +20,7 @@
  * 2020-05-21: V2.2.5 调整从资源文件中加载字体，不用另存为文件。
  *                    感谢：麦壳饼 https://gitee.com/maikebing
  * 2021-06-15: V3.0.4 增加FontAwesomeV5的字体图标，重构代码
+ * 2021-06-15: V3.3.5 增加FontAwesomeV6的字体图标，重构代码
 ******************************************************************************/
 
 using System;
@@ -49,25 +50,25 @@ namespace Sunny.UI
         public static readonly FontImages ElegantIcons;
 
         /// <summary>
-        /// FontAwesomeV5Brands
+        /// FontAwesomeV6Brands
         /// </summary>
-        public static readonly FontImages FontAwesomeV5Brands;
+        public static readonly FontImages FontAwesomeV6Brands;
 
         /// <summary>
-        /// FontAwesomeV5Regular
+        /// FontAwesomeV6Regular
         /// </summary>
-        public static readonly FontImages FontAwesomeV5Regular;
+        public static readonly FontImages FontAwesomeV6Regular;
 
         /// <summary>
-        /// FontAwesomeV5Solid
+        /// FontAwesomeV6Solid
         /// </summary>
-        public static readonly FontImages FontAwesomeV5Solid;
+        public static readonly FontImages FontAwesomeV6Solid;
 
         //public const int FontAwesomeV4Count = 786; 
         //public const int ElegantIconsCount = 360;
-        //public const int FontAwesomeV5RegularCount = 151;
-        //public const int FontAwesomeV5SolidCount = 1001;
-        //public const int FontAwesomeV5BrandsCount = 457;
+        //public const int FontAwesomeV6RegularCount = 151;
+        //public const int FontAwesomeV6SolidCount = 1001;
+        //public const int FontAwesomeV6BrandsCount = 457;
         //public const int LineAwesomeRegularCount = 151;
         //public const int LineAwesomeSolidCount = 960;
         //public const int LineAwesomeBrandsCount = 433;
@@ -79,9 +80,9 @@ namespace Sunny.UI
         {
             FontAwesomeV4 = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.FontAwesome.ttf"));
             ElegantIcons = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.ElegantIcons.ttf"));
-            FontAwesomeV5Brands = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-brands-400.ttf"));
-            FontAwesomeV5Regular = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-regular-400.ttf"));
-            FontAwesomeV5Solid = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-solid-900.ttf"));
+            FontAwesomeV6Brands = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-brands-400.ttf"));
+            FontAwesomeV6Regular = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-regular-400.ttf"));
+            FontAwesomeV6Solid = new FontImages(ReadFontFileFromResource("Sunny.UI.Font.fa-solid-900.ttf"));
         }
 
         private static byte[] ReadFontFileFromResource(string name)
@@ -211,12 +212,12 @@ namespace Sunny.UI
                         return FontAwesomeV4.GetFont(symbolValue, imageSize);
                     else
                         return ElegantIcons.GetFont(symbolValue, imageSize);
-                case UISymbolType.FontAwesomeV5Brands:
-                    return FontAwesomeV5Brands.GetFont(symbolValue, imageSize);
-                case UISymbolType.FontAwesomeV5Regular:
-                    return FontAwesomeV5Regular.GetFont(symbolValue, imageSize);
-                case UISymbolType.FontAwesomeV5Solid:
-                    return FontAwesomeV5Solid.GetFont(symbolValue, imageSize);
+                case UISymbolType.FontAwesomeV6Brands:
+                    return FontAwesomeV6Brands.GetFont(symbolValue, imageSize);
+                case UISymbolType.FontAwesomeV6Regular:
+                    return FontAwesomeV6Regular.GetFont(symbolValue, imageSize);
+                case UISymbolType.FontAwesomeV6Solid:
+                    return FontAwesomeV6Solid.GetFont(symbolValue, imageSize);
                 default:
                     if (symbol > 0xF000)
                         return FontAwesomeV4.GetFont(symbolValue, imageSize);

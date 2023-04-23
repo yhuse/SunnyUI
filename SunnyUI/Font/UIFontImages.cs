@@ -22,9 +22,12 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -36,9 +39,9 @@ namespace Sunny.UI
     {
         private readonly ConcurrentQueue<Label> FontAwesomeV4Labels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> ElegantIconsLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> FontAwesomeV5SolidLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> FontAwesomeV5BrandsLabels = new ConcurrentQueue<Label>();
-        private readonly ConcurrentQueue<Label> FontAwesomeV5RegularLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV6SolidLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV6BrandsLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> FontAwesomeV6RegularLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
         /// 构造函数
@@ -83,31 +86,31 @@ namespace Sunny.UI
                 }
             }
 
-            while (!FontAwesomeV5SolidLabels.IsEmpty)
+            while (!FontAwesomeV6SolidLabels.IsEmpty)
             {
-                if (FontAwesomeV5SolidLabels.TryDequeue(out Label lbl))
+                if (FontAwesomeV6SolidLabels.TryDequeue(out Label lbl))
                 {
-                    lpV5Solid.Controls.Add(lbl);
+                    lpV6Solid.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
             }
 
-            while (!FontAwesomeV5RegularLabels.IsEmpty)
+            while (!FontAwesomeV6RegularLabels.IsEmpty)
             {
-                if (FontAwesomeV5RegularLabels.TryDequeue(out Label lbl))
+                if (FontAwesomeV6RegularLabels.TryDequeue(out Label lbl))
                 {
-                    lpV5Regular.Controls.Add(lbl);
+                    lpV6Regular.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
             }
 
-            while (!FontAwesomeV5BrandsLabels.IsEmpty)
+            while (!FontAwesomeV6BrandsLabels.IsEmpty)
             {
-                if (FontAwesomeV5BrandsLabels.TryDequeue(out Label lbl))
+                if (FontAwesomeV6BrandsLabels.TryDequeue(out Label lbl))
                 {
-                    lpV5Brands.Controls.Add(lbl);
+                    lpV6Brands.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
@@ -330,14 +333,25 @@ namespace Sunny.UI
 
         private void LoadLabels(Type type, ConcurrentQueue<Label> labels, UISymbolType symbolType)
         {
+            ConcurrentDictionary<int, FieldInfo> dic = new ConcurrentDictionary<int, FieldInfo>();
             foreach (var fieldInfo in type.GetFields())
             {
                 var obj = fieldInfo.GetRawConstantValue();
                 if (obj is int value)
                 {
-                    labels.Enqueue(CreateLabel(fieldInfo.Name, value, symbolType));
+                    dic.TryAdd(value, fieldInfo);
                 }
             }
+
+            List<int> list = dic.Keys.ToList();
+            list.Sort();
+
+            foreach (var value in list)
+            {
+                labels.Enqueue(CreateLabel(dic[value].Name, value, symbolType));
+            }
+
+            dic.Clear();
         }
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
@@ -354,20 +368,20 @@ namespace Sunny.UI
 
         private void bg3_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV5BrandsCount = 457;
-            LoadLabels(typeof(FontAweSomeV5Brands), FontAwesomeV5BrandsLabels, UISymbolType.FontAwesomeV5Brands);
+            //public const int FontAwesomeV6BrandsCount = 457;
+            LoadLabels(typeof(FontAweSomeV6Brands), FontAwesomeV6BrandsLabels, UISymbolType.FontAwesomeV6Brands);
         }
 
         private void bg4_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV5RegularCount = 151;
-            LoadLabels(typeof(FontAweSomeV5Regular), FontAwesomeV5RegularLabels, UISymbolType.FontAwesomeV5Regular);
+            //public const int FontAwesomeV6RegularCount = 151;
+            LoadLabels(typeof(FontAweSomeV6Regular), FontAwesomeV6RegularLabels, UISymbolType.FontAwesomeV6Regular);
         }
 
         private void bg5_DoWork(object sender, DoWorkEventArgs e)
         {
-            //public const int FontAwesomeV5SolidCount = 1001;
-            LoadLabels(typeof(FontAweSomeV5Solid), FontAwesomeV5SolidLabels, UISymbolType.FontAwesomeV5Solid);
+            //public const int FontAwesomeV6SolidCount = 1001;
+            LoadLabels(typeof(FontAweSomeV6Solid), FontAwesomeV6SolidLabels, UISymbolType.FontAwesomeV6Solid);
         }
 
         int findCount = 0;
@@ -376,7 +390,7 @@ namespace Sunny.UI
         {
             if (textBox1.Text.IsNullOrEmpty()) return;
             findCount = 0;
-            foreach (var item in lpV5Brands.Controls)
+            foreach (var item in lpV6Brands.Controls)
             {
                 if (item is Label lbl)
                 {
@@ -400,7 +414,7 @@ namespace Sunny.UI
                 }
             }
 
-            foreach (var item in lpV5Regular.Controls)
+            foreach (var item in lpV6Regular.Controls)
             {
                 if (item is Label lbl)
                 {
@@ -408,7 +422,7 @@ namespace Sunny.UI
                 }
             }
 
-            foreach (var item in lpV5Solid.Controls)
+            foreach (var item in lpV6Solid.Controls)
             {
                 if (item is Label lbl)
                 {
@@ -442,6 +456,19 @@ namespace Sunny.UI
         private void UIFontImages_Shown(object sender, EventArgs e)
         {
             textBox1.Focus();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
         }
     }
 

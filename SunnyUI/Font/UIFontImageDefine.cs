@@ -36,8 +36,8 @@ namespace Sunny.UI
     public enum UISymbolType
     {
         FontAwesomeV4 = 0,
-        FontAwesomeV5Brands = 1,
-        FontAwesomeV5Regular = 2,
-        FontAwesomeV5Solid = 3
+        FontAwesomeV6Brands = 1,
+        FontAwesomeV6Regular = 2,
+        FontAwesomeV6Solid = 3
     }
 }
