@@ -41,6 +41,7 @@
  * 2022-08-17: V3.2.3 修复数据全为Nan时绘制出错
  * 2022-09-19: V3.2.4 增加鼠标可框选缩放属性MouseZoom
  * 2023-03-26: V3.3.3 自定义X轴坐标时，点数据提示显示为原始值
+ * 2023-04-23: V3.3.5 打开Smooth绘制，建议数据差距不大时可平滑绘制
 ******************************************************************************/
 
 using System;
@@ -479,9 +480,27 @@ namespace Sunny.UI
                 using (Pen pen = new Pen(color, series.Width))
                 {
                     g.SetHighQuality();
-                    for (int i = 0; i < series.Points.Count - 1; i++)
+
+                    if (series.ContainsNan || !series.Smooth || series.Points.Count == 2)
                     {
-                        g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                        for (int i = 0; i < series.Points.Count - 1; i++)
+                        {
+                            g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            g.DrawCurve(pen, series.Points.ToArray());
+                        }
+                        catch
+                        {
+                            for (int i = 0; i < series.Points.Count - 1; i++)
+                            {
+                                g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                            }
+                        }
                     }
 
                     g.SetDefaultQuality();
