@@ -481,7 +481,7 @@ namespace Sunny.UI
                 {
                     g.SetHighQuality();
 
-                    if (series.ContainsNan || !series.Smooth || series.Points.Count == 2)
+                    if (series.ContainsNan || !series.Smooth || series.Points.Count == 2 || ZoomAreas.Count > 5)
                     {
                         for (int i = 0; i < series.Points.Count - 1; i++)
                         {
