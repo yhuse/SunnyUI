@@ -23,6 +23,7 @@
  * 2022-01-02: V3.0.9 增加是否只读属性
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-09-26: V3.2.4 修复了Readonly时，双击还可以改变值的问题
+ * 2022-04-23: V3.3.5 增加ActiveChanging事件，在状态改变前可以进行判断
 ******************************************************************************/
 
 using System;
@@ -189,7 +190,7 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnClick(EventArgs e)
         {
-            Active = !Active;
+            ActiveChange();
             base.OnClick(e);
         }
 
@@ -197,12 +198,28 @@ namespace Sunny.UI
         {
             if (!UseDoubleClick)
             {
-                Active = !Active;
+                ActiveChange();
                 base.OnClick(e);
             }
             else
             {
                 base.OnDoubleClick(e);
+            }
+        }
+
+        public event OnCancelEventArgs ActiveChanging;
+
+        private void ActiveChange()
+        {
+            CancelEventArgs e = new CancelEventArgs();
+            if (ActiveChanging != null)
+            {
+                ActiveChanging?.Invoke(this, e);
+            }
+
+            if (!e.Cancel)
+            {
+                Active = !Active;
             }
         }
 

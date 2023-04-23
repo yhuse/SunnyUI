@@ -20,6 +20,7 @@
 ******************************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace Sunny.UI
@@ -70,6 +71,8 @@ namespace Sunny.UI
     public delegate void OnSelectionChanged(object sender, UITextBoxSelectionArgs e);
 
     public delegate void OnDateTimeChanged(object sender, UIDateTimeArgs e);
+
+    public delegate void OnCancelEventArgs(object sender, CancelEventArgs e);
 
     public enum NumPadType
     {
