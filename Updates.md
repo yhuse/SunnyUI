@@ -1,5 +1,18 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-04\-24 V3.3.6    
+\*  **FontAwesome: 字体图标从V5.15.2升级到V6.4.0**     
+\* FDialogs: 增加了等待提示窗的示例    
+\* UIEdit: 修复了最大值最小值范围判断的问题    
+\* UICheckBoxGroup: 设置选择项ForeColor    
+\* UILoginForm: 增加可选择显示时激活的控件    
+\* UIChartOption: 图表的一些参数设置为只读或者私有设置    
+\* UIRadioButtonGroup: 设置选择项ForeColor    
+\* UILineChart: 打开Smooth绘制，建议数据差距不大时可平滑绘制    
+\* UIFontImages: 增加搜索结果显示页面    
+\* UIEditForm: 代码生成增加，Double类型增加小数点位数    
+\* UISwitch: 增加ActiveChanging事件，在状态改变前可以进行判断    
+    
 #### 2023\-04\-08 V3.3.5    
 \*  **UMessageTip: 解决了Release模式下GDI位图未释放的Bug**     
 \* Demo: 重写FMain，从UIForm继承       
