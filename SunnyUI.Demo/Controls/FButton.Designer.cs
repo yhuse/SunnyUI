@@ -101,7 +101,6 @@ namespace Sunny.UI.Demo
             this.uiSwitch3.SwitchShape = Sunny.UI.UISwitch.UISwitchShape.Square;
             this.uiSwitch3.TabIndex = 115;
             this.uiSwitch3.Text = "uiSwitch3";
-            this.uiSwitch3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSwitch4
             // 
@@ -115,7 +114,6 @@ namespace Sunny.UI.Demo
             this.uiSwitch4.SwitchShape = Sunny.UI.UISwitch.UISwitchShape.Square;
             this.uiSwitch4.TabIndex = 114;
             this.uiSwitch4.Text = "uiSwitch4";
-            this.uiSwitch4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton26
             // 
@@ -136,7 +134,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton26.Text = "Save";
             this.uiSymbolButton26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.uiSymbolButton26.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton26.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton25
             // 
@@ -157,7 +154,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton25.Text = "类库";
             this.uiSymbolButton25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiSymbolButton25.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton25.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton25.Click += new System.EventHandler(this.uiSymbolButton25_Click);
             // 
             // uiImageButton4
@@ -175,7 +171,6 @@ namespace Sunny.UI.Demo
             this.uiImageButton4.TabStop = false;
             this.uiImageButton4.Text = "Home";
             this.uiImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.uiImageButton4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiImageButton3
             // 
@@ -190,7 +185,6 @@ namespace Sunny.UI.Demo
             this.uiImageButton3.TabIndex = 110;
             this.uiImageButton3.TabStop = false;
             this.uiImageButton3.Text = null;
-            this.uiImageButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiImageButton2
             // 
@@ -205,7 +199,6 @@ namespace Sunny.UI.Demo
             this.uiImageButton2.TabIndex = 109;
             this.uiImageButton2.TabStop = false;
             this.uiImageButton2.Text = null;
-            this.uiImageButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiImageButton1
             // 
@@ -221,7 +214,6 @@ namespace Sunny.UI.Demo
             this.uiImageButton1.TabStop = false;
             this.uiImageButton1.Text = "Home";
             this.uiImageButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.uiImageButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine5
             // 
@@ -233,7 +225,6 @@ namespace Sunny.UI.Demo
             this.uiLine5.TabIndex = 107;
             this.uiLine5.Text = "UIImageButton";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSwitch2
             // 
@@ -245,7 +236,6 @@ namespace Sunny.UI.Demo
             this.uiSwitch2.Size = new System.Drawing.Size(75, 29);
             this.uiSwitch2.TabIndex = 106;
             this.uiSwitch2.Text = "uiSwitch2";
-            this.uiSwitch2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine4
             // 
@@ -257,7 +247,6 @@ namespace Sunny.UI.Demo
             this.uiLine4.TabIndex = 105;
             this.uiLine4.Text = "UISwitch";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSwitch1
             // 
@@ -270,8 +259,8 @@ namespace Sunny.UI.Demo
             this.uiSwitch1.Size = new System.Drawing.Size(75, 29);
             this.uiSwitch1.TabIndex = 104;
             this.uiSwitch1.Text = "uiSwitch1";
-            this.uiSwitch1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSwitch1.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.uiSwitch1_ValueChanged);
+            this.uiSwitch1.ActiveChanging += new Sunny.UI.OnCancelEventArgs(this.uiSwitch1_ActiveChanging);
             // 
             // uiSymbolButton24
             // 
@@ -287,7 +276,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton24.Symbol = 61473;
             this.uiSymbolButton24.TabIndex = 103;
             this.uiSymbolButton24.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton24.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton23
             // 
@@ -301,7 +289,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton23.Symbol = 61544;
             this.uiSymbolButton23.TabIndex = 102;
             this.uiSymbolButton23.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton23.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton22
             // 
@@ -315,7 +302,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton22.Symbol = 61508;
             this.uiSymbolButton22.TabIndex = 101;
             this.uiSymbolButton22.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton22.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton19
             // 
@@ -329,7 +315,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton19.Symbol = 61543;
             this.uiSymbolButton19.TabIndex = 100;
             this.uiSymbolButton19.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton19.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton20
             // 
@@ -343,7 +328,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton20.Symbol = 61522;
             this.uiSymbolButton20.TabIndex = 99;
             this.uiSymbolButton20.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton20.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton21
             // 
@@ -357,7 +341,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton21.Symbol = 61520;
             this.uiSymbolButton21.TabIndex = 98;
             this.uiSymbolButton21.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton21.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton13
             // 
@@ -371,7 +354,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton13.Symbol = 61518;
             this.uiSymbolButton13.TabIndex = 97;
             this.uiSymbolButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton14
             // 
@@ -385,7 +367,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton14.Symbol = 61514;
             this.uiSymbolButton14.TabIndex = 96;
             this.uiSymbolButton14.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton14.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton15
             // 
@@ -399,7 +380,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton15.Symbol = 61513;
             this.uiSymbolButton15.TabIndex = 95;
             this.uiSymbolButton15.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton15.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton16
             // 
@@ -413,7 +393,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton16.Symbol = 61517;
             this.uiSymbolButton16.TabIndex = 94;
             this.uiSymbolButton16.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton16.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton17
             // 
@@ -427,7 +406,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton17.Symbol = 61516;
             this.uiSymbolButton17.TabIndex = 93;
             this.uiSymbolButton17.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton17.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton18
             // 
@@ -441,7 +419,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton18.Symbol = 61515;
             this.uiSymbolButton18.TabIndex = 92;
             this.uiSymbolButton18.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton18.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine3
             // 
@@ -453,7 +430,6 @@ namespace Sunny.UI.Demo
             this.uiLine3.TabIndex = 91;
             this.uiLine3.Text = "UISymbolButton 按钮组";
             this.uiLine3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton7
             // 
@@ -480,7 +456,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton7.Symbol = 61809;
             this.uiSymbolButton7.TabIndex = 90;
             this.uiSymbolButton7.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton8
             // 
@@ -507,7 +482,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton8.Symbol = 61445;
             this.uiSymbolButton8.TabIndex = 89;
             this.uiSymbolButton8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton9
             // 
@@ -534,7 +508,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton9.Symbol = 57607;
             this.uiSymbolButton9.TabIndex = 88;
             this.uiSymbolButton9.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton10
             // 
@@ -551,7 +524,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton10.StyleCustomMode = true;
             this.uiSymbolButton10.TabIndex = 87;
             this.uiSymbolButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton11
             // 
@@ -578,7 +550,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton11.Symbol = 61508;
             this.uiSymbolButton11.TabIndex = 86;
             this.uiSymbolButton11.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton12
             // 
@@ -599,7 +570,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton12.SymbolSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(131)))), ((int)(((byte)(229)))));
             this.uiSymbolButton12.TabIndex = 85;
             this.uiSymbolButton12.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton12.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton6
             // 
@@ -624,7 +594,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton6.TabIndex = 84;
             this.uiSymbolButton6.Text = "Error";
             this.uiSymbolButton6.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton5
             // 
@@ -649,7 +618,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton5.TabIndex = 83;
             this.uiSymbolButton5.Text = "Warn";
             this.uiSymbolButton5.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton3
             // 
@@ -674,7 +642,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton3.TabIndex = 82;
             this.uiSymbolButton3.Text = "Success";
             this.uiSymbolButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton4
             // 
@@ -690,7 +657,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton4.TabIndex = 81;
             this.uiSymbolButton4.Text = "Query";
             this.uiSymbolButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton2
             // 
@@ -715,7 +681,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton2.TabIndex = 80;
             this.uiSymbolButton2.Text = "Cancel";
             this.uiSymbolButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSymbolButton1
             // 
@@ -730,7 +695,6 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton1.TabIndex = 79;
             this.uiSymbolButton1.Text = "OK";
             this.uiSymbolButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine2
             // 
@@ -742,7 +706,6 @@ namespace Sunny.UI.Demo
             this.uiLine2.TabIndex = 78;
             this.uiLine2.Text = "UISymbolButton";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine1
             // 
@@ -754,7 +717,6 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 77;
             this.uiLine1.Text = "UIButton";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton13
             // 
@@ -779,7 +741,6 @@ namespace Sunny.UI.Demo
             this.uiButton13.TabIndex = 76;
             this.uiButton13.Text = "Red";
             this.uiButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton14
             // 
@@ -804,7 +765,6 @@ namespace Sunny.UI.Demo
             this.uiButton14.TabIndex = 75;
             this.uiButton14.Text = "Orange";
             this.uiButton14.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton14.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton15
             // 
@@ -829,7 +789,6 @@ namespace Sunny.UI.Demo
             this.uiButton15.TabIndex = 74;
             this.uiButton15.Text = "Gray";
             this.uiButton15.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton15.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton16
             // 
@@ -854,7 +813,6 @@ namespace Sunny.UI.Demo
             this.uiButton16.TabIndex = 73;
             this.uiButton16.Text = "Green";
             this.uiButton16.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton16.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton17
             // 
@@ -869,7 +827,6 @@ namespace Sunny.UI.Demo
             this.uiButton17.TabIndex = 72;
             this.uiButton17.Text = "Blue";
             this.uiButton17.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton17.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton18
             // 
@@ -883,7 +840,6 @@ namespace Sunny.UI.Demo
             this.uiButton18.TabIndex = 71;
             this.uiButton18.Text = "Round";
             this.uiButton18.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton18.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton4
             // 
@@ -908,7 +864,6 @@ namespace Sunny.UI.Demo
             this.uiButton4.TabIndex = 64;
             this.uiButton4.Text = "Red";
             this.uiButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton5
             // 
@@ -933,7 +888,6 @@ namespace Sunny.UI.Demo
             this.uiButton5.TabIndex = 63;
             this.uiButton5.Text = "Orange";
             this.uiButton5.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton6
             // 
@@ -958,7 +912,6 @@ namespace Sunny.UI.Demo
             this.uiButton6.TabIndex = 62;
             this.uiButton6.Text = "Gray";
             this.uiButton6.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton3
             // 
@@ -983,7 +936,6 @@ namespace Sunny.UI.Demo
             this.uiButton3.TabIndex = 61;
             this.uiButton3.Text = "Green";
             this.uiButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton2
             // 
@@ -1000,7 +952,6 @@ namespace Sunny.UI.Demo
             this.uiButton2.Text = "Blue";
             this.uiButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton2.TipsText = "16";
-            this.uiButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // uiButton1
@@ -1016,7 +967,6 @@ namespace Sunny.UI.Demo
             this.uiButton1.Text = "System";
             this.uiButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton1.TipsText = "1";
-            this.uiButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // uiToolTip1
@@ -1038,7 +988,6 @@ namespace Sunny.UI.Demo
             this.uiSwitch5.Size = new System.Drawing.Size(75, 29);
             this.uiSwitch5.TabIndex = 116;
             this.uiSwitch5.Text = "uiSwitch5";
-            this.uiSwitch5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiSwitch6
             // 
@@ -1052,7 +1001,6 @@ namespace Sunny.UI.Demo
             this.uiSwitch6.Size = new System.Drawing.Size(75, 29);
             this.uiSwitch6.TabIndex = 117;
             this.uiSwitch6.Text = "uiSwitch6";
-            this.uiSwitch6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FButton
             // 

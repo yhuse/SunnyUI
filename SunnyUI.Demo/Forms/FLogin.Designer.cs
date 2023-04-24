@@ -41,15 +41,16 @@
             // 
             // FLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(750, 450);
+            this.FocusControl = Sunny.UI.UILoginFormFocusControl.Password;
             this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login6;
             this.Name = "FLogin";
             this.SubText = "SunnyUI.Net";
             this.Text = "SunnyUI.Net Login Form";
             this.Title = "SunnyUI.Net Login Form";
+            this.UserName = "admin";
             this.ButtonLoginClick += new System.EventHandler(this.FLogin_ButtonLoginClick);
             this.ResumeLayout(false);
 

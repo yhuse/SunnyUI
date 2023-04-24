@@ -53,6 +53,7 @@ namespace Sunny.UI.Demo
             series.ShowLine = !cbPoints.Checked;
             //数据点显示小数位数
             series.YAxisDecimalPlaces = 1;
+            series.Smooth = true;
 
             option.GreaterWarningArea = new UILineWarningArea(3.5);
             option.LessWarningArea = new UILineWarningArea(2.2, Color.Gold);

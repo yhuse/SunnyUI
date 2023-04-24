@@ -71,5 +71,10 @@ namespace Sunny.UI.Demo
             //传值给框架
             SendParamToFrame("传值给框架");
         }
+
+        private void uiSwitch1_ActiveChanging(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !ShowAskDialog("您确认要改变当前开关的状态吗？");
+        }
     }
 }
