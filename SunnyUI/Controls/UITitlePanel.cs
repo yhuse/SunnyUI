@@ -22,6 +22,7 @@
  * 2020-09-03: V3.0.6 增加标题文字颜色
  * 2022-05-30: V3.1.9 修复Padding设置
  * 2022-10-28: V3.2.6 箭头图标可设置颜色
+ * 2023-05-02: V3.3.6 增加了一个关闭按钮的属性，点击后隐藏控件
 ******************************************************************************/
 
 using System;
@@ -192,6 +193,20 @@ namespace Sunny.UI
                 g.DrawFontImage(Collapsed ? 61703 : 61702, 24, SymbolColor,
                     new Rectangle(ControlBoxRect.Left + 2, ControlBoxRect.Top, ControlBoxRect.Width, ControlBoxRect.Height));
             }
+
+            if (ShowClose)
+            {
+                if (InControlBox)
+                {
+                    if (ShowRadius)
+                        g.FillRoundRectangle(UIStyles.ActiveStyleColor.ButtonFillHoverColor, ControlBoxRect, 5);
+                    else
+                        g.FillRectangle(UIStyles.ActiveStyleColor.ButtonFillHoverColor, ControlBoxRect);
+                }
+
+                g.DrawFontImage(361453, 24, SymbolColor,
+                    new Rectangle(ControlBoxRect.Left + 2, ControlBoxRect.Top, ControlBoxRect.Width, ControlBoxRect.Height), 0, 2);
+            }
         }
 
         private Color symbolColor = Color.White;
@@ -226,7 +241,7 @@ namespace Sunny.UI
             if (inControlBox != InControlBox)
             {
                 InControlBox = inControlBox;
-                if (ShowCollapse) Invalidate();
+                if (ShowCollapse || ShowClose) Invalidate();
             }
 
             base.OnMouseMove(e);
@@ -303,6 +318,21 @@ namespace Sunny.UI
             set
             {
                 showCollapse = value;
+                showClose = false;
+                Invalidate();
+            }
+        }
+
+        private bool showClose;
+
+        [Description("是否打开关闭按钮"), Category("SunnyUI"), DefaultValue(false)]
+        public bool ShowClose
+        {
+            get => showClose;
+            set
+            {
+                showClose = value;
+                showCollapse = false;
                 Invalidate();
             }
         }
@@ -336,6 +366,11 @@ namespace Sunny.UI
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
+            if (ShowClose && e.Location.InRect(ControlBoxRect))
+            {
+                this.Hide();
+            }
+
             if (ShowCollapse && e.Location.InRect(ControlBoxRect))
             {
                 Collapsed = !Collapsed;
