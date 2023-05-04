@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-05-04: V3.3.6 增加调用点击事件PerformClick
 ******************************************************************************/
 
 using System;
@@ -43,6 +44,22 @@ namespace Sunny.UI
         private string text;
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
         private Color foreColor = UIFontColor.Primary;
+
+        private bool isClick;
+
+        /// <summary>
+        /// 调用点击事件
+        /// </summary>
+        public void PerformClick()
+        {
+            if (isClick) return;
+            if (Enabled)
+            {
+                isClick = true;
+                OnClick(EventArgs.Empty);
+                isClick = false;
+            }
+        }
 
         /// <summary>
         /// 禁止控件跟随窗体缩放
