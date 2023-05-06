@@ -165,7 +165,7 @@ namespace Sunny.UI
         {
             if (TextAlign == ContentAlignment.MiddleCenter && Angle != 0 && !AutoSize)
             {
-                e.Graphics.DrawStringRotateAtCenter(Text, Font, ForeColor, this.ClientRectangle.Center(), Angle);
+                e.Graphics.DrawRotateString(Text, Font, ForeColor, this.ClientRectangle.Center(), Angle);
             }
             else
             {

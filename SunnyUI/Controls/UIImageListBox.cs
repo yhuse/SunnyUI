@@ -793,7 +793,7 @@ namespace Sunny.UI
 
                 if (ShowDescription && !string.IsNullOrEmpty(item.Description))
                 {
-                    g.DrawString(item.Description, e.Font, foreColor, new Point(ImageInterval, thumbnailSize + ImageInterval));
+                    g.DrawString(item.Description, e.Font, foreColor, ImageInterval, thumbnailSize + ImageInterval);
                 }
 
                 g.Transform = oldTransform;

@@ -456,7 +456,7 @@ namespace Sunny.UI
                     SizeF sf = g.MeasureString(data, TempFont);
                     int angle = (Option.XAxis.AxisLabel.Angle + 36000) % 360;
                     if (angle > 0 && angle <= 90)
-                        g.DrawString(data, TempFont, ForeColor, new PointF(start, DrawOrigin.Y + Option.XAxis.AxisTick.Length),
+                        g.DrawRotateString(data, TempFont, ForeColor, new PointF(start, DrawOrigin.Y + Option.XAxis.AxisTick.Length),
                             new StringFormat() { Alignment = StringAlignment.Far }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
                     else
                         g.DrawString(data, TempFont, ForeColor, start - sf.Width / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length); start += DrawBarWidth;
@@ -511,8 +511,7 @@ namespace Sunny.UI
                 SizeF sfname = g.MeasureString(Option.YAxis.Name, TempFont);
                 int x = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfname.Height);
                 int y = (int)(Option.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawString(Option.YAxis.Name, TempFont, ForeColor, new Point(x, y),
-                    new StringFormat() { Alignment = StringAlignment.Center }, 270);
+                g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new Point(x, y), new StringFormat() { Alignment = StringAlignment.Center }, 270);
             }
         }
 

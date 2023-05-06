@@ -412,7 +412,7 @@ namespace Sunny.UI
                 SizeF sfName = g.MeasureString(Option.YAxis.Name, TempFont);
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
-                g.DrawStringRotateAtCenter(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
+                g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
             }
 
             //Y2 Tick
@@ -458,7 +458,7 @@ namespace Sunny.UI
                 SizeF sfName = g.MeasureString(Option.Y2Axis.Name, TempFont);
                 float xx = Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length + widthMax + sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
-                g.DrawStringRotateAtCenter(Option.Y2Axis.Name, TempFont, ForeColor, new PointF(xx, yy), 90);
+                g.DrawRotateString(Option.Y2Axis.Name, TempFont, ForeColor, new PointF(xx, yy), 90);
             }
         }
 

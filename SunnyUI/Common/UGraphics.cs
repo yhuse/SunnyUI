@@ -57,42 +57,12 @@ namespace Sunny.UI
         /// <param name="font">字体</param>
         /// <param name="color">颜色</param>
         /// <param name="rect">区域</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawString(text, font, br, rect);
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rect">区域</param>
         /// <param name="format">格式</param>
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, StringFormat format)
         {
             if (text.IsNullOrEmpty()) return;
             using Brush br = color.Brush();
             g.DrawString(text, font, br, rect, format);
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rect">区域</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawString(text, font, br, rect);
         }
 
         /// <summary>
@@ -110,68 +80,6 @@ namespace Sunny.UI
             using Brush br = color.Brush();
             g.DrawString(text, font, br, x, y);
         }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="pt">位置</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, Point pt)
-        => g.DrawString(text, font, color, pt.X, pt.Y);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="pt">位置</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF pt)
-        => g.DrawString(text, font, color, pt.X, pt.Y);
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="x">水平位置</param>
-        /// <param name="y">垂直位置</param>
-        /// <param name="format">格式</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, float x, float y, StringFormat format)
-        {
-            using Brush br = color.Brush();
-            g.DrawString(text, font, br, x, y, format);
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="pt">位置</param>
-        /// <param name="format">格式</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF pt, StringFormat format)
-        => g.DrawString(text, font, color, pt.X, pt.Y, format);
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="pt">位置</param>
-        /// <param name="format">格式</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, Point pt, StringFormat format)
-        => g.DrawString(text, font, color, pt.X, pt.Y, format);
 
         /// <summary>
         /// 绘制字符串
@@ -230,23 +138,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rect">区域</param>
-        /// <param name="format">格式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawStringRotateAtCenter(text, font, color, rect.Center(), (int)angle);
-        }
-
-        /// <summary>
         /// 以文字中心点为原点，旋转文字
         /// </summary>
         /// <param name="g">绘图图元</param>
@@ -255,11 +146,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         /// <param name="centerPoint">文字中心点</param>
         /// <param name="angle">角度</param>
-        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
+        public static void DrawRotateString(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
         {
             if (text.IsNullOrEmpty()) return;
             using Brush br = color.Brush();
-            g.DrawStringRotateAtCenter(text, font, br, centerPoint, angle);
+            g.DrawRotateString(text, font, br, centerPoint, angle);
         }
 
         /// <summary>
@@ -271,7 +162,7 @@ namespace Sunny.UI
         /// <param name="brush">笔刷</param>
         /// <param name="centerPoint">文字中心点</param>
         /// <param name="angle">角度</param>
-        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
+        private static void DrawRotateString(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
         {
             if (text.IsNullOrEmpty()) return;
             SizeF sf = g.MeasureString(text, font);
@@ -302,7 +193,7 @@ namespace Sunny.UI
         /// <param name="rotatePoint">旋转点</param>
         /// <param name="format">布局方式</param>
         /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
+        private static void DrawRotateString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
         {
             if (text.IsNullOrEmpty()) return;
             // Save the matrix
@@ -326,27 +217,11 @@ namespace Sunny.UI
         /// <param name="rotatePoint">旋转点</param>
         /// <param name="format">格式</param>
         /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
+        public static void DrawRotateString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
         {
             if (text.IsNullOrEmpty()) return;
             using Brush br = color.Brush();
-            g.DrawString(text, font, br, rotatePoint, format, angle);
-        }
-
-        /// <summary>
-        /// 绘制根据矩形旋转文本
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文本</param>
-        /// <param name="font">字体</param>
-        /// <param name="brush">填充</param>
-        /// <param name="rect">局部矩形</param>
-        /// <param name="format">布局方式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Brush brush, RectangleF rect, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
+            g.DrawRotateString(text, font, br, rotatePoint, format, angle);
         }
 
         /// <summary>
