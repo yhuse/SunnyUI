@@ -767,7 +767,7 @@ namespace Sunny.UI
 
                     if (MenuHelper[e.Node] != null)
                     {
-                        using StringFormat alignment = GDI.SetAlignment();
+                        using StringFormat alignment = GDI.SetCenterAlignment();
                         if (MenuHelper[e.Node].TipsCustom)
                         {
                             e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft, tipsTop, sfMax, sfMax);

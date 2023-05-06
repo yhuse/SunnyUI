@@ -20,6 +20,7 @@
  * 2022-07-15: V3.2.1 增加移除线的操作
  * 2022-11-25: V3.2.2 增加了线的最大点数设置，以及移除点数的设置
  * 2022-11-25: V3.2.2 重构对象
+ * 2023-05-06: V3.3.6 增加了UpdateYData函数，按序号更新Y轴值
 ******************************************************************************/
 
 using System;
@@ -166,6 +167,12 @@ namespace Sunny.UI
             {
                 AddData(seriesName, x[i], y[i]);
             }
+        }
+
+        public void UpdateYData(string seriesName, int index, double value)
+        {
+            if (!Series.ContainsKey(seriesName)) return;
+            Series[seriesName].UpdateYData(index, value);
         }
 
         public void Clear()
@@ -475,6 +482,15 @@ namespace Sunny.UI
         private readonly List<double> PointsY = new List<double>();
 
         private int MaxCount = 0;
+
+        public void UpdateYData(int index, double value)
+        {
+            if (YData.Count == 0) return;
+            if (index >= 0 && index < YData.Count)
+            {
+                YData[index] = value;
+            }
+        }
 
         /// <summary>
         /// 设置线的最大点数，0不限制

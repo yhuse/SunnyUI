@@ -174,6 +174,182 @@ namespace Sunny.UI
         => g.DrawString(text, font, color, pt.X, pt.Y, format);
 
         /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="str">字符串</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="size">大小</param>
+        /// <param name="padding">边距</param>
+        /// <param name="align">位置位置</param>
+        public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align, int offsetX = 0, int offsetY = 0)
+        {
+            if (str.IsNullOrEmpty()) return;
+            SizeF sf = g.MeasureString(str, font);
+            using Brush br = color.Brush();
+            switch (align)
+            {
+                case ContentAlignment.MiddleCenter:
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX,
+                        padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
+                    break;
+
+                case ContentAlignment.TopLeft:
+                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + offsetY);
+                    break;
+
+                case ContentAlignment.TopCenter:
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, padding.Top + offsetY);
+                    break;
+
+                case ContentAlignment.TopRight:
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + offsetY);
+                    break;
+
+                case ContentAlignment.MiddleLeft:
+                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
+                    break;
+
+                case ContentAlignment.MiddleRight:
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
+                    break;
+
+                case ContentAlignment.BottomLeft:
+                    g.DrawString(str, font, br, padding.Left + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
+                    break;
+
+                case ContentAlignment.BottomCenter:
+                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
+                    break;
+
+                case ContentAlignment.BottomRight:
+                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rect">区域</param>
+        /// <param name="format">格式</param>
+        /// <param name="angle">角度</param>
+        public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            using Brush br = color.Brush();
+            g.DrawStringRotateAtCenter(text, font, color, rect.Center(), (int)angle);
+        }
+
+        /// <summary>
+        /// 以文字中心点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="centerPoint">文字中心点</param>
+        /// <param name="angle">角度</param>
+        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            using Brush br = color.Brush();
+            g.DrawStringRotateAtCenter(text, font, br, centerPoint, angle);
+        }
+
+        /// <summary>
+        /// 以文字中心点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="brush">笔刷</param>
+        /// <param name="centerPoint">文字中心点</param>
+        /// <param name="angle">角度</param>
+        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            SizeF sf = g.MeasureString(text, font);
+            float x1 = centerPoint.X - sf.Width / 2.0f;
+            float y1 = centerPoint.Y - sf.Height / 2.0f;
+
+            // 把画板的原点(默认是左上角)定位移到文字中心
+            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            // 旋转画板
+            g.RotateTransform(angle);
+            // 回退画板x,y轴移动过的距离
+            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            g.DrawString(text, font, brush, x1, y1);
+
+            //恢复
+            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            g.RotateTransform(-angle);
+            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+        }
+
+        /// <summary>
+        /// 以旋转点为原点，旋转文字
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文本</param>
+        /// <param name="font">字体</param>
+        /// <param name="brush">填充</param>
+        /// <param name="rotatePoint">旋转点</param>
+        /// <param name="format">布局方式</param>
+        /// <param name="angle">角度</param>
+        public static void DrawString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            // Save the matrix
+            Matrix mtxSave = g.Transform;
+            Matrix mtxRotate = g.Transform;
+            mtxRotate.RotateAt(angle, rotatePoint);
+            g.Transform = mtxRotate;
+            g.DrawString(text, font, brush, rotatePoint, format);
+
+            // Reset the matrix
+            g.Transform = mtxSave;
+        }
+
+        /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>
+        /// <param name="rotatePoint">旋转点</param>
+        /// <param name="format">格式</param>
+        /// <param name="angle">角度</param>
+        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            using Brush br = color.Brush();
+            g.DrawString(text, font, br, rotatePoint, format, angle);
+        }
+
+        /// <summary>
+        /// 绘制根据矩形旋转文本
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文本</param>
+        /// <param name="font">字体</param>
+        /// <param name="brush">填充</param>
+        /// <param name="rect">局部矩形</param>
+        /// <param name="format">布局方式</param>
+        /// <param name="angle">角度</param>
+        public static void DrawString(this Graphics g, string text, Font font, Brush brush, RectangleF rect, StringFormat format, float angle)
+        {
+            if (text.IsNullOrEmpty()) return;
+            g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
+        }
+
+        /// <summary>
         /// 绘制多条直线连接
         /// </summary>
         /// <param name="g">绘图图元</param>
@@ -1461,182 +1637,6 @@ namespace Sunny.UI
             //中间
             g.DrawImage(img, new Rectangle(cutLeft * iZoom, cutTop * iZoom, destWidth - (cutLeft + cutRight) * iZoom, destHeight - (cutTop + cutBottom) * iZoom),
                new Rectangle(cutLeft, cutTop, img.Width - cutLeft - cutRight, img.Height - cutTop - cutBottom), GraphicsUnit.Pixel);
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="str">字符串</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="size">大小</param>
-        /// <param name="padding">边距</param>
-        /// <param name="align">位置位置</param>
-        public static void DrawString(this Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align, int offsetX = 0, int offsetY = 0)
-        {
-            if (str.IsNullOrEmpty()) return;
-            SizeF sf = g.MeasureString(str, font);
-            using Brush br = color.Brush();
-            switch (align)
-            {
-                case ContentAlignment.MiddleCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX,
-                        padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
-                    break;
-
-                case ContentAlignment.TopLeft:
-                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + offsetY);
-                    break;
-
-                case ContentAlignment.TopCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, padding.Top + offsetY);
-                    break;
-
-                case ContentAlignment.TopRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + offsetY);
-                    break;
-
-                case ContentAlignment.MiddleLeft:
-                    g.DrawString(str, font, br, padding.Left + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
-                    break;
-
-                case ContentAlignment.MiddleRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, padding.Top + (size.Height - sf.Height - padding.Top - padding.Bottom) / 2.0f + offsetY);
-                    break;
-
-                case ContentAlignment.BottomLeft:
-                    g.DrawString(str, font, br, padding.Left + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
-                    break;
-
-                case ContentAlignment.BottomCenter:
-                    g.DrawString(str, font, br, padding.Left + (size.Width - sf.Width - padding.Left - padding.Right) / 2.0f + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
-                    break;
-
-                case ContentAlignment.BottomRight:
-                    g.DrawString(str, font, br, size.Width - sf.Width - padding.Right + offsetX, size.Height - sf.Height - padding.Bottom + offsetY);
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rect">区域</param>
-        /// <param name="format">格式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, RectangleF rect, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawStringRotateAtCenter(text, font, color, rect.Center(), (int)angle);
-        }
-
-        /// <summary>
-        /// 以文字中心点为原点，旋转文字
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="centerPoint">文字中心点</param>
-        /// <param name="angle">角度</param>
-        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawStringRotateAtCenter(text, font, br, centerPoint, angle);
-        }
-
-        /// <summary>
-        /// 以文字中心点为原点，旋转文字
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="brush">笔刷</param>
-        /// <param name="centerPoint">文字中心点</param>
-        /// <param name="angle">角度</param>
-        public static void DrawStringRotateAtCenter(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            SizeF sf = g.MeasureString(text, font);
-            float x1 = centerPoint.X - sf.Width / 2.0f;
-            float y1 = centerPoint.Y - sf.Height / 2.0f;
-
-            // 把画板的原点(默认是左上角)定位移到文字中心
-            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            // 旋转画板
-            g.RotateTransform(angle);
-            // 回退画板x,y轴移动过的距离
-            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
-            g.DrawString(text, font, brush, x1, y1);
-
-            //恢复
-            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
-            g.RotateTransform(-angle);
-            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
-        }
-
-        /// <summary>
-        /// 以旋转点为原点，旋转文字
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文本</param>
-        /// <param name="font">字体</param>
-        /// <param name="brush">填充</param>
-        /// <param name="rotatePoint">旋转点</param>
-        /// <param name="format">布局方式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Brush brush, PointF rotatePoint, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            // Save the matrix
-            Matrix mtxSave = g.Transform;
-            Matrix mtxRotate = g.Transform;
-            mtxRotate.RotateAt(angle, rotatePoint);
-            g.Transform = mtxRotate;
-            g.DrawString(text, font, brush, rotatePoint, format);
-
-            // Reset the matrix
-            g.Transform = mtxSave;
-        }
-
-        /// <summary>
-        /// 绘制字符串
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <param name="color">颜色</param>
-        /// <param name="rotatePoint">旋转点</param>
-        /// <param name="format">格式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Color color, PointF rotatePoint, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            using Brush br = color.Brush();
-            g.DrawString(text, font, br, rotatePoint, format, angle);
-        }
-
-        /// <summary>
-        /// 绘制根据矩形旋转文本
-        /// </summary>
-        /// <param name="g">绘图图元</param>
-        /// <param name="text">文本</param>
-        /// <param name="font">字体</param>
-        /// <param name="brush">填充</param>
-        /// <param name="rect">局部矩形</param>
-        /// <param name="format">布局方式</param>
-        /// <param name="angle">角度</param>
-        public static void DrawString(this Graphics g, string text, Font font, Brush brush, RectangleF rect, StringFormat format, float angle)
-        {
-            if (text.IsNullOrEmpty()) return;
-            g.DrawStringRotateAtCenter(text, font, brush, rect.Center(), angle);
         }
 
         /// <summary>

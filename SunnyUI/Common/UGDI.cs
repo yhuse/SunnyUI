@@ -592,7 +592,7 @@ namespace Sunny.UI
         /// <param name="horizontalAlignment">水平方向</param>
         /// <param name="verticalAlignment">垂直方向</param>
         /// <returns>文本布局</returns>
-        public static StringFormat SetAlignment(StringAlignment horizontalAlignment = StringAlignment.Center, StringAlignment verticalAlignment = StringAlignment.Center)
+        public static StringFormat SetCenterAlignment(StringAlignment horizontalAlignment = StringAlignment.Center, StringAlignment verticalAlignment = StringAlignment.Center)
         {
             return new StringFormat { Alignment = horizontalAlignment, LineAlignment = verticalAlignment };
         }
