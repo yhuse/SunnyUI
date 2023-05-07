@@ -149,7 +149,7 @@ namespace Sunny.UI
                 {
                     if (TextAngle.EqualsFloat(0))
                     {
-                        e.Graphics.DrawString(Text, Font, ForeColor, r, format);
+                        e.Graphics.DrawString(Text, Font, ForeColor, r, TextAlign);
                     }
                     else
                     {

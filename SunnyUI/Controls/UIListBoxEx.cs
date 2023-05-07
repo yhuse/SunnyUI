@@ -300,10 +300,6 @@ namespace Sunny.UI
                 return;
             }
 
-            StringFormat sStringFormat = new StringFormat();
-            sStringFormat.LineAlignment = StringAlignment.Center;
-            sStringFormat.Alignment = textAlignment;
-
             bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
             Color backColor = isSelected ? ItemSelectBackColor : BackColor;
             Color foreColor = isSelected ? ItemSelectForeColor : ForeColor;
@@ -315,7 +311,8 @@ namespace Sunny.UI
             {
                 e.Graphics.FillRectangle(BackColor, e.Bounds);
                 e.Graphics.FillRectangle(backColor, rect);
-                e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
+                //e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
+                e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, textAlignment, StringAlignment.Center);
             }
             else
             {
@@ -333,7 +330,8 @@ namespace Sunny.UI
 
                 e.Graphics.FillRectangle(BackColor, e.Bounds);
                 e.Graphics.FillRectangle(backColor, rect);
-                e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
+                //e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
+                e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, textAlignment, StringAlignment.Center);
             }
 
             AfterDrawItem?.Invoke(this, Items, e);

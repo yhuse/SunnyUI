@@ -756,27 +756,26 @@ namespace Sunny.UI
                 //显示Tips圆圈
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
                 {
-                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
-                    float sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
-                    float tipsLeft = Width - sfMax - 16;
+                    Size tipsSize = TextRenderer.MeasureText(MenuHelper.GetTipsText(e.Node), TempFont);
+                    int sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
+                    int tipsLeft = Width - sfMax - 16;
                     if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
                     if (Bar.Visible) tipsLeft -= Bar.Width;
                     if (TreeNodeSymbols.ContainsKey(e.Node)) tipsLeft -= TreeNodeSymbols[e.Node].Count * 30;
-
-                    float tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
+                    int tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
 
                     if (MenuHelper[e.Node] != null)
                     {
                         using StringFormat alignment = GDI.SetCenterAlignment();
                         if (MenuHelper[e.Node].TipsCustom)
                         {
-                            e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
+                            e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax));
                         }
                         else
                         {
-                            e.Graphics.FillEllipse(TipsColor, tipsLeft, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new RectangleF(tipsLeft, tipsTop, sfMax, sfMax), alignment);
+                            e.Graphics.FillEllipse(TipsColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax));
                         }
                     }
                 }
