@@ -187,14 +187,11 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            //设置按钮标题位置
-            Padding = new Padding(_imageSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
-
             //填充文字
             Color color = foreColor;
             color = Enabled ? color : UIDisableColor.Fore;
-
-            g.DrawString(Text, Font, color, Size, Padding, ContentAlignment.MiddleLeft);
+            Rectangle rect = new Rectangle(_imageSize + _imageInterval * 2, 0, Width - _imageSize + _imageInterval * 2, Height);
+            g.DrawString(Text, Font, color, rect, ContentAlignment.MiddleLeft);
         }
 
         /// <summary>
@@ -205,7 +202,7 @@ namespace Sunny.UI
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
             //图标
-            float top = Padding.Top - 1 + (Height - Padding.Top - Padding.Bottom - ImageSize) / 2.0f;
+            float top = (Height - ImageSize) / 2.0f;
             float left = Text.IsValid() ? ImageInterval : (Width - ImageSize) / 2.0f;
 
             Color color = Enabled ? fillColor : foreDisableColor;
