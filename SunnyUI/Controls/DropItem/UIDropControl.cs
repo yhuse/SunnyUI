@@ -42,6 +42,7 @@ namespace Sunny.UI
             SetStyleFlags();
             Padding = new Padding(0, 0, 30, 2);
 
+            edit.AutoSize = false;
             edit.Font = UIFontColor.Font();
             edit.Left = 4;
             edit.Top = 3;
@@ -62,6 +63,19 @@ namespace Sunny.UI
             MouseMove += UIDropControl_MouseMove;
 
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
+        }
+
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            edit.IsScaled = true;
+            edit.Font = Font;
+            SizeChange();
+            Invalidate();
         }
 
         [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
@@ -338,17 +352,6 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        /// <summary>
-        /// 重载字体变更
-        /// </summary>
-        /// <param name="e">参数</param>
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            edit.Font = Font;
-            Invalidate();
-        }
-
         protected override void OnPaddingChanged(EventArgs e)
         {
             if (Padding.Right < 30 || Padding.Bottom < 2)
@@ -365,8 +368,6 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
-            if (Height < edit.Height + 2 && edit.Height > 0) Height = edit.Height + 2;
-
             SizeChange();
 
             if (tipsBtn != null)
@@ -377,6 +378,9 @@ namespace Sunny.UI
 
         private void SizeChange()
         {
+            if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
+            if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
+            edit.Height = Math.Min(Height - RectSize * 2, edit.PreferredHeight);
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4 + Padding.Left;
             edit.Width = Width - Padding.Left - Padding.Right - 4;
