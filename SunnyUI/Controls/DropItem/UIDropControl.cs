@@ -22,6 +22,7 @@
  * 2022-09-16: V3.2.4 支持自定义右键菜单
  * 2023-02-07: V3.3.1 增加Tips小红点
  * 2023-04-08: V3.3.4 DropDownList时，显示水印文字
+ * 2023-05-08: V3.3.6 最小高度限制，以防丢失边框
 ******************************************************************************/
 
 using System;
@@ -364,6 +365,8 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
+            if (Height < edit.Height + 2 && edit.Height > 0) Height = edit.Height + 2;
+
             SizeChange();
 
             if (tipsBtn != null)
@@ -392,9 +395,9 @@ namespace Sunny.UI
             if (!edit.Visible)
             {
                 if (Text.IsValid())
-                    g.DrawString(Text, Font, GetForeColor(), Size, Padding, TextAlignment);
+                    g.DrawString(Text, Font, GetForeColor(), ClientRectangle, TextAlignment);
                 else if (Watermark.IsValid())
-                    g.DrawString(Watermark, Font, WatermarkColor, Size, Padding, TextAlignment, 6, 1);
+                    g.DrawString(Watermark, Font, WatermarkColor, ClientRectangle, TextAlignment, 5);
             }
 
             g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));

@@ -73,7 +73,6 @@ namespace Sunny.UI
 
             ShowText = false;
             Font = UIFontColor.Font();
-            Padding = new Padding(0);
             MinimumSize = new Size(1, 16);
 
             Width = 150;
@@ -662,12 +661,6 @@ namespace Sunny.UI
             }
         }
 
-        protected override void OnPaddingChanged(EventArgs e)
-        {
-            base.OnPaddingChanged(e);
-            SizeChange();
-        }
-
         public void SetScrollInfo()
         {
             if (bar == null)
@@ -703,20 +696,20 @@ namespace Sunny.UI
 
                 if (icon == null && Symbol == 0)
                 {
-                    edit.Left = 4 + Padding.Left;
-                    edit.Width = Width - 8 - Padding.Left - Padding.Right;
+                    edit.Left = 4;
+                    edit.Width = Width - 8;
                 }
                 else
                 {
                     if (icon != null)
                     {
-                        edit.Left = 4 + iconSize + Padding.Left;
-                        edit.Width = Width - 8 - iconSize - Padding.Left - Padding.Right;
+                        edit.Left = 4 + iconSize;
+                        edit.Width = Width - 8 - iconSize;
                     }
                     else if (Symbol > 0)
                     {
-                        edit.Left = 4 + SymbolSize + Padding.Left;
-                        edit.Width = Width - 8 - SymbolSize - Padding.Left - Padding.Right;
+                        edit.Left = 4 + SymbolSize;
+                        edit.Width = Width - 8 - SymbolSize;
                     }
                 }
 

@@ -45,8 +45,6 @@ namespace Sunny.UI
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;
-
-            waterMarkBrush = new SolidBrush(_waterMarkActiveColor);
             waterMarkContainer = null;
 
             DrawWaterMark();
@@ -77,22 +75,16 @@ namespace Sunny.UI
         private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
         {
             waterMarkContainer.Visible = Watermark.IsValid();
-            waterMarkContainer.Location = new Point(4, -1);
+            waterMarkContainer.Location = new Point(4, 0);
             waterMarkContainer.Height = this.Height;
             waterMarkContainer.Width = this.Width - 4;
             waterMarkContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
-            if (this.ContainsFocus)
-            {
-                waterMarkBrush = new SolidBrush(this._waterMarkActiveColor);
-            }
-            else
-            {
-                waterMarkBrush = new SolidBrush(this._waterMarkColor);
-            }
+            Color color = _waterMarkColor;
+            if (ContainsFocus) color = _waterMarkActiveColor;
 
             Graphics g = e.Graphics;
-            g.DrawString(this._waterMarkText, Font, waterMarkBrush, new PointF(-2f, 1f));//Take a look at that point
+            g.DrawString(this._waterMarkText, Font, color, waterMarkContainer.ClientRectangle, ContentAlignment.MiddleLeft, -2);//Take a look at that point
         }
 
         private void RemoveWaterMark()
@@ -106,8 +98,6 @@ namespace Sunny.UI
 
         private void ThisHasFocus(object sender, EventArgs e)
         {
-            waterMarkBrush = new SolidBrush(this._waterMarkActiveColor);
-
             if (this.TextLength <= 0)
             {
                 RemoveWaterMark();
@@ -265,8 +255,6 @@ namespace Sunny.UI
         }
 
         private PanelEx waterMarkContainer;
-        private SolidBrush waterMarkBrush;
-
         private string _waterMarkText = "";
 
         [DefaultValue(null)]

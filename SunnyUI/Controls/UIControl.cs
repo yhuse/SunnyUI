@@ -639,7 +639,8 @@ namespace Sunny.UI
         protected virtual void OnPaintFore(Graphics g, GraphicsPath path)
         {
             Color color = GetForeColor();
-            g.DrawString(Text, Font, color, Size, Padding, TextAlign);
+            Rectangle rect = new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom);
+            g.DrawString(Text, Font, color, rect, TextAlign);
         }
 
         protected override void OnTextChanged(EventArgs e)

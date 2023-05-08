@@ -766,16 +766,15 @@ namespace Sunny.UI
 
                     if (MenuHelper[e.Node] != null)
                     {
-                        using StringFormat alignment = GDI.SetCenterAlignment();
                         if (MenuHelper[e.Node].TipsCustom)
                         {
                             e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax));
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
                         }
                         else
                         {
                             e.Graphics.FillEllipse(TipsColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax));
+                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
                         }
                     }
                 }

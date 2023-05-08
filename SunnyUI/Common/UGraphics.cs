@@ -33,7 +33,7 @@ namespace Sunny.UI
     /// </summary>
     public static class GraphicsEx
     {
-        public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, ContentAlignment alignment = ContentAlignment.MiddleCenter)
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, ContentAlignment alignment, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
             TextFormatFlags flags = new TextFormatFlags();
@@ -71,6 +71,7 @@ namespace Sunny.UI
                     break;
             }
 
+            rect.Offset(offsetX, offsetY);
             TextRenderer.DrawText(g, text, font, rect, color, flags);
         }
 
