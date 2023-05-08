@@ -221,18 +221,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 绘制前景颜色
-        /// </summary>
-        /// <param name="g">绘图图面</param>
-        /// <param name="path">绘图路径</param>
-        protected override void OnPaintFore(Graphics g, GraphicsPath path)
-        {
-            Padding = new Padding(_symbolSize + _imageInterval * 2, Padding.Top, Padding.Right, Padding.Bottom);
-            //填充文字
-            g.DrawString(Text, Font, foreColor, Size, Padding, TextAlign);
-        }
-
-        /// <summary>
         /// 设置主题样式
         /// </summary>
         /// <param name="uiColor">主题样式</param>
@@ -255,7 +243,7 @@ namespace Sunny.UI
             float left = 0;
             float top = 0;
             SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
-            SizeF TextSize = e.Graphics.MeasureString(Text, Font);
+            Size TextSize = TextRenderer.MeasureText(Text, Font);
 
             if (Dock == DockStyle.None && autoSize)
             {
@@ -300,6 +288,12 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f, SymbolOffset.X, SymbolOffset.Y);
             else
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, left, top, SymbolOffset.X, SymbolOffset.Y);
+
+            Rectangle rect = new Rectangle((int)left + SymbolSize, (int)top, Width, SymbolSize);
+            e.Graphics.DrawString(Text, Font, ForeColor, rect, ContentAlignment.MiddleLeft);
         }
+
+        protected override void OnPaintFore(Graphics g, GraphicsPath path)
+        { }
     }
 }

@@ -429,7 +429,8 @@ namespace Sunny.UI
         {
             string text = Text;
             if (!showText && Text.IsValid()) text = "";
-            g.DrawString(text, Font, GetForeColor(), Size, Padding, TextAlignment);
+            Rectangle rect = new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom);
+            g.DrawString(text, Font, GetForeColor(), rect, TextAlignment);
         }
 
         /// <summary>

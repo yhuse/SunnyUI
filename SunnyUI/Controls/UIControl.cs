@@ -638,9 +638,8 @@ namespace Sunny.UI
         /// <param name="path">路径</param>
         protected virtual void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            Color color = GetForeColor();
             Rectangle rect = new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom);
-            g.DrawString(Text, Font, color, rect, TextAlign);
+            g.DrawString(Text, Font, GetForeColor(), rect, TextAlign);
         }
 
         protected override void OnTextChanged(EventArgs e)
