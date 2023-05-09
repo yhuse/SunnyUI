@@ -36,72 +36,86 @@ namespace Sunny.UI
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, ContentAlignment alignment, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
-            TextFormatFlags flags = new TextFormatFlags();
+            rect.Offset(offsetX, offsetY);
+            Size size = TextRenderer.MeasureText(text, font);
+            int left = 0, top = 0;
+
             switch (alignment)
             {
                 case ContentAlignment.TopLeft:
-                    flags = TextFormatFlags.Top | TextFormatFlags.Left;
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.BottomLeft:
+                    left = rect.Left + 1;
                     break;
                 case ContentAlignment.TopCenter:
-                    flags = TextFormatFlags.Top | TextFormatFlags.HorizontalCenter;
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.BottomCenter:
+                    left = rect.Left + (rect.Width - size.Width) / 2;
                     break;
                 case ContentAlignment.TopRight:
-                    flags = TextFormatFlags.Top | TextFormatFlags.Right;
-                    break;
-                case ContentAlignment.MiddleLeft:
-                    flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left;
-                    break;
-                case ContentAlignment.MiddleCenter:
-                    flags = TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter;
-                    break;
                 case ContentAlignment.MiddleRight:
-                    flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Right;
-                    break;
-                case ContentAlignment.BottomLeft:
-                    flags = TextFormatFlags.Bottom | TextFormatFlags.Left;
-                    break;
-                case ContentAlignment.BottomCenter:
-                    flags = TextFormatFlags.Bottom | TextFormatFlags.HorizontalCenter;
-                    break;
                 case ContentAlignment.BottomRight:
-                    flags = TextFormatFlags.Bottom | TextFormatFlags.Right;
-                    break;
-                default:
-                    flags = TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter;
+                    left = rect.Left + rect.Width - size.Width - 1;
                     break;
             }
 
-            rect.Offset(offsetX, offsetY);
-            TextRenderer.DrawText(g, text, font, rect, color, flags);
+            switch (alignment)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.TopRight:
+                    top = rect.Top + 1;
+                    break;
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.MiddleRight:
+
+                    top = rect.Top + (rect.Height - size.Height) / 2;
+                    break;
+                case ContentAlignment.BottomCenter:
+                case ContentAlignment.BottomLeft:
+                case ContentAlignment.BottomRight:
+                    top = rect.Top + rect.Height - size.Height - 1;
+                    break;
+            }
+
+            TextRenderer.DrawText(g, text, font, new Point(left, top), color);
         }
 
-        public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, StringAlignment alignment, StringAlignment lineAlignment)
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, StringAlignment alignment, StringAlignment lineAlignment, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
-            TextFormatFlags flags = new TextFormatFlags();
+            rect.Offset(offsetX, offsetY);
+            Size size = TextRenderer.MeasureText(text, font);
+            int left = 0, top = 0;
 
-            if (alignment == StringAlignment.Near && lineAlignment == StringAlignment.Near)
-                flags = TextFormatFlags.Top | TextFormatFlags.Left;
-            if (alignment == StringAlignment.Center && lineAlignment == StringAlignment.Near)
-                flags = TextFormatFlags.Top | TextFormatFlags.HorizontalCenter;
-            if (alignment == StringAlignment.Far && lineAlignment == StringAlignment.Near)
-                flags = TextFormatFlags.Top | TextFormatFlags.Right;
+            switch (alignment)
+            {
+                case StringAlignment.Near:
+                    left = rect.Left + 1;
+                    break;
+                case StringAlignment.Center:
+                    left = rect.Left + (rect.Width - size.Width) / 2;
+                    break;
+                case StringAlignment.Far:
+                    left = rect.Left + rect.Width - size.Width - 1;
+                    break;
+            }
 
-            if (alignment == StringAlignment.Near && lineAlignment == StringAlignment.Center)
-                flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left;
-            if (alignment == StringAlignment.Center && lineAlignment == StringAlignment.Center)
-                flags = TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter;
-            if (alignment == StringAlignment.Far && lineAlignment == StringAlignment.Center)
-                flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Right;
+            switch (lineAlignment)
+            {
+                case StringAlignment.Near:
+                    top = rect.Top + 1;
+                    break;
+                case StringAlignment.Center:
+                    top = rect.Top + (rect.Height - size.Height) / 2;
+                    break;
+                case StringAlignment.Far:
+                    top = rect.Top + rect.Height - size.Height - 1;
+                    break;
+            }
 
-            if (alignment == StringAlignment.Near && lineAlignment == StringAlignment.Far)
-                flags = TextFormatFlags.Bottom | TextFormatFlags.Left;
-            if (alignment == StringAlignment.Center && lineAlignment == StringAlignment.Far)
-                flags = TextFormatFlags.Bottom | TextFormatFlags.HorizontalCenter;
-            if (alignment == StringAlignment.Far && lineAlignment == StringAlignment.Far)
-                flags = TextFormatFlags.Bottom | TextFormatFlags.Right;
-
-            TextRenderer.DrawText(g, text, font, rect, color, flags);
+            TextRenderer.DrawText(g, text, font, new Point(left, top), color);
         }
 
         /// <summary>

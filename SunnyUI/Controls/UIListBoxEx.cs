@@ -311,7 +311,6 @@ namespace Sunny.UI
             {
                 e.Graphics.FillRectangle(BackColor, e.Bounds);
                 e.Graphics.FillRectangle(backColor, rect);
-                //e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
                 e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, textAlignment, StringAlignment.Center);
             }
             else
@@ -330,7 +329,6 @@ namespace Sunny.UI
 
                 e.Graphics.FillRectangle(BackColor, e.Bounds);
                 e.Graphics.FillRectangle(backColor, rect);
-                //e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, sStringFormat);
                 e.Graphics.DrawString(showText, e.Font, foreColor, e.Bounds, textAlignment, StringAlignment.Center);
             }
 

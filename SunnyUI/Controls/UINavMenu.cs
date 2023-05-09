@@ -756,8 +756,8 @@ namespace Sunny.UI
                 //显示Tips圆圈
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
                 {
-                    Size tipsSize = TextRenderer.MeasureText(MenuHelper.GetTipsText(e.Node), TempFont);
-                    int sfMax = Math.Max(tipsSize.Width, tipsSize.Height) + 1;
+                    SizeF tipsSize = e.Graphics.MeasureString(MenuHelper.GetTipsText(e.Node), TempFont);
+                    int sfMax = (int)Math.Max(tipsSize.Width, tipsSize.Height) + 1;
                     int tipsLeft = Width - sfMax - 16;
                     if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
                     if (Bar.Visible) tipsLeft -= Bar.Width;
