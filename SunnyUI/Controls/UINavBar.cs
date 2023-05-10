@@ -518,8 +518,7 @@ namespace Sunny.UI
                 {
                     if (symbol > 0)
                     {
-                        e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new RectangleF(NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY, symbolSize, NodeSize.Height));
-
+                        e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new Rectangle(NodeX + i * NodeSize.Width + (int)(NodeSize.Width - sf.Width - symbolSize) / 2, NodeY, symbolSize, NodeSize.Height));
                     }
                     else
                     {

@@ -19,6 +19,7 @@
  * 2022-01-29: V3.1.0 增加文件说明
  * 2022-11-02: V3.2.6 增加TextChanged事件
  * 2022-12-02: V3.3.0 删除TextChanged事件，增加ValueChanged事件
+ * 2022-05-10: V3.3.6 修复Enabled切换时背景色不一致的问题
 ******************************************************************************/
 
 using System;
@@ -254,6 +255,19 @@ namespace Sunny.UI
             fillColor = uiColor.EditorBackColor;
             foreColor = UIFontColor.Primary;
 
+            txt1.BackColor = Enabled ? fillColor : FillDisableColor;
+            txt1.ForeColor = UIFontColor.Primary;
+            txt2.BackColor = Enabled ? fillColor : FillDisableColor;
+            txt2.ForeColor = UIFontColor.Primary;
+            txt3.BackColor = Enabled ? fillColor : FillDisableColor;
+            txt3.ForeColor = UIFontColor.Primary;
+            txt4.BackColor = Enabled ? fillColor : FillDisableColor;
+            txt4.ForeColor = UIFontColor.Primary;
+        }
+
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
             txt1.BackColor = Enabled ? fillColor : FillDisableColor;
             txt1.ForeColor = UIFontColor.Primary;
             txt2.BackColor = Enabled ? fillColor : FillDisableColor;

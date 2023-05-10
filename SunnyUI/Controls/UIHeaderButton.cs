@@ -639,8 +639,8 @@ namespace Sunny.UI
 
                             e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Height - Padding.Bottom - CircleSize, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new RectangleF(
-                                    symbolOffset.X + (Width - CircleSize) / 2.0f,
+                                new Rectangle(
+                                    symbolOffset.X + (int)(Width - CircleSize) / 2,
                                     symbolOffset.Y + Height - Padding.Bottom - CircleSize,
                                     CircleSize,
                                     CircleSize));
@@ -667,9 +667,9 @@ namespace Sunny.UI
 
                             e.Graphics.FillEllipse(bcColor, Padding.Left, (Height - CircleSize) / 2.0f, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new RectangleF(
+                                new Rectangle(
                                     symbolOffset.X + Padding.Left,
-                                    symbolOffset.Y + (Height - CircleSize) / 2.0f,
+                                    symbolOffset.Y + (int)(Height - CircleSize) / 2,
                                     CircleSize,
                                     CircleSize));
                         }
@@ -699,9 +699,9 @@ namespace Sunny.UI
 
                             e.Graphics.FillEllipse(bcColor, Width - Padding.Right - CircleSize, (Height - CircleSize) / 2.0f, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new RectangleF(
+                                new Rectangle(
                                     symbolOffset.X + Width - Padding.Right - CircleSize,
-                                    symbolOffset.Y + (Height - CircleSize) / 2.0f,
+                                    symbolOffset.Y + (int)(Height - CircleSize) / 2,
                                     CircleSize,
                                     CircleSize));
                         }
@@ -727,8 +727,8 @@ namespace Sunny.UI
 
                             e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Padding.Top, CircleSize, CircleSize);
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new RectangleF(
-                                    symbolOffset.X + (Width - CircleSize) / 2.0f,
+                                new Rectangle(
+                                    symbolOffset.X + (int)(Width - CircleSize) / 2,
                                     symbolOffset.Y + Padding.Top,
                                     CircleSize,
                                     CircleSize));

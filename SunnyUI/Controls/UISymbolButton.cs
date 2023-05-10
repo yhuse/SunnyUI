@@ -379,10 +379,10 @@ namespace Sunny.UI
                         if (Symbol > 0 && Image == null)
                         {
                             e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                                new RectangleF(
-                                    (Width - ImageSize.Width) / 2.0f,
-                                    Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f,
-                                      ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                                new Rectangle(
+                                    (int)(Width - ImageSize.Width) / 2,
+                                    Padding.Top + (int)(Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2,
+                                      (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                         }
 
                         if (Image != null)
@@ -401,7 +401,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                            new RectangleF((Width - allWidth) / 2.0f, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                            new Rectangle((int)(Width - allWidth) / 2, (int)(Height - ImageSize.Height) / 2, (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
                     if (Image != null)
@@ -472,7 +472,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                            new RectangleF(left, top, ImageSize.Width, ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                            new Rectangle((int)left, (int)top, (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
                     if (Image != null)
