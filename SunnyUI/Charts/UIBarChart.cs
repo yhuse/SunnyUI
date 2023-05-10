@@ -27,6 +27,7 @@
  * 2022-08-10: V3.2.2 修复Y轴显示名称
  * 2022-08-17: V3.2.3 增加数据可为Nan
  * 2022-09-07: V3.2.3 Option.YAxis.ShowGridLine为false时，不显示水平表格虚线
+ * 2022-05-10: V3.3.6 Option.ShowFullRect为true时，绘制右侧和上侧的边框实线
 ******************************************************************************/
 
 using System;
@@ -467,6 +468,11 @@ namespace Sunny.UI
                     SizeF sfname = g.MeasureString(Option.XAxis.Name, TempFont);
                     g.DrawString(Option.XAxis.Name, TempFont, ForeColor, DrawOrigin.X + (DrawSize.Width - sfname.Width) / 2.0f, DrawOrigin.Y + Option.XAxis.AxisTick.Length + sfname.Height);
                 }
+            }
+
+            if (Option.ShowFullRect)
+            {
+                g.DrawRectangle(ForeColor, Option.Grid.Left, Option.Grid.Top, DrawSize.Width, DrawSize.Height);
             }
 
             double[] YLabels = YScale.CalcLabels();

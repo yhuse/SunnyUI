@@ -127,6 +127,8 @@ namespace Sunny.UI
                 return null;
             }
         }
+
+        public bool ShowFullRect { get; set; }
     }
 
     public class UIBarToolTip : UIChartToolTip
