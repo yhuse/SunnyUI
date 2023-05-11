@@ -168,7 +168,8 @@ namespace Sunny.UI
                     g.FillPolygon(br, points.ToArray());
                 }
 
-                g.DrawString(Text, Font, ForeColor, (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                //g.DrawString(Text, Font, ForeColor, (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                g.DrawString(Text, Font, ForeColor, ClientRectangle, ContentAlignment.MiddleCenter);
             }
             else
             {
@@ -181,7 +182,7 @@ namespace Sunny.UI
                 width = width + Height + 6;
                 if (itemWidth < width) itemWidth = (int)width;
 
-                float begin = 0;
+                int begin = 0;
                 int index = 0;
                 foreach (var item in Items)
                 {
@@ -237,9 +238,10 @@ namespace Sunny.UI
                         g.FillPolygon(br, points.ToArray());
                     }
 
-                    g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor, begin + (itemWidth - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
-
-                    begin = begin + itemWidth - 3 - Height / 2.0f + Interval;
+                    //g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor, begin + (itemWidth - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                    g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor,
+                        new Rectangle(begin, 0, itemWidth, Height), ContentAlignment.MiddleCenter);
+                    begin = begin + itemWidth - 3 - Height / 2 + Interval;
                     index++;
                 }
             }
