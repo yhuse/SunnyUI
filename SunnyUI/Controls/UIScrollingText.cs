@@ -20,6 +20,7 @@
  * 2021-07-16: V3.0.5 增加属性控制开启滚动
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-02-23: V3.3.2 重写滚动逻辑
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -163,14 +164,16 @@ namespace Sunny.UI
                 if (XPos + TextWidth > Width && TextWidth < Width - offset)
                 {
                     XPos1 = XPos - Width + offset;
-                    g.DrawString(Text, Font, ForeColor, XPos1, y);
+                    //g.DrawString(Text, Font, ForeColor, XPos1, y);
+                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
                 else
                 {
                     XPos1 = -TextWidth + offset;
                 }
 
-                g.DrawString(Text, Font, ForeColor, XPos, y);
+                //g.DrawString(Text, Font, ForeColor, XPos, y);
+                g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
             }
 
             if (ScrollingType == UIScrollingType.RightToLeft)
@@ -178,14 +181,16 @@ namespace Sunny.UI
                 if (XPos < 0 && TextWidth < Width - offset)
                 {
                     XPos1 = Width + XPos - offset;
-                    g.DrawString(Text, Font, ForeColor, XPos1, y);
+                    //g.DrawString(Text, Font, ForeColor, XPos1, y);
+                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
                 else
                 {
                     XPos1 = Width - offset;
                 }
 
-                g.DrawString(Text, Font, ForeColor, XPos, y);
+                //g.DrawString(Text, Font, ForeColor, XPos, y);
+                g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
             }
         }
 

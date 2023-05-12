@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -370,8 +371,9 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Text)
             {
-                SizeF sf = e.Graphics.MeasureString(Text, Font);
-                e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + TextOffset.X, (Height - sf.Height) / 2.0f + 1 + TextOffset.Y);
+                //SizeF sf = e.Graphics.MeasureString(Text, Font);
+                //e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + TextOffset.X, (Height - sf.Height) / 2.0f + 1 + TextOffset.Y);
+                e.Graphics.DrawString(Text, Font, foreColor, ClientRectangle, ContentAlignment.MiddleCenter, TextOffset.X, TextOffset.Y);
             }
 
             PaintAgain?.Invoke(this, e);
