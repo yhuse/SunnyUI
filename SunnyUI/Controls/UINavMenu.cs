@@ -33,6 +33,7 @@
 * 2022-11-03: V3.2.6 重写了节点右侧图标的绘制
 * 2023-02-02: V3.3.1 修复了鼠标离开事件
 * 2023-02-10: V3.3.2 有子节点时，鼠标左键点击父级点展开/收缩，右键选中
+* 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -674,7 +675,7 @@ namespace Sunny.UI
                     }
                 }
 
-                SizeF sf = e.Graphics.MeasureString(e.Node.Text, Font);
+                //SizeF sf = e.Graphics.MeasureString(e.Node.Text, Font);
                 if (e.Node == SelectedNode)
                 {
                     if (SelectedColorGradient)

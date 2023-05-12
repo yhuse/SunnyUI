@@ -36,6 +36,7 @@
  * 2023-02-24: V3.3.2 增加PageDeselecting，取消页面选择时增加判断
  * 2023-02-24: V3.3.2 取消设计期的Dock.Fill，改为运行时设置
  * 2023-03-15: V3.3.3 重新梳理页面加载顺序
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -628,9 +629,9 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y);
             }
 
-            SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
-            e.Graphics.DrawString(Text, TitleFont, TitleForeColor,
-                Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, (TitleHeight - sf.Height) / 2);
+            //SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
+            //e.Graphics.DrawString(Text, TitleFont, TitleForeColor, Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, (TitleHeight - sf.Height) / 2);
+            e.Graphics.DrawString(Text, TitleFont, TitleForeColor, new Rectangle(Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
 
             e.Graphics.SetHighQuality();
             if (ControlBox)

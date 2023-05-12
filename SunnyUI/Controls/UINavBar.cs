@@ -25,6 +25,7 @@
  * 2022-04-14: V3.1.3 重构扩展函数
  * 2022-07-28: V3.2.2 删除界面此控件的编辑器 
  * 2023-02-22: V3.3.2 去除下拉菜单宽度调整
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -473,7 +474,7 @@ namespace Sunny.UI
                 if (symbol > 0)
                     symbolSize = MenuHelper.GetSymbolSize(node);
 
-                SizeF sf = e.Graphics.MeasureString(node.Text, Font);
+                SizeF sf = TextRenderer.MeasureText(node.Text, Font);// e.Graphics.MeasureString(node.Text, Font);
                 Color textColor = ForeColor;
 
                 if (i == ActiveIndex)
@@ -526,11 +527,13 @@ namespace Sunny.UI
                             e.Graphics.DrawImage((Bitmap)ImageList.Images[node.ImageIndex], NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY + (NodeSize.Height - ImageList.ImageSize.Height) / 2);
                     }
 
-                    e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width + symbolSize) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                    //e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width + symbolSize) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                    e.Graphics.DrawString(node.Text, Font, textColor, new Rectangle(NodeX + i * NodeSize.Width + symbolSize / 2, NodeY, NodeSize.Width, NodeSize.Height), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
-                    e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                    //e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
+                    e.Graphics.DrawString(node.Text, Font, textColor, new Rectangle(NodeX + i * NodeSize.Width, NodeY, NodeSize.Width, NodeSize.Height), ContentAlignment.MiddleCenter);
                 }
 
                 if (ShowItemsArrow && node.Nodes.Count > 0)

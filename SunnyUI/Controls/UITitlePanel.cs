@@ -24,6 +24,7 @@
  * 2022-10-28: V3.2.6 箭头图标可设置颜色
  * 2023-05-02: V3.3.6 增加了一个关闭按钮的属性，点击后隐藏控件
  * 2023-05-12: V3.3.6 标题栏文字位置属性由TextAlign改为TextAlignment
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -165,7 +166,7 @@ namespace Sunny.UI
                 g.DrawLine(RectColor, 0, TitleHeight, Width, TitleHeight);
 
             color = Enabled ? TitleForeColor : UIFontColor.Regular;
-            SizeF sf = g.MeasureString(Text, Font);
+            //SizeF sf = g.MeasureString(Text, Font);
             g.DrawString(Text, Font, color, new Rectangle(_titleInterval, 0, Width - _titleInterval * 2 - (ShowCollapse || ShowClose ? 24 : 0), TitleHeight), TextAlignment);
 
             //switch (TextAlign)

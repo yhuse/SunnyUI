@@ -20,6 +20,7 @@
  * 2022-01-26: V3.1.0 增加两端对齐，AlignBothEnds
  * 2022-01-26: V3.1.0 增加未选中步骤文字颜色
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -186,7 +187,7 @@ namespace Sunny.UI
                 int index = 0;
                 foreach (var item in Items)
                 {
-                    SizeF sf = g.MeasureString(item.ToString(), Font);
+                    //SizeF sf = g.MeasureString(item.ToString(), Font);
                     List<PointF> points = new List<PointF>();
 
                     if (index == 0 && AlignBothEnds)
