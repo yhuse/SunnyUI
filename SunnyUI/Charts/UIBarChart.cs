@@ -28,6 +28,7 @@
  * 2022-08-17: V3.2.3 增加数据可为Nan
  * 2022-09-07: V3.2.3 Option.YAxis.ShowGridLine为false时，不显示水平表格虚线
  * 2022-05-10: V3.3.6 Option.ShowFullRect为true时，绘制右侧和上侧的边框实线
+ * 2022-05-13: V3.3.6 Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔
 ******************************************************************************/
 
 using System;
@@ -184,48 +185,97 @@ namespace Sunny.UI
             float x1 = DrawBarWidth / (Option.SeriesCount * 2 + Option.SeriesCount + 1);
             float x2 = x1 * 2;
 
-            for (int i = 0; i < Option.SeriesCount; i++)
+            if (Option.BarInterval < 0 || Option.BarInterval > x1 || Option.SeriesCount == 1)
             {
-                float barX = DrawOrigin.X;
-                var series = Option.Series[i];
-                Bars.TryAdd(i, new List<BarInfo>());
-                for (int j = 0; j < series.Data.Count; j++)
+                for (int i = 0; i < Option.SeriesCount; i++)
                 {
-                    Color color = ChartStyle.GetColor(i);
-                    if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
-                        color = series.Colors[j];
-
-                    float xx = barX + x1 * (i + 1) + x2 * i + x1;
-                    float ww = Math.Min(x2, series.MaxWidth);
-                    xx -= ww / 2.0f;
-
-                    float YZeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
-                    float VPos = YScale.CalcYPixel(series.Data[j], DrawOrigin.Y, DrawSize.Height);
-
-                    if (VPos <= YZeroPos)
+                    float barX = DrawOrigin.X;
+                    var series = Option.Series[i];
+                    Bars.TryAdd(i, new List<BarInfo>());
+                    for (int j = 0; j < series.Data.Count; j++)
                     {
-                        Bars[i].Add(new BarInfo()
-                        {
-                            Rect = new RectangleF(xx, VPos, ww, (YZeroPos - VPos)),
-                            Value = series.Data[j],
-                            Color = color,
-                            Top = true,
-                            Series = series,
-                        });
-                    }
-                    else
-                    {
-                        Bars[i].Add(new BarInfo()
-                        {
-                            Rect = new RectangleF(xx, YZeroPos, ww, (VPos - YZeroPos)),
-                            Value = series.Data[j],
-                            Color = color,
-                            Top = false,
-                            Series = series,
-                        });
-                    }
+                        Color color = ChartStyle.GetColor(i);
+                        if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
+                            color = series.Colors[j];
 
-                    barX += DrawBarWidth;
+                        float xx = barX + x1 * (i + 1) + x2 * i + x1;
+                        float ww = Math.Min(x2, series.MaxWidth);
+                        xx -= ww / 2.0f;
+
+                        float YZeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
+                        float VPos = YScale.CalcYPixel(series.Data[j], DrawOrigin.Y, DrawSize.Height);
+
+                        if (VPos <= YZeroPos)
+                        {
+                            Bars[i].Add(new BarInfo()
+                            {
+                                Rect = new RectangleF(xx, VPos, ww, (YZeroPos - VPos)),
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = true,
+                                Series = series,
+                            });
+                        }
+                        else
+                        {
+                            Bars[i].Add(new BarInfo()
+                            {
+                                Rect = new RectangleF(xx, YZeroPos, ww, (VPos - YZeroPos)),
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = false,
+                                Series = series,
+                            });
+                        }
+
+                        barX += DrawBarWidth;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Option.SeriesCount; i++)
+                {
+                    float barX = DrawOrigin.X;
+                    var series = Option.Series[i];
+                    Bars.TryAdd(i, new List<BarInfo>());
+                    for (int j = 0; j < series.Data.Count; j++)
+                    {
+                        Color color = ChartStyle.GetColor(i);
+                        if (series.Colors.Count > 0 && j >= 0 && j < series.Colors.Count)
+                            color = series.Colors[j];
+
+                        float ww = Math.Min(x2, series.MaxWidth);
+                        float xl = (DrawBarWidth - Option.SeriesCount * ww - (Option.SeriesCount - 1) * Option.BarInterval) / 2.0f;
+                        float xx = barX + xl + i * ww + i * Option.BarInterval;
+                        float YZeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
+                        float VPos = YScale.CalcYPixel(series.Data[j], DrawOrigin.Y, DrawSize.Height);
+
+                        if (VPos <= YZeroPos)
+                        {
+                            Bars[i].Add(new BarInfo()
+                            {
+                                Rect = new RectangleF(xx, VPos, ww, (YZeroPos - VPos)),
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = true,
+                                Series = series,
+                            });
+                        }
+                        else
+                        {
+                            Bars[i].Add(new BarInfo()
+                            {
+                                Rect = new RectangleF(xx, YZeroPos, ww, (VPos - YZeroPos)),
+                                Value = series.Data[j],
+                                Color = color,
+                                Top = false,
+                                Series = series,
+                            });
+                        }
+
+                        barX += DrawBarWidth;
+                    }
                 }
             }
 

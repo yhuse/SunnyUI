@@ -85,6 +85,8 @@ namespace Sunny.UI
 
         public float AutoSizeBarsCompactValue { get; set; } = 1.0f;
 
+        public int BarInterval { get; set; } = -1;
+
         public void AddSeries(UIBarSeries series)
         {
             if (series == null)
