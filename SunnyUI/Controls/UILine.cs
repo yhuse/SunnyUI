@@ -21,12 +21,14 @@
  * 2022-01-10: V3.1.0 修复了文本为空不显示的问题
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-11-26: V3.2.9 水平方向文字不居中时，可设置线条渐变色
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -190,51 +192,34 @@ namespace Sunny.UI
             {
                 if (Text.IsValid())
                 {
-                    sf = g.MeasureString(Text, Font);
+                    sf = TextRenderer.MeasureText(Text, Font);
                     switch (TextAlign)
                     {
-                        case ContentAlignment.BottomLeft:
-                            g.DrawString(Text, Font, foreColor, Padding.Left + TextInterval + 2, (Height + lineSize) / 2.0f);
-                            break;
-
+                        case ContentAlignment.TopLeft:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomLeft); break;
+                        case ContentAlignment.TopCenter:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomCenter); break;
+                        case ContentAlignment.TopRight:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomRight); break;
                         case ContentAlignment.MiddleLeft:
                             x = Padding.Left + TextInterval;
-                            g.DrawString(Text, Font, foreColor, Padding.Left + TextInterval + 2, (Height - sf.Height) / 2);
-                            break;
-
-                        case ContentAlignment.TopLeft:
-                            g.DrawString(Text, Font, foreColor, Padding.Left + TextInterval + 2, (Height - lineSize) / 2.0f - sf.Height);
-                            break;
-
-                        case ContentAlignment.BottomCenter:
-                            g.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2, (Height + lineSize) / 2.0f);
-                            break;
-
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
                         case ContentAlignment.MiddleCenter:
                             x = (Width - sf.Width) / 2 - 2;
-                            g.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2, (Height - sf.Height) / 2);
-                            break;
-
-                        case ContentAlignment.TopCenter:
-                            g.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2, (Height - lineSize) / 2.0f - sf.Height);
-                            break;
-
-                        case ContentAlignment.BottomRight:
-                            g.DrawString(Text, Font, foreColor, Width - sf.Width - TextInterval - 2 - Padding.Right, (Height + lineSize) / 2.0f);
-                            break;
-
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
                         case ContentAlignment.MiddleRight:
                             x = Width - sf.Width - TextInterval - 4 - Padding.Right;
-                            g.DrawString(Text, Font, foreColor, Width - sf.Width - TextInterval - 2 - Padding.Right, (Height - sf.Height) / 2);
-                            break;
-
-                        case ContentAlignment.TopRight:
-                            g.DrawString(Text, Font, foreColor, Width - sf.Width - TextInterval - 2 - Padding.Right, (Height - lineSize) / 2.0f - sf.Height);
-                            break;
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
+                        case ContentAlignment.BottomLeft:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopLeft); break;
+                        case ContentAlignment.BottomCenter:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopCenter); break;
+                        case ContentAlignment.BottomRight:
+                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopRight); break;
                     }
                 }
 
-                int top = (Height - lineSize) / 2;
+                int top = Height / 2;
                 if (Text.IsValid())
                 {
                     switch (TextAlign)
@@ -248,6 +233,7 @@ namespace Sunny.UI
                         default:
                             if (LineColorGradient)
                             {
+                                top = (Height - lineSize) / 2;
                                 using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(Width, 0), LineColor, LineColor2);
                                 g.FillRectangle(br, new Rectangle(Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, LineSize));
                             }
@@ -262,6 +248,7 @@ namespace Sunny.UI
                 {
                     if (LineColorGradient)
                     {
+                        top = (Height - lineSize) / 2;
                         using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(Width, 0), LineColor, LineColor2);
                         g.FillRectangle(br, new Rectangle(Padding.Left, top, Width - 2 - Padding.Left - Padding.Right, LineSize));
                     }
