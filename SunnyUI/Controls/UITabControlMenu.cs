@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-08-11: V3.0.2 重写ItemSize，将宽、高调整为正常显示
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -377,7 +378,8 @@ namespace Sunny.UI
 
                 // 绘制标题
                 Color textColor = index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor;
-                e.Graphics.DrawString(TabPages[index].Text, Font, textColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
+                //e.Graphics.DrawString(TabPages[index].Text, Font, textColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
+                e.Graphics.DrawString(TabPages[index].Text, Font, textColor, new Rectangle(textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
 
                 // 绘制图标
                 if (ImageList != null)

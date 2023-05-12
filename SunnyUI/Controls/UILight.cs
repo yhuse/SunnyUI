@@ -20,6 +20,7 @@
  * 2021-06-19: V3.0.4 增加方形显示，优化渐变色
  * 2021-08-07: V3.0.5 默认不显示灯光亮线
  * 2022-05-15: V3.1.8 增加文字显示
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -89,8 +90,9 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            SizeF sf = g.MeasureString(Text, Font);
-            g.DrawString(Text, Font, ForeColor, Width / 2 - sf.Width / 2, Height / 2 - sf.Height / 2);
+            //SizeF sf = g.MeasureString(Text, Font);
+            //g.DrawString(Text, Font, ForeColor, Width / 2 - sf.Width / 2, Height / 2 - sf.Height / 2);
+            g.DrawString(Text, Font, ForeColor, ClientRectangle, TextAlign);
         }
 
         [DefaultValue(500), Description("显示间隔"), Category("SunnyUI")]

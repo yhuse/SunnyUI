@@ -45,6 +45,7 @@
  * 2022-11-30: V3.3.0 增加RemoveAllPages函数
  * 2023-01-25: V3.3.1 最大化后，关闭按钮扩大至原按钮右上角全部区域
  * 2023-02-24: V3.3.2 修复PageSelected可能未显示选中页面的问题
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -1242,14 +1243,16 @@ namespace Sunny.UI
                 }
             }
 
-            SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
+            //SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
             if (TextAlignment == StringAlignment.Center)
             {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, (Width - sf.Width) / 2, (TitleHeight - sf.Height) / 2);
+                //e.Graphics.DrawString(Text, TitleFont, titleForeColor, (Width - sf.Width) / 2, (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
             }
             else
             {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+                //e.Graphics.DrawString(Text, TitleFont, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
             }
         }
 
