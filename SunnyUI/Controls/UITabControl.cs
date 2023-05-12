@@ -30,6 +30,7 @@
  * 2022-05-11: V3.1.8 修复屏蔽左右键后其他控件无法使用左右键的问题
  * 2022-05-17: V3.1.9 修复了一个首页无法关闭的问题
  * 2022-06-19: V3.2.0 多页面框架关闭页面时执行UIPage的FormClosed事件
+ * 2022-05-12: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -643,9 +644,6 @@ namespace Sunny.UI
                     TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y + 2, ItemSize.Width, ItemSize.Height);
                 }
 
-                Bitmap bmp = new Bitmap(TabRect.Width, TabRect.Height);
-                Graphics g = Graphics.FromImage(bmp);
-
                 SizeF sf = e.Graphics.MeasureString(TabPages[index].Text, Font);
                 int textLeft = ImageList?.ImageSize.Width ?? 0;
                 if (ImageList != null) textLeft += 4 + 4 + 6;
@@ -655,23 +653,16 @@ namespace Sunny.UI
                     textLeft = textLeft + (int)((TabRect.Width - textLeft - sf.Width) / 2.0f);
 
                 // 绘制标题
-                g.Clear(TabBackColor);
+                e.Graphics.FillRectangle(tabBackColor, TabRect);
                 if (index == SelectedIndex)
                 {
-                    g.Clear(TabSelectedColor);
-
+                    e.Graphics.FillRectangle(TabSelectedColor, TabRect);
                     if (TabSelectedHighColorSize > 0)
-                        g.FillRectangle(TabSelectedHighColor, 0, bmp.Height - TabSelectedHighColorSize, bmp.Width, TabSelectedHighColorSize);
+                        e.Graphics.FillRectangle(TabSelectedHighColor, TabRect.Left, TabRect.Height - TabSelectedHighColorSize, TabRect.Width, TabSelectedHighColorSize);
                 }
 
-                if (Alignment == TabAlignment.Bottom)
-                {
-                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, (TabRect.Height - sf.Height - TabSelectedHighColorSize) / 2.0f);
-                }
-                else
-                {
-                    g.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor, textLeft, 2 + (TabRect.Height - sf.Height - TabSelectedHighColorSize) / 2.0f);
-                }
+                e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
+                    new Rectangle(TabRect.Left + textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
 
                 var menuItem = Helper[index];
                 bool show1 = TabPages[index].Text != MainPage;
@@ -688,7 +679,7 @@ namespace Sunny.UI
                             color = tabSelectedForeColor;
                         }
 
-                        g.DrawFontImage(77, 28, color, new Rectangle(TabRect.Width - 28, 0, 24, TabRect.Height));
+                        e.Graphics.DrawFontImage(77, 28, color, new Rectangle(TabRect.Left + TabRect.Width - 28, 0, 24, TabRect.Height));
                     }
                 }
 
@@ -698,31 +689,21 @@ namespace Sunny.UI
                     int imageIndex = TabPages[index].ImageIndex;
                     if (imageIndex >= 0 && imageIndex < ImageList.Images.Count)
                     {
-                        g.DrawImage(ImageList.Images[imageIndex], 4 + 6, TabRect.Y + (TabRect.Height - ImageList.ImageSize.Height) / 2.0f, ImageList.ImageSize.Width, ImageList.ImageSize.Height);
+                        e.Graphics.DrawImage(ImageList.Images[imageIndex], TabRect.Left + 4 + 6, TabRect.Y + (TabRect.Height - ImageList.ImageSize.Height) / 2.0f, ImageList.ImageSize.Width, ImageList.ImageSize.Height);
                     }
                 }
 
                 string TipsText = GetTipsText(TabPages[index]);
                 if (Enabled && TipsText.IsValid())
                 {
-                    g.SetHighQuality();
-                    sf = g.MeasureString(TipsText, TempFont);
-                    float sfMax = Math.Max(sf.Width, sf.Height);
-                    float x = TabRect.Width - 1 - 2 - sfMax;
-                    if (showActiveCloseButton || ShowCloseButton)
-                        x -= 24;
-                    float y = 1 + 1;
-                    g.FillEllipse(TipsColor, x, y, sfMax, sfMax);
-                    g.DrawString(TipsText, TempFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
+                    sf = e.Graphics.MeasureString(TipsText, TempFont);
+                    int sfMax = (int)Math.Max(sf.Width, sf.Height) + 1;
+                    int x = TabRect.Width - 1 - 2 - sfMax;
+                    if (showActiveCloseButton || ShowCloseButton) x -= 24;
+                    int y = 1 + 1;
+                    e.Graphics.FillEllipse(TipsColor, TabRect.Left + x - 1, y, sfMax, sfMax);
+                    e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, new Rectangle(TabRect.Left + x, y, sfMax, sfMax), ContentAlignment.MiddleCenter);
                 }
-
-                if (RightToLeftLayout && RightToLeft == RightToLeft.Yes)
-                {
-                    bmp = bmp.HorizontalFlip();
-                }
-
-                e.Graphics.DrawImage(bmp, TabRect.Left, TabRect.Top);
-                bmp.Dispose();
             }
         }
 
