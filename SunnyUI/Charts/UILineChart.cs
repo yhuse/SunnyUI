@@ -42,6 +42,7 @@
  * 2022-09-19: V3.2.4 增加鼠标可框选缩放属性MouseZoom
  * 2023-03-26: V3.3.3 自定义X轴坐标时，点数据提示显示为原始值
  * 2023-04-23: V3.3.5 打开Smooth绘制，建议数据差距不大时可平滑绘制
+ * 2023-05-12: V3.3.6 增加了一种开关量曲线的显示方式
 ******************************************************************************/
 
 using System;
@@ -95,6 +96,13 @@ namespace Sunny.UI
                     series.CalcData(this, XScale, Y2Scale);
                 else
                     series.CalcData(this, XScale, YScale);
+
+                if (series is UISwitchLineSeries lineSeries)
+                {
+                    lineSeries.YOffsetPos = series.IsY2 ?
+                        Y2Scale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height) :
+                        YScale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height);
+                }
             }
 
             NeedDraw = true;
@@ -481,24 +489,37 @@ namespace Sunny.UI
                 {
                     g.SetHighQuality();
 
-                    if (series.ContainsNan || !series.Smooth || series.Points.Count == 2 || ZoomAreas.Count > 5)
+                    if (series is UISwitchLineSeries lineSeries)
                     {
-                        for (int i = 0; i < series.Points.Count - 1; i++)
-                        {
-                            g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
-                        }
+                        List<PointF> points = new List<PointF>();
+                        points.Add(new PointF(lineSeries.Points[0].X, lineSeries.YOffsetPos));
+                        points.AddRange(lineSeries.Points);
+                        points.Add(new PointF(lineSeries.Points[series.Points.Count - 1].X, lineSeries.YOffsetPos));
+                        g.FillPath(color, points.ToArray().Path());
+                        g.DrawLine(color, points[0], points[points.Count - 1]);
+                        points.Clear();
                     }
                     else
                     {
-                        try
-                        {
-                            g.DrawCurve(pen, series.Points.ToArray());
-                        }
-                        catch
+                        if (series.ContainsNan || !series.Smooth || series.Points.Count == 2 || ZoomAreas.Count > 5)
                         {
                             for (int i = 0; i < series.Points.Count - 1; i++)
                             {
                                 g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                g.DrawCurve(pen, series.Points.ToArray());
+                            }
+                            catch
+                            {
+                                for (int i = 0; i < series.Points.Count - 1; i++)
+                                {
+                                    g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                                }
                             }
                         }
                     }

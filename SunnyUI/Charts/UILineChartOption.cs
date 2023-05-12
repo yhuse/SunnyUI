@@ -107,6 +107,21 @@ namespace Sunny.UI
             return series;
         }
 
+        public UILineSeries AddSwitchLineSeries(string seriesName, float Offset = 0, bool isY2 = false)
+        {
+            if (seriesName.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("seriesName 不能为空");
+            }
+
+            if (ExistsSeries(seriesName)) return Series[seriesName];
+
+            UISwitchLineSeries series = new UISwitchLineSeries(seriesName, isY2);
+            series.YOffset = Offset;
+            AddSeries(series);
+            return series;
+        }
+
         public bool ExistsSeries(string seriesName)
         {
             return seriesName.IsValid() && Series.ContainsKey(seriesName);
@@ -360,6 +375,31 @@ namespace Sunny.UI
 
     }
 
+    public class UISwitchLineSeries : UILineSeries
+    {
+        public UISwitchLineSeries(string name, bool isY2 = false) : base(name, isY2)
+        {
+
+        }
+
+        public UISwitchLineSeries(string name, Color color, bool isY2 = false) : base(name, color, isY2)
+        {
+
+        }
+
+        public UISwitchLineSeries(string name, double yOffset, bool isY2 = false) : base(name, isY2)
+        {
+            YOffset = yOffset;
+        }
+
+        public UISwitchLineSeries(string name, Color color, double yOffset, bool isY2 = false) : base(name, color, isY2)
+        {
+            YOffset = yOffset;
+        }
+
+        internal float YOffsetPos { get; set; }
+    }
+
     public class UILineSeries
     {
         public UILineSeries(string name, bool isY2 = false)
@@ -386,6 +426,8 @@ namespace Sunny.UI
             CustomColor = true;
             IsY2 = isY2;
         }
+
+        public double YOffset { get; set; } = 0;
 
         public void SetValueFormat(int xAxisDecimalPlaces, int yAxisDecimalPlaces)
         {
@@ -481,14 +523,14 @@ namespace Sunny.UI
 
         private readonly List<double> PointsY = new List<double>();
 
-        private int MaxCount = 0;
+        protected int MaxCount = 0;
 
         public void UpdateYData(int index, double value)
         {
             if (YData.Count == 0) return;
             if (index >= 0 && index < YData.Count)
             {
-                YData[index] = value;
+                YData[index] = value + YOffset;
             }
         }
 
@@ -600,7 +642,7 @@ namespace Sunny.UI
             XData.Add(x);
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
-            YData.Add(y);
+            YData.Add(y + YOffset);
 
             if (MaxCount > 0 && XData.Count > MaxCount)
                 Remove(1);
@@ -612,7 +654,7 @@ namespace Sunny.UI
             XData.Add(t);
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
-            YData.Add(y);
+            YData.Add(y + YOffset);
 
             if (MaxCount > 0 && XData.Count > MaxCount)
                 Remove(1);
@@ -624,7 +666,7 @@ namespace Sunny.UI
             XData.Add(cnt);
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
-            YData.Add(y);
+            YData.Add(y + YOffset);
 
             if (MaxCount > 0 && XData.Count > MaxCount)
                 Remove(1);
