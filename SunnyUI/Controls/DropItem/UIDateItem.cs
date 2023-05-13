@@ -20,6 +20,7 @@
  * 2020-05-29: V2.2.5 重写
  * 2020-07-04: V2.2.6 重写下拉窗体，缩短创建时间
  * 2023-03-26: V3.3.3 修复下拉框鼠标移动位置的Bug
+ * 2022-05-13: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -610,8 +611,7 @@ namespace Sunny.UI
                     if (i == activeMonth) color = PrimaryColor;
                 }
 
-                SizeF sf = e.Graphics.MeasureString(months[i], Font);
-                e.Graphics.DrawString(months[i], Font, color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                e.Graphics.DrawString(months[i], Font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
             }
         }
 
@@ -676,7 +676,6 @@ namespace Sunny.UI
                 int left = width * (i % 4);
                 int top = height * (i / 4);
 
-                SizeF sf = e.Graphics.MeasureString(years[i].ToString(), Font);
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
                 if (years[i] < min.Year || years[i] > max.Year)
                 {
@@ -692,7 +691,7 @@ namespace Sunny.UI
 
                 if (years[i] != 10000)
                 {
-                    e.Graphics.DrawString(years[i].ToString(), Font, color, left + (width - sf.Width) / 2, top + (height - sf.Height) / 2);
+                    e.Graphics.DrawString(years[i].ToString(), Font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
                 }
             }
         }
@@ -748,21 +747,11 @@ namespace Sunny.UI
         {
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
-
-            SizeF sf = e.Graphics.MeasureString(UILocalize.Sunday, Font);
-            e.Graphics.DrawString(UILocalize.Sunday, Font, ForeColor, width * 0 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Monday, Font);
-            e.Graphics.DrawString(UILocalize.Monday, Font, ForeColor, width * 1 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Tuesday, Font);
-            e.Graphics.DrawString(UILocalize.Tuesday, Font, ForeColor, width * 2 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Wednesday, Font);
-            e.Graphics.DrawString(UILocalize.Wednesday, Font, ForeColor, width * 3 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Thursday, Font);
-            e.Graphics.DrawString(UILocalize.Thursday, Font, ForeColor, width * 4 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Friday, Font);
-            e.Graphics.DrawString(UILocalize.Friday, Font, ForeColor, width * 5 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
-            sf = e.Graphics.MeasureString(UILocalize.Saturday, Font);
-            e.Graphics.DrawString(UILocalize.Saturday, Font, ForeColor, width * 6 + (width - sf.Width) / 2, 4 + (19 - sf.Height) / 2);
+            string[] weeks = { UILocalize.Sunday, UILocalize.Monday, UILocalize.Tuesday, UILocalize.Wednesday, UILocalize.Thursday, UILocalize.Friday, UILocalize.Saturday };
+            for (int i = 0; i < weeks.Length; i++)
+            {
+                e.Graphics.DrawString(weeks[i], Font, ForeColor, new Rectangle(width * i, 4, width, 19), ContentAlignment.MiddleCenter);
+            }
 
             e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
 
@@ -771,8 +760,6 @@ namespace Sunny.UI
             {
                 int left = width * (i % 7);
                 int top = height * (i / 7);
-
-                sf = e.Graphics.MeasureString(days[i].Day.ToString(), Font);
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
                 color = (days[i].DateString() == date.DateString()) ? PrimaryColor : color;
                 if (days[i] < min) color = Color.DarkGray;
@@ -780,7 +767,7 @@ namespace Sunny.UI
 
                 if (!maxDrawer)
                 {
-                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? PrimaryColor : color, left + (width - sf.Width) / 2, top + 30 + (height - sf.Height) / 2);
+                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? PrimaryColor : color, new Rectangle(left, top + 30, width, height), ContentAlignment.MiddleCenter);
                 }
 
                 if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
@@ -795,12 +782,7 @@ namespace Sunny.UI
                 {
                     e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
                     e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);
-
-                    sf = e.Graphics.MeasureString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont);
-                    e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 17, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
-
-                    //sf = e.Graphics.MeasureString(DateTime.Now.DateString(), Font);
-                    //e.Graphics.DrawString(DateTime.Now.DateString(), Font, isToday ? PrimaryColor : Color.DarkGray, p3.Width - width * 4 + 55, p3.Height - height - 1 + (height - sf.Height) / 2.0f);
+                    e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, new Rectangle(p3.Width - width * 4 + 17, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
                 }
             }
         }

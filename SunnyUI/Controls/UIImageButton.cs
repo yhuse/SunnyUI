@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-04: V3.3.6 增加调用点击事件PerformClick
+ * 2022-05-13: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -435,45 +436,7 @@ namespace Sunny.UI
                 base.OnPaint(pe);
             }
 
-            SizeF sf = pe.Graphics.MeasureString(Text, Font);
-            switch (TextAlign)
-            {
-                case ContentAlignment.TopLeft:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Padding.Left, Padding.Top);
-                    break;
-
-                case ContentAlignment.TopCenter:
-                    pe.Graphics.DrawString(text, Font, ForeColor, (Width - sf.Width) / 2, Padding.Top);
-                    break;
-
-                case ContentAlignment.TopRight:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Width - Padding.Right - sf.Width, Padding.Top);
-                    break;
-
-                case ContentAlignment.MiddleLeft:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Padding.Left, (Height - sf.Height) / 2);
-                    break;
-
-                case ContentAlignment.MiddleCenter:
-                    pe.Graphics.DrawString(text, Font, ForeColor, (Width - sf.Width) / 2, (Height - sf.Height) / 2);
-                    break;
-
-                case ContentAlignment.MiddleRight:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Width - Padding.Right - sf.Width, (Height - sf.Height) / 2);
-                    break;
-
-                case ContentAlignment.BottomLeft:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Padding.Left, Height - Padding.Bottom - sf.Height);
-                    break;
-
-                case ContentAlignment.BottomCenter:
-                    pe.Graphics.DrawString(text, Font, ForeColor, (Width - sf.Width) / 2, Height - Padding.Bottom - sf.Height);
-                    break;
-
-                case ContentAlignment.BottomRight:
-                    pe.Graphics.DrawString(text, Font, ForeColor, Width - Padding.Right - sf.Width, Height - Padding.Bottom - sf.Height);
-                    break;
-            }
+            pe.Graphics.DrawString(text, Font, ForeColor, new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom), TextAlign);
         }
     }
 }
