@@ -20,6 +20,7 @@
  * 2022-11-02: V3.2.6 增加TextChanged事件
  * 2022-12-02: V3.3.0 删除TextChanged事件，增加ValueChanged事件
  * 2022-05-10: V3.3.6 修复Enabled切换时背景色不一致的问题
+ * 2022-05-13: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -288,8 +289,9 @@ namespace Sunny.UI
 
             foreach (TextBox txt in Controls.OfType<TextBox>().Where(t => t != txt1))
             {
-                SizeF sf = e.Graphics.MeasureString(".", Font);
-                e.Graphics.DrawString(".", Font, ForeColor, txt.Left - 5 + 2.5f - sf.Width / 2.0f, txt.Top);
+                //SizeF sf = e.Graphics.MeasureString(".", Font);
+                //e.Graphics.DrawString(".", Font, ForeColor, txt.Left - 5 + 2.5f - sf.Width / 2.0f, txt.Top);
+                e.Graphics.DrawString(".", Font, ForeColor, new Rectangle(txt.Left - 5, 0, 5, Height), ContentAlignment.MiddleCenter, 2);
             }
         }
 
@@ -346,83 +348,82 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
-            this.txt3 = new System.Windows.Forms.TextBox();
-            this.txt4 = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            txt1 = new TextBox();
+            txt2 = new TextBox();
+            txt3 = new TextBox();
+            txt4 = new TextBox();
+            SuspendLayout();
             // 
             // txt1
             // 
-            this.txt1.BackColor = System.Drawing.Color.White;
-            this.txt1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txt1.Location = new System.Drawing.Point(6, 4);
-            this.txt1.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.txt1.MaxLength = 3;
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(40, 22);
-            this.txt1.TabIndex = 0;
-            this.txt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txt1.BackColor = Color.White;
+            txt1.BorderStyle = BorderStyle.None;
+            txt1.ImeMode = ImeMode.Disable;
+            txt1.Location = new Point(6, 4);
+            txt1.Margin = new Padding(3, 3, 10, 3);
+            txt1.MaxLength = 3;
+            txt1.Name = "txt1";
+            txt1.Size = new Size(40, 22);
+            txt1.TabIndex = 0;
+            txt1.TextAlign = HorizontalAlignment.Center;
             // 
             // txt2
             // 
-            this.txt2.BackColor = System.Drawing.Color.White;
-            this.txt2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt2.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txt2.Location = new System.Drawing.Point(58, 3);
-            this.txt2.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.txt2.MaxLength = 3;
-            this.txt2.Name = "txt2";
-            this.txt2.Size = new System.Drawing.Size(40, 22);
-            this.txt2.TabIndex = 0;
-            this.txt2.TabStop = false;
-            this.txt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txt2.BackColor = Color.White;
+            txt2.BorderStyle = BorderStyle.None;
+            txt2.ImeMode = ImeMode.Disable;
+            txt2.Location = new Point(58, 3);
+            txt2.Margin = new Padding(3, 3, 10, 3);
+            txt2.MaxLength = 3;
+            txt2.Name = "txt2";
+            txt2.Size = new Size(40, 22);
+            txt2.TabIndex = 0;
+            txt2.TabStop = false;
+            txt2.TextAlign = HorizontalAlignment.Center;
             // 
             // txt3
             // 
-            this.txt3.BackColor = System.Drawing.Color.White;
-            this.txt3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt3.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txt3.Location = new System.Drawing.Point(115, 3);
-            this.txt3.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.txt3.MaxLength = 3;
-            this.txt3.Name = "txt3";
-            this.txt3.Size = new System.Drawing.Size(40, 22);
-            this.txt3.TabIndex = 0;
-            this.txt3.TabStop = false;
-            this.txt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txt3.BackColor = Color.White;
+            txt3.BorderStyle = BorderStyle.None;
+            txt3.ImeMode = ImeMode.Disable;
+            txt3.Location = new Point(115, 3);
+            txt3.Margin = new Padding(3, 3, 10, 3);
+            txt3.MaxLength = 3;
+            txt3.Name = "txt3";
+            txt3.Size = new Size(40, 22);
+            txt3.TabIndex = 0;
+            txt3.TabStop = false;
+            txt3.TextAlign = HorizontalAlignment.Center;
             // 
             // txt4
             // 
-            this.txt4.BackColor = System.Drawing.Color.White;
-            this.txt4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt4.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txt4.Location = new System.Drawing.Point(163, 3);
-            this.txt4.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.txt4.MaxLength = 3;
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(40, 22);
-            this.txt4.TabIndex = 0;
-            this.txt4.TabStop = false;
-            this.txt4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txt4.BackColor = Color.White;
+            txt4.BorderStyle = BorderStyle.None;
+            txt4.ImeMode = ImeMode.Disable;
+            txt4.Location = new Point(163, 3);
+            txt4.Margin = new Padding(3, 3, 10, 3);
+            txt4.MaxLength = 3;
+            txt4.Name = "txt4";
+            txt4.Size = new Size(40, 22);
+            txt4.TabIndex = 0;
+            txt4.TabStop = false;
+            txt4.TextAlign = HorizontalAlignment.Center;
             // 
             // UIIPTextBox
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.txt4);
-            this.Controls.Add(this.txt3);
-            this.Controls.Add(this.txt2);
-            this.Controls.Add(this.txt1);
-            this.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.Name = "UIIPTextBox";
-            this.Padding = new System.Windows.Forms.Padding(1);
-            this.Size = new System.Drawing.Size(150, 29);
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.SizeChanged += new System.EventHandler(this.UIIPTextBox_SizeChanged);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = AutoScaleMode.None;
+            Controls.Add(txt4);
+            Controls.Add(txt3);
+            Controls.Add(txt2);
+            Controls.Add(txt1);
+            FillColor2 = Color.FromArgb(235, 243, 255);
+            Name = "UIIPTextBox";
+            Padding = new Padding(1);
+            Size = new Size(219, 29);
+            Style = UIStyle.Custom;
+            SizeChanged += UIIPTextBox_SizeChanged;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.TextBox txt1;

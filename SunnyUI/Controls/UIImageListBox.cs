@@ -24,6 +24,7 @@
  * 2022-08-30: V3.2.3 增加了一些事件
  * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2022-05-13: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -793,7 +794,8 @@ namespace Sunny.UI
 
                 if (ShowDescription && !string.IsNullOrEmpty(item.Description))
                 {
-                    g.DrawString(item.Description, e.Font, foreColor, ImageInterval, thumbnailSize + ImageInterval);
+                    //g.DrawString(item.Description, e.Font, foreColor, ImageInterval, thumbnailSize + ImageInterval);
+                    g.DrawString(item.Description, e.Font, foreColor, new Rectangle(ImageInterval, e.Bounds.Y + thumbnailSize + ImageInterval, e.Bounds.Width, e.Bounds.Height), ContentAlignment.TopLeft);
                 }
 
                 g.Transform = oldTransform;
