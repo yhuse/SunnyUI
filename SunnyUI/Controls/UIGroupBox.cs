@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-05-30: V3.1.9 修复Padding设置
+ * 2022-05-13: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -66,17 +67,7 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            SizeF sf = g.MeasureString(Text, Font);
-
-            float left = TitleInterval;
-            if (TitleAlignment == HorizontalAlignment.Right)
-                left = Width - TitleInterval - sf.Width;
-            if (TitleAlignment == HorizontalAlignment.Center)
-                left = (Width - sf.Width) / 2.0f;
-
-            float top = TitleTop - sf.Height / 2.0f;
-            g.FillRectangle(FillColor, left - 2, top, sf.Width + 2, sf.Height);
-            g.DrawString(Text, Font, ForeColor, left, top);
+            g.DrawString(Text, Font, ForeColor, FillColor, new Rectangle(TitleInterval, 0, Width - TitleInterval * 2, TitleTop * 2), TitleAlignment);
         }
 
         private int _titleTop = 16;

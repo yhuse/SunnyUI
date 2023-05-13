@@ -82,6 +82,56 @@ namespace Sunny.UI
             TextRenderer.DrawText(g, text, font, new Point(left, top), color);
         }
 
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Color backColor, Rectangle rect, ContentAlignment alignment, int offsetX = 0, int offsetY = 0)
+        {
+            if (text.IsNullOrEmpty()) return;
+            rect.Offset(offsetX, offsetY);
+            Size size = TextRenderer.MeasureText(text, font);
+            int left = 0, top = 0;
+
+            switch (alignment)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.BottomLeft:
+                    left = rect.Left + 1;
+                    break;
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.BottomCenter:
+                    left = rect.Left + (rect.Width - size.Width) / 2;
+                    break;
+                case ContentAlignment.TopRight:
+                case ContentAlignment.MiddleRight:
+                case ContentAlignment.BottomRight:
+                    left = rect.Left + rect.Width - size.Width - 1;
+                    break;
+            }
+
+            switch (alignment)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.TopRight:
+                    top = rect.Top + 1;
+                    break;
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.MiddleRight:
+
+                    top = rect.Top + (rect.Height - size.Height) / 2;
+                    break;
+                case ContentAlignment.BottomCenter:
+                case ContentAlignment.BottomLeft:
+                case ContentAlignment.BottomRight:
+                    top = rect.Top + rect.Height - size.Height - 1;
+                    break;
+            }
+
+            TextRenderer.DrawText(g, text, font, new Point(left, top), color, backColor);
+        }
+
+
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, StringAlignment alignment, StringAlignment lineAlignment, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
@@ -118,12 +168,56 @@ namespace Sunny.UI
             TextRenderer.DrawText(g, text, font, new Point(left, top), color);
         }
 
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Color backColor, Rectangle rect, StringAlignment alignment, StringAlignment lineAlignment, int offsetX = 0, int offsetY = 0)
+        {
+            if (text.IsNullOrEmpty()) return;
+            rect.Offset(offsetX, offsetY);
+            Size size = TextRenderer.MeasureText(text, font);
+            int left = 0, top = 0;
+
+            switch (alignment)
+            {
+                case StringAlignment.Near:
+                    left = rect.Left + 1;
+                    break;
+                case StringAlignment.Center:
+                    left = rect.Left + (rect.Width - size.Width) / 2;
+                    break;
+                case StringAlignment.Far:
+                    left = rect.Left + rect.Width - size.Width - 1;
+                    break;
+            }
+
+            switch (lineAlignment)
+            {
+                case StringAlignment.Near:
+                    top = rect.Top + 1;
+                    break;
+                case StringAlignment.Center:
+                    top = rect.Top + (rect.Height - size.Height) / 2;
+                    break;
+                case StringAlignment.Far:
+                    top = rect.Top + rect.Height - size.Height - 1;
+                    break;
+            }
+
+            TextRenderer.DrawText(g, text, font, new Point(left, top), color, backColor);
+        }
+
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, HorizontalAlignment horizontalAlignment, int offsetX = 0, int offsetY = 0)
         {
             StringAlignment alignment = StringAlignment.Center;
             if (horizontalAlignment == HorizontalAlignment.Left) alignment = StringAlignment.Near;
             if (horizontalAlignment == HorizontalAlignment.Right) alignment = StringAlignment.Far;
             g.DrawString(text, font, color, rect, alignment, StringAlignment.Center, offsetX, offsetY);
+        }
+
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Color backColor, Rectangle rect, HorizontalAlignment horizontalAlignment, int offsetX = 0, int offsetY = 0)
+        {
+            StringAlignment alignment = StringAlignment.Center;
+            if (horizontalAlignment == HorizontalAlignment.Left) alignment = StringAlignment.Near;
+            if (horizontalAlignment == HorizontalAlignment.Right) alignment = StringAlignment.Far;
+            g.DrawString(text, font, color, backColor, rect, alignment, StringAlignment.Center, offsetX, offsetY);
         }
 
         /// <summary>
