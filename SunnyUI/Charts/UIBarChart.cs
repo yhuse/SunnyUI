@@ -517,7 +517,7 @@ namespace Sunny.UI
 
                 if (Option.XAxis.Name.IsValid())
                 {
-                    g.DrawString(Option.XAxis.Name, TempFont, ForeColor, new Rectangle(DrawOrigin.X, 0, DrawSize.Width, Height - 10), ContentAlignment.BottomCenter);
+                    g.DrawString(Option.XAxis.Name, TempFont, ForeColor, new Rectangle(DrawOrigin.X, 0, DrawSize.Width, Height - 16), ContentAlignment.BottomCenter);
                 }
             }
 
