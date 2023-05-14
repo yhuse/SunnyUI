@@ -20,6 +20,7 @@
  * 2020-07-25: V2.2.6 更新绘制
  * 2021-08-16: V3.0.6 增加ToolTip接口，解决类似UITextBox这类的组合控件无法显示ToolTip的问题
  * 2021-12-09: V3.0.9 修复默认显示
+ * 2022-05-14: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -262,24 +263,20 @@ namespace Sunny.UI
                         titleSize = e.Graphics.MeasureString(tooltip.Title, TempTitleFont);
                     }
 
-                    e.Graphics.DrawString(tooltip.Title, TempTitleFont, ForeColor,
-                        tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5, 5);
+                    e.Graphics.DrawString(tooltip.Title, TempTitleFont, ForeColor, new Rectangle(tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5, 5, bounds.Width, bounds.Height), ContentAlignment.TopLeft);
                 }
 
                 if (titleSize.Height > 0)
                 {
-                    e.Graphics.DrawLine(ForeColor,
-                        symbolWidth == 0 ? 5 : symbolWidth + 5, 5 + titleSize.Height + 3,
+                    e.Graphics.DrawLine(ForeColor, symbolWidth == 0 ? 5 : symbolWidth + 5, 5 + titleSize.Height + 3,
                         e.Bounds.Width - 5, 5 + titleSize.Height + 3);
                 }
 
-                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor,
-                    tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5,
-                    titleSize.Height > 0 ? 10 + titleSize.Height : 5);
+                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor, new Rectangle(tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5, titleSize.Height > 0 ? 10 + (int)titleSize.Height : 5, bounds.Width, bounds.Height), ContentAlignment.TopLeft);
             }
             else
             {
-                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor, 5, 5);
+                e.Graphics.DrawString(e.ToolTipText, TempFont, ForeColor, new Rectangle(5, 5, bounds.Width, bounds.Height), ContentAlignment.TopLeft);
             }
         }
 

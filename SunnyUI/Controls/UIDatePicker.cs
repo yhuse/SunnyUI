@@ -22,6 +22,7 @@
  * 2021-08-14: V3.0.6 增加可选择年、年月、年月日
  * 2022-11-08: V3.2.8 增加MaxDate,MinDate
  * 2023-05-14: V3.3.6 年、年月、年月日可单独设置格式化掩码
+ * 2023-05-14: V3.3.6 修复文字格式化显示问题
 ******************************************************************************/
 
 using System;
@@ -235,8 +236,21 @@ namespace Sunny.UI
             {
                 try
                 {
-                    DateTime dt = Text.ToDateTime(DateFormat);
-                    if (Value != dt) Value = dt;
+                    switch (ShowType)
+                    {
+                        case UIDateType.YearMonthDay:
+                            DateTime dt1 = Text.ToDateTime(DateFormat);
+                            if (Value != dt1) Value = dt1;
+                            break;
+                        case UIDateType.YearMonth:
+                            DateTime dt2 = Text.ToDateTime(DateYearMonthFormat);
+                            if (Value != dt2) Value = dt2;
+                            break;
+                        case UIDateType.Year:
+                            DateTime dt3 = Text.ToDateTime(DateYearFormat);
+                            if (Value != dt3) Value = dt3;
+                            break;
+                    }
                 }
                 catch
                 {
@@ -254,8 +268,21 @@ namespace Sunny.UI
 
             try
             {
-                DateTime dt = Text.ToDateTime(DateFormat);
-                if (Value != dt) Value = dt;
+                switch (ShowType)
+                {
+                    case UIDateType.YearMonthDay:
+                        DateTime dt1 = Text.ToDateTime(DateFormat);
+                        if (Value != dt1) Value = dt1;
+                        break;
+                    case UIDateType.YearMonth:
+                        DateTime dt2 = Text.ToDateTime(DateYearMonthFormat);
+                        if (Value != dt2) Value = dt2;
+                        break;
+                    case UIDateType.Year:
+                        DateTime dt3 = Text.ToDateTime(DateYearFormat);
+                        if (Value != dt3) Value = dt3;
+                        break;
+                }
             }
             catch
             {

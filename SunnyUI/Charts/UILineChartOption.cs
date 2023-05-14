@@ -107,21 +107,6 @@ namespace Sunny.UI
             return series;
         }
 
-        public UILineSeries AddSwitchLineSeries(string seriesName, float Offset = 0, bool isY2 = false)
-        {
-            if (seriesName.IsNullOrEmpty())
-            {
-                throw new NullReferenceException("seriesName 不能为空");
-            }
-
-            if (ExistsSeries(seriesName)) return Series[seriesName];
-
-            UISwitchLineSeries series = new UISwitchLineSeries(seriesName, isY2);
-            series.YOffset = Offset;
-            AddSeries(series);
-            return series;
-        }
-
         public bool ExistsSeries(string seriesName)
         {
             return seriesName.IsValid() && Series.ContainsKey(seriesName);
