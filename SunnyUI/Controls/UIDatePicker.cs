@@ -21,6 +21,7 @@
  * 2021-04-15: V3.0.3 增加ShowToday显示今日属性
  * 2021-08-14: V3.0.6 增加可选择年、年月、年月日
  * 2022-11-08: V3.2.8 增加MaxDate,MinDate
+ * 2023-05-14: V3.3.6 年、年月、年月日可单独设置格式化掩码
 ******************************************************************************/
 
 using System;
@@ -191,6 +192,26 @@ namespace Sunny.UI
             set
             {
                 showType = value;
+                switch (showType)
+                {
+                    case UIDateType.YearMonthDay:
+                        MaxLength = dateFormat.Length;
+                        Text = Value.ToString(dateFormat);
+                        break;
+                    case UIDateType.YearMonth:
+                        MaxLength = dateYearMonthFormat.Length;
+                        Text = Value.ToString(dateYearMonthFormat);
+                        break;
+                    case UIDateType.Year:
+                        MaxLength = dateYearFormat.Length;
+                        Text = Value.ToString(dateYearFormat);
+                        break;
+                    default:
+                        MaxLength = dateFormat.Length;
+                        Text = Value.ToString(dateFormat);
+                        break;
+                }
+
                 Invalidate();
             }
         }
@@ -323,8 +344,8 @@ namespace Sunny.UI
 
                 if (ShowType == UIDateType.YearMonthDay)
                 {
-                    Text = Value.ToString(dateFormat);
                     MaxLength = dateFormat.Length;
+                    Text = Value.ToString(dateFormat);
                 }
             }
         }
@@ -342,8 +363,8 @@ namespace Sunny.UI
 
                 if (ShowType == UIDateType.YearMonth)
                 {
-                    Text = Value.ToString(dateYearMonthFormat);
                     MaxLength = dateYearMonthFormat.Length;
+                    Text = Value.ToString(dateYearMonthFormat);
                 }
             }
         }
@@ -361,8 +382,8 @@ namespace Sunny.UI
 
                 if (ShowType == UIDateType.Year)
                 {
-                    Text = Value.ToString(dateYearFormat);
                     MaxLength = dateYearFormat.Length;
+                    Text = Value.ToString(dateYearFormat);
                 }
             }
         }
