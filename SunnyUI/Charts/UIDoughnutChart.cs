@@ -19,6 +19,7 @@
  * 2020-06-06: V2.2.5 增加文件说明
  * 2021-07-22: V3.0.5 增加更新数据的方法
  * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至Option.DecimalPlaces
+ * 2022-05-14: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -180,8 +181,7 @@ namespace Sunny.UI
                     {
                         if (pie.Label.Position == UIPieSeriesLabelPosition.Center)
                         {
-                            SizeF sf = g.MeasureString(pie.Data[azIndex].Name, Font);
-                            g.DrawString(pie.Data[azIndex].Name, Font, color, angle.Center.X - sf.Width / 2.0f, angle.Center.Y - sf.Height / 2.0f);
+                            g.DrawString(pie.Data[azIndex].Name, Font, color, new Rectangle((int)angle.Center.X - Width, (int)angle.Center.Y - Height, Width * 2, Height * 2), ContentAlignment.MiddleCenter);
                         }
                     }
                 }

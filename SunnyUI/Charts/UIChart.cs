@@ -18,6 +18,7 @@
  *
  * 2020-06-06: V2.2.5 增加文件说明
  * 2020-09-10: V2.2.7 增加图表的边框线颜色设置
+ * 2022-05-14: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -267,40 +268,10 @@ namespace Sunny.UI
         protected void DrawTitle(Graphics g, UITitle title)
         {
             if (title == null) return;
-            SizeF sf = g.MeasureString(title.Text, Font);
-            float left = 0;
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sf.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-
-            float top = 0;
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = TextInterval; break;
-                case UITopAlignment.Center: top = (Height - sf.Height) / 2.0f; break;
-                case UITopAlignment.Bottom: top = Height - TextInterval - sf.Height; break;
-            }
-
-            g.DrawString(title.Text, Font, ChartStyle.ForeColor, left, top);
-
-            SizeF sfs = g.MeasureString(title.SubText, TempFont);
-            switch (title.Left)
-            {
-                case UILeftAlignment.Left: left = TextInterval; break;
-                case UILeftAlignment.Center: left = (Width - sfs.Width) / 2.0f; break;
-                case UILeftAlignment.Right: left = Width - TextInterval - sf.Width; break;
-            }
-            switch (title.Top)
-            {
-                case UITopAlignment.Top: top = top + sf.Height; break;
-                case UITopAlignment.Center: top = top + sf.Height; break;
-                case UITopAlignment.Bottom: top = top - sf.Height; break;
-            }
-
-            g.DrawString(title.SubText, TempFont, ChartStyle.ForeColor, left, top);
+            Size sf = TextRenderer.MeasureText(title.Text, Font);
+            g.DrawString(title.Text, Font, ChartStyle.ForeColor, new Rectangle(TextInterval, TextInterval, Width - TextInterval * 2, Height - TextInterval * 2), (StringAlignment)((int)title.Left), (StringAlignment)((int)title.Top));
+            g.DrawString(title.SubText, TempFont, ChartStyle.ForeColor, new Rectangle(TextInterval, TextInterval, Width - TextInterval * 2, Height - TextInterval * 2),
+                (StringAlignment)((int)title.Left), (StringAlignment)((int)title.Top), 0, title.Top == UITopAlignment.Bottom ? -sf.Height : sf.Height);
         }
 
         protected void DrawLegend(Graphics g, UILegend legend)
@@ -362,7 +333,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Horizontal)
                 {
                     g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, TempLegendFont, color, startLeft + 20, top);
+                    g.DrawString(data, TempLegendFont, color, new Rectangle((int)startLeft + 18, (int)top, Width, Height), ContentAlignment.TopLeft);
                     startLeft += 22;
                     startLeft += sf.Width;
                 }
@@ -370,7 +341,7 @@ namespace Sunny.UI
                 if (legend.Orient == UIOrient.Vertical)
                 {
                     g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
-                    g.DrawString(data, TempLegendFont, color, left + 20, startTop);
+                    g.DrawString(data, TempLegendFont, color, new Rectangle((int)left + 18, (int)startTop, Width, Height), ContentAlignment.TopLeft);
                     startTop += oneHeight;
                 }
             }

@@ -191,18 +191,7 @@ namespace Sunny.UI
             set
             {
                 showType = value;
-                switch (value)
-                {
-                    case UIDateType.YearMonthDay:
-                        DateFormat = "yyyy-MM-dd";
-                        break;
-                    case UIDateType.YearMonth:
-                        DateFormat = "yyyy-MM";
-                        break;
-                    case UIDateType.Year:
-                        DateFormat = "yyyy";
-                        break;
-                }
+                Invalidate();
             }
         }
 
@@ -284,7 +273,19 @@ namespace Sunny.UI
             {
                 if (value < new DateTime(1900, 1, 1))
                     value = new DateTime(1900, 1, 1);
-                Text = value.ToString(dateFormat);
+
+                switch (ShowType)
+                {
+                    case UIDateType.YearMonthDay:
+                        Text = value.ToString(dateFormat);
+                        break;
+                    case UIDateType.YearMonth:
+                        Text = value.ToString(dateYearMonthFormat);
+                        break;
+                    case UIDateType.Year:
+                        Text = value.ToString(dateYearFormat);
+                        break;
+                }
 
                 if (item.Date != value)
                 {
@@ -319,8 +320,50 @@ namespace Sunny.UI
             set
             {
                 dateFormat = value;
-                Text = Value.ToString(dateFormat);
-                MaxLength = dateFormat.Length;
+
+                if (ShowType == UIDateType.YearMonthDay)
+                {
+                    Text = Value.ToString(dateFormat);
+                    MaxLength = dateFormat.Length;
+                }
+            }
+        }
+
+        private string dateYearMonthFormat = "yyyy-MM";
+
+        [Description("日期格式化掩码"), Category("SunnyUI")]
+        [DefaultValue("yyyy-MM")]
+        public string DateYearMonthFormat
+        {
+            get => dateYearMonthFormat;
+            set
+            {
+                dateYearMonthFormat = value;
+
+                if (ShowType == UIDateType.YearMonth)
+                {
+                    Text = Value.ToString(dateYearMonthFormat);
+                    MaxLength = dateYearMonthFormat.Length;
+                }
+            }
+        }
+
+        private string dateYearFormat = "yyyy";
+
+        [Description("日期格式化掩码"), Category("SunnyUI")]
+        [DefaultValue("yyyy")]
+        public string DateYearFormat
+        {
+            get => dateYearFormat;
+            set
+            {
+                dateYearFormat = value;
+
+                if (ShowType == UIDateType.Year)
+                {
+                    Text = Value.ToString(dateYearFormat);
+                    MaxLength = dateYearFormat.Length;
+                }
             }
         }
     }
