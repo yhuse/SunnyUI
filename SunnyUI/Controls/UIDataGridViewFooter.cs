@@ -20,6 +20,7 @@
  * 2021-09-24: V3.0.7 文字显示方向与Column列显示方向一致
  * 2021-11-22: V3.0.9 修复一处可能不显示的问题 
  * 2022-09-05: V3.2.3 重构文字显示
+ * 2022-05-15: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System.Collections.Generic;
@@ -114,8 +115,6 @@ namespace Sunny.UI
                     if (str.IsNullOrEmpty()) continue;
 
                     var align = column.DefaultCellStyle.Alignment;
-                    SizeF sf = g.MeasureString(str, Font);
-
                     if (rect.Left == 0 && rect.Width == 0) continue;
                     switch (align)
                     {
@@ -125,11 +124,11 @@ namespace Sunny.UI
                         case DataGridViewContentAlignment.BottomLeft:
                             if (rect.Left == minleft && rect.Width < column.Width)
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Width - column.Width, 0, Width, Height), ContentAlignment.MiddleLeft);
                             }
                             else
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Left, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Left, 0, Width, Height), ContentAlignment.MiddleLeft);
                             }
 
                             break;
@@ -138,11 +137,11 @@ namespace Sunny.UI
                         case DataGridViewContentAlignment.BottomCenter:
                             if (rect.Left == minleft && rect.Width < column.Width)
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Width - column.Width, 0, column.Width, Height), ContentAlignment.MiddleCenter);
                             }
                             else
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Left + (column.Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Left, 0, column.Width, Height), ContentAlignment.MiddleCenter);
                             }
 
                             break;
@@ -151,11 +150,11 @@ namespace Sunny.UI
                         case DataGridViewContentAlignment.BottomRight:
                             if (rect.Left == minleft && rect.Width < column.Width)
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Width - column.Width + column.Width - sf.Width, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Left, 0, column.Width, Height), ContentAlignment.MiddleRight);
                             }
                             else
                             {
-                                g.DrawString(str, Font, ForeColor, rect.Left + column.Width - sf.Width, (Height - sf.Height) / 2.0f);
+                                g.DrawString(str, Font, ForeColor, new Rectangle(rect.Left, 0, column.Width, Height), ContentAlignment.MiddleRight);
                             }
 
                             break;
