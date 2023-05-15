@@ -20,6 +20,7 @@
  * 2020-07-26: V2.2.6 增加Image属性，增加图片和文字的摆放位置
  * 2022-01-05: V3.0.9 字体图标增加颜色设置
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2022-05-15: V3.3.6 重构DrawString函数
 ******************************************************************************/
 
 using System;
@@ -369,8 +370,8 @@ namespace Sunny.UI
             {
                 if (ImageSize.Width.Equals(0))
                 {
-                    if (TextSize.Width > 0)
-                        e.Graphics.DrawString(Text, Font, color, (Width - TextSize.Width) / 2.0f, (Height - TextSize.Height) / 2.0f);
+                    //e.Graphics.DrawString(Text, Font, color, (Width - TextSize.Width) / 2.0f, (Height - TextSize.Height) / 2.0f);
+                    e.Graphics.DrawString(Text, Font, color, ClientRectangle, ContentAlignment.MiddleCenter);
                 }
                 else if (TextSize.Width.Equals(0))
                 {
@@ -410,8 +411,8 @@ namespace Sunny.UI
                             ImageSize.Width, ImageSize.Height);
                     }
 
-                    e.Graphics.DrawString(Text, Font, color, (Width - allWidth) / 2.0f + ImageSize.Width + ImageInterval,
-                        (Height - TextSize.Height) / 2.0f);
+                    //e.Graphics.DrawString(Text, Font, color, (Width - allWidth) / 2.0f + ImageSize.Width + ImageInterval, (Height - TextSize.Height) / 2.0f);
+                    e.Graphics.DrawString(Text, Font, color, new Rectangle((int)((Width - allWidth) / 2 + ImageSize.Width + ImageInterval), 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
             }
             else
@@ -481,60 +482,7 @@ namespace Sunny.UI
                     }
                 }
 
-                left = 0;
-                top = 0;
-                if (TextSize.Width > 0)
-                {
-                    switch (TextAlign)
-                    {
-                        case ContentAlignment.TopLeft:
-                            left = Padding.Left;
-                            top = Padding.Top;
-                            break;
-
-                        case ContentAlignment.TopCenter:
-                            left = (Width - TextSize.Width) / 2.0f;
-                            top = Padding.Top;
-                            break;
-
-                        case ContentAlignment.TopRight:
-                            left = Width - Padding.Right - TextSize.Width;
-                            top = Padding.Top;
-                            break;
-
-                        case ContentAlignment.MiddleLeft:
-                            left = Padding.Left;
-                            top = (Height - TextSize.Height) / 2.0f;
-                            break;
-
-                        case ContentAlignment.MiddleCenter:
-                            left = (Width - TextSize.Width) / 2.0f;
-                            top = (Height - TextSize.Height) / 2.0f;
-                            break;
-
-                        case ContentAlignment.MiddleRight:
-                            left = Width - Padding.Right - TextSize.Width;
-                            top = (Height - TextSize.Height) / 2.0f;
-                            break;
-
-                        case ContentAlignment.BottomLeft:
-                            left = Padding.Left;
-                            top = Height - Padding.Bottom - TextSize.Height;
-                            break;
-
-                        case ContentAlignment.BottomCenter:
-                            left = (Width - TextSize.Width) / 2.0f;
-                            top = Height - Padding.Bottom - TextSize.Height;
-                            break;
-
-                        case ContentAlignment.BottomRight:
-                            left = Width - Padding.Right - TextSize.Width;
-                            top = Height - Padding.Bottom - TextSize.Height;
-                            break;
-                    }
-
-                    e.Graphics.DrawString(Text, Font, color, left, top);
-                }
+                e.Graphics.DrawString(Text, Font, color, new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom), TextAlign);
             }
         }
     }
