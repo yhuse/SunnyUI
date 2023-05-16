@@ -256,13 +256,7 @@ namespace Sunny.UI
                 float ty = (float)(cy + (radius - (20 * drawRatio)) * Math.Sin(currentAngle));
                 double val = Math.Round(rulerValue);
                 String str = String.Format("{0,0:D}", (int)val);
-
-                SizeF size = Gr.MeasureString(str, font);
-                Gr.DrawString(str,
-                                font,
-                                br,
-                                tx - (float)(size.Width * 0.5),
-                                ty - (float)(size.Height * 0.5));
+                Gr.DrawString(str, font, scaleColor, new Rectangle((int)(tx - w), (int)(ty - h), (int)(w * 2), (int)(h * 2)), ContentAlignment.MiddleCenter);
 
                 rulerValue += (float)((maxValue - minValue) / (scaleDivisions - 1));
 

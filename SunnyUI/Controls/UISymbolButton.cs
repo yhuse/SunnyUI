@@ -370,7 +370,6 @@ namespace Sunny.UI
             {
                 if (ImageSize.Width.Equals(0))
                 {
-                    //e.Graphics.DrawString(Text, Font, color, (Width - TextSize.Width) / 2.0f, (Height - TextSize.Height) / 2.0f);
                     e.Graphics.DrawString(Text, Font, color, ClientRectangle, ContentAlignment.MiddleCenter);
                 }
                 else if (TextSize.Width.Equals(0))
@@ -411,7 +410,6 @@ namespace Sunny.UI
                             ImageSize.Width, ImageSize.Height);
                     }
 
-                    //e.Graphics.DrawString(Text, Font, color, (Width - allWidth) / 2.0f + ImageSize.Width + ImageInterval, (Height - TextSize.Height) / 2.0f);
                     e.Graphics.DrawString(Text, Font, color, new Rectangle((int)((Width - allWidth) / 2 + ImageSize.Width + ImageInterval), 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
             }

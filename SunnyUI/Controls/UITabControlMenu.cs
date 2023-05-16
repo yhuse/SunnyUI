@@ -378,7 +378,6 @@ namespace Sunny.UI
 
                 // 绘制标题
                 Color textColor = index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor;
-                //e.Graphics.DrawString(TabPages[index].Text, Font, textColor, textLeft, TabRect.Top + 2 + (TabRect.Height - sf.Height) / 2.0f);
                 e.Graphics.DrawString(TabPages[index].Text, Font, textColor, new Rectangle(textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
 
                 // 绘制图标

@@ -311,9 +311,9 @@ namespace Sunny.UI
 
             if (autoSize && Dock == DockStyle.None)
             {
-                SizeF sf = e.Graphics.MeasureString(Text, Font);
-                if (Width != (int)(sf.Width) + 6) Width = (int)(sf.Width) + 6;
-                if (Height != (int)(sf.Height) + 6) Height = (int)(sf.Height) + 6;
+                Size sf = TextRenderer.MeasureText(Text, Font);
+                if (Width != sf.Width + 6) Width = sf.Width + 6;
+                if (Height != sf.Height + 6) Height = sf.Height + 6;
             }
 
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
@@ -324,7 +324,6 @@ namespace Sunny.UI
                 int x = Width - 1 - 2 - sfMax;
                 int y = 1 + 1;
                 e.Graphics.FillEllipse(TipsColor, x - 1, y, sfMax, sfMax);
-                //e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, x + sfMax / 2.0f - sf.Width / 2.0f, y + sfMax / 2.0f - sf.Height / 2.0f);
                 e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, new Rectangle(x, y, sfMax, sfMax), ContentAlignment.MiddleCenter);
             }
 

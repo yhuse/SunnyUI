@@ -412,7 +412,7 @@ namespace Sunny.UI
                     }
                 }
 
-                SizeF sfName = g.MeasureString(Option.YAxis.Name, TempFont);
+                Size sfName = TextRenderer.MeasureText(Option.YAxis.Name, TempFont);
                 float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - widthMax - sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
                 g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
@@ -458,7 +458,7 @@ namespace Sunny.UI
                     }
                 }
 
-                SizeF sfName = g.MeasureString(Option.Y2Axis.Name, TempFont);
+                Size sfName = TextRenderer.MeasureText(Option.Y2Axis.Name, TempFont);
                 float xx = Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length + widthMax + sfName.Height / 2.0f;
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
                 g.DrawRotateString(Option.Y2Axis.Name, TempFont, ForeColor, new PointF(xx, yy), 90);
@@ -892,8 +892,8 @@ namespace Sunny.UI
                         {
                             using (Graphics g = this.CreateGraphics())
                             {
-                                SizeF sf = g.MeasureString(sb.ToString(), TempFont);
-                                tip.Size = new Size((int)sf.Width + 4, (int)sf.Height + 4);
+                                Size sf = TextRenderer.MeasureText(sb.ToString(), TempFont);
+                                tip.Size = new Size(sf.Width + 4, sf.Height + 4);
                             }
 
                             int x = e.Location.X + 15;

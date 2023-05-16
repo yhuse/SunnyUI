@@ -527,12 +527,10 @@ namespace Sunny.UI
                             e.Graphics.DrawImage((Bitmap)ImageList.Images[node.ImageIndex], NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width - symbolSize) / 2.0f, NodeY + (NodeSize.Height - ImageList.ImageSize.Height) / 2);
                     }
 
-                    //e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width + symbolSize) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
                     e.Graphics.DrawString(node.Text, Font, textColor, new Rectangle(NodeX + i * NodeSize.Width + symbolSize / 2, NodeY, NodeSize.Width, NodeSize.Height), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
-                    //e.Graphics.DrawString(node.Text, Font, textColor, NodeX + i * NodeSize.Width + (NodeSize.Width - sf.Width) / 2.0f, NodeY + (NodeSize.Height - sf.Height) / 2);
                     e.Graphics.DrawString(node.Text, Font, textColor, new Rectangle(NodeX + i * NodeSize.Width, NodeY, NodeSize.Width, NodeSize.Height), ContentAlignment.MiddleCenter);
                 }
 

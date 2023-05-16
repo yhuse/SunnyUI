@@ -285,7 +285,7 @@ namespace Sunny.UI
 
             foreach (var data in legend.Data)
             {
-                SizeF sf = g.MeasureString(data, TempLegendFont);
+                Size sf = TextRenderer.MeasureText(data, TempLegendFont);
                 totalHeight += sf.Height;
                 totalWidth += sf.Width;
                 totalWidth += 20;
@@ -324,7 +324,7 @@ namespace Sunny.UI
             for (int i = 0; i < legend.DataCount; i++)
             {
                 var data = legend.Data[i];
-                SizeF sf = g.MeasureString(data, TempLegendFont);
+                Size sf = TextRenderer.MeasureText(data, TempLegendFont);
                 Color color = ChartStyle.GetColor(i);
 
                 if (legend.Colors.Count > 0 && i >= 0 && i < legend.Colors.Count)

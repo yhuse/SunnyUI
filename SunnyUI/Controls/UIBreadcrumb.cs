@@ -152,7 +152,7 @@ namespace Sunny.UI
             float width = 0;
             if (Items.Count == 0)
             {
-                SizeF sf = g.MeasureString(Text, Font);
+                Size sf = TextRenderer.MeasureText(Text, Font);
                 width = sf.Width + Height + 6;
                 if (itemWidth < width) itemWidth = (int)width;
                 List<PointF> points = new List<PointF>();
@@ -169,7 +169,6 @@ namespace Sunny.UI
                     g.FillPolygon(br, points.ToArray());
                 }
 
-                //g.DrawString(Text, Font, ForeColor, (Width - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
                 g.DrawString(Text, Font, ForeColor, ClientRectangle, ContentAlignment.MiddleCenter);
             }
             else
@@ -238,7 +237,6 @@ namespace Sunny.UI
                         g.FillPolygon(br, points.ToArray());
                     }
 
-                    //g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor, begin + (itemWidth - sf.Width) / 2.0f, (Height - sf.Height) / 2.0f);
                     g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor,
                         new Rectangle(begin, 0, itemWidth, Height), ContentAlignment.MiddleCenter);
                     begin = begin + itemWidth - 3 - Height / 2 + Interval;

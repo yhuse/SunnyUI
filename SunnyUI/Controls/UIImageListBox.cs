@@ -794,7 +794,6 @@ namespace Sunny.UI
 
                 if (ShowDescription && !string.IsNullOrEmpty(item.Description))
                 {
-                    //g.DrawString(item.Description, e.Font, foreColor, ImageInterval, thumbnailSize + ImageInterval);
                     g.DrawString(item.Description, e.Font, foreColor, new Rectangle(ImageInterval, e.Bounds.Y + thumbnailSize + ImageInterval, e.Bounds.Width, e.Bounds.Height), ContentAlignment.TopLeft);
                 }
 

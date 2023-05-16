@@ -175,7 +175,7 @@ namespace Sunny.UI
                     else
                         g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
 
-                    Angles[pieIndex][azIndex].TextSize = g.MeasureString(Angles[pieIndex][azIndex].Text, TempFont);
+                    Angles[pieIndex][azIndex].TextSize = TextRenderer.MeasureText(Angles[pieIndex][azIndex].Text, TempFont);
 
                     if (pie.Label.Show && ActiveAzIndex == azIndex)
                     {
@@ -322,7 +322,7 @@ namespace Sunny.UI
 
             public string Text { get; set; }
 
-            public SizeF TextSize { get; set; }
+            public Size TextSize { get; set; }
         }
     }
 }

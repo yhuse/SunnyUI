@@ -164,7 +164,6 @@ namespace Sunny.UI
                 if (XPos + TextWidth > Width && TextWidth < Width - offset)
                 {
                     XPos1 = XPos - Width + offset;
-                    //g.DrawString(Text, Font, ForeColor, XPos1, y);
                     g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
                 else
@@ -172,7 +171,6 @@ namespace Sunny.UI
                     XPos1 = -TextWidth + offset;
                 }
 
-                //g.DrawString(Text, Font, ForeColor, XPos, y);
                 g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
             }
 
@@ -181,7 +179,6 @@ namespace Sunny.UI
                 if (XPos < 0 && TextWidth < Width - offset)
                 {
                     XPos1 = Width + XPos - offset;
-                    //g.DrawString(Text, Font, ForeColor, XPos1, y);
                     g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
                 else
@@ -189,7 +186,6 @@ namespace Sunny.UI
                     XPos1 = Width - offset;
                 }
 
-                //g.DrawString(Text, Font, ForeColor, XPos, y);
                 g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
             }
         }

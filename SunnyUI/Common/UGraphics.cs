@@ -264,7 +264,7 @@ namespace Sunny.UI
         private static void DrawRotateString(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
         {
             if (text.IsNullOrEmpty()) return;
-            SizeF sf = g.MeasureString(text, font);
+            SizeF sf = TextRenderer.MeasureText(text, font);
             float x1 = centerPoint.X - sf.Width / 2.0f;
             float y1 = centerPoint.Y - sf.Height / 2.0f;
 

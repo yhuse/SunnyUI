@@ -351,7 +351,7 @@ namespace Sunny.UI
                     if (tip.Text != Bars[0][selectIndex].Tips)
                     {
                         tip.Text = Bars[0][selectIndex].Tips;
-                        tip.Size = new Size((int)Bars[0][selectIndex].Size.Width + 4, (int)Bars[0][selectIndex].Size.Height + 4);
+                        tip.Size = new Size(Bars[0][selectIndex].Size.Width + 4, Bars[0][selectIndex].Size.Height + 4);
                     }
 
                     int x = e.Location.X + 15;
@@ -619,7 +619,7 @@ namespace Sunny.UI
 
             for (int i = 0; i < Option.XAxis.Data.Count; i++)
             {
-                Bars[0][i].Size = g.MeasureString(Bars[0][i].Tips, TempFont);
+                Bars[0][i].Size = TextRenderer.MeasureText(Bars[0][i].Tips, TempFont);
             }
         }
 
@@ -630,7 +630,7 @@ namespace Sunny.UI
 
             public string Tips { get; set; }
 
-            public SizeF Size { get; set; }
+            public Size Size { get; set; }
 
             public Color Color { get; set; }
 

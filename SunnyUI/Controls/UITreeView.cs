@@ -1053,7 +1053,6 @@ namespace Sunny.UI
                             if (Painter.ContainsKey(e.Node))
                             {
                                 e.Graphics.FillRectangle(Painter[e.Node].BackColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                //e.Graphics.DrawString(e.Node.Text, Font, Painter[e.Node].ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                                 e.Graphics.DrawString(e.Node.Text, Font, Painter[e.Node].ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                             }
                             else
@@ -1061,20 +1060,17 @@ namespace Sunny.UI
                                 if (e.Node == SelectedNode)
                                 {
                                     e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    //e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                                     e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                                     checkboxColor = SelectedForeColor;
                                 }
                                 else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
                                 {
                                     e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    //e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                                     e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                                 }
                                 else
                                 {
                                     e.Graphics.FillRectangle(FillColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    //e.Graphics.DrawString(e.Node.Text, Font, ForeColor, drawLeft, e.Bounds.Y + (ItemHeight - sf.Height) / 2.0f);
                                     e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                                 }
                             }

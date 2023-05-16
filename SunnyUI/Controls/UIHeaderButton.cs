@@ -626,7 +626,6 @@ namespace Sunny.UI
                 case TextImageRelation.TextAboveImage:
                     {
                         #region  文本在上
-                        //e.Graphics.DrawString(Text, Font, color, (Width - sf.Width) / 2, Padding.Top);
                         e.Graphics.DrawString(Text, Font, color, new Rectangle(0, Padding.Top, Width, Height), ContentAlignment.TopCenter);
 
                         //字体图标
@@ -680,7 +679,6 @@ namespace Sunny.UI
                             e.Graphics.DrawImage(Image, ImageTop, (Height - ImageSize.Height) / 2.0f, ImageSize.Width, ImageSize.Height);
                         }
 
-                        //e.Graphics.DrawString(Text, Font, color, Width - Padding.Right - sf.Width, (Height - sf.Height) / 2);
                         e.Graphics.DrawString(Text, Font, color, new Rectangle(0, 0, Width - Padding.Right, Height), ContentAlignment.MiddleRight);
                         #endregion
                     }
@@ -688,7 +686,6 @@ namespace Sunny.UI
                 case TextImageRelation.TextBeforeImage:
                     {
                         #region  文本在前
-                        //e.Graphics.DrawString(Text, Font, color, Padding.Left, (Height - sf.Height) / 2);
                         e.Graphics.DrawString(Text, Font, color, new Rectangle(Padding.Left, 0, Width, Height), ContentAlignment.MiddleLeft);
 
                         //字体图标
@@ -742,7 +739,6 @@ namespace Sunny.UI
                             e.Graphics.DrawImage(Image, (Width - ImageSize.Width) / 2.0f, ImageTop, ImageSize.Width, ImageSize.Height);
                         }
 
-                        //e.Graphics.DrawString(Text, Font, color, (Width - sf.Width) / 2, Height - Padding.Bottom - sf.Height);
                         e.Graphics.DrawString(Text, Font, color, new Rectangle(0, 0, Width, Height - Padding.Bottom), ContentAlignment.BottomCenter);
                         #endregion
                     }
