@@ -237,6 +237,29 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 绘制字符串
+        /// </summary>
+        /// <param name="g">绘图图元</param>
+        /// <param name="text">文字</param>
+        /// <param name="font">字体</param>
+        /// <param name="color">颜色</param>   
+        /// <param name="borderColor">描边颜色</param>
+        /// <param name="x">水平位置</param>
+        /// <param name="y">垂直位置</param>
+        public static void DrawString(this Graphics g, string text, Font font, Color color, Color borderColor, float x, float y)
+        {
+            g.DrawString(text, font, borderColor, x - 1, y - 1);
+            g.DrawString(text, font, borderColor, x - 1, y);
+            g.DrawString(text, font, borderColor, x - 1, y + 1);
+            g.DrawString(text, font, borderColor, x, y - 1);
+            g.DrawString(text, font, borderColor, x, y + 1);
+            g.DrawString(text, font, borderColor, x + 1, y - 1);
+            g.DrawString(text, font, borderColor, x + 1, y);
+            g.DrawString(text, font, borderColor, x + 1, y + 1);
+            g.DrawString(text, font, color, x, y);
+        }
+
+        /// <summary>
         /// 以文字中心点为原点，旋转文字
         /// </summary>
         /// <param name="g">绘图图元</param>
