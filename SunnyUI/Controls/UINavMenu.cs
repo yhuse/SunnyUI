@@ -34,6 +34,7 @@
 * 2023-02-02: V3.3.1 修复了鼠标离开事件
 * 2023-02-10: V3.3.2 有子节点时，鼠标左键点击父级点展开/收缩，右键选中
 * 2022-05-12: V3.3.6 重构DrawString函数
+* 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -730,10 +731,9 @@ namespace Sunny.UI
                 {
                     if (MenuHelper.GetSymbol(e.Node) > 0)
                     {
-                        SizeF fiSize = e.Graphics.GetFontImageSize(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node));
                         Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
                         Point offset = MenuHelper.GetSymbolOffset(e.Node);
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, imageLeft + (MenuHelper.GetSymbolSize(e.Node) - fiSize.Width) / 2.0f + offset.X, e.Bounds.Y + (e.Bounds.Height - fiSize.Height) / 2 + offset.Y);
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, new Rectangle(imageLeft, e.Bounds.Y, MenuHelper.GetSymbolSize(e.Node), e.Bounds.Height), offset.X, offset.Y);
                     }
                     else
                     {

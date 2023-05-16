@@ -21,6 +21,7 @@
  *                    感谢：麦壳饼 https://gitee.com/maikebing
  * 2021-06-15: V3.0.4 增加FontAwesomeV5的字体图标，重构代码
  * 2021-06-15: V3.3.5 增加FontAwesomeV6的字体图标，重构代码
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -106,7 +107,7 @@ namespace Sunny.UI
         /// <param name="symbol">字符</param>
         /// <param name="symbolSize">大小</param>
         /// <returns>字体大小</returns>
-        public static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize)
+        private static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize)
         {
             Font font = GetFont(symbol, symbolSize);
             if (font == null)
@@ -161,10 +162,7 @@ namespace Sunny.UI
         {
             //字体
             Font font = GetFont(symbol, symbolSize);
-            if (font == null)
-            {
-                return;
-            }
+            if (font == null) return;
 
             var symbolValue = GetSymbolValue(symbol);
             string text = char.ConvertFromUtf32(symbolValue);
@@ -308,12 +306,7 @@ namespace Sunny.UI
         public Font GetFont(int iconText, int imageSize)
         {
             int item = GetFontSize(iconText, imageSize);
-            if (Fonts.ContainsKey(item))
-            {
-                return Fonts[GetFontSize(iconText, imageSize)];
-            }
-
-            return null;
+            return Fonts.ContainsKey(item) ? Fonts[item] : null;
         }
 
         /// <summary>
@@ -324,11 +317,7 @@ namespace Sunny.UI
         /// <returns>字体大小</returns>
         public int GetFontSize(int symbol, int imageSize)
         {
-            using (Bitmap bitmap = new Bitmap(48, 48))
-            using (Graphics graphics = Graphics.FromImage(bitmap))
-            {
-                return BinarySearch(graphics, MinFontSize, MaxFontSize, symbol, imageSize);
-            }
+            return BinarySearch(GDI.Graphics(), MinFontSize, MaxFontSize, symbol, imageSize);
         }
 
         public int BinarySearch(Graphics graphics, int low, int high, int symbol, int imageSize)

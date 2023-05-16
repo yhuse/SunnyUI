@@ -20,6 +20,7 @@
  * 2021-12-24: V3.0.9 修复Dock和AutoSize同时设置的Bug
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-05-12: V3.3.6 重构DrawString函数
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -37,7 +38,7 @@ namespace Sunny.UI
     public sealed class UISymbolLabel : UIControl, ISymbol
     {
         private int _symbolSize = 24;
-        private int _imageInterval = 2;
+        private int _imageInterval = 0;
 
         private Color symbolColor;
 
@@ -107,7 +108,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(2)]
+        [DefaultValue(0)]
         [Description("图标和文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
@@ -240,58 +241,59 @@ namespace Sunny.UI
         {
             //重绘父类
             base.OnPaint(e);
-
-            float left = 0;
-            float top = 0;
-            SizeF ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
             Size TextSize = TextRenderer.MeasureText(Text, Font);
+
+            int height = Math.Max(SymbolSize, TextSize.Height);
+            int width = SymbolSize + ImageInterval + TextSize.Width;
 
             if (Dock == DockStyle.None && autoSize)
             {
-                int width = (int)(SymbolSize + ImageInterval * 3 + TextSize.Width);
-                int height = (int)Math.Max(SymbolSize, TextSize.Height);
-                if (Width != width) Width = width;
-                if (Height != height) Height = height;
+                TextAlign = ContentAlignment.MiddleCenter;
+                if (Width != width + 4) Width = width + 4;
+                if (Height != height + 4) Height = height + 4;
             }
 
-            if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.TopRight)
+            Rectangle rect;
+            switch (TextAlign)
             {
-                top = Padding.Top;
-            }
-
-            if (TextAlign == ContentAlignment.MiddleCenter || TextAlign == ContentAlignment.MiddleLeft || TextAlign == ContentAlignment.MiddleRight)
-            {
-                top = Padding.Top + (Height - Padding.Top - Padding.Bottom - ImageSize.Height) / 2.0f;
-            }
-
-            if (TextAlign == ContentAlignment.BottomCenter || TextAlign == ContentAlignment.BottomLeft || TextAlign == ContentAlignment.BottomRight)
-            {
-                top = Height - Padding.Bottom - ImageSize.Height;
-            }
-
-            if (TextAlign == ContentAlignment.TopCenter || TextAlign == ContentAlignment.MiddleCenter || TextAlign == ContentAlignment.BottomCenter)
-            {
-                left = Padding.Left + (Width - TextSize.Width - Padding.Left - Padding.Right) / 2.0f;
-                left = left - ImageInterval - ImageSize.Width;
-            }
-
-            if (TextAlign == ContentAlignment.TopLeft || TextAlign == ContentAlignment.MiddleLeft || TextAlign == ContentAlignment.BottomLeft)
-            {
-                left = ImageInterval;
-            }
-
-            if (TextAlign == ContentAlignment.TopRight || TextAlign == ContentAlignment.MiddleRight || TextAlign == ContentAlignment.BottomRight)
-            {
-                left = Width - Padding.Right - TextSize.Width - ImageInterval - ImageSize.Width;
+                case ContentAlignment.TopLeft:
+                    rect = new Rectangle(Padding.Left, Padding.Top, width, height);
+                    break;
+                case ContentAlignment.TopCenter:
+                    rect = new Rectangle((Width - width) / 2, Padding.Top, width, height);
+                    break;
+                case ContentAlignment.TopRight:
+                    rect = new Rectangle(Width - width - Padding.Right, Padding.Top, width, height);
+                    break;
+                case ContentAlignment.MiddleLeft:
+                    rect = new Rectangle(Padding.Left, (Height - height) / 2, width, height);
+                    break;
+                case ContentAlignment.MiddleCenter:
+                    rect = new Rectangle((Width - width) / 2, (Height - height) / 2, width, height);
+                    break;
+                case ContentAlignment.MiddleRight:
+                    rect = new Rectangle(Width - width - Padding.Right, (Height - height) / 2, width, height);
+                    break;
+                case ContentAlignment.BottomLeft:
+                    rect = new Rectangle(Padding.Left, Height - Padding.Bottom - height, width, height);
+                    break;
+                case ContentAlignment.BottomCenter:
+                    rect = new Rectangle((Width - width) / 2, Height - Padding.Bottom - height, width, height);
+                    break;
+                case ContentAlignment.BottomRight:
+                    rect = new Rectangle(Width - width - Padding.Right, Height - Padding.Bottom - height, width, height);
+                    break;
+                default:
+                    rect = new Rectangle((Width - width) / 2, (Height - height) / 2, width, height);
+                    break;
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, ImageInterval + (Width - ImageSize.Width) / 2.0f, (Height - ImageSize.Height) / 2.0f, SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, (Width - SymbolSize) / 2.0f, (Height - SymbolSize) / 2.0f, SymbolOffset.X, SymbolOffset.Y);
             else
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, left, top, SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new Rectangle(rect.Left, rect.Top, SymbolSize, rect.Height), SymbolOffset.X, SymbolOffset.Y);
 
-            Rectangle rect = new Rectangle((int)left + SymbolSize, (int)top, Width, SymbolSize);
-            e.Graphics.DrawString(Text, Font, ForeColor, rect, ContentAlignment.MiddleLeft);
+            e.Graphics.DrawString(Text, Font, ForeColor, rect, ContentAlignment.MiddleRight);
         }
 
         protected override void OnPaintFore(Graphics g, GraphicsPath path)

@@ -26,6 +26,7 @@
  * 2022-07-28: V3.2.2 删除界面此控件的编辑器 
  * 2023-02-22: V3.3.2 去除下拉菜单宽度调整
  * 2022-05-12: V3.3.6 重构DrawString函数
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -536,14 +537,13 @@ namespace Sunny.UI
 
                 if (ShowItemsArrow && node.Nodes.Count > 0)
                 {
-                    SizeF imageSize = e.Graphics.GetFontImageSize(61703, 24);
                     if (i != SelectedIndex)
                     {
-                        e.Graphics.DrawFontImage(61703, 24, textColor, NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top + (rect.Height - imageSize.Height) / 2);
+                        e.Graphics.DrawFontImage(61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top, 24, rect.Height));
                     }
                     else
                     {
-                        e.Graphics.DrawFontImage(NavBarMenu.Visible ? 61702 : 61703, 24, textColor, NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top + (rect.Height - imageSize.Height) / 2);
+                        e.Graphics.DrawFontImage(NavBarMenu.Visible ? 61702 : 61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top, 24, rect.Height));
                     }
                 }
             }

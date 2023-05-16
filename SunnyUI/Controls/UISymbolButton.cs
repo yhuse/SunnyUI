@@ -21,6 +21,7 @@
  * 2022-01-05: V3.0.9 字体图标增加颜色设置
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-05-15: V3.3.6 重构DrawString函数
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -37,7 +38,7 @@ namespace Sunny.UI
     public class UISymbolButton : UIButton, ISymbol
     {
         private int _symbolSize = 24;
-        private int _imageInterval = 2;
+        private int _imageInterval = 0;
 
         public UISymbolButton()
         {
@@ -200,7 +201,7 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(2)]
+        [DefaultValue(0)]
         [Description("图片文字间间隔"), Category("SunnyUI")]
         public int ImageInterval
         {
@@ -279,7 +280,7 @@ namespace Sunny.UI
             if (IsCircle)
             {
                 int size = Math.Min(Width, Height) - 2 - CircleRectWidth;
-                g.FillEllipse(GetFillColor(), (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
+                g.FillEllipse(GetFillColor(), (Width - size) / 2.0f - 1, (Height - size) / 2.0f - 1, size, size);
             }
             else
             {
@@ -313,7 +314,7 @@ namespace Sunny.UI
                 int size = Math.Min(Width, Height) - 2 - CircleRectWidth;
                 using var pn = new Pen(GetRectColor(), CircleRectWidth);
                 g.SetHighQuality();
-                g.DrawEllipse(pn, (Width - size) / 2.0f, (Height - size) / 2.0f, size, size);
+                g.DrawEllipse(pn, (Width - size) / 2.0f - 1, (Height - size) / 2.0f - 1, size, size);
                 g.SetDefaultQuality();
             }
             else
@@ -356,9 +357,9 @@ namespace Sunny.UI
             //重绘父类
             base.OnPaint(e);
 
-            SizeF ImageSize = new SizeF(0, 0);
+            Size ImageSize = new Size(0, 0);
             if (Symbol > 0)
-                ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
+                ImageSize = new Size(SymbolSize, SymbolSize);
             if (Image != null)
                 ImageSize = Image.Size;
 
@@ -368,7 +369,7 @@ namespace Sunny.UI
 
             if (ImageAlign == ContentAlignment.MiddleCenter && TextAlign == ContentAlignment.MiddleCenter)
             {
-                if (ImageSize.Width.Equals(0))
+                if (ImageSize.Width == 0)
                 {
                     e.Graphics.DrawString(Text, Font, color, ClientRectangle, ContentAlignment.MiddleCenter);
                 }
@@ -378,30 +379,24 @@ namespace Sunny.UI
                     {
                         if (Symbol > 0 && Image == null)
                         {
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                                new Rectangle(
-                                    (int)(Width - ImageSize.Width) / 2,
-                                    Padding.Top + (int)(Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2,
-                                      (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(), ClientRectangle, SymbolOffset.X, SymbolOffset.Y);
                         }
 
                         if (Image != null)
                         {
-                            e.Graphics.DrawImage(Image,
-                                (Width - ImageSize.Width) / 2.0f,
-                                Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f,
-                                  ImageSize.Width, ImageSize.Height);
+                            e.Graphics.DrawImage(Image, (Width - ImageSize.Width) / 2.0f,
+                                Padding.Top + (Height - ImageSize.Height - Padding.Top - Padding.Bottom) / 2.0f, ImageSize.Width, ImageSize.Height);
                         }
                     }
                 }
                 else
                 {
-                    float allWidth = ImageSize.Width + ImageInterval + TextSize.Width;
+                    int allWidth = ImageSize.Width + ImageInterval + TextSize.Width;
 
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                            new Rectangle((int)(Width - allWidth) / 2, (int)(Height - ImageSize.Height) / 2, (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                            new RectangleF((Width - allWidth) / 2.0f, 0, ImageSize.Width, Height), SymbolOffset.X, SymbolOffset.Y);
                     }
 
                     if (Image != null)
@@ -410,7 +405,7 @@ namespace Sunny.UI
                             ImageSize.Width, ImageSize.Height);
                     }
 
-                    e.Graphics.DrawString(Text, Font, color, new Rectangle((int)((Width - allWidth) / 2 + ImageSize.Width + ImageInterval), 0, Width, Height), ContentAlignment.MiddleLeft);
+                    e.Graphics.DrawString(Text, Font, color, new Rectangle((int)((Width - allWidth) / 2.0f + ImageSize.Width + ImageInterval), 0, Width, Height), ContentAlignment.MiddleLeft);
                 }
             }
             else

@@ -25,6 +25,7 @@
  * 2022-01-02: V3.0.9 增加角标
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-05-13: V3.3.6 重构DrawString函数
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -612,9 +613,9 @@ namespace Sunny.UI
         {
             //重绘父类
             base.OnPaint(e);
-            SizeF ImageSize = new SizeF(0, 0);
+            Size ImageSize = new Size(0, 0);
             if (Symbol > 0)
-                ImageSize = e.Graphics.GetFontImageSize(Symbol, SymbolSize);
+                ImageSize = new Size(SymbolSize, SymbolSize);
             if (Image != null)
                 ImageSize = Image.Size;
 
@@ -636,13 +637,8 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Height - Padding.Bottom - CircleSize, CircleSize, CircleSize);
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new Rectangle(
-                                    symbolOffset.X + (int)(Width - CircleSize) / 2,
-                                    symbolOffset.Y + Height - Padding.Bottom - CircleSize,
-                                    CircleSize,
-                                    CircleSize));
+                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f - 1, Height - Padding.Bottom - CircleSize - 1, CircleSize, CircleSize);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(0, Height - Padding.Bottom - CircleSize, Width, CircleSize), symbolOffset.X, symbolOffset.Y);
                         }
                         else if (Image != null)
                         {
@@ -664,13 +660,8 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, Padding.Left, (Height - CircleSize) / 2.0f, CircleSize, CircleSize);
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new Rectangle(
-                                    symbolOffset.X + Padding.Left,
-                                    symbolOffset.Y + (int)(Height - CircleSize) / 2,
-                                    CircleSize,
-                                    CircleSize));
+                            e.Graphics.FillEllipse(bcColor, Padding.Left - 1, (Height - CircleSize) / 2.0f - 1, CircleSize, CircleSize);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(Padding.Left, 0, CircleSize, Height), symbolOffset.X, symbolOffset.Y);
                         }
                         else if (Image != null)
                         {
@@ -696,13 +687,8 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, Width - Padding.Right - CircleSize, (Height - CircleSize) / 2.0f, CircleSize, CircleSize);
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new Rectangle(
-                                    symbolOffset.X + Width - Padding.Right - CircleSize,
-                                    symbolOffset.Y + (int)(Height - CircleSize) / 2,
-                                    CircleSize,
-                                    CircleSize));
+                            e.Graphics.FillEllipse(bcColor, Width - Padding.Right - CircleSize - 1, (Height - CircleSize) / 2.0f - 1, CircleSize, CircleSize);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(Width - Padding.Right - CircleSize, 0, CircleSize, Height), symbolOffset.X, symbolOffset.Y);
                         }
                         else if (Image != null)
                         {
@@ -724,13 +710,8 @@ namespace Sunny.UI
                                 bcColor = CircleHoverColor;
                             }
 
-                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f, Padding.Top, CircleSize, CircleSize);
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor,
-                                new Rectangle(
-                                    symbolOffset.X + (int)(Width - CircleSize) / 2,
-                                    symbolOffset.Y + Padding.Top,
-                                    CircleSize,
-                                    CircleSize));
+                            e.Graphics.FillEllipse(bcColor, (Width - CircleSize) / 2.0f - 1, Padding.Top - 1, CircleSize, CircleSize);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(0, Padding.Top, Width, CircleSize), symbolOffset.X, symbolOffset.Y);
                         }
                         else if (Image != null)
                         {

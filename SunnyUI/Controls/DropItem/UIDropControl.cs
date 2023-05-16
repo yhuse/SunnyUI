@@ -24,6 +24,7 @@
  * 2023-04-08: V3.3.4 DropDownList时，显示水印文字
  * 2023-05-08: V3.3.6 最小高度限制，以防丢失边框
  * 2022-05-12: V3.3.6 重构DrawString函数
+ * 2022-05-16: V3.3.6 重构DrawFontImage函数
 ******************************************************************************/
 
 using System;
@@ -410,17 +411,12 @@ namespace Sunny.UI
             int symbol = dropSymbol;
             if (NeedDrawClearButton)
             {
-                symbol = 261527;
-                SizeF sf = g.GetFontImageSize(symbol, 24);
-                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f, 1, 1);
+                g.DrawFontImage(261527, 24, color, new Rectangle(Width - 28, 0, 28, Height), -1, 1);
             }
             else
             {
-                SizeF sf = g.GetFontImageSize(symbol, 24);
-                g.DrawFontImage(symbol, 24, color, Width - 28 + (12 - sf.Width / 2.0f), (Height - sf.Height) / 2.0f);
+                g.DrawFontImage(symbol, 24, color, new Rectangle(Width - 28, 0, 28, Height), 1, 0);
             }
-
-            //g.DrawLine(RectColor, Width - 1, Radius / 2, Width - 1, Height - Radius);
         }
 
         protected bool NeedDrawClearButton;
