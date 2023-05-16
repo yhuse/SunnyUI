@@ -360,10 +360,10 @@ namespace Sunny.UI
             for (int index = 0; index <= TabCount - 1; index++)
             {
                 Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, base.ItemSize.Height + 4, base.ItemSize.Width);
-                SizeF sf = e.Graphics.MeasureString(TabPages[index].Text, Font);
+                Size sf = TextRenderer.MeasureText(TabPages[index].Text, Font);
                 int textLeft = 4 + 6 + 4 + (ImageList?.ImageSize.Width ?? 0);
                 if (TextAlignment == HorizontalAlignment.Right)
-                    textLeft = (int)(TabRect.Width - 4 - sf.Width);
+                    textLeft = TabRect.Width - 4 - sf.Width;
                 if (TextAlignment == HorizontalAlignment.Center)
                     textLeft = textLeft + (int)((TabRect.Width - textLeft - sf.Width) / 2.0f);
 

@@ -644,7 +644,7 @@ namespace Sunny.UI
                     TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y + 2, ItemSize.Width, ItemSize.Height);
                 }
 
-                SizeF sf = e.Graphics.MeasureString(TabPages[index].Text, Font);
+                Size sf = TextRenderer.MeasureText(TabPages[index].Text, Font);
                 int textLeft = ImageList?.ImageSize.Width ?? 0;
                 if (ImageList != null) textLeft += 4 + 4 + 6;
                 if (TextAlignment == HorizontalAlignment.Right)
@@ -696,8 +696,8 @@ namespace Sunny.UI
                 string TipsText = GetTipsText(TabPages[index]);
                 if (Enabled && TipsText.IsValid())
                 {
-                    sf = e.Graphics.MeasureString(TipsText, TempFont);
-                    int sfMax = (int)Math.Max(sf.Width, sf.Height) + 1;
+                    sf = TextRenderer.MeasureText(TipsText, TempFont);
+                    int sfMax = Math.Max(sf.Width, sf.Height);
                     int x = TabRect.Width - 1 - 2 - sfMax;
                     if (showActiveCloseButton || ShowCloseButton) x -= 24;
                     int y = 1 + 1;

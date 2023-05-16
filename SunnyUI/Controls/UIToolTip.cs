@@ -258,7 +258,7 @@ namespace Sunny.UI
                 {
                     if (tooltip.Title.IsValid())
                     {
-                        titleSize = e.Graphics.MeasureString(tooltip.Title, TempTitleFont);
+                        titleSize = TextRenderer.MeasureText(tooltip.Title, TempTitleFont);
                     }
 
                     e.Graphics.DrawString(tooltip.Title, TempTitleFont, ForeColor, new Rectangle(tooltip.Symbol > 0 ? tooltip.SymbolSize + 5 : 5, 5, bounds.Width, bounds.Height), ContentAlignment.TopLeft);

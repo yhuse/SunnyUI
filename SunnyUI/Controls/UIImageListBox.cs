@@ -776,7 +776,7 @@ namespace Sunny.UI
                 newTransform.Translate(e.Bounds.X, e.Bounds.Y);
                 g.Transform = newTransform;
                 ImageListItem item = (ImageListItem)Items[e.Index];
-                SizeF sf = g.MeasureString("ImageListBox", Font);
+                Size sf = TextRenderer.MeasureText("ImageListBox", Font);
                 int thumbnailSize = ShowDescription ? ((int)(ItemHeight - ImageInterval - sf.Height)) : (ItemHeight - ImageInterval * 2);
 
                 if (item.Image != null)
@@ -794,7 +794,7 @@ namespace Sunny.UI
 
                 if (ShowDescription && !string.IsNullOrEmpty(item.Description))
                 {
-                    g.DrawString(item.Description, e.Font, foreColor, new Rectangle(ImageInterval, e.Bounds.Y + thumbnailSize + ImageInterval, e.Bounds.Width, e.Bounds.Height), ContentAlignment.TopLeft);
+                    g.DrawString(item.Description, e.Font, foreColor, new Rectangle(ImageInterval, e.Bounds.Y + thumbnailSize, e.Bounds.Width, e.Bounds.Height), ContentAlignment.TopLeft);
                 }
 
                 g.Transform = oldTransform;

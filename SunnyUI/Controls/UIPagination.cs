@@ -168,13 +168,13 @@ namespace Sunny.UI
                 b16.Text = UILocalize.Next;
                 btnSelect.Text = UILocalize.SelectTitle;
 
-                SizeF sf = b0.CreateGraphics().MeasureString(b0.Text, b0.Font);
-                b0.Width = b0.SymbolSize + (int)sf.Width + 10;
+                Size sf = TextRenderer.MeasureText(b0.Text, b0.Font);
+                b0.Width = b0.SymbolSize + sf.Width + 10;
 
-                sf = b16.CreateGraphics().MeasureString(b16.Text, b0.Font);
-                b16.Width = b16.SymbolSize + (int)sf.Width + 10;
+                sf = TextRenderer.MeasureText(b16.Text, b0.Font);
+                b16.Width = b16.SymbolSize + sf.Width + 10;
 
-                btnSelect.Width = (int)btnSelect.CreateGraphics().MeasureString(btnSelect.Text, btnSelect.Font).Width + 16;
+                btnSelect.Width = TextRenderer.MeasureText(btnSelect.Text, btnSelect.Font).Width + 16;
 
                 uiLabel1.Text = UILocalize.SelectPageLeft;
                 uiLabel2.Text = UILocalize.SelectPageRight;

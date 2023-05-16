@@ -175,7 +175,7 @@ namespace Sunny.UI
             {
                 foreach (var item in Items)
                 {
-                    SizeF sf = g.MeasureString(item.ToString(), Font);
+                    Size sf = TextRenderer.MeasureText(item.ToString(), Font);
                     width = Math.Max(width, sf.Width);
                 }
 

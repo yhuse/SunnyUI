@@ -364,7 +364,7 @@ namespace Sunny.UI
 
             //字体图标
             Color color = GetForeColor();
-            SizeF TextSize = e.Graphics.MeasureString(Text, Font);
+            Size TextSize = TextRenderer.MeasureText(Text, Font);
 
             if (ImageAlign == ContentAlignment.MiddleCenter && TextAlign == ContentAlignment.MiddleCenter)
             {
@@ -372,7 +372,7 @@ namespace Sunny.UI
                 {
                     e.Graphics.DrawString(Text, Font, color, ClientRectangle, ContentAlignment.MiddleCenter);
                 }
-                else if (TextSize.Width.Equals(0))
+                else if (Text.IsNullOrEmpty())
                 {
                     if (ImageSize.Width > 0)
                     {

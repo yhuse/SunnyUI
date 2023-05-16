@@ -258,8 +258,7 @@ namespace Sunny.UI
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
 
-            drawSize = e.Graphics.MeasureString(Text, Font, new PointF(), StringFormat.GenericTypographic);
-
+            drawSize = TextRenderer.MeasureText(Text, Font);
             if (AutoSize)
             {
                 point.X = Padding.Left;
@@ -305,8 +304,7 @@ namespace Sunny.UI
             float fontSize = e.Graphics.DpiY * Font.SizeInPoints / 72;
 
             drawPath.Reset();
-            drawPath.AddString(Text, Font.FontFamily, (int)Font.Style, fontSize,
-                point, StringFormat.GenericTypographic);
+            drawPath.AddString(Text, Font.FontFamily, (int)Font.Style, fontSize, point, StringFormat.GenericTypographic);
 
             e.Graphics.FillPath(forecolorBrush, drawPath);
             e.Graphics.DrawPath(drawPen, drawPath);

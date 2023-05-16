@@ -319,8 +319,8 @@ namespace Sunny.UI
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
             {
                 e.Graphics.SetHighQuality();
-                SizeF sf = e.Graphics.MeasureString(TipsText, TempFont);
-                int sfMax = (int)Math.Max(sf.Width, sf.Height) + 1;
+                Size sf = TextRenderer.MeasureText(TipsText, TempFont);
+                int sfMax = Math.Max(sf.Width, sf.Height);
                 int x = Width - 1 - 2 - sfMax;
                 int y = 1 + 1;
                 e.Graphics.FillEllipse(TipsColor, x - 1, y, sfMax, sfMax);

@@ -126,16 +126,16 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            SizeF TextSize = e.Graphics.MeasureString(Text, Font);
+            Size TextSize = TextRenderer.MeasureText(Text, Font);
             if (autoSize && Dock == DockStyle.None)
             {
-                float width = (MarkPos == UIMarkPos.Left || MarkPos == UIMarkPos.Right) ?
+                int width = (MarkPos == UIMarkPos.Left || MarkPos == UIMarkPos.Right) ?
                     TextSize.Width + MarkSize + 2 : TextSize.Width;
-                float height = (MarkPos == UIMarkPos.Top || MarkPos == UIMarkPos.Bottom) ?
+                int height = (MarkPos == UIMarkPos.Top || MarkPos == UIMarkPos.Bottom) ?
                     TextSize.Height + MarkSize + 2 : TextSize.Height;
 
-                if (Width != (int)width) Width = (int)width;
-                if (Height != (int)height) Height = (int)height;
+                if (Width != width) Width = width;
+                if (Height != height) Height = height;
             }
 
             switch (markPos)

@@ -1027,7 +1027,7 @@ namespace Sunny.UI
                         var checkBoxLeft = drawLeft - 2;
                         var imageLeft = drawLeft;
                         var haveImage = false;
-                        var sf = e.Graphics.MeasureString(e.Node.Text, Font);
+                        var sf = TextRenderer.MeasureText(e.Node.Text, Font);
 
                         if (CheckBoxes)
                         {

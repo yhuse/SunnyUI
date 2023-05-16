@@ -857,15 +857,14 @@ namespace Sunny.UI
                     {
                         // Use font family = _scaleFont, but size = automatic
                         fSize = (float)(6F * drawRatio);
-                        if (fSize < 6)
-                            fSize = 6;
-                        strsize = Gr.MeasureString(str, new Font(_scaleFont.FontFamily, fSize));
+                        if (fSize < 6) fSize = 6;
+                        strsize = TextRenderer.MeasureText(str, new Font(_scaleFont.FontFamily, fSize));
                     }
                     else
                     {
                         // Use font family = _scaleFont, but size = fixed
                         fSize = _scaleFont.Size;
-                        strsize = Gr.MeasureString(str, _scaleFont);
+                        strsize = TextRenderer.MeasureText(str, _scaleFont);
                     }
 
                     int strw = (int)strsize.Width;
@@ -954,7 +953,7 @@ namespace Sunny.UI
                 }
 
                 font = new Font(_scaleFont.FontFamily, fSize);
-                strsize = Gr.MeasureString(str, font);
+                strsize = TextRenderer.MeasureText(str, font);
 
                 int strw = (int)strsize.Width;
                 int strh = (int)strsize.Height;
@@ -980,9 +979,9 @@ namespace Sunny.UI
 
                     // If autosize
                     if (_scaleFontAutoSize)
-                        strsize = Gr.MeasureString(str, new Font(_scaleFont.FontFamily, fSize));
+                        strsize = TextRenderer.MeasureText(str, new Font(_scaleFont.FontFamily, fSize));
                     else
-                        strsize = Gr.MeasureString(str, new Font(_scaleFont.FontFamily, _scaleFont.Size));
+                        strsize = TextRenderer.MeasureText(str, new Font(_scaleFont.FontFamily, _scaleFont.Size));
 
                     if (_drawDivInside)
                     {
@@ -1094,7 +1093,7 @@ namespace Sunny.UI
                     font = new Font(_scaleFont.FontFamily, _scaleFont.Size);
                 }
 
-                SizeF strsize = Gr.MeasureString(str, font);
+                SizeF strsize = TextRenderer.MeasureText(str, font);
 
                 // Graduations outside
                 gradLength = 4 * drawRatio;
@@ -1233,7 +1232,7 @@ namespace Sunny.UI
             if (!_scaleFontAutoSize)
             {
                 fSize = _scaleFont.Size;
-                strsize = Gr.MeasureString(str, _scaleFont);
+                strsize = TextRenderer.MeasureText(str, _scaleFont);
             }
             else
             {
@@ -1242,7 +1241,7 @@ namespace Sunny.UI
                     fSize = 6;
 
                 knobFont = new Font(_scaleFont.FontFamily, fSize);
-                strsize = Gr.MeasureString(str, knobFont);
+                strsize = TextRenderer.MeasureText(str, knobFont);
             }
 
             int strw = (int)strsize.Width;

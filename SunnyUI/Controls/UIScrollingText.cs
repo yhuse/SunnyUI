@@ -150,13 +150,11 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            SizeF sf = g.MeasureString(Text, Font);
-            int y = (int)((Height - sf.Height) / 2);
-
-            if (TextWidth != (int)sf.Width)
+            Size sf = TextRenderer.MeasureText(Text, Font);
+            if (TextWidth != sf.Width)
             {
                 XPos = 0;
-                TextWidth = (int)sf.Width;
+                TextWidth = sf.Width;
             }
 
             if (ScrollingType == UIScrollingType.LeftToRight)

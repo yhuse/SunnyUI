@@ -474,7 +474,7 @@ namespace Sunny.UI
                 if (symbol > 0)
                     symbolSize = MenuHelper.GetSymbolSize(node);
 
-                SizeF sf = TextRenderer.MeasureText(node.Text, Font);// e.Graphics.MeasureString(node.Text, Font);
+                SizeF sf = TextRenderer.MeasureText(node.Text, Font);
                 Color textColor = ForeColor;
 
                 if (i == ActiveIndex)

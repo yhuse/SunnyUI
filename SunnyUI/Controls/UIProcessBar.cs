@@ -150,7 +150,7 @@ namespace Sunny.UI
             else
                 processText = posValue.ToString();
 
-            SizeF sf = e.Graphics.MeasureString(processText, Font);
+            Size sf = TextRenderer.MeasureText(processText, Font);
             bool canShow = Height > sf.Height + 4;
 
             if (ShowValue && canShow)
@@ -198,7 +198,7 @@ namespace Sunny.UI
         private void DrawString(Graphics g, string str, Font font, Color color, Size size, Padding padding, ContentAlignment align, int offsetX = 0, int offsetY = 0)
         {
             if (str.IsNullOrEmpty()) return;
-            SizeF sf = g.MeasureString(str, font);
+            Size sf = TextRenderer.MeasureText(str, font);
             using Brush br = color.Brush();
             switch (align)
             {

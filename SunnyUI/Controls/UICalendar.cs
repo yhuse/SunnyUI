@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -741,8 +742,8 @@ namespace Sunny.UI
 
                 if (isDate)
                 {
-                    SizeF sf = e.Graphics.MeasureString("00", Font);
-                    e.Graphics.DrawRectangle(PrimaryColor, new RectangleF(left + (width - sf.Width) / 2 - 2, top + 30 + (height - sf.Height) / 2 - 1, sf.Width + 3, sf.Height));
+                    SizeF sf = TextRenderer.MeasureText("00", Font);
+                    e.Graphics.DrawRectangle(PrimaryColor, new RectangleF(left + (width - sf.Width) / 2 - 2, top + 30 + (height - sf.Height) / 2 - 1, sf.Width + 3, sf.Height + 2));
                 }
             }
         }
