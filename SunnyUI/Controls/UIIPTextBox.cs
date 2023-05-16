@@ -289,8 +289,6 @@ namespace Sunny.UI
 
             foreach (TextBox txt in Controls.OfType<TextBox>().Where(t => t != txt1))
             {
-                //SizeF sf = e.Graphics.MeasureString(".", Font);
-                //e.Graphics.DrawString(".", Font, ForeColor, txt.Left - 5 + 2.5f - sf.Width / 2.0f, txt.Top);
                 e.Graphics.DrawString(".", Font, ForeColor, new Rectangle(txt.Left - 5, 0, 5, Height), ContentAlignment.MiddleCenter, 2);
             }
         }

@@ -65,9 +65,9 @@ namespace Sunny.UI
             base.OnPaint(e);
             if (AutoSize && Dock == DockStyle.None)
             {
-                SizeF sf = Text.MeasureString(Font);
-                int w = (int)sf.Width + ImageSize + 3;
-                int h = Math.Max(ImageSize, (int)sf.Height) + 2;
+                Size sf = TextRenderer.MeasureText(Text, Font);
+                int w = sf.Width + ImageSize + 3;
+                int h = Math.Max(ImageSize, sf.Height) + 2;
                 if (Width != w) Width = w;
                 if (Height != h) Height = h;
             }

@@ -187,7 +187,6 @@ namespace Sunny.UI
                 int index = 0;
                 foreach (var item in Items)
                 {
-                    //SizeF sf = g.MeasureString(item.ToString(), Font);
                     List<PointF> points = new List<PointF>();
 
                     if (index == 0 && AlignBothEnds)

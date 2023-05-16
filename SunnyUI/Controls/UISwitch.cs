@@ -271,15 +271,11 @@ namespace Sunny.UI
                 if (!Active)
                 {
                     g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, 3, 3, rect.Height - 6, rect.Height - 6);
-                    //SizeF sf = g.MeasureString(InActiveText, Font);
-                    //g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + rect.Height - 6 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
                     g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, new Rectangle(3 + rect.Height - 6, 0, width, rect.Height), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
                     g.FillEllipse(fillColor.IsValid() ? fillColor : Color.White, Width - 3 - 1 - (rect.Height - 6), 3, rect.Height - 6, rect.Height - 6);
-                    //SizeF sf = g.MeasureString(ActiveText, Font);
-                    //g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
                     g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, new Rectangle(3, 0, width, rect.Height), ContentAlignment.MiddleCenter);
                 }
             }
@@ -293,15 +289,11 @@ namespace Sunny.UI
                 if (!Active)
                 {
                     g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, 3, 3, rect.Height - 6, rect.Height - 6, Radius);
-                    //SizeF sf = g.MeasureString(InActiveText, Font);
-                    //g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + rect.Height - 6 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
                     g.DrawString(InActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, new Rectangle(3 + rect.Height - 6, 0, width, rect.Height), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
                     g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, Width - 3 - 1 - (rect.Height - 6), 3, rect.Height - 6, rect.Height - 6, Radius);
-                    //SizeF sf = g.MeasureString(ActiveText, Font);
-                    //g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, 3 + (width - sf.Width) / 2, 3 + (rect.Height - 6 - sf.Height) / 2);
                     g.DrawString(ActiveText, Font, fillColor.IsValid() ? fillColor : Color.White, new Rectangle(3, 0, width, rect.Height), ContentAlignment.MiddleCenter);
                 }
             }

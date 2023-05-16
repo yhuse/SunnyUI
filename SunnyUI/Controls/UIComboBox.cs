@@ -635,7 +635,7 @@ namespace Sunny.UI
                         {
                             for (int i = 0; i < Items.Count; i++)
                             {
-                                SizeF sf = GDI.MeasureString(Items[i].ToString(), Font);
+                                Size sf = TextRenderer.MeasureText(Items[i].ToString(), Font);
                                 dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
                             }
                         }
@@ -643,7 +643,7 @@ namespace Sunny.UI
                         {
                             for (int i = 0; i < Items.Count; i++)
                             {
-                                SizeF sf = GDI.MeasureString(dropForm.ListBox.GetItemText(Items[i]), Font);
+                                Size sf = TextRenderer.MeasureText(dropForm.ListBox.GetItemText(Items[i]), Font);
                                 dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
                             }
                         }

@@ -166,23 +166,7 @@ namespace Sunny.UI
                 g.DrawLine(RectColor, 0, TitleHeight, Width, TitleHeight);
 
             color = Enabled ? TitleForeColor : UIFontColor.Regular;
-            //SizeF sf = g.MeasureString(Text, Font);
             g.DrawString(Text, Font, color, new Rectangle(_titleInterval, 0, Width - _titleInterval * 2 - (ShowCollapse || ShowClose ? 24 : 0), TitleHeight), TextAlignment);
-
-            //switch (TextAlign)
-            //{
-            //    case HorizontalAlignment.Left:
-            //        g.DrawString(Text, Font, color, _titleInterval, (TitleHeight - sf.Height) / 2.0f);
-            //        break;
-            //
-            //    case HorizontalAlignment.Center:
-            //        g.DrawString(Text, Font, color, (Width - sf.Width) / 2.0f, (TitleHeight - sf.Height) / 2.0f);
-            //        break;
-            //
-            //    case HorizontalAlignment.Right:
-            //        g.DrawString(Text, Font, color, Width - _titleInterval - sf.Width, (TitleHeight - sf.Height) / 2.0f);
-            //        break;
-            //}
 
             if (ShowCollapse)
             {

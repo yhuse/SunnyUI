@@ -185,26 +185,24 @@ namespace Sunny.UI
                     else
                     {
                         int symbolWidth = tooltip.Symbol > 0 ? tooltip.SymbolSize : 0;
-                        SizeF titleSize = new SizeF(0, 0);
+                        Size titleSize = new Size(0, 0);
                         if (tooltip.Title.IsValid())
                         {
-                            titleSize = GDI.MeasureString(tooltip.Title, TempTitleFont);
+                            titleSize = TextRenderer.MeasureText(tooltip.Title, TempTitleFont);
                         }
 
-                        SizeF textSize = GDI.MeasureString(tooltip.ToolTipText, TempFont);
-                        int allWidth = (int)Math.Max(textSize.Width, titleSize.Width) + 10;
+                        Size textSize = TextRenderer.MeasureText(tooltip.ToolTipText, TempFont);
+                        int allWidth = Math.Max(textSize.Width, titleSize.Width) + 10;
                         if (symbolWidth > 0) allWidth = allWidth + symbolWidth + 5;
-                        int allHeight = titleSize.Height > 0 ?
-                            (int)titleSize.Height + (int)textSize.Height + 15 :
-                            (int)textSize.Height + 10;
+                        int allHeight = titleSize.Height > 0 ? titleSize.Height + textSize.Height + 15 : textSize.Height + 10;
                         e.ToolTipSize = new Size(allWidth, allHeight);
                     }
                 }
             }
             else
             {
-                SizeF sf = GDI.MeasureString(GetToolTip(e.AssociatedControl), TempFont);
-                e.ToolTipSize = sf.Size().Add(10, 10);
+                Size sf = TextRenderer.MeasureText(GetToolTip(e.AssociatedControl), TempFont);
+                e.ToolTipSize = sf.Add(10, 10);
             }
         }
 

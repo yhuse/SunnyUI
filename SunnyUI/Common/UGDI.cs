@@ -187,7 +187,7 @@ namespace Sunny.UI
         /// 提供一个Graphics，常用于需要计算文字大小时
         /// </summary>
         /// <returns>大小</returns>
-        public static Graphics Graphics()
+        internal static Graphics Graphics()
         {
             if (TempGraphics == null)
             {
@@ -196,17 +196,6 @@ namespace Sunny.UI
             }
 
             return TempGraphics;
-        }
-
-        /// <summary>
-        /// 计算文字大小
-        /// </summary>
-        /// <param name="text">文字</param>
-        /// <param name="font">字体</param>
-        /// <returns>大小</returns>
-        public static SizeF MeasureString(this string text, Font font)
-        {
-            return Graphics().MeasureString(text, font);
         }
 
         /// <summary>

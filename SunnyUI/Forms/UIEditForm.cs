@@ -56,14 +56,14 @@ namespace Sunny.UI
 
             if (Option.AutoLabelWidth)
             {
-                float size = 0;
+                int size = 0;
                 foreach (var info in Option.Infos)
                 {
-                    SizeF sf = info.Text.MeasureString(Font);
+                    Size sf = TextRenderer.MeasureText(info.Text, Font);
                     size = Math.Max(sf.Width, size);
                 }
 
-                Option.LabelWidth = (int)size + 1 + 50;
+                Option.LabelWidth = size + 1 + 50;
             }
 
             Width = Option.LabelWidth + Option.ValueWidth + 28;
@@ -145,9 +145,9 @@ namespace Sunny.UI
                         string[] items = (string[])info.DataSource;
                         edit.ActiveText = items[0];
                         edit.InActiveText = items[1];
-                        SizeF sf1 = GDI.MeasureString(items[0], edit.Font);
-                        SizeF sf2 = GDI.MeasureString(items[0], edit.Font);
-                        edit.Width = (int)Math.Max(sf1.Width, sf2.Width) + edit.Height + 16;
+                        Size sf1 = TextRenderer.MeasureText(items[0], edit.Font);
+                        Size sf2 = TextRenderer.MeasureText(items[0], edit.Font);
+                        edit.Width = Math.Max(sf1.Width, sf2.Width) + edit.Height + 16;
                     }
                 }
 

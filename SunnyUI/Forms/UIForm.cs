@@ -1243,15 +1243,12 @@ namespace Sunny.UI
                 }
             }
 
-            //SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
             if (TextAlignment == StringAlignment.Center)
             {
-                //e.Graphics.DrawString(Text, TitleFont, titleForeColor, (Width - sf.Width) / 2, (TitleHeight - sf.Height) / 2);
                 e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
             }
             else
             {
-                //e.Graphics.DrawString(Text, TitleFont, titleForeColor, 6 + (ShowTitleIcon && Icon != null ? 26 : 0), (TitleHeight - sf.Height) / 2);
                 e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
             }
         }

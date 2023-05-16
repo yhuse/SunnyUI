@@ -90,8 +90,6 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            //SizeF sf = g.MeasureString(Text, Font);
-            //g.DrawString(Text, Font, ForeColor, Width / 2 - sf.Width / 2, Height / 2 - sf.Height / 2);
             g.DrawString(Text, Font, ForeColor, ClientRectangle, TextAlign);
         }
 

@@ -629,8 +629,6 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y);
             }
 
-            //SizeF sf = e.Graphics.MeasureString(Text, TitleFont);
-            //e.Graphics.DrawString(Text, TitleFont, TitleForeColor, Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, (TitleHeight - sf.Height) / 2);
             e.Graphics.DrawString(Text, TitleFont, TitleForeColor, new Rectangle(Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
 
             e.Graphics.SetHighQuality();

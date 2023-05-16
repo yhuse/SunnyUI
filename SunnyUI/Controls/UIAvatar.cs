@@ -371,8 +371,6 @@ namespace Sunny.UI
 
             if (Icon == UIIcon.Text)
             {
-                //SizeF sf = e.Graphics.MeasureString(Text, Font);
-                //e.Graphics.DrawString(Text, Font, foreColor, (Width - sf.Width) / 2.0f + TextOffset.X, (Height - sf.Height) / 2.0f + 1 + TextOffset.Y);
                 e.Graphics.DrawString(Text, Font, foreColor, ClientRectangle, ContentAlignment.MiddleCenter, TextOffset.X, TextOffset.Y);
             }
 
