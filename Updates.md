@@ -1,5 +1,21 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-05\-16 V3.3.7    
+\* 重构DrawFontImage函数    
+\* 重构MeasureString    
+\* 重构DrawString函数    
+\* UIDatePicker: 年、年月、年月日可单独设置格式化掩码    
+\* UIDatePicker: 修复文字格式化显示问题    
+\* UILineChart: 增加了一种开关量曲线的显示方式    
+\* UIBarChart: Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔    
+\* UITitlePanel: 标题栏文字位置属性由TextAlign改为TextAlignment    
+\* UIBarChart: Option.ShowFullRect为true时，绘制右侧和上侧的边框实线    
+\* UIIPTextBox: 修复Enabled切换时背景色不一致的问题    
+\* UIDropControl: 最小高度限制，以防丢失边框    
+\* UILineChartOption: 增加了UpdateYData函数，按序号更新Y轴值    
+\* UIImageButton: 增加调用点击事件PerformClick    
+\* UITitlePanel: 增加了一个关闭按钮的属性，点击后隐藏控件    
+    
 #### 2023\-04\-24 V3.3.6    
 \*  **FontAwesome: 字体图标从V5.15.2升级到V6.4.0**     
 \* FDialogs: 增加了等待提示窗的示例    
