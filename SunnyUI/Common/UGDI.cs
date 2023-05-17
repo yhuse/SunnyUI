@@ -181,23 +181,6 @@ namespace Sunny.UI
             return region;
         }
 
-        private static Graphics TempGraphics;
-
-        /// <summary>
-        /// 提供一个Graphics，常用于需要计算文字大小时
-        /// </summary>
-        /// <returns>大小</returns>
-        internal static Graphics Graphics()
-        {
-            if (TempGraphics == null)
-            {
-                Bitmap bmp = new Bitmap(1, 1);
-                TempGraphics = bmp.Graphics();
-            }
-
-            return TempGraphics;
-        }
-
         /// <summary>
         /// 获取起始颜色到终止颜色之间的渐变颜色
         /// </summary>

@@ -27,9 +27,19 @@ namespace Sunny.UI
 {
     public static class UIDPIScale
     {
+        private static float dpiScale = -1;
+
         public static float DPIScale()
         {
-            return GDI.Graphics().DpiX / 96.0f / (UIStyles.FontSize / 12.0f);
+            if (dpiScale > 0)
+            {
+                return dpiScale;
+            }
+
+            using Bitmap bmp = new Bitmap(1, 1);
+            using Graphics g = bmp.Graphics();
+            dpiScale = g.DpiX / 96.0f / (UIStyles.FontSize / 12.0f);
+            return dpiScale;
         }
 
         public static bool DPIScaleIsOne()
