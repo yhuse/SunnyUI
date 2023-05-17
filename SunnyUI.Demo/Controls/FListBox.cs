@@ -18,7 +18,7 @@ namespace Sunny.UI.Demo
             if (text.Contains("6"))
             {
                 e.Graphics.FillRectangle(UIColor.Green, e.Bounds);
-                e.Graphics.DrawString(text, e.Font, Color.Blue, e.Bounds);
+                e.Graphics.DrawString(text, e.Font, Color.Blue, e.Bounds, ContentAlignment.MiddleLeft);
             }
         }
 
