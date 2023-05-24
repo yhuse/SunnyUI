@@ -23,9 +23,11 @@
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
 ******************************************************************************/
 
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -307,40 +309,60 @@ namespace Sunny.UI
     /// </summary>
     public static class UIFontColor
     {
-        public static byte GdiCharSet
-        {
-            get
-            {
-                byte value = 1;
-                // 注解
-                // 除非在构造函数中指定了不同的字符集，否则此属性将返回 1 
-                // Font(String, Single, FontStyle, GraphicsUnit, Byte) 。 
-                // 此属性采用 Windows SDK 头文件 WinGDI 中定义的列表的值。 下表列出了字符集和字节值。
-                // 字符集 “值”
-                // ANSI    0
-                // DEFAULT 1
-                // 代号  2
-                // SHIFTJIS    128
-                // HANGEUL 129
-                // 文字  129
-                // GB2312  134
-                // CHINESEBIG5 136
-                // OEM 255
-                // JOHAB   130
-                // 希伯来语    177
-                // 阿拉伯语    178
-                // 希腊语 161
-                // 土耳其语    162
-                // 越南语 163
-                // 泰语  222
-                // EASTEUROPE  238
-                // 俄语  204
-                // MAC 77
-                // 波罗  186
+        private static readonly ConcurrentDictionary<string, byte> FontCharSets = new ConcurrentDictionary<string, byte>();
 
-                if (System.Text.Encoding.Default.BodyName.ToUpper() == "GB2312") value = 134;
-                return value;
-            }
+        //GdiCharSet
+        //一个字节值，该值指定使用此 Font 字符集的 GDI 字符集。 默认值为 1。
+        //字符集	        值
+        //ANSI	        0
+        //DEFAULT	    1
+        //象征	        2
+        //SHIFTJIS	    128
+        //HANGEUL	    129
+        //HANGUL	    129
+        //GB2312	    134
+        //中国BIG5	    136
+        //OEM	        255
+        //JOHAB	        130
+        //希伯来语	    177
+        //阿拉伯语	    178
+        //希腊语	        161
+        //土耳其语	    162
+        //越南语	        163
+        //泰语	        222
+        //EASTEUROPE	238
+        //俄语	        204
+        //MAC	        77
+        //波罗的海	    186
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        internal class LOGFONT
+        {
+            public int lfHeight;
+            public int lfWidth;
+            public int lfEscapement;
+            public int lfOrientation;
+            public int lfWeight;
+            public byte lfItalic;
+            public byte lfUnderline;
+            public byte lfStrikeOut;
+            public byte lfCharSet;
+            public byte lfOutPrecision;
+            public byte lfClipPrecision;
+            public byte lfQuality;
+            public byte lfPitchAndFamily;
+            [MarshalAs(System.Runtime.InteropServices.UnmanagedType.ByValTStr, SizeConst = 32)]
+            public string lfFaceName;
+        }
+
+        internal static byte GetGdiCharSet(string fontName, float fontSize)
+        {
+            if (FontCharSets.ContainsKey(fontName)) return FontCharSets[fontName];
+            using Font font = new Font(fontName, fontSize);
+            LOGFONT obj = new LOGFONT();
+            font.ToLogFont(obj);
+            FontCharSets.TryAdd(fontName, obj.lfCharSet);
+            return obj.lfCharSet;
         }
 
         /// <summary>
@@ -348,7 +370,8 @@ namespace Sunny.UI
         /// </summary>
         public static Font Font()
         {
-            return new Font("微软雅黑", FontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+            byte gdiCharSet = GetGdiCharSet("微软雅黑", FontSize);
+            return new Font("微软雅黑", FontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         /// <summary>
@@ -356,7 +379,8 @@ namespace Sunny.UI
         /// </summary>
         public static Font Font(float fontSize)
         {
-            return new Font("微软雅黑", fontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+            byte gdiCharSet = GetGdiCharSet("微软雅黑", fontSize);
+            return new Font("微软雅黑", fontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         public static float FontSize = 12;
@@ -366,7 +390,8 @@ namespace Sunny.UI
         /// </summary>
         public static Font SubFont()
         {
-            return new Font("微软雅黑", SubFontSize, FontStyle.Regular, GraphicsUnit.Point, GdiCharSet);
+            byte gdiCharSet = GetGdiCharSet("微软雅黑", SubFontSize);
+            return new Font("微软雅黑", SubFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         public static float SubFontSize = 9;
