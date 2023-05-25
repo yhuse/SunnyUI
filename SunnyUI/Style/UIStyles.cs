@@ -27,6 +27,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -41,6 +42,82 @@ namespace Sunny.UI
         public static bool ZoomScale { get; set; }
 
         public static float FontSize { get; set; } = 12;
+
+        private static readonly ConcurrentDictionary<string, byte> FontCharSets = new ConcurrentDictionary<string, byte>();
+
+        //GdiCharSet
+        //一个字节值，该值指定使用此 Font 字符集的 GDI 字符集。 默认值为 1。
+        //字符集	        值
+        //ANSI	        0
+        //DEFAULT	    1
+        //象征	        2
+        //SHIFTJIS	    128
+        //HANGEUL	    129
+        //HANGUL	    129
+        //GB2312	    134
+        //中国BIG5	    136
+        //OEM	        255
+        //JOHAB	        130
+        //希伯来语	    177
+        //阿拉伯语	    178
+        //希腊语	        161
+        //土耳其语	    162
+        //越南语	        163
+        //泰语	        222
+        //EASTEUROPE	238
+        //俄语	        204
+        //MAC	        77
+        //波罗的海	    186
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        internal class LOGFONT
+        {
+            public int lfHeight;
+            public int lfWidth;
+            public int lfEscapement;
+            public int lfOrientation;
+            public int lfWeight;
+            public byte lfItalic;
+            public byte lfUnderline;
+            public byte lfStrikeOut;
+            public byte lfCharSet;
+            public byte lfOutPrecision;
+            public byte lfClipPrecision;
+            public byte lfQuality;
+            public byte lfPitchAndFamily;
+            [MarshalAs(System.Runtime.InteropServices.UnmanagedType.ByValTStr, SizeConst = 32)]
+            public string lfFaceName;
+        }
+
+        internal static byte GetGdiCharSet(string fontName)
+        {
+            if (FontCharSets.ContainsKey(fontName)) return FontCharSets[fontName];
+            using Font font = new Font(fontName, 16);
+            LOGFONT obj = new LOGFONT();
+            font.ToLogFont(obj);
+            FontCharSets.TryAdd(fontName, obj.lfCharSet);
+            return obj.lfCharSet;
+        }
+
+        internal static float DefaultFontSize = 12;
+        internal static float DefaultSubFontSize = 9;
+        /// <summary>
+        /// 默认字体
+        /// </summary>
+        internal static Font Font()
+        {
+            byte gdiCharSet = GetGdiCharSet("微软雅黑");
+            return new Font("微软雅黑", DefaultFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
+        }
+
+        /// <summary>
+        /// 默认二级字体
+        /// </summary>
+        internal static Font SubFont()
+        {
+            byte gdiCharSet = GetGdiCharSet("微软雅黑");
+            return new Font("微软雅黑", DefaultSubFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
+        }
 
         public static List<UIStyle> PopularStyles()
         {

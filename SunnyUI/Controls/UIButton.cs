@@ -195,7 +195,7 @@ namespace Sunny.UI
             }
         }
 
-        private Font tipsFont = UIFontColor.SubFont();
+        private Font tipsFont = UIStyles.SubFont();
 
         /// <summary>
         /// 角标文字字体

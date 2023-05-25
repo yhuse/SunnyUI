@@ -40,7 +40,7 @@ namespace Sunny.UI
             Height = 29;
             RadiusSides = UICornerRadiusSides.None;
 
-            Font = UIFontColor.Font();
+            Font = UIStyles.Font();
             foreColor = UIStyles.Blue.DataGridViewFooterForeColor;
             fillColor = UIStyles.Blue.PlainColor;
             rectColor = UIStyles.Blue.RectColor;

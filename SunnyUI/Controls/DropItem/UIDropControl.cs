@@ -45,7 +45,7 @@ namespace Sunny.UI
             Padding = new Padding(0, 0, 30, 2);
 
             edit.AutoSize = false;
-            edit.Font = UIFontColor.Font();
+            edit.Font = UIStyles.Font();
             edit.Left = 4;
             edit.Top = 3;
             edit.Text = String.Empty;

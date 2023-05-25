@@ -47,7 +47,7 @@ namespace Sunny.UI
         public UIControl()
         {
             Version = UIGlobal.Version;
-            base.Font = UIFontColor.Font();
+            base.Font = UIStyles.Font();
             Size = new Size(100, 35);
             base.MinimumSize = new Size(1, 1);
         }

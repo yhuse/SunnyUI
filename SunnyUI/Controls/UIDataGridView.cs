@@ -63,7 +63,7 @@ namespace Sunny.UI
         {
             BackgroundColor = UIColor.White;
             GridColor = UIColor.Blue;
-            base.Font = UIFontColor.Font();
+            base.Font = UIStyles.Font();
             base.DoubleBuffered = true;
 
             VBar.Parent = this;
@@ -91,17 +91,17 @@ namespace Sunny.UI
             ColumnHeadersDefaultCellStyle.BackColor = UIColor.Blue;
             ColumnHeadersDefaultCellStyle.ForeColor = UIColor.White;
             ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            ColumnHeadersDefaultCellStyle.Font = UIFontColor.Font();
+            ColumnHeadersDefaultCellStyle.Font = UIStyles.Font();
 
             //行头部颜色
             RowHeadersDefaultCellStyle.BackColor = UIColor.LightBlue;
             RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
             RowHeadersDefaultCellStyle.SelectionBackColor = UIColor.Blue;
             RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            RowHeadersDefaultCellStyle.Font = UIFontColor.Font();
+            RowHeadersDefaultCellStyle.Font = UIStyles.Font();
 
-            RowsDefaultCellStyle.Font = UIFontColor.Font();
-            DefaultCellStyle.Font = UIFontColor.Font();
+            RowsDefaultCellStyle.Font = UIStyles.Font();
+            DefaultCellStyle.Font = UIStyles.Font();
 
             //标题行行高，与OnColumnAdded事件配合
             ColumnHeadersHeight = 32;

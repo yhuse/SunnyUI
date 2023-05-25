@@ -40,8 +40,8 @@ namespace Sunny.UI
             Width = 400;
             Height = 300;
 
-            SubFont = UIFontColor.SubFont();
-            LegendFont = UIFontColor.SubFont();
+            SubFont = UIStyles.SubFont();
+            LegendFont = UIStyles.SubFont();
 
             tip.Parent = this;
             tip.Height = 32;
@@ -50,7 +50,7 @@ namespace Sunny.UI
             tip.Top = 1;
             tip.StyleCustomMode = true;
             tip.Style = UIStyle.Custom;
-            tip.Font = UIFontColor.SubFont();
+            tip.Font = UIStyles.SubFont();
             tip.RadiusSides = UICornerRadiusSides.None;
             tip.Visible = false;
 
@@ -65,8 +65,7 @@ namespace Sunny.UI
         private void Tip_VisibleChanged(object sender, EventArgs e)
         {
             tip.IsScaled = true;
-            float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
-            tip.Font = this.Font.DPIScaleFont(size);
+            tip.Font = this.Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
         }
 
         protected override void Dispose(bool disposing)
@@ -206,7 +205,7 @@ namespace Sunny.UI
         {
             get
             {
-                float size = SubFont != null ? SubFont.Size : UIFontColor.SubFontSize;
+                float size = UIStyles.DefaultSubFontSize;
 
                 if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {
@@ -224,7 +223,7 @@ namespace Sunny.UI
         {
             get
             {
-                float size = LegendFont != null ? LegendFont.Size : UIFontColor.SubFontSize;
+                float size = UIStyles.DefaultSubFontSize;
 
                 if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
                 {

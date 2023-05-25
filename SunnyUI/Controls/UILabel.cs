@@ -36,7 +36,7 @@ namespace Sunny.UI
     {
         public UILabel()
         {
-            base.Font = UIFontColor.Font();
+            base.Font = UIStyles.Font();
             Version = UIGlobal.Version;
             base.TextAlign = ContentAlignment.MiddleLeft;
             foreColor = UIStyles.Blue.LabelForeColor;
@@ -181,7 +181,7 @@ namespace Sunny.UI
     {
         public UILinkLabel()
         {
-            Font = UIFontColor.Font();
+            Font = UIStyles.Font();
             LinkBehavior = LinkBehavior.AlwaysUnderline;
             Version = UIGlobal.Version;
 

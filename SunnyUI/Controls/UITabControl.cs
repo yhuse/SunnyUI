@@ -61,7 +61,7 @@ namespace Sunny.UI
 
             ItemSize = new Size(150, 40);
             DrawMode = TabDrawMode.OwnerDrawFixed;
-            Font = UIFontColor.Font();
+            Font = UIStyles.Font();
             AfterSetFillColor(FillColor);
             Version = UIGlobal.Version;
 
@@ -149,7 +149,7 @@ namespace Sunny.UI
             }
         }
 
-        private Font tipsFont = UIFontColor.SubFont();
+        private Font tipsFont = UIStyles.SubFont();
 
         [Description("角标文字字体"), Category("SunnyUI")]
         [DefaultValue(typeof(Font), "微软雅黑, 9pt")]

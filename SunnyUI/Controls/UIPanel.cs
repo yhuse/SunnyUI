@@ -39,7 +39,7 @@ namespace Sunny.UI
         public UIPanel()
         {
             InitializeComponent();
-            base.Font = UIFontColor.Font();
+            base.Font = UIStyles.Font();
             base.MinimumSize = new System.Drawing.Size(1, 1);
             showText = true;
             SetStyleFlags(true, false, true);

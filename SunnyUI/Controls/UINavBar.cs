@@ -56,7 +56,7 @@ namespace Sunny.UI
 
             DoubleBuffered = true;
             UpdateStyles();
-            Font = UIFontColor.Font();
+            Font = UIStyles.Font();
 
             NavBarMenu.VisibleChanged += NavBarMenu_VisibleChanged;
             Dock = DockStyle.Top;
@@ -351,7 +351,7 @@ namespace Sunny.UI
             set => NavBarMenu.ImageList = value;
         }
 
-        private Font dropMenuFont = UIFontColor.Font();
+        private Font dropMenuFont = UIStyles.Font();
 
         /// <summary>
         /// 标题字体

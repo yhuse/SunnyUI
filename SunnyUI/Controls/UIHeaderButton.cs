@@ -146,7 +146,7 @@ namespace Sunny.UI
             }
         }
 
-        private Font tipsFont = UIFontColor.SubFont();
+        private Font tipsFont = UIStyles.SubFont();
 
         [Description("角标文字字体"), Category("SunnyUI")]
         [DefaultValue(typeof(Font), "微软雅黑, 9pt")]

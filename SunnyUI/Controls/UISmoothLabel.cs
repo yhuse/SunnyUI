@@ -36,7 +36,7 @@ namespace Sunny.UI
     {
         public UISmoothLabel()
         {
-            base.Font = UIFontColor.Font(36);
+            base.Font = UIStyles.Font();
             Version = UIGlobal.Version;
 
             foreColor = UIStyles.Blue.SmoothLabelForeColor;
