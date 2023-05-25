@@ -21,6 +21,7 @@
 ******************************************************************************/
 
 using System.ComponentModel;
+using static System.Drawing.FontConverter;
 
 namespace Sunny.UI
 {
@@ -83,6 +84,15 @@ namespace Sunny.UI
         {
             get => UIStyles.FontSize;
             set => UIStyles.FontSize = value;
+        }
+
+        [Editor("System.Drawing.Design.FontNameEditor", "System.Drawing.Design.UITypeEditor")]
+        [TypeConverter(typeof(FontNameConverter))]
+        [DefaultValue("微软雅黑")]
+        public string FontName
+        {
+            get => UIStyles.FontName;
+            set => UIStyles.FontName = value;
         }
 
         /// <summary>

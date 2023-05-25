@@ -26,9 +26,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Drawing.FontConverter;
 
 namespace Sunny.UI
 {
@@ -40,6 +42,10 @@ namespace Sunny.UI
         public static bool DPIScale { get; set; }
 
         public static bool ZoomScale { get; set; }
+
+        [Editor("System.Drawing.Design.FontNameEditor", "System.Drawing.Design.UITypeEditor")]
+        [TypeConverter(typeof(FontNameConverter))]
+        public static string FontName { get; set; } = "微软雅黑";
 
         public static float FontSize { get; set; } = 12;
 
