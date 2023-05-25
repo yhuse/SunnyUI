@@ -21,6 +21,8 @@
  * 2021-07-18: V3.0.5 新增两个事件，可获取左侧、右侧Item点击事件
  * 2021-08-08: V3.0.5 增加了显示多个移动的属性
  * 2023-02-04: V3.3.1 支持鼠标框选和Shift，Ctrl多选移动
+ * 2023-05-25: V3.3.7 增加列表框字体可调整
+ * 2023-05-25: V3.3.7 增加列表框列表项高度可调整
 ******************************************************************************/
 
 using System;
@@ -282,6 +284,31 @@ namespace Sunny.UI
         private void l2_ItemClick(object sender, EventArgs e)
         {
             ItemsRightClick?.Invoke(this, e);
+        }
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (l1 == null || l2 == null) return;
+            l1.Font = Font;
+            l2.Font = Font;
+        }
+
+        private int itemHeight = 25;
+
+        [DefaultValue(25)]
+        public int ItemHeight
+        {
+            get => itemHeight;
+            set
+            {
+                if (itemHeight != value)
+                {
+                    itemHeight = value;
+                    if (l1 == null || l2 == null) return;
+                    l1.ItemHeight = l2.ItemHeight = itemHeight;
+                }
+            }
         }
     }
 }
