@@ -94,6 +94,13 @@ namespace Sunny.UI
             view.MouseClick += View_MouseClick;
         }
 
+        ~UITreeView()
+        {
+            view?.Dispose();
+            Bar?.Dispose();
+            HBar?.Dispose();
+        }
+
         public event NodeLabelEditEventHandler AfterLabelEdit;
         public new event EventHandler MouseLeave;
         public new event EventHandler MouseEnter;

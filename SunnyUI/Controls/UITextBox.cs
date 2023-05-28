@@ -72,7 +72,6 @@ namespace Sunny.UI
             SetStyleFlags(true, true, true);
 
             ShowText = false;
-            Font = UIStyles.Font();
             MinimumSize = new Size(1, 16);
 
             Width = 150;

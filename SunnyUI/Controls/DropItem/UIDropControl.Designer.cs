@@ -19,6 +19,7 @@
                 components.Dispose();
             }
 
+            edit?.Dispose();
             ItemForm?.Dispose();
             base.Dispose(disposing);
         }

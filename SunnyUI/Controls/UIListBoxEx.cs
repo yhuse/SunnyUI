@@ -191,7 +191,7 @@ namespace Sunny.UI
             //
             BorderStyle = BorderStyle.FixedSingle;
             DrawMode = DrawMode.OwnerDrawFixed;
-            Font = UIStyles.Font();
+            base.Font = UIStyles.Font();
             IntegralHeight = false;
             ItemHeight = 25;
             Size = new Size(150, 200);

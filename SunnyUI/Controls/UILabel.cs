@@ -181,7 +181,7 @@ namespace Sunny.UI
     {
         public UILinkLabel()
         {
-            Font = UIStyles.Font();
+            base.Font = UIStyles.Font();
             LinkBehavior = LinkBehavior.AlwaysUnderline;
             Version = UIGlobal.Version;
 

@@ -48,6 +48,7 @@ namespace Sunny.UI
     {
         //默认字体。当样式中的Font==null时用该字体替换
         static readonly Font DefaultFont = UIStyles.Font();
+
         //文本格式。用于测量和绘制
         static readonly StringFormat DefStringFormat = StringFormat.GenericTypographic;
 
@@ -178,6 +179,7 @@ namespace Sunny.UI
             {
                 throw new ArgumentNullException(nameof(controlOrItem));
             }
+
             Show(text, style, delay, floating, GetCenterPosition(controlOrItem), centerInControl ?? IsContainerLike(controlOrItem));
         }
 

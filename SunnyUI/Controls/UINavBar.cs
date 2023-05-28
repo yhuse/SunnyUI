@@ -56,7 +56,7 @@ namespace Sunny.UI
 
             DoubleBuffered = true;
             UpdateStyles();
-            Font = UIStyles.Font();
+            base.Font = UIStyles.Font();
 
             NavBarMenu.VisibleChanged += NavBarMenu_VisibleChanged;
             Dock = DockStyle.Top;

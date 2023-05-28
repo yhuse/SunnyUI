@@ -84,6 +84,12 @@ namespace Sunny.UI
             edit.MouseMove += Edit_MouseMove;
         }
 
+        ~UIRichTextBox()
+        {
+            edit?.Dispose();
+            bar?.Dispose();
+        }
+
         public new event EventHandler Leave;
         public new event EventHandler Validated;
         public new event CancelEventHandler Validating;

@@ -72,7 +72,7 @@ namespace Sunny.UI
             //ShowRootLines = false;
 
             DoubleBuffered = true;
-            Font = UIStyles.Font();
+            base.Font = UIStyles.Font();
             //CheckBoxes = false;
             ItemHeight = 50;
             BackColor = Color.FromArgb(56, 56, 56);

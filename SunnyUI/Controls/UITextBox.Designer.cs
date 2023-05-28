@@ -18,6 +18,10 @@
                 CloseTips();
                 components.Dispose();
             }
+
+            edit?.Dispose();
+            bar?.Dispose();
+            btn?.Dispose();
             base.Dispose(disposing);
         }
 
