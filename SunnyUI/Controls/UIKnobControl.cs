@@ -623,7 +623,7 @@ namespace Sunny.UI
             // Set antialias effect on                     
             gOffScreen.SmoothingMode = SmoothingMode.AntiAlias;
             // Draw border of knob                         
-            gOffScreen.DrawEllipse(new Pen(this.BackColor), rKnob);
+            gOffScreen.DrawEllipse(this.BackColor, rKnob);
 
             //if control is focused 
             if (this.isFocused)
@@ -846,7 +846,8 @@ namespace Sunny.UI
                     int w = l / 4;
                     Point[] pt = GetKnobLine(Gr, l);
 
-                    Gr.DrawLine(new Pen(_PointerColor, w), pt[0], pt[1]);
+                    using Pen pen = new Pen(_PointerColor, w);
+                    Gr.DrawLine(pen, pt[0], pt[1]);
                 }
                 else
                 {
@@ -891,8 +892,8 @@ namespace Sunny.UI
                     Rectangle rPointer = new Rectangle(Arrow.X - w / 2, Arrow.Y - w / 2, w, h);
 
                     //Utility.DrawInsetCircle(ref Gr, rPointer, new Pen(_PointerColor));
-                    DrawInsetCircle(ref Gr, rPointer, new Pen(GetLightColor(_PointerColor, 55)));
-
+                    using Pen pen = new Pen(GetLightColor(_PointerColor, 55));
+                    DrawInsetCircle(ref Gr, rPointer, pen);
                     Gr.FillEllipse(brushKnobPointer, rPointer);
                 }
             }
@@ -1467,8 +1468,8 @@ namespace Sunny.UI
         }
         public static void DrawInsetCircle(ref Graphics g, Rectangle r, Pen p)
         {
-            Pen p1 = new Pen(GetDarkColor(p.Color, 50));
-            Pen p2 = new Pen(GetLightColor(p.Color, 50));
+            using Pen p1 = new Pen(GetDarkColor(p.Color, 50));
+            using Pen p2 = new Pen(GetLightColor(p.Color, 50));
             for (int i = 0; i < p.Width; i++)
             {
                 Rectangle r1 = new Rectangle(r.X + i, r.Y + i, r.Width - i * 2, r.Height - i * 2);

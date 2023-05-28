@@ -226,7 +226,7 @@ namespace Sunny.UI
 
         protected void DrawSelector(Graphics dc, RectangleF r, Orientation orientation, float percentSet)
         {
-            Pen pen = new Pen(Color.CadetBlue);
+            using Pen pen = new Pen(Color.CadetBlue);
             percentSet = Math.Max(0, percentSet);
             percentSet = Math.Min(1, percentSet);
             if (orientation == Orientation.Vertical)

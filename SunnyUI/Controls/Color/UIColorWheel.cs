@@ -20,6 +20,12 @@ namespace Sunny.UI
         private readonly List<Color> m_colors = new List<Color>();
         private double m_wheelLightness = 0.5;
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            m_brush?.Dispose();
+        }
+
         public HSLColor SelectedHSLColor
         {
             get { return m_selectedColor; }

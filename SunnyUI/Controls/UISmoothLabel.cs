@@ -34,6 +34,12 @@ namespace Sunny.UI
     [DefaultProperty("Text")]
     public sealed class UISmoothLabel : Label, IStyleInterface, IZoomScale
     {
+        private PointF point;
+        private SizeF drawSize;
+        private Pen drawPen;
+        private GraphicsPath drawPath;
+        private SolidBrush forecolorBrush;
+
         public UISmoothLabel()
         {
             base.Font = UIStyles.Font();
@@ -43,9 +49,21 @@ namespace Sunny.UI
             rectColor = UIStyles.Blue.SmoothLabelRectColor;
 
             drawPath = new GraphicsPath();
-            drawPen = new Pen(new SolidBrush(rectColor), rectSize);
+            drawPen = new Pen(rectColor, rectSize);
             forecolorBrush = new SolidBrush(ForeColor);
             Size = new Size(300, 60);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                forecolorBrush?.Dispose();
+                drawPath?.Dispose();
+                drawPen?.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         /// <summary>
@@ -68,24 +86,6 @@ namespace Sunny.UI
         {
 
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                forecolorBrush?.Dispose();
-                drawPath?.Dispose();
-                drawPen?.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        private PointF point;
-        private SizeF drawSize;
-        private Pen drawPen;
-        private GraphicsPath drawPath;
-        private SolidBrush forecolorBrush;
 
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
