@@ -18,6 +18,7 @@
  *
  * 2022-06-11: V3.1.9 增加文件说明
  * 2022-05-16: V3.3.6 重构DrawString函数
+ * 2022-05-28: V3.3.7 修改字体缩放时显示
 ******************************************************************************/
 
 using System;
@@ -104,10 +105,10 @@ namespace Sunny.UI
         /// <param name="code">验证码表达式</param>
         private Bitmap CreateImage(string code)
         {
-            Font font = new Font(Font.Name, CodeFontSize, FontStyle.Bold);
+            using Font font = new Font(Font.Name, CodeFontSize, FontStyle.Bold);
+            using Font fontex = font.DPIScaleFont();
             Code = code;
-            Size sf = TextRenderer.MeasureText(code, font);
-
+            Size sf = TextRenderer.MeasureText(code, fontex);
             Bitmap image = new Bitmap((int)sf.Width + 16, Height - 2);
 
             //创建画布
@@ -137,9 +138,8 @@ namespace Sunny.UI
             }
 
             using Brush br = new SolidBrush(rectColor);
-            g.DrawString(code, font, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
+            g.DrawString(code, fontex, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
             var imageex = TwistImage(image, true, 5, 5);
-            font.Dispose();
             image.Dispose();
             return imageex;
         }
