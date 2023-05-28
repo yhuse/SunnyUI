@@ -105,7 +105,8 @@ namespace Sunny.UI
         /// <param name="code">验证码表达式</param>
         private Bitmap CreateImage(string code)
         {
-            using Font font = new Font(Font.Name, CodeFontSize, FontStyle.Bold);
+            byte gdiCharSet = UIStyles.GetGdiCharSet(Font.Name);
+            using Font font = new Font(Font.Name, CodeFontSize, FontStyle.Bold, GraphicsUnit.Point, gdiCharSet);
             using Font fontex = font.DPIScaleFont();
             Code = code;
             Size sf = TextRenderer.MeasureText(code, fontex);
@@ -119,18 +120,18 @@ namespace Sunny.UI
             g.Clear(fillColor);
 
             //画图片背景线
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int x1 = random.Next(image.Width);
                 int x2 = random.Next(image.Width);
                 int y1 = random.Next(image.Height);
                 int y2 = random.Next(image.Height);
 
-                g.DrawLine(Pens.Black, x1, y1, x2, y2);
+                g.DrawLine(Color.Black, x1, y1, x2, y2, true);
             }
 
             //画图片的前景噪音点
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 30; i++)
             {
                 int x = random.Next(image.Width);
                 int y = random.Next(image.Height);
@@ -139,7 +140,7 @@ namespace Sunny.UI
 
             using Brush br = new SolidBrush(rectColor);
             g.DrawString(code, fontex, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
-            var imageex = TwistImage(image, true, 5, 5);
+            var imageex = TwistImage(image, true, 3, 5);
             image.Dispose();
             return imageex;
         }
