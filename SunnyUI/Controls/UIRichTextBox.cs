@@ -84,8 +84,9 @@ namespace Sunny.UI
             edit.MouseMove += Edit_MouseMove;
         }
 
-        ~UIRichTextBox()
+        protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
             edit?.Dispose();
             bar?.Dispose();
         }
