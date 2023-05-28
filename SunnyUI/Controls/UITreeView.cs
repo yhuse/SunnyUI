@@ -94,8 +94,9 @@ namespace Sunny.UI
             view.MouseClick += View_MouseClick;
         }
 
-        ~UITreeView()
+        protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
             view?.Dispose();
             Bar?.Dispose();
             HBar?.Dispose();

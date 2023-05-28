@@ -80,6 +80,13 @@ namespace Sunny.UI
             listbox.DrawItem += Listbox_DrawItem;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            bar?.Dispose();
+            listbox?.Dispose();
+        }
+
         private int scrollBarWidth = 0;
 
         [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]

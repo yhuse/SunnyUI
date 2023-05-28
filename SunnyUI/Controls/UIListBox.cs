@@ -180,6 +180,9 @@ namespace Sunny.UI
             base.Dispose(disposing);
             timer?.Stop();
             timer?.Dispose();
+
+            bar?.Dispose();
+            listbox?.Dispose();
         }
 
         public new event EventHandler MouseLeave;
