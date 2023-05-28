@@ -39,15 +39,17 @@ namespace Sunny.UI
     /// </summary>
     public static class UIStyles
     {
+        public static bool GlobalFont { get; set; } = false;
+
         public static bool DPIScale { get; set; }
 
         public static bool ZoomScale { get; set; }
 
         [Editor("System.Drawing.Design.FontNameEditor", "System.Drawing.Design.UITypeEditor")]
         [TypeConverter(typeof(FontNameConverter))]
-        public static string FontName { get; set; } = "微软雅黑";
+        internal static string FontName { get; set; } = "微软雅黑";
 
-        public static float FontSize { get; set; } = 12;
+        internal static int FontScale { get; set; } = 100;
 
         private static readonly ConcurrentDictionary<string, byte> FontCharSets = new ConcurrentDictionary<string, byte>();
 
@@ -403,13 +405,13 @@ namespace Sunny.UI
 
             foreach (var form in Forms.Values)
             {
-                if (!UIDPIScale.DPIScaleIsOne())
+                if (UIDPIScale.NeedSetDPIFont())
                     form.SetDPIScale();
             }
 
             foreach (var page in Pages.Values)
             {
-                if (!UIDPIScale.DPIScaleIsOne())
+                if (UIDPIScale.NeedSetDPIFont())
                     page.SetDPIScale();
             }
         }

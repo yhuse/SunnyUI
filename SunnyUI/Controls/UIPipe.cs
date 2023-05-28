@@ -343,7 +343,8 @@ namespace Sunny.UI
                 {
                     for (int i = 1; i < w; i++)
                     {
-                        g.DrawArc(new Pen(colors[i], 2), new Rectangle(i, i, Width - i * 2, Width - i * 2), 180, 90);
+                        using Pen pen = new Pen(colors[i], 2);
+                        g.DrawArc(pen, new Rectangle(i, i, Width - i * 2, Width - i * 2), 180, 90);
                     }
 
                     for (int i = 0; i < w; i++)
@@ -362,7 +363,8 @@ namespace Sunny.UI
                 {
                     for (int i = 1; i < w; i++)
                     {
-                        g.DrawArc(new Pen(colors[i], 2), new Rectangle(i - 1, i, Width - i * 2, Width - i * 2), 270, 90);
+                        using Pen pen = new Pen(colors[i], 2);
+                        g.DrawArc(pen, new Rectangle(i - 1, i, Width - i * 2, Width - i * 2), 270, 90);
                     }
 
                     for (int i = 0; i < w; i++)
@@ -385,7 +387,8 @@ namespace Sunny.UI
                 {
                     for (int i = 1; i < w; i++)
                     {
-                        g.DrawArc(new Pen(colors[i], 2), new Rectangle(i, Height - Width + i - 1, Width - i * 2, Width - i * 2), 90, 90);
+                        using Pen pen = new Pen(colors[i], 2);
+                        g.DrawArc(pen, new Rectangle(i, Height - Width + i - 1, Width - i * 2, Width - i * 2), 90, 90);
                     }
 
                     for (int i = 0; i < w; i++)
@@ -404,7 +407,8 @@ namespace Sunny.UI
                 {
                     for (int i = 1; i < w; i++)
                     {
-                        g.DrawArc(new Pen(colors[i], 2), new Rectangle(i - 1, Height - Width - 1 + i, Width - i * 2, Width - i * 2), 0, 90);
+                        using Pen pen = new Pen(colors[i], 2);
+                        g.DrawArc(pen, new Rectangle(i - 1, Height - Width - 1 + i, Width - i * 2, Width - i * 2), 0, 90);
                     }
 
                     for (int i = 0; i < w; i++)

@@ -180,11 +180,7 @@ namespace Sunny.UI
 
             Color bodyColor = this.AnalogMeter.BodyColor;
             Color cDark = LBColorManager.StepColor(bodyColor, 20);
-
-            LinearGradientBrush br1 = new LinearGradientBrush(rc,
-                                                               bodyColor,
-                                                               cDark,
-                                                               45);
+            using LinearGradientBrush br1 = new LinearGradientBrush(rc, bodyColor, cDark, 45);
             Gr.FillEllipse(br1, rc);
 
             float drawRatio = this.AnalogMeter.GetDrawRatio();
@@ -195,10 +191,7 @@ namespace Sunny.UI
             _rc.Width -= 6 * drawRatio;
             _rc.Height -= 6 * drawRatio;
 
-            LinearGradientBrush br2 = new LinearGradientBrush(_rc,
-                                                               cDark,
-                                                               bodyColor,
-                                                               45);
+            using LinearGradientBrush br2 = new LinearGradientBrush(_rc, cDark, bodyColor, 45);
             Gr.FillEllipse(br2, _rc);
 
             return true;
@@ -234,8 +227,8 @@ namespace Sunny.UI
             float radius = (float)(w / 2 - (w * 0.08));
             float rulerValue = (float)minValue;
 
-            Pen pen = new Pen(scaleColor, (2 * drawRatio));
-            SolidBrush br = new SolidBrush(scaleColor);
+            using Pen pen = new Pen(scaleColor, (2 * drawRatio));
+            using SolidBrush br = new SolidBrush(scaleColor);
 
             PointF ptStart = new PointF(0, 0);
             PointF ptEnd = new PointF(0, 0);
@@ -323,7 +316,7 @@ namespace Sunny.UI
             PointF ptStart = new PointF(0, 0);
             PointF ptEnd = new PointF(0, 0);
 
-            GraphicsPath pth1 = new GraphicsPath();
+            using GraphicsPath pth1 = new GraphicsPath();
 
             ptStart.X = cx;
             ptStart.Y = cy;
@@ -346,8 +339,8 @@ namespace Sunny.UI
 
             pth1.CloseFigure();
 
-            SolidBrush br = new SolidBrush(this.AnalogMeter.NeedleColor);
-            Pen pen = new Pen(this.AnalogMeter.NeedleColor);
+            using SolidBrush br = new SolidBrush(this.AnalogMeter.NeedleColor);
+            using Pen pen = new Pen(this.AnalogMeter.NeedleColor);
             Gr.DrawPath(pen, pth1);
             Gr.FillPath(br, pth1);
 
@@ -367,15 +360,12 @@ namespace Sunny.UI
 
             _rc.Inflate(5 * drawRatio, 5 * drawRatio);
 
-            SolidBrush brTransp = new SolidBrush(clr1);
+            using SolidBrush brTransp = new SolidBrush(clr1);
             Gr.FillEllipse(brTransp, _rc);
 
             clr1 = clr;
             Color clr2 = LBColorManager.StepColor(clr, 75);
-            LinearGradientBrush br1 = new LinearGradientBrush(rc,
-                                                               clr1,
-                                                               clr2,
-                                                               45);
+            using LinearGradientBrush br1 = new LinearGradientBrush(rc, clr1, clr2, 45);
             Gr.FillEllipse(br1, rc);
             return true;
         }
@@ -389,12 +379,8 @@ namespace Sunny.UI
                 return true;
 
             Color clr1 = Color.FromArgb(40, 200, 200, 200);
-
             Color clr2 = Color.FromArgb(0, 200, 200, 200);
-            LinearGradientBrush br1 = new LinearGradientBrush(rc,
-                                                               clr1,
-                                                               clr2,
-                                                               45);
+            using LinearGradientBrush br1 = new LinearGradientBrush(rc, clr1, clr2, 45);
             Gr.FillEllipse(br1, rc);
 
             return true;

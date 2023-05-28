@@ -201,12 +201,13 @@ namespace Sunny.UI
 
         public static void DrawFrame(Graphics dc, RectangleF r, float cornerRadius, Color color)
         {
-            Pen pen = new Pen(color);
+            using Pen pen = new Pen(color);
             if (cornerRadius <= 0)
             {
                 dc.DrawRectangle(pen, Rect(r));
                 return;
             }
+
             cornerRadius = (float)Math.Min(cornerRadius, Math.Floor(r.Width) - 2);
             cornerRadius = (float)Math.Min(cornerRadius, Math.Floor(r.Height) - 2);
 

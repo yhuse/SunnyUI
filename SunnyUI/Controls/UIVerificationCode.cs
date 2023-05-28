@@ -158,7 +158,8 @@ namespace Sunny.UI
 
             // 将位图背景填充为白色
             Graphics graph = Graphics.FromImage(destBmp);
-            graph.FillRectangle(new SolidBrush(fillColor), 0, 0, destBmp.Width, destBmp.Height);
+            using SolidBrush br = new SolidBrush(fillColor);
+            graph.FillRectangle(br, 0, 0, destBmp.Width, destBmp.Height);
             graph.Dispose();
             double dBaseAxisLen = bXDir ? (double)destBmp.Height : (double)destBmp.Width;
             for (int i = 0; i < destBmp.Width; i++)

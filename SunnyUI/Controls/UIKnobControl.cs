@@ -552,6 +552,16 @@ namespace Sunny.UI
 
         #endregion properties
 
+        ~UIKnob()
+        {
+            DottedPen?.Dispose();
+            knobFont?.Dispose();
+            brushKnob?.Dispose();
+            brushKnobPointer.Dispose();
+            gOffScreen?.Dispose();
+            OffScreenImage?.Dispose();
+        }
+
         public UIKnob()
         {
             // This call is required by the Windows.Forms Form Designer.
@@ -920,10 +930,10 @@ namespace Sunny.UI
 
             Font font;
 
-            Pen penL = new Pen(_scaleColor, (2 * drawRatio));
-            Pen penS = new Pen(_scaleColor, (1 * drawRatio));
+            using Pen penL = new Pen(_scaleColor, (2 * drawRatio));
+            using Pen penS = new Pen(_scaleColor, (1 * drawRatio));
 
-            SolidBrush br = new SolidBrush(_scaleColor);
+            using SolidBrush br = new SolidBrush(_scaleColor);
 
             PointF ptStart = new PointF(0, 0);
             PointF ptEnd = new PointF(0, 0);
@@ -978,10 +988,8 @@ namespace Sunny.UI
                     str = String.Format("{0,0:D}", (int)val);
 
                     // If autosize
-                    if (_scaleFontAutoSize)
-                        strsize = TextRenderer.MeasureText(str, new Font(_scaleFont.FontFamily, fSize));
-                    else
-                        strsize = TextRenderer.MeasureText(str, new Font(_scaleFont.FontFamily, _scaleFont.Size));
+                    using Font tmpFont = _scaleFontAutoSize ? new Font(_scaleFont.FontFamily, fSize) : new Font(_scaleFont.FontFamily, _scaleFont.Size);
+                    strsize = TextRenderer.MeasureText(str, tmpFont);
 
                     if (_drawDivInside)
                     {

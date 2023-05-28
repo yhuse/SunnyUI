@@ -275,7 +275,7 @@ namespace Sunny.UI
             if (!IsScaled)
             {
                 this.SetDPIScaleFont();
-                if (!UIDPIScale.DPIScaleIsOne())
+                if (UIDPIScale.NeedSetDPIFont())
                 {
                     this.TitleFont = TitleFont.DPIScaleFont();
                 }

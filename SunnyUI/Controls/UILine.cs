@@ -182,7 +182,7 @@ namespace Sunny.UI
         {
             SizeF sf = new SizeF(0, 0);
             float x = 0;
-            Pen pen = new Pen(rectColor, lineSize);
+            using Pen pen = new Pen(rectColor, lineSize);
             if (LineDashStyle != UILineDashStyle.None)
             {
                 pen.DashStyle = (DashStyle)((int)LineDashStyle);
@@ -296,8 +296,6 @@ namespace Sunny.UI
                 int left = (Width - lineSize) / 2;
                 g.DrawLine(pen, left, Padding.Top, left, Height - Padding.Top - Padding.Bottom);
             }
-
-            pen.Dispose();
         }
 
         UILineDashStyle lineDashStyle = UILineDashStyle.None;

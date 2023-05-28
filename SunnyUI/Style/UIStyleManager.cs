@@ -79,20 +79,30 @@ namespace Sunny.UI
             set => UIStyles.DPIScale = value;
         }
 
-        [DefaultValue(12f), Description("DPI缩放开启后，可调字体大小，默认12"), Category("SunnyUI")]
-        public float FontSize
-        {
-            get => UIStyles.FontSize;
-            set => UIStyles.FontSize = value;
-        }
-
         [Editor("System.Drawing.Design.FontNameEditor", "System.Drawing.Design.UITypeEditor")]
         [TypeConverter(typeof(FontNameConverter))]
         [DefaultValue("微软雅黑")]
-        public string FontName
+        [Description("全局字体设置开启后，可调字体名称"), Category("SunnyUI")]
+        public string GlobalFontName
         {
             get => UIStyles.FontName;
             set => UIStyles.FontName = value;
+        }
+
+        [DefaultValue(100)]
+        [Description("全局字体设置开启后，可调字体大小缩放百分比，默认100%"), Category("SunnyUI")]
+        public int GlobalFontScale
+        {
+            get => UIStyles.FontScale;
+            set => UIStyles.FontScale = value;
+        }
+
+        [DefaultValue(false)]
+        [Description("全局字体设置"), Category("SunnyUI")]
+        public bool GlobalFont
+        {
+            get => UIStyles.GlobalFont;
+            set => UIStyles.GlobalFont = value;
         }
 
         /// <summary>

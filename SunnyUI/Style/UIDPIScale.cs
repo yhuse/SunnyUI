@@ -38,13 +38,14 @@ namespace Sunny.UI
 
             using Bitmap bmp = new Bitmap(1, 1);
             using Graphics g = bmp.Graphics();
-            dpiScale = g.DpiX / 96.0f / (UIStyles.FontSize / 12.0f);
+            dpiScale = g.DpiX / 96.0f;
+            if (UIStyles.GlobalFont) dpiScale = dpiScale / (UIStyles.FontScale / 100.0f);
             return dpiScale;
         }
 
-        public static bool DPIScaleIsOne()
+        public static bool NeedSetDPIFont()
         {
-            return DPIScale().EqualsFloat(1);
+            return DPIScale() > 1 || UIStyles.GlobalFont;
         }
 
         internal static float DPIScaleFontSize(this Font font)
@@ -64,10 +65,20 @@ namespace Sunny.UI
         {
             if (UIStyles.DPIScale)
             {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                if (UIStyles.GlobalFont)
+                {
+                    if (font.GdiCharSet == 134)
+                        return new Font(UIStyles.FontName, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                    else
+                        return new Font(UIStyles.FontName, fontSize / DPIScale());
+                }
                 else
-                    return new Font(font.FontFamily, fontSize / DPIScale());
+                {
+                    if (font.GdiCharSet == 134)
+                        return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                    else
+                        return new Font(font.FontFamily, fontSize / DPIScale());
+                }
             }
             else
             {
@@ -81,7 +92,7 @@ namespace Sunny.UI
         internal static void SetDPIScaleFont(this Control control)
         {
             if (!UIStyles.DPIScale) return;
-            if (!UIDPIScale.DPIScaleIsOne())
+            if (UIDPIScale.NeedSetDPIFont())
             {
                 if (control is IStyleInterface ctrl)
                 {
