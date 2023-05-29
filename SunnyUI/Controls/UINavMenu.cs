@@ -35,6 +35,7 @@
 * 2023-02-10: V3.3.2 有子节点时，鼠标左键点击父级点展开/收缩，右键选中
 * 2022-05-12: V3.3.6 重构DrawString函数
 * 2022-05-16: V3.3.6 重构DrawFontImage函数
+* 2023-05-29: V3.3.7 增加PageGuid相关扩展方法
 ******************************************************************************/
 
 using System;
@@ -1061,9 +1062,19 @@ namespace Sunny.UI
             return MenuHelper.GetPageIndex(node);
         }
 
+        public Guid GetPageGuid(TreeNode node)
+        {
+            return MenuHelper.GetGuid(node);
+        }
+
         public TreeNode GetTreeNode(int pageIndex)
         {
             return MenuHelper.GetTreeNode(pageIndex);
+        }
+
+        public TreeNode GetTreeNode(Guid pageGuid)
+        {
+            return MenuHelper.GetTreeNode(pageGuid);
         }
 
         private void SetNodeItem(TreeNode node, NavMenuItem item)
@@ -1074,6 +1085,12 @@ namespace Sunny.UI
         public UINavMenu SetNodePageIndex(TreeNode node, int pageIndex)
         {
             MenuHelper.SetPageIndex(node, pageIndex);
+            return this;
+        }
+
+        public UINavMenu SetNodePageGuid(TreeNode node, Guid pageGuid)
+        {
+            MenuHelper.SetPageGuid(node, pageGuid);
             return this;
         }
 

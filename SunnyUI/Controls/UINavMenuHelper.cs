@@ -112,7 +112,7 @@ namespace Sunny.UI
             Items[node].PageIndex = index;
         }
 
-        public void SetGuid(TreeNode node, Guid guid)
+        public void SetPageGuid(TreeNode node, Guid guid)
         {
             if (node == null) return;
 
