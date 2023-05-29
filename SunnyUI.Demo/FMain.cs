@@ -89,8 +89,11 @@ namespace Sunny.UI.Demo
             }
 
             uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
+            //左侧导航主节点关联页面
+            uiNavMenu1.CreateNode(AddPage(new FColorful()));
+
             //直接增加一个页面，不在左侧列表显示
-            AddPage(new FColorful());
+            //AddPage(new FColorful());
             AddPage(new FCommon());
 
             //选中第一个节点
@@ -132,8 +135,7 @@ namespace Sunny.UI.Demo
                     if (style != UIStyle.Colorful)
                         StyleManager.Style = style;
                     else
-                        SelectPage(pageIndex);
-
+                        uiNavMenu1.SelectPage(pageIndex);
                     break;
                 default:
                     uiNavMenu1.SelectPage(pageIndex);

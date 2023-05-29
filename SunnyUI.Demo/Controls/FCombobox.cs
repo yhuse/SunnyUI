@@ -57,6 +57,10 @@ namespace Sunny.UI.Demo
             uiComboDataGridView2.FilterColumnName = "Column1"; //不设置则全部列过滤
 
             uiComboBox1.SetTipsText(uiToolTip1, "Hello World.");
+
+            //日期选择框文本设置为空
+            uiDatePicker3.CanEmpty = true;
+            uiDatePicker3.Text = "";
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
