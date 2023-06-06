@@ -27,9 +27,10 @@
  * 2022-08-10: V3.2.2 修复Y轴显示名称
  * 2022-08-17: V3.2.3 增加数据可为Nan
  * 2022-09-07: V3.2.3 Option.YAxis.ShowGridLine为false时，不显示水平表格虚线
- * 2022-05-10: V3.3.6 Option.ShowFullRect为true时，绘制右侧和上侧的边框实线
- * 2022-05-13: V3.3.6 Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔
- * 2022-05-14: V3.3.6 重构DrawString函数
+ * 2023-05-10: V3.3.6 Option.ShowFullRect为true时，绘制右侧和上侧的边框实线
+ * 2023-05-13: V3.3.6 Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔
+ * 2023-05-14: V3.3.6 重构DrawString函数
+ * 2023-06-06: V3.3.7 修复Y轴文字居中
 ******************************************************************************/
 
 using System;
@@ -565,10 +566,10 @@ namespace Sunny.UI
 
             if (Option.YAxis.AxisLabel.Show && Option.YAxis.Name.IsValid())
             {
-                Size sfname = TextRenderer.MeasureText(Option.YAxis.Name, TempFont);
-                int x = (int)(DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfname.Height);
-                int y = (int)(Option.Grid.Top + (DrawSize.Height - sfname.Width) / 2);
-                g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new Point(x, y), new StringFormat() { Alignment = StringAlignment.Center }, 270);
+                Size sfName = TextRenderer.MeasureText(Option.YAxis.Name, TempFont);
+                float xx = DrawOrigin.X - Option.YAxis.AxisTick.Length - wmax - sfName.Height / 2.0f;
+                float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
+                g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
             }
         }
 
