@@ -44,6 +44,7 @@
  * 2023-04-23: V3.3.5 打开Smooth绘制，建议数据差距不大时可平滑绘制
  * 2023-05-12: V3.3.6 增加了一种开关量曲线的显示方式
  * 2023-05-14: V3.3.6 重构DrawString函数
+ * 2023-06-06: V3.3.7 修复X轴文字重叠问题
 ******************************************************************************/
 
 using System;
@@ -339,10 +340,11 @@ namespace Sunny.UI
                             label = Option.XAxis.CustomLabels.GetLabel(i);
                         }
 
-                        Size sf = TextRenderer.MeasureText(label, TempFont);
+                        SizeF sf = TextRenderer.MeasureText(label, TempFont);
                         float xx = x - sf.Width / 2.0f;
                         if (xx > xr && xx + sf.Width < Width)
                         {
+                            xr = xx + sf.Width;
                             g.DrawString(label, TempFont, ForeColor, new Rectangle((int)x - Width, DrawOrigin.Y + Option.XAxis.AxisTick.Length, Width * 2, Height), ContentAlignment.TopCenter);
                         }
                     }
