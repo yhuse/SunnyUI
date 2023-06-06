@@ -1,5 +1,19 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-06\-06 V3.3.8    
+\+ **支持全局字体设置，UIStyleManager的GlobalFont属性设置为true后，设置GlobalFontName属性**     
+\+ **支持全局文字缩放比例设置，UIStyleManager的GlobalFont属性设置为true后，设置GlobalFontScale属性**    
+\* UILineChart: 修复X轴文字重叠问题    
+\* UIBarChart: 修复Y轴文字居中    
+\* UINavMenu: 增加PageGuid相关扩展方法    
+\* UIVerificationCode: 修改字体缩放时显示    
+\* UITransfer: 增加列表框字体可调整    
+\* UIStyle: 更新获取Font.GdiCharSet 属性的方法    
+\* UFontImage: 修复了一个窗体属性编辑器图标显示不全的问题    
+\* 重构一些笔刷和画笔的资源释放    
+\* 重构一些控件的Dispose事件    
+\* 重构字体    
+    
 #### 2023\-05\-16 V3.3.7    
 \* 重构DrawFontImage函数    
 \* 重构MeasureString    
