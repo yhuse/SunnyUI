@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -207,23 +206,10 @@ namespace Sunny.UI
 
         private void uiCheckBox1_CheckedChanged(object sender, System.EventArgs e)
         {
-            foreach (TreeNode node in treeView.Nodes)
-            {
-                CheckAllChildNodes(node, uiCheckBox1.Checked);
-            }
-        }
-
-        public void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
-        {
-            treeNode.Checked = nodeChecked;
-            foreach (TreeNode node in treeNode.Nodes)
-            {
-                node.Checked = nodeChecked;
-                if (node.Nodes.Count > 0)
-                {
-                    CheckAllChildNodes(node, nodeChecked);
-                }
-            }
+            if (uiCheckBox1.Checked)
+                treeView.CheckedAll();
+            else
+                treeView.UnCheckedAll();
         }
     }
 }

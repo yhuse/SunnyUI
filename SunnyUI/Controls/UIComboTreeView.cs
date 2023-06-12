@@ -24,6 +24,7 @@
  * 2022-11-30: V3.3.0 增加Clear方法
  * 2023-02-04: V3.3.1 下拉框增加显示全选选择框
  * 2023-04-02: V3.3.4 显示清除按钮
+ * 2023-06-12: V3.3.8 修复使用清空按钮后，再次打开下拉框，上次的选择内容还是存在
 ******************************************************************************/
 
 using System;
@@ -229,6 +230,7 @@ namespace Sunny.UI
                 NeedDrawClearButton = false;
                 Text = "";
                 TreeView.SelectedNode = null;
+                TreeView.UnCheckedAll();
                 Invalidate();
                 return;
             }

@@ -566,7 +566,6 @@ namespace Sunny.UI
 
                 DropDown?.Invoke(this, e);
 
-
                 if (fullControlSelect || MouseLocation.X > Width - 30)
                 {
                     ButtonClick?.Invoke(this, e);

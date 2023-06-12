@@ -94,6 +94,16 @@ namespace Sunny.UI
             view.MouseClick += View_MouseClick;
         }
 
+        public void CheckedAll()
+        {
+            view.CheckedAll();
+        }
+
+        public void UnCheckedAll()
+        {
+            view.UnCheckedAll();
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -1339,6 +1349,24 @@ namespace Sunny.UI
                         SetChildNodeCheckedState(e.Node, e.Node.Checked);
                         SetParentNodeCheckedState(e.Node, true);
                     }
+                }
+            }
+
+            public void CheckedAll()
+            {
+                foreach (TreeNode node in Nodes)
+                {
+                    node.Checked = true;
+                    SetChildNodeCheckedState(node, true);
+                }
+            }
+
+            public void UnCheckedAll()
+            {
+                foreach (TreeNode node in Nodes)
+                {
+                    node.Checked = false;
+                    SetChildNodeCheckedState(node, false);
                 }
             }
         }
