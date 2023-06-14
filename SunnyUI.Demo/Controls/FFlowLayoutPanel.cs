@@ -1,4 +1,7 @@
-﻿namespace Sunny.UI.Demo
+﻿using System;
+using System.Windows.Forms;
+
+namespace Sunny.UI.Demo
 {
     public partial class FFlowLayoutPanel : UIPage
     {
@@ -97,6 +100,12 @@
 
             //通过名称和类型获取
             UIButton button = uiFlowLayoutPanel1.Get<UIButton>("Button01");
+
+            //遍历，与原生方法不同，UIFlowLayoutPanel是组合控件，从其Panel控件遍历
+            foreach (Control item in uiFlowLayoutPanel1.Panel.Controls)
+            {
+                Console.WriteLine(item.Name);
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
  * 2022-11-26: V3.2.9 增加MouseClick，MouseDoubleClick事件
  * 2023-02-07: V3.3.1 增加Tips小红点
  * 2023-02-10: V3.3.2 有水印时，系统响应触摸屏增加了TouchPressClick属性，默认关闭
+ * 2023-06-14: V3.3.9 按钮图标位置修正
 ******************************************************************************/
 
 using System;
@@ -108,7 +109,6 @@ namespace Sunny.UI
             btn.Visible = false;
             btn.Text = "";
             btn.Symbol = 361761;
-            btn.SymbolOffset = new Point(0, 1);
             btn.Top = 1;
             btn.Height = 25;
             btn.Width = 29;

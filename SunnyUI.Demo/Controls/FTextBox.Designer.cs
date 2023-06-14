@@ -62,6 +62,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox6.Name = "uiTextBox6";
             this.uiTextBox6.Padding = new System.Windows.Forms.Padding(5);
+            this.uiTextBox6.ShowText = false;
             this.uiTextBox6.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox6.Symbol = 61461;
             this.uiTextBox6.TabIndex = 2;
@@ -79,6 +80,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox5.Name = "uiTextBox5";
             this.uiTextBox5.Padding = new System.Windows.Forms.Padding(5);
+            this.uiTextBox5.ShowText = false;
             this.uiTextBox5.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox5.TabIndex = 1;
             this.uiTextBox5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -96,6 +98,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox4.ShowScrollBar = true;
+            this.uiTextBox4.ShowText = false;
             this.uiTextBox4.Size = new System.Drawing.Size(308, 226);
             this.uiTextBox4.TabIndex = 5;
             this.uiTextBox4.Text = "Blog: https://www.cnblogs.com/yhuse\r\nGitee: https://gitee.com/yhuse/SunnyUI\r\nGitH" +
@@ -135,6 +138,7 @@ namespace Sunny.UI.Demo
             this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRichTextBox1.Name = "uiRichTextBox1";
             this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.uiRichTextBox1.ShowText = false;
             this.uiRichTextBox1.Size = new System.Drawing.Size(308, 226);
             this.uiRichTextBox1.TabIndex = 6;
             this.uiRichTextBox1.Text = "Blog: https://www.cnblogs.com/yhuse\nGitee: https://gitee.com/yhuse/SunnyUI\nGitHub" +
@@ -182,6 +186,7 @@ namespace Sunny.UI.Demo
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
             this.uiDoubleUpDown1.Name = "uiDoubleUpDown1";
+            this.uiDoubleUpDown1.ShowText = false;
             this.uiDoubleUpDown1.Size = new System.Drawing.Size(150, 29);
             this.uiDoubleUpDown1.TabIndex = 8;
             this.uiDoubleUpDown1.Text = "uiDoubleUpDown1";
@@ -210,6 +215,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox3.Name = "uiTextBox3";
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
+            this.uiTextBox3.ShowText = false;
             this.uiTextBox3.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox3.TabIndex = 4;
             this.uiTextBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,19 +238,20 @@ namespace Sunny.UI.Demo
             this.uiTextBox2.ButtonWidth = 100;
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox2.DoubleValue = 5D;
+            this.uiTextBox2.DoubleValue = 50D;
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTextBox2.IntValue = 5;
+            this.uiTextBox2.IntValue = 50;
             this.uiTextBox2.Location = new System.Drawing.Point(117, 206);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTextBox2.Maximum = 9D;
-            this.uiTextBox2.Minimum = 0D;
+            this.uiTextBox2.Maximum = 200D;
+            this.uiTextBox2.Minimum = 50D;
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
+            this.uiTextBox2.ShowText = false;
             this.uiTextBox2.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox2.TabIndex = 3;
-            this.uiTextBox2.Text = "5";
+            this.uiTextBox2.Text = "50";
             this.uiTextBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox2.Type = Sunny.UI.UITextBox.UIEditType.Integer;
             this.uiTextBox2.Watermark = "水印文字";
@@ -269,6 +276,7 @@ namespace Sunny.UI.Demo
             this.uiIntegerUpDown1.Minimum = -100;
             this.uiIntegerUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
             this.uiIntegerUpDown1.Name = "uiIntegerUpDown1";
+            this.uiIntegerUpDown1.ShowText = false;
             this.uiIntegerUpDown1.Size = new System.Drawing.Size(150, 29);
             this.uiIntegerUpDown1.TabIndex = 7;
             this.uiIntegerUpDown1.Text = "_uiIntegerUpDown1";
@@ -289,7 +297,9 @@ namespace Sunny.UI.Demo
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox1.Name = "uiTextBox1";
+            this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.ShowButton = true;
+            this.uiTextBox1.ShowText = false;
             this.uiTextBox1.Size = new System.Drawing.Size(221, 29);
             this.uiTextBox1.TabIndex = 52;
             this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -316,6 +326,7 @@ namespace Sunny.UI.Demo
             this.uiipTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiipTextBox1.Name = "uiipTextBox1";
             this.uiipTextBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.uiipTextBox1.ShowText = false;
             this.uiipTextBox1.Size = new System.Drawing.Size(150, 29);
             this.uiipTextBox1.TabIndex = 55;
             this.uiipTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;

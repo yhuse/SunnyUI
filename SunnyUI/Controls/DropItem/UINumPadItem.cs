@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -74,7 +73,6 @@ namespace Sunny.UI
             uiSymbolButton1.Name = "uiSymbolButton1";
             uiSymbolButton1.Size = new Size(62, 65);
             uiSymbolButton1.Symbol = 362810;
-            uiSymbolButton1.SymbolOffset = new Point(-3, 0);
             uiSymbolButton1.SymbolSize = 32;
             uiSymbolButton1.TabIndex = 0;
             uiSymbolButton1.Tag = "8";
@@ -151,7 +149,6 @@ namespace Sunny.UI
             uiSymbolButton8.Name = "uiSymbolButton8";
             uiSymbolButton8.Size = new Size(62, 65);
             uiSymbolButton8.Symbol = 0;
-            uiSymbolButton8.SymbolOffset = new Point(-3, 0);
             uiSymbolButton8.SymbolSize = 32;
             uiSymbolButton8.TabIndex = 4;
             uiSymbolButton8.Tag = "57";
@@ -205,7 +202,6 @@ namespace Sunny.UI
             uiSymbolButton12.Name = "uiSymbolButton12";
             uiSymbolButton12.Size = new Size(62, 65);
             uiSymbolButton12.Symbol = 0;
-            uiSymbolButton12.SymbolOffset = new Point(-3, 0);
             uiSymbolButton12.SymbolSize = 32;
             uiSymbolButton12.TabIndex = 8;
             uiSymbolButton12.Tag = "56";
@@ -259,7 +255,6 @@ namespace Sunny.UI
             uiSymbolButton16.Name = "uiSymbolButton16";
             uiSymbolButton16.Size = new Size(62, 65);
             uiSymbolButton16.Symbol = 0;
-            uiSymbolButton16.SymbolOffset = new Point(-3, 0);
             uiSymbolButton16.SymbolSize = 32;
             uiSymbolButton16.TabIndex = 12;
             uiSymbolButton16.Tag = "55";

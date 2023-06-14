@@ -17,6 +17,7 @@
  * 创建日期: 2023-02-19
  *
  * 2023-02-19: V3.3.2 新增迷你分页控件，只有分页按钮，无其他
+ * 2023-06-14: V3.3.9 按钮图标位置修正
 ******************************************************************************/
 
 using System;
@@ -356,7 +357,6 @@ namespace Sunny.UI
             this.b0.Radius = 2;
             this.b0.Size = new System.Drawing.Size(32, 32);
             this.b0.Symbol = 61700;
-            this.b0.SymbolOffset = new System.Drawing.Point(3, 0);
             this.b0.TabIndex = 0;
             this.b0.Tag = "-1";
             this.b0.TagString = "<";
@@ -585,7 +585,6 @@ namespace Sunny.UI
             this.b16.Radius = 2;
             this.b16.Size = new System.Drawing.Size(32, 32);
             this.b16.Symbol = 61701;
-            this.b16.SymbolOffset = new System.Drawing.Point(-3, 0);
             this.b16.TabIndex = 16;
             this.b16.Tag = "1";
             this.b16.TagString = ">";
