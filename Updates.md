@@ -1,5 +1,9 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-06\-14 V3.3.9    
+\* UIComboTreeView: 修复使用清空按钮后，再次打开下拉框，上次的选择内容还是存在    
+\* UIEdit: 修复输入范围判断的问题    
+    
 #### 2023\-06\-06 V3.3.8    
 \+ **支持全局字体设置，UIStyleManager的GlobalFont属性设置为true后，设置GlobalFontName属性**     
 \+ **支持全局文字缩放比例设置，UIStyleManager的GlobalFont属性设置为true后，设置GlobalFontScale属性**    
