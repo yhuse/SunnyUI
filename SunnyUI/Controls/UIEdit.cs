@@ -21,6 +21,7 @@
  * 2023-03-07: V3.3.3 修复了删除为空时小数位数和设置值不一致的问题
  * 2023-04-19: V3.3.5 修复了最大值最小值范围判断的问题
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-06-14: V3.3.8 修复输入范围判断的问题
 ******************************************************************************/
 
 using System;
@@ -625,7 +626,9 @@ namespace Sunny.UI
                 if (!int.TryParse(Text, out var a)) return;
 
                 int tlen = Text.Replace("+", "").Replace("-", "").Length;
-                int mlen = MaxValue.ToString().Replace("+", "").Replace("-", "").Length;
+                int maxlen = MaxValue.ToString().Replace("+", "").Replace("-", "").Length;
+                int minlen = MinValue.ToString().Replace("+", "").Replace("-", "").Length;
+                int mlen = Math.Max(maxlen, minlen);
 
                 if (a > MaxValue)
                 {
@@ -637,7 +640,6 @@ namespace Sunny.UI
                     }
                 }
 
-                mlen = MinValue.ToString().Replace("+", "").Replace("-", "").Length;
                 if (a < MinValue)
                 {
                     if (!checkLen || (checkLen && tlen >= mlen))
@@ -660,7 +662,9 @@ namespace Sunny.UI
                 if (!double.TryParse(Text, out var a)) return;
 
                 int tlen = Text.Replace("+", "").Replace("-", "").Length;
-                int mlen = MaxValue.ToString("f" + decLength).Replace("+", "").Replace("-", "").Length;
+                int maxlen = MaxValue.ToString("f" + decLength).Replace("+", "").Replace("-", "").Length;
+                int minlen = MinValue.ToString("f" + decLength).Replace("+", "").Replace("-", "").Length;
+                int mlen = Math.Max(maxlen, minlen);
 
                 if (a > MaxValue)
                 {
