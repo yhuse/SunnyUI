@@ -19,6 +19,7 @@
  * 2020-07-15: V2.2.6 新增分页控件
  * 2021-03-27: V3.0.2 修正因两次查询数量相等而引起的不刷新
  * 2021-07-10: V3.0.4 设置总数在页面不超过总页数的情况下不刷新
+ * 2023-06-27: V3.3.9 内置按钮关联值由Tag改为TagString
 ******************************************************************************/
 
 using System;
@@ -56,8 +57,8 @@ namespace Sunny.UI
         private UISymbolButton b9;
         private UISymbolButton btnSelect;
 
-        private readonly ConcurrentDictionary<int, UISymbolButton> buttons =
-            new ConcurrentDictionary<int, UISymbolButton>();
+        private readonly ConcurrentDictionary<int, UISymbolButton> buttons = new ConcurrentDictionary<int, UISymbolButton>();
+        private readonly ConcurrentDictionary<UISymbolButton, int> buttonTags = new ConcurrentDictionary<UISymbolButton, int>();
         private CurrencyManager dataManager;
 
         private object dataSource;
@@ -113,6 +114,14 @@ namespace Sunny.UI
                 buttons[i].MouseEnter += UIDataGridPage_MouseEnter;
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
+            }
+
+            buttonTags.TryAdd(b0, -1);
+            buttonTags.TryAdd(b16, 1);
+            for (var i = 0; i < 17; i++)
+            {
+                if (buttonTags.NotContainsKey(buttons[i]))
+                    buttonTags.TryAdd(buttons[i], 0);
             }
 
             Translate();
@@ -331,9 +340,9 @@ namespace Sunny.UI
             var btn = (UISymbolButton)sender;
             btn.BringToFront();
             if (btn.TagString.IsValid())
-                ActivePage += btn.Tag.ToString().ToInt();
+                ActivePage += buttonTags[btn];
             else
-                ActivePage = btn.Tag.ToString().ToInt();
+                ActivePage = buttonTags[btn];
         }
 
         private void UIDataGridPage_MouseLeave(object sender, EventArgs e)
@@ -404,7 +413,6 @@ namespace Sunny.UI
             this.b0.Size = new System.Drawing.Size(75, 29);
             this.b0.Symbol = 61700;
             this.b0.TabIndex = 0;
-            this.b0.Tag = "-1";
             this.b0.TagString = "<";
             this.b0.Text = "上一页";
             this.b0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -649,7 +657,6 @@ namespace Sunny.UI
             this.b16.Size = new System.Drawing.Size(75, 29);
             this.b16.Symbol = 61701;
             this.b16.TabIndex = 16;
-            this.b16.Tag = "1";
             this.b16.TagString = ">";
             this.b16.Text = "下一页";
             this.b16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -772,7 +779,7 @@ namespace Sunny.UI
         private void SetShowButton(int buttonIdx, int pageIdx, int activeIdx)
         {
             buttons[buttonIdx].Symbol = 0;
-            buttons[buttonIdx].Tag = pageIdx;
+            buttonTags[buttons[buttonIdx]] = pageIdx;
             buttons[buttonIdx].Visible = true;
             buttons[buttonIdx].TagString = "";
             buttons[buttonIdx].Selected = activeIdx == pageIdx;
@@ -785,7 +792,7 @@ namespace Sunny.UI
         {
             buttons[buttonIdx].Symbol = 0;
             buttons[buttonIdx].Text = @"···";
-            buttons[buttonIdx].Tag = addCount;
+            buttonTags[buttons[buttonIdx]] = addCount;
             buttons[buttonIdx].Visible = true;
             buttons[buttonIdx].TagString = tagString;
             buttons[buttonIdx].Selected = false;
