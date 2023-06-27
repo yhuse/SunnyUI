@@ -23,6 +23,7 @@
  * 2022-06-30: V3.2.0 设置条目状态前判断是否创建
  * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
  * 2023-04-19: V3.3.5 设置选择项ForeColor
+ * 2023-06-27: V3.3.9 内置条目关联值由Tag改为TagString
 ******************************************************************************/
 
 using System;
@@ -141,7 +142,7 @@ namespace Sunny.UI
                     box.BackColor = Color.Transparent;
                     box.Font = Font;
                     box.Parent = this;
-                    box.Tag = i;
+                    box.TagString = i.ToString();
                     box.Style = Style;
                     box.IsScaled = IsScaled;
                     box.ValueChanged += Box_ValueChanged;
@@ -195,7 +196,7 @@ namespace Sunny.UI
 
             if (!multiChange)
             {
-                ValueChanged?.Invoke(this, checkBox.Tag.ToString().ToInt(), checkBox.Text, checkBox.Checked);
+                ValueChanged?.Invoke(this, checkBox.TagString.ToInt(), checkBox.Text, checkBox.Checked);
             }
         }
 

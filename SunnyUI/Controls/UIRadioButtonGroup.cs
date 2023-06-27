@@ -22,6 +22,7 @@
  * 2020-07-04: V2.2.6 可以设置初始选中值
  * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
  * 2023-04-22: V3.3.5 设置选择项ForeColor
+ * 2023-06-27: V3.3.9 内置条目关联值由Tag改为TagString
 ******************************************************************************/
 
 using System;
@@ -107,7 +108,7 @@ namespace Sunny.UI
                         BackColor = Color.Transparent,
                         Font = Font,
                         Parent = this,
-                        Tag = i,
+                        TagString = i.ToString(),
                         Style = Style,
                         IsScaled = IsScaled,
                         Text = Items[i]?.ToString(),
@@ -161,7 +162,7 @@ namespace Sunny.UI
             UIRadioButton button = (UIRadioButton)sender;
             if (value)
             {
-                SelectedIndex = button.Tag.ToString().ToInt();
+                SelectedIndex = button.TagString.ToInt();
             }
         }
 
