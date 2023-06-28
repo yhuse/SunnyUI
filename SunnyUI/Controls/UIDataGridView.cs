@@ -44,6 +44,7 @@
  * 2022-07-28: V3.2.2 修复了ScrollBars为None时仍然显示滚动条的问题
  * 2022-07-28: V3.2.2 修复了单行时表格高度低时，垂直滚动条拖拽至底部出错的问题
  * 2022-10-14: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2023-06-28: V3.3.9 增加了可设置水平滚动条宽度的属性，但可能会遮挡最下面数据行的数据，看情况使用
 ******************************************************************************/
 
 using System;
@@ -139,6 +140,32 @@ namespace Sunny.UI
             {
                 scrollBarHandleWidth = value;
                 if (VBar != null) VBar.FillWidth = value;
+            }
+        }
+
+        private int scrollBarHeight = 0;
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHeight
+        {
+            get => scrollBarHeight;
+            set
+            {
+                scrollBarHeight = value;
+                SetScrollInfo();
+            }
+        }
+
+        private int scrollBarHandleHeight = 6;
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleHeight
+        {
+            get => scrollBarHandleHeight;
+            set
+            {
+                scrollBarHandleHeight = value;
+                if (HBar != null) HBar.FillHeight = value;
             }
         }
 
@@ -493,6 +520,7 @@ namespace Sunny.UI
             }
 
             int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+            int barHeight = Math.Max(ScrollBarInfo.HorizontalScrollBarHeight(), ScrollBarHeight);
 
             if (BorderStyle == BorderStyle.FixedSingle)
             {
@@ -503,7 +531,7 @@ namespace Sunny.UI
                 VBar.BringToFront();
 
                 HBar.Left = 1;
-                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
+                HBar.Height = barHeight + 1;
                 HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
                 HBar.Top = Height - HBar.Height - 1;
                 HBar.BringToFront();
@@ -517,7 +545,7 @@ namespace Sunny.UI
                 VBar.BringToFront();
 
                 HBar.Left = 0;
-                HBar.Height = ScrollBarInfo.HorizontalScrollBarHeight() + 1;
+                HBar.Height = barHeight + 1;
                 HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
                 HBar.Top = Height - HBar.Height;
                 HBar.BringToFront();
