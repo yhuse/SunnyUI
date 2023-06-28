@@ -35,6 +35,7 @@
  * 2022-11-30: V3.3.0 增加Clear方法
  * 2023-02-04: V3.3.1 增加清除按钮
  * 2023-03-15: V3.3.3 修改失去焦点自动关闭过滤下拉框
+ * 2023-06-28: V3.3.9 增加过滤时忽略大小写
 ******************************************************************************/
 
 using System;
@@ -361,10 +362,21 @@ namespace Sunny.UI
                     {
                         foreach (var item in Items)
                         {
-                            if (item.ToString().Contains(filterText))
+                            if (FilterIgnoreCase)
                             {
-                                filterList.Add(item.ToString());
-                                if (filterList.Count > FilterMaxCount) break;
+                                if (item.ToString().ToUpper().Contains(filterText.ToUpper()))
+                                {
+                                    filterList.Add(item.ToString());
+                                    if (filterList.Count > FilterMaxCount) break;
+                                }
+                            }
+                            else
+                            {
+                                if (item.ToString().Contains(filterText))
+                                {
+                                    filterList.Add(item.ToString());
+                                    if (filterList.Count > FilterMaxCount) break;
+                                }
                             }
                         }
                     }
@@ -374,10 +386,21 @@ namespace Sunny.UI
                         {
                             for (int i = 0; i < Items.Count; i++)
                             {
-                                if (GetItemText(dataManager.List[i]).ToString().Contains(filterText))
+                                if (FilterIgnoreCase)
                                 {
-                                    filterList.Add(dataManager.List[i]);
-                                    if (filterList.Count > FilterMaxCount) break;
+                                    if (GetItemText(dataManager.List[i]).ToString().ToUpper().Contains(filterText.ToUpper()))
+                                    {
+                                        filterList.Add(dataManager.List[i]);
+                                        if (filterList.Count > FilterMaxCount) break;
+                                    }
+                                }
+                                else
+                                {
+                                    if (GetItemText(dataManager.List[i]).ToString().Contains(filterText))
+                                    {
+                                        filterList.Add(dataManager.List[i]);
+                                        if (filterList.Count > FilterMaxCount) break;
+                                    }
                                 }
                             }
                         }
@@ -401,6 +424,10 @@ namespace Sunny.UI
         [DefaultValue(false)]
         [Description("过滤时删除字符串前面、后面的空格"), Category("SunnyUI")]
         public bool TrimFilter { get; set; }
+
+        [DefaultValue(false)]
+        [Description("过滤时忽略大小写"), Category("SunnyUI")]
+        public bool FilterIgnoreCase { get; set; }
 
         private void FillFilterTextEmpty()
         {
