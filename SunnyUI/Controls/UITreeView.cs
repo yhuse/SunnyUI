@@ -33,6 +33,7 @@
  * 2023-03-13: V3.3.3 增加MouseDoubleClick和MouseClick事件
  * 2023-03-26: V3.3.4 修改LabelEdit属性
  * 2023-05-13: V3.3.6 重构DrawString函数
+ * 2023-07-02: V3.3.9 屏蔽DrawMode属性，默认为OwnerDrawAll
 ******************************************************************************/
 
 using System;
@@ -383,6 +384,7 @@ namespace Sunny.UI
             view.ForeColor = color;
         }
 
+        [Browsable(false)]
         [DefaultValue(TreeViewDrawMode.OwnerDrawAll)]
         public TreeViewDrawMode DrawMode
         {
