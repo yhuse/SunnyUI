@@ -45,7 +45,8 @@
  * 2023-05-12: V3.3.6 增加了一种开关量曲线的显示方式
  * 2023-05-14: V3.3.6 重构DrawString函数
  * 2023-06-06: V3.3.7 修复X轴文字重叠问题
- * 2024-07-02: V3.3.9 增加PointFormat，鼠标选中值显示格式化事件
+ * 2023-07-02: V3.3.9 增加PointFormat，鼠标选中值显示格式化事件
+ * 2023-07-02: V3.3.9 增加了数据沿Y轴变化时鼠标移动到数据点时显示数据点标签
 ******************************************************************************/
 
 using System;
@@ -806,6 +807,7 @@ namespace Sunny.UI
                 {
                     if (series.DataCount == 0) continue;
                     if (!series.Visible) continue;
+
                     if (series.GetNearestPoint(e.Location, 4, out double x, out double y, out int index))
                     {
                         UILineSelectPoint point = new UILineSelectPoint();

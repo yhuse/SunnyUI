@@ -31,6 +31,12 @@ using System.Linq;
 
 namespace Sunny.UI
 {
+    public enum UISeriesDataOrder
+    {
+        X,
+        Y
+    }
+
     public sealed class UILineOption : UIOption, IDisposable
     {
         public bool ShowZeroLine { get; set; } = true;
@@ -543,6 +549,8 @@ namespace Sunny.UI
 
         public int DataCount => XData.Count;
 
+        public UISeriesDataOrder Order = UISeriesDataOrder.X;
+
         public bool GetNearestPoint(Point p, int offset, out double x, out double y, out int index)
         {
             x = 0;
@@ -550,7 +558,12 @@ namespace Sunny.UI
             index = -1;
             if (PointsX.Count == 0) return false;
 
-            index = PointsX.BinarySearchNearIndex(p.X);
+            if (Order == UISeriesDataOrder.X)
+                index = BinarySearchNearIndex(PointsX, p.X);
+            if (Order == UISeriesDataOrder.Y)
+                index = BinarySearchNearIndex(PointsY, p.Y);
+            if (index == -1) return false;
+
             if (p.X >= PointsX[index] - offset && p.X <= PointsX[index] + offset &&
                 p.Y >= PointsY[index] - offset && p.Y <= PointsY[index] + offset)
             {
@@ -562,22 +575,50 @@ namespace Sunny.UI
             return false;
         }
 
-        public bool GetNearestPointX(Point p, int offset, out double x, out double y, out int index)
+        /// <summary>
+        /// 二分查找与最近值序号
+        /// </summary>
+        /// <param name="list">列表</param>
+        /// <param name="target">值</param>
+        /// <returns>最近值序号</returns>
+        internal int BinarySearchNearIndex(List<double> list, double target)
         {
-            x = 0;
-            y = 0;
-            index = -1;
-            if (PointsX.Count == 0) return false;
+            if (list.Count == 0) return -1;
+            if (list.Count == 1) return 0;
+            int i = 0, j = list.Count - 1;
 
-            index = PointsX.BinarySearchNearIndex(p.X);
-            if (p.X >= PointsX[index] - offset && p.X <= PointsX[index] + offset)
+            if (list[0] < list[list.Count - 1])
             {
-                x = XData[index];
-                y = YData[index];
-                return true;
-            }
+                if (target < list[0]) return 0;
+                if (target > list[list.Count - 1]) return list.Count - 1;
 
-            return false;
+                while (i <= j)
+                {
+                    var mid = (i + j) / 2;
+                    if (target > list[mid]) i = mid + 1;
+                    if (target < list[mid]) j = mid - 1;
+                    if (target.Equals(list[mid])) return mid;
+                }
+
+                if (i < 1) return i;
+                return target - list[i - 1] > list[i] - target ? i : i - 1;
+            }
+            else
+            {
+                if (target > list[0]) return 0;
+                if (target < list[list.Count - 1]) return list.Count - 1;
+
+                while (i <= j)
+                {
+                    var mid = (i + j) / 2;
+                    if (target < list[mid]) i = mid + 1;
+                    if (target > list[mid]) j = mid - 1;
+                    if (target.Equals(list[mid])) return mid;
+                }
+
+                if (i < 1) return i;
+                return target - list[i - 1] < list[i] - target ? i : i - 1;
+            }
         }
 
         public void Clear()
