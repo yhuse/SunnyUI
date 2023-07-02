@@ -19,6 +19,7 @@
  * 2022-04-02: V3.1.1 增加用户控件基类
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-07-02: V3.3.9 渐变色增加方向选择
 ******************************************************************************/
 
 using System;
@@ -534,7 +535,6 @@ namespace Sunny.UI
                 }
             }
         }
-
 
         protected virtual void OnPaintFill(Graphics g, GraphicsPath path)
         {

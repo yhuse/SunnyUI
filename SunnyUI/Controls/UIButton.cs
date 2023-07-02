@@ -28,6 +28,7 @@
  * 2022-03-31: V3.1.2 是否显示浅色背景
  * 2022-08-25: V3.2.3 增加同一个容器的相同GroupIndex的按钮控件的Selected单选
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-07-02: V3.3.9 渐变色增加方向选择
 ******************************************************************************/
 
 using System;
@@ -230,7 +231,26 @@ namespace Sunny.UI
                 }
                 else
                 {
-                    LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                    LinearGradientBrush br;
+                    switch (fillColorGradientDirection)
+                    {
+                        case FlowDirection.LeftToRight:
+                            br = new LinearGradientBrush(new Point(0, 0), new Point(Width, y: 0), FillColor, FillColor2);
+                            break;
+                        case FlowDirection.TopDown:
+                            br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                            break;
+                        case FlowDirection.RightToLeft:
+                            br = new LinearGradientBrush(new Point(Width, 0), new Point(0, y: 0), FillColor, FillColor2);
+                            break;
+                        case FlowDirection.BottomUp:
+                            br = new LinearGradientBrush(new Point(0, Height), new Point(0, 0), FillColor, FillColor2);
+                            break;
+                        default:
+                            br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                            break;
+                    }
+
                     br.GammaCorrection = true;
                     g.FillPath(br, path);
                     br.Dispose();
@@ -447,6 +467,23 @@ namespace Sunny.UI
                 if (fillColorGradient != value)
                 {
                     fillColorGradient = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        private FlowDirection fillColorGradientDirection = FlowDirection.TopDown;
+
+        [Description("填充颜色渐变方向"), Category("SunnyUI")]
+        [DefaultValue(FlowDirection.TopDown)]
+        public FlowDirection FillColorGradientDirection
+        {
+            get => fillColorGradientDirection;
+            set
+            {
+                if (fillColorGradientDirection != value)
+                {
+                    fillColorGradientDirection = value;
                     Invalidate();
                 }
             }
