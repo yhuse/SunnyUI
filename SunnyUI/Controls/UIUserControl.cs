@@ -518,13 +518,50 @@ namespace Sunny.UI
             }
         }
 
+        private FlowDirection fillColorGradientDirection = FlowDirection.TopDown;
+
+        [Description("填充颜色渐变方向"), Category("SunnyUI")]
+        [DefaultValue(FlowDirection.TopDown)]
+        public FlowDirection FillColorGradientDirection
+        {
+            get => fillColorGradientDirection;
+            set
+            {
+                if (fillColorGradientDirection != value)
+                {
+                    fillColorGradientDirection = value;
+                    Invalidate();
+                }
+            }
+        }
+
+
         protected virtual void OnPaintFill(Graphics g, GraphicsPath path)
         {
             Color color = GetFillColor();
 
             if (fillColorGradient)
             {
-                LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                LinearGradientBrush br;
+                switch (fillColorGradientDirection)
+                {
+                    case FlowDirection.LeftToRight:
+                        br = new LinearGradientBrush(new Point(0, 0), new Point(Width, y: 0), FillColor, FillColor2);
+                        break;
+                    case FlowDirection.TopDown:
+                        br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                        break;
+                    case FlowDirection.RightToLeft:
+                        br = new LinearGradientBrush(new Point(Width, 0), new Point(0, y: 0), FillColor, FillColor2);
+                        break;
+                    case FlowDirection.BottomUp:
+                        br = new LinearGradientBrush(new Point(0, Height), new Point(0, 0), FillColor, FillColor2);
+                        break;
+                    default:
+                        br = new LinearGradientBrush(new Point(0, 0), new Point(0, Height), FillColor, FillColor2);
+                        break;
+                }
+
                 br.GammaCorrection = true;
 
                 if (RadiusSides == UICornerRadiusSides.None)
