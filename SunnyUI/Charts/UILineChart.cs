@@ -45,6 +45,7 @@
  * 2023-05-12: V3.3.6 增加了一种开关量曲线的显示方式
  * 2023-05-14: V3.3.6 重构DrawString函数
  * 2023-06-06: V3.3.7 修复X轴文字重叠问题
+ * 2024-07-02: V3.3.9 增加PointFormat，鼠标选中值显示格式化事件
 ******************************************************************************/
 
 using System;
@@ -854,32 +855,32 @@ namespace Sunny.UI
 
                         if (idx > 0) sb.Append('\n');
 
-                        sb.Append(point.Series.Name);
-                        sb.Append('\n');
-                        sb.Append(Option.XAxis.Name + ": ");
-
-                        string customlabel = "";
-                        //if (Option.XAxis.HaveCustomLabels)
-                        //{
-                        //    int ci = (int)((point.X - Option.XAxis.CustomLabels.Start) / Option.XAxis.CustomLabels.Interval);
-                        //    customlabel = Option.XAxis.CustomLabels.GetLabel(ci);
-                        //    sb.Append(customlabel);
-                        //}
-
-                        if (customlabel.IsNullOrEmpty())
+                        if (PointFormat != null)
                         {
-                            if (Option.XAxisType == UIAxisType.DateTime)
-                                sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
-                            else
-                                sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
+                            sb.Append(PointFormat(this, point));
                         }
-
-                        sb.Append('\n');
-
-                        if (point.Series.IsY2)
-                            sb.Append(Option.Y2Axis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : Y2Scale.Format));
                         else
-                            sb.Append(Option.YAxis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : YScale.Format));
+                        {
+                            sb.Append(point.Series.Name);
+                            sb.Append('\n');
+                            sb.Append(Option.XAxis.Name + ": ");
+
+                            string customlabel = "";
+                            if (customlabel.IsNullOrEmpty())
+                            {
+                                if (Option.XAxisType == UIAxisType.DateTime)
+                                    sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
+                                else
+                                    sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
+                            }
+
+                            sb.Append('\n');
+
+                            if (point.Series.IsY2)
+                                sb.Append(Option.Y2Axis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : Y2Scale.Format));
+                            else
+                                sb.Append(Option.YAxis.Name + ": " + point.Y.ToString(point.Series.YAxisDecimalPlaces >= 0 ? "F" + point.Series.YAxisDecimalPlaces : YScale.Format));
+                        }
 
                         idx++;
                     }
@@ -913,7 +914,10 @@ namespace Sunny.UI
                         }
                     }
 
-                    PointValue?.Invoke(this, selectPoints.ToArray());
+                    if (selectPoints.Count > 0)
+                    {
+                        PointValue?.Invoke(this, selectPoints.ToArray());
+                    }
                 }
             }
             else
@@ -929,7 +933,11 @@ namespace Sunny.UI
 
         public delegate void OnPointValue(object sender, UILineSelectPoint[] points);
 
+        public delegate string OnPointFormat(object sender, UILineSelectPoint point);
+
         public event OnPointValue PointValue;
+
+        public event OnPointFormat PointFormat;
 
         private bool IsMouseDown;
 
