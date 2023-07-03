@@ -320,7 +320,7 @@ namespace Sunny.UI
         /// 设置填充颜色
         /// </summary>
         /// <param name="value">颜色</param>
-        protected void SetFillColor2(Color value)
+        protected virtual void SetFillColor2(Color value)
         {
             if (fillColor2 != value)
             {
@@ -340,19 +340,19 @@ namespace Sunny.UI
             set => SetFillColor2(value);
         }
 
-        protected void SetFillDisableColor(Color color)
+        protected virtual void SetFillDisableColor(Color color)
         {
             fillDisableColor = color;
             SetStyleCustom();
         }
 
-        protected void SetRectDisableColor(Color color)
+        protected virtual void SetRectDisableColor(Color color)
         {
             rectDisableColor = color;
             SetStyleCustom();
         }
 
-        protected void SetForeDisableColor(Color color)
+        protected virtual void SetForeDisableColor(Color color)
         {
             foreDisableColor = color;
             SetStyleCustom();
@@ -683,7 +683,7 @@ namespace Sunny.UI
         /// 设置边框只读颜色
         /// </summary>
         /// <param name="color">颜色</param>
-        protected void SetRectReadOnlyColor(Color color)
+        protected virtual void SetRectReadOnlyColor(Color color)
         {
             rectReadOnlyColor = color;
             AfterSetRectReadOnlyColor(color);

@@ -47,6 +47,7 @@
  * 2023-02-07: V3.3.1 增加Tips小红点
  * 2023-02-10: V3.3.2 有水印时，系统响应触摸屏增加了TouchPressClick属性，默认关闭
  * 2023-06-14: V3.3.9 按钮图标位置修正
+ * 2024-07-03: V3.3.9 增加Enabled为false时，可修改文字颜色
 ******************************************************************************/
 
 using System;
@@ -880,6 +881,7 @@ namespace Sunny.UI
             foreColor = UIFontColor.Primary;
             edit.BackColor = GetFillColor();
             edit.ForeColor = GetForeColor();
+            edit.ForeDisableColor = uiColor.ForeDisableColor;
 
             if (bar != null)
             {
@@ -905,6 +907,12 @@ namespace Sunny.UI
                 btn.RectPressColor = uiColor.ButtonRectPressColor;
                 btn.ForePressColor = uiColor.ButtonForePressColor;
             }
+        }
+
+        protected override void SetForeDisableColor(Color color)
+        {
+            base.SetForeDisableColor(color);
+            edit.ForeDisableColor = color;
         }
 
         private Color scrollBarColor = Color.FromArgb(80, 160, 255);
