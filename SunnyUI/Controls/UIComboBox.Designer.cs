@@ -18,6 +18,10 @@
                 components.Dispose();
             }
 
+            dropForm?.Dispose();    
+            filterForm?.Dispose();
+            filterItemForm?.Dispose();
+
             base.Dispose(disposing);
         }
 
