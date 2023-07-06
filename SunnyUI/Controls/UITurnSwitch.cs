@@ -17,12 +17,14 @@
  * 创建日期: 2023-07-05
  *
  * 2023-07-05: V3.3.9 增加文件说明
+ * 2023-07-06: V3.3.9 调整配色，增加自定义角度
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -41,18 +43,10 @@ namespace Sunny.UI
         public UITurnSwitch()
         {
             SetStyleFlags();
-            Height = 150;
-            Width = 150;
+            Height = 160;
+            Width = 160;
             ShowText = false;
             ShowRect = false;
-
-            inActiveColor = Color.Gray;
-            fillColor = Color.White;
-
-            rectColor = UIStyles.Blue.SwitchActiveColor;
-            fillColor = UIStyles.Blue.SwitchFillColor;
-            inActiveColor = UIStyles.Blue.SwitchInActiveColor;
-            rectDisableColor = UIStyles.Blue.SwitchRectDisableColor;
         }
 
         [DefaultValue(false)]
@@ -121,9 +115,9 @@ namespace Sunny.UI
             }
         }
 
-        private Color inActiveColor;
+        private Color inActiveColor = Color.Red;
 
-        [DefaultValue(typeof(Color), "Gray")]
+        [DefaultValue(typeof(Color), "Red")]
         [Description("关闭颜色"), Category("SunnyUI")]
         public Color InActiveColor
         {
@@ -135,26 +129,84 @@ namespace Sunny.UI
             }
         }
 
-        /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
-        /// </summary>
-        [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
-        public Color ButtonColor
-        {
-            get => fillColor;
-            set => SetFillColor(value);
-        }
-
+        private Color activeColor = Color.Lime;
         /// <summary>
         /// 边框颜色
         /// </summary>
         [Description("打开颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "Lime")]
         public Color ActiveColor
         {
-            get => rectColor;
-            set => SetRectColor(value);
+            get => activeColor;
+            set
+            {
+                activeColor = value;
+                Invalidate();
+            }
+        }
+
+        private int inActiveAngle = 315;
+
+        [DefaultValue(315)]
+        [Description("开关关闭角度"), Category("SunnyUI")]
+        public int InActiveAngle
+        {
+            get => inActiveAngle;
+            set
+            {
+                inActiveAngle = value;
+                Invalidate();
+            }
+        }
+
+        private int activeAngle = 45;
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("开关打开角度"), Category("SunnyUI")]
+        [DefaultValue(45)]
+        public int ActiveAngle
+        {
+            get => activeAngle;
+            set
+            {
+                activeAngle = value;
+                Invalidate();
+            }
+        }
+
+        private Color backColor = Color.Silver;
+
+        /// <summary>
+        /// 填充颜色
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Silver")]
+        public Color FillColor
+        {
+            get => backColor;
+            set
+            {
+                backColor = value;
+                Invalidate();
+            }
+        }
+
+        private Color handleColor = Color.DarkGray;
+
+        /// <summary>
+        /// 按钮把手颜色
+        /// </summary>
+        [Description("按钮把手颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "DarkGray")]
+        public Color HandleColor
+        {
+            get => handleColor;
+            set
+            {
+                handleColor = value;
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -196,35 +248,10 @@ namespace Sunny.UI
             }
         }
 
-        /// <summary>
-        /// 设置主题样式
-        /// </summary>
-        /// <param name="uiColor">主题样式</param>
-        public override void SetStyleColor(UIBaseStyle uiColor)
-        {
-            base.SetStyleColor(uiColor);
-
-            rectColor = uiColor.SwitchActiveColor;
-            fillColor = uiColor.SwitchFillColor;
-            inActiveColor = uiColor.SwitchInActiveColor;
-            rectDisableColor = uiColor.SwitchRectDisableColor;
-        }
-
-        [Description("不可用颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "173, 178, 181")]
-        public Color DisabledColor
-        {
-            get => rectDisableColor;
-            set => SetRectDisableColor(value);
-        }
-
-        protected override void OnEnabledChanged(EventArgs e)
-        {
-            base.OnEnabledChanged(e);
-            Invalidate();
-        }
-
         private int backSize = 100;
+
+        [Description("开关尺寸"), Category("SunnyUI")]
+        [DefaultValue(100)]
         public int BackSize
         {
             get => backSize;
@@ -236,6 +263,9 @@ namespace Sunny.UI
         }
 
         private int backInnerSize = 80;
+
+        [Description("开关内圈尺寸"), Category("SunnyUI")]
+        [DefaultValue(80)]
         public int BackInnerSize
         {
             get => backInnerSize;
@@ -260,38 +290,57 @@ namespace Sunny.UI
             g.FillEllipse(rectColor, new Rectangle(center.X - BackSize / 2, center.Y - BackSize / 2, BackSize, BackSize));
             int size = backSize - 10;
             g.FillEllipse(Color.White, new Rectangle(center.X - size / 2, center.Y - size / 2, size, size));
-            g.FillEllipse(rectColor, new Rectangle(center.X - backInnerSize / 2, center.Y - backInnerSize / 2, backInnerSize, backInnerSize));
+            g.FillEllipse(FillColor, new Rectangle(center.X - backInnerSize / 2, center.Y - backInnerSize / 2, backInnerSize, backInnerSize));
 
+            int size2 = 6;
+            using Pen pn = rectColor.Pen(2);
+            PointF pt;
             if (Active)
             {
-                int size1 = 10;
-                int size2 = 6;
-                PointF pt1 = center.CalcAzRangePoint(size1, 45);
-                PointF pt2 = center.CalcAzRangePoint(size1, 225);
-                PointF pt3 = pt1.CalcAzRangePoint(BackSize / 2 + size2, 315);
-                PointF pt4 = pt2.CalcAzRangePoint(BackSize / 2 + size2, 315);
-                PointF pt5 = pt1.CalcAzRangePoint(BackSize / 2 + size2, 135);
-                PointF pt6 = pt2.CalcAzRangePoint(BackSize / 2 + size2, 135);
-                g.FillPolygon(Color.Silver, new PointF[] { pt3, pt4, pt6, pt5 });
-
-                pt1 = center.CalcAzRangePoint(BackSize / 2 - size2, 315);
-                g.FillEllipse(Color.Lime, pt1.X - size2, pt1.Y - size2, size2 * 2, size2 * 2);
+                PointF[] points = GetHandles(ActiveAngle);
+                g.FillPolygon(HandleColor, points);
+                g.DrawPolygon(pn, points);
+                pt = center.CalcAzRangePoint(BackSize / 2 - size2, ActiveAngle);
             }
             else
             {
-                int size1 = 10;
-                int size2 = 6;
-                PointF pt1 = center.CalcAzRangePoint(size1, 135);
-                PointF pt2 = center.CalcAzRangePoint(size1, 315);
-                PointF pt3 = pt1.CalcAzRangePoint(BackSize / 2 + size2, 45);
-                PointF pt4 = pt2.CalcAzRangePoint(BackSize / 2 + size2, 45);
-                PointF pt5 = pt1.CalcAzRangePoint(BackSize / 2 + size2, 225);
-                PointF pt6 = pt2.CalcAzRangePoint(BackSize / 2 + size2, 225);
-                g.FillPolygon(Color.Silver, new PointF[] { pt3, pt4, pt6, pt5 });
-
-                pt1 = center.CalcAzRangePoint(BackSize / 2 - size2, 45);
-                g.FillEllipse(Color.Red, pt1.X - size2, pt1.Y - size2, size2 * 2, size2 * 2);
+                PointF[] points = GetHandles(InActiveAngle);
+                g.FillPolygon(HandleColor, points);
+                g.DrawPolygon(pn, points);
+                pt = center.CalcAzRangePoint(BackSize / 2 - size2, InActiveAngle);
             }
+
+            g.FillEllipse(color, pt.X - size2, pt.Y - size2, size2 * 2, size2 * 2);
+            Size sz = TextRenderer.MeasureText(ActiveText, Font);
+            pt = center.CalcAzRangePoint(BackSize / 2 + size2 + 4 + sz.Width / 2, ActiveAngle);
+            g.DrawString(ActiveText, Font, ActiveColor, new Rectangle((int)(pt.X - sz.Width / 2), (int)(pt.Y - sz.Height / 2), sz.Width, sz.Height), ContentAlignment.MiddleCenter);
+
+            sz = TextRenderer.MeasureText(InActiveText, Font);
+            pt = center.CalcAzRangePoint(BackSize / 2 + size2 + 4 + sz.Width / 2, InActiveAngle);
+            g.DrawString(InActiveText, Font, InActiveColor, new Rectangle((int)(pt.X - sz.Width / 2), (int)(pt.Y - sz.Height / 2), sz.Width, sz.Height), ContentAlignment.MiddleCenter);
+
+        }
+
+        private PointF[] GetHandles(int angle)
+        {
+            int size1 = 10;
+            int size2 = 4;
+            Point center = new Point(Width / 2, Height / 2);
+            PointF pt1 = center.CalcAzRangePoint(size1, angle - 90);
+            PointF pt2 = center.CalcAzRangePoint(size1, angle + 90);
+            PointF pt3 = pt1.CalcAzRangePoint(BackSize / 2 + size2, angle);
+            PointF pt4 = pt2.CalcAzRangePoint(BackSize / 2 + size2, angle);
+            PointF pt5 = pt1.CalcAzRangePoint(BackSize / 2 + size2, angle + 180);
+            PointF pt6 = pt2.CalcAzRangePoint(BackSize / 2 + size2, angle + 180);
+
+            PointF pt11 = center.CalcAzRangePoint(size1 - 2, angle - 90);
+            PointF pt12 = center.CalcAzRangePoint(size1 - 2, angle + 90);
+            PointF pt13 = pt11.CalcAzRangePoint(BackSize / 2 + size2 + 2, angle);
+            PointF pt14 = pt12.CalcAzRangePoint(BackSize / 2 + size2 + 2, angle);
+            PointF pt15 = pt11.CalcAzRangePoint(BackSize / 2 + size2 + 2, angle + 180);
+            PointF pt16 = pt12.CalcAzRangePoint(BackSize / 2 + size2 + 2, angle + 180);
+
+            return new PointF[] { pt3, pt13, pt14, pt4, pt6, pt16, pt15, pt5 };
         }
     }
 }
