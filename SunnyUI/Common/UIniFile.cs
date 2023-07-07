@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-11-01: V3.2.6 增加读取字符串长度到4096，增加文件编码
+ * 2023-07-07: V3.3.9 将文件版本和文件编码写入文件头部
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -63,7 +64,7 @@ namespace Sunny.UI
                 //文件不存在，建立文件
                 using (StreamWriter sw = new StreamWriter(fileName, false, IniEncoding))
                 {
-                    sw.Write(";<!--配置文件-->");
+                    sw.WriteLine(";<?ini version=\"" + UIGlobal.Version + "\" encoding=\"" + IniEncoding.BodyName + "\"?>");
                     sw.WriteLine("");
                 }
             }
