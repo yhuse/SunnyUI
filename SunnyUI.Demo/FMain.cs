@@ -80,6 +80,7 @@ namespace Sunny.UI.Demo
             uiNavMenu1.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FMeter")));
             uiNavMenu1.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FLed")));
             uiNavMenu1.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FLight")));
+            uiNavMenu1.CreateChildNode(parent, AddPage(CreateInstance<UIPage>("Sunny.UI.Demo.FSwitch")));
 
             uiNavBar1.SetNodeSymbol(uiNavBar1.Nodes[4], 61502);
             var styles = UIStyles.PopularStyles();
@@ -99,7 +100,7 @@ namespace Sunny.UI.Demo
             //选中第一个节点
             uiNavMenu1.SelectPage(1002);
 
-            Text = Version;
+            uiPanel2.Text = Text = Version;
             RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
 
             //根据页面类型获取页面
@@ -111,6 +112,8 @@ namespace Sunny.UI.Demo
             UIPage page1 = GetPage(1002);
             if (page1 != null)
                 page1.Text.WriteConsole();
+
+            timer1.Start();
         }
 
         /// <summary>
@@ -171,6 +174,11 @@ namespace Sunny.UI.Demo
         {
             Text = e.Value.ToString();
             SendParamToPage(1001, "传值给页面");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            uiPanel3.Text = DateTime.Now.DateTimeString();
         }
     }
 }

@@ -39,8 +39,13 @@
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.uiNavMenu1 = new Sunny.UI.UINavMenu();
             this.uiTabControl1 = new Sunny.UI.UITabControl();
+            this.uiPanel2 = new Sunny.UI.UIPanel();
+            this.uiPanel3 = new Sunny.UI.UIPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uiPanel4 = new Sunny.UI.UIPanel();
             this.uiContextMenuStrip1.SuspendLayout();
             this.uiNavBar1.SuspendLayout();
+            this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiContextMenuStrip1
@@ -116,6 +121,9 @@
             // 
             // uiPanel1
             // 
+            this.uiPanel1.Controls.Add(this.uiPanel4);
+            this.uiPanel1.Controls.Add(this.uiPanel3);
+            this.uiPanel1.Controls.Add(this.uiPanel2);
             this.uiPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiPanel1.Location = new System.Drawing.Point(2, 734);
@@ -162,6 +170,52 @@
             this.uiTabControl1.TabVisible = false;
             this.uiTabControl1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
+            // uiPanel2
+            // 
+            this.uiPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.uiPanel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel2.Location = new System.Drawing.Point(0, 0);
+            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel2.Name = "uiPanel2";
+            this.uiPanel2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPanel2.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.uiPanel2.Size = new System.Drawing.Size(286, 32);
+            this.uiPanel2.TabIndex = 0;
+            this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel3
+            // 
+            this.uiPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiPanel3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel3.Location = new System.Drawing.Point(810, 0);
+            this.uiPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel3.Name = "uiPanel3";
+            this.uiPanel3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPanel3.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)));
+            this.uiPanel3.Size = new System.Drawing.Size(286, 32);
+            this.uiPanel3.TabIndex = 1;
+            this.uiPanel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // uiPanel4
+            // 
+            this.uiPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPanel4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel4.Location = new System.Drawing.Point(286, 0);
+            this.uiPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel4.Name = "uiPanel4";
+            this.uiPanel4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPanel4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Top;
+            this.uiPanel4.Size = new System.Drawing.Size(524, 32);
+            this.uiPanel4.TabIndex = 2;
+            this.uiPanel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -184,6 +238,7 @@
             this.ReceiveParams += new Sunny.UI.OnReceiveParams(this.Form1_ReceiveParams);
             this.uiContextMenuStrip1.ResumeLayout(false);
             this.uiNavBar1.ResumeLayout(false);
+            this.uiPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -200,5 +255,9 @@
         private UITabControl uiTabControl1;
         private UILogo uiLogo1;
         private UIAvatar uiAvatar1;
+        private UIPanel uiPanel2;
+        private UIPanel uiPanel3;
+        private System.Windows.Forms.Timer timer1;
+        private UIPanel uiPanel4;
     }
 }
