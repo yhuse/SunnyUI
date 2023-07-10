@@ -1,5 +1,23 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-07\-09 V3.4.0    
+\+ UITurnSwitch: 增加旋转开关    
+\+ ScanerHook: 增加扫码枪键盘钩子类    
+\* UITurnSwitch: 调整配色，增加自定义角度    
+\* UIniFile: 将文件版本和文件编码写入文件头部    
+\* UITextBox: 增加Enabled为false时，可修改文字颜色    
+\* UIDropControl: 增加了下拉框控件的主动释放    
+\* UIComboBox: 修改了几个对象的释放    
+\* UILineChart: 增加了数据沿Y轴变化时鼠标移动到数据点时显示数据点标签    
+\* UILineChart: 增加PointFormat，鼠标选中值显示格式化事件    
+\* UITreeView: 屏蔽DrawMode属性，默认为OwnerDrawAll    
+\* UIButton: 渐变色增加方向选择    
+\* UIUserControl: 渐变色增加方向选择    
+\* UIDataGridView: 增加了可设置水平滚动条宽度的属性，但可能会遮挡最下面数据行的数据，看情况使用    
+\* UIComboBox: 增加过滤时忽略大小写    
+\* UIMiniPagination: 内置按钮关联值由Tag改为TagString    
+\* UIRadioButtonGroup: 内置条目关联值由Tag改为TagString    
+    
 #### 2023\-06\-14 V3.3.9    
 \* UIComboTreeView: 修复使用清空按钮后，再次打开下拉框，上次的选择内容还是存在    
 \* UIEdit: 修复输入范围判断的问题    
