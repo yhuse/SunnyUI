@@ -301,6 +301,83 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 创建圆角路径
+        /// </summary>
+        /// <param name="rect">区域</param>
+        /// <param name="radius">圆角大小</param>
+        /// <param name="radiusSides">圆角的方位</param>
+        /// <param name="lineSize">线宽</param>
+        /// <returns></returns>
+        internal static GraphicsPath CreateRoundedRectanglePathWithoutTop(this Rectangle rect, int radius, UICornerRadiusSides radiusSides, int lineSize = 1)
+        {
+            GraphicsPath path;
+
+            if (radiusSides == UICornerRadiusSides.None || radius == 0)
+            {
+                path = new GraphicsPath();
+                path.AddLine(new Point(rect.X, rect.Y), new Point(rect.X, rect.Y + rect.Height));
+                path.AddLine(new Point(rect.X, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+                path.AddLine(new Point(rect.X + rect.Width, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y));
+            }
+            else
+            {
+                //IsRadius为True时，显示左上圆角
+                bool RadiusLeftTop = radiusSides.GetValue(UICornerRadiusSides.LeftTop);
+                //IsRadius为True时，显示左下圆角
+                bool RadiusLeftBottom = radiusSides.GetValue(UICornerRadiusSides.LeftBottom);
+                //IsRadius为True时，显示右上圆角
+                bool RadiusRightTop = radiusSides.GetValue(UICornerRadiusSides.RightTop);
+                //IsRadius为True时，显示右下圆角
+                bool RadiusRightBottom = radiusSides.GetValue(UICornerRadiusSides.RightBottom);
+                path = rect.CreateRoundedRectanglePathWithoutTop(radius, RadiusLeftTop, RadiusRightTop, RadiusRightBottom, RadiusLeftBottom, lineSize);
+            }
+
+            return path;
+        }
+
+        internal static GraphicsPath CreateRoundedRectanglePathWithoutTop(this Rectangle rect, int radius,
+    bool cornerLeftTop = true, bool cornerRightTop = true, bool cornerRightBottom = true, bool cornerLeftBottom = true,
+    int lineSize = 1)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            if ((!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
+            {
+                path.AddLine(new Point(rect.X, rect.Y), new Point(rect.X, rect.Y + rect.Height));
+                path.AddLine(new Point(rect.X, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+                path.AddLine(new Point(rect.X + rect.Width, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y));
+            }
+            else
+            {
+                radius *= lineSize;
+
+                if (cornerRightTop)
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                else
+                    path.AddLine(new Point(rect.X + rect.Width - 1, rect.Y), new Point(rect.X + rect.Width, rect.Y));
+
+                if (cornerRightBottom)
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+                else
+                    path.AddLine(new Point(rect.X + rect.Width, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+
+                if (cornerLeftBottom)
+                    path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+                else
+                    path.AddLine(new Point(rect.X + 1, rect.Y + rect.Height), new Point(rect.X, rect.Y + rect.Height));
+
+                if (cornerLeftTop)
+                    path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                else
+                    path.AddLine(new Point(rect.X, rect.Y + 1), new Point(rect.X, rect.Y));
+
+                //path.CloseFigure();
+            }
+
+            return path;
+        }
+
+        /// <summary>
         /// 绘图路径
         /// </summary>
         /// <param name="rect">区域</param>

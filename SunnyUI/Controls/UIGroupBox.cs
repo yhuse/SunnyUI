@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-05-30: V3.1.9 修复Padding设置
  * 2023-05-13: V3.3.6 重构DrawString函数
+ * 2023-07-11: V3.4.0 解决BackColor,FillColor设置为透明时，标题下面会出现横线
 ******************************************************************************/
 
 using System;
@@ -56,8 +57,22 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintRect(Graphics g, GraphicsPath path)
         {
-            path = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1).CreateRoundedRectanglePath(Radius, RadiusSides);
-            base.OnPaintRect(g, path);
+            if (RectSides == ToolStripStatusLabelBorderSides.None)
+            {
+                return;
+            }
+
+            var rect = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1);
+            if (Text.IsValid())
+            {
+                path = rect.CreateRoundedRectanglePathWithoutTop(Radius, RadiusSides, RectSize);
+                g.DrawPath(GetRectColor(), path, true, RectSize);
+            }
+            else
+            {
+                path = rect.CreateRoundedRectanglePath(Radius, RadiusSides, RectSize);
+                g.DrawPath(GetRectColor(), path, true, RectSize);
+            }
         }
 
         /// <summary>
@@ -67,7 +82,29 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
+            Size size = TextRenderer.MeasureText(Text, Font);
             g.DrawString(Text, Font, ForeColor, FillColor, new Rectangle(TitleInterval, 0, Width - TitleInterval * 2, TitleTop * 2), TitleAlignment);
+
+            if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Top))
+            {
+                if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop))
+                {
+                    g.DrawLine(RectColor, Radius / 2 * RectSize, TitleTop, TitleInterval, TitleTop, true, RectSize);
+                }
+                else
+                {
+                    g.DrawLine(RectColor, 0, TitleTop, TitleInterval, TitleTop, true, RectSize);
+                }
+
+                if (RadiusSides.GetValue(UICornerRadiusSides.RightTop))
+                {
+                    g.DrawLine(RectColor, TitleInterval + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
+                }
+                else
+                {
+                    g.DrawLine(RectColor, TitleInterval + size.Width, TitleTop, Width, TitleTop, true, RectSize);
+                }
+            }
         }
 
         private int _titleTop = 16;

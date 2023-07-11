@@ -368,7 +368,29 @@ namespace Sunny.UI
             int idx = VBar.Value;
             if (idx < 0) idx = 0;
             if (idx >= RowCount) idx = RowCount - 1;
-            FirstDisplayedScrollingRowIndex = idx;
+
+            int lastFrozen = 0;
+            if (Rows[0].Frozen)
+            {
+                for (int i = 0; i < Rows.Count; i++)
+                {
+                    if (Rows[i].Frozen)
+                    {
+                        lastFrozen = i;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (Rows[0].Frozen)
+            {
+
+            }
+
+            FirstDisplayedScrollingRowIndex = Math.Max(idx, lastFrozen);
         }
 
         private void HorizontalScrollBar_ValueChanged(object sender, EventArgs e)
