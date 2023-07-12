@@ -25,6 +25,7 @@
  * 2023-05-02: V3.3.6 增加了一个关闭按钮的属性，点击后隐藏控件
  * 2023-05-12: V3.3.6 标题栏文字位置属性由TextAlign改为TextAlignment
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-07-12: V3.4.0 删除Padding设置
 ******************************************************************************/
 
 using System;
@@ -50,29 +51,9 @@ namespace Sunny.UI
                 if (_titleHeight != value)
                 {
                     _titleHeight = Math.Max(19, value);
-                    Padding = new Padding(Padding.Left, Math.Max(value, Padding.Top), Padding.Right, Padding.Bottom);
                     CalcSystemBoxPos();
                     Invalidate();
                 }
-            }
-        }
-
-        protected override void OnPaddingChanged(EventArgs e)
-        {
-            base.OnPaddingChanged(e);
-            if (Padding.Top != Math.Max(TitleHeight, Padding.Top))
-            {
-                Padding = new Padding(Padding.Left, Math.Max(TitleHeight, Padding.Top), Padding.Right, Padding.Bottom);
-            }
-        }
-
-        protected override void OnControlAdded(ControlEventArgs e)
-        {
-            base.OnControlAdded(e);
-
-            if (e.Control.Top < TitleHeight)
-            {
-                e.Control.Top = TitleHeight + 1;
             }
         }
 
@@ -389,6 +370,17 @@ namespace Sunny.UI
             }
 
             base.OnMouseDoubleClick(e);
+        }
+
+        private void UITitlePanel_VisibleChanged(object sender, EventArgs e)
+        {
+            foreach (Control control in Controls)
+            {
+                if (control.Top < TitleHeight)
+                {
+                    control.Top = TitleHeight + 1;
+                }
+            }
         }
     }
 }

@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // UITitlePanel
             // 
-            this.Name = "UITitlePanel";
-            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
-            this.ResumeLayout(false);
-
+            Name = "UITitlePanel";
+            VisibleChanged += UITitlePanel_VisibleChanged;
+            ResumeLayout(false);
         }
 
         #endregion
