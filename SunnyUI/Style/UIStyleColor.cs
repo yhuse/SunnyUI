@@ -229,6 +229,9 @@ namespace Sunny.UI
         //SplitContainer
         public virtual Color SplitContainerArrowColor { get; protected set; }
 
+        //RoundProcess
+        public virtual Color RoundProcessForeColor2 { get; protected set; }
+
         protected Color ForeColor { get; set; }
 
         public UIBaseStyle DropDownStyle { get; protected set; }
@@ -401,6 +404,8 @@ namespace Sunny.UI
 
             FlowLayoutPanelBarFillColor = PlainColor;
             FlowLayoutPanelBarForeColor = PrimaryColor;
+
+            RoundProcessForeColor2 = Color.Black;
 
             DropDownStyle = this;
 
@@ -597,6 +602,8 @@ namespace Sunny.UI
             DropDownPanelFillColor = UIColor.LightBlue;
             DropDownPanelForeColor = UIFontColor.Primary;
 
+            RoundProcessForeColor2 = Color.White;
+
             DropDownStyle = UIStyles.Blue;
 
             SplitContainerArrowColor = UIColor.Blue;
@@ -714,6 +721,8 @@ namespace Sunny.UI
             DropDownControlColor = ForeColor;
             DropDownPanelFillColor = UIColor.LightBlue;
             DropDownPanelForeColor = UIFontColor.Primary;
+
+            RoundProcessForeColor2 = Color.White;
 
             DropDownStyle = UIStyles.Blue;
 

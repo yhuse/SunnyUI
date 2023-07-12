@@ -19,12 +19,14 @@
  * 2021-04-08: V3.0.2 增加文件说明
  * 2021-10-18: V3.0.8 增加显示小数位数
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-07-12: V3.4.0 内圈尺寸小的时候更新配色
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -165,6 +167,29 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnPaintFore(Graphics g, GraphicsPath path)
+        {
+            if (ShowText)
+            {
+                Size size = TextRenderer.MeasureText(Text, Font);
+                if (Inner * 2 < size.Width - 4)
+                    g.DrawString(Text, Font, ForeColor2, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleCenter);
+                else
+                    g.DrawString(Text, Font, ForeColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleCenter);
+            }
+        }
+
+        private Color foreColor2 = Color.Black;
+        public Color ForeColor2
+        {
+            get => foreColor2;
+            set
+            {
+                foreColor2 = value;
+                Invalidate();
+            }
+        }
+
         public delegate void OnValueChanged(object sender, int value);
 
         public event OnValueChanged ValueChanged;
@@ -201,6 +226,7 @@ namespace Sunny.UI
             fillColor = uiColor.ProcessBarForeColor;
             foreColor = uiColor.ProcessBarForeColor;
             rectColor = uiColor.ProcessBackColor;
+            foreColor2 = uiColor.RoundProcessForeColor2;
         }
 
         [DefaultValue(false)]
