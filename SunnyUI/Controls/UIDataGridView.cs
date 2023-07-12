@@ -45,6 +45,7 @@
  * 2022-07-28: V3.2.2 修复了单行时表格高度低时，垂直滚动条拖拽至底部出错的问题
  * 2022-10-14: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2023-06-28: V3.3.9 增加了可设置水平滚动条宽度的属性，但可能会遮挡最下面数据行的数据，看情况使用
+ * 2023-07-12: V3.4.0 修复了有冻结行时垂直滚动条点击时出错的问题
 ******************************************************************************/
 
 using System;
@@ -369,6 +370,23 @@ namespace Sunny.UI
             if (idx < 0) idx = 0;
             if (idx >= RowCount) idx = RowCount - 1;
 
+            int lastFrozen = GetFrozenBottomIndex();
+            if (Rows[0].Frozen)
+            {
+                if (RowCount > lastFrozen + 1)
+                {
+                    lastFrozen += 1;
+                    FirstDisplayedScrollingRowIndex = Math.Max(idx, lastFrozen);
+                }
+            }
+            else
+            {
+                FirstDisplayedScrollingRowIndex = idx;
+            }
+        }
+
+        private int GetFrozenBottomIndex()
+        {
             int lastFrozen = 0;
             if (Rows[0].Frozen)
             {
@@ -385,12 +403,7 @@ namespace Sunny.UI
                 }
             }
 
-            if (Rows[0].Frozen)
-            {
-
-            }
-
-            FirstDisplayedScrollingRowIndex = Math.Max(idx, lastFrozen);
+            return lastFrozen;
         }
 
         private void HorizontalScrollBar_ValueChanged(object sender, EventArgs e)
@@ -753,7 +766,20 @@ namespace Sunny.UI
                     }
 
                     Rows[value].Selected = true;
-                    FirstDisplayedScrollingRowIndex = value;
+
+                    int lastFrozen = GetFrozenBottomIndex();
+                    if (Rows[0].Frozen)
+                    {
+                        if (RowCount > lastFrozen + 1)
+                        {
+                            lastFrozen += 1;
+                            FirstDisplayedScrollingRowIndex = Math.Max(value, lastFrozen);
+                        }
+                    }
+                    else
+                    {
+                        FirstDisplayedScrollingRowIndex = value;
+                    }
 
                     if (selectedIndex >= 0 && selectedIndex <= Rows.Count)
                         jumpIndex = selectedIndex;
