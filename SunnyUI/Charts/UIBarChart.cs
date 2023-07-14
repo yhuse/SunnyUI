@@ -66,13 +66,17 @@ namespace Sunny.UI
         /// </summary>
         public override void Refresh()
         {
-            base.Refresh();
-            if (Option != null)
-            {
-                SetOption(Option);
-            }
-
+            if (Option != null) SetOption(Option);
             CalcData();
+
+            if (InvokeRequired)
+            {
+                Invoke(new Action(base.Refresh));
+            }
+            else
+            {
+                base.Refresh();
+            }
         }
 
         /// <summary>

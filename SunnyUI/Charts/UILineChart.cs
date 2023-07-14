@@ -47,6 +47,7 @@
  * 2023-06-06: V3.3.7 修复X轴文字重叠问题
  * 2023-07-02: V3.3.9 增加PointFormat，鼠标选中值显示格式化事件
  * 2023-07-02: V3.3.9 增加了数据沿Y轴变化时鼠标移动到数据点时显示数据点标签
+ * 2023-07-14: V3.4.0 增加了坐标轴绘制时显示箭头，并在箭头处显示数量单位的功能
 ******************************************************************************/
 
 using System;
@@ -114,13 +115,17 @@ namespace Sunny.UI
 
         public override void Refresh()
         {
-            base.Refresh();
-            if (Option != null)
-            {
-                SetOption(Option);
-            }
-
+            if (Option != null) SetOption(Option);
             CalcData();
+
+            if (InvokeRequired)
+            {
+                Invoke(new Action(base.Refresh));
+            }
+            else
+            {
+                base.Refresh();
+            }
         }
 
         protected UIScale XScale;
@@ -308,6 +313,48 @@ namespace Sunny.UI
 
             if (XScale == null || YScale == null || Y2Scale == null) return;
 
+            if (Option.XAxis.ShowArrow)
+            {
+                Point pt1 = new Point(Width - Option.Grid.Right + Option.XAxis.ShowArrowSize, Height - Option.Grid.Bottom);
+                g.DrawLine(ForeColor, Option.Grid.Left, Height - Option.Grid.Bottom, pt1.X, pt1.Y);
+                Point pt2 = new Point(pt1.X - 10, pt1.Y - 4);
+                Point pt3 = new Point(pt1.X - 10, pt1.Y + 4);
+                g.FillPolygon(ForeColor, new PointF[] { pt1, pt2, pt3 });
+
+                if (Option.XAxis.Unit.IsValid())
+                {
+                    g.DrawString(Option.XAxis.Unit, TempFont, ForeColor, new Rectangle(pt1.X - 200, pt1.Y, 400, 400), ContentAlignment.TopCenter);
+                }
+            }
+
+            if (Option.YAxis.ShowArrow)
+            {
+                Point pt1 = new Point(Option.Grid.Left, Option.Grid.Top - Option.YAxis.ShowArrowSize);
+                g.DrawLine(ForeColor, pt1.X, pt1.Y, Option.Grid.Left, Height - Option.Grid.Bottom);
+                Point pt2 = new Point(pt1.X - 4, pt1.Y + 10);
+                Point pt3 = new Point(pt1.X + 4, pt1.Y + 10);
+                g.FillPolygon(ForeColor, new PointF[] { pt1, pt2, pt3 });
+
+                if (Option.YAxis.Unit.IsValid())
+                {
+                    g.DrawString(Option.YAxis.Unit, TempFont, ForeColor, new Rectangle(pt1.X - 200, pt1.Y - 200, 200, 400), ContentAlignment.MiddleRight);
+                }
+            }
+
+            if (Option.HaveY2 && Option.Y2Axis.ShowArrow)
+            {
+                Point pt1 = new Point(Width - Option.Grid.Right, Option.Grid.Top - Option.Y2Axis.ShowArrowSize);
+                g.DrawLine(ForeColor, pt1.X, pt1.Y, Width - Option.Grid.Right, Height - Option.Grid.Bottom);
+                Point pt2 = new Point(pt1.X - 4, pt1.Y + 10);
+                Point pt3 = new Point(pt1.X + 4, pt1.Y + 10);
+                g.FillPolygon(ForeColor, new PointF[] { pt1, pt2, pt3 });
+
+                if (Option.Y2Axis.Unit.IsValid())
+                {
+                    g.DrawString(Option.Y2Axis.Unit, TempFont, ForeColor, new Rectangle(pt1.X, pt1.Y - 200, 200, 400), ContentAlignment.MiddleLeft);
+                }
+            }
+
             //X Tick           
             {
                 double[] XLabels = Option.XAxis.HaveCustomLabels ? Option.XAxis.CustomLabels.LabelValues() : XScale.CalcLabels();
@@ -443,7 +490,11 @@ namespace Sunny.UI
 
                         Size sf = TextRenderer.MeasureText(label, TempFont);
                         widthMax = Math.Max(widthMax, sf.Width);
-                        g.DrawString(label, TempFont, ForeColor, new Rectangle(Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, (int)y - Height, Width, Height * 2), ContentAlignment.MiddleLeft);
+
+                        if (y.Equals(DrawOrigin.Y) && Option.XAxis.ShowArrow)
+                            g.DrawString(label, TempFont, ForeColor, new Rectangle(Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, (int)y - Height, Width, Height * 2), ContentAlignment.MiddleLeft, 0, -sf.Height / 2);
+                        else
+                            g.DrawString(label, TempFont, ForeColor, new Rectangle(Width - Option.Grid.Right + Option.Y2Axis.AxisTick.Length, (int)y - Height, Width, Height * 2), ContentAlignment.MiddleLeft);
                     }
 
                     if (Option.Y2Axis.AxisTick.Show)

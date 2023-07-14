@@ -121,6 +121,12 @@ namespace Sunny.UI
             SetMinValue(min);
             SetMaxValue(max);
         }
+
+        public bool ShowArrow { get; set; } = false;
+
+        public int ShowArrowSize { get; set; } = 30;
+
+        public string Unit { get; set; } = string.Empty;
     }
 
     public class CustomLabels
