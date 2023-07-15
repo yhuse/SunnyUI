@@ -20,6 +20,7 @@
  * 2021-10-18: V3.0.8 增加显示小数位数
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-07-12: V3.4.0 内圈尺寸小的时候更新配色
+ * 2023-07-15: V3.4.0 增加起始角度和扫描角度
 ******************************************************************************/
 
 using System;
@@ -51,6 +52,35 @@ namespace Sunny.UI
 
             ShowText = false;
             ShowRect = false;
+        }
+
+        private int startAngle = 0;
+
+        [Description("起始角度，正北为0，顺时针0到360°"), Category("SunnyUI")]
+        [DefaultValue(0)]
+        public int StartAngle
+        {
+            get => startAngle;
+            set
+            {
+                startAngle = value;
+                Invalidate();
+            }
+        }
+
+        private int sweepAngle = 360;
+
+        [Description("扫描角度，范围0到360°"), Category("SunnyUI")]
+        [DefaultValue(360)]
+        public int SweepAngle
+        {
+            get => sweepAngle;
+            set
+            {
+                sweepAngle = Math.Max(1, value);
+                sweepAngle = Math.Min(360, value);
+                Invalidate();
+            }
         }
 
         [Description("显示文字小数位数"), Category("SunnyUI")]
@@ -211,8 +241,8 @@ namespace Sunny.UI
             inner = iin;
             outer = iou;
 
-            g.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, 0, 360);
-            g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, -90, Value * 1.0f / Maximum * 360.0f);
+            g.FillFan(ProcessBackColor, ClientRectangle.Center(), Inner, Outer, StartAngle - 90, SweepAngle);
+            g.FillFan(ProcessColor, ClientRectangle.Center(), Inner, Outer, StartAngle - 90, Value * 1.0f / Maximum * SweepAngle);
         }
 
         /// <summary>

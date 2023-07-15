@@ -108,7 +108,7 @@ namespace Sunny.UI
         }
 
         internal static float DefaultFontSize = 12;
-        internal static float DefaultSubFontSize = 9;
+        public static float DefaultSubFontSize = 9;
         /// <summary>
         /// 默认字体
         /// </summary>
