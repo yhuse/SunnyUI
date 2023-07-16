@@ -171,17 +171,23 @@ namespace Sunny.UI
 
             if (Text.IsValid() && !Enabled)
             {
+                string text = Text;
+                if (PasswordChar > 0)
+                {
+                    text = PasswordChar.ToString().Repeat(text.Length);
+                }
+
                 if (TextAlign == HorizontalAlignment.Left)
                 {
-                    e.Graphics.DrawString(Text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleLeft, -5, 0);
+                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleLeft, -5, 0);
                 }
                 else if (TextAlign == HorizontalAlignment.Right)
                 {
-                    e.Graphics.DrawString(Text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleRight, 7, 0);
+                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleRight, 7, 0);
                 }
                 else
                 {
-                    e.Graphics.DrawString(Text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleCenter, 1, 0);
+                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleCenter, 1, 0);
                 }
             }
         }
