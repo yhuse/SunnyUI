@@ -312,7 +312,11 @@ namespace Sunny.UI
         public static bool CheckFastLZDll()
         {
             if (FileExist) return true;
-            if (File.Exists(DirEx.CurrentDir() + "FastLZx86.dll") && File.Exists(DirEx.CurrentDir() + "FastLZx64.dll")) return true;
+            if (File.Exists(DirEx.CurrentDir() + "FastLZx86.dll") && File.Exists(DirEx.CurrentDir() + "FastLZx64.dll"))
+            {
+                FileExist = true;
+                return true;
+            }
 
             try
             {
