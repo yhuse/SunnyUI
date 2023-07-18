@@ -54,12 +54,13 @@ namespace Sunny.UI.Demo
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.uiProcessBar3 = new Sunny.UI.UIProcessBar();
             this.uiLine6 = new Sunny.UI.UILine();
+            this.uiRoundProcess3 = new Sunny.UI.UIRoundProcess();
+            this.uiRoundProcess4 = new Sunny.UI.UIRoundProcess();
             this.SuspendLayout();
             // 
             // uiTrackBar8
             // 
             this.uiTrackBar8.Direction = Sunny.UI.UITrackBar.BarDirection.Vertical;
-            this.uiTrackBar8.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar8.Location = new System.Drawing.Point(428, 395);
             this.uiTrackBar8.MinimumSize = new System.Drawing.Size(1, 1);
@@ -72,7 +73,6 @@ namespace Sunny.UI.Demo
             // uiTrackBar7
             // 
             this.uiTrackBar7.Direction = Sunny.UI.UITrackBar.BarDirection.Vertical;
-            this.uiTrackBar7.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar7.Location = new System.Drawing.Point(387, 395);
             this.uiTrackBar7.MinimumSize = new System.Drawing.Size(1, 1);
@@ -85,7 +85,6 @@ namespace Sunny.UI.Demo
             // uiTrackBar6
             // 
             this.uiTrackBar6.Direction = Sunny.UI.UITrackBar.BarDirection.Vertical;
-            this.uiTrackBar6.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar6.Location = new System.Drawing.Point(346, 395);
             this.uiTrackBar6.MinimumSize = new System.Drawing.Size(1, 1);
@@ -98,7 +97,6 @@ namespace Sunny.UI.Demo
             // uiTrackBar5
             // 
             this.uiTrackBar5.Direction = Sunny.UI.UITrackBar.BarDirection.Vertical;
-            this.uiTrackBar5.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar5.Location = new System.Drawing.Point(305, 395);
             this.uiTrackBar5.MinimumSize = new System.Drawing.Size(1, 1);
@@ -110,7 +108,6 @@ namespace Sunny.UI.Demo
             // 
             // uiTrackBar4
             // 
-            this.uiTrackBar4.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar4.Location = new System.Drawing.Point(28, 465);
             this.uiTrackBar4.MinimumSize = new System.Drawing.Size(1, 1);
@@ -122,7 +119,6 @@ namespace Sunny.UI.Demo
             // 
             // uiTrackBar3
             // 
-            this.uiTrackBar3.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar3.Location = new System.Drawing.Point(28, 430);
             this.uiTrackBar3.MinimumSize = new System.Drawing.Size(1, 1);
@@ -135,7 +131,6 @@ namespace Sunny.UI.Demo
             // uiTrackBar2
             // 
             this.uiTrackBar2.Direction = Sunny.UI.UITrackBar.BarDirection.Vertical;
-            this.uiTrackBar2.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar2.Location = new System.Drawing.Point(264, 395);
             this.uiTrackBar2.MinimumSize = new System.Drawing.Size(1, 1);
@@ -148,7 +143,6 @@ namespace Sunny.UI.Demo
             // uiLine2
             // 
             this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(29, 287);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -180,26 +174,22 @@ namespace Sunny.UI.Demo
             this.uiRoundProcess2.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundProcess2.DecimalPlaces = 0;
             this.uiRoundProcess2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundProcess2.ForeColor = System.Drawing.Color.White;
             this.uiRoundProcess2.Inner = 0;
-            this.uiRoundProcess2.Location = new System.Drawing.Point(155, 167);
+            this.uiRoundProcess2.Location = new System.Drawing.Point(133, 167);
             this.uiRoundProcess2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundProcess2.Name = "uiRoundProcess2";
             this.uiRoundProcess2.ShowProcess = true;
             this.uiRoundProcess2.Size = new System.Drawing.Size(120, 120);
-            this.uiRoundProcess2.Style = Sunny.UI.UIStyle.Custom;
-            this.uiRoundProcess2.StyleCustomMode = true;
             this.uiRoundProcess2.TabIndex = 93;
             this.uiRoundProcess2.Text = "0%";
             // 
             // uiLine9
             // 
             this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine9.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine9.Location = new System.Drawing.Point(29, 147);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
-            this.uiLine9.Size = new System.Drawing.Size(319, 20);
+            this.uiLine9.Size = new System.Drawing.Size(440, 20);
             this.uiLine9.TabIndex = 92;
             this.uiLine9.Text = "UIRoundProcess";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -208,7 +198,8 @@ namespace Sunny.UI.Demo
             // 
             this.uiRoundProcess1.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundProcess1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRoundProcess1.Location = new System.Drawing.Point(28, 167);
+            this.uiRoundProcess1.Inner = 35;
+            this.uiRoundProcess1.Location = new System.Drawing.Point(15, 167);
             this.uiRoundProcess1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundProcess1.Name = "uiRoundProcess1";
             this.uiRoundProcess1.ShowProcess = true;
@@ -231,8 +222,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine1.Location = new System.Drawing.Point(381, 54);
+            this.uiLine1.Location = new System.Drawing.Point(411, 54);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
             this.uiLine1.Size = new System.Drawing.Size(319, 20);
@@ -243,7 +233,7 @@ namespace Sunny.UI.Demo
             // uiWaitingBar1
             // 
             this.uiWaitingBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiWaitingBar1.Location = new System.Drawing.Point(381, 88);
+            this.uiWaitingBar1.Location = new System.Drawing.Point(411, 88);
             this.uiWaitingBar1.MinimumSize = new System.Drawing.Size(70, 23);
             this.uiWaitingBar1.Name = "uiWaitingBar1";
             this.uiWaitingBar1.Size = new System.Drawing.Size(319, 29);
@@ -253,7 +243,6 @@ namespace Sunny.UI.Demo
             // uiLine5
             // 
             this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine5.Location = new System.Drawing.Point(28, 369);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -264,7 +253,6 @@ namespace Sunny.UI.Demo
             // 
             // uiTrackBar1
             // 
-            this.uiTrackBar1.DisableColor = System.Drawing.Color.Silver;
             this.uiTrackBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiTrackBar1.Location = new System.Drawing.Point(28, 395);
             this.uiTrackBar1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -272,16 +260,14 @@ namespace Sunny.UI.Demo
             this.uiTrackBar1.Size = new System.Drawing.Size(158, 29);
             this.uiTrackBar1.TabIndex = 86;
             this.uiTrackBar1.Text = "uiTrackBar1";
-            this.uiTrackBar1.ValueChanged += new System.EventHandler(this.uiTrackBar1_ValueChanged);
             // 
             // uiLine4
             // 
             this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.LineDashStyle = Sunny.UI.UILineDashStyle.None;
-            this.uiLine4.Location = new System.Drawing.Point(381, 147);
+            this.uiLine4.Location = new System.Drawing.Point(527, 147);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
-            this.uiLine4.Size = new System.Drawing.Size(319, 20);
+            this.uiLine4.Size = new System.Drawing.Size(203, 20);
             this.uiLine4.TabIndex = 85;
             this.uiLine4.Text = "UIProgressIndicator";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -289,7 +275,7 @@ namespace Sunny.UI.Demo
             // uiProgressIndicator1
             // 
             this.uiProgressIndicator1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(381, 167);
+            this.uiProgressIndicator1.Location = new System.Drawing.Point(527, 173);
             this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiProgressIndicator1.Name = "uiProgressIndicator1";
             this.uiProgressIndicator1.Size = new System.Drawing.Size(120, 120);
@@ -299,7 +285,6 @@ namespace Sunny.UI.Demo
             // uiLine3
             // 
             this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine3.Location = new System.Drawing.Point(30, 54);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -336,7 +321,6 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine6.Location = new System.Drawing.Point(527, 287);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -345,11 +329,48 @@ namespace Sunny.UI.Demo
             this.uiLine6.Text = "UIProcessBar";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiRoundProcess3
+            // 
+            this.uiRoundProcess3.BackColor = System.Drawing.Color.Transparent;
+            this.uiRoundProcess3.DecimalPlaces = 0;
+            this.uiRoundProcess3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundProcess3.ForeColor2 = System.Drawing.Color.Black;
+            this.uiRoundProcess3.Inner = 35;
+            this.uiRoundProcess3.Location = new System.Drawing.Point(251, 167);
+            this.uiRoundProcess3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiRoundProcess3.Name = "uiRoundProcess3";
+            this.uiRoundProcess3.ShowProcess = true;
+            this.uiRoundProcess3.Size = new System.Drawing.Size(120, 120);
+            this.uiRoundProcess3.StartAngle = 220;
+            this.uiRoundProcess3.SweepAngle = 280;
+            this.uiRoundProcess3.TabIndex = 105;
+            this.uiRoundProcess3.Text = "50%";
+            this.uiRoundProcess3.Value = 50;
+            // 
+            // uiRoundProcess4
+            // 
+            this.uiRoundProcess4.BackColor = System.Drawing.Color.Transparent;
+            this.uiRoundProcess4.DecimalPlaces = 0;
+            this.uiRoundProcess4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundProcess4.ForeColor2 = System.Drawing.Color.Black;
+            this.uiRoundProcess4.Inner = 35;
+            this.uiRoundProcess4.Location = new System.Drawing.Point(369, 167);
+            this.uiRoundProcess4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiRoundProcess4.Name = "uiRoundProcess4";
+            this.uiRoundProcess4.ShowProcess = true;
+            this.uiRoundProcess4.Size = new System.Drawing.Size(120, 120);
+            this.uiRoundProcess4.StartAngle = 270;
+            this.uiRoundProcess4.SweepAngle = 180;
+            this.uiRoundProcess4.TabIndex = 106;
+            this.uiRoundProcess4.Text = "0%";
+            // 
             // FProcess
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 546);
+            this.Controls.Add(this.uiRoundProcess4);
+            this.Controls.Add(this.uiRoundProcess3);
             this.Controls.Add(this.uiLine6);
             this.Controls.Add(this.uiProcessBar3);
             this.Controls.Add(this.uiTrackBar8);
@@ -408,5 +429,7 @@ namespace Sunny.UI.Demo
         private System.Windows.Forms.Timer timer1;
         private UIProcessBar uiProcessBar3;
         private UILine uiLine6;
+        private UIRoundProcess uiRoundProcess3;
+        private UIRoundProcess uiRoundProcess4;
     }
 }
