@@ -1,5 +1,15 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-07\-18 V3.4.1    
+\* UIGroupBox: 解决BackColor,FillColor设置为透明时，标题下面会出现横线    
+\* UIDataGridView: 修复了有冻结行时垂直滚动条点击时出错的问题    
+\* UITitlePanel: 删除Padding设置    
+\* UIRoundProcess: 内圈尺寸小的时候更新配色    
+\* UILineChart: 增加了坐标轴绘制时显示箭头，并在箭头处显示数量单位的功能    
+\* UIRoundProcess: 增加起始角度和扫描角度    
+\* UITextBox: 修复了Enabled为false时，PasswordChar失效的问题    
+\+ UCompress: 增加数据帧压缩类    
+    
 #### 2023\-07\-09 V3.4.0    
 \+ UITurnSwitch: 增加旋转开关    
 \+ ScanerHook: 增加扫码枪键盘钩子类    
