@@ -21,6 +21,7 @@
  * 2022-05-30: V3.1.9 修复Padding设置
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-07-11: V3.4.0 解决BackColor,FillColor设置为透明时，标题下面会出现横线
+ * 2023-07-19: V3.4.1 解决BackColor,FillColor设置为透明时，文本位置与边框线重叠的问题
 ******************************************************************************/
 
 using System;
@@ -37,7 +38,13 @@ namespace Sunny.UI
         public UIGroupBox()
         {
             InitializeComponent();
+            TextAlignmentChange += UIGroupBox_TextAlignmentChange;
             SetStyleFlags(true, false);
+        }
+
+        private void UIGroupBox_TextAlignmentChange(object sender, ContentAlignment alignment)
+        {
+            Invalidate();
         }
 
         /// <summary>
@@ -83,26 +90,41 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             Size size = TextRenderer.MeasureText(Text, Font);
-            g.DrawString(Text, Font, ForeColor, FillColor, new Rectangle(TitleInterval, 0, Width - TitleInterval * 2, TitleTop * 2), TitleAlignment);
+            g.DrawString(Text, Font, ForeColor, FillColor, new Rectangle(TitleInterval, TitleTop - size.Height / 2, Width - TitleInterval * 2, size.Height), TextAlignment);
+
+            int textLeft = TitleInterval;
+            switch (TextAlignment)
+            {
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.BottomCenter:
+                    textLeft = (Width - size.Width) / 2 - 1;
+                    break;
+                case ContentAlignment.TopRight:
+                case ContentAlignment.MiddleRight:
+                case ContentAlignment.BottomRight:
+                    textLeft = (Width - TitleInterval - size.Width) - 2;
+                    break;
+            }
 
             if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Top))
             {
                 if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop))
                 {
-                    g.DrawLine(RectColor, Radius / 2 * RectSize, TitleTop, TitleInterval, TitleTop, true, RectSize);
+                    g.DrawLine(RectColor, Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
                 else
                 {
-                    g.DrawLine(RectColor, 0, TitleTop, TitleInterval, TitleTop, true, RectSize);
+                    g.DrawLine(RectColor, 0, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
 
                 if (RadiusSides.GetValue(UICornerRadiusSides.RightTop))
                 {
-                    g.DrawLine(RectColor, TitleInterval + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
+                    g.DrawLine(RectColor, textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
                 }
                 else
                 {
-                    g.DrawLine(RectColor, TitleInterval + size.Width, TitleTop, Width, TitleTop, true, RectSize);
+                    g.DrawLine(RectColor, textLeft + size.Width, TitleTop, Width, TitleTop, true, RectSize);
                 }
             }
         }
@@ -151,21 +173,9 @@ namespace Sunny.UI
             }
         }
 
-        public HorizontalAlignment titleAlignment = HorizontalAlignment.Left;
-
         [DefaultValue(HorizontalAlignment.Left)]
         [Description("文字显示位置"), Category("SunnyUI")]
-        public HorizontalAlignment TitleAlignment
-        {
-            get => titleAlignment;
-            set
-            {
-                if (titleAlignment != value)
-                {
-                    titleAlignment = value;
-                    Invalidate();
-                }
-            }
-        }
+        [Browsable(false)]
+        public HorizontalAlignment TitleAlignment { get; set; }
     }
 }
