@@ -46,6 +46,7 @@
  * 2023-01-25: V3.3.1 最大化后，关闭按钮扩大至原按钮右上角全部区域
  * 2023-02-24: V3.3.2 修复PageSelected可能未显示选中页面的问题
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-07-24: V3.4.1 修复页面切换时，第一个UIPage未执行Final事件的问题
 ******************************************************************************/
 
 using System;
@@ -2169,6 +2170,25 @@ namespace Sunny.UI
                 mainTabControl.PageAdded += DealPageAdded;
                 mainTabControl.PageRemoved += DealPageRemoved;
                 mainTabControl.Selecting += MainTabControl_Selecting;
+                mainTabControl.VisibleChanged += MainTabControl_VisibleChanged;
+            }
+        }
+
+        private void MainTabControl_VisibleChanged(object sender, EventArgs e)
+        {
+            if (SelectedPage == null)
+            {
+                List<UIPage> pages = mainTabControl.SelectedTab.GetControls<UIPage>();
+                if (pages.Count == 1)
+                {
+                    SelectedPage = pages[0];
+                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+                }
+                else
+                {
+                    SelectedPage = null;
+                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+                }
             }
         }
 
