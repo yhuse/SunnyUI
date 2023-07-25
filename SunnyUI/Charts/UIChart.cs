@@ -19,6 +19,7 @@
  * 2020-06-06: V2.2.5 增加文件说明
  * 2020-09-10: V2.2.7 增加图表的边框线颜色设置
  * 2023-05-14: V3.3.6 重构DrawString函数
+ * 2023-07-25: V3.4.1 Legend增加一种绘制直线的方法
 ******************************************************************************/
 
 using System;
@@ -331,7 +332,11 @@ namespace Sunny.UI
 
                 if (legend.Orient == UIOrient.Horizontal)
                 {
-                    g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
+                    if (legend.Style == UILegendStyle.Rectangle)
+                        g.FillRoundRectangle(color, (int)startLeft, (int)top + 1, 18, (int)oneHeight - 2, 5);
+                    if (legend.Style == UILegendStyle.Line)
+                        g.DrawLine(color, startLeft, top + oneHeight / 2, startLeft + 18, top + oneHeight / 2);
+
                     g.DrawString(data, TempLegendFont, color, new Rectangle((int)startLeft + 18, (int)top, Width, Height), ContentAlignment.TopLeft);
                     startLeft += 22;
                     startLeft += sf.Width;
@@ -339,7 +344,11 @@ namespace Sunny.UI
 
                 if (legend.Orient == UIOrient.Vertical)
                 {
-                    g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
+                    if (legend.Style == UILegendStyle.Rectangle)
+                        g.FillRoundRectangle(color, (int)left, (int)startTop + 1, 18, (int)oneHeight - 2, 5);
+                    if (legend.Style == UILegendStyle.Line)
+                        g.DrawLine(color, left, startTop, left + 18, startTop + oneHeight / 2);
+
                     g.DrawString(data, TempLegendFont, color, new Rectangle((int)left + 18, (int)startTop, Width, Height), ContentAlignment.TopLeft);
                     startTop += oneHeight;
                 }

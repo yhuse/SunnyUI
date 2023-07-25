@@ -327,6 +327,8 @@ namespace Sunny.UI
 
         public int DataCount => Data.Count;
 
+        public UILegendStyle Style { get; set; } = UILegendStyle.Rectangle;
+
         public void AddData(string data)
         {
             Data.Add(data);
@@ -348,6 +350,12 @@ namespace Sunny.UI
             Data.Clear();
             Colors.Clear();
         }
+    }
+
+    public enum UILegendStyle
+    {
+        Rectangle,
+        Line
     }
 
     public class UIChartGrid
