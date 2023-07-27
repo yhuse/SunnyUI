@@ -23,6 +23,7 @@
  * 2021-10-28: V3.0.8 代码生成增加ComboCheckedListBox类型
  * 2022-04-18: V3.1.5 修改一处Show引起的无法获取控件值的问题
  * 2023-04-23: V3.3.5 代码生成增加，Double类型增加小数点位数
+ * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
 ******************************************************************************/
 
 using System;
@@ -41,6 +42,7 @@ namespace Sunny.UI
 
             btnOK.Text = UILocalize.OK;
             btnCancel.Text = UILocalize.Cancel;
+            base.TopMost = true;
         }
 
         private readonly UIEditOption Option;
@@ -250,6 +252,7 @@ namespace Sunny.UI
 
             btnOK.Text = UILocalize.OK;
             btnCancel.Text = UILocalize.Cancel;
+            base.TopMost = true;
 
             Option = option;
             InitEditor();
