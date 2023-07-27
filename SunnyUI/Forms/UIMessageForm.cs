@@ -183,13 +183,12 @@ namespace Sunny.UI
 
         private void UIMessageForm_Shown(object sender, EventArgs e)
         {
-            if (!ShowCancel || DefaultButton == UIMessageDialogButtons.Ok)
+            if (ShowCancel)
             {
-                btnOK.Focus();
-            }
-            else
-            {
-                btnCancel.Focus();
+                if (DefaultButton == UIMessageDialogButtons.Ok)
+                    btnOK.Focus();
+                else
+                    btnCancel.Focus();
             }
         }
     }

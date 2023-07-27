@@ -23,7 +23,7 @@
  * 2021-12-13: V3.0.9 增加全屏遮罩，Form的ShowDialogWithMask()扩展方法
  * 2022-07-17: V3.2.1 解决ShowNotifier打开多个，全部关闭时出错的问题
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
- * 2023-07-27: V3.4.1 提问弹窗增加可选择默认是确认或者取消按钮的选择
+ * 2023-07-27: V3.4.1 提问弹窗增加默认是确认或者取消按钮的选择
 ******************************************************************************/
 
 using System;
@@ -178,9 +178,9 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style"></param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, UIStyle style = UIStyle.Blue)
+        public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return form.ShowAskDialog(UILocalize.AskTitle, msg, defaultButton, style);
+            return form.ShowAskDialog(UILocalize.AskTitle, msg, style, defaultButton);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style"></param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string title, string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, UIStyle style = UIStyle.Blue)
+        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
             return form.ShowMessageDialog(msg, title, true, style);
         }

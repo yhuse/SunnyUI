@@ -1233,7 +1233,7 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public bool ShowAskDialog(string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, bool showMask = false)
+        public bool ShowAskDialog(string msg, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
             return UIMessageDialog.ShowMessageDialog(msg, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
         }
@@ -1294,7 +1294,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public bool ShowAskDialog(string title, string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, UIStyle style = UIStyle.Blue, bool showMask = false)
+        public bool ShowAskDialog(string title, string msg, UIStyle style = UIStyle.Blue, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
             return UIMessageDialog.ShowMessageDialog(msg, title, true, style, showMask, true, defaultButton);
         }
