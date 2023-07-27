@@ -37,6 +37,7 @@
  * 2023-02-24: V3.3.2 取消设计期的Dock.Fill，改为运行时设置
  * 2023-03-15: V3.3.3 重新梳理页面加载顺序
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
 ******************************************************************************/
 
 using System;
@@ -1193,7 +1194,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowSuccessDialog(string msg, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, UIStyle.Green, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, UIStyle.Green, showMask, true);
         }
 
         /// <summary>
@@ -1203,7 +1204,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowInfoDialog(string msg, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, UILocalize.InfoTitle, false, UIStyle.Gray, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.InfoTitle, false, UIStyle.Gray, showMask, true);
         }
 
         /// <summary>
@@ -1213,7 +1214,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowWarningDialog(string msg, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, UILocalize.WarningTitle, false, UIStyle.Orange, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.WarningTitle, false, UIStyle.Orange, showMask, true);
         }
 
         /// <summary>
@@ -1223,7 +1224,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowErrorDialog(string msg, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, UIStyle.Red, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, UIStyle.Red, showMask, true);
         }
 
         /// <summary>
@@ -1234,7 +1235,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public bool ShowAskDialog(string msg, bool showMask = false)
         {
-            return UIMessageDialog.ShowMessageDialog(msg, UILocalize.AskTitle, true, UIStyle.Blue, showMask, Frame?.TopMost ?? false);
+            return UIMessageDialog.ShowMessageDialog(msg, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true);
         }
 
         /// <summary>
@@ -1246,7 +1247,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowSuccessDialog(string title, string msg, UIStyle style = UIStyle.Green, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
         }
 
         /// <summary>
@@ -1258,7 +1259,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowInfoDialog(string title, string msg, UIStyle style = UIStyle.Gray, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
         }
 
         /// <summary>
@@ -1270,7 +1271,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowWarningDialog(string title, string msg, UIStyle style = UIStyle.Orange, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
         }
 
         /// <summary>
@@ -1282,7 +1283,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public void ShowErrorDialog(string title, string msg, UIStyle style = UIStyle.Red, bool showMask = false)
         {
-            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, Frame?.TopMost ?? false);
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
         }
 
         /// <summary>
@@ -1295,7 +1296,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public bool ShowAskDialog(string title, string msg, UIStyle style = UIStyle.Blue, bool showMask = false)
         {
-            return UIMessageDialog.ShowMessageDialog(msg, title, true, style, showMask, Frame?.TopMost ?? false);
+            return UIMessageDialog.ShowMessageDialog(msg, title, true, style, showMask, true);
         }
 
         /// <summary>
