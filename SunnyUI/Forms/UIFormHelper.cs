@@ -23,6 +23,7 @@
  * 2021-12-13: V3.0.9 增加全屏遮罩，Form的ShowDialogWithMask()扩展方法
  * 2022-07-17: V3.2.1 解决ShowNotifier打开多个，全部关闭时出错的问题
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
+ * 2023-07-27: V3.4.1 提问弹窗增加可选择默认是确认或者取消按钮的选择
 ******************************************************************************/
 
 using System;
@@ -86,52 +87,7 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         public static void ShowSuccessDialog(this Form form, string msg, UIStyle style = UIStyle.Green)
         {
-            form.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, style);
-        }
-
-        /// <summary>
-        /// 信息提示框
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="msg">信息</param>
-        /// <param name="style">主题</param>
-        public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
-        {
-            form.ShowMessageDialog(msg, UILocalize.InfoTitle, false, style);
-        }
-
-        /// <summary>
-        /// 警告信息提示框
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="msg">信息</param>
-        /// <param name="style">主题</param>
-        public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
-        {
-            form.ShowMessageDialog(msg, UILocalize.WarningTitle, false, style);
-        }
-
-        /// <summary>
-        /// 错误信息提示框
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="msg">信息</param>
-        /// <param name="style">主题</param>
-        public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
-        {
-            form.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, style);
-        }
-
-        /// <summary>
-        /// 确认信息提示框
-        /// </summary>
-        /// <param name="form">窗体</param>
-        /// <param name="msg">信息</param>
-        /// <param name="style"></param>
-        /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string msg, UIStyle style = UIStyle.Blue)
-        {
-            return form.ShowMessageDialog(msg, UILocalize.AskTitle, true, style);
+            form.ShowSuccessDialog(UILocalize.SuccessTitle, msg, style);
         }
 
         /// <summary>
@@ -150,12 +106,34 @@ namespace Sunny.UI
         /// 信息提示框
         /// </summary>
         /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowInfoDialog(this Form form, string msg, UIStyle style = UIStyle.Gray)
+        {
+            form.ShowInfoDialog(UILocalize.InfoTitle, msg, style);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
         /// <param name="title">标题</param>
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
         public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray)
         {
             form.ShowMessageDialog(msg, title, false, style);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowWarningDialog(this Form form, string msg, UIStyle style = UIStyle.Orange)
+        {
+            form.ShowWarningDialog(UILocalize.WarningTitle, msg, style);
         }
 
         /// <summary>
@@ -174,6 +152,17 @@ namespace Sunny.UI
         /// 错误信息提示框
         /// </summary>
         /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        public static void ShowErrorDialog(this Form form, string msg, UIStyle style = UIStyle.Red)
+        {
+            form.ShowErrorDialog(UILocalize.ErrorTitle, msg, style);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
         /// <param name="title">标题</param>
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
@@ -186,11 +175,23 @@ namespace Sunny.UI
         /// 确认信息提示框
         /// </summary>
         /// <param name="form">窗体</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style"></param>
+        /// <returns>结果</returns>
+        public static bool ShowAskDialog(this Form form, string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, UIStyle style = UIStyle.Blue)
+        {
+            return form.ShowAskDialog(UILocalize.AskTitle, msg, defaultButton, style);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="form">窗体</param>
         /// <param name="title">标题</param>
         /// <param name="msg">信息</param>
         /// <param name="style"></param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue)
+        public static bool ShowAskDialog(this Form form, string title, string msg, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, UIStyle style = UIStyle.Blue)
         {
             return form.ShowMessageDialog(msg, title, true, style);
         }
@@ -216,11 +217,21 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         /// <param name="topMost">置顶</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = true)
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
             Point pt = SystemEx.GetCursorPos();
             Rectangle screen = Screen.GetBounds(pt);
             UIMessageForm frm = new UIMessageForm();
+
+            if (showCancelButton)
+            {
+                frm.DefaultButton = defaultButton;
+            }
+            else
+            {
+                frm.DefaultButton = UIMessageDialogButtons.Ok;
+            }
+
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
@@ -235,6 +246,12 @@ namespace Sunny.UI
             frm.Dispose();
             return isOk;
         }
+    }
+
+    public enum UIMessageDialogButtons
+    {
+        Ok,
+        Cancel
     }
 
     public static class UIMessageBox

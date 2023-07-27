@@ -100,7 +100,10 @@ namespace Sunny.UI
         protected override void DoEnter()
         {
             base.DoEnter();
-            btnOK_Click(null, null);
+            if (!ShowCancel)
+            {
+                btnOK_Click(null, null);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -125,18 +128,18 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
 
-            if (btnOK != null)
-            {
-                btnOK.FillColor = BackColor;
-                btnOK.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
-                btnOK.ForeColor = uiColor.LabelForeColor;
-            }
-
             if (btnCancel != null)
             {
                 btnCancel.FillColor = BackColor;
                 btnCancel.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
                 btnCancel.ForeColor = uiColor.LabelForeColor;
+            }
+
+            if (btnOK != null)
+            {
+                btnOK.FillColor = BackColor;
+                btnOK.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
+                btnOK.ForeColor = uiColor.LabelForeColor;
             }
 
             if (lbMsg != null)
@@ -148,6 +151,8 @@ namespace Sunny.UI
                 lbMsg.ScrollBarColor = uiColor.RectColor;
             }
         }
+
+        public UIMessageDialogButtons DefaultButton { get; set; } = UIMessageDialogButtons.Ok;
 
         private void btnOK_MouseEnter(object sender, EventArgs e)
         {
@@ -174,6 +179,18 @@ namespace Sunny.UI
             ShowCancel = showCancel;
             //btnOK.ShowFocusLine = btnCancel.ShowFocusLine = showCancel;
             btnOK.ShowFocusColor = btnCancel.ShowFocusColor = showCancel;
+        }
+
+        private void UIMessageForm_Shown(object sender, EventArgs e)
+        {
+            if (!ShowCancel || DefaultButton == UIMessageDialogButtons.Ok)
+            {
+                btnOK.Focus();
+            }
+            else
+            {
+                btnCancel.Focus();
+            }
         }
     }
 }
