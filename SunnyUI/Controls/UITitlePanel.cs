@@ -26,6 +26,7 @@
  * 2023-05-12: V3.3.6 标题栏文字位置属性由TextAlign改为TextAlignment
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-12: V3.4.0 删除Padding设置
+ * 2023-08-07: V3.4.1 增加OnCollapsed事件
 ******************************************************************************/
 
 using System;
@@ -343,10 +344,13 @@ namespace Sunny.UI
             if (ShowCollapse && e.Location.InRect(ControlBoxRect))
             {
                 Collapsed = !Collapsed;
+                OnCollapsed?.Invoke(this, e);
             }
 
             base.OnMouseClick(e);
         }
+
+        public EventHandler OnCollapsed;
 
         /// <summary>
         /// 重载控件尺寸变更
@@ -367,6 +371,7 @@ namespace Sunny.UI
             if (ShowCollapse && e.Location.Y <= TitleHeight)
             {
                 Collapsed = !Collapsed;
+                OnCollapsed?.Invoke(this, e);
             }
 
             base.OnMouseDoubleClick(e);
