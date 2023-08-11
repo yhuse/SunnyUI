@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-11-01: V3.2.6 增加读取字符串长度到4096，增加文件编码
  * 2023-07-07: V3.3.9 将文件版本和文件编码写入文件头部
+ * 2023-08-11: v3.4.1 增加了文件绝对路径判断和文件夹是否存在判断
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -44,7 +45,6 @@ namespace Sunny.UI
         [Description("文件名")]
         public string FileName { get; set; } //INI文件名
 
-
         /// <summary>
         /// Ini文件编码格式
         /// </summary>
@@ -56,8 +56,22 @@ namespace Sunny.UI
         /// <param name="fileName">文件名</param>
         public IniBase(string fileName)
         {
+            if (!fileName.Contains(":"))
+            {
+                throw new ArgumentException("The file name must be an absolute path.");
+            }
+
             //必须是完全路径，不能是相对路径
             FileName = fileName;
+
+            FileInfo fi = new FileInfo(FileName);
+            DirEx.CreateDir(fi.DirectoryName);
+
+            if (!Directory.Exists(fi.DirectoryName))
+            {
+                throw new ArgumentException("Folder does not exist: " + fi.DirectoryName);
+            }
+
             // 判断文件是否存在
             if (!File.Exists(fileName))
             {
