@@ -798,13 +798,18 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 构造函数
+        /// 类的构造函数，文件名必须是完全路径，不能是相对路径
         /// </summary>
         /// <param name="fileName">文件名</param>
         public IniFile(string fileName) : base(fileName)
         {
         }
 
+        /// <summary>
+        /// 类的构造函数，文件名必须是完全路径，不能是相对路径
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <param name="encoding">文件编码</param>
         public IniFile(string fileName, Encoding encoding) : base(fileName, encoding)
         {
 
