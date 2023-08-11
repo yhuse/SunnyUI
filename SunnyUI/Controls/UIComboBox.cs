@@ -37,6 +37,7 @@
  * 2023-03-15: V3.3.3 修改失去焦点自动关闭过滤下拉框
  * 2023-06-28: V3.3.9 增加过滤时忽略大小写
  * 2023-07-03: V3.3.9 修改了几个对象的释放
+ * 2023-08-11: V3.4.1 Items.Clear后，DropDownStyle为DropDown时，不清空Text
 ******************************************************************************/
 
 using System;
@@ -308,7 +309,7 @@ namespace Sunny.UI
 
         private void ListBox_ItemsRemove(object sender, EventArgs e)
         {
-            if (ListBox.Count == 0)
+            if (ListBox.Count == 0 && DropDownStyle == UIDropDownStyle.DropDownList)
             {
                 Text = "";
                 edit.Text = "";
@@ -317,8 +318,11 @@ namespace Sunny.UI
 
         private void ListBox_ItemsClear(object sender, EventArgs e)
         {
-            Text = "";
-            edit.Text = "";
+            if (DropDownStyle == UIDropDownStyle.DropDownList)
+            {
+                Text = "";
+                edit.Text = "";
+            }
         }
 
         public new event EventHandler TextChanged;
