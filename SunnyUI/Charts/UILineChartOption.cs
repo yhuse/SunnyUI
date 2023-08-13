@@ -21,6 +21,7 @@
  * 2022-11-25: V3.2.2 增加了线的最大点数设置，以及移除点数的设置
  * 2022-11-25: V3.2.2 重构对象
  * 2023-05-06: V3.3.6 增加了UpdateYData函数，按序号更新Y轴值
+ * 2023-08-13: V3.4.1 增加了GetDataPoint，可获取曲线上的数据值
 ******************************************************************************/
 
 using System;
@@ -549,6 +550,13 @@ namespace Sunny.UI
 
         public int DataCount => XData.Count;
 
+        public SeriesDataPoint GetDataPoint(int index)
+        {
+            if (DataCount == 0) return new SeriesDataPoint();
+            if (index >= 0 && index < XData.Count) return new SeriesDataPoint(this, XData[index], YData[index]);
+            return new SeriesDataPoint();
+        }
+
         public UISeriesDataOrder Order = UISeriesDataOrder.X;
 
         public bool GetNearestPoint(Point p, int offset, out double x, out double y, out int index)
@@ -709,6 +717,26 @@ namespace Sunny.UI
         Plus,
         Star,
         Round
+    }
+
+    public struct SeriesDataPoint
+    {
+        public double X;
+        public double Y;
+
+        public UILineSeries Series { get; set; }
+
+        public SeriesDataPoint()
+        {
+
+        }
+
+        public SeriesDataPoint(UILineSeries series, double x, double y)
+        {
+            X = x;
+            Y = y;
+            Series = series;
+        }
     }
 
     public struct UILineSelectPoint

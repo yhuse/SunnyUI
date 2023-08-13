@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net7.0-windows;net6.0-windows;net472;net40</TargetFrameworks>
-        <LangVersion>9.0</LangVersion>
+        <LangVersion>11.0</LangVersion>
         <ProjectGuid>{AB1CB247-E20B-4CBE-B269-570ADDD96C53}</ProjectGuid>
         <UseWindowsForms>true</UseWindowsForms>
         <RootNamespace>Sunny.UI</RootNamespace>
