@@ -199,6 +199,7 @@ namespace Sunny.UI
         public static bool ShowMessageDialog(this Form form, string message, string title, bool isShowCancel, UIStyle style)
         {
             UIMessageForm frm = new UIMessageForm();
+            frm.ShowInTaskbar = false;
             frm.TopMost = true;
             frm.ShowMessage(message, title, isShowCancel, style);
             frm.ShowDialog();
