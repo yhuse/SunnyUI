@@ -49,6 +49,7 @@
  * 2023-06-14: V3.3.9 按钮图标位置修正
  * 2023-07-03: V3.3.9 增加Enabled为false时，可修改文字颜色
  * 2023-07-16: V3.4.0 修复了Enabled为false时，PasswordChar失效的问题
+ * 2023-08-17: V3.4.1 修复了Enabled为false时，字体大小调整后，文字显示位置的问题
 ******************************************************************************/
 
 using System;
@@ -412,7 +413,7 @@ namespace Sunny.UI
         {
             base.OnEnabledChanged(e);
             edit.BackColor = GetFillColor();
-            edit.Enabled = Enabled;
+            edit.Visible = Enabled;
         }
 
         public override bool Focused => edit.Focused;
@@ -1268,6 +1269,34 @@ namespace Sunny.UI
             else if (Symbol != 0)
             {
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
+            }
+
+            if (Text.IsValid() && !Enabled)
+            {
+                string text = Text;
+                if (PasswordChar > 0)
+                {
+                    text = PasswordChar.ToString().Repeat(text.Length);
+                }
+
+                ContentAlignment textAlign = ContentAlignment.MiddleLeft;
+                if (TextAlignment == ContentAlignment.TopCenter || TextAlignment == ContentAlignment.MiddleCenter || TextAlignment == ContentAlignment.BottomCenter)
+                    textAlign = ContentAlignment.MiddleCenter;
+
+                if (TextAlignment == ContentAlignment.TopRight || TextAlignment == ContentAlignment.MiddleRight || TextAlignment == ContentAlignment.BottomRight)
+                    textAlign = ContentAlignment.MiddleRight;
+
+                Size sf = TextRenderer.MeasureText(text, edit.Font);
+                using (Brush br = new SolidBrush(ForeDisableColor))
+                {
+                    if (textAlign == ContentAlignment.MiddleLeft)
+                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + 1 - Math.Min((int)(Font.Size / 3), 4), ((Height - sf.Height) / 2.0).RoundEx() - 1));
+                    if (textAlign == ContentAlignment.MiddleCenter)
+                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + (int)((edit.Width - sf.Width) / 2) + (Font.Size < 10 ? 1 : 2), ((Height - sf.Height) / 2.0).RoundEx() - 1));
+                    if (textAlign == ContentAlignment.MiddleRight)
+                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + edit.Width - sf.Width - 3 + Math.Min((int)(sf.Height / 2), 10), ((Height - sf.Height) / 2.0).RoundEx() - 1));
+                }
+
             }
         }
 

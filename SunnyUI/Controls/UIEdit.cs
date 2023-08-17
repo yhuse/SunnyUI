@@ -55,16 +55,6 @@ namespace Sunny.UI
             this.TextChanged += new EventHandler(ThisTextChanged);
         }
 
-        /// <summary>
-        /// Enable属性变更
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnEnabledChanged(EventArgs e)
-        {
-            SetStyle(ControlStyles.UserPaint, !Enabled);
-            base.OnEnabledChanged(e);
-        }
-
         private void DrawWaterMark()
         {
             if (this.waterMarkContainer == null && this.TextLength <= 0)
@@ -168,28 +158,6 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
             DrawWaterMark();
-
-            if (Text.IsValid() && !Enabled)
-            {
-                string text = Text;
-                if (PasswordChar > 0)
-                {
-                    text = PasswordChar.ToString().Repeat(text.Length);
-                }
-
-                if (TextAlign == HorizontalAlignment.Left)
-                {
-                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleLeft, -5, 0);
-                }
-                else if (TextAlign == HorizontalAlignment.Right)
-                {
-                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleRight, 7, 0);
-                }
-                else
-                {
-                    e.Graphics.DrawString(text, Font, ForeDisableColor, new Rectangle(0, 0, Width, Height), ContentAlignment.MiddleCenter, 1, 0);
-                }
-            }
         }
 
         public virtual Color ForeDisableColor { get; set; } = Color.FromArgb(109, 109, 103);
