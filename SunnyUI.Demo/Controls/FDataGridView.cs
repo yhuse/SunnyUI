@@ -11,7 +11,7 @@ namespace Sunny.UI.Demo
             InitializeComponent();
 
             //SunnyUI封装的加列函数，也可以和原生的一样，从Columns里面添加列
-            uiDataGridView1.AddColumn("Column1", "Column1");
+            uiDataGridView1.AddColumn("Column1", "Column1", 100/*占比*/).SetFixedMode(200/*固定宽度*/);
             uiDataGridView1.AddColumn("Column2", "Column2");
             uiDataGridView1.AddColumn("Column3", "Column3");
             uiDataGridView1.AddColumn("Column4", "Column4");
