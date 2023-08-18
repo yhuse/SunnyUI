@@ -413,7 +413,16 @@ namespace Sunny.UI
         {
             base.OnEnabledChanged(e);
             edit.BackColor = GetFillColor();
-            edit.Visible = Enabled;
+            edit.Visible = !styleCustomMode;
+            edit.Enabled = Enabled;
+        }
+
+        protected override void SetStyleCustom(bool needRefresh = true)
+        {
+            base.SetStyleCustom(needRefresh);
+            edit.Visible = !styleCustomMode;
+            edit.Enabled = Enabled;
+            Invalidate();
         }
 
         public override bool Focused => edit.Focused;
@@ -1271,7 +1280,7 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
             }
 
-            if (Text.IsValid() && !Enabled)
+            if (styleCustomMode && Text.IsValid() && !Enabled)
             {
                 string text = Text;
                 if (PasswordChar > 0)

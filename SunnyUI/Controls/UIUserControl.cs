@@ -808,7 +808,7 @@ namespace Sunny.UI
         [Browsable(false)]
         public new bool AutoScroll { get; set; } = false;
 
-        protected void SetStyleCustom(bool needRefresh = true)
+        protected virtual void SetStyleCustom(bool needRefresh = true)
         {
             _style = UIStyle.Custom;
             if (needRefresh) Invalidate();
