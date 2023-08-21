@@ -1,5 +1,21 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-08\-18 V3.4.2    
+\* UIGroupBox: 解决BackColor,FillColor设置为透明时，文本位置与边框线重叠的问题    
+\* UIForm: 修复页面切换时，第一个UIPage未执行Final事件的问题    
+\* UIComboDataGridView: 过滤输入后，按键盘下键切换至DataGridView，选中数据后按回车可快捷选中数据    
+\* UIChart: Legend增加一种绘制直线的方法    
+\* UIForm: 默认提示弹窗TopMost为true    
+\* UIFormHelper: 默认提示弹窗TopMost为true    
+\* UIEditForm: 默认弹窗TopMost为true    
+\* UIFormHelper: 提问弹窗增加可默认是确认或者取消按钮的选择    
+\* UITitlePanel: 增加OnCollapsed事件    
+\* UIniFile: 增加提示文件名必须为绝对路径，不能用相对路径    
+\* UIniFile: 增加了文件绝对路径判断和文件夹是否存在判断    
+\* UIComboBox: Items.Clear后，DropDownStyle为DropDown时，不清空Text    
+\* UILineChartOption: 增加了GetDataPoint，可获取曲线上的数据值    
+\* UITextBox: 修复了Enabled为false时，字体大小调整后，文字显示位置的问题    
+    
 #### 2023\-07\-18 V3.4.1    
 \* UIGroupBox: 解决BackColor,FillColor设置为透明时，标题下面会出现横线    
 \* UIDataGridView: 修复了有冻结行时垂直滚动条点击时出错的问题    
