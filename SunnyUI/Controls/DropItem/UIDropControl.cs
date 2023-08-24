@@ -25,6 +25,7 @@
  * 2023-05-08: V3.3.6 最小高度限制，以防丢失边框
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
+ * 2023-08-24: V3.4.2 修改背景色后编辑框颜色修复
 ******************************************************************************/
 
 using System;
@@ -157,7 +158,8 @@ namespace Sunny.UI
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
-            edit.BackColor = Enabled ? Color.White : GetFillColor();
+            //edit.BackColor = Enabled ? Color.White : GetFillColor();
+            edit.BackColor = GetFillColor();
         }
 
         private void Edit_LostFocus(object sender, EventArgs e)
