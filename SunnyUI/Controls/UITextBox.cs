@@ -50,6 +50,7 @@
  * 2023-07-03: V3.3.9 增加Enabled为false时，可修改文字颜色
  * 2023-07-16: V3.4.0 修复了Enabled为false时，PasswordChar失效的问题
  * 2023-08-17: V3.4.1 修复了Enabled为false时，字体大小调整后，文字显示位置的问题
+ * 2023-08-24: V3.4.2 修复了Enabled为false时，自定义颜色，文字不显示的问题
 ******************************************************************************/
 
 using System;
@@ -413,15 +414,26 @@ namespace Sunny.UI
         {
             base.OnEnabledChanged(e);
             edit.BackColor = GetFillColor();
-            edit.Visible = !styleCustomMode;
+
+            edit.Visible = true;
             edit.Enabled = Enabled;
+            if (!Enabled)
+            {
+                if (NeedDrawDisabledText) edit.Visible = false;
+            }
         }
+
+        private bool NeedDrawDisabledText => !Enabled && StyleCustomMode && (ForeDisableColor != Color.FromArgb(109, 109, 103) || FillDisableColor != Color.FromArgb(244, 244, 244));
 
         protected override void SetStyleCustom(bool needRefresh = true)
         {
             base.SetStyleCustom(needRefresh);
-            edit.Visible = !styleCustomMode;
+            edit.Visible = true;
             edit.Enabled = Enabled;
+            if (!Enabled)
+            {
+                if (NeedDrawDisabledText) edit.Visible = false;
+            }
             Invalidate();
         }
 
@@ -1280,7 +1292,7 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
             }
 
-            if (styleCustomMode && Text.IsValid() && !Enabled)
+            if (styleCustomMode && Text.IsValid() && NeedDrawDisabledText)
             {
                 string text = Text;
                 if (PasswordChar > 0)
@@ -1295,17 +1307,7 @@ namespace Sunny.UI
                 if (TextAlignment == ContentAlignment.TopRight || TextAlignment == ContentAlignment.MiddleRight || TextAlignment == ContentAlignment.BottomRight)
                     textAlign = ContentAlignment.MiddleRight;
 
-                Size sf = TextRenderer.MeasureText(text, edit.Font);
-                using (Brush br = new SolidBrush(ForeDisableColor))
-                {
-                    if (textAlign == ContentAlignment.MiddleLeft)
-                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + 1 - Math.Min((int)(Font.Size / 3), 4), ((Height - sf.Height) / 2.0).RoundEx() - 1));
-                    if (textAlign == ContentAlignment.MiddleCenter)
-                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + (int)((edit.Width - sf.Width) / 2) + (Font.Size < 10 ? 1 : 2), ((Height - sf.Height) / 2.0).RoundEx() - 1));
-                    if (textAlign == ContentAlignment.MiddleRight)
-                        e.Graphics.DrawString(text, Font, br, new Point(edit.Left + edit.Width - sf.Width - 3 + Math.Min((int)(sf.Height / 2), 10), ((Height - sf.Height) / 2.0).RoundEx() - 1));
-                }
-
+                e.Graphics.DrawString(text, edit.Font, ForeDisableColor, edit.Bounds, textAlign);
             }
         }
 
