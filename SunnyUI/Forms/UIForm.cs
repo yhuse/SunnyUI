@@ -1465,7 +1465,7 @@ namespace Sunny.UI
         {
             get
             {
-                return (_showRadius && !_showShadow);
+                return (_showRadius && !_showShadow && !UIStyles.GlobalRectangle);
             }
             set
             {
