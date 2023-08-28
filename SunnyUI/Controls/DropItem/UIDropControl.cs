@@ -26,11 +26,13 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
  * 2023-08-24: V3.4.2 修改背景色后编辑框颜色修复
+ * 2023-08-28: V3.4.2 下拉框按钮图标增加编辑器
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -269,6 +271,7 @@ namespace Sunny.UI
 
         [DefaultValue(61703)]
         [Description("正常显示时字体图标"), Category("SunnyUI")]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         public int SymbolNormal
         {
             get => symbolNormal;
@@ -281,6 +284,7 @@ namespace Sunny.UI
 
         [DefaultValue(61702)]
         [Description("下拉框显示时字体图标"), Category("SunnyUI")]
+        [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         public int SymbolDropDown { get; set; } = 61702;
 
         protected virtual void CreateInstance()
