@@ -21,6 +21,7 @@
  * 2021-08-07: V3.0.5 默认不显示灯光亮线
  * 2022-05-15: V3.1.8 增加文字显示
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-08-28: V3.4.2 恢复全局矩形设计时圆形灯光效果
 ******************************************************************************/
 
 using System;
@@ -186,7 +187,8 @@ namespace Sunny.UI
                 if (ShowCenterColor)
                 {
                     Color[] surroundColor = new Color[] { color };
-                    PathGradientBrush gradientBrush = new PathGradientBrush(path);
+                    using GraphicsPath path1 = ClientRectangle.CreateTrueRoundedRectanglePath(Height);
+                    PathGradientBrush gradientBrush = new PathGradientBrush(path1);
                     gradientBrush.CenterPoint = new PointF(ShowSize / 2.0f, ShowSize / 2.0f);
                     gradientBrush.CenterColor = cColor;
                     gradientBrush.SurroundColors = surroundColor;
