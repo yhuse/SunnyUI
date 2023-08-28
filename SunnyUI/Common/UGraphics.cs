@@ -1135,7 +1135,7 @@ namespace Sunny.UI
         public static void DrawRoundRectangle(this Graphics g, Pen pen, Rectangle rect, int cornerRadius, bool smooth = true)
         {
             g.Smooth(smooth);
-            if (cornerRadius > 0)
+            if (!UIStyles.GlobalRectangle && cornerRadius > 0)
             {
                 using GraphicsPath path = rect.CreateRoundedRectanglePath(cornerRadius);
                 g.DrawPath(pen, path);
@@ -1159,7 +1159,7 @@ namespace Sunny.UI
         public static void FillRoundRectangle(this Graphics g, Brush brush, Rectangle rect, int cornerRadius, bool smooth = true)
         {
             g.Smooth(smooth);
-            if (cornerRadius > 0)
+            if (!UIStyles.GlobalRectangle && cornerRadius > 0)
             {
                 using GraphicsPath path = rect.CreateRoundedRectanglePath(cornerRadius);
                 g.FillPath(brush, path);
@@ -1215,7 +1215,7 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true, float penWidth = 1)
         {
-            if (cornerRadius > 0)
+            if (!UIStyles.GlobalRectangle && cornerRadius > 0)
             {
                 using GraphicsPath path = rect.CreateRoundedRectanglePath(cornerRadius);
                 g.DrawPath(color, path, smooth, penWidth);
@@ -1236,7 +1236,7 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRoundRectangle(this Graphics g, Color color, Rectangle rect, int cornerRadius, bool smooth = true)
         {
-            if (cornerRadius > 0)
+            if (!UIStyles.GlobalRectangle && cornerRadius > 0)
             {
                 using GraphicsPath path = rect.CreateRoundedRectanglePath(cornerRadius);
                 g.FillPath(color, path, smooth);

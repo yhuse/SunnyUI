@@ -312,7 +312,7 @@ namespace Sunny.UI
         {
             GraphicsPath path;
 
-            if (radiusSides == UICornerRadiusSides.None || radius == 0)
+            if (UIStyles.GlobalRectangle || radiusSides == UICornerRadiusSides.None || radius == 0)
             {
                 path = new GraphicsPath();
                 path.AddLine(new Point(rect.X, rect.Y), new Point(rect.X, rect.Y + rect.Height));
@@ -341,7 +341,7 @@ namespace Sunny.UI
         {
             GraphicsPath path = new GraphicsPath();
 
-            if ((!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
+            if (UIStyles.GlobalRectangle || (!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
             {
                 path.AddLine(new Point(rect.X, rect.Y), new Point(rect.X, rect.Y + rect.Height));
                 path.AddLine(new Point(rect.X, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
@@ -473,7 +473,7 @@ namespace Sunny.UI
         {
             GraphicsPath path = new GraphicsPath();
 
-            if ((!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
+            if (UIStyles.GlobalRectangle || (!cornerLeftTop && !cornerRightTop && !cornerRightBottom && !cornerLeftBottom) || radius <= 0)
             {
                 path = rect.GraphicsPath();
             }
@@ -504,6 +504,18 @@ namespace Sunny.UI
                 path.CloseFigure();
             }
 
+            return path;
+        }
+
+        public static GraphicsPath CreateTrueRoundedRectanglePath(this Rectangle rect, int radius, int lineSize = 1)
+        {
+            GraphicsPath path = new GraphicsPath();
+            radius *= lineSize;
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+            path.CloseFigure();
             return path;
         }
 

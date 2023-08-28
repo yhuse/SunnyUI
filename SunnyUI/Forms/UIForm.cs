@@ -1638,7 +1638,7 @@ namespace Sunny.UI
                 return;
             }
 
-            if (WindowState == FormWindowState.Maximized)
+            if (WindowState == FormWindowState.Maximized || UIStyles.GlobalRectangle)
             {
                 FormEx.SetFormRoundRectRegion(this, 0);
             }

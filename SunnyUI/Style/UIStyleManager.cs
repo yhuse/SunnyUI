@@ -105,6 +105,14 @@ namespace Sunny.UI
             set => UIStyles.GlobalFont = value;
         }
 
+        [DefaultValue(false)]
+        [Description("全局矩形设置，开启后所有控件都关闭圆角效果"), Category("SunnyUI")]
+        public bool GlobalRectangle
+        {
+            get => UIStyles.GlobalRectangle;
+            set => UIStyles.GlobalRectangle = value;
+        }
+
         /// <summary>
         /// 版本
         /// </summary>

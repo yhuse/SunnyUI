@@ -96,27 +96,14 @@ namespace Sunny.UI
             {
                 tipsBtn = new UIButton();
                 tipsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-                tipsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.Location = new System.Drawing.Point(285, 519);
-                tipsBtn.MinimumSize = new System.Drawing.Size(1, 1);
-                tipsBtn.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-                tipsBtn.Size = new System.Drawing.Size(9, 9);
+                tipsBtn.Size = new System.Drawing.Size(6, 6);
                 tipsBtn.Style = Sunny.UI.UIStyle.Red;
                 tipsBtn.StyleCustomMode = true;
-                tipsBtn.TabIndex = 118;
-                tipsBtn.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
                 tipsBtn.Text = "";
                 tipsBtn.Click += TipsBtn_Click;
 
                 Controls.Add(tipsBtn);
-                tipsBtn.Location = new System.Drawing.Point(Width - 11, 2);
+                tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
                 tipsBtn.BringToFront();
             }
 
@@ -376,7 +363,7 @@ namespace Sunny.UI
 
             if (tipsBtn != null)
             {
-                tipsBtn.Location = new System.Drawing.Point(Width - 11, 2);
+                tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
             }
         }
 

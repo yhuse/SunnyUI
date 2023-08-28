@@ -41,6 +41,8 @@ namespace Sunny.UI
     {
         public static bool GlobalFont { get; set; } = false;
 
+        public static bool GlobalRectangle { get; set; } = false;
+
         public static bool DPIScale { get; set; }
 
         public static bool ZoomScale { get; set; }
@@ -115,7 +117,7 @@ namespace Sunny.UI
         internal static Font Font()
         {
             byte gdiCharSet = GetGdiCharSet("微软雅黑");
-            return new Font("微软雅黑", DefaultFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
+            return new Font(familyName: "微软雅黑", DefaultFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         /// <summary>

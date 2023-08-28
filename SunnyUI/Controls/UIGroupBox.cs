@@ -38,6 +38,7 @@ namespace Sunny.UI
         public UIGroupBox()
         {
             InitializeComponent();
+            TextAlignment = ContentAlignment.MiddleLeft;
             TextAlignmentChange += UIGroupBox_TextAlignmentChange;
             SetStyleFlags(true, false);
         }
@@ -109,7 +110,7 @@ namespace Sunny.UI
 
             if (RectSides.GetValue(ToolStripStatusLabelBorderSides.Top))
             {
-                if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop))
+                if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop) && !UIStyles.GlobalRectangle)
                 {
                     g.DrawLine(RectColor, Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
@@ -118,7 +119,7 @@ namespace Sunny.UI
                     g.DrawLine(RectColor, 0, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
 
-                if (RadiusSides.GetValue(UICornerRadiusSides.RightTop))
+                if (RadiusSides.GetValue(UICornerRadiusSides.RightTop) && !UIStyles.GlobalRectangle)
                 {
                     g.DrawLine(RectColor, textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
                 }

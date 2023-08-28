@@ -265,7 +265,8 @@ namespace Sunny.UI
             if (SwitchShape == UISwitchShape.Round)
             {
                 Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-                g.FillRoundRectangle(color, rect, rect.Height);
+                using GraphicsPath path1 = rect.CreateTrueRoundedRectanglePath(rect.Height);
+                g.FillPath(color, path1, true);
 
                 int width = Width - 3 - 1 - 3 - (rect.Height - 6);
                 if (!Active)
