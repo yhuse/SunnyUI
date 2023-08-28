@@ -52,7 +52,7 @@
             // 
             this.label.AutoSize = true;
             this.label.BackColor = System.Drawing.Color.Transparent;
-            this.label.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label.Location = new System.Drawing.Point(29, 57);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(218, 21);
@@ -64,7 +64,7 @@
             // 
             this.edit.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edit.FillColor = System.Drawing.Color.White;
-            this.edit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.edit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.edit.Location = new System.Drawing.Point(29, 92);
             this.edit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edit.Maximum = 2147483647D;

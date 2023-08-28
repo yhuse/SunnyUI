@@ -40,7 +40,7 @@
             this.pnlBtm.Controls.Add(this.btnCancel);
             this.pnlBtm.Controls.Add(this.btnOK);
             this.pnlBtm.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBtm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.pnlBtm.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pnlBtm.Location = new System.Drawing.Point(1, 392);
             this.pnlBtm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlBtm.MinimumSize = new System.Drawing.Size(1, 1);
@@ -56,7 +56,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCancel.Location = new System.Drawing.Point(470, 12);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
@@ -74,7 +74,7 @@
             // 
             this.btnOK.BackColor = System.Drawing.Color.Transparent;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnOK.Location = new System.Drawing.Point(355, 12);
             this.btnOK.Margin = new System.Windows.Forms.Padding(0);
             this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);

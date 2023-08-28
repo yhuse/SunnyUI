@@ -42,7 +42,7 @@
             this.Aside.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Aside.Dock = System.Windows.Forms.DockStyle.Left;
             this.Aside.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.Aside.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Aside.Font = new System.Drawing.Font("宋体", 12F);
             this.Aside.ItemHeight = 50;
             this.Aside.Location = new System.Drawing.Point(0, 145);
             this.Aside.Name = "Aside";

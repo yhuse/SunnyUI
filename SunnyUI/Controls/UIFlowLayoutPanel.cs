@@ -513,7 +513,7 @@ namespace Sunny.UI
             // VBar
             // 
             this.VBar.BoundsHeight = 10;
-            this.VBar.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.VBar.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
             this.VBar.LargeChange = 10;
             this.VBar.Location = new Point(410, 5);
             this.VBar.Maximum = 100;
@@ -529,7 +529,7 @@ namespace Sunny.UI
             // HBar
             // 
             this.HBar.BoundsWidth = 10;
-            this.HBar.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.HBar.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
             this.HBar.LargeChange = 10;
             this.HBar.Location = new Point(5, 364);
             this.HBar.Maximum = 100;

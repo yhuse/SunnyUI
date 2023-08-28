@@ -36,7 +36,7 @@
             // 
             this.labelDescription.AutoSize = true;
             this.labelDescription.BackColor = System.Drawing.Color.Transparent;
-            this.labelDescription.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.labelDescription.Font = new System.Drawing.Font("宋体", 12F);
             this.labelDescription.Location = new System.Drawing.Point(32, 55);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(178, 21);
@@ -46,7 +46,7 @@
             // 
             // Bar
             // 
-            this.Bar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Bar.Font = new System.Drawing.Font("宋体", 12F);
             this.Bar.Location = new System.Drawing.Point(32, 91);
             this.Bar.MinimumSize = new System.Drawing.Size(70, 23);
             this.Bar.Name = "Bar";

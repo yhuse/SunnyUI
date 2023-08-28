@@ -258,7 +258,7 @@ namespace Sunny.UI
             //
             this.edtA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtA.FillColor = System.Drawing.Color.White;
-            this.edtA.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.edtA.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.edtA.Location = new System.Drawing.Point(29, 197);
             this.edtA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtA.Maximum = 255D;
@@ -275,7 +275,7 @@ namespace Sunny.UI
             //
             this.edtR.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtR.FillColor = System.Drawing.Color.White;
-            this.edtR.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.edtR.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.edtR.Location = new System.Drawing.Point(93, 197);
             this.edtR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtR.Maximum = 255D;
@@ -292,7 +292,7 @@ namespace Sunny.UI
             //
             this.edtG.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtG.FillColor = System.Drawing.Color.White;
-            this.edtG.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.edtG.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.edtG.Location = new System.Drawing.Point(158, 197);
             this.edtG.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtG.Maximum = 255D;
@@ -309,7 +309,7 @@ namespace Sunny.UI
             //
             this.edtB.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtB.FillColor = System.Drawing.Color.White;
-            this.edtB.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.edtB.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.edtB.Location = new System.Drawing.Point(222, 197);
             this.edtB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtB.Maximum = 255D;
@@ -326,7 +326,7 @@ namespace Sunny.UI
             //
             this.lblA.AutoSize = true;
             this.lblA.BackColor = System.Drawing.Color.Transparent;
-            this.lblA.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblA.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblA.Location = new System.Drawing.Point(9, 200);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(19, 20);
@@ -339,7 +339,7 @@ namespace Sunny.UI
             //
             this.lblR.AutoSize = true;
             this.lblR.BackColor = System.Drawing.Color.Transparent;
-            this.lblR.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblR.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblR.Location = new System.Drawing.Point(74, 200);
             this.lblR.Name = "lblR";
             this.lblR.Size = new System.Drawing.Size(18, 20);
@@ -352,7 +352,7 @@ namespace Sunny.UI
             //
             this.lblG.AutoSize = true;
             this.lblG.BackColor = System.Drawing.Color.Transparent;
-            this.lblG.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblG.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblG.Location = new System.Drawing.Point(138, 200);
             this.lblG.Name = "lblG";
             this.lblG.Size = new System.Drawing.Size(19, 20);
@@ -365,7 +365,7 @@ namespace Sunny.UI
             //
             this.lblB.AutoSize = true;
             this.lblB.BackColor = System.Drawing.Color.Transparent;
-            this.lblB.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblB.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblB.Location = new System.Drawing.Point(203, 200);
             this.lblB.Name = "lblB";
             this.lblB.Size = new System.Drawing.Size(18, 20);
@@ -396,7 +396,7 @@ namespace Sunny.UI
             this.m_colorBar.Color1 = System.Drawing.Color.Black;
             this.m_colorBar.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.m_colorBar.Color3 = System.Drawing.Color.White;
-            this.m_colorBar.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.m_colorBar.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.m_colorBar.FrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m_colorBar.Location = new System.Drawing.Point(422, 8);
             this.m_colorBar.Name = "m_colorBar";
@@ -423,7 +423,7 @@ namespace Sunny.UI
             this.m_opacitySlider.Color1 = System.Drawing.Color.White;
             this.m_opacitySlider.Color2 = System.Drawing.Color.Black;
             this.m_opacitySlider.Color3 = System.Drawing.Color.Black;
-            this.m_opacitySlider.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_opacitySlider.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_opacitySlider.ForeColor = System.Drawing.Color.Black;
             this.m_opacitySlider.FrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.m_opacitySlider.Location = new System.Drawing.Point(269, 163);
@@ -447,7 +447,7 @@ namespace Sunny.UI
             // btnOK
             //
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnOK.Font = new System.Drawing.Font("宋体", 12F);
             this.btnOK.Location = new System.Drawing.Point(269, 197);
             this.btnOK.Name = "btnOK";
             this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -460,7 +460,7 @@ namespace Sunny.UI
             // btnCancel
             //
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnCancel.Font = new System.Drawing.Font("宋体", 12F);
             this.btnCancel.Location = new System.Drawing.Point(372, 197);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);

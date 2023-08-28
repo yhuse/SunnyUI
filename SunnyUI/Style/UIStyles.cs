@@ -21,6 +21,7 @@
  * 2021-07-18: V3.0.5 增加多彩主题，以颜色深色，文字白色为主
  * 2021-09-24: V3.0.7 修改默认字体的GdiCharSet
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
+ * 2023-08-28: V3.4.2 修改全局字体为系统默认：System.Drawing.SystemFonts.DefaultFont
 ******************************************************************************/
 
 using System;
@@ -49,9 +50,9 @@ namespace Sunny.UI
 
         [Editor("System.Drawing.Design.FontNameEditor", "System.Drawing.Design.UITypeEditor")]
         [TypeConverter(typeof(FontNameConverter))]
-        internal static string FontName { get; set; } = "微软雅黑";
+        public static string GlobalFontName { get; set; } = "宋体";
 
-        internal static int FontScale { get; set; } = 100;
+        public static int GlobalFontScale { get; set; } = 100;
 
         private static readonly ConcurrentDictionary<string, byte> FontCharSets = new ConcurrentDictionary<string, byte>();
 
@@ -110,14 +111,15 @@ namespace Sunny.UI
         }
 
         internal static float DefaultFontSize = 12;
-        public static float DefaultSubFontSize = 9;
+        internal static float DefaultSubFontSize = 9;
+
         /// <summary>
         /// 默认字体
         /// </summary>
         internal static Font Font()
         {
-            byte gdiCharSet = GetGdiCharSet("微软雅黑");
-            return new Font(familyName: "微软雅黑", DefaultFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
+            byte gdiCharSet = GetGdiCharSet(System.Drawing.SystemFonts.DefaultFont.Name);
+            return new Font(familyName: System.Drawing.SystemFonts.DefaultFont.Name, DefaultFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         /// <summary>
@@ -125,8 +127,8 @@ namespace Sunny.UI
         /// </summary>
         internal static Font SubFont()
         {
-            byte gdiCharSet = GetGdiCharSet("微软雅黑");
-            return new Font("微软雅黑", DefaultSubFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
+            byte gdiCharSet = GetGdiCharSet(System.Drawing.SystemFonts.DefaultFont.Name);
+            return new Font(System.Drawing.SystemFonts.DefaultFont.Name, DefaultSubFontSize, FontStyle.Regular, GraphicsUnit.Point, gdiCharSet);
         }
 
         public static List<UIStyle> PopularStyles()

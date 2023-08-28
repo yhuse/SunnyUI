@@ -37,7 +37,7 @@
             // 
             this.btnDec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDec.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnDec.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnDec.Font = new System.Drawing.Font("宋体", 12F);
             this.btnDec.ImageInterval = 1;
             this.btnDec.Location = new System.Drawing.Point(0, 0);
             this.btnDec.Margin = new System.Windows.Forms.Padding(0);
@@ -55,7 +55,7 @@
             // 
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
             this.btnAdd.ImageInterval = 1;
             this.btnAdd.Location = new System.Drawing.Point(87, 0);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
@@ -72,7 +72,7 @@
             // pnlValue
             // 
             this.pnlValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlValue.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.pnlValue.Font = new System.Drawing.Font("宋体", 12F);
             this.pnlValue.Location = new System.Drawing.Point(29, 0);
             this.pnlValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlValue.MinimumSize = new System.Drawing.Size(1, 1);

@@ -358,7 +358,7 @@ namespace Sunny.UI
             // b0
             // 
             this.b0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b0.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b0.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b0.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.b0.Location = new System.Drawing.Point(3, 4);
             this.b0.MinimumSize = new System.Drawing.Size(1, 1);
@@ -375,7 +375,7 @@ namespace Sunny.UI
             // b1
             // 
             this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b1.Location = new System.Drawing.Point(81, 4);
             this.b1.MinimumSize = new System.Drawing.Size(1, 1);
             this.b1.Name = "b1";
@@ -389,7 +389,7 @@ namespace Sunny.UI
             // b3
             // 
             this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b3.Location = new System.Drawing.Point(145, 4);
             this.b3.MinimumSize = new System.Drawing.Size(1, 1);
             this.b3.Name = "b3";
@@ -403,7 +403,7 @@ namespace Sunny.UI
             // b2
             // 
             this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b2.Location = new System.Drawing.Point(113, 4);
             this.b2.MinimumSize = new System.Drawing.Size(1, 1);
             this.b2.Name = "b2";
@@ -417,7 +417,7 @@ namespace Sunny.UI
             // b7
             // 
             this.b7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b7.Location = new System.Drawing.Point(273, 4);
             this.b7.MinimumSize = new System.Drawing.Size(1, 1);
             this.b7.Name = "b7";
@@ -431,7 +431,7 @@ namespace Sunny.UI
             // b6
             // 
             this.b6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b6.Location = new System.Drawing.Point(241, 4);
             this.b6.MinimumSize = new System.Drawing.Size(1, 1);
             this.b6.Name = "b6";
@@ -445,7 +445,7 @@ namespace Sunny.UI
             // b5
             // 
             this.b5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b5.Location = new System.Drawing.Point(209, 4);
             this.b5.MinimumSize = new System.Drawing.Size(1, 1);
             this.b5.Name = "b5";
@@ -459,7 +459,7 @@ namespace Sunny.UI
             // b4
             // 
             this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b4.Location = new System.Drawing.Point(177, 4);
             this.b4.MinimumSize = new System.Drawing.Size(1, 1);
             this.b4.Name = "b4";
@@ -473,7 +473,7 @@ namespace Sunny.UI
             // b15
             // 
             this.b15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b15.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b15.Location = new System.Drawing.Point(529, 4);
             this.b15.MinimumSize = new System.Drawing.Size(1, 1);
             this.b15.Name = "b15";
@@ -487,7 +487,7 @@ namespace Sunny.UI
             // b14
             // 
             this.b14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b14.Location = new System.Drawing.Point(497, 4);
             this.b14.MinimumSize = new System.Drawing.Size(1, 1);
             this.b14.Name = "b14";
@@ -501,7 +501,7 @@ namespace Sunny.UI
             // b13
             // 
             this.b13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b13.Location = new System.Drawing.Point(465, 4);
             this.b13.MinimumSize = new System.Drawing.Size(1, 1);
             this.b13.Name = "b13";
@@ -515,7 +515,7 @@ namespace Sunny.UI
             // b12
             // 
             this.b12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b12.Location = new System.Drawing.Point(433, 4);
             this.b12.MinimumSize = new System.Drawing.Size(1, 1);
             this.b12.Name = "b12";
@@ -529,7 +529,7 @@ namespace Sunny.UI
             // b11
             // 
             this.b11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b11.Location = new System.Drawing.Point(401, 4);
             this.b11.MinimumSize = new System.Drawing.Size(1, 1);
             this.b11.Name = "b11";
@@ -543,7 +543,7 @@ namespace Sunny.UI
             // b10
             // 
             this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b10.Location = new System.Drawing.Point(369, 4);
             this.b10.MinimumSize = new System.Drawing.Size(1, 1);
             this.b10.Name = "b10";
@@ -557,7 +557,7 @@ namespace Sunny.UI
             // b9
             // 
             this.b9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b9.Location = new System.Drawing.Point(337, 4);
             this.b9.MinimumSize = new System.Drawing.Size(1, 1);
             this.b9.Name = "b9";
@@ -571,7 +571,7 @@ namespace Sunny.UI
             // b8
             // 
             this.b8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b8.Location = new System.Drawing.Point(305, 4);
             this.b8.MinimumSize = new System.Drawing.Size(1, 1);
             this.b8.Name = "b8";
@@ -585,7 +585,7 @@ namespace Sunny.UI
             // b16
             // 
             this.b16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b16.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.b16.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.b16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.b16.Location = new System.Drawing.Point(561, 4);
             this.b16.MinimumSize = new System.Drawing.Size(1, 1);

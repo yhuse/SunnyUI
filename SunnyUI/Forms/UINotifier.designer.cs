@@ -48,7 +48,7 @@
             // 
             // noteContent
             // 
-            this.noteContent.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.noteContent.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.noteContent.Image = global::Sunny.UI.Properties.Resources.notifier;
             this.noteContent.Location = new System.Drawing.Point(43, 30);
             this.noteContent.Name = "noteContent";
@@ -116,7 +116,7 @@
             // noteTitle
             // 
             this.noteTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(140)))), ((int)(((byte)(230)))));
-            this.noteTitle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.noteTitle.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.noteTitle.ForeColor = System.Drawing.Color.White;
             this.noteTitle.Location = new System.Drawing.Point(2, 2);
             this.noteTitle.Name = "noteTitle";
@@ -140,7 +140,7 @@
             // icon
             // 
             this.icon.BackColor = System.Drawing.Color.White;
-            this.icon.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icon.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.icon.Location = new System.Drawing.Point(10, 51);
             this.icon.MinimumSize = new System.Drawing.Size(1, 1);
             this.icon.Name = "icon";

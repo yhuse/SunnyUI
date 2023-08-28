@@ -67,7 +67,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton1
             // 
-            uiSymbolButton1.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton1.Location = new Point(244, 13);
             uiSymbolButton1.MinimumSize = new Size(1, 1);
             uiSymbolButton1.Name = "uiSymbolButton1";
@@ -80,7 +80,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton2
             // 
-            uiSymbolButton2.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton2.Location = new Point(244, 93);
             uiSymbolButton2.MinimumSize = new Size(1, 1);
             uiSymbolButton2.Name = "uiSymbolButton2";
@@ -92,7 +92,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton3
             // 
-            uiSymbolButton3.Font = new Font("微软雅黑", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton3.Location = new Point(244, 173);
             uiSymbolButton3.MinimumSize = new Size(1, 1);
             uiSymbolButton3.Name = "uiSymbolButton3";
@@ -104,7 +104,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton4
             // 
-            uiSymbolButton4.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton4.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton4.Location = new Point(167, 253);
             uiSymbolButton4.MinimumSize = new Size(1, 1);
             uiSymbolButton4.Name = "uiSymbolButton4";
@@ -117,7 +117,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton6
             // 
-            uiSymbolButton6.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton6.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton6.Location = new Point(167, 173);
             uiSymbolButton6.MinimumSize = new Size(1, 1);
             uiSymbolButton6.Name = "uiSymbolButton6";
@@ -130,7 +130,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton7
             // 
-            uiSymbolButton7.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton7.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton7.Location = new Point(167, 93);
             uiSymbolButton7.MinimumSize = new Size(1, 1);
             uiSymbolButton7.Name = "uiSymbolButton7";
@@ -143,7 +143,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton8
             // 
-            uiSymbolButton8.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton8.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton8.Location = new Point(167, 13);
             uiSymbolButton8.MinimumSize = new Size(1, 1);
             uiSymbolButton8.Name = "uiSymbolButton8";
@@ -157,7 +157,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton9
             // 
-            uiSymbolButton9.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton9.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton9.Location = new Point(90, 253);
             uiSymbolButton9.MinimumSize = new Size(1, 1);
             uiSymbolButton9.Name = "uiSymbolButton9";
@@ -170,7 +170,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton10
             // 
-            uiSymbolButton10.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton10.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton10.Location = new Point(90, 173);
             uiSymbolButton10.MinimumSize = new Size(1, 1);
             uiSymbolButton10.Name = "uiSymbolButton10";
@@ -183,7 +183,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton11
             // 
-            uiSymbolButton11.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton11.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton11.Location = new Point(90, 93);
             uiSymbolButton11.MinimumSize = new Size(1, 1);
             uiSymbolButton11.Name = "uiSymbolButton11";
@@ -196,7 +196,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton12
             // 
-            uiSymbolButton12.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton12.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton12.Location = new Point(90, 13);
             uiSymbolButton12.MinimumSize = new Size(1, 1);
             uiSymbolButton12.Name = "uiSymbolButton12";
@@ -210,7 +210,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton13
             // 
-            uiSymbolButton13.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton13.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton13.Location = new Point(13, 253);
             uiSymbolButton13.MinimumSize = new Size(1, 1);
             uiSymbolButton13.Name = "uiSymbolButton13";
@@ -223,7 +223,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton14
             // 
-            uiSymbolButton14.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton14.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton14.Location = new Point(13, 173);
             uiSymbolButton14.MinimumSize = new Size(1, 1);
             uiSymbolButton14.Name = "uiSymbolButton14";
@@ -236,7 +236,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton15
             // 
-            uiSymbolButton15.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton15.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton15.Location = new Point(13, 93);
             uiSymbolButton15.MinimumSize = new Size(1, 1);
             uiSymbolButton15.Name = "uiSymbolButton15";
@@ -249,7 +249,7 @@ namespace Sunny.UI
             // 
             // uiSymbolButton16
             // 
-            uiSymbolButton16.Font = new Font("微软雅黑", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            uiSymbolButton16.Font = new Font("宋体", 18F, FontStyle.Regular, GraphicsUnit.Point);
             uiSymbolButton16.Location = new Point(13, 13);
             uiSymbolButton16.MinimumSize = new Size(1, 1);
             uiSymbolButton16.Name = "uiSymbolButton16";

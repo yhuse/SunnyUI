@@ -36,7 +36,7 @@
             this.listBox.BackColor = System.Drawing.Color.Transparent;
             this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox.FillColor = System.Drawing.Color.White;
-            this.listBox.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.listBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listBox.FormatString = "";
             this.listBox.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.listBox.Location = new System.Drawing.Point(0, 0);

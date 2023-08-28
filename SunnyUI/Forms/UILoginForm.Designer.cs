@@ -43,7 +43,7 @@
             // uiAvatar1
             // 
             uiAvatar1.BackColor = System.Drawing.Color.Transparent;
-            uiAvatar1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiAvatar1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             uiAvatar1.Location = new System.Drawing.Point(65, 16);
             uiAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
             uiAvatar1.Name = "uiAvatar1";
@@ -56,7 +56,7 @@
             // 
             uiLine1.BackColor = System.Drawing.Color.White;
             uiLine1.FillColor = System.Drawing.Color.White;
-            uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiLine1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             uiLine1.LineColor2 = System.Drawing.Color.FromArgb(80, 160, 255);
             uiLine1.Location = new System.Drawing.Point(4, 85);
             uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
@@ -73,7 +73,7 @@
             // 
             edtUser.Cursor = System.Windows.Forms.Cursors.IBeam;
             edtUser.EnterAsTab = true;
-            edtUser.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            edtUser.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             edtUser.Location = new System.Drawing.Point(4, 121);
             edtUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             edtUser.MinimumSize = new System.Drawing.Size(1, 1);
@@ -91,7 +91,7 @@
             // edtPassword
             // 
             edtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            edtPassword.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            edtPassword.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             edtPassword.Location = new System.Drawing.Point(4, 162);
             edtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             edtPassword.MinimumSize = new System.Drawing.Size(1, 1);
@@ -111,7 +111,7 @@
             // btnLogin
             // 
             btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnLogin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnLogin.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnLogin.Location = new System.Drawing.Point(4, 206);
             btnLogin.MinimumSize = new System.Drawing.Size(1, 1);
             btnLogin.Name = "btnLogin";
@@ -131,7 +131,7 @@
             btnCancel.FillHoverColor = System.Drawing.Color.FromArgb(235, 115, 115);
             btnCancel.FillPressColor = System.Drawing.Color.FromArgb(184, 64, 64);
             btnCancel.FillSelectedColor = System.Drawing.Color.FromArgb(184, 64, 64);
-            btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnCancel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.Location = new System.Drawing.Point(100, 206);
             btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             btnCancel.Name = "btnCancel";
@@ -152,7 +152,7 @@
             // lblTitle
             // 
             lblTitle.BackColor = System.Drawing.Color.Transparent;
-            lblTitle.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblTitle.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblTitle.ForeColor = System.Drawing.Color.Navy;
             lblTitle.Location = new System.Drawing.Point(44, 35);
             lblTitle.Name = "lblTitle";
@@ -167,7 +167,7 @@
             // 
             lblSubText.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             lblSubText.BackColor = System.Drawing.Color.Transparent;
-            lblSubText.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblSubText.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblSubText.Location = new System.Drawing.Point(426, 421);
             lblSubText.Name = "lblSubText";
             lblSubText.Size = new System.Drawing.Size(310, 26);
@@ -184,7 +184,7 @@
             uiPanel1.Controls.Add(btnCancel);
             uiPanel1.Controls.Add(btnLogin);
             uiPanel1.FillColor = System.Drawing.Color.White;
-            uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiPanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             uiPanel1.Location = new System.Drawing.Point(433, 126);
             uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);

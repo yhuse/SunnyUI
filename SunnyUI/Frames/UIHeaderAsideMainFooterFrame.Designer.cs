@@ -38,7 +38,7 @@
             // Footer
             // 
             this.Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Footer.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Footer.Font = new System.Drawing.Font("宋体", 12F);
             this.Footer.Location = new System.Drawing.Point(250, 394);
             this.Footer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Footer.Name = "Footer";

@@ -34,7 +34,7 @@
             // Header
             // 
             this.Header.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Header.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Header.Font = new System.Drawing.Font("宋体", 12F);
             this.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.Header.Location = new System.Drawing.Point(1, 35);
             this.Header.MenuHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));

@@ -58,10 +58,10 @@ namespace Sunny.UI
         }
 
         [DefaultValue(typeof(Font), "微软雅黑, 9pt"), Description("字体"), Category("SunnyUI")]
-        public Font Font { get; set; } = new Font("微软雅黑", 9);
+        public Font Font { get; set; } = new Font("宋体", 9);
 
         [DefaultValue(typeof(Font), "微软雅黑, 12pt"), Description("标题字体"), Category("SunnyUI")]
-        public Font TitleFont { get; set; } = new Font("微软雅黑", 12);
+        public Font TitleFont { get; set; } = new Font("宋体", 12);
 
         [DefaultValue(typeof(Color), "239, 239, 239"), Description("边框颜色"), Category("SunnyUI")]
         public Color RectColor { get; set; } = UIChartStyles.Dark.ForeColor;

@@ -40,7 +40,7 @@
             this.MainContainer.Controls.Add(this.tabPage2);
             this.MainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainContainer.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MainContainer.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainContainer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MainContainer.ItemSize = new System.Drawing.Size(150, 40);
             this.MainContainer.Location = new System.Drawing.Point(0, 35);
             this.MainContainer.MainPage = "";

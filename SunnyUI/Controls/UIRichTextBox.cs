@@ -502,7 +502,7 @@ namespace Sunny.UI
             //
             // bar
             //
-            this.bar.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.bar.Font = new System.Drawing.Font("宋体", 12F);
             this.bar.Location = new System.Drawing.Point(247, 4);
             this.bar.Name = "bar";
             this.bar.Size = new System.Drawing.Size(19, 173);

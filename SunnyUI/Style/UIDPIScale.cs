@@ -39,7 +39,7 @@ namespace Sunny.UI
             using Bitmap bmp = new Bitmap(1, 1);
             using Graphics g = bmp.Graphics();
             dpiScale = g.DpiX / 96.0f;
-            if (UIStyles.GlobalFont) dpiScale = dpiScale / (UIStyles.FontScale / 100.0f);
+            if (UIStyles.GlobalFont) dpiScale = dpiScale / (UIStyles.GlobalFontScale / 100.0f);
             return dpiScale;
         }
 
@@ -67,25 +67,17 @@ namespace Sunny.UI
             {
                 if (UIStyles.GlobalFont)
                 {
-                    if (font.GdiCharSet == 134)
-                        return new Font(UIStyles.FontName, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
-                    else
-                        return new Font(UIStyles.FontName, fontSize / DPIScale());
+                    byte gdiCharSet = UIStyles.GetGdiCharSet(UIStyles.GlobalFontName);
+                    return new Font(UIStyles.GlobalFontName, fontSize / DPIScale(), font.Style, font.Unit, gdiCharSet);
                 }
                 else
                 {
-                    if (font.GdiCharSet == 134)
-                        return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
-                    else
-                        return new Font(font.FontFamily, fontSize / DPIScale());
+                    return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
                 }
             }
             else
             {
-                if (font.GdiCharSet == 134)
-                    return new Font(font.FontFamily, fontSize, font.Style, font.Unit, font.GdiCharSet);
-                else
-                    return new Font(font.FontFamily, fontSize);
+                return new Font(font.FontFamily, fontSize, font.Style, font.Unit, font.GdiCharSet);
             }
         }
 

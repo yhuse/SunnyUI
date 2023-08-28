@@ -38,7 +38,7 @@
             // Header
             // 
             this.Header.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Header.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Header.Font = new System.Drawing.Font("宋体", 12F);
             this.Header.Location = new System.Drawing.Point(250, 35);
             this.Header.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Header.Name = "Header";
