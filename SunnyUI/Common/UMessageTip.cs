@@ -305,8 +305,6 @@ namespace Sunny.UI
             return point;
         }
 
-        static Font tmpFont;
-
         /// <summary>
         /// 创建消息窗图像，同时输出内容区，用于外部定位
         /// </summary>
@@ -317,8 +315,7 @@ namespace Sunny.UI
             var iconBounds = Rectangle.Empty;
             var textBounds = Rectangle.Empty;
             Font font = style.TextFont ?? DefaultFont;
-            if (tmpFont == null || !tmpFont.Size.EqualsFloat(font.DPIScaleFontSize()))
-                tmpFont = font.DPIScaleFont();
+            using Font tmpFont = font.DPIScaleFont(font.Size);
 
             if (style.Icon != null)
             {

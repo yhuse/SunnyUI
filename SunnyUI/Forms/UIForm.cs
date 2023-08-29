@@ -119,34 +119,23 @@ namespace Sunny.UI
         [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
         public bool ZoomScaleDisabled { get; set; }
 
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        private float DefaultFontSize = -1;
+        private float TitleFontSize = -1;
+
 
         public void SetDPIScale()
         {
             if (DesignMode) return;
-            if (!IsScaled && UIStyles.DPIScale)
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            if (TitleFontSize < 0) TitleFontSize = this.TitleFont.Size;
+
+            this.SetDPIScaleFont(DefaultFontSize);
+            TitleFont = TitleFont.DPIScaleFont(TitleFontSize);
+            foreach (var control in this.GetAllDPIScaleControls())
             {
-                this.SetDPIScaleFont();
-
-                if (UIDPIScale.NeedSetDPIFont())
-                {
-                    TitleFont = TitleFont.DPIScaleFont();
-                }
-
-                foreach (Control control in this.GetAllDPIScaleControls())
-                {
-                    if (control is UIDataGridView dgv)
-                    {
-                        dgv.SetDPIScale();
-                    }
-                    else
-                    {
-                        control.SetDPIScaleFont();
-                    }
-                }
-
-                IsScaled = true;
+                control.SetDPIScale();
             }
         }
 
@@ -203,12 +192,6 @@ namespace Sunny.UI
         }
 
         public event OnZoomScaleChanged ZoomScaleChanged;
-
-        public void ResetDPIScale()
-        {
-            IsScaled = false;
-            SetDPIScale();
-        }
 
         [DefaultValue(true)]
         [Description("是否点击标题栏可以移动窗体"), Category("SunnyUI")]

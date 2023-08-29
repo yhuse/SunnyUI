@@ -144,7 +144,7 @@ namespace Sunny.UI
                     box.Parent = this;
                     box.TagString = i.ToString();
                     box.Style = Style;
-                    box.IsScaled = IsScaled;
+                    //box.IsScaled = IsScaled;
                     box.ValueChanged += Box_ValueChanged;
                     box.Text = Items[i]?.ToString();
                     box.StyleCustomMode = StyleCustomMode;

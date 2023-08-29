@@ -267,40 +267,23 @@ namespace Sunny.UI
 
         }
 
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        private float DefaultFontSize = -1;
+        private float TitleFontSize = -1;
 
         public void SetDPIScale()
         {
             if (DesignMode) return;
-            if (!IsScaled)
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            if (TitleFontSize < 0) TitleFontSize = this.TitleFont.Size;
+
+            this.SetDPIScaleFont(DefaultFontSize);
+            TitleFont = TitleFont.DPIScaleFont(TitleFontSize);
+            foreach (var control in this.GetAllDPIScaleControls())
             {
-                this.SetDPIScaleFont();
-                if (UIDPIScale.NeedSetDPIFont())
-                {
-                    this.TitleFont = TitleFont.DPIScaleFont();
-                }
-
-                foreach (Control control in this.GetAllDPIScaleControls())
-                {
-                    if (control is UIDataGridView dgv)
-                    {
-                        dgv.SetDPIScale();
-                    }
-                    else
-                    {
-                        control.SetDPIScaleFont();
-                    }
-                }
-
-                IsScaled = true;
+                control.SetDPIScale();
             }
-        }
-
-        public void ResetDPIScale()
-        {
-            IsScaled = false;
-            SetDPIScale();
         }
 
         public void Render()

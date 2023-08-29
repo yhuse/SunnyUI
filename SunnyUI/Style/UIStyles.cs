@@ -405,8 +405,6 @@ namespace Sunny.UI
 
         public static void SetDPIScale()
         {
-            if (!DPIScale) return;
-
             foreach (var form in Forms.Values)
             {
                 if (UIDPIScale.NeedSetDPIFont())

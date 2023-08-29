@@ -31,38 +31,24 @@ namespace Sunny.UI
 
         public static float DPIScale()
         {
-            if (dpiScale > 0)
+            if (dpiScale < 0)
             {
-                return dpiScale;
+                using Bitmap bmp = new Bitmap(1, 1);
+                using Graphics g = bmp.Graphics();
+                dpiScale = g.DpiX / 96.0f;
             }
 
-            using Bitmap bmp = new Bitmap(1, 1);
-            using Graphics g = bmp.Graphics();
-            dpiScale = g.DpiX / 96.0f;
-            if (UIStyles.GlobalFont) dpiScale = dpiScale / (UIStyles.GlobalFontScale / 100.0f);
-            return dpiScale;
+            return UIStyles.GlobalFont ? dpiScale * 100.0f / UIStyles.GlobalFontScale : dpiScale;
         }
 
         public static bool NeedSetDPIFont()
         {
-            return DPIScale() > 1 || UIStyles.GlobalFont;
-        }
-
-        internal static float DPIScaleFontSize(this Font font)
-        {
-            if (UIStyles.DPIScale)
-                return font.Size / DPIScale();
-            else
-                return font.Size;
-        }
-
-        internal static Font DPIScaleFont(this Font font)
-        {
-            return DPIScaleFont(font, font.Size);
+            return UIStyles.DPIScale && (DPIScale() > 1 || UIStyles.GlobalFont);
         }
 
         internal static Font DPIScaleFont(this Font font, float fontSize)
         {
+            if (fontSize <= 0) return font;
             if (UIStyles.DPIScale)
             {
                 if (UIStyles.GlobalFont)
@@ -81,25 +67,23 @@ namespace Sunny.UI
             }
         }
 
-        internal static void SetDPIScaleFont(this Control control)
+        internal static void SetDPIScaleFont(this Control control, float fontSize)
         {
-            if (!UIStyles.DPIScale) return;
-            if (UIDPIScale.NeedSetDPIFont())
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (control is IStyleInterface ctrl)
             {
-                if (control is IStyleInterface ctrl)
-                {
-                    if (!ctrl.IsScaled)
-                        control.Font = control.Font.DPIScaleFont();
-                }
+                control.Font = SetDPIScaleFont(control.Font, fontSize);
             }
         }
 
-        internal static List<Control> GetAllDPIScaleControls(this Control control)
+        internal static Font SetDPIScaleFont(this Font font, float fontSize) => UIDPIScale.NeedSetDPIFont() ? font.DPIScaleFont(fontSize) : font;
+
+        internal static List<IStyleInterface> GetAllDPIScaleControls(this Control control)
         {
-            var list = new List<Control>();
+            var list = new List<IStyleInterface>();
             foreach (Control con in control.Controls)
             {
-                list.Add(con);
+                if (con is IStyleInterface ctrl) list.Add(ctrl);
 
                 if (con is UITextBox) continue;
                 if (con is UIDropControl) continue;

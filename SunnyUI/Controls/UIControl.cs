@@ -81,13 +81,13 @@ namespace Sunny.UI
         [Browsable(false), DefaultValue(false)]
         public bool IsScaled { get; set; }
 
+        private float DefaultFontSize = -1;
+
         public virtual void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)

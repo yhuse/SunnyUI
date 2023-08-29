@@ -107,7 +107,7 @@ namespace Sunny.UI
         {
             byte gdiCharSet = UIStyles.GetGdiCharSet(Font.Name);
             using Font font = new Font(Font.Name, CodeFontSize, FontStyle.Bold, GraphicsUnit.Point, gdiCharSet);
-            using Font fontex = font.DPIScaleFont();
+            using Font fontex = font.DPIScaleFont(font.Size);
             Code = code;
             Size sf = TextRenderer.MeasureText(code, fontex);
             Bitmap image = new Bitmap((int)sf.Width + 16, Height - 2);

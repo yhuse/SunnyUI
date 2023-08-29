@@ -32,31 +32,17 @@ namespace Sunny.UI
 {
     public interface IStyleInterface
     {
-        UIStyle Style
-        {
-            get; set;
-        }
+        UIStyle Style { get; set; }
 
-        bool StyleCustomMode
-        {
-            get; set;
-        }
+        bool StyleCustomMode { get; set; }
 
-        string Version
-        {
-            get;
-        }
+        string Version { get; }
 
-        string TagString
-        {
-            get; set;
-        }
+        string TagString { get; set; }
 
         void SetStyleColor(UIBaseStyle uiColor);
 
         void SetStyle(UIStyle style);
-
-        bool IsScaled { get; }
 
         void SetDPIScale();
     }
