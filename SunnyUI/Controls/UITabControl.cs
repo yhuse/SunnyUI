@@ -166,16 +166,13 @@ namespace Sunny.UI
             }
         }
 
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         protected override void Dispose(bool disposing)
@@ -696,6 +693,7 @@ namespace Sunny.UI
                 string TipsText = GetTipsText(TabPages[index]);
                 if (Enabled && TipsText.IsValid())
                 {
+                    using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
                     sf = TextRenderer.MeasureText(TipsText, TempFont);
                     int sfMax = Math.Max(sf.Width, sf.Height);
                     int x = TabRect.Width - 1 - 2 - sfMax;
@@ -731,22 +729,6 @@ namespace Sunny.UI
                         Invalidate();
                     }
                 }
-            }
-        }
-
-        Font tmpFont;
-
-        private Font TempFont
-        {
-            get
-            {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = TipsFont.DPIScaleFont();
-                }
-
-                return tmpFont;
             }
         }
 

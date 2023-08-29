@@ -65,7 +65,6 @@ namespace Sunny.UI
 
         private void Tip_VisibleChanged(object sender, EventArgs e)
         {
-            tip.IsScaled = true;
             tip.Font = this.Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
         }
 

@@ -197,22 +197,13 @@ namespace Sunny.UI
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            tmpFont?.Dispose();
-        }
-
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         [DefaultValue(false)]
@@ -757,6 +748,7 @@ namespace Sunny.UI
                 //显示Tips圆圈
                 if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
                 {
+                    using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
                     Size tipsSize = TextRenderer.MeasureText(MenuHelper.GetTipsText(e.Node), TempFont);
                     int sfMax = Math.Max(tipsSize.Width, tipsSize.Height);
                     int tipsLeft = Width - sfMax - 16;
@@ -782,22 +774,6 @@ namespace Sunny.UI
             }
 
             base.OnDrawNode(e);
-        }
-
-        Font tmpFont;
-
-        private Font TempFont
-        {
-            get
-            {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = TipsFont.DPIScaleFont();
-                }
-
-                return tmpFont;
-            }
         }
 
         private Color tipsColor = Color.Red;

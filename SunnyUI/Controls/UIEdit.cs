@@ -173,16 +173,13 @@ namespace Sunny.UI
             }
         }
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            Font = UIDPIScale.SetDPIScaleFont(Font, DefaultFontSize);
         }
 
         [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]

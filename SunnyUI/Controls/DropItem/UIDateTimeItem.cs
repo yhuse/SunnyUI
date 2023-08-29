@@ -738,20 +738,14 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                TopPanel.SetDPIScaleFont();
-
-                foreach (var label in this.GetControls<UILabel>())
-                {
-                    label.SetDPIScaleFont();
-                }
-
-                btnOK.SetDPIScaleFont();
-                btnCancel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            TopPanel.SetDPIScale();
+            btnOK.SetDPIScale();
+            btnCancel.SetDPIScale();
+            foreach (var label in this.GetControls<UILabel>()) label.SetDPIScale();
         }
 
         public void Translate()

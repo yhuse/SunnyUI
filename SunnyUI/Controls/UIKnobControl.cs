@@ -1323,17 +1323,13 @@ namespace Sunny.UI
 
         #endregion
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
+        private float DefaultFontSize = -1;
 
-        public virtual void SetDPIScale()
+        public void SetDPIScale()
         {
-            if (DesignMode) return;
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         public string Version

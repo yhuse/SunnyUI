@@ -110,7 +110,6 @@ namespace Sunny.UI
                         Parent = this,
                         TagString = i.ToString(),
                         Style = Style,
-                        IsScaled = IsScaled,
                         Text = Items[i]?.ToString(),
                         StyleCustomMode = StyleCustomMode,
                         ForeColor = ForeColor

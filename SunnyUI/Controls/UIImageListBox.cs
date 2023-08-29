@@ -223,7 +223,6 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            listbox.IsScaled = true;
             listbox.Font = Font;
         }
 
@@ -461,7 +460,7 @@ namespace Sunny.UI
         }
 
         [ToolboxItem(false)]
-        private sealed class ImageListBox : ListBox
+        private sealed class ImageListBox : ListBox, IStyleInterface
         {
             private UIScrollBar bar;
 
@@ -482,16 +481,13 @@ namespace Sunny.UI
                 }
             }
 
-            [Browsable(false), DefaultValue(false)]
-            public bool IsScaled { get; set; }
+            private float DefaultFontSize = -1;
 
             public void SetDPIScale()
             {
-                if (!IsScaled)
-                {
-                    this.SetDPIScaleFont();
-                    IsScaled = true;
-                }
+                if (!UIDPIScale.NeedSetDPIFont()) return;
+                if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+                this.SetDPIScaleFont(DefaultFontSize);
             }
 
             //protected override void WndProc(ref Message m)

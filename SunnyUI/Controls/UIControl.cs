@@ -78,9 +78,6 @@ namespace Sunny.UI
 
         protected bool selected;
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
-
         private float DefaultFontSize = -1;
 
         public virtual void SetDPIScale()

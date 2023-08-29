@@ -44,17 +44,9 @@ namespace Sunny.UI
             InitOwnerDraw();
         }
 
-        public UIToolTip(IContainer cont)
-            : base(cont)
+        public UIToolTip(IContainer cont) : base(cont)
         {
             InitOwnerDraw();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            tmpTitleFont?.Dispose();
-            tmpFont?.Dispose();
         }
 
         [DefaultValue(typeof(Font), "微软雅黑, 9pt"), Description("字体"), Category("SunnyUI")]
@@ -172,6 +164,9 @@ namespace Sunny.UI
 
         private void UIToolTip_Popup(object sender, PopupEventArgs e)
         {
+            using var TempFont = Font.DPIScaleFont(Font.Size);
+            using var TempTitleFont = TitleFont.DPIScaleFont(TitleFont.Size);
+
             if (ToolTipControls.ContainsKey(e.AssociatedControl))
             {
                 var tooltip = ToolTipControls[e.AssociatedControl];
@@ -206,43 +201,13 @@ namespace Sunny.UI
             }
         }
 
-        Font tmpFont;
-
-        private Font TempFont
-        {
-            get
-            {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(Font.DPIScaleFontSize()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = Font.DPIScaleFont();
-                }
-
-                return tmpFont;
-            }
-        }
-
-        Font tmpTitleFont;
-
-        private Font TempTitleFont
-        {
-            get
-            {
-                if (tmpTitleFont == null || !tmpTitleFont.Size.EqualsFloat(TitleFont.DPIScaleFontSize()))
-                {
-                    tmpTitleFont?.Dispose();
-                    tmpTitleFont = TitleFont.DPIScaleFont();
-                }
-
-                return tmpTitleFont;
-            }
-        }
-
         private void ToolTipExDraw(object sender, DrawToolTipEventArgs e)
         {
             var bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width - 1, e.Bounds.Height - 1);
             e.Graphics.FillRectangle(BackColor, bounds);
             e.Graphics.DrawRectangle(RectColor, bounds);
+            using var TempFont = Font.DPIScaleFont(Font.Size);
+            using var TempTitleFont = TitleFont.DPIScaleFont(TitleFont.Size);
 
             if (ToolTipControls.ContainsKey(e.AssociatedControl))
             {

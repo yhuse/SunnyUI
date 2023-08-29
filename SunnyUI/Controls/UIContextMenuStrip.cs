@@ -63,25 +63,19 @@ namespace Sunny.UI
 
         }
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         protected override void OnOpening(CancelEventArgs e)
         {
             base.OnOpening(e);
-            if (!IsScaled && UIStyles.DPIScale)
-            {
-                SetDPIScale();
-            }
+            SetDPIScale();
         }
 
         /// <summary>

@@ -727,28 +727,13 @@ namespace Sunny.UI
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
             {
                 e.Graphics.SetHighQuality();
+                using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
                 Size sf = TextRenderer.MeasureText(TipsText, TempFont);
                 int sfMax = Math.Max(sf.Width, sf.Height);
                 int x = Width - 1 - 2 - sfMax;
                 int y = 1 + 1;
                 e.Graphics.FillEllipse(TipsColor, x - 1, y, sfMax, sfMax);
                 e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, new Rectangle(x, y, sfMax, sfMax), ContentAlignment.MiddleCenter);
-            }
-        }
-
-        Font tmpFont;
-
-        private Font TempFont
-        {
-            get
-            {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = TipsFont.DPIScaleFont();
-                }
-
-                return tmpFont;
             }
         }
 

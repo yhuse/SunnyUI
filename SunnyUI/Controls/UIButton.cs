@@ -295,32 +295,6 @@ namespace Sunny.UI
             }
         }
 
-        Font tmpFont;
-
-        private Font TempFont
-        {
-            get
-            {
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(TipsFont.DPIScaleFontSize()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = TipsFont.DPIScaleFont();
-                }
-
-                return tmpFont;
-            }
-        }
-
-        /// <summary>
-        /// 析构函数
-        /// </summary>
-        /// <param name="disposing">释放参数</param>
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            tmpFont?.Dispose();
-        }
-
         /// <summary>
         /// 重载绘图
         /// </summary>
@@ -339,6 +313,7 @@ namespace Sunny.UI
             if (Enabled && ShowTips && !string.IsNullOrEmpty(TipsText))
             {
                 e.Graphics.SetHighQuality();
+                using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
                 Size sf = TextRenderer.MeasureText(TipsText, TempFont);
                 int sfMax = Math.Max(sf.Width, sf.Height);
                 int x = Width - 1 - 2 - sfMax;

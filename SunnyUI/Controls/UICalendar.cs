@@ -344,12 +344,11 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                TopPanel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            TopPanel.SetDPIScale();
         }
 
         public void Translate()

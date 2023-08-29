@@ -288,9 +288,6 @@ namespace Sunny.UI
             get; set;
         }
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
-
         public void Collapse()
         {
             if (_collapsePanel != UICollapsePanel.None && SplitPanelState == UISplitPanelState.Expanded)

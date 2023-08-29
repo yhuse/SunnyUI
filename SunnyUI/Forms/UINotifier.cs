@@ -41,26 +41,17 @@ namespace Sunny.UI
 {
     public sealed partial class UINotifier : Form
     {
-
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
-
         public void SetDPIScale()
         {
-            if (!IsScaled && UIStyles.DPIScale)
+            Font = UIDPIScale.SetDPIScaleFont(Font, Font.Size);
+
+            noteTitle.Font = noteTitle.Font.DPIScaleFont(noteTitle.Font.Size);
+            noteContent.Font = noteContent.Font.DPIScaleFont(noteContent.Font.Size);
+            noteDate.Font = noteDate.Font.DPIScaleFont(noteDate.Font.Size);
+
+            foreach (var control in this.GetAllDPIScaleControls())
             {
-                this.SetDPIScaleFont();
-
-                noteTitle.Font = noteTitle.Font.DPIScaleFont();
-                noteContent.Font = noteContent.Font.DPIScaleFont();
-                noteDate.Font = noteDate.Font.DPIScaleFont();
-
-                foreach (Control control in this.GetAllDPIScaleControls())
-                {
-                    control.SetDPIScaleFont();
-                }
-
-                IsScaled = true;
+                control.SetDPIScale();
             }
         }
 
@@ -385,7 +376,7 @@ namespace Sunny.UI
         //-------------------------------------------------------------------------------------------------------------------------------
         private void onMenuClick(object sender, EventArgs e)
         {
-            closeAllToolStripMenuItem.Font = menu.Font.DPIScaleFont();
+            closeAllToolStripMenuItem.Font = menu.Font.DPIScaleFont(menu.Font.Size);
             menu.Show(buttonMenu, new Point(0, buttonMenu.Height));
         }
 

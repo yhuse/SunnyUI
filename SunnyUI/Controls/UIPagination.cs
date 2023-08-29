@@ -140,30 +140,10 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            foreach (var item in this.GetControls<UISymbolButton>(true))
-            {
-                item.IsScaled = true;
-                item.Font = Font;
-            }
-
-            foreach (var item in this.GetControls<UITextBox>(true))
-            {
-                item.IsScaled = true;
-                item.Font = Font;
-            }
-
-            foreach (var item in this.GetControls<UIComboBox>(true))
-            {
-                item.IsScaled = true;
-                item.Font = Font;
-            }
-
-            foreach (var item in this.GetControls<UILabel>(true))
-            {
-                item.IsScaled = true;
-                item.Font = Font;
-            }
-
+            foreach (var item in this.GetControls<UISymbolButton>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UITextBox>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UIComboBox>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UILabel>(true)) item.SetDPIScale();
             Translate();
         }
 

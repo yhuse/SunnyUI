@@ -14,13 +14,12 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                btnOK.SetDPIScaleFont();
-                btnCancel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            btnOK.SetDPIScale();
+            btnCancel.SetDPIScale();
         }
 
         public bool ShowSelectedAllCheckBox

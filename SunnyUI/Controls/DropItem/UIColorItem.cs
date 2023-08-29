@@ -13,26 +13,16 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                m_opacitySlider.SetDPIScaleFont();
-                m_colorBar.SetDPIScaleFont();
-
-                foreach (var label in this.GetControls<UILabel>())
-                {
-                    label.SetDPIScaleFont();
-                }
-
-                foreach (var label in this.GetControls<UITextBox>())
-                {
-                    label.SetDPIScaleFont();
-                }
-
-                btnOK.SetDPIScaleFont();
-                btnCancel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            m_opacitySlider.SetDPIScale();
+            m_colorBar.SetDPIScale();
+            btnOK.SetDPIScale();
+            btnCancel.SetDPIScale();
+            foreach (var label in this.GetControls<UILabel>()) label.SetDPIScale();
+            foreach (var label in this.GetControls<UITextBox>()) label.SetDPIScale();
         }
 
         public void Translate()

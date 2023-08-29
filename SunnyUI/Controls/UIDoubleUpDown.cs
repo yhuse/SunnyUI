@@ -99,18 +99,8 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-
-            if (pnlValue != null)
-            {
-                pnlValue.IsScaled = true;
-                pnlValue.Font = Font;
-            }
-
-            if (edit != null)
-            {
-                edit.IsScaled = true;
-                edit.Font = Font;
-            }
+            pnlValue?.SetDPIScale();
+            edit?.SetDPIScale();
         }
 
         public event OnValueChanged ValueChanged;

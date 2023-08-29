@@ -440,18 +440,13 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                foreach (var label in this.GetControls<UILabel>())
-                {
-                    label.SetDPIScaleFont();
-                }
-
-                btnOK.SetDPIScaleFont();
-                btnCancel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            btnOK.SetDPIScale();
+            btnCancel.SetDPIScale();
+            foreach (var label in this.GetControls<UILabel>()) label.SetDPIScale();
         }
 
         private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)

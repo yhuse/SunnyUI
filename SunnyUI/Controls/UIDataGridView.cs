@@ -191,22 +191,35 @@ namespace Sunny.UI
 
         }
 
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        float ColumnHeadersDefaultCellStyleFontSize = -1;
+        float RowHeadersDefaultCellStyleFontSize = -1;
+        float DefaultCellStyleFontSize = -1;
+        float RowsDefaultCellStyleFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
+            if (ColumnHeadersDefaultCellStyle.Font != null)
             {
-                if (ColumnHeadersDefaultCellStyle.Font != null)
-                    ColumnHeadersDefaultCellStyle.Font = ColumnHeadersDefaultCellStyle.Font.DPIScaleFont();
-                if (RowHeadersDefaultCellStyle.Font != null)
-                    RowHeadersDefaultCellStyle.Font = RowHeadersDefaultCellStyle.Font.DPIScaleFont();
-                if (DefaultCellStyle.Font != null)
-                    DefaultCellStyle.Font = DefaultCellStyle.Font.DPIScaleFont();
-                if (RowsDefaultCellStyle.Font != null)
-                    RowsDefaultCellStyle.Font = RowsDefaultCellStyle.Font.DPIScaleFont();
-                IsScaled = true;
+                if (ColumnHeadersDefaultCellStyleFontSize < 0) ColumnHeadersDefaultCellStyleFontSize = ColumnHeadersDefaultCellStyle.Font.Size;
+                ColumnHeadersDefaultCellStyle.Font = ColumnHeadersDefaultCellStyle.Font.DPIScaleFont(ColumnHeadersDefaultCellStyleFontSize);
+            }
+
+            if (RowHeadersDefaultCellStyle.Font != null)
+            {
+                if (RowHeadersDefaultCellStyleFontSize < 0) RowHeadersDefaultCellStyleFontSize = RowHeadersDefaultCellStyle.Font.Size;
+                RowHeadersDefaultCellStyle.Font = RowHeadersDefaultCellStyle.Font.DPIScaleFont(RowHeadersDefaultCellStyleFontSize);
+            }
+
+            if (DefaultCellStyle.Font != null)
+            {
+                if (DefaultCellStyleFontSize < 0) DefaultCellStyleFontSize = DefaultCellStyle.Font.Size;
+                DefaultCellStyle.Font = DefaultCellStyle.Font.DPIScaleFont(DefaultCellStyleFontSize);
+            }
+
+            if (RowsDefaultCellStyle.Font != null)
+            {
+                if (RowsDefaultCellStyleFontSize < 0) RowsDefaultCellStyleFontSize = RowsDefaultCellStyle.Font.Size;
+                RowsDefaultCellStyle.Font = RowsDefaultCellStyle.Font.DPIScaleFont(RowsDefaultCellStyleFontSize);
             }
         }
 

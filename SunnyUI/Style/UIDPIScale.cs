@@ -67,13 +67,10 @@ namespace Sunny.UI
             }
         }
 
-        internal static void SetDPIScaleFont(this Control control, float fontSize)
+        internal static void SetDPIScaleFont<T>(this T control, float fontSize) where T : Control, IStyleInterface
         {
             if (!UIDPIScale.NeedSetDPIFont()) return;
-            if (control is IStyleInterface ctrl)
-            {
-                control.Font = SetDPIScaleFont(control.Font, fontSize);
-            }
+            control.Font = SetDPIScaleFont(control.Font, fontSize);
         }
 
         internal static Font SetDPIScaleFont(this Font font, float fontSize) => UIDPIScale.NeedSetDPIFont() ? font.DPIScaleFont(fontSize) : font;

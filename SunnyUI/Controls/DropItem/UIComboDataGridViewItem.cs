@@ -67,16 +67,15 @@ namespace Sunny.UI
 
         public override void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                edtFilter.SetDPIScaleFont();
-                btnSearch.SetDPIScaleFont();
-                btnClear.SetDPIScaleFont();
-                btnOK.SetDPIScaleFont();
-                btnCancel.SetDPIScaleFont();
-            }
-
             base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            edtFilter.SetDPIScale();
+            btnSearch.SetDPIScale();
+            btnClear.SetDPIScale();
+            btnOK.SetDPIScale();
+            btnCancel.SetDPIScale();
         }
 
         public void Translate()

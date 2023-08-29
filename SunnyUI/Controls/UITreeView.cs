@@ -746,7 +746,6 @@ namespace Sunny.UI
             base.OnFontChanged(e);
             if (view != null)
             {
-                view.IsScaled = true;
                 view.Font = Font;
             }
         }
@@ -925,7 +924,7 @@ namespace Sunny.UI
                 if (DesignMode) return;
                 if (!UIDPIScale.NeedSetDPIFont()) return;
                 if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
-                this.SetDPIScaleFont(DefaultFontSize);
+                this.Font = UIDPIScale.SetDPIScaleFont(this.Font, DefaultFontSize);
             }
 
             [DefaultValue(typeof(Color), "155, 200, 255")]

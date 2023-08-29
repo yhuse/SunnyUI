@@ -413,7 +413,6 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            listbox.IsScaled = true;
             listbox.Font = Font;
         }
 

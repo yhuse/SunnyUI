@@ -91,16 +91,13 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        [Browsable(false)]
-        public bool IsScaled { get; private set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         private int radius;
@@ -645,8 +642,7 @@ namespace Sunny.UI
             NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
             NavBarMenu.ImageList = ImageList;
-            NavBarMenu.IsScaled = false;
-            NavBarMenu.Font = DropMenuFont;
+            NavBarMenu.Font = DropMenuFont.SetDPIScaleFont(DropMenuFont.Size);
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };

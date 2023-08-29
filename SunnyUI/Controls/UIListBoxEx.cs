@@ -31,7 +31,7 @@ namespace Sunny.UI
     /// ListBox
     /// </summary>
     [ToolboxItem(false)]
-    internal sealed class ListBoxEx : ListBox
+    internal sealed class ListBoxEx : ListBox, IStyleInterface
     {
         private UIScrollBar bar;
 
@@ -42,16 +42,13 @@ namespace Sunny.UI
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
 
-        [Browsable(false), DefaultValue(false)]
-        public bool IsScaled { get; set; }
+        private float DefaultFontSize = -1;
 
         public void SetDPIScale()
         {
-            if (!IsScaled)
-            {
-                this.SetDPIScaleFont();
-                IsScaled = true;
-            }
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            this.SetDPIScaleFont(DefaultFontSize);
         }
 
         public UIScrollBar Bar

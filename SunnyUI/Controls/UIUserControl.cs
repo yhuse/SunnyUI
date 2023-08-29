@@ -84,7 +84,7 @@ namespace Sunny.UI
 
         private float DefaultFontSize = -1;
 
-        public void SetDPIScale()
+        public virtual void SetDPIScale()
         {
             if (DesignMode) return;
             if (!UIDPIScale.NeedSetDPIFont()) return;
