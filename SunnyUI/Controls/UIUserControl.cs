@@ -82,7 +82,7 @@ namespace Sunny.UI
 
         }
 
-        private float DefaultFontSize = -1;
+        protected float DefaultFontSize = -1;
 
         public virtual void SetDPIScale()
         {

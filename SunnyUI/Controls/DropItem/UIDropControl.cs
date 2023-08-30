@@ -70,6 +70,15 @@ namespace Sunny.UI
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            edit.SetDPIScale();
+        }
+
         /// <summary>
         /// 重载字体变更
         /// </summary>
@@ -77,8 +86,8 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            edit.Font = Font;
-            edit.SetDPIScale();
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            edit.Font = this.Font.Clone(DefaultFontSize);
             SizeChange();
             Invalidate();
         }

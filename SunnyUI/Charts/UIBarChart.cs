@@ -486,6 +486,7 @@ namespace Sunny.UI
         /// <param name="g">绘制图面</param>
         protected virtual void DrawAxis(Graphics g)
         {
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             g.FillRectangle(FillColor, Option.Grid.Left, 1, Width - Option.Grid.Left - Option.Grid.Right, Option.Grid.Top);
             g.FillRectangle(FillColor, Option.Grid.Left, Height - Option.Grid.Bottom, Width - Option.Grid.Left - Option.Grid.Right, Option.Grid.Bottom - 1);
 
@@ -579,6 +580,7 @@ namespace Sunny.UI
 
         private void DrawAxisScales(Graphics g)
         {
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             foreach (var line in Option.YAxisScaleLines)
             {
                 double ymin = YAxisStart * YAxisInterval;
@@ -599,7 +601,7 @@ namespace Sunny.UI
         protected virtual void DrawSeries(Graphics g, List<UIBarSeries> series)
         {
             if (series == null || series.Count == 0) return;
-
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             for (int i = 0; i < Bars.Count; i++)
             {
                 var bars = Bars[i];

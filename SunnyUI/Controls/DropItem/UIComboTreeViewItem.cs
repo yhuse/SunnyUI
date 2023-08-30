@@ -20,6 +20,7 @@ namespace Sunny.UI
 
             btnOK.SetDPIScale();
             btnCancel.SetDPIScale();
+            uiCheckBox1.SetDPIScale();
         }
 
         public bool ShowSelectedAllCheckBox

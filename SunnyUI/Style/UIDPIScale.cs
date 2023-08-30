@@ -29,7 +29,7 @@ namespace Sunny.UI
     {
         private static float dpiScale = -1;
 
-        public static float DPIScale() => UIStyles.GlobalFont ? SystemDPIScale * 100.0f / UIStyles.GlobalFontScale : SystemDPIScale;
+        public static float DPIScale => UIStyles.GlobalFont ? SystemDPIScale * 100.0f / UIStyles.GlobalFontScale : SystemDPIScale;
 
         private static float SystemDPIScale
         {
@@ -56,11 +56,11 @@ namespace Sunny.UI
                 if (UIStyles.GlobalFont)
                 {
                     byte gdiCharSet = UIStyles.GetGdiCharSet(UIStyles.GlobalFontName);
-                    return new Font(UIStyles.GlobalFontName, fontSize / DPIScale(), font.Style, font.Unit, gdiCharSet);
+                    return new Font(UIStyles.GlobalFontName, fontSize / DPIScale, font.Style, font.Unit, gdiCharSet);
                 }
                 else
                 {
-                    return new Font(font.FontFamily, fontSize / DPIScale(), font.Style, font.Unit, font.GdiCharSet);
+                    return new Font(font.FontFamily, fontSize / DPIScale, font.Style, font.Unit, font.GdiCharSet);
                 }
             }
             else
@@ -69,13 +69,16 @@ namespace Sunny.UI
             }
         }
 
+        internal static Font Clone(this Font font, float fontSize)
+        {
+            return new Font(font.FontFamily, fontSize, font.Style, font.Unit, font.GdiCharSet);
+        }
+
         internal static void SetDPIScaleFont<T>(this T control, float fontSize) where T : Control, IStyleInterface
         {
             if (!UIDPIScale.NeedSetDPIFont()) return;
-            control.Font = SetDPIScaleFont(control.Font, fontSize);
+            control.Font = DPIScaleFont(control.Font, fontSize);
         }
-
-        internal static Font SetDPIScaleFont(this Font font, float fontSize) => UIDPIScale.NeedSetDPIFont() ? font.DPIScaleFont(fontSize) : font;
 
         internal static List<IStyleInterface> GetAllDPIScaleControls(this Control control)
         {

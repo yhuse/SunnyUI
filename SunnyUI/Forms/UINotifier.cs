@@ -41,7 +41,7 @@ namespace Sunny.UI
     {
         public void SetDPIScale()
         {
-            Font = UIDPIScale.SetDPIScaleFont(Font, Font.Size);
+            Font = UIDPIScale.DPIScaleFont(Font, Font.Size);
 
             noteTitle.Font = noteTitle.Font.DPIScaleFont(noteTitle.Font.Size);
             noteContent.Font = noteContent.Font.DPIScaleFont(noteContent.Font.Size);

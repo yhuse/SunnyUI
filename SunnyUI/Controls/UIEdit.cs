@@ -179,7 +179,7 @@ namespace Sunny.UI
         {
             if (!UIDPIScale.NeedSetDPIFont()) return;
             if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
-            Font = UIDPIScale.SetDPIScaleFont(Font, DefaultFontSize);
+            Font = UIDPIScale.DPIScaleFont(Font, DefaultFontSize);
         }
 
         [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]

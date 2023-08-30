@@ -138,6 +138,15 @@ namespace Sunny.UI
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
 
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            edit.SetDPIScale();
+        }
+
         [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
         [DefaultValue(false)]
         public bool TouchPressClick
@@ -650,7 +659,10 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            edit.Font = Font;
+
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            edit.Font = this.Font.Clone(DefaultFontSize);
+
             SizeChange();
             Invalidate();
         }

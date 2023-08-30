@@ -68,13 +68,6 @@ namespace Sunny.UI
             tip.Font = this.Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            tmpFont?.Dispose();
-            tmpLegendFont?.Dispose();
-        }
-
         private void Tip_MouseEnter(object sender, EventArgs e)
         {
             tip.Visible = false;
@@ -199,42 +192,6 @@ namespace Sunny.UI
             DrawOption(e.Graphics);
         }
 
-        Font tmpFont;
-
-        protected Font TempFont
-        {
-            get
-            {
-                float size = UIStyles.DefaultSubFontSize;
-
-                if (tmpFont == null || !tmpFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
-                {
-                    tmpFont?.Dispose();
-                    tmpFont = this.Font.DPIScaleFont(size);
-                }
-
-                return tmpFont;
-            }
-        }
-
-        Font tmpLegendFont;
-
-        protected Font TempLegendFont
-        {
-            get
-            {
-                float size = UIStyles.DefaultSubFontSize;
-
-                if (tmpLegendFont == null || !tmpLegendFont.Size.EqualsFloat(size / UIDPIScale.DPIScale()))
-                {
-                    tmpLegendFont?.Dispose();
-                    tmpLegendFont = this.Font.DPIScaleFont(size);
-                }
-
-                return tmpLegendFont;
-            }
-        }
-
         protected virtual void DrawOption(Graphics g)
         {
         }
@@ -267,8 +224,12 @@ namespace Sunny.UI
         protected void DrawTitle(Graphics g, UITitle title)
         {
             if (title == null) return;
+            if (!title.Text.IsValid()) return;
             Size sf = TextRenderer.MeasureText(title.Text, Font);
             g.DrawString(title.Text, Font, ChartStyle.ForeColor, new Rectangle(TextInterval, TextInterval, Width - TextInterval * 2, Height - TextInterval * 2), (StringAlignment)((int)title.Left), (StringAlignment)((int)title.Top));
+
+            if (!title.SubText.IsValid()) return;
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             g.DrawString(title.SubText, TempFont, ChartStyle.ForeColor, new Rectangle(TextInterval, TextInterval, Width - TextInterval * 2, Height - TextInterval * 2),
                 (StringAlignment)((int)title.Left), (StringAlignment)((int)title.Top), 0, title.Top == UITopAlignment.Bottom ? -sf.Height : sf.Height);
         }
@@ -282,6 +243,7 @@ namespace Sunny.UI
             float maxWidth = 0;
             float oneHeight = 0;
 
+            using var TempLegendFont = this.Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             foreach (var data in legend.Data)
             {
                 Size sf = TextRenderer.MeasureText(data, TempLegendFont);

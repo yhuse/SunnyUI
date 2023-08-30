@@ -328,5 +328,14 @@ namespace Sunny.UI
                 item.SetStyleColor(uiColor);
             }
         }
+
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            foreach (var label in this.GetControls<UISymbolButton>()) label.SetDPIScale();
+        }
     }
 }

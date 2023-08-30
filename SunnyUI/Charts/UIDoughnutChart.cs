@@ -162,7 +162,7 @@ namespace Sunny.UI
         private void DrawSeries(Graphics g, List<UIDoughnutSeries> series)
         {
             if (series == null || series.Count == 0) return;
-
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];

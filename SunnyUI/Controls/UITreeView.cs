@@ -924,7 +924,7 @@ namespace Sunny.UI
                 if (DesignMode) return;
                 if (!UIDPIScale.NeedSetDPIFont()) return;
                 if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
-                this.Font = UIDPIScale.SetDPIScaleFont(this.Font, DefaultFontSize);
+                this.Font = UIDPIScale.DPIScaleFont(this.Font, DefaultFontSize);
             }
 
             [DefaultValue(typeof(Color), "155, 200, 255")]

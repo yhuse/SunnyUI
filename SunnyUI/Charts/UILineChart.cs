@@ -297,6 +297,7 @@ namespace Sunny.UI
             if (Option.Grid.BottomShow)
                 g.DrawLine(ForeColor, Option.Grid.Left, Height - Option.Grid.Bottom, Width - Option.Grid.Right, Height - Option.Grid.Bottom);
 
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
             if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
             {
@@ -764,7 +765,9 @@ namespace Sunny.UI
 
         private void DrawAxisScales(Graphics g)
         {
+            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
             if (YScale != null)
+            {
                 foreach (var line in Option.YAxisScaleLines)
                 {
                     float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
@@ -785,8 +788,10 @@ namespace Sunny.UI
 
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle(DrawOrigin.X + 4, (int)pos - 2 - Height, DrawSize.Width - 8, Height), (StringAlignment)((int)line.Left), StringAlignment.Far);
                 }
+            }
 
             if (Y2Scale != null)
+            {
                 foreach (var line in Option.Y2AxisScaleLines)
                 {
                     float pos = Y2Scale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
@@ -805,9 +810,11 @@ namespace Sunny.UI
 
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle(DrawOrigin.X + 4, (int)pos - 2 - Height, DrawSize.Width - 8, Height), (StringAlignment)((int)line.Left), StringAlignment.Far);
                 }
+            }
 
             int idx = 0;
             if (XScale != null)
+            {
                 foreach (var line in Option.XAxisScaleLines)
                 {
                     float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
@@ -837,6 +844,7 @@ namespace Sunny.UI
                     idx++;
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle((int)x, (int)y, Width, Height), ContentAlignment.TopLeft);
                 }
+            }
         }
 
         private readonly List<UILineSelectPoint> selectPoints = new List<UILineSelectPoint>();
@@ -948,6 +956,7 @@ namespace Sunny.UI
                         {
                             using (Graphics g = this.CreateGraphics())
                             {
+                                using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
                                 Size sf = TextRenderer.MeasureText(sb.ToString(), TempFont);
                                 tip.Size = new Size(sf.Width + 4, sf.Height + 4);
                             }
