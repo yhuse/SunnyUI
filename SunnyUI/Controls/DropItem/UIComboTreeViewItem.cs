@@ -18,6 +18,7 @@ namespace Sunny.UI
             if (DesignMode) return;
             if (!UIDPIScale.NeedSetDPIFont()) return;
 
+            treeView.SetDPIScale();
             btnOK.SetDPIScale();
             btnCancel.SetDPIScale();
             uiCheckBox1.SetDPIScale();

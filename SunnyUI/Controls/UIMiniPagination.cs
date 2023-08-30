@@ -19,6 +19,7 @@
  * 2023-02-19: V3.3.2 新增迷你分页控件，只有分页按钮，无其他
  * 2023-06-14: V3.3.9 按钮图标位置修正
  * 2023-06-27: V3.3.9 内置按钮关联值由Tag改为TagString
+ * 2023-08-30: V3.4.2 左右跳转按钮的文字换成字体图标
 ******************************************************************************/
 
 using System;
@@ -138,17 +139,16 @@ namespace Sunny.UI
             }
         }
 
-        /// <summary>
-        /// 重载字体变更
-        /// </summary>
-        /// <param name="e">参数</param>
-        protected override void OnFontChanged(EventArgs e)
+        public override void SetDPIScale()
         {
-            base.OnFontChanged(e);
-            foreach (var item in this.GetControls<UISymbolButton>(true)) item.Font = Font;
-            foreach (var item in this.GetControls<UITextBox>(true)) item.Font = Font;
-            foreach (var item in this.GetControls<UIComboBox>(true)) item.Font = Font;
-            foreach (var item in this.GetControls<UILabel>(true)) item.Font = Font;
+            base.SetDPIScale();
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            foreach (var item in this.GetControls<UISymbolButton>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UITextBox>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UIComboBox>(true)) item.SetDPIScale();
+            foreach (var item in this.GetControls<UILabel>(true)) item.SetDPIScale();
         }
 
         private int buttonInterval = 8;
@@ -292,8 +292,8 @@ namespace Sunny.UI
             var btn = (UISymbolButton)sender;
             if (btn.TagString == "<<" || btn.TagString == ">>")
             {
-                btn.Symbol = 0;
-                btn.Text = @"···";
+                btn.Symbol = 361761;
+                btn.Text = "";
             }
         }
 
@@ -302,13 +302,13 @@ namespace Sunny.UI
             var btn = (UISymbolButton)sender;
             if (btn.TagString == "<<")
             {
-                btn.Symbol = 61696;
+                btn.Symbol = 361696;
                 btn.Text = "";
             }
 
             if (btn.TagString == ">>")
             {
-                btn.Symbol = 61697;
+                btn.Symbol = 361697;
                 btn.Text = "";
             }
         }
@@ -624,8 +624,9 @@ namespace Sunny.UI
 
         private void SetShowButton(int buttonIdx, int addCount, string tagString)
         {
-            buttons[buttonIdx].Symbol = 0;
-            buttons[buttonIdx].Text = @"···";
+            buttons[buttonIdx].Symbol = 361761;
+            buttons[buttonIdx].Text = "";
+            buttons[buttonIdx].SymbolOffset = new Point(-1, 1);
             buttonTags[buttons[buttonIdx]] = addCount;
             buttons[buttonIdx].Visible = true;
             buttons[buttonIdx].TagString = tagString;

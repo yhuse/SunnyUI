@@ -118,16 +118,6 @@ namespace Sunny.UI
             TreeView.Nodes.Clear();
         }
 
-        /// <summary>
-        /// 重载字体变更
-        /// </summary>
-        /// <param name="e">参数</param>
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            if (item != null) item.TreeView.Font = Font;
-        }
-
         [Browsable(false)]
         public UITreeView TreeView => item.TreeView;
 

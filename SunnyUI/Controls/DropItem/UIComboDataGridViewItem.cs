@@ -76,6 +76,7 @@ namespace Sunny.UI
             btnClear.SetDPIScale();
             btnOK.SetDPIScale();
             btnCancel.SetDPIScale();
+            dataGridView.SetDPIScale();
         }
 
         public void Translate()
