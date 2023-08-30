@@ -35,8 +35,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
-#pragma warning disable 1591
-
 namespace Sunny.UI
 {
     public sealed partial class UINotifier : Form
@@ -108,7 +106,7 @@ namespace Sunny.UI
             InApplication = insideMe;
 
             InitializeComponent();
-            if (Notes.Count == 0)
+            if (Notes.IsEmpty)
                 ID = 1;
             else
                 ID = (short)(Notes.Keys.Max() + 1);                                                       // Set the Note ID

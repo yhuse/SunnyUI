@@ -642,7 +642,7 @@ namespace Sunny.UI
             NavBarMenu.Style = UIStyles.Style;
             NavBarMenu.Items.Clear();
             NavBarMenu.ImageList = ImageList;
-            NavBarMenu.Font = DropMenuFont.SetDPIScaleFont(DropMenuFont.Size);
+            NavBarMenu.Font = DropMenuFont;
             foreach (TreeNode node in Nodes[SelectedIndex].Nodes)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };

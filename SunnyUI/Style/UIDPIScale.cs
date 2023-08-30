@@ -29,22 +29,24 @@ namespace Sunny.UI
     {
         private static float dpiScale = -1;
 
-        public static float DPIScale()
+        public static float DPIScale() => UIStyles.GlobalFont ? SystemDPIScale * 100.0f / UIStyles.GlobalFontScale : SystemDPIScale;
+
+        private static float SystemDPIScale
         {
-            if (dpiScale < 0)
+            get
             {
-                using Bitmap bmp = new Bitmap(1, 1);
-                using Graphics g = bmp.Graphics();
-                dpiScale = g.DpiX / 96.0f;
+                if (dpiScale < 0)
+                {
+                    using Bitmap bmp = new Bitmap(1, 1);
+                    using Graphics g = bmp.Graphics();
+                    dpiScale = g.DpiX / 96.0f;
+                }
+
+                return dpiScale;
             }
-
-            return UIStyles.GlobalFont ? dpiScale * 100.0f / UIStyles.GlobalFontScale : dpiScale;
         }
 
-        public static bool NeedSetDPIFont()
-        {
-            return UIStyles.DPIScale && (DPIScale() > 1 || UIStyles.GlobalFont);
-        }
+        public static bool NeedSetDPIFont() => UIStyles.DPIScale && (SystemDPIScale > 1 || UIStyles.GlobalFont);
 
         internal static Font DPIScaleFont(this Font font, float fontSize)
         {
@@ -78,21 +80,22 @@ namespace Sunny.UI
         internal static List<IStyleInterface> GetAllDPIScaleControls(this Control control)
         {
             var list = new List<IStyleInterface>();
-            foreach (Control con in control.Controls)
+            foreach (Control ctrl in control.Controls)
             {
-                if (con is IStyleInterface ctrl) list.Add(ctrl);
+                if (ctrl is IStyleInterface istyleCtrl) list.Add(istyleCtrl);
 
-                if (con is UITextBox) continue;
-                if (con is UIDropControl) continue;
-                if (con is UIListBox) continue;
-                if (con is UIImageListBox) continue;
-                if (con is UIPagination) continue;
-                if (con is UIRichTextBox) continue;
-                if (con is UITreeView) continue;
+                if (ctrl is UITextBox) continue;
+                if (ctrl is UIDropControl) continue;
+                if (ctrl is UIListBox) continue;
+                if (ctrl is UIImageListBox) continue;
+                if (ctrl is UIPagination) continue;
+                if (ctrl is UIRichTextBox) continue;
+                if (ctrl is UITreeView) continue;
+                if (ctrl is UITransfer) continue;
 
-                if (con.Controls.Count > 0)
+                if (ctrl.Controls.Count > 0)
                 {
-                    list.AddRange(GetAllDPIScaleControls(con));
+                    list.AddRange(GetAllDPIScaleControls(ctrl));
                 }
             }
 
