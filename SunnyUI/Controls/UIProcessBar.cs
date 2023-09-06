@@ -24,6 +24,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-09-05: V3.2.3 修改最大值至少为1
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-09-05: V3.4.2 修复值计算过程中的Int越界问题
 ******************************************************************************/
 
 using System;
@@ -141,9 +142,9 @@ namespace Sunny.UI
             string processText;
 
             if (Direction == UILine.LineDirection.Horizontal)
-                processSize = posValue * Width * 1.0f / Maximum;
+                processSize = posValue * 1.0f / Maximum * Width;
             else
-                processSize = posValue * Height * 1.0f / Maximum;
+                processSize = posValue * 1.0f / Maximum * Height;
 
             if (ShowPercent)
                 processText = (posValue * 100.0 / maximum).ToString("F" + decimalCount) + "%";
