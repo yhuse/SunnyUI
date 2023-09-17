@@ -354,7 +354,7 @@ namespace Sunny.UI
         /// 标题字体
         /// </summary>
         [Description("标题字体"), Category("SunnyUI")]
-        [DefaultValue(typeof(Font), "微软雅黑, 12pt")]
+        [DefaultValue(typeof(Font), "宋体, 12pt")]
         public Font DropMenuFont
         {
             get => dropMenuFont;
