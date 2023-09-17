@@ -21,6 +21,7 @@
  * 2022-01-26: V3.1.0 增加未选中步骤文字颜色
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-09-17: V3.4.2 增加Readonly，禁用鼠标点击，可通过代码设置ItemIndex
 ******************************************************************************/
 
 using System;
@@ -355,6 +356,7 @@ namespace Sunny.UI
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
+            if (Readonly) return;
             foreach (var pair in ClickArea)
             {
                 if (e.Location.InRegion(pair.Value))
@@ -364,5 +366,10 @@ namespace Sunny.UI
                 }
             }
         }
+
+        [DefaultValue(false)]
+        [Description("禁用鼠标点击，可通过代码设置ItemIndex")]
+        [Category("SunnyUI")]
+        public bool Readonly { get; set; }
     }
 }
