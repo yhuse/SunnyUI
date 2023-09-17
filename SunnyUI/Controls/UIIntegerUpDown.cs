@@ -117,8 +117,8 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            pnlValue?.SetDPIScale();
-            edit?.SetDPIScale();
+            if (DefaultFontSize < 0 && pnlValue != null) pnlValue.Font = this.Font;
+            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
         }
 
         private int step = 1;

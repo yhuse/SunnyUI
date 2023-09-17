@@ -47,293 +47,279 @@ namespace Sunny.UI
         #region InitializeComponent
 
         private UITabControl TabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
         private UIPanel p1;
         private UISymbolButton b4;
         private UISymbolButton b3;
         private UISymbolButton b2;
         private UISymbolButton b1;
         private UIPanel p2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private TabPage tabPage3;
         private UIPanel p3;
         private UIPanel TopPanel;
 
         private void InitializeComponent()
         {
-            this.TopPanel = new Sunny.UI.UIPanel();
-            this.b4 = new Sunny.UI.UISymbolButton();
-            this.b3 = new Sunny.UI.UISymbolButton();
-            this.b2 = new Sunny.UI.UISymbolButton();
-            this.b1 = new Sunny.UI.UISymbolButton();
-            this.TabControl = new Sunny.UI.UITabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.p1 = new Sunny.UI.UIPanel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.p2 = new Sunny.UI.UIPanel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.p3 = new Sunny.UI.UIPanel();
-            this.TopPanel.SuspendLayout();
-            this.TabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.SuspendLayout();
+            TopPanel = new UIPanel();
+            b4 = new UISymbolButton();
+            b3 = new UISymbolButton();
+            b2 = new UISymbolButton();
+            b1 = new UISymbolButton();
+            TabControl = new UITabControl();
+            tabPage1 = new TabPage();
+            p1 = new UIPanel();
+            tabPage2 = new TabPage();
+            p2 = new UIPanel();
+            tabPage3 = new TabPage();
+            p3 = new UIPanel();
+            TopPanel.SuspendLayout();
+            TabControl.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            SuspendLayout();
             // 
             // TopPanel
             // 
-            this.TopPanel.Controls.Add(this.b4);
-            this.TopPanel.Controls.Add(this.b3);
-            this.TopPanel.Controls.Add(this.b2);
-            this.TopPanel.Controls.Add(this.b1);
-            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPanel.Font = new System.Drawing.Font("宋体", 12F);
-            this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TopPanel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.TopPanel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.TopPanel.Size = new System.Drawing.Size(461, 31);
-            this.TopPanel.StyleCustomMode = true;
-            this.TopPanel.TabIndex = 0;
-            this.TopPanel.Text = "2020-05-05";
-            this.TopPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TopPanel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.TopPanel.Click += new System.EventHandler(this.TopPanel_Click);
+            TopPanel.Controls.Add(b4);
+            TopPanel.Controls.Add(b3);
+            TopPanel.Controls.Add(b2);
+            TopPanel.Controls.Add(b1);
+            TopPanel.Dock = DockStyle.Top;
+            TopPanel.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            TopPanel.Location = new Point(0, 0);
+            TopPanel.Margin = new Padding(4, 5, 4, 5);
+            TopPanel.MinimumSize = new Size(1, 1);
+            TopPanel.Name = "TopPanel";
+            TopPanel.RadiusSides = UICornerRadiusSides.None;
+            TopPanel.RectSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
+            TopPanel.Size = new Size(461, 31);
+            TopPanel.StyleCustomMode = true;
+            TopPanel.TabIndex = 0;
+            TopPanel.Text = "2020-05-05";
+            TopPanel.TextAlignment = ContentAlignment.MiddleCenter;
+            TopPanel.Click += TopPanel_Click;
             // 
             // b4
             // 
-            this.b4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b4.BackColor = System.Drawing.Color.Transparent;
-            this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.FillColor = System.Drawing.Color.White;
-            this.b4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b4.Font = new System.Drawing.Font("宋体", 12F);
-            this.b4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b4.ImageInterval = 0;
-            this.b4.Location = new System.Drawing.Point(427, 4);
-            this.b4.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b4.Name = "b4";
-            this.b4.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.b4.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.b4.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.b4.Size = new System.Drawing.Size(30, 24);
-            this.b4.Style = Sunny.UI.UIStyle.Custom;
-            this.b4.StyleCustomMode = true;
-            this.b4.Symbol = 61697;
-            this.b4.TabIndex = 3;
-            this.b4.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.b4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.b4.Click += new System.EventHandler(this.b4_Click);
+            b4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            b4.BackColor = Color.Transparent;
+            b4.Cursor = Cursors.Hand;
+            b4.FillColor = Color.White;
+            b4.FillHoverColor = Color.FromArgb(80, 160, 255);
+            b4.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b4.ForeColor = Color.FromArgb(80, 160, 255);
+            b4.Location = new Point(427, 4);
+            b4.MinimumSize = new Size(1, 1);
+            b4.Name = "b4";
+            b4.Padding = new Padding(24, 0, 0, 0);
+            b4.RadiusSides = UICornerRadiusSides.None;
+            b4.RectHoverColor = Color.FromArgb(80, 160, 255);
+            b4.RectSides = ToolStripStatusLabelBorderSides.None;
+            b4.Size = new Size(30, 24);
+            b4.Style = UIStyle.Custom;
+            b4.StyleCustomMode = true;
+            b4.Symbol = 61697;
+            b4.TabIndex = 3;
+            b4.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            b4.Click += b4_Click;
             // 
             // b3
             // 
-            this.b3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b3.BackColor = System.Drawing.Color.Transparent;
-            this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.FillColor = System.Drawing.Color.White;
-            this.b3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b3.Font = new System.Drawing.Font("宋体", 12F);
-            this.b3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b3.ImageInterval = 0;
-            this.b3.Location = new System.Drawing.Point(391, 4);
-            this.b3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b3.Name = "b3";
-            this.b3.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.b3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.b3.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.b3.Size = new System.Drawing.Size(30, 24);
-            this.b3.Style = Sunny.UI.UIStyle.Custom;
-            this.b3.StyleCustomMode = true;
-            this.b3.Symbol = 61701;
-            this.b3.TabIndex = 2;
-            this.b3.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.b3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.b3.Click += new System.EventHandler(this.b3_Click);
+            b3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            b3.BackColor = Color.Transparent;
+            b3.Cursor = Cursors.Hand;
+            b3.FillColor = Color.White;
+            b3.FillHoverColor = Color.FromArgb(80, 160, 255);
+            b3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b3.ForeColor = Color.FromArgb(80, 160, 255);
+            b3.Location = new Point(391, 4);
+            b3.MinimumSize = new Size(1, 1);
+            b3.Name = "b3";
+            b3.Padding = new Padding(24, 0, 0, 0);
+            b3.RadiusSides = UICornerRadiusSides.None;
+            b3.RectHoverColor = Color.FromArgb(80, 160, 255);
+            b3.RectSides = ToolStripStatusLabelBorderSides.None;
+            b3.Size = new Size(30, 24);
+            b3.Style = UIStyle.Custom;
+            b3.StyleCustomMode = true;
+            b3.Symbol = 61701;
+            b3.TabIndex = 2;
+            b3.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            b3.Click += b3_Click;
             // 
             // b2
             // 
-            this.b2.BackColor = System.Drawing.Color.Transparent;
-            this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.FillColor = System.Drawing.Color.White;
-            this.b2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b2.Font = new System.Drawing.Font("宋体", 12F);
-            this.b2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b2.ImageInterval = 0;
-            this.b2.Location = new System.Drawing.Point(40, 4);
-            this.b2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b2.Name = "b2";
-            this.b2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.b2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.b2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.b2.Size = new System.Drawing.Size(30, 24);
-            this.b2.Style = Sunny.UI.UIStyle.Custom;
-            this.b2.StyleCustomMode = true;
-            this.b2.Symbol = 61700;
-            this.b2.TabIndex = 1;
-            this.b2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.b2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.b2.Click += new System.EventHandler(this.b2_Click);
+            b2.BackColor = Color.Transparent;
+            b2.Cursor = Cursors.Hand;
+            b2.FillColor = Color.White;
+            b2.FillHoverColor = Color.FromArgb(80, 160, 255);
+            b2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b2.ForeColor = Color.FromArgb(80, 160, 255);
+            b2.Location = new Point(40, 4);
+            b2.MinimumSize = new Size(1, 1);
+            b2.Name = "b2";
+            b2.Padding = new Padding(24, 0, 0, 0);
+            b2.RadiusSides = UICornerRadiusSides.None;
+            b2.RectHoverColor = Color.FromArgb(80, 160, 255);
+            b2.RectSides = ToolStripStatusLabelBorderSides.None;
+            b2.Size = new Size(30, 24);
+            b2.Style = UIStyle.Custom;
+            b2.StyleCustomMode = true;
+            b2.Symbol = 61700;
+            b2.TabIndex = 1;
+            b2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            b2.Click += b2_Click;
             // 
             // b1
             // 
-            this.b1.BackColor = System.Drawing.Color.Transparent;
-            this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.FillColor = System.Drawing.Color.White;
-            this.b1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b1.Font = new System.Drawing.Font("宋体", 12F);
-            this.b1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b1.ImageInterval = 0;
-            this.b1.Location = new System.Drawing.Point(4, 4);
-            this.b1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b1.Name = "b1";
-            this.b1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.b1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.b1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.b1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.b1.Size = new System.Drawing.Size(30, 24);
-            this.b1.Style = Sunny.UI.UIStyle.Custom;
-            this.b1.StyleCustomMode = true;
-            this.b1.Symbol = 61696;
-            this.b1.TabIndex = 0;
-            this.b1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.b1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.b1.Click += new System.EventHandler(this.b1_Click);
+            b1.BackColor = Color.Transparent;
+            b1.Cursor = Cursors.Hand;
+            b1.FillColor = Color.White;
+            b1.FillHoverColor = Color.FromArgb(80, 160, 255);
+            b1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b1.ForeColor = Color.FromArgb(80, 160, 255);
+            b1.Location = new Point(4, 4);
+            b1.MinimumSize = new Size(1, 1);
+            b1.Name = "b1";
+            b1.Padding = new Padding(24, 0, 0, 0);
+            b1.RadiusSides = UICornerRadiusSides.None;
+            b1.RectHoverColor = Color.FromArgb(80, 160, 255);
+            b1.RectSides = ToolStripStatusLabelBorderSides.None;
+            b1.Size = new Size(30, 24);
+            b1.Style = UIStyle.Custom;
+            b1.StyleCustomMode = true;
+            b1.Symbol = 61696;
+            b1.TabIndex = 0;
+            b1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            b1.Click += b1_Click;
             // 
             // TabControl
             // 
-            this.TabControl.Controls.Add(this.tabPage1);
-            this.TabControl.Controls.Add(this.tabPage2);
-            this.TabControl.Controls.Add(this.tabPage3);
-            this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.TabControl.Font = new System.Drawing.Font("宋体", 12F);
-            this.TabControl.ItemSize = new System.Drawing.Size(150, 40);
-            this.TabControl.Location = new System.Drawing.Point(0, 31);
-            this.TabControl.MainPage = "";
-            this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(461, 317);
-            this.TabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.TabControl.Style = Sunny.UI.UIStyle.Custom;
-            this.TabControl.TabIndex = 1;
-            this.TabControl.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TabControl.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
+            TabControl.Controls.Add(tabPage1);
+            TabControl.Controls.Add(tabPage2);
+            TabControl.Controls.Add(tabPage3);
+            TabControl.Dock = DockStyle.Fill;
+            TabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            TabControl.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            TabControl.ItemSize = new Size(150, 40);
+            TabControl.Location = new Point(0, 31);
+            TabControl.MainPage = "";
+            TabControl.Name = "TabControl";
+            TabControl.SelectedIndex = 0;
+            TabControl.Size = new Size(461, 317);
+            TabControl.SizeMode = TabSizeMode.Fixed;
+            TabControl.Style = UIStyle.Custom;
+            TabControl.TabIndex = 1;
+            TabControl.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
+            TabControl.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            TabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.p1);
-            this.tabPage1.Location = new System.Drawing.Point(0, 40);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(461, 277);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(p1);
+            tabPage1.Location = new Point(0, 40);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(461, 277);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // p1
             // 
-            this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p1.FillColor = System.Drawing.Color.White;
-            this.p1.Font = new System.Drawing.Font("宋体", 12F);
-            this.p1.Location = new System.Drawing.Point(0, 0);
-            this.p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.p1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.p1.Name = "p1";
-            this.p1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p1.Size = new System.Drawing.Size(461, 277);
-            this.p1.Style = Sunny.UI.UIStyle.Custom;
-            this.p1.TabIndex = 0;
-            this.p1.Text = null;
-            this.p1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.p1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.p1.Paint += new System.Windows.Forms.PaintEventHandler(this.p1_Paint);
-            this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
-            this.p1.MouseLeave += new System.EventHandler(this.p1_MouseLeave);
-            this.p1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p1_MouseMove);
+            p1.Dock = DockStyle.Fill;
+            p1.FillColor = Color.White;
+            p1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            p1.Location = new Point(0, 0);
+            p1.Margin = new Padding(4, 5, 4, 5);
+            p1.MinimumSize = new Size(1, 1);
+            p1.Name = "p1";
+            p1.RadiusSides = UICornerRadiusSides.None;
+            p1.Size = new Size(461, 277);
+            p1.Style = UIStyle.Custom;
+            p1.TabIndex = 0;
+            p1.Text = null;
+            p1.TextAlignment = ContentAlignment.MiddleCenter;
+            p1.Paint += p1_Paint;
+            p1.MouseClick += p1_MouseClick;
+            p1.MouseLeave += p1_MouseLeave;
+            p1.MouseMove += p1_MouseMove;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.p2);
-            this.tabPage2.Location = new System.Drawing.Point(0, 40);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(200, 60);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(p2);
+            tabPage2.Location = new Point(0, 40);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(461, 277);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // p2
             // 
-            this.p2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p2.FillColor = System.Drawing.Color.White;
-            this.p2.Font = new System.Drawing.Font("宋体", 12F);
-            this.p2.Location = new System.Drawing.Point(0, 0);
-            this.p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.p2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.p2.Name = "p2";
-            this.p2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p2.Size = new System.Drawing.Size(200, 60);
-            this.p2.Style = Sunny.UI.UIStyle.Custom;
-            this.p2.TabIndex = 1;
-            this.p2.Text = null;
-            this.p2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.p2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.p2.Paint += new System.Windows.Forms.PaintEventHandler(this.p2_Paint);
-            this.p2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p2_MouseClick);
-            this.p2.MouseLeave += new System.EventHandler(this.p2_MouseLeave);
-            this.p2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p2_MouseMove);
+            p2.Dock = DockStyle.Fill;
+            p2.FillColor = Color.White;
+            p2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            p2.Location = new Point(0, 0);
+            p2.Margin = new Padding(4, 5, 4, 5);
+            p2.MinimumSize = new Size(1, 1);
+            p2.Name = "p2";
+            p2.RadiusSides = UICornerRadiusSides.None;
+            p2.Size = new Size(461, 277);
+            p2.Style = UIStyle.Custom;
+            p2.TabIndex = 1;
+            p2.Text = null;
+            p2.TextAlignment = ContentAlignment.MiddleCenter;
+            p2.Paint += p2_Paint;
+            p2.MouseClick += p2_MouseClick;
+            p2.MouseLeave += p2_MouseLeave;
+            p2.MouseMove += p2_MouseMove;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.p3);
-            this.tabPage3.Location = new System.Drawing.Point(0, 40);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(200, 60);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(p3);
+            tabPage3.Location = new Point(0, 40);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(461, 277);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // p3
             // 
-            this.p3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p3.FillColor = System.Drawing.Color.White;
-            this.p3.Font = new System.Drawing.Font("宋体", 12F);
-            this.p3.Location = new System.Drawing.Point(0, 0);
-            this.p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.p3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.p3.Name = "p3";
-            this.p3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.p3.Size = new System.Drawing.Size(200, 60);
-            this.p3.Style = Sunny.UI.UIStyle.Custom;
-            this.p3.TabIndex = 2;
-            this.p3.Text = null;
-            this.p3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.p3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.p3.Paint += new System.Windows.Forms.PaintEventHandler(this.p3_Paint);
-            this.p3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p3_MouseClick);
-            this.p3.MouseLeave += new System.EventHandler(this.p3_MouseLeave);
-            this.p3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.p3_MouseMove);
+            p3.Dock = DockStyle.Fill;
+            p3.FillColor = Color.White;
+            p3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            p3.Location = new Point(0, 0);
+            p3.Margin = new Padding(4, 5, 4, 5);
+            p3.MinimumSize = new Size(1, 1);
+            p3.Name = "p3";
+            p3.RadiusSides = UICornerRadiusSides.None;
+            p3.Size = new Size(461, 277);
+            p3.Style = UIStyle.Custom;
+            p3.TabIndex = 2;
+            p3.Text = null;
+            p3.TextAlignment = ContentAlignment.MiddleCenter;
+            p3.Paint += p3_Paint;
+            p3.MouseClick += p3_MouseClick;
+            p3.MouseLeave += p3_MouseLeave;
+            p3.MouseMove += p3_MouseMove;
             // 
-            // UIDate
+            // UICalendar
             // 
-            this.Controls.Add(this.TabControl);
-            this.Controls.Add(this.TopPanel);
-            this.FillColor = System.Drawing.Color.White;
-            this.Name = "UIDate";
-            this.Size = new System.Drawing.Size(461, 348);
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.TopPanel.ResumeLayout(false);
-            this.TabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            Controls.Add(TabControl);
+            Controls.Add(TopPanel);
+            FillColor = Color.White;
+            Name = "UICalendar";
+            Size = new Size(461, 348);
+            Style = UIStyle.Custom;
+            TopPanel.ResumeLayout(false);
+            TabControl.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion InitializeComponent
@@ -592,7 +578,7 @@ namespace Sunny.UI
             TopPanel.SetStyleColor(uiColor);
         }
 
-        private void p2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p2_Paint(object sender, PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -611,7 +597,7 @@ namespace Sunny.UI
             }
         }
 
-        private void p2_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p2_MouseClick(object sender, MouseEventArgs e)
         {
             int width = p2.Width / 4;
             int height = p2.Height / 3;
@@ -635,7 +621,7 @@ namespace Sunny.UI
 
         private int activeMonth = -1;
 
-        private void p2_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p2_MouseMove(object sender, MouseEventArgs e)
         {
             int width = p2.Width / 4;
             int height = p2.Height / 3;
@@ -653,7 +639,7 @@ namespace Sunny.UI
 
         //public bool ShowToday { get; set; }
 
-        private void p1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p1_Paint(object sender, PaintEventArgs e)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -670,7 +656,7 @@ namespace Sunny.UI
             }
         }
 
-        private void p1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p1_MouseMove(object sender, MouseEventArgs e)
         {
             int width = p1.Width / 4;
             int height = p1.Height / 3;
@@ -684,7 +670,7 @@ namespace Sunny.UI
             }
         }
 
-        private void p1_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p1_MouseClick(object sender, MouseEventArgs e)
         {
             int width = p1.Width / 4;
             int height = p1.Height / 3;
@@ -707,7 +693,7 @@ namespace Sunny.UI
             }
         }
 
-        private void p3_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void p3_Paint(object sender, PaintEventArgs e)
         {
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
@@ -749,7 +735,7 @@ namespace Sunny.UI
 
         private int activeDay = -1;
 
-        private void p3_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p3_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Location.Y <= 30)
             {
@@ -771,7 +757,7 @@ namespace Sunny.UI
             }
         }
 
-        private void p3_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void p3_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Location.Y <= 30) return;
             int width = p3.Width / 7;

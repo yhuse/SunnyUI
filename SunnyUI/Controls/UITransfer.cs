@@ -289,9 +289,8 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (l1 == null || l2 == null) return;
-            l1.Font = Font;
-            l2.Font = Font;
+            if (DefaultFontSize < 0 && l1 != null) l1.Font = this.Font;
+            if (DefaultFontSize < 0 && l2 != null) l2.Font = this.Font;
         }
 
         private int itemHeight = 25;

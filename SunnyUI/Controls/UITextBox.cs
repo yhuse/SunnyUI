@@ -660,8 +660,7 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
 
-            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
-            edit.Font = this.Font.Clone(DefaultFontSize);
+            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
 
             SizeChange();
             Invalidate();

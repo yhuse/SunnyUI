@@ -744,10 +744,7 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (view != null)
-            {
-                view.Font = Font;
-            }
+            if (DefaultFontSize < 0 && view != null) view.Font = this.Font;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)

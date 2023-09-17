@@ -73,6 +73,19 @@ namespace Sunny.UI
             }
         }
 
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+
+            if (DefaultFontSize < 0)
+            {
+                foreach (var item in boxes)
+                {
+                    item.Font = Font;
+                }
+            }
+        }
+
         private void Items_CountChange(object sender, EventArgs e)
         {
             Invalidate();

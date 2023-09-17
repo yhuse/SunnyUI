@@ -457,8 +457,12 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
             if (!InitializeComponentEnd) return;
-            if (txt1 == null || txt2 == null || txt3 == null || txt4 == null) return;
-            txt1.Font = txt2.Font = txt3.Font = txt4.Font = Font;
+
+            if (DefaultFontSize < 0 && txt1 != null) txt1.Font = this.Font;
+            if (DefaultFontSize < 0 && txt2 != null) txt2.Font = this.Font;
+            if (DefaultFontSize < 0 && txt3 != null) txt3.Font = this.Font;
+            if (DefaultFontSize < 0 && txt4 != null) txt4.Font = this.Font;
+
             UIIPTextBox_SizeChanged(null, null);
             Invalidate();
         }

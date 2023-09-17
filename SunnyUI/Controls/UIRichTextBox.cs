@@ -228,7 +228,7 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (edit != null) edit.Font = Font;
+            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
         }
 
         private bool showScrollBar = true;

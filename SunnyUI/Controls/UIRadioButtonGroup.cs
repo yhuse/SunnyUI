@@ -48,6 +48,19 @@ namespace Sunny.UI
             StyleCustomModeChanged += UICheckBoxGroup_StyleCustomModeChanged;
         }
 
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+
+            if (DefaultFontSize < 0)
+            {
+                foreach (var item in buttons)
+                {
+                    item.Font = Font;
+                }
+            }
+        }
+
         private void UICheckBoxGroup_StyleCustomModeChanged(object sender, EventArgs e)
         {
             foreach (var item in buttons)

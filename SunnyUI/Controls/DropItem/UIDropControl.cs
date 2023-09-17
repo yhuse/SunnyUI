@@ -86,8 +86,7 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
-            edit.Font = this.Font.Clone(DefaultFontSize);
+            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
             SizeChange();
             Invalidate();
         }
@@ -373,7 +372,6 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             SizeChange();
-
             if (tipsBtn != null)
             {
                 tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);

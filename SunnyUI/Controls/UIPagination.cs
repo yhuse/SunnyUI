@@ -128,6 +128,31 @@ namespace Sunny.UI
             Translate();
         }
 
+        /// <summary>
+        /// 重载字体变更
+        /// </summary>
+        /// <param name="e">参数</param>
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            if (DefaultFontSize < 0)
+            {
+                foreach (var item in this.GetControls<UISymbolButton>(true))
+                    item.Font = Font;
+
+                foreach (var item in this.GetControls<UITextBox>(true))
+                    item.Font = Font;
+
+                foreach (var item in this.GetControls<UIComboBox>(true))
+                    item.Font = Font;
+
+                foreach (var item in this.GetControls<UILabel>(true))
+                    item.Font = Font;
+            }
+
+            Translate();
+        }
+
         protected override void AfterSetFillColor(Color color)
         {
             base.AfterSetFillColor(color);
