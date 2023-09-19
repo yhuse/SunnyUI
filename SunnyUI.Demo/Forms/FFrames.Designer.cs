@@ -50,7 +50,7 @@
             // btnAM
             // 
             this.btnAM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAM.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnAM.Font = new System.Drawing.Font("宋体", 12F);
             this.btnAM.Image = global::Sunny.UI.Demo.Properties.Resources.AM;
             this.btnAM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AM1;
             this.btnAM.Location = new System.Drawing.Point(30, 234);
@@ -65,7 +65,7 @@
             // btnAHMF
             // 
             this.btnAHMF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAHMF.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnAHMF.Font = new System.Drawing.Font("宋体", 12F);
             this.btnAHMF.Image = global::Sunny.UI.Demo.Properties.Resources.AHMF;
             this.btnAHMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AHMF1;
             this.btnAHMF.Location = new System.Drawing.Point(398, 234);
@@ -80,7 +80,7 @@
             // btnHAMF
             // 
             this.btnHAMF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHAMF.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnHAMF.Font = new System.Drawing.Font("宋体", 12F);
             this.btnHAMF.Image = global::Sunny.UI.Demo.Properties.Resources.HAMF;
             this.btnHAMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HAMF1;
             this.btnHAMF.Location = new System.Drawing.Point(582, 90);
@@ -95,7 +95,7 @@
             // btnHAM
             // 
             this.btnHAM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHAM.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnHAM.Font = new System.Drawing.Font("宋体", 12F);
             this.btnHAM.Image = global::Sunny.UI.Demo.Properties.Resources.HAM;
             this.btnHAM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HAM1;
             this.btnHAM.Location = new System.Drawing.Point(398, 90);
@@ -110,7 +110,7 @@
             // btnAHM
             // 
             this.btnAHM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAHM.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnAHM.Font = new System.Drawing.Font("宋体", 12F);
             this.btnAHM.Image = global::Sunny.UI.Demo.Properties.Resources.AHM;
             this.btnAHM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.AHM1;
             this.btnAHM.Location = new System.Drawing.Point(214, 234);
@@ -125,7 +125,7 @@
             // btnHMF
             // 
             this.btnHMF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHMF.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnHMF.Font = new System.Drawing.Font("宋体", 12F);
             this.btnHMF.Image = global::Sunny.UI.Demo.Properties.Resources.HMF;
             this.btnHMF.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HMF1;
             this.btnHMF.Location = new System.Drawing.Point(214, 90);
@@ -140,7 +140,7 @@
             // btnHM
             // 
             this.btnHM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHM.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnHM.Font = new System.Drawing.Font("宋体", 12F);
             this.btnHM.Image = global::Sunny.UI.Demo.Properties.Resources.HM;
             this.btnHM.ImageHover = global::Sunny.UI.Demo.Properties.Resources.HM1;
             this.btnHM.Location = new System.Drawing.Point(30, 90);
@@ -155,7 +155,7 @@
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
@@ -167,7 +167,7 @@
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.LineDashStyle = Sunny.UI.UILineDashStyle.None;
             this.uiLine2.Location = new System.Drawing.Point(30, 379);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
@@ -180,7 +180,7 @@
             // uiSymbolButton1
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton1.Location = new System.Drawing.Point(30, 417);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
@@ -188,7 +188,7 @@
             this.uiSymbolButton1.Symbol = 110;
             this.uiSymbolButton1.SymbolSize = 120;
             this.uiSymbolButton1.TabIndex = 80;
-            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
             // 
             // FFrames

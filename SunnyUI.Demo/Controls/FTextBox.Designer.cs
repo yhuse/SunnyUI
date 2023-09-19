@@ -56,7 +56,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiTextBox6.ButtonWidth = 100;
             this.uiTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTextBox6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox6.Location = new System.Drawing.Point(117, 167);
             this.uiTextBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox6.MinimumSize = new System.Drawing.Size(1, 1);
@@ -73,7 +73,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiTextBox5.ButtonWidth = 100;
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTextBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox5.Icon = global::Sunny.UI.Demo.Properties.Resources.Home_32x32;
             this.uiTextBox5.Location = new System.Drawing.Point(117, 128);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -90,7 +90,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiTextBox4.ButtonWidth = 100;
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTextBox4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox4.Location = new System.Drawing.Point(30, 325);
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox4.MinimumSize = new System.Drawing.Size(1, 1);
@@ -109,7 +109,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine3.Location = new System.Drawing.Point(388, 286);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -120,7 +120,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 286);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -132,7 +132,7 @@ namespace Sunny.UI.Demo
             // uiRichTextBox1
             // 
             this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
-            this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRichTextBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiRichTextBox1.Location = new System.Drawing.Point(388, 325);
             this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -148,7 +148,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
-            this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine5.Location = new System.Drawing.Point(388, 132);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -159,7 +159,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
-            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine4.Location = new System.Drawing.Point(388, 55);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -170,7 +170,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -181,7 +181,7 @@ namespace Sunny.UI.Demo
             // 
             // uiDoubleUpDown1
             // 
-            this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiDoubleUpDown1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiDoubleUpDown1.Location = new System.Drawing.Point(388, 167);
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
@@ -196,7 +196,7 @@ namespace Sunny.UI.Demo
             // uiLabel3
             // 
             this.uiLabel3.AutoSize = true;
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel3.Location = new System.Drawing.Point(38, 249);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(65, 21);
@@ -209,7 +209,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox3.ButtonWidth = 100;
             this.uiTextBox3.CanEmpty = true;
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTextBox3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiTextBox3.Location = new System.Drawing.Point(117, 245);
             this.uiTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 1);
@@ -225,7 +225,7 @@ namespace Sunny.UI.Demo
             // uiLabel2
             // 
             this.uiLabel2.AutoSize = true;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel2.Location = new System.Drawing.Point(38, 210);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(65, 21);
@@ -239,7 +239,7 @@ namespace Sunny.UI.Demo
             this.uiTextBox2.CanEmpty = true;
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.DoubleValue = 50D;
-            this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTextBox2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiTextBox2.IntValue = 50;
             this.uiTextBox2.Location = new System.Drawing.Point(117, 206);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -259,7 +259,7 @@ namespace Sunny.UI.Demo
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel1.Location = new System.Drawing.Point(38, 93);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(55, 21);
@@ -269,7 +269,7 @@ namespace Sunny.UI.Demo
             // 
             // uiIntegerUpDown1
             // 
-            this.uiIntegerUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiIntegerUpDown1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiIntegerUpDown1.Location = new System.Drawing.Point(388, 89);
             this.uiIntegerUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiIntegerUpDown1.Maximum = 100;
@@ -292,7 +292,7 @@ namespace Sunny.UI.Demo
             // uiTextBox1
             // 
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTextBox1.Location = new System.Drawing.Point(117, 89);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
@@ -309,7 +309,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
-            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine6.Location = new System.Drawing.Point(388, 211);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -320,7 +320,7 @@ namespace Sunny.UI.Demo
             // 
             // uiipTextBox1
             // 
-            this.uiipTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiipTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiipTextBox1.Location = new System.Drawing.Point(388, 245);
             this.uiipTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiipTextBox1.MinimumSize = new System.Drawing.Size(1, 1);

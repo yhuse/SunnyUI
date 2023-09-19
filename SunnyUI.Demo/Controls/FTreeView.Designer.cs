@@ -67,7 +67,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -81,7 +81,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiTreeView1.CheckBoxes = true;
             this.uiTreeView1.FillColor = System.Drawing.Color.White;
-            this.uiTreeView1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTreeView1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiTreeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiTreeView1.Location = new System.Drawing.Point(30, 89);
             this.uiTreeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

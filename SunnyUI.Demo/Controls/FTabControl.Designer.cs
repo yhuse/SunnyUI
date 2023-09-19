@@ -57,7 +57,7 @@ namespace Sunny.UI.Demo
             this.uiTabControlMenu1.Controls.Add(this.tabPage7);
             this.uiTabControlMenu1.Controls.Add(this.tabPage8);
             this.uiTabControlMenu1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControlMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTabControlMenu1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiTabControlMenu1.Location = new System.Drawing.Point(30, 321);
             this.uiTabControlMenu1.Multiline = true;
             this.uiTabControlMenu1.Name = "uiTabControlMenu1";
@@ -105,7 +105,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 286);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -117,7 +117,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -138,7 +138,7 @@ namespace Sunny.UI.Demo
             this.uiTabControl1.Controls.Add(this.tabPage12);
             this.uiTabControl1.Controls.Add(this.tabPage13);
             this.uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTabControl1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl1.Frame = null;
             this.uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
             this.uiTabControl1.Location = new System.Drawing.Point(30, 85);
@@ -150,7 +150,7 @@ namespace Sunny.UI.Demo
             this.uiTabControl1.Size = new System.Drawing.Size(670, 183);
             this.uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControl1.TabIndex = 22;
-            this.uiTabControl1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTabControl1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiTabControl1.BeforeRemoveTabPage += new Sunny.UI.UITabControl.OnBeforeRemoveTabPage(this.uiTabControl1_BeforeRemoveTabPage);
             // 

@@ -37,7 +37,7 @@
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 149);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -49,7 +49,7 @@
             // uiSymbolButton1
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton1.Location = new System.Drawing.Point(30, 184);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
@@ -63,7 +63,7 @@
             // btnAdd
             // 
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
             this.btnAdd.Location = new System.Drawing.Point(30, 92);
             this.btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAdd.Name = "btnAdd";
@@ -76,7 +76,7 @@
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -88,7 +88,7 @@
             // btnEdit
             // 
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnEdit.Font = new System.Drawing.Font("宋体", 12F);
             this.btnEdit.Location = new System.Drawing.Point(152, 92);
             this.btnEdit.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnEdit.Name = "btnEdit";

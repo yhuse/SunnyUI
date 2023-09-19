@@ -48,7 +48,7 @@ namespace Sunny.UI.Demo
             // uiLabel3
             // 
             this.uiLabel3.AutoSize = true;
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel3.Location = new System.Drawing.Point(31, 136);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(138, 21);
@@ -59,7 +59,7 @@ namespace Sunny.UI.Demo
             // uiLabel2
             // 
             this.uiLabel2.AutoSize = true;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel2.Location = new System.Drawing.Point(211, 95);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(138, 21);
@@ -70,7 +70,7 @@ namespace Sunny.UI.Demo
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel1.Location = new System.Drawing.Point(31, 95);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(138, 21);
@@ -81,7 +81,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine7
             // 
-            this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine7.Location = new System.Drawing.Point(30, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -93,7 +93,7 @@ namespace Sunny.UI.Demo
             // uiScrollingText2
             // 
             this.uiScrollingText2.Active = true;
-            this.uiScrollingText2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiScrollingText2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiScrollingText2.Location = new System.Drawing.Point(381, 129);
             this.uiScrollingText2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollingText2.Name = "uiScrollingText2";
@@ -105,7 +105,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiScrollingText1.Active = true;
             this.uiScrollingText1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiScrollingText1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollingText1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiScrollingText1.ForeColor = System.Drawing.Color.Red;
             this.uiScrollingText1.Location = new System.Drawing.Point(381, 88);
             this.uiScrollingText1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -119,7 +119,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
-            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine6.Location = new System.Drawing.Point(381, 55);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -131,14 +131,14 @@ namespace Sunny.UI.Demo
             // uiToolTip1
             // 
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiToolTip1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             this.uiToolTip1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(381, 187);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -149,7 +149,7 @@ namespace Sunny.UI.Demo
             // 
             // uiVerificationCode1
             // 
-            this.uiVerificationCode1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiVerificationCode1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiVerificationCode1.Location = new System.Drawing.Point(381, 225);
             this.uiVerificationCode1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiVerificationCode1.Name = "uiVerificationCode1";
@@ -159,7 +159,7 @@ namespace Sunny.UI.Demo
             // uiVerificationCode2
             // 
             this.uiVerificationCode2.CodeLength = 6;
-            this.uiVerificationCode2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiVerificationCode2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiVerificationCode2.Location = new System.Drawing.Point(499, 225);
             this.uiVerificationCode2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiVerificationCode2.Name = "uiVerificationCode2";
@@ -170,7 +170,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiCalendar1.Date = new System.DateTime(2022, 7, 3, 0, 0, 0, 0);
             this.uiCalendar1.FillColor = System.Drawing.Color.White;
-            this.uiCalendar1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiCalendar1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiCalendar1.Location = new System.Drawing.Point(30, 225);
             this.uiCalendar1.MinimumSize = new System.Drawing.Size(240, 180);
             this.uiCalendar1.Name = "uiCalendar1";
@@ -183,7 +183,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 187);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";

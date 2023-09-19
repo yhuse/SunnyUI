@@ -34,7 +34,7 @@
             // uiSymbolLabel1
             // 
             this.uiSymbolLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolLabel1.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiSymbolLabel1.Location = new System.Drawing.Point(0, 0);
             this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);

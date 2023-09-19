@@ -35,7 +35,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -46,7 +46,7 @@ namespace Sunny.UI.Demo
             // 
             // uiTransfer1
             // 
-            this.uiTransfer1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiTransfer1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiTransfer1.ItemsLeft.AddRange(new object[] {
             "1",
             "2",

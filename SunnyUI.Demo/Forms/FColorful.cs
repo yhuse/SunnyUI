@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 
 namespace Sunny.UI.Demo
 {
@@ -10,6 +11,14 @@ namespace Sunny.UI.Demo
             InitializeComponent();
             uiPanel11.FillColor = uiPanel11.RectColor = RandomColor.GetColor(ColorScheme.Random, Luminosity.Bright);
             uiLabel2.Text = "RGB: " + uiPanel11.FillColor.R + ", " + uiPanel11.FillColor.G + ", " + uiPanel11.FillColor.B;
+
+            InstalledFontCollection fonts = new InstalledFontCollection();
+            foreach (FontFamily family in fonts.Families)
+            {
+                cbFont.Items.Add(family.Name);
+            }
+
+            cbFont.SelectedIndex = cbFont.Items.IndexOf(SystemFonts.DefaultFont.Name);
         }
 
         private void uiPanel1_Click(object sender, System.EventArgs e)
@@ -45,6 +54,21 @@ namespace Sunny.UI.Demo
             int g = Math.Abs(Math.Min(color.G - increase, max));
             int b = Math.Abs(Math.Min(color.B - increase, max));
             return Color.FromArgb(r, g, b);
+        }
+
+        private void uiSymbolButton1_Click(object sender, EventArgs e)
+        {
+            UIStyles.DPIScale = true;
+            UIStyles.GlobalFont = true;
+            UIStyles.GlobalFontName = cbFont.Text;
+            UIStyles.GlobalFontScale = uiTrackBar1.Value;
+            UIStyles.SetDPIScale();
+        }
+
+        private void uiTrackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            uiLabel5.Text = uiTrackBar1.Value.ToString();
+            UIStyles.GlobalFontScale = uiTrackBar1.Value;
         }
     }
 }

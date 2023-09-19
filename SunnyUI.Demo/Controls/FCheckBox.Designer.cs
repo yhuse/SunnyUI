@@ -47,7 +47,7 @@ namespace Sunny.UI.Demo
             // uiButton5
             // 
             this.uiButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton5.Location = new System.Drawing.Point(454, 345);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
@@ -59,7 +59,7 @@ namespace Sunny.UI.Demo
             // uiButton4
             // 
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton4.Location = new System.Drawing.Point(348, 345);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
@@ -71,7 +71,7 @@ namespace Sunny.UI.Demo
             // uiButton3
             // 
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton3.Location = new System.Drawing.Point(242, 345);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
@@ -83,7 +83,7 @@ namespace Sunny.UI.Demo
             // uiButton2
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton2.Location = new System.Drawing.Point(136, 345);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
@@ -95,7 +95,7 @@ namespace Sunny.UI.Demo
             // uiButton1
             // 
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton1.Location = new System.Drawing.Point(30, 345);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
@@ -107,7 +107,7 @@ namespace Sunny.UI.Demo
             // uiCheckBoxGroup1
             // 
             this.uiCheckBoxGroup1.ColumnCount = 2;
-            this.uiCheckBoxGroup1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBoxGroup1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBoxGroup1.Items.AddRange(new object[] {
             "0",
             "1",
@@ -134,7 +134,7 @@ namespace Sunny.UI.Demo
             // uiCheckBox2
             // 
             this.uiCheckBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiCheckBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBox2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox2.Location = new System.Drawing.Point(192, 83);
             this.uiCheckBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox2.Name = "uiCheckBox2";
@@ -147,7 +147,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiCheckBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox4.Enabled = false;
-            this.uiCheckBox4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBox4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox4.Location = new System.Drawing.Point(516, 81);
             this.uiCheckBox4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox4.Name = "uiCheckBox4";
@@ -161,7 +161,7 @@ namespace Sunny.UI.Demo
             this.uiCheckBox3.Checked = true;
             this.uiCheckBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox3.Enabled = false;
-            this.uiCheckBox3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBox3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox3.Location = new System.Drawing.Point(354, 81);
             this.uiCheckBox3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox3.Name = "uiCheckBox3";
@@ -172,7 +172,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -185,7 +185,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiCheckBox1.Checked = true;
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox1.Location = new System.Drawing.Point(30, 83);
             this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox1.Name = "uiCheckBox1";
@@ -198,7 +198,7 @@ namespace Sunny.UI.Demo
             // uiButton6
             // 
             this.uiButton6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton6.Location = new System.Drawing.Point(560, 345);
             this.uiButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton6.Name = "uiButton6";

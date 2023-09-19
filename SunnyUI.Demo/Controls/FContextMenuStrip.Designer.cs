@@ -37,7 +37,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -49,7 +49,7 @@ namespace Sunny.UI.Demo
             // uiButton2
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton2.Location = new System.Drawing.Point(294, 92);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
@@ -62,7 +62,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiButton1.ContextMenuStrip = this.uiContextMenuStrip1;
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton1.Location = new System.Drawing.Point(30, 92);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
@@ -72,7 +72,7 @@ namespace Sunny.UI.Demo
             // 
             // uiContextMenuStrip1
             // 
-            this.uiContextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
             this.uiContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 

@@ -123,7 +123,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 160);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -139,7 +139,7 @@ namespace Sunny.UI.Demo
             this.uiNavMenu2.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.uiNavMenu2.ExpandSelectFirst = true;
             this.uiNavMenu2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.uiNavMenu2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiNavMenu2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiNavMenu2.FullRowSelect = true;
             this.uiNavMenu2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -216,7 +216,7 @@ namespace Sunny.UI.Demo
             this.uiNavMenu1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.uiNavMenu1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.uiNavMenu1.ExpandSelectFirst = true;
-            this.uiNavMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiNavMenu1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiNavMenu1.FullRowSelect = true;
             this.uiNavMenu1.ItemHeight = 50;
@@ -289,7 +289,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiNavBar1.Controls.Add(this.uiLine1);
             this.uiNavBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiNavBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiNavBar1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavBar1.Location = new System.Drawing.Point(0, 35);
             this.uiNavBar1.Name = "uiNavBar1";
             this.uiNavBar1.NodeAlignment = System.Drawing.StringAlignment.Near;
@@ -338,7 +338,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.ForeColor = System.Drawing.Color.White;
             this.uiLine1.Location = new System.Drawing.Point(30, 20);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);

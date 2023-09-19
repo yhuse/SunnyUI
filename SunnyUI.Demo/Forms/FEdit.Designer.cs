@@ -54,7 +54,7 @@
             this.edtName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtName.EnterAsTab = true;
             this.edtName.FillColor = System.Drawing.Color.White;
-            this.edtName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtName.Font = new System.Drawing.Font("宋体", 12F);
             this.edtName.Location = new System.Drawing.Point(150, 55);
             this.edtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtName.Maximum = 2147483647D;
@@ -67,7 +67,7 @@
             // uiLabel2
             // 
             this.uiLabel2.AutoSize = true;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel2.Location = new System.Drawing.Point(56, 59);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(42, 21);
@@ -78,7 +78,7 @@
             // uiLabel3
             // 
             this.uiLabel3.AutoSize = true;
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel3.Location = new System.Drawing.Point(56, 99);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(42, 21);
@@ -90,7 +90,7 @@
             // 
             this.rbMale.Checked = true;
             this.rbMale.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbMale.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.rbMale.Font = new System.Drawing.Font("宋体", 12F);
             this.rbMale.Location = new System.Drawing.Point(150, 95);
             this.rbMale.Name = "rbMale";
             this.rbMale.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
@@ -101,7 +101,7 @@
             // rbFemale
             // 
             this.rbFemale.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbFemale.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.rbFemale.Font = new System.Drawing.Font("宋体", 12F);
             this.rbFemale.Location = new System.Drawing.Point(238, 95);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
@@ -113,7 +113,7 @@
             // 
             this.edtAge.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtAge.FillColor = System.Drawing.Color.White;
-            this.edtAge.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtAge.Font = new System.Drawing.Font("宋体", 12F);
             this.edtAge.Location = new System.Drawing.Point(150, 135);
             this.edtAge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtAge.Maximum = 2147483647D;
@@ -128,7 +128,7 @@
             // uiLabel4
             // 
             this.uiLabel4.AutoSize = true;
-            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel4.Location = new System.Drawing.Point(56, 139);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(42, 21);
@@ -140,7 +140,7 @@
             // 
             this.cbDepartment.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cbDepartment.FillColor = System.Drawing.Color.White;
-            this.cbDepartment.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbDepartment.Font = new System.Drawing.Font("宋体", 12F);
             this.cbDepartment.Items.AddRange(new object[] {
             "研发部",
             "采购部",
@@ -162,7 +162,7 @@
             // uiLabel5
             // 
             this.uiLabel5.AutoSize = true;
-            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel5.Location = new System.Drawing.Point(56, 179);
             this.uiLabel5.Name = "uiLabel5";
             this.uiLabel5.Size = new System.Drawing.Size(42, 21);
@@ -173,7 +173,7 @@
             // uiLabel6
             // 
             this.uiLabel6.AutoSize = true;
-            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel6.Location = new System.Drawing.Point(56, 219);
             this.uiLabel6.Name = "uiLabel6";
             this.uiLabel6.Size = new System.Drawing.Size(42, 21);
@@ -185,7 +185,7 @@
             // 
             this.edtDate.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.edtDate.FillColor = System.Drawing.Color.White;
-            this.edtDate.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtDate.Font = new System.Drawing.Font("宋体", 12F);
             this.edtDate.Location = new System.Drawing.Point(150, 215);
             this.edtDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtDate.MaxLength = 10;
@@ -204,7 +204,7 @@
             // 
             this.edtAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edtAddress.FillColor = System.Drawing.Color.White;
-            this.edtAddress.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtAddress.Font = new System.Drawing.Font("宋体", 12F);
             this.edtAddress.Location = new System.Drawing.Point(150, 254);
             this.edtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edtAddress.Maximum = 2147483647D;
@@ -217,7 +217,7 @@
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel1.Location = new System.Drawing.Point(56, 258);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(42, 21);

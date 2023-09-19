@@ -40,19 +40,19 @@ namespace Sunny.UI.Demo
             // uiButton1
             // 
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton1.Location = new System.Drawing.Point(30, 462);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
             this.uiButton1.TabIndex = 11;
             this.uiButton1.Text = "增加";
-            this.uiButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // uiFlowLayoutPanel1
             // 
-            this.uiFlowLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiFlowLayoutPanel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiFlowLayoutPanel1.Location = new System.Drawing.Point(30, 55);
             this.uiFlowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiFlowLayoutPanel1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -67,46 +67,46 @@ namespace Sunny.UI.Demo
             // uiButton2
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton2.Location = new System.Drawing.Point(408, 462);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
             this.uiButton2.TabIndex = 12;
             this.uiButton2.Text = "清除";
-            this.uiButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiButton2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // uiButton3
             // 
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.Enabled = false;
-            this.uiButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton3.Location = new System.Drawing.Point(157, 462);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.Size = new System.Drawing.Size(100, 35);
             this.uiButton3.TabIndex = 13;
             this.uiButton3.Text = "移除";
-            this.uiButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiButton3.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton3.Click += new System.EventHandler(this.uiButton3_Click);
             // 
             // uiButton4
             // 
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiButton4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiButton4.Location = new System.Drawing.Point(284, 462);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
             this.uiButton4.TabIndex = 14;
             this.uiButton4.Text = "获取";
-            this.uiButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiButton4.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton4.Click += new System.EventHandler(this.uiButton4_Click);
             // 
             // uiFlowLayoutPanel2
             // 
-            this.uiFlowLayoutPanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiFlowLayoutPanel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiFlowLayoutPanel2.Location = new System.Drawing.Point(408, 55);
             this.uiFlowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiFlowLayoutPanel2.MinimumSize = new System.Drawing.Size(1, 1);

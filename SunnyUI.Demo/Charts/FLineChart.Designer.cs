@@ -47,7 +47,7 @@
             // uiSymbolButton1
             // 
             this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton1.Location = new System.Drawing.Point(348, 505);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
@@ -56,14 +56,14 @@
             this.uiSymbolButton1.Symbol = 61953;
             this.uiSymbolButton1.TabIndex = 34;
             this.uiSymbolButton1.Text = "单Y轴";
-            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
             // 
             // uiImageButton3
             // 
             this.uiImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiImageButton3.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDarkStyle;
             this.uiImageButton3.Location = new System.Drawing.Point(242, 505);
             this.uiImageButton3.Name = "uiImageButton3";
@@ -78,7 +78,7 @@
             // uiImageButton2
             // 
             this.uiImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiImageButton2.Image = global::Sunny.UI.Demo.Properties.Resources.ChartPlainStyle;
             this.uiImageButton2.Location = new System.Drawing.Point(136, 505);
             this.uiImageButton2.Name = "uiImageButton2";
@@ -93,7 +93,7 @@
             // uiImageButton1
             // 
             this.uiImageButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiImageButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiImageButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiImageButton1.Image = global::Sunny.UI.Demo.Properties.Resources.ChartDefaultStyle;
             this.uiImageButton1.Location = new System.Drawing.Point(30, 505);
             this.uiImageButton1.Name = "uiImageButton1";
@@ -107,13 +107,13 @@
             // 
             // LineChart
             // 
-            this.LineChart.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.LineChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LineChart.Font = new System.Drawing.Font("宋体", 12F);
+            this.LineChart.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.Location = new System.Drawing.Point(30, 55);
             this.LineChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.LineChart.Name = "LineChart";
             this.LineChart.Size = new System.Drawing.Size(670, 430);
-            this.LineChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LineChart.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LineChart.TabIndex = 35;
             this.LineChart.Text = "uiLineChart1";
             this.LineChart.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -122,7 +122,7 @@
             // uiSymbolButton2
             // 
             this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton2.Location = new System.Drawing.Point(560, 505);
             this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
@@ -131,7 +131,7 @@
             this.uiSymbolButton2.Symbol = 61463;
             this.uiSymbolButton2.TabIndex = 36;
             this.uiSymbolButton2.Text = "实时";
-            this.uiSymbolButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
             // 
@@ -142,7 +142,7 @@
             // cbPoints
             // 
             this.cbPoints.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbPoints.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbPoints.Font = new System.Drawing.Font("宋体", 12F);
             this.cbPoints.Location = new System.Drawing.Point(348, 538);
             this.cbPoints.MinimumSize = new System.Drawing.Size(1, 1);
             this.cbPoints.Name = "cbPoints";
@@ -156,7 +156,7 @@
             // cbContainsNan
             // 
             this.cbContainsNan.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbContainsNan.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbContainsNan.Font = new System.Drawing.Font("宋体", 12F);
             this.cbContainsNan.Location = new System.Drawing.Point(571, 535);
             this.cbContainsNan.MinimumSize = new System.Drawing.Size(1, 1);
             this.cbContainsNan.Name = "cbContainsNan";
@@ -171,7 +171,7 @@
             // uiSymbolButton3
             // 
             this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButton3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton3.Location = new System.Drawing.Point(454, 505);
             this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton3.Name = "uiSymbolButton3";
@@ -180,7 +180,7 @@
             this.uiSymbolButton3.Symbol = 61953;
             this.uiSymbolButton3.TabIndex = 39;
             this.uiSymbolButton3.Text = "双Y轴";
-            this.uiSymbolButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton3.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click_1);
             // 

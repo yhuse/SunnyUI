@@ -47,7 +47,7 @@ namespace Sunny.UI.Demo
             // uiVerScrollBarEx1
             // 
             this.uiVerScrollBarEx1.BoundsHeight = 10;
-            this.uiVerScrollBarEx1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiVerScrollBarEx1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiVerScrollBarEx1.LargeChange = 10;
             this.uiVerScrollBarEx1.Location = new System.Drawing.Point(219, 96);
             this.uiVerScrollBarEx1.Maximum = 100;
@@ -61,7 +61,7 @@ namespace Sunny.UI.Demo
             // uiHorScrollBar4
             // 
             this.uiHorScrollBar4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.uiHorScrollBar4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHorScrollBar4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHorScrollBar4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiHorScrollBar4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiHorScrollBar4.Location = new System.Drawing.Point(381, 219);
@@ -77,7 +77,7 @@ namespace Sunny.UI.Demo
             // uiHorScrollBar3
             // 
             this.uiHorScrollBar3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.uiHorScrollBar3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHorScrollBar3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHorScrollBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiHorScrollBar3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiHorScrollBar3.Location = new System.Drawing.Point(381, 177);
@@ -93,7 +93,7 @@ namespace Sunny.UI.Demo
             // uiHorScrollBar2
             // 
             this.uiHorScrollBar2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiHorScrollBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHorScrollBar2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHorScrollBar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiHorScrollBar2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiHorScrollBar2.Location = new System.Drawing.Point(381, 135);
@@ -108,7 +108,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine7
             // 
-            this.uiLine7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine7.Location = new System.Drawing.Point(381, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -119,7 +119,7 @@ namespace Sunny.UI.Demo
             // 
             // uiHorScrollBar1
             // 
-            this.uiHorScrollBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHorScrollBar1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHorScrollBar1.Location = new System.Drawing.Point(381, 93);
             this.uiHorScrollBar1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHorScrollBar1.Name = "uiHorScrollBar1";
@@ -130,7 +130,7 @@ namespace Sunny.UI.Demo
             // uiScrollBar4
             // 
             this.uiScrollBar4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.uiScrollBar4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollBar4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiScrollBar4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.uiScrollBar4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(127)))), ((int)(((byte)(128)))));
             this.uiScrollBar4.Location = new System.Drawing.Point(156, 90);
@@ -146,7 +146,7 @@ namespace Sunny.UI.Demo
             // uiScrollBar3
             // 
             this.uiScrollBar3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.uiScrollBar3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollBar3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiScrollBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiScrollBar3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(174)))), ((int)(((byte)(86)))));
             this.uiScrollBar3.Location = new System.Drawing.Point(114, 90);
@@ -162,7 +162,7 @@ namespace Sunny.UI.Demo
             // uiScrollBar2
             // 
             this.uiScrollBar2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiScrollBar2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollBar2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiScrollBar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
             this.uiScrollBar2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
             this.uiScrollBar2.Location = new System.Drawing.Point(72, 90);
@@ -177,7 +177,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -188,7 +188,7 @@ namespace Sunny.UI.Demo
             // 
             // uiScrollBar1
             // 
-            this.uiScrollBar1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiScrollBar1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiScrollBar1.Location = new System.Drawing.Point(30, 90);
             this.uiScrollBar1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiScrollBar1.Name = "uiScrollBar1";

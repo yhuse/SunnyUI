@@ -71,7 +71,7 @@ namespace Sunny.UI.Demo
             this.uiPipe3.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe3.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.uiPipe3.FlowSpeed = 10;
-            this.uiPipe3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe3.Location = new System.Drawing.Point(196, 194);
             this.uiPipe3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe3.Name = "uiPipe3";
@@ -90,7 +90,7 @@ namespace Sunny.UI.Demo
             this.uiPipe4.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe4.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.uiPipe4.FlowSpeed = 10;
-            this.uiPipe4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe4.Location = new System.Drawing.Point(34, 63);
             this.uiPipe4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe4.Name = "uiPipe4";
@@ -108,7 +108,7 @@ namespace Sunny.UI.Demo
             this.uiPipe2.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe2.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.uiPipe2.FlowSpeed = 10;
-            this.uiPipe2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe2.Location = new System.Drawing.Point(48, 194);
             this.uiPipe2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe2.Name = "uiPipe2";
@@ -127,7 +127,7 @@ namespace Sunny.UI.Demo
             this.uiPipe7.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe7.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe7.FlowSpeed = 10;
-            this.uiPipe7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe7.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe7.Location = new System.Drawing.Point(451, 194);
             this.uiPipe7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe7.Name = "uiPipe7";
@@ -146,7 +146,7 @@ namespace Sunny.UI.Demo
             this.uiPipe8.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe8.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe8.FlowSpeed = 10;
-            this.uiPipe8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe8.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe8.Location = new System.Drawing.Point(289, 175);
             this.uiPipe8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe8.Name = "uiPipe8";
@@ -164,7 +164,7 @@ namespace Sunny.UI.Demo
             this.uiPipe9.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe9.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe9.FlowSpeed = 10;
-            this.uiPipe9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe9.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe9.Location = new System.Drawing.Point(303, 194);
             this.uiPipe9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe9.Name = "uiPipe9";
@@ -183,7 +183,7 @@ namespace Sunny.UI.Demo
             this.uiPipe10.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe10.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Reverse;
             this.uiPipe10.FlowSpeed = 10;
-            this.uiPipe10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe10.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe10.Location = new System.Drawing.Point(78, 251);
             this.uiPipe10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe10.Name = "uiPipe10";
@@ -202,7 +202,7 @@ namespace Sunny.UI.Demo
             this.uiPipe11.FlowColor = System.Drawing.Color.SkyBlue;
             this.uiPipe11.FlowDirection = Sunny.UI.UIPipe.UIFlowDirection.Reverse;
             this.uiPipe11.FlowSpeed = 10;
-            this.uiPipe11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe11.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe11.Location = new System.Drawing.Point(109, 295);
             this.uiPipe11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe11.Name = "uiPipe11";
@@ -221,7 +221,7 @@ namespace Sunny.UI.Demo
             this.uiPipe12.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe12.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe12.FlowSpeed = 10;
-            this.uiPipe12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe12.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe12.Location = new System.Drawing.Point(63, 251);
             this.uiPipe12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe12.Name = "uiPipe12";
@@ -240,7 +240,7 @@ namespace Sunny.UI.Demo
             this.uiPipe1.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe1.FlowColor = System.Drawing.Color.SkyBlue;
             this.uiPipe1.FlowSpeed = 10;
-            this.uiPipe1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe1.Location = new System.Drawing.Point(94, 295);
             this.uiPipe1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe1.Name = "uiPipe1";
@@ -259,7 +259,7 @@ namespace Sunny.UI.Demo
             this.uiPipe5.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe5.FlowColor = System.Drawing.Color.SkyBlue;
             this.uiPipe5.FlowSpeed = 10;
-            this.uiPipe5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe5.Location = new System.Drawing.Point(716, 175);
             this.uiPipe5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe5.Name = "uiPipe5";
@@ -280,7 +280,7 @@ namespace Sunny.UI.Demo
             this.uiPipe6.FlowInterval = 16;
             this.uiPipe6.FlowSize = 28;
             this.uiPipe6.FlowSpeed = 12;
-            this.uiPipe6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe6.Location = new System.Drawing.Point(63, 384);
             this.uiPipe6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe6.Name = "uiPipe6";
@@ -301,7 +301,7 @@ namespace Sunny.UI.Demo
             this.uiPipe13.FlowInterval = 16;
             this.uiPipe13.FlowSize = 28;
             this.uiPipe13.FlowSpeed = 12;
-            this.uiPipe13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe13.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe13.Location = new System.Drawing.Point(77, 483);
             this.uiPipe13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe13.Name = "uiPipe13";
@@ -322,7 +322,7 @@ namespace Sunny.UI.Demo
             this.uiPipe14.FlowInterval = 16;
             this.uiPipe14.FlowSize = 28;
             this.uiPipe14.FlowSpeed = 12;
-            this.uiPipe14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe14.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe14.Location = new System.Drawing.Point(77, 524);
             this.uiPipe14.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe14.Name = "uiPipe14";
@@ -345,7 +345,7 @@ namespace Sunny.UI.Demo
             this.uiPipe15.FlowInterval = 16;
             this.uiPipe15.FlowSize = 28;
             this.uiPipe15.FlowSpeed = 12;
-            this.uiPipe15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe15.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe15.Location = new System.Drawing.Point(374, 384);
             this.uiPipe15.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe15.Name = "uiPipe15";
@@ -367,7 +367,7 @@ namespace Sunny.UI.Demo
             this.uiPipe16.FlowInterval = 16;
             this.uiPipe16.FlowSize = 28;
             this.uiPipe16.FlowSpeed = 12;
-            this.uiPipe16.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe16.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.uiPipe16.Location = new System.Drawing.Point(536, 384);
             this.uiPipe16.MinimumSize = new System.Drawing.Size(1, 1);
@@ -389,7 +389,7 @@ namespace Sunny.UI.Demo
             this.uiPipe17.FlowInterval = 16;
             this.uiPipe17.FlowSize = 28;
             this.uiPipe17.FlowSpeed = 12;
-            this.uiPipe17.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe17.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.uiPipe17.Location = new System.Drawing.Point(551, 451);
             this.uiPipe17.MinimumSize = new System.Drawing.Size(1, 1);
@@ -412,7 +412,7 @@ namespace Sunny.UI.Demo
             this.uiPipe18.FlowInterval = 16;
             this.uiPipe18.FlowSize = 28;
             this.uiPipe18.FlowSpeed = 12;
-            this.uiPipe18.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe18.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.uiPipe18.Location = new System.Drawing.Point(716, 451);
             this.uiPipe18.MinimumSize = new System.Drawing.Size(1, 1);
@@ -429,7 +429,7 @@ namespace Sunny.UI.Demo
             // uiValve1
             // 
             this.uiValve1.Active = true;
-            this.uiValve1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiValve1.Location = new System.Drawing.Point(255, 122);
             this.uiValve1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiValve1.Name = "uiValve1";
@@ -447,7 +447,7 @@ namespace Sunny.UI.Demo
             this.uiPipe19.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe19.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.uiPipe19.FlowSpeed = 10;
-            this.uiPipe19.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe19.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe19.Location = new System.Drawing.Point(289, 63);
             this.uiPipe19.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe19.Name = "uiPipe19";
@@ -463,7 +463,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiValve2.Active = true;
             this.uiValve2.Direction = Sunny.UI.UIValve.UIValveDirection.Right;
-            this.uiValve2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiValve2.Location = new System.Drawing.Point(706, 122);
             this.uiValve2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiValve2.Name = "uiValve2";
@@ -477,7 +477,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiValve3.Active = true;
             this.uiValve3.Direction = Sunny.UI.UIValve.UIValveDirection.Top;
-            this.uiValve3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiValve3.Location = new System.Drawing.Point(94, 160);
             this.uiValve3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiValve3.Name = "uiValve3";
@@ -492,7 +492,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiValve4.Active = true;
             this.uiValve4.Direction = Sunny.UI.UIValve.UIValveDirection.Bottom;
-            this.uiValve4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiValve4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiValve4.Location = new System.Drawing.Point(186, 514);
             this.uiValve4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiValve4.Name = "uiValve4";
@@ -510,7 +510,7 @@ namespace Sunny.UI.Demo
             this.uiPipe20.BackColor = System.Drawing.Color.Transparent;
             this.uiPipe20.FlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.uiPipe20.FlowSpeed = 10;
-            this.uiPipe20.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe20.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe20.Location = new System.Drawing.Point(124, 194);
             this.uiPipe20.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe20.Name = "uiPipe20";
@@ -529,7 +529,7 @@ namespace Sunny.UI.Demo
             this.uiPipe21.Direction = Sunny.UI.UILine.LineDirection.Vertical;
             this.uiPipe21.FlowColor = System.Drawing.Color.SkyBlue;
             this.uiPipe21.FlowSpeed = 10;
-            this.uiPipe21.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe21.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe21.Location = new System.Drawing.Point(716, 63);
             this.uiPipe21.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe21.Name = "uiPipe21";
@@ -549,7 +549,7 @@ namespace Sunny.UI.Demo
             this.uiPipe22.FlowInterval = 16;
             this.uiPipe22.FlowSize = 28;
             this.uiPipe22.FlowSpeed = 12;
-            this.uiPipe22.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPipe22.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPipe22.Location = new System.Drawing.Point(242, 524);
             this.uiPipe22.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPipe22.Name = "uiPipe22";

@@ -53,7 +53,7 @@ namespace Sunny.UI.Demo
             // uiMarkLabel4
             // 
             this.uiMarkLabel4.AutoSize = true;
-            this.uiMarkLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiMarkLabel4.Location = new System.Drawing.Point(508, 242);
             this.uiMarkLabel4.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Top;
             this.uiMarkLabel4.Name = "uiMarkLabel4";
@@ -66,7 +66,7 @@ namespace Sunny.UI.Demo
             // uiMarkLabel3
             // 
             this.uiMarkLabel3.AutoSize = true;
-            this.uiMarkLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiMarkLabel3.Location = new System.Drawing.Point(199, 245);
             this.uiMarkLabel3.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Right;
             this.uiMarkLabel3.Name = "uiMarkLabel3";
@@ -79,7 +79,7 @@ namespace Sunny.UI.Demo
             // uiMarkLabel2
             // 
             this.uiMarkLabel2.AutoSize = true;
-            this.uiMarkLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiMarkLabel2.Location = new System.Drawing.Point(356, 242);
             this.uiMarkLabel2.MarkPos = Sunny.UI.UIMarkLabel.UIMarkPos.Bottom;
             this.uiMarkLabel2.Name = "uiMarkLabel2";
@@ -91,7 +91,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
-            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine4.Location = new System.Drawing.Point(30, 208);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -103,7 +103,7 @@ namespace Sunny.UI.Demo
             // uiMarkLabel1
             // 
             this.uiMarkLabel1.AutoSize = true;
-            this.uiMarkLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiMarkLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiMarkLabel1.Location = new System.Drawing.Point(42, 245);
             this.uiMarkLabel1.Name = "uiMarkLabel1";
             this.uiMarkLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -114,7 +114,7 @@ namespace Sunny.UI.Demo
             // 
             // uiSymbolLabel2
             // 
-            this.uiSymbolLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolLabel2.Location = new System.Drawing.Point(139, 169);
             this.uiSymbolLabel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel2.Name = "uiSymbolLabel2";
@@ -126,7 +126,7 @@ namespace Sunny.UI.Demo
             // 
             // uiSymbolLabel1
             // 
-            this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolLabel1.Location = new System.Drawing.Point(42, 169);
             this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
@@ -137,7 +137,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine3.Location = new System.Drawing.Point(30, 133);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -148,7 +148,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(381, 55);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -159,7 +159,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -172,7 +172,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiLinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
             this.uiLinkLabel1.AutoSize = true;
-            this.uiLinkLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLinkLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLinkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.uiLinkLabel1.Location = new System.Drawing.Point(394, 90);
             this.uiLinkLabel1.Name = "uiLinkLabel1";
@@ -186,7 +186,7 @@ namespace Sunny.UI.Demo
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel1.Location = new System.Drawing.Point(42, 90);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(102, 21);
@@ -197,7 +197,7 @@ namespace Sunny.UI.Demo
             // uiLabel2
             // 
             this.uiLabel2.Angle = 270;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel2.Location = new System.Drawing.Point(38, 297);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(43, 126);
@@ -208,7 +208,7 @@ namespace Sunny.UI.Demo
             // uiLabel3
             // 
             this.uiLabel3.Angle = 90;
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel3.Location = new System.Drawing.Point(90, 304);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(43, 126);
@@ -219,7 +219,7 @@ namespace Sunny.UI.Demo
             // uiLabel4
             // 
             this.uiLabel4.Angle = 315;
-            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLabel4.Location = new System.Drawing.Point(160, 297);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(103, 126);
@@ -229,7 +229,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
-            this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine5.Location = new System.Drawing.Point(30, 290);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -259,7 +259,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
-            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine6.Location = new System.Drawing.Point(381, 290);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";

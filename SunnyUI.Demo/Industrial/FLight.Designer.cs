@@ -78,7 +78,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine8
             // 
-            this.uiLine8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine8.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine8.Location = new System.Drawing.Point(381, 55);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine8.Name = "uiLine8";
@@ -98,7 +98,7 @@ namespace Sunny.UI.Demo
             // uiLight4
             // 
             this.uiLight4.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.uiLight4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight4.Location = new System.Drawing.Point(72, 87);
             this.uiLight4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight4.Name = "uiLight4";
@@ -115,7 +115,7 @@ namespace Sunny.UI.Demo
             // uiLight3
             // 
             this.uiLight3.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLight3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight3.Location = new System.Drawing.Point(156, 87);
             this.uiLight3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight3.Name = "uiLight3";
@@ -130,7 +130,7 @@ namespace Sunny.UI.Demo
             // uiLight2
             // 
             this.uiLight2.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLight2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight2.Location = new System.Drawing.Point(114, 87);
             this.uiLight2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight2.Name = "uiLight2";
@@ -144,7 +144,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 55);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -156,7 +156,7 @@ namespace Sunny.UI.Demo
             // uiLight1
             // 
             this.uiLight1.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLight1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight1.Location = new System.Drawing.Point(30, 87);
             this.uiLight1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight1.Name = "uiLight1";
@@ -170,7 +170,7 @@ namespace Sunny.UI.Demo
             // uiToolTip1
             // 
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.uiToolTip1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiToolTip1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
@@ -195,7 +195,7 @@ namespace Sunny.UI.Demo
             // uiLight5
             // 
             this.uiLight5.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.uiLight5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight5.Location = new System.Drawing.Point(114, 146);
             this.uiLight5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight5.Name = "uiLight5";
@@ -211,7 +211,7 @@ namespace Sunny.UI.Demo
             // uiLight6
             // 
             this.uiLight6.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLight6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLight6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLight6.Location = new System.Drawing.Point(30, 146);
             this.uiLight6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLight6.Name = "uiLight6";

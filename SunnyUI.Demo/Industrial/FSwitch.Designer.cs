@@ -35,7 +35,7 @@
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -46,7 +46,7 @@
             // 
             // uiTurnSwitch1
             // 
-            this.uiTurnSwitch1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTurnSwitch1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTurnSwitch1.Location = new System.Drawing.Point(33, 96);
             this.uiTurnSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTurnSwitch1.Name = "uiTurnSwitch1";
@@ -60,7 +60,7 @@
             this.uiTurnSwitch2.ActiveAngle = 0;
             this.uiTurnSwitch2.BackInnerSize = 60;
             this.uiTurnSwitch2.BackSize = 80;
-            this.uiTurnSwitch2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiTurnSwitch2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTurnSwitch2.InActiveAngle = 90;
             this.uiTurnSwitch2.InActiveColor = System.Drawing.Color.Fuchsia;
             this.uiTurnSwitch2.Location = new System.Drawing.Point(216, 96);

@@ -53,7 +53,7 @@ namespace Sunny.UI.Demo
             this.uiPanel1.Controls.Add(this.uiRoundMeter1);
             this.uiPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel1.FillColor2 = System.Drawing.Color.CornflowerBlue;
-            this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiPanel1.Location = new System.Drawing.Point(0, 35);
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -71,7 +71,7 @@ namespace Sunny.UI.Demo
             // uiAnalogMeter1
             // 
             this.uiAnalogMeter1.BackColor = System.Drawing.Color.Transparent;
-            this.uiAnalogMeter1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiAnalogMeter1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiAnalogMeter1.Location = new System.Drawing.Point(381, 61);
             this.uiAnalogMeter1.MaxValue = 100D;
             this.uiAnalogMeter1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -88,7 +88,7 @@ namespace Sunny.UI.Demo
             // uiLine9
             // 
             this.uiLine9.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine9.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine9.Location = new System.Drawing.Point(381, 20);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -105,7 +105,7 @@ namespace Sunny.UI.Demo
             this.uiRoundMeter2.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundMeter2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter2.BackgroundImage")));
             this.uiRoundMeter2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.uiRoundMeter2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundMeter2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiRoundMeter2.Location = new System.Drawing.Point(186, 56);
             this.uiRoundMeter2.MeterType = Sunny.UI.UIRoundMeter.TMeterType.Wind;
             this.uiRoundMeter2.MinimumSize = new System.Drawing.Size(1, 1);
@@ -119,7 +119,7 @@ namespace Sunny.UI.Demo
             // uiLine6
             // 
             this.uiLine6.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine6.Location = new System.Drawing.Point(30, 20);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -136,7 +136,7 @@ namespace Sunny.UI.Demo
             this.uiRoundMeter1.BackColor = System.Drawing.Color.Transparent;
             this.uiRoundMeter1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiRoundMeter1.BackgroundImage")));
             this.uiRoundMeter1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.uiRoundMeter1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRoundMeter1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiRoundMeter1.Location = new System.Drawing.Point(30, 56);
             this.uiRoundMeter1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRoundMeter1.Name = "uiRoundMeter1";
@@ -149,7 +149,7 @@ namespace Sunny.UI.Demo
             // uiLine1
             // 
             this.uiLine1.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 276);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";

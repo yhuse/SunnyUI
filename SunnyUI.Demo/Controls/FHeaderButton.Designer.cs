@@ -56,7 +56,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine2.Location = new System.Drawing.Point(30, 198);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -67,7 +67,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -85,7 +85,7 @@ namespace Sunny.UI.Demo
             this.uiPanel2.Controls.Add(this.uiHeaderButton3);
             this.uiPanel2.Controls.Add(this.uiHeaderButton2);
             this.uiPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(43)))));
-            this.uiPanel2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPanel2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPanel2.ForeColor = System.Drawing.Color.Silver;
             this.uiPanel2.Location = new System.Drawing.Point(30, 237);
             this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -106,7 +106,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton6.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton6.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton6.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton6.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton6.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton6.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton6.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -124,7 +124,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton6.Symbol = 0;
             this.uiHeaderButton6.TabIndex = 5;
             this.uiHeaderButton6.Text = "设置";
-            this.uiHeaderButton6.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton6.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton7
             // 
@@ -133,7 +133,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton7.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton7.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton7.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton7.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton7.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton7.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton7.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -151,7 +151,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton7.Symbol = 0;
             this.uiHeaderButton7.TabIndex = 4;
             this.uiHeaderButton7.Text = "朋友";
-            this.uiHeaderButton7.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton7.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton4
             // 
@@ -160,7 +160,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton4.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton4.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton4.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton4.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton4.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -178,7 +178,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton4.Symbol = 0;
             this.uiHeaderButton4.TabIndex = 3;
             this.uiHeaderButton4.Text = "手机";
-            this.uiHeaderButton4.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton4.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton5
             // 
@@ -187,7 +187,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton5.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton5.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton5.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton5.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton5.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton5.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -205,7 +205,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton5.Symbol = 0;
             this.uiHeaderButton5.TabIndex = 2;
             this.uiHeaderButton5.Text = "邮件";
-            this.uiHeaderButton5.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton5.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton3
             // 
@@ -214,7 +214,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton3.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton3.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton3.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton3.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton3.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -232,7 +232,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton3.Symbol = 0;
             this.uiHeaderButton3.TabIndex = 1;
             this.uiHeaderButton3.Text = "消息";
-            this.uiHeaderButton3.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton3.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton2
             // 
@@ -241,7 +241,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.uiHeaderButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.uiHeaderButton2.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.uiHeaderButton2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton2.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton2.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
             this.uiHeaderButton2.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
@@ -259,7 +259,7 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton2.Symbol = 0;
             this.uiHeaderButton2.TabIndex = 0;
             this.uiHeaderButton2.Text = "主页";
-            this.uiHeaderButton2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiPanel1
             // 
@@ -270,7 +270,7 @@ namespace Sunny.UI.Demo
             this.uiPanel1.Controls.Add(this.uiHeaderButton8);
             this.uiPanel1.Controls.Add(this.uiHeaderButton1);
             this.uiPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiPanel1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiPanel1.Location = new System.Drawing.Point(30, 92);
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -286,7 +286,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiHeaderButton12.CircleColor = System.Drawing.Color.Olive;
             this.uiHeaderButton12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton12.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton12.Location = new System.Drawing.Point(600, 1);
             this.uiHeaderButton12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton12.Name = "uiHeaderButton12";
@@ -300,13 +300,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton12.SymbolSize = 41;
             this.uiHeaderButton12.TabIndex = 5;
             this.uiHeaderButton12.Text = "设置";
-            this.uiHeaderButton12.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton12.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton11
             // 
             this.uiHeaderButton11.CircleColor = System.Drawing.Color.Purple;
             this.uiHeaderButton11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton11.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton11.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton11.Location = new System.Drawing.Point(500, 1);
             this.uiHeaderButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton11.Name = "uiHeaderButton11";
@@ -320,13 +320,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton11.SymbolSize = 40;
             this.uiHeaderButton11.TabIndex = 4;
             this.uiHeaderButton11.Text = "朋友";
-            this.uiHeaderButton11.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton11.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton10
             // 
             this.uiHeaderButton10.CircleColor = System.Drawing.Color.Teal;
             this.uiHeaderButton10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton10.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton10.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton10.Location = new System.Drawing.Point(400, 1);
             this.uiHeaderButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton10.Name = "uiHeaderButton10";
@@ -340,13 +340,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton10.SymbolSize = 38;
             this.uiHeaderButton10.TabIndex = 3;
             this.uiHeaderButton10.Text = "手机";
-            this.uiHeaderButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton10.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton9
             // 
             this.uiHeaderButton9.CircleColor = System.Drawing.Color.DarkOrange;
             this.uiHeaderButton9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton9.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton9.Location = new System.Drawing.Point(300, 1);
             this.uiHeaderButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton9.Name = "uiHeaderButton9";
@@ -360,13 +360,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton9.SymbolSize = 40;
             this.uiHeaderButton9.TabIndex = 2;
             this.uiHeaderButton9.Text = "邮件";
-            this.uiHeaderButton9.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton9.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton8
             // 
             this.uiHeaderButton8.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.uiHeaderButton8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton8.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton8.Location = new System.Drawing.Point(200, 1);
             this.uiHeaderButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton8.Name = "uiHeaderButton8";
@@ -380,14 +380,14 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton8.SymbolSize = 44;
             this.uiHeaderButton8.TabIndex = 1;
             this.uiHeaderButton8.Text = "消息";
-            this.uiHeaderButton8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton8.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton1
             // 
             this.uiHeaderButton1.CircleColor = System.Drawing.Color.RoyalBlue;
             this.uiHeaderButton1.CircleHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.uiHeaderButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton1.Location = new System.Drawing.Point(100, 1);
             this.uiHeaderButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton1.Name = "uiHeaderButton1";
@@ -402,14 +402,14 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton1.Symbol = 61461;
             this.uiHeaderButton1.TabIndex = 0;
             this.uiHeaderButton1.Text = "主页";
-            this.uiHeaderButton1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiHeaderButton1.TipsText = "12";
             // 
             // uiHeaderButton13
             // 
             this.uiHeaderButton13.CircleColor = System.Drawing.Color.Teal;
             this.uiHeaderButton13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton13.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton13.Location = new System.Drawing.Point(460, 387);
             this.uiHeaderButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton13.Name = "uiHeaderButton13";
@@ -423,13 +423,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton13.TabIndex = 28;
             this.uiHeaderButton13.Text = "手机";
             this.uiHeaderButton13.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.uiHeaderButton13.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton13.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton14
             // 
             this.uiHeaderButton14.CircleColor = System.Drawing.Color.DarkOrange;
             this.uiHeaderButton14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton14.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton14.Location = new System.Drawing.Point(304, 387);
             this.uiHeaderButton14.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton14.Name = "uiHeaderButton14";
@@ -443,13 +443,13 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton14.TabIndex = 27;
             this.uiHeaderButton14.Text = "邮件";
             this.uiHeaderButton14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.uiHeaderButton14.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton14.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton15
             // 
             this.uiHeaderButton15.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.uiHeaderButton15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton15.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton15.Location = new System.Drawing.Point(172, 387);
             this.uiHeaderButton15.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton15.Name = "uiHeaderButton15";
@@ -463,14 +463,14 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton15.TabIndex = 26;
             this.uiHeaderButton15.Text = "消息";
             this.uiHeaderButton15.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.uiHeaderButton15.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton15.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiHeaderButton16
             // 
             this.uiHeaderButton16.CircleColor = System.Drawing.Color.RoyalBlue;
             this.uiHeaderButton16.CircleHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.uiHeaderButton16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHeaderButton16.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiHeaderButton16.Font = new System.Drawing.Font("宋体", 12F);
             this.uiHeaderButton16.Location = new System.Drawing.Point(30, 387);
             this.uiHeaderButton16.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiHeaderButton16.Name = "uiHeaderButton16";
@@ -484,12 +484,12 @@ namespace Sunny.UI.Demo
             this.uiHeaderButton16.Symbol = 61461;
             this.uiHeaderButton16.TabIndex = 25;
             this.uiHeaderButton16.Text = "主页";
-            this.uiHeaderButton16.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiHeaderButton16.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiHeaderButton16.TipsText = "12";
             // 
             // uiLine3
             // 
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine3.Location = new System.Drawing.Point(30, 350);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
