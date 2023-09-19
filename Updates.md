@@ -1,5 +1,20 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-08\-18 V3.5.0   
+ **注意：大版本更新，SunnyUI内置字体改为系统默认字体（中文Windows常见字体为宋体）** 
+建议新项目使用此版本，如果3.5.0以下版本需要升级参照文档设置全局字体：
+[https://gitee.com/yhuse/SunnyUI/wikis/多页面框架/全局字体设置](https://gitee.com/yhuse/SunnyUI/wikis/%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6/%E5%85%A8%E5%B1%80%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE)   
+ 
+\+ 重构全局字体设置逻辑，可以在运行时设置全局字体    
+\+ 增加全局矩形设计，忽略圆角，UIStyleManager的GlobalRectangle属性    
+\* UITextBox: 修复了Enabled为false时，自定义颜色，文字不显示的问题    
+\* UIDropControl: 修改背景色后编辑框颜色修复    
+\* UIStyles: 修改全局字体为系统默认：System.Drawing.SystemFonts.DefaultFont    
+\* UILight: 恢复全局矩形设计时圆形灯光效果    
+\* UIDropControl: 下拉框按钮图标增加编辑器    
+\* UIProcessBar: 修复值计算过程中的Int越界问题    
+\* UIBreadcrumb: 增加Readonly，禁用鼠标点击，可通过代码设置ItemIndex    
+    
 #### 2023\-08\-18 V3.4.2    
 \* UIGroupBox: 解决BackColor,FillColor设置为透明时，文本位置与边框线重叠的问题    
 \* UIForm: 修复页面切换时，第一个UIPage未执行Final事件的问题    
