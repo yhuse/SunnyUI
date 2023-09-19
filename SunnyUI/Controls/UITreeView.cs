@@ -95,6 +95,12 @@ namespace Sunny.UI
             view.MouseClick += View_MouseClick;
         }
 
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            view.SetDPIScale();
+        }
+
         public void CheckedAll()
         {
             view.CheckedAll();

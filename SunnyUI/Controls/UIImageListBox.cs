@@ -80,6 +80,12 @@ namespace Sunny.UI
             listbox.DrawItem += Listbox_DrawItem;
         }
 
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            listbox.SetDPIScale();
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

@@ -53,6 +53,13 @@ namespace Sunny.UI
             b1.ZoomScaleDisabled = b2.ZoomScaleDisabled = b3.ZoomScaleDisabled = b4.ZoomScaleDisabled = true;
         }
 
+        public override void SetDPIScale()
+        {
+            base.SetDPIScale();
+            l1.SetDPIScale();
+            l2.SetDPIScale();
+        }
+
         [DefaultValue(true)]
         [Description("显示多选按钮"), Category("SunnyUI")]
         public bool ShowMulti
