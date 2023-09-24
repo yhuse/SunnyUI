@@ -50,7 +50,6 @@ SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织�
 ![输入图片说明](https://foruda.gitee.com/images/1695452775585329155/0dbba2b2_416720.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1695452790242801454/adfb6473_416720.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1695452812586687608/90d4f3eb_416720.png "屏幕截图")
-![输入图片说明](https://foruda.gitee.com/images/1695452834395589464/317e61a5_416720.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1695452847110834271/9be91c47_416720.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1695452877418500901/2c591614_416720.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1695452892176132380/6c05f728_416720.png "屏幕截图")
