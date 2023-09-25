@@ -415,6 +415,11 @@ namespace Sunny.UI
             ComboDataGridViewFilterChanged?.Invoke(this, new UIComboDataGridViewArgs(filterText, dataGridView.RowCount));
         }
 
+        public void ClearFilter()
+        {
+            btnClear_Click(null, null);
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             edtFilter.Text = "";
