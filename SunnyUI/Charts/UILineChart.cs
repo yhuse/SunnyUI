@@ -820,6 +820,8 @@ namespace Sunny.UI
             }
 
             int idx = 0;
+            float xmin = -9999;
+            float ymin = Option.Grid.Top + 4;
             if (XScale != null)
             {
                 foreach (var line in Option.XAxisScaleLines)
@@ -835,19 +837,25 @@ namespace Sunny.UI
                             pn.DashPattern = new float[] { 3, 3 };
                         }
 
-                        g.DrawLine(pn, pos, DrawOrigin.Y - 1, pos, Option.Grid.Top + 1);
+                        g.DrawLine(pn, pos, Height - Option.Grid.Bottom - 1, pos, Option.Grid.Top + 1);
                     }
 
                     Size sf = TextRenderer.MeasureText(line.Name, TempFont);
                     float x = pos - sf.Width;
                     if (x < Option.Grid.Left) x = pos + 2;
-                    float y = Option.Grid.Top + 4 + sf.Height * idx;
+                    float y;
+                    if (x > xmin)
+                        y = ymin;
+                    else
+                        y = ymin + sf.Height;
+
                     if (y > Height - Option.Grid.Bottom)
                     {
-                        idx = 0;
-                        y = Option.Grid.Top + 4 + sf.Height * idx;
+                        y = Option.Grid.Top + 4;
                     }
 
+                    xmin = x + sf.Width;
+                    ymin = y;
                     idx++;
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle((int)x, (int)y, Width, Height), ContentAlignment.TopLeft);
                 }
