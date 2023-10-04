@@ -48,6 +48,7 @@
  * 2023-07-02: V3.3.9 增加PointFormat，鼠标选中值显示格式化事件
  * 2023-07-02: V3.3.9 增加了数据沿Y轴变化时鼠标移动到数据点时显示数据点标签
  * 2023-07-14: V3.4.0 增加了坐标轴绘制时显示箭头，并在箭头处显示数量单位的功能
+ * 2023-10-04: V3.5.0 增加了Y轴数据由上向下绘制
 ******************************************************************************/
 
 using System;
@@ -77,7 +78,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public Point DrawOrigin => new Point(Option.Grid.Left, Height - Option.Grid.Bottom);
+        public Point DrawOrigin => new Point(Option.Grid.Left, Option.YDataOrder == UIYDataOrder.Asc ? Height - Option.Grid.Bottom : Option.Grid.Top);
 
         [Browsable(false)]
         public Size DrawSize => new Size(Width - Option.Grid.Left - Option.Grid.Right, Height - Option.Grid.Top - Option.Grid.Bottom);
@@ -98,15 +99,15 @@ namespace Sunny.UI
             foreach (var series in Option.Series.Values)
             {
                 if (series.IsY2)
-                    series.CalcData(this, XScale, Y2Scale);
+                    series.CalcData(this, XScale, Y2Scale, Option.YDataOrder);
                 else
-                    series.CalcData(this, XScale, YScale);
+                    series.CalcData(this, XScale, YScale, Option.YDataOrder);
 
                 if (series is UISwitchLineSeries lineSeries)
                 {
                     lineSeries.YOffsetPos = series.IsY2 ?
-                        Y2Scale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height) :
-                        YScale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height);
+                        Y2Scale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder) :
+                        YScale.CalcYPixel(lineSeries.YOffset, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                 }
             }
 
@@ -298,7 +299,7 @@ namespace Sunny.UI
                 g.DrawLine(ForeColor, Option.Grid.Left, Height - Option.Grid.Bottom, Width - Option.Grid.Right, Height - Option.Grid.Bottom);
 
             using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
-            float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
+            float zeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
             if (zeroPos > Option.Grid.Top && zeroPos < Height - Option.Grid.Bottom)
             {
                 if (Option.ShowZeroLine)
@@ -395,13 +396,19 @@ namespace Sunny.UI
                         if (xx > xr && xx + sf.Width < Width)
                         {
                             xr = xx + sf.Width;
-                            g.DrawString(label, TempFont, ForeColor, new Rectangle((int)x - Width, DrawOrigin.Y + Option.XAxis.AxisTick.Length, Width * 2, Height), ContentAlignment.TopCenter);
+                            if (Option.YDataOrder == UIYDataOrder.Asc)
+                                g.DrawString(label, TempFont, ForeColor, new Rectangle((int)x - Width, DrawOrigin.Y + Option.XAxis.AxisTick.Length, Width * 2, Height), ContentAlignment.TopCenter);
+                            else
+                                g.DrawString(label, TempFont, ForeColor, new Rectangle((int)x - Width, 0, Width * 2, (int)(DrawOrigin.Y - Option.XAxis.AxisTick.Length)), ContentAlignment.BottomCenter);
                         }
                     }
 
                     if (Option.XAxis.AxisTick.Show)
                     {
-                        g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        if (Option.YDataOrder == UIYDataOrder.Asc)
+                            g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y + Option.XAxis.AxisTick.Length);
+                        else
+                            g.DrawLine(ForeColor, x, DrawOrigin.Y, x, DrawOrigin.Y - Option.XAxis.AxisTick.Length);
                     }
 
                     if (x.Equals(DrawOrigin.X)) continue;
@@ -424,7 +431,7 @@ namespace Sunny.UI
             //Y Tick            
             {
                 double[] YLabels = Option.YAxis.HaveCustomLabels ? Option.YAxis.CustomLabels.LabelValues() : YScale.CalcLabels();
-                float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
+                float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                 float widthMax = 0;
                 for (int i = 0; i < labels.Length; i++)
                 {
@@ -474,7 +481,7 @@ namespace Sunny.UI
             if (Option.HaveY2)
             {
                 double[] Y2Labels = Option.Y2Axis.HaveCustomLabels ? Option.Y2Axis.CustomLabels.LabelValues() : Y2Scale.CalcLabels();
-                float[] labels = Y2Scale.CalcYPixels(Y2Labels, DrawOrigin.Y, DrawSize.Height);
+                float[] labels = Y2Scale.CalcYPixels(Y2Labels, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                 float widthMax = 0;
                 for (int i = 0; i < labels.Length; i++)
                 {
@@ -644,7 +651,7 @@ namespace Sunny.UI
 
                 if (Option.GreaterWarningArea != null)
                 {
-                    wTop = YScale.CalcYPixel(Option.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
+                    wTop = YScale.CalcYPixel(Option.GreaterWarningArea.Value, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                     if (wTop < Option.Grid.Top)
                     {
                         wTop = Option.Grid.Top;
@@ -660,7 +667,7 @@ namespace Sunny.UI
 
                 if (Option.LessWarningArea != null)
                 {
-                    wBottom = YScale.CalcYPixel(Option.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height);
+                    wBottom = YScale.CalcYPixel(Option.LessWarningArea.Value, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                     if (wBottom > Height - Option.Grid.Bottom)
                     {
                         wBottom = Height - Option.Grid.Bottom;
@@ -770,7 +777,7 @@ namespace Sunny.UI
             {
                 foreach (var line in Option.YAxisScaleLines)
                 {
-                    float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+                    float pos = YScale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
 
 
                     if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
@@ -794,7 +801,7 @@ namespace Sunny.UI
             {
                 foreach (var line in Option.Y2AxisScaleLines)
                 {
-                    float pos = Y2Scale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height);
+                    float pos = Y2Scale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                     if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
 
                     using (Pen pn = new Pen(line.Color, line.Size))
@@ -1085,13 +1092,18 @@ namespace Sunny.UI
             var zoomArea = new ZoomArea();
             zoomArea.XMin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
             zoomArea.XMax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
-            zoomArea.YMax = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
-            zoomArea.YMin = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+
+            double y1 = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+            double y2 = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+            zoomArea.YMax = Math.Max(y1, y2);
+            zoomArea.YMin = Math.Min(y1, y2);
 
             if (Option.HaveY2)
             {
-                zoomArea.Y2Max = Y2Scale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
-                zoomArea.Y2Min = Y2Scale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height);
+                y1 = Y2Scale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                y2 = Y2Scale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                zoomArea.Y2Max = Math.Max(y1, y2);
+                zoomArea.Y2Min = Math.Min(y1, y2);
             }
 
             AddZoomArea(zoomArea);

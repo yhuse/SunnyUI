@@ -38,6 +38,12 @@ namespace Sunny.UI
         Y
     }
 
+    public enum UIYDataOrder
+    {
+        Asc,
+        Desc
+    }
+
     public sealed class UILineOption : UIOption, IDisposable
     {
         public bool ShowZeroLine { get; set; } = true;
@@ -51,6 +57,8 @@ namespace Sunny.UI
         public UIAxis Y2Axis { get; private set; } = new UIAxis(UIAxisType.Value);
 
         public UILineToolTip ToolTip { get; private set; } = new UILineToolTip();
+
+        public UIYDataOrder YDataOrder { get; set; } = UIYDataOrder.Asc;
 
         /// <summary>
         /// 析构函数
@@ -663,11 +671,11 @@ namespace Sunny.UI
             }
         }
 
-        internal void CalcData(UILineChart chart, UIScale XScale, UIScale YScale)
+        internal void CalcData(UILineChart chart, UIScale XScale, UIScale YScale, UIYDataOrder order = UIYDataOrder.Asc)
         {
             ClearPoints();
             float[] x = XScale.CalcXPixels(XData.ToArray(), chart.DrawOrigin.X, chart.DrawSize.Width);
-            float[] y = YScale.CalcYPixels(YData.ToArray(), chart.DrawOrigin.Y, chart.DrawSize.Height);
+            float[] y = YScale.CalcYPixels(YData.ToArray(), chart.DrawOrigin.Y, chart.DrawSize.Height, order);
             AddPoints(x, y);
         }
 
