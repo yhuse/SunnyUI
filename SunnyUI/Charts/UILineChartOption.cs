@@ -44,6 +44,15 @@ namespace Sunny.UI
         Desc
     }
 
+    public enum UILineChartMouseDownType
+    {
+        Zoom,
+        XArea,
+        YArea
+    }
+
+    public delegate void OnMouseAreaSelected(object sender, UILineChartMouseDownType mouseDownType, double minValue, double maxValue, string axis);
+
     public sealed class UILineOption : UIOption, IDisposable
     {
         public bool ShowZeroLine { get; set; } = true;

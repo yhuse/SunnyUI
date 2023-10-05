@@ -49,6 +49,7 @@
  * 2023-07-02: V3.3.9 增加了数据沿Y轴变化时鼠标移动到数据点时显示数据点标签
  * 2023-07-14: V3.4.0 增加了坐标轴绘制时显示箭头，并在箭头处显示数量单位的功能
  * 2023-10-04: V3.5.0 增加了Y轴数据由上向下绘制
+ * 2023-10-05: V3.5.0 增加了X轴和Y轴鼠标选择区域并返回选中范围
 ******************************************************************************/
 
 using System;
@@ -999,12 +1000,39 @@ namespace Sunny.UI
             }
             else
             {
-                if (MouseZoom && e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
-                    e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                switch (MouseDownType)
                 {
-                    StopPoint = e.Location;
-                    Invalidate();
+                    case UILineChartMouseDownType.Zoom:
+                        if (MouseZoom && e.Button == MouseButtons.Left &&
+                            e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                            e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                        {
+                            StopPoint = e.Location;
+                            Invalidate();
+                        }
+                        break;
+                    case UILineChartMouseDownType.XArea:
+                        if (e.Button == MouseButtons.Left &&
+                            e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                            e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                        {
+                            StopPoint = e.Location;
+                            Invalidate();
+                        }
+                        break;
+                    case UILineChartMouseDownType.YArea:
+                        if (e.Button == MouseButtons.Left &&
+                            e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                            e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                        {
+                            StopPoint = e.Location;
+                            Invalidate();
+                        }
+                        break;
+                    default:
+                        break;
                 }
+
             }
         }
 
@@ -1020,6 +1048,8 @@ namespace Sunny.UI
 
         private Point StartPoint, StopPoint;
 
+        public UILineChartMouseDownType MouseDownType { get; set; } = UILineChartMouseDownType.Zoom;
+
         /// <summary>
         /// 重载鼠标按下事件
         /// </summary>
@@ -1028,16 +1058,44 @@ namespace Sunny.UI
         {
             base.OnMouseDown(e);
 
-            if (MouseZoom && e.Button == MouseButtons.Left && e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
-                e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+            switch (MouseDownType)
             {
-                IsMouseDown = true;
-                StartPoint = StopPoint = e.Location;
-            }
+                case UILineChartMouseDownType.Zoom:
+                    if (MouseZoom && e.Button == MouseButtons.Left &&
+                        e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                        e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                    {
+                        IsMouseDown = true;
+                        StartPoint = StopPoint = e.Location;
+                    }
 
-            if (MouseZoom && e.Button == MouseButtons.Right && ContextMenuStrip == null)
-            {
-                ZoomBack();
+                    if (MouseZoom && e.Button == MouseButtons.Right && ContextMenuStrip == null)
+                    {
+                        ZoomBack();
+                    }
+                    break;
+                case UILineChartMouseDownType.XArea:
+                    if (e.Button == MouseButtons.Left &&
+                        e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                        e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                    {
+                        IsMouseDown = true;
+                        StartPoint = StopPoint = e.Location;
+                    }
+
+                    break;
+                case UILineChartMouseDownType.YArea:
+                    if (e.Button == MouseButtons.Left &&
+                        e.X > Option.Grid.Left && e.X < Width - Option.Grid.Right &&
+                        e.Y > Option.Grid.Top && e.Y < Height - Option.Grid.Bottom)
+                    {
+                        IsMouseDown = true;
+                        StartPoint = StopPoint = e.Location;
+                    }
+
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -1049,11 +1107,49 @@ namespace Sunny.UI
         {
             base.OnMouseUp(e);
 
-            if (MouseZoom && IsMouseDown)
+            switch (MouseDownType)
             {
-                IsMouseDown = false;
-                Invalidate();
-                Zoom();
+                case UILineChartMouseDownType.Zoom:
+                    if (MouseZoom && IsMouseDown)
+                    {
+                        IsMouseDown = false;
+                        Invalidate();
+                        Zoom();
+                    }
+
+                    break;
+                case UILineChartMouseDownType.XArea:
+                    if (IsMouseDown)
+                    {
+                        IsMouseDown = false;
+                        Invalidate();
+                        double XMin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+                        double XMax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
+                        MouseAreaSelected?.Invoke(this, MouseDownType, XMin, XMax, "X");
+                    }
+
+                    break;
+                case UILineChartMouseDownType.YArea:
+                    if (IsMouseDown)
+                    {
+                        IsMouseDown = false;
+                        Invalidate();
+
+                        double y1 = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                        double y2 = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                        MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y");
+
+                        if (Option.HaveY2)
+                        {
+                            y1 = Y2Scale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                            y2 = Y2Scale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
+                            MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y2");
+                        }
+                    }
+
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -1220,16 +1316,49 @@ namespace Sunny.UI
             if (IsMouseDown)
             {
                 Color color = Color.FromArgb(50, UIColor.Blue);
-                g.FillRectangle(color,
-                    Math.Min(StartPoint.X, StopPoint.X),
-                    Math.Min(StartPoint.Y, StopPoint.Y),
-                    Math.Abs(StopPoint.X - StartPoint.X),
-                    Math.Abs(StopPoint.Y - StartPoint.Y));
-                g.DrawRectangle(UIColor.Blue,
-                    Math.Min(StartPoint.X, StopPoint.X),
-                    Math.Min(StartPoint.Y, StopPoint.Y),
-                    Math.Abs(StopPoint.X - StartPoint.X),
-                    Math.Abs(StopPoint.Y - StartPoint.Y));
+
+
+                switch (MouseDownType)
+                {
+                    case UILineChartMouseDownType.Zoom:
+                        g.FillRectangle(color,
+                            Math.Min(StartPoint.X, StopPoint.X),
+                            Math.Min(StartPoint.Y, StopPoint.Y),
+                            Math.Abs(StopPoint.X - StartPoint.X),
+                            Math.Abs(StopPoint.Y - StartPoint.Y));
+                        g.DrawRectangle(UIColor.Blue,
+                            Math.Min(StartPoint.X, StopPoint.X),
+                            Math.Min(StartPoint.Y, StopPoint.Y),
+                            Math.Abs(StopPoint.X - StartPoint.X),
+                            Math.Abs(StopPoint.Y - StartPoint.Y));
+                        break;
+                    case UILineChartMouseDownType.XArea:
+                        g.FillRectangle(color,
+                            Math.Min(StartPoint.X, StopPoint.X),
+                            Option.Grid.Top,
+                            Math.Abs(StopPoint.X - StartPoint.X),
+                            DrawSize.Height);
+                        g.DrawRectangle(UIColor.Blue,
+                            Math.Min(StartPoint.X, StopPoint.X),
+                            Option.Grid.Top,
+                            Math.Abs(StopPoint.X - StartPoint.X),
+                            DrawSize.Height);
+                        break;
+                    case UILineChartMouseDownType.YArea:
+                        g.FillRectangle(color,
+                            Option.Grid.Left,
+                            Math.Min(StartPoint.Y, StopPoint.Y),
+                             DrawSize.Width,
+                            Math.Abs(StopPoint.Y - StartPoint.Y));
+                        g.DrawRectangle(UIColor.Blue,
+                            Option.Grid.Left,
+                            Math.Min(StartPoint.Y, StopPoint.Y),
+                             DrawSize.Width,
+                            Math.Abs(StopPoint.Y - StartPoint.Y));
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -1238,5 +1367,7 @@ namespace Sunny.UI
             base.OnMouseDoubleClick(e);
             if (e.Button == MouseButtons.Left) ZoomNormal();
         }
+
+        public event OnMouseAreaSelected MouseAreaSelected;
     }
 }
