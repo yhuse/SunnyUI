@@ -287,8 +287,14 @@ namespace Sunny.UI
 
         public void HideDropDown()
         {
-            if (NumPadForm != null && NumPadForm.Visible)
-                NumPadForm.Close();
+            try
+            {
+                if (NumPadForm != null && NumPadForm.Visible)
+                    NumPadForm.Close();
+            }
+            catch
+            {
+            }
         }
 
         /// <summary>

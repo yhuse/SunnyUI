@@ -617,15 +617,21 @@ namespace Sunny.UI
 
         public void HideDropDown()
         {
-            if (!ShowFilter)
+            try
             {
-                if (ItemForm != null && ItemForm.Visible)
-                    ItemForm.Close();
+                if (!ShowFilter)
+                {
+                    if (ItemForm != null && ItemForm.Visible)
+                        ItemForm.Close();
+                }
+                else
+                {
+                    if (FilterItemForm != null && FilterItemForm.Visible)
+                        FilterItemForm.Close();
+                }
             }
-            else
+            catch
             {
-                if (FilterItemForm != null && FilterItemForm.Visible)
-                    FilterItemForm.Close();
             }
         }
 
