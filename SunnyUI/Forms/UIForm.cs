@@ -57,6 +57,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -1838,6 +1839,7 @@ namespace Sunny.UI
         public void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
         {
             UIStatusFormService.ShowStatusForm(maximum, desc, decimalCount);
+            Thread.Sleep(200);
         }
 
         /// <summary>
@@ -1872,6 +1874,7 @@ namespace Sunny.UI
         public void ShowWaitForm(string desc = "系统正在处理中，请稍候...")
         {
             UIWaitFormService.ShowWaitForm(desc);
+            Thread.Sleep(200);
         }
 
         /// <summary>
@@ -1898,6 +1901,7 @@ namespace Sunny.UI
         public void ShowProcessForm(int size = 200)
         {
             UIProcessIndicatorFormService.ShowForm(size);
+            Thread.Sleep(200);
         }
 
         /// <summary>
