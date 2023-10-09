@@ -48,6 +48,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-24: V3.4.1 修复页面切换时，第一个UIPage未执行Final事件的问题
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
+ * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
 ******************************************************************************/
 
 using System;
@@ -1399,7 +1400,7 @@ namespace Sunny.UI
             SetZoomScale();
             CalcSystemBoxPos();
 
-            if (isShow)
+            if (IsShown)
             {
                 SetRadius();
             }
@@ -1419,7 +1420,9 @@ namespace Sunny.UI
 
         public event EventHandler RectColorChanged;
 
-        private bool isShow;
+        private bool IsShown;
+        private System.Windows.Forms.Timer AfterShownTimer;
+        public event EventHandler AfterShown;
 
         protected override void OnShown(EventArgs e)
         {
@@ -1428,9 +1431,27 @@ namespace Sunny.UI
 
             CalcSystemBoxPos();
             SetRadius();
-            isShow = true;
+            IsShown = true;
             SetDPIScale();
             SetZoomScaleRect();
+
+            if (AfterShown != null)
+            {
+                AfterShownTimer = new System.Windows.Forms.Timer();
+                AfterShownTimer.Tick += AfterShownTimer_Tick;
+                AfterShownTimer.Start();
+            }
+        }
+
+        private void AfterShownTimer_Tick(object sender, EventArgs e)
+        {
+            AfterShownTimer.Stop();
+            AfterShownTimer.Tick -= AfterShownTimer_Tick;
+            AfterShownTimer?.Dispose();
+            AfterShownTimer = null;
+
+            AfterShown?.Invoke(this, EventArgs.Empty);
+            AfterShown = null;
         }
 
         public event OnZoomScaleRectChanged ZoomScaleRectChanged;
