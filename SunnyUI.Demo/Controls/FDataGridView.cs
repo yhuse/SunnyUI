@@ -1,20 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 
 namespace Sunny.UI.Demo
 {
     public partial class FDataGridView : UIPage
     {
-        List<Data> datas = new List<Data>();
+        List<Data> dataList = new List<Data>();
+        DataTable dataTable = new DataTable("DataTable");
 
         public FDataGridView()
         {
             InitializeComponent();
-
-            //SunnyUI封装的加列函数，也可以和原生的一样，从Columns里面添加列
-            uiDataGridView1.AddColumn("Column1", "Column1", 100/*占比*/).SetFixedMode(200/*固定宽度*/);
-            uiDataGridView1.AddColumn("Column2", "Column2");
-            uiDataGridView1.AddColumn("Column3", "Column3");
-            uiDataGridView1.AddColumn("Column4", "Column4");
 
             for (int i = 0; i < 3610; i++)
             {
@@ -23,15 +19,23 @@ namespace Sunny.UI.Demo
                 data.Column2 = i.Mod(2) == 0 ? "A" : "B";
                 data.Column3 = "编辑";
                 data.Column4 = i.Mod(4) == 0;
-                datas.Add(data);
+                dataList.Add(data);
             }
 
+            dataTable.Columns.Add("Column1");
+            dataTable.Columns.Add("Column2");
+            dataTable.Columns.Add("Column3");
+            dataTable.Columns.Add("Column4");
+            uiDataGridView1.DataSource = dataTable;
+
+            //不自动生成列
+            uiDataGridView1.AutoGenerateColumns = false;
+
             //设置分页控件总数
-            uiPagination1.TotalCount = datas.Count;
+            uiPagination1.TotalCount = dataList.Count;
 
             //设置分页控件每页数量
             uiPagination1.PageSize = 50;
-
             uiDataGridView1.SelectIndexChange += uiDataGridView1_SelectIndexChange;
 
             //设置统计绑定的表格
@@ -73,16 +77,16 @@ namespace Sunny.UI.Demo
             //一般通过ORM的分页去取数据来填充
             //pageIndex：第几页，和界面对应，从1开始，取数据可能要用pageIndex - 1
             //count：单页数据量，也就是PageSize值
-            List<Data> data = new List<Data>();
-            for (int i = (pageIndex - 1) * count; i < (pageIndex - 1) * count + count; i++)
+
+            dataTable.Rows.Clear();
+            for (int i = (pageIndex - 1) * count; i < pageIndex * count + count; i++)
             {
-                if (i >= datas.Count) continue;
-                data.Add(datas[i]);
+                if (i >= dataList.Count) break;
+                dataTable.Rows.Add(dataList[i].Column1, dataList[i].Column2, dataList[i].Column3, dataList[i].Column4);
             }
 
-            uiDataGridView1.DataSource = data;
             uiDataGridViewFooter1.Clear();
-            uiDataGridViewFooter1["Column1"] = "合计：";
+            uiDataGridViewFooter1["Column1"] = "合计：" + pageIndex;
             uiDataGridViewFooter1["Column2"] = "Column2_" + pageIndex;
             uiDataGridViewFooter1["Column3"] = "Column3_" + pageIndex;
             uiDataGridViewFooter1["Column4"] = "Column4_" + pageIndex;
