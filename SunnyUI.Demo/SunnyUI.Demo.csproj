@@ -375,6 +375,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIFlowItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIFlowItem.Designer.cs">
+      <DependentUpon>UIFlowItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Units\FCommon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -548,6 +554,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UIFlowItem.resx">
+      <DependentUpon>UIFlowItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Units\FCommon.resx">
       <DependentUpon>FCommon.cs</DependentUpon>
     </EmbeddedResource>
