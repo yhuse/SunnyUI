@@ -38,6 +38,8 @@ namespace Sunny.UI
         FontAwesomeV4 = 0,
         FontAwesomeV6Brands = 1,
         FontAwesomeV6Regular = 2,
-        FontAwesomeV6Solid = 3
+        FontAwesomeV6Solid = 3,
+        ElegantIcons = 4,
+        MaterialIcons = 5
     }
 }

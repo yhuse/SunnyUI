@@ -43,6 +43,7 @@ namespace Sunny.UI
         private readonly ConcurrentQueue<Label> FontAwesomeV6SolidLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV6BrandsLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> FontAwesomeV6RegularLabels = new ConcurrentQueue<Label>();
+        private readonly ConcurrentQueue<Label> MaterialIconsLabels = new ConcurrentQueue<Label>();
         private readonly ConcurrentQueue<Label> SearchLabels = new ConcurrentQueue<Label>();
 
         /// <summary>
@@ -57,6 +58,7 @@ namespace Sunny.UI
             lpV6Brands.DoubleBuffered();
             lpV6Regular.DoubleBuffered();
             lpV6Solid.DoubleBuffered();
+            lpMaterialIcons.DoubleBuffered();
         }
 
         private void UIFontImages_Load(object sender, EventArgs e)
@@ -67,6 +69,7 @@ namespace Sunny.UI
             bg3.RunWorkerAsync();
             bg4.RunWorkerAsync();
             bg5.RunWorkerAsync();
+            bg6.RunWorkerAsync();
             timer.Start();
         }
 
@@ -119,6 +122,16 @@ namespace Sunny.UI
                 if (FontAwesomeV6BrandsLabels.TryDequeue(out Label lbl))
                 {
                     lpV6Brands.Controls.Add(lbl);
+                    SymbolValue symbol = (SymbolValue)lbl.Tag;
+                    toolTip.SetToolTip(lbl, symbol.ToString());
+                }
+            }
+
+            while (!MaterialIconsLabels.IsEmpty)
+            {
+                if (MaterialIconsLabels.TryDequeue(out Label lbl))
+                {
+                    lpMaterialIcons.Controls.Add(lbl);
                     SymbolValue symbol = (SymbolValue)lbl.Tag;
                     toolTip.SetToolTip(lbl, symbol.ToString());
                 }
@@ -291,7 +304,7 @@ namespace Sunny.UI
             lbl.Click += lbl_DoubleClick;
             lbl.MouseEnter += Lbl_MouseEnter;
             lbl.MouseLeave += Lbl_MouseLeave;
-            lbl.Tag = new SymbolValue() { Name = name.Replace("fa_", ""), Symbol = icon, SymbolType = symbolType };
+            lbl.Tag = new SymbolValue() { Name = name.Replace("fa_", "").Replace("ma_", ""), Symbol = icon, SymbolType = symbolType };
             return lbl;
         }
 
@@ -393,6 +406,11 @@ namespace Sunny.UI
             LoadLabels(typeof(FontAweSomeV6Solid), FontAwesomeV6SolidLabels, UISymbolType.FontAwesomeV6Solid);
         }
 
+        private void bg6_DoWork(object sender, DoWorkEventArgs e)
+        {
+            LoadLabels(typeof(MaterialIcons), MaterialIconsLabels, UISymbolType.MaterialIcons);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.IsNullOrEmpty()) return;
@@ -404,6 +422,7 @@ namespace Sunny.UI
             LoadLabels(typeof(FontAweSomeV6Brands), SearchLabels, UISymbolType.FontAwesomeV6Brands, textBox1.Text);
             LoadLabels(typeof(FontAweSomeV6Regular), SearchLabels, UISymbolType.FontAwesomeV6Regular, textBox1.Text);
             LoadLabels(typeof(FontAweSomeV6Solid), SearchLabels, UISymbolType.FontAwesomeV6Solid, textBox1.Text);
+            LoadLabels(typeof(MaterialIcons), SearchLabels, UISymbolType.MaterialIcons, textBox1.Text);
 
             label1.Text = SearchLabels.Count + " results.";
             while (!SearchLabels.IsEmpty)

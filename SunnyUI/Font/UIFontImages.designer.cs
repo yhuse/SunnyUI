@@ -42,6 +42,8 @@
             lpAwesome = new System.Windows.Forms.FlowLayoutPanel();
             tabPage3 = new System.Windows.Forms.TabPage();
             lpElegant = new System.Windows.Forms.FlowLayoutPanel();
+            tsMaterialIcons = new System.Windows.Forms.TabPage();
+            lpMaterialIcons = new System.Windows.Forms.FlowLayoutPanel();
             tabPage7 = new System.Windows.Forms.TabPage();
             lblResult = new System.Windows.Forms.FlowLayoutPanel();
             bg1 = new System.ComponentModel.BackgroundWorker();
@@ -56,6 +58,7 @@
             label1 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
             textBox1 = new System.Windows.Forms.TextBox();
+            bg6 = new System.ComponentModel.BackgroundWorker();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage5.SuspendLayout();
@@ -63,6 +66,7 @@
             tabPage4.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tsMaterialIcons.SuspendLayout();
             tabPage7.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -75,6 +79,7 @@
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tsMaterialIcons);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             tabControl1.ItemSize = new System.Drawing.Size(48, 24);
@@ -196,7 +201,7 @@
             tabPage3.Padding = new System.Windows.Forms.Padding(3);
             tabPage3.Size = new System.Drawing.Size(892, 578);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "ElegantFont";
+            tabPage3.Text = "ElegantIcons";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // lpElegant
@@ -208,6 +213,27 @@
             lpElegant.Name = "lpElegant";
             lpElegant.Size = new System.Drawing.Size(886, 572);
             lpElegant.TabIndex = 2;
+            // 
+            // tsMaterialIcons
+            // 
+            tsMaterialIcons.Controls.Add(lpMaterialIcons);
+            tsMaterialIcons.Location = new System.Drawing.Point(4, 28);
+            tsMaterialIcons.Name = "tsMaterialIcons";
+            tsMaterialIcons.Padding = new System.Windows.Forms.Padding(3);
+            tsMaterialIcons.Size = new System.Drawing.Size(892, 578);
+            tsMaterialIcons.TabIndex = 7;
+            tsMaterialIcons.Text = "MaterialIcons";
+            tsMaterialIcons.UseVisualStyleBackColor = true;
+            // 
+            // lpMaterialIcons
+            // 
+            lpMaterialIcons.AutoScroll = true;
+            lpMaterialIcons.Dock = System.Windows.Forms.DockStyle.Fill;
+            lpMaterialIcons.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
+            lpMaterialIcons.Location = new System.Drawing.Point(3, 3);
+            lpMaterialIcons.Name = "lpMaterialIcons";
+            lpMaterialIcons.Size = new System.Drawing.Size(886, 572);
+            lpMaterialIcons.TabIndex = 3;
             // 
             // tabPage7
             // 
@@ -308,6 +334,10 @@
             textBox1.TabIndex = 0;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
+            // bg6
+            // 
+            bg6.DoWork += bg6_DoWork;
+            // 
             // UIFontImages
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -327,6 +357,7 @@
             tabPage4.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
+            tsMaterialIcons.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -362,5 +393,36 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.FlowLayoutPanel lblResult;
+
+/* 项目“SunnyUI (net472)”的未合并的更改
+在此之前:
+        private System.Windows.Forms.TabPage lpMaterialIcons;
+在此之后:
+        private System.Windows.Forms.TabPage tsMaterialIcons;
+*/
+
+/* 项目“SunnyUI (net40)”的未合并的更改
+在此之前:
+        private System.Windows.Forms.TabPage lpMaterialIcons;
+在此之后:
+        private System.Windows.Forms.TabPage tsMaterialIcons;
+*/
+
+/* 项目“SunnyUI (net7.0-windows)”的未合并的更改
+在此之前:
+        private System.Windows.Forms.TabPage lpMaterialIcons;
+在此之后:
+        private System.Windows.Forms.TabPage tsMaterialIcons;
+*/
+
+/* 项目“SunnyUI (net6.0-windows)”的未合并的更改
+在此之前:
+        private System.Windows.Forms.TabPage lpMaterialIcons;
+在此之后:
+        private System.Windows.Forms.TabPage tsMaterialIcons;
+*/
+        private System.Windows.Forms.TabPage tsMaterialIcons;
+        private System.Windows.Forms.FlowLayoutPanel lpMaterialIcons;
+        private System.ComponentModel.BackgroundWorker bg6;
     }
 }
