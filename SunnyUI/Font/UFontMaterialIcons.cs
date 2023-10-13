@@ -1,8 +1,39 @@
-﻿namespace Sunny.UI
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2023 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UFontMaterialIcons.cs
+ * 文件说明: 字体图片定义类：MaterialIcons，V1.017
+ * 当前版本: V3.5
+ * 创建日期: 2023-10-13
+ *
+ * 2023-10-13: V3.5.0 增加文件说明
+******************************************************************************/
+
+/******************************************************************************
+ * https://github.com/google/material-design-icons/tree/master/font
+ ******************************************************************************
+ 
+License
+
+  We have made these icons available for you to incorporate into your products 
+under the Apache License Version 2.0. Feel free to remix and re-share these 
+icons and documentation in your products. We'd love attribution in your app's 
+about screen, but it's not required.
+
+******************************************************************************/
+
+namespace Sunny.UI
 {
-    /// <summary>
-    /// https://github.com/google/material-design-icons/tree/master/font
-    /// </summary>
     public static class MaterialIcons
     {
         public const int ma_10k = 0xe951;
@@ -2240,7 +2271,5 @@
         public const int ma_zoom_in_map = 0xeb2d;
         public const int ma_zoom_out = 0xe900;
         public const int ma_zoom_out_map = 0xe56b;
-
-
     }
 }
