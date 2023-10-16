@@ -147,7 +147,10 @@ namespace Sunny.UI
         {
             Invalidate();
             Index++;
+            Tick?.Invoke(this, e);
         }
+
+        public event EventHandler Tick;
 
         private void ClearImage()
         {

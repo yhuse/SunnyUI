@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Sunny.UI
+﻿namespace Sunny.UI
 {
     public partial class UIProcessIndicatorForm : UIForm
     {
@@ -11,16 +9,14 @@ namespace Sunny.UI
             uiProgressIndicator1.Active = true;
         }
 
-        private void timer1_Tick(object sender, System.EventArgs e)
+        private void uiProgressIndicator1_Tick(object sender, System.EventArgs e)
         {
-            if (NeedClose)
+            if (UIFormServiceHelper.ProcessFormServiceClose)
             {
+                UIFormServiceHelper.ProcessFormServiceClose = false;
                 uiProgressIndicator1.Active = false;
                 Close();
             }
         }
-
-        [DefaultValue(false), Browsable(false)]
-        public bool NeedClose { get; set; }
     }
 }

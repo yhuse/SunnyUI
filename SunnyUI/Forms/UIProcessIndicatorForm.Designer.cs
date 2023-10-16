@@ -28,42 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.uiProgressIndicator1 = new Sunny.UI.UIProgressIndicator();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            uiProgressIndicator1 = new UIProgressIndicator();
+            timer1 = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
             // 
             // uiProgressIndicator1
             // 
-            this.uiProgressIndicator1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiProgressIndicator1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.uiProgressIndicator1.Location = new System.Drawing.Point(5, 5);
-            this.uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiProgressIndicator1.Name = "uiProgressIndicator1";
-            this.uiProgressIndicator1.Size = new System.Drawing.Size(190, 190);
-            this.uiProgressIndicator1.TabIndex = 0;
-            this.uiProgressIndicator1.Text = "uiProgressIndicator1";
-            this.uiProgressIndicator1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            uiProgressIndicator1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            uiProgressIndicator1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiProgressIndicator1.Location = new System.Drawing.Point(5, 5);
+            uiProgressIndicator1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiProgressIndicator1.Name = "uiProgressIndicator1";
+            uiProgressIndicator1.Size = new System.Drawing.Size(190, 190);
+            uiProgressIndicator1.TabIndex = 0;
+            uiProgressIndicator1.Text = "uiProgressIndicator1";
+            uiProgressIndicator1.Tick += uiProgressIndicator1_Tick;
             // 
             // UIProcessIndicatorForm
             // 
-            this.AllowShowTitle = false;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(200, 200);
-            this.Controls.Add(this.uiProgressIndicator1);
-            this.Name = "UIProcessIndicatorForm";
-            this.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.ShowTitle = false;
-            this.Text = "UIProcessIndicatorForm";
-            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);
-            this.ResumeLayout(false);
-
+            AllowShowTitle = false;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(200, 200);
+            Controls.Add(uiProgressIndicator1);
+            Name = "UIProcessIndicatorForm";
+            Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            ShowTitle = false;
+            Text = "UIProcessIndicatorForm";
+            ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);
+            ResumeLayout(false);
         }
 
         #endregion

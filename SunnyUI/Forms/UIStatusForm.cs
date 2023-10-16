@@ -30,6 +30,7 @@ namespace Sunny.UI
             InitializeComponent();
             Text = UILocalize.InfoTitle;
             Description = UILocalize.SystemProcessing;
+            timer1.Start();
         }
 
         public UIStatusForm(int max, string desc, int decimalPlaces = 1)
@@ -40,6 +41,7 @@ namespace Sunny.UI
             Description = desc;
             Value = 0;
             DecimalPlaces = decimalPlaces;
+            timer1.Start();
         }
 
         [DefaultValue(100)]
@@ -80,7 +82,7 @@ namespace Sunny.UI
         {
             if (MaxAutoHide && value == Maximum)
             {
-                Hide();
+                Close();
             }
         }
 
@@ -132,6 +134,16 @@ namespace Sunny.UI
             {
                 processBar.Step = step;
                 processBar.StepIt();
+            }
+        }
+
+        private void timer1_Tick(object sender, System.EventArgs e)
+        {
+            if (UIFormServiceHelper.StatusFormServiceClose)
+            {
+                timer1.Stop();
+                UIFormServiceHelper.StatusFormServiceClose = false;
+                Close();
             }
         }
     }

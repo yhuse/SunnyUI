@@ -46,7 +46,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -1112,88 +1111,6 @@ namespace Sunny.UI
         public event OnReceiveParams ReceiveParams;
 
         #region 一些辅助窗口
-
-        /// <summary>
-        /// 显示进度提示窗
-        /// </summary>
-        /// <param name="desc">描述文字</param>
-        /// <param name="maximum">最大进度值</param>
-        /// <param name="decimalCount">显示进度条小数个数</param>
-        public void ShowStatusForm(int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
-        {
-            UIStatusFormService.ShowStatusForm(maximum, desc, decimalCount);
-            Thread.Sleep(200);
-        }
-
-        /// <summary>
-        /// 隐藏进度提示窗
-        /// </summary>
-        public void HideStatusForm()
-        {
-            UIStatusFormService.HideStatusForm();
-        }
-
-        /// <summary>
-        /// 设置进度提示窗步进值加1
-        /// </summary>
-        public void StatusFormStepIt()
-        {
-            UIStatusFormService.StepIt();
-        }
-
-        /// <summary>
-        /// 设置进度提示窗描述文字
-        /// </summary>
-        /// <param name="desc">描述文字</param>
-        public void SetStatusFormDescription(string desc)
-        {
-            UIStatusFormService.SetDescription(desc);
-        }
-
-        /// <summary>
-        /// 显示等待提示窗
-        /// </summary>
-        /// <param name="desc">描述文字</param>
-        public void ShowWaitForm(string desc = "系统正在处理中，请稍候...")
-        {
-            UIWaitFormService.ShowWaitForm(desc);
-            Thread.Sleep(200);
-        }
-
-        /// <summary>
-        /// 隐藏等待提示窗
-        /// </summary>
-        public void HideWaitForm()
-        {
-            UIWaitFormService.HideWaitForm();
-        }
-
-        /// <summary>
-        /// 显示等待提示窗
-        /// </summary>
-        /// <param name="size">大小</param>
-        public void ShowProcessForm(int size = 200)
-        {
-            UIProcessIndicatorFormService.ShowForm(size);
-            Thread.Sleep(200);
-        }
-
-        /// <summary>
-        /// 隐藏等待提示窗
-        /// </summary>
-        public void HideProcessForm()
-        {
-            UIProcessIndicatorFormService.HideForm();
-        }
-
-        /// <summary>
-        /// 设置等待提示窗描述文字
-        /// </summary>
-        /// <param name="desc">描述文字</param>
-        public void SetWaitFormDescription(string desc)
-        {
-            UIWaitFormService.SetDescription(desc);
-        }
 
         /// <summary>
         /// 正确信息提示框

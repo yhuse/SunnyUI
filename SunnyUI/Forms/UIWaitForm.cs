@@ -19,8 +19,6 @@
  * 2020-10-13: V3.0.0 增加文件说明
 ******************************************************************************/
 
-using System.ComponentModel;
-
 namespace Sunny.UI
 {
     public sealed partial class UIWaitForm : UIForm
@@ -54,12 +52,13 @@ namespace Sunny.UI
             }
         }
 
-        [DefaultValue(false), Browsable(false)]
-        public bool NeedClose { get; set; }
-
         private void Bar_Tick(object sender, System.EventArgs e)
         {
-            if (NeedClose) Close();
+            if (UIFormServiceHelper.WaitFormServiceClose)
+            {
+                UIFormServiceHelper.WaitFormServiceClose = false;
+                Close();
+            }
         }
     }
 }
