@@ -45,15 +45,15 @@ namespace Sunny.UI.Demo
 
         private void btnStatus2_Click(object sender, EventArgs e)
         {
-            ShowStatusForm(100, "数据加载中......", 0);
+            this.ShowStatusForm(100, "数据加载中......", 0);
             for (int i = 0; i < 88; i++)
             {
                 SystemEx.Delay(50);
-                SetStatusFormDescription("数据加载中(" + i + "%)......");
-                StatusFormStepIt();
+                this.SetStatusFormDescription("数据加载中(" + i + "%)......");
+                this.SetStatusFormStepIt();
             }
 
-            HideStatusForm();
+            this.HideStatusForm();
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -197,18 +197,18 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton11_Click(object sender, EventArgs e)
         {
-            ShowWaitForm("准备开始...");
+            this.ShowWaitForm("准备开始...");
             Thread.Sleep(1000);
-            SetWaitFormDescription(UILocalize.SystemProcessing + "20%");
+            this.SetWaitFormDescription(UILocalize.SystemProcessing + "20%");
             Thread.Sleep(1000);
-            SetWaitFormDescription(UILocalize.SystemProcessing + "40%");
+            this.SetWaitFormDescription(UILocalize.SystemProcessing + "40%");
             Thread.Sleep(1000);
-            SetWaitFormDescription(UILocalize.SystemProcessing + "60%");
+            this.SetWaitFormDescription(UILocalize.SystemProcessing + "60%");
             Thread.Sleep(1000);
-            SetWaitFormDescription(UILocalize.SystemProcessing + "80%");
+            this.SetWaitFormDescription(UILocalize.SystemProcessing + "80%");
             Thread.Sleep(1000);
-            SetWaitFormDescription(UILocalize.SystemProcessing + "100%");
-            HideWaitForm();
+            this.SetWaitFormDescription(UILocalize.SystemProcessing + "100%");
+            this.HideWaitForm();
         }
 
         private void uiSymbolButton13_Click(object sender, EventArgs e)
@@ -222,9 +222,9 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton12_Click(object sender, EventArgs e)
         {
-            ShowProcessForm(200);
+            this.ShowProcessForm(200);
             Thread.Sleep(2000);
-            HideProcessForm();
+            this.HideProcessForm();
         }
     }
 }

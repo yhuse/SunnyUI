@@ -61,71 +61,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 颜色是否是浅色
-        /// </summary>
-        /// <param name="color">颜色</param>
-        /// <returns>是否是浅色</returns>
-        public static bool IsLightColor(this Color color)
-        {
-            return (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255 > 0.5;
-        }
-
-        /// <summary>
-        /// 根据背景色判断前景色
-        /// </summary>
-        /// <param name="backColor">背景色</param>
-        /// <returns>前景色</returns>
-        public static Color ForeColor(Color backColor)
-        {
-            return backColor.IsLightColor() ? Color.Black : Color.White;
-        }
-
-        /// <summary>
-        /// SizeF转Size
-        /// </summary>
-        /// <param name="size">SizeF</param>
-        /// <returns>Size</returns>
-        public static Size Size(this SizeF size)
-        {
-            return new Size(size.Width.RoundEx(), size.Height.RoundEx());
-        }
-
-        /// <summary>
-        /// PointF转Point
-        /// </summary>
-        /// <param name="point">PointF</param>
-        /// <returns>Point</returns>
-        public static Point Point(this PointF point)
-        {
-            return new Point(point.X.RoundEx(), point.Y.RoundEx());
-        }
-
-        /// <summary>
-        /// Size增加长宽
-        /// </summary>
-        /// <param name="size">Size</param>
-        /// <param name="width">宽</param>
-        /// <param name="height">长</param>
-        /// <returns>结果</returns>
-        public static Size Add(this Size size, int width, int height)
-        {
-            return new Size(size.Width + width, size.Height + height);
-        }
-
-
-        /// <summary>
-        /// SizeF增加长宽
-        /// </summary>
-        /// <param name="size">SizeF</param>
-        /// <param name="width">宽</param>
-        /// <param name="height">长</param>
-        /// <returns>结果</returns>
-        public static SizeF Add(this SizeF size, float width, float height)
-        {
-            return new SizeF(size.Width + width, size.Height + height);
-        }
-
-        /// <summary>
         /// 点是否在区域内
         /// </summary>
         /// <param name="point">点</param>
@@ -541,27 +476,6 @@ namespace Sunny.UI
             g.InterpolationMode = InterpolationMode.Default;
             g.CompositingQuality = CompositingQuality.Default;
             return g;
-        }
-
-        /// <summary>
-        /// Color转HTML
-        /// </summary>
-        /// <param name="color">Color</param>
-        /// <returns>HTML</returns>
-        public static string ToHTML(this Color color)
-        {
-            return ColorTranslator.ToHtml(color);
-        }
-
-        /// <summary>
-        /// HTML转Color
-        /// </summary>
-        /// <param name="htmlColor">HTML</param>
-        /// <param name="alpha">透明度</param>
-        /// <returns>Color</returns>
-        public static Color ToColor(this string htmlColor, int alpha = 255)
-        {
-            return Color.FromArgb(alpha > 255 ? 255 : alpha, ColorTranslator.FromHtml(htmlColor));
         }
 
         /// <summary>
