@@ -116,7 +116,7 @@ namespace Sunny.UI
                         TextBox txtPrev = PrevTextBox(t);
                         if (txtPrev == null) return;
                         txtPrev.Focus();
-                        if (txtPrev.TextLength > 0)
+                        if (!ReadOnly && txtPrev.TextLength > 0)
                             txtPrev.Text = txtPrev.Text.Remove(txtPrev.TextLength - 1, 1);
 
                         txtPrev.SelectionStart = txtPrev.TextLength;
