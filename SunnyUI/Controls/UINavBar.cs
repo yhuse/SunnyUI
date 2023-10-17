@@ -27,6 +27,8 @@
  * 2023-02-22: V3.3.2 去除下拉菜单宽度调整
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
+ * 2023-10-17: V3.5.1 修正下拉菜单文字显示垂直居中
+ * 2023-10-17: V3.5.1 ImageList为空时，下拉菜单增加Symbol绘制
 ******************************************************************************/
 
 using System;
@@ -647,7 +649,16 @@ namespace Sunny.UI
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(node.Text) { Tag = node };
                 item.Click += Item_Click;
-                if (ImageList != null) item.ImageIndex = node.ImageIndex;
+                if (ImageList != null)
+                {
+                    item.ImageIndex = node.ImageIndex;
+                }
+                else
+                {
+                    int symbol = MenuHelper.GetSymbol(node);
+                    if (symbol > 0) item.ImageIndex = symbol;
+                }
+
                 NavBarMenu.Items.Add(item);
 
                 if (node.Nodes.Count > 0)
@@ -663,10 +674,10 @@ namespace Sunny.UI
             //    NavBarMenu.Width = NodeSize.Width;
             //}
 
-            foreach (ToolStripItem item in NavBarMenu.Items)
+            foreach (ToolStripMenuItem item in NavBarMenu.Items)
             {
                 item.AutoSize = false;
-                item.Width = NavBarMenu.Width - 1;
+                item.Width = NavBarMenu.Width + 3;
 
                 if (!DropDownItemAutoHeight)
                 {
@@ -710,7 +721,16 @@ namespace Sunny.UI
             foreach (TreeNode childNode in node.Nodes)
             {
                 ToolStripMenuItem childItem = new ToolStripMenuItem(childNode.Text) { Tag = childNode };
-                if (ImageList != null) childItem.ImageIndex = childNode.ImageIndex;
+                if (ImageList != null)
+                {
+                    childItem.ImageIndex = childNode.ImageIndex;
+                }
+                else
+                {
+                    int symbol = MenuHelper.GetSymbol(childNode);
+                    if (symbol > 0) childItem.ImageIndex = symbol;
+                }
+
                 childItem.Click += Item_Click;
                 item.DropDownItems.Add(childItem);
 

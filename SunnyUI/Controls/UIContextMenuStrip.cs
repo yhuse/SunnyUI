@@ -19,6 +19,8 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-10-17: V3.5.1 修正文字显示垂直居中
+ * 2023-10-17: V3.5.1 当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -29,13 +31,13 @@ namespace Sunny.UI
 {
     public sealed class UIContextMenuStrip : ContextMenuStrip, IStyleInterface, IZoomScale
     {
-        public ContextMenuColorTable ColorTable = new ContextMenuColorTable();
+        private ContextMenuColorTable ColorTable = new ContextMenuColorTable();
 
         public UIContextMenuStrip()
         {
             Font = UIStyles.Font();
             RenderMode = ToolStripRenderMode.Professional;
-            Renderer = new ToolStripProfessionalRenderer(ColorTable);
+            Renderer = new UIToolStripRenderer(ColorTable);
             Version = UIGlobal.Version;
 
             ColorTable.SetStyleColor(UIStyles.Blue);
@@ -139,7 +141,40 @@ namespace Sunny.UI
         }
     }
 
-    public class ContextMenuColorTable : ProfessionalColorTable
+    internal class UIToolStripRenderer : ToolStripProfessionalRenderer
+    {
+        public UIToolStripRenderer() { }
+
+        public UIToolStripRenderer(ProfessionalColorTable professionalColorTable) : base(professionalColorTable) { }
+
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+        {
+            //调整文本区域的位置和大小以实现垂直居中
+            Rectangle textRect = new Rectangle(e.TextRectangle.Left, e.Item.ContentRectangle.Top, e.TextRectangle.Width, e.Item.ContentRectangle.Height);
+
+            //设置文本绘制格式
+            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
+
+            //绘制文本
+            TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, textRect, e.TextColor, flags);
+
+            //当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
+            ToolStripItem item = e.Item;
+            while (item.Owner is not ContextMenuStrip)
+            {
+                if (item.Owner is ToolStripDropDownMenu)
+                    item = item.OwnerItem;
+            }
+
+            ContextMenuStrip ownerContextMenu = item.Owner as ContextMenuStrip;
+            if (ownerContextMenu.ImageList != null) return;
+            if (e.Item.ImageIndex <= 0) return;
+            Rectangle imageRect = new Rectangle(0, e.Item.ContentRectangle.Top, e.TextRectangle.Left, e.Item.ContentRectangle.Height);
+            e.Graphics.DrawFontImage(e.Item.ImageIndex, 24, e.TextColor, imageRect);
+        }
+    }
+
+    internal class ContextMenuColorTable : ProfessionalColorTable
     {
         private UIBaseStyle StyleColor = UIStyles.GetStyleColor(UIStyle.Blue);
 
