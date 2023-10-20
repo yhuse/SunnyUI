@@ -50,6 +50,7 @@
  * 2023-07-14: V3.4.0 增加了坐标轴绘制时显示箭头，并在箭头处显示数量单位的功能
  * 2023-10-04: V3.5.0 增加了Y轴数据由上向下绘制
  * 2023-10-05: V3.5.0 增加了X轴和Y轴鼠标选择区域并返回选中范围
+ * 2023-10-20: V3.5.1 增加了绘制线的DashStyle样式
 ******************************************************************************/
 
 using System;
@@ -546,6 +547,8 @@ namespace Sunny.UI
             {
                 using (Pen pen = new Pen(color, series.Width))
                 {
+                    pen.DashStyle = series.DashStyle;
+                    if (series.DashPattern.IsValid()) pen.DashPattern = series.DashPattern;
                     g.SetHighQuality();
 
                     if (series is UISwitchLineSeries lineSeries)

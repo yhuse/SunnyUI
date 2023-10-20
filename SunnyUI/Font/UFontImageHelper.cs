@@ -106,11 +106,35 @@ namespace Sunny.UI
         /// <param name="xOffset">×óÓÒÆ«ÒÆ</param>
         /// <param name="yOffSet">ÉÏÏÂÆ«ÒÆ</param>
         public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
+            RectangleF rect, int xOffset = 0, int yOffSet = 0, int angle = 0)
+        {
+            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
+
+            if (angle == 0)
+            {
+                graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
+                    rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
+            }
+            else
+            {
+                graphics.DrawFontImage(symbol, symbolSize, color, angle, rect, xOffset, yOffSet);
+            }
+        }
+
+        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color, int angle,
             RectangleF rect, int xOffset = 0, int yOffSet = 0)
         {
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
-                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
+            PointF center = rect.Center();
+            Font font = GetFont(symbol, symbolSize);
+
+            var symbolValue = GetSymbolValue(symbol);
+            string text = char.ConvertFromUtf32(symbolValue);
+            graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
+            graphics.DrawRotateString(text, font, color, center, angle, xOffset, yOffSet);
+            graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
+            graphics.InterpolationMode = InterpolationMode.Default;
         }
 
         /// <summary>
@@ -127,12 +151,8 @@ namespace Sunny.UI
         public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
             float left, float top, int xOffset = 0, int yOffSet = 0)
         {
-            //×ÖÌå
             Font font = GetFont(symbol, symbolSize);
-            if (font == null)
-            {
-                return;
-            }
+            if (font == null) return;
 
             var symbolValue = GetSymbolValue(symbol);
             string text = char.ConvertFromUtf32(symbolValue);

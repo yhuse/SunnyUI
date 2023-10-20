@@ -28,6 +28,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 
 namespace Sunny.UI
@@ -495,6 +496,10 @@ namespace Sunny.UI
 
         public float Width { get; set; } = 2;
         public Color Color { get; set; }
+
+        public DashStyle DashStyle { get; set; } = DashStyle.Solid;
+
+        public float[] DashPattern { get; set; }
 
         public UILinePointSymbol Symbol { get; set; } = UILinePointSymbol.None;
 

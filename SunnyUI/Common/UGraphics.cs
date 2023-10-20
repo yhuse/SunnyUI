@@ -268,11 +268,11 @@ namespace Sunny.UI
         /// <param name="color">颜色</param>
         /// <param name="centerPoint">文字中心点</param>
         /// <param name="angle">角度</param>
-        public static void DrawRotateString(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle)
+        public static void DrawRotateString(this Graphics g, string text, Font font, Color color, PointF centerPoint, float angle, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
             using Brush br = color.Brush();
-            g.DrawRotateString(text, font, br, centerPoint, angle);
+            g.DrawRotateString(text, font, br, centerPoint, angle, offsetX, offsetY);
         }
 
         /// <summary>
@@ -284,25 +284,25 @@ namespace Sunny.UI
         /// <param name="brush">笔刷</param>
         /// <param name="centerPoint">文字中心点</param>
         /// <param name="angle">角度</param>
-        private static void DrawRotateString(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle)
+        private static void DrawRotateString(this Graphics g, string text, Font font, Brush brush, PointF centerPoint, float angle, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;
             SizeF sf = TextRenderer.MeasureText(text, font);
-            float x1 = centerPoint.X - sf.Width / 2.0f;
-            float y1 = centerPoint.Y - sf.Height / 2.0f;
+            float x1 = centerPoint.X - sf.Width / 2.0f + offsetX;
+            float y1 = centerPoint.Y - sf.Height / 2.0f + offsetY;
 
             // 把画板的原点(默认是左上角)定位移到文字中心
-            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            g.TranslateTransform(x1 + sf.Width / 2.0f, y1 + sf.Height / 2.0f);
             // 旋转画板
             g.RotateTransform(angle);
             // 回退画板x,y轴移动过的距离
-            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            g.TranslateTransform(-(x1 + sf.Width / 2.0f), -(y1 + sf.Height / 2.0f));
             g.DrawString(text, font, brush, x1, y1);
 
             //恢复
-            g.TranslateTransform(x1 + sf.Width / 2, y1 + sf.Height / 2);
+            g.TranslateTransform(x1 + sf.Width / 2.0f, y1 + sf.Height / 2.0f);
             g.RotateTransform(-angle);
-            g.TranslateTransform(-(x1 + sf.Width / 2), -(y1 + sf.Height / 2));
+            g.TranslateTransform(-(x1 + sf.Width / 2.0f), -(y1 + sf.Height / 2.0f));
         }
 
         /// <summary>
