@@ -71,6 +71,26 @@ namespace Sunny.UI
             }
         }
 
+        private int _symbolRotate = 0;
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("字体图标旋转角度"), Category("SunnyUI")]
+        public int SymbolRotate
+        {
+            get => _symbolRotate;
+            set
+            {
+                if (_symbolRotate != value)
+                {
+                    _symbolRotate = value;
+                    Invalidate();
+                }
+            }
+        }
+
         private Color symbolColor = Color.White;
 
         /// <summary>
@@ -379,7 +399,7 @@ namespace Sunny.UI
                     {
                         if (Symbol > 0 && Image == null)
                         {
-                            e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(), ClientRectangle, SymbolOffset.X, SymbolOffset.Y);
+                            e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(), ClientRectangle, SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
                         }
 
                         if (Image != null)
@@ -396,7 +416,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                            new RectangleF((Width - allWidth) / 2.0f, 0, ImageSize.Width, Height), SymbolOffset.X, SymbolOffset.Y);
+                            new RectangleF((Width - allWidth) / 2.0f, 0, ImageSize.Width, Height), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
                     }
 
                     if (Image != null)
@@ -466,7 +486,7 @@ namespace Sunny.UI
                     if (Symbol > 0 && Image == null)
                     {
                         e.Graphics.DrawFontImage(Symbol, SymbolSize, GetSymbolForeColor(),
-                            new Rectangle((int)left, (int)top, (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y);
+                            new Rectangle((int)left, (int)top, (int)ImageSize.Width, (int)ImageSize.Height), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
                     }
 
                     if (Image != null)

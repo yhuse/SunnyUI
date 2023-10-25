@@ -109,43 +109,22 @@ namespace Sunny.UI
             RectangleF rect, int xOffset = 0, int yOffSet = 0, int angle = 0)
         {
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
-                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx() + 1, xOffset, yOffSet);
-        }
+            float left = rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx();
+            float top = rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx();
+            //graphics.DrawFontImage(symbol, symbolSize, color, left, top + 1, xOffset, yOffSet);
 
-        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color, int angle,
-            RectangleF rect, int xOffset = 0, int yOffSet = 0)
-        {
-            SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-            using Bitmap bmp = new Bitmap(symbolSize, symbolSize);
-            using Graphics g = Graphics.FromImage(bmp);
-            g.DrawFontImage(symbol, symbolSize, color, (symbolSize - sf.Width) / 2.0f, (symbolSize - sf.Height) / 2.0f);
+            // 把画板的原点(默认是左上角)定位移到文字中心
+            graphics.TranslateTransform(left + sf.Width / 2, top + sf.Height / 2);
+            // 旋转画板
+            graphics.RotateTransform(angle);
+            // 回退画板x,y轴移动过的距离
+            graphics.TranslateTransform(-(left + sf.Width / 2), -(top + sf.Height / 2));
 
-            using Bitmap bmp1 = RotateTransform(bmp, angle);
-            graphics.DrawImage(angle == 0 ? bmp : bmp1,
-                 new RectangleF(rect.Left + (rect.Width - bmp1.Width) / 2.0f, rect.Top + (rect.Height - bmp1.Height) / 2.0f, bmp1.Width, bmp1.Height),
-                 new RectangleF(0, 0, bmp1.Width, bmp1.Height),
-                GraphicsUnit.Pixel);
-        }
+            graphics.DrawFontImage(symbol, symbolSize, color, left, top, xOffset, yOffSet);
 
-        private static Bitmap RotateTransform(Bitmap originalImage, int angle)
-        {
-            // 创建新的位图，大小为旋转后的图片大小
-            Bitmap rotatedImage = new Bitmap(originalImage.Height, originalImage.Width);
-
-            // 创建绘图对象
-            using Graphics g = Graphics.FromImage(rotatedImage);
-
-            // 设置绘图参数，将原始图片旋转90°
-            g.TranslateTransform(originalImage.Width / 2, originalImage.Height / 2);
-            g.RotateTransform(angle);
-
-            g.DrawImage(originalImage,
-                new Rectangle(-originalImage.Width / 2, -originalImage.Height / 2, originalImage.Width, originalImage.Height),
-                new Rectangle(0, 0, rotatedImage.Width, originalImage.Height),
-                GraphicsUnit.Pixel);
-            g.TranslateTransform(-originalImage.Width / 2, -originalImage.Height / 2);
-            return rotatedImage;
+            graphics.TranslateTransform(left + sf.Width / 2, top + sf.Height / 2);
+            graphics.RotateTransform(-angle);
+            graphics.TranslateTransform(-(left + sf.Width / 2), -(top + sf.Height / 2));
         }
 
         /// <summary>
