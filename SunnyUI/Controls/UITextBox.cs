@@ -109,9 +109,6 @@ namespace Sunny.UI
             edit.MouseDoubleClick += Edit_MouseDoubleClick;
             edit.SizeChanged += Edit_SizeChanged;
 
-            Width = 150;
-            Height = 29;
-
             btn.Parent = this;
             btn.Visible = false;
             btn.Text = "";
@@ -135,8 +132,10 @@ namespace Sunny.UI
             bar.MouseEnter += Bar_MouseEnter;
             TextAlignment = ContentAlignment.MiddleLeft;
 
-            SizeChange();
             lastEditHeight = edit.Height;
+            Width = 150;
+            Height = 29;
+
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
@@ -674,12 +673,8 @@ namespace Sunny.UI
             base.OnFontChanged(e);
 
             if (DefaultFontSize < 0 && edit != null)
-            {
                 edit.Font = this.Font;
-                edit.Invalidate();
-            }
 
-            SizeChange();
             Invalidate();
         }
 
@@ -739,9 +734,9 @@ namespace Sunny.UI
                     NoNeedChange = false;
                 }
 
-                if (edit.Top != (Height - edit.Height) / 2)
+                if (edit.Top != (Height - edit.Height) / 2 + 1)
                 {
-                    edit.Top = (Height - edit.Height) / 2;
+                    edit.Top = (Height - edit.Height) / 2 + 1;
                 }
 
                 if (icon == null && Symbol == 0)
@@ -783,7 +778,7 @@ namespace Sunny.UI
                 int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 1, ScrollBarWidth);
                 bar.Top = 2;
                 bar.Width = barWidth;
-                bar.Left = Width - bar.Width - 1;
+                bar.Left = Width - bar.Width - 2;
                 bar.Height = Height - 4;
                 bar.BringToFront();
 

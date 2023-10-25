@@ -36,13 +36,11 @@
             // 
             // UIDropControl
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             MinimumSize = new System.Drawing.Size(63, 0);
             Name = "UIDropControl";
-            Size = new System.Drawing.Size(150, 29);
+            Size = new System.Drawing.Size(194, 29);
             ResumeLayout(false);
-
         }
 
         #endregion

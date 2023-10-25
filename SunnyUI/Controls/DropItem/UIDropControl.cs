@@ -27,6 +27,8 @@
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
  * 2023-08-24: V3.4.2 修改背景色后编辑框颜色修复
  * 2023-08-28: V3.4.2 下拉框按钮图标增加编辑器
+ * 2023-10-25: V3.5.1 修复在高DPI下，文字垂直不居中的问题
+ * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
 ******************************************************************************/
 
 using System;
@@ -47,8 +49,7 @@ namespace Sunny.UI
             SetStyleFlags();
             Padding = new Padding(0, 0, 30, 2);
 
-            edit.AutoSize = false;
-            //edit.Font = UIStyles.Font();
+            edit.AutoSize = true;
             edit.Left = 4;
             edit.Top = 3;
             edit.Text = String.Empty;
@@ -59,8 +60,13 @@ namespace Sunny.UI
             edit.KeyUp += EditOnKeyUp;
             edit.KeyPress += EditOnKeyPress;
             edit.LostFocus += Edit_LostFocus;
+            edit.SizeChanged += Edit_SizeChanged;
             edit.Invalidate();
             Controls.Add(edit);
+
+            lastEditHeight = edit.Height;
+            Width = 150;
+            Height = 29;
 
             TextAlignment = ContentAlignment.MiddleLeft;
             fillColor = Color.White;
@@ -68,6 +74,16 @@ namespace Sunny.UI
             MouseMove += UIDropControl_MouseMove;
 
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
+        }
+
+        int lastEditHeight = -1;
+        private void Edit_SizeChanged(object sender, EventArgs e)
+        {
+            if (lastEditHeight != edit.Height)
+            {
+                lastEditHeight = edit.Height;
+                SizeChange();
+            }
         }
 
         public override void SetDPIScale()
@@ -87,7 +103,6 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
             if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
-            SizeChange();
             Invalidate();
         }
 
@@ -371,19 +386,36 @@ namespace Sunny.UI
         /// <param name="e">参数</param>
         protected override void OnSizeChanged(EventArgs e)
         {
-            SizeChange();
+            base.OnSizeChanged(e);
+
+            if (!NoNeedChange)
+            {
+                SizeChange();
+            }
+
             if (tipsBtn != null)
             {
                 tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
             }
         }
 
+        private bool NoNeedChange = false;
+
         private void SizeChange()
         {
-            if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
-            if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
-            edit.Height = Math.Min(Height - RectSize * 2, edit.PreferredHeight);
-            edit.Top = (Height - edit.Height) / 2;
+            if (Height < edit.Height + RectSize * 2 + 2)
+            {
+                NoNeedChange = true;
+                Height = edit.Height + RectSize * 2 + 2;
+                edit.Top = (Height - edit.Height) / 2;
+                NoNeedChange = false;
+            }
+
+            if (edit.Top != (Height - edit.Height) / 2 + 1)
+            {
+                edit.Top = (Height - edit.Height) / 2 + 1;
+            }
+
             edit.Left = 4 + Padding.Left;
             edit.Width = Width - Padding.Left - Padding.Right - 4;
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
