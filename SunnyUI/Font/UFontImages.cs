@@ -89,10 +89,15 @@ namespace Sunny.UI
         /// <param name="iconText">图标</param>
         /// <param name="imageSize">图标大小</param>
         /// <returns>字体</returns>
-        public Font GetFont(int iconText, int imageSize)
+        public Font GetFont(int iconText, int imageSize, int offset = 0)
         {
             int item = GetFontSize(iconText, imageSize);
-            return Fonts.ContainsKey(item) ? Fonts[item] : null;
+            if (Fonts.ContainsKey(item + offset))
+                return Fonts[item + offset];
+            else if (Fonts.ContainsKey(item))
+                return Fonts[item];
+            else
+                return null;
         }
 
         /// <summary>

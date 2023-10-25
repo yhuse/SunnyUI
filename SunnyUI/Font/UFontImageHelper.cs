@@ -23,6 +23,7 @@
  * 2021-06-15: V3.3.5 增加FontAwesomeV6的字体图标，重构代码
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
  * 2022-05-17: V3.3.7 修复了一个窗体属性编辑器图标显示不全的问题
+ * 2023-10-25: V3.5.1 MaterialIcons字体图标调大3个像素
 ******************************************************************************/
 
 using System.Collections.Generic;
@@ -197,7 +198,7 @@ namespace Sunny.UI
                 case UISymbolType.FontAwesomeV6Solid:
                     return Fonts[UISymbolType.FontAwesomeV6Solid].GetFont(symbolValue, imageSize);
                 case UISymbolType.MaterialIcons:
-                    return Fonts[UISymbolType.MaterialIcons].GetFont(symbolValue, imageSize);
+                    return Fonts[UISymbolType.MaterialIcons].GetFont(symbolValue, imageSize, 3);
                 default:
                     return null;
             }
