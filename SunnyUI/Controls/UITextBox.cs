@@ -777,8 +777,8 @@ namespace Sunny.UI
                 btn.Visible = false;
                 edit.Top = 3;
                 edit.Height = Height - 6;
-                edit.Left = 1;
-                edit.Width = Width - 2;
+                edit.Left = 4;
+                edit.Width = Width - 8;
 
                 int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 1, ScrollBarWidth);
                 bar.Top = 2;
