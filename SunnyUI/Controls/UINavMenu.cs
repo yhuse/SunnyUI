@@ -742,7 +742,10 @@ namespace Sunny.UI
                     int size = 24;
                     int left = Width - size - 6;
                     if (Bar.Visible) left -= Bar.Width;
-                    e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, left, e.Bounds.Y + (ItemHeight - 24) / 2);
+
+                    SizeF sf = e.Graphics.GetFontImageSize(61702, 24);
+                    Rectangle rect = new Rectangle((int)(left + sf.Width / 2) - 12, e.Bounds.Y, 24, e.Bounds.Height);
+                    e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, rect);
                 }
 
                 //显示Tips圆圈

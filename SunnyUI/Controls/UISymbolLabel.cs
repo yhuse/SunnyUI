@@ -289,7 +289,7 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, (Width - SymbolSize) / 2.0f, (Height - SymbolSize) / 2.0f, SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new RectangleF((Width - SymbolSize) / 2.0f, (Height - SymbolSize) / 2.0f, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
             else
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new Rectangle(rect.Left, rect.Top, SymbolSize, rect.Height), SymbolOffset.X, SymbolOffset.Y);
 

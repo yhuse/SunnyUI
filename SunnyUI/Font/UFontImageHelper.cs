@@ -74,7 +74,7 @@ namespace Sunny.UI
         /// <param name="symbol">字符</param>
         /// <param name="symbolSize">大小</param>
         /// <returns>字体大小</returns>
-        private static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize)
+        internal static SizeF GetFontImageSize(this Graphics graphics, int symbol, int symbolSize)
         {
             Font font = GetFont(symbol, symbolSize);
             if (font == null)
@@ -109,32 +109,43 @@ namespace Sunny.UI
             RectangleF rect, int xOffset = 0, int yOffSet = 0, int angle = 0)
         {
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-
-            if (angle == 0)
-            {
-                graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
-                    rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx(), xOffset, yOffSet);
-            }
-            else
-            {
-                graphics.DrawFontImage(symbol, symbolSize, color, angle, rect, xOffset, yOffSet);
-            }
+            graphics.DrawFontImage(symbol, symbolSize, color, rect.Left + ((rect.Width - sf.Width) / 2.0f).RoundEx(),
+                rect.Top + ((rect.Height - sf.Height) / 2.0f).RoundEx() + 1, xOffset, yOffSet);
         }
 
         public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color, int angle,
             RectangleF rect, int xOffset = 0, int yOffSet = 0)
         {
             SizeF sf = graphics.GetFontImageSize(symbol, symbolSize);
-            PointF center = rect.Center();
-            Font font = GetFont(symbol, symbolSize);
+            using Bitmap bmp = new Bitmap(symbolSize, symbolSize);
+            using Graphics g = Graphics.FromImage(bmp);
+            g.DrawFontImage(symbol, symbolSize, color, (symbolSize - sf.Width) / 2.0f, (symbolSize - sf.Height) / 2.0f);
 
-            var symbolValue = GetSymbolValue(symbol);
-            string text = char.ConvertFromUtf32(symbolValue);
-            graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
-            graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
-            graphics.DrawRotateString(text, font, color, center, angle, xOffset, yOffSet);
-            graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
-            graphics.InterpolationMode = InterpolationMode.Default;
+            using Bitmap bmp1 = RotateTransform(bmp, angle);
+            graphics.DrawImage(angle == 0 ? bmp : bmp1,
+                 new RectangleF(rect.Left + (rect.Width - bmp1.Width) / 2.0f, rect.Top + (rect.Height - bmp1.Height) / 2.0f, bmp1.Width, bmp1.Height),
+                 new RectangleF(0, 0, bmp1.Width, bmp1.Height),
+                GraphicsUnit.Pixel);
+        }
+
+        private static Bitmap RotateTransform(Bitmap originalImage, int angle)
+        {
+            // 创建新的位图，大小为旋转后的图片大小
+            Bitmap rotatedImage = new Bitmap(originalImage.Height, originalImage.Width);
+
+            // 创建绘图对象
+            using Graphics g = Graphics.FromImage(rotatedImage);
+
+            // 设置绘图参数，将原始图片旋转90°
+            g.TranslateTransform(originalImage.Width / 2, originalImage.Height / 2);
+            g.RotateTransform(angle);
+
+            g.DrawImage(originalImage,
+                new Rectangle(-originalImage.Width / 2, -originalImage.Height / 2, originalImage.Width, originalImage.Height),
+                new Rectangle(0, 0, rotatedImage.Width, originalImage.Height),
+                GraphicsUnit.Pixel);
+            g.TranslateTransform(-originalImage.Width / 2, -originalImage.Height / 2);
+            return rotatedImage;
         }
 
         /// <summary>
@@ -148,7 +159,7 @@ namespace Sunny.UI
         /// <param name="top">上</param>
         /// <param name="xOffset">左右偏移</param>
         /// <param name="yOffSet">上下偏移</param>
-        public static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
+        private static void DrawFontImage(this Graphics graphics, int symbol, int symbolSize, Color color,
             float left, float top, int xOffset = 0, int yOffSet = 0)
         {
             Font font = GetFont(symbol, symbolSize);
