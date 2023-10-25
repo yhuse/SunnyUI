@@ -538,11 +538,11 @@ namespace Sunny.UI
                 {
                     if (i != SelectedIndex)
                     {
-                        e.Graphics.DrawFontImage(61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top, 24, rect.Height));
+                        e.Graphics.DrawFontImage(61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24 - 3, rect.Top, 24, rect.Height));
                     }
                     else
                     {
-                        e.Graphics.DrawFontImage(NavBarMenu.Visible ? 61702 : 61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24, rect.Top, 24, rect.Height));
+                        e.Graphics.DrawFontImage(NavBarMenu.Visible ? 61702 : 61703, 24, textColor, new Rectangle(NodeX + i * NodeSize.Width + rect.Width - 24 - 3, rect.Top, 24, rect.Height));
                     }
                 }
             }
