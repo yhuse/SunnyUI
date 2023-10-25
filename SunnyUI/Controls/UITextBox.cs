@@ -51,6 +51,8 @@
  * 2023-07-16: V3.4.0 修复了Enabled为false时，PasswordChar失效的问题
  * 2023-08-17: V3.4.1 修复了Enabled为false时，字体大小调整后，文字显示位置的问题
  * 2023-08-24: V3.4.2 修复了Enabled为false时，自定义颜色，文字不显示的问题
+ * 2023-10-25: V3.5.1 修复在高DPI下，文字垂直不居中的问题
+ * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
 ******************************************************************************/
 
 using System;
@@ -79,10 +81,7 @@ namespace Sunny.UI
             ShowText = false;
             MinimumSize = new Size(1, 16);
 
-            Width = 150;
-            Height = 29;
-
-            edit.AutoSize = false;
+            edit.AutoSize = true;
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4;
             edit.Width = Width - 8;
@@ -108,6 +107,10 @@ namespace Sunny.UI
             edit.SelectionChanged += Edit_SelectionChanged;
             edit.MouseClick += Edit_MouseClick;
             edit.MouseDoubleClick += Edit_MouseDoubleClick;
+            edit.SizeChanged += Edit_SizeChanged;
+
+            Width = 150;
+            Height = 29;
 
             btn.Parent = this;
             btn.Visible = false;
@@ -133,9 +136,19 @@ namespace Sunny.UI
             TextAlignment = ContentAlignment.MiddleLeft;
 
             SizeChange();
-
+            lastEditHeight = edit.Height;
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        int lastEditHeight = -1;
+        private void Edit_SizeChanged(object sender, EventArgs e)
+        {
+            if (lastEditHeight != edit.Height)
+            {
+                lastEditHeight = edit.Height;
+                SizeChange();
+            }
         }
 
         public override void SetDPIScale()
@@ -660,7 +673,11 @@ namespace Sunny.UI
         {
             base.OnFontChanged(e);
 
-            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
+            if (DefaultFontSize < 0 && edit != null)
+            {
+                edit.Font = this.Font;
+                edit.Invalidate();
+            }
 
             SizeChange();
             Invalidate();
@@ -673,7 +690,11 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            SizeChange();
+
+            if (!NoNeedChange)
+            {
+                SizeChange();
+            }
 
             if (tipsBtn != null)
             {
@@ -700,6 +721,8 @@ namespace Sunny.UI
             }
         }
 
+        private bool NoNeedChange = false;
+
         private void SizeChange()
         {
             if (!InitializeComponentEnd) return;
@@ -708,11 +731,18 @@ namespace Sunny.UI
 
             if (!multiline)
             {
-                if (Height < UIGlobal.EditorMinHeight) Height = UIGlobal.EditorMinHeight;
-                if (Height > UIGlobal.EditorMaxHeight) Height = UIGlobal.EditorMaxHeight;
+                if (Height < edit.Height + RectSize * 2 + 2)
+                {
+                    NoNeedChange = true;
+                    Height = edit.Height + RectSize * 2 + 2;
+                    edit.Top = (Height - edit.Height) / 2;
+                    NoNeedChange = false;
+                }
 
-                edit.Height = Math.Min(Height - RectSize * 2, edit.PreferredHeight);
-                edit.Top = (Height - edit.Height) / 2;
+                if (edit.Top != (Height - edit.Height) / 2)
+                {
+                    edit.Top = (Height - edit.Height) / 2;
+                }
 
                 if (icon == null && Symbol == 0)
                 {
