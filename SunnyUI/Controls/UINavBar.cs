@@ -474,6 +474,8 @@ namespace Sunny.UI
                 if (symbol > 0)
                     symbolSize = MenuHelper.GetSymbolSize(node);
 
+                Point symbolOffset = MenuHelper.GetSymbolOffset(node);
+
                 SizeF sf = TextRenderer.MeasureText(node.Text, Font);
                 Color textColor = ForeColor;
 
@@ -519,7 +521,7 @@ namespace Sunny.UI
                 {
                     if (symbol > 0)
                     {
-                        e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new Rectangle(NodeX + i * NodeSize.Width + (int)(NodeSize.Width - sf.Width - symbolSize) / 2, NodeY, symbolSize, NodeSize.Height));
+                        e.Graphics.DrawFontImage(symbol, symbolSize, textColor, new Rectangle(NodeX + i * NodeSize.Width + (int)(NodeSize.Width - sf.Width - symbolSize) / 2, NodeY, symbolSize, NodeSize.Height), symbolOffset.X, symbolOffset.Y, MenuHelper.GetSymbolRotate(node));
                     }
                     else
                     {
@@ -775,9 +777,9 @@ namespace Sunny.UI
             return this;
         }
 
-        public UINavBar SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
+        public UINavBar SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24, int symbolRotate = 0)
         {
-            MenuHelper.SetSymbol(node, symbol, symbolSize);
+            MenuHelper.SetSymbol(node, symbol, symbolSize, symbolRotate);
             return this;
         }
 
@@ -802,10 +804,10 @@ namespace Sunny.UI
             return CreateNode(new NavMenuItem(page));
         }
 
-        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex)
+        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateNode(text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolSize);
+            SetNodeSymbol(node, symbol, symbolSize, symbolRotate);
             return node;
         }
 
@@ -842,10 +844,10 @@ namespace Sunny.UI
             return CreateChildNode(parent, new NavMenuItem(page));
         }
 
-        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, int symbolSize, int pageIndex)
+        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateChildNode(parent, text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolSize);
+            SetNodeSymbol(node, symbol, symbolSize, symbolRotate);
             return node;
         }
 

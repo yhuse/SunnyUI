@@ -725,7 +725,7 @@ namespace Sunny.UI
                     {
                         Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
                         Point offset = MenuHelper.GetSymbolOffset(e.Node);
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, new Rectangle(imageLeft, e.Bounds.Y, MenuHelper.GetSymbolSize(e.Node), e.Bounds.Height), offset.X, offset.Y);
+                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, new Rectangle(imageLeft, e.Bounds.Y, MenuHelper.GetSymbolSize(e.Node), e.Bounds.Height), offset.X, offset.Y, MenuHelper.GetSymbolRotate(e.Node));
                     }
                     else
                     {
@@ -1073,15 +1073,15 @@ namespace Sunny.UI
             return this;
         }
 
-        public UINavMenu SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24)
+        public UINavMenu SetNodeSymbol(TreeNode node, int symbol, int symbolSize = 24, int symbolRotate = 0)
         {
-            MenuHelper.SetSymbol(node, symbol, symbolSize);
+            MenuHelper.SetSymbol(node, symbol, symbolSize, symbolRotate);
             return this;
         }
 
-        public UINavMenu SetNodeSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 24)
+        public UINavMenu SetNodeSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 24, int symbolRotate = 0)
         {
-            MenuHelper.SetSymbol(node, symbol, symbolOffset, symbolSize);
+            MenuHelper.SetSymbol(node, symbol, symbolOffset, symbolSize, symbolRotate);
             return this;
         }
 
@@ -1116,17 +1116,17 @@ namespace Sunny.UI
             return CreateNode(new NavMenuItem(page));
         }
 
-        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex)
+        public TreeNode CreateNode(string text, int symbol, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateNode(text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolSize);
+            SetNodeSymbol(node, symbol, symbolSize, symbolRotate);
             return node;
         }
 
-        public TreeNode CreateNode(string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex)
+        public TreeNode CreateNode(string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateNode(text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolOffset, symbolSize);
+            SetNodeSymbol(node, symbol, symbolOffset, symbolSize, symbolRotate);
             return node;
         }
 
@@ -1153,23 +1153,23 @@ namespace Sunny.UI
             var childNode = CreateChildNode(parent, new NavMenuItem(page));
             if (page.Symbol > 0)
             {
-                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolOffset, page.SymbolSize);
+                MenuHelper.SetSymbol(childNode, page.Symbol, page.SymbolOffset, page.SymbolSize, page.SymbolRotate);
             }
 
             return childNode;
         }
 
-        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, int symbolSize, int pageIndex)
+        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateChildNode(parent, text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolSize);
+            SetNodeSymbol(node, symbol, symbolSize, symbolRotate);
             return node;
         }
 
-        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex)
+        public TreeNode CreateChildNode(TreeNode parent, string text, int symbol, Point symbolOffset, int symbolSize, int pageIndex, int symbolRotate = 0)
         {
             var node = CreateChildNode(parent, text, pageIndex);
-            SetNodeSymbol(node, symbol, symbolOffset, symbolSize);
+            SetNodeSymbol(node, symbol, symbolOffset, symbolSize, symbolRotate);
             return node;
         }
 
