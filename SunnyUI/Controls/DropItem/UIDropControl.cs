@@ -64,7 +64,7 @@ namespace Sunny.UI
             edit.Invalidate();
             Controls.Add(edit);
 
-            lastEditHeight = edit.Height;
+            firstEditHeight = lastEditHeight = edit.Height;
             Width = 150;
             Height = 29;
 
@@ -76,6 +76,7 @@ namespace Sunny.UI
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
+        int firstEditHeight = -1;
         int lastEditHeight = -1;
         private void Edit_SizeChanged(object sender, EventArgs e)
         {
@@ -407,6 +408,14 @@ namespace Sunny.UI
             {
                 NoNeedChange = true;
                 Height = edit.Height + RectSize * 2 + 2;
+                edit.Top = (Height - edit.Height) / 2;
+                NoNeedChange = false;
+            }
+
+            if (edit.Height + RectSize * 2 + 2 < firstEditHeight && Height > firstEditHeight)
+            {
+                NoNeedChange = true;
+                Height = firstEditHeight;
                 edit.Top = (Height - edit.Height) / 2;
                 NoNeedChange = false;
             }
