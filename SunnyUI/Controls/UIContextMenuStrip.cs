@@ -169,6 +169,7 @@ namespace Sunny.UI
             ContextMenuStrip ownerContextMenu = item.Owner as ContextMenuStrip;
             if (ownerContextMenu.ImageList != null) return;
             if (e.Item.ImageIndex <= 0) return;
+            if (e.Item.Image != null) return;
             Rectangle imageRect = new Rectangle(0, e.Item.ContentRectangle.Top, e.TextRectangle.Left, e.Item.ContentRectangle.Height);
             e.Graphics.DrawFontImage(e.Item.ImageIndex, 24, e.TextColor, imageRect);
         }
