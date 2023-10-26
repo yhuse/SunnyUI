@@ -53,6 +53,7 @@
  * 2023-08-24: V3.4.2 修复了Enabled为false时，自定义颜色，文字不显示的问题
  * 2023-10-25: V3.5.1 修复在高DPI下，文字垂直不居中的问题
  * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -119,6 +120,7 @@ namespace Sunny.UI
             btn.BackColor = Color.Transparent;
             btn.Click += Btn_Click;
             btn.Radius = 3;
+            btn.SymbolOffset = new Point(-1, 1);
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -132,7 +134,7 @@ namespace Sunny.UI
             bar.MouseEnter += Bar_MouseEnter;
             TextAlignment = ContentAlignment.MiddleLeft;
 
-            firstEditHeight = lastEditHeight = edit.Height;
+            lastEditHeight = edit.Height;
             Width = 150;
             Height = 29;
 
@@ -140,7 +142,6 @@ namespace Sunny.UI
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
 
-        int firstEditHeight = -1;
         int lastEditHeight = -1;
         private void Edit_SizeChanged(object sender, EventArgs e)
         {
@@ -674,7 +675,9 @@ namespace Sunny.UI
             base.OnFontChanged(e);
 
             if (DefaultFontSize < 0 && edit != null)
+            {
                 edit.Font = this.Font;
+            }
 
             Invalidate();
         }
@@ -731,14 +734,6 @@ namespace Sunny.UI
                 {
                     NoNeedChange = true;
                     Height = edit.Height + RectSize * 2 + 2;
-                    edit.Top = (Height - edit.Height) / 2;
-                    NoNeedChange = false;
-                }
-
-                if (edit.Height + RectSize * 2 + 2 < firstEditHeight && Height > firstEditHeight)
-                {
-                    NoNeedChange = true;
-                    Height = firstEditHeight;
                     edit.Top = (Height - edit.Height) / 2;
                     NoNeedChange = false;
                 }
@@ -1320,7 +1315,7 @@ namespace Sunny.UI
             }
             else if (Symbol != 0)
             {
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
             }
 
             if (styleCustomMode && Text.IsValid() && NeedDrawDisabledText)
@@ -1415,6 +1410,26 @@ namespace Sunny.UI
             }
         }
 
+        private int _symbolRotate = 0;
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("字体图标旋转角度"), Category("SunnyUI")]
+        public int SymbolRotate
+        {
+            get => _symbolRotate;
+            set
+            {
+                if (_symbolRotate != value)
+                {
+                    _symbolRotate = value;
+                    Invalidate();
+                }
+            }
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
         [DefaultValue(361761)]
@@ -1433,12 +1448,23 @@ namespace Sunny.UI
             set => btn.SymbolSize = value;
         }
 
-        [DefaultValue(typeof(Point), "0, 1")]
+        [DefaultValue(typeof(Point), "-1, 1")]
         [Description("按钮字体图标的偏移位置"), Category("SunnyUI")]
         public Point ButtonSymbolOffset
         {
             get => btn.SymbolOffset;
             set => btn.SymbolOffset = value;
+        }
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("按钮字体图标旋转角度"), Category("SunnyUI")]
+        public int ButtonSymbolRotate
+        {
+            get => btn.SymbolRotate;
+            set => btn.SymbolRotate = value;
         }
 
         /// <summary>

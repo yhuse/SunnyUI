@@ -21,6 +21,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -105,6 +106,26 @@ namespace Sunny.UI
                 _symbolSize = Math.Max(value, 16);
                 _symbolSize = Math.Min(value, 128);
                 Invalidate();
+            }
+        }
+
+        private int _symbolRotate = 0;
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("字体图标旋转角度"), Category("SunnyUI")]
+        public int SymbolRotate
+        {
+            get => _symbolRotate;
+            set
+            {
+                if (_symbolRotate != value)
+                {
+                    _symbolRotate = value;
+                    Invalidate();
+                }
             }
         }
 
@@ -289,9 +310,9 @@ namespace Sunny.UI
             }
 
             if (Text.IsNullOrEmpty())
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new RectangleF((Width - SymbolSize) / 2.0f, (Height - SymbolSize) / 2.0f, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new RectangleF((Width - SymbolSize) / 2.0f, (Height - SymbolSize) / 2.0f, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
             else
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new Rectangle(rect.Left, rect.Top, SymbolSize, rect.Height), SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, symbolColor, new Rectangle(rect.Left, rect.Top, SymbolSize, rect.Height), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
 
             e.Graphics.DrawString(Text, Font, ForeColor, rect, ContentAlignment.MiddleRight);
         }

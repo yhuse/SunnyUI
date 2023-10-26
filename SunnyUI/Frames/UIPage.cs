@@ -39,6 +39,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -348,6 +349,26 @@ namespace Sunny.UI
             }
         }
 
+        private int _symbolRotate = 0;
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("字体图标旋转角度"), Category("SunnyUI")]
+        public int SymbolRotate
+        {
+            get => _symbolRotate;
+            set
+            {
+                if (_symbolRotate != value)
+                {
+                    _symbolRotate = value;
+                    Invalidate();
+                }
+            }
+        }
+
         [DefaultValue(false), Description("在Frame框架中不被关闭"), Category("SunnyUI")]
         public bool AlwaysOpen
         {
@@ -631,7 +652,7 @@ namespace Sunny.UI
             if (!AllowShowTitle) return;
             if (Symbol > 0)
             {
-                e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y);
+                e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
             }
 
             e.Graphics.DrawString(Text, TitleFont, TitleForeColor, new Rectangle(Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);

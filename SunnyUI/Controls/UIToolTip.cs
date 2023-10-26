@@ -21,6 +21,7 @@
  * 2021-08-16: V3.0.6 增加ToolTip接口，解决类似UITextBox这类的组合控件无法显示ToolTip的问题
  * 2021-12-09: V3.0.9 修复默认显示
  * 2023-05-14: V3.3.6 重构DrawString函数
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -74,7 +75,7 @@ namespace Sunny.UI
         }
 
         public void SetToolTip(Control control, string caption, string title, int symbol, int symbolSize,
-            Color symbolColor)
+            Color symbolColor, int symbolRotate = 0)
         {
             if (title == null) title = string.Empty;
 
@@ -85,6 +86,7 @@ namespace Sunny.UI
                 ToolTipControls[control].Symbol = symbol;
                 ToolTipControls[control].SymbolSize = symbolSize;
                 ToolTipControls[control].SymbolColor = symbolColor;
+                ToolTipControls[control].SymbolRotate = symbolRotate;
             }
             else
             {
@@ -95,7 +97,8 @@ namespace Sunny.UI
                     ToolTipText = caption,
                     Symbol = symbol,
                     SymbolSize = symbolSize,
-                    SymbolColor = symbolColor
+                    SymbolColor = symbolColor,
+                    SymbolRotate = symbolRotate
                 };
 
                 ToolTipControls.TryAdd(control, ctrl);
@@ -103,7 +106,7 @@ namespace Sunny.UI
 
             if (control is IToolTip toolTip)
             {
-                SetToolTip(toolTip.ExToolTipControl(), caption, title, symbol, symbolSize, symbolColor);
+                SetToolTip(toolTip.ExToolTipControl(), caption, title, symbol, symbolSize, symbolColor, symbolRotate);
             }
 
             base.SetToolTip(control, caption);
@@ -263,6 +266,11 @@ namespace Sunny.UI
             /// 字体图标的偏移位置
             /// </summary>
             public Point SymbolOffset { get; set; } = new Point(0, 0);
+
+            /// <summary>
+            /// 字体图标旋转角度
+            /// </summary>
+            public int SymbolRotate { get; set; } = 0;
 
             /// <summary>
             /// 字体图标颜色

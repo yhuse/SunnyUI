@@ -341,6 +341,11 @@ namespace Sunny.UI
         /// </summary>
         public int SymbolSize { get; set; } = 28;
 
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        public int SymbolRotate { get; set; } = 0;
+
         private void lbl_DoubleClick(object sender, EventArgs e)
         {
             if (sender is Label lbl)

@@ -31,6 +31,8 @@ namespace Sunny.UI
         int SymbolSize { get; set; }
 
         Point SymbolOffset { get; set; }
+
+        int SymbolRotate { get; set; }
     }
 
     public enum UISymbolType

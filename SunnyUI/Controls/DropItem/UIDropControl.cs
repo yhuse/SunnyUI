@@ -29,6 +29,7 @@
  * 2023-08-28: V3.4.2 下拉框按钮图标增加编辑器
  * 2023-10-25: V3.5.1 修复在高DPI下，文字垂直不居中的问题
  * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -64,7 +65,7 @@ namespace Sunny.UI
             edit.Invalidate();
             Controls.Add(edit);
 
-            firstEditHeight = lastEditHeight = edit.Height;
+            lastEditHeight = edit.Height;
             Width = 150;
             Height = 29;
 
@@ -76,7 +77,6 @@ namespace Sunny.UI
             ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
-        int firstEditHeight = -1;
         int lastEditHeight = -1;
         private void Edit_SizeChanged(object sender, EventArgs e)
         {
@@ -103,7 +103,11 @@ namespace Sunny.UI
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
-            if (DefaultFontSize < 0 && edit != null) edit.Font = this.Font;
+            if (DefaultFontSize < 0 && edit != null)
+            {
+                edit.Font = this.Font;
+            }
+
             Invalidate();
         }
 
@@ -377,6 +381,7 @@ namespace Sunny.UI
             {
                 Padding = new Padding(Padding.Left, Padding.Top, Padding.Right < 30 ? 30 : Padding.Right, Padding.Bottom < 2 ? 2 : Padding.Bottom);
             }
+
             base.OnPaddingChanged(e);
             SizeChange();
         }
@@ -408,14 +413,6 @@ namespace Sunny.UI
             {
                 NoNeedChange = true;
                 Height = edit.Height + RectSize * 2 + 2;
-                edit.Top = (Height - edit.Height) / 2;
-                NoNeedChange = false;
-            }
-
-            if (edit.Height + RectSize * 2 + 2 < firstEditHeight && Height > firstEditHeight)
-            {
-                NoNeedChange = true;
-                Height = firstEditHeight;
                 edit.Top = (Height - edit.Height) / 2;
                 NoNeedChange = false;
             }

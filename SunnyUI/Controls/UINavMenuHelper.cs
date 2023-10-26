@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-04-14: V3.1.3 重构扩展函数
  * 2022-11-29: V3.3.0 重构RemovePage方法
+ * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
 ******************************************************************************/
 
 using System;
@@ -72,6 +73,11 @@ namespace Sunny.UI
             return this[node] == null ? new Point(0, 0) : Items[node].SymbolOffset;
         }
 
+        public int GetSymbolRotate(TreeNode node)
+        {
+            return this[node] == null ? 0 : Items[node].SymbolRotate;
+        }
+
         public int GetPageIndex(TreeNode node)
         {
             return this[node] == null ? -1 : Items[node].PageIndex;
@@ -120,17 +126,18 @@ namespace Sunny.UI
             Items[node].PageGuid = guid;
         }
 
-        public void SetSymbol(TreeNode node, int symbol, int symbolSize = 32)
+        public void SetSymbol(TreeNode node, int symbol, int symbolSize = 32, int symbolRotate = 0)
         {
             if (node == null) return;
 
             CreateIfNotExist(node);
             Items[node].Symbol = symbol;
             Items[node].SymbolSize = symbolSize;
+            Items[node].SymbolRotate = symbolRotate;
             node.TreeView.Invalidate();
         }
 
-        public void SetSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 32)
+        public void SetSymbol(TreeNode node, int symbol, Point symbolOffset, int symbolSize = 32, int symbolRotate = 0)
         {
             if (node == null) return;
 
@@ -138,6 +145,7 @@ namespace Sunny.UI
             Items[node].Symbol = symbol;
             Items[node].SymbolSize = symbolSize;
             Items[node].SymbolOffset = symbolOffset;
+            Items[node].SymbolRotate = symbolRotate;
             node.TreeView.Invalidate();
         }
 
@@ -554,6 +562,11 @@ namespace Sunny.UI
         /// </summary>
         public Point SymbolOffset { get; set; } = new Point(0, 0);
 
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        public int SymbolRotate { get; set; } = 0;
+
         public int PageIndex { get; set; }
 
         public string TipsText { get; set; }
@@ -584,6 +597,8 @@ namespace Sunny.UI
             PageGuid = page.PageGuid;
             Symbol = page.Symbol;
             SymbolSize = page.SymbolSize;
+            SymbolOffset = page.SymbolOffset;
+            SymbolRotate = page.SymbolRotate;
             AlwaysOpen = page.AlwaysOpen;
         }
 
