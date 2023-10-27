@@ -1,5 +1,20 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-10\-27 V3.5.2    
+\+  **字体图标增加旋转角度参数SymbolRotate** 
+\* UINavBar: 修正下拉菜单文字显示垂直居中    
+\* UINavBar: ImageList为空时，下拉菜单增加Symbol绘制    
+\* UIContextMenuStrip: 修正文字显示垂直居中    
+\* UIContextMenuStrip: 当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制    
+\* UIIPTextBox: 修复UIIPTextBox在Readonly且光标位于小数点后面时，可以通过Backspace键删除前一位的问题    
+\* UILineChart: 增加了绘制线的DashStyle样式    
+\* UFontImage: MaterialIcons字体图标调大3个像素    
+\* UITextBox: 修复在高DPI下，文字垂直不居中的问题    
+\* UITextBox: 修复在某些字体不显示下划线的问题    
+\* UITextBox: 多行显示时位置调整     
+\* UIDropControl: 修复在高DPI下，文字垂直不居中的问题    
+\* UIDropControl: 修复在某些字体不显示下划线的问题    
+    
 #### 2023\-10\-16 V3.5.1    
 \+ 增加.Net8支持        
 \+ 增加MaterialIcons字体图标    
