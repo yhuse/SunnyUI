@@ -89,7 +89,8 @@ namespace Sunny.UI.Demo
                 uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], style.DisplayText(), style.Value());
             }
 
-            uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
+            var node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
+            uiNavBar1.SetNodeSymbol(node, 558295);
             //左侧导航主节点关联页面
             uiNavMenu1.CreateNode(AddPage(new FColorful()));
 
