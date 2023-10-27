@@ -1,7 +1,7 @@
 \+ 增加    \* 修改    \- 删除    
     
 #### 2023\-10\-27 V3.5.2    
-\+  **字体图标增加旋转角度参数SymbolRotate** 
+\+  **字体图标增加旋转角度参数SymbolRotate**     
 \* UINavBar: 修正下拉菜单文字显示垂直居中    
 \* UINavBar: ImageList为空时，下拉菜单增加Symbol绘制    
 \* UIContextMenuStrip: 修正文字显示垂直居中    
