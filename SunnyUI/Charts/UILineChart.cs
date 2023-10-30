@@ -542,7 +542,8 @@ namespace Sunny.UI
                     points.Add(new PointF(lineSeries.Points[0].X, lineSeries.YOffsetPos));
                     points.AddRange(lineSeries.Points);
                     points.Add(new PointF(lineSeries.Points[series.Points.Count - 1].X, lineSeries.YOffsetPos));
-                    g.FillPath(color, points.ToArray().Path());
+                    using var path = points.ToArray().Path();
+                    g.FillPath(color, path);
                     g.DrawLine(color, points[0], points[points.Count - 1]);
                     points.Clear();
                 }
@@ -707,10 +708,9 @@ namespace Sunny.UI
                                     PointF pt4 = new PointF(p.X, p.Y + series.SymbolSize);
                                     PointF[] pts = { pt1, pt2, pt3, pt4, pt1 };
                                     g.SetHighQuality();
-                                    GraphicsPath path = pts.Path();
+                                    using GraphicsPath path = pts.Path();
                                     g.FillPath(br, path);
                                     g.DrawPath(pn, path);
-                                    path.Dispose();
                                 }
                                 break;
                             case UILinePointSymbol.Triangle:
@@ -720,10 +720,9 @@ namespace Sunny.UI
                                     PointF pt3 = new PointF(p.X + series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
                                     PointF[] pts = { pt1, pt2, pt3, pt1 };
                                     g.SetHighQuality();
-                                    GraphicsPath path = pts.Path();
+                                    using GraphicsPath path = pts.Path();
                                     g.FillPath(br, path);
                                     g.DrawPath(pn, path);
-                                    path.Dispose();
                                 }
                                 break;
                             case UILinePointSymbol.Circle:

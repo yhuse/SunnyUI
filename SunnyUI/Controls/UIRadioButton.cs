@@ -212,12 +212,10 @@ namespace Sunny.UI
             }
             else
             {
-                using (Pen pn = new Pen(color, 2))
-                {
-                    g.SetHighQuality();
-                    g.DrawEllipse(pn, left + 1, top + 1, ImageSize - 2, ImageSize - 2);
-                    g.SetDefaultQuality();
-                }
+                using Pen pn = new Pen(color, 2);
+                g.SetHighQuality();
+                g.DrawEllipse(pn, left + 1, top + 1, ImageSize - 2, ImageSize - 2);
+                g.SetDefaultQuality();
             }
         }
 

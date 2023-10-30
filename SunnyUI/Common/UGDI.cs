@@ -51,13 +51,9 @@ namespace Sunny.UI
         /// <returns>是否在区域内</returns>
         public static bool InRegion(this Point point, Point[] points)
         {
-            using (GraphicsPath path = points.Path())
-            {
-                using (Region region = path.Region())
-                {
-                    return region.IsVisible(point);
-                }
-            }
+            using GraphicsPath path = points.Path();
+            using Region region = path.Region();
+            return region.IsVisible(point);
         }
 
         /// <summary>
@@ -68,13 +64,9 @@ namespace Sunny.UI
         /// <returns>是否在区域内</returns>
         public static bool InRegion(this PointF point, PointF[] points)
         {
-            using (GraphicsPath path = points.Path())
-            {
-                using (Region region = path.Region())
-                {
-                    return region.IsVisible(point);
-                }
-            }
+            using GraphicsPath path = points.Path();
+            using Region region = path.Region();
+            return region.IsVisible(point);
         }
 
         /// <summary>

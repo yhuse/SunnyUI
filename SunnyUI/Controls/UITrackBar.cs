@@ -171,19 +171,15 @@ namespace Sunny.UI
                 g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White,
                     new Rectangle(len, (Height - BarSize) / 2, 10, BarSize), 5);
 
-                using (Pen pen = new Pen(rectColor, 2))
-                {
-                    g.SetHighQuality();
-                    g.DrawRoundRectangle(pen,
-                        new Rectangle(len + 1, (Height - BarSize) / 2 + 1, 8, BarSize - 2), 5);
-                    g.SetDefaultQuality();
-                }
+                using Pen pen = new Pen(rectColor, 2);
+                g.SetHighQuality();
+                g.DrawRoundRectangle(pen, new Rectangle(len + 1, (Height - BarSize) / 2 + 1, 8, BarSize - 2), 5);
+                g.SetDefaultQuality();
             }
 
             if (Direction == BarDirection.Vertical)
             {
-                g.FillRoundRectangle(rectDisableColor,
-                    new Rectangle(Width / 2 - 3, 5, 6, Height - 1 - 10), 6);
+                g.FillRoundRectangle(rectDisableColor, new Rectangle(Width / 2 - 3, 5, 6, Height - 1 - 10), 6);
 
                 int len = (int)((Value - Minimum) * 1.0 * (Height - 1 - 10) / (Maximum - Minimum));
                 if (len > 0)
@@ -191,16 +187,12 @@ namespace Sunny.UI
                     g.FillRoundRectangle(foreColor, new Rectangle(Width / 2 - 3, Height - len - 5, 6, len), 6);
                 }
 
-                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White,
-                    new Rectangle((Width - BarSize) / 2, Height - len - 10 - 1, BarSize, 10), 5);
+                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, new Rectangle((Width - BarSize) / 2, Height - len - 10 - 1, BarSize, 10), 5);
 
-                using (Pen pen = new Pen(rectColor, 2))
-                {
-                    g.SetHighQuality();
-                    g.DrawRoundRectangle(pen,
-                        new Rectangle((Width - BarSize) / 2 + 1, Height - len - 10, BarSize - 2, 8), 5);
-                    g.SetDefaultQuality();
-                }
+                using Pen pen = new Pen(rectColor, 2);
+                g.SetHighQuality();
+                g.DrawRoundRectangle(pen, new Rectangle((Width - BarSize) / 2 + 1, Height - len - 10, BarSize - 2, 8), 5);
+                g.SetDefaultQuality();
             }
         }
 

@@ -73,13 +73,13 @@ namespace Sunny.UI
             var rect = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1);
             if (Text.IsValid())
             {
-                path = rect.CreateRoundedRectanglePathWithoutTop(Radius, RadiusSides, RectSize);
-                g.DrawPath(GetRectColor(), path, true, RectSize);
+                using var path1 = rect.CreateRoundedRectanglePathWithoutTop(Radius, RadiusSides, RectSize);
+                g.DrawPath(GetRectColor(), path1, true, RectSize);
             }
             else
             {
-                path = rect.CreateRoundedRectanglePath(Radius, RadiusSides, RectSize);
-                g.DrawPath(GetRectColor(), path, true, RectSize);
+                using var path1 = rect.CreateRoundedRectanglePath(Radius, RadiusSides, RectSize);
+                g.DrawPath(GetRectColor(), path1, true, RectSize);
             }
         }
 

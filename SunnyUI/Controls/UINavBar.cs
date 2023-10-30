@@ -487,7 +487,7 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        var path = rect.CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
+                        using var path = rect.CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
                         e.Graphics.FillPath(MenuHoverColor, path);
                     }
 
@@ -504,7 +504,7 @@ namespace Sunny.UI
                         }
                         else
                         {
-                            var path = new Rectangle(rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height).CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
+                            using var path = new Rectangle(rect.X, Height - NodeSize.Height, rect.Width, NodeSize.Height).CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
                             e.Graphics.FillPath(MenuSelectedColor, path);
                         }
                     }

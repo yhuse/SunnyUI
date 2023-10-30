@@ -223,25 +223,22 @@ namespace Sunny.UI
 
             g.FillRectangle(fillColor, isUp ? GetUpRect() : GetDownRect());
             g.SetHighQuality();
-            using (var pen = new Pen(clr_arrow, 2))
+            using var pen = new Pen(clr_arrow, 2);
+            Point pt1, pt2, pt3;
+            if (!isUp)
             {
-                Point pt1, pt2, pt3;
-                if (!isUp)
-                {
-                    pt1 = new Point(Width / 2 - 4, Height - 16 / 2 - 4);
-                    pt2 = new Point(Width / 2, Height - 16 / 2);
-                    pt3 = new Point(Width / 2 + 4, Height - 16 / 2 - 4);
-                }
-                else
-                {
-                    pt1 = new Point(Width / 2 - 4, 16 / 2 + 4 - 1);
-                    pt2 = new Point(Width / 2, 16 / 2 - 1);
-                    pt3 = new Point(Width / 2 + 4, 16 / 2 + 4 - 1);
-                }
-
-                g.DrawLines(pen, new[] { pt1, pt2, pt3 });
+                pt1 = new Point(Width / 2 - 4, Height - 16 / 2 - 4);
+                pt2 = new Point(Width / 2, Height - 16 / 2);
+                pt3 = new Point(Width / 2 + 4, Height - 16 / 2 - 4);
+            }
+            else
+            {
+                pt1 = new Point(Width / 2 - 4, 16 / 2 + 4 - 1);
+                pt2 = new Point(Width / 2, 16 / 2 - 1);
+                pt3 = new Point(Width / 2 + 4, 16 / 2 + 4 - 1);
             }
 
+            g.DrawLines(pen, new[] { pt1, pt2, pt3 });
             g.SetDefaultQuality();
         }
 

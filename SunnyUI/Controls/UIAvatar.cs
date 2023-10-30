@@ -368,17 +368,15 @@ namespace Sunny.UI
                 scaleImage.Dispose();
                 e.Graphics.SetHighQuality();
 
-                using (Pen pn = new Pen(BackColor, 4))
+                using Pen pn = new Pen(BackColor, 4);
+                if (Shape == UIShape.Circle)
                 {
-                    if (Shape == UIShape.Circle)
-                    {
-                        e.Graphics.DrawEllipse(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size);
-                    }
+                    e.Graphics.DrawEllipse(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size);
+                }
 
-                    if (Shape == UIShape.Square)
-                    {
-                        e.Graphics.DrawRoundRectangle(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size, 5);
-                    }
+                if (Shape == UIShape.Square)
+                {
+                    e.Graphics.DrawRoundRectangle(pn, (Width - avatarSize) / 2 + 1 + ImageOffset.X, (Height - avatarSize) / 2 + 1 + ImageOffset.Y, size, size, 5);
                 }
 
                 e.Graphics.SetDefaultQuality();

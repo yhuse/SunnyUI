@@ -211,27 +211,22 @@ namespace Sunny.UI
             if (Checked)
             {
                 g.FillRoundRectangle(color, new Rectangle((int)left, (int)top, ImageSize, ImageSize), 1);
-
                 color = BackColor.IsValid() ? BackColor : Color.White;
                 Point pt2 = new Point((int)(left + ImageSize * 2 / 5.0f), (int)(top + ImageSize * 3 / 4.0f) - (ImageSize.Div(10)));
                 Point pt1 = new Point((int)left + 2 + ImageSize.Div(10), pt2.Y - (pt2.X - 2 - ImageSize.Div(10) - (int)left));
                 Point pt3 = new Point((int)left + ImageSize - 2 - ImageSize.Div(10), pt2.Y - (ImageSize - pt2.X - 2 - ImageSize.Div(10)) - (int)left);
 
                 PointF[] CheckMarkLine = { pt1, pt2, pt3 };
-                using (Pen pn = new Pen(color, 2))
-                {
-                    g.SetHighQuality();
-                    g.DrawLines(pn, CheckMarkLine);
-                    g.SetDefaultQuality();
-                }
+                using Pen pn = new Pen(color, 2);
+                g.SetHighQuality();
+                g.DrawLines(pn, CheckMarkLine);
+                g.SetDefaultQuality();
             }
             else
             {
-                using (Pen pn = new Pen(color, 1))
-                {
-                    g.DrawRoundRectangle(pn, new Rectangle((int)left + 1, (int)top + 1, ImageSize - 2, ImageSize - 2), 1);
-                    g.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
-                }
+                using Pen pn = new Pen(color, 1);
+                g.DrawRoundRectangle(pn, new Rectangle((int)left + 1, (int)top + 1, ImageSize - 2, ImageSize - 2), 1);
+                g.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
             }
         }
 

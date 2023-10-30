@@ -211,7 +211,7 @@ namespace Sunny.UI
             cornerRadius = (float)Math.Min(cornerRadius, Math.Floor(r.Width) - 2);
             cornerRadius = (float)Math.Min(cornerRadius, Math.Floor(r.Height) - 2);
 
-            GraphicsPath path = new GraphicsPath();
+            using GraphicsPath path = new GraphicsPath();
             path.AddArc(r.X, r.Y, cornerRadius, cornerRadius, 180, 90);
             path.AddArc(r.Right - cornerRadius, r.Y, cornerRadius, cornerRadius, 270, 90);
             path.AddArc(r.Right - cornerRadius, r.Bottom - cornerRadius, cornerRadius, cornerRadius, 0, 90);
@@ -232,9 +232,8 @@ namespace Sunny.UI
 
             if (lr1.Height > 0 && lr1.Width > 0)
             {
-                LinearGradientBrush lb1 = new LinearGradientBrush(lr1, c1, c2, angle, false);
+                using LinearGradientBrush lb1 = new LinearGradientBrush(lr1, c1, c2, angle, false);
                 dc.FillRectangle(lb1, lr1);
-                lb1.Dispose();
             }
         }
 
@@ -265,38 +264,31 @@ namespace Sunny.UI
 
             if (lr1.Height > 0 && lr1.Width > 0)
             {
-                LinearGradientBrush lb2 = new LinearGradientBrush(lr2, c1, c2, angle, false);
-                LinearGradientBrush lb1 = new LinearGradientBrush(lr1, c2, c3, angle, false);
+                using LinearGradientBrush lb2 = new LinearGradientBrush(lr2, c1, c2, angle, false);
+                using LinearGradientBrush lb1 = new LinearGradientBrush(lr1, c2, c3, angle, false);
 
                 dc.FillRectangle(lb1, lr1);
                 dc.FillRectangle(lb2, lr2);
-
-                lb1.Dispose();
-                lb2.Dispose();
             }
+
             // with some sizes the first pixel in the gradient rectangle shows the opposite color
             // this is a workaround for that problem
             if (orientation == Orientation.Vertical)
             {
-                Pen pc2 = new Pen(c2, 1);
-                Pen pc3 = new Pen(c3, 1);
+                using Pen pc2 = new Pen(c2, 1);
+                using Pen pc3 = new Pen(c3, 1);
                 dc.DrawLine(pc3, lr1.Left, lr1.Top, lr1.Right - 1, lr1.Top);
                 dc.DrawLine(pc2, lr2.Left, lr2.Top, lr2.Right - 1, lr2.Top);
-                pc2.Dispose();
-                pc3.Dispose();
             }
 
             if (orientation == Orientation.Horizontal)
             {
-                Pen pc1 = new Pen(c1, 1);
-                Pen pc2 = new Pen(c2, 1);
-                Pen pc3 = new Pen(c3, 1);
+                using Pen pc1 = new Pen(c1, 1);
+                using Pen pc2 = new Pen(c2, 1);
+                using Pen pc3 = new Pen(c3, 1);
                 dc.DrawLine(pc1, lr2.Left, lr2.Top, lr2.Left, lr2.Bottom - 1);
                 dc.DrawLine(pc2, lr2.Right, lr2.Top, lr2.Right, lr2.Bottom - 1);
                 dc.DrawLine(pc3, lr1.Right, lr1.Top, lr1.Right, lr1.Bottom - 1);
-                pc1.Dispose();
-                pc2.Dispose();
-                pc3.Dispose();
             }
         }
     }

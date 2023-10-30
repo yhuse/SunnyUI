@@ -253,7 +253,7 @@ namespace Sunny.UI
 
                     br.GammaCorrection = true;
                     g.FillPath(br, path);
-                    br.Dispose();
+                    br?.Dispose();
                 }
             }
             else
@@ -325,14 +325,10 @@ namespace Sunny.UI
             if (Focused && ShowFocusLine)
             {
                 Rectangle rect = new Rectangle(2, 2, Width - 5, Height - 5);
-                var path = rect.CreateRoundedRectanglePath(Radius);
-                using (Pen pn = new Pen(ForeColor))
-                {
-                    pn.DashStyle = DashStyle.Dot;
-                    e.Graphics.DrawPath(pn, path);
-                }
-
-                path.Dispose();
+                using var path = rect.CreateRoundedRectanglePath(Radius);
+                using Pen pn = new Pen(ForeColor);
+                pn.DashStyle = DashStyle.Dot;
+                e.Graphics.DrawPath(pn, path);
             }
         }
 

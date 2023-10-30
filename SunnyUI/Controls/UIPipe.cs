@@ -338,8 +338,7 @@ namespace Sunny.UI
                 if (Height < Width * 2 + 4) return;
                 w = Width.Div(2) + Width.Mod(2);
 
-                if (RadiusSides.HasFlag(UICornerRadiusSides.LeftTop) &&
-                    !RadiusSides.HasFlag(UICornerRadiusSides.RightTop))
+                if (RadiusSides.HasFlag(UICornerRadiusSides.LeftTop) && !RadiusSides.HasFlag(UICornerRadiusSides.RightTop))
                 {
                     for (int i = 1; i < w; i++)
                     {
@@ -358,8 +357,7 @@ namespace Sunny.UI
                     }
                 }
 
-                if (!RadiusSides.HasFlag(UICornerRadiusSides.LeftTop) &&
-                    RadiusSides.HasFlag(UICornerRadiusSides.RightTop))
+                if (!RadiusSides.HasFlag(UICornerRadiusSides.LeftTop) && RadiusSides.HasFlag(UICornerRadiusSides.RightTop))
                 {
                     for (int i = 1; i < w; i++)
                     {
@@ -382,8 +380,7 @@ namespace Sunny.UI
                     }
                 }
 
-                if (RadiusSides.HasFlag(UICornerRadiusSides.LeftBottom) &&
-                    !RadiusSides.HasFlag(UICornerRadiusSides.RightBottom))
+                if (RadiusSides.HasFlag(UICornerRadiusSides.LeftBottom) && !RadiusSides.HasFlag(UICornerRadiusSides.RightBottom))
                 {
                     for (int i = 1; i < w; i++)
                     {
@@ -402,8 +399,7 @@ namespace Sunny.UI
                     }
                 }
 
-                if (!RadiusSides.HasFlag(UICornerRadiusSides.LeftBottom) &&
-                    RadiusSides.HasFlag(UICornerRadiusSides.RightBottom))
+                if (!RadiusSides.HasFlag(UICornerRadiusSides.LeftBottom) && RadiusSides.HasFlag(UICornerRadiusSides.RightBottom))
                 {
                     for (int i = 1; i < w; i++)
                     {
@@ -536,8 +532,8 @@ namespace Sunny.UI
         private Bitmap CreatePipeBack(UIPipe pipe)
         {
             Bitmap result = new Bitmap(pipe.Width, pipe.Height);
-            Graphics g = result.Graphics();
-            var path = result.Bounds().CreateRoundedRectanglePath(5, UICornerRadiusSides.None);
+            using Graphics g = result.Graphics();
+            using var path = result.Bounds().CreateRoundedRectanglePath(5, UICornerRadiusSides.None);
 
             int h = pipe.Height.Div(2) + pipe.Height.Mod(2);
             using (Bitmap bmp = new Bitmap(pipe.Width, pipe.Height))
@@ -567,7 +563,6 @@ namespace Sunny.UI
                 g.DrawImage(bmp, new Rectangle(0, h, pipe.Width, pipe.Height - h), new Rectangle(0, h, pipe.Width, pipe.Height - h), GraphicsUnit.Pixel);
             }
 
-            g.Dispose();
             return result;
         }
 

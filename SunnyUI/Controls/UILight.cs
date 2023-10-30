@@ -180,7 +180,7 @@ namespace Sunny.UI
             if (Shape == UIShape.Circle)
             {
                 if (Radius != ShowSize) Radius = ShowSize;
-                GraphicsPath CirclePath = new GraphicsPath();
+                using GraphicsPath CirclePath = new GraphicsPath();
                 CirclePath.AddEllipse(2, 2, ShowSize - 4, ShowSize - 4);
                 g.Smooth();
 
@@ -188,26 +188,21 @@ namespace Sunny.UI
                 {
                     Color[] surroundColor = new Color[] { color };
                     using GraphicsPath path1 = ClientRectangle.CreateTrueRoundedRectanglePath(Height);
-                    PathGradientBrush gradientBrush = new PathGradientBrush(path1);
+                    using PathGradientBrush gradientBrush = new PathGradientBrush(path1);
                     gradientBrush.CenterPoint = new PointF(ShowSize / 2.0f, ShowSize / 2.0f);
                     gradientBrush.CenterColor = cColor;
                     gradientBrush.SurroundColors = surroundColor;
                     g.FillPath(gradientBrush, CirclePath);
-                    gradientBrush.Dispose();
                 }
                 else
                 {
                     g.FillPath(color, CirclePath);
                 }
 
-                CirclePath.Dispose();
-
                 if (ShowLightLine)
                 {
                     int size = (ShowSize - 4) / 5;
-                    g.DrawArc(cColor, size, size,
-                        ShowSize - size * 2, ShowSize - size * 2,
-                        45, -155);
+                    g.DrawArc(cColor, size, size, ShowSize - size * 2, ShowSize - size * 2, 45, -155);
                 }
             }
 
@@ -218,7 +213,7 @@ namespace Sunny.UI
 
                 if (ShowCenterColor)
                 {
-                    GraphicsPath CirclePath = new GraphicsPath();
+                    using GraphicsPath CirclePath = new GraphicsPath();
                     Point[] p = {
                         new Point(3,3),new Point(ShowSize-3,3),
                         new Point(ShowSize-3,ShowSize-3),new Point(3,ShowSize-3)
@@ -228,13 +223,11 @@ namespace Sunny.UI
                     g.Smooth();
 
                     Color[] surroundColor = new Color[] { color };
-                    PathGradientBrush gradientBrush = new PathGradientBrush(path);
+                    using PathGradientBrush gradientBrush = new PathGradientBrush(path);
                     gradientBrush.CenterPoint = new PointF(ShowSize / 2.0f, ShowSize / 2.0f);
                     gradientBrush.CenterColor = cColor;
                     gradientBrush.SurroundColors = surroundColor;
                     g.FillPath(gradientBrush, CirclePath);
-                    gradientBrush.Dispose();
-                    CirclePath.Dispose();
                 }
             }
         }

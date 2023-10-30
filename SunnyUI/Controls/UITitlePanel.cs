@@ -140,10 +140,10 @@ namespace Sunny.UI
             bool RadiusLeftTop = RadiusSides.GetValue(UICornerRadiusSides.LeftTop);
             //IsRadius为True时，显示右上圆角
             bool RadiusRightTop = RadiusSides.GetValue(UICornerRadiusSides.RightTop);
-            path = GetTitleFillPath(Radius, TitleHeight, RadiusLeftTop, RadiusRightTop);
+            using var path1 = GetTitleFillPath(Radius, TitleHeight, RadiusLeftTop, RadiusRightTop);
 
             Color color = Enabled ? TitleColor : UIDisableColor.Fill;
-            g.FillPath(color, path);
+            g.FillPath(color, path1);
             if (Height > TitleHeight)
                 g.DrawLine(RectColor, 0, TitleHeight, Width, TitleHeight);
 

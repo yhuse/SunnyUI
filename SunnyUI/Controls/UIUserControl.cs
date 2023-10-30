@@ -394,7 +394,7 @@ namespace Sunny.UI
             if (IsDisposed) return;
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
-            GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides, RectSize);
+            using GraphicsPath path = rect.CreateRoundedRectanglePath(radius, RadiusSides, RectSize);
 
             //填充背景色
             if (BackgroundImage == null && ShowFill && fillColor.IsValid())
@@ -410,12 +410,8 @@ namespace Sunny.UI
 
             //填充文字
             rect = new Rectangle(1, 1, Width - 3, Height - 3);
-            using (var path1 = rect.GraphicsPath())
-            {
-                OnPaintFore(e.Graphics, path1);
-            }
-
-            path.Dispose();
+            using var path1 = rect.GraphicsPath();
+            OnPaintFore(e.Graphics, path1);
             base.OnPaint(e);
         }
 

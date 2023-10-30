@@ -168,8 +168,8 @@ namespace Sunny.UI
         {
             base.OnPaintFore(g, path);
             if (Text.IsValid()) Text = "";
-            var pathColor = g.CreateRoundedRectanglePath(new Rectangle(3, 3, Width - 32, Height - 7), 3, UICornerRadiusSides.All);
-            g.FillPath(Value, pathColor);
+            using var colorPath = g.CreateRoundedRectanglePath(new Rectangle(3, 3, Width - 32, Height - 7), 3, UICornerRadiusSides.All);
+            g.FillPath(Value, colorPath);
         }
 
         /// <summary>

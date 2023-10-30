@@ -1121,20 +1121,17 @@ namespace Sunny.UI
                                 }
                                 else
                                 {
-                                    using (var pn = new Pen(checkboxColor, 2))
-                                    {
-                                        var pt1 = new Point(checkBoxLeft + 2 + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1 + 5);
-                                        var pt2 = new Point(pt1.X + 3, pt1.Y + 3);
-                                        var pt3 = new Point(pt2.X + 5, pt2.Y - 5);
+                                    using var pn = new Pen(checkboxColor, 2);
+                                    var pt1 = new Point(checkBoxLeft + 2 + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1 + 5);
+                                    var pt2 = new Point(pt1.X + 3, pt1.Y + 3);
+                                    var pt3 = new Point(pt2.X + 5, pt2.Y - 5);
 
-                                        PointF[] CheckMarkLine = { pt1, pt2, pt3 };
+                                    PointF[] CheckMarkLine = { pt1, pt2, pt3 };
 
-                                        e.Graphics.SetHighQuality();
-                                        e.Graphics.DrawLines(pn, CheckMarkLine);
-                                        e.Graphics.SetDefaultQuality();
-                                        e.Graphics.DrawRectangle(checkboxColor,
-                                            new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
-                                    }
+                                    e.Graphics.SetHighQuality();
+                                    e.Graphics.DrawLines(pn, CheckMarkLine);
+                                    e.Graphics.SetDefaultQuality();
+                                    e.Graphics.DrawRectangle(checkboxColor, new Rectangle(checkBoxLeft + 2, e.Bounds.Y + (ItemHeight - 12) / 2 - 1, 12, 12));
                                 }
 
                                 if (DicNodeStatus[e.Node.GetHashCode()])
@@ -1161,7 +1158,7 @@ namespace Sunny.UI
                             try
                             {
                                 //绘制虚线
-                                var pn = new Pen(LineColor);
+                                using var pn = new Pen(LineColor);
                                 pn.DashStyle = DashStyle.Dot;
                                 e.Graphics.DrawLine(pn, lineX, lineY, lineX + 10, lineY);
 
@@ -1199,8 +1196,6 @@ namespace Sunny.UI
                                             e.Graphics.DrawLine(pn, lineX, lineY, lineX, e.Node.Bounds.Bottom);
                                     }
                                 }
-
-                                pn.Dispose();
                             }
                             catch (Exception exception)
                             {

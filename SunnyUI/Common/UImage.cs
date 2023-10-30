@@ -165,30 +165,27 @@ namespace Sunny.UI
         {
             //截图画板
             Bitmap result = new Bitmap(size, size);
-            Graphics g = System.Drawing.Graphics.FromImage(result);
-            //创建截图路径（类似Ps里的路径）
-            GraphicsPath path = new GraphicsPath();
+            using Graphics g = System.Drawing.Graphics.FromImage(result);
+            g.SetHighQuality();
 
             if (shape == UIShape.Circle)
             {
+                //创建截图路径（类似Ps里的路径）
+                using GraphicsPath path = new GraphicsPath();
                 path.AddEllipse(0, 0, size, size);//圆形
+                //设置画板的截图路径
+                g.SetClip(path);
             }
 
             if (shape == UIShape.Square)
             {
-                path.Dispose();
-                path = new Rectangle(0, 0, size, size).CreateRoundedRectanglePath(5);//圆形
+                using GraphicsPath path = new Rectangle(0, 0, size, size).CreateRoundedRectanglePath(5);//圆形
+                //设置画板的截图路径
+                g.SetClip(path);
             }
 
-            g.SetHighQuality();
-            //设置画板的截图路径
-            g.SetClip(path);
             //对图片进行截图
             g.DrawImage(image, 0, 0);
-            //保存截好的图
-            g.Dispose();
-            path.Dispose();
-
             return result;
         }
 

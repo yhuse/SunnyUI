@@ -669,10 +669,9 @@ namespace Sunny.UI
                 {
                     if (SelectedColorGradient)
                     {
-                        LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
+                        using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
                         br.GammaCorrection = true;
                         e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                        br.Dispose();
                     }
                     else
                     {

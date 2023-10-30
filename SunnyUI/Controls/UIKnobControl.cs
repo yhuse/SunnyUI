@@ -891,7 +891,6 @@ namespace Sunny.UI
                     // Draw pointer arrow that shows knob position             
                     Rectangle rPointer = new Rectangle(Arrow.X - w / 2, Arrow.Y - w / 2, w, h);
 
-                    //Utility.DrawInsetCircle(ref Gr, rPointer, new Pen(_PointerColor));
                     using Pen pen = new Pen(GetLightColor(_PointerColor, 55));
                     DrawInsetCircle(ref Gr, rPointer, pen);
                     Gr.FillEllipse(brushKnobPointer, rPointer);
@@ -929,11 +928,8 @@ namespace Sunny.UI
             float radius = (float)(rc.Width / 2);
             float rulerValue = (float)_minimum;
 
-            Font font;
-
             using Pen penL = new Pen(_scaleColor, (2 * drawRatio));
             using Pen penS = new Pen(_scaleColor, (1 * drawRatio));
-
             using SolidBrush br = new SolidBrush(_scaleColor);
 
             PointF ptStart = new PointF(0, 0);
@@ -963,7 +959,7 @@ namespace Sunny.UI
                     fSize = _scaleFont.Size;
                 }
 
-                font = new Font(_scaleFont.FontFamily, fSize);
+                using var font = new Font(_scaleFont.FontFamily, fSize);
                 strsize = TextRenderer.MeasureText(str, font);
 
                 int strw = (int)strsize.Width;
@@ -1051,8 +1047,6 @@ namespace Sunny.UI
 
                     #endregion                    
                 }
-
-                font.Dispose();
             }
 
             return true;

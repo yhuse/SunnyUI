@@ -1693,10 +1693,8 @@ namespace Sunny.UI
         /// <param name="radius">圆角半径</param>
         public static void DrawRectangle(Graphics g, Rectangle rectangle, Brush brush = null, Border border = null, int radius = 0)
         {
-            using (var path = GetRoundedRectangle(rectangle, radius))
-            {
-                DrawPath(g, path, brush, border);
-            }
+            using var path = GetRoundedRectangle(rectangle, radius);
+            DrawPath(g, path, brush, border);
         }
 
         /// <summary>
