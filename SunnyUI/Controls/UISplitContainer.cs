@@ -378,12 +378,10 @@ namespace Sunny.UI
             Rectangle arrowRect = CalcArrowRect(CollapseRect);
             Color handleRectColor = _uiControlState == UIControlState.Hover ? handleHoverColor : HandleColor;
             Point[] points = GetHandlePoints();
-            using (Brush br = new SolidBrush(handleRectColor))
-            {
-                e.Graphics.SetHighQuality();
-                e.Graphics.FillPolygon(br, points);
-                e.Graphics.SetDefaultQuality();
-            }
+            using Brush br = new SolidBrush(handleRectColor);
+            e.Graphics.SetHighQuality();
+            e.Graphics.FillPolygon(br, points);
+            e.Graphics.SetDefaultQuality();
 
             if (SplitterWidth >= 9)
             {

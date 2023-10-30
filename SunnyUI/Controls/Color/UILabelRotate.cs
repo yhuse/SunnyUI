@@ -143,67 +143,66 @@ namespace Sunny.UI
                 r.Width -= Padding.Right;
                 r.Height -= Padding.Bottom;
 
-                using (SolidBrush b = new SolidBrush(ForeColor))
+                using SolidBrush b = new SolidBrush(ForeColor);
+                if (TextAngle.EqualsFloat(0))
                 {
-                    if (TextAngle.EqualsFloat(0))
+                    e.Graphics.DrawString(Text, Font, ForeColor, r, TextAlign);
+                }
+                else
+                {
+                    PointF center = UIColorUtil.Center(ClientRectangle);
+                    switch (RotatePointAlignment)
                     {
-                        e.Graphics.DrawString(Text, Font, ForeColor, r, TextAlign);
+                        case ContentAlignment.TopLeft:
+                            center.X = r.Left;
+                            center.Y = r.Top;
+                            break;
+
+                        case ContentAlignment.TopCenter:
+                            center.Y = r.Top;
+                            break;
+
+                        case ContentAlignment.TopRight:
+                            center.X = r.Right;
+                            center.Y = r.Top;
+                            break;
+
+                        case ContentAlignment.MiddleLeft:
+                            center.X = r.Left;
+                            break;
+
+                        case ContentAlignment.MiddleCenter:
+                            break;
+
+                        case ContentAlignment.MiddleRight:
+                            center.X = r.Right;
+                            break;
+
+                        case ContentAlignment.BottomLeft:
+                            center.X = r.Left;
+                            center.Y = r.Bottom;
+                            break;
+
+                        case ContentAlignment.BottomCenter:
+                            center.Y = r.Bottom;
+                            break;
+
+                        case ContentAlignment.BottomRight:
+                            center.X = r.Right;
+                            center.Y = r.Bottom;
+                            break;
                     }
-                    else
-                    {
-                        PointF center = UIColorUtil.Center(ClientRectangle);
-                        switch (RotatePointAlignment)
-                        {
-                            case ContentAlignment.TopLeft:
-                                center.X = r.Left;
-                                center.Y = r.Top;
-                                break;
 
-                            case ContentAlignment.TopCenter:
-                                center.Y = r.Top;
-                                break;
+                    center.X += Padding.Left;
+                    center.Y += Padding.Top;
+                    center.X -= Padding.Right;
+                    center.Y -= Padding.Bottom;
 
-                            case ContentAlignment.TopRight:
-                                center.X = r.Right;
-                                center.Y = r.Top;
-                                break;
+                    e.Graphics.TranslateTransform(center.X, center.Y);
+                    e.Graphics.RotateTransform(TextAngle);
 
-                            case ContentAlignment.MiddleLeft:
-                                center.X = r.Left;
-                                break;
-
-                            case ContentAlignment.MiddleCenter:
-                                break;
-
-                            case ContentAlignment.MiddleRight:
-                                center.X = r.Right;
-                                break;
-
-                            case ContentAlignment.BottomLeft:
-                                center.X = r.Left;
-                                center.Y = r.Bottom;
-                                break;
-
-                            case ContentAlignment.BottomCenter:
-                                center.Y = r.Bottom;
-                                break;
-
-                            case ContentAlignment.BottomRight:
-                                center.X = r.Right;
-                                center.Y = r.Bottom;
-                                break;
-                        }
-                        center.X += Padding.Left;
-                        center.Y += Padding.Top;
-                        center.X -= Padding.Right;
-                        center.Y -= Padding.Bottom;
-
-                        e.Graphics.TranslateTransform(center.X, center.Y);
-                        e.Graphics.RotateTransform(TextAngle);
-
-                        e.Graphics.DrawString(Text, Font, b, new PointF(0, 0), format);
-                        e.Graphics.ResetTransform();
-                    }
+                    e.Graphics.DrawString(Text, Font, b, new PointF(0, 0), format);
+                    e.Graphics.ResetTransform();
                 }
             }
 

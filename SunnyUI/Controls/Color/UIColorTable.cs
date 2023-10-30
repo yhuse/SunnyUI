@@ -288,13 +288,10 @@ namespace Sunny.UI
             {
                 for (int col = 0; col < m_cols; col++)
                 {
-                    if (index >= m_colors.Count)
-                        break;
+                    if (index >= m_colors.Count) break;
                     Rectangle rect = GetRectangle(row, col);
-                    using (SolidBrush brush = new SolidBrush(m_colors[index++]))
-                    {
-                        e.Graphics.FillRectangle(brush, rect);
-                    }
+                    using SolidBrush brush = new SolidBrush(m_colors[index++]);
+                    e.Graphics.FillRectangle(brush, rect);
                 }
             }
             if (m_selindex >= 0)
@@ -302,10 +299,9 @@ namespace Sunny.UI
                 Rectangle rect = GetSelectedItemRect();
                 e.Graphics.FillRectangle(Brushes.White, rect);
                 rect.Inflate(-3, -3);
-                using (SolidBrush brush = new SolidBrush(SelectedItem))
-                {
-                    e.Graphics.FillRectangle(brush, rect);
-                }
+                using SolidBrush brush = new SolidBrush(SelectedItem);
+                e.Graphics.FillRectangle(brush, rect);
+
                 if (Focused)
                 {
                     rect.Inflate(2, 2);

@@ -131,10 +131,8 @@ namespace Sunny.UI
                 Height = Width;
             }
 
-            using (SolidBrush b = new SolidBrush(BackColor))
-            {
-                e.Graphics.FillRectangle(b, ClientRectangle);
-            }
+            using SolidBrush b = new SolidBrush(BackColor);
+            e.Graphics.FillRectangle(b, ClientRectangle);
 
             RectangleF wheelRectangle = WheelRectangle;
             UIColorUtil.DrawFrame(e.Graphics, wheelRectangle, 6, m_frameColor);

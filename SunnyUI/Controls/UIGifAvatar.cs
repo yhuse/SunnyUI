@@ -222,7 +222,7 @@ namespace Sunny.UI
             }
 
             var img = new Bitmap(Width, Height);
-            Graphics g = img.Graphics();
+            using Graphics g = img.Graphics();
             g.Clear(FillColor);
 
             float size = avatarSize;

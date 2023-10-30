@@ -959,7 +959,7 @@ namespace Sunny.UI
                 var node = GetNodeAt(e.Location);
                 if (node == null || CurrentNode == node) return;
 
-                var g = CreateGraphics();
+                using var g = CreateGraphics();
                 if (CurrentNode != null && CurrentNode != SelectedNode)
                 {
                     ClearCurrentNode(g);
@@ -970,8 +970,6 @@ namespace Sunny.UI
                     CurrentNode = node;
                     OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
                 }
-
-                g.Dispose();
             }
 
             /// <summary>
@@ -980,9 +978,8 @@ namespace Sunny.UI
             /// <param name="e">鼠标参数</param>
             protected override void OnMouseLeave(EventArgs e)
             {
-                var g = CreateGraphics();
+                using var g = CreateGraphics();
                 ClearCurrentNode(g);
-                g.Dispose();
             }
 
             private void ClearCurrentNode(Graphics g)
@@ -1306,10 +1303,8 @@ namespace Sunny.UI
 
                 if (ByMouse)
                 {
-                    var g = CreateGraphics();
-                    OnDrawNode(new DrawTreeNodeEventArgs(g, parentNode,
-                        new Rectangle(0, parentNode.Bounds.Y, Width, parentNode.Bounds.Height), TreeNodeStates.Hot));
-                    g.Dispose();
+                    using var g = CreateGraphics();
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, parentNode, new Rectangle(0, parentNode.Bounds.Y, Width, parentNode.Bounds.Height), TreeNodeStates.Hot));
 
                     if (parentNode.Parent != null) //如果父节点之上还有父节点
                     {

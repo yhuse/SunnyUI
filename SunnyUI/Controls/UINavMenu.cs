@@ -555,7 +555,7 @@ namespace Sunny.UI
                 return;
             }
 
-            Graphics g = CreateGraphics();
+            using Graphics g = CreateGraphics();
             if (CurrentNode != null && CurrentNode != SelectedNode)
             {
                 ClearCurrentNode(g);
@@ -566,8 +566,6 @@ namespace Sunny.UI
                 CurrentNode = node;
                 OnDrawNode(new DrawTreeNodeEventArgs(g, CurrentNode, new Rectangle(0, CurrentNode.Bounds.Y, Width, CurrentNode.Bounds.Height), TreeNodeStates.Hot));
             }
-
-            g.Dispose();
         }
 
         private void ClearCurrentNode(Graphics g)
@@ -585,9 +583,8 @@ namespace Sunny.UI
         /// <param name="e">鼠标参数</param>
         protected override void OnMouseLeave(EventArgs e)
         {
-            Graphics g = CreateGraphics();
+            using Graphics g = CreateGraphics();
             ClearCurrentNode(g);
-            g.Dispose();
             base.OnMouseLeave(e);
         }
 

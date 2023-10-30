@@ -418,12 +418,10 @@ namespace Sunny.UI
 
                     if (Option.XAxis.ShowGridLine)
                     {
-                        using (Pen pn = new Pen(ForeColor))
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                            g.DrawLine(pn, x, DrawOrigin.Y, x, Option.Grid.Top);
-                        }
+                        using Pen pn = new Pen(ForeColor);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        g.DrawLine(pn, x, DrawOrigin.Y, x, Option.Grid.Top);
                     }
                 }
 
@@ -464,12 +462,10 @@ namespace Sunny.UI
 
                     if (Option.YAxis.ShowGridLine)
                     {
-                        using (Pen pn = new Pen(ForeColor))
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                            g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
-                        }
+                        using Pen pn = new Pen(ForeColor);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
                     }
                 }
 
@@ -511,16 +507,6 @@ namespace Sunny.UI
                     {
                         g.DrawLine(ForeColor, Width - Option.Grid.Right, y, Width - Option.Grid.Right + Option.YAxis.AxisTick.Length, y);
                     }
-
-                    if (y.Equals(DrawOrigin.Y)) continue;
-                    if (y.Equals(DrawOrigin.X - DrawSize.Height)) continue;
-
-                    using (Pen pn = new Pen(ForeColor))
-                    {
-                        pn.DashStyle = DashStyle.Dash;
-                        pn.DashPattern = new float[] { 3, 3 };
-                        //g.DrawLine(pn, DrawOrigin.X, y, Width - Option.Grid.Right, y);
-                    }
                 }
 
                 Size sfName = TextRenderer.MeasureText(Option.Y2Axis.Name, TempFont);
@@ -545,49 +531,47 @@ namespace Sunny.UI
 
             if (series.ShowLine || series.Symbol == UILinePointSymbol.None)
             {
-                using (Pen pen = new Pen(color, series.Width))
-                {
-                    pen.DashStyle = series.DashStyle;
-                    if (series.DashPattern.IsValid()) pen.DashPattern = series.DashPattern;
-                    g.SetHighQuality();
+                using Pen pen = new Pen(color, series.Width);
+                pen.DashStyle = series.DashStyle;
+                if (series.DashPattern.IsValid()) pen.DashPattern = series.DashPattern;
+                g.SetHighQuality();
 
-                    if (series is UISwitchLineSeries lineSeries)
+                if (series is UISwitchLineSeries lineSeries)
+                {
+                    List<PointF> points = new List<PointF>();
+                    points.Add(new PointF(lineSeries.Points[0].X, lineSeries.YOffsetPos));
+                    points.AddRange(lineSeries.Points);
+                    points.Add(new PointF(lineSeries.Points[series.Points.Count - 1].X, lineSeries.YOffsetPos));
+                    g.FillPath(color, points.ToArray().Path());
+                    g.DrawLine(color, points[0], points[points.Count - 1]);
+                    points.Clear();
+                }
+                else
+                {
+                    if (series.ContainsNan || !series.Smooth || series.Points.Count == 2 || ZoomAreas.Count > 5)
                     {
-                        List<PointF> points = new List<PointF>();
-                        points.Add(new PointF(lineSeries.Points[0].X, lineSeries.YOffsetPos));
-                        points.AddRange(lineSeries.Points);
-                        points.Add(new PointF(lineSeries.Points[series.Points.Count - 1].X, lineSeries.YOffsetPos));
-                        g.FillPath(color, points.ToArray().Path());
-                        g.DrawLine(color, points[0], points[points.Count - 1]);
-                        points.Clear();
+                        for (int i = 0; i < series.Points.Count - 1; i++)
+                        {
+                            g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
+                        }
                     }
                     else
                     {
-                        if (series.ContainsNan || !series.Smooth || series.Points.Count == 2 || ZoomAreas.Count > 5)
+                        try
+                        {
+                            g.DrawCurve(pen, series.Points.ToArray());
+                        }
+                        catch
                         {
                             for (int i = 0; i < series.Points.Count - 1; i++)
                             {
                                 g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
                             }
                         }
-                        else
-                        {
-                            try
-                            {
-                                g.DrawCurve(pen, series.Points.ToArray());
-                            }
-                            catch
-                            {
-                                for (int i = 0; i < series.Points.Count - 1; i++)
-                                {
-                                    g.DrawTwoPoints(pen, series.Points[i], series.Points[i + 1], DrawRect);
-                                }
-                            }
-                        }
                     }
-
-                    g.SetDefaultQuality();
                 }
+
+                g.SetDefaultQuality();
             }
         }
 
@@ -612,10 +596,8 @@ namespace Sunny.UI
                 {
                     Color color = series.Color;
                     if (!series.CustomColor) color = ChartStyle.GetColor(idx);
-                    using (Graphics graphics = bmp.Graphics())
-                    {
-                        DrawSeries(graphics, color, series);
-                    }
+                    using Graphics graphics = bmp.Graphics();
+                    DrawSeries(graphics, color, series);
 
                     idx++;
                 }
@@ -701,71 +683,70 @@ namespace Sunny.UI
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {
-                    using (Brush br = new SolidBrush(FillColor))
-                    using (Brush br1 = new SolidBrush(color))
-                    using (Pen pn = new Pen(color, series.SymbolLineWidth))
-                    {
-                        foreach (var p in series.Points)
-                        {
-                            if (p.X < Option.Grid.Left || p.X > Width - Option.Grid.Right) continue;
-                            if (p.Y < Option.Grid.Top || p.Y > Height - Option.Grid.Bottom) continue;
-                            if (double.IsNaN(p.X) || double.IsNaN(p.Y)) continue;
+                    using Brush br = new SolidBrush(FillColor);
+                    using Brush br1 = new SolidBrush(color);
+                    using Pen pn = new Pen(color, series.SymbolLineWidth);
 
-                            switch (series.Symbol)
-                            {
-                                case UILinePointSymbol.Square:
-                                    g.FillRectangle(br, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
-                                    g.DrawRectangle(pn, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
-                                    break;
-                                case UILinePointSymbol.Diamond:
-                                    {
-                                        PointF pt1 = new PointF(p.X - series.SymbolSize, p.Y);
-                                        PointF pt2 = new PointF(p.X, p.Y - series.SymbolSize);
-                                        PointF pt3 = new PointF(p.X + series.SymbolSize, p.Y);
-                                        PointF pt4 = new PointF(p.X, p.Y + series.SymbolSize);
-                                        PointF[] pts = { pt1, pt2, pt3, pt4, pt1 };
-                                        g.SetHighQuality();
-                                        GraphicsPath path = pts.Path();
-                                        g.FillPath(br, path);
-                                        g.DrawPath(pn, path);
-                                        path.Dispose();
-                                    }
-                                    break;
-                                case UILinePointSymbol.Triangle:
-                                    {
-                                        PointF pt1 = new PointF(p.X, p.Y - series.SymbolSize);
-                                        PointF pt2 = new PointF(p.X - series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
-                                        PointF pt3 = new PointF(p.X + series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
-                                        PointF[] pts = { pt1, pt2, pt3, pt1 };
-                                        g.SetHighQuality();
-                                        GraphicsPath path = pts.Path();
-                                        g.FillPath(br, path);
-                                        g.DrawPath(pn, path);
-                                        path.Dispose();
-                                    }
-                                    break;
-                                case UILinePointSymbol.Circle:
+                    foreach (var p in series.Points)
+                    {
+                        if (p.X < Option.Grid.Left || p.X > Width - Option.Grid.Right) continue;
+                        if (p.Y < Option.Grid.Top || p.Y > Height - Option.Grid.Bottom) continue;
+                        if (double.IsNaN(p.X) || double.IsNaN(p.Y)) continue;
+
+                        switch (series.Symbol)
+                        {
+                            case UILinePointSymbol.Square:
+                                g.FillRectangle(br, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                g.DrawRectangle(pn, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                break;
+                            case UILinePointSymbol.Diamond:
+                                {
+                                    PointF pt1 = new PointF(p.X - series.SymbolSize, p.Y);
+                                    PointF pt2 = new PointF(p.X, p.Y - series.SymbolSize);
+                                    PointF pt3 = new PointF(p.X + series.SymbolSize, p.Y);
+                                    PointF pt4 = new PointF(p.X, p.Y + series.SymbolSize);
+                                    PointF[] pts = { pt1, pt2, pt3, pt4, pt1 };
                                     g.SetHighQuality();
-                                    g.FillEllipse(br, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
-                                    g.DrawEllipse(pn, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
-                                    break;
-                                case UILinePointSymbol.Round:
+                                    GraphicsPath path = pts.Path();
+                                    g.FillPath(br, path);
+                                    g.DrawPath(pn, path);
+                                    path.Dispose();
+                                }
+                                break;
+                            case UILinePointSymbol.Triangle:
+                                {
+                                    PointF pt1 = new PointF(p.X, p.Y - series.SymbolSize);
+                                    PointF pt2 = new PointF(p.X - series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
+                                    PointF pt3 = new PointF(p.X + series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
+                                    PointF[] pts = { pt1, pt2, pt3, pt1 };
                                     g.SetHighQuality();
-                                    g.FillEllipse(br1, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
-                                    break;
-                                case UILinePointSymbol.Plus:
-                                    g.DrawLine(pn, p.X - series.SymbolSize, p.Y, p.X + series.SymbolSize, p.Y);
-                                    g.DrawLine(pn, p.X, p.Y - series.SymbolSize, p.X, p.Y + series.SymbolSize);
-                                    break;
-                                case UILinePointSymbol.Star:
-                                    g.SetHighQuality();
-                                    g.DrawLine(pn, p.X, p.Y - series.SymbolSize, p.X, p.Y + series.SymbolSize);
-                                    g.DrawLine(pn, p.X - series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f,
-                                        p.X + series.SymbolSize * 0.866f, p.Y - series.SymbolSize * 0.5f);
-                                    g.DrawLine(pn, p.X - series.SymbolSize * 0.866f, p.Y - series.SymbolSize * 0.5f,
-                                        p.X + series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
-                                    break;
-                            }
+                                    GraphicsPath path = pts.Path();
+                                    g.FillPath(br, path);
+                                    g.DrawPath(pn, path);
+                                    path.Dispose();
+                                }
+                                break;
+                            case UILinePointSymbol.Circle:
+                                g.SetHighQuality();
+                                g.FillEllipse(br, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                g.DrawEllipse(pn, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                break;
+                            case UILinePointSymbol.Round:
+                                g.SetHighQuality();
+                                g.FillEllipse(br1, p.X - series.SymbolSize, p.Y - series.SymbolSize, series.SymbolSize * 2, series.SymbolSize * 2);
+                                break;
+                            case UILinePointSymbol.Plus:
+                                g.DrawLine(pn, p.X - series.SymbolSize, p.Y, p.X + series.SymbolSize, p.Y);
+                                g.DrawLine(pn, p.X, p.Y - series.SymbolSize, p.X, p.Y + series.SymbolSize);
+                                break;
+                            case UILinePointSymbol.Star:
+                                g.SetHighQuality();
+                                g.DrawLine(pn, p.X, p.Y - series.SymbolSize, p.X, p.Y + series.SymbolSize);
+                                g.DrawLine(pn, p.X - series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f,
+                                    p.X + series.SymbolSize * 0.866f, p.Y - series.SymbolSize * 0.5f);
+                                g.DrawLine(pn, p.X - series.SymbolSize * 0.866f, p.Y - series.SymbolSize * 0.5f,
+                                    p.X + series.SymbolSize * 0.866f, p.Y + series.SymbolSize * 0.5f);
+                                break;
                         }
                     }
 
@@ -786,17 +767,14 @@ namespace Sunny.UI
 
                     if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
 
-                    using (Pen pn = new Pen(line.Color, line.Size))
+                    using Pen pn = new Pen(line.Color, line.Size);
+                    if (line.DashDot)
                     {
-                        if (line.DashDot)
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                        }
-
-                        g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
                     }
 
+                    g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle(DrawOrigin.X + 4, (int)pos - 2 - Height, DrawSize.Width - 8, Height), (StringAlignment)((int)line.Left), StringAlignment.Far);
                 }
             }
@@ -808,17 +786,14 @@ namespace Sunny.UI
                     float pos = Y2Scale.CalcYPixel(line.Value, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                     if (pos <= Option.Grid.Top || pos >= Height - Option.Grid.Bottom) continue;
 
-                    using (Pen pn = new Pen(line.Color, line.Size))
+                    using Pen pn = new Pen(line.Color, line.Size);
+                    if (line.DashDot)
                     {
-                        if (line.DashDot)
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                        }
-
-                        g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
                     }
 
+                    g.DrawLine(pn, DrawOrigin.X + 1, pos, Width - Option.Grid.Right - 1, pos);
                     g.DrawString(line.Name, TempFont, line.Color, new Rectangle(DrawOrigin.X + 4, (int)pos - 2 - Height, DrawSize.Width - 8, Height), (StringAlignment)((int)line.Left), StringAlignment.Far);
                 }
             }
@@ -833,16 +808,14 @@ namespace Sunny.UI
                     float pos = XScale.CalcXPixel(line.Value, DrawOrigin.X, DrawSize.Width);
                     if (pos <= Option.Grid.Left || pos >= Width - Option.Grid.Right) continue;
 
-                    using (Pen pn = new Pen(line.Color, line.Size))
+                    using Pen pn = new Pen(line.Color, line.Size);
+                    if (line.DashDot)
                     {
-                        if (line.DashDot)
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                        }
-
-                        g.DrawLine(pn, pos, Height - Option.Grid.Bottom - 1, pos, Option.Grid.Top + 1);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
                     }
+
+                    g.DrawLine(pn, pos, Height - Option.Grid.Bottom - 1, pos, Option.Grid.Top + 1);
 
                     Size sf = TextRenderer.MeasureText(line.Name, TempFont);
                     float x = pos - sf.Width;
@@ -973,12 +946,10 @@ namespace Sunny.UI
                         }
                         else
                         {
-                            using (Graphics g = this.CreateGraphics())
-                            {
-                                using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
-                                Size sf = TextRenderer.MeasureText(sb.ToString(), TempFont);
-                                tip.Size = new Size(sf.Width + 4, sf.Height + 4);
-                            }
+                            using Graphics g = this.CreateGraphics();
+                            using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
+                            Size sf = TextRenderer.MeasureText(sb.ToString(), TempFont);
+                            tip.Size = new Size(sf.Width + 4, sf.Height + 4);
 
                             int x = e.Location.X + 15;
                             int y = e.Location.Y + 20;

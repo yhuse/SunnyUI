@@ -547,12 +547,10 @@ namespace Sunny.UI
                     if (!Option.YAxis.ShowGridLine) continue;
                     if (!YLabels[i].EqualsDouble(0))
                     {
-                        using (Pen pn = new Pen(ForeColor))
-                        {
-                            pn.DashStyle = DashStyle.Dash;
-                            pn.DashPattern = new float[] { 3, 3 };
-                            g.DrawLine(pn, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
-                        }
+                        using Pen pn = new Pen(ForeColor);
+                        pn.DashStyle = DashStyle.Dash;
+                        pn.DashPattern = new float[] { 3, 3 };
+                        g.DrawLine(pn, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
                     }
                     else
                     {

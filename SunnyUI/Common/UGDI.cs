@@ -126,12 +126,10 @@ namespace Sunny.UI
         public static Color[] GradientColors(this Color startColor, Color endColor, int count)
         {
             count = Math.Max(count, 2);
-            Bitmap image = new Bitmap(1024, 3);
-            Graphics g = image.Graphics();
-            Brush br = new LinearGradientBrush(image.Bounds(), startColor, endColor, 0.0F);
+            using Bitmap image = new Bitmap(1024, 3);
+            using Graphics g = image.Graphics();
+            using Brush br = new LinearGradientBrush(image.Bounds(), startColor, endColor, 0.0F);
             g.FillRectangle(br, image.Bounds());
-            br.Dispose();
-            g.Dispose();
 
             Color[] colors = new Color[count];
             colors[0] = startColor;
@@ -150,7 +148,6 @@ namespace Sunny.UI
                 fb.Dispose();
             }
 
-            image.Dispose();
             return colors;
         }
 

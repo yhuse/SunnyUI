@@ -1078,7 +1078,7 @@ namespace Sunny.UI
 
             if (_showLargeScale)
             {
-                Graphics Gr = this.CreateGraphics();
+                using Graphics Gr = this.CreateGraphics();
                 string strvalmax = _maximum.ToString();
                 string strvalmin = _minimum.ToString();
                 string strval = strvalmax.Length > strvalmin.Length ? strvalmax : strvalmin;
@@ -1132,8 +1132,6 @@ namespace Sunny.UI
 
                 // Rectangle of the rounded knob
                 this.rKnob = new Rectangle((int)x, (int)y, (int)w, (int)h);
-
-                Gr.Dispose();
             }
             else
             {

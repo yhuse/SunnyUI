@@ -102,14 +102,12 @@ namespace Sunny.UI
             if (image == null)
             {
                 image = new Bitmap(Width, Height);
-                Graphics ig = image.Graphics();
+                using Graphics ig = image.Graphics();
                 for (int i = 0; i < 8; i++)
                 {
                     Point pt = GetPoint(i, circleSize);
                     ig.FillEllipse(Color.FromArgb(192, foreColor), pt.X, pt.Y, circleSize, circleSize);
                 }
-
-                ig.Dispose();
             }
 
             g.DrawImage(image, 0, 0);

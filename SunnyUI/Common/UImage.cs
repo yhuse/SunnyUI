@@ -128,13 +128,12 @@ namespace Sunny.UI
         public static Bitmap ChangeOpacity(Image img, float opacity)
         {
             Bitmap bmp = new Bitmap(img.Width, img.Height); // Determining Width and Height of Source Image
-            Graphics graphics = bmp.Graphics();
+            using Graphics graphics = bmp.Graphics();
             ColorMatrix matrix = new ColorMatrix();
             matrix.Matrix33 = opacity;
             ImageAttributes imgAttribute = new ImageAttributes();
             imgAttribute.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             graphics.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute);
-            graphics.Dispose();   // Releasing all resource used by graphics 
             return bmp;
         }
 
@@ -663,19 +662,15 @@ namespace Sunny.UI
         /// <param name="strokeThickness"></param>
         public static void DrawStrokedRectangle(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
-            using (var bodyBrush = new SolidBrush(bodyColor))
-            {
-                var x = strokeThickness == 1 ? 0 : strokeThickness;
-                var y = strokeThickness == 1 ? 0 : strokeThickness;
-                var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
-                var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
-                var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
-                using (var strokePen = new Pen(strokeColor, strokeThickness))
-                {
-                    g.FillRectangle(bodyBrush, newRect);
-                    g.DrawRectangle(strokePen, newRect);
-                }
-            }
+            using var bodyBrush = new SolidBrush(bodyColor);
+            var x = strokeThickness == 1 ? 0 : strokeThickness;
+            var y = strokeThickness == 1 ? 0 : strokeThickness;
+            var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
+            var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
+            var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
+            using var strokePen = new Pen(strokeColor, strokeThickness);
+            g.FillRectangle(bodyBrush, newRect);
+            g.DrawRectangle(strokePen, newRect);
         }
 
         /// <summary>
@@ -688,19 +683,15 @@ namespace Sunny.UI
         /// <param name="strokeThickness"></param>
         public static void DrawStrokedEllipse(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
-            using (var bodyBrush = new SolidBrush(bodyColor))
-            {
-                var x = strokeThickness == 1 ? 0 : strokeThickness;
-                var y = strokeThickness == 1 ? 0 : strokeThickness;
-                var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
-                var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
-                var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
-                using (var strokePen = new Pen(strokeColor, strokeThickness))
-                {
-                    g.FillEllipse(bodyBrush, newRect);
-                    g.DrawEllipse(strokePen, newRect);
-                }
-            }
+            using var bodyBrush = new SolidBrush(bodyColor);
+            var x = strokeThickness == 1 ? 0 : strokeThickness;
+            var y = strokeThickness == 1 ? 0 : strokeThickness;
+            var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
+            var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
+            var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
+            using var strokePen = new Pen(strokeColor, strokeThickness);
+            g.FillEllipse(bodyBrush, newRect);
+            g.DrawEllipse(strokePen, newRect);
         }
 
         /// <summary>

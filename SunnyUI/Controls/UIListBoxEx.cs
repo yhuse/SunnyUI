@@ -396,13 +396,15 @@ namespace Sunny.UI
                 {
                     if (lastIndex >= 0 && lastIndex >= 0 && lastIndex < Items.Count && lastIndex != SelectedIndex)
                     {
-                        OnDrawItem(new DrawItemEventArgs(CreateGraphics(), Font, GetItemRectangle(lastIndex), lastIndex, DrawItemState.Grayed));
+                        using var g = CreateGraphics();
+                        OnDrawItem(new DrawItemEventArgs(g, Font, GetItemRectangle(lastIndex), lastIndex, DrawItemState.Grayed));
                     }
 
                     mouseIndex = value;
                     if (mouseIndex >= 0 && mouseIndex >= 0 && mouseIndex < Items.Count && mouseIndex != SelectedIndex)
                     {
-                        OnDrawItem(new DrawItemEventArgs(CreateGraphics(), Font, GetItemRectangle(value), value, DrawItemState.HotLight));
+                        using var g = CreateGraphics();
+                        OnDrawItem(new DrawItemEventArgs(g, Font, GetItemRectangle(value), value, DrawItemState.HotLight));
                     }
 
                     lastIndex = mouseIndex;

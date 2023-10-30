@@ -166,7 +166,7 @@ namespace Sunny.UI
                 imageRadius = Radius;
             }
 
-            Graphics g = image.Graphics();
+            using Graphics g = image.Graphics();
             g.Clear(Color.Transparent);
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
@@ -177,8 +177,6 @@ namespace Sunny.UI
             {
                 DrawString(g, processText, Font, fillColor, Size, Padding, TextAlign);
             }
-
-            g.Dispose();
 
             if (Direction == UILine.LineDirection.Horizontal)
             {

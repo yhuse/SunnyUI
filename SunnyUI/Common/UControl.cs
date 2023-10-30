@@ -266,21 +266,20 @@ namespace Sunny.UI
         public static void ResetBorderColor(Message m, Control control, int width, Color color)
         {
             //根据颜色和边框像素取得一条线
-            using (Pen pen = new Pen(color, width))
+            using Pen pen = new Pen(color, width);
+
+            //得到当前的句柄
+            IntPtr hDC = (IntPtr)Win32.User.GetWindowDC(m.HWnd);
+            if (hDC.ToInt32() == 0)
             {
-                //得到当前的句柄
-                IntPtr hDC = (IntPtr)Win32.User.GetWindowDC(m.HWnd);
-                if (hDC.ToInt32() == 0)
-                {
-                    return;
-                }
-                //绘制边框
-                Graphics g = Graphics.FromHdc(hDC);
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.DrawRectangle(pen, 0, 0, control.Width - width, control.Height - width);
-                //释放
-                Win32.User.ReleaseDC(m.HWnd, hDC);
+                return;
             }
+            //绘制边框
+            Graphics g = Graphics.FromHdc(hDC);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.DrawRectangle(pen, 0, 0, control.Width - width, control.Height - width);
+            //释放
+            Win32.User.ReleaseDC(m.HWnd, hDC);
         }
 
         /// <summary>

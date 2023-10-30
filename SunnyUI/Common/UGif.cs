@@ -115,7 +115,8 @@ namespace Sunny.UI
 
                 FrameDimension fd = Image.GifFrameDimension();
                 Image.SelectActiveFrame(fd, frameIndex);
-                ShowImage.Graphics().DrawImage(Image, 0, 0, Image.Width, Image.Height);
+                using var g = ShowImage.Graphics();
+                g.DrawImage(Image, 0, 0, Image.Width, Image.Height);
                 ImageChanged?.Invoke(this, ShowImage);
             }
         }

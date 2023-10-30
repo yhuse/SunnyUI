@@ -165,11 +165,8 @@ namespace Sunny.UI
                 points.Add(new PointF(3 + Height / 2.0f, Height / 2.0f));
                 points.Add(new PointF(3, 0));
 
-                using (Brush br = new SolidBrush(SelectedColor))
-                {
-                    g.FillPolygon(br, points.ToArray());
-                }
-
+                using Brush br = new SolidBrush(SelectedColor);
+                g.FillPolygon(br, points.ToArray());
                 g.DrawString(Text, Font, ForeColor, ClientRectangle, ContentAlignment.MiddleCenter);
             }
             else
@@ -233,10 +230,8 @@ namespace Sunny.UI
                         ClickArea[index] = pts;
                     }
 
-                    using (Brush br = new SolidBrush(index <= ItemIndex ? SelectedColor : UnSelectedColor))
-                    {
-                        g.FillPolygon(br, points.ToArray());
-                    }
+                    using Brush br = new SolidBrush(index <= ItemIndex ? SelectedColor : UnSelectedColor);
+                    g.FillPolygon(br, points.ToArray());
 
                     g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor,
                         new Rectangle(begin, 0, itemWidth, Height), ContentAlignment.MiddleCenter);
