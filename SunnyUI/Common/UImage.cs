@@ -282,13 +282,13 @@ namespace Sunny.UI
 
             PixelFormat pf = bkColor == Color.Transparent ? PixelFormat.Format32bppArgb : bmp.PixelFormat;
 
-            Bitmap tmp = new Bitmap(w, h, pf);
+            using Bitmap tmp = new Bitmap(w, h, pf);
             Graphics g = System.Drawing.Graphics.FromImage(tmp);
             g.Clear(bkColor);
             g.DrawImageUnscaled(bmp, 0, 0);
             g.Dispose();
 
-            GraphicsPath path = new GraphicsPath();
+            using GraphicsPath path = new GraphicsPath();
             path.AddRectangle(new RectangleF(0f, 0f, w, h));
             Matrix matrix = new Matrix();
             matrix.Rotate(angle);
@@ -303,8 +303,6 @@ namespace Sunny.UI
             g.DrawImageUnscaled(tmp, 0, 0);
             g.Dispose();
 
-            tmp.Dispose();
-
             return dst;
         }
 
@@ -317,18 +315,13 @@ namespace Sunny.UI
         /// <returns>新图片</returns>
         public static Bitmap ResizeImage(this Image bmp, int newW, int newH)
         {
-            if (bmp == null)
-            {
-                return null;
-            }
+            if (bmp == null) return null;
 
             Bitmap b = new Bitmap(newW, newH);
-            using (Graphics g = System.Drawing.Graphics.FromImage(b))
-            {
-                // 插值算法的质量
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(bmp, new Rectangle(0, 0, newW, newH), new Rectangle(0, 0, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
-            }
+            using Graphics g = System.Drawing.Graphics.FromImage(b);
+            // 插值算法的质量
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.DrawImage(bmp, new Rectangle(0, 0, newW, newH), new Rectangle(0, 0, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
 
             return b;
         }
@@ -341,16 +334,11 @@ namespace Sunny.UI
         /// <returns>The image serialized as byte array.</returns>
         public static byte[] ToBytes(this Image image, ImageFormat format)
         {
-            if (image == null)
-            {
-                return null;
-            }
+            if (image == null) return null;
 
-            using (MemoryStream stream = new MemoryStream())
-            {
-                image.Save(stream, format ?? image.RawFormat);
-                return stream.ToArray();
-            }
+            using MemoryStream stream = new MemoryStream();
+            image.Save(stream, format ?? image.RawFormat);
+            return stream.ToArray();
         }
 
         /// <summary>
@@ -360,10 +348,8 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static Image ToImage(this byte[] bytes)
         {
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                return Image.FromStream(ms);
-            }
+            using MemoryStream ms = new MemoryStream(bytes);
+            return Image.FromStream(ms);
         }
 
         /// <summary>
@@ -420,12 +406,9 @@ namespace Sunny.UI
         public static Bitmap ScaleToSize(this Bitmap bitmap, int width, int height)
         {
             var scaledBitmap = new Bitmap(width, height);
-            using (Graphics g = System.Drawing.Graphics.FromImage(scaledBitmap))
-            {
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(bitmap, 0, 0, width, height);
-            }
-
+            using Graphics g = System.Drawing.Graphics.FromImage(scaledBitmap);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.DrawImage(bitmap, 0, 0, width, height);
             return scaledBitmap;
         }
 
@@ -527,50 +510,47 @@ namespace Sunny.UI
 
             Bitmap rotatedBmp = new Bitmap(nWidth, nHeight);
 
-            using (Graphics g = System.Drawing.Graphics.FromImage(rotatedBmp))
-            {
-                Point[] points;
+            using Graphics g = System.Drawing.Graphics.FromImage(rotatedBmp);
+            Point[] points;
 
-                if (locked_theta >= 0.0 && locked_theta < Pi2)
+            if (locked_theta >= 0.0 && locked_theta < Pi2)
+            {
+                points = new[]
                 {
-                    points = new[]
-                    {
                         new Point((int) oppositeBottom, 0),
                         new Point(nWidth, (int) oppositeTop),
                         new Point(0, (int) adjacentBottom)
-                    };
-                }
-                else if (locked_theta >= Pi2 && locked_theta < Math.PI)
+                };
+            }
+            else if (locked_theta >= Pi2 && locked_theta < Math.PI)
+            {
+                points = new[]
                 {
-                    points = new[]
-                    {
                         new Point(nWidth, (int) oppositeTop),
                         new Point((int) adjacentTop, nHeight),
                         new Point((int) oppositeBottom, 0)
-                    };
-                }
-                else if (locked_theta >= Math.PI && locked_theta < (Math.PI + Pi2))
+                };
+            }
+            else if (locked_theta >= Math.PI && locked_theta < (Math.PI + Pi2))
+            {
+                points = new[]
                 {
-                    points = new[]
-                    {
                         new Point((int) adjacentTop, nHeight),
                         new Point(0, (int) adjacentBottom),
                         new Point(nWidth, (int) oppositeTop)
-                    };
-                }
-                else
+                };
+            }
+            else
+            {
+                points = new[]
                 {
-                    points = new[]
-                    {
                         new Point(0, (int) adjacentBottom),
                         new Point((int) oppositeBottom, 0),
                         new Point((int) adjacentTop, nHeight)
-                    };
-                }
-
-                g.DrawImage(image, points);
+                };
             }
 
+            g.DrawImage(image, points);
             return rotatedBmp;
         }
 
@@ -728,30 +708,28 @@ namespace Sunny.UI
         public static Icon SaveToIcon(this Image img, int size = 16)
         {
             byte[] pngiconheader = new byte[] { 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            using (Bitmap bmp = new Bitmap(img, new Size(size, size)))
+            using Bitmap bmp = new Bitmap(img, new Size(size, size));
+            byte[] png;
+            using (System.IO.MemoryStream fs = new System.IO.MemoryStream())
             {
-                byte[] png;
-                using (System.IO.MemoryStream fs = new System.IO.MemoryStream())
-                {
-                    bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-                    fs.Position = 0;
-                    png = fs.ToArray();
-                }
+                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                fs.Position = 0;
+                png = fs.ToArray();
+            }
 
-                using (System.IO.MemoryStream fs = new System.IO.MemoryStream())
-                {
-                    if (size >= 256) size = 0;
-                    pngiconheader[6] = (byte)size;
-                    pngiconheader[7] = (byte)size;
-                    pngiconheader[14] = (byte)(png.Length & 255);
-                    pngiconheader[15] = (byte)(png.Length / 256);
-                    pngiconheader[18] = (byte)(pngiconheader.Length);
+            using (System.IO.MemoryStream fs = new System.IO.MemoryStream())
+            {
+                if (size >= 256) size = 0;
+                pngiconheader[6] = (byte)size;
+                pngiconheader[7] = (byte)size;
+                pngiconheader[14] = (byte)(png.Length & 255);
+                pngiconheader[15] = (byte)(png.Length / 256);
+                pngiconheader[18] = (byte)(pngiconheader.Length);
 
-                    fs.Write(pngiconheader, 0, pngiconheader.Length);
-                    fs.Write(png, 0, png.Length);
-                    fs.Position = 0;
-                    return new Icon(fs);
-                }
+                fs.Write(pngiconheader, 0, pngiconheader.Length);
+                fs.Write(png, 0, png.Length);
+                fs.Position = 0;
+                return new Icon(fs);
             }
         }
     }

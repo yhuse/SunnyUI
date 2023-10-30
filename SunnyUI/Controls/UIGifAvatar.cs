@@ -241,12 +241,11 @@ namespace Sunny.UI
             {
                 FrameDimension fd = new FrameDimension(Image.FrameDimensionsList[0]);
                 Image.SelectActiveFrame(fd, frameIndex);
-                Bitmap imageEx = new Bitmap(Image.Width, Image.Height);
+                using Bitmap imageEx = new Bitmap(Image.Width, Image.Height);
                 Graphics gx = Graphics.FromImage(imageEx);
                 gx.DrawImage(Image, new Point(0, 0));
                 scaleImage = imageEx.ResizeImage((int)(Image.Width * 1.0 / size + 0.5), (int)(Image.Height * 1.0 / size + 0.5));
                 result = scaleImage.Split(avatarSize, UIShape.Circle);
-                imageEx.Dispose();
             }
 
             int drawSize = Math.Min(Width, Height);

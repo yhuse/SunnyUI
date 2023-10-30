@@ -143,15 +143,13 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             // Create an offscreen graphics object for double buffering
-            Bitmap offScreenBmp = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
-            using (var g = Graphics.FromImage(offScreenBmp))
-            {
-                g.SetHighQuality();
-                // Draw the control
-                drawControl(g, On);
-                // Draw the image to the screen
-                e.Graphics.DrawImageUnscaled(offScreenBmp, 0, 0);
-            }
+            using Bitmap offScreenBmp = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
+            using var g = Graphics.FromImage(offScreenBmp);
+            g.SetHighQuality();
+            // Draw the control
+            drawControl(g, On);
+            // Draw the image to the screen
+            e.Graphics.DrawImageUnscaled(offScreenBmp, 0, 0);
         }
 
         /// <summary>

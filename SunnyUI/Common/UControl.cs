@@ -440,8 +440,9 @@ namespace Sunny.UI
             Win32.GDI.SelectObject(compatibleDc, bitmap);
             Win32.GDI.PrintWindow(ctrl.Handle, compatibleDc, 0);
             Bitmap bmp = Image.FromHbitmap(bitmap);
-            Win32.GDI.DeleteDC(hdc);       //删除用过的对象
             Win32.GDI.DeleteDC(compatibleDc);       //删除用过的对象
+            Win32.GDI.DeleteDC(bitmap);       //删除用过的对象
+            Win32.GDI.DeleteDC(hdc);       //删除用过的对象
             return bmp;
         }
 

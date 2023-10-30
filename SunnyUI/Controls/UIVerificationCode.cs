@@ -71,9 +71,8 @@ namespace Sunny.UI
         {
             base.OnPaintFill(g, path);
 
-            var bmp = CreateImage(RandomEx.RandomChars(CodeLength));
+            using var bmp = CreateImage(RandomEx.RandomChars(CodeLength));
             g.DrawImage(bmp, Width / 2 - bmp.Width / 2, 1);
-            bmp.Dispose();
         }
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace Sunny.UI
             using Font fontex = font.DPIScaleFont(font.Size);
             Code = code;
             Size sf = TextRenderer.MeasureText(code, fontex);
-            Bitmap image = new Bitmap((int)sf.Width + 16, Height - 2);
+            using Bitmap image = new Bitmap((int)sf.Width + 16, Height - 2);
 
             //创建画布
             Graphics g = Graphics.FromImage(image);
@@ -140,9 +139,7 @@ namespace Sunny.UI
 
             using Brush br = new SolidBrush(rectColor);
             g.DrawString(code, fontex, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
-            var imageex = TwistImage(image, true, 3, 5);
-            image.Dispose();
-            return imageex;
+            return TwistImage(image, true, 3, 5);
         }
 
         ///<summary>
@@ -158,10 +155,9 @@ namespace Sunny.UI
             Bitmap destBmp = new Bitmap(srcBmp.Width, srcBmp.Height);
 
             // 将位图背景填充为白色
-            Graphics graph = Graphics.FromImage(destBmp);
+            using Graphics graph = Graphics.FromImage(destBmp);
             using SolidBrush br = new SolidBrush(fillColor);
             graph.FillRectangle(br, 0, 0, destBmp.Width, destBmp.Height);
-            graph.Dispose();
             double dBaseAxisLen = bXDir ? (double)destBmp.Height : (double)destBmp.Width;
             for (int i = 0; i < destBmp.Width; i++)
             {
