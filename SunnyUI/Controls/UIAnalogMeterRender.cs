@@ -243,7 +243,7 @@ namespace Sunny.UI
                 Gr.DrawLine(pen, ptStart, ptEnd);
 
                 //Draw Strings
-                Font font = new Font(this.AnalogMeter.Font.FontFamily, (float)(6F * drawRatio));
+                using Font font = new Font(this.AnalogMeter.Font.FontFamily, (float)(6F * drawRatio));
 
                 float tx = (float)(cx + (radius - (20 * drawRatio)) * Math.Cos(currentAngle));
                 float ty = (float)(cy + (radius - (20 * drawRatio)) * Math.Sin(currentAngle));

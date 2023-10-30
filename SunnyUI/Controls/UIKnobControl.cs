@@ -560,6 +560,7 @@ namespace Sunny.UI
             brushKnobPointer.Dispose();
             gOffScreen?.Dispose();
             OffScreenImage?.Dispose();
+            _scaleFont?.Dispose();
         }
 
         public UIKnob()
@@ -1057,8 +1058,6 @@ namespace Sunny.UI
         /// </summary>
         private void SetDimensions()
         {
-            Font font;
-
             // Rectangle
             float x, y, w, h;
             x = 0;
@@ -1082,7 +1081,7 @@ namespace Sunny.UI
                 String str = String.Format("{0,0:D}", (int)val);
 
                 float fSize = _scaleFont.Size;
-
+                Font font;
                 if (_scaleFontAutoSize)
                 {
                     fSize = (float)(6F * drawRatio);
@@ -1097,6 +1096,7 @@ namespace Sunny.UI
                 }
 
                 SizeF strsize = TextRenderer.MeasureText(str, font);
+                font.Dispose();
 
                 // Graduations outside
                 gradLength = 4 * drawRatio;
