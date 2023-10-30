@@ -160,7 +160,7 @@ namespace Sunny.UI
 
             //当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
             ToolStripItem item = e.Item;
-            while (item.Owner is not ContextMenuStrip)
+            while (!(item.Owner is ContextMenuStrip))
             {
                 if (item.Owner is ToolStripDropDownMenu)
                     item = item.OwnerItem;

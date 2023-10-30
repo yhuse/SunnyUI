@@ -39,7 +39,7 @@ namespace Sunny.UI
     /// </summary>
     public static class FontImageHelper
     {
-        public static readonly Dictionary<UISymbolType, FontImages> Fonts = new();
+        public static readonly Dictionary<UISymbolType, FontImages> Fonts = new Dictionary<UISymbolType, FontImages>();
 
         /// <summary>
         /// ¹¹Ôìº¯Êý

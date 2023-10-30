@@ -748,11 +748,6 @@ namespace Sunny.UI
 
         public UILineSeries Series { get; set; }
 
-        public SeriesDataPoint()
-        {
-
-        }
-
         public SeriesDataPoint(UILineSeries series, double x, double y)
         {
             X = x;

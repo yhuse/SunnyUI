@@ -17,9 +17,9 @@ namespace Sunny.UI
 
         static UIFormServiceHelper()
         {
-            WaitFormService = new();
-            ProcessFormService = new();
-            StatusFormService = new();
+            WaitFormService = new UIWaitFormService();
+            ProcessFormService = new UIProcessIndicatorFormService();
+            StatusFormService = new UIStatusFormService();
         }
 
         /// <summary>
