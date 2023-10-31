@@ -24,11 +24,13 @@
  * 2022-04-18: V3.1.5 修改一处Show引起的无法获取控件值的问题
  * 2023-04-23: V3.3.5 代码生成增加，Double类型增加小数点位数
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
+ * 2023-10-31: V3.5.2 代码生成增加ComboDataGridView类型
 ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -213,6 +215,29 @@ namespace Sunny.UI
                     }
                 }
 
+                if (info.EditType == EditType.ComboDataGridView)
+                {
+                    ctrl = new UIComboDataGridView();
+                    var edit = (UIComboDataGridView)ctrl;
+                    edit.DataGridView.Init();
+                    edit.DataGridView.AutoGenerateColumns = true;
+                    var obj = (DataTable)info.DataSource;
+                    edit.DataGridView.DataSource = obj;
+                    edit.DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    foreach (DataGridViewColumn item in edit.DataGridView.Columns)
+                    {
+                        item.ReadOnly = true;
+                    }
+
+                    edit.SelectIndexChange += Edit_SelectIndexChange;
+                    int index = (int)info.Value;
+                    if (index >= 0)
+                    {
+                        edit.DataGridView.SelectedIndex = index;
+                        edit.Text = obj.Rows[index][info.DisplayMember].ToString();
+                    }
+                }
+
                 if (ctrl != null)
                 {
                     ctrl.Left = Option.LabelWidth;
@@ -244,6 +269,14 @@ namespace Sunny.UI
             tabIndex++;
             btnCancel.TabIndex = tabIndex;
             btnOK.ShowFocusLine = btnCancel.ShowFocusLine = true;
+        }
+
+        private void Edit_SelectIndexChange(object sender, int index)
+        {
+            UIComboDataGridView edit = (UIComboDataGridView)sender;
+            var info = Option.Dictionary[edit.Name.Replace("Edit_", "")];
+            var obj = (DataTable)info.DataSource;
+            edit.Text = obj.Rows[index][info.DisplayMember].ToString();
         }
 
         public UIEditForm(UIEditOption option)
@@ -439,6 +472,13 @@ namespace Sunny.UI
                         }
 
                         info.Value = result.ToArray();
+                    }
+
+                    if (info.EditType == EditType.ComboDataGridView)
+                    {
+                        UIComboDataGridView edit = this.GetControl<UIComboDataGridView>("Edit_" + info.DataPropertyName);
+                        if (edit == null) continue;
+                        info.Value = edit.DataGridView.SelectedIndex;
                     }
                 }
             }

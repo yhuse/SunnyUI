@@ -39,7 +39,8 @@ namespace Sunny.UI
         Combobox,
         Switch,
         ComboTreeView,
-        ComboCheckedListBox
+        ComboCheckedListBox,
+        ComboDataGridView
     }
 
     public class ComboCheckedListBoxItem
@@ -348,6 +349,29 @@ namespace Sunny.UI
                 Enabled = enabled,
                 HalfWidth = halfWidth,
                 DataSource = nodes
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddComboDataGridView(string dataPropertyName, string text, DataTable dataTable, string displayMember,
+            string valueMember, int selectedIndex = -1, bool enabled = true, bool halfWidth = false)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.ComboDataGridView,
+                Text = text,
+                Value = selectedIndex,
+                DisplayMember = displayMember,
+                ValueMember = valueMember,
+                Enabled = enabled,
+                HalfWidth = halfWidth,
+                DataSource = dataTable
             };
 
             Infos.Add(info);
