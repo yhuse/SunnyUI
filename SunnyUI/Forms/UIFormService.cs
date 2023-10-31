@@ -30,6 +30,7 @@ namespace Sunny.UI
         public static void ShowProcessForm(this Form owner, int size = 200)
         {
             if (ProcessFormService.IsRun) return;
+            ProcessFormServiceClose = false;
             ProcessFormService.CreateForm(size);
         }
 
@@ -50,6 +51,7 @@ namespace Sunny.UI
         public static void ShowWaitForm(this Form owner, string desc = "系统正在处理中，请稍候...")
         {
             if (WaitFormService.IsRun) return;
+            WaitFormServiceClose = false;
             WaitFormService.CreateForm(desc);
         }
 
@@ -82,8 +84,8 @@ namespace Sunny.UI
         public static void ShowStatusForm(this Form owner, int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
         {
             if (StatusFormService.IsRun) return;
+            StatusFormServiceClose = false;
             StatusFormService.CreateForm(maximum, desc, decimalCount);
-            Thread.Sleep(200);
         }
 
         internal static bool StatusFormServiceClose;
