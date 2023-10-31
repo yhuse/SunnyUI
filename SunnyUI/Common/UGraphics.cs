@@ -356,8 +356,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawLines(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawLines(pen, points);
             g.Smooth(false);
         }
@@ -372,8 +372,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawLines(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawLines(pen, points);
             g.Smooth(false);
         }
@@ -388,8 +388,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawCurve(this Graphics g, Color color, Point[] points, bool smooth = false, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawCurve(pen, points);
             g.Smooth(false);
         }
@@ -404,8 +404,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawCurve(this Graphics g, Color color, PointF[] points, bool smooth = false, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawCurve(pen, points);
             g.Smooth(false);
         }
@@ -423,8 +423,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawLine(this Graphics g, Color color, int x1, int y1, int x2, int y2, bool smooth = false, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawLine(pen, x1, y1, x2, y2);
             g.Smooth(false);
         }
@@ -455,8 +455,8 @@ namespace Sunny.UI
         public static void DrawLine(this Graphics g, Color color, float x1, float y1, float x2, float y2, bool smooth = false, float penWidth = 1)
         {
             if (y1.IsNanOrInfinity() || y2.IsNanOrInfinity() || x1.IsNanOrInfinity() || x2.IsNanOrInfinity()) return;
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawLine(pen, x1, y1, x2, y2);
             g.Smooth(false);
         }
@@ -488,8 +488,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, int x, int y, int width, int height, int startAngle, int sweepAngle, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawArc(pen, x, y, width, height, startAngle, sweepAngle);
             g.Smooth(false);
         }
@@ -509,8 +509,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawArc(this Graphics g, Color color, float x, float y, float width, float height, float startAngle, float sweepAngle, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawArc(pen, x, y, width, height, startAngle, sweepAngle);
             g.Smooth(false);
         }
@@ -558,8 +558,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawBezier(this Graphics g, Color color, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawBezier(pen, x1, y1, x2, y2, x3, y3, x4, y4);
             g.Smooth(false);
         }
@@ -602,8 +602,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawBeziers(this Graphics g, Color color, PointF[] points, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawBeziers(pen, points);
             g.Smooth(false);
         }
@@ -618,8 +618,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawBeziers(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawBeziers(pen, points);
             g.Smooth(false);
         }
@@ -634,8 +634,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawClosedCurve(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawClosedCurve(pen, points);
             g.Smooth(false);
         }
@@ -652,8 +652,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawClosedCurve(this Graphics g, Color color, Point[] points, float tension, FillMode fillmode, bool smooth = true, float penWidth = 1)
         {
-            using Pen pen = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pen = color.Pen(penWidth);
             g.DrawClosedCurve(pen, points, tension, fillmode);
             g.Smooth(false);
         }
@@ -667,8 +667,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillClosedCurve(this Graphics g, Color color, Point[] points, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillClosedCurve(sb, points);
             g.Smooth(false);
         }
@@ -684,8 +684,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillClosedCurve(this Graphics g, Color color, Point[] points, FillMode fillmode, float tension, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillClosedCurve(sb, points, fillmode, tension);
             g.Smooth(false);
         }
@@ -699,8 +699,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillPath(sb, path);
             g.Smooth(false);
         }
@@ -715,8 +715,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawPath(this Graphics g, Color color, GraphicsPath path, bool smooth = true, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawPath(pn, path);
             g.Smooth(false);
         }
@@ -730,8 +730,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillPolygon(sb, points);
             g.Smooth(false);
         }
@@ -746,8 +746,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, PointF[] points, FillMode fillMode, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillPolygon(sb, points, fillMode);
             g.Smooth(false);
         }
@@ -761,8 +761,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, Point[] points, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillPolygon(sb, points);
             g.Smooth(false);
         }
@@ -777,8 +777,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillPolygon(this Graphics g, Color color, Point[] points, FillMode fillMode, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillPolygon(sb, points, fillMode);
             g.Smooth(false);
         }
@@ -793,8 +793,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawPolygon(this Graphics g, Color color, PointF[] points, bool smooth = true, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawPolygon(pn, points);
             g.Smooth(false);
         }
@@ -809,8 +809,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawPolygon(this Graphics g, Color color, Point[] points, bool smooth = true, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawPolygon(pn, points);
             g.Smooth(false);
         }
@@ -824,8 +824,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillEllipse(sb, rect);
             g.Smooth(false);
         }
@@ -840,8 +840,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, Rectangle rect, bool smooth = true, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawEllipse(pn, rect);
             g.Smooth(false);
         }
@@ -855,8 +855,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillEllipse(sb, rect);
             g.Smooth(false);
         }
@@ -871,8 +871,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawEllipse(this Graphics g, Color color, RectangleF rect, bool smooth = true, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawEllipse(pn, rect);
             g.Smooth(false);
         }
@@ -940,8 +940,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillRectangle(sb, rect);
             g.Smooth(false);
         }
@@ -956,8 +956,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, Rectangle rect, bool smooth = false, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawRectangle(pn, rect);
             g.Smooth(false);
         }
@@ -971,8 +971,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillRectangle(sb, rect);
             g.Smooth(false);
         }
@@ -987,8 +987,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawRectangle(this Graphics g, Color color, RectangleF rect, bool smooth = false, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawRectangle(pn, rect.X, rect.Y, rect.Width, rect.Height);
             g.Smooth(false);
         }
@@ -1056,8 +1056,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRectangles(this Graphics g, Color color, Rectangle[] rects, bool smooth = false)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillRectangles(sb, rects);
             g.Smooth(false);
         }
@@ -1071,8 +1071,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRectangles(this Graphics g, Color color, RectangleF[] rects, bool smooth = false)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillRectangles(sb, rects);
             g.Smooth(false);
         }
@@ -1086,8 +1086,8 @@ namespace Sunny.UI
         /// <param name="smooth">平滑</param>
         public static void FillRegion(this Graphics g, Color color, Region region, bool smooth = false)
         {
-            using SolidBrush sb = color.Brush();
             g.Smooth(smooth);
+            using SolidBrush sb = color.Brush();
             g.FillRegion(sb, region);
             g.Smooth(false);
         }
@@ -1102,8 +1102,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawRectangles(this Graphics g, Color color, Rectangle[] rects, bool smooth = false, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawRectangles(pn, rects);
             g.Smooth(false);
         }
@@ -1118,8 +1118,8 @@ namespace Sunny.UI
         /// <param name="penWidth">笔宽</param>
         public static void DrawRectangles(this Graphics g, Color color, RectangleF[] rects, bool smooth = false, float penWidth = 1)
         {
-            using Pen pn = color.Pen(penWidth);
             g.Smooth(smooth);
+            using Pen pn = color.Pen(penWidth);
             g.DrawRectangles(pn, rects);
             g.Smooth(false);
         }
