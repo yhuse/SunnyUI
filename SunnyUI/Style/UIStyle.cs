@@ -21,6 +21,7 @@
  * 2021-07-18: V3.0.5 增加多彩主题，以颜色深色，文字白色为主
  * 2021-09-24: V3.0.7 修改默认字体的GdiCharSet
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System.Collections.Generic;
@@ -52,6 +53,12 @@ namespace Sunny.UI
     /// </summary>
     public enum UIStyle
     {
+        /// <summary>
+        /// 继承的全局主题
+        /// </summary>
+        [DisplayText("继承的全局主题")]
+        Inherited = -1,
+
         /// <summary>
         /// 自定义
         /// </summary>
@@ -385,17 +392,7 @@ namespace Sunny.UI
 
         public static bool IsValid(this UIStyle style)
         {
-            return !style.IsCustom();
-        }
-
-        public static bool IsCustom(this UIBaseStyle style)
-        {
-            return style.Name.IsCustom();
-        }
-
-        public static bool IsValid(this UIBaseStyle style)
-        {
-            return !style.IsCustom();
+            return (int)style > 0;
         }
 
         public static void SetChildUIStyle(Control ctrl, UIStyle style)
@@ -405,9 +402,17 @@ namespace Sunny.UI
             {
                 if (control is IStyleInterface item)
                 {
-                    if (!item.StyleCustomMode)
+                    if (item.Style == UIStyle.Inherited)
                     {
-                        item.Style = style;
+                        if (item is UIButton ctrl1)
+                        {
+                            ctrl1.SetInheritedStyle(style);
+                        }
+                        else
+                        {
+                            item.Style = style;
+                            item.Style = UIStyle.Inherited;
+                        }
                     }
                 }
             }
@@ -418,7 +423,7 @@ namespace Sunny.UI
                 if (info.FieldType.Name == "UIContextMenuStrip")
                 {
                     UIContextMenuStrip context = (UIContextMenuStrip)info.GetValue(ctrl);
-                    if (context != null && !context.StyleCustomMode)
+                    if (context != null && context.Style == UIStyle.Inherited)
                     {
                         context.SetStyle(style);
                     }

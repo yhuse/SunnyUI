@@ -49,6 +49,7 @@
  * 2023-07-24: V3.4.1 修复页面切换时，第一个UIPage未执行Final事件的问题
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -71,13 +72,9 @@ namespace Sunny.UI
             base.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;//设置最大化尺寸
             InitializeComponent();
 
-            if (this.Register())
-            {
-                SetStyle(UIStyles.Style);
-            }
+            this.Register();
 
-            SetStyle(
-                ControlStyles.UserPaint |
+            SetStyle(ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer |
                 ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.AllPaintingInWmPaint |
@@ -94,7 +91,7 @@ namespace Sunny.UI
             controlBoxFillHoverColor = UIStyles.Blue.FormControlBoxFillHoverColor;
             ControlBoxCloseFillHoverColor = UIStyles.Blue.FormControlBoxCloseFillHoverColor;
             rectColor = UIStyles.Blue.FormRectColor;
-            foreColor = UIStyles.Blue.FormForeColor;
+            ForeColor = UIStyles.Blue.FormForeColor;
             BackColor = UIStyles.Blue.FormBackColor;
             titleColor = UIStyles.Blue.FormTitleColor;
             titleForeColor = UIStyles.Blue.FormTitleForeColor;
@@ -310,33 +307,9 @@ namespace Sunny.UI
             }
         }
 
-        public void Render()
-        {
-            SetStyle(UIStyles.Style);
-        }
-
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            AfterSetFillColor(BackColor);
-            _style = UIStyle.Custom;
-        }
-
-        protected virtual void AfterSetFillColor(Color color)
-        {
-        }
-
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
-
-            if (e.Control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            UIStyleHelper.SetRawControlStyle(e, Style);
-
             if (ShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
                 e.Control.Top = Padding.Top;
@@ -514,7 +487,7 @@ namespace Sunny.UI
                 if (titleColor != value)
                 {
                     titleColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -536,7 +509,7 @@ namespace Sunny.UI
                 if (titleForeColor != value)
                 {
                     titleForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -632,28 +605,7 @@ namespace Sunny.UI
             }
         }
 
-        protected Color foreColor;
-
         protected Color rectColor;
-
-        /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
-        /// </summary>
-        [Description("背景颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set
-            {
-                if (foreColor != value)
-                {
-                    foreColor = value;
-                    AfterSetForeColor(ForeColor);
-                    SetStyleCustom();
-                }
-            }
-        }
 
         /// <summary>
         /// 边框颜色
@@ -668,7 +620,7 @@ namespace Sunny.UI
                 rectColor = value;
                 AfterSetRectColor(value);
                 RectColorChanged?.Invoke(this, EventArgs.Empty);
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -687,17 +639,6 @@ namespace Sunny.UI
                     InControlBox = false;
                     Close();
                 }
-                //else
-                //{
-                //    if (ControlBox && WindowState == FormWindowState.Maximized)
-                //    {
-                //        if (MousePosition.X > ControlBoxRect.X)
-                //        {
-                //            InControlBox = false;
-                //            Close();
-                //        }
-                //    }
-                //}
 
                 if (InMinBox)
                 {
@@ -1267,17 +1208,51 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        protected UIStyle _style = UIStyle.Blue;
+        protected UIStyle _style = UIStyle.Inherited;
 
         /// <summary>
         /// 配色主题
         /// </summary>
         [Description("配色主题"), Category("SunnyUI")]
-        [DefaultValue(UIStyle.Blue)]
+        [DefaultValue(UIStyle.Inherited)]
         public UIStyle Style
         {
             get => _style;
             set => SetStyle(value);
+        }
+
+        public void SetInheritedStyle(UIStyle style)
+        {
+            if (!DesignMode)
+            {
+                this.SuspendLayout();
+                UIStyleHelper.SetChildUIStyle(this, style);
+
+                if (_style == UIStyle.Inherited && style.IsValid())
+                {
+                    SetStyleColor(style.Colors());
+                    Invalidate();
+                    _style = UIStyle.Inherited;
+                }
+
+                UIStyleChanged?.Invoke(this, new EventArgs());
+                this.ResumeLayout();
+            }
+        }
+
+        public void SetStyle(UIStyle style)
+        {
+            this.SuspendLayout();
+
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
+            UIStyleChanged?.Invoke(this, new EventArgs());
+            this.ResumeLayout();
         }
 
         [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("SunnyUI")]
@@ -1300,7 +1275,6 @@ namespace Sunny.UI
                 if (controlBoxForeColor != value)
                 {
                     controlBoxForeColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
             }
@@ -1319,7 +1293,6 @@ namespace Sunny.UI
                 if (ControlBoxFillHoverColor != value)
                 {
                     controlBoxFillHoverColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
             }
@@ -1343,22 +1316,6 @@ namespace Sunny.UI
             }
         }
 
-        public void SetStyle(UIStyle style)
-        {
-            this.SuspendLayout();
-            UIStyleHelper.SetChildUIStyle(this, style);
-
-            if (!style.IsCustom())
-            {
-                SetStyleColor(style.Colors());
-                Invalidate();
-            }
-
-            _style = style;
-            UIStyleChanged?.Invoke(this, new EventArgs());
-            this.ResumeLayout();
-        }
-
         public event EventHandler UIStyleChanged;
 
         public virtual void SetStyleColor(UIBaseStyle uiColor)
@@ -1367,16 +1324,10 @@ namespace Sunny.UI
             controlBoxFillHoverColor = uiColor.FormControlBoxFillHoverColor;
             ControlBoxCloseFillHoverColor = uiColor.FormControlBoxCloseFillHoverColor;
             rectColor = uiColor.FormRectColor;
-            foreColor = uiColor.FormForeColor;
+            ForeColor = uiColor.FormForeColor;
             BackColor = uiColor.FormBackColor;
             titleColor = uiColor.FormTitleColor;
             titleForeColor = uiColor.FormTitleForeColor;
-        }
-
-        protected void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         protected override void OnLocationChanged(EventArgs e)
@@ -1423,11 +1374,19 @@ namespace Sunny.UI
         private System.Windows.Forms.Timer AfterShownTimer;
         public event EventHandler AfterShown;
 
+        public void Render()
+        {
+            if (!DesignMode && UIStyles.Style.IsValid())
+            {
+                Style = UIStyles.Style;
+            }
+        }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
             if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
-
+            Render();
             CalcSystemBoxPos();
             SetRadius();
             IsShown = true;

@@ -24,6 +24,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-02-03: V3.3.1 增加WIN10系统响应触摸屏的按下和弹起事件
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -268,12 +269,12 @@ namespace Sunny.UI
             get;
         }
 
-        protected UIStyle _style = UIStyle.Blue;
+        protected UIStyle _style = UIStyle.Inherited;
 
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -282,7 +283,6 @@ namespace Sunny.UI
 
         protected void SetStyleCustom(bool needRefresh = true)
         {
-            _style = UIStyle.Custom;
             if (needRefresh) Invalidate();
         }
 
@@ -298,7 +298,13 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            _style = style;
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
+        }
+
+        public void SetInheritedStyle(UIStyle style)
+        {
+            SetStyle(style);
+            _style = UIStyle.Inherited;
         }
 
         protected bool styleCustomMode = false;

@@ -20,6 +20,7 @@
  * 2022-04-02: V3.1.2 默认设置AutoScaleMode为None
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-02: V3.3.9 渐变色增加方向选择
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -150,22 +151,22 @@ namespace Sunny.UI
             }
         }
 
-        protected bool IsDesignMode
-        {
-            get
-            {
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                {
-                    return true;
-                }
-                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-                {
-                    return true;
-                }
-
-                return false;
-            }
-        }
+        //protected bool IsDesignMode
+        //{
+        //    get
+        //    {
+        //        if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+        //        {
+        //            return true;
+        //        }
+        //        else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+        //        {
+        //            return true;
+        //        }
+        //
+        //        return false;
+        //    }
+        //}
 
         private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.All;
 

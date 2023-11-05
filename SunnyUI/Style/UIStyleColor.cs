@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System.Drawing;
@@ -448,6 +449,14 @@ namespace Sunny.UI
     public class UICustomStyle : UIBlueStyle
     {
         public override UIStyle Name => UIStyle.Custom;
+    }
+
+    public class UIInheritedStyle : UIBaseStyle
+    {
+        public UIInheritedStyle()
+        {
+            base.Init(UIColor.Blue, UIStyle.Inherited, Color.White, UIFontColor.Primary);
+        }
     }
 
     public class UIBlueStyle : UIBaseStyle

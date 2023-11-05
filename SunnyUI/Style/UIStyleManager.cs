@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -30,30 +31,6 @@ namespace Sunny.UI
     /// </summary>
     public class UIStyleManager : Component
     {
-        /// <summary>
-        /// 主题样式
-        /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
-        public UIStyle Style
-        {
-            get => UIStyles.Style;
-            set
-            {
-                if (UIStyles.Style != value && value != UIStyle.Custom)
-                {
-                    UIStyles.SetStyle(value);
-                }
-            }
-        }
-
-        public void Render()
-        {
-            if (Style != UIStyle.Custom)
-            {
-                UIStyles.SetStyle(Style);
-            }
-        }
-
         /// <summary>
         /// 构造函数
         /// </summary>

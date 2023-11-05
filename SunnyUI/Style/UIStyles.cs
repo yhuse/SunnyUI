@@ -21,7 +21,8 @@
  * 2021-07-18: V3.0.5 增加多彩主题，以颜色深色，文字白色为主
  * 2021-09-24: V3.0.7 修改默认字体的GdiCharSet
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
- * 2023-08-28: V3.4.2 修改全局字体为系统默认：System.Drawing.SystemFonts.DefaultFont
+ * 2023-08-28: V3.4.2 修改全局字体为系统默认字体
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -145,6 +146,8 @@ namespace Sunny.UI
             return styles;
         }
 
+        public static readonly UIBaseStyle Inherited = new UIInheritedStyle();
+
         /// <summary>
         /// 自定义
         /// </summary>
@@ -213,6 +216,7 @@ namespace Sunny.UI
 
         static UIStyles()
         {
+            AddStyle(Inherited);
             AddStyle(Custom);
             AddStyle(Blue);
             AddStyle(Orange);
@@ -382,7 +386,7 @@ namespace Sunny.UI
         /// <summary>
         /// 主题样式
         /// </summary>
-        public static UIStyle Style { get; private set; } = UIStyle.Blue;
+        public static UIStyle Style { get; private set; } = UIStyle.Inherited;
 
         /// <summary>
         /// 设置主题样式
@@ -394,13 +398,18 @@ namespace Sunny.UI
 
             foreach (var form in Forms.Values)
             {
-                form.Style = style;
+                form.SetInheritedStyle(style);
             }
 
             foreach (var page in Pages.Values)
             {
                 page.Style = style;
             }
+        }
+
+        public static void Render()
+        {
+            SetStyle(Style);
         }
 
         public static void SetDPIScale()
