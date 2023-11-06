@@ -310,6 +310,7 @@ namespace Sunny.UI
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
+
             if (ShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
                 e.Control.Top = Padding.Top;
@@ -1240,7 +1241,7 @@ namespace Sunny.UI
             }
         }
 
-        public void SetStyle(UIStyle style)
+        private void SetStyle(UIStyle style)
         {
             this.SuspendLayout();
 
@@ -1255,12 +1256,12 @@ namespace Sunny.UI
             this.ResumeLayout();
         }
 
-        [Description("自定义主题模式（开启后全局主题更改将对当前窗体无效）"), Category("SunnyUI")]
-        [DefaultValue(false)]
-        public bool StyleCustomMode
-        {
-            get; set;
-        }
+        /// <summary>
+        /// 自定义主题风格
+        /// </summary>
+        [DefaultValue(false), Browsable(false)]
+        [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
+        public bool StyleCustomMode { get; set; }
 
         private Color controlBoxForeColor = Color.White;
         /// <summary>

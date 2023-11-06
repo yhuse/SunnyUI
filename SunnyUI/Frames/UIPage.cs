@@ -465,12 +465,9 @@ namespace Sunny.UI
         /// <summary>
         /// 自定义主题风格
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode
-        {
-            get; set;
-        }
+        public bool StyleCustomMode { get; set; }
 
         public event EventHandler Initialize;
 
@@ -479,12 +476,6 @@ namespace Sunny.UI
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
-            if (e.Control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            UIStyleHelper.SetRawControlStyle(e, Style);
 
             if (AllowShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
             {
@@ -562,10 +553,28 @@ namespace Sunny.UI
             Finalize?.Invoke(this, new EventArgs());
         }
 
-        public void SetStyle(UIStyle style)
+        public void SetInheritedStyle(UIStyle style)
+        {
+            if (!DesignMode)
+            {
+                this.SuspendLayout();
+                UIStyleHelper.SetChildUIStyle(this, style);
+
+                if (_style == UIStyle.Inherited && style.IsValid())
+                {
+                    SetStyleColor(style.Colors());
+                    Invalidate();
+                    _style = UIStyle.Inherited;
+                }
+
+                UIStyleChanged?.Invoke(this, new EventArgs());
+                this.ResumeLayout();
+            }
+        }
+
+        private void SetStyle(UIStyle style)
         {
             this.SuspendLayout();
-            UIStyleHelper.SetChildUIStyle(this, style);
 
             if (!style.IsCustom())
             {
@@ -573,7 +582,7 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            _style = style;
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
             UIStyleChanged?.Invoke(this, new EventArgs());
             this.ResumeLayout();
         }

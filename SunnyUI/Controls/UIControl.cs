@@ -281,16 +281,11 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        protected void SetStyleCustom(bool needRefresh = true)
-        {
-            if (needRefresh) Invalidate();
-        }
-
         /// <summary>
         /// 设置主题样式
         /// </summary>
         /// <param name="style">主题样式</param>
-        public void SetStyle(UIStyle style)
+        private void SetStyle(UIStyle style)
         {
             if (!style.IsCustom())
             {
@@ -307,26 +302,12 @@ namespace Sunny.UI
             _style = UIStyle.Inherited;
         }
 
-        protected bool styleCustomMode = false;
         /// <summary>
         /// 自定义主题风格
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
-        public bool StyleCustomMode
-        {
-            get => styleCustomMode;
-            set
-            {
-                if (styleCustomMode != value)
-                {
-                    styleCustomMode = value;
-                    StyleCustomModeChanged?.Invoke(this, EventArgs.Empty);
-                }
-            }
-        }
-
-        public event EventHandler StyleCustomModeChanged;
+        public bool StyleCustomMode { get; set; }
 
         /// <summary>
         /// 设置主题样式颜色
@@ -757,7 +738,7 @@ namespace Sunny.UI
             if (fillSelectedColor != color)
             {
                 fillSelectedColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -770,7 +751,7 @@ namespace Sunny.UI
             if (foreSelectedColor != color)
             {
                 foreSelectedColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -783,7 +764,7 @@ namespace Sunny.UI
             if (rectSelectedColor != color)
             {
                 rectSelectedColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -796,7 +777,7 @@ namespace Sunny.UI
             if (fillHoverColor != color)
             {
                 fillHoverColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -809,7 +790,7 @@ namespace Sunny.UI
             if (fillPressColor != color)
             {
                 fillPressColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -822,7 +803,7 @@ namespace Sunny.UI
             if (fillDisableColor != color)
             {
                 fillDisableColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -835,7 +816,7 @@ namespace Sunny.UI
             if (fillReadOnlyColor != color)
             {
                 fillReadOnlyColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -848,7 +829,7 @@ namespace Sunny.UI
             if (rectHoverColor != color)
             {
                 rectHoverColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -861,7 +842,7 @@ namespace Sunny.UI
             if (rectPressColor != color)
             {
                 rectPressColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -874,7 +855,7 @@ namespace Sunny.UI
             if (rectDisableColor != color)
             {
                 rectDisableColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -887,7 +868,7 @@ namespace Sunny.UI
             if (rectReadOnlyColor != color)
             {
                 rectReadOnlyColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -900,7 +881,7 @@ namespace Sunny.UI
             if (foreHoverColor != color)
             {
                 foreHoverColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -913,7 +894,7 @@ namespace Sunny.UI
             if (forePressColor != color)
             {
                 forePressColor = color;
-                SetStyleCustom(false);
+                Invalidate();
             }
         }
 
@@ -926,7 +907,7 @@ namespace Sunny.UI
             if (foreDisableColor != color)
             {
                 foreDisableColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -939,7 +920,7 @@ namespace Sunny.UI
             if (foreReadOnlyColor != color)
             {
                 foreReadOnlyColor = color;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -952,7 +933,7 @@ namespace Sunny.UI
             if (rectColor != value)
             {
                 rectColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -965,7 +946,7 @@ namespace Sunny.UI
             if (fillColor != value)
             {
                 fillColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -978,7 +959,7 @@ namespace Sunny.UI
             if (fillColor2 != value)
             {
                 fillColor2 = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -991,7 +972,7 @@ namespace Sunny.UI
             if (foreColor != value)
             {
                 foreColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 

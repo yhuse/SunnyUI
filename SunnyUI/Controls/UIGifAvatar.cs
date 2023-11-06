@@ -54,43 +54,23 @@ namespace Sunny.UI
         /// <summary>
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
-        [Description("填充颜色，当值为背景色或透明色或空值则不填充"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "243, 249, 255")]
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color FillColor
         {
-            get
-            {
-                return fillColor;
-            }
-            set
-            {
-                if (fillColor != value)
-                {
-                    fillColor = value;
-                    SetStyleCustom();
-                }
-            }
+            get => fillColor;
+            set => SetFillColor(value);
         }
 
         /// <summary>
         /// 边框颜色
         /// </summary>
         [Description("边框颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "243, 249, 255")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color RectColor
         {
-            get
-            {
-                return rectColor;
-            }
-            set
-            {
-                if (rectColor != value)
-                {
-                    rectColor = value;
-                    SetStyleCustom();
-                }
-            }
+            get => rectColor;
+            set => SetRectColor(value);
         }
 
         public override void SetStyleColor(UIBaseStyle uiColor)

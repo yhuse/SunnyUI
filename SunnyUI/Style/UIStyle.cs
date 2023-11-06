@@ -43,7 +43,8 @@ namespace Sunny.UI
 
         void SetStyleColor(UIBaseStyle uiColor);
 
-        void SetStyle(UIStyle style);
+        //void SetStyle(UIStyle style);
+        void SetInheritedStyle(UIStyle style);
 
         void SetDPIScale();
     }
@@ -400,20 +401,9 @@ namespace Sunny.UI
             List<Control> controls = ctrl.GetUIStyleControls("IStyleInterface");
             foreach (var control in controls)
             {
-                if (control is IStyleInterface item)
+                if (control is IStyleInterface item && item.Style == UIStyle.Inherited)
                 {
-                    if (item.Style == UIStyle.Inherited)
-                    {
-                        if (item is UIButton ctrl1)
-                        {
-                            ctrl1.SetInheritedStyle(style);
-                        }
-                        else
-                        {
-                            item.Style = style;
-                            item.Style = UIStyle.Inherited;
-                        }
-                    }
+                    item.SetInheritedStyle(style);
                 }
             }
 
@@ -425,7 +415,7 @@ namespace Sunny.UI
                     UIContextMenuStrip context = (UIContextMenuStrip)info.GetValue(ctrl);
                     if (context != null && context.Style == UIStyle.Inherited)
                     {
-                        context.SetStyle(style);
+                        context.SetInheritedStyle(style);
                     }
                 }
             }

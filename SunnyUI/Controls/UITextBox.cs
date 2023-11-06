@@ -1318,7 +1318,7 @@ namespace Sunny.UI
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, SymbolColor, new Rectangle(4 + symbolOffset.X, (Height - SymbolSize) / 2 + 1 + symbolOffset.Y, SymbolSize, SymbolSize), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
             }
 
-            if (styleCustomMode && Text.IsValid() && NeedDrawDisabledText)
+            if (Text.IsValid() && NeedDrawDisabledText)
             {
                 string text = Text;
                 if (PasswordChar > 0)

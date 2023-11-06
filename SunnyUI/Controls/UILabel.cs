@@ -119,7 +119,11 @@ namespace Sunny.UI
 
         public string Version { get; }
 
-        public void SetStyle(UIStyle style)
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="style">主题样式</param>
+        private void SetStyle(UIStyle style)
         {
             if (!style.IsCustom())
             {
@@ -127,13 +131,19 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            _style = style;
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
+        }
+
+        public void SetInheritedStyle(UIStyle style)
+        {
+            SetStyle(style);
+            _style = UIStyle.Inherited;
         }
 
         /// <summary>
         /// 自定义主题风格
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
@@ -231,11 +241,15 @@ namespace Sunny.UI
         /// <summary>
         /// 自定义主题风格
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(false), Browsable(false)]
         [Description("获取或设置可以自定义主题风格"), Category("SunnyUI")]
         public bool StyleCustomMode { get; set; }
 
-        public void SetStyle(UIStyle style)
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="style">主题样式</param>
+        private void SetStyle(UIStyle style)
         {
             if (!style.IsCustom())
             {
@@ -243,7 +257,13 @@ namespace Sunny.UI
                 Invalidate();
             }
 
-            _style = style;
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
+        }
+
+        public void SetInheritedStyle(UIStyle style)
+        {
+            SetStyle(style);
+            _style = UIStyle.Inherited;
         }
 
         public void SetStyleColor(UIBaseStyle uiColor)

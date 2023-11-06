@@ -315,7 +315,7 @@ namespace Sunny.UI
                 if (unSelectedForeColor != value)
                 {
                     unSelectedForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }

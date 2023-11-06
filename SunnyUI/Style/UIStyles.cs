@@ -394,7 +394,9 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public static void SetStyle(UIStyle style)
         {
+            if (Style == style) return;
             Style = style;
+            if (!style.IsValid()) return;
 
             foreach (var form in Forms.Values)
             {

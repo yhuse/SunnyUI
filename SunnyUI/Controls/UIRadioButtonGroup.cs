@@ -45,7 +45,6 @@ namespace Sunny.UI
         public UIRadioButtonGroup()
         {
             items.CountChange += Items_CountChange;
-            StyleCustomModeChanged += UICheckBoxGroup_StyleCustomModeChanged;
         }
 
         protected override void OnFontChanged(EventArgs e)
@@ -58,14 +57,6 @@ namespace Sunny.UI
                 {
                     item.Font = Font;
                 }
-            }
-        }
-
-        private void UICheckBoxGroup_StyleCustomModeChanged(object sender, EventArgs e)
-        {
-            foreach (var item in buttons)
-            {
-                item.StyleCustomMode = styleCustomMode;
             }
         }
 

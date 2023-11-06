@@ -49,6 +49,17 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
         }
 
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [Browsable(false)]
+        public UIStyle Style
+        {
+            get => UIStyles.Style;
+            set => UIStyles.SetStyle(value);
+        }
+
         [DefaultValue(false), Description("DPI缩放"), Category("SunnyUI")]
         public bool DPIScale
         {

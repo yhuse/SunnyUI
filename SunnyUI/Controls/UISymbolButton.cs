@@ -106,7 +106,7 @@ namespace Sunny.UI
                 if (symbolColor != value)
                 {
                     symbolColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Sunny.UI
                 if (symbolHoverColor != value)
                 {
                     symbolHoverColor = value;
-                    SetStyleCustom(false);
+                    Invalidate();
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace Sunny.UI
                 if (symbolPressColor != value)
                 {
                     symbolPressColor = value;
-                    SetStyleCustom(false);
+                    Invalidate();
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace Sunny.UI
                 if (symbolDisableColor != value)
                 {
                     symbolDisableColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -170,7 +170,7 @@ namespace Sunny.UI
                 if (symbolSelectedColor != value)
                 {
                     symbolSelectedColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }

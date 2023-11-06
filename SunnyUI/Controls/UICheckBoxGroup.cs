@@ -62,15 +62,6 @@ namespace Sunny.UI
         public UICheckBoxGroup()
         {
             items.CountChange += Items_CountChange;
-            StyleCustomModeChanged += UICheckBoxGroup_StyleCustomModeChanged;
-        }
-
-        private void UICheckBoxGroup_StyleCustomModeChanged(object sender, EventArgs e)
-        {
-            foreach (var item in boxes)
-            {
-                item.StyleCustomMode = styleCustomMode;
-            }
         }
 
         protected override void OnFontChanged(EventArgs e)

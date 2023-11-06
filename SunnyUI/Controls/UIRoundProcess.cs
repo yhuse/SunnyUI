@@ -216,7 +216,7 @@ namespace Sunny.UI
             set
             {
                 foreColor2 = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
