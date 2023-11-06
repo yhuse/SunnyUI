@@ -405,7 +405,7 @@ namespace Sunny.UI
 
             foreach (var page in Pages.Values)
             {
-                page.Style = style;
+                page.SetInheritedStyle(style);
             }
         }
 

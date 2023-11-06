@@ -31,6 +31,7 @@
  * 2022-05-17: V3.1.9 修复了一个首页无法关闭的问题
  * 2022-06-19: V3.2.0 多页面框架关闭页面时执行UIPage的FormClosed事件
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-11-06: V3.5.2 重构主题
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -356,14 +357,8 @@ namespace Sunny.UI
             {
                 _fillColor = value;
                 AfterSetFillColor(value);
-                SetStyleCustom();
+                Invalidate();
             }
-        }
-
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         /// <summary>
@@ -421,7 +416,7 @@ namespace Sunny.UI
                 if (tabSelectedForeColor != value)
                 {
                     tabSelectedForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -463,7 +458,7 @@ namespace Sunny.UI
                 if (tabSelectedHighColor != value)
                 {
                     tabSelectedHighColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -488,12 +483,12 @@ namespace Sunny.UI
             }
         }
 
-        private UIStyle _style = UIStyle.Blue;
+        private UIStyle _style = UIStyle.Inherited;
 
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;

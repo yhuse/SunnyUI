@@ -40,11 +40,11 @@
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
+ * 2023-11-06: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
@@ -59,7 +59,7 @@ namespace Sunny.UI
 
         private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.None;
 
-        protected UIStyle _style = UIStyle.Blue;
+        protected UIStyle _style = UIStyle.Inherited;
 
         [Browsable(false)]
         public IFrame Frame
@@ -290,7 +290,10 @@ namespace Sunny.UI
 
         public void Render()
         {
-            SetStyle(UIStyles.Style);
+            if (!DesignMode && UIStyles.Style.IsValid())
+            {
+                Style = UIStyles.Style;
+            }
         }
 
         private int _symbolSize = 24;
@@ -403,25 +406,7 @@ namespace Sunny.UI
             {
                 _rectColor = value;
                 AfterSetRectColor(value);
-                _style = UIStyle.Custom;
                 Invalidate();
-            }
-        }
-
-        protected bool IsDesignMode
-        {
-            get
-            {
-#if NETFRAMEWORK
-                var ReturnFlag = false;
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                    ReturnFlag = true;
-                else if (Process.GetCurrentProcess().ProcessName == "devenv")
-                    ReturnFlag = true;
-                return ReturnFlag;
-#else
-                return DesignMode || IsAncestorSiteInDesignMode;
-#endif
             }
         }
 
@@ -455,7 +440,7 @@ namespace Sunny.UI
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -727,7 +712,6 @@ namespace Sunny.UI
                 if (controlBoxForeColor != value)
                 {
                     controlBoxForeColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
             }
@@ -746,7 +730,6 @@ namespace Sunny.UI
                 if (ControlBoxFillHoverColor != value)
                 {
                     controlBoxFillHoverColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
             }
@@ -903,20 +886,6 @@ namespace Sunny.UI
                 imageInterval = Math.Max(2, value);
                 Invalidate();
             }
-        }
-
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            AfterSetFillColor(BackColor);
-            _style = UIStyle.Custom;
-        }
-
-        protected override void OnForeColorChanged(EventArgs e)
-        {
-            base.OnForeColorChanged(e);
-            AfterSetForeColor(ForeColor);
-            _style = UIStyle.Custom;
         }
 
         private int titleHeight = 35;
