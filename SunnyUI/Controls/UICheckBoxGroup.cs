@@ -24,6 +24,7 @@
  * 2022-11-21: V3.2.9 修复未显示时切换节点文本为空的问题
  * 2023-04-19: V3.3.5 设置选择项ForeColor
  * 2023-06-27: V3.3.9 内置条目关联值由Tag改为TagString
+ * 2023-11-07: V3.5.2 重写UICheckBoxGroup
 ******************************************************************************/
 
 using System;
@@ -62,20 +63,11 @@ namespace Sunny.UI
         public UICheckBoxGroup()
         {
             items.CountChange += Items_CountChange;
+            ForeColor = UIStyles.Blue.CheckBoxForeColor;
+            checkBoxColor = UIStyles.Blue.CheckBoxColor;
         }
 
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-
-            if (DefaultFontSize < 0)
-            {
-                foreach (var item in boxes)
-                {
-                    item.Font = Font;
-                }
-            }
-        }
+        private Color checkBoxColor;
 
         private void Items_CountChange(object sender, EventArgs e)
         {
@@ -90,26 +82,29 @@ namespace Sunny.UI
         public bool this[int index]
         {
             get => GetItemCheckState(index);
-            set => SetItemCheckState(index, value);
-        }
-
-        /// <summary>
-        /// 析构事件
-        /// </summary>
-        ~UICheckBoxGroup()
-        {
-            ClearBoxes();
-        }
-
-        private void ClearBoxes()
-        {
-            foreach (var box in boxes)
+            set
             {
-                box.Hide();
-                box.Dispose();
+                SetItemCheckState(index, value);
+                Invalidate();
             }
+        }
 
-            boxes.Clear();
+        private Dictionary<int, bool> CheckStates = new Dictionary<int, bool>();
+        private Dictionary<int, Rectangle> CheckBoxRects = new Dictionary<int, Rectangle>();
+        private int _imageSize = 16;
+
+        [DefaultValue(16)]
+        [Description("图标大小"), Category("SunnyUI")]
+        [Browsable(false)]
+        public int CheckBoxSize
+        {
+            get => _imageSize;
+            set
+            {
+                _imageSize = Math.Max(value, 16);
+                _imageSize = Math.Min(value, 64);
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -118,7 +113,8 @@ namespace Sunny.UI
         public void Clear()
         {
             Items.Clear();
-            ClearBoxes();
+            CheckStates.Clear();
+            CheckBoxRects.Clear();
             Invalidate();
         }
 
@@ -134,36 +130,29 @@ namespace Sunny.UI
 
         private readonly UIObjectCollection items = new UIObjectCollection();
 
-        private void CreateBoxes()
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
+        public override void SetStyleColor(UIBaseStyle uiColor)
         {
-            if (Items.Count != boxes.Count)
-            {
-                ClearBoxes();
-
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    UICheckBox box = new UICheckBox();
-                    box.BackColor = Color.Transparent;
-                    box.Font = Font;
-                    box.Parent = this;
-                    box.TagString = i.ToString();
-                    box.Style = Style;
-                    //box.IsScaled = IsScaled;
-                    box.ValueChanged += Box_ValueChanged;
-                    box.Text = Items[i]?.ToString();
-                    box.StyleCustomMode = StyleCustomMode;
-                    box.ForeColor = ForeColor;
-                    boxes.Add(box);
-                }
-            }
+            base.SetStyleColor(uiColor);
+            checkBoxColor = uiColor.CheckBoxColor;
+            ForeColor = uiColor.CheckBoxForeColor;
         }
 
-        protected override void AfterSetForeColor(Color color)
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color CheckBoxColor
         {
-            base.AfterSetForeColor(color);
-            foreach (var item in boxes)
+            get => checkBoxColor;
+            set
             {
-                item.ForeColor = color;
+                checkBoxColor = value;
+                Invalidate();
             }
         }
 
@@ -174,33 +163,66 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            CreateBoxes();
-
             if (Items.Count == 0) return;
+
             int startX = StartPos.X;
             int startY = TitleTop + StartPos.Y;
+
             for (int i = 0; i < Items.Count; i++)
             {
-                boxes[i].Text = Items[i].ToString();
-
+                string text = Items[i].ToString();
                 int rowIndex = i / ColumnCount;
                 int columnIndex = i % ColumnCount;
+                int left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
+                int top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                Rectangle rect = new Rectangle(left, top, ItemSize.Width, ItemSize.Height);
+                int ImageSize = CheckBoxSize;
 
-                boxes[i].Left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
-                boxes[i].Top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
-                boxes[i].Size = ItemSize;
-                boxes[i].Show();
+                //图标
+                top = rect.Top + (rect.Height - ImageSize) / 2;
+                Color color = Enabled ? checkBoxColor : foreDisableColor;
+
+                if (this[i])
+                {
+                    e.Graphics.FillRoundRectangle(color, new Rectangle((int)left, (int)top, ImageSize, ImageSize), 1);
+                    color = BackColor.IsValid() ? BackColor : Color.White;
+                    Point pt2 = new Point((int)(left + ImageSize * 2 / 5.0f), (int)(top + ImageSize * 3 / 4.0f) - (ImageSize.Div(10)));
+                    Point pt1 = new Point((int)left + 2 + ImageSize.Div(10), pt2.Y - (pt2.X - 2 - ImageSize.Div(10) - (int)left));
+                    Point pt3 = new Point((int)left + ImageSize - 2 - ImageSize.Div(10), pt2.Y - (ImageSize - pt2.X - 2 - ImageSize.Div(10)) - (int)left);
+
+                    PointF[] CheckMarkLine = { pt1, pt2, pt3 };
+                    using Pen pn = new Pen(color, 2);
+                    e.Graphics.SetHighQuality();
+                    e.Graphics.DrawLines(pn, CheckMarkLine);
+                    e.Graphics.SetDefaultQuality();
+                }
+                else
+                {
+                    using Pen pn = new Pen(color, 1);
+                    e.Graphics.DrawRoundRectangle(pn, new Rectangle((int)left + 1, (int)top + 1, ImageSize - 2, ImageSize - 2), 1);
+                    e.Graphics.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
+                }
+
+                e.Graphics.DrawString(text, Font, ForeColor, rect, ContentAlignment.MiddleLeft, ImageSize + 4, 0);
+                if (CheckBoxRects.NotContainsKey(i))
+                    CheckBoxRects.Add(i, rect);
+                else
+                    CheckBoxRects[i] = rect;
             }
         }
 
-        private void Box_ValueChanged(object sender, bool value)
+        protected override void OnMouseClick(MouseEventArgs e)
         {
-            UICheckBox checkBox = (UICheckBox)sender;
+            base.OnMouseClick(e);
 
-            if (!multiChange)
+            foreach (var pair in CheckBoxRects)
             {
-                ValueChanged?.Invoke(this, checkBox.TagString.ToInt(), checkBox.Text, checkBox.Checked);
+                if (e.Location.InRect(pair.Value) && pair.Key >= 0 && pair.Key < items.Count)
+                {
+                    this[pair.Key] = !this[pair.Key];
+                    ValueChanged?.Invoke(this, pair.Key, Items[pair.Key].ToString(), this[pair.Key]);
+                    Invalidate();
+                }
             }
         }
 
@@ -213,29 +235,24 @@ namespace Sunny.UI
             get
             {
                 List<int> indexes = new List<int>();
-
-                for (int i = 0; i < boxes.Count; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    if (boxes[i].Checked)
-                        indexes.Add(i);
+                    if (this[i]) indexes.Add(i);
                 }
 
                 return indexes;
             }
             set
             {
-                if (boxes.Count != Items.Count)
-                {
-                    CreateBoxes();
-                }
-
                 foreach (int i in value)
                 {
-                    if (i >= 0 && i < boxes.Count)
+                    if (i >= 0 && i < Items.Count)
                     {
-                        boxes[i].Checked = true;
+                        SetItemCheckState(i, true);
                     }
                 }
+
+                Invalidate();
             }
         }
 
@@ -246,11 +263,12 @@ namespace Sunny.UI
         /// <param name="isChecked">是否选中</param>
         public void SetItemCheckState(int index, bool isChecked)
         {
-            CreateBoxes();
-            if (index >= 0 && index < boxes.Count)
+            if (index >= 0 && index < Items.Count && CheckStates.NotContainsKey(index))
             {
-                boxes[index].Checked = isChecked;
+                CheckStates.Add(index, isChecked);
             }
+
+            CheckStates[index] = isChecked;
         }
 
         /// <summary>
@@ -260,8 +278,8 @@ namespace Sunny.UI
         /// <returns>是否选中</returns>
         public bool GetItemCheckState(int index)
         {
-            if (index >= 0 && index < items.Count)
-                return boxes[index].Checked;
+            if (index >= 0 && index < items.Count && CheckStates.ContainsKey(index))
+                return CheckStates[index];
 
             return false;
         }
@@ -276,17 +294,14 @@ namespace Sunny.UI
             {
                 List<object> objects = new List<object>();
 
-                for (int i = 0; i < boxes.Count; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    if (boxes[i].Checked)
-                        objects.Add(Items[i]);
+                    if (this[i]) objects.Add(Items[i]);
                 }
 
                 return objects;
             }
         }
-
-        private readonly List<UICheckBox> boxes = new List<UICheckBox>();
 
         private int columnCount = 1;
 
@@ -340,12 +355,12 @@ namespace Sunny.UI
         }
 
 
-        private int columnInterval;
+        private int columnInterval = 6;
 
         /// <summary>
         /// 显示项列之间的间隔
         /// </summary>
-        [DefaultValue(0)]
+        [DefaultValue(6)]
         [Description("显示项列之间的间隔"), Category("SunnyUI")]
         public int ColumnInterval
         {
@@ -379,13 +394,12 @@ namespace Sunny.UI
         /// </summary>
         public void SelectAll()
         {
-            multiChange = true;
-            foreach (var box in boxes)
+            for (int i = 0; i < Items.Count; i++)
             {
-                box.Checked = true;
+                SetItemCheckState(i, true);
             }
 
-            multiChange = false;
+            Invalidate();
         }
 
         /// <summary>
@@ -393,13 +407,12 @@ namespace Sunny.UI
         /// </summary>
         public void UnSelectAll()
         {
-            multiChange = true;
-            foreach (var box in boxes)
+            for (int i = 0; i < Items.Count; i++)
             {
-                box.Checked = false;
+                SetItemCheckState(i, false);
             }
 
-            multiChange = false;
+            Invalidate();
         }
 
         /// <summary>
@@ -407,15 +420,12 @@ namespace Sunny.UI
         /// </summary>
         public void ReverseSelected()
         {
-            multiChange = true;
-            foreach (var box in boxes)
+            for (int i = 0; i < Items.Count; i++)
             {
-                box.Checked = !box.Checked;
+                SetItemCheckState(i, !this[i]);
             }
 
-            multiChange = false;
+            Invalidate();
         }
-
-        private bool multiChange;
     }
 }

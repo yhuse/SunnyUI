@@ -52,7 +52,7 @@ namespace Sunny.UI
             Size = new Size(150, 29);
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
 
-            foreColor = UIStyles.Blue.CheckBoxForeColor;
+            ForeColor = UIStyles.Blue.CheckBoxForeColor;
             fillColor = UIStyles.Blue.CheckBoxColor;
         }
 
@@ -126,7 +126,7 @@ namespace Sunny.UI
             set
             {
                 _imageSize = Math.Max(value, 16);
-                _imageSize = Math.Min(value, 128);
+                _imageSize = Math.Min(value, 64);
                 Invalidate();
             }
         }
@@ -137,17 +137,6 @@ namespace Sunny.UI
         [DefaultValue(false)]
         [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
-
-        /// <summary>
-        /// 字体颜色
-        /// </summary>
-        [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set => SetForeColor(value);
-        }
 
         /// <summary>
         /// 图标与文字之间间隔
@@ -200,7 +189,7 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             //填充文字
-            Color color = foreColor;
+            Color color = ForeColor;
             color = Enabled ? color : UIDisableColor.Fore;
             Rectangle rect = new Rectangle(_imageSize + _imageInterval * 2, 0, Width - _imageSize + _imageInterval * 2, Height);
             g.DrawString(Text, Font, color, rect, ContentAlignment.MiddleLeft);
@@ -263,7 +252,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             fillColor = uiColor.CheckBoxColor;
-            foreColor = uiColor.CheckBoxForeColor;
+            ForeColor = uiColor.CheckBoxForeColor;
         }
 
         /// <summary>
