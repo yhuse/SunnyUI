@@ -266,7 +266,7 @@ namespace Sunny.UI
                 {
                     rectColor = value;
                     RectColorChanged?.Invoke(this, null);
-                    SetStyleCustom();
+                    Invalidate();
                 }
 
                 AfterSetRectColor(value);
@@ -290,7 +290,7 @@ namespace Sunny.UI
                 {
                     fillColor = value;
                     FillColorChanged?.Invoke(this, null);
-                    SetStyleCustom();
+                    Invalidate();
                 }
 
                 AfterSetFillColor(value);
@@ -323,7 +323,7 @@ namespace Sunny.UI
             if (fillColor2 != value)
             {
                 fillColor2 = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -341,19 +341,19 @@ namespace Sunny.UI
         protected virtual void SetFillDisableColor(Color color)
         {
             fillDisableColor = color;
-            SetStyleCustom();
+            Invalidate();
         }
 
         protected virtual void SetRectDisableColor(Color color)
         {
             rectDisableColor = color;
-            SetStyleCustom();
+            Invalidate();
         }
 
         protected virtual void SetForeDisableColor(Color color)
         {
             foreDisableColor = color;
-            SetStyleCustom();
+            Invalidate();
         }
 
         protected bool showText = false;
@@ -606,12 +606,12 @@ namespace Sunny.UI
         public bool StyleCustomMode { get; set; }
 
 
-        protected UIStyle _style = UIStyle.Blue;
+        protected UIStyle _style = UIStyle.Inherited;
 
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;
@@ -663,7 +663,7 @@ namespace Sunny.UI
         {
             fillReadOnlyColor = color;
             AfterSetFillReadOnlyColor(color);
-            SetStyleCustom();
+            Invalidate();
         }
 
         /// <summary>
@@ -674,7 +674,7 @@ namespace Sunny.UI
         {
             rectReadOnlyColor = color;
             AfterSetRectReadOnlyColor(color);
-            SetStyleCustom();
+            Invalidate();
         }
 
         [DefaultValue(typeof(Color), "244, 244, 244")]
@@ -794,11 +794,5 @@ namespace Sunny.UI
 
         [Browsable(false)]
         public new bool AutoScroll { get; set; } = false;
-
-        protected virtual void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
-        }
     }
 }

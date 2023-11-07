@@ -372,7 +372,6 @@ namespace Sunny.UI
                 scrollBarColor = value;
                 HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
                 VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -392,7 +391,6 @@ namespace Sunny.UI
                 scrollBarBackColor = value;
                 HBar.FillColor = value;
                 VBar.FillColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }

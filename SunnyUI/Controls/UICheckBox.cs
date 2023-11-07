@@ -22,6 +22,7 @@
  * 2021-04-26: V3.0.3 增加默认事件CheckedChanged
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-11-07: V3.5.2 增加修改图标大小
 ******************************************************************************/
 
 using System;
@@ -104,11 +105,21 @@ namespace Sunny.UI
         private int _imageSize = 16;
         private int _imageInterval = 3;
 
+        [DefaultValue(16)]
+        [Description("图标大小"), Category("SunnyUI")]
+        [Browsable(false)]
+        public int CheckBoxSize
+        {
+            get => ImageSize;
+            set => ImageSize = value;
+        }
+
         /// <summary>
         /// 图标大小
         /// </summary>
         [DefaultValue(16)]
         [Description("图标大小"), Category("SunnyUI")]
+        [Browsable(false)]
         public int ImageSize
         {
             get => _imageSize;

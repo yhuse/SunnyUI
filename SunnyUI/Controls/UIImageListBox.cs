@@ -461,7 +461,6 @@ namespace Sunny.UI
             {
                 hoverColor = value;
                 listbox.HoverColor = hoverColor;
-                _style = UIStyle.Custom;
             }
         }
 
@@ -576,7 +575,7 @@ namespace Sunny.UI
 
             public string Version { get; }
 
-            private UIStyle _style = UIStyle.Blue;
+            private UIStyle _style = UIStyle.Inherited;
             private Color _itemSelectBackColor = UIColor.Blue;
             private Color _itemSelectForeColor = Color.White;
             private int imageInterval = 4;
@@ -647,7 +646,7 @@ namespace Sunny.UI
             /// <summary>
             /// 主题样式
             /// </summary>
-            [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+            [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
             public UIStyle Style
             {
                 get => _style;
@@ -690,9 +689,7 @@ namespace Sunny.UI
                     if (_itemSelectBackColor != value)
                     {
                         _itemSelectBackColor = value;
-                        _style = UIStyle.Custom;
-                        if (DesignMode)
-                            Invalidate();
+                        Invalidate();
                     }
                 }
             }
@@ -706,9 +703,7 @@ namespace Sunny.UI
                     if (_itemSelectForeColor != value)
                     {
                         _itemSelectForeColor = value;
-                        _style = UIStyle.Custom;
-                        if (DesignMode)
-                            Invalidate();
+                        Invalidate();
                     }
                 }
             }
@@ -828,7 +823,7 @@ namespace Sunny.UI
                 set
                 {
                     hoverColor = value;
-                    _style = UIStyle.Custom;
+                    Invalidate();
                 }
             }
 

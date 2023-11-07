@@ -23,6 +23,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-12-21: V3.3.0 修复CheckedChanged事件
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-11-07: V3.5.2 增加修改图标大小
 ******************************************************************************/
 
 using System;
@@ -106,7 +107,17 @@ namespace Sunny.UI
         private int _imageInterval = 3;
 
         [DefaultValue(16)]
+        [Description("图标大小"), Category("SunnyUI")]
+        [Browsable(false)]
+        public int RadioButtonSize
+        {
+            get => ImageSize;
+            set => ImageSize = value;
+        }
+
+        [DefaultValue(16)]
         [Description("按钮图片大小"), Category("SunnyUI")]
+        [Browsable(false)]
         public int ImageSize
         {
             get => _imageSize;

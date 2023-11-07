@@ -194,7 +194,7 @@ namespace Sunny.UI
                 if (symbolColor != value)
                 {
                     symbolColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }

@@ -336,7 +336,7 @@ namespace Sunny.UI
             set
             {
                 view.HoverColor = hoverColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -348,7 +348,7 @@ namespace Sunny.UI
             set
             {
                 view.SelectedColor = selectedColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -360,7 +360,7 @@ namespace Sunny.UI
             set
             {
                 view.SelectedForeColor = selectedForeColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 

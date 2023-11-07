@@ -197,14 +197,14 @@ namespace Sunny.UI
 
         #endregion 组件设计器生成的代码
 
-        private UIStyle _style = UIStyle.Blue;
+        private UIStyle _style = UIStyle.Inherited;
         private Color _itemSelectBackColor = UIColor.Blue;
         private Color _itemSelectForeColor = Color.White;
 
         /// <summary>
         /// 主题样式
         /// </summary>
-        [DefaultValue(UIStyle.Blue), Description("主题样式"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited), Description("主题样式"), Category("SunnyUI")]
         public UIStyle Style
         {
             get => _style;

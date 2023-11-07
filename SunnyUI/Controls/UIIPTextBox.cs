@@ -162,7 +162,6 @@ namespace Sunny.UI
                 if (fillColor != value)
                 {
                     fillColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
 

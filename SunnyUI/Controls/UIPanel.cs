@@ -57,7 +57,7 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 AfterSetForeColor(value);
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -93,7 +93,7 @@ namespace Sunny.UI
         {
             foreReadOnlyColor = color;
             AfterSetForeReadOnlyColor(color);
-            SetStyleCustom();
+            Invalidate();
         }
     }
 }

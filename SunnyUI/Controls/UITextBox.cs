@@ -435,18 +435,6 @@ namespace Sunny.UI
 
         private bool NeedDrawDisabledText => !Enabled && StyleCustomMode && (ForeDisableColor != Color.FromArgb(109, 109, 103) || FillDisableColor != Color.FromArgb(244, 244, 244));
 
-        protected override void SetStyleCustom(bool needRefresh = true)
-        {
-            base.SetStyleCustom(needRefresh);
-            edit.Visible = true;
-            edit.Enabled = Enabled;
-            if (!Enabled)
-            {
-                if (NeedDrawDisabledText) edit.Visible = false;
-            }
-            Invalidate();
-        }
-
         public override bool Focused => edit.Focused;
 
         [DefaultValue(false)]
