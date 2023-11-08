@@ -50,7 +50,7 @@ namespace Sunny.UI
         /// <param name="index">索引</param>
         /// <param name="text">文字</param>
         /// <param name="isChecked">是否选中</param>
-        public delegate void OnValueChanged(object sender, int index, string text, bool isChecked);
+        public delegate void OnValueChanged(object sender, CheckBoxGroupEventArgs e);
 
         /// <summary>
         /// 值切换事件
@@ -65,6 +65,7 @@ namespace Sunny.UI
             items.CountChange += Items_CountChange;
             ForeColor = UIStyles.Blue.CheckBoxForeColor;
             checkBoxColor = UIStyles.Blue.CheckBoxColor;
+            hoverColor = UIStyles.Blue.ListItemHoverColor;
         }
 
         private Color checkBoxColor;
@@ -85,6 +86,7 @@ namespace Sunny.UI
             set
             {
                 SetItemCheckState(index, value);
+                ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(index, Items[index].ToString(), this[index], SelectedIndexes.ToArray()));
                 Invalidate();
             }
         }
@@ -116,6 +118,7 @@ namespace Sunny.UI
             CheckStates.Clear();
             CheckBoxRects.Clear();
             Invalidate();
+            ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(-1, "", false, SelectedIndexes.ToArray()));
         }
 
         /// <summary>
@@ -139,6 +142,24 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             checkBoxColor = uiColor.CheckBoxColor;
             ForeColor = uiColor.CheckBoxForeColor;
+            hoverColor = uiColor.ListItemHoverColor;
+        }
+
+        private Color hoverColor;
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("鼠标滑过填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "155, 200, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                hoverColor = value;
+                Invalidate();
+            }
         }
 
         /// <summary>
@@ -165,6 +186,11 @@ namespace Sunny.UI
             base.OnPaint(e);
             if (Items.Count == 0) return;
 
+            if (activeIndex >= 0 && CheckBoxRects.ContainsKey(activeIndex))
+            {
+                e.Graphics.FillRectangle(hoverColor, CheckBoxRects[activeIndex]);
+            }
+
             int startX = StartPos.X;
             int startY = TitleTop + StartPos.Y;
 
@@ -176,10 +202,16 @@ namespace Sunny.UI
                 int left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 int top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
                 Rectangle rect = new Rectangle(left, top, ItemSize.Width, ItemSize.Height);
+                if (CheckBoxRects.NotContainsKey(i))
+                    CheckBoxRects.Add(i, rect);
+                else
+                    CheckBoxRects[i] = rect;
+
                 int ImageSize = CheckBoxSize;
 
                 //图标
                 top = rect.Top + (rect.Height - ImageSize) / 2;
+                left = rect.Left + 6;
                 Color color = Enabled ? checkBoxColor : foreDisableColor;
 
                 if (this[i])
@@ -203,12 +235,40 @@ namespace Sunny.UI
                     e.Graphics.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
                 }
 
-                e.Graphics.DrawString(text, Font, ForeColor, rect, ContentAlignment.MiddleLeft, ImageSize + 4, 0);
-                if (CheckBoxRects.NotContainsKey(i))
-                    CheckBoxRects.Add(i, rect);
-                else
-                    CheckBoxRects[i] = rect;
+                e.Graphics.DrawString(text, Font, ForeColor, rect, ContentAlignment.MiddleLeft, ImageSize + 10, 0);
+
             }
+        }
+
+        int activeIndex = -1;
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            int index = -1;
+            foreach (var item in CheckBoxRects)
+            {
+                if (e.Location.InRect(item.Value))
+                {
+                    index = item.Key;
+                    break;
+                }
+            }
+
+            if (activeIndex != index)
+            {
+                activeIndex = index;
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+
+            activeIndex = -1;
+            Invalidate();
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
@@ -220,7 +280,6 @@ namespace Sunny.UI
                 if (e.Location.InRect(pair.Value) && pair.Key >= 0 && pair.Key < items.Count)
                 {
                     this[pair.Key] = !this[pair.Key];
-                    ValueChanged?.Invoke(this, pair.Key, Items[pair.Key].ToString(), this[pair.Key]);
                     Invalidate();
                 }
             }
@@ -244,6 +303,11 @@ namespace Sunny.UI
             }
             set
             {
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    SetItemCheckState(i, false);
+                }
+
                 foreach (int i in value)
                 {
                     if (i >= 0 && i < Items.Count)
@@ -252,6 +316,7 @@ namespace Sunny.UI
                     }
                 }
 
+                ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(-1, "", false, SelectedIndexes.ToArray()));
                 Invalidate();
             }
         }
@@ -261,7 +326,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="index">索引</param>
         /// <param name="isChecked">是否选中</param>
-        public void SetItemCheckState(int index, bool isChecked)
+        private void SetItemCheckState(int index, bool isChecked)
         {
             if (index >= 0 && index < Items.Count && CheckStates.NotContainsKey(index))
             {
@@ -276,7 +341,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="index">索引</param>
         /// <returns>是否选中</returns>
-        public bool GetItemCheckState(int index)
+        private bool GetItemCheckState(int index)
         {
             if (index >= 0 && index < items.Count && CheckStates.ContainsKey(index))
                 return CheckStates[index];
@@ -320,12 +385,12 @@ namespace Sunny.UI
             }
         }
 
-        private Size _itemSize = new Size(150, 35);
+        private Size _itemSize = new Size(150, 29);
 
         /// <summary>
         /// 显示项的大小
         /// </summary>
-        [DefaultValue(typeof(Size), "150, 35")]
+        [DefaultValue(typeof(Size), "150, 29")]
         [Description("显示项的大小"), Category("SunnyUI")]
         public Size ItemSize
         {
@@ -372,12 +437,12 @@ namespace Sunny.UI
             }
         }
 
-        private int rowInterval;
+        private int rowInterval = 2;
 
         /// <summary>
         /// 显示项行之间的间隔
         /// </summary>
-        [DefaultValue(0)]
+        [DefaultValue(2)]
         [Description("显示项行之间的间隔"), Category("SunnyUI")]
         public int RowInterval
         {
@@ -399,6 +464,7 @@ namespace Sunny.UI
                 SetItemCheckState(i, true);
             }
 
+            ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(-1, "", false, SelectedIndexes.ToArray()));
             Invalidate();
         }
 
@@ -412,6 +478,7 @@ namespace Sunny.UI
                 SetItemCheckState(i, false);
             }
 
+            ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(-1, "", false, SelectedIndexes.ToArray()));
             Invalidate();
         }
 
@@ -425,7 +492,26 @@ namespace Sunny.UI
                 SetItemCheckState(i, !this[i]);
             }
 
+            ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(-1, "", false, SelectedIndexes.ToArray()));
             Invalidate();
+        }
+    }
+
+    public class CheckBoxGroupEventArgs : EventArgs
+    {
+        public int Index { get; set; }
+
+        public string Text { get; set; }
+        public bool Checked { get; set; }
+
+        public int[] SelectedIndexes { get; set; }
+
+        public CheckBoxGroupEventArgs(int index, string text, bool isChecked, int[] indexes)
+        {
+            Index = index;
+            Text = text;
+            Checked = isChecked;
+            SelectedIndexes = indexes;
         }
     }
 }
