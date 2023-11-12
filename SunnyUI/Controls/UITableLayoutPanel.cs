@@ -18,6 +18,7 @@
  *
  * 2021-07-18: V3.0.5 增加文件说明
  * 2021-07-18: V3.0.5 更新了放在TableLayoutPanel里控件的自定义颜色问题
+ * 2023-11-12: V3.5.2 重构主题
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -40,18 +41,6 @@ namespace Sunny.UI
             if (!UIDPIScale.NeedSetDPIFont()) return;
             if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
             this.SetDPIScaleFont(DefaultFontSize);
-        }
-
-        protected override void OnControlAdded(ControlEventArgs e)
-        {
-            base.OnControlAdded(e);
-
-            if (e.Control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            UIStyleHelper.SetRawControlStyle(e, Style);
         }
 
         /// <summary>
