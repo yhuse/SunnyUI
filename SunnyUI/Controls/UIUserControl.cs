@@ -633,7 +633,7 @@ namespace Sunny.UI
             _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
         }
 
-        public void SetInheritedStyle(UIStyle style)
+        public virtual void SetInheritedStyle(UIStyle style)
         {
             SetStyle(style);
             _style = UIStyle.Inherited;

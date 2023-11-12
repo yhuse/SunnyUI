@@ -440,9 +440,8 @@ namespace Sunny.UI
 
                 if (obj is UIPage) continue;
                 if (obj is UITableLayoutPanel) continue;
-                if (obj is UIFlowLayoutPanel) continue;
-                if (obj is UIUserControl) continue;
-
+                //if (obj is UIFlowLayoutPanel) continue;
+                //if (obj is UIUserControl) continue;
                 if (obj is TableLayoutPanel) continue;
 
                 if (obj.Controls.Count > 0)

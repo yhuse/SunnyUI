@@ -239,15 +239,7 @@ namespace Sunny.UI
 
         public void Add(Control control)
         {
-            if (control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            if (Panel != null)
-            {
-                Panel.Controls.Add(control);
-            }
+            Panel?.Controls.Add(control);
         }
 
         public void Clear()
@@ -320,6 +312,12 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
         }
+
+        //public override void SetInheritedStyle(UIStyle style)
+        //{
+        //    UIStyleHelper.SetChildUIStyle(this, style);
+        //    base.SetInheritedStyle(style);
+        //}
 
         /// <summary>
         /// 设置主题样式

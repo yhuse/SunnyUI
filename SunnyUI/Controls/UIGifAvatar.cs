@@ -18,6 +18,7 @@
  *
  * 2022-07-01: V3.2.0 增加文件说明
  * 2022-07-25: V3.2.2 重写图片刷新流程，减少内存及GC
+ * 2023-11-12: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -77,6 +78,7 @@ namespace Sunny.UI
         {
             fillColor = uiColor.PanelFillColor;
             rectColor = uiColor.PanelFillColor;
+            CalcImages();
         }
 
         [DefaultValue(null)]
