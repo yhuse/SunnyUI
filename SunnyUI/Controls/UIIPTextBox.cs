@@ -21,6 +21,7 @@
  * 2022-12-02: V3.3.0 删除TextChanged事件，增加ValueChanged事件
  * 2023-05-10: V3.3.6 修复Enabled切换时背景色不一致的问题
  * 2023-05-13: V3.3.6 重构DrawString函数
+ * 2023-11-13: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -57,6 +58,8 @@ namespace Sunny.UI
                 txt.TextChanged += Txt_TextChanged;
                 txt.Leave += Txt_Leave;
             }
+
+            fillColor = UIStyles.Blue.EditorBackColor;
         }
 
         public event EventHandler ValueChanged;
@@ -417,7 +420,6 @@ namespace Sunny.UI
             Name = "UIIPTextBox";
             Padding = new Padding(1);
             Size = new Size(219, 29);
-            Style = UIStyle.Custom;
             SizeChanged += UIIPTextBox_SizeChanged;
             ResumeLayout(false);
             PerformLayout();
