@@ -22,6 +22,7 @@
  * 2022-02-23: V3.1.1 增加了一些原生的属性和事件
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2023-11-13: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -344,7 +345,6 @@ namespace Sunny.UI
             {
                 scrollBarColor = value;
                 bar.HoverColor = bar.PressColor = bar.ForeColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -363,7 +363,6 @@ namespace Sunny.UI
             {
                 scrollBarBackColor = value;
                 bar.FillColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -517,7 +516,6 @@ namespace Sunny.UI
             this.FillColor = System.Drawing.Color.White;
             this.Name = "UIRichTextBox";
             this.Padding = new System.Windows.Forms.Padding(2);
-            this.Style = Sunny.UI.UIStyle.Custom;
             this.FontChanged += new System.EventHandler(this.UIRichTextBox_FontChanged);
             this.SizeChanged += new System.EventHandler(this.UIRichTextBox_SizeChanged);
             this.ResumeLayout(false);
