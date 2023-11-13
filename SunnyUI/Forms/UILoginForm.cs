@@ -137,6 +137,13 @@ namespace Sunny.UI
             }
         }
 
+        protected override void SetStyle(UIStyle style)
+        {
+            base.SetStyle(style);
+            uiLine1.SetStyleColor(style.Colors());
+            uiLine1.FillColor = UIColor.White;
+        }
+
         [Description("确认按钮事件"), Category("SunnyUI")]
         public event EventHandler ButtonLoginClick;
 

@@ -48,13 +48,12 @@
             uiAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
             uiAvatar1.Name = "uiAvatar1";
             uiAvatar1.Size = new System.Drawing.Size(60, 60);
-            uiAvatar1.Style = UIStyle.Custom;
             uiAvatar1.TabIndex = 4;
             uiAvatar1.Text = "uiAvatar1";
             // 
             // uiLine1
             // 
-            uiLine1.BackColor = System.Drawing.Color.White;
+            uiLine1.BackColor = System.Drawing.Color.Transparent;
             uiLine1.FillColor = System.Drawing.Color.White;
             uiLine1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             uiLine1.LineColor2 = System.Drawing.Color.FromArgb(80, 160, 255);
@@ -81,7 +80,6 @@
             edtUser.Padding = new System.Windows.Forms.Padding(5);
             edtUser.ShowText = false;
             edtUser.Size = new System.Drawing.Size(182, 29);
-            edtUser.Style = UIStyle.Custom;
             edtUser.Symbol = 61447;
             edtUser.SymbolSize = 22;
             edtUser.TabIndex = 0;
@@ -100,7 +98,6 @@
             edtPassword.PasswordChar = '*';
             edtPassword.ShowText = false;
             edtPassword.Size = new System.Drawing.Size(182, 29);
-            edtPassword.Style = UIStyle.Custom;
             edtPassword.Symbol = 61475;
             edtPassword.SymbolSize = 22;
             edtPassword.TabIndex = 1;
@@ -118,7 +115,6 @@
             btnLogin.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             btnLogin.ShowFocusColor = true;
             btnLogin.Size = new System.Drawing.Size(86, 29);
-            btnLogin.Style = UIStyle.Custom;
             btnLogin.TabIndex = 2;
             btnLogin.Text = "登录";
             btnLogin.Click += btnLogin_Click;
@@ -142,7 +138,7 @@
             btnCancel.RectSelectedColor = System.Drawing.Color.FromArgb(184, 64, 64);
             btnCancel.ShowFocusColor = true;
             btnCancel.Size = new System.Drawing.Size(86, 29);
-            btnCancel.Style = UIStyle.Red;
+            btnCancel.Style = UIStyle.Custom;
             btnCancel.StyleCustomMode = true;
             btnCancel.Symbol = 61453;
             btnCancel.TabIndex = 3;

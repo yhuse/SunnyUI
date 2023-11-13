@@ -1222,7 +1222,7 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        public void SetInheritedStyle(UIStyle style)
+        public virtual void SetInheritedStyle(UIStyle style)
         {
             if (!DesignMode)
             {
@@ -1241,7 +1241,7 @@ namespace Sunny.UI
             }
         }
 
-        private void SetStyle(UIStyle style)
+        protected virtual void SetStyle(UIStyle style)
         {
             this.SuspendLayout();
 
