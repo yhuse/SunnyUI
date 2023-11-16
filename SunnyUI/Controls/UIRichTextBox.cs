@@ -56,7 +56,6 @@ namespace Sunny.UI
             edit.Click += Edit_Click;
 
             bar.Parent = this;
-            bar.Style = UIStyle.Custom;
             bar.Visible = false;
             bar.ValueChanged += Bar_ValueChanged;
             bar.MouseEnter += Bar_MouseEnter;
@@ -320,7 +319,7 @@ namespace Sunny.UI
             edit.BackColor = GetFillColor();
             edit.ForeColor = GetForeColor();
 
-            if (bar != null)
+            if (bar != null && bar.Style == UIStyle.Inherited)
             {
                 bar.ForeColor = uiColor.PrimaryColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -328,6 +327,25 @@ namespace Sunny.UI
                 bar.FillColor = fillColor;
                 scrollBarColor = uiColor.PrimaryColor;
                 scrollBarBackColor = fillColor;
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => bar != null && bar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (bar != null) bar.Style = UIStyle.Inherited;
+                    scrollBarColor = UIStyles.Blue.PrimaryColor;
+                    scrollBarBackColor = UIStyles.Blue.EditorBackColor;
+                }
+
             }
         }
 
@@ -345,6 +363,7 @@ namespace Sunny.UI
             {
                 scrollBarColor = value;
                 bar.HoverColor = bar.PressColor = bar.ForeColor = value;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -363,6 +382,7 @@ namespace Sunny.UI
             {
                 scrollBarBackColor = value;
                 bar.FillColor = value;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -451,13 +471,10 @@ namespace Sunny.UI
 
         public void SetScrollInfo()
         {
-            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 1, ScrollBarWidth);
-            bar.Width = barWidth;
-            bar.Left = Width - bar.Width - 1;
-            if (bar == null)
-            {
-                return;
-            }
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 2, ScrollBarWidth);
+            if (bar == null) return;
+            bar.Width = barWidth + 1;
+            bar.Left = Width - barWidth - 3;
 
             var si = ScrollBarInfo.GetInfo(edit.Handle);
             if (si.ScrollMax > 0)
@@ -475,9 +492,10 @@ namespace Sunny.UI
 
         private void SizeChange()
         {
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 2, ScrollBarWidth);
             bar.Top = 2;
-            bar.Width = ScrollBarInfo.VerticalScrollBarWidth() + 1;
-            bar.Left = Width - bar.Width - 1;
+            bar.Width = barWidth + 1;
+            bar.Left = Width - barWidth - 3;
             bar.Height = Height - 4;
             bar.BringToFront();
             SetScrollInfo();

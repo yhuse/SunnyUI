@@ -54,6 +54,7 @@
  * 2023-10-25: V3.5.1 修复在高DPI下，文字垂直不居中的问题
  * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -128,7 +129,6 @@ namespace Sunny.UI
 
             bar.Parent = this;
             bar.Dock = DockStyle.None;
-            bar.Style = UIStyle.Custom;
             bar.Visible = false;
             bar.ValueChanged += Bar_ValueChanged;
             bar.MouseEnter += Bar_MouseEnter;
@@ -767,10 +767,10 @@ namespace Sunny.UI
                 edit.Left = 4;
                 edit.Width = Width - 8;
 
-                int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 1, ScrollBarWidth);
+                int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + 2, ScrollBarWidth);
                 bar.Top = 2;
-                bar.Width = barWidth;
-                bar.Left = Width - bar.Width - 2;
+                bar.Width = barWidth + 1;
+                bar.Left = Width - barWidth - 3;
                 bar.Height = Height - 4;
                 bar.BringToFront();
 
@@ -920,7 +920,7 @@ namespace Sunny.UI
             edit.ForeColor = GetForeColor();
             edit.ForeDisableColor = uiColor.ForeDisableColor;
 
-            if (bar != null)
+            if (bar != null && bar.Style == UIStyle.Inherited)
             {
                 bar.ForeColor = uiColor.PrimaryColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -946,6 +946,25 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => bar != null && bar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (bar != null) bar.Style = UIStyle.Inherited;
+                    scrollBarColor = UIStyles.Blue.PrimaryColor;
+                    scrollBarBackColor = UIStyles.Blue.EditorBackColor;
+                }
+
+            }
+        }
+
         protected override void SetForeDisableColor(Color color)
         {
             base.SetForeDisableColor(color);
@@ -966,6 +985,7 @@ namespace Sunny.UI
             {
                 scrollBarColor = value;
                 bar.HoverColor = bar.PressColor = bar.ForeColor = value;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -984,7 +1004,7 @@ namespace Sunny.UI
             {
                 scrollBarBackColor = value;
                 bar.FillColor = value;
-                _style = UIStyle.Custom;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }

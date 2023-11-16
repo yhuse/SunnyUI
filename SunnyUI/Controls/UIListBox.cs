@@ -31,6 +31,7 @@
  * 2022-05-15: V3.1.8 增加滚动条颜色设置
  * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -60,7 +61,6 @@ namespace Sunny.UI
             bar.Width = SystemInformation.VerticalScrollBarWidth + 2;
             bar.Parent = this;
             bar.Dock = DockStyle.None;
-            bar.Style = UIStyle.Custom;
             bar.Visible = false;
 
             listbox.Parent = this;
@@ -150,7 +150,7 @@ namespace Sunny.UI
             {
                 scrollBarColor = value;
                 bar.HoverColor = bar.PressColor = bar.ForeColor = value;
-                _style = UIStyle.Custom;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -169,8 +169,27 @@ namespace Sunny.UI
             {
                 scrollBarBackColor = value;
                 bar.FillColor = value;
-                _style = UIStyle.Custom;
+                bar.Style = UIStyle.Custom;
                 Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => bar != null && bar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (bar != null) bar.Style = UIStyle.Inherited;
+
+                    scrollBarColor = UIStyles.Blue.ListBarForeColor;
+                    scrollBarBackColor = UIStyles.Blue.ListBarFillColor;
+                }
             }
         }
 
@@ -436,9 +455,9 @@ namespace Sunny.UI
         {
             bar.Top = 2;
             bar.Height = Height - 4;
-            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth(), ScrollBarWidth);
+            int barWidth = Math.Max(ScrollBarInfo.VerticalScrollBarWidth() + Padding.Right, ScrollBarWidth);
             bar.Width = barWidth + 1;
-            bar.Left = Width - barWidth - 2;
+            bar.Left = Width - barWidth - 3;
         }
 
         private void Listbox_BeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e)
@@ -498,7 +517,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
 
-            if (bar != null)
+            if (bar != null && bar.Style == UIStyle.Inherited)
             {
                 bar.ForeColor = uiColor.ListBarForeColor;
                 bar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -627,7 +646,6 @@ namespace Sunny.UI
             {
                 hoverColor = value;
                 listbox.HoverColor = hoverColor;
-                _style = UIStyle.Custom;
             }
         }
 

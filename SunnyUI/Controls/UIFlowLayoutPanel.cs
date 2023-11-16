@@ -58,9 +58,8 @@ namespace Sunny.UI
             Panel.ControlRemoved += Panel_ControlRemoved;
             Panel.Scroll += Panel_Scroll;
             Panel.MouseWheel += Panel_MouseWheel;
-            Panel.MouseEnter += Panel_MouseEnter;
-            Panel.MouseClick += Panel_MouseClick;
             Panel.ClientSizeChanged += Panel_ClientSizeChanged;
+            Panel.BackColor = UIStyles.Blue.PlainColor;
 
             VBar.ValueChanged += VBar_ValueChanged;
             HBar.ValueChanged += HBar_ValueChanged;
@@ -328,7 +327,7 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
             Panel.BackColor = uiColor.PlainColor;
 
-            if (HBar != null)
+            if (HBar != null && HBar.Style == UIStyle.Inherited)
             {
                 HBar.ForeColor = uiColor.GridBarForeColor;
                 HBar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -338,7 +337,7 @@ namespace Sunny.UI
                 scrollBarBackColor = uiColor.GridBarFillColor;
             }
 
-            if (VBar != null)
+            if (VBar != null && VBar.Style == UIStyle.Inherited)
             {
                 VBar.ForeColor = uiColor.GridBarForeColor;
                 VBar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -370,6 +369,7 @@ namespace Sunny.UI
                 scrollBarColor = value;
                 HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
                 VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
+                HBar.Style = VBar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -389,18 +389,30 @@ namespace Sunny.UI
                 scrollBarBackColor = value;
                 HBar.FillColor = value;
                 VBar.FillColor = value;
+                HBar.Style = VBar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
 
-        private void Panel_MouseClick(object sender, MouseEventArgs e)
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
         {
-            //Panel.Focus();
-        }
+            get => HBar != null && HBar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (HBar != null) HBar.Style = UIStyle.Inherited;
+                    if (VBar != null) VBar.Style = UIStyle.Inherited;
 
-        private void Panel_MouseEnter(object sender, EventArgs e)
-        {
-            //Panel.Focus();
+                    scrollBarColor = UIStyles.Blue.GridBarForeColor;
+                    scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
+                }
+
+            }
         }
 
         protected override void OnGotFocus(EventArgs e)

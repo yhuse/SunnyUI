@@ -1019,8 +1019,6 @@ namespace Sunny.UI
                     scrollBarColor = UIStyles.Blue.GridBarForeColor;
                     scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
                     scrollBarRectColor = VBar.RectColor = UIStyles.Blue.RectColor;
-                    scrollBarColor = UIStyles.Blue.GridBarForeColor;
-                    scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
                 }
 
             }
