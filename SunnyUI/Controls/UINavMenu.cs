@@ -36,6 +36,7 @@
 * 2023-05-12: V3.3.6 重构DrawString函数
 * 2023-05-16: V3.3.6 重构DrawFontImage函数
 * 2023-05-29: V3.3.7 增加PageGuid相关扩展方法
+* 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -426,7 +427,7 @@ namespace Sunny.UI
             set
             {
                 selectedHighColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 
@@ -525,12 +526,6 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
-        }
-
         private Color selectedForeColor = UIColor.Blue;
 
         [DefaultValue(typeof(Color), "80, 160, 255")]
@@ -543,7 +538,7 @@ namespace Sunny.UI
                 if (selectedForeColor != value)
                 {
                     selectedForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }

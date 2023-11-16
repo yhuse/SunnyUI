@@ -29,6 +29,7 @@
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
  * 2023-10-17: V3.5.1 修正下拉菜单文字显示垂直居中
  * 2023-10-17: V3.5.1 ImageList为空时，下拉菜单增加Symbol绘制
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -278,15 +279,9 @@ namespace Sunny.UI
                 if (selectedHighColor != value)
                 {
                     selectedHighColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
-        }
-
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         private int selectedHighColorSize = 4;
@@ -424,7 +419,7 @@ namespace Sunny.UI
                 if (selectedForeColor != value)
                 {
                     selectedForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
