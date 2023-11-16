@@ -43,13 +43,11 @@
             btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new System.Drawing.Size(224, 48);
+            btnCancel.Style = UIStyle.Custom;
             btnCancel.TabIndex = 6;
             btnCancel.Text = "取消";
-            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.TipsText = null;
             btnCancel.Click += btnCancel_Click;
-            btnCancel.MouseEnter += btnOK_MouseEnter;
-            btnCancel.MouseLeave += btnOK_MouseLeave;
             // 
             // btnOK
             // 
@@ -61,13 +59,11 @@
             btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             btnOK.Name = "btnOK";
             btnOK.Size = new System.Drawing.Size(223, 48);
+            btnOK.Style = UIStyle.Custom;
             btnOK.TabIndex = 5;
             btnOK.Text = "确定";
-            btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnOK.TipsText = null;
             btnOK.Click += btnOK_Click;
-            btnOK.MouseEnter += btnOK_MouseEnter;
-            btnOK.MouseLeave += btnOK_MouseLeave;
             // 
             // lbMsg
             // 
@@ -84,6 +80,7 @@
             lbMsg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             lbMsg.ShowText = false;
             lbMsg.Size = new System.Drawing.Size(422, 158);
+            lbMsg.Style = UIStyle.Custom;
             lbMsg.TabIndex = 7;
             lbMsg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 

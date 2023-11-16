@@ -130,6 +130,7 @@ namespace Sunny.UI
 
             if (btnCancel != null)
             {
+                btnCancel.SetStyleColor(uiColor);
                 btnCancel.FillColor = BackColor;
                 btnCancel.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
                 btnCancel.ForeColor = uiColor.LabelForeColor;
@@ -137,6 +138,7 @@ namespace Sunny.UI
 
             if (btnOK != null)
             {
+                btnOK.SetStyleColor(uiColor);
                 btnOK.FillColor = BackColor;
                 btnOK.RectColor = Color.FromArgb(36, uiColor.ButtonRectColor);
                 btnOK.ForeColor = uiColor.LabelForeColor;
@@ -144,6 +146,7 @@ namespace Sunny.UI
 
             if (lbMsg != null)
             {
+                lbMsg.SetStyleColor(uiColor);
                 lbMsg.ForeColor = uiColor.LabelForeColor;
                 lbMsg.BackColor = uiColor.PlainColor;
                 lbMsg.FillColor = uiColor.PlainColor;
@@ -153,16 +156,6 @@ namespace Sunny.UI
         }
 
         public UIMessageDialogButtons DefaultButton { get; set; } = UIMessageDialogButtons.Ok;
-
-        private void btnOK_MouseEnter(object sender, EventArgs e)
-        {
-            //((UIButton)sender).RadiusSides = UICornerRadiusSides.All;
-        }
-
-        private void btnOK_MouseLeave(object sender, EventArgs e)
-        {
-            //((UIButton)sender).RadiusSides = UICornerRadiusSides.None;
-        }
 
         /// <summary>
         /// 显示消息提示窗体

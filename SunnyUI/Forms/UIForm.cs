@@ -1379,10 +1379,7 @@ namespace Sunny.UI
         {
             if (!DesignMode && UIStyles.Style.IsValid())
             {
-                Style = UIStyles.Style;
-                this.SuspendLayout();
-                UIStyleHelper.SetChildUIStyle(this, UIStyles.Style);
-                this.ResumeLayout();
+                SetInheritedStyle(UIStyles.Style);
             }
         }
 
