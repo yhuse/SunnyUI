@@ -22,6 +22,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-11-26: V3.2.9 水平方向文字不居中时，可设置线条渐变色
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -40,8 +41,11 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
             Size = new Size(360, 29);
             MinimumSize = new Size(1, 1);
-            foreColor = UIStyles.Blue.LineForeColor;
-            fillColor = UIStyles.Blue.LineFillColor;
+            ForeColor = UIStyles.Blue.LineForeColor;
+            fillColor = UIColor.Transparent;
+            fillColor2 = UIStyles.Blue.PanelFillColor2;
+            BackColor = UIColor.Transparent;
+            rectColor = UIStyles.Blue.LineRectColor;
         }
 
         public enum LineDirection
@@ -94,20 +98,10 @@ namespace Sunny.UI
             base.SetStyleColor(uiColor);
 
             rectColor = uiColor.LineRectColor;
-            foreColor = uiColor.LineForeColor;
-            fillColor = uiColor.LineFillColor;
+            ForeColor = uiColor.LineForeColor;
             fillColor2 = uiColor.PanelFillColor2;
-        }
-
-        /// <summary>
-        /// 字体颜色
-        /// </summary>
-        [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set => SetForeColor(value);
+            fillColor = UIColor.Transparent;
+            BackColor = UIColor.Transparent;
         }
 
         private UILineCap startCap = UILineCap.None;
@@ -196,26 +190,26 @@ namespace Sunny.UI
                     switch (TextAlign)
                     {
                         case ContentAlignment.TopLeft:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomLeft); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomLeft); break;
                         case ContentAlignment.TopCenter:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomCenter); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomCenter); break;
                         case ContentAlignment.TopRight:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomRight); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, (Height - lineSize) / 2), ContentAlignment.BottomRight); break;
                         case ContentAlignment.MiddleLeft:
                             x = Padding.Left + TextInterval;
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
                         case ContentAlignment.MiddleCenter:
                             x = (Width - sf.Width) / 2 - 2;
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
                         case ContentAlignment.MiddleRight:
                             x = Width - sf.Width - TextInterval - 4 - Padding.Right;
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, 0, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), TextAlign); break;
                         case ContentAlignment.BottomLeft:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopLeft); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopLeft); break;
                         case ContentAlignment.BottomCenter:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopCenter); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopCenter); break;
                         case ContentAlignment.BottomRight:
-                            g.DrawString(Text, Font, foreColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopRight); break;
+                            g.DrawString(Text, Font, ForeColor, new Rectangle(Padding.Left + TextInterval + 2, (Height + lineSize) / 2, Width - Padding.Left - textInterval - 2 - Padding.Right - textInterval - 2, Height), ContentAlignment.TopRight); break;
                     }
                 }
 
@@ -318,7 +312,7 @@ namespace Sunny.UI
         /// 填充颜色，当值为背景色或透明色或空值则不填充
         /// </summary>
         [Description("填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "243, 249, 255")]
+        [DefaultValue(typeof(Color), "Transparent")]
         public Color FillColor
         {
             get => fillColor;

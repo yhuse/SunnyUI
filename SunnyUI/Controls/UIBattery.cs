@@ -19,6 +19,7 @@
  * 2020-06-04: V2.2.5 增加文件
  * 2021-06-18: V3.0.4 修改可自定义背景色
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -56,6 +57,7 @@ namespace Sunny.UI
             ShowRect = false;
             Width = 48;
             Height = 24;
+            fillColor = UIStyles.Blue.BatteryFillColor;
         }
 
         /// <summary>
@@ -142,18 +144,6 @@ namespace Sunny.UI
                 colorSafe = value;
                 Invalidate();
             }
-        }
-
-        /// <summary>
-        /// 默认电量颜色
-        /// </summary>
-        [Description("默认电量颜色")]
-        [Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "White")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set => SetForeColor(value);
         }
 
         /// <summary>
