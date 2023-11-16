@@ -46,6 +46,7 @@
  * 2022-10-14: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2023-06-28: V3.3.9 增加了可设置水平滚动条宽度的属性，但可能会遮挡最下面数据行的数据，看情况使用
  * 2023-07-12: V3.4.0 修复了有冻结行时垂直滚动条点击时出错的问题
+ * 2023-11-05: V3.5.2 重构主题
 ******************************************************************************/
 
 using System;
@@ -704,7 +705,7 @@ namespace Sunny.UI
             StripeEvenColor = uiColor.GridStripeEvenColor;
             StripeOddColor = uiColor.GridStripeOddColor;
 
-            if (HBar != null)
+            if (HBar != null && HBar.Style == UIStyle.Inherited)
             {
                 HBar.ForeColor = uiColor.GridBarForeColor;
                 HBar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -715,7 +716,7 @@ namespace Sunny.UI
                 scrollBarBackColor = uiColor.GridBarFillColor;
             }
 
-            if (VBar != null)
+            if (VBar != null && VBar.Style == UIStyle.Inherited)
             {
                 VBar.ForeColor = uiColor.GridBarForeColor;
                 VBar.HoverColor = uiColor.ButtonFillHoverColor;
@@ -957,12 +958,18 @@ namespace Sunny.UI
                 scrollBarColor = value;
                 HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
                 VBar.HoverColor = VBar.PressColor = VBar.ForeColor = value;
+                HBar.Style = VBar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
 
         private Color scrollBarRectColor = Color.FromArgb(80, 160, 255);
 
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条边框颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color ScrollBarRectColor
         {
             get => scrollBarRectColor;
@@ -970,6 +977,7 @@ namespace Sunny.UI
             {
                 scrollBarRectColor = value;
                 VBar.RectColor = value;
+                HBar.Style = VBar.Style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -989,7 +997,32 @@ namespace Sunny.UI
                 scrollBarBackColor = value;
                 HBar.FillColor = value;
                 VBar.FillColor = value;
+                HBar.Style = VBar.Style = UIStyle.Custom;
                 Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => HBar != null && HBar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (HBar != null) HBar.Style = UIStyle.Inherited;
+                    if (VBar != null) VBar.Style = UIStyle.Inherited;
+
+                    scrollBarColor = UIStyles.Blue.GridBarForeColor;
+                    scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
+                    scrollBarRectColor = VBar.RectColor = UIStyles.Blue.RectColor;
+                    scrollBarColor = UIStyles.Blue.GridBarForeColor;
+                    scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
+                }
+
             }
         }
     }
