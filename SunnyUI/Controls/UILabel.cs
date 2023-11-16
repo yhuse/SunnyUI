@@ -21,6 +21,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2020-11-12: V3.0.8 增加文字旋转角度
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -39,7 +40,7 @@ namespace Sunny.UI
             base.Font = UIStyles.Font();
             Version = UIGlobal.Version;
             base.TextAlign = ContentAlignment.MiddleLeft;
-            foreColor = UIStyles.Blue.LabelForeColor;
+            ForeColor = UIStyles.Blue.LabelForeColor;
         }
 
         /// <summary>
@@ -91,31 +92,6 @@ namespace Sunny.UI
         [DefaultValue(null)]
         [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
         public string TagString { get; set; }
-
-        private Color foreColor;
-        /// <summary>
-        /// 字体颜色
-        /// </summary>
-        [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set
-            {
-                if (foreColor != value)
-                {
-                    foreColor = value;
-                    SetStyleCustom();
-                }
-            }
-        }
-
-        protected void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
-        }
 
         public string Version { get; }
 
@@ -192,11 +168,10 @@ namespace Sunny.UI
             LinkBehavior = LinkBehavior.AlwaysUnderline;
             Version = UIGlobal.Version;
 
-            ActiveLinkColor = UIColor.Orange;
+            ActiveLinkColor = UIStyles.Blue.MarkLabelForeColor;
             VisitedLinkColor = UIColor.Red;
 
-            foreColor = UIStyles.Blue.LabelForeColor;
-            base.LinkColor = linkColor = UIColor.Blue;
+            base.LinkColor = linkColor = ForeColor = UIStyles.Blue.LabelForeColor;
         }
 
         /// <summary>
@@ -268,8 +243,8 @@ namespace Sunny.UI
 
         public void SetStyleColor(UIBaseStyle uiColor)
         {
-            foreColor = uiColor.LabelForeColor;
-            linkColor = uiColor.PrimaryColor;
+            linkColor = ForeColor = uiColor.LabelForeColor;
+            ActiveLinkColor = uiColor.MarkLabelForeColor;
             base.LinkColor = linkColor;
         }
 
@@ -285,37 +260,12 @@ namespace Sunny.UI
             set => SetStyle(value);
         }
 
-        private Color foreColor;
-        /// <summary>
-        /// 字体颜色
-        /// </summary>
-        [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "48, 48, 48")]
-        public override Color ForeColor
-        {
-            get => foreColor;
-            set
-            {
-                if (foreColor != value)
-                {
-                    foreColor = value;
-                    SetStyleCustom();
-                }
-            }
-        }
-
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
-        }
-
         private Color linkColor;
         /// <summary>
         /// 字体颜色
         /// </summary>
         [Description("字体颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
+        [DefaultValue(typeof(Color), "48, 48, 48")]
         public new Color LinkColor
         {
             get => linkColor;
@@ -325,7 +275,7 @@ namespace Sunny.UI
                 {
                     linkColor = value;
                     base.LinkColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
