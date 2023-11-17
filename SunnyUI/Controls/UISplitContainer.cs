@@ -103,12 +103,6 @@ namespace Sunny.UI
 
         }
 
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
-        }
-
         private Color barColor = Color.FromArgb(56, 56, 56);
 
         [DefaultValue(typeof(Color), "56, 56, 56"), Category("SunnyUI")]
@@ -161,7 +155,7 @@ namespace Sunny.UI
             set
             {
                 arrowColor = value;
-                SetStyleCustom();
+                Invalidate();
             }
         }
 

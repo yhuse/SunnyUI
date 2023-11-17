@@ -141,7 +141,7 @@ namespace Sunny.UI
                 {
                     _fillColor = value;
                     AfterSetFillColor(value);
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -201,7 +201,7 @@ namespace Sunny.UI
                 if (tabSelectedForeColor != value)
                 {
                     tabSelectedForeColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -243,7 +243,7 @@ namespace Sunny.UI
                 if (tabSelectedHighColor != value)
                 {
                     tabSelectedHighColor = value;
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }
@@ -303,12 +303,6 @@ namespace Sunny.UI
             tabSelectedForeColor = uiColor.TabControlTabSelectedColor;
             tabSelectedHighColor = uiColor.TabControlTabSelectedColor;
             _fillColor = uiColor.TabControlBackColor;
-        }
-
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;

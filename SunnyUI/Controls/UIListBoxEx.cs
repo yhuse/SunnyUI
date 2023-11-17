@@ -269,9 +269,7 @@ namespace Sunny.UI
                 if (_itemSelectBackColor != value)
                 {
                     _itemSelectBackColor = value;
-                    _style = UIStyle.Custom;
-                    if (DesignMode)
-                        Invalidate();
+                    if (DesignMode) Invalidate();
                 }
             }
         }
@@ -285,9 +283,7 @@ namespace Sunny.UI
                 if (_itemSelectForeColor != value)
                 {
                     _itemSelectForeColor = value;
-                    _style = UIStyle.Custom;
-                    if (DesignMode)
-                        Invalidate();
+                    if (DesignMode) Invalidate();
                 }
             }
         }
@@ -372,11 +368,8 @@ namespace Sunny.UI
         public Color HoverColor
         {
             get => hoverColor;
-            set
-            {
-                hoverColor = value;
-                _style = UIStyle.Custom;
-            }
+            set => hoverColor = value;
+
         }
 
         protected override void OnMeasureItem(MeasureItemEventArgs e)

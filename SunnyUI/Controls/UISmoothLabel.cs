@@ -18,6 +18,7 @@
  *
  * 2022-01-22: V3.1.0 增加文件说明
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-11-16: V3.5.2 重构主题
 ******************************************************************************/
 
 
@@ -117,14 +118,8 @@ namespace Sunny.UI
             {
                 foreColor = value;
                 forecolorBrush.Color = foreColor;
-                SetStyleCustom();
+                Invalidate();
             }
-        }
-
-        private void SetStyleCustom(bool needRefresh = true)
-        {
-            _style = UIStyle.Custom;
-            if (needRefresh) Invalidate();
         }
 
         public string Version { get; }
@@ -215,7 +210,7 @@ namespace Sunny.UI
                     rectColor = value;
                     if (rectSize != 0) drawPen.Color = rectColor;
                     RectColorChanged?.Invoke(this, null);
-                    SetStyleCustom();
+                    Invalidate();
                 }
             }
         }

@@ -279,7 +279,6 @@ namespace Sunny.UI
                 if (fillColor != value)
                 {
                     fillColor = value;
-                    _style = UIStyle.Custom;
                     Invalidate();
                 }
 
@@ -930,7 +929,7 @@ namespace Sunny.UI
                 scrollBarBackColor = fillColor;
             }
 
-            if (btn != null)
+            if (btn != null && btn.Style == UIStyle.Inherited)
             {
                 btn.ForeColor = uiColor.ButtonForeColor;
                 btn.FillColor = uiColor.ButtonFillColor;
@@ -1486,7 +1485,7 @@ namespace Sunny.UI
             set
             {
                 btn.FillColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1501,7 +1500,7 @@ namespace Sunny.UI
             set
             {
                 btn.SymbolColor = btn.ForeColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1516,7 +1515,7 @@ namespace Sunny.UI
             set
             {
                 btn.RectColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1528,7 +1527,7 @@ namespace Sunny.UI
             set
             {
                 btn.FillHoverColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1540,7 +1539,7 @@ namespace Sunny.UI
             set
             {
                 btn.SymbolHoverColor = btn.ForeHoverColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1552,7 +1551,7 @@ namespace Sunny.UI
             set
             {
                 btn.RectHoverColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1564,7 +1563,7 @@ namespace Sunny.UI
             set
             {
                 btn.FillPressColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1576,7 +1575,7 @@ namespace Sunny.UI
             set
             {
                 btn.SymbolPressColor = btn.ForePressColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
             }
         }
 
@@ -1588,7 +1587,23 @@ namespace Sunny.UI
             set
             {
                 btn.RectPressColor = value;
-                _style = UIStyle.Custom;
+                btn.Style = UIStyle.Custom;
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ButtonStyleInherited
+        {
+            get => btn != null && btn.Style == UIStyle.Inherited;
+            set
+            {
+                if (value && btn != null)
+                {
+                    btn.Style = UIStyle.Inherited;
+                }
             }
         }
     }

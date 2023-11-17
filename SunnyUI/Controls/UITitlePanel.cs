@@ -108,7 +108,6 @@ namespace Sunny.UI
             set
             {
                 titleForeColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
@@ -123,7 +122,6 @@ namespace Sunny.UI
             set
             {
                 titleColor = value;
-                _style = UIStyle.Custom;
                 Invalidate();
             }
         }
