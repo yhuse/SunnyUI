@@ -403,7 +403,18 @@ namespace Sunny.UI
             {
                 if (control is IStyleInterface item && item.Style == UIStyle.Inherited)
                 {
-                    item.SetInheritedStyle(style);
+                    if (item is UIPage uipage && uipage.Parent is TabPage tabpage)
+                    {
+                        TabControl tabControl = tabpage.Parent as TabControl;
+                        if (tabControl.SelectedTab == tabpage)
+                        {
+                            item.SetInheritedStyle(style);
+                        }
+                    }
+                    else
+                    {
+                        item.SetInheritedStyle(style);
+                    }
                 }
             }
 

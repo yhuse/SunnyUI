@@ -116,7 +116,6 @@
             this.uiLogo1.MinimumSize = new System.Drawing.Size(300, 80);
             this.uiLogo1.Name = "uiLogo1";
             this.uiLogo1.Size = new System.Drawing.Size(300, 80);
-            this.uiLogo1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLogo1.TabIndex = 4;
             this.uiLogo1.Text = "uiLogo1";
             // 
