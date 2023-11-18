@@ -23,7 +23,7 @@ namespace Sunny.UI.Demo
 
         private void uiButton2_Click(object sender, EventArgs e)
         {
-            uiRadioButtonGroup1.SelectedNone();
+            uiRadioButtonGroup1.SelectedIndex = -1;
         }
 
         private void uiButton4_Click(object sender, EventArgs e)

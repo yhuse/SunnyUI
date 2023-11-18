@@ -201,8 +201,7 @@ namespace Sunny.UI
         public static void InitColorful(Color styleColor, Color foreColor)
         {
             Colorful.Init(styleColor, foreColor);
-            Style = UIStyle.Colorful;
-            SetStyle(Style);
+            SetStyle(UIStyle.Colorful);
         }
 
         private static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
@@ -394,7 +393,7 @@ namespace Sunny.UI
         /// <param name="style">主题样式</param>
         public static void SetStyle(UIStyle style)
         {
-            if (Style == style) return;
+            if (style != UIStyle.Colorful && Style == style) return;
             Style = style;
             if (!style.IsValid()) return;
 

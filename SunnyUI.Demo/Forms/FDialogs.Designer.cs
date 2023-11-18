@@ -85,7 +85,7 @@
             this.btnError.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnError.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnError.Size = new System.Drawing.Size(100, 35);
-            this.btnError.Style = Sunny.UI.UIStyle.Red;
+            this.btnError.Style = Sunny.UI.UIStyle.Custom;
             this.btnError.StyleCustomMode = true;
             this.btnError.Symbol = 61532;
             this.btnError.TabIndex = 29;
@@ -111,7 +111,7 @@
             this.btnWarn.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.btnWarn.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.btnWarn.Size = new System.Drawing.Size(100, 35);
-            this.btnWarn.Style = Sunny.UI.UIStyle.Orange;
+            this.btnWarn.Style = Sunny.UI.UIStyle.Custom;
             this.btnWarn.StyleCustomMode = true;
             this.btnWarn.Symbol = 61553;
             this.btnWarn.TabIndex = 28;
@@ -137,7 +137,7 @@
             this.btnSuccess.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.btnSuccess.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.btnSuccess.Size = new System.Drawing.Size(100, 35);
-            this.btnSuccess.Style = Sunny.UI.UIStyle.Green;
+            this.btnSuccess.Style = Sunny.UI.UIStyle.Custom;
             this.btnSuccess.StyleCustomMode = true;
             this.btnSuccess.Symbol = 61528;
             this.btnSuccess.TabIndex = 27;
@@ -154,6 +154,7 @@
             this.btnAsk.Name = "btnAsk";
             this.btnAsk.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnAsk.Size = new System.Drawing.Size(100, 35);
+            this.btnAsk.Style = Sunny.UI.UIStyle.Custom;
             this.btnAsk.StyleCustomMode = true;
             this.btnAsk.Symbol = 61529;
             this.btnAsk.TabIndex = 26;
@@ -209,7 +210,7 @@
             this.btnInfo.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.btnInfo.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.btnInfo.Size = new System.Drawing.Size(100, 35);
-            this.btnInfo.Style = Sunny.UI.UIStyle.Gray;
+            this.btnInfo.Style = Sunny.UI.UIStyle.Custom;
             this.btnInfo.StyleCustomMode = true;
             this.btnInfo.Symbol = 61530;
             this.btnInfo.TabIndex = 37;
@@ -279,7 +280,9 @@
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -290,7 +293,9 @@
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 134);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -301,7 +306,9 @@
             // 
             // uiLine3
             // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
             this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine3.Location = new System.Drawing.Point(30, 213);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -312,7 +319,9 @@
             // 
             // uiLine4
             // 
+            this.uiLine4.BackColor = System.Drawing.Color.Transparent;
             this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine4.Location = new System.Drawing.Point(543, 213);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -338,7 +347,9 @@
             // 
             // uiLine5
             // 
+            this.uiLine5.BackColor = System.Drawing.Color.Transparent;
             this.uiLine5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine5.Location = new System.Drawing.Point(30, 292);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -356,6 +367,7 @@
             this.uiSymbolButton2.Name = "uiSymbolButton2";
             this.uiSymbolButton2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton2.StyleCustomMode = true;
             this.uiSymbolButton2.Symbol = 61530;
             this.uiSymbolButton2.TabIndex = 57;
@@ -381,7 +393,7 @@
             this.uiSymbolButton4.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton4.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton4.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton4.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton4.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton4.StyleCustomMode = true;
             this.uiSymbolButton4.Symbol = 61532;
             this.uiSymbolButton4.TabIndex = 55;
@@ -407,7 +419,7 @@
             this.uiSymbolButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton5.Style = Sunny.UI.UIStyle.Orange;
+            this.uiSymbolButton5.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton5.StyleCustomMode = true;
             this.uiSymbolButton5.Symbol = 61553;
             this.uiSymbolButton5.TabIndex = 54;
@@ -433,7 +445,7 @@
             this.uiSymbolButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton6.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton6.Style = Sunny.UI.UIStyle.Green;
+            this.uiSymbolButton6.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton6.StyleCustomMode = true;
             this.uiSymbolButton6.Symbol = 61528;
             this.uiSymbolButton6.TabIndex = 53;
@@ -443,7 +455,9 @@
             // 
             // uiLine6
             // 
+            this.uiLine6.BackColor = System.Drawing.Color.Transparent;
             this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine6.Location = new System.Drawing.Point(30, 450);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -485,7 +499,9 @@
             // 
             // uiLine7
             // 
+            this.uiLine7.BackColor = System.Drawing.Color.Transparent;
             this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine7.Location = new System.Drawing.Point(30, 371);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -512,7 +528,7 @@
             this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton7.StyleCustomMode = true;
             this.uiSymbolButton7.Symbol = 61532;
             this.uiSymbolButton7.TabIndex = 64;
@@ -538,7 +554,7 @@
             this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Orange;
+            this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton8.StyleCustomMode = true;
             this.uiSymbolButton8.Symbol = 61553;
             this.uiSymbolButton8.TabIndex = 63;
@@ -564,7 +580,7 @@
             this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Green;
+            this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton9.StyleCustomMode = true;
             this.uiSymbolButton9.Symbol = 61528;
             this.uiSymbolButton9.TabIndex = 62;
@@ -574,7 +590,9 @@
             // 
             // uiLine8
             // 
+            this.uiLine8.BackColor = System.Drawing.Color.Transparent;
             this.uiLine8.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine8.Location = new System.Drawing.Point(372, 371);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine8.Name = "uiLine8";
@@ -630,7 +648,9 @@
             // 
             // uiLine9
             // 
+            this.uiLine9.BackColor = System.Drawing.Color.Transparent;
             this.uiLine9.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine9.Location = new System.Drawing.Point(201, 213);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -641,7 +661,9 @@
             // 
             // uiLine10
             // 
+            this.uiLine10.BackColor = System.Drawing.Color.Transparent;
             this.uiLine10.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine10.Location = new System.Drawing.Point(372, 450);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
@@ -667,7 +689,9 @@
             // 
             // uiLine11
             // 
+            this.uiLine11.BackColor = System.Drawing.Color.Transparent;
             this.uiLine11.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine11.Location = new System.Drawing.Point(372, 213);
             this.uiLine11.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine11.Name = "uiLine11";

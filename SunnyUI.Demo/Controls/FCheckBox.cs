@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Sunny.UI.Demo
 {
@@ -37,17 +36,12 @@ namespace Sunny.UI.Demo
             uiCheckBoxGroup1.Clear();
         }
 
-        private void uiCheckBoxGroup1_ValueChanged(object sender, int index, string text, bool isChecked)
+        private void uiCheckBoxGroup1_ValueChanged(object sender, CheckBoxGroupEventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("SelectedIndexes: ");
-            foreach (var selectedIndex in uiCheckBoxGroup1.SelectedIndexes)
-            {
-                sb.Append(selectedIndex);
-                sb.Append(", ");
-            }
-
-            Console.WriteLine("SelectedIndex: " + index + ", SelectedText: " + text + "\n" + sb.ToString());
+            if (e.Index >= 0)
+                Console.WriteLine("SelectedIndex: " + e.Index + ", SelectedText: " + e.Text + ", Checked: " + e.Checked + "\n" + "SelectedIndexes: " + string.Join(", ", e.SelectedIndexes));
+            else
+                Console.WriteLine("SelectedIndexes: " + string.Join(", ", e.SelectedIndexes));
         }
 
         private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)

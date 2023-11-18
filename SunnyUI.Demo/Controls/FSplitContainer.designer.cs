@@ -73,7 +73,6 @@ namespace Sunny.UI.Demo
             this.uiSplitContainer1.SplitterDistance = 266;
             this.uiSplitContainer1.SplitterWidth = 11;
             this.uiSplitContainer1.TabIndex = 0;
-            this.uiSplitContainer1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiNavMenuEx1
             // 
@@ -107,10 +106,8 @@ namespace Sunny.UI.Demo
             treeNode7});
             this.uiNavMenuEx1.ShowLines = false;
             this.uiNavMenuEx1.Size = new System.Drawing.Size(266, 415);
-            this.uiNavMenuEx1.Style = Sunny.UI.UIStyle.Custom;
             this.uiNavMenuEx1.TabIndex = 0;
             this.uiNavMenuEx1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiNavMenuEx1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiNavMenuEx1.NodeRightSymbolClick += new Sunny.UI.UINavMenu.OnNodeRightSymbolClick(this.uiNavMenuEx1_NodeRightSymbolClick);
             // 
             // uiSplitContainer2
@@ -134,7 +131,6 @@ namespace Sunny.UI.Demo
             this.uiSplitContainer2.SplitterDistance = 244;
             this.uiSplitContainer2.SplitterWidth = 11;
             this.uiSplitContainer2.TabIndex = 0;
-            this.uiSplitContainer2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiListBox1
             // 
@@ -151,7 +147,6 @@ namespace Sunny.UI.Demo
             this.uiListBox1.Size = new System.Drawing.Size(523, 244);
             this.uiListBox1.TabIndex = 0;
             this.uiListBox1.Text = "uiListBox1";
-            this.uiListBox1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiButton1
             // 
@@ -164,7 +159,6 @@ namespace Sunny.UI.Demo
             this.uiButton1.TabIndex = 0;
             this.uiButton1.Text = "清除";
             this.uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // FSplitContainer

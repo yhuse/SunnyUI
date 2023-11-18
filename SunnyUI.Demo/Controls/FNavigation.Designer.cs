@@ -123,7 +123,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 160);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -137,7 +139,6 @@ namespace Sunny.UI.Demo
             this.uiNavMenu2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiNavMenu2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.uiNavMenu2.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.uiNavMenu2.ExpandSelectFirst = true;
             this.uiNavMenu2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiNavMenu2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -204,18 +205,22 @@ namespace Sunny.UI.Demo
             treeNode19,
             treeNode20,
             treeNode21});
+            this.uiNavMenu2.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiNavMenu2.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiNavMenu2.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiNavMenu2.ScrollFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiNavMenu2.SecondBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.uiNavMenu2.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.uiNavMenu2.SelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.uiNavMenu2.ShowLines = false;
             this.uiNavMenu2.Size = new System.Drawing.Size(253, 353);
-            this.uiNavMenu2.Style = Sunny.UI.UIStyle.Custom;
             this.uiNavMenu2.TabIndex = 22;
+            this.uiNavMenu2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiNavMenu1
             // 
             this.uiNavMenu1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.uiNavMenu1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.uiNavMenu1.ExpandSelectFirst = true;
             this.uiNavMenu1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiNavMenu1.FullRowSelect = true;
@@ -283,12 +288,14 @@ namespace Sunny.UI.Demo
             this.uiNavMenu1.ShowLines = false;
             this.uiNavMenu1.Size = new System.Drawing.Size(253, 353);
             this.uiNavMenu1.TabIndex = 21;
+            this.uiNavMenu1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiNavMenu1.MenuItemClick += new Sunny.UI.UINavMenu.OnMenuItemClick(this.uiNavMenu1_MenuItemClick);
             // 
             // uiNavBar1
             // 
             this.uiNavBar1.Controls.Add(this.uiLine1);
             this.uiNavBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiNavBar1.DropMenuFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiNavBar1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiNavBar1.Location = new System.Drawing.Point(0, 35);
             this.uiNavBar1.Name = "uiNavBar1";
@@ -337,6 +344,7 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine1.ForeColor = System.Drawing.Color.White;

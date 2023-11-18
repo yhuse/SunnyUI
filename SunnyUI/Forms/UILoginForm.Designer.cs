@@ -54,16 +54,14 @@
             // uiLine1
             // 
             uiLine1.BackColor = System.Drawing.Color.Transparent;
-            uiLine1.FillColor = System.Drawing.Color.White;
             uiLine1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            uiLine1.LineColor2 = System.Drawing.Color.FromArgb(80, 160, 255);
+            uiLine1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             uiLine1.Location = new System.Drawing.Point(4, 85);
             uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
             uiLine1.Name = "uiLine1";
             uiLine1.RadiusSides = UICornerRadiusSides.None;
             uiLine1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             uiLine1.Size = new System.Drawing.Size(182, 28);
-            uiLine1.Style = UIStyle.Custom;
             uiLine1.StyleCustomMode = true;
             uiLine1.TabIndex = 5;
             uiLine1.Text = "用户登录";
@@ -117,6 +115,7 @@
             btnLogin.Size = new System.Drawing.Size(86, 29);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "登录";
+            btnLogin.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnLogin.Click += btnLogin_Click;
             // 
             // btnCancel
@@ -143,6 +142,7 @@
             btnCancel.Symbol = 61453;
             btnCancel.TabIndex = 3;
             btnCancel.Text = "取消";
+            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.Click += btnCancel_Click;
             // 
             // lblTitle
@@ -164,6 +164,7 @@
             lblSubText.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             lblSubText.BackColor = System.Drawing.Color.Transparent;
             lblSubText.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblSubText.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             lblSubText.Location = new System.Drawing.Point(426, 421);
             lblSubText.Name = "lblSubText";
             lblSubText.Size = new System.Drawing.Size(310, 26);

@@ -217,7 +217,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
+            this.uiLine5.BackColor = System.Drawing.Color.Transparent;
             this.uiLine5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine5.Location = new System.Drawing.Point(388, 397);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -239,7 +241,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
+            this.uiLine4.BackColor = System.Drawing.Color.Transparent;
             this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine4.Location = new System.Drawing.Point(30, 397);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -422,7 +426,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
             this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine3.Location = new System.Drawing.Point(30, 315);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -449,7 +455,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton7.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton7.Size = new System.Drawing.Size(35, 35);
-            this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton7.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton7.StyleCustomMode = true;
             this.uiSymbolButton7.Symbol = 61809;
             this.uiSymbolButton7.TabIndex = 90;
@@ -473,7 +479,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton8.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton8.Size = new System.Drawing.Size(35, 35);
-            this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Orange;
+            this.uiSymbolButton8.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton8.StyleCustomMode = true;
             this.uiSymbolButton8.Symbol = 61445;
             this.uiSymbolButton8.TabIndex = 89;
@@ -497,7 +503,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton9.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton9.Size = new System.Drawing.Size(35, 35);
-            this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Green;
+            this.uiSymbolButton9.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton9.StyleCustomMode = true;
             this.uiSymbolButton9.Symbol = 57607;
             this.uiSymbolButton9.TabIndex = 88;
@@ -535,7 +541,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton11.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton11.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton11.Size = new System.Drawing.Size(35, 35);
-            this.uiSymbolButton11.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton11.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton11.StyleCustomMode = true;
             this.uiSymbolButton11.Symbol = 61508;
             this.uiSymbolButton11.TabIndex = 86;
@@ -578,7 +584,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton6.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton6.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton6.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton6.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton6.StyleCustomMode = true;
             this.uiSymbolButton6.Symbol = 61532;
             this.uiSymbolButton6.TabIndex = 84;
@@ -602,7 +608,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton5.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiSymbolButton5.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton5.Style = Sunny.UI.UIStyle.Orange;
+            this.uiSymbolButton5.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton5.StyleCustomMode = true;
             this.uiSymbolButton5.Symbol = 61553;
             this.uiSymbolButton5.TabIndex = 83;
@@ -626,7 +632,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton3.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiSymbolButton3.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton3.Style = Sunny.UI.UIStyle.Green;
+            this.uiSymbolButton3.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton3.StyleCustomMode = true;
             this.uiSymbolButton3.Symbol = 61530;
             this.uiSymbolButton3.TabIndex = 82;
@@ -665,7 +671,7 @@ namespace Sunny.UI.Demo
             this.uiSymbolButton2.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton2.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiSymbolButton2.Size = new System.Drawing.Size(100, 35);
-            this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Red;
+            this.uiSymbolButton2.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton2.StyleCustomMode = true;
             this.uiSymbolButton2.Symbol = 61453;
             this.uiSymbolButton2.TabIndex = 80;
@@ -688,7 +694,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 185);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -699,7 +707,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -726,7 +736,7 @@ namespace Sunny.UI.Demo
             this.uiButton13.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton13.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton13.Size = new System.Drawing.Size(100, 35);
-            this.uiButton13.Style = Sunny.UI.UIStyle.Red;
+            this.uiButton13.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton13.StyleCustomMode = true;
             this.uiButton13.TabIndex = 76;
             this.uiButton13.Text = "Red";
@@ -750,7 +760,7 @@ namespace Sunny.UI.Demo
             this.uiButton14.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton14.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton14.Size = new System.Drawing.Size(100, 35);
-            this.uiButton14.Style = Sunny.UI.UIStyle.Orange;
+            this.uiButton14.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton14.StyleCustomMode = true;
             this.uiButton14.TabIndex = 75;
             this.uiButton14.Text = "Orange";
@@ -774,7 +784,7 @@ namespace Sunny.UI.Demo
             this.uiButton15.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton15.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton15.Size = new System.Drawing.Size(100, 35);
-            this.uiButton15.Style = Sunny.UI.UIStyle.Gray;
+            this.uiButton15.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton15.StyleCustomMode = true;
             this.uiButton15.TabIndex = 74;
             this.uiButton15.Text = "Gray";
@@ -798,7 +808,7 @@ namespace Sunny.UI.Demo
             this.uiButton16.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton16.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton16.Size = new System.Drawing.Size(100, 35);
-            this.uiButton16.Style = Sunny.UI.UIStyle.Green;
+            this.uiButton16.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton16.StyleCustomMode = true;
             this.uiButton16.TabIndex = 73;
             this.uiButton16.Text = "Green";
@@ -813,6 +823,7 @@ namespace Sunny.UI.Demo
             this.uiButton17.Name = "uiButton17";
             this.uiButton17.Radius = 35;
             this.uiButton17.Size = new System.Drawing.Size(100, 35);
+            this.uiButton17.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton17.StyleCustomMode = true;
             this.uiButton17.TabIndex = 72;
             this.uiButton17.Text = "Blue";
@@ -849,7 +860,7 @@ namespace Sunny.UI.Demo
             this.uiButton4.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiButton4.ShowFocusLine = true;
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
-            this.uiButton4.Style = Sunny.UI.UIStyle.Red;
+            this.uiButton4.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton4.StyleCustomMode = true;
             this.uiButton4.TabIndex = 64;
             this.uiButton4.Text = "Red";
@@ -873,7 +884,7 @@ namespace Sunny.UI.Demo
             this.uiButton5.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(124)))), ((int)(((byte)(32)))));
             this.uiButton5.ShowFocusLine = true;
             this.uiButton5.Size = new System.Drawing.Size(100, 35);
-            this.uiButton5.Style = Sunny.UI.UIStyle.Orange;
+            this.uiButton5.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton5.StyleCustomMode = true;
             this.uiButton5.TabIndex = 63;
             this.uiButton5.Text = "Orange";
@@ -897,7 +908,7 @@ namespace Sunny.UI.Demo
             this.uiButton6.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.uiButton6.ShowFocusLine = true;
             this.uiButton6.Size = new System.Drawing.Size(100, 35);
-            this.uiButton6.Style = Sunny.UI.UIStyle.Gray;
+            this.uiButton6.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton6.StyleCustomMode = true;
             this.uiButton6.TabIndex = 62;
             this.uiButton6.Text = "Gray";
@@ -921,7 +932,7 @@ namespace Sunny.UI.Demo
             this.uiButton3.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(152)))), ((int)(((byte)(32)))));
             this.uiButton3.ShowFocusLine = true;
             this.uiButton3.Size = new System.Drawing.Size(100, 35);
-            this.uiButton3.Style = Sunny.UI.UIStyle.Green;
+            this.uiButton3.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton3.StyleCustomMode = true;
             this.uiButton3.TabIndex = 61;
             this.uiButton3.Text = "Green";
@@ -937,6 +948,7 @@ namespace Sunny.UI.Demo
             this.uiButton2.ShowFocusLine = true;
             this.uiButton2.ShowTips = true;
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
+            this.uiButton2.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton2.StyleCustomMode = true;
             this.uiButton2.TabIndex = 60;
             this.uiButton2.Text = "Blue";

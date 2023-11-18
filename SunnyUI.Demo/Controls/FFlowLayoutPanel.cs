@@ -41,6 +41,8 @@ namespace Sunny.UI.Demo
             //----uiFlowLayoutPanel1.Controls.Add(btn);----
 
             uiButton3.Enabled = true;
+
+            this.Render();
         }
 
         private void Btn_Click(object sender, System.EventArgs e)
