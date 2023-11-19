@@ -50,6 +50,7 @@
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
  * 2023-11-05: V3.5.2 重构主题
+ * 2023-11-19: V3.5.2 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭
 ******************************************************************************/
 
 using System;
@@ -1418,13 +1419,13 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示圆角
         /// </summary>
-        private bool _showRadius = true;
+        private bool _showRadius = false;
 
         /// <summary>
         /// 是否显示圆角
         /// </summary>
         [Description("是否显示圆角"), Category("SunnyUI")]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool ShowRadius
         {
             get
@@ -1442,7 +1443,7 @@ namespace Sunny.UI
         /// <summary>
         /// 是否显示阴影
         /// </summary>
-        private bool _showShadow;
+        private bool _showShadow = true;
 
         #region 边框阴影
 
@@ -1450,7 +1451,7 @@ namespace Sunny.UI
         /// 是否显示阴影
         /// </summary>
         [Description("是否显示阴影"), Category("SunnyUI")]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool ShowShadow
         {
             get => _showShadow;
