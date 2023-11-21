@@ -1,7 +1,22 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-11\-21 V3.6.0    
+ **注意：大版本更新，重构主题**     
+建议新项目使用此版本，如果3.6.0以下版本需要升级参照文档比较差异：   
+[升级指南/3.5.2-->3.6.0](https://gitee.com/yhuse/SunnyUI/wikis/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/3.5.2--%3E3.6.0)
+\+ 增加.Net8支持    
+\* 重构主题     
+\* 修改点阵字体数字显示    
+\* UIForm: 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭    
+\* UIRadioButtonGroup: 重写UIRadioButtonGroup    
+\* UICheckBoxGroup: 重写UICheckBoxGroup    
+\* UIRadioButton: 增加修改图标大小    
+\* UIEditForm: 代码生成增加ComboDataGridView类型    
+\* 修改几个进度弹窗的关闭标志    
+\* 重构GDI一些方法    
+    
 #### 2023\-10\-27 V3.5.2    
-\+  **字体图标增加旋转角度参数SymbolRotate**     
+\+  **字体图标增加旋转角度参数SymbolRotate** 
 \* UINavBar: 修正下拉菜单文字显示垂直居中    
 \* UINavBar: ImageList为空时，下拉菜单增加Symbol绘制    
 \* UIContextMenuStrip: 修正文字显示垂直居中    
