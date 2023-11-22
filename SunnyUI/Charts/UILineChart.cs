@@ -51,6 +51,7 @@
  * 2023-10-04: V3.5.0 增加了Y轴数据由上向下绘制
  * 2023-10-05: V3.5.0 增加了X轴和Y轴鼠标选择区域并返回选中范围
  * 2023-10-20: V3.5.1 增加了绘制线的DashStyle样式
+ * 2023-11-22: V3.6.0 增加了区域选择范围相等时不执行事件
 ******************************************************************************/
 
 using System;
@@ -1098,7 +1099,8 @@ namespace Sunny.UI
                         Invalidate();
                         double XMin = XScale.CalcXPos(Math.Min(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
                         double XMax = XScale.CalcXPos(Math.Max(StartPoint.X, StopPoint.X), DrawOrigin.X, DrawSize.Width);
-                        MouseAreaSelected?.Invoke(this, MouseDownType, XMin, XMax, "X");
+                        if (!XMax.EqualsDouble(XMin))
+                            MouseAreaSelected?.Invoke(this, MouseDownType, XMin, XMax, "X");
                     }
 
                     break;
@@ -1110,13 +1112,15 @@ namespace Sunny.UI
 
                         double y1 = YScale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                         double y2 = YScale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
-                        MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y");
+                        if (!y2.EqualsDouble(y1))
+                            MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y");
 
                         if (Option.HaveY2)
                         {
                             y1 = Y2Scale.CalcYPos(Math.Min(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
                             y2 = Y2Scale.CalcYPos(Math.Max(StartPoint.Y, StopPoint.Y), DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
-                            MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y2");
+                            if (!y2.EqualsDouble(y1))
+                                MouseAreaSelected?.Invoke(this, MouseDownType, Math.Min(y1, y2), Math.Max(y1, y2), "Y2");
                         }
                     }
 
