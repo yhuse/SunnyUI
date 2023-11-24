@@ -22,6 +22,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-15: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
+ * 2023-11-24: V3.6.2 修复LightStyle的文字和图标颜色
 ******************************************************************************/
 
 using System;
@@ -356,7 +357,7 @@ namespace Sunny.UI
         protected Color GetSymbolForeColor()
         {
             //文字
-            Color color = lightStyle ? _style.Colors().ButtonForeLightColor : symbolColor;
+            Color color = lightStyle ? rectColor : symbolColor;
             if (IsHover)
                 color = symbolHoverColor;
             if (IsPress)

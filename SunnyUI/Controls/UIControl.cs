@@ -467,7 +467,7 @@ namespace Sunny.UI
         protected Color GetForeColor()
         {
             //文字
-            Color color = lightStyle ? _style.Colors().ButtonForeLightColor : foreColor;
+            Color color = lightStyle ? rectColor : foreColor;
             if (IsHover)
                 color = foreHoverColor;
             if (IsPress)
@@ -488,7 +488,7 @@ namespace Sunny.UI
         protected Color GetFillColor()
         {
             //填充
-            Color color = lightStyle ? _style.Colors().ButtonFillLightColor : fillColor;
+            Color color = lightStyle ? plainColor : fillColor;
             if (IsHover)
                 color = fillHoverColor;
             if (IsPress)
@@ -633,6 +633,11 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 填充浅色
+        /// </summary>
+        protected Color plainColor = UIStyles.Blue.PlainColor;
+
+        /// <summary>
         /// 填充颜色
         /// </summary>
         protected Color fillColor = UIStyles.Blue.ButtonFillColor;
@@ -728,6 +733,19 @@ namespace Sunny.UI
         /// 字体只读颜色
         /// </summary>
         protected Color foreReadOnlyColor = UIStyles.Blue.ForeDisableColor;
+
+        /// <summary>
+        /// 设置选中颜色
+        /// </summary>
+        /// <param name="color">颜色</param>
+        protected void SetPlainColor(Color color)
+        {
+            if (plainColor != color)
+            {
+                plainColor = color;
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// 设置选中颜色

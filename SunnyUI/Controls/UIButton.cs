@@ -29,6 +29,7 @@
  * 2022-08-25: V3.2.3 增加同一个容器的相同GroupIndex的按钮控件的Selected单选
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-02: V3.3.9 渐变色增加方向选择
+ * 2023-11-24: V3.6.2 修复LightStyle的文字颜色
 ******************************************************************************/
 
 using System;
@@ -60,6 +61,8 @@ namespace Sunny.UI
             Width = 100;
             Height = 35;
             Cursor = Cursors.Hand;
+
+            plainColor = UIStyles.Blue.PlainColor;
 
             foreHoverColor = UIStyles.Blue.ButtonForeHoverColor;
             forePressColor = UIStyles.Blue.ButtonForePressColor;
@@ -389,6 +392,8 @@ namespace Sunny.UI
         public override void SetStyleColor(UIBaseStyle uiColor)
         {
             base.SetStyleColor(uiColor);
+
+            plainColor = uiColor.PlainColor;
 
             fillHoverColor = uiColor.ButtonFillHoverColor;
             rectHoverColor = uiColor.ButtonRectHoverColor;
