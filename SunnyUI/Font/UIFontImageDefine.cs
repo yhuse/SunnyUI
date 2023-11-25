@@ -20,6 +20,7 @@
  * 2021-07-18: V3.0.5 将字体图标最大尺寸从64调整到128
 ******************************************************************************/
 
+using System;
 using System.Drawing;
 
 namespace Sunny.UI
@@ -33,6 +34,42 @@ namespace Sunny.UI
         Point SymbolOffset { get; set; }
 
         int SymbolRotate { get; set; }
+    }
+
+    public class SymbolValue
+    {
+        /// <summary>
+        /// 字体图标
+        /// </summary>
+        public int Symbol { get; set; }
+
+        public UISymbolType SymbolType { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsRed { get; set; }
+
+        public SymbolValue()
+        {
+
+        }
+
+        public SymbolValue(int symbol, string name, UISymbolType symbolType)
+        {
+            Symbol = symbol;
+            SymbolType = symbolType;
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            if (Name.IsValid())
+                return Name + Environment.NewLine + Value.ToString();
+            else
+                return Value.ToString();
+        }
+
+        public int Value => Symbol + (int)SymbolType * 100000;
     }
 
     public enum UISymbolType

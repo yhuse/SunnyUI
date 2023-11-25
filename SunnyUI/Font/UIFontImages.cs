@@ -245,28 +245,6 @@ namespace Sunny.UI
             toolTip.SetToolTip(lbl, symbol.ToString());
         }
 
-        public class SymbolValue
-        {
-            /// <summary>
-            /// 字体图标
-            /// </summary>
-            public int Symbol { get; set; }
-
-            public UISymbolType SymbolType { get; set; }
-
-            public string Name { get; set; }
-
-            public bool IsRed { get; set; }
-
-            public override string ToString()
-            {
-                if (Name.IsValid())
-                    return Name + Environment.NewLine + (((int)SymbolType) * 100000 + Symbol).ToString();
-                else
-                    return (((int)SymbolType) * 100000 + Symbol).ToString();
-            }
-        }
-
         private Label CreateLabel(int icon, UISymbolType symbolType)
         {
             Label lbl = new Label
