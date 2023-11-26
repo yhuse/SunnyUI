@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -12,6 +15,38 @@ namespace Sunny.UI
         public UISymbolPanel()
         {
             SetStyleFlags();
+        }
+
+        public UISymbolPanel(Type fonttype, UISymbolType symbolType, int columnCount = 24)
+        {
+            SetStyleFlags();
+            LoadFont(fonttype, symbolType, columnCount);
+        }
+
+        public void LoadFont(Type fonttype, UISymbolType symbolType, int columnCount = 24)
+        {
+            ColumnCount = columnCount;
+            ConcurrentDictionary<int, FieldInfo> dic = new ConcurrentDictionary<int, FieldInfo>();
+            foreach (var fieldInfo in fonttype.GetFields())
+            {
+                var obj = fieldInfo.GetRawConstantValue();
+                if (obj is int value)
+                {
+                    dic.TryAdd(value, fieldInfo);
+                }
+            }
+
+            RowCount = dic.Count / ColumnCount + 1;
+
+            List<int> list = dic.Keys.ToList();
+            list.Sort();
+            for (int i = 0; i < GridCount; i++)
+            {
+                if (i >= list.Count) break;
+                Add(new SymbolValue(list[i], dic[list[i]].Name.Replace("fa_", "").Replace("ma_", ""), symbolType));
+            }
+
+            dic.Clear();
         }
 
         protected void SetStyleFlags(bool supportTransparent = true, bool selectable = true, bool resizeRedraw = false)
@@ -86,7 +121,7 @@ namespace Sunny.UI
                 Rectangle rect = new Rectangle(ic * symbolSize, ir * symbolSize, symbolSize, symbolSize);
                 SymbolValue symbol = Symbols[i];
                 Color color = Color.Black;
-                if (Filter.IsValid() && symbol.Name.Contains(Filter)) color = Color.Purple;
+                if (Filter.IsValid() && symbol.Name.ToUpper().Contains(Filter.ToUpper())) color = Color.Purple;
                 if (i == SelectedIndex) color = Color.Red;
                 e.Graphics.DrawFontImage(symbol.Value, 28, color, rect);
             }
@@ -122,6 +157,13 @@ namespace Sunny.UI
 
         private readonly List<SymbolValue> Symbols = new List<SymbolValue>();
 
+        public int SymbolCount => Symbols.Count;
+
+        public SymbolValue Get(int index)
+        {
+            return Symbols[index];
+        }
+
         public void Clear()
         {
             Symbols.Clear();
@@ -129,7 +171,8 @@ namespace Sunny.UI
 
         public void Add(SymbolValue symbol)
         {
-            if (Symbols.Count >= GridCount) return;
+            if (Symbols.Count >= GridCount)
+                RowCount++;
             Symbols.Add(symbol);
         }
 
@@ -164,7 +207,8 @@ namespace Sunny.UI
 
         public event OnSymbolValueChanged ValueChanged;
 
-        public string Filter { get; set; }
+        private string filter = "";
+        public string Filter { get => filter; set { filter = value; Invalidate(); } }
     }
 
     public delegate void OnSymbolValueChanged(object sender, SymbolValue value);

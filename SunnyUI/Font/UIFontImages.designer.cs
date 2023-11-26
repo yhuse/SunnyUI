@@ -46,19 +46,12 @@
             lpMaterialIcons = new System.Windows.Forms.FlowLayoutPanel();
             tabPage7 = new System.Windows.Forms.TabPage();
             lblResult = new System.Windows.Forms.FlowLayoutPanel();
-            bg1 = new System.ComponentModel.BackgroundWorker();
-            timer = new System.Windows.Forms.Timer(components);
             toolTip = new System.Windows.Forms.ToolTip(components);
-            bg2 = new System.ComponentModel.BackgroundWorker();
-            bg3 = new System.ComponentModel.BackgroundWorker();
-            bg4 = new System.ComponentModel.BackgroundWorker();
-            bg5 = new System.ComponentModel.BackgroundWorker();
             panel1 = new System.Windows.Forms.Panel();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
             textBox1 = new System.Windows.Forms.TextBox();
-            bg6 = new System.ComponentModel.BackgroundWorker();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage5.SuspendLayout();
@@ -86,7 +79,7 @@
             tabControl1.Location = new System.Drawing.Point(0, 81);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(900, 610);
+            tabControl1.Size = new System.Drawing.Size(820, 600);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -95,7 +88,7 @@
             tabPage1.Location = new System.Drawing.Point(4, 28);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(892, 578);
+            tabPage1.Size = new System.Drawing.Size(812, 568);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Custom";
             tabPage1.UseVisualStyleBackColor = true;
@@ -106,7 +99,7 @@
             lpCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             lpCustom.Location = new System.Drawing.Point(3, 3);
             lpCustom.Name = "lpCustom";
-            lpCustom.Size = new System.Drawing.Size(886, 572);
+            lpCustom.Size = new System.Drawing.Size(806, 562);
             lpCustom.TabIndex = 1;
             // 
             // tabPage5
@@ -115,7 +108,7 @@
             tabPage5.Location = new System.Drawing.Point(4, 28);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            tabPage5.Size = new System.Drawing.Size(892, 578);
+            tabPage5.Size = new System.Drawing.Size(806, 568);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "FontAwesome V6 Solid";
             tabPage5.UseVisualStyleBackColor = true;
@@ -127,7 +120,7 @@
             lpV6Solid.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpV6Solid.Location = new System.Drawing.Point(3, 3);
             lpV6Solid.Name = "lpV6Solid";
-            lpV6Solid.Size = new System.Drawing.Size(886, 572);
+            lpV6Solid.Size = new System.Drawing.Size(800, 562);
             lpV6Solid.TabIndex = 3;
             // 
             // tabPage6
@@ -136,7 +129,7 @@
             tabPage6.Location = new System.Drawing.Point(4, 28);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            tabPage6.Size = new System.Drawing.Size(892, 578);
+            tabPage6.Size = new System.Drawing.Size(806, 568);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "V6 Regular";
             tabPage6.UseVisualStyleBackColor = true;
@@ -148,7 +141,7 @@
             lpV6Regular.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpV6Regular.Location = new System.Drawing.Point(3, 3);
             lpV6Regular.Name = "lpV6Regular";
-            lpV6Regular.Size = new System.Drawing.Size(886, 572);
+            lpV6Regular.Size = new System.Drawing.Size(800, 562);
             lpV6Regular.TabIndex = 3;
             // 
             // tabPage4
@@ -157,7 +150,7 @@
             tabPage4.Location = new System.Drawing.Point(4, 28);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            tabPage4.Size = new System.Drawing.Size(892, 578);
+            tabPage4.Size = new System.Drawing.Size(806, 568);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "V6 Brands";
             tabPage4.UseVisualStyleBackColor = true;
@@ -169,7 +162,7 @@
             lpV6Brands.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpV6Brands.Location = new System.Drawing.Point(3, 3);
             lpV6Brands.Name = "lpV6Brands";
-            lpV6Brands.Size = new System.Drawing.Size(886, 572);
+            lpV6Brands.Size = new System.Drawing.Size(800, 562);
             lpV6Brands.TabIndex = 3;
             // 
             // tabPage2
@@ -178,7 +171,7 @@
             tabPage2.Location = new System.Drawing.Point(4, 28);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            tabPage2.Size = new System.Drawing.Size(892, 578);
+            tabPage2.Size = new System.Drawing.Size(806, 568);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "FontAwesome V4";
             tabPage2.UseVisualStyleBackColor = true;
@@ -190,7 +183,7 @@
             lpAwesome.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpAwesome.Location = new System.Drawing.Point(3, 3);
             lpAwesome.Name = "lpAwesome";
-            lpAwesome.Size = new System.Drawing.Size(886, 572);
+            lpAwesome.Size = new System.Drawing.Size(800, 562);
             lpAwesome.TabIndex = 1;
             // 
             // tabPage3
@@ -199,7 +192,7 @@
             tabPage3.Location = new System.Drawing.Point(4, 28);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            tabPage3.Size = new System.Drawing.Size(892, 578);
+            tabPage3.Size = new System.Drawing.Size(806, 568);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "ElegantIcons";
             tabPage3.UseVisualStyleBackColor = true;
@@ -211,7 +204,7 @@
             lpElegant.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpElegant.Location = new System.Drawing.Point(3, 3);
             lpElegant.Name = "lpElegant";
-            lpElegant.Size = new System.Drawing.Size(886, 572);
+            lpElegant.Size = new System.Drawing.Size(800, 562);
             lpElegant.TabIndex = 2;
             // 
             // tsMaterialIcons
@@ -220,7 +213,7 @@
             tsMaterialIcons.Location = new System.Drawing.Point(4, 28);
             tsMaterialIcons.Name = "tsMaterialIcons";
             tsMaterialIcons.Padding = new System.Windows.Forms.Padding(3);
-            tsMaterialIcons.Size = new System.Drawing.Size(892, 578);
+            tsMaterialIcons.Size = new System.Drawing.Size(806, 568);
             tsMaterialIcons.TabIndex = 7;
             tsMaterialIcons.Text = "MaterialIcons";
             tsMaterialIcons.UseVisualStyleBackColor = true;
@@ -232,7 +225,7 @@
             lpMaterialIcons.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lpMaterialIcons.Location = new System.Drawing.Point(3, 3);
             lpMaterialIcons.Name = "lpMaterialIcons";
-            lpMaterialIcons.Size = new System.Drawing.Size(886, 572);
+            lpMaterialIcons.Size = new System.Drawing.Size(800, 562);
             lpMaterialIcons.TabIndex = 3;
             // 
             // tabPage7
@@ -241,7 +234,7 @@
             tabPage7.Location = new System.Drawing.Point(4, 28);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            tabPage7.Size = new System.Drawing.Size(892, 578);
+            tabPage7.Size = new System.Drawing.Size(806, 568);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Search result";
             tabPage7.UseVisualStyleBackColor = true;
@@ -253,32 +246,8 @@
             lblResult.ForeColor = System.Drawing.Color.FromArgb(64, 158, 255);
             lblResult.Location = new System.Drawing.Point(3, 3);
             lblResult.Name = "lblResult";
-            lblResult.Size = new System.Drawing.Size(886, 572);
+            lblResult.Size = new System.Drawing.Size(800, 562);
             lblResult.TabIndex = 3;
-            // 
-            // bg1
-            // 
-            bg1.DoWork += bg_DoWork;
-            // 
-            // timer
-            // 
-            timer.Tick += timer_Tick;
-            // 
-            // bg2
-            // 
-            bg2.DoWork += bg2_DoWork;
-            // 
-            // bg3
-            // 
-            bg3.DoWork += bg3_DoWork;
-            // 
-            // bg4
-            // 
-            bg4.DoWork += bg4_DoWork;
-            // 
-            // bg5
-            // 
-            bg5.DoWork += bg5_DoWork;
             // 
             // panel1
             // 
@@ -289,7 +258,7 @@
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(900, 81);
+            panel1.Size = new System.Drawing.Size(820, 81);
             panel1.TabIndex = 0;
             // 
             // label2
@@ -334,14 +303,10 @@
             textBox1.TabIndex = 0;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
-            // bg6
-            // 
-            bg6.DoWork += bg6_DoWork;
-            // 
             // UIFontImages
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            ClientSize = new System.Drawing.Size(900, 691);
+            ClientSize = new System.Drawing.Size(820, 681);
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -373,8 +338,6 @@
         private System.Windows.Forms.FlowLayoutPanel lpAwesome;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.FlowLayoutPanel lpElegant;
-        private System.ComponentModel.BackgroundWorker bg1;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
@@ -382,10 +345,6 @@
         private System.Windows.Forms.FlowLayoutPanel lpV6Brands;
         private System.Windows.Forms.FlowLayoutPanel lpV6Solid;
         private System.Windows.Forms.FlowLayoutPanel lpV6Regular;
-        private System.ComponentModel.BackgroundWorker bg2;
-        private System.ComponentModel.BackgroundWorker bg3;
-        private System.ComponentModel.BackgroundWorker bg4;
-        private System.ComponentModel.BackgroundWorker bg5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
@@ -423,6 +382,5 @@
 */
         private System.Windows.Forms.TabPage tsMaterialIcons;
         private System.Windows.Forms.FlowLayoutPanel lpMaterialIcons;
-        private System.ComponentModel.BackgroundWorker bg6;
     }
 }
