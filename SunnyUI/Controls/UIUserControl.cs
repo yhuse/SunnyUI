@@ -21,6 +21,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-02: V3.3.9 渐变色增加方向选择
  * 2023-11-05: V3.5.2 重构主题
+ * 2023-11-28: V3.6.0 修复Panel内控件颜色设置问题
 ******************************************************************************/
 
 using System;
@@ -188,18 +189,6 @@ namespace Sunny.UI
 
         protected virtual void OnRectSidesChange()
         {
-        }
-
-        protected override void OnControlAdded(ControlEventArgs e)
-        {
-            base.OnControlAdded(e);
-
-            if (e.Control is IStyleInterface ctrl)
-            {
-                if (!ctrl.StyleCustomMode) ctrl.Style = Style;
-            }
-
-            UIStyleHelper.SetRawControlStyle(e, Style);
         }
 
         private UICornerRadiusSides _radiusSides = UICornerRadiusSides.All;

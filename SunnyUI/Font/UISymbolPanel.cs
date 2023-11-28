@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    [ToolboxItem(true)]
+    [ToolboxItem(false)]
     public class UISymbolPanel : Control
     {
         public UISymbolPanel()
