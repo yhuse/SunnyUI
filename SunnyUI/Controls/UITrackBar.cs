@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-04-11: V3.0.2 增加垂直显示方式
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2023-11-28: V3.6.1 增加一种从上到下的进度显示方式
 ******************************************************************************/
 
 using System;
@@ -59,9 +60,14 @@ namespace Sunny.UI
             Horizontal,
 
             /// <summary>
-            /// 竖直的
+            /// 竖直上升
             /// </summary>
-            Vertical
+            Vertical,
+
+            /// <summary>
+            /// 竖直下降
+            /// </summary>
+            VerticalDown
         }
 
         private BarDirection direction = BarDirection.Horizontal;
@@ -194,6 +200,24 @@ namespace Sunny.UI
                 g.DrawRoundRectangle(pen, new Rectangle((Width - BarSize) / 2 + 1, Height - len - 10, BarSize - 2, 8), 5);
                 g.SetDefaultQuality();
             }
+
+            if (Direction == BarDirection.VerticalDown)
+            {
+                g.FillRoundRectangle(rectDisableColor, new Rectangle(Width / 2 - 3, 5, 6, Height - 10), 6);
+
+                int len = (int)((Value - Minimum) * 1.0 * (Height - 1 - 10) / (Maximum - Minimum));
+                if (len > 0)
+                {
+                    g.FillRoundRectangle(foreColor, new Rectangle(Width / 2 - 3, 5, 6, len), 6);
+                }
+
+                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, new Rectangle((Width - BarSize) / 2, len, BarSize, 10), 5);
+
+                using Pen pen = new Pen(rectColor, 2);
+                g.SetHighQuality();
+                g.DrawRoundRectangle(pen, new Rectangle((Width - BarSize) / 2 + 1, len + 1, BarSize - 2, 8), 5);
+                g.SetDefaultQuality();
+            }
         }
 
         private int trackBarSize = 20;
@@ -228,6 +252,13 @@ namespace Sunny.UI
                     int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
                     Value = Math.Min(Math.Max(Minimum, value), Maximum);
                 }
+
+                if (Direction == BarDirection.VerticalDown)
+                {
+                    int len = e.Y - 5;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
             }
         }
 
@@ -250,6 +281,13 @@ namespace Sunny.UI
                 if (Direction == BarDirection.Vertical)
                 {
                     int len = Height - 10 - e.Y;
+                    int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
+                    Value = Math.Min(Math.Max(Minimum, value), Maximum);
+                }
+
+                if (Direction == BarDirection.VerticalDown)
+                {
+                    int len = e.Y - 5;
                     int value = (len * 1.0 * (Maximum - Minimum) / (Height - 10)).RoundEx() + Minimum;
                     Value = Math.Min(Math.Max(Minimum, value), Maximum);
                 }
