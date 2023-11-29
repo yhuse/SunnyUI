@@ -84,7 +84,6 @@ namespace Sunny.UI
             }
         }
 
-
         private int _maximum = 100;
         private int _minimum;
         private int trackBarValue;
