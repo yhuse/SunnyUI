@@ -135,7 +135,7 @@ namespace Sunny.UI
         private int lineSize = 6;
 
         [DefaultValue(6)]
-        [Description("球大小"), Category("SunnyUI")]
+        [Description("温度计管大小"), Category("SunnyUI")]
         public int LineSize
         {
             get => lineSize;
@@ -149,7 +149,7 @@ namespace Sunny.UI
         private int ballSize = 20;
 
         [DefaultValue(20)]
-        [Description("球大小"), Category("SunnyUI")]
+        [Description("温度计球大小"), Category("SunnyUI")]
         public int BallSize
         {
             get => ballSize;
@@ -174,7 +174,7 @@ namespace Sunny.UI
         /// <summary>
         /// 边框颜色
         /// </summary>
-        [Description("边框颜色"), Category("SunnyUI")]
+        [Description("温度计颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
         public Color ThermometerColor
         {

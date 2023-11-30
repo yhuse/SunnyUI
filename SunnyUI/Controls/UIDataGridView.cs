@@ -147,7 +147,7 @@ namespace Sunny.UI
 
         private int scrollBarHeight = 0;
 
-        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        [DefaultValue(0), Category("SunnyUI"), Description("水平滚动条高度，最小为原生滚动条宽度")]
         public int ScrollBarHeight
         {
             get => scrollBarHeight;
@@ -160,7 +160,7 @@ namespace Sunny.UI
 
         private int scrollBarHandleHeight = 6;
 
-        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        [DefaultValue(6), Category("SunnyUI"), Description("水平滚动条滑块高度，最小为原生滚动条宽度")]
         public int ScrollBarHandleHeight
         {
             get => scrollBarHandleHeight;
