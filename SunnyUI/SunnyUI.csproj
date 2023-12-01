@@ -41,6 +41,7 @@
       <None Remove="Common\FastLZx64.dat" />
       <None Remove="Common\FastLZx86.dat" />
       <None Remove="Font\MaterialIcons-Regular.ttf" />
+      <None Remove="Font\sa-digital-number.ttf" />
     </ItemGroup>
 
     <ItemGroup>
@@ -64,6 +65,7 @@
         <EmbeddedResource Include="Font\fa-solid-900.ttf" />
         <EmbeddedResource Include="Font\FontAwesome.ttf" />
         <EmbeddedResource Include="Font\MaterialIcons-Regular.ttf" />
+        <EmbeddedResource Include="Font\sa-digital-number.ttf" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
