@@ -1,5 +1,17 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2023\-12\-04 V3.6.2    
+\+ UIRuler: 增加刻度尺控件    
+\+ UIThermometer: 增加温度计控件    
+\+ UIDigitalLabel: 增加冷液晶显示LCD标签    
+\* UIForm: 修复修改Style后，BackColor未保存的问题    
+\* UIPage: 修复修改Style后，BackColor未保存的问题    
+\* UITrackBar: 增加一种从上到下的进度显示方式    
+\* UICheckBox: 增加属性可修改图标大小    
+\* UICheckBoxGroup: 增加属性可修改图标大小    
+\* UIRadioButton: 增加属性可修改图标大小    
+\* UIRadioButtonGroup: 增加属性可修改图标大小    
+    
 #### 2023\-11\-28 V3.6.1    
 \+ UISymbolPanel：增加图标编辑器面板    
 \* UIFontImages: 重写字体图标编辑器，优化打开速度    
@@ -12,6 +24,7 @@
 建议新项目使用此版本，如果3.6.0以下版本需要升级参照文档比较差异：   
 [升级指南/3.5.2-->3.6.0](https://gitee.com/yhuse/SunnyUI/wikis/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/3.5.2--%3E3.6.0)    
 \+ 增加.Net8支持    
+\- UIKnobControl: 删除UIKnobControl，源码见：[UIKnobControl.cs](https://gitee.com/yhuse/SunnyUI/blob/V3.5.2/SunnyUI/Controls/UIKnobControl.cs)    
 \* 重构主题     
 \* 修改点阵字体数字显示    
 \* UIForm: 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭    
