@@ -24,6 +24,7 @@
  * 2023-04-22: V3.3.5 设置选择项ForeColor
  * 2023-06-27: V3.3.9 内置条目关联值由Tag改为TagString
  * 2023-11-09: V3.5.2 重写UIRadioButtonGroup
+ * 2023-12-04: V3.6.1 增加属性可修改图标大小
 ******************************************************************************/
 
 using System;
@@ -177,7 +178,7 @@ namespace Sunny.UI
 
         [DefaultValue(16)]
         [Description("图标大小"), Category("SunnyUI")]
-        [Browsable(false)]
+        [Browsable(true)]
         public int RadioButtonSize
         {
             get => _imageSize;

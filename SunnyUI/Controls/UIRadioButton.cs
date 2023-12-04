@@ -24,6 +24,7 @@
  * 2022-12-21: V3.3.0 修复CheckedChanged事件
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-11-07: V3.5.2 增加修改图标大小
+ * 2023-12-04: V3.6.1 增加属性可修改图标大小
 ******************************************************************************/
 
 using System;
@@ -67,8 +68,8 @@ namespace Sunny.UI
             if (AutoSize && Dock == DockStyle.None)
             {
                 Size sf = TextRenderer.MeasureText(Text, Font);
-                int w = sf.Width + ImageSize + 3;
-                int h = Math.Max(ImageSize, sf.Height) + 2;
+                int w = sf.Width + RadioButtonSize + 3;
+                int h = Math.Max(RadioButtonSize, sf.Height) + 2;
                 if (Width != w) Width = w;
                 if (Height != h) Height = h;
             }
@@ -108,17 +109,8 @@ namespace Sunny.UI
 
         [DefaultValue(16)]
         [Description("图标大小"), Category("SunnyUI")]
-        [Browsable(false)]
+        [Browsable(true)]
         public int RadioButtonSize
-        {
-            get => ImageSize;
-            set => ImageSize = value;
-        }
-
-        [DefaultValue(16)]
-        [Description("按钮图片大小"), Category("SunnyUI")]
-        [Browsable(false)]
-        public int ImageSize
         {
             get => _imageSize;
             set
@@ -201,6 +193,7 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFill(Graphics g, GraphicsPath path)
         {
+            int ImageSize = RadioButtonSize;
             //图标
             float top = (Height - ImageSize) / 2.0f;
             float left = Text.IsValid() ? ImageInterval : (Width - ImageSize) / 2.0f;
