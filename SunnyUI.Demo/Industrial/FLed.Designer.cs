@@ -50,16 +50,18 @@ namespace Sunny.UI.Demo
             this.uiLine3 = new Sunny.UI.UILine();
             this.uiSignal1 = new Sunny.UI.UISignal();
             this.uiLedLabel4 = new Sunny.UI.UILedLabel();
-            this.uiLedLabel3 = new Sunny.UI.UILedLabel();
             this.uiLedLabel2 = new Sunny.UI.UILedLabel();
             this.uiLedLabel1 = new Sunny.UI.UILedLabel();
             this.uiLedLabel = new Sunny.UI.UILine();
+            this.uiDigitalLabel2 = new Sunny.UI.UIDigitalLabel();
+            this.uiDigitalLabel1 = new Sunny.UI.UIDigitalLabel();
+            this.uiLine4 = new Sunny.UI.UILine();
             this.SuspendLayout();
             // 
             // uiBattery6
             // 
             this.uiBattery6.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery6.Location = new System.Drawing.Point(301, 269);
+            this.uiBattery6.Location = new System.Drawing.Point(301, 364);
             this.uiBattery6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery6.Name = "uiBattery6";
             this.uiBattery6.Size = new System.Drawing.Size(48, 24);
@@ -69,7 +71,7 @@ namespace Sunny.UI.Demo
             // uiBattery5
             // 
             this.uiBattery5.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery5.Location = new System.Drawing.Point(246, 269);
+            this.uiBattery5.Location = new System.Drawing.Point(246, 364);
             this.uiBattery5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery5.Name = "uiBattery5";
             this.uiBattery5.Power = 75;
@@ -80,7 +82,7 @@ namespace Sunny.UI.Demo
             // uiBattery4
             // 
             this.uiBattery4.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery4.Location = new System.Drawing.Point(192, 269);
+            this.uiBattery4.Location = new System.Drawing.Point(192, 364);
             this.uiBattery4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery4.Name = "uiBattery4";
             this.uiBattery4.Power = 50;
@@ -91,7 +93,7 @@ namespace Sunny.UI.Demo
             // uiBattery3
             // 
             this.uiBattery3.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery3.Location = new System.Drawing.Point(138, 269);
+            this.uiBattery3.Location = new System.Drawing.Point(138, 364);
             this.uiBattery3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery3.Name = "uiBattery3";
             this.uiBattery3.Power = 25;
@@ -102,7 +104,7 @@ namespace Sunny.UI.Demo
             // uiBattery2
             // 
             this.uiBattery2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery2.Location = new System.Drawing.Point(84, 269);
+            this.uiBattery2.Location = new System.Drawing.Point(84, 364);
             this.uiBattery2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery2.Name = "uiBattery2";
             this.uiBattery2.Power = 1;
@@ -113,7 +115,7 @@ namespace Sunny.UI.Demo
             // uiBattery1
             // 
             this.uiBattery1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiBattery1.Location = new System.Drawing.Point(30, 269);
+            this.uiBattery1.Location = new System.Drawing.Point(30, 364);
             this.uiBattery1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiBattery1.Name = "uiBattery1";
             this.uiBattery1.Size = new System.Drawing.Size(48, 24);
@@ -122,8 +124,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 233);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine2.Location = new System.Drawing.Point(30, 328);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
             this.uiLine2.Size = new System.Drawing.Size(319, 20);
@@ -133,7 +137,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine7
             // 
+            this.uiLine7.BackColor = System.Drawing.Color.Transparent;
             this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine7.Location = new System.Drawing.Point(381, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -144,7 +150,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -162,7 +170,7 @@ namespace Sunny.UI.Demo
             this.uiLedStopwatch1.Name = "uiLedStopwatch1";
             this.uiLedStopwatch1.Size = new System.Drawing.Size(190, 34);
             this.uiLedStopwatch1.TabIndex = 61;
-            this.uiLedStopwatch1.Text = "00:06";
+            this.uiLedStopwatch1.Text = "12:50";
             // 
             // uiLedDisplay1
             // 
@@ -181,7 +189,7 @@ namespace Sunny.UI.Demo
             // uiSignal6
             // 
             this.uiSignal6.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiSignal6.Location = new System.Drawing.Point(591, 259);
+            this.uiSignal6.Location = new System.Drawing.Point(591, 354);
             this.uiSignal6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal6.Name = "uiSignal6";
             this.uiSignal6.Size = new System.Drawing.Size(35, 35);
@@ -192,7 +200,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiSignal5.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSignal5.Level = 4;
-            this.uiSignal5.Location = new System.Drawing.Point(550, 259);
+            this.uiSignal5.Location = new System.Drawing.Point(550, 354);
             this.uiSignal5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal5.Name = "uiSignal5";
             this.uiSignal5.Size = new System.Drawing.Size(35, 35);
@@ -203,7 +211,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiSignal4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSignal4.Level = 3;
-            this.uiSignal4.Location = new System.Drawing.Point(509, 259);
+            this.uiSignal4.Location = new System.Drawing.Point(509, 354);
             this.uiSignal4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal4.Name = "uiSignal4";
             this.uiSignal4.Size = new System.Drawing.Size(35, 35);
@@ -214,7 +222,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiSignal3.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSignal3.Level = 2;
-            this.uiSignal3.Location = new System.Drawing.Point(468, 259);
+            this.uiSignal3.Location = new System.Drawing.Point(468, 354);
             this.uiSignal3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal3.Name = "uiSignal3";
             this.uiSignal3.Size = new System.Drawing.Size(35, 35);
@@ -225,7 +233,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiSignal2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSignal2.Level = 1;
-            this.uiSignal2.Location = new System.Drawing.Point(427, 259);
+            this.uiSignal2.Location = new System.Drawing.Point(427, 354);
             this.uiSignal2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal2.Name = "uiSignal2";
             this.uiSignal2.Size = new System.Drawing.Size(35, 35);
@@ -234,8 +242,10 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
             this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiLine3.Location = new System.Drawing.Point(381, 233);
+            this.uiLine3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine3.Location = new System.Drawing.Point(381, 328);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
             this.uiLine3.Size = new System.Drawing.Size(319, 20);
@@ -247,7 +257,7 @@ namespace Sunny.UI.Demo
             // 
             this.uiSignal1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSignal1.Level = 0;
-            this.uiSignal1.Location = new System.Drawing.Point(386, 259);
+            this.uiSignal1.Location = new System.Drawing.Point(386, 354);
             this.uiSignal1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSignal1.Name = "uiSignal1";
             this.uiSignal1.Size = new System.Drawing.Size(35, 35);
@@ -260,7 +270,7 @@ namespace Sunny.UI.Demo
             this.uiLedLabel4.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLedLabel4.ForeColor = System.Drawing.Color.Lime;
             this.uiLedLabel4.IntervalOn = 3;
-            this.uiLedLabel4.Location = new System.Drawing.Point(517, 175);
+            this.uiLedLabel4.Location = new System.Drawing.Point(395, 175);
             this.uiLedLabel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLedLabel4.Name = "uiLedLabel4";
             this.uiLedLabel4.Size = new System.Drawing.Size(181, 35);
@@ -268,18 +278,6 @@ namespace Sunny.UI.Demo
             this.uiLedLabel4.StyleCustomMode = true;
             this.uiLedLabel4.TabIndex = 98;
             this.uiLedLabel4.Text = "36.1°C";
-            // 
-            // uiLedLabel3
-            // 
-            this.uiLedLabel3.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiLedLabel3.IntervalOn = 3;
-            this.uiLedLabel3.Location = new System.Drawing.Point(336, 175);
-            this.uiLedLabel3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLedLabel3.Name = "uiLedLabel3";
-            this.uiLedLabel3.Size = new System.Drawing.Size(150, 35);
-            this.uiLedLabel3.TabIndex = 97;
-            this.uiLedLabel3.Text = "999.99";
-            this.uiLedLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiLedLabel2
             // 
@@ -289,7 +287,7 @@ namespace Sunny.UI.Demo
             this.uiLedLabel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLedLabel2.Name = "uiLedLabel2";
             this.uiLedLabel2.Size = new System.Drawing.Size(116, 35);
-            this.uiLedLabel2.Style = Sunny.UI.UIStyle.Red;
+            this.uiLedLabel2.Style = Sunny.UI.UIStyle.Custom;
             this.uiLedLabel2.StyleCustomMode = true;
             this.uiLedLabel2.TabIndex = 96;
             this.uiLedLabel2.Text = "999.99";
@@ -308,7 +306,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLedLabel
             // 
+            this.uiLedLabel.BackColor = System.Drawing.Color.Transparent;
             this.uiLedLabel.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLedLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLedLabel.Location = new System.Drawing.Point(30, 139);
             this.uiLedLabel.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLedLabel.Name = "uiLedLabel";
@@ -317,13 +317,59 @@ namespace Sunny.UI.Demo
             this.uiLedLabel.Text = "UILedLabel （仅支持英文、标点符号、希腊字母）";
             this.uiLedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiDigitalLabel2
+            // 
+            this.uiDigitalLabel2.BackColor = System.Drawing.Color.Black;
+            this.uiDigitalLabel2.DecimalPlaces = 1;
+            this.uiDigitalLabel2.DigitalSize = 20;
+            this.uiDigitalLabel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiDigitalLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.uiDigitalLabel2.Location = new System.Drawing.Point(395, 269);
+            this.uiDigitalLabel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiDigitalLabel2.Name = "uiDigitalLabel2";
+            this.uiDigitalLabel2.Size = new System.Drawing.Size(208, 38);
+            this.uiDigitalLabel2.TabIndex = 108;
+            this.uiDigitalLabel2.Text = "uiDigitalLabel2";
+            this.uiDigitalLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.uiDigitalLabel2.Value = 6789.9D;
+            // 
+            // uiDigitalLabel1
+            // 
+            this.uiDigitalLabel1.BackColor = System.Drawing.Color.Black;
+            this.uiDigitalLabel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiDigitalLabel1.ForeColor = System.Drawing.Color.Lime;
+            this.uiDigitalLabel1.Location = new System.Drawing.Point(42, 269);
+            this.uiDigitalLabel1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiDigitalLabel1.Name = "uiDigitalLabel1";
+            this.uiDigitalLabel1.Size = new System.Drawing.Size(208, 42);
+            this.uiDigitalLabel1.TabIndex = 107;
+            this.uiDigitalLabel1.Text = "uiDigitalLabel1";
+            this.uiDigitalLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.uiDigitalLabel1.TextOffset = new System.Drawing.Point(6, 0);
+            this.uiDigitalLabel1.Value = -123.45D;
+            // 
+            // uiLine4
+            // 
+            this.uiLine4.BackColor = System.Drawing.Color.Transparent;
+            this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine4.Location = new System.Drawing.Point(30, 229);
+            this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine4.Name = "uiLine4";
+            this.uiLine4.Size = new System.Drawing.Size(668, 20);
+            this.uiLine4.TabIndex = 109;
+            this.uiLine4.Text = "UIDigitalLabel";
+            this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FLed
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 555);
+            this.Controls.Add(this.uiLine4);
+            this.Controls.Add(this.uiDigitalLabel2);
+            this.Controls.Add(this.uiDigitalLabel1);
             this.Controls.Add(this.uiLedLabel4);
-            this.Controls.Add(this.uiLedLabel3);
             this.Controls.Add(this.uiLedLabel2);
             this.Controls.Add(this.uiLedLabel1);
             this.Controls.Add(this.uiLedLabel);
@@ -376,9 +422,11 @@ namespace Sunny.UI.Demo
         private UILine uiLine3;
         private UISignal uiSignal1;
         private UILedLabel uiLedLabel4;
-        private UILedLabel uiLedLabel3;
         private UILedLabel uiLedLabel2;
         private UILedLabel uiLedLabel1;
         private UILine uiLedLabel;
+        private UIDigitalLabel uiDigitalLabel2;
+        private UIDigitalLabel uiDigitalLabel1;
+        private UILine uiLine4;
     }
 }

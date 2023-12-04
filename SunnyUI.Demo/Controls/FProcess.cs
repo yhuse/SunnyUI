@@ -18,7 +18,7 @@
         private void timer1_Tick(object sender, System.EventArgs e)
         {
             value++;
-            uiTrackBar2.Value = uiTrackBar1.Value = value;
+            uiTrackBar8.Value = uiTrackBar2.Value = uiTrackBar1.Value = value;
             uiProcessBar2.Value = uiProcessBar1.Value = value;
             uiRoundProcess4.Value = uiRoundProcess3.Value = uiProcessBar3.Value = uiRoundProcess2.Value = uiRoundProcess1.Value = value;
         }
@@ -30,7 +30,7 @@
 
         private void uiTrackBar4_ValueChanged(object sender, System.EventArgs e)
         {
-            uiTrackBar5.Value = uiTrackBar4.Value;
+            uiTrackBar7.Value = uiTrackBar5.Value = uiTrackBar4.Value;
         }
     }
 }
