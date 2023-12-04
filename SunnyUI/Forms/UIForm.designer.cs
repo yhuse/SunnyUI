@@ -40,23 +40,22 @@ namespace Sunny.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // UIForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 480);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "UIForm";
-            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "UIForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UIForm_FormClosing);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            ClientSize = new System.Drawing.Size(800, 480);
+            DoubleBuffered = true;
+            Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Name = "UIForm";
+            Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "UIForm";
+            FormClosing += UIForm_FormClosing;
+            ResumeLayout(false);
         }
 
         #endregion

@@ -51,6 +51,7 @@
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
  * 2023-11-05: V3.5.2 重构主题
  * 2023-11-19: V3.5.2 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭
+ * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
 ******************************************************************************/
 
 using System;
@@ -93,7 +94,6 @@ namespace Sunny.UI
             ControlBoxCloseFillHoverColor = UIStyles.Blue.FormControlBoxCloseFillHoverColor;
             rectColor = UIStyles.Blue.FormRectColor;
             ForeColor = UIStyles.Blue.FormForeColor;
-            BackColor = UIStyles.Blue.FormBackColor;
             titleColor = UIStyles.Blue.FormTitleColor;
             titleForeColor = UIStyles.Blue.FormTitleForeColor;
         }
@@ -1384,10 +1384,21 @@ namespace Sunny.UI
             }
         }
 
+        [Description("背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Control")]
+        public override Color BackColor
+        {
+            get => base.BackColor;
+            set => base.BackColor = value;
+        }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+
             if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
+            if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
+
             Render();
             CalcSystemBoxPos();
             SetRadius();

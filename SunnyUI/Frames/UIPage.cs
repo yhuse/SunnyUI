@@ -41,6 +41,7 @@
  * 2023-10-09: V3.5.0 增加一个在窗体显示后延时执行的事件
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-11-06: V3.5.2 重构主题
+ * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
 ******************************************************************************/
 
 using System;
@@ -99,7 +100,6 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
             SetDPIScale();
 
-            BackColor = UIStyles.Blue.PageBackColor;
             _rectColor = UIStyles.Blue.PageRectColor;
             ForeColor = UIStyles.Blue.PageForeColor;
             titleFillColor = UIStyles.Blue.PageTitleFillColor;
@@ -486,6 +486,14 @@ namespace Sunny.UI
             Init();
         }
 
+        [Description("背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "Control")]
+        public override Color BackColor
+        {
+            get => base.BackColor;
+            set => base.BackColor = value;
+        }
+
         private bool IsShown;
         private System.Windows.Forms.Timer AfterShownTimer;
         public event EventHandler AfterShown;
@@ -493,7 +501,10 @@ namespace Sunny.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+
             if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
+            if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
+
             IsShown = true;
 
             if (AfterShown != null)
