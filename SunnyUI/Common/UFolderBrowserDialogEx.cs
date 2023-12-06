@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-// ReSharper disable UnusedMember.Local
 
 namespace Sunny.UI
 {

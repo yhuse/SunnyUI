@@ -427,12 +427,10 @@ namespace Sunny.UI
             }
 
             // Simply copy the argb values array
-            // ReSharper disable once InconsistentNaming
             int* s0t = _scan0;
 
             fixed (int* source = colors)
             {
-                // ReSharper disable once InconsistentNaming
                 int* s0s = source;
 
                 int count = Width * Height;

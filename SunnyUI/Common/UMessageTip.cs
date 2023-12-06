@@ -1501,10 +1501,6 @@ namespace Sunny.UI
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool DestroyWindow(IntPtr hWnd);
 
-        // ReSharper disable NotAccessedField.Local
-        // ReSharper disable FieldCanBeMadeReadOnly.Local
-        // ReSharper disable MemberCanBePrivate.Local
-        // ReSharper disable UnusedField.Compiler
 #pragma warning disable 414
 #pragma warning disable 649
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -1559,10 +1555,6 @@ namespace Sunny.UI
             }
         }
 
-        // ReSharper restore UnusedField.Compiler
-        // ReSharper restore MemberCanBePrivate.Local
-        // ReSharper restore FieldCanBeMadeReadOnly.Local
-        // ReSharper restore NotAccessedField.Local
 #pragma warning restore 649
 #pragma warning restore 414
         #endregion

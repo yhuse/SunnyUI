@@ -25,7 +25,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-// ReSharper disable UnusedMember.Local
 #pragma warning disable 1591
 
 namespace Sunny.UI
