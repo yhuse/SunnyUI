@@ -30,6 +30,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-02: V3.3.9 渐变色增加方向选择
  * 2023-11-24: V3.6.2 修复LightStyle的文字颜色
+ * 2023-12-06: V3.6.2 修复LightStyle的背景颜色
 ******************************************************************************/
 
 using System;
@@ -94,6 +95,14 @@ namespace Sunny.UI
                     Invalidate();
                 }
             }
+        }
+
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        [Description("浅色背景"), Category("SunnyUI")]
+        public Color LightColor
+        {
+            get => plainColor;
+            set => SetPlainColor(value);
         }
 
         private bool autoSize;
