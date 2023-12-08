@@ -89,9 +89,12 @@ namespace Sunny.UI.Demo
                 uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], style.DisplayText(), style.Value());
             }
 
-            var node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
+            var node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "字体图标", 99999);
+            uiNavBar1.SetNodeSymbol(node, 558426);
+            node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
             uiNavBar1.SetNodeSymbol(node, 558295);
             //左侧导航主节点关联页面
+            uiNavMenu1.CreateNode(AddPage(new FSymbols()));
             uiNavMenu1.CreateNode(AddPage(new FColorful()));
 
             //直接增加一个页面，不在左侧列表显示
@@ -136,7 +139,7 @@ namespace Sunny.UI.Demo
             {
                 case 4:
                     UIStyle style = (UIStyle)pageIndex;
-                    if (style != UIStyle.Colorful)
+                    if (pageIndex < UIStyle.Colorful.Value())
                         StyleManager.Style = style;
                     else
                         uiNavMenu1.SelectPage(pageIndex);

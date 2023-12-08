@@ -23,6 +23,20 @@ namespace Sunny.UI
             LoadFont(fonttype, symbolType, columnCount);
         }
 
+        private Color selectedColor = Color.Red;
+        public Color SelectedColor
+        {
+            get => selectedColor;
+            set
+            {
+                if (selectedColor != value)
+                {
+                    selectedColor = value;
+                    Invalidate();
+                }
+            }
+        }
+
         public void LoadFont(Type fonttype, UISymbolType symbolType, int columnCount = 24)
         {
             ColumnCount = columnCount;
@@ -120,9 +134,9 @@ namespace Sunny.UI
 
                 Rectangle rect = new Rectangle(ic * symbolSize, ir * symbolSize, symbolSize, symbolSize);
                 SymbolValue symbol = Symbols[i];
-                Color color = Color.Black;
-                if (Filter.IsValid() && symbol.Name.ToUpper().Contains(Filter.ToUpper())) color = Color.Purple;
-                if (i == SelectedIndex) color = Color.Red;
+                Color color = ForeColor;
+                if (Filter.IsValid() && symbol.Name.ToUpper().Contains(Filter.ToUpper())) color = SelectedColor;
+                if (i == SelectedIndex) color = SelectedColor;
                 e.Graphics.DrawFontImage(symbol.Value, 28, color, rect);
             }
 
