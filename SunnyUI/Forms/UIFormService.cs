@@ -101,10 +101,10 @@ namespace Sunny.UI
         /// <summary>
         /// 设置进度提示窗步进值加1
         /// </summary>
-        public static void SetStatusFormStepIt(this Form owner)
+        public static void SetStatusFormStepIt(this Form owner, int step = 1)
         {
             if (!StatusFormService.IsRun) return;
-            StatusFormService.SetFormStepIt();
+            StatusFormService.SetFormStepIt(step);
         }
 
         /// <summary>
@@ -197,11 +197,11 @@ namespace Sunny.UI
             }
         }
 
-        public void SetFormStepIt()
+        public void SetFormStepIt(int step = 1)
         {
             try
             {
-                form?.StepIt();
+                form?.StepIt(step);
             }
             catch
             {
