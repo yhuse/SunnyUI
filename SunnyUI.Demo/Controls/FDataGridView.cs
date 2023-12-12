@@ -35,7 +35,7 @@ namespace Sunny.UI.Demo
             uiPagination1.TotalCount = dataList.Count;
 
             //设置分页控件每页数量
-            uiPagination1.PageSize = 50;
+            uiPagination1.PageSize = 20;
             uiDataGridView1.SelectIndexChange += uiDataGridView1_SelectIndexChange;
 
             //设置统计绑定的表格
@@ -79,7 +79,7 @@ namespace Sunny.UI.Demo
             //count：单页数据量，也就是PageSize值
 
             dataTable.Rows.Clear();
-            for (int i = (pageIndex - 1) * count; i < pageIndex * count + count; i++)
+            for (int i = (pageIndex - 1) * count; i < pageIndex * count; i++)
             {
                 if (i >= dataList.Count) break;
                 dataTable.Rows.Add(dataList[i].Column1, dataList[i].Column2, dataList[i].Column3, dataList[i].Column4);
