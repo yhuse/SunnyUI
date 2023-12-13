@@ -360,6 +360,8 @@ namespace Sunny.UI
             return CreateTabIfNotExists(new NavMenuItem("", guid));
         }
 
+        public event TabPageAndUIPageEventHandler TabPageAndUIPageChanged;
+
         public bool SelectPage(int pageIndex)
         {
             if (pageIndex < 0)
@@ -381,6 +383,7 @@ namespace Sunny.UI
                     if (tabControl.TabPages.Contains(item.Key))
                     {
                         tabControl.SelectTab(item.Key);
+                        TabPageAndUIPageChanged?.Invoke(this, new TabPageAndUIPageArgs(item.Key, item.Value.PageIndex, item.Value.PageGuid));
                         return true;
                     }
                 }
@@ -410,6 +413,7 @@ namespace Sunny.UI
                     if (tabControl.TabPages.Contains(item.Key))
                     {
                         tabControl.SelectTab(item.Key);
+                        TabPageAndUIPageChanged?.Invoke(this, new TabPageAndUIPageArgs(item.Key, item.Value.PageIndex, item.Value.PageGuid));
                         return true;
                     }
                 }
@@ -614,4 +618,21 @@ namespace Sunny.UI
             Text = text;
         }
     }
+
+    public class TabPageAndUIPageArgs : EventArgs
+    {
+        public TabPage TabPage { get; set; }
+
+        public int PageIndex { get; set; }
+        public Guid PageGuid { get; set; }
+
+        public TabPageAndUIPageArgs(TabPage tabPage, int pageIndex, Guid pageGuid)
+        {
+            TabPage = tabPage;
+            PageIndex = pageIndex;
+            PageGuid = pageGuid;
+        }
+    }
+
+    public delegate void TabPageAndUIPageEventHandler(object sender, TabPageAndUIPageArgs e);
 }

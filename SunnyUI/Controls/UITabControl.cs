@@ -32,6 +32,7 @@
  * 2022-06-19: V3.2.0 多页面框架关闭页面时执行UIPage的FormClosed事件
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-11-06: V3.5.2 重构主题
+ * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
 ******************************************************************************/
 
 using Sunny.UI.Win32;
@@ -67,6 +68,7 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
 
             Helper = new UITabControlHelper(this);
+            Helper.TabPageAndUIPageChanged += Helper_TabPageAndUIPageChanged;
             timer = new Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
@@ -78,6 +80,13 @@ namespace Sunny.UI
             tabSelectedHighColor = UIStyles.Blue.TabControlTabSelectedColor;
             _fillColor = UIStyles.Blue.TabControlBackColor;
         }
+
+        private void Helper_TabPageAndUIPageChanged(object sender, TabPageAndUIPageArgs e)
+        {
+            TabPageAndUIPageChanged?.Invoke(this, e);
+        }
+
+        public event TabPageAndUIPageEventHandler TabPageAndUIPageChanged;
 
         [Browsable(false), DefaultValue(null)]
         public IFrame Frame

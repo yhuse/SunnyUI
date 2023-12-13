@@ -52,6 +52,7 @@
  * 2023-11-05: V3.5.2 重构主题
  * 2023-11-19: V3.5.2 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
+ * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
 ******************************************************************************/
 
 using System;
@@ -2067,49 +2068,44 @@ namespace Sunny.UI
 
                 mainTabControl.PageAdded += DealPageAdded;
                 mainTabControl.PageRemoved += DealPageRemoved;
-                mainTabControl.Selecting += MainTabControl_Selecting;
-                mainTabControl.VisibleChanged += MainTabControl_VisibleChanged;
+                mainTabControl.Selected += MainTabControl_Selected;
+                mainTabControl.Deselected += MainTabControl_Deselected;
+                mainTabControl.TabPageAndUIPageChanged += MainTabControl_TabPageAndUIPageChanged;
             }
         }
 
-        private void MainTabControl_VisibleChanged(object sender, EventArgs e)
+        private void MainTabControl_TabPageAndUIPageChanged(object sender, TabPageAndUIPageArgs e)
         {
-            if (SelectedPage == null)
-            {
-                List<UIPage> pages = mainTabControl.SelectedTab.GetControls<UIPage>();
-                if (pages.Count == 1)
-                {
-                    SelectedPage = pages[0];
-                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
-                }
-                else
-                {
-                    SelectedPage = null;
-                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
-                }
-            }
-        }
-
-        private void MainTabControl_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            if (SelectedPage != null)
-                SelectedPage.Final();
-
             List<UIPage> pages = e.TabPage.GetControls<UIPage>();
-            if (pages.Count == 1)
-            {
-                SelectedPage = pages[0];
-                PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
-            }
-            else
-            {
-                SelectedPage = null;
-                PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
-            }
+            SelectedPage = pages.Count == 1 ? pages[0] : null;
         }
 
+        private void MainTabControl_Deselected(object sender, TabControlEventArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            if (pages.Count == 1) pages[0].Final();
+        }
+
+        private void MainTabControl_Selected(object sender, TabControlEventArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            SelectedPage = pages.Count == 1 ? pages[0] : null;
+        }
+
+        private UIPage selectedPage = null;
         [Browsable(false)]
-        public UIPage SelectedPage { get; private set; }
+        public UIPage SelectedPage
+        {
+            get => selectedPage;
+            private set
+            {
+                if (selectedPage != value)
+                {
+                    selectedPage = value;
+                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+                }
+            }
+        }
 
         public event OnUIPageChanged PageSelected;
 
