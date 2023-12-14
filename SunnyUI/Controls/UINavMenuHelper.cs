@@ -493,6 +493,7 @@ namespace Sunny.UI
                     if (page != null)
                     {
                         TabPage tabpage = page.TabPage;
+                        page.Final();
                         page.Dispose();
                         page = null;
 
