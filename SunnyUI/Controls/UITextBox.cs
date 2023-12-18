@@ -55,6 +55,7 @@
  * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-11-16: V3.5.2 重构主题
+ * 2023-12-18: V3.6.2 修复高度不随字体改变
 ******************************************************************************/
 
 using System;
@@ -677,10 +678,10 @@ namespace Sunny.UI
         {
             base.OnSizeChanged(e);
 
-            if (!NoNeedChange)
-            {
-                SizeChange();
-            }
+            //if (!NoNeedChange)
+            //{
+            SizeChange();
+            //}
 
             if (tipsBtn != null)
             {
@@ -707,7 +708,7 @@ namespace Sunny.UI
             }
         }
 
-        private bool NoNeedChange = false;
+        //private bool NoNeedChange = false;
 
         private void SizeChange()
         {
@@ -717,13 +718,13 @@ namespace Sunny.UI
 
             if (!multiline)
             {
-                if (Height < edit.Height + RectSize * 2 + 2)
-                {
-                    NoNeedChange = true;
-                    Height = edit.Height + RectSize * 2 + 2;
-                    edit.Top = (Height - edit.Height) / 2;
-                    NoNeedChange = false;
-                }
+                //if (Height < edit.Height + RectSize * 2 + 2)
+                //{
+                //    NoNeedChange = true;
+                //    Height = edit.Height + RectSize * 2 + 2;
+                //    edit.Top = (Height - edit.Height) / 2;
+                //    NoNeedChange = false;
+                //}
 
                 if (edit.Top != (Height - edit.Height) / 2 + 1)
                 {
