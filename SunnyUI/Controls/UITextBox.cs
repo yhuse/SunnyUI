@@ -56,6 +56,7 @@
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-11-16: V3.5.2 重构主题
  * 2023-12-18: V3.6.2 修复高度不随字体改变
+ * 2023-12-18: V3.6.2 修改显示按钮时Tips小红点的位置
 ******************************************************************************/
 
 using System;
@@ -682,11 +683,6 @@ namespace Sunny.UI
             //{
             SizeChange();
             //}
-
-            if (tipsBtn != null)
-            {
-                tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
-            }
         }
 
         public void SetScrollInfo()
@@ -757,6 +753,14 @@ namespace Sunny.UI
                 if (ShowButton)
                 {
                     edit.Width = edit.Width - btn.Width - 3;
+                }
+
+                if (tipsBtn != null)
+                {
+                    if (ShowButton)
+                        tipsBtn.Location = new System.Drawing.Point(Width - btn.Width - 10, 2);
+                    else
+                        tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
                 }
             }
             else
