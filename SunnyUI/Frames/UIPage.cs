@@ -42,6 +42,7 @@
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-11-06: V3.5.2 重构主题
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
+ * 2023-12-20: V3.6.2 调整AfterShow事件位置及逻辑
 ******************************************************************************/
 
 using System;
@@ -478,6 +479,12 @@ namespace Sunny.UI
         public virtual void Init()
         {
             Initialize?.Invoke(this, new EventArgs());
+            if (AfterShown != null)
+            {
+                AfterShownTimer = new System.Windows.Forms.Timer();
+                AfterShownTimer.Tick += AfterShownTimer_Tick;
+                AfterShownTimer.Start();
+            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -506,13 +513,6 @@ namespace Sunny.UI
             if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
 
             IsShown = true;
-
-            if (AfterShown != null)
-            {
-                AfterShownTimer = new System.Windows.Forms.Timer();
-                AfterShownTimer.Tick += AfterShownTimer_Tick;
-                AfterShownTimer.Start();
-            }
         }
 
         private void AfterShownTimer_Tick(object sender, EventArgs e)
@@ -523,7 +523,6 @@ namespace Sunny.UI
             AfterShownTimer = null;
 
             AfterShown?.Invoke(this, EventArgs.Empty);
-            AfterShown = null;
         }
 
         internal void ReLoad()
