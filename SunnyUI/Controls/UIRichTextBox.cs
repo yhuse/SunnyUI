@@ -23,6 +23,7 @@
  * 2022-03-14: V3.1.1 增加滚动条的颜色设置
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2023-11-13: V3.5.2 重构主题
+ * 2023-12-25: V3.6.2 增加Text的属性编辑器
 ******************************************************************************/
 
 using System;
@@ -416,6 +417,8 @@ namespace Sunny.UI
         }
 
         [Category("SunnyUI"), Browsable(true), DefaultValue(""), Description("文字")]
+        [Editor("System.ComponentModel.Design.MultilineStringEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+
         public override string Text
         {
             get => edit.Text;

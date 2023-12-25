@@ -57,6 +57,7 @@
  * 2023-11-16: V3.5.2 重构主题
  * 2023-12-18: V3.6.2 修复高度不随字体改变
  * 2023-12-18: V3.6.2 修改显示按钮时Tips小红点的位置
+ * 2023-12-25: V3.6.2 增加Text的属性编辑器
 ******************************************************************************/
 
 using System;
@@ -864,6 +865,7 @@ namespace Sunny.UI
         [Description("文本返回值"), Category("SunnyUI")]
         [Browsable(true)]
         [DefaultValue("")]
+        [Editor("System.ComponentModel.Design.MultilineStringEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
         public override string Text
         {
             get => edit.Text;
