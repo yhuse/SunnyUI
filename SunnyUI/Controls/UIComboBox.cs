@@ -38,6 +38,7 @@
  * 2023-06-28: V3.3.9 增加过滤时忽略大小写
  * 2023-07-03: V3.3.9 修改了几个对象的释放
  * 2023-08-11: V3.4.1 Items.Clear后，DropDownStyle为DropDown时，不清空Text
+ * 2023-12-26: V3.6.2 增加下拉界面的滚动条设置
 ******************************************************************************/
 
 using System;
@@ -78,6 +79,52 @@ namespace Sunny.UI
             fullControlSelect = true;
 
             CreateInstance();
+        }
+
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => ListBox.ScrollBarWidth;
+            set => ListBox.ScrollBarWidth = value;
+        }
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => ListBox.ScrollBarHandleWidth;
+            set => ListBox.ScrollBarHandleWidth = value;
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => ListBox.ScrollBarColor;
+            set => ListBox.ScrollBarColor = value;
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        public Color ScrollBarBackColor
+        {
+            get => ListBox.ScrollBarBackColor;
+            set => ListBox.ScrollBarBackColor = value;
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => ListBox.ScrollBarStyleInherited;
+            set => ListBox.ScrollBarStyleInherited = value;
         }
 
         [DefaultValue(false)]
