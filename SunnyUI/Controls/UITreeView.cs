@@ -35,6 +35,7 @@
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-07-02: V3.3.9 屏蔽DrawMode属性，默认为OwnerDrawAll
  * 2023-11-13: V3.5.2 重构主题
+ * 2024-01-01: V3.6.2 增加可修改滚动条颜色
 ******************************************************************************/
 
 using System;
@@ -94,6 +95,87 @@ namespace Sunny.UI
             view.AfterLabelEdit += View_AfterLabelEdit;
             view.MouseDoubleClick += View_MouseDoubleClick;
             view.MouseClick += View_MouseClick;
+        }
+
+        private Color scrollBarColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarColor
+        {
+            get => scrollBarColor;
+            set
+            {
+                scrollBarColor = value;
+                HBar.HoverColor = HBar.PressColor = HBar.ForeColor = value;
+                Bar.HoverColor = Bar.PressColor = Bar.ForeColor = value;
+                HBar.Style = Bar.Style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarRectColor = Color.FromArgb(80, 160, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条边框颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ScrollBarRectColor
+        {
+            get => scrollBarRectColor;
+            set
+            {
+                scrollBarRectColor = value;
+                Bar.RectColor = value;
+                HBar.Style = Bar.Style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        private Color scrollBarBackColor = Color.FromArgb(243, 249, 255);
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("滚动条背景颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "243, 249, 255")]
+        public Color ScrollBarBackColor
+        {
+            get => scrollBarBackColor;
+            set
+            {
+                scrollBarBackColor = value;
+                HBar.FillColor = value;
+                Bar.FillColor = value;
+                HBar.Style = Bar.Style = UIStyle.Custom;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ScrollBarStyleInherited
+        {
+            get => HBar != null && HBar.Style == UIStyle.Inherited;
+            set
+            {
+                if (value)
+                {
+                    if (HBar != null) HBar.Style = UIStyle.Inherited;
+                    if (Bar != null) Bar.Style = UIStyle.Inherited;
+
+                    scrollBarColor = UIStyles.Blue.GridBarForeColor;
+                    scrollBarBackColor = UIStyles.Blue.GridBarFillColor;
+                    scrollBarRectColor = Bar.RectColor = UIStyles.Blue.RectColor;
+                }
+
+            }
         }
 
         public override void SetDPIScale()
@@ -318,6 +400,10 @@ namespace Sunny.UI
                 Bar.ForeColor = uiColor.TreeViewBarForeColor;
                 Bar.HoverColor = uiColor.ButtonFillHoverColor;
                 Bar.PressColor = uiColor.ButtonFillPressColor;
+
+                scrollBarRectColor = Bar.RectColor = uiColor.RectColor;
+                scrollBarColor = uiColor.GridBarForeColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
             }
 
             if (HBar != null)
@@ -326,6 +412,8 @@ namespace Sunny.UI
                 HBar.ForeColor = uiColor.TreeViewBarForeColor;
                 HBar.HoverColor = uiColor.ButtonFillHoverColor;
                 HBar.PressColor = uiColor.ButtonFillPressColor;
+                scrollBarColor = uiColor.GridBarForeColor;
+                scrollBarBackColor = uiColor.GridBarFillColor;
             }
         }
 
