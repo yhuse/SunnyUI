@@ -1,5 +1,23 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2024\-01\-01 V3.6.3      
+\+ Demo增加字体图标界面    
+\* UIButton: 修复LightStyle的背景颜色    
+\* ShowStatusForm: 增加可设置进度值    
+\* UIForm: 优化UIPage的Init和Final加载逻辑    
+\* UITabControl: 优化UIPage的Init和Final加载逻辑    
+\* UIForm: RemovePage时调用Final    
+\* UITextBox: 修复高度不随字体改变    
+\* UIDropControl: 修复高度不随字体改变    
+\* UITextBox: 修改显示按钮时Tips小红点的位置    
+\* UIPage: 调整AfterShow事件位置及逻辑    
+\* UIRichTextBox: 增加Text的属性编辑器    
+\* UITextBox: 增加Text的属性编辑器    
+\* UIComboBox: 增加下拉界面的滚动条设置    
+\* UIIntegerUpDown: 修复设置Style时按钮颜色不一致    
+\* UIDoubleUpDown: 修复设置Style时按钮颜色不一致    
+\* UITreeView: 增加可修改滚动条颜色    
+    
 #### 2023\-12\-04 V3.6.2    
 \+ UIRuler: 增加刻度尺控件    
 \+ UIThermometer: 增加温度计控件    
