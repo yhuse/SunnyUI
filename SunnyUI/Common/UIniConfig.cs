@@ -132,7 +132,9 @@ namespace Sunny.UI
             }
 
             ConfigHelper.SaveConfigValue(Current, idents);
-            List<string> strs = new List<string> { ";<!--" + Description + "-->", "" };
+            StringBuilder strs = new StringBuilder();
+            strs.AppendLine(";<?ini version=\"" + UIGlobal.Version + "\" encoding=\"" + IniEncoding.BodyName + "\"?>");
+            strs.AppendLine("");
             Dictionary<string, List<Ident>> listidents = new Dictionary<string, List<Ident>>();
             foreach (var ident in idents.Values)
             {
@@ -148,7 +150,7 @@ namespace Sunny.UI
 
             foreach (var values in listidents)
             {
-                strs.Add("[" + values.Key + "]");
+                strs.AppendLine("[" + values.Key + "]");
 
                 SortedList<int, Ident> slist = new SortedList<int, Ident>();
                 foreach (var ident in values.Value)
@@ -160,28 +162,36 @@ namespace Sunny.UI
                 {
                     if (!ident.Description.IsNullOrEmpty())
                     {
-                        strs.Add(";<!--" + ident.Description + "-->");
+                        strs.AppendLine(";<!--" + ident.Description + "-->");
                     }
 
                     if (ident.IsList)
                     {
                         for (int i = 0; i < ident.Values.Count; i++)
                         {
-                            strs.Add("Value" + i + "=" + ident.Values[i]);
+                            strs.AppendLine("Value" + i + "=" + ident.Values[i]);
                         }
                     }
                     else
                     {
-                        strs.Add(ident.Key + "=" + ident.Value);
+                        strs.AppendLine(ident.Key + "=" + ident.Value);
                     }
                 }
 
-                strs.Add("");
+                strs.AppendLine("");
             }
 
             listidents.Clear();
             DirEx.CreateDir(Path.GetDirectoryName(filename));
-            File.WriteAllLines(filename, strs.ToArray(), IniEncoding);
+            string filetmp = filename + "." + RandomEx.RandomPureChar(3);
+            File.Delete(filetmp);
+            StreamWriter sw = new StreamWriter(filetmp);
+            sw.WriteLine(strs.ToString());
+            sw.Flush();
+            sw.Close();
+            sw.Dispose();
+            File.Delete(filename);
+            File.Move(filetmp, filename);
         }
 
         #endregion 加载
