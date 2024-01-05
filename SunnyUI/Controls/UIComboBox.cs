@@ -377,7 +377,6 @@ namespace Sunny.UI
         private void Edit_TextChanged(object sender, EventArgs e)
         {
             TextChanged?.Invoke(this, e);
-            if (DropDownStyle == UIDropDownStyle.DropDownList) return;
 
             if (!ShowFilter)
             {
@@ -396,6 +395,7 @@ namespace Sunny.UI
             }
             else
             {
+                if (DropDownStyle == UIDropDownStyle.DropDownList) return;
                 if (edit.Focused && Text.IsValid())
                 {
                     ShowDropDownFilter();
