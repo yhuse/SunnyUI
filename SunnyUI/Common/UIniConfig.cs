@@ -185,7 +185,7 @@ namespace Sunny.UI
             DirEx.CreateDir(Path.GetDirectoryName(filename));
             string filetmp = filename + "." + RandomEx.RandomPureChar(3);
             File.Delete(filetmp);
-            StreamWriter sw = new StreamWriter(filetmp);
+            StreamWriter sw = new StreamWriter(filetmp, false, IniEncoding);
             sw.WriteLine(strs.ToString());
             sw.Flush();
             sw.Close();
