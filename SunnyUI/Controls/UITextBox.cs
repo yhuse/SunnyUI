@@ -58,6 +58,7 @@
  * 2023-12-18: V3.6.2 修复高度不随字体改变
  * 2023-12-18: V3.6.2 修改显示按钮时Tips小红点的位置
  * 2023-12-25: V3.6.2 增加Text的属性编辑器
+ * 2024-01-13: V3.6.3 调整Radius时，自动调整文本框的位置
 ******************************************************************************/
 
 using System;
@@ -705,7 +706,11 @@ namespace Sunny.UI
             }
         }
 
-        //private bool NoNeedChange = false;
+        protected override void OnRadiusChanged(int value)
+        {
+            base.OnRadiusChanged(value);
+            SizeChange();
+        }
 
         private void SizeChange()
         {
@@ -728,40 +733,44 @@ namespace Sunny.UI
                     edit.Top = (Height - edit.Height) / 2 + 1;
                 }
 
+                int added = Radius <= 5 ? 0 : (Radius - 5) / 2;
+
                 if (icon == null && Symbol == 0)
                 {
                     edit.Left = 4;
                     edit.Width = Width - 8;
+                    edit.Left = edit.Left + added;
+                    edit.Width = edit.Width - added * 2;
                 }
                 else
                 {
                     if (icon != null)
                     {
                         edit.Left = 4 + iconSize;
-                        edit.Width = Width - 8 - iconSize;
+                        edit.Width = Width - 8 - iconSize - added;
                     }
                     else if (Symbol > 0)
                     {
                         edit.Left = 4 + SymbolSize;
-                        edit.Width = Width - 8 - SymbolSize;
+                        edit.Width = Width - 8 - SymbolSize - added;
                     }
                 }
 
-                btn.Left = Width - 2 - ButtonWidth;
+                btn.Left = Width - 2 - ButtonWidth - added;
                 btn.Top = 2;
                 btn.Height = Height - 4;
 
                 if (ShowButton)
                 {
-                    edit.Width = edit.Width - btn.Width - 3;
+                    edit.Width = edit.Width - btn.Width - 3 - added;
                 }
 
                 if (tipsBtn != null)
                 {
                     if (ShowButton)
-                        tipsBtn.Location = new System.Drawing.Point(Width - btn.Width - 10, 2);
+                        tipsBtn.Location = new System.Drawing.Point(Width - btn.Width - 10 - added, 2);
                     else
-                        tipsBtn.Location = new System.Drawing.Point(Width - 8, 2);
+                        tipsBtn.Location = new System.Drawing.Point(Width - 8 - added, 2);
                 }
             }
             else
