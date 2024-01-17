@@ -29,6 +29,7 @@
  * 2023-01-11: V3.3.1 增加AutoScroll属性
  * 2023-01-11: V3.3.1 修复只显示水平滚动条时，鼠标滚轮滚动水平滚动条不动的问题
  * 2023-11-05: V3.5.2 重构主题
+ * 2024-01-17: V3.6.3 重写ScrollControlIntoView函数
 ******************************************************************************/
 
 using System;
@@ -598,6 +599,11 @@ namespace Sunny.UI
                 else
                     HBar.Width = Width - added * 2;
             }
+        }
+
+        public new void ScrollControlIntoView(Control activeControl)
+        {
+            Panel.ScrollControlIntoView(activeControl);
         }
     }
 }
