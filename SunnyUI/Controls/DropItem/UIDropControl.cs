@@ -31,6 +31,7 @@
  * 2023-10-25: V3.5.1 修复在某些字体不显示下划线的问题
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-12-18: V3.6.2 修复高度不随字体改变
+ * 2024-01-19: V3.6.3 下拉按钮可修改大小及位置
 ******************************************************************************/
 
 using System;
@@ -445,16 +446,27 @@ namespace Sunny.UI
                     g.DrawString(Watermark, Font, WatermarkColor, ClientRectangle, TextAlignment, 5);
             }
 
-            g.FillRectangle(GetFillColor(), new Rectangle(Width - 27, Radius / 2, 26, Height - Radius));
+            g.FillRectangle(GetFillColor(), new Rectangle(Width - Padding.Right, 2, Padding.Right - 1, Height - 4));
             Color color = GetRectColor();
             int symbol = dropSymbol;
             if (NeedDrawClearButton)
             {
-                g.DrawFontImage(261527, 24, color, new Rectangle(Width - 28, 0, 28, Height), -1, 1);
+                g.DrawFontImage(261527, SymbolSize, color, new Rectangle(Width - Padding.Right, 0, Padding.Right, Height), -1, 1);
             }
             else
             {
-                g.DrawFontImage(symbol, 24, color, new Rectangle(Width - 28, 0, 28, Height), 1, 0);
+                g.DrawFontImage(symbol, SymbolSize, color, new Rectangle(Width - Padding.Right, 0, Padding.Right, Height), 1, 0);
+            }
+        }
+
+        private int symbolSize = 24;
+        public int SymbolSize
+        {
+            get => symbolSize;
+            set
+            {
+                symbolSize = value;
+                Invalidate();
             }
         }
 
@@ -605,7 +617,7 @@ namespace Sunny.UI
 
                 DropDown?.Invoke(this, e);
 
-                if (fullControlSelect || MouseLocation.X > Width - 30)
+                if (fullControlSelect || MouseLocation.X > Width - Padding.Right)
                 {
                     ButtonClick?.Invoke(this, e);
                 }
