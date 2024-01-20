@@ -116,11 +116,19 @@ namespace Sunny.UI
         /// <summary>
         /// 背景色
         /// </summary>
-        public Color BackColor;
+        public Color BackColor { get; set; }
 
         /// <summary>
         /// 前景色
         /// </summary>
-        public Color ForeColor;
+        public Color ForeColor { get; set; }
+
+        public Color HoverColor { get; set; }
+
+        public Color SelectedColor { get; set; }
+
+        public Color SelectedForeColor { get; set; }
+
+        public bool HaveHoveColor { get; set; } = false;
     }
 }

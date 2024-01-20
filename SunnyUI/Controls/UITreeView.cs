@@ -36,6 +36,7 @@
  * 2023-07-02: V3.3.9 屏蔽DrawMode属性，默认为OwnerDrawAll
  * 2023-11-13: V3.5.2 重构主题
  * 2024-01-01: V3.6.2 增加可修改滚动条颜色
+ * 2024-01-20: V3.6.3 自定义行颜色，可通过代码给颜色值，SetNodePainter，增加选中颜色
 ******************************************************************************/
 
 using System;
@@ -265,16 +266,31 @@ namespace Sunny.UI
         public void SetNodePainter(TreeNode node, Color backColor, Color foreColor)
         {
             if (view.IsNull()) return;
-            if (view.Painter.ContainsKey(node))
+            if (view.Painter.NotContainsKey(node))
             {
-                view.Painter[node].BackColor = backColor;
-                view.Painter[node].ForeColor = foreColor;
-            }
-            else
-            {
-                view.Painter.TryAdd(node, new UITreeNodePainter() { BackColor = backColor, ForeColor = foreColor });
+                view.Painter.TryAdd(node, new UITreeNodePainter());
             }
 
+            view.Painter[node].BackColor = backColor;
+            view.Painter[node].ForeColor = foreColor;
+            view.Painter[node].HaveHoveColor = false;
+            view.Invalidate();
+        }
+
+        public void SetNodePainter(TreeNode node, Color backColor, Color foreColor, Color hoverColor, Color selectedColor, Color selectedForeColor)
+        {
+            if (view.IsNull()) return;
+            if (view.Painter.NotContainsKey(node))
+            {
+                view.Painter.TryAdd(node, new UITreeNodePainter());
+            }
+
+            view.Painter[node].BackColor = backColor;
+            view.Painter[node].ForeColor = foreColor;
+            view.Painter[node].HoverColor = hoverColor;
+            view.Painter[node].SelectedColor = selectedColor;
+            view.Painter[node].SelectedForeColor = selectedForeColor;
+            view.Painter[node].HaveHoveColor = true;
             view.Invalidate();
         }
 
@@ -1155,29 +1171,43 @@ namespace Sunny.UI
                         var checkboxColor = ForeColor;
                         if (e.Node != null)
                         {
-                            if (Painter.ContainsKey(e.Node))
+                            if (e.Node == SelectedNode)
                             {
-                                e.Graphics.FillRectangle(Painter[e.Node].BackColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                e.Graphics.DrawString(e.Node.Text, Font, Painter[e.Node].ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
+                                Color sc = SelectedColor;
+                                Color scf = SelectedForeColor;
+                                if (Painter.ContainsKey(e.Node) && Painter[e.Node].HaveHoveColor)
+                                {
+                                    sc = Painter[e.Node].SelectedColor;
+                                    scf = Painter[e.Node].SelectedForeColor;
+                                }
+
+                                e.Graphics.FillRectangle(sc, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, scf, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
+                                checkboxColor = SelectedForeColor;
+                            }
+                            else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
+                            {
+                                Color hc = HoverColor;
+                                if (Painter.ContainsKey(e.Node) && Painter[e.Node].HaveHoveColor)
+                                {
+                                    hc = Painter[e.Node].HoverColor;
+                                }
+
+                                e.Graphics.FillRectangle(hc, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                             }
                             else
                             {
-                                if (e.Node == SelectedNode)
+                                Color fc = FillColor;
+                                Color fcf = ForeColor;
+                                if (Painter.ContainsKey(e.Node))
                                 {
-                                    e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
-                                    checkboxColor = SelectedForeColor;
+                                    fc = Painter[e.Node].BackColor;
+                                    fcf = Painter[e.Node].ForeColor;
                                 }
-                                else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
-                                {
-                                    e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
-                                }
-                                else
-                                {
-                                    e.Graphics.FillRectangle(FillColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
-                                }
+
+                                e.Graphics.FillRectangle(fc, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                                e.Graphics.DrawString(e.Node.Text, Font, fcf, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), ContentAlignment.MiddleLeft);
                             }
 
                             if (haveImage)
