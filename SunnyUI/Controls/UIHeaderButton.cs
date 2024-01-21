@@ -27,6 +27,7 @@
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-05-16: V3.3.6 重构DrawFontImage函数
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
+ * 2024-01-21: V3.6.3 增加分组编号
 ******************************************************************************/
 
 using System;
@@ -188,7 +189,8 @@ namespace Sunny.UI
             List<UIHeaderButton> buttons = Parent.GetControls<UIHeaderButton>();
             foreach (var button in buttons)
             {
-                button.Selected = false;
+                if (button.GroupIndex == GroupIndex)
+                    button.Selected = false;
             }
 
             if (ShowSelected)
@@ -200,6 +202,10 @@ namespace Sunny.UI
 
             base.OnClick(e);
         }
+
+        [DefaultValue(0)]
+        [Description("分组编号"), Category("SunnyUI")]
+        public int GroupIndex { get; set; }
 
         [DefaultValue(true)]
         [Description("显示选中状态"), Category("SunnyUI")]
