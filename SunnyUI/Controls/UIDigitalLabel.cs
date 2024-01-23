@@ -17,6 +17,7 @@
  * 创建日期: 2023-12-01
  *
  * 2023-12-01: V3.6.1 增加文件说明
+ * 2024-01-23: V3.6.3 更新绘制
 ******************************************************************************/
 
 /******************************************************************************
@@ -44,7 +45,7 @@ namespace Sunny.UI
         {
             SetStyleFlags();
             Size = new Size(208, 42);
-            TextAlign = ContentAlignment.MiddleRight;
+            TextAlign = HorizontalAlignment.Right;
             ShowText = ShowRect = ShowFill = false;
             ForeColor = Color.Lime;
             BackColor = Color.Black;
@@ -101,12 +102,43 @@ namespace Sunny.UI
         /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            //e.Graphics.Clear(FillColor);
+            using Font font = DigitalFont.Instance.GetFont(DigitalSize);
+            using Brush br = new SolidBrush(ForeColor);
 
-            using (Font font = DigitalFont.Instance.GetFont(DigitalSize))
+            string text = Value.ToString("F" + DecimalPlaces);
+            SizeF sf = e.Graphics.MeasureString(text, font);
+            float y = (Height - sf.Height) / 2.0f + 1 + Padding.Top;
+            float x = Padding.Left;
+            switch (TextAlign)
             {
-                string text = Value.ToString("F" + DecimalPlaces);
-                e.Graphics.DrawString(text, font, ForeColor, new Rectangle(0, 0, Width, Height), TextAlign, TextOffset.X, TextOffset.Y);
+                case HorizontalAlignment.Right:
+                    x = Width - sf.Width - Padding.Right;
+                    break;
+                case HorizontalAlignment.Center:
+                    x = (Width - sf.Width) / 2.0f;
+                    break;
+            }
+
+            e.Graphics.DrawString(text, font, br, x, y);
+        }
+
+        private HorizontalAlignment textAlign = HorizontalAlignment.Right;
+
+        /// <summary>
+        /// 文字对齐方向
+        /// </summary>
+        [Description("文字对齐方向"), Category("SunnyUI")]
+        [DefaultValue(HorizontalAlignment.Right)]
+        public new HorizontalAlignment TextAlign
+        {
+            get => textAlign;
+            set
+            {
+                if (textAlign != value)
+                {
+                    textAlign = value;
+                    Invalidate();
+                }
             }
         }
 
