@@ -136,6 +136,18 @@ namespace Sunny.UI.Win32
 
         [DllImport("user32.dll")]
         public static extern bool SetProcessDPIAware();
+
+        [DllImport("user32.dll", SetLastError = true, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool AdjustWindowRectEx(ref RECT lpRect, int dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, int dwExStyle);
+
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NCCALCSIZE_PARAMS
+    {
+        public RECT rgrc0, rgrc1, rgrc2;
+        public WINDOWPOS lppos;
     }
 
     public class Dwm
@@ -155,6 +167,14 @@ namespace Sunny.UI.Win32
             public int rightWidth;
             public int topHeight;
             public int bottomHeight;
+
+            public MARGINS(int left, int right, int top, int bottom)
+            {
+                leftWidth = left;
+                rightWidth = right;
+                topHeight = top;
+                bottomHeight = bottom;
+            }
         }
     }
 
