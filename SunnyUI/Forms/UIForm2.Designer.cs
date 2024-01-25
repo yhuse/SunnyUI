@@ -13,6 +13,16 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            this.UnRegister();
+
+            if (hotKeys != null)
+            {
+                foreach (var hotKey in hotKeys.Values)
+                {
+                    Win32.User.UnregisterHotKey(System.IntPtr.Zero, hotKey.id);
+                }
+            }
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -35,6 +45,7 @@
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 450);
+            Icon = Sunny.UI.Properties.Resources.SunnyUI;
             Name = "UIForm2";
             Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             Text = "UIForm2";

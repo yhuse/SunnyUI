@@ -946,22 +946,6 @@ namespace Sunny.UI
             get; set;
         }
 
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-            IsActive = true;
-            Invalidate();
-        }
-
-        protected override void OnDeactivate(EventArgs e)
-        {
-            base.OnDeactivate(e);
-            IsActive = false;
-            Invalidate();
-        }
-
-        protected bool IsActive;
-
         /// <summary>
         /// 重载绘图
         /// </summary>

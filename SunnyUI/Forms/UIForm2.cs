@@ -1,5 +1,28 @@
-﻿using Sunny.UI.Win32;
+﻿/******************************************************************************
+ * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+ * CopyRight (C) 2012-2023 ShenYongHua(沈永华).
+ * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+ *
+ * Blog:   https://www.cnblogs.com/yhuse
+ * Gitee:  https://gitee.com/yhuse/SunnyUI
+ * GitHub: https://github.com/yhuse/SunnyUI
+ *
+ * SunnyUI.dll can be used for free under the GPL-3.0 license.
+ * If you use this code, please keep this note.
+ * 如果您使用此代码，请保留此说明。
+ ******************************************************************************
+ * 文件名称: UIForm2.cs
+ * 文件说明: 窗体基类
+ * 当前版本: V3.6
+ * 创建日期: 2024-01-20
+ *
+ * 2024-01-20: V3.6.3 增加文件说明
+ * 2024-01-25: V3.6.3 增加主题等
+******************************************************************************/
+
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
@@ -11,13 +34,18 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public partial class UIForm2 : Form
+    public partial class UIForm2 : Form, IStyleInterface, ITranslate, IFrame
     {
         public UIForm2()
         {
             InitializeComponent();
 
-            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.DoubleBuffer, true);
+            this.Register();
+
+            SetStyle(ControlStyles.UserPaint |
+                ControlStyles.DoubleBuffer |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
 
             Version = UIGlobal.Version;
@@ -31,6 +59,203 @@ namespace Sunny.UI
             ForeColor = UIStyles.Blue.FormForeColor;
             titleColor = UIStyles.Blue.FormTitleColor;
             titleForeColor = UIStyles.Blue.FormTitleForeColor;
+        }
+
+        public readonly Guid Guid = Guid.NewGuid();
+
+        public void Translate()
+        {
+            List<Control> controls = this.GetInterfaceControls("ITranslate");
+            foreach (var control in controls)
+            {
+                if (control is ITranslate item)
+                {
+                    item.Translate();
+                }
+            }
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+
+            if (ShowTitle && !AllowAddControlOnTitle && e.Control.Top < TitleHeight)
+            {
+                e.Control.Top = Padding.Top;
+            }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            Invalidate();
+        }
+
+        protected override void OnLocationChanged(EventArgs e)
+        {
+            base.OnLocationChanged(e);
+            List<UIPage> pages = this.GetControls<UIPage>(true);
+            foreach (var page in pages)
+            {
+                page.ParentLocation = Location;
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            if (InControlBox || InMaxBox || InMinBox || InExtendBox) return;
+            if (!ShowTitle || e.Y > Padding.Top)
+                base.OnMouseDoubleClick(e);
+        }
+
+        /// <summary>
+        /// 是否屏蔽Alt+F4
+        /// </summary>
+        [Description("是否屏蔽Alt+F4"), Category("Key")]
+        [DefaultValue(false)]
+        public bool IsForbidAltF4
+        {
+            get; set;
+        }
+
+        [Description("使用Esc键关闭窗口"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool EscClose { get; set; } = false;
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            this.HideComboDropDown();
+        }
+
+        /// <summary>
+        /// Does the escape.
+        /// </summary>
+        protected virtual void DoEsc()
+        {
+            if (EscClose)
+                Close();
+        }
+
+        protected virtual void DoEnter()
+        {
+        }
+
+        /// <summary>
+        /// 快捷键
+        /// </summary>
+        /// <param name="msg">通过引用传递的 <see cref="T:System.Windows.Forms.Message" />，它表示要处理的 Win32 消息。</param>
+        /// <param name="keyData"><see cref="T:System.Windows.Forms.Keys" /> 值之一，它表示要处理的键。</param>
+        /// <returns>如果控件处理并使用击键，则为 true；否则为 false，以允许进一步处理。</returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            int num = 256;
+            int num2 = 260;
+            if (msg.Msg == num | msg.Msg == num2)
+            {
+                if (keyData == (Keys.Alt | Keys.F4) && IsForbidAltF4)
+                {
+                    //屏蔽Alt+F4
+                    return true;
+                }
+
+                if (keyData == Keys.Escape)
+                {
+                    DoEsc();
+                }
+
+                if (keyData == Keys.Enter)
+                {
+                    DoEnter();
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);   //其他键按默认处理
+        }
+
+        /// <summary>
+        /// 通过Windows的API控制窗体的拖动
+        /// </summary>
+        public static void MousePressMove(IntPtr handle)
+        {
+            Win32.User.ReleaseCapture();
+            Win32.User.SendMessage(handle, Win32.User.WM_SYSCOMMAND, Win32.User.SC_MOVE + Win32.User.HTCAPTION, 0);
+        }
+
+        /// <summary>
+        /// 在构造函数中调用设置窗体移动
+        /// </summary>
+        /// <param name="cs">The cs.</param>
+        protected void AddMousePressMove(params Control[] cs)
+        {
+            foreach (Control ctrl in cs)
+            {
+                if (ctrl != null && !ctrl.IsDisposed)
+                {
+                    ctrl.MouseDown += CtrlMouseDown;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the c control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
+        private void CtrlMouseDown(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                return;
+            }
+
+            if (sender == this)
+            {
+                if (FormBorderStyle == FormBorderStyle.None && e.Y <= titleHeight && e.X < ControlBoxLeft)
+                {
+                    MousePressMove(Handle);
+                }
+            }
+            else
+            {
+                MousePressMove(Handle);
+            }
+        }
+
+        [Description("窗体关闭时提示文字，为空则不提示"), Category("SunnyUI"), DefaultValue(null)]
+        public string CloseAskString
+        {
+            get; set;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (CloseAskString.IsValid())
+            {
+                if (!this.ShowAskDialog(CloseAskString, false))
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                base.OnFormClosing(e);
+            }
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+
+            if (MainTabControl != null)
+            {
+                foreach (var item in MainTabControl.GetControls<UIPage>(true))
+                {
+                    item.Final();
+                    item.Close();
+                    item.Dispose();
+                }
+            }
         }
 
         [Browsable(false)]
@@ -403,6 +628,7 @@ namespace Sunny.UI
         {
             base.OnSizeChanged(e);
             CalcSystemBoxPos();
+            Invalidate();
         }
 
         /// <summary>
@@ -481,7 +707,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 重载鼠标按下事件f
+        /// 重载鼠标按下事件
         /// </summary>
         /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
@@ -626,26 +852,6 @@ namespace Sunny.UI
         public event EventHandler RectColorChanged;
 
         /// <summary>
-        /// 是否重绘边框样式
-        /// </summary>
-        private bool _showRect = true;
-
-        /// <summary>
-        /// 是否显示边框
-        /// </summary>
-        [Description("是否显示边框"), Category("SunnyUI")]
-        [DefaultValue(true)]
-        public bool ShowRect
-        {
-            get => _showRect;
-            set
-            {
-                _showRect = value;
-                Invalidate();
-            }
-        }
-
-        /// <summary>
         /// 重载绘图
         /// </summary>
         /// <param name="e">绘图参数</param>
@@ -662,24 +868,6 @@ namespace Sunny.UI
             {
                 e.Graphics.FillRectangle(titleColor, 0, 0, Width, TitleHeight);
                 e.Graphics.DrawLine(RectColor, 0, titleHeight, Width, titleHeight);
-            }
-
-            if (ShowRect)
-            {
-                Point[] points = new[]
-                    {
-                        new Point(0, 0),
-                        new Point(Width - 1, 0),
-                        new Point(Width - 1, Height - 1),
-                        new Point(0, Height - 1),
-                        new Point(0, 0)
-                    };
-
-                e.Graphics.DrawLines(rectColor, points);
-                e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, 1), new Point(1, 2));
-                e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(2, Height - 1 - 1), new Point(1, Height - 1 - 2));
-                e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, 1), new Point(Width - 1 - 1, 2));
-                e.Graphics.DrawLine(Color.FromArgb(120, rectColor), new Point(Width - 1 - 2, Height - 1 - 1), new Point(Width - 1 - 1, Height - 1 - 2));
             }
 
             if (!ShowTitle)
@@ -844,7 +1032,7 @@ namespace Sunny.UI
             return image;
         }
 
-        private bool showTitleIcon;
+        private bool showTitleIcon = false;
 
         [Description("显示标题栏图标"), Category("SunnyUI")]
         [DefaultValue(false)]
@@ -883,7 +1071,7 @@ namespace Sunny.UI
         {
             var screenRect = ClientRectangle;
             screenRect.Offset(-Bounds.Left, -Bounds.Top);
-            var rect = new RECT(screenRect.Left, screenRect.Top, screenRect.Right, screenRect.Bottom);
+            var rect = new Win32.RECT(screenRect.Left, screenRect.Top, screenRect.Right, screenRect.Bottom);
             Win32.User.AdjustWindowRectEx(ref rect, (int)CreateParams.Style, false, (int)CreateParams.ExStyle);
             return new Padding
             {
@@ -949,18 +1137,59 @@ namespace Sunny.UI
                 case Win32.User.WM_NCCALCSIZE when m.WParam != IntPtr.Zero:
                     if (CalcSize(ref m)) return;
                     break;
+                case Win32.User.WM_HOTKEY:
+                    int hotKeyId = (int)(m.WParam);
+                    if (hotKeys != null && hotKeys.ContainsKey(hotKeyId))
+                    {
+                        HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+                    }
+                    break;
             }
 
             base.WndProc(ref m);
+
+            if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
+            {
+                //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
+                Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
+                vPoint = PointToClient(vPoint);
+                int dragSize = 5;
+                if (vPoint.X <= dragSize)
+                {
+                    if (vPoint.Y <= dragSize)
+                        m.Result = (IntPtr)Win32.User.HTTOPLEFT;
+                    else if (vPoint.Y >= ClientSize.Height - dragSize)
+                        m.Result = (IntPtr)Win32.User.HTBOTTOMLEFT;
+                    else
+                        m.Result = (IntPtr)Win32.User.HTLEFT;
+                }
+                else if (vPoint.X >= ClientSize.Width - dragSize)
+                {
+                    if (vPoint.Y <= dragSize)
+                        m.Result = (IntPtr)Win32.User.HTTOPRIGHT;
+                    else if (vPoint.Y >= ClientSize.Height - dragSize)
+                        m.Result = (IntPtr)Win32.User.HTBOTTOMRIGHT;
+                    else
+                        m.Result = (IntPtr)Win32.User.HTRIGHT;
+                }
+                else if (vPoint.Y <= dragSize)
+                {
+                    m.Result = (IntPtr)Win32.User.HTTOP;
+                }
+                else if (vPoint.Y >= ClientSize.Height - dragSize)
+                {
+                    m.Result = (IntPtr)Win32.User.HTBOTTOM;
+                }
+            }
         }
 
         private bool CalcSize(ref Message m)
         {
             if (FormBorderStyle == FormBorderStyle.None) return false;
 #if NET40
-            var sizeParams = (NCCALCSIZE_PARAMS)Marshal.PtrToStructure(m.LParam, typeof(NCCALCSIZE_PARAMS));
+            var sizeParams = (Win32.NCCALCSIZE_PARAMS)Marshal.PtrToStructure(m.LParam, typeof(Win32.NCCALCSIZE_PARAMS));
 #else
-            var sizeParams = Marshal.PtrToStructure<NCCALCSIZE_PARAMS>(m.LParam);
+            var sizeParams = Marshal.PtrToStructure<Win32.NCCALCSIZE_PARAMS>(m.LParam);
 #endif
             var borders = GetNonClientMetrics();
 
@@ -984,21 +1213,627 @@ namespace Sunny.UI
         {
             base.OnShown(e);
 
-            //if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
-            //if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
+            if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
+            if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
 
-            //Render();
+            Render();
             CalcSystemBoxPos();
-            //IsShown = true;
-            //SetDPIScale();
-            //SetZoomScaleRect();
-            //
-            //if (AfterShown != null)
-            //{
-            //    AfterShownTimer = new System.Windows.Forms.Timer();
-            //    AfterShownTimer.Tick += AfterShownTimer_Tick;
-            //    AfterShownTimer.Start();
-            //}
+            SetDPIScale();
+
+            if (AfterShown != null)
+            {
+                AfterShownTimer = new System.Windows.Forms.Timer();
+                AfterShownTimer.Tick += AfterShownTimer_Tick;
+                AfterShownTimer.Start();
+            }
         }
+
+        private void AfterShownTimer_Tick(object sender, EventArgs e)
+        {
+            AfterShownTimer.Stop();
+            AfterShownTimer.Tick -= AfterShownTimer_Tick;
+            AfterShownTimer?.Dispose();
+            AfterShownTimer = null;
+
+            AfterShown?.Invoke(this, EventArgs.Empty);
+            AfterShown = null;
+        }
+
+        public void Render()
+        {
+            if (!DesignMode && UIStyles.Style.IsValid())
+            {
+                SetInheritedStyle(UIStyles.Style);
+            }
+        }
+
+        private System.Windows.Forms.Timer AfterShownTimer;
+        public event EventHandler AfterShown;
+
+        #region IFrame实现
+
+        private UITabControl mainTabControl;
+
+        [DefaultValue(null)]
+        public UITabControl MainTabControl
+        {
+            get => mainTabControl;
+            set
+            {
+                mainTabControl = value;
+                mainTabControl.Frame = this;
+
+                mainTabControl.PageAdded += DealPageAdded;
+                mainTabControl.PageRemoved += DealPageRemoved;
+                mainTabControl.Selected += MainTabControl_Selected;
+                mainTabControl.Deselected += MainTabControl_Deselected;
+                mainTabControl.TabPageAndUIPageChanged += MainTabControl_TabPageAndUIPageChanged;
+            }
+        }
+
+        private void MainTabControl_TabPageAndUIPageChanged(object sender, TabPageAndUIPageArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            SelectedPage = pages.Count == 1 ? pages[0] : null;
+        }
+
+        private void MainTabControl_Deselected(object sender, TabControlEventArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            if (pages.Count == 1) pages[0].Final();
+        }
+
+        private void MainTabControl_Selected(object sender, TabControlEventArgs e)
+        {
+            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
+            SelectedPage = pages.Count == 1 ? pages[0] : null;
+        }
+
+        private UIPage selectedPage = null;
+        [Browsable(false)]
+        public UIPage SelectedPage
+        {
+            get => selectedPage;
+            private set
+            {
+                if (selectedPage != value)
+                {
+                    selectedPage = value;
+                    PageSelected?.Invoke(this, new UIPageEventArgs(SelectedPage));
+                }
+            }
+        }
+
+        public event OnUIPageChanged PageSelected;
+
+        public UIPage AddPage(UIPage page, int pageIndex)
+        {
+            page.PageIndex = pageIndex;
+            return AddPage(page);
+        }
+
+        public UIPage AddPage(UIPage page, Guid pageGuid)
+        {
+            page.PageGuid = pageGuid;
+            return AddPage(page);
+        }
+
+        public UIPage AddPage(UIPage page)
+        {
+            SetDefaultTabControl();
+
+            if (MainTabControl == null)
+            {
+                throw (new ApplicationException("未指定MainTabControl，无法承载多页面。"));
+            }
+
+            page.Frame = this;
+            page.OnFrameDealPageParams += Page_OnFrameDealPageParams;
+            MainTabControl?.AddPage(page);
+            return page;
+        }
+
+        private UIForm2 SetDefaultTabControl()
+        {
+            List<UITabControl> ctrls = this.GetControls<UITabControl>();
+            if (ctrls.Count == 1)
+            {
+                if (MainTabControl == null)
+                {
+                    MainTabControl = ctrls[0];
+                }
+
+                List<UINavMenu> Menus = this.GetControls<UINavMenu>();
+                if (Menus.Count == 1 && Menus[0].TabControl == null)
+                {
+                    Menus[0].TabControl = ctrls[0];
+                }
+
+                List<UINavBar> Bars = this.GetControls<UINavBar>();
+                if (Bars.Count == 1 && Bars[0].TabControl == null)
+                {
+                    Bars[0].TabControl = ctrls[0];
+                }
+            }
+
+            return this;
+        }
+
+        public virtual bool SelectPage(int pageIndex)
+        {
+            SetDefaultTabControl();
+            if (MainTabControl == null) return false;
+            return MainTabControl.SelectPage(pageIndex);
+        }
+
+        public virtual bool SelectPage(Guid pageGuid)
+        {
+            SetDefaultTabControl();
+            if (MainTabControl == null) return false;
+            return MainTabControl.SelectPage(pageGuid);
+        }
+
+        public bool RemovePage(int pageIndex) => MainTabControl?.RemovePage(pageIndex) ?? false;
+
+        public bool RemovePage(Guid pageGuid) => MainTabControl?.RemovePage(pageGuid) ?? false;
+
+        public void RemoveAllPages(bool keepMainPage = true) => MainTabControl?.RemoveAllPages(keepMainPage);
+
+        public UIPage GetPage(int pageIndex) => SetDefaultTabControl().MainTabControl?.GetPage(pageIndex);
+
+        public UIPage GetPage(Guid pageGuid) => SetDefaultTabControl().MainTabControl?.GetPage(pageGuid);
+
+        public bool ExistPage(int pageIndex) => GetPage(pageIndex) != null;
+
+        public bool ExistPage(Guid pageGuid) => GetPage(pageGuid) != null;
+
+        public bool SendParamToPage(int pageIndex, object value)
+        {
+            SetDefaultTabControl();
+            UIPage page = GetPage(pageIndex);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageIndex);
+            }
+
+            var args = new UIPageParamsArgs(null, page, value);
+            page?.DealReceiveParams(args);
+            return args.Handled;
+        }
+
+        public bool SendParamToPage(Guid pageGuid, object value)
+        {
+            SetDefaultTabControl();
+            UIPage page = GetPage(pageGuid);
+            if (page == null)
+            {
+                throw new NullReferenceException("未能查找到页面的索引为: " + pageGuid);
+            }
+
+            var args = new UIPageParamsArgs(null, page, value);
+            page?.DealReceiveParams(args);
+            return args.Handled;
+        }
+
+        private void Page_OnFrameDealPageParams(object sender, UIPageParamsArgs e)
+        {
+            if (e == null) return;
+            if (e.DestPage == null)
+            {
+                ReceiveParams?.Invoke(this, e);
+            }
+            else
+            {
+                e.DestPage?.DealReceiveParams(e);
+            }
+        }
+
+        public event OnReceiveParams ReceiveParams;
+
+        public T GetPage<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPage<T>();
+
+        public List<T> GetPages<T>() where T : UIPage => SetDefaultTabControl().MainTabControl?.GetPages<T>();
+
+        public event OnUIPageChanged PageAdded;
+
+        internal void DealPageAdded(object sender, UIPageEventArgs e)
+        {
+            PageAdded?.Invoke(this, e);
+        }
+
+        public event OnUIPageChanged PageRemoved;
+        internal void DealPageRemoved(object sender, UIPageEventArgs e)
+        {
+            PageRemoved?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public virtual void Init()
+        {
+        }
+
+        /// <summary>
+        /// 结束
+        /// </summary>
+        public virtual void Final()
+        {
+        }
+
+        #endregion IFrame实现
+
+        #region IStyleInterface
+        protected UIStyle _style = UIStyle.Inherited;
+
+        /// <summary>
+        /// 配色主题
+        /// </summary>
+        [Description("配色主题"), Category("SunnyUI")]
+        [DefaultValue(UIStyle.Inherited)]
+        public UIStyle Style
+        {
+            get => _style;
+            set => SetStyle(value);
+        }
+
+        public virtual void SetInheritedStyle(UIStyle style)
+        {
+            if (!DesignMode)
+            {
+                this.SuspendLayout();
+                UIStyleHelper.SetChildUIStyle(this, style);
+
+                if (_style == UIStyle.Inherited && style.IsValid())
+                {
+                    SetStyleColor(style.Colors());
+                    Invalidate();
+                    _style = UIStyle.Inherited;
+                }
+
+                UIStyleChanged?.Invoke(this, new EventArgs());
+                this.ResumeLayout();
+            }
+        }
+
+        protected virtual void SetStyle(UIStyle style)
+        {
+            this.SuspendLayout();
+
+            if (!style.IsCustom())
+            {
+                SetStyleColor(style.Colors());
+                Invalidate();
+            }
+
+            _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
+            UIStyleChanged?.Invoke(this, new EventArgs());
+            this.ResumeLayout();
+        }
+
+        public event EventHandler UIStyleChanged;
+
+        public virtual void SetStyleColor(UIBaseStyle uiColor)
+        {
+            controlBoxForeColor = uiColor.FormControlBoxForeColor;
+            controlBoxFillHoverColor = uiColor.FormControlBoxFillHoverColor;
+            ControlBoxCloseFillHoverColor = uiColor.FormControlBoxCloseFillHoverColor;
+            rectColor = uiColor.FormRectColor;
+            ForeColor = uiColor.FormForeColor;
+            BackColor = uiColor.FormBackColor;
+            titleColor = uiColor.FormTitleColor;
+            titleForeColor = uiColor.FormTitleForeColor;
+        }
+
+        /// <summary>
+        /// Tag字符串
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("获取或设置包含有关控件的数据的对象字符串"), Category("SunnyUI")]
+        public string TagString
+        {
+            get; set;
+        }
+
+        private float DefaultFontSize = -1;
+        private float TitleFontSize = -1;
+
+        public void SetDPIScale()
+        {
+            if (DesignMode) return;
+            if (!UIDPIScale.NeedSetDPIFont()) return;
+
+            if (DefaultFontSize < 0) DefaultFontSize = this.Font.Size;
+            if (TitleFontSize < 0) TitleFontSize = this.TitleFont.Size;
+
+            this.SetDPIScaleFont(DefaultFontSize);
+            TitleFont = TitleFont.DPIScaleFont(TitleFontSize);
+            foreach (var control in this.GetAllDPIScaleControls())
+            {
+                control.SetDPIScale();
+            }
+        }
+        #endregion
+
+        #region 一些辅助窗口
+
+        /// <summary>
+        /// 正确信息提示框
+        /// </summary>
+        /// <param name="msg">信息</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowSuccessDialog(string msg, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, UIStyle.Green, showMask, true);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="msg">信息</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowInfoDialog(string msg, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.InfoTitle, false, UIStyle.Gray, showMask, true);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="msg">信息</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowWarningDialog(string msg, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.WarningTitle, false, UIStyle.Orange, showMask, true);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="msg">信息</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowErrorDialog(string msg, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, UIStyle.Red, showMask, true);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="msg">信息</param>
+        /// <param name="showMask">显示遮罩层</param>
+        /// <returns>结果</returns>
+        public bool ShowAskDialog(string msg, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        {
+            return UIMessageDialog.ShowMessageDialog(msg, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
+        }
+
+        /// <summary>
+        /// 正确信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowSuccessDialog(string title, string msg, UIStyle style = UIStyle.Green, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
+        }
+
+        /// <summary>
+        /// 信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowInfoDialog(string title, string msg, UIStyle style = UIStyle.Gray, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowWarningDialog(string title, string msg, UIStyle style = UIStyle.Orange, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
+        }
+
+        /// <summary>
+        /// 错误信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        public void ShowErrorDialog(string title, string msg, UIStyle style = UIStyle.Red, bool showMask = false)
+        {
+            UIMessageDialog.ShowMessageDialog(msg, title, false, style, showMask, true);
+        }
+
+        /// <summary>
+        /// 确认信息提示框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="msg">信息</param>
+        /// <param name="style">主题</param>
+        /// <param name="showMask">显示遮罩层</param>
+        /// <returns>结果</returns>
+        public bool ShowAskDialog(string title, string msg, UIStyle style = UIStyle.Blue, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        {
+            return UIMessageDialog.ShowMessageDialog(msg, title, true, style, showMask, true, defaultButton);
+        }
+
+        /// <summary>
+        /// 显示消息
+        /// </summary>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowInfoTip(string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.Show(text, null, delay, floating);
+
+        /// <summary>
+        /// 显示成功消息
+        /// </summary>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowSuccessTip(string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowOk(text, delay, floating);
+
+        /// <summary>
+        /// 显示警告消息
+        /// </summary>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowWarningTip(string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowWarning(text, delay, floating);
+
+        /// <summary>
+        /// 显示出错消息
+        /// </summary>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowErrorTip(string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowError(text, delay, floating);
+
+        /// <summary>
+        /// 在指定控件附近显示消息
+        /// </summary>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowInfoTip(Component controlOrItem, string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.Show(controlOrItem, text, null, delay, floating);
+
+        /// <summary>
+        /// 在指定控件附近显示良好消息
+        /// </summary>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowSuccessTip(Component controlOrItem, string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowOk(controlOrItem, text, delay, floating);
+
+        /// <summary>
+        /// 在指定控件附近显示出错消息
+        /// </summary>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowErrorTip(Component controlOrItem, string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowError(controlOrItem, text, delay, floating);
+
+        /// <summary>
+        /// 在指定控件附近显示警告消息
+        /// </summary>
+        /// <param name="controlOrItem">控件或工具栏项</param>
+        /// <param name="text">消息文本</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="floating">是否漂浮</param>
+        public void ShowWarningTip(Component controlOrItem, string text, int delay = 1000, bool floating = true)
+            => UIMessageTip.ShowWarning(controlOrItem, text, delay, floating, false);
+
+        public void ShowInfoNotifier(string desc, bool isDialog = false, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, isDialog, timeout);
+        }
+
+        public void ShowSuccessNotifier(string desc, bool isDialog = false, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, isDialog, timeout);
+        }
+
+        public void ShowWarningNotifier(string desc, bool isDialog = false, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, isDialog, timeout);
+        }
+
+        public void ShowErrorNotifier(string desc, bool isDialog = false, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
+        }
+
+        public void ShowInfoNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.INFO, UILocalize.InfoTitle, timeout);
+        }
+
+        public void ShowSuccessNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.OK, UILocalize.SuccessTitle, timeout);
+        }
+
+        public void ShowWarningNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.WARNING, UILocalize.WarningTitle, timeout);
+        }
+
+        public void ShowErrorNotifier(string desc, EventHandler clickEvent, int timeout = 2000)
+        {
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.ERROR, UILocalize.ErrorTitle, timeout);
+        }
+
+        #endregion 一些辅助窗口
+
+        private bool showDragStretch;
+
+        [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
+        public bool ShowDragStretch
+        {
+            get => showDragStretch;
+            set
+            {
+                showDragStretch = value;
+                if (value)
+                {
+                    Padding = new Padding(Math.Max(Padding.Left, 2), showTitle ? TitleHeight + 1 : 2, Math.Max(Padding.Right, 2), Math.Max(Padding.Bottom, 2));
+                }
+                else
+                {
+                    Padding = new Padding(0, showTitle ? TitleHeight : 0, 0, 0);
+                }
+            }
+        }
+
+        public void RegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
+        {
+            if (hotKeys == null) hotKeys = new ConcurrentDictionary<int, HotKey>();
+
+            int id = HotKey.CalculateID(modifierKey, key);
+            if (!hotKeys.ContainsKey(id))
+            {
+                HotKey newHotkey = new HotKey(modifierKey, key);
+                hotKeys.TryAdd(id, newHotkey);
+                Win32.User.RegisterHotKey(Handle, id, (int)newHotkey.ModifierKey, (int)newHotkey.Key);
+            }
+        }
+
+        public void UnRegisterHotKey(Sunny.UI.ModifierKeys modifierKey, Keys key)
+        {
+            if (hotKeys == null) return;
+
+            int id = HotKey.CalculateID(modifierKey, key);
+            if (hotKeys.ContainsKey(id))
+            {
+                hotKeys.TryRemove(id, out _);
+                Win32.User.UnregisterHotKey(Handle, id);
+            }
+        }
+
+        public event HotKeyEventHandler HotKeyEventHandler;
+
+        private ConcurrentDictionary<int, HotKey> hotKeys;
     }
 }

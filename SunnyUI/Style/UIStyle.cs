@@ -35,8 +35,6 @@ namespace Sunny.UI
     {
         UIStyle Style { get; set; }
 
-        bool StyleCustomMode { get; set; }
-
         string Version { get; }
 
         string TagString { get; set; }
@@ -482,52 +480,6 @@ namespace Sunny.UI
             }
 
             return values;
-        }
-
-        public static void SetRawControlStyle(ControlEventArgs e, UIStyle style)
-        {
-            if (e.Control is TableLayoutPanel)
-            {
-                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
-                foreach (var control in controls)
-                {
-                    if (control is IStyleInterface item)
-                    {
-                        if (!item.StyleCustomMode)
-                            item.Style = style;
-                    }
-                }
-
-                return;
-            }
-
-            if (e.Control is FlowLayoutPanel)
-            {
-                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
-                foreach (var control in controls)
-                {
-                    if (control is IStyleInterface item)
-                    {
-                        if (!item.StyleCustomMode)
-                            item.Style = style;
-                    }
-                }
-
-                return;
-            }
-
-            if (e.Control is Panel)
-            {
-                List<Control> controls = e.Control.GetUIStyleControls("IStyleInterface");
-                foreach (var control in controls)
-                {
-                    if (control is IStyleInterface item)
-                    {
-                        if (!item.StyleCustomMode)
-                            item.Style = style;
-                    }
-                }
-            }
         }
     }
 }

@@ -207,6 +207,8 @@ namespace Sunny.UI
         private static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
         private static readonly ConcurrentDictionary<Guid, UIForm> Forms = new ConcurrentDictionary<Guid, UIForm>();
         private static readonly ConcurrentDictionary<Guid, UIPage> Pages = new ConcurrentDictionary<Guid, UIPage>();
+        private static readonly ConcurrentDictionary<Guid, UIForm2> Forms2 = new ConcurrentDictionary<Guid, UIForm2>();
+
 
         /// <summary>
         /// 菜单颜色集合
@@ -296,6 +298,21 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 注册窗体
+        /// </summary>
+        /// <param name="form">窗体</param>
+        public static bool Register(this UIForm2 form)
+        {
+            if (!Forms2.ContainsKey(form.Guid))
+            {
+                Forms2.Upsert(form.Guid, form);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 注册页面
         /// </summary>
         /// <param name="page">页面</param>
@@ -329,6 +346,15 @@ namespace Sunny.UI
         public static void UnRegister(this UIForm form)
         {
             Forms.TryRemove(form.Guid, out _);
+        }
+
+        /// <summary>
+        /// 反注册窗体
+        /// </summary>
+        /// <param name="form">窗体</param>
+        public static void UnRegister(this UIForm2 form)
+        {
+            Forms2.TryRemove(form.Guid, out _);
         }
 
         /// <summary>
