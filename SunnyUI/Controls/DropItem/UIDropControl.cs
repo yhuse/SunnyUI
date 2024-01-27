@@ -32,6 +32,7 @@
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
  * 2023-12-18: V3.6.2 修复高度不随字体改变
  * 2024-01-19: V3.6.3 下拉按钮可修改大小及位置
+ * 2024-01-27: V3.6.3 修改按钮大小调整时，清除按钮的位置
 ******************************************************************************/
 
 using System;
@@ -75,8 +76,6 @@ namespace Sunny.UI
             fillColor = Color.White;
             edit.BackColor = Color.White;
             MouseMove += UIDropControl_MouseMove;
-
-            ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
         int lastEditHeight = -1;
@@ -426,7 +425,6 @@ namespace Sunny.UI
 
             edit.Left = 4 + Padding.Left;
             edit.Width = Width - Padding.Left - Padding.Right - 4;
-            ControlBoxRect = new Rectangle(Width - 24, 0, 24, Height);
         }
 
         /// <summary>
@@ -481,7 +479,7 @@ namespace Sunny.UI
                 return;
             }
 
-            bool inControlBox = e.Location.InRect(ControlBoxRect);
+            bool inControlBox = e.Location.X > Width - Padding.Right;
             if (inControlBox != NeedDrawClearButton && Text.IsValid())
             {
                 NeedDrawClearButton = inControlBox;
@@ -499,7 +497,6 @@ namespace Sunny.UI
             }
         }
 
-        Rectangle ControlBoxRect;
         protected bool showClearButton;
 
         protected override void OnGotFocus(EventArgs e)

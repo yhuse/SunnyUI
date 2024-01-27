@@ -616,8 +616,20 @@ namespace Sunny.UI
         public int SelectedIndex
         {
             get => listbox.SelectedIndex;
-            set => listbox.SelectedIndex = value;
+            set
+            {
+                if (value >= 0)
+                {
+                    if (listbox != null && listbox.Items != null && listbox.Items.ContainsIndex(value))
+                        listbox.SelectedIndex = value;
+                }
+                else
+                {
+                    listbox.SelectedIndex = value;
+                }
+            }
         }
+
 
         [Browsable(false)]
         [DefaultValue(null)]
