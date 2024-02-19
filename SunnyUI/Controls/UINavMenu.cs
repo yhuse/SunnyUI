@@ -97,6 +97,15 @@ namespace Sunny.UI
 
             selectedForeColor = UIStyles.Blue.NavMenuMenuSelectedColor;
             selectedHighColor = UIStyles.Blue.NavMenuMenuSelectedColor;
+
+            _timer = new System.Windows.Forms.Timer();
+            _timer.Tick += Timer_Tick;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _timer.Dispose();
+            base.Dispose(disposing);
         }
 
         private int scrollBarWidth = 0;
@@ -638,146 +647,154 @@ namespace Sunny.UI
 
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
-            if (BorderStyle != BorderStyle.None)
+            if (_resizing)
             {
-                BorderStyle = BorderStyle.None;
-            }
-
-            SetScrollInfo();
-            CheckBoxes = false;
-
-            if (e.Node == null || (e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0))
-            {
-                e.DrawDefault = true;
+                return;
+                //e.DrawDefault = true;
             }
             else
             {
-                int drawLeft = e.Node.Level * 16 + 16 + 4;
-                int imageLeft = drawLeft;
-                bool haveImage = false;
-
-                if (MenuHelper.GetSymbol(e.Node) > 0)
+                if (BorderStyle != BorderStyle.None)
                 {
-                    haveImage = true;
-                    drawLeft += MenuHelper.GetSymbolSize(e.Node) + 6;
+                    BorderStyle = BorderStyle.None;
+                }
+
+                SetScrollInfo();
+                CheckBoxes = false;
+
+                if (e.Node == null || (e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0))
+                {
+                    e.DrawDefault = true;
                 }
                 else
                 {
-                    if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 && e.Node.ImageIndex < ImageList.Images.Count)
-                    {
-                        haveImage = true;
-                        drawLeft += ImageList.ImageSize.Width + 6;
-                    }
-                }
+                    int drawLeft = e.Node.Level * 16 + 16 + 4;
+                    int imageLeft = drawLeft;
+                    bool haveImage = false;
 
-                if (e.Node == SelectedNode)
-                {
-                    if (SelectedColorGradient)
-                    {
-                        using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
-                        br.GammaCorrection = true;
-                        e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    }
-                    else
-                    {
-                        e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    }
-
-                    e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
-                    e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));
-                }
-                else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
-                {
-                    e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
-                }
-                else
-                {
-                    Color color = fillColor;
-                    if (showSecondBackColor && e.Node.Level > 0)
-                    {
-                        color = SecondBackColor;
-                    }
-
-                    e.Graphics.FillRectangle(color, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
-                }
-
-                //画右侧图标
-                Color rightSymbolColor = ForeColor;
-                if (e.Node == SelectedNode) rightSymbolColor = SelectedForeColor;
-                if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
-                {
-                    int size = e.Node.Nodes.Count > 0 ? 24 : 0;
-                    int left = Width - size - 6;
-                    if (Bar.Visible) left -= Bar.Width;
-
-                    int firstLeft = left - TreeNodeSymbols[e.Node].Count * 30;
-                    for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
-                    {
-                        e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, rightSymbolColor, new Rectangle(firstLeft + i * 30, e.Bounds.Top, 30, e.Bounds.Height));
-                    }
-                }
-
-                //画图片
-                if (haveImage)
-                {
                     if (MenuHelper.GetSymbol(e.Node) > 0)
                     {
-                        Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
-                        Point offset = MenuHelper.GetSymbolOffset(e.Node);
-                        e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, new Rectangle(imageLeft, e.Bounds.Y, MenuHelper.GetSymbolSize(e.Node), e.Bounds.Height), offset.X, offset.Y, MenuHelper.GetSymbolRotate(e.Node));
+                        haveImage = true;
+                        drawLeft += MenuHelper.GetSymbolSize(e.Node) + 6;
                     }
                     else
                     {
-                        if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
-                            e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
-                        else
-                            e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                        if (ImageList != null && ImageList.Images.Count > 0 && e.Node.ImageIndex >= 0 && e.Node.ImageIndex < ImageList.Images.Count)
+                        {
+                            haveImage = true;
+                            drawLeft += ImageList.ImageSize.Width + 6;
+                        }
                     }
-                }
 
-                //显示右侧下拉箭头
-                if (ShowItemsArrow && e.Node.Nodes.Count > 0)
-                {
-                    int size = 24;
-                    int left = Width - size - 6;
-                    if (Bar.Visible) left -= Bar.Width;
-
-                    SizeF sf = e.Graphics.GetFontImageSize(61702, 24);
-                    Rectangle rect = new Rectangle((int)(left + sf.Width / 2) - 12, e.Bounds.Y, 24, e.Bounds.Height);
-                    e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, rect);
-                }
-
-                //显示Tips圆圈
-                if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
-                {
-                    using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
-                    Size tipsSize = TextRenderer.MeasureText(MenuHelper.GetTipsText(e.Node), TempFont);
-                    int sfMax = Math.Max(tipsSize.Width, tipsSize.Height);
-                    int tipsLeft = Width - sfMax - 16;
-                    if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
-                    if (Bar.Visible) tipsLeft -= Bar.Width;
-                    if (TreeNodeSymbols.ContainsKey(e.Node)) tipsLeft -= TreeNodeSymbols[e.Node].Count * 30;
-                    int tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
-
-                    if (MenuHelper[e.Node] != null)
+                    if (e.Node == SelectedNode)
                     {
-                        if (MenuHelper[e.Node].TipsCustom)
+                        if (SelectedColorGradient)
                         {
-                            e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
+                            using LinearGradientBrush br = new LinearGradientBrush(new Point(0, 0), new Point(0, e.Node.Bounds.Height), SelectedColor, SelectedColor2);
+                            br.GammaCorrection = true;
+                            e.Graphics.FillRectangle(br, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
                         }
                         else
                         {
-                            e.Graphics.FillEllipse(TipsColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
-                            e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
+                            e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                        }
+
+                        e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                        e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));
+                    }
+                    else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
+                    {
+                        e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    }
+                    else
+                    {
+                        Color color = fillColor;
+                        if (showSecondBackColor && e.Node.Level > 0)
+                        {
+                            color = SecondBackColor;
+                        }
+
+                        e.Graphics.FillRectangle(color, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    }
+
+                    //画右侧图标
+                    Color rightSymbolColor = ForeColor;
+                    if (e.Node == SelectedNode) rightSymbolColor = SelectedForeColor;
+                    if (TreeNodeSymbols.ContainsKey(e.Node) && TreeNodeSymbols[e.Node].Count > 0)
+                    {
+                        int size = e.Node.Nodes.Count > 0 ? 24 : 0;
+                        int left = Width - size - 6;
+                        if (Bar.Visible) left -= Bar.Width;
+
+                        int firstLeft = left - TreeNodeSymbols[e.Node].Count * 30;
+                        for (int i = 0; i < TreeNodeSymbols[e.Node].Count; i++)
+                        {
+                            e.Graphics.DrawFontImage(TreeNodeSymbols[e.Node][i], 24, rightSymbolColor, new Rectangle(firstLeft + i * 30, e.Bounds.Top, 30, e.Bounds.Height));
+                        }
+                    }
+
+                    //画图片
+                    if (haveImage)
+                    {
+                        if (MenuHelper.GetSymbol(e.Node) > 0)
+                        {
+                            Color color = e.Node == SelectedNode ? SelectedForeColor : ForeColor;
+                            Point offset = MenuHelper.GetSymbolOffset(e.Node);
+                            e.Graphics.DrawFontImage(MenuHelper.GetSymbol(e.Node), MenuHelper.GetSymbolSize(e.Node), color, new Rectangle(imageLeft, e.Bounds.Y, MenuHelper.GetSymbolSize(e.Node), e.Bounds.Height), offset.X, offset.Y, MenuHelper.GetSymbolRotate(e.Node));
+                        }
+                        else
+                        {
+                            if (e.Node == SelectedNode && e.Node.SelectedImageIndex >= 0 && e.Node.SelectedImageIndex < ImageList.Images.Count)
+                                e.Graphics.DrawImage(ImageList.Images[e.Node.SelectedImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                            else
+                                e.Graphics.DrawImage(ImageList.Images[e.Node.ImageIndex], imageLeft, e.Bounds.Y + (e.Bounds.Height - ImageList.ImageSize.Height) / 2);
+                        }
+                    }
+
+                    //显示右侧下拉箭头
+                    if (ShowItemsArrow && e.Node.Nodes.Count > 0)
+                    {
+                        int size = 24;
+                        int left = Width - size - 6;
+                        if (Bar.Visible) left -= Bar.Width;
+
+                        SizeF sf = e.Graphics.GetFontImageSize(61702, 24);
+                        Rectangle rect = new Rectangle((int)(left + sf.Width / 2) - 12, e.Bounds.Y, 24, e.Bounds.Height);
+                        e.Graphics.DrawFontImage(e.Node.IsExpanded ? 61702 : 61703, 24, ForeColor, rect);
+                    }
+
+                    //显示Tips圆圈
+                    if (ShowTips && MenuHelper.GetTipsText(e.Node).IsValid())
+                    {
+                        using var TempFont = TipsFont.DPIScaleFont(TipsFont.Size);
+                        Size tipsSize = TextRenderer.MeasureText(MenuHelper.GetTipsText(e.Node), TempFont);
+                        int sfMax = Math.Max(tipsSize.Width, tipsSize.Height);
+                        int tipsLeft = Width - sfMax - 16;
+                        if (e.Node.Nodes.Count > 0) tipsLeft -= 24;
+                        if (Bar.Visible) tipsLeft -= Bar.Width;
+                        if (TreeNodeSymbols.ContainsKey(e.Node)) tipsLeft -= TreeNodeSymbols[e.Node].Count * 30;
+                        int tipsTop = e.Bounds.Y + (ItemHeight - sfMax) / 2;
+
+                        if (MenuHelper[e.Node] != null)
+                        {
+                            if (MenuHelper[e.Node].TipsCustom)
+                            {
+                                e.Graphics.FillEllipse(MenuHelper[e.Node].TipsBackColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
+                                e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, MenuHelper[e.Node].TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
+                            }
+                            else
+                            {
+                                e.Graphics.FillEllipse(TipsColor, tipsLeft - 1, tipsTop, sfMax, sfMax);
+                                e.Graphics.DrawString(MenuHelper.GetTipsText(e.Node), TempFont, TipsForeColor, new Rectangle(tipsLeft, tipsTop, sfMax, sfMax), ContentAlignment.MiddleCenter);
+                            }
                         }
                     }
                 }
-            }
 
-            base.OnDrawNode(e);
+                base.OnDrawNode(e);
+            }
         }
 
         private Color tipsColor = Color.Red;
@@ -1220,5 +1237,38 @@ namespace Sunny.UI
         public delegate void OnNodeRightSymbolClick(object sender, TreeNode node, int index, int symbol);
 
         public event OnNodeRightSymbolClick NodeRightSymbolClick;
+
+        protected override void OnResize(EventArgs e)
+        {
+            //_resizing = true;
+            //_previousClientSize = ClientSize;
+            // 启动计时器
+            //_timer.Start();
+        }
+
+        private bool _resizing;
+        private System.Windows.Forms.Timer _timer;
+        private Size _previousClientSize;
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // 检查控件的大小是否与前一次检查时相同
+            if (ClientSize == _previousClientSize)
+            {
+                // 控件已停止调整大小
+                _resizing = false;
+
+                // 清除计时器
+                _timer.Stop();
+
+                // 刷新 TreeView
+                Invalidate();
+            }
+            else
+            {
+                // 更新前一次检查时的大小
+                _previousClientSize = ClientSize;
+            }
+        }
     }
 }
