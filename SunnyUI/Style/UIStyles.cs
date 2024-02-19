@@ -253,38 +253,6 @@ namespace Sunny.UI
         /// <summary>
         /// 注册窗体
         /// </summary>
-        /// <param name="guid">GUID</param>
-        /// <param name="form">窗体</param>
-        public static bool Register(Guid guid, UIForm form)
-        {
-            if (!Forms.ContainsKey(guid))
-            {
-                Forms.Upsert(guid, form);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册页面
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        /// <param name="page">页面</param>
-        public static bool Register(Guid guid, UIPage page)
-        {
-            if (!Pages.ContainsKey(guid))
-            {
-                Pages.Upsert(guid, page);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册窗体
-        /// </summary>
         /// <param name="form">窗体</param>
         public static bool Register(this UIForm form)
         {
@@ -367,20 +335,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 反注册窗体、页面
-        /// </summary>
-        /// <param name="guid">GUID</param>
-        public static void UnRegister(Guid guid)
-        {
-            if (Forms.ContainsKey(guid))
-                Forms.TryRemove(guid, out _);
-
-            if (Pages.ContainsKey(guid))
-                Pages.TryRemove(guid, out _);
-
-        }
-
-        /// <summary>
         /// 获取主题样式
         /// </summary>
         /// <param name="style">主题样式名称</param>
@@ -428,6 +382,11 @@ namespace Sunny.UI
                 form.SetInheritedStyle(style);
             }
 
+            foreach (var form in Forms2.Values)
+            {
+                form.SetInheritedStyle(style);
+            }
+
             foreach (var page in Pages.Values)
             {
                 page.SetInheritedStyle(style);
@@ -447,6 +406,12 @@ namespace Sunny.UI
                     form.SetDPIScale();
             }
 
+            foreach (var form in Forms2.Values)
+            {
+                if (UIDPIScale.NeedSetDPIFont())
+                    form.SetDPIScale();
+            }
+
             foreach (var page in Pages.Values)
             {
                 if (UIDPIScale.NeedSetDPIFont())
@@ -457,6 +422,11 @@ namespace Sunny.UI
         public static void Translate()
         {
             foreach (var form in Forms.Values)
+            {
+                form.Translate();
+            }
+
+            foreach (var form in Forms2.Values)
             {
                 form.Translate();
             }
