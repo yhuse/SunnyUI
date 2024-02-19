@@ -706,6 +706,7 @@ namespace Sunny.UI
             }
         }
 
+        private DateTime lastMouseDownTime;
         /// <summary>
         /// 重载鼠标按下事件
         /// </summary>
@@ -720,6 +721,13 @@ namespace Sunny.UI
             if (e.X > ControlBoxLeft) return;
             if (!Movable) return;
 
+            if (DateTime.Now - lastMouseDownTime <= TimeSpan.FromMilliseconds(500))
+            {
+                lastMouseDownTime = DateTime.Now;
+                return;
+            }
+
+            lastMouseDownTime = DateTime.Now;
             Win32.User.ReleaseCapture();
             Win32.User.SendMessage(this.Handle, Win32.User.WM_SYSCOMMAND, Win32.User.SC_MOVE + Win32.User.HTCAPTION, 0);
         }
