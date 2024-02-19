@@ -875,7 +875,30 @@ namespace Sunny.UI
                 return;
             }
 
+            if (ShowTitleIcon && Icon != null)
+            {
+                using (Image image = IconToImage(Icon))
+                {
+                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
+                }
+            }
+
+            if (TextAlignment == StringAlignment.Center)
+            {
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
+            }
+            else
+            {
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
+            }
+
             e.Graphics.SetHighQuality();
+
+            if (ControlBoxLeft != Width)
+            {
+                e.Graphics.FillRectangle(TitleColor, new Rectangle(ControlBoxLeft, 1, Width, TitleHeight - 2));
+            }
+
             if (ControlBox)
             {
                 if (InControlBox)
@@ -992,23 +1015,6 @@ namespace Sunny.UI
             }
 
             e.Graphics.SetDefaultQuality();
-
-            if (ShowTitleIcon && Icon != null)
-            {
-                using (Image image = IconToImage(Icon))
-                {
-                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
-                }
-            }
-
-            if (TextAlignment == StringAlignment.Center)
-            {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
-            }
-            else
-            {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
-            }
         }
 
         private StringAlignment textAlignment = StringAlignment.Near;

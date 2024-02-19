@@ -53,6 +53,7 @@
  * 2023-11-19: V3.5.2 修改默认ShowShadow边框阴影打开，ShowRadius显示圆角关闭
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
+ * 2023-02-19: V3.6.3 修改标题栏文字与控制按钮绘制重叠的问题
 ******************************************************************************/
 
 using System;
@@ -1019,6 +1020,28 @@ namespace Sunny.UI
                 return;
             }
 
+            if (ShowTitleIcon && Icon != null)
+            {
+                using (Image image = IconToImage(Icon))
+                {
+                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
+                }
+            }
+
+            if (TextAlignment == StringAlignment.Center)
+            {
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
+            }
+            else
+            {
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
+            }
+
+            if (ControlBoxLeft != Width)
+            {
+                e.Graphics.FillRectangle(TitleColor, new Rectangle(ControlBoxLeft, 1, Width, TitleHeight - 2));
+            }
+
             e.Graphics.SetHighQuality();
             if (ControlBox)
             {
@@ -1148,23 +1171,6 @@ namespace Sunny.UI
             }
 
             e.Graphics.SetDefaultQuality();
-
-            if (ShowTitleIcon && Icon != null)
-            {
-                using (Image image = IconToImage(Icon))
-                {
-                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
-                }
-            }
-
-            if (TextAlignment == StringAlignment.Center)
-            {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(0, 0, Width, TitleHeight), ContentAlignment.MiddleCenter);
-            }
-            else
-            {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowTitleIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
-            }
         }
 
         private Image IconToImage(Icon icon)
