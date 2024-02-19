@@ -613,6 +613,8 @@ namespace Sunny.UI
 
                     ControlBoxLeft = ExtendBoxRect.Left - 2;
                 }
+
+                if (ControlBoxLeft != Width) ControlBoxLeft -= 6;
             }
             else
             {

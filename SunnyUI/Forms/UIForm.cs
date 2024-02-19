@@ -587,7 +587,11 @@ namespace Sunny.UI
                     {
                         ExtendBoxRect = new Rectangle(ControlBoxRect.Left - 28 - 2, ControlBoxRect.Top, 28, 28);
                     }
+
+                    ControlBoxLeft = ExtendBoxRect.Left - 2;
                 }
+
+                if (ControlBoxLeft != Width) ControlBoxLeft -= 6;
             }
             else
             {
