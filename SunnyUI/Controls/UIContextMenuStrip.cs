@@ -21,6 +21,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-10-17: V3.5.1 修正文字显示垂直居中
  * 2023-10-17: V3.5.1 当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
+ * 2024-02-21: V3.6.3 修复显示快捷键文本位置
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace Sunny.UI
         public UIContextMenuStrip()
         {
             Font = UIStyles.Font();
-            RenderMode = ToolStripRenderMode.Professional;
+            //RenderMode = ToolStripRenderMode.Custom;
             Renderer = new UIToolStripRenderer(ColorTable);
             Version = UIGlobal.Version;
 
@@ -162,11 +163,26 @@ namespace Sunny.UI
             //调整文本区域的位置和大小以实现垂直居中
             Rectangle textRect = new Rectangle(e.TextRectangle.Left, e.Item.ContentRectangle.Top, e.TextRectangle.Width, e.Item.ContentRectangle.Height);
 
-            //设置文本绘制格式
-            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
+            ToolStripMenuItem item1 = (ToolStripMenuItem)e.Item;
 
-            //绘制文本
-            TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, textRect, e.TextColor, flags);
+            if (e.Item.Selected)
+            {
+                e.Graphics.FillRectangle(ColorTable.MenuItemSelected, e.TextRectangle);
+            }
+            else
+            {
+                e.Graphics.FillRectangle(ColorTable.ImageMarginGradientBegin, e.TextRectangle);
+            }
+
+            //设置文本绘制格式
+            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.Left;
+            TextRenderer.DrawText(e.Graphics, e.Item.Text, e.TextFont, textRect, e.TextColor, flags);
+
+            if (item1.ShowShortcutKeys)
+            {
+                flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.Right;
+                TextRenderer.DrawText(e.Graphics, ShortcutToText(item1.ShortcutKeys, item1.ShortcutKeyDisplayString), e.TextFont, textRect, e.TextColor, flags);
+            }
 
             //当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
             ToolStripItem item = e.Item;
@@ -182,6 +198,24 @@ namespace Sunny.UI
             if (e.Item.Image != null) return;
             Rectangle imageRect = new Rectangle(0, e.Item.ContentRectangle.Top, e.TextRectangle.Left, e.Item.ContentRectangle.Height);
             e.Graphics.DrawFontImage(e.Item.ImageIndex, 24, e.TextColor, imageRect);
+        }
+
+        internal static string ShortcutToText(Keys shortcutKeys, string shortcutKeyDisplayString)
+        {
+            if (!string.IsNullOrEmpty(shortcutKeyDisplayString))
+            {
+                return shortcutKeyDisplayString;
+            }
+
+            if (shortcutKeys == Keys.None)
+            {
+                return string.Empty;
+            }
+
+            //KeysConverter kc = new KeysConverter();
+            //kc.ConvertToString(item1.ShortcutKeys).WriteConsole();
+
+            return TypeDescriptor.GetConverter(typeof(Keys)).ConvertToString(shortcutKeys);
         }
     }
 
