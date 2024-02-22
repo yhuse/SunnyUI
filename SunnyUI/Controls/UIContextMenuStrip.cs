@@ -22,6 +22,7 @@
  * 2023-10-17: V3.5.1 修正文字显示垂直居中
  * 2023-10-17: V3.5.1 当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
  * 2024-02-21: V3.6.3 修复显示快捷键文本位置
+ * 2024-02-22: V3.6.3 节点AutoSize时不重绘，重绘时考虑Enabled为False时颜色显示
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -160,28 +161,43 @@ namespace Sunny.UI
 
         protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
         {
+            if (e.Item.AutoSize)
+            {
+                base.OnRenderItemText(e);
+                return;
+            }
+
             //调整文本区域的位置和大小以实现垂直居中
             Rectangle textRect = new Rectangle(e.TextRectangle.Left, e.Item.ContentRectangle.Top, e.TextRectangle.Width, e.Item.ContentRectangle.Height);
+            ToolStripMenuItem stripItem = (ToolStripMenuItem)e.Item;
+            Rectangle backRect = new Rectangle(e.Item.Bounds.Left + 2, e.Item.Bounds.Top - 2, e.Item.Bounds.Width - 4, e.Item.Bounds.Height);
 
-            ToolStripMenuItem item1 = (ToolStripMenuItem)e.Item;
-
-            if (e.Item.Selected)
+            if (e.Item.Enabled)
             {
-                e.Graphics.FillRectangle(ColorTable.MenuItemSelected, e.TextRectangle);
+                if (e.Item.Selected)
+                {
+                    e.Graphics.FillRectangle(ColorTable.MenuItemSelected, backRect);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(ColorTable.ImageMarginGradientBegin, backRect);
+                }
             }
             else
             {
-                e.Graphics.FillRectangle(ColorTable.ImageMarginGradientBegin, e.TextRectangle);
+                e.Graphics.FillRectangle(ColorTable.ImageMarginGradientBegin, backRect);
             }
 
+            Color textColor = e.TextColor;
+            if (!e.Item.Enabled) textColor = Color.Gray;
             //设置文本绘制格式
             TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.Left;
-            TextRenderer.DrawText(e.Graphics, e.Item.Text, e.TextFont, textRect, e.TextColor, flags);
+            TextRenderer.DrawText(e.Graphics, e.Item.Text, e.TextFont, textRect, textColor, flags);
 
-            if (item1.ShowShortcutKeys)
+            if (stripItem.ShowShortcutKeys)
             {
                 flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.Right;
-                TextRenderer.DrawText(e.Graphics, ShortcutToText(item1.ShortcutKeys, item1.ShortcutKeyDisplayString), e.TextFont, textRect, e.TextColor, flags);
+                TextRenderer.DrawText(e.Graphics, ShortcutToText(stripItem.ShortcutKeys, stripItem.ShortcutKeyDisplayString), e.TextFont, textRect, textColor, flags);
             }
 
             //当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
