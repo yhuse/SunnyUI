@@ -54,6 +54,7 @@
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
  * 2023-02-19: V3.6.3 修改标题栏文字与控制按钮绘制重叠的问题
+ * 2024-02-22: V3.6.3 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示
 ******************************************************************************/
 
 using System;
@@ -841,7 +842,7 @@ namespace Sunny.UI
         {
             if (FormMoveMouseDown && !MousePosition.Equals(mouseOffset))
             {
-                if (WindowState == FormWindowState.Maximized)
+                if (WindowState == FormWindowState.Maximized && (Math.Abs(MousePosition.X - mouseOffset.X) >= 3 || Math.Abs(MousePosition.Y - mouseOffset.Y) >= 3))
                 {
                     int MaximizedWidth = Width;
                     int LocationX = Left;
