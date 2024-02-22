@@ -31,6 +31,7 @@
  * 2023-07-02: V3.3.9 渐变色增加方向选择
  * 2023-11-24: V3.6.2 修复LightStyle的文字颜色
  * 2023-12-06: V3.6.2 修复LightStyle的背景颜色
+ * 2024-02-22: V3.6.3 增加按钮的&字符的Alt快捷键功能
 ******************************************************************************/
 
 using System;
@@ -38,6 +39,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -75,6 +77,58 @@ namespace Sunny.UI
             fillPressColor = UIStyles.Blue.ButtonFillPressColor;
             fillSelectedColor = UIStyles.Blue.ButtonFillSelectedColor;
             SetStyle(ControlStyles.StandardDoubleClick, UseDoubleClick);
+
+            UseMnemonic = true;
+        }
+
+        [DefaultValue(true)]
+        [Description("如果为true，&符号后面的第一次字符将做按钮的助记键"), Category("SunnyUI")]
+        public bool UseMnemonic { get; set; }
+
+        protected override bool ProcessMnemonic(char charCode)
+        {
+            if (UseMnemonic && CanProcessMnemonic() && IsMnemonic(charCode, Text))
+            {
+                PerformClick();
+                return true;
+            }
+
+            return base.ProcessMnemonic(charCode);
+        }
+
+        private bool CanProcessMnemonic()
+        {
+            return UseMnemonic && CanSelect && Enabled && Visible && Parent != null;
+        }
+
+        public string TextWithoutMnemonics(string text)
+        {
+            if (text == null)
+            {
+                return null;
+            }
+
+            int index = text.IndexOf('&');
+
+            if (index == -1)
+            {
+                return text;
+            }
+
+            StringBuilder str = new StringBuilder(text.Substring(0, index));
+            for (; index < text.Length; ++index)
+            {
+                if (text[index] == '&')
+                {
+                    index++;    // Skip this & and copy the next character instead
+                }
+                if (index < text.Length)
+                {
+                    str.Append(text[index]);
+                }
+            }
+
+            return str.ToString();
         }
 
         /// <summary>
