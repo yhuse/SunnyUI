@@ -32,12 +32,14 @@
  * 2023-11-24: V3.6.2 修复LightStyle的文字颜色
  * 2023-12-06: V3.6.2 修复LightStyle的背景颜色
  * 2024-02-22: V3.6.3 增加按钮的&字符的Alt快捷键功能
+ * 2024-02-23: V3.6.3 增加Text的属性编辑器
 ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
@@ -778,5 +780,15 @@ namespace Sunny.UI
         [DefaultValue(0)]
         [Description("分组编号"), Category("SunnyUI")]
         public int GroupIndex { get; set; }
+
+        [Description("文本返回值"), Category("SunnyUI")]
+        [Browsable(true)]
+        [DefaultValue("")]
+        [Editor("System.ComponentModel.Design.MultilineStringEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        public override string Text
+        {
+            get => base.Text;
+            set => base.Text = value;
+        }
     }
 }
