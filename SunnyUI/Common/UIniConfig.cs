@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-11-01: V3.2.6 增加文件编码，通过Load传入
+ * 2024-02-27: V3.6.3 增加按属性名称进行读写
 ******************************************************************************/
 
 using System;
@@ -25,7 +26,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -42,6 +45,39 @@ namespace Sunny.UI
         /// </summary>
         [ConfigIgnore]
         public Encoding IniEncoding { get; private set; } = Encoding.Default;
+
+        [ConfigIgnore]
+        public object this[string property]
+        {
+            get
+            {
+                PropertyInfo info = Current.GetType().GetProperty(property);
+                if (info == null)
+                {
+                    throw new ArgumentNullException("属性名称不存在：" + property);
+                }
+
+                return info.GetValue(this, null);
+            }
+            set
+            {
+                PropertyInfo info = Current.GetType().GetProperty(property);
+                if (info == null)
+                {
+                    throw new ArgumentNullException("属性名称不存在：" + property);
+                }
+
+                try
+                {
+                    Type propertyType = info.PropertyType;
+                    info.SetValue(Current, Convert.ChangeType(value, propertyType), null);
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("属性值转换失败：" + property + ", " + value);
+                }
+            }
+        }
 
         public bool Load(string fileName, Encoding encoding)
         {
@@ -188,10 +224,17 @@ namespace Sunny.UI
             StreamWriter sw = new StreamWriter(filetmp, false, IniEncoding);
             sw.WriteLine(strs.ToString());
             sw.Flush();
-            sw.Close();
             sw.Dispose();
-            File.Delete(filename);
-            File.Move(filetmp, filename);
+
+            try
+            {
+                File.Delete(filename);
+                File.Move(filetmp, filename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("配置文件存储失败: " + filename + " ," + ex.Message);
+            }
         }
 
         #endregion 加载
