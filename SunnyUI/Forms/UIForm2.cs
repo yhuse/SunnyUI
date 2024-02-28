@@ -665,32 +665,7 @@ namespace Sunny.UI
                 if (InMaxBox)
                 {
                     InMaxBox = false;
-                    if (!showFullScreen)
-                    {
-                        if (WindowState == FormWindowState.Maximized)
-                        {
-                            WindowState = FormWindowState.Normal;
-                            if (Location.Y < 0) Location = new Point(Location.X, 0);
-                        }
-                        else
-                        {
-                            WindowState = FormWindowState.Maximized;
-                        }
-                    }
-                    else
-                    {
-                        if (WindowState == FormWindowState.Maximized)
-                        {
-                            FormBorderStyle = FormBorderStyle.Sizable;
-                            WindowState = FormWindowState.Normal;
-                            if (Location.Y < 0) Location = new Point(Location.X, 0);
-                        }
-                        else
-                        {
-                            FormBorderStyle = FormBorderStyle.None;
-                            WindowState = FormWindowState.Maximized;
-                        }
-                    }
+                    ShowMaxOrNormal();
                 }
 
                 if (InExtendBox)
@@ -708,7 +683,36 @@ namespace Sunny.UI
             }
         }
 
-        private DateTime lastMouseDownTime;
+        private void ShowMaxOrNormal()
+        {
+            if (!showFullScreen)
+            {
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    WindowState = FormWindowState.Normal;
+                    if (Location.Y < 0) Location = new Point(Location.X, 0);
+                }
+                else
+                {
+                    WindowState = FormWindowState.Maximized;
+                }
+            }
+            else
+            {
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    FormBorderStyle = FormBorderStyle.Sizable;
+                    WindowState = FormWindowState.Normal;
+                    if (Location.Y < 0) Location = new Point(Location.X, 0);
+                }
+                else
+                {
+                    FormBorderStyle = FormBorderStyle.None;
+                    WindowState = FormWindowState.Maximized;
+                }
+            }
+        }
+
         /// <summary>
         /// 重载鼠标按下事件
         /// </summary>
@@ -723,15 +727,15 @@ namespace Sunny.UI
             if (e.X > ControlBoxLeft) return;
             if (!Movable) return;
 
-            if (DateTime.Now - lastMouseDownTime <= TimeSpan.FromMilliseconds(500))
+            if (e.Clicks == 1)
             {
-                lastMouseDownTime = DateTime.Now;
-                return;
+                Win32.User.ReleaseCapture();
+                Win32.User.SendMessage(this.Handle, Win32.User.WM_SYSCOMMAND, Win32.User.SC_MOVE + Win32.User.HTCAPTION, 0);
             }
-
-            lastMouseDownTime = DateTime.Now;
-            Win32.User.ReleaseCapture();
-            Win32.User.SendMessage(this.Handle, Win32.User.WM_SYSCOMMAND, Win32.User.SC_MOVE + Win32.User.HTCAPTION, 0);
+            else
+            {
+                ShowMaxOrNormal();
+            }
         }
 
         /// <summary>
