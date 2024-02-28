@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FMain : UIForm
+    public partial class FMain : UIForm2
     {
         public FMain()
         {

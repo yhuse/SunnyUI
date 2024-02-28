@@ -330,7 +330,6 @@ namespace Sunny.UI.Demo
             this.uiDigitalLabel2.Size = new System.Drawing.Size(208, 38);
             this.uiDigitalLabel2.TabIndex = 108;
             this.uiDigitalLabel2.Text = "uiDigitalLabel2";
-            this.uiDigitalLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.uiDigitalLabel2.Value = 6789.9D;
             // 
             // uiDigitalLabel1
@@ -344,7 +343,6 @@ namespace Sunny.UI.Demo
             this.uiDigitalLabel1.Size = new System.Drawing.Size(208, 42);
             this.uiDigitalLabel1.TabIndex = 107;
             this.uiDigitalLabel1.Text = "uiDigitalLabel1";
-            this.uiDigitalLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.uiDigitalLabel1.TextOffset = new System.Drawing.Point(6, 0);
             this.uiDigitalLabel1.Value = -123.45D;
             // 
