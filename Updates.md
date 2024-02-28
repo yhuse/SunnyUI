@@ -1,5 +1,31 @@
 \+ 增加    \* 修改    \- 删除    
     
+#### 2024\-01\-01 V3.6.5       
+\+ UIForm2: 新增一种窗体基类，更接近于原生Form使用习惯    
+\* IniConfig: 修改保存文件的方式    
+\* IniConfig: 增加文件编码    
+\* UICombobox: 修复一个设置Text，SelectedValue不变的问题    
+\* UITextBox: 调整Radius时，自动调整文本框的位置    
+\* UIFlowLayoutPanel: 重写ScrollControlIntoView函数    
+\* UIDropControl: 下拉按钮可修改大小及位置    
+\* UITreeView: 自定义行颜色，可通过代码给颜色值，SetNodePainter，增加选中颜色    
+\* UIHeaderButton: 增加分组编号    
+\* UIDigitalLabel: 更新绘制    
+\* UIComboBox: 修复在窗体构造函数设置SelectedIndex报错    
+\* UIPagination: 优化按钮配色逻辑    
+\* UINavMenu: 尝试减少刷新闪烁    
+\* UIForm: 修改标题栏文字与控制按钮绘制重叠的问题    
+\* UIForm2: 增加主题风格设置    
+\* UIForm: 调整显示位置    
+\* UISymbolPanel: 设置默认尺寸    
+\* UIContextMenuStrip: 修复显示快捷键文本位置    
+\* UIContextMenuStrip: 节点AutoSize时不重绘，重绘时考虑Enabled为False时颜色显示    
+\* UIForm: 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示    
+\* UIButton: 增加按钮的&字符的Alt快捷键功能    
+\* UIWaitingBar: 修改可自定义配色    
+\* UIButton: 增加Text的属性编辑器    
+\* UIniConfig: 增加按属性名称进行读写    
+    
 #### 2024\-01\-01 V3.6.3      
 \+ Demo增加字体图标界面    
 \* UIButton: 修复LightStyle的背景颜色    
