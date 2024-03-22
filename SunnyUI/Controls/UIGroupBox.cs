@@ -22,6 +22,7 @@
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-07-11: V3.4.0 解决BackColor,FillColor设置为透明时，标题下面会出现横线
  * 2023-07-19: V3.4.1 解决BackColor,FillColor设置为透明时，文本位置与边框线重叠的问题
+ * 2024-03-22: V3.6.5 修复Enabled为false时标题行框线绘制颜色
 ******************************************************************************/
 
 using System;
@@ -112,20 +113,20 @@ namespace Sunny.UI
             {
                 if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop) && !UIStyles.GlobalRectangle)
                 {
-                    g.DrawLine(RectColor, Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
                 else
                 {
-                    g.DrawLine(RectColor, 0, TitleTop, textLeft, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), 0, TitleTop, textLeft, TitleTop, true, RectSize);
                 }
 
                 if (RadiusSides.GetValue(UICornerRadiusSides.RightTop) && !UIStyles.GlobalRectangle)
                 {
-                    g.DrawLine(RectColor, textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
                 }
                 else
                 {
-                    g.DrawLine(RectColor, textLeft + size.Width, TitleTop, Width, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width, TitleTop, true, RectSize);
                 }
             }
         }
