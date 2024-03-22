@@ -29,6 +29,7 @@
  * 2022-11-30: V3.3.0 增加Clear方法
  * 2023-07-25: V3.4.1 过滤输入后，按键盘下键切换至DataGridView，选中数据后按回车可快捷选中数据
  * 2023-09-25: V3.5.0 增加ClearFilter，可以清除弹窗的搜索栏文字
+ * 2024-03-22: V3.6.5 增加ShowDropDown()
 ******************************************************************************/
 
 using System;
@@ -107,6 +108,11 @@ namespace Sunny.UI
             //ItemForm.Show(this);
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
             item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;
+        }
+
+        public void ShowDropDown()
+        {
+            UIComboDataGridView_ButtonClick(this, EventArgs.Empty);
         }
 
         public override void Clear()
