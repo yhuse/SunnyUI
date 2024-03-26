@@ -332,6 +332,8 @@ namespace Sunny.UI
                     textBounds.X += style.IconSpacing;
                 }
 
+                DefStringFormat.Alignment = StringAlignment.Near;
+                DefStringFormat.LineAlignment = StringAlignment.Near;
                 textBounds.Size = Size.Truncate(GraphicsUtils.MeasureString(text, tmpFont, 0, DefStringFormat));
                 size.Width += textBounds.Width;
 
@@ -386,6 +388,8 @@ namespace Sunny.UI
                 {
                     textBrush = new SolidBrush(style.TextColor);
                     //DEBUG: g.DrawRectangle(new Border(Color.Red){ Width=1, Direction= Direction.Inner}.Pen, textBounds);
+                    DefStringFormat.Alignment = StringAlignment.Near;
+                    DefStringFormat.LineAlignment = StringAlignment.Near;
                     g.DrawString(text, tmpFont, textBrush, textBounds.Location, DefStringFormat);
                 }
 
