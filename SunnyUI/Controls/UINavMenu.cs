@@ -37,6 +37,7 @@
 * 2023-05-16: V3.3.6 重构DrawFontImage函数
 * 2023-05-29: V3.3.7 增加PageGuid相关扩展方法
 * 2023-11-16: V3.5.2 重构主题
+* 2024-04-13: V3.6.5 修复通过代码设置背景色无效的问题
 ******************************************************************************/
 
 using System;
@@ -259,6 +260,7 @@ namespace Sunny.UI
                 if (backColor != value)
                 {
                     backColor = value;
+                    base.BackColor = value;
                     menuStyle = UIMenuStyle.Custom;
                     Invalidate();
                 }
