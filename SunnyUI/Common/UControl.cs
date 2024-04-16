@@ -91,22 +91,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 控件的根窗体
-        /// </summary>
-        /// <param name="ctrl">控件</param>
-        /// <returns>根窗体</returns>
-        public static Form RootForm(this Control ctrl)
-        {
-            if (ctrl == null) return null;
-            while (ctrl.Parent != null)
-            {
-                ctrl = ctrl.Parent;
-            }
-
-            return ctrl as Form;
-        }
-
-        /// <summary>
         /// 设置控件位于容器的中心
         /// </summary>
         /// <param name="ctrl">控件</param>
