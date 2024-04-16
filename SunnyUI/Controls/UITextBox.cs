@@ -653,6 +653,7 @@ namespace Sunny.UI
 
         private void Edit_TextChanged(object s, EventArgs e)
         {
+            if (IsDisposed) return;
             TextChanged?.Invoke(this, e);
             SetScrollInfo();
         }
