@@ -18,6 +18,7 @@
  *
  * 2024-01-20: V3.6.3 增加文件说明
  * 2024-01-25: V3.6.3 增加主题等
+ * 2024-04-16: V3.6.5 设置默认Padding.Top为TitleHeight
 ******************************************************************************/
 
 using System;
@@ -1235,6 +1236,7 @@ namespace Sunny.UI
 
             if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
             if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
+            SetPadding();
 
             Render();
             CalcSystemBoxPos();
@@ -1816,14 +1818,19 @@ namespace Sunny.UI
             set
             {
                 showDragStretch = value;
-                if (value)
-                {
-                    Padding = new Padding(Math.Max(Padding.Left, 2), showTitle ? TitleHeight + 1 : 2, Math.Max(Padding.Right, 2), Math.Max(Padding.Bottom, 2));
-                }
-                else
-                {
-                    Padding = new Padding(0, showTitle ? TitleHeight : 0, 0, 0);
-                }
+                SetPadding();
+            }
+        }
+
+        private void SetPadding()
+        {
+            if (showDragStretch)
+            {
+                Padding = new Padding(Math.Max(Padding.Left, 2), showTitle ? TitleHeight + 1 : 2, Math.Max(Padding.Right, 2), Math.Max(Padding.Bottom, 2));
+            }
+            else
+            {
+                Padding = new Padding(0, showTitle ? TitleHeight : 0, 0, 0);
             }
         }
 
