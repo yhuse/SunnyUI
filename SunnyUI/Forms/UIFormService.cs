@@ -27,11 +27,11 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="size"></param>
-        public static void ShowProcessForm(this Form owner, int size = 200)
+        public static void ShowProcessForm(this Form owner, int size = 200, bool showrect = true)
         {
             if (ProcessFormService.IsRun) return;
             ProcessFormServiceClose = false;
-            ProcessFormService.CreateForm(size);
+            ProcessFormService.CreateForm(size, showrect);
         }
 
         internal static bool ProcessFormServiceClose;
@@ -152,11 +152,12 @@ namespace Sunny.UI
     {
         private UIProcessIndicatorForm form;
 
-        public void CreateForm(int size = 200)
+        public void CreateForm(int size = 200, bool showRect = true)
         {
             thread = new Thread(delegate ()
             {
                 form = new UIProcessIndicatorForm();
+                form.ShowRect = showRect;
                 form.Size = new System.Drawing.Size(size, size);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
