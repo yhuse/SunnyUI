@@ -402,7 +402,7 @@ namespace Sunny.UI
 
                         if (info.CheckEmpty && edit.Text.IsNullOrEmpty())
                         {
-                            ShowWarningTip(edit, info.Text + "不能为空");
+                            this.ShowWarningTip(edit, info.Text + "不能为空");
                             edit.Focus();
                             return false;
                         }
