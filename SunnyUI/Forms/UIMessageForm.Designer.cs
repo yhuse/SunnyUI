@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btnCancel = new UIButton();
             btnOK = new UIButton();
             lbMsg = new UIRichTextBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // btnCancel
@@ -78,11 +80,17 @@
             lbMsg.RadiusSides = UICornerRadiusSides.None;
             lbMsg.ReadOnly = true;
             lbMsg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            lbMsg.ScrollBarStyleInherited = false;
             lbMsg.ShowText = false;
             lbMsg.Size = new System.Drawing.Size(422, 158);
             lbMsg.Style = UIStyle.Custom;
             lbMsg.TabIndex = 7;
             lbMsg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // UIMessageForm
             // 
@@ -108,5 +116,6 @@
         private UIButton btnCancel;
         private UIButton btnOK;
         private UIRichTextBox lbMsg;
+        private System.Windows.Forms.Timer timer1;
     }
 }

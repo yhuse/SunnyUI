@@ -183,6 +183,34 @@ namespace Sunny.UI
                 else
                     btnCancel.Focus();
             }
+
+            if (delay <= 0) return;
+            if (text == "") text = Text;
+            Text = text + " [" + delay + "]";
+        }
+
+        int delay = 0;
+
+        public int Delay
+        {
+            set
+            {
+                if (value > 0)
+                {
+                    delay = value / 1000;
+                    timer1.Start();
+                }
+            }
+        }
+
+        string text = "";
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            delay--;
+            Text = text + " [" + delay + "]";
+
+            if (delay <= 0) Close();
         }
     }
 }

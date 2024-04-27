@@ -26,6 +26,7 @@
  * 2023-07-27: V3.4.1 提问弹窗增加默认是确认或者取消按钮的选择
  * 2024-04-22: V3.6.5 重构，所有弹窗调整为窗体的扩展方法，使用时加上this.
  * 2024-04-22: V3.6.5 输入弹窗前增加Show前缀
+ * 2024-04-27: V3.6.5 提示框增加延时关闭
 ******************************************************************************/
 
 using System;
@@ -125,8 +126,10 @@ namespace Sunny.UI
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <param name="topMost">置顶</param>
+        /// <param name="defaultButton">默认按钮</param>
+        /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
             Point pt = SystemEx.GetCursorPos();
             Rectangle screen = Screen.GetBounds(pt);
@@ -136,6 +139,7 @@ namespace Sunny.UI
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
             frm.TopMost = topMost;
+            frm.Delay = delay;
             frm.Render();
 
             if (showMask)
@@ -475,9 +479,9 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="msg">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog(this Form form, string msg, bool showMask = false)
+        public static void ShowSuccessDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, UILocalize.SuccessTitle, false, UIStyle.Green, showMask, true);
+            form.ShowSuccessDialog(UILocalize.SuccessTitle, msg, UIStyle.Green, showMask, delay);
         }
 
         /// <summary>
@@ -487,9 +491,9 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green, bool showMask = false)
+        public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true);
+            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
@@ -497,9 +501,9 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="msg">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog(this Form form, string msg, bool showMask = false)
+        public static void ShowInfoDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, UILocalize.InfoTitle, false, UIStyle.Gray, showMask, true);
+            form.ShowInfoDialog(UILocalize.SuccessTitle, msg, UIStyle.Gray, showMask, delay);
         }
 
         /// <summary>
@@ -509,9 +513,9 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray, bool showMask = false)
+        public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true);
+            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
@@ -519,9 +523,9 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="msg">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog(this Form form, string msg, bool showMask = false)
+        public static void ShowWarningDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, UILocalize.WarningTitle, false, UIStyle.Orange, showMask, true);
+            form.ShowWarningDialog(UILocalize.SuccessTitle, msg, UIStyle.Orange, showMask, delay);
         }
 
         /// <summary>
@@ -531,9 +535,9 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange, bool showMask = false)
+        public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true);
+            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
@@ -541,9 +545,9 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="msg">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog(this Form form, string msg, bool showMask = false)
+        public static void ShowErrorDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, UILocalize.ErrorTitle, false, UIStyle.Red, showMask, true);
+            form.ShowErrorDialog(UILocalize.SuccessTitle, msg, UIStyle.Red, showMask, delay);
         }
 
         /// <summary>
@@ -553,9 +557,9 @@ namespace Sunny.UI
         /// <param name="msg">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red, bool showMask = false)
+        public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true);
+            UIMessageBox.ShowMessageDialog(msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
