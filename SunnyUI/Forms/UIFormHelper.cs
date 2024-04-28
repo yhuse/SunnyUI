@@ -42,6 +42,8 @@ namespace Sunny.UI
 
     public delegate void OnZoomScaleRectChanged(object sender, Rectangle info);
 
+    public delegate void OnWindowStateChanged(object sender, FormWindowState thisState, FormWindowState lastState);
+
     public enum UILoginFormFocusControl
     {
         UserName,

@@ -212,5 +212,10 @@ namespace Sunny.UI
 
             if (delay <= 0) Close();
         }
+
+        private void UIMessageForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer1.Stop();
+        }
     }
 }

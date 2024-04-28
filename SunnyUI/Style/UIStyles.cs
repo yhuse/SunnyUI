@@ -204,10 +204,10 @@ namespace Sunny.UI
             SetStyle(UIStyle.Colorful);
         }
 
-        private static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
-        private static readonly ConcurrentDictionary<Guid, UIForm> Forms = new ConcurrentDictionary<Guid, UIForm>();
-        private static readonly ConcurrentDictionary<Guid, UIPage> Pages = new ConcurrentDictionary<Guid, UIPage>();
-        private static readonly ConcurrentDictionary<Guid, UIForm2> Forms2 = new ConcurrentDictionary<Guid, UIForm2>();
+        internal static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
+        internal static readonly ConcurrentDictionary<Guid, UIForm> Forms = new ConcurrentDictionary<Guid, UIForm>();
+        internal static readonly ConcurrentDictionary<Guid, UIPage> Pages = new ConcurrentDictionary<Guid, UIPage>();
+        internal static readonly ConcurrentDictionary<Guid, UIForm2> Forms2 = new ConcurrentDictionary<Guid, UIForm2>();
 
 
         /// <summary>

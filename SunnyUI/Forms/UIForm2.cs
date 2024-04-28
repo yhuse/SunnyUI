@@ -19,6 +19,7 @@
  * 2024-01-20: V3.6.3 增加文件说明
  * 2024-01-25: V3.6.3 增加主题等
  * 2024-04-16: V3.6.5 设置默认Padding.Top为TitleHeight
+ * 2024-04-28: V3.6.5 增加WindowStateChanged事件
 ******************************************************************************/
 
 using System;
@@ -63,6 +64,24 @@ namespace Sunny.UI
         }
 
         public readonly Guid Guid = Guid.NewGuid();
+
+        public event OnWindowStateChanged WindowStateChanged;
+
+        private void DoWindowStateChanged(FormWindowState thisState)
+        {
+            lastWindowState = thisState;
+            DoWindowStateChanged(thisState, WindowState);
+        }
+
+        private void DoWindowStateChanged(FormWindowState thisState, FormWindowState lastState)
+        {
+            WindowStateChanged?.Invoke(this, thisState, lastState);
+
+            foreach (var page in UIStyles.Pages.Values)
+            {
+                page.DoWindowStateChanged(thisState, lastState);
+            }
+        }
 
         public void Translate()
         {
@@ -660,6 +679,7 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     InMinBox = false;
+                    DoWindowStateChanged(FormWindowState.Minimized);
                     WindowState = FormWindowState.Minimized;
                 }
 
@@ -690,11 +710,13 @@ namespace Sunny.UI
             {
                 if (WindowState == FormWindowState.Maximized)
                 {
+                    DoWindowStateChanged(FormWindowState.Normal);
                     WindowState = FormWindowState.Normal;
                     if (Location.Y < 0) Location = new Point(Location.X, 0);
                 }
                 else
                 {
+                    DoWindowStateChanged(FormWindowState.Maximized);
                     WindowState = FormWindowState.Maximized;
                 }
             }
@@ -703,12 +725,14 @@ namespace Sunny.UI
                 if (WindowState == FormWindowState.Maximized)
                 {
                     FormBorderStyle = FormBorderStyle.Sizable;
+                    DoWindowStateChanged(FormWindowState.Normal);
                     WindowState = FormWindowState.Normal;
                     if (Location.Y < 0) Location = new Point(Location.X, 0);
                 }
                 else
                 {
                     FormBorderStyle = FormBorderStyle.None;
+                    DoWindowStateChanged(FormWindowState.Maximized);
                     WindowState = FormWindowState.Maximized;
                 }
             }
@@ -1146,6 +1170,8 @@ namespace Sunny.UI
             return new Size(width, height);
         }
 
+        private FormWindowState lastWindowState = FormWindowState.Normal;
+
         protected override void WndProc(ref Message m)
         {
             var msg = (int)m.Msg;
@@ -1154,6 +1180,11 @@ namespace Sunny.UI
                 case Win32.User.WM_ACTIVATE:
                     var margins = new Win32.Dwm.MARGINS(0, 0, 1, 0);
                     Win32.Dwm.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                    if (WindowState != FormWindowState.Minimized && lastWindowState == FormWindowState.Minimized)
+                    {
+                        DoWindowStateChanged(WindowState, lastWindowState);
+                        lastWindowState = WindowState;
+                    }
                     break;
                 case Win32.User.WM_NCCALCSIZE when m.WParam != IntPtr.Zero:
                     if (CalcSize(ref m)) return;
@@ -1163,6 +1194,13 @@ namespace Sunny.UI
                     if (hotKeys != null && hotKeys.ContainsKey(hotKeyId))
                     {
                         HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+                    }
+                    break;
+                case Win32.User.WM_ACTIVATEAPP:
+                    if (WindowState == FormWindowState.Minimized && lastWindowState != FormWindowState.Minimized)
+                    {
+                        DoWindowStateChanged(WindowState, lastWindowState);
+                        lastWindowState = FormWindowState.Minimized;
                     }
                     break;
             }

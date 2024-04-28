@@ -55,6 +55,7 @@
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
  * 2023-02-19: V3.6.3 修改标题栏文字与控制按钮绘制重叠的问题
  * 2024-02-22: V3.6.3 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示
+ * 2024-04-28: V3.6.5 增加WindowStateChanged事件
 ******************************************************************************/
 
 using System;
@@ -113,6 +114,24 @@ namespace Sunny.UI
         {
             get => base.AutoScroll;
             set => base.AutoScroll = false;
+        }
+
+        public event OnWindowStateChanged WindowStateChanged;
+
+        private void DoWindowStateChanged(FormWindowState thisState)
+        {
+            lastWindowState = thisState;
+            DoWindowStateChanged(thisState, WindowState);
+        }
+
+        private void DoWindowStateChanged(FormWindowState thisState, FormWindowState lastState)
+        {
+            WindowStateChanged?.Invoke(this, thisState, lastState);
+
+            foreach (var page in UIStyles.Pages.Values)
+            {
+                page.DoWindowStateChanged(thisState, lastState);
+            }
         }
 
         /// <summary>
@@ -652,6 +671,7 @@ namespace Sunny.UI
                 if (InMinBox)
                 {
                     InMinBox = false;
+                    DoWindowStateChanged(FormWindowState.Minimized);
                     WindowState = FormWindowState.Minimized;
                 }
 
@@ -703,6 +723,7 @@ namespace Sunny.UI
                 // 若窗体从正常模式->最大化模式，该操作是由移动窗体至顶部触发的，记录的是移动前的窗体位置
                 location = IsOnMoving ? FormLocation : Location;
                 FormEx.SetFormRoundRectRegion(this, 0);
+                DoWindowStateChanged(FormWindowState.Maximized);
                 WindowState = FormWindowState.Maximized;
             }
             else if (WindowState == FormWindowState.Maximized)
@@ -725,6 +746,7 @@ namespace Sunny.UI
 
                 Location = location;
                 FormEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
+                DoWindowStateChanged(FormWindowState.Normal);
                 WindowState = FormWindowState.Normal;
             }
 
@@ -1745,6 +1767,7 @@ namespace Sunny.UI
 
         #region 拉拽调整窗体大小
 
+        private FormWindowState lastWindowState = FormWindowState.Normal;
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == Win32.User.WM_ERASEBKGND)
@@ -1759,6 +1782,24 @@ namespace Sunny.UI
                 if (hotKeys != null && hotKeys.ContainsKey(hotKeyId))
                 {
                     HotKeyEventHandler?.Invoke(this, new HotKeyEventArgs(hotKeys[hotKeyId], DateTime.Now));
+                }
+            }
+
+            if (m.Msg == Win32.User.WM_ACTIVATE)
+            {
+                if (WindowState != FormWindowState.Minimized && lastWindowState == FormWindowState.Minimized)
+                {
+                    DoWindowStateChanged(WindowState, lastWindowState);
+                    lastWindowState = WindowState;
+                }
+            }
+
+            if (m.Msg == Win32.User.WM_ACTIVATEAPP)
+            {
+                if (WindowState == FormWindowState.Minimized && lastWindowState != FormWindowState.Minimized)
+                {
+                    DoWindowStateChanged(WindowState, lastWindowState);
+                    lastWindowState = FormWindowState.Minimized;
                 }
             }
 

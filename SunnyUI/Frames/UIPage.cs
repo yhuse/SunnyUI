@@ -43,6 +43,7 @@
  * 2023-11-06: V3.5.2 重构主题
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
  * 2023-12-20: V3.6.2 调整AfterShow事件位置及逻辑
+ * 2024-04-28: V3.6.5 增加WindowStateChanged事件
 ******************************************************************************/
 
 using System;
@@ -56,34 +57,6 @@ namespace Sunny.UI
     [DefaultEvent("Initialize")]
     public partial class UIPage : Form, IStyleInterface, ISymbol, IZoomScale
     {
-        public readonly Guid Guid = Guid.NewGuid();
-        private Color _rectColor = UIColor.Blue;
-
-        private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.None;
-
-        protected UIStyle _style = UIStyle.Inherited;
-
-        [Browsable(false)]
-        public IFrame Frame
-        {
-            get; set;
-        }
-
-        private bool extendBox;
-
-        [DefaultValue(false)]
-        [Description("显示扩展按钮"), Category("SunnyUI")]
-        public bool ExtendBox
-        {
-            get => extendBox;
-            set
-            {
-                extendBox = showTitle && value;
-                CalcSystemBoxPos();
-                Invalidate();
-            }
-        }
-
         public UIPage()
         {
             InitializeComponent();
@@ -113,6 +86,41 @@ namespace Sunny.UI
             base.ShowInTaskbar = false;
             base.StartPosition = FormStartPosition.Manual;
             base.SizeGripStyle = SizeGripStyle.Hide;
+        }
+
+        public readonly Guid Guid = Guid.NewGuid();
+        private Color _rectColor = UIColor.Blue;
+
+        private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.None;
+
+        protected UIStyle _style = UIStyle.Inherited;
+
+        [Browsable(false)]
+        public IFrame Frame
+        {
+            get; set;
+        }
+
+        private bool extendBox;
+
+        [DefaultValue(false)]
+        [Description("显示扩展按钮"), Category("SunnyUI")]
+        public bool ExtendBox
+        {
+            get => extendBox;
+            set
+            {
+                extendBox = showTitle && value;
+                CalcSystemBoxPos();
+                Invalidate();
+            }
+        }
+
+        public event OnWindowStateChanged WindowStateChanged;
+
+        internal void DoWindowStateChanged(FormWindowState thisState, FormWindowState lastState)
+        {
+            WindowStateChanged?.Invoke(this, thisState, lastState);
         }
 
         protected override void OnClick(EventArgs e)
