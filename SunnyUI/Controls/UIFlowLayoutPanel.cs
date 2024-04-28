@@ -30,6 +30,7 @@
  * 2023-01-11: V3.3.1 修复只显示水平滚动条时，鼠标滚轮滚动水平滚动条不动的问题
  * 2023-11-05: V3.5.2 重构主题
  * 2024-01-17: V3.6.3 重写ScrollControlIntoView函数
+ * 2024-04-28: V3.6.5 增加Render方法，尝试解决点击状态栏恢复窗体后右侧滚动条未消失的问题
 ******************************************************************************/
 
 using System;
@@ -70,6 +71,14 @@ namespace Sunny.UI
             timer.Interval = 100;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        public void Render()
+        {
+            if (Panel == null) return;
+            int height = Panel.Height;
+            Panel.Height = height + 1;
+            Panel.Height = height;
         }
 
         [DefaultValue(true)]
