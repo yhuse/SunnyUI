@@ -27,6 +27,7 @@
  * 2024-04-22: V3.6.5 重构，所有弹窗调整为窗体的扩展方法，使用时加上this.
  * 2024-04-22: V3.6.5 输入弹窗前增加Show前缀
  * 2024-04-27: V3.6.5 提示框增加延时关闭
+ * 2024-04-28: V3.6.5 信息提示窗体跟随程序所在的屏幕
 ******************************************************************************/
 
 using System;
@@ -82,39 +83,39 @@ namespace Sunny.UI
 
     public static class UIMessageBox
     {
-        public static void Show(string text, bool showMask = true, bool topMost = true)
+        public static void Show(string text, bool showMask = true, int delay = 0)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, topMost);
+            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowInfo(string text, bool showMask = true, bool topMost = true)
+        public static void ShowInfo(string text, bool showMask = true, int delay = 0)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, topMost);
+            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowSuccess(string text, bool showMask = true, bool topMost = true)
+        public static void ShowSuccess(string text, bool showMask = true, int delay = 0)
         {
-            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, topMost);
+            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowWarning(string text, bool showMask = true, bool topMost = true)
+        public static void ShowWarning(string text, bool showMask = true, int delay = 0)
         {
-            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, topMost);
+            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowError(string text, bool showMask = true, bool topMost = true)
+        public static void ShowError(string text, bool showMask = true, int delay = 0)
         {
-            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, topMost);
+            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static bool ShowAsk(string text, bool showMask = true, bool topMost = true)
+        public static bool ShowAsk(string text, bool showMask = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return Show(text, UILocalize.AskTitle, UIStyle.Blue, UIMessageBoxButtons.OKCancel, showMask, topMost);
+            return ShowMessageDialog(text, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
         }
 
-        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true, bool topMost = true)
+        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true, bool topMost = true, int delay = 0)
         {
-            return ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask, topMost);
+            return ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask, topMost, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
@@ -135,7 +136,10 @@ namespace Sunny.UI
             Rectangle screen = Screen.GetBounds(pt);
             using UIMessageForm frm = new UIMessageForm();
             frm.DefaultButton = showCancelButton ? defaultButton : UIMessageDialogButtons.Ok;
-            frm.StartPosition = FormStartPosition.CenterScreen;
+            //frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Left = screen.Left + screen.Width / 2 - frm.Width / 2;
+            frm.Top = screen.Top + screen.Height / 2 - frm.Height / 2;
             frm.ShowMessage(message, title, showCancelButton, style);
             frm.ShowInTaskbar = false;
             frm.TopMost = topMost;
