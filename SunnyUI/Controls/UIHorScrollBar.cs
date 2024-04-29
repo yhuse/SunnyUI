@@ -19,6 +19,7 @@
  * 2020-07-18: V2.2.6 新增水平滚动条
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-11-13: V3.2.8 增加了可设置水平滚动条高度的属性
+ * 2024-04-29: V3.6.5 修改Bug
 ******************************************************************************/
 
 using System;
@@ -329,7 +330,7 @@ namespace Sunny.UI
                 case 2:
                     value_state = DrawItemState.Selected;
                     dragMove = true;
-                    dragOffset = GetValueRect().Y - e.Y;
+                    dragOffset = GetValueRect().X - e.X;
                     break;
 
                 case 3:
