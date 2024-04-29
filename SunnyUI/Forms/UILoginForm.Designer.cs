@@ -115,7 +115,6 @@
             btnLogin.Size = new System.Drawing.Size(86, 29);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "登录";
-            btnLogin.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnLogin.Click += btnLogin_Click;
             // 
             // btnCancel
@@ -142,7 +141,6 @@
             btnCancel.Symbol = 61453;
             btnCancel.TabIndex = 3;
             btnCancel.Text = "取消";
-            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.Click += btnCancel_Click;
             // 
             // lblTitle
@@ -209,6 +207,7 @@
             MinimumSize = new System.Drawing.Size(750, 450);
             Name = "UILoginForm";
             Padding = new System.Windows.Forms.Padding(0);
+            ShowIcon = false;
             ShowInTaskbar = false;
             ShowTitle = false;
             Text = "UILogin";

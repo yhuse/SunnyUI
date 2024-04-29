@@ -28,50 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelDescription = new Sunny.UI.UILabel();
-            this.Bar = new Sunny.UI.UIWaitingBar();
-            this.SuspendLayout();
+            labelDescription = new UILabel();
+            Bar = new UIWaitingBar();
+            SuspendLayout();
             // 
             // labelDescription
             // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.BackColor = System.Drawing.Color.Transparent;
-            this.labelDescription.Font = new System.Drawing.Font("宋体", 12F);
-            this.labelDescription.Location = new System.Drawing.Point(32, 55);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(178, 21);
-            this.labelDescription.TabIndex = 4;
-            this.labelDescription.Text = "系统正在处理中，请稍候...";
-            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelDescription.AutoSize = true;
+            labelDescription.BackColor = System.Drawing.Color.Transparent;
+            labelDescription.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelDescription.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            labelDescription.Location = new System.Drawing.Point(32, 55);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new System.Drawing.Size(207, 16);
+            labelDescription.TabIndex = 4;
+            labelDescription.Text = "系统正在处理中，请稍候...";
+            labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Bar
             // 
-            this.Bar.Font = new System.Drawing.Font("宋体", 12F);
-            this.Bar.Location = new System.Drawing.Point(32, 91);
-            this.Bar.MinimumSize = new System.Drawing.Size(70, 23);
-            this.Bar.Name = "Bar";
-            this.Bar.Size = new System.Drawing.Size(409, 29);
-            this.Bar.TabIndex = 6;
-            this.Bar.Text = "uiWaitingBar1";
-            this.Bar.Tick += new System.EventHandler(this.Bar_Tick);
+            Bar.FillColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            Bar.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Bar.ForeColor = System.Drawing.Color.FromArgb(80, 160, 255);
+            Bar.Location = new System.Drawing.Point(32, 91);
+            Bar.MinimumSize = new System.Drawing.Size(70, 23);
+            Bar.Name = "Bar";
+            Bar.Size = new System.Drawing.Size(409, 29);
+            Bar.TabIndex = 6;
+            Bar.Text = "uiWaitingBar1";
+            Bar.Tick += Bar_Tick;
             // 
             // UIWaitForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(473, 153);
-            this.ControlBox = false;
-            this.Controls.Add(this.labelDescription);
-            this.Controls.Add(this.Bar);
-            this.EscClose = false;
-            this.IsForbidAltF4 = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "UIWaitForm";
-            this.Text = "提示";
-            this.TopMost = true;
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(473, 153);
+            ControlBox = false;
+            Controls.Add(labelDescription);
+            Controls.Add(Bar);
+            IsForbidAltF4 = true;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "UIWaitForm";
+            ShowIcon = false;
+            Text = "提示";
+            TopMost = true;
+            ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 153);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

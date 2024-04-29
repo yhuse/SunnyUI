@@ -39,6 +39,7 @@
             labelDescription.AutoSize = true;
             labelDescription.BackColor = System.Drawing.Color.Transparent;
             labelDescription.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelDescription.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             labelDescription.Location = new System.Drawing.Point(32, 55);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new System.Drawing.Size(207, 16);
@@ -48,6 +49,7 @@
             // 
             // processBar
             // 
+            processBar.FillColor = System.Drawing.Color.FromArgb(235, 243, 255);
             processBar.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             processBar.Location = new System.Drawing.Point(32, 91);
             processBar.MinimumSize = new System.Drawing.Size(70, 23);
@@ -73,6 +75,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIStatusForm";
+            ShowIcon = false;
             Text = "提示";
             TopMost = true;
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 153);

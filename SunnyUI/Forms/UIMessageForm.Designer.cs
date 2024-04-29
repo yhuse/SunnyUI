@@ -48,7 +48,6 @@
             btnCancel.Style = UIStyle.Custom;
             btnCancel.TabIndex = 6;
             btnCancel.Text = "取消";
-            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.TipsText = null;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -65,7 +64,6 @@
             btnOK.Style = UIStyle.Custom;
             btnOK.TabIndex = 5;
             btnOK.Text = "确定";
-            btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnOK.TipsText = null;
             btnOK.Click += btnOK_Click;
             // 
@@ -105,7 +103,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIMessageForm";
-            Padding = new System.Windows.Forms.Padding(1, 35, 1, 3);
+            ShowIcon = false;
             ShowInTaskbar = false;
             Text = "UIMsgBox";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 450, 270);

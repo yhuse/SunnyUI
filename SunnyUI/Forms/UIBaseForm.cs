@@ -55,7 +55,6 @@ namespace Sunny.UI
 
             if (AutoScaleMode == AutoScaleMode.Font) AutoScaleMode = AutoScaleMode.None;
             if (base.BackColor == SystemColors.Control) base.BackColor = UIStyles.Blue.PageBackColor;
-            SetPadding();
 
             Render();
             CalcSystemBoxPos();

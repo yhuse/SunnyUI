@@ -28,71 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label = new Sunny.UI.UILabel();
-            this.edit = new Sunny.UI.UITextBox();
-            this.pnlBtm.SuspendLayout();
-            this.SuspendLayout();
+            label = new UILabel();
+            edit = new UITextBox();
+            pnlBtm.SuspendLayout();
+            SuspendLayout();
             // 
             // pnlBtm
             // 
-            this.pnlBtm.Location = new System.Drawing.Point(1, 124);
-            this.pnlBtm.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.pnlBtm.Size = new System.Drawing.Size(471, 55);
-            this.pnlBtm.TabIndex = 2;
+            pnlBtm.Location = new System.Drawing.Point(0, 135);
+            pnlBtm.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
+            pnlBtm.Size = new System.Drawing.Size(473, 55);
+            pnlBtm.TabIndex = 2;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(343, 12);
+            btnCancel.Location = new System.Drawing.Point(343, 4);
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(228, 12);
+            btnOK.Location = new System.Drawing.Point(228, 4);
             // 
             // label
             // 
-            this.label.AutoSize = true;
-            this.label.BackColor = System.Drawing.Color.Transparent;
-            this.label.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label.Location = new System.Drawing.Point(29, 57);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(218, 21);
-            this.label.TabIndex = 1;
-            this.label.Text = "请在下方编辑框中输入数值：";
-            this.label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label.AutoSize = true;
+            label.BackColor = System.Drawing.Color.Transparent;
+            label.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            label.Location = new System.Drawing.Point(28, 57);
+            label.Name = "label";
+            label.Size = new System.Drawing.Size(215, 16);
+            label.TabIndex = 1;
+            label.Text = "请在下方编辑框中输入数值：";
+            label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // edit
             // 
-            this.edit.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.edit.FillColor = System.Drawing.Color.White;
-            this.edit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.edit.Location = new System.Drawing.Point(29, 92);
-            this.edit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.edit.Maximum = 2147483647D;
-            this.edit.Minimum = -2147483648D;
-            this.edit.MinimumSize = new System.Drawing.Size(1, 1);
-            this.edit.Name = "edit";
-            this.edit.Padding = new System.Windows.Forms.Padding(5);
-            this.edit.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.edit.Size = new System.Drawing.Size(415, 29);
-            this.edit.TabIndex = 0;
-            this.edit.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            edit.Cursor = System.Windows.Forms.Cursors.IBeam;
+            edit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            edit.Location = new System.Drawing.Point(29, 92);
+            edit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            edit.MinimumSize = new System.Drawing.Size(1, 1);
+            edit.Name = "edit";
+            edit.Padding = new System.Windows.Forms.Padding(5);
+            edit.RadiusSides = UICornerRadiusSides.None;
+            edit.ShowText = false;
+            edit.Size = new System.Drawing.Size(415, 29);
+            edit.TabIndex = 0;
+            edit.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            edit.Watermark = "";
             // 
             // UIInputForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(473, 182);
-            this.Controls.Add(this.edit);
-            this.Controls.Add(this.label);
-            this.Name = "UIInputForm";
-            this.Text = "输入";
-            this.Shown += new System.EventHandler(this.UIInputForm_Shown);
-            this.Controls.SetChildIndex(this.pnlBtm, 0);
-            this.Controls.SetChildIndex(this.label, 0);
-            this.Controls.SetChildIndex(this.edit, 0);
-            this.pnlBtm.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(473, 190);
+            Controls.Add(edit);
+            Controls.Add(label);
+            Name = "UIInputForm";
+            Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            ShowIcon = false;
+            Text = "输入";
+            ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
+            Shown += UIInputForm_Shown;
+            Controls.SetChildIndex(pnlBtm, 0);
+            Controls.SetChildIndex(label, 0);
+            Controls.SetChildIndex(edit, 0);
+            pnlBtm.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
