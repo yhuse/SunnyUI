@@ -391,9 +391,6 @@ namespace Sunny.UI
         {
         }
 
-        [Browsable(false)]
-        public Point ParentLocation { get; set; } = new Point(0, 0);
-
         [DefaultValue(-1)]
         public int PageIndex { get; set; } = -1;
 

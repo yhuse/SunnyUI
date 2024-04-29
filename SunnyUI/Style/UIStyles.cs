@@ -205,10 +205,8 @@ namespace Sunny.UI
         }
 
         internal static readonly ConcurrentDictionary<UIStyle, UIBaseStyle> Styles = new ConcurrentDictionary<UIStyle, UIBaseStyle>();
-        internal static readonly ConcurrentDictionary<Guid, UIForm> Forms = new ConcurrentDictionary<Guid, UIForm>();
+        internal static readonly ConcurrentDictionary<Guid, UIBaseForm> Forms = new ConcurrentDictionary<Guid, UIBaseForm>();
         internal static readonly ConcurrentDictionary<Guid, UIPage> Pages = new ConcurrentDictionary<Guid, UIPage>();
-        internal static readonly ConcurrentDictionary<Guid, UIForm2> Forms2 = new ConcurrentDictionary<Guid, UIForm2>();
-
 
         /// <summary>
         /// 菜单颜色集合
@@ -254,26 +252,11 @@ namespace Sunny.UI
         /// 注册窗体
         /// </summary>
         /// <param name="form">窗体</param>
-        public static bool Register(this UIForm form)
+        public static bool Register(this UIBaseForm form)
         {
             if (!Forms.ContainsKey(form.Guid))
             {
                 Forms.Upsert(form.Guid, form);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 注册窗体
-        /// </summary>
-        /// <param name="form">窗体</param>
-        public static bool Register(this UIForm2 form)
-        {
-            if (!Forms2.ContainsKey(form.Guid))
-            {
-                Forms2.Upsert(form.Guid, form);
                 return true;
             }
 
@@ -311,18 +294,9 @@ namespace Sunny.UI
         /// 反注册窗体
         /// </summary>
         /// <param name="form">窗体</param>
-        public static void UnRegister(this UIForm form)
+        public static void UnRegister(this UIBaseForm form)
         {
             Forms.TryRemove(form.Guid, out _);
-        }
-
-        /// <summary>
-        /// 反注册窗体
-        /// </summary>
-        /// <param name="form">窗体</param>
-        public static void UnRegister(this UIForm2 form)
-        {
-            Forms2.TryRemove(form.Guid, out _);
         }
 
         /// <summary>
@@ -382,11 +356,6 @@ namespace Sunny.UI
                 form.SetInheritedStyle(style);
             }
 
-            foreach (var form in Forms2.Values)
-            {
-                form.SetInheritedStyle(style);
-            }
-
             foreach (var page in Pages.Values)
             {
                 page.SetInheritedStyle(style);
@@ -406,12 +375,6 @@ namespace Sunny.UI
                     form.SetDPIScale();
             }
 
-            foreach (var form in Forms2.Values)
-            {
-                if (UIDPIScale.NeedSetDPIFont())
-                    form.SetDPIScale();
-            }
-
             foreach (var page in Pages.Values)
             {
                 if (UIDPIScale.NeedSetDPIFont())
@@ -422,11 +385,6 @@ namespace Sunny.UI
         public static void Translate()
         {
             foreach (var form in Forms.Values)
-            {
-                form.Translate();
-            }
-
-            foreach (var form in Forms2.Values)
             {
                 form.Translate();
             }

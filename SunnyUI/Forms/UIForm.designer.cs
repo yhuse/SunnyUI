@@ -14,17 +14,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
-        {
-            this.UnRegister();
-
-            if (hotKeys != null)
-            {
-                foreach (var hotKey in hotKeys.Values)
-                {
-                    Win32.User.UnregisterHotKey(IntPtr.Zero, hotKey.id);
-                }
-            }
-
+        {    
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -54,7 +44,6 @@ namespace Sunny.UI
             Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "UIForm";
-            FormClosing += UIForm_FormClosing;
             ResumeLayout(false);
         }
 

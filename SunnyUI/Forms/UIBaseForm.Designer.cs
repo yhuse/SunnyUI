@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI
 {
-    partial class UIForm2
+    partial class UIBaseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -13,6 +13,16 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            this.UnRegister();
+
+            if (hotKeys != null)
+            {
+                foreach (var hotKey in hotKeys.Values)
+                {
+                    Win32.User.UnregisterHotKey(System.IntPtr.Zero, hotKey.id);
+                }
+            }
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -28,18 +38,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIBaseForm));
             SuspendLayout();
             // 
-            // UIForm
+            // UIBaseForm
             // 
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "UIForm2";
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
+            Name = "UIBaseForm";
+            Text = "UIBaseForm";
             ResumeLayout(false);
         }
 
