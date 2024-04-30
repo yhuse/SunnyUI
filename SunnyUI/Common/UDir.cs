@@ -19,7 +19,6 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -33,38 +32,6 @@ namespace Sunny.UI
     public static class DirEx
     {
         /// <summary>
-        /// 调用WINAPI删除文件夹
-        /// </summary>
-        /// <param name="directory">文件夹</param>
-        public static void Delete(this string directory)
-        {
-            if (Directory.Exists(directory))
-            {
-                var files = Directory.EnumerateFiles(directory, "*", SearchOption.AllDirectories);
-                foreach (string file in files)
-                {
-                    Win32.Kernel.DeleteFile(file);
-                }
-
-                var directories = Directory.EnumerateDirectories(directory, "*", SearchOption.AllDirectories);
-                foreach (string dir in directories)
-                {
-                    Directory.Delete(dir, true);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 当前可执行文件路径，末尾包括文件夹分隔符(windows为\，linux为/)
-        /// </summary>
-        /// <returns>结果</returns>
-        public static string CurrentDir()
-        {
-            //return Environment.CurrentDirectory.DealPath();
-            return AppDomain.CurrentDomain.BaseDirectory.DealPath();
-        }
-
-        /// <summary>
         /// 选择文件夹
         /// </summary>
         /// <param name="desc">说明</param>
@@ -73,17 +40,9 @@ namespace Sunny.UI
         /// <returns>是否选择文件夹</returns>
         public static bool SelectDir(string desc, ref string dir, bool showNewButton = true)
         {
-            bool bOk = false;
-            using (FolderBrowserDialog fd = new FolderBrowserDialog { Description = desc, ShowNewFolderButton = showNewButton })
-            {
-                fd.SelectedPath = dir;
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    dir = fd.SelectedPath.DealPath();
-                    bOk = true;
-                }
-            }
-
+            using FolderBrowserDialog fd = new FolderBrowserDialog { Description = desc, ShowNewFolderButton = showNewButton, SelectedPath = dir };
+            bool bOk = fd.ShowDialog() == DialogResult.OK;
+            if (bOk) dir = fd.SelectedPath.DealPath();
             return bOk;
         }
 
@@ -95,116 +54,10 @@ namespace Sunny.UI
         /// <returns>是否选择文件夹</returns>
         public static bool SelectDirEx(string desc, ref string dir)
         {
-            bool bOk = false;
-            using (FolderBrowserDialogEx fd = new FolderBrowserDialogEx { Description = desc, DirectoryPath = dir })
-            {
-                if (fd.ShowDialog(null) == DialogResult.OK)
-                {
-                    dir = fd.DirectoryPath.DealPath();
-                    bOk = true;
-                }
-            }
-
+            using FolderBrowserDialogEx fd = new FolderBrowserDialogEx { Description = desc, DirectoryPath = dir };
+            bool bOk = fd.ShowDialog(null) == DialogResult.OK;
+            if (bOk) dir = fd.DirectoryPath.DealPath();
             return bOk;
-        }
-
-        /// <summary>
-        /// Temp文件夹，末尾包括\
-        /// </summary>
-        /// <returns>结果</returns>
-        public static string TempPath()
-        {
-            return Path.GetTempPath().DealPath();
-        }
-
-        /// <summary>
-        /// Temp文件夹下唯一的新建临时文件夹，末尾包括\
-        /// </summary>
-        /// <returns>结果</returns>
-        public static string TempRandomPath()
-        {
-            string path = FileEx.TempFileName(false);
-            Directory.CreateDirectory(path);
-            return path.DealPath();
-        }
-
-        /// <summary>
-        /// 检测指定目录是否存在
-        /// </summary>
-        /// <param name="dir">目录的绝对路径</param>
-        /// <returns>结果</returns>
-        public static bool Exists(string dir)
-        {
-            return Directory.Exists(dir);
-        }
-
-        /// <summary>
-        /// 创建一个目录
-        /// </summary>
-        /// <param name="dir">目录的绝对路径</param>
-        public static void CreateDir(string dir)
-        {
-            //如果目录不存在则创建该目录
-            if (!Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-        }
-
-        /// <summary>
-        /// 尝试删除非空文件夹
-        /// </summary>
-        /// <param name="dir">文件夹</param>
-        /// <returns>结果</returns>
-        public static bool TryDelete(string dir)
-        {
-            try
-            {
-                Directory.Delete(dir);
-                return !Directory.Exists(dir);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 清空指定的文件夹，但不删除文件夹
-        /// </summary>
-        /// <param name="dir">文件夹</param>
-        public static void EmptyDir(string dir)
-        {
-            foreach (string d in Directory.GetFileSystemEntries(dir))
-            {
-                if (File.Exists(d))
-                {
-                    FileInfo fi = new FileInfo(d);
-                    if (fi.Attributes.ToString().IndexOf("ReadOnly", StringComparison.Ordinal) != -1)
-                    {
-                        fi.Attributes = FileAttributes.Normal;
-                    }
-
-                    fi.TryDelete();
-                }
-                else
-                {
-                    DirectoryInfo d1 = new DirectoryInfo(d);
-                    EmptyDir(d1.FullName); //递归删除子文件夹
-                    TryDelete(d);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 删除指定的文件夹
-        /// </summary>
-        /// <param name="dir">文件夹</param>
-        public static void DeleteDir(string dir)
-        {
-            EmptyDir(dir);
-            TryDelete(dir);
         }
 
         /// <summary>
@@ -218,78 +71,10 @@ namespace Sunny.UI
                 System.Diagnostics.Process.Start("Explorer.exe", @"/select," + dir);
             }
 
-            if (Exists(dir))
+            if (Directory.Exists(dir))
             {
                 System.Diagnostics.Process.Start("Explorer.exe", dir);
             }
-        }
-
-        /// <summary>
-        /// 在指定目录下创建以年月日分级的子目录，末尾包括\
-        /// </summary>
-        /// <param name="dt">日期</param>
-        /// <param name="path">文件夹</param>
-        /// <param name="createIfNotExist">不存在是否创建</param>
-        /// <returns>文件夹名</returns>
-        public static string YearMonthDayFolder(this DateTime dt, string path, bool createIfNotExist = false)
-        {
-            if (path.IsNullOrEmpty())
-            {
-                return path;
-            }
-
-            string result = path.DealPath() + dt.YearString() + "\\" + dt.YearMonthString() + "\\" + dt.DateString() + "\\";
-            if (createIfNotExist)
-            {
-                DirEx.CreateDir(result);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// 在指定目录下创建以年月分级的子目录，末尾包括\
-        /// </summary>
-        /// <param name="dt">日期</param>
-        /// <param name="path">文件夹</param>
-        /// <param name="createIfNotExist">不存在是否创建</param>
-        /// <returns>文件夹名</returns>
-        public static string YearMonthFolder(this DateTime dt, string path, bool createIfNotExist = false)
-        {
-            if (path.IsNullOrEmpty())
-            {
-                return path;
-            }
-
-            string result = path.DealPath() + dt.YearString() + "\\" + dt.YearMonthString() + "\\";
-            if (createIfNotExist)
-            {
-                DirEx.CreateDir(result);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// 创建年月文件夹，末尾包括\
-        /// </summary>
-        /// <param name="dir">路径</param>
-        /// <param name="datetime">时间</param>
-        /// <returns>文件夹</returns>
-        public static string CreateYearMonthFolder(string dir, DateTime datetime)
-        {
-            return datetime.YearMonthFolder(dir, true);
-        }
-
-        /// <summary>
-        /// 创建年月日文件夹，末尾包括\
-        /// </summary>
-        /// <param name="dir">路径</param>
-        /// <param name="datetime">时间</param>
-        /// <returns>文件夹</returns>
-        public static string CreateYearMonthDayFolder(string dir, DateTime datetime)
-        {
-            return datetime.YearMonthDayFolder(dir, true);
         }
 
         /// <summary>
