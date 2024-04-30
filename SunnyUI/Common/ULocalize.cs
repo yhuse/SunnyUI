@@ -226,6 +226,9 @@ namespace Sunny.UI
         /// 清除
         /// </summary>
         public static string Clear = "清除";
+
+        public static string Open = "打开";
+        public static string Save = "保存";
     }
 
     /// <summary>
@@ -253,13 +256,13 @@ namespace Sunny.UI
             UILocalize.GridDataSourceException = "The data source must be DataTable or List";
             UILocalize.SystemProcessing = "The system is processing, please wait...";
 
-            UILocalize.Monday = "Mon.";
-            UILocalize.Tuesday = "Tue.";
-            UILocalize.Wednesday = "Wed.";
-            UILocalize.Thursday = "Thur.";
-            UILocalize.Friday = "Fri.";
-            UILocalize.Saturday = "Sat.";
-            UILocalize.Sunday = "Sun.";
+            UILocalize.Monday = "MON";
+            UILocalize.Tuesday = "TUE";
+            UILocalize.Wednesday = "WED";
+            UILocalize.Thursday = "THU";
+            UILocalize.Friday = "FRI";
+            UILocalize.Saturday = "SAT";
+            UILocalize.Sunday = "SUN";
 
             UILocalize.Prev = "Previous";
             UILocalize.Next = "Next";
@@ -283,6 +286,9 @@ namespace Sunny.UI
 
             UILocalize.Search = "Search";
             UILocalize.Clear = "Clear";
+
+            UILocalize.Open = "Open";
+            UILocalize.Save = "Save";
 
             UIStyles.Translate();
         }
@@ -338,6 +344,9 @@ namespace Sunny.UI
 
             UILocalize.Search = "搜索";
             UILocalize.Clear = "清除";
+
+            UILocalize.Open = "打开";
+            UILocalize.Save = "保存";
 
             UIStyles.Translate();
         }

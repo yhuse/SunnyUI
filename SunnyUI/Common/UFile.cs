@@ -71,27 +71,22 @@ namespace Sunny.UI
         /// <returns>打开是否成功</returns>
         public static bool OpenDialog(ref string filename, string filter = "", string defaultExt = "")
         {
-            using (OpenFileDialog od = new OpenFileDialog { Title = "打开" })
-            {
-                try
-                {
-                    od.FileName = filename;
-                    od.Filter = filter;
-                }
-                catch
-                {
-                    od.Filter = "";
-                }
+            using OpenFileDialog od = new OpenFileDialog { Title = UILocalize.Open };
 
-                od.DefaultExt = defaultExt;
-                if (od.ShowDialog() == DialogResult.OK)
-                {
-                    filename = od.FileName;
-                    return true;
-                }
+            try
+            {
+                od.FileName = filename;
+                od.Filter = filter;
+            }
+            catch
+            {
+                od.Filter = "";
             }
 
-            return false;
+            od.DefaultExt = defaultExt;
+            bool isOk = od.ShowDialog() == DialogResult.OK;
+            if (isOk) filename = od.FileName;
+            return isOk;
         }
 
         /// <summary>
@@ -103,27 +98,21 @@ namespace Sunny.UI
         /// <returns>保存是否成功</returns>
         public static bool SaveDialog(ref string filename, string filter = "", string defaultExt = "")
         {
-            using (SaveFileDialog od = new SaveFileDialog { Title = "保存" })
+            using SaveFileDialog od = new SaveFileDialog { Title = UILocalize.Save };
+            try
             {
-                try
-                {
-                    od.FileName = filename;
-                    od.Filter = filter;
-                }
-                catch
-                {
-                    od.Filter = "";
-                }
-
-                od.DefaultExt = defaultExt;
-                if (od.ShowDialog() == DialogResult.OK)
-                {
-                    filename = od.FileName;
-                    return true;
-                }
+                od.FileName = filename;
+                od.Filter = filter;
+            }
+            catch
+            {
+                od.Filter = "";
             }
 
-            return false;
+            od.DefaultExt = defaultExt;
+            bool isOk = od.ShowDialog() == DialogResult.OK;
+            if (isOk) filename = od.FileName;
+            return isOk;
         }
 
         /// <summary>
@@ -543,52 +532,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 复制
-        /// </summary>
-        /// <param name="source">源目录</param>
-        /// <param name="dest">目标目录</param>
-        public static void Copy(string source, string dest)
-        {
-            Copy(new DirectoryInfo(source), new DirectoryInfo(dest));
-        }
-
-        /// <summary>
-        /// 复制
-        /// </summary>
-        /// <param name="source">源目录</param>
-        /// <param name="dest">目标目录</param>
-        public static void Copy(DirectoryInfo source, DirectoryInfo dest)
-        {
-            if (dest.FullName.StartsWith(source.FullName, StringComparison.CurrentCultureIgnoreCase))
-            {
-                throw new Exception("父目录不能拷贝到子目录！");
-            }
-
-            if (!source.Exists)
-            {
-                return;
-            }
-
-            if (!dest.Exists)
-            {
-                dest.Create();
-            }
-
-            FileInfo[] files = source.GetFiles();
-
-            foreach (FileInfo file in files)
-            {
-                File.Copy(file.FullName, Path.Combine(dest.FullName, file.Name), true);
-            }
-
-            DirectoryInfo[] dirs = source.GetDirectories();
-            foreach (DirectoryInfo dir in dirs)
-            {
-                Copy(dir.FullName, Path.Combine(dest.FullName, dir.Name));
-            }
-        }
-
-        /// <summary>
         /// 根据完整文件路径获取FileStream
         /// </summary>
         /// <param name="file">文件</param>
@@ -606,16 +549,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 检测指定文件是否存在,如果存在则返回true。
-        /// </summary>
-        /// <param name="filePath">文件的绝对路径</param>
-        /// <returns>结果</returns>
-        public static bool Exists(string filePath)
-        {
-            return File.Exists(filePath);
-        }
-
-        /// <summary>
         /// 创建一个文件。
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
@@ -625,7 +558,7 @@ namespace Sunny.UI
             try
             {
                 //如果文件不存在则创建该文件
-                if (!Exists(filePath))
+                if (!File.Exists(filePath))
                 {
                     //创建一个FileInfo对象
                     FileInfo file = new FileInfo(filePath);
@@ -654,7 +587,7 @@ namespace Sunny.UI
             try
             {
                 //如果文件不存在则创建该文件
-                if (!Exists(filePath))
+                if (!File.Exists(filePath))
                 {
                     //创建一个FileInfo对象
                     FileInfo file = new FileInfo(filePath);
