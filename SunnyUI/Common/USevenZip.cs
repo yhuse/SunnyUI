@@ -19,11 +19,8 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 
 namespace Sunny.UI
 {
@@ -188,68 +185,6 @@ namespace Sunny.UI
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// 压缩数组
-        /// </summary>
-        /// <param name="input">数组</param>
-        /// <returns>结果</returns>
-        public static byte[] Compress(byte[] input)
-        {
-            string filename = FileEx.TempFileName();
-            string filename7z = FileEx.TempFileName();
-            File.WriteAllBytes(filename, input);
-            ZipFile(filename, filename7z);
-            byte[] bts = File.ReadAllBytes(filename7z);
-            FileEx.TryDelete(filename);
-            FileEx.TryDelete(filename7z);
-            return bts;
-        }
-
-        /// <summary>
-        /// 解压缩数组
-        /// </summary>
-        /// <param name="input">数组</param>
-        /// <returns>结果</returns>
-        public static byte[] Decompress(byte[] input)
-        {
-            string zipfile = FileEx.TempFileName();
-            File.WriteAllBytes(zipfile, input);
-
-            string unzipDir = DirEx.TempRandomPath();
-            UnZipFile(zipfile, unzipDir);
-            string[] fall = Directory.GetFiles(unzipDir, "*.*", SearchOption.TopDirectoryOnly);
-            string unzipfile = fall[0];
-            byte[] bts = File.ReadAllBytes(unzipfile);
-            FileEx.TryDelete(unzipfile);
-            FileEx.TryDelete(zipfile);
-            DirEx.TryDelete(unzipDir);
-            return bts;
-        }
-
-        /// <summary>
-        /// 压缩字符串
-        /// </summary>
-        /// <param name="input">字符串</param>
-        /// <returns>结果</returns>
-        public static string Compress(string input)
-        {
-            byte[] inputBytes = Encoding.Default.GetBytes(input);
-            byte[] result = Compress(inputBytes);
-            return Convert.ToBase64String(result);
-        }
-
-        /// <summary>
-        /// 解压缩字符串
-        /// </summary>
-        /// <param name="input">字符串</param>
-        /// <returns>结果</returns>
-        public static string Decompress(string input)
-        {
-            byte[] inputBytes = Convert.FromBase64String(input);
-            byte[] depressBytes = Decompress(inputBytes);
-            return Encoding.Default.GetString(depressBytes);
         }
     }
 }

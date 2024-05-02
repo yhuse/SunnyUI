@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -31,6 +32,48 @@ namespace Sunny.UI
     /// </summary>
     public static class DirEx
     {
+        /// <summary>
+        /// 创建一个目录
+        /// </summary>
+        /// <param name="dir">目录的绝对路径</param>
+        public static bool CreateDir(string dir)
+        {
+            if (dir.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(dir, "目录不能为空。");
+            }
+
+            if (!Path.IsPathRooted(dir))
+            {
+                throw new ArgumentException(dir, "不包含根路径。");
+            }
+
+            //
+            //
+            try
+            {
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                return Directory.Exists(dir);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 返回当前基目录
+        /// </summary>
+        /// <returns>基目录</returns>
+        public static string CurrentDir()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory.DealPath();
+        }
         /// <summary>
         /// 选择文件夹
         /// </summary>

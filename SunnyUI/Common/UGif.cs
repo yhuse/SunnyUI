@@ -37,6 +37,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -55,7 +56,7 @@ namespace Sunny.UI
             timer = new Timer();
             timer.Tick += Timer_Tick;
 
-            if (FileEx.Exists(fileName))
+            if (File.Exists(fileName))
             {
                 Image = Image.FromFile(fileName);
             }
