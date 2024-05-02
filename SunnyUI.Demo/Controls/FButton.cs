@@ -74,7 +74,7 @@ namespace Sunny.UI.Demo
 
         private void uiSwitch1_ActiveChanging(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = !ShowAskDialog("您确认要改变当前开关的状态吗？");
+            e.Cancel = !this.ShowAskDialog("您确认要改变当前开关的状态吗？");
         }
     }
 }

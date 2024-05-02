@@ -170,7 +170,7 @@ namespace Sunny.UI.Demo
         {
             if (e.hotKey.ModifierKey == UI.ModifierKeys.Shift && e.hotKey.Key == Keys.F8)
             {
-                ShowInfoTip("您按下了全局系统热键 Shift+F8");
+                this.ShowInfoTip("您按下了全局系统热键 Shift+F8");
             }
         }
 

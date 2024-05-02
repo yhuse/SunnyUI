@@ -13,34 +13,34 @@ namespace Sunny.UI.Demo
 
         private void btnAsk_Click(object sender, EventArgs e)
         {
-            if (ShowAskDialog("确认信息提示框"))
+            if (this.ShowAskDialog("确认信息提示框"))
             {
-                ShowSuccessTip("您点击了确定按钮");
+                this.ShowSuccessTip("您点击了确定按钮");
             }
             else
             {
-                ShowErrorTip("您点击了取消按钮");
+                this.ShowErrorTip("您点击了取消按钮");
             }
         }
 
         private void btnAuto_Click(object sender, EventArgs e)
         {
-            UIMessageDialog.ShowMessageDialog("跟随界面主题风格信息提示框", UILocalize.InfoTitle, false, Style);
+            UIMessageBox.Show("跟随界面主题风格信息提示框", UILocalize.InfoTitle, Style);
         }
 
         private void btnSuccess_Click(object sender, EventArgs e)
         {
-            ShowSuccessDialog("正确信息提示框");
+            this.ShowSuccessDialog("正确信息提示框", false, 5000);
         }
 
         private void btnWarn_Click(object sender, EventArgs e)
         {
-            ShowWarningDialog("警告信息提示框");
+            this.ShowWarningDialog("警告信息提示框");
         }
 
         private void btnError_Click(object sender, EventArgs e)
         {
-            ShowErrorDialog("错误信息提示框");
+            this.ShowErrorDialog("错误信息提示框");
         }
 
         private void btnStatus2_Click(object sender, EventArgs e)
@@ -58,42 +58,42 @@ namespace Sunny.UI.Demo
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            ShowInfoDialog("默认信息提示框");
+            this.ShowInfoDialog("默认信息提示框");
         }
 
         private void btnStringInput_Click(object sender, EventArgs e)
         {
             string value = "请输入字符串";
-            if (this.InputStringDialog(ref value, true, "请输入字符串：", true))
+            if (this.ShowInputStringDialog(ref value, true, "请输入字符串：", true))
             {
-                ShowInfoDialog(value);
+                this.ShowInfoDialog(value);
             }
         }
 
         private void btnIntInput_Click(object sender, EventArgs e)
         {
             int value = 0;
-            if (this.InputIntegerDialog(ref value))
+            if (this.ShowInputIntegerDialog(ref value))
             {
-                ShowInfoDialog(value.ToString());
+                this.ShowInfoDialog(value.ToString());
             }
         }
 
         private void btnDoubleInput_Click(object sender, EventArgs e)
         {
             double value = 0;
-            if (this.InputDoubleDialog(ref value))
+            if (this.ShowInputDoubleDialog(ref value))
             {
-                ShowInfoDialog(value.ToString("F2"));
+                this.ShowInfoDialog(value.ToString("F2"));
             }
         }
 
         private void btnPasswordInput_Click(object sender, EventArgs e)
         {
             string value = "";
-            if (this.InputPasswordDialog(ref value))
+            if (this.ShowInputPasswordDialog(ref value))
             {
-                ShowInfoDialog(value);
+                this.ShowInfoDialog(value);
             }
         }
 
@@ -103,33 +103,33 @@ namespace Sunny.UI.Demo
             int index = 2;
             if (this.ShowSelectDialog(ref index, items))
             {
-                ShowInfoDialog(index.ToString());
+                this.ShowInfoDialog(index.ToString());
             }
         }
 
         private void uiSymbolButton2_Click(object sender, EventArgs e)
         {
-            ShowInfoNotifier("Info", InfoNotifierClick);
+            this.ShowInfoNotifier("Info", InfoNotifierClick);
         }
 
         private void InfoNotifierClick(object sender, EventArgs e)
         {
-            ShowInfoTip("嗨，你点击了右下角的弹窗消息");
+            this.ShowInfoTip("嗨，你点击了右下角的弹窗消息");
         }
 
         private void uiSymbolButton6_Click(object sender, EventArgs e)
         {
-            ShowSuccessNotifier("Success");
+            this.ShowSuccessNotifier("Success");
         }
 
         private void uiSymbolButton5_Click(object sender, EventArgs e)
         {
-            ShowWarningNotifier("Warning");
+            this.ShowWarningNotifier("Warning");
         }
 
         private void uiSymbolButton4_Click(object sender, EventArgs e)
         {
-            ShowErrorNotifier("Error");
+            this.ShowErrorNotifier("Error");
         }
 
         private void btnCH_Click(object sender, EventArgs e)
@@ -144,17 +144,17 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton9_Click(object sender, EventArgs e)
         {
-            ShowSuccessTip("轻便消息提示框 - 成功");
+            this.ShowSuccessTip("轻便消息提示框 - 成功");
         }
 
         private void uiSymbolButton8_Click(object sender, EventArgs e)
         {
-            ShowWarningTip("轻便消息提示框 - 警告");
+            this.ShowWarningTip("轻便消息提示框 - 警告");
         }
 
         private void uiSymbolButton7_Click(object sender, EventArgs e)
         {
-            ShowErrorTip("轻便消息提示框 - 错误");
+            this.ShowErrorTip("轻便消息提示框 - 错误");
         }
 
         private void uiSymbolButton10_Click(object sender, EventArgs e)

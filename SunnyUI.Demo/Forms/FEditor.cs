@@ -39,7 +39,7 @@ namespace Sunny.UI.Demo
             frm.ShowDialog();
             if (frm.IsOK)
             {
-                ShowSuccessDialog(frm.Person.ToString());
+                this.ShowSuccessDialog(frm.Person.ToString());
             }
 
             frm.Dispose();
@@ -116,7 +116,7 @@ namespace Sunny.UI.Demo
             if (e.Form["Age"].ToString().ToInt() < 18 || e.Form["Age"].ToString().ToInt() > 60)
             {
                 e.Form.SetEditorFocus("Age");
-                ShowWarningTip("年龄范围为18到60岁");
+                this.ShowWarningTip("年龄范围为18到60岁");
                 return false;
             }
 

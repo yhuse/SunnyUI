@@ -12,7 +12,7 @@
 
         private void uiCalendar1_OnDateTimeChanged(object sender, UIDateTimeArgs e)
         {
-            ShowInfoTip(uiCalendar1.Date.DateString());
+            this.ShowInfoTip(uiCalendar1.Date.DateString());
         }
     }
 }

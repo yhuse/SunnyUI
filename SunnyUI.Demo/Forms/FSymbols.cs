@@ -45,7 +45,7 @@ namespace Sunny.UI.Demo
         {
             uiTextBox2.IntValue = symbol.Value;
             uiSymbolLabel1.Symbol = symbol.Value;
-            ShowInfoTip(symbol.ToString());
+            this.ShowInfoTip(symbol.ToString());
         }
 
         private void uiSymbolButton1_Click(object sender, System.EventArgs e)

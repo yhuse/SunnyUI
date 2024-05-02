@@ -134,7 +134,7 @@ namespace Sunny.UI.Demo
 
         private void uiDatePicker3_ValueChanged(object sender, DateTime value)
         {
-            ShowInfoTip(uiDatePicker3.Value.DateString());
+            this.ShowInfoTip(uiDatePicker3.Value.DateString());
             Console.WriteLine(uiDatePicker3.Value);
         }
 
@@ -169,7 +169,7 @@ namespace Sunny.UI.Demo
 
         private void uiComboBox1_TipsClick(object sender, EventArgs e)
         {
-            ShowInfoTip("Hello world.");
+            this.ShowInfoTip("Hello world.");
         }
     }
 }

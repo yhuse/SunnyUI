@@ -48,7 +48,7 @@ namespace Sunny.UI.Demo
         private void Btn_Click(object sender, System.EventArgs e)
         {
             var button = (UIFlowItem)sender;
-            ShowInfoTip(button.Text);
+            this.ShowInfoTip(button.Text);
         }
 
         private void uiButton2_Click(object sender, System.EventArgs e)

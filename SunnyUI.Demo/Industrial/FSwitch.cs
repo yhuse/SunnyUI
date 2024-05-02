@@ -9,7 +9,7 @@
 
         private void uiTurnSwitch1_ValueChanged(object sender, bool value)
         {
-            ShowInfoTip(value.ToString());
+            this.ShowInfoTip(value.ToString());
         }
     }
 }

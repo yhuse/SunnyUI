@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,15 +230,15 @@
             this.Controls.Add(this.uiNavBar1);
             this.ExtendBox = true;
             this.ExtendMenu = this.uiContextMenuStrip1;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainTabControl = this.uiTabControl1;
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 36, 2, 2);
             this.ShowDragStretch = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.Form1_HotKeyEventHandler);
             this.PageSelected += new Sunny.UI.OnUIPageChanged(this.Form1_PageSelected);
             this.ReceiveParams += new Sunny.UI.OnReceiveParams(this.Form1_ReceiveParams);
-            this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.Form1_HotKeyEventHandler);
             this.uiContextMenuStrip1.ResumeLayout(false);
             this.uiNavBar1.ResumeLayout(false);
             this.uiPanel1.ResumeLayout(false);

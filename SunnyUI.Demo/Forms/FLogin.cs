@@ -18,7 +18,7 @@
             }
             else
             {
-                ShowErrorTip("用户名或者密码错误。");
+                this.ShowErrorTip("用户名或者密码错误。");
             }
         }
     }
