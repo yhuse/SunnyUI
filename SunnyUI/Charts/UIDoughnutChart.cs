@@ -20,6 +20,7 @@
  * 2021-07-22: V3.0.5 增加更新数据的方法
  * 2022-07-29: V3.2.2 数据显示的小数位数重构调整至Option.DecimalPlaces
  * 2023-05-14: V3.3.6 重构DrawString函数
+ * 2024-05-07: V3.6.6 修复数据全为0时报错
 ******************************************************************************/
 
 using System;
@@ -126,12 +127,11 @@ namespace Sunny.UI
                     all += data.Value;
                 }
 
-                if (all.IsZero()) return;
                 float start = 0;
                 for (int i = 0; i < pie.Data.Count; i++)
                 {
-                    float angle = (float)(pie.Data[i].Value * 360.0f / all);
-                    float percent = (float)(pie.Data[i].Value * 100.0f / all);
+                    float angle = all.IsZero() ? 0 : (float)(pie.Data[i].Value * 360.0f / all);
+                    float percent = all.IsZero() ? 0 : (float)(pie.Data[i].Value * 100.0f / all);
                     string text = "";
                     if (Option.ToolTip != null)
                     {
@@ -166,26 +166,42 @@ namespace Sunny.UI
             for (int pieIndex = 0; pieIndex < series.Count; pieIndex++)
             {
                 var pie = series[pieIndex];
+                if (pie.Data.Count == 0) continue;
 
-                for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
+                double all = 0;
+                foreach (var data in pie.Data)
                 {
-                    Angle angle = Angles[pieIndex][azIndex];
-                    Color color = ChartStyle.GetColor(azIndex);
-                    UIPieSeriesData data = pie.Data[azIndex];
-                    if (data.StyleCustomMode) color = data.Color;
+                    all += data.Value;
+                }
 
-                    if (ActiveAzIndex == azIndex)
-                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer + 5, angle.Start - 90, angle.Sweep);
-                    else
-                        g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
-
-                    Angles[pieIndex][azIndex].TextSize = TextRenderer.MeasureText(Angles[pieIndex][azIndex].Text, TempFont);
-
-                    if (pie.Label.Show && ActiveAzIndex == azIndex)
+                if (all.IsZero())
+                {
+                    Angle angle = Angles[pieIndex][0];
+                    g.DrawEllipse(rectColor, new RectangleF(angle.Center.X - angle.Inner, angle.Center.Y - angle.Inner, angle.Inner * 2, angle.Inner * 2));
+                    g.DrawEllipse(rectColor, new RectangleF(angle.Center.X - angle.Outer, angle.Center.Y - angle.Outer, angle.Outer * 2, angle.Outer * 2));
+                }
+                else
+                {
+                    for (int azIndex = 0; azIndex < pie.Data.Count; azIndex++)
                     {
-                        if (pie.Label.Position == UIPieSeriesLabelPosition.Center)
+                        Angle angle = Angles[pieIndex][azIndex];
+                        Color color = ChartStyle.GetColor(azIndex);
+                        UIPieSeriesData data = pie.Data[azIndex];
+                        if (data.StyleCustomMode) color = data.Color;
+
+                        if (ActiveAzIndex == azIndex)
+                            g.FillFan(color, angle.Center, angle.Inner, angle.Outer + 5, angle.Start - 90, angle.Sweep);
+                        else
+                            g.FillFan(color, angle.Center, angle.Inner, angle.Outer, angle.Start - 90, angle.Sweep);
+
+                        Angles[pieIndex][azIndex].TextSize = TextRenderer.MeasureText(Angles[pieIndex][azIndex].Text, TempFont);
+
+                        if (pie.Label.Show && ActiveAzIndex == azIndex)
                         {
-                            g.DrawString(pie.Data[azIndex].Name, Font, color, new Rectangle((int)angle.Center.X - Width, (int)angle.Center.Y - Height, Width * 2, Height * 2), ContentAlignment.MiddleCenter);
+                            if (pie.Label.Position == UIPieSeriesLabelPosition.Center)
+                            {
+                                g.DrawString(pie.Data[azIndex].Name, Font, color, new Rectangle((int)angle.Center.X - Width, (int)angle.Center.Y - Height, Width * 2, Height * 2), ContentAlignment.MiddleCenter);
+                            }
                         }
                     }
                 }
