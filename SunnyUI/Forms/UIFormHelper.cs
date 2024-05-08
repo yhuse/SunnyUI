@@ -28,6 +28,7 @@
  * 2024-04-22: V3.6.5 输入弹窗前增加Show前缀
  * 2024-04-27: V3.6.5 提示框增加延时关闭
  * 2024-04-28: V3.6.5 信息提示窗体跟随程序所在的屏幕
+ * 2024-05-08: V3.6.6 默认弹窗的ShowMask都设置为false
 ******************************************************************************/
 
 using System;
@@ -85,37 +86,37 @@ namespace Sunny.UI
 
     public static class UIMessageBox
     {
-        public static void Show(string text, bool showMask = true, int delay = 0)
+        public static void Show(string text, bool showMask = false, int delay = 0)
         {
             Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowInfo(string text, bool showMask = true, int delay = 0)
+        public static void ShowInfo(string text, bool showMask = false, int delay = 0)
         {
             Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowSuccess(string text, bool showMask = true, int delay = 0)
+        public static void ShowSuccess(string text, bool showMask = false, int delay = 0)
         {
             Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowWarning(string text, bool showMask = true, int delay = 0)
+        public static void ShowWarning(string text, bool showMask = false, int delay = 0)
         {
             Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static void ShowError(string text, bool showMask = true, int delay = 0)
+        public static void ShowError(string text, bool showMask = false, int delay = 0)
         {
             Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, true, delay);
         }
 
-        public static bool ShowAsk(string text, bool showMask = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        public static bool ShowAsk(string text, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
             return ShowMessageDialog(text, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
         }
 
-        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = true, bool topMost = true, int delay = 0)
+        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = false, bool topMost = true, int delay = 0)
         {
             return ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask, topMost, UIMessageDialogButtons.Ok, delay);
         }
@@ -132,7 +133,7 @@ namespace Sunny.UI
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = true, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
+        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style, bool showMask = false, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
             Point pt = SystemEx.GetCursorPos();
             Rectangle screen = Screen.GetBounds(pt);
