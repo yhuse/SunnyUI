@@ -25,6 +25,7 @@
  * 2022-09-05: V3.2.3 修改最大值至少为1
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-09-05: V3.4.2 修复值计算过程中的Int越界问题
+ * 2024-05-09: V3.6.6 调整最小宽度，以适应垂直方向显示
 ******************************************************************************/
 
 using System;
@@ -48,7 +49,7 @@ namespace Sunny.UI
         public UIProcessBar()
         {
             SetStyleFlags(true, false);
-            MinimumSize = new Size(70, 3);
+            MinimumSize = new Size(3, 3);
             Size = new Size(300, 29);
             ShowText = false;
 
@@ -151,8 +152,12 @@ namespace Sunny.UI
             else
                 processText = posValue.ToString();
 
-            Size sf = TextRenderer.MeasureText(processText, Font);
-            bool canShow = Height > sf.Height + 4;
+            Size sf = TextRenderer.MeasureText("100%", Font);
+            bool canShow;
+            if (Direction == UILine.LineDirection.Horizontal)
+                canShow = Height > sf.Height + 4;
+            else
+                canShow = Width > sf.Width + 4;
 
             if (ShowValue && canShow)
             {

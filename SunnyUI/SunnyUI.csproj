@@ -38,13 +38,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Common\FastLZx64.dat" />
-      <None Remove="Common\FastLZx86.dat" />
-      <None Remove="Font\MaterialIcons-Regular.ttf" />
-      <None Remove="Font\sa-digital-number.ttf" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Include="..\LICENSE">
             <Pack>True</Pack>
             <PackagePath></PackagePath>
