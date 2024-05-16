@@ -176,28 +176,28 @@ namespace Sunny.UI
             switch (noteType)
             {
                 case UINotifierType.ERROR:
-                    icon.Symbol = 61527;
+                    icon.Symbol = 361527;
                     icon.SymbolColor = UIStyles.Red.ButtonFillColor;
                     LeaveColor = UIStyles.Red.ButtonFillColor;
                     HoverColor = UIStyles.Red.ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.INFO:
-                    icon.Symbol = 61530;
+                    icon.Symbol = 361530;
                     icon.SymbolColor = UIStyles.Blue.ButtonFillColor;
                     LeaveColor = UIStyles.Blue.ButtonFillColor;
                     HoverColor = UIStyles.Blue.ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.WARNING:
-                    icon.Symbol = 61553;
+                    icon.Symbol = 361553;
                     icon.SymbolColor = UIStyles.Orange.ButtonFillColor;
                     LeaveColor = UIStyles.Orange.ButtonFillColor;
                     HoverColor = UIStyles.Orange.ButtonFillHoverColor;
                     break;
 
                 case UINotifierType.OK:
-                    icon.Symbol = 61528;
+                    icon.Symbol = 361528;
                     icon.SymbolColor = UIStyles.Green.ButtonFillColor;
                     LeaveColor = UIStyles.Green.ButtonFillColor;
                     HoverColor = UIStyles.Green.ButtonFillHoverColor;
@@ -802,6 +802,11 @@ namespace Sunny.UI
         /// <summary>
         /// 正确
         /// </summary>
-        OK
+        OK,
+
+        /// <summary>
+        /// 询问
+        /// </summary>
+        Ask
     }
 }

@@ -162,14 +162,14 @@ namespace Sunny.UI
             }
         }
 
-        private int _symbol = FontAwesomeIcons.fa_check;
+        private int _symbol = 361452;
 
         /// <summary>
         /// 字体图标
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Editor("Sunny.UI.UIImagePropertyEditor, " + AssemblyRefEx.SystemDesign, typeof(UITypeEditor))]
-        [DefaultValue(61452)]
+        [DefaultValue(361452)]
         [Description("字体图标"), Category("SunnyUI")]
         public int Symbol
         {

@@ -43,16 +43,18 @@
             // btnCancel
             // 
             btnCancel.Location = new System.Drawing.Point(343, 4);
+            btnCancel.Symbol = 361453;
             // 
             // btnOK
             // 
             btnOK.Location = new System.Drawing.Point(228, 4);
+            btnOK.Symbol = 361452;
             // 
             // label
             // 
             label.AutoSize = true;
             label.BackColor = System.Drawing.Color.Transparent;
-            label.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label.Font = new System.Drawing.Font("宋体", 12F);
             label.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label.Location = new System.Drawing.Point(28, 57);
             label.Name = "label";
@@ -64,7 +66,7 @@
             // edit
             // 
             edit.Cursor = System.Windows.Forms.Cursors.IBeam;
-            edit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            edit.Font = new System.Drawing.Font("宋体", 12F);
             edit.Location = new System.Drawing.Point(29, 92);
             edit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             edit.MinimumSize = new System.Drawing.Size(1, 1);
@@ -85,7 +87,6 @@
             Controls.Add(label);
             Name = "UIInputForm";
             Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
-            ShowIcon = false;
             Text = "输入";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
             Shown += UIInputForm_Shown;

@@ -374,7 +374,7 @@ namespace Sunny.UI
             }
             else
             {
-                ShowMaxOrNormal();
+                if (FormBorderStyle == FormBorderStyle.Sizable) ShowMaxOrNormal();
             }
         }
 

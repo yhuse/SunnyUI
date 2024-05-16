@@ -42,16 +42,18 @@
             // btnCancel
             // 
             btnCancel.Location = new System.Drawing.Point(343, 4);
+            btnCancel.Symbol = 361453;
             // 
             // btnOK
             // 
             btnOK.Location = new System.Drawing.Point(228, 4);
+            btnOK.Symbol = 361452;
             // 
             // label
             // 
             label.AutoSize = true;
             label.BackColor = System.Drawing.Color.Transparent;
-            label.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label.Font = new System.Drawing.Font("宋体", 12F);
             label.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label.Location = new System.Drawing.Point(29, 57);
             label.Name = "label";
@@ -65,7 +67,7 @@
             ComboBox.DataSource = null;
             ComboBox.DropDownStyle = UIDropDownStyle.DropDownList;
             ComboBox.FillColor = System.Drawing.Color.White;
-            ComboBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            ComboBox.Font = new System.Drawing.Font("宋体", 12F);
             ComboBox.ItemHoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
             ComboBox.ItemSelectForeColor = System.Drawing.Color.FromArgb(235, 243, 255);
             ComboBox.Location = new System.Drawing.Point(29, 92);
@@ -87,7 +89,6 @@
             Controls.Add(ComboBox);
             Name = "UISelectForm";
             Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
-            ShowIcon = false;
             Text = "选择";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
             Controls.SetChildIndex(ComboBox, 0);
