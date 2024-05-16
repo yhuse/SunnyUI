@@ -20,6 +20,7 @@
  * 2024-01-25: V3.6.3 增加主题等
  * 2024-04-16: V3.6.5 设置默认Padding.Top为TitleHeight
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
+ * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
 ******************************************************************************/
 
 using System;
@@ -45,6 +46,14 @@ namespace Sunny.UI
             fieldH = typeof(Control).GetField("_clientHeight", BindingFlags.NonPublic | BindingFlags.Instance) ?? typeof(Control).GetField("clientHeight", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
+        [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
+        public bool Resizable
+        {
+            get => showDragStretch;
+            set => showDragStretch = value;
+        }
+
+        [Browsable(false)]
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
         public bool ShowDragStretch
         {

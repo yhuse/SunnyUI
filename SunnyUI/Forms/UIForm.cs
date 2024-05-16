@@ -56,6 +56,7 @@
  * 2023-02-19: V3.6.3 修改标题栏文字与控制按钮绘制重叠的问题
  * 2024-02-22: V3.6.3 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
+ * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
 ******************************************************************************/
 
 using System;
@@ -908,6 +909,14 @@ namespace Sunny.UI
             }
         }
 
+        [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
+        public bool Resizable
+        {
+            get => showDragStretch;
+            set => showDragStretch = value;
+        }
+
+        [Browsable(false)]
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
         public bool ShowDragStretch
         {
