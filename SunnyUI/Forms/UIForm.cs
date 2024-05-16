@@ -583,7 +583,7 @@ namespace Sunny.UI
             {
                 using (Image image = IconToImage(Icon))
                 {
-                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2, 24, 24);
+                    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
                 }
             }
 
