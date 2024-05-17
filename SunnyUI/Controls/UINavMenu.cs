@@ -38,6 +38,7 @@
 * 2023-05-29: V3.3.7 增加PageGuid相关扩展方法
 * 2023-11-16: V3.5.2 重构主题
 * 2024-04-13: V3.6.5 修复通过代码设置背景色无效的问题
+* 2024-05-17: V3.6.6 防止控件闪烁
 ******************************************************************************/
 
 using System;
@@ -61,22 +62,26 @@ namespace Sunny.UI
 
         public UINavMenu()
         {
-            SetStyle(ControlStyles.DoubleBuffer |
-                     ControlStyles.AllPaintingInWmPaint |
-                     ControlStyles.OptimizedDoubleBuffer, true);
-            UpdateStyles();
+            base.SetStyle(
+                        ControlStyles.DoubleBuffer |
+                        ControlStyles.OptimizedDoubleBuffer |
+                        ControlStyles.AllPaintingInWmPaint |
+                        ControlStyles.ResizeRedraw |
+                        ControlStyles.SupportsTransparentBackColor, true);
+            base.UpdateStyles();
+            DoubleBuffered = true;
+            this.HotTracking = true;
+            this.CheckBoxes = false;
+            this.ShowPlusMinus = false;
+            this.ShowRootLines = false;
 
             BorderStyle = BorderStyle.None;
             //HideSelection = false;
             DrawMode = TreeViewDrawMode.OwnerDrawAll;
             FullRowSelect = true;
             ShowLines = false;
-            //ShowPlusMinus = false;
-            //ShowRootLines = false;
 
-            DoubleBuffered = true;
             base.Font = UIStyles.Font();
-            //CheckBoxes = false;
             ItemHeight = 50;
             BackColor = Color.FromArgb(56, 56, 56);
 
@@ -101,6 +106,14 @@ namespace Sunny.UI
 
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += Timer_Tick;
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            int Style = 0;
+            if (DoubleBuffered) Style |= 0x0004;
+            if (Style != 0) Win32.User.SendMessage(Handle, 0x112C, new IntPtr(0x0004), new IntPtr(Style));
         }
 
         protected override void Dispose(bool disposing)
@@ -649,6 +662,8 @@ namespace Sunny.UI
 
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
+            if (e.Bounds.IsEmpty) return;
+
             if (_resizing)
             {
                 return;
@@ -656,13 +671,10 @@ namespace Sunny.UI
             }
             else
             {
-                if (BorderStyle != BorderStyle.None)
-                {
-                    BorderStyle = BorderStyle.None;
-                }
+                if (BorderStyle != BorderStyle.None) BorderStyle = BorderStyle.None;
+                if (checkBoxes != false) CheckBoxes = false;
 
                 SetScrollInfo();
-                CheckBoxes = false;
 
                 if (e.Node == null || (e.Node.Bounds.Width <= 0 && e.Node.Bounds.Height <= 0 && e.Node.Bounds.X <= 0 && e.Node.Bounds.Y <= 0))
                 {
