@@ -37,6 +37,7 @@
  * 2023-11-13: V3.5.2 重构主题
  * 2024-01-01: V3.6.2 增加可修改滚动条颜色
  * 2024-01-20: V3.6.3 自定义行颜色，可通过代码给颜色值，SetNodePainter，增加选中颜色
+ * 2024-05-27: V3.6.6 防止控件闪烁
 ******************************************************************************/
 
 using System;
@@ -1020,8 +1021,23 @@ namespace Sunny.UI
 
             public TreeViewEx()
             {
+                base.SetStyle(
+            ControlStyles.DoubleBuffer |
+            ControlStyles.OptimizedDoubleBuffer |
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.ResizeRedraw |
+            ControlStyles.SupportsTransparentBackColor, true);
+                base.UpdateStyles();
+                DoubleBuffered = true;
                 DrawMode = TreeViewDrawMode.OwnerDrawAll;
-                base.DoubleBuffered = true;
+            }
+
+            protected override void OnHandleCreated(EventArgs e)
+            {
+                base.OnHandleCreated(e);
+                int Style = 0;
+                if (DoubleBuffered) Style |= 0x0004;
+                if (Style != 0) Win32.User.SendMessage(Handle, 0x112C, new IntPtr(0x0004), new IntPtr(Style));
             }
 
             private float DefaultFontSize = -1;
