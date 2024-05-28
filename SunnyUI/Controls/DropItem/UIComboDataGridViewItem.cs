@@ -17,6 +17,8 @@
  * 创建日期: 2020-01-01
  *
  * 2023-03-29: V3.3.3 增加多语翻译
+ * 2024-05-28: V3.6.6 增加可过滤未显示列
+ * 2024-05-28: V3.6.6 FilterColumnName增加“;”分隔，支持多列过滤
 ******************************************************************************/
 
 using System;
@@ -381,15 +383,32 @@ namespace Sunny.UI
             {
                 if (FilterColumnName.IsValid())
                 {
-                    string str = FilterColumnName + " like '%" + filterText + "%'";
-                    filter = str;
+                    if (FilterColumnName.Contains(";"))
+                    {
+                        string[] filters = FilterColumnName.Split(';');
+                        List<string> strings = new List<string>();
+                        foreach (var column in filters)
+                        {
+                            if (column.Trim().IsValid())
+                            {
+                                strings.Add(column.Trim() + " like '%" + filterText + "%'");
+                            }
+                        }
+
+                        filter = string.Join(" or ", strings);
+                    }
+                    else
+                    {
+                        string str = FilterColumnName + " like '%" + filterText + "%'";
+                        filter = str;
+                    }
                 }
                 else
                 {
                     List<string> strings = new List<string>();
                     foreach (DataGridViewColumn column in dataGridView.Columns)
                     {
-                        if (column.Visible && column.DataPropertyName.IsValid())
+                        if (column.DataPropertyName.IsValid())
                         {
                             strings.Add(column.DataPropertyName + " like '%" + filterText + "%'");
                         }
