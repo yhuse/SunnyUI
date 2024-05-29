@@ -947,10 +947,10 @@ namespace Sunny.UI
             get => b0.FillColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.RectColor = b0.FillColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.RectColor = button.FillColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 edtPage.RectColor = btnSelect.RectColor = btnSelect.FillColor = value;
@@ -968,10 +968,10 @@ namespace Sunny.UI
             get => b0.ForeColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.SymbolColor = b0.ForeColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.SymbolColor = button.ForeColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 btnSelect.SymbolColor = btnSelect.ForeColor = value;
@@ -986,10 +986,10 @@ namespace Sunny.UI
             get => b0.FillHoverColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.RectHoverColor = b0.FillHoverColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.RectHoverColor = button.FillHoverColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 btnSelect.RectHoverColor = btnSelect.FillHoverColor = value;
@@ -1004,10 +1004,10 @@ namespace Sunny.UI
             get => b0.ForeHoverColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.SymbolHoverColor = b0.ForeHoverColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.SymbolHoverColor = button.ForeHoverColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 btnSelect.SymbolHoverColor = btnSelect.ForeHoverColor = value;
@@ -1022,10 +1022,10 @@ namespace Sunny.UI
             get => b0.FillPressColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.RectPressColor = b0.FillPressColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.RectPressColor = button.FillPressColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 btnSelect.RectPressColor = btnSelect.FillPressColor = value;
@@ -1040,10 +1040,10 @@ namespace Sunny.UI
             get => b0.ForePressColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.SymbolPressColor = b0.ForePressColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.SymbolPressColor = button.ForePressColor = value;
+                    button.Style = UIStyle.Custom;
                 }
 
                 btnSelect.SymbolPressColor = btnSelect.ForePressColor = value;
@@ -1058,10 +1058,10 @@ namespace Sunny.UI
             get => b0.FillSelectedColor;
             set
             {
-                foreach (var b0 in buttons.Values)
+                foreach (var button in buttons.Values)
                 {
-                    b0.RectSelectedColor = b0.FillSelectedColor = value;
-                    b0.Style = UIStyle.Custom;
+                    button.RectSelectedColor = button.FillSelectedColor = value;
+                    button.Style = UIStyle.Custom;
                 }
             }
         }
@@ -1077,9 +1077,9 @@ namespace Sunny.UI
             {
                 if (value && b0 != null)
                 {
-                    foreach (var b0 in buttons.Values)
+                    foreach (var button in buttons.Values)
                     {
-                        b0.Style = UIStyle.Inherited;
+                        button.Style = UIStyle.Inherited;
                     }
 
                     btnSelect.Style = UIStyle.Inherited;
