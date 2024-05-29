@@ -22,6 +22,7 @@
  * 2023-06-27: V3.3.9 内置按钮关联值由Tag改为TagString
  * 2023-08-30: V3.4.2 左右跳转按钮的文字换成字体图标
  * 2024-02-19: V3.6.3 优化按钮配色逻辑
+ * 2024-05-29: V3.6.6 优化按钮自定义配色逻辑
 ******************************************************************************/
 
 using System;
@@ -846,36 +847,6 @@ namespace Sunny.UI
             }
         }
 
-        /// <summary>
-        /// 设置主题样式
-        /// </summary>
-        /// <param name="uiColor">主题样式</param>
-        public override void SetStyleColor(UIBaseStyle uiColor)
-        {
-            base.SetStyleColor(uiColor);
-            foreach (var button in buttons.Values)
-            {
-                button.SetStyleColor(uiColor);
-                button.FillColor = uiColor.PlainColor;
-                button.SymbolColor = button.ForeColor = uiColor.PaginationForeColor;
-                button.FillSelectedColor = uiColor.ButtonFillColor;
-            }
-
-            btnSelect.SetStyleColor(uiColor);
-            btnSelect.FillColor = uiColor.PlainColor;
-            btnSelect.ForeColor = uiColor.PaginationForeColor;
-            btnSelect.FillSelectedColor = uiColor.ButtonFillColor;
-            edtPage.BackColor = b0.BackColor = b16.BackColor = btnSelect.BackColor = uiColor.PanelFillColor;
-
-            edtPage.SetStyleColor(uiColor);
-            edtPage.RectColor = uiColor.RectColor;
-            edtPage.Invalidate();
-
-            uiLabel1.SetStyleColor(uiColor);
-            uiLabel2.SetStyleColor(uiColor);
-            uiLabel1.ForeColor = uiLabel2.ForeColor = uiColor.PanelForeColor;
-        }
-
         protected override void AfterSetRectColor(Color color)
         {
             base.AfterSetRectColor(color);
@@ -936,5 +907,185 @@ namespace Sunny.UI
         }
 
         public event OnPageChangeEventHandler PageChanged;
+
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            base.SetStyleColor(uiColor);
+            foreach (var button in buttons.Values)
+            {
+                button.SetStyleColor(uiColor);
+                button.FillColor = button.RectColor = uiColor.ButtonFillColor;
+                button.SymbolColor = button.ForeColor = uiColor.ButtonForeColor;
+                b0.RectSelectedColor = button.FillSelectedColor = uiColor.ButtonFillSelectedColor;
+            }
+
+            btnSelect.SetStyleColor(uiColor);
+            btnSelect.FillColor = btnSelect.RectColor = uiColor.ButtonFillColor;
+            btnSelect.ForeColor = btnSelect.SymbolColor = uiColor.ButtonForeColor;
+            edtPage.BackColor = b0.BackColor = b16.BackColor = btnSelect.BackColor = uiColor.PanelFillColor;
+
+            edtPage.SetStyleColor(uiColor);
+            edtPage.RectColor = uiColor.ButtonFillColor;
+            edtPage.Invalidate();
+
+            uiLabel1.SetStyleColor(uiColor);
+            uiLabel2.SetStyleColor(uiColor);
+            uiLabel1.ForeColor = uiLabel2.ForeColor = uiColor.PanelForeColor;
+        }
+
+        /// <summary>
+        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// </summary>
+        [Description("按钮填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color ButtonFillColor
+        {
+            get => b0.FillColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.RectColor = b0.FillColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                edtPage.RectColor = btnSelect.RectColor = btnSelect.FillColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("按钮字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "White")]
+        public Color ButtonForeColor
+        {
+            get => b0.ForeColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.SymbolColor = b0.ForeColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                btnSelect.SymbolColor = btnSelect.ForeColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "115, 179, 255"), Category("SunnyUI")]
+        [Description("按钮鼠标移上时填充颜色")]
+        public Color ButtonFillHoverColor
+        {
+            get => b0.FillHoverColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.RectHoverColor = b0.FillHoverColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                btnSelect.RectHoverColor = btnSelect.FillHoverColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("按钮鼠标移上时字体颜色")]
+        public Color ButtonForeHoverColor
+        {
+            get => b0.ForeHoverColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.SymbolHoverColor = b0.ForeHoverColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                btnSelect.SymbolHoverColor = btnSelect.ForeHoverColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "64, 128, 204"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时填充颜色")]
+        public Color ButtonFillPressColor
+        {
+            get => b0.FillPressColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.RectPressColor = b0.FillPressColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                btnSelect.RectPressColor = btnSelect.FillPressColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时字体颜色")]
+        public Color ButtonForePressColor
+        {
+            get => b0.ForePressColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.SymbolPressColor = b0.ForePressColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+
+                btnSelect.SymbolPressColor = btnSelect.ForePressColor = value;
+                btnSelect.Style = UIStyle.Custom;
+            }
+        }
+
+        [DefaultValue(typeof(Color), "White"), Category("SunnyUI")]
+        [Description("按钮鼠标按下时字体颜色")]
+        public Color ButtonFillSelectedColor
+        {
+            get => b0.FillSelectedColor;
+            set
+            {
+                foreach (var b0 in buttons.Values)
+                {
+                    b0.RectSelectedColor = b0.FillSelectedColor = value;
+                    b0.Style = UIStyle.Custom;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 滚动条主题样式
+        /// </summary>
+        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
+        public bool ButtonStyleInherited
+        {
+            get => b0 != null && b0.Style == UIStyle.Inherited;
+            set
+            {
+                if (value && b0 != null)
+                {
+                    foreach (var b0 in buttons.Values)
+                    {
+                        b0.Style = UIStyle.Inherited;
+                    }
+
+                    btnSelect.Style = UIStyle.Inherited;
+                    edtPage.Style = UIStyle.Inherited;
+                }
+            }
+        }
     }
 }
