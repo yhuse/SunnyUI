@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2024-05-30: V3.6.6 修复调用时自定义主题参数不起作用的问题
 ******************************************************************************/
 
 namespace Sunny.UI
@@ -66,6 +67,40 @@ namespace Sunny.UI
         private void UIInputForm_Shown(object sender, System.EventArgs e)
         {
             edit.SelectAll();
+        }
+
+        /// <summary>
+        /// 设置主题样式
+        /// </summary>
+        /// <param name="uiColor">主题样式</param>
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            base.SetStyleColor(uiColor);
+
+            if (btnCancel != null)
+            {
+                btnCancel.SetStyleColor(uiColor);
+            }
+
+            if (label != null)
+            {
+                label.SetStyleColor(uiColor);
+            }
+
+            if (btnOK != null)
+            {
+                btnOK.SetStyleColor(uiColor);
+            }
+
+            if (pnlBtm != null)
+            {
+                pnlBtm.SetStyleColor(uiColor);
+            }
+
+            if (edit != null)
+            {
+                edit.SetStyleColor(uiColor);
+            }
         }
     }
 }

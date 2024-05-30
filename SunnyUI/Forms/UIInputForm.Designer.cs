@@ -38,17 +38,18 @@
             pnlBtm.Location = new System.Drawing.Point(0, 135);
             pnlBtm.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
             pnlBtm.Size = new System.Drawing.Size(473, 55);
+            pnlBtm.Style = UIStyle.Custom;
             pnlBtm.TabIndex = 2;
             // 
             // btnCancel
             // 
             btnCancel.Location = new System.Drawing.Point(343, 4);
-            btnCancel.Symbol = 361453;
+            btnCancel.Style = UIStyle.Custom;
             // 
             // btnOK
             // 
             btnOK.Location = new System.Drawing.Point(228, 4);
-            btnOK.Symbol = 361452;
+            btnOK.Style = UIStyle.Custom;
             // 
             // label
             // 
@@ -59,6 +60,7 @@
             label.Location = new System.Drawing.Point(28, 57);
             label.Name = "label";
             label.Size = new System.Drawing.Size(215, 16);
+            label.Style = UIStyle.Custom;
             label.TabIndex = 1;
             label.Text = "请在下方编辑框中输入数值：";
             label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,6 +77,7 @@
             edit.RadiusSides = UICornerRadiusSides.None;
             edit.ShowText = false;
             edit.Size = new System.Drawing.Size(415, 29);
+            edit.Style = UIStyle.Custom;
             edit.TabIndex = 0;
             edit.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             edit.Watermark = "";
@@ -87,6 +90,7 @@
             Controls.Add(label);
             Name = "UIInputForm";
             Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            Style = UIStyle.Custom;
             Text = "输入";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
             Shown += UIInputForm_Shown;
