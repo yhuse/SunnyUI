@@ -29,6 +29,7 @@
  * 2024-04-27: V3.6.5 提示框增加延时关闭
  * 2024-04-28: V3.6.5 信息提示窗体跟随程序所在的屏幕
  * 2024-05-08: V3.6.6 默认弹窗的ShowMask都设置为false
+ * 2024-05-30: V3.6.6 修复弹窗标题显示错误
 ******************************************************************************/
 
 using System;
@@ -555,7 +556,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowInfoDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            form.ShowInfoDialog(UILocalize.SuccessTitle, msg, UIStyle.Gray, showMask, delay);
+            form.ShowInfoDialog(UILocalize.InfoTitle, msg, UIStyle.Gray, showMask, delay);
         }
 
         /// <summary>
@@ -577,7 +578,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowWarningDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            form.ShowWarningDialog(UILocalize.SuccessTitle, msg, UIStyle.Orange, showMask, delay);
+            form.ShowWarningDialog(UILocalize.WarningTitle, msg, UIStyle.Orange, showMask, delay);
         }
 
         /// <summary>
@@ -599,7 +600,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowErrorDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            form.ShowErrorDialog(UILocalize.SuccessTitle, msg, UIStyle.Red, showMask, delay);
+            form.ShowErrorDialog(UILocalize.ErrorTitle, msg, UIStyle.Red, showMask, delay);
         }
 
         /// <summary>
