@@ -21,6 +21,7 @@
  * 2022-04-20: V3.1.5 修复调用Collapse()后，展开/收回操作失效
  * 2022-12-06: V3.3.0 去掉SplitterWidth限制
  * 2022-12-06: V3.3.0 SplitterWidth值小的时不绘制箭头
+ * 2023-05-31: V3.6.6 增加了SplitPanelState只读属性以获取状态。
 ******************************************************************************/
 using System;
 using System.ComponentModel;
@@ -38,7 +39,7 @@ namespace Sunny.UI
             Split
         }
 
-        private enum UISplitPanelState
+        public enum UISplitPanelState
         {
             Collapsed = 0,
             Expanded = 1,
@@ -210,10 +211,14 @@ namespace Sunny.UI
             }
         }
 
-        private UISplitPanelState SplitPanelState
+        /// <summary>
+        /// 折叠与展开状态
+        /// </summary>
+        [Description("折叠与展开状态"), Category("SunnyUI")]
+        public UISplitPanelState SplitPanelState
         {
             get => _splitPanelState;
-            set
+            private set
             {
                 if (_splitPanelState != value)
                 {
