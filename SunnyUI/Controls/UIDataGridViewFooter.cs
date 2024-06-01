@@ -21,6 +21,7 @@
  * 2021-11-22: V3.0.9 修复一处可能不显示的问题 
  * 2022-09-05: V3.2.3 重构文字显示
  * 2023-05-15: V3.3.6 重构DrawString函数
+ * 2024-06-01: V3.6.6 增加绑定列的ColumnName或者DataPropertyName都可以显示
 ******************************************************************************/
 
 using System.Collections.Generic;
@@ -111,6 +112,7 @@ namespace Sunny.UI
                     }
 
                     string str = this[column.Name];
+                    if (str.IsNullOrEmpty()) str = this[column.DataPropertyName];
                     if (str.IsNullOrEmpty()) continue;
 
                     var align = column.DefaultCellStyle.Alignment;
