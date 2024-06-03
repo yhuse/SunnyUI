@@ -62,7 +62,7 @@
             noteDate.AutoSize = true;
             noteDate.Font = new System.Drawing.Font("宋体", 9F);
             noteDate.Image = Properties.Resources.notifier;
-            noteDate.Location = new System.Drawing.Point(19, 168);
+            noteDate.Location = new System.Drawing.Point(21, 168);
             noteDate.Name = "noteDate";
             noteDate.Size = new System.Drawing.Size(65, 12);
             noteDate.TabIndex = 4;
@@ -137,7 +137,7 @@
             // 
             icon.BackColor = System.Drawing.Color.White;
             icon.Font = new System.Drawing.Font("宋体", 12F);
-            icon.Location = new System.Drawing.Point(11, 79);
+            icon.Location = new System.Drawing.Point(13, 79);
             icon.MinimumSize = new System.Drawing.Size(1, 1);
             icon.Name = "icon";
             icon.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);

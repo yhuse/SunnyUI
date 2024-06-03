@@ -256,7 +256,7 @@ namespace Sunny.UI
         private NoteLocation adjustLocation(UINotifier note)
         {
             Rectangle notesArea;
-            int nColumn = 0, xShift = 25;                                                     // Custom note overlay
+            int nColumn = 0, xShift = 40;                                                     // Custom note overlay
             //  x_Shift     = Width + 5;                                         // Full visible note (no overlay)
             bool add = false;
 
