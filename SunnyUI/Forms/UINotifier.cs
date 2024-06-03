@@ -46,11 +46,8 @@ namespace Sunny.UI
             noteTitle.Font = noteTitle.Font.DPIScaleFont(noteTitle.Font.Size);
             noteContent.Font = noteContent.Font.DPIScaleFont(noteContent.Font.Size);
             noteDate.Font = noteDate.Font.DPIScaleFont(noteDate.Font.Size);
-
-            foreach (var control in this.GetAllDPIScaleControls())
-            {
-                control.SetDPIScale();
-            }
+            buttonMenu.Font = noteDate.Font.DPIScaleFont(buttonMenu.Font.Size);
+            buttonClose.Font = noteDate.Font.DPIScaleFont(buttonClose.Font.Size);
         }
 
         #region GLOBALS
@@ -180,6 +177,7 @@ namespace Sunny.UI
                     icon.SymbolColor = UIStyles.Red.ButtonFillColor;
                     LeaveColor = UIStyles.Red.ButtonFillColor;
                     HoverColor = UIStyles.Red.ButtonFillHoverColor;
+                    buttonMenu.Style = buttonClose.Style = noteTitle.Style = UIStyle.Red;
                     break;
 
                 case UINotifierType.INFO:
@@ -187,6 +185,7 @@ namespace Sunny.UI
                     icon.SymbolColor = UIStyles.Blue.ButtonFillColor;
                     LeaveColor = UIStyles.Blue.ButtonFillColor;
                     HoverColor = UIStyles.Blue.ButtonFillHoverColor;
+                    buttonMenu.Style = buttonClose.Style = noteTitle.Style = UIStyle.Blue;
                     break;
 
                 case UINotifierType.WARNING:
@@ -194,6 +193,7 @@ namespace Sunny.UI
                     icon.SymbolColor = UIStyles.Orange.ButtonFillColor;
                     LeaveColor = UIStyles.Orange.ButtonFillColor;
                     HoverColor = UIStyles.Orange.ButtonFillHoverColor;
+                    buttonMenu.Style = buttonClose.Style = noteTitle.Style = UIStyle.Orange;
                     break;
 
                 case UINotifierType.OK:
@@ -201,49 +201,12 @@ namespace Sunny.UI
                     icon.SymbolColor = UIStyles.Green.ButtonFillColor;
                     LeaveColor = UIStyles.Green.ButtonFillColor;
                     HoverColor = UIStyles.Green.ButtonFillHoverColor;
+                    buttonMenu.Style = buttonClose.Style = noteTitle.Style = UIStyle.Green;
                     break;
             }
 
-            buttonClose.BackColor = LeaveColor;                              // Init colors
-            buttonMenu.BackColor = LeaveColor;
-            noteTitle.BackColor = LeaveColor;
-
-            buttonClose.MouseHover += (s, e) =>                    // Mouse hover
-            {
-                buttonClose.BackColor = HoverColor;
-                buttonMenu.BackColor = HoverColor;
-                noteTitle.BackColor = HoverColor;
-            };
-            buttonMenu.MouseHover += (s, e) =>
-            {
-                buttonMenu.BackColor = HoverColor;
-                buttonClose.BackColor = HoverColor;
-                noteTitle.BackColor = HoverColor;
-            }; noteTitle.MouseHover += (s, e) =>
-            {
-                buttonMenu.BackColor = HoverColor;
-                buttonClose.BackColor = HoverColor;
-                noteTitle.BackColor = HoverColor;
-            };
-
-            buttonClose.MouseLeave += (s, e) =>                    // Mouse leave
-            {
-                buttonClose.BackColor = LeaveColor;
-                buttonMenu.BackColor = LeaveColor;
-                noteTitle.BackColor = LeaveColor;
-            };
-            buttonMenu.MouseLeave += (s, e) =>
-            {
-                buttonMenu.BackColor = LeaveColor;
-                buttonClose.BackColor = LeaveColor;
-                noteTitle.BackColor = LeaveColor;
-            };
-            noteTitle.MouseLeave += (s, e) =>
-            {
-                buttonMenu.BackColor = LeaveColor;
-                buttonClose.BackColor = LeaveColor;
-                noteTitle.BackColor = LeaveColor;
-            };
+            noteTitle.FillColor = noteTitle.RectColor;
+            noteTitle.ForeColor = Color.White;
 
             #endregion ADJUST COLORS
 
@@ -252,14 +215,14 @@ namespace Sunny.UI
             if (IsDialog)
             {
                 Button ok_button = new Button();                     // Dialog note comes with a simple Ok button
+                ok_button.Font = noteTitle.Font;
                 ok_button.FlatStyle = FlatStyle.Flat;
                 ok_button.BackColor = LeaveColor;
                 ok_button.ForeColor = Color.White;
                 Size = new Size(Size.Width,              // Resize the note to contain the button
                                                Size.Height + 50);
                 ok_button.Size = new Size(120, 40);
-                ok_button.Location = new Point(Size.Width / 2 - ok_button.Size.Width / 2,
-                                                Size.Height - 50);
+                ok_button.Location = new Point(noteContent.Right - ok_button.Width, Size.Height - 55);
                 ok_button.Text = UILocalize.OK;
                 ok_button.Click += onOkButtonClick;
                 Controls.Add(ok_button);
