@@ -31,6 +31,7 @@
  * 2023-05-13: V3.3.6 Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔
  * 2023-05-14: V3.3.6 重构DrawString函数
  * 2023-06-06: V3.3.7 修复Y轴文字居中
+ * 2025-06-08: V3.6.6 修复X轴文字带角度显示时居中
 ******************************************************************************/
 
 using System;
@@ -513,7 +514,7 @@ namespace Sunny.UI
                 {
                     int angle = (Option.XAxis.AxisLabel.Angle + 36000) % 360;
                     if (angle > 0 && angle <= 90)
-                        g.DrawRotateString(data, TempFont, ForeColor, new PointF(start, DrawOrigin.Y + Option.XAxis.AxisTick.Length),
+                        g.DrawRotateString(data, TempFont, ForeColor, new PointF(start + DrawBarWidth / 2, DrawOrigin.Y + Option.XAxis.AxisTick.Length),
                             new StringFormat() { Alignment = StringAlignment.Far }, (3600 - Option.XAxis.AxisLabel.Angle) % 360);
                     else
                         g.DrawString(data, TempFont, ForeColor, new Rectangle((int)start, DrawOrigin.Y + Option.XAxis.AxisTick.Length, (int)DrawBarWidth, Height), ContentAlignment.TopCenter);
