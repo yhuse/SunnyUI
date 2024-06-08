@@ -17,6 +17,7 @@
  * 创建日期: 2024-05-16
  *
  * 2024-05-16: V3.6.6 增加文件说明
+ * 2024-06-08: V3.6.6 统一配色
 ******************************************************************************/
 
 using System.Drawing;
@@ -34,14 +35,7 @@ namespace Sunny.UI
             btnCancel.Text = UILocalize.Cancel;
 
             foreColor = Color.Black;
-            Color[] colors = Color.White.GradientColors(UIStyles.ActiveStyleColor.PrimaryColor, 16);
-            Color = colors[2];
-            if (UIStyles.Style == UIStyle.DarkBlue || UIStyles.Style == UIStyle.Black)
-            {
-                Color[] colors1 = UIStyles.ActiveStyleColor.PrimaryColor.GradientColors(Color.Black, 16);
-                Color = colors1[2];
-                foreColor = Color.White;
-            }
+
 
             if (noteType != UINotifierType.Ask)
             {
@@ -60,6 +54,7 @@ namespace Sunny.UI
             switch (noteType)
             {
                 case UINotifierType.ERROR:
+                    btnOK.Style = Style = UIStyle.Red;
                     Symbol = 361527;
                     SymbolColor = UIStyles.Red.ButtonFillColor;
                     break;
@@ -70,11 +65,13 @@ namespace Sunny.UI
                     break;
 
                 case UINotifierType.WARNING:
+                    btnOK.Style = Style = UIStyle.Orange;
                     Symbol = 361553;
                     SymbolColor = UIStyles.Orange.ButtonFillColor;
                     break;
 
                 case UINotifierType.OK:
+                    btnOK.Style = Style = UIStyle.Green;
                     Symbol = 361528;
                     SymbolColor = UIStyles.Green.ButtonFillColor;
                     break;
@@ -94,6 +91,15 @@ namespace Sunny.UI
         public string Message { get; set; }
         private void UIMessageForm2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            Color[] colors = Color.White.GradientColors(TitleColor, 16);
+            Color = colors[2];
+            if (Style == UIStyle.Inherited && (UIStyles.Style == UIStyle.DarkBlue || UIStyles.Style == UIStyle.Black))
+            {
+                Color[] colors1 = UIStyles.ActiveStyleColor.PrimaryColor.GradientColors(Color.Black, 16);
+                Color = colors1[2];
+                foreColor = Color.White;
+            }
+
             int height = (190 - 48 + TitleHeight) + label1.Height;
             if (height > 210) Height = height;
             e.Graphics.FillRectangle(Color, new RectangleF(0, Height - 76, Width, 76));

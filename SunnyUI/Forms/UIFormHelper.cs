@@ -556,7 +556,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowInfoDialog(this Form form, string msg, bool showMask = false, int delay = 0)
         {
-            form.ShowInfoDialog(UILocalize.InfoTitle, msg, UIStyle.Gray, showMask, delay);
+            form.ShowInfoDialog(UILocalize.InfoTitle, msg, UIStyles.Style, showMask, delay);
         }
 
         /// <summary>
@@ -623,7 +623,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form form, string msg, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return UIMessageBox.ShowMessageDialog(form, msg, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
+            return UIMessageBox.ShowMessageDialog(form, msg, UILocalize.AskTitle, true, UIStyles.Style, showMask, true, defaultButton);
         }
 
         /// <summary>
