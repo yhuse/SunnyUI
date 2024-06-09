@@ -19,10 +19,12 @@
  * 2020-05-29: V2.2.5 增加文件
  * 2020-08-07: V2.2.7 可编辑输入
  * 2020-09-16: V2.2.7 更改滚轮选择时间的方向
+ * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -143,6 +145,10 @@ namespace Sunny.UI
 
         private readonly UITimeItem item = new UITimeItem();
 
+        [DefaultValue(1)]
+        [Description("弹窗放大倍数，可以1或者2"), Category("SunnyUI")]
+        public int SizeMultiple { get => item.SizeMultiple; set => item.SizeMultiple = value; }
+
         /// <summary>
         /// 创建对象
         /// </summary>
@@ -188,7 +194,8 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             item.SetStyleColor(UIStyles.ActiveStyleColor);
-            ItemForm.Show(this);
+            Size size = SizeMultiple == 1 ? new Size(168, 200) : new Size(336, 400);
+            ItemForm.Show(this, size);
         }
     }
 }
