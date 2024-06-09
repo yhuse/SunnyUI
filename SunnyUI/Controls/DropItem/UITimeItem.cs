@@ -455,13 +455,14 @@ namespace Sunny.UI
                 {
                     if (!SizeMultipled)
                     {
-                        item.Font = new Font(item.Font.FontFamily, item.Font.Size * 1.5f);
                         item.Left = item.Left * SizeMultiple;
                         item.Top = item.Top * SizeMultiple;
                         item.Width = item.Width * SizeMultiple;
                         item.Height = item.Height * SizeMultiple;
                         if (item is ISymbol symbol) symbol.SymbolSize = (int)(symbol.SymbolSize * 1.5f);
                     }
+
+                    item.Font = new Font(item.Font.FontFamily, item.Font.Size * 1.5f);
                 }
 
                 SizeMultipled = true;
