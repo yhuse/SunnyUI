@@ -23,10 +23,12 @@
  * 2022-11-08: V3.2.8 增加MaxDate,MinDate
  * 2023-05-14: V3.3.6 年、年月、年月日可单独设置格式化掩码
  * 2023-05-14: V3.3.6 修复文字格式化显示问题
+ * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -344,6 +346,10 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(1)]
+        [Description("弹窗放大倍数，可以1或者2"), Category("SunnyUI")]
+        public int SizeMultiple { get => item.SizeMultiple; set => item.SizeMultiple = value; }
+
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
             item.ShowType = ShowType;
@@ -355,7 +361,9 @@ namespace Sunny.UI
             item.SetStyleColor(UIStyles.ActiveStyleColor);
             item.max = MaxDate;
             item.min = MinDate;
-            ItemForm.Show(this);
+
+            Size size = SizeMultiple == 1 ? new Size(284, 200) : new Size(568, 400);
+            ItemForm.Show(this, size);
         }
 
         private string dateFormat = "yyyy-MM-dd";

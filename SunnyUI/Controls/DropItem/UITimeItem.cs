@@ -431,10 +431,6 @@ namespace Sunny.UI
             InitializeComponent();
             this.MouseWheel += UITimeItem_MouseWheel;
             Translate();
-
-            if (SizeMultiple < 1) SizeMultiple = 1;
-            if (SizeMultiple > 2) SizeMultiple = 2;
-            this.Size = Size.MultiplyAll(SizeMultiple);
         }
 
         public void Translate()
@@ -453,24 +449,38 @@ namespace Sunny.UI
             btnCancel.SetDPIScale();
             foreach (var label in this.GetControls<UILabel>()) label.SetDPIScale();
 
-            foreach (Control item in this.Controls)
+            if (SizeMultiple > 1)
             {
-                if (!SizeMultipled)
+                foreach (Control item in this.Controls)
                 {
-                    item.Left = item.Left * SizeMultiple;
-                    item.Top = item.Top * SizeMultiple;
-                    item.Width = item.Width * SizeMultiple;
-                    item.Height = item.Height * SizeMultiple;
-                    if (item is ISymbol symbol) symbol.SymbolSize *= SizeMultiple;
+                    if (!SizeMultipled)
+                    {
+                        item.Font = new Font(item.Font.FontFamily, item.Font.Size * 1.5f);
+                        item.Left = item.Left * SizeMultiple;
+                        item.Top = item.Top * SizeMultiple;
+                        item.Width = item.Width * SizeMultiple;
+                        item.Height = item.Height * SizeMultiple;
+                        if (item is ISymbol symbol) symbol.SymbolSize = (int)(symbol.SymbolSize * 1.5f);
+                    }
                 }
 
-                item.Font = new Font(item.Font.FontFamily, item.Font.Size * SizeMultiple);
+                SizeMultipled = true;
             }
-
-            SizeMultipled = true;
         }
 
         internal bool SizeMultipled = false;
+        private int sizeMultiple = 1;
+        public int SizeMultiple
+        {
+            get => sizeMultiple;
+            set
+            {
+                if (value < 1) value = 1;
+                if (value > 2) value = 2;
+
+                sizeMultiple = value;
+            }
+        }
 
         private void UITimeItem_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -663,7 +673,5 @@ namespace Sunny.UI
             Second = 0;
             ShowOther();
         }
-
-        public int SizeMultiple { get; set; } = 1;
     }
 }

@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -55,11 +56,11 @@ namespace Sunny.UI
             b2 = new UISymbolButton();
             b1 = new UISymbolButton();
             TabControl = new UITabControl();
-            tabPage1 = new System.Windows.Forms.TabPage();
+            tabPage1 = new TabPage();
             p1 = new UIPanel();
-            tabPage2 = new System.Windows.Forms.TabPage();
+            tabPage2 = new TabPage();
             p2 = new UIPanel();
-            tabPage3 = new System.Windows.Forms.TabPage();
+            tabPage3 = new TabPage();
             p3 = new UIPanel();
             TopPanel.SuspendLayout();
             TabControl.SuspendLayout();
@@ -74,15 +75,15 @@ namespace Sunny.UI
             TopPanel.Controls.Add(b3);
             TopPanel.Controls.Add(b2);
             TopPanel.Controls.Add(b1);
-            TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            TopPanel.Dock = DockStyle.Top;
             TopPanel.FillColor = Color.White;
             TopPanel.Font = new Font("宋体", 12F);
             TopPanel.Location = new Point(0, 0);
-            TopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            TopPanel.Margin = new Padding(4, 5, 4, 5);
             TopPanel.MinimumSize = new Size(1, 1);
             TopPanel.Name = "TopPanel";
             TopPanel.RadiusSides = UICornerRadiusSides.None;
-            TopPanel.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            TopPanel.RectSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
             TopPanel.Size = new Size(461, 31);
             TopPanel.Style = UIStyle.Custom;
             TopPanel.StyleCustomMode = true;
@@ -93,9 +94,8 @@ namespace Sunny.UI
             // 
             // b4
             // 
-            b4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             b4.BackColor = Color.Transparent;
-            b4.Cursor = System.Windows.Forms.Cursors.Hand;
+            b4.Cursor = Cursors.Hand;
             b4.FillColor = Color.White;
             b4.FillHoverColor = Color.FromArgb(80, 160, 255);
             b4.Font = new Font("宋体", 12F);
@@ -103,10 +103,10 @@ namespace Sunny.UI
             b4.Location = new Point(427, 4);
             b4.MinimumSize = new Size(1, 1);
             b4.Name = "b4";
-            b4.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            b4.Padding = new Padding(24, 0, 0, 0);
             b4.RadiusSides = UICornerRadiusSides.None;
             b4.RectHoverColor = Color.FromArgb(80, 160, 255);
-            b4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            b4.RectSides = ToolStripStatusLabelBorderSides.None;
             b4.Size = new Size(30, 24);
             b4.Style = UIStyle.Custom;
             b4.StyleCustomMode = true;
@@ -117,9 +117,8 @@ namespace Sunny.UI
             // 
             // b3
             // 
-            b3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             b3.BackColor = Color.Transparent;
-            b3.Cursor = System.Windows.Forms.Cursors.Hand;
+            b3.Cursor = Cursors.Hand;
             b3.FillColor = Color.White;
             b3.FillHoverColor = Color.FromArgb(80, 160, 255);
             b3.Font = new Font("宋体", 12F);
@@ -127,10 +126,10 @@ namespace Sunny.UI
             b3.Location = new Point(391, 4);
             b3.MinimumSize = new Size(1, 1);
             b3.Name = "b3";
-            b3.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            b3.Padding = new Padding(24, 0, 0, 0);
             b3.RadiusSides = UICornerRadiusSides.None;
             b3.RectHoverColor = Color.FromArgb(80, 160, 255);
-            b3.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            b3.RectSides = ToolStripStatusLabelBorderSides.None;
             b3.Size = new Size(30, 24);
             b3.Style = UIStyle.Custom;
             b3.StyleCustomMode = true;
@@ -142,7 +141,7 @@ namespace Sunny.UI
             // b2
             // 
             b2.BackColor = Color.Transparent;
-            b2.Cursor = System.Windows.Forms.Cursors.Hand;
+            b2.Cursor = Cursors.Hand;
             b2.FillColor = Color.White;
             b2.FillHoverColor = Color.FromArgb(80, 160, 255);
             b2.Font = new Font("宋体", 12F);
@@ -150,10 +149,10 @@ namespace Sunny.UI
             b2.Location = new Point(40, 4);
             b2.MinimumSize = new Size(1, 1);
             b2.Name = "b2";
-            b2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            b2.Padding = new Padding(24, 0, 0, 0);
             b2.RadiusSides = UICornerRadiusSides.None;
             b2.RectHoverColor = Color.FromArgb(80, 160, 255);
-            b2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            b2.RectSides = ToolStripStatusLabelBorderSides.None;
             b2.Size = new Size(30, 24);
             b2.Style = UIStyle.Custom;
             b2.StyleCustomMode = true;
@@ -165,7 +164,7 @@ namespace Sunny.UI
             // b1
             // 
             b1.BackColor = Color.Transparent;
-            b1.Cursor = System.Windows.Forms.Cursors.Hand;
+            b1.Cursor = Cursors.Hand;
             b1.FillColor = Color.White;
             b1.FillHoverColor = Color.FromArgb(80, 160, 255);
             b1.Font = new Font("宋体", 12F);
@@ -173,10 +172,10 @@ namespace Sunny.UI
             b1.Location = new Point(4, 4);
             b1.MinimumSize = new Size(1, 1);
             b1.Name = "b1";
-            b1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            b1.Padding = new Padding(24, 0, 0, 0);
             b1.RadiusSides = UICornerRadiusSides.None;
             b1.RectHoverColor = Color.FromArgb(80, 160, 255);
-            b1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            b1.RectSides = ToolStripStatusLabelBorderSides.None;
             b1.Size = new Size(30, 24);
             b1.Style = UIStyle.Custom;
             b1.StyleCustomMode = true;
@@ -190,8 +189,8 @@ namespace Sunny.UI
             TabControl.Controls.Add(tabPage1);
             TabControl.Controls.Add(tabPage2);
             TabControl.Controls.Add(tabPage3);
-            TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            TabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            TabControl.Dock = DockStyle.Fill;
+            TabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
             TabControl.Font = new Font("宋体", 12F);
             TabControl.ItemSize = new Size(150, 40);
             TabControl.Location = new Point(0, 31);
@@ -199,7 +198,7 @@ namespace Sunny.UI
             TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
             TabControl.Size = new Size(461, 317);
-            TabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            TabControl.SizeMode = TabSizeMode.Fixed;
             TabControl.Style = UIStyle.Custom;
             TabControl.TabIndex = 1;
             TabControl.TabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
@@ -218,11 +217,11 @@ namespace Sunny.UI
             // 
             // p1
             // 
-            p1.Dock = System.Windows.Forms.DockStyle.Fill;
+            p1.Dock = DockStyle.Fill;
             p1.FillColor = Color.White;
             p1.Font = new Font("宋体", 12F);
             p1.Location = new Point(0, 0);
-            p1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            p1.Margin = new Padding(4, 5, 4, 5);
             p1.MinimumSize = new Size(1, 1);
             p1.Name = "p1";
             p1.RadiusSides = UICornerRadiusSides.None;
@@ -241,22 +240,22 @@ namespace Sunny.UI
             tabPage2.Controls.Add(p2);
             tabPage2.Location = new Point(0, 40);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(461, 277);
+            tabPage2.Size = new Size(200, 60);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // p2
             // 
-            p2.Dock = System.Windows.Forms.DockStyle.Fill;
+            p2.Dock = DockStyle.Fill;
             p2.FillColor = Color.White;
             p2.Font = new Font("宋体", 12F);
             p2.Location = new Point(0, 0);
-            p2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            p2.Margin = new Padding(4, 5, 4, 5);
             p2.MinimumSize = new Size(1, 1);
             p2.Name = "p2";
             p2.RadiusSides = UICornerRadiusSides.None;
-            p2.Size = new Size(461, 277);
+            p2.Size = new Size(200, 60);
             p2.Style = UIStyle.Custom;
             p2.TabIndex = 1;
             p2.Text = null;
@@ -278,11 +277,11 @@ namespace Sunny.UI
             // 
             // p3
             // 
-            p3.Dock = System.Windows.Forms.DockStyle.Fill;
+            p3.Dock = DockStyle.Fill;
             p3.FillColor = Color.White;
             p3.Font = new Font("宋体", 12F);
             p3.Location = new Point(0, 0);
-            p3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            p3.Margin = new Padding(4, 5, 4, 5);
             p3.MinimumSize = new Size(1, 1);
             p3.Name = "p3";
             p3.RadiusSides = UICornerRadiusSides.None;
@@ -321,8 +320,7 @@ namespace Sunny.UI
         public UIDateItem()
         {
             InitializeComponent();
-            Width = 284;
-            Height = 200;
+            Size = new Size(284, 200);
             TabControl.TabVisible = false;
             Translate();
         }
@@ -334,6 +332,48 @@ namespace Sunny.UI
             if (!UIDPIScale.NeedSetDPIFont()) return;
 
             TopPanel.SetDPIScale();
+
+            if (SizeMultiple > 1)
+            {
+                TopPanel.Height = 31 * SizeMultiple;
+                foreach (Control item in TopPanel.Controls)
+                {
+                    if (!SizeMultipled)
+                    {
+                        item.Left = item.Left * SizeMultiple;
+                        item.Top = item.Top * SizeMultiple;
+                        item.Width = item.Width * SizeMultiple;
+                        item.Height = item.Height * SizeMultiple;
+                        if (item is ISymbol symbol) symbol.SymbolSize = (int)(symbol.SymbolSize * 1.5f);
+                    }
+                }
+
+                TopPanel.Font = new Font(TopPanel.Font.FontFamily, TopPanel.Font.Size * 1.5f);
+                SizeMultipled = true;
+            }
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            if (b1 == null) return;
+            b4.Left = TopPanel.Width - b1.Left - b4.Width;
+            b3.Left = TopPanel.Width - b2.Left - b3.Width;
+        }
+
+        internal bool SizeMultipled = false;
+
+        private int sizeMultiple = 1;
+        public int SizeMultiple
+        {
+            get => sizeMultiple;
+            set
+            {
+                if (value < 1) value = 1;
+                if (value > 2) value = 2;
+
+                sizeMultiple = value;
+            }
         }
 
         public DateTime max = DateTime.MaxValue;
@@ -589,6 +629,7 @@ namespace Sunny.UI
 
         private void p2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             for (int i = 0; i < 12; i++)
             {
                 int width = p2.Width / 4;
@@ -609,7 +650,7 @@ namespace Sunny.UI
                     if (i == activeMonth) color = PrimaryColor;
                 }
 
-                e.Graphics.DrawString(months[i], Font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
+                e.Graphics.DrawString(months[i], font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
             }
         }
 
@@ -667,6 +708,7 @@ namespace Sunny.UI
 
         private void p1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             for (int i = 0; i < 12; i++)
             {
                 int width = p1.Width / 4;
@@ -689,7 +731,7 @@ namespace Sunny.UI
 
                 if (years[i] != 10000)
                 {
-                    e.Graphics.DrawString(years[i].ToString(), Font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
+                    e.Graphics.DrawString(years[i].ToString(), font, color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
                 }
             }
         }
@@ -744,14 +786,15 @@ namespace Sunny.UI
         private void p3_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             int width = p3.Width / 7;
-            int height = (p3.Height - 30) / 6;
+            int height = (p3.Height - 30 * SizeMultiple) / 6;
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             string[] weeks = { UILocalize.Sunday, UILocalize.Monday, UILocalize.Tuesday, UILocalize.Wednesday, UILocalize.Thursday, UILocalize.Friday, UILocalize.Saturday };
             for (int i = 0; i < weeks.Length; i++)
             {
-                e.Graphics.DrawString(weeks[i], Font, ForeColor, new Rectangle(width * i, 4, width, 19), ContentAlignment.MiddleCenter);
+                e.Graphics.DrawString(weeks[i], font, ForeColor, new Rectangle(width * i, 4 * SizeMultiple, width, 19 * SizeMultiple), ContentAlignment.MiddleCenter);
             }
 
-            e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
+            e.Graphics.DrawLine(Color.LightGray, 8, 30 * SizeMultiple - 4, p3.Width - 8, 30 * SizeMultiple - 4);
 
             bool maxDrawer = false;
             for (int i = 0; i < 42; i++)
@@ -765,7 +808,7 @@ namespace Sunny.UI
 
                 if (!maxDrawer)
                 {
-                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? PrimaryColor : color, new Rectangle(left, top + 30, width, height), ContentAlignment.MiddleCenter);
+                    e.Graphics.DrawString(days[i].Day.ToString(), font, i == activeDay ? PrimaryColor : color, new Rectangle(left, top + 30 * SizeMultiple, width, height), ContentAlignment.MiddleCenter);
                 }
 
                 if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
@@ -776,7 +819,7 @@ namespace Sunny.UI
 
             if (ShowToday)
             {
-                using Font SubFont = this.Font.DPIScaleFont(10.5f);
+                using Font SubFont = this.Font.DPIScaleFont(SizeMultiple == 1 ? 10.5f : 15.75f);
                 e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
                 e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);
                 e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, new Rectangle(p3.Width - width * 4 + 17, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
@@ -788,7 +831,7 @@ namespace Sunny.UI
 
         private void p3_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (e.Location.Y <= 30)
+            if (e.Location.Y <= 30 * SizeMultiple)
             {
                 activeDay = -1;
                 p3.Invalidate();
@@ -796,9 +839,9 @@ namespace Sunny.UI
             }
 
             int width = p3.Width / 7;
-            int height = (p3.Height - 30) / 6;
+            int height = (p3.Height - 30 * SizeMultiple) / 6;
             int x = e.Location.X / width;
-            int y = (e.Location.Y - 30) / height;
+            int y = (e.Location.Y - 30 * SizeMultiple) / height;
             int iy = x + y * 7;
 
             if (iy.InRange(0, days.Count - 1))
@@ -823,11 +866,11 @@ namespace Sunny.UI
 
         private void p3_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (e.Location.Y <= 30) return;
+            if (e.Location.Y <= 30 * SizeMultiple) return;
             int width = p3.Width / 7;
-            int height = (p3.Height - 30) / 6;
+            int height = (p3.Height - 30 * SizeMultiple) / 6;
             int x = e.Location.X / width;
-            int y = (e.Location.Y - 30) / height;
+            int y = (e.Location.Y - 30 * SizeMultiple) / height;
             int id = x + y * 7;
             if (id < 0 || id >= 42) return;
 
