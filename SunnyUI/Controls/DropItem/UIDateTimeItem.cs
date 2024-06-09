@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -746,6 +747,66 @@ namespace Sunny.UI
             btnOK.SetDPIScale();
             btnCancel.SetDPIScale();
             foreach (var label in this.GetControls<UILabel>()) label.SetDPIScale();
+
+            if (SizeMultiple > 1)
+            {
+                TopPanel.Height = 31 * SizeMultiple;
+                foreach (Control item in TopPanel.Controls)
+                {
+                    if (!SizeMultipled)
+                    {
+                        item.Left = item.Left * SizeMultiple;
+                        item.Top = item.Top * SizeMultiple;
+                        item.Width = item.Width * SizeMultiple;
+                        item.Height = item.Height * SizeMultiple;
+                        if (item is ISymbol symbol) symbol.SymbolSize = (int)(symbol.SymbolSize * 1.5f);
+                    }
+                }
+
+                TopPanel.Font = new Font(TopPanel.Font.FontFamily, TopPanel.Font.Size * 1.5f);
+
+                foreach (Control item in this.Controls)
+                {
+                    if (item.Parent == TopPanel) return;
+                    if (item == TopPanel) return;
+                    if (!SizeMultipled)
+                    {
+                        item.Left = item.Left * SizeMultiple;
+                        item.Top = item.Top * SizeMultiple;
+                        item.Width = item.Width * SizeMultiple;
+                        item.Height = item.Height * SizeMultiple;
+                        if (item is ISymbol symbol) symbol.SymbolSize = (int)(symbol.SymbolSize * 1.5f);
+                    }
+
+                    item.Font = new Font(item.Font.FontFamily, item.Font.Size * 1.5f);
+                }
+
+
+                SizeMultipled = true;
+            }
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            if (b1 == null) return;
+            b4.Left = TopPanel.Width - b1.Left - b4.Width;
+            b3.Left = TopPanel.Width - b2.Left - b3.Width;
+        }
+
+        internal bool SizeMultipled = false;
+
+        private int sizeMultiple = 1;
+        public int SizeMultiple
+        {
+            get => sizeMultiple;
+            set
+            {
+                if (value < 1) value = 1;
+                if (value > 2) value = 2;
+
+                sizeMultiple = value;
+            }
         }
 
         public void Translate()
@@ -1146,6 +1207,7 @@ namespace Sunny.UI
 
         private void p2_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             for (int i = 0; i < 12; i++)
             {
                 int width = p2.Width / 4;
@@ -1154,11 +1216,11 @@ namespace Sunny.UI
                 int top = height * (i / 4);
                 if (i + 1 == Month)
                 {
-                    e.Graphics.DrawString(months[i], Font, PrimaryColor, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
+                    e.Graphics.DrawString(months[i], font, PrimaryColor, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
-                    e.Graphics.DrawString(months[i], Font, i == activeMonth ? PrimaryColor : ForeColor, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
+                    e.Graphics.DrawString(months[i], font, i == activeMonth ? PrimaryColor : ForeColor, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
                 }
             }
         }
@@ -1192,6 +1254,7 @@ namespace Sunny.UI
 
         private void p1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             for (int i = 0; i < 12; i++)
             {
                 int width = p1.Width / 4;
@@ -1199,7 +1262,7 @@ namespace Sunny.UI
                 int left = width * (i % 4);
                 int top = height * (i / 4);
                 Color color = (i == 0 || i == 11) ? Color.DarkGray : ForeColor;
-                e.Graphics.DrawString(years[i].ToString(), Font, (i == activeYear || years[i] == Year) ? PrimaryColor : color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
+                e.Graphics.DrawString(years[i].ToString(), font, (i == activeYear || years[i] == Year) ? PrimaryColor : color, new Rectangle(left, top, width, height), ContentAlignment.MiddleCenter);
             }
         }
 
@@ -1234,27 +1297,27 @@ namespace Sunny.UI
         private void p3_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             int width = p3.Width / 7;
-            int height = (p3.Height - 30) / 6;
+            int height = (p3.Height - 30 * SizeMultiple) / 6;
+            using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
             string[] weeks = { UILocalize.Sunday, UILocalize.Monday, UILocalize.Tuesday, UILocalize.Wednesday, UILocalize.Thursday, UILocalize.Friday, UILocalize.Saturday };
             for (int i = 0; i < weeks.Length; i++)
             {
-                e.Graphics.DrawString(weeks[i], Font, ForeColor, new Rectangle(width * i, 4, width, 19), ContentAlignment.MiddleCenter);
+                e.Graphics.DrawString(weeks[i], font, ForeColor, new Rectangle(width * i, 4 * SizeMultiple, width, 19 * SizeMultiple), ContentAlignment.MiddleCenter);
             }
 
-            e.Graphics.DrawLine(Color.DarkGray, 8, 26, 268, 26);
+            e.Graphics.DrawLine(Color.LightGray, 8, 30 * SizeMultiple - 4, p3.Width - 8, 30 * SizeMultiple - 4);
 
             bool maxDrawer = false;
             for (int i = 0; i < 42; i++)
             {
                 int left = width * (i % 7);
                 int top = height * (i / 7);
-
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
                 color = (days[i].DateString() == date.DateString()) ? PrimaryColor : color;
 
                 if (!maxDrawer)
                 {
-                    e.Graphics.DrawString(days[i].Day.ToString(), Font, i == activeDay ? PrimaryColor : color, new Rectangle(left, top + 30, width, height), ContentAlignment.MiddleCenter);
+                    e.Graphics.DrawString(days[i].Day.ToString(), font, i == activeDay ? PrimaryColor : color, new Rectangle(left, top + 30 * SizeMultiple, width, height), ContentAlignment.MiddleCenter);
                 }
 
                 if (!maxDrawer && days[i].Date.Equals(DateTime.MaxValue.Date))
@@ -1265,9 +1328,9 @@ namespace Sunny.UI
 
             if (ShowToday)
             {
-                using Font SubFont = this.Font.DPIScaleFont(10.5f);
+                using Font SubFont = this.Font.DPIScaleFont(SizeMultiple == 1 ? 10.5f : 15.75f);
                 e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
-                e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle((int)(p3.Width - width * 4 + 6), p3.Height - height + 3, 8, height - 10), 3);
+                e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);
                 e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, new Rectangle(p3.Width - width * 4 + 17, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
             }
         }

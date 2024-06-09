@@ -21,10 +21,12 @@
  * 2020-08-07: V2.2.7 可编辑输入，日期范围控制以防止出错
  * 2020-09-16: V2.2.7 更改滚轮选择时间的方向
  * 2021-04-15: V3.0.3 增加ShowToday显示今日属性
+ * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -179,6 +181,10 @@ namespace Sunny.UI
             }
         }
 
+        [DefaultValue(1)]
+        [Description("弹窗放大倍数，可以1或者2"), Category("SunnyUI")]
+        public int SizeMultiple { get => item.SizeMultiple; set => item.SizeMultiple = value; }
+
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
             if (DateTime.TryParse(Text, out DateTime dt))
@@ -192,7 +198,8 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             item.SetStyleColor(UIStyles.ActiveStyleColor);
-            ItemForm.Show(this);
+            Size size = SizeMultiple == 1 ? new Size(452, 200) : new Size(904, 400);
+            ItemForm.Show(this, size);
         }
 
         private string dateFormat = "yyyy-MM-dd HH:mm:ss";
