@@ -19,10 +19,12 @@
  * 2023-03-18: V3.3.3 增加文件说明
  * 2023-03-26: V3.3.3 增加默认事件ValueChanged，下键盘Enter事件相应此事件
  * 2023-03-26: V3.3.4 增加了最大值、最小值等属性
+ * 2023-06-11: V3.6.6 下拉框可选放大倍数为2
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -110,7 +112,7 @@ namespace Sunny.UI
             return edit;
         }
 
-        private readonly UINumPadItem numPad = new UINumPadItem();
+        private readonly UINumPadItem item = new UINumPadItem();
 
         private UIDropDown numPadForm;
 
@@ -120,7 +122,7 @@ namespace Sunny.UI
             {
                 if (numPadForm == null)
                 {
-                    numPadForm = new UIDropDown(numPad);
+                    numPadForm = new UIDropDown(item);
 
                     if (numPadForm != null)
                     {
@@ -225,9 +227,9 @@ namespace Sunny.UI
         private void ShowDropDown()
         {
             NumPadForm.AutoClose = false;
-            numPad.NumPadType = NumPadType;
-            numPad.SetDPIScale();
-            numPad.SetStyleColor(UIStyles.ActiveStyleColor);
+            item.NumPadType = NumPadType;
+            item.SetDPIScale();
+            item.SetStyleColor(UIStyles.ActiveStyleColor);
 
             if (numPadType == NumPadType.IDNumber)
             {
@@ -237,11 +239,16 @@ namespace Sunny.UI
 
             if (!NumPadForm.Visible)
             {
-                NumPadForm.Show(this, NumPadForm.Size);
+                Size size = SizeMultiple == 1 ? new Size(320, 195) : new Size(320, 390);
+                NumPadForm.Show(this, size);
             }
 
             edit.Focus();
         }
+
+        [DefaultValue(1)]
+        [Description("弹窗放大倍数，可以1或者2"), Category("SunnyUI")]
+        public int SizeMultiple { get => item.SizeMultiple; set => item.SizeMultiple = value; }
 
         private void InitializeComponent()
         {
@@ -275,7 +282,7 @@ namespace Sunny.UI
                 components.Dispose();
             }
 
-            numPad?.Dispose();
+            item?.Dispose();
             numPadForm?.Dispose();
             base.Dispose(disposing);
         }
