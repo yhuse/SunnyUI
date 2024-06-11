@@ -17,10 +17,10 @@
         <RepositoryUrl>https://gitee.com/yhuse/SunnyUI</RepositoryUrl>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <PackageIcon>SunnyUI.png</PackageIcon>
-        <SignAssembly>False</SignAssembly>
+        <SignAssembly>True</SignAssembly>
         <AssemblyOriginatorKeyFile>D:\MyDocuments\Key\SunnyUI.pfx</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
-        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
