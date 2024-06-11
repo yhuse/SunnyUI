@@ -22,10 +22,10 @@ namespace Sunny.UI.Demo
                 dataList.Add(data);
             }
 
-            dataTable.Columns.Add("Column1");
-            dataTable.Columns.Add("Column2");
-            dataTable.Columns.Add("Column3");
-            dataTable.Columns.Add("Column4");
+            dataTable.Columns.Add("Column1", typeof(string));
+            dataTable.Columns.Add("Column2", typeof(string));
+            dataTable.Columns.Add("Column3", typeof(string));
+            dataTable.Columns.Add("Column4", typeof(int));
             uiDataGridView1.DataSource = dataTable;
 
             //不自动生成列
@@ -74,7 +74,7 @@ namespace Sunny.UI.Demo
         private void uiPagination1_PageChanged(object sender, object pagingSource, int pageIndex, int count)
         {
             //未连接数据库，通过模拟数据来实现
-            //一般通过ORM的分页去取数据来填充
+            //一般通过ORM的分页、或者SQL语句分页去取数据来填充dataTable
             //pageIndex：第几页，和界面对应，从1开始，取数据可能要用pageIndex - 1
             //count：单页数据量，也就是PageSize值
 

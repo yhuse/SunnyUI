@@ -32,7 +32,6 @@
             this.btnWarn = new Sunny.UI.UISymbolButton();
             this.btnSuccess = new Sunny.UI.UISymbolButton();
             this.btnAsk = new Sunny.UI.UISymbolButton();
-            this.btnAuto = new Sunny.UI.UISymbolButton();
             this.btnStatus2 = new Sunny.UI.UISymbolButton();
             this.btnInfo = new Sunny.UI.UISymbolButton();
             this.btnPasswordInput = new Sunny.UI.UISymbolButton();
@@ -154,28 +153,12 @@
             this.btnAsk.Name = "btnAsk";
             this.btnAsk.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             this.btnAsk.Size = new System.Drawing.Size(100, 35);
-            this.btnAsk.Style = Sunny.UI.UIStyle.Custom;
             this.btnAsk.StyleCustomMode = true;
             this.btnAsk.Symbol = 61529;
             this.btnAsk.TabIndex = 26;
             this.btnAsk.Text = "Query";
             this.btnAsk.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAsk.Click += new System.EventHandler(this.btnAsk_Click);
-            // 
-            // btnAuto
-            // 
-            this.btnAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAuto.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnAuto.Location = new System.Drawing.Point(30, 88);
-            this.btnAuto.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnAuto.Size = new System.Drawing.Size(100, 35);
-            this.btnAuto.Symbol = 61732;
-            this.btnAuto.TabIndex = 31;
-            this.btnAuto.Text = "Auto";
-            this.btnAuto.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
             // btnStatus2
             // 
@@ -195,22 +178,12 @@
             // btnInfo
             // 
             this.btnInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInfo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.btnInfo.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.btnInfo.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.btnInfo.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
-            this.btnInfo.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.btnInfo.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnInfo.Location = new System.Drawing.Point(258, 88);
+            this.btnInfo.Location = new System.Drawing.Point(30, 88);
             this.btnInfo.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnInfo.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.btnInfo.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.btnInfo.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
-            this.btnInfo.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.btnInfo.Size = new System.Drawing.Size(100, 35);
-            this.btnInfo.Style = Sunny.UI.UIStyle.Custom;
             this.btnInfo.StyleCustomMode = true;
             this.btnInfo.Symbol = 61530;
             this.btnInfo.TabIndex = 37;
@@ -740,7 +713,6 @@
             this.Controls.Add(this.uiSymbolButton1);
             this.Controls.Add(this.uiLine8);
             this.Controls.Add(this.uiLine6);
-            this.Controls.Add(this.btnAuto);
             this.Controls.Add(this.uiLine3);
             this.Controls.Add(this.uiSymbolButton3);
             this.Controls.Add(this.btnCH);
@@ -772,7 +744,6 @@
         private UISymbolButton btnWarn;
         private UISymbolButton btnSuccess;
         private UISymbolButton btnAsk;
-        private UISymbolButton btnAuto;
         private UISymbolButton btnStatus2;
         private UISymbolButton btnInfo;
         private UISymbolButton btnPasswordInput;

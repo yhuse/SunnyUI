@@ -36,12 +36,12 @@ namespace Sunny.UI.Demo
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiDataGridViewFooter1 = new Sunny.UI.UIDataGridViewFooter();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
+            this.uiPagination1 = new Sunny.UI.UIPagination();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiPagination1 = new Sunny.UI.UIPagination();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,37 +117,10 @@ namespace Sunny.UI.Demo
             this.uiDataGridView1.Size = new System.Drawing.Size(800, 351);
             this.uiDataGridView1.TabIndex = 6;
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Column1";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 300;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Column2";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Column3";
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Column4";
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
-            // 
             // uiPagination1
             // 
             this.uiPagination1.ActivePage = 20;
+            this.uiPagination1.ButtonFillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.uiPagination1.CausesValidation = false;
             this.uiPagination1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPagination1.Font = new System.Drawing.Font("宋体", 12F);
@@ -166,6 +139,34 @@ namespace Sunny.UI.Demo
             this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uiPagination1.TotalCount = 40000;
             this.uiPagination1.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.uiPagination1_PageChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Column1";
+            this.Column1.HeaderText = "数据列1";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 300;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Column2";
+            this.Column2.HeaderText = "数据列2";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Column3";
+            this.Column3.HeaderText = "数据列3";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 200;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Column4";
+            this.Column4.HeaderText = "数据列4";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 200;
             // 
             // FDataGridView
             // 

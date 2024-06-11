@@ -11,6 +11,12 @@ namespace Sunny.UI.Demo
             InitializeComponent();
         }
 
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            this.ShowInfoDialog("默认信息提示框");
+            this.ShowInfoDialog2("默认信息提示框");
+        }
+
         private void btnAsk_Click(object sender, EventArgs e)
         {
             if (this.ShowAskDialog("确认信息提示框"))
@@ -21,26 +27,33 @@ namespace Sunny.UI.Demo
             {
                 this.ShowErrorTip("您点击了取消按钮");
             }
-        }
 
-        private void btnAuto_Click(object sender, EventArgs e)
-        {
-            UIMessageBox.Show("跟随界面主题风格信息提示框", UILocalize.InfoTitle, Style);
+            if (this.ShowAskDialog2("确认信息提示框"))
+            {
+                this.ShowSuccessTip("您点击了确定按钮");
+            }
+            else
+            {
+                this.ShowErrorTip("您点击了取消按钮");
+            }
         }
 
         private void btnSuccess_Click(object sender, EventArgs e)
         {
-            this.ShowSuccessDialog("正确信息提示框", false, 5000);
+            this.ShowSuccessDialog("正确信息提示框", false, 3000);
+            this.ShowSuccessDialog2("正确信息提示框", false, 3000);
         }
 
         private void btnWarn_Click(object sender, EventArgs e)
         {
             this.ShowWarningDialog("警告信息提示框");
+            this.ShowWarningDialog2("警告信息提示框");
         }
 
         private void btnError_Click(object sender, EventArgs e)
         {
             this.ShowErrorDialog("错误信息提示框");
+            this.ShowErrorDialog2("错误信息提示框");
         }
 
         private void btnStatus2_Click(object sender, EventArgs e)
@@ -54,11 +67,6 @@ namespace Sunny.UI.Demo
             }
 
             this.HideStatusForm();
-        }
-
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            this.ShowInfoDialog("默认信息提示框");
         }
 
         private void btnStringInput_Click(object sender, EventArgs e)

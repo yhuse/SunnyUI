@@ -36,21 +36,21 @@ namespace Sunny.UI.Demo
 
             uiComboDataGridView1.DataGridView.Init();
             uiComboDataGridView1.ItemSize = new System.Drawing.Size(360, 240);
-            uiComboDataGridView1.DataGridView.AddColumn("Column1", "Column1");
-            uiComboDataGridView1.DataGridView.AddColumn("Column2", "Column2");
-            uiComboDataGridView1.DataGridView.AddColumn("Column3", "Column3");
+            uiComboDataGridView1.DataGridView.AddColumn("数据列1", "Column1");
+            uiComboDataGridView1.DataGridView.AddColumn("数据列2", "Column2");
+            uiComboDataGridView1.DataGridView.AddColumn("数据列3", "Column3");
             uiComboDataGridView1.DataGridView.ReadOnly = true;
             uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
             uiComboDataGridView1.ShowFilter = true;
             uiComboDataGridView1.DataGridView.DataSource = dt;
-            uiComboDataGridView1.FilterColumnName = "Column1"; //不设置则全部列过滤
+            uiComboDataGridView1.FilterColumnName = "Column1;Column3"; //不设置则全部列过滤，可加分号过滤多列
 
             uiComboDataGridView2.DataGridView.Init();
             uiComboDataGridView2.DataGridView.MultiSelect = true;//设置可多选
             uiComboDataGridView2.ItemSize = new System.Drawing.Size(360, 240);
-            uiComboDataGridView2.DataGridView.AddColumn("Column1", "Column1");
-            uiComboDataGridView2.DataGridView.AddColumn("Column2", "Column2");
-            uiComboDataGridView2.DataGridView.AddColumn("Column3", "Column3");
+            uiComboDataGridView2.DataGridView.AddColumn("数据列1", "Column1");
+            uiComboDataGridView2.DataGridView.AddColumn("数据列2", "Column2");
+            uiComboDataGridView2.DataGridView.AddColumn("数据列3", "Column3");
             uiComboDataGridView2.DataGridView.ReadOnly = true;
             uiComboDataGridView2.ShowFilter = true;
             uiComboDataGridView2.DataGridView.DataSource = dt;
@@ -61,6 +61,10 @@ namespace Sunny.UI.Demo
             //日期选择框文本设置为空
             uiDatePicker3.CanEmpty = true;
             uiDatePicker3.Text = "";
+
+            uiDatePicker4.Value = uiDatePicker1.Value = uiDatePicker2.Value = uiDatePicker3.Value = DateTime.Now.Date;
+            uiDatetimePicker2.Value = uiDatetimePicker1.Value = DateTime.Now;
+            uiTimePicker1.Value = uiTimePicker2.Value = DateTime.Now;
         }
 
         private void UiComboDataGridView1_SelectIndexChange(object sender, int index)
@@ -134,7 +138,6 @@ namespace Sunny.UI.Demo
 
         private void uiDatePicker3_ValueChanged(object sender, DateTime value)
         {
-            this.ShowInfoTip(uiDatePicker3.Value.DateString());
             Console.WriteLine(uiDatePicker3.Value);
         }
 

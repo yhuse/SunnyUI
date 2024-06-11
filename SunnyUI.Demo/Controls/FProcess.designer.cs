@@ -61,6 +61,7 @@ namespace Sunny.UI.Demo
             this.uiTrackBar3 = new Sunny.UI.UITrackBar();
             this.uiTrackBar2 = new Sunny.UI.UITrackBar();
             this.uiTrackBar1 = new Sunny.UI.UITrackBar();
+            this.uiProcessBar4 = new Sunny.UI.UIProcessBar();
             this.SuspendLayout();
             // 
             // uiLine2
@@ -165,7 +166,9 @@ namespace Sunny.UI.Demo
             // 
             // uiWaitingBar1
             // 
+            this.uiWaitingBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiWaitingBar1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiWaitingBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiWaitingBar1.Location = new System.Drawing.Point(411, 88);
             this.uiWaitingBar1.MinimumSize = new System.Drawing.Size(70, 23);
             this.uiWaitingBar1.Name = "uiWaitingBar1";
@@ -457,11 +460,25 @@ namespace Sunny.UI.Demo
             this.uiTrackBar1.TabIndex = 113;
             this.uiTrackBar1.Text = "uiTrackBar1";
             // 
+            // uiProcessBar4
+            // 
+            this.uiProcessBar4.Direction = Sunny.UI.UILine.LineDirection.Vertical;
+            this.uiProcessBar4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiProcessBar4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiProcessBar4.Location = new System.Drawing.Point(706, 325);
+            this.uiProcessBar4.MinimumSize = new System.Drawing.Size(3, 1);
+            this.uiProcessBar4.Name = "uiProcessBar4";
+            this.uiProcessBar4.Radius = 3;
+            this.uiProcessBar4.Size = new System.Drawing.Size(3, 219);
+            this.uiProcessBar4.TabIndex = 126;
+            this.uiProcessBar4.Value = 50;
+            // 
             // FProcess
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 635);
+            this.Controls.Add(this.uiProcessBar4);
             this.Controls.Add(this.uiRuler5);
             this.Controls.Add(this.uiRuler6);
             this.Controls.Add(this.uiRuler4);
@@ -533,5 +550,6 @@ namespace Sunny.UI.Demo
         private UITrackBar uiTrackBar3;
         private UITrackBar uiTrackBar2;
         private UITrackBar uiTrackBar1;
+        private UIProcessBar uiProcessBar4;
     }
 }

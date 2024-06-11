@@ -109,6 +109,11 @@ namespace Sunny.UI.Demo
             this.uiNumPadTextBox2 = new Sunny.UI.UINumPadTextBox();
             this.uiNumPadTextBox3 = new Sunny.UI.UINumPadTextBox();
             this.uiNumPadTextBox4 = new Sunny.UI.UINumPadTextBox();
+            this.uiLine11 = new Sunny.UI.UILine();
+            this.uiDatePicker4 = new Sunny.UI.UIDatePicker();
+            this.uiDatetimePicker2 = new Sunny.UI.UIDatetimePicker();
+            this.uiTimePicker2 = new Sunny.UI.UITimePicker();
+            this.uiNumPadTextBox5 = new Sunny.UI.UINumPadTextBox();
             this.SuspendLayout();
             // 
             // uiComboTreeView3
@@ -153,6 +158,7 @@ namespace Sunny.UI.Demo
             this.uiComboTreeView3.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboTreeView3.ShowLines = true;
             this.uiComboTreeView3.Size = new System.Drawing.Size(150, 29);
+            this.uiComboTreeView3.SymbolSize = 24;
             this.uiComboTreeView3.TabIndex = 67;
             this.uiComboTreeView3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboTreeView3.Watermark = "";
@@ -198,6 +204,7 @@ namespace Sunny.UI.Demo
             this.uiComboTreeView4.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboTreeView4.ShowLines = true;
             this.uiComboTreeView4.Size = new System.Drawing.Size(150, 29);
+            this.uiComboTreeView4.SymbolSize = 24;
             this.uiComboTreeView4.TabIndex = 66;
             this.uiComboTreeView4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboTreeView4.Watermark = "";
@@ -227,6 +234,7 @@ namespace Sunny.UI.Demo
             treeNode28});
             this.uiComboTreeView2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboTreeView2.Size = new System.Drawing.Size(150, 29);
+            this.uiComboTreeView2.SymbolSize = 24;
             this.uiComboTreeView2.TabIndex = 65;
             this.uiComboTreeView2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboTreeView2.Watermark = "水印文字";
@@ -234,7 +242,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(386, 294);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -267,13 +277,16 @@ namespace Sunny.UI.Demo
             treeNode32});
             this.uiComboTreeView1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboTreeView1.Size = new System.Drawing.Size(150, 29);
+            this.uiComboTreeView1.SymbolSize = 24;
             this.uiComboTreeView1.TabIndex = 63;
             this.uiComboTreeView1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboTreeView1.Watermark = "";
             // 
             // uiLine8
             // 
+            this.uiLine8.BackColor = System.Drawing.Color.Transparent;
             this.uiLine8.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine8.Location = new System.Drawing.Point(30, 337);
             this.uiLine8.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine8.Name = "uiLine8";
@@ -296,6 +309,7 @@ namespace Sunny.UI.Demo
             this.uiDatetimePicker1.Size = new System.Drawing.Size(308, 29);
             this.uiDatetimePicker1.SymbolDropDown = 61555;
             this.uiDatetimePicker1.SymbolNormal = 61555;
+            this.uiDatetimePicker1.SymbolSize = 24;
             this.uiDatetimePicker1.TabIndex = 61;
             this.uiDatetimePicker1.Text = "2020-06-02 17:57:28";
             this.uiDatetimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,6 +328,7 @@ namespace Sunny.UI.Demo
             this.uiColorPicker1.Name = "uiColorPicker1";
             this.uiColorPicker1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiColorPicker1.Size = new System.Drawing.Size(150, 29);
+            this.uiColorPicker1.SymbolSize = 24;
             this.uiColorPicker1.TabIndex = 60;
             this.uiColorPicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiColorPicker1.Watermark = "";
@@ -322,7 +337,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine7
             // 
+            this.uiLine7.BackColor = System.Drawing.Color.Transparent;
             this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine7.Location = new System.Drawing.Point(388, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -333,7 +350,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
+            this.uiLine6.BackColor = System.Drawing.Color.Transparent;
             this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine6.Location = new System.Drawing.Point(30, 416);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -356,6 +375,7 @@ namespace Sunny.UI.Demo
             this.uiTimePicker1.Size = new System.Drawing.Size(150, 29);
             this.uiTimePicker1.SymbolDropDown = 61555;
             this.uiTimePicker1.SymbolNormal = 61555;
+            this.uiTimePicker1.SymbolSize = 24;
             this.uiTimePicker1.TabIndex = 57;
             this.uiTimePicker1.Text = "23:41:39";
             this.uiTimePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -365,7 +385,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine3
             // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
             this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine3.Location = new System.Drawing.Point(30, 214);
             this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine3.Name = "uiLine3";
@@ -376,7 +398,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 55);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -402,6 +426,7 @@ namespace Sunny.UI.Demo
             this.uiDatePicker1.Size = new System.Drawing.Size(150, 29);
             this.uiDatePicker1.SymbolDropDown = 61555;
             this.uiDatePicker1.SymbolNormal = 61555;
+            this.uiDatePicker1.SymbolSize = 24;
             this.uiDatePicker1.TabIndex = 54;
             this.uiDatePicker1.Text = "2020";
             this.uiDatePicker1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -417,6 +442,8 @@ namespace Sunny.UI.Demo
             this.uiComboBox2.FillColor = System.Drawing.Color.White;
             this.uiComboBox2.FilterMaxCount = 50;
             this.uiComboBox2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiComboBox2.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.uiComboBox2.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox2.Location = new System.Drawing.Point(188, 89);
             this.uiComboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox2.MinimumSize = new System.Drawing.Size(63, 0);
@@ -424,6 +451,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboBox2.ShowClearButton = true;
             this.uiComboBox2.Size = new System.Drawing.Size(150, 29);
+            this.uiComboBox2.SymbolSize = 24;
             this.uiComboBox2.TabIndex = 53;
             this.uiComboBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox2.Watermark = "水印文字";
@@ -434,6 +462,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox1.FillColor = System.Drawing.Color.White;
             this.uiComboBox1.FilterMaxCount = 50;
             this.uiComboBox1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiComboBox1.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.uiComboBox1.Items.AddRange(new object[] {
             "1",
             "2",
@@ -447,6 +476,7 @@ namespace Sunny.UI.Demo
             "14",
             "15",
             "16"});
+            this.uiComboBox1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox1.Location = new System.Drawing.Point(30, 90);
             this.uiComboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox1.MinimumSize = new System.Drawing.Size(63, 0);
@@ -455,6 +485,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiComboBox1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
             this.uiComboBox1.Size = new System.Drawing.Size(150, 29);
+            this.uiComboBox1.SymbolSize = 24;
             this.uiComboBox1.TabIndex = 52;
             this.uiComboBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox1.Watermark = "水印文字";
@@ -477,6 +508,7 @@ namespace Sunny.UI.Demo
             this.uiDatePicker2.Size = new System.Drawing.Size(150, 29);
             this.uiDatePicker2.SymbolDropDown = 61555;
             this.uiDatePicker2.SymbolNormal = 61555;
+            this.uiDatePicker2.SymbolSize = 24;
             this.uiDatePicker2.TabIndex = 71;
             this.uiDatePicker2.Text = "2020-04";
             this.uiDatePicker2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -498,6 +530,7 @@ namespace Sunny.UI.Demo
             this.uiDatePicker3.Size = new System.Drawing.Size(150, 29);
             this.uiDatePicker3.SymbolDropDown = 61555;
             this.uiDatePicker3.SymbolNormal = 61555;
+            this.uiDatePicker3.SymbolSize = 24;
             this.uiDatePicker3.TabIndex = 72;
             this.uiDatePicker3.Text = "2020-04-16";
             this.uiDatePicker3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -507,7 +540,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine4
             // 
+            this.uiLine4.BackColor = System.Drawing.Color.Transparent;
             this.uiLine4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine4.Location = new System.Drawing.Point(386, 134);
             this.uiLine4.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine4.Name = "uiLine4";
@@ -527,6 +562,7 @@ namespace Sunny.UI.Demo
             this.uiComboDataGridView1.Name = "uiComboDataGridView1";
             this.uiComboDataGridView1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboDataGridView1.Size = new System.Drawing.Size(308, 29);
+            this.uiComboDataGridView1.SymbolSize = 24;
             this.uiComboDataGridView1.TabIndex = 74;
             this.uiComboDataGridView1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboDataGridView1.Watermark = "";
@@ -535,7 +571,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine5
             // 
+            this.uiLine5.BackColor = System.Drawing.Color.Transparent;
             this.uiLine5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine5.Location = new System.Drawing.Point(30, 134);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
@@ -551,6 +589,8 @@ namespace Sunny.UI.Demo
             this.uiComboBox3.FillColor = System.Drawing.Color.White;
             this.uiComboBox3.FilterMaxCount = 50;
             this.uiComboBox3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiComboBox3.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.uiComboBox3.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox3.Location = new System.Drawing.Point(188, 168);
             this.uiComboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox3.MinimumSize = new System.Drawing.Size(63, 0);
@@ -558,6 +598,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox3.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboBox3.ShowFilter = true;
             this.uiComboBox3.Size = new System.Drawing.Size(150, 29);
+            this.uiComboBox3.SymbolSize = 24;
             this.uiComboBox3.TabIndex = 76;
             this.uiComboBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox3.Watermark = "";
@@ -569,6 +610,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox4.FillColor = System.Drawing.Color.White;
             this.uiComboBox4.FilterMaxCount = 50;
             this.uiComboBox4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiComboBox4.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.uiComboBox4.Items.AddRange(new object[] {
             "1",
             "2",
@@ -588,6 +630,7 @@ namespace Sunny.UI.Demo
             "114",
             "115",
             "116"});
+            this.uiComboBox4.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox4.Location = new System.Drawing.Point(30, 169);
             this.uiComboBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox4.MinimumSize = new System.Drawing.Size(63, 0);
@@ -597,6 +640,7 @@ namespace Sunny.UI.Demo
             this.uiComboBox4.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
             this.uiComboBox4.ShowFilter = true;
             this.uiComboBox4.Size = new System.Drawing.Size(150, 29);
+            this.uiComboBox4.SymbolSize = 24;
             this.uiComboBox4.TabIndex = 75;
             this.uiComboBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox4.Watermark = "水印文字";
@@ -613,6 +657,7 @@ namespace Sunny.UI.Demo
             this.uiComboDataGridView2.Name = "uiComboDataGridView2";
             this.uiComboDataGridView2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiComboDataGridView2.Size = new System.Drawing.Size(308, 29);
+            this.uiComboDataGridView2.SymbolSize = 24;
             this.uiComboDataGridView2.TabIndex = 79;
             this.uiComboDataGridView2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboDataGridView2.Watermark = "";
@@ -620,7 +665,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine9
             // 
+            this.uiLine9.BackColor = System.Drawing.Color.Transparent;
             this.uiLine9.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine9.Location = new System.Drawing.Point(386, 214);
             this.uiLine9.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine9.Name = "uiLine9";
@@ -637,7 +684,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine10
             // 
+            this.uiLine10.BackColor = System.Drawing.Color.Transparent;
             this.uiLine10.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine10.Location = new System.Drawing.Point(386, 416);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
@@ -656,6 +705,7 @@ namespace Sunny.UI.Demo
             this.uiNumPadTextBox1.Name = "uiNumPadTextBox1";
             this.uiNumPadTextBox1.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiNumPadTextBox1.Size = new System.Drawing.Size(150, 29);
+            this.uiNumPadTextBox1.SymbolSize = 24;
             this.uiNumPadTextBox1.TabIndex = 81;
             this.uiNumPadTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiNumPadTextBox1.Watermark = "";
@@ -671,6 +721,7 @@ namespace Sunny.UI.Demo
             this.uiNumPadTextBox2.NumPadType = Sunny.UI.NumPadType.Integer;
             this.uiNumPadTextBox2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiNumPadTextBox2.Size = new System.Drawing.Size(150, 29);
+            this.uiNumPadTextBox2.SymbolSize = 24;
             this.uiNumPadTextBox2.TabIndex = 82;
             this.uiNumPadTextBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiNumPadTextBox2.Watermark = "";
@@ -687,6 +738,7 @@ namespace Sunny.UI.Demo
             this.uiNumPadTextBox3.NumPadType = Sunny.UI.NumPadType.IDNumber;
             this.uiNumPadTextBox3.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiNumPadTextBox3.Size = new System.Drawing.Size(150, 29);
+            this.uiNumPadTextBox3.SymbolSize = 24;
             this.uiNumPadTextBox3.TabIndex = 84;
             this.uiNumPadTextBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiNumPadTextBox3.Watermark = "";
@@ -702,15 +754,118 @@ namespace Sunny.UI.Demo
             this.uiNumPadTextBox4.NumPadType = Sunny.UI.NumPadType.Double;
             this.uiNumPadTextBox4.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.uiNumPadTextBox4.Size = new System.Drawing.Size(150, 29);
+            this.uiNumPadTextBox4.SymbolSize = 24;
             this.uiNumPadTextBox4.TabIndex = 83;
             this.uiNumPadTextBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiNumPadTextBox4.Watermark = "";
+            // 
+            // uiLine11
+            // 
+            this.uiLine11.BackColor = System.Drawing.Color.Transparent;
+            this.uiLine11.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine11.Location = new System.Drawing.Point(30, 543);
+            this.uiLine11.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine11.Name = "uiLine11";
+            this.uiLine11.Size = new System.Drawing.Size(664, 20);
+            this.uiLine11.TabIndex = 85;
+            this.uiLine11.Text = "2X";
+            this.uiLine11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiDatePicker4
+            // 
+            this.uiDatePicker4.CanEmpty = true;
+            this.uiDatePicker4.FillColor = System.Drawing.Color.White;
+            this.uiDatePicker4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiDatePicker4.Location = new System.Drawing.Point(30, 580);
+            this.uiDatePicker4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatePicker4.MaxLength = 10;
+            this.uiDatePicker4.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiDatePicker4.Name = "uiDatePicker4";
+            this.uiDatePicker4.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.uiDatePicker4.ShowToday = true;
+            this.uiDatePicker4.Size = new System.Drawing.Size(150, 29);
+            this.uiDatePicker4.SizeMultiple = 2;
+            this.uiDatePicker4.SymbolDropDown = 61555;
+            this.uiDatePicker4.SymbolNormal = 61555;
+            this.uiDatePicker4.SymbolSize = 24;
+            this.uiDatePicker4.TabIndex = 86;
+            this.uiDatePicker4.Text = "2020-04-16";
+            this.uiDatePicker4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiDatePicker4.Value = new System.DateTime(2020, 4, 16, 0, 0, 0, 0);
+            this.uiDatePicker4.Watermark = "";
+            // 
+            // uiDatetimePicker2
+            // 
+            this.uiDatetimePicker2.CanEmpty = true;
+            this.uiDatetimePicker2.FillColor = System.Drawing.Color.White;
+            this.uiDatetimePicker2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiDatetimePicker2.Location = new System.Drawing.Point(30, 619);
+            this.uiDatetimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiDatetimePicker2.MaxLength = 19;
+            this.uiDatetimePicker2.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiDatetimePicker2.Name = "uiDatetimePicker2";
+            this.uiDatetimePicker2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.uiDatetimePicker2.Size = new System.Drawing.Size(308, 29);
+            this.uiDatetimePicker2.SizeMultiple = 2;
+            this.uiDatetimePicker2.SymbolDropDown = 61555;
+            this.uiDatetimePicker2.SymbolNormal = 61555;
+            this.uiDatetimePicker2.SymbolSize = 24;
+            this.uiDatetimePicker2.TabIndex = 87;
+            this.uiDatetimePicker2.Text = "2020-06-02 17:57:28";
+            this.uiDatetimePicker2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiDatetimePicker2.Value = new System.DateTime(2020, 6, 2, 17, 57, 28, 203);
+            this.uiDatetimePicker2.Watermark = "";
+            // 
+            // uiTimePicker2
+            // 
+            this.uiTimePicker2.CanEmpty = true;
+            this.uiTimePicker2.FillColor = System.Drawing.Color.White;
+            this.uiTimePicker2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiTimePicker2.Location = new System.Drawing.Point(188, 580);
+            this.uiTimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTimePicker2.MaxLength = 8;
+            this.uiTimePicker2.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiTimePicker2.Name = "uiTimePicker2";
+            this.uiTimePicker2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.uiTimePicker2.Size = new System.Drawing.Size(150, 29);
+            this.uiTimePicker2.SizeMultiple = 2;
+            this.uiTimePicker2.SymbolDropDown = 61555;
+            this.uiTimePicker2.SymbolNormal = 61555;
+            this.uiTimePicker2.SymbolSize = 24;
+            this.uiTimePicker2.TabIndex = 88;
+            this.uiTimePicker2.Text = "23:41:39";
+            this.uiTimePicker2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiTimePicker2.Value = new System.DateTime(2020, 5, 29, 23, 41, 39, 684);
+            this.uiTimePicker2.Watermark = "";
+            // 
+            // uiNumPadTextBox5
+            // 
+            this.uiNumPadTextBox5.FillColor = System.Drawing.Color.White;
+            this.uiNumPadTextBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiNumPadTextBox5.Location = new System.Drawing.Point(386, 580);
+            this.uiNumPadTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiNumPadTextBox5.MinimumSize = new System.Drawing.Size(63, 0);
+            this.uiNumPadTextBox5.Name = "uiNumPadTextBox5";
+            this.uiNumPadTextBox5.NumPadType = Sunny.UI.NumPadType.Double;
+            this.uiNumPadTextBox5.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.uiNumPadTextBox5.Size = new System.Drawing.Size(150, 29);
+            this.uiNumPadTextBox5.SizeMultiple = 2;
+            this.uiNumPadTextBox5.SymbolSize = 24;
+            this.uiNumPadTextBox5.TabIndex = 89;
+            this.uiNumPadTextBox5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiNumPadTextBox5.Watermark = "";
             // 
             // FCombobox
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(765, 593);
+            this.ClientSize = new System.Drawing.Size(765, 665);
+            this.Controls.Add(this.uiNumPadTextBox5);
+            this.Controls.Add(this.uiTimePicker2);
+            this.Controls.Add(this.uiDatetimePicker2);
+            this.Controls.Add(this.uiDatePicker4);
+            this.Controls.Add(this.uiLine11);
             this.Controls.Add(this.uiNumPadTextBox3);
             this.Controls.Add(this.uiNumPadTextBox4);
             this.Controls.Add(this.uiNumPadTextBox2);
@@ -782,5 +937,10 @@ namespace Sunny.UI.Demo
         private UINumPadTextBox uiNumPadTextBox2;
         private UINumPadTextBox uiNumPadTextBox3;
         private UINumPadTextBox uiNumPadTextBox4;
+        private UILine uiLine11;
+        private UIDatePicker uiDatePicker4;
+        private UIDatetimePicker uiDatetimePicker2;
+        private UITimePicker uiTimePicker2;
+        private UINumPadTextBox uiNumPadTextBox5;
     }
 }
