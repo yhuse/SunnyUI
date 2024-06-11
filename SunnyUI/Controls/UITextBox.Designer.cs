@@ -1,6 +1,6 @@
 ﻿namespace Sunny.UI
 {
-    sealed partial class UITextBox
+    partial class UITextBox
     {
         /// <summary> 
         /// 必需的设计器变量。

@@ -59,6 +59,7 @@
  * 2023-12-18: V3.6.2 修改显示按钮时Tips小红点的位置
  * 2023-12-25: V3.6.2 增加Text的属性编辑器
  * 2024-01-13: V3.6.3 调整Radius时，自动调整文本框的位置
+ * 2024-06-11: V3.6.6 调整为可继承
 ******************************************************************************/
 
 using System;
@@ -72,7 +73,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
-    public sealed partial class UITextBox : UIPanel, ISymbol, IToolTip
+    public partial class UITextBox : UIPanel, ISymbol, IToolTip
     {
         private readonly UIEdit edit = new UIEdit();
         private readonly UIScrollBar bar = new UIScrollBar();
