@@ -566,7 +566,6 @@ namespace Sunny.UI.Demo
             this.uiComboDataGridView1.TabIndex = 74;
             this.uiComboDataGridView1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboDataGridView1.Watermark = "";
-            this.uiComboDataGridView1.SelectIndexChange += new Sunny.UI.UIDataGridView.OnSelectIndexChange(this.uiComboDataGridView1_SelectIndexChange_1);
             this.uiComboDataGridView1.ValueChanged += new Sunny.UI.UIComboDataGridView.OnValueChanged(this.uiComboDataGridView1_ValueChanged);
             // 
             // uiLine5

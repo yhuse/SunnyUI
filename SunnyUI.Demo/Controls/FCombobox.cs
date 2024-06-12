@@ -42,7 +42,7 @@ namespace Sunny.UI.Demo
             uiComboDataGridView1.DataGridView.ReadOnly = true;
             uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
             uiComboDataGridView1.ShowFilter = true;
-            uiComboDataGridView1.DataGridView.DataSource = dt;
+            uiComboDataGridView1.DataGridView.DataSource = dt;//用DataTable做数据源过滤，用List不行
             uiComboDataGridView1.FilterColumnName = "Column1;Column3"; //不设置则全部列过滤，可加分号过滤多列
 
             uiComboDataGridView2.DataGridView.Init();
@@ -121,21 +121,6 @@ namespace Sunny.UI.Demo
             }
         }
 
-        private void uiComboDataGridView1_ValueChanged(object sender, object value)
-        {
-            uiComboDataGridView1.Text = "";
-            if (value != null && value is DataGridViewRow)
-            {
-                DataGridViewRow row = (DataGridViewRow)value;
-                uiComboDataGridView1.Text = row.Cells["Column1"].Value.ToString();
-            }
-        }
-
-        private void uiComboDataGridView1_SelectIndexChange_1(object sender, int index)
-        {
-            uiComboDataGridView1.Text = dt.Rows[index]["Column1"].ToString();
-        }
-
         private void uiDatePicker3_ValueChanged(object sender, DateTime value)
         {
             Console.WriteLine(uiDatePicker3.Value);
@@ -155,6 +140,16 @@ namespace Sunny.UI.Demo
             uiComboBox4.Text.WriteConsole();
         }
 
+        private void uiComboDataGridView1_ValueChanged(object sender, object value)
+        {
+            uiComboDataGridView1.Text = "";
+            if (value != null && value is DataGridViewRow)
+            {
+                DataGridViewRow row = (DataGridViewRow)value;
+                uiComboDataGridView1.Text = row.Cells["数据列1"].Value.ToString();//通过ColumnName显示值
+            }
+        }
+
         private void uiComboDataGridView2_ValueChanged(object sender, object value)
         {
             uiComboDataGridView2.Text = "";
@@ -164,7 +159,7 @@ namespace Sunny.UI.Demo
                 foreach (var item in collection)
                 {
                     DataGridViewRow row = (DataGridViewRow)item;
-                    uiComboDataGridView2.Text += row.Cells["Column1"].Value.ToString();
+                    uiComboDataGridView2.Text += row.Cells[0].Value.ToString();//通过索引显示值
                     uiComboDataGridView2.Text += "; ";
                 }
             }
