@@ -50,8 +50,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Common\FastLZx64.dat" />
-        <EmbeddedResource Include="Common\FastLZx86.dat" />
         <EmbeddedResource Include="Font\ElegantIcons.ttf" />
         <EmbeddedResource Include="Font\fa-brands-400.ttf" />
         <EmbeddedResource Include="Font\fa-regular-400.ttf" />
