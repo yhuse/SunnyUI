@@ -78,7 +78,7 @@ namespace Sunny.UI
                 //文件不存在，建立文件
                 using (StreamWriter sw = new StreamWriter(fileName, false, IniEncoding))
                 {
-                    sw.WriteLine(";<?ini version=\"" + UIGlobal.Version + "\" encoding=\"" + IniEncoding.BodyName + "\"?>");
+                    sw.WriteLine(";<?Ini Version=\"" + UIGlobal.Version + "\" Encoding=\"" + Encoding.UTF8.BodyName + "\"?>");
                     sw.WriteLine("");
                 }
             }
