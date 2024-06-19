@@ -47,6 +47,7 @@
  * 2023-06-28: V3.3.9 增加了可设置水平滚动条宽度的属性，但可能会遮挡最下面数据行的数据，看情况使用
  * 2023-07-12: V3.4.0 修复了有冻结行时垂直滚动条点击时出错的问题
  * 2023-11-05: V3.5.2 重构主题
+ * 2024-06-19: V3.6.7 增加AddDateTimeColumn，解决默认时间列不显示秒数的问题
 ******************************************************************************/
 
 using System;
@@ -881,6 +882,23 @@ namespace Sunny.UI
             column.ReadOnly = readOnly;
             column.FillWeight = fillWeight;
             column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Columns.Add(column);
+            return column;
+        }
+
+        private const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+
+        public DataGridViewColumn AddDateTimeColumn(string columnName, string dataPropertyName, string format = DateTimeFormat, int fillWeight = 100, DataGridViewContentAlignment alignment = DataGridViewContentAlignment.MiddleCenter, bool readOnly = true)
+        {
+            DataGridViewColumn column = new DataGridViewTextBoxColumn();
+            column.HeaderText = columnName;
+            column.DataPropertyName = dataPropertyName;
+            column.Name = columnName;
+            column.ReadOnly = readOnly;
+            column.FillWeight = fillWeight;
+            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            column.DefaultCellStyle.Alignment = alignment;
+            column.DefaultCellStyle.Format = format;
             Columns.Add(column);
             return column;
         }
