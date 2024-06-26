@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Sunny.UI
 {
@@ -180,6 +181,107 @@ namespace Sunny.UI
         private Font GetFont(float size)
         {
             return Loaded ? new Font(ImageFont.Families[0], size, FontStyle.Regular, GraphicsUnit.Point) : null;
+        }
+    }
+
+    internal static class FontAweSomeV6ItemBuilder
+    {
+        public static void Build()
+        {
+            string path = @"D:\Temp\Font-Awesome-6.x\";
+            string scss = path + @"scss\_variables.scss";
+            string version = "Font Awesome version: 6.5.2";
+
+            string[] lines = File.ReadAllLines(scss);
+
+            StringBuilder sb = new StringBuilder();
+            int startLine = 0;
+            for (startLine = 0; startLine < lines.Length; startLine++)
+            {
+                bool isStart = lines[startLine].Contains("$fa-var-0");
+                if (isStart) break;
+            }
+
+            sb.AppendLine("namespace Sunny.UI;");
+            sb.AppendLine("");
+            sb.AppendLine("public static class FontAweSomeV6_Variables");
+            sb.AppendLine("{");
+
+            for (int i = startLine; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("(")) break;
+                if (lines[i].IsNullOrEmpty()) continue;
+                string line = lines[i];
+                line = line.Replace("$", "    public const int ");
+                line = line.Replace(": \\", " = 0x");
+                line = line.Replace("-", "_");
+                sb.AppendLine(line);
+            }
+
+            sb.AppendLine("}");
+            sb.AppendLine("");
+
+            string frpath = path + @"svgs\regular\";
+            string[] files = Directory.GetFiles(frpath, "*.svg", SearchOption.TopDirectoryOnly);
+
+            sb.AppendLine("///<summary>");
+            sb.AppendLine("///" + version);
+            sb.AppendLine("///fa-regular-400.ttf");
+            sb.AppendLine("///Symbol count: " + files.Length);
+            sb.AppendLine("///</summary>");
+            sb.AppendLine("public static class FontAweSomeV6Regular");
+            sb.AppendLine("{");
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo fileInfo = new FileInfo(files[i]);
+                string line = fileInfo.NameWithoutExt();
+                line = line.Replace("-", "_");
+                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                sb.AppendLine(line);
+            }
+            sb.AppendLine("}");
+            sb.AppendLine("");
+
+            string fbpath = path + @"svgs\brands\";
+            files = Directory.GetFiles(fbpath, "*.svg", SearchOption.TopDirectoryOnly);
+            sb.AppendLine("///<summary>");
+            sb.AppendLine("///" + version);
+            sb.AppendLine("///fa-brands-400.ttf");
+            sb.AppendLine("///Symbol count: " + files.Length);
+            sb.AppendLine("///</summary>");
+            sb.AppendLine("public static class FontAweSomeV6Brands");
+            sb.AppendLine("{");
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo fileInfo = new FileInfo(files[i]);
+                string line = fileInfo.NameWithoutExt();
+                line = line.Replace("-", "_");
+                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                sb.AppendLine(line);
+            }
+            sb.AppendLine("}");
+            sb.AppendLine("");
+
+            string fspath = path + @"svgs\solid\";
+            files = Directory.GetFiles(fspath, "*.svg", SearchOption.TopDirectoryOnly);
+            sb.AppendLine("///<summary>");
+            sb.AppendLine("///" + version);
+            sb.AppendLine("///fa-solid-900.ttf");
+            sb.AppendLine("///Symbol count: " + files.Length);
+            sb.AppendLine("///</summary>");
+            sb.AppendLine("public static class FontAweSomeV6Solid");
+            sb.AppendLine("{");
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo fileInfo = new FileInfo(files[i]);
+                string line = fileInfo.NameWithoutExt();
+                line = line.Replace("-", "_");
+                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                sb.AppendLine(line);
+            }
+            sb.AppendLine("}");
+
+            File.WriteAllText("D:\\UFontAwesomeV6.cs", sb.ToString());
         }
     }
 }
