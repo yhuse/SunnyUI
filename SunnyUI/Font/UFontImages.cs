@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -202,23 +203,22 @@ namespace Sunny.UI
                 if (isStart) break;
             }
 
-            sb.AppendLine("namespace Sunny.UI;");
-            sb.AppendLine("");
-            sb.AppendLine("public static class FontAweSomeV6_Variables");
-            sb.AppendLine("{");
-
+            ConcurrentDictionary<string, string> pairs = new ConcurrentDictionary<string, string>();
             for (int i = startLine; i < lines.Length; i++)
             {
                 if (lines[i].Contains("(")) break;
                 if (lines[i].IsNullOrEmpty()) continue;
                 string line = lines[i];
-                line = line.Replace("$", "    public const int ");
-                line = line.Replace(": \\", " = 0x");
+                line = line.Replace("$fa-var-", "_");
+                line = line.Replace(": \\", "=0x");
                 line = line.Replace("-", "_");
-                sb.AppendLine(line);
+                line = line.Trim();
+
+                string[] strs = line.Split('=');
+                pairs.TryAdd(strs[0], strs[1]);
             }
 
-            sb.AppendLine("}");
+            sb.AppendLine("namespace Sunny.UI;");
             sb.AppendLine("");
 
             string frpath = path + @"svgs\regular\";
@@ -236,7 +236,8 @@ namespace Sunny.UI
                 FileInfo fileInfo = new FileInfo(files[i]);
                 string line = fileInfo.NameWithoutExt();
                 line = line.Replace("-", "_");
-                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                string value = pairs["_" + line];
+                line = "    public const int fa_" + line + " = " + value;
                 sb.AppendLine(line);
             }
             sb.AppendLine("}");
@@ -256,7 +257,8 @@ namespace Sunny.UI
                 FileInfo fileInfo = new FileInfo(files[i]);
                 string line = fileInfo.NameWithoutExt();
                 line = line.Replace("-", "_");
-                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                string value = pairs["_" + line];
+                line = "    public const int fa_" + line + " = " + value;
                 sb.AppendLine(line);
             }
             sb.AppendLine("}");
@@ -276,7 +278,8 @@ namespace Sunny.UI
                 FileInfo fileInfo = new FileInfo(files[i]);
                 string line = fileInfo.NameWithoutExt();
                 line = line.Replace("-", "_");
-                line = "    public const int fa_" + line + " = FontAweSomeV6_Variables.fa_var_" + line + ";";
+                string value = pairs["_" + line];
+                line = "    public const int fa_" + line + " = " + value;
                 sb.AppendLine(line);
             }
             sb.AppendLine("}");
