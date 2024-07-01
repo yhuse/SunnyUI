@@ -52,6 +52,7 @@
  * 2023-10-05: V3.5.0 增加了X轴和Y轴鼠标选择区域并返回选中范围
  * 2023-10-20: V3.5.1 增加了绘制线的DashStyle样式
  * 2023-11-22: V3.6.0 增加了区域选择范围相等时不执行事件
+ * 2024-07-01: V3.6.7 增加了Y轴自定义坐标显示
 ******************************************************************************/
 
 using System;
@@ -444,6 +445,11 @@ namespace Sunny.UI
                         label = YLabels[i].ToString(YScale.Format);
                     else
                         label = YLabels[i].ToString("F" + Option.YAxis.AxisLabel.DecimalPlaces);
+
+                    if (Option.YAxis.HaveCustomLabels && Option.YAxis.CustomLabels.GetLabel(i).IsValid())
+                    {
+                        label = Option.YAxis.CustomLabels.GetLabel(i);
+                    }
 
                     Size sf = TextRenderer.MeasureText(label, TempFont);
                     widthMax = Math.Max(widthMax, sf.Width);
