@@ -22,6 +22,7 @@
  * 2020-11-12: V3.0.8 增加文字旋转角度
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-11-16: V3.5.2 重构主题
+ * 2024-07-10: V3.6.7 文字位置默认TopLeft
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -39,7 +40,6 @@ namespace Sunny.UI
         {
             base.Font = UIStyles.Font();
             Version = UIGlobal.Version;
-            base.TextAlign = ContentAlignment.MiddleLeft;
             ForeColor = UIStyles.Blue.LabelForeColor;
         }
 

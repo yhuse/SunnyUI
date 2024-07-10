@@ -43,7 +43,7 @@ namespace Sunny.UI
         /// <param name="targetFileName"></param>
         /// <param name="bFailIfExists"></param>
         /// <returns></returns>
-        public static bool Copy(this string sourceFileName, string targetFileName, bool bFailIfExists = true)
+        public static bool Copy(string sourceFileName, string targetFileName, bool bFailIfExists = true)
         {
             if (File.Exists(sourceFileName))
             {
