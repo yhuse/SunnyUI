@@ -802,9 +802,14 @@ namespace Sunny.UI
                 int left = width * (i % 7);
                 int top = height * (i / 7);
                 Color color = (days[i].Month == Month) ? ForeColor : Color.DarkGray;
-                color = (days[i].DateString() == date.DateString()) ? PrimaryColor : color;
+                color = (days[i].DateString() == date.DateString()) ? b3.SymbolColor : color;
                 if (days[i] < min) color = Color.DarkGray;
                 if (days[i] > max) color = Color.DarkGray;
+
+                if (days[i].DateString() == date.DateString())
+                {
+                    e.Graphics.DrawRectangle(b3.SymbolColor, new Rectangle(left + 1, top + 30 * SizeMultiple + 1, width - 2, height - 2));
+                }
 
                 if (!maxDrawer)
                 {
@@ -821,8 +826,9 @@ namespace Sunny.UI
             {
                 using Font SubFont = this.Font.DPIScaleFont(SizeMultiple == 1 ? 10.5f : 15.75f);
                 e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
-                e.Graphics.FillRoundRectangle(PrimaryColor, new Rectangle(p3.Width - width * 4 + 6, p3.Height - height + 3, 8, height - 10), 3);
-                e.Graphics.DrawString(UILocalize.Today + ": " + DateTime.Now.DateString(), SubFont, isToday ? PrimaryColor : Color.DarkGray, new Rectangle(p3.Width - width * 4 + 17, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
+                e.Graphics.DrawString(UILocalize.Today + "  " + DateTime.Now.DateString(), SubFont, isToday ? b3.SymbolColor : Color.DarkGray, new Rectangle(p3.Width - width * 4, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
+                SizeF sf = TextRenderer.MeasureText(UILocalize.Today, SubFont);
+                e.Graphics.DrawRectangle(b3.SymbolColor, new Rectangle(p3.Width - width * 4 + 1, p3.Height - height + 1, (int)sf.Width - 2, height - 4));
             }
         }
 
