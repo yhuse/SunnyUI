@@ -229,6 +229,8 @@ namespace Sunny.UI
 
         public static string Open = "打开";
         public static string Save = "保存";
+
+        public static string All = "全部";
     }
 
     /// <summary>
@@ -290,6 +292,8 @@ namespace Sunny.UI
             UILocalize.Open = "Open";
             UILocalize.Save = "Save";
 
+            UILocalize.All = "All";
+
             UIStyles.Translate();
         }
 
@@ -347,6 +351,8 @@ namespace Sunny.UI
 
             UILocalize.Open = "打开";
             UILocalize.Save = "保存";
+
+            UILocalize.All = "全部";
 
             UIStyles.Translate();
         }

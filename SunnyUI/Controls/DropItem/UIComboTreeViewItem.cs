@@ -54,121 +54,111 @@ namespace Sunny.UI
         {
             btnOK.Text = UILocalize.OK;
             btnCancel.Text = UILocalize.Cancel;
+            uiCheckBox1.Text = UILocalize.All;
         }
 
         private void InitializeComponent()
         {
-            this.treeView = new Sunny.UI.UITreeView();
-            this.panel = new Sunny.UI.UIPanel();
-            this.btnCancel = new Sunny.UI.UISymbolButton();
-            this.btnOK = new Sunny.UI.UISymbolButton();
-            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
-            this.panel.SuspendLayout();
-            this.SuspendLayout();
+            treeView = new UITreeView();
+            panel = new UIPanel();
+            uiCheckBox1 = new UICheckBox();
+            btnCancel = new UISymbolButton();
+            btnOK = new UISymbolButton();
+            panel.SuspendLayout();
+            SuspendLayout();
             // 
             // treeView
             // 
-            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView.FillColor = System.Drawing.Color.White;
-            this.treeView.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.treeView.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.treeView.Location = new System.Drawing.Point(0, 0);
-            this.treeView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.treeView.MinimumSize = new System.Drawing.Size(1, 1);
-            this.treeView.Name = "treeView";
-            this.treeView.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.treeView.ShowText = false;
-            this.treeView.Size = new System.Drawing.Size(250, 176);
-            this.treeView.TabIndex = 0;
-            this.treeView.Text = "uiTreeView1";
-            this.treeView.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.treeView.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView_NodeMouseClick);
+            treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            treeView.FillColor = System.Drawing.Color.White;
+            treeView.Font = new System.Drawing.Font("宋体", 12F);
+            treeView.LineColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            treeView.Location = new System.Drawing.Point(0, 0);
+            treeView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            treeView.MinimumSize = new System.Drawing.Size(1, 1);
+            treeView.Name = "treeView";
+            treeView.RadiusSides = UICornerRadiusSides.None;
+            treeView.ScrollBarStyleInherited = false;
+            treeView.ShowText = false;
+            treeView.Size = new System.Drawing.Size(250, 176);
+            treeView.TabIndex = 0;
+            treeView.Text = "uiTreeView1";
+            treeView.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            treeView.NodeMouseClick += TreeView_NodeMouseClick;
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.uiCheckBox1);
-            this.panel.Controls.Add(this.btnCancel);
-            this.panel.Controls.Add(this.btnOK);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel.Location = new System.Drawing.Point(0, 176);
-            this.panel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.panel.Name = "panel";
-            this.panel.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.panel.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.panel.Size = new System.Drawing.Size(250, 44);
-            this.panel.TabIndex = 1;
-            this.panel.Text = null;
-            this.panel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.panel.Visible = false;
-            this.panel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnCancel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnCancel.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
-            this.btnCancel.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCancel.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCancel.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(159, 8);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnCancel.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
-            this.btnCancel.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCancel.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCancel.Size = new System.Drawing.Size(80, 29);
-            this.btnCancel.Style = Sunny.UI.UIStyle.Red;
-            this.btnCancel.StyleCustomMode = true;
-            this.btnCancel.Symbol = 61453;
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOK.Location = new System.Drawing.Point(70, 8);
-            this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(80, 29);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "确定";
-            this.btnOK.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            panel.Controls.Add(uiCheckBox1);
+            panel.Controls.Add(btnCancel);
+            panel.Controls.Add(btnOK);
+            panel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            panel.Font = new System.Drawing.Font("宋体", 12F);
+            panel.Location = new System.Drawing.Point(0, 176);
+            panel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            panel.MinimumSize = new System.Drawing.Size(1, 1);
+            panel.Name = "panel";
+            panel.RadiusSides = UICornerRadiusSides.None;
+            panel.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
+            panel.Size = new System.Drawing.Size(250, 44);
+            panel.TabIndex = 1;
+            panel.Text = null;
+            panel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            panel.Visible = false;
             // 
             // uiCheckBox1
             // 
-            this.uiCheckBox1.BackColor = System.Drawing.Color.Transparent;
-            this.uiCheckBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.uiCheckBox1.Location = new System.Drawing.Point(3, 8);
-            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiCheckBox1.Name = "uiCheckBox1";
-            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.uiCheckBox1.Size = new System.Drawing.Size(64, 29);
-            this.uiCheckBox1.TabIndex = 2;
-            this.uiCheckBox1.Text = "全选";
-            this.uiCheckBox1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
+            uiCheckBox1.BackColor = System.Drawing.Color.Transparent;
+            uiCheckBox1.Font = new System.Drawing.Font("宋体", 12F);
+            uiCheckBox1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiCheckBox1.Location = new System.Drawing.Point(3, 8);
+            uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiCheckBox1.Name = "uiCheckBox1";
+            uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            uiCheckBox1.Size = new System.Drawing.Size(64, 29);
+            uiCheckBox1.TabIndex = 2;
+            uiCheckBox1.Text = "全选";
+            uiCheckBox1.CheckedChanged += uiCheckBox1_CheckedChanged;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnCancel.Font = new System.Drawing.Font("宋体", 10.5F);
+            btnCancel.Location = new System.Drawing.Point(159, 8);
+            btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(80, 29);
+            btnCancel.StyleCustomMode = true;
+            btnCancel.Symbol = 361453;
+            btnCancel.SymbolSize = 22;
+            btnCancel.TabIndex = 1;
+            btnCancel.Text = "取消";
+            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // btnOK
+            // 
+            btnOK.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnOK.Font = new System.Drawing.Font("宋体", 10.5F);
+            btnOK.Location = new System.Drawing.Point(70, 8);
+            btnOK.MinimumSize = new System.Drawing.Size(1, 1);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new System.Drawing.Size(80, 29);
+            btnOK.SymbolSize = 22;
+            btnOK.TabIndex = 0;
+            btnOK.Text = "确定";
+            btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnOK.Click += btnOK_Click;
             // 
             // UIComboTreeViewItem
             // 
-            this.Controls.Add(this.treeView);
-            this.Controls.Add(this.panel);
-            this.Name = "UIComboTreeViewItem";
-            this.Size = new System.Drawing.Size(250, 220);
-            this.panel.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            Controls.Add(treeView);
+            Controls.Add(panel);
+            Name = "UIComboTreeViewItem";
+            Size = new System.Drawing.Size(250, 220);
+            panel.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         private void TreeView_NodeMouseClick(object sender, System.Windows.Forms.TreeNodeMouseClickEventArgs e)
@@ -192,6 +182,8 @@ namespace Sunny.UI
             treeView.Style = style.Name;
             panel.Style = style.Name;
             btnOK.Style = style.Name;
+            btnCancel.Style = style.Name;
+            uiCheckBox1.Style = style.Name;
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
