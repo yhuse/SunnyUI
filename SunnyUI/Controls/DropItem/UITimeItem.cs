@@ -17,6 +17,7 @@
  * 创建日期: 2020-05-29
  *
  * 2020-05-29: V2.2.5 创建
+ * 2024-07-14: V3.6.7 修改时间界面水平分割线颜色和位置
 ******************************************************************************/
 
 using System;
@@ -27,9 +28,8 @@ namespace Sunny.UI
 {
     public sealed class UITimeItem : UIDropDownItem, ITranslate
     {
-        #region InitializeComponent
 
-        private UILine uiLine1;
+        #region InitializeComponent
         private UISymbolButton s1;
         private UISymbolButton m1;
         private UISymbolButton h1;
@@ -47,381 +47,349 @@ namespace Sunny.UI
         private UILabel sb;
         private UILabel mb;
         private UILabel hb;
-        private UILine uiLine2;
 
         private void InitializeComponent()
         {
-            this.uiLine1 = new Sunny.UI.UILine();
-            this.uiLine2 = new Sunny.UI.UILine();
-            this.s1 = new Sunny.UI.UISymbolButton();
-            this.m1 = new Sunny.UI.UISymbolButton();
-            this.h1 = new Sunny.UI.UISymbolButton();
-            this.s2 = new Sunny.UI.UISymbolButton();
-            this.m2 = new Sunny.UI.UISymbolButton();
-            this.h2 = new Sunny.UI.UISymbolButton();
-            this.btnOK = new Sunny.UI.UISymbolButton();
-            this.btnCancel = new Sunny.UI.UISymbolButton();
-            this.hc = new Sunny.UI.UILabel();
-            this.mc = new Sunny.UI.UILabel();
-            this.sc = new Sunny.UI.UILabel();
-            this.st = new Sunny.UI.UILabel();
-            this.mt = new Sunny.UI.UILabel();
-            this.ht = new Sunny.UI.UILabel();
-            this.sb = new Sunny.UI.UILabel();
-            this.mb = new Sunny.UI.UILabel();
-            this.hb = new Sunny.UI.UILabel();
-            this.SuspendLayout();
-            // 
-            // uiLine1
-            // 
-            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine1.FillColor = System.Drawing.Color.White;
-            this.uiLine1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.uiLine1.LineColor = System.Drawing.Color.Silver;
-            this.uiLine1.Location = new System.Drawing.Point(6, 54);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiLine1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.uiLine1.Size = new System.Drawing.Size(157, 16);
-            this.uiLine1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine1.StyleCustomMode = true;
-            this.uiLine1.TabIndex = 2;
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine2.FillColor = System.Drawing.Color.White;
-            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.uiLine2.LineColor = System.Drawing.Color.Silver;
-            this.uiLine2.Location = new System.Drawing.Point(6, 88);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiLine2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.uiLine2.Size = new System.Drawing.Size(157, 16);
-            this.uiLine2.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine2.StyleCustomMode = true;
-            this.uiLine2.TabIndex = 3;
+            s1 = new UISymbolButton();
+            m1 = new UISymbolButton();
+            h1 = new UISymbolButton();
+            s2 = new UISymbolButton();
+            m2 = new UISymbolButton();
+            h2 = new UISymbolButton();
+            btnOK = new UISymbolButton();
+            btnCancel = new UISymbolButton();
+            hc = new UILabel();
+            mc = new UILabel();
+            sc = new UILabel();
+            st = new UILabel();
+            mt = new UILabel();
+            ht = new UILabel();
+            sb = new UILabel();
+            mb = new UILabel();
+            hb = new UILabel();
+            SuspendLayout();
             // 
             // s1
             // 
-            this.s1.BackColor = System.Drawing.Color.Transparent;
-            this.s1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s1.FillColor = System.Drawing.Color.White;
-            this.s1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.s1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.ImageInterval = 0;
-            this.s1.Location = new System.Drawing.Point(122, 4);
-            this.s1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.s1.Name = "s1";
-            this.s1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.s1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.s1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.s1.Size = new System.Drawing.Size(30, 24);
-            this.s1.Style = Sunny.UI.UIStyle.Custom;
-            this.s1.StyleCustomMode = true;
-            this.s1.Symbol = 61702;
-            this.s1.TabIndex = 6;
-            this.s1.Tag = "3";
-            this.s1.Click += new System.EventHandler(this.s1_Click);
+            s1.BackColor = Color.Transparent;
+            s1.Cursor = Cursors.Hand;
+            s1.FillColor = Color.White;
+            s1.FillHoverColor = Color.FromArgb(80, 160, 255);
+            s1.Font = new Font("宋体", 12F);
+            s1.ForeColor = Color.FromArgb(80, 160, 255);
+            s1.Location = new Point(122, 4);
+            s1.MinimumSize = new Size(1, 1);
+            s1.Name = "s1";
+            s1.Padding = new Padding(24, 0, 0, 0);
+            s1.RadiusSides = UICornerRadiusSides.None;
+            s1.RectHoverColor = Color.FromArgb(80, 160, 255);
+            s1.RectSides = ToolStripStatusLabelBorderSides.None;
+            s1.Size = new Size(30, 24);
+            s1.Style = UIStyle.Custom;
+            s1.StyleCustomMode = true;
+            s1.Symbol = 61702;
+            s1.TabIndex = 6;
+            s1.Tag = "3";
+            s1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            s1.Click += s1_Click;
             // 
             // m1
             // 
-            this.m1.BackColor = System.Drawing.Color.Transparent;
-            this.m1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.m1.FillColor = System.Drawing.Color.White;
-            this.m1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.m1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m1.ImageInterval = 0;
-            this.m1.Location = new System.Drawing.Point(69, 4);
-            this.m1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.m1.Name = "m1";
-            this.m1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.m1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.m1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.m1.Size = new System.Drawing.Size(30, 24);
-            this.m1.Style = Sunny.UI.UIStyle.Custom;
-            this.m1.StyleCustomMode = true;
-            this.m1.Symbol = 61702;
-            this.m1.TabIndex = 5;
-            this.m1.Tag = "2";
-            this.m1.Click += new System.EventHandler(this.m1_Click);
+            m1.BackColor = Color.Transparent;
+            m1.Cursor = Cursors.Hand;
+            m1.FillColor = Color.White;
+            m1.FillHoverColor = Color.FromArgb(80, 160, 255);
+            m1.Font = new Font("宋体", 12F);
+            m1.ForeColor = Color.FromArgb(80, 160, 255);
+            m1.Location = new Point(69, 4);
+            m1.MinimumSize = new Size(1, 1);
+            m1.Name = "m1";
+            m1.Padding = new Padding(24, 0, 0, 0);
+            m1.RadiusSides = UICornerRadiusSides.None;
+            m1.RectHoverColor = Color.FromArgb(80, 160, 255);
+            m1.RectSides = ToolStripStatusLabelBorderSides.None;
+            m1.Size = new Size(30, 24);
+            m1.Style = UIStyle.Custom;
+            m1.StyleCustomMode = true;
+            m1.Symbol = 61702;
+            m1.TabIndex = 5;
+            m1.Tag = "2";
+            m1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            m1.Click += m1_Click;
             // 
             // h1
             // 
-            this.h1.BackColor = System.Drawing.Color.Transparent;
-            this.h1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h1.FillColor = System.Drawing.Color.White;
-            this.h1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.h1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.ImageInterval = 0;
-            this.h1.Location = new System.Drawing.Point(16, 4);
-            this.h1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.h1.Name = "h1";
-            this.h1.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.h1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.h1.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.h1.Size = new System.Drawing.Size(30, 24);
-            this.h1.Style = Sunny.UI.UIStyle.Custom;
-            this.h1.StyleCustomMode = true;
-            this.h1.Symbol = 61702;
-            this.h1.TabIndex = 4;
-            this.h1.Tag = "1";
-            this.h1.Click += new System.EventHandler(this.h1_Click);
+            h1.BackColor = Color.Transparent;
+            h1.Cursor = Cursors.Hand;
+            h1.FillColor = Color.White;
+            h1.FillHoverColor = Color.FromArgb(80, 160, 255);
+            h1.Font = new Font("宋体", 12F);
+            h1.ForeColor = Color.FromArgb(80, 160, 255);
+            h1.Location = new Point(16, 4);
+            h1.MinimumSize = new Size(1, 1);
+            h1.Name = "h1";
+            h1.Padding = new Padding(24, 0, 0, 0);
+            h1.RadiusSides = UICornerRadiusSides.None;
+            h1.RectHoverColor = Color.FromArgb(80, 160, 255);
+            h1.RectSides = ToolStripStatusLabelBorderSides.None;
+            h1.Size = new Size(30, 24);
+            h1.Style = UIStyle.Custom;
+            h1.StyleCustomMode = true;
+            h1.Symbol = 61702;
+            h1.TabIndex = 4;
+            h1.Tag = "1";
+            h1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            h1.Click += h1_Click;
             // 
             // s2
             // 
-            this.s2.BackColor = System.Drawing.Color.Transparent;
-            this.s2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.s2.FillColor = System.Drawing.Color.White;
-            this.s2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.s2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.ImageInterval = 0;
-            this.s2.Location = new System.Drawing.Point(122, 129);
-            this.s2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.s2.Name = "s2";
-            this.s2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.s2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.s2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.s2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.s2.Size = new System.Drawing.Size(30, 24);
-            this.s2.Style = Sunny.UI.UIStyle.Custom;
-            this.s2.StyleCustomMode = true;
-            this.s2.Symbol = 61703;
-            this.s2.TabIndex = 9;
-            this.s2.Tag = "6";
-            this.s2.Click += new System.EventHandler(this.s2_Click);
+            s2.BackColor = Color.Transparent;
+            s2.Cursor = Cursors.Hand;
+            s2.FillColor = Color.White;
+            s2.FillHoverColor = Color.FromArgb(80, 160, 255);
+            s2.Font = new Font("宋体", 12F);
+            s2.ForeColor = Color.FromArgb(80, 160, 255);
+            s2.Location = new Point(122, 129);
+            s2.MinimumSize = new Size(1, 1);
+            s2.Name = "s2";
+            s2.Padding = new Padding(24, 0, 0, 0);
+            s2.RadiusSides = UICornerRadiusSides.None;
+            s2.RectHoverColor = Color.FromArgb(80, 160, 255);
+            s2.RectSides = ToolStripStatusLabelBorderSides.None;
+            s2.Size = new Size(30, 24);
+            s2.Style = UIStyle.Custom;
+            s2.StyleCustomMode = true;
+            s2.Symbol = 61703;
+            s2.TabIndex = 9;
+            s2.Tag = "6";
+            s2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            s2.Click += s2_Click;
             // 
             // m2
             // 
-            this.m2.BackColor = System.Drawing.Color.Transparent;
-            this.m2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.m2.FillColor = System.Drawing.Color.White;
-            this.m2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.m2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m2.ImageInterval = 0;
-            this.m2.Location = new System.Drawing.Point(69, 129);
-            this.m2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.m2.Name = "m2";
-            this.m2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.m2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.m2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.m2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.m2.Size = new System.Drawing.Size(30, 24);
-            this.m2.Style = Sunny.UI.UIStyle.Custom;
-            this.m2.StyleCustomMode = true;
-            this.m2.Symbol = 61703;
-            this.m2.TabIndex = 8;
-            this.m2.Tag = "5";
-            this.m2.Click += new System.EventHandler(this.m2_Click);
+            m2.BackColor = Color.Transparent;
+            m2.Cursor = Cursors.Hand;
+            m2.FillColor = Color.White;
+            m2.FillHoverColor = Color.FromArgb(80, 160, 255);
+            m2.Font = new Font("宋体", 12F);
+            m2.ForeColor = Color.FromArgb(80, 160, 255);
+            m2.Location = new Point(69, 129);
+            m2.MinimumSize = new Size(1, 1);
+            m2.Name = "m2";
+            m2.Padding = new Padding(24, 0, 0, 0);
+            m2.RadiusSides = UICornerRadiusSides.None;
+            m2.RectHoverColor = Color.FromArgb(80, 160, 255);
+            m2.RectSides = ToolStripStatusLabelBorderSides.None;
+            m2.Size = new Size(30, 24);
+            m2.Style = UIStyle.Custom;
+            m2.StyleCustomMode = true;
+            m2.Symbol = 61703;
+            m2.TabIndex = 8;
+            m2.Tag = "5";
+            m2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            m2.Click += m2_Click;
             // 
             // h2
             // 
-            this.h2.BackColor = System.Drawing.Color.Transparent;
-            this.h2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.h2.FillColor = System.Drawing.Color.White;
-            this.h2.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.h2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.ImageInterval = 0;
-            this.h2.Location = new System.Drawing.Point(16, 128);
-            this.h2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.h2.Name = "h2";
-            this.h2.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.h2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.h2.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.h2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.h2.Size = new System.Drawing.Size(30, 24);
-            this.h2.Style = Sunny.UI.UIStyle.Custom;
-            this.h2.StyleCustomMode = true;
-            this.h2.Symbol = 61703;
-            this.h2.TabIndex = 7;
-            this.h2.Tag = "4";
-            this.h2.Click += new System.EventHandler(this.h2_Click);
+            h2.BackColor = Color.Transparent;
+            h2.Cursor = Cursors.Hand;
+            h2.FillColor = Color.White;
+            h2.FillHoverColor = Color.FromArgb(80, 160, 255);
+            h2.Font = new Font("宋体", 12F);
+            h2.ForeColor = Color.FromArgb(80, 160, 255);
+            h2.Location = new Point(16, 128);
+            h2.MinimumSize = new Size(1, 1);
+            h2.Name = "h2";
+            h2.Padding = new Padding(24, 0, 0, 0);
+            h2.RadiusSides = UICornerRadiusSides.None;
+            h2.RectHoverColor = Color.FromArgb(80, 160, 255);
+            h2.RectSides = ToolStripStatusLabelBorderSides.None;
+            h2.Size = new Size(30, 24);
+            h2.Style = UIStyle.Custom;
+            h2.StyleCustomMode = true;
+            h2.Symbol = 61703;
+            h2.TabIndex = 7;
+            h2.Tag = "4";
+            h2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            h2.Click += h2_Click;
             // 
             // btnOK
             // 
-            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOK.Location = new System.Drawing.Point(8, 162);
-            this.btnOK.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnOK.Size = new System.Drawing.Size(74, 27);
-            this.btnOK.Style = Sunny.UI.UIStyle.Custom;
-            this.btnOK.Symbol = 0;
-            this.btnOK.TabIndex = 10;
-            this.btnOK.Text = "确定";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            btnOK.Cursor = Cursors.Hand;
+            btnOK.Font = new Font("宋体", 12F);
+            btnOK.Location = new Point(8, 162);
+            btnOK.MinimumSize = new Size(1, 1);
+            btnOK.Name = "btnOK";
+            btnOK.Padding = new Padding(28, 0, 0, 0);
+            btnOK.Size = new Size(74, 27);
+            btnOK.Style = UIStyle.Custom;
+            btnOK.Symbol = 0;
+            btnOK.TabIndex = 10;
+            btnOK.Text = "确定";
+            btnOK.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(87, 162);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnCancel.Size = new System.Drawing.Size(74, 27);
-            this.btnCancel.Style = Sunny.UI.UIStyle.Custom;
-            this.btnCancel.Symbol = 0;
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.Font = new Font("宋体", 12F);
+            btnCancel.Location = new Point(87, 162);
+            btnCancel.MinimumSize = new Size(1, 1);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Padding = new Padding(28, 0, 0, 0);
+            btnCancel.Size = new Size(74, 27);
+            btnCancel.Style = UIStyle.Custom;
+            btnCancel.Symbol = 0;
+            btnCancel.TabIndex = 11;
+            btnCancel.Text = "取消";
+            btnCancel.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnCancel.Click += btnCancel_Click;
             // 
             // hc
             // 
-            this.hc.BackColor = System.Drawing.Color.Transparent;
-            this.hc.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hc.Location = new System.Drawing.Point(9, 65);
-            this.hc.Name = "hc";
-            this.hc.Size = new System.Drawing.Size(46, 27);
-            this.hc.StyleCustomMode = true;
-            this.hc.TabIndex = 12;
-            this.hc.Text = "00";
-            this.hc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.hc.DoubleClick += new System.EventHandler(this.hc_DoubleClick);
+            hc.BackColor = Color.Transparent;
+            hc.Font = new Font("宋体", 12F);
+            hc.ForeColor = Color.FromArgb(48, 48, 48);
+            hc.Location = new Point(9, 65);
+            hc.Name = "hc";
+            hc.Size = new Size(46, 27);
+            hc.StyleCustomMode = true;
+            hc.TabIndex = 12;
+            hc.Text = "00";
+            hc.TextAlign = ContentAlignment.MiddleCenter;
+            hc.DoubleClick += hc_DoubleClick;
             // 
             // mc
             // 
-            this.mc.BackColor = System.Drawing.Color.Transparent;
-            this.mc.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mc.Location = new System.Drawing.Point(62, 65);
-            this.mc.Name = "mc";
-            this.mc.Size = new System.Drawing.Size(46, 27);
-            this.mc.StyleCustomMode = true;
-            this.mc.TabIndex = 13;
-            this.mc.Text = "00";
-            this.mc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mc.DoubleClick += new System.EventHandler(this.mc_DoubleClick);
+            mc.BackColor = Color.Transparent;
+            mc.Font = new Font("宋体", 12F);
+            mc.ForeColor = Color.FromArgb(48, 48, 48);
+            mc.Location = new Point(62, 65);
+            mc.Name = "mc";
+            mc.Size = new Size(46, 27);
+            mc.StyleCustomMode = true;
+            mc.TabIndex = 13;
+            mc.Text = "00";
+            mc.TextAlign = ContentAlignment.MiddleCenter;
+            mc.DoubleClick += mc_DoubleClick;
             // 
             // sc
             // 
-            this.sc.BackColor = System.Drawing.Color.Transparent;
-            this.sc.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.sc.Location = new System.Drawing.Point(115, 65);
-            this.sc.Name = "sc";
-            this.sc.Size = new System.Drawing.Size(46, 27);
-            this.sc.StyleCustomMode = true;
-            this.sc.TabIndex = 14;
-            this.sc.Text = "00";
-            this.sc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sc.DoubleClick += new System.EventHandler(this.sc_DoubleClick);
+            sc.BackColor = Color.Transparent;
+            sc.Font = new Font("宋体", 12F);
+            sc.ForeColor = Color.FromArgb(48, 48, 48);
+            sc.Location = new Point(115, 65);
+            sc.Name = "sc";
+            sc.Size = new Size(46, 27);
+            sc.StyleCustomMode = true;
+            sc.TabIndex = 14;
+            sc.Text = "00";
+            sc.TextAlign = ContentAlignment.MiddleCenter;
+            sc.DoubleClick += sc_DoubleClick;
             // 
             // st
             // 
-            this.st.BackColor = System.Drawing.Color.Transparent;
-            this.st.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.st.ForeColor = System.Drawing.Color.DarkGray;
-            this.st.Location = new System.Drawing.Point(115, 31);
-            this.st.Name = "st";
-            this.st.Size = new System.Drawing.Size(46, 22);
-            this.st.StyleCustomMode = true;
-            this.st.TabIndex = 17;
-            this.st.Text = "00";
-            this.st.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            st.BackColor = Color.Transparent;
+            st.Font = new Font("宋体", 12F);
+            st.ForeColor = Color.DarkGray;
+            st.Location = new Point(115, 31);
+            st.Name = "st";
+            st.Size = new Size(46, 22);
+            st.StyleCustomMode = true;
+            st.TabIndex = 17;
+            st.Text = "00";
+            st.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // mt
             // 
-            this.mt.BackColor = System.Drawing.Color.Transparent;
-            this.mt.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mt.ForeColor = System.Drawing.Color.DarkGray;
-            this.mt.Location = new System.Drawing.Point(62, 31);
-            this.mt.Name = "mt";
-            this.mt.Size = new System.Drawing.Size(46, 22);
-            this.mt.StyleCustomMode = true;
-            this.mt.TabIndex = 16;
-            this.mt.Text = "00";
-            this.mt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            mt.BackColor = Color.Transparent;
+            mt.Font = new Font("宋体", 12F);
+            mt.ForeColor = Color.DarkGray;
+            mt.Location = new Point(62, 31);
+            mt.Name = "mt";
+            mt.Size = new Size(46, 22);
+            mt.StyleCustomMode = true;
+            mt.TabIndex = 16;
+            mt.Text = "00";
+            mt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ht
             // 
-            this.ht.BackColor = System.Drawing.Color.Transparent;
-            this.ht.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ht.ForeColor = System.Drawing.Color.DarkGray;
-            this.ht.Location = new System.Drawing.Point(9, 31);
-            this.ht.Name = "ht";
-            this.ht.Size = new System.Drawing.Size(46, 22);
-            this.ht.StyleCustomMode = true;
-            this.ht.TabIndex = 15;
-            this.ht.Text = "00";
-            this.ht.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ht.BackColor = Color.Transparent;
+            ht.Font = new Font("宋体", 12F);
+            ht.ForeColor = Color.DarkGray;
+            ht.Location = new Point(9, 31);
+            ht.Name = "ht";
+            ht.Size = new Size(46, 22);
+            ht.StyleCustomMode = true;
+            ht.TabIndex = 15;
+            ht.Text = "00";
+            ht.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // sb
             // 
-            this.sb.BackColor = System.Drawing.Color.Transparent;
-            this.sb.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.sb.ForeColor = System.Drawing.Color.DarkGray;
-            this.sb.Location = new System.Drawing.Point(115, 103);
-            this.sb.Name = "sb";
-            this.sb.Size = new System.Drawing.Size(46, 22);
-            this.sb.StyleCustomMode = true;
-            this.sb.TabIndex = 20;
-            this.sb.Text = "00";
-            this.sb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            sb.BackColor = Color.Transparent;
+            sb.Font = new Font("宋体", 12F);
+            sb.ForeColor = Color.DarkGray;
+            sb.Location = new Point(115, 103);
+            sb.Name = "sb";
+            sb.Size = new Size(46, 22);
+            sb.StyleCustomMode = true;
+            sb.TabIndex = 20;
+            sb.Text = "00";
+            sb.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // mb
             // 
-            this.mb.BackColor = System.Drawing.Color.Transparent;
-            this.mb.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mb.ForeColor = System.Drawing.Color.DarkGray;
-            this.mb.Location = new System.Drawing.Point(62, 103);
-            this.mb.Name = "mb";
-            this.mb.Size = new System.Drawing.Size(46, 22);
-            this.mb.StyleCustomMode = true;
-            this.mb.TabIndex = 19;
-            this.mb.Text = "00";
-            this.mb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            mb.BackColor = Color.Transparent;
+            mb.Font = new Font("宋体", 12F);
+            mb.ForeColor = Color.DarkGray;
+            mb.Location = new Point(62, 103);
+            mb.Name = "mb";
+            mb.Size = new Size(46, 22);
+            mb.StyleCustomMode = true;
+            mb.TabIndex = 19;
+            mb.Text = "00";
+            mb.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // hb
             // 
-            this.hb.BackColor = System.Drawing.Color.Transparent;
-            this.hb.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hb.ForeColor = System.Drawing.Color.DarkGray;
-            this.hb.Location = new System.Drawing.Point(9, 103);
-            this.hb.Name = "hb";
-            this.hb.Size = new System.Drawing.Size(46, 22);
-            this.hb.StyleCustomMode = true;
-            this.hb.TabIndex = 18;
-            this.hb.Text = "00";
-            this.hb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            hb.BackColor = Color.Transparent;
+            hb.Font = new Font("宋体", 12F);
+            hb.ForeColor = Color.DarkGray;
+            hb.Location = new Point(9, 103);
+            hb.Name = "hb";
+            hb.Size = new Size(46, 22);
+            hb.StyleCustomMode = true;
+            hb.TabIndex = 18;
+            hb.Text = "00";
+            hb.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // UITimeItem
             // 
-            this.Controls.Add(this.sb);
-            this.Controls.Add(this.mb);
-            this.Controls.Add(this.hb);
-            this.Controls.Add(this.st);
-            this.Controls.Add(this.mt);
-            this.Controls.Add(this.ht);
-            this.Controls.Add(this.sc);
-            this.Controls.Add(this.mc);
-            this.Controls.Add(this.hc);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.s2);
-            this.Controls.Add(this.m2);
-            this.Controls.Add(this.h2);
-            this.Controls.Add(this.s1);
-            this.Controls.Add(this.m1);
-            this.Controls.Add(this.h1);
-            this.Controls.Add(this.uiLine2);
-            this.Controls.Add(this.uiLine1);
-            this.FillColor = System.Drawing.Color.White;
-            this.Name = "UITimeItem";
-            this.Size = new System.Drawing.Size(168, 200);
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.ResumeLayout(false);
-
+            Controls.Add(sb);
+            Controls.Add(mb);
+            Controls.Add(hb);
+            Controls.Add(st);
+            Controls.Add(mt);
+            Controls.Add(ht);
+            Controls.Add(sc);
+            Controls.Add(mc);
+            Controls.Add(hc);
+            Controls.Add(btnCancel);
+            Controls.Add(btnOK);
+            Controls.Add(s2);
+            Controls.Add(m2);
+            Controls.Add(h2);
+            Controls.Add(s1);
+            Controls.Add(m1);
+            Controls.Add(h1);
+            FillColor = Color.White;
+            Name = "UITimeItem";
+            Size = new Size(168, 200);
+            Style = UIStyle.Custom;
+            Paint += UITimeItem_Paint;
+            ResumeLayout(false);
         }
 
         #endregion InitializeComponent
@@ -673,6 +641,12 @@ namespace Sunny.UI
         {
             Second = 0;
             ShowOther();
+        }
+
+        private void UITimeItem_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(Color.LightGray, 8 * SizeMultiple, (54 + 8 - 3) * SizeMultiple, (168 - 8) * SizeMultiple, (54 + 8 - 3) * SizeMultiple);
+            e.Graphics.DrawLine(Color.LightGray, 8 * SizeMultiple, (88 + 8 + 3) * SizeMultiple, (168 - 8) * SizeMultiple, (88 + 8 + 3) * SizeMultiple);
         }
     }
 }
