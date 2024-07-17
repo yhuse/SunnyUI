@@ -430,6 +430,45 @@ namespace Sunny.UI
             }
         }
 
+        public static void SetChildCustomStyle(this Control ctrl, UIStyle style)
+        {
+            List<Control> controls = ctrl.GetUIStyleControls("IStyleInterface");
+            foreach (var control in controls)
+            {
+                if (control is IStyleInterface item)
+                {
+                    if (item is UIPage uipage && uipage.Parent is TabPage tabpage)
+                    {
+                        TabControl tabControl = tabpage.Parent as TabControl;
+                        if (tabControl.SelectedTab == tabpage)
+                        {
+                            item.SetStyleColor(style.Colors());
+                            item.Style = UIStyle.Custom;
+                        }
+                    }
+                    else
+                    {
+                        item.SetStyleColor(style.Colors());
+                        item.Style = UIStyle.Custom;
+                    }
+                }
+            }
+
+            FieldInfo[] fieldInfo = ctrl.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var info in fieldInfo)
+            {
+                if (info.FieldType.Name == "UIContextMenuStrip")
+                {
+                    UIContextMenuStrip item = (UIContextMenuStrip)info.GetValue(ctrl);
+                    if (item != null)
+                    {
+                        item.SetStyleColor(style.Colors());
+                        item.Style = UIStyle.Custom;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 查找包含接口名称的控件列表
         /// </summary>
