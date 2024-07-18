@@ -52,6 +52,7 @@ namespace Sunny.UI
             InitializeComponent();
             SetStyleFlags();
             Padding = new Padding(0, 0, 30, 2);
+            TabStop = true;
 
             edit.AutoSize = true;
             edit.Left = 4;
