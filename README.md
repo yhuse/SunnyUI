@@ -3,14 +3,14 @@
 [![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
 [![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)    
 - 帮助文档: [https://gitee.com/yhuse/SunnyUI/wikis/pages](https://gitee.com/yhuse/SunnyUI/wikis/pages) 
-- 更新日志：[https://gitee.com/yhuse/SunnyUI/wikis/更新日志](https://gitee.com/yhuse/SunnyUI/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
-- Gitee:  [https://gitee.com/yhuse/SunnyUI](https://gitee.com/yhuse/SunnyUI)    
+- 更新日志: [https://gitee.com/yhuse/SunnyUI/wikis/更新日志](https://gitee.com/yhuse/SunnyUI/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+- Gitee: [https://gitee.com/yhuse/SunnyUI](https://gitee.com/yhuse/SunnyUI)    
 - GitHub: [https://github.com/yhuse/SunnyUI](https://github.com/yhuse/SunnyUI)    
-- Nuget:  [https://www.nuget.org/packages/SunnyUI/](https://www.nuget.org/packages/SunnyUI/)    
-- Blog:   [https://www.cnblogs.com/yhuse](https://www.cnblogs.com/yhuse)    
+- Nuget: [https://www.nuget.org/packages/SunnyUI/](https://www.nuget.org/packages/SunnyUI/)    
+- Blog: [https://www.cnblogs.com/yhuse](https://www.cnblogs.com/yhuse)    
 - 因为评论没有查找，不利于解决问题，故关闭项目评论功能。如果是问题或者建议，请按照Issues模版添加Issue。    
 - 添加Issue: [https://gitee.com/yhuse/SunnyUI/issues/new](https://gitee.com/yhuse/SunnyUI/issues/new)    
-- V3.6.8+Demo编译可执行文件：[https://gitee.com/yhuse/SunnyUI.Demo](https://gitee.com/yhuse/SunnyUI.Demo)
+- V3.6.8+Demo编译可执行文件: [https://gitee.com/yhuse/SunnyUI.Demo](https://gitee.com/yhuse/SunnyUI.Demo)
     
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！  
 **个人学习交流免费，商业应用需要授权**，联系QQ：**17612584** 咨询授权事宜。  
