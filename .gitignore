@@ -25,6 +25,7 @@ x86/
 bld/
 [Oo]bj/
 [Ll]og/
+[Bb]in/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -346,3 +347,7 @@ healthchecksdb
 /Bin/net40
 /Bin/net7.0-windows
 /Bin/net8.0-windows
+/SunnyUI.Demo/Bin/SunnyUI.Common.dll
+/SunnyUI.Demo/Bin/SunnyUI.Demo.exe
+/SunnyUI.Demo/Bin/SunnyUI.Demo.exe.config
+/SunnyUI.Demo/Bin/SunnyUI.dll
