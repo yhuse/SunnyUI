@@ -9,6 +9,7 @@
 - Blog:   https://www.cnblogs.com/yhuse    
 - 因为评论没有查找，不利于解决问题，故关闭项目评论功能。如果是问题或者建议，请按照Issues模版添加Issue。    
 - 添加Issue: [https://gitee.com/yhuse/SunnyUI/issues/new](https://gitee.com/yhuse/SunnyUI/issues/new)    
+- V3.6.8+Demo编译可执行文件：[https://gitee.com/yhuse/SunnyUI.Demo](https://gitee.com/yhuse/SunnyUI.Demo)
     
 欢迎交流，QQ群： 56829229  (SunnyUI技术交流群)，请给源码项目点个Star吧！！！  
 **个人学习交流免费，商业应用需要授权**，联系QQ：**17612584** 咨询授权事宜。  
