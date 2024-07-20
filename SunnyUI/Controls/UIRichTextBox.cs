@@ -24,6 +24,7 @@
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2023-11-13: V3.5.2 重构主题
  * 2023-12-25: V3.6.2 增加Text的属性编辑器
+ * 2024-07-20: V3.6.8 修改滚动条颜色跟随主题
 ******************************************************************************/
 
 using System;
@@ -506,40 +507,40 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.edit = new System.Windows.Forms.RichTextBox();
-            this.bar = new Sunny.UI.UIScrollBar();
-            this.SuspendLayout();
-            //
+            edit = new RichTextBox();
+            bar = new UIScrollBar();
+            SuspendLayout();
+            // 
             // edit
-            //
-            this.edit.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.edit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.edit.Location = new System.Drawing.Point(2, 2);
-            this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(266, 176);
-            this.edit.TabIndex = 0;
-            this.edit.Text = "";
-            //
+            // 
+            edit.BorderStyle = BorderStyle.None;
+            edit.Dock = DockStyle.Fill;
+            edit.Location = new Point(2, 2);
+            edit.Name = "edit";
+            edit.Size = new Size(266, 176);
+            edit.TabIndex = 0;
+            edit.Text = "";
+            // 
             // bar
-            //
-            this.bar.Font = new System.Drawing.Font("宋体", 12F);
-            this.bar.Location = new System.Drawing.Point(247, 4);
-            this.bar.Name = "bar";
-            this.bar.Size = new System.Drawing.Size(19, 173);
-            this.bar.Style = Sunny.UI.UIStyle.Custom;
-            this.bar.TabIndex = 2;
-            this.bar.Text = "uiScrollBar1";
-            //
+            // 
+            bar.Font = new Font("宋体", 12F);
+            bar.Location = new Point(247, 4);
+            bar.MinimumSize = new Size(1, 1);
+            bar.Name = "bar";
+            bar.Size = new Size(19, 173);
+            bar.TabIndex = 2;
+            bar.Text = "uiScrollBar1";
+            // 
             // UIRichTextBox
-            //
-            this.Controls.Add(this.bar);
-            this.Controls.Add(this.edit);
-            this.FillColor = System.Drawing.Color.White;
-            this.Name = "UIRichTextBox";
-            this.Padding = new System.Windows.Forms.Padding(2);
-            this.FontChanged += new System.EventHandler(this.UIRichTextBox_FontChanged);
-            this.SizeChanged += new System.EventHandler(this.UIRichTextBox_SizeChanged);
-            this.ResumeLayout(false);
+            // 
+            Controls.Add(bar);
+            Controls.Add(edit);
+            FillColor = Color.White;
+            Name = "UIRichTextBox";
+            Padding = new Padding(2);
+            FontChanged += UIRichTextBox_FontChanged;
+            SizeChanged += UIRichTextBox_SizeChanged;
+            ResumeLayout(false);
         }
 
         private void UIRichTextBox_SizeChanged(object sender, EventArgs e)
