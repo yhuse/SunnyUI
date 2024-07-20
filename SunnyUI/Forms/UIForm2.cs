@@ -339,7 +339,6 @@ namespace Sunny.UI
 
         private void ShowMaxOrNormal()
         {
-            Added = 16;
             if (!ShowFullScreen)
             {
                 if (WindowState == FormWindowState.Maximized)
@@ -393,7 +392,8 @@ namespace Sunny.UI
             }
             else
             {
-                if (FormBorderStyle == FormBorderStyle.Sizable) ShowMaxOrNormal();
+                if (FormBorderStyle == FormBorderStyle.Sizable)
+                    ShowMaxOrNormal();
             }
         }
 
@@ -408,23 +408,13 @@ namespace Sunny.UI
             Invalidate();
         }
 
-        private int Added = 0;
-
         protected override void CalcSystemBoxPos()
         {
             ControlBoxLeft = Width;
 
             if (ControlBox)
             {
-                if (WindowState == FormWindowState.Maximized)
-                {
-                    ControlBoxRect = new Rectangle(Width - 6 - 28 - Added, titleHeight / 2 - 14, 28, 28);
-                }
-                else
-                {
-                    ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
-                }
-
+                ControlBoxRect = new Rectangle(Width - 6 - 28, titleHeight / 2 - 14, 28, 28);
                 ControlBoxLeft = ControlBoxRect.Left - 2;
 
                 if (MaximizeBox)
@@ -618,6 +608,8 @@ namespace Sunny.UI
             {
                 winState = FormWindowState.Maximized;
                 boundsCoreState = true;
+                CalcSystemBoxPos();
+                Invalidate();
             }
             else if ((int)m.WParam == Win32.User.SIZE_RESTORED)
             {
