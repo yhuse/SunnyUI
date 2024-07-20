@@ -58,6 +58,7 @@
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
  * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
  * 2024-06-08: V3.6.6 防止图标转换错误
+ * 2024-07-20: V3.6.8 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示
 ******************************************************************************/
 
 using System;
@@ -420,7 +421,7 @@ namespace Sunny.UI
         {
             if (FormMoveMouseDown && !MousePosition.Equals(mouseOffset))
             {
-                if (WindowState == FormWindowState.Maximized && (Math.Abs(MousePosition.X - mouseOffset.X) >= 3 || Math.Abs(MousePosition.Y - mouseOffset.Y) >= 3))
+                if (WindowState == FormWindowState.Maximized && (Math.Abs(MousePosition.X - mouseOffset.X) >= 6 || Math.Abs(MousePosition.Y - mouseOffset.Y) >= 6))
                 {
                     int MaximizedWidth = Width;
                     int LocationX = Left;
