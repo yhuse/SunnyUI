@@ -22,6 +22,7 @@
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
  * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
  * 2024-06-08: V3.6.6 防止图标转换错误
+ * 2024-07-20: V3.6.8 修改最大化时按钮位置
 ******************************************************************************/
 
 using System;
@@ -338,6 +339,7 @@ namespace Sunny.UI
 
         private void ShowMaxOrNormal()
         {
+            Added = 16;
             if (!ShowFullScreen)
             {
                 if (WindowState == FormWindowState.Maximized)
@@ -406,6 +408,8 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        private int Added = 0;
+
         protected override void CalcSystemBoxPos()
         {
             ControlBoxLeft = Width;
@@ -414,7 +418,7 @@ namespace Sunny.UI
             {
                 if (WindowState == FormWindowState.Maximized)
                 {
-                    ControlBoxRect = new Rectangle(Width - 6 - 28 - 16, titleHeight / 2 - 14, 28, 28);
+                    ControlBoxRect = new Rectangle(Width - 6 - 28 - Added, titleHeight / 2 - 14, 28, 28);
                 }
                 else
                 {
