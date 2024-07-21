@@ -15,6 +15,7 @@ namespace Sunny.UI.Demo
             //窗体上如果只有一个UITabControl，也会自动关联，超过一个需要手动关联
             this.MainTabControl = uiTabControl1;
             uiNavBar1.TabControl = uiTabControl1;
+            uiNavMenu1.TabControl = uiTabControl1;
 
             //设置初始页面索引（关联页面，唯一不重复即可）
             int pageIndex = 1000;
