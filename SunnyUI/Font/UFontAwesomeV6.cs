@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+﻿ /******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
  * CopyRight (C) 2012-2024 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
@@ -19,6 +19,7 @@
  * 2023-04-23: V3.3.5 增加文件说明
  * 2024-06-26: V3.6.7 更新为Font Awesome version: 6.5.2
  * 2024-06-27: V3.6.7 减小文件大小
+ * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
 ******************************************************************************/
 
 /******************************************************************************
@@ -26,7 +27,7 @@
  * https://fontawesome.com/license/free
  * https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt
  ******************************************************************************
- 
+
 UPDATED: JULY 12, 2018
 
 Font Awesome Free License
@@ -60,7 +61,7 @@ learn about Font Awesome.
 namespace Sunny.UI;
 
 ///<summary>
-///Font Awesome version: 6.5.2
+///Font Awesome version: 6.6.0
 ///fa-regular-400.ttf
 ///Symbol count: 163
 ///</summary>
@@ -232,9 +233,9 @@ public static class FontAweSomeV6Regular
 }
 
 ///<summary>
-///Font Awesome version: 6.5.2
+///Font Awesome version: 6.6.0
 ///fa-brands-400.ttf
-///Symbol count: 490
+///Symbol count: 492
 ///</summary>
 public static class FontAweSomeV6Brands
 {
@@ -340,6 +341,7 @@ public static class FontAweSomeV6Brands
     public const int fa_d_and_d_beyond = 0xf6ca;
     public const int fa_d_and_d = 0xf38d;
     public const int fa_dailymotion = 0xe052;
+    public const int fa_dart_lang = 0xe693;
     public const int fa_dashcube = 0xf210;
     public const int fa_debian = 0xe60b;
     public const int fa_deezer = 0xe077;
@@ -389,6 +391,7 @@ public static class FontAweSomeV6Brands
     public const int fa_firstdraft = 0xf3a1;
     public const int fa_flickr = 0xf16e;
     public const int fa_flipboard = 0xf44d;
+    public const int fa_flutter = 0xe694;
     public const int fa_fly = 0xf417;
     public const int fa_font_awesome = 0xf2b4;
     public const int fa_fonticons_fi = 0xf3a2;
@@ -731,9 +734,9 @@ public static class FontAweSomeV6Brands
 }
 
 ///<summary>
-///Font Awesome version: 6.5.2
+///Font Awesome version: 6.6.0
 ///fa-solid-900.ttf
-///Symbol count: 1392
+///Symbol count: 1395
 ///</summary>
 public static class FontAweSomeV6Solid
 {
@@ -1924,6 +1927,7 @@ public static class FontAweSomeV6Solid
     public const int fa_table_cells_column_lock = 0xe678;
     public const int fa_table_cells_large = 0xf009;
     public const int fa_table_cells_row_lock = 0xe67a;
+    public const int fa_table_cells_row_unlock = 0xe691;
     public const int fa_table_cells = 0xf00a;
     public const int fa_table_columns = 0xf0db;
     public const int fa_table_list = 0xf00b;
@@ -1965,6 +1969,7 @@ public static class FontAweSomeV6Solid
     public const int fa_thermometer = 0xf491;
     public const int fa_thumbs_down = 0xf165;
     public const int fa_thumbs_up = 0xf164;
+    public const int fa_thumbtack_slash = 0xe68f;
     public const int fa_thumbtack = 0xf08d;
     public const int fa_ticket_simple = 0xf3ff;
     public const int fa_ticket = 0xf145;
@@ -2103,6 +2108,7 @@ public static class FontAweSomeV6Solid
     public const int fa_water_ladder = 0xf5c5;
     public const int fa_water = 0xf773;
     public const int fa_wave_square = 0xf83e;
+    public const int fa_web_awesome = 0xe682;
     public const int fa_weight_hanging = 0xf5cd;
     public const int fa_weight_scale = 0xf496;
     public const int fa_wheat_awn_circle_exclamation = 0xe598;

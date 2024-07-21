@@ -185,17 +185,82 @@ namespace Sunny.UI
         }
     }
 
-    internal static class FontAweSomeV6ItemBuilder
+    public static class FontAweSomeV6ItemBuilder
     {
         public static void Build()
         {
             string path = @"D:\Temp\Font-Awesome-6.x\";
             string scss = path + @"scss\_variables.scss";
-            string version = "Font Awesome version: 6.5.2";
+            string version = "Font Awesome version: 6.6.0";
 
             string[] lines = File.ReadAllLines(scss);
 
+            string header = """
+                 /******************************************************************************
+                 * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
+                 * CopyRight (C) 2012-2024 ShenYongHua(沈永华).
+                 * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
+                 *
+                 * Blog:   https://www.cnblogs.com/yhuse
+                 * Gitee:  https://gitee.com/yhuse/SunnyUI
+                 * GitHub: https://github.com/yhuse/SunnyUI
+                 *
+                 * SunnyUI.dll can be used for free under the GPL-3.0 license.
+                 * If you use this code, please keep this note.
+                 * 如果您使用此代码，请保留此说明。
+                 ******************************************************************************
+                 * 文件名称: UFontAwesomeV6.cs
+                 * 文件说明: 字体图片定义类：FontAweSome，V6.4.0
+                 * 当前版本: V3.1
+                 * 创建日期: 2023-04-23
+                 *
+                 * 2023-04-23: V3.3.5 增加文件说明
+                 * 2024-06-26: V3.6.7 更新为Font Awesome version: 6.5.2
+                 * 2024-06-27: V3.6.7 减小文件大小
+                 * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
+                ******************************************************************************/
+
+                /******************************************************************************
+                 * https://fontawesome.com/search?o=r&m=free
+                 * https://fontawesome.com/license/free
+                 * https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt
+                 ******************************************************************************
+
+                UPDATED: JULY 12, 2018
+
+                Font Awesome Free License
+
+                Font Awesome Free is free, open source, and GPL friendly. You can use it for 
+                commercial projects, open source projects, or really almost whatever you want.
+
+                Icons - CC BY 4.0 License
+                In the Font Awesome Free download, the CC BY 4.0 license applies to all icons 
+                packaged as .svg and .js files types.
+
+                Fonts - SIL OFL 1.1 License
+                In the Font Awesome Free download, the SIL OFL license applies to all icons 
+                packaged as web and desktop font files.
+
+                Code - MIT License
+                In the Font Awesome Free download, the MIT license applies to all non-font and 
+                non-icon files.
+
+                Attribution
+                Attribution is required by MIT, SIL OFL, and CC BY licenses. Downloaded Font 
+                Awesome Free files already contain embedded comments with sufficient 
+                attribution, so you shouldn't need to do anything additional when using 
+                these files normally.
+
+                We've kept attribution comments terse, so we ask that you do not actively work 
+                to remove them from files, especially code. They're a great way for folks to 
+                learn about Font Awesome.
+                ******************************************************************************/
+                
+                """;
+
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine(header);
+
             int startLine = 0;
             for (startLine = 0; startLine < lines.Length; startLine++)
             {
@@ -284,7 +349,7 @@ namespace Sunny.UI
             }
             sb.AppendLine("}");
 
-            File.WriteAllText("D:\\UFontAwesomeV6.cs", sb.ToString());
+            File.WriteAllText("D:\\UFontAwesomeV6.cs", sb.ToString(), Encoding.UTF8);
         }
     }
 }
