@@ -185,7 +185,7 @@ namespace Sunny.UI
         }
     }
 
-    public static class FontAweSomeV6ItemBuilder
+    internal static class FontAweSomeV6ItemBuilder
     {
         public static void Build()
         {

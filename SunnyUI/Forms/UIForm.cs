@@ -107,6 +107,8 @@ namespace Sunny.UI
             ZoomScaleRectChanged?.Invoke(this, ZoomScaleRect);
         }
 
+        public event OnZoomScaleRectChanged ZoomScaleRectChanged;
+
         [DefaultValue(typeof(Size), "0, 0")]
         [Description("设计界面大小"), Category("SunnyUI")]
         public Size ZoomScaleSize
@@ -760,8 +762,6 @@ namespace Sunny.UI
             IsShown = true;
             SetZoomScaleRect();
         }
-
-        public event OnZoomScaleRectChanged ZoomScaleRectChanged;
 
         /// <summary>
         /// 是否显示圆角

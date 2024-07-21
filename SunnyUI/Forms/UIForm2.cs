@@ -23,6 +23,7 @@
  * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
  * 2024-06-08: V3.6.6 防止图标转换错误
  * 2024-07-20: V3.6.8 修改最大化时按钮位置
+ * 2024-07-21: V3.6.8 修改属性与UIForm兼容
 ******************************************************************************/
 
 using System;
@@ -46,6 +47,74 @@ namespace Sunny.UI
 
             fieldW = typeof(Control).GetField("_clientWidth", BindingFlags.NonPublic | BindingFlags.Instance) ?? typeof(Control).GetField("clientWidth", BindingFlags.NonPublic | BindingFlags.Instance);
             fieldH = typeof(Control).GetField("_clientHeight", BindingFlags.NonPublic | BindingFlags.Instance) ?? typeof(Control).GetField("clientHeight", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+
+        /// <summary>
+        /// 禁止控件跟随窗体缩放
+        /// </summary>
+        [DefaultValue(false), Category("SunnyUI"), Description("禁止控件跟随窗体缩放")]
+        public bool ZoomScaleDisabled { get; set; }
+
+        private void SetZoomScaleRect()
+        {
+            if (ZoomScaleRect.Width == 0 && ZoomScaleRect.Height == 0)
+            {
+                ZoomScaleRect = new Rectangle(ZoomScaleSize.Width, ZoomScaleSize.Height, 0, 0);
+            }
+
+            if (ZoomScaleRect.Width == 0 && ZoomScaleRect.Height == 0)
+            {
+                ZoomScaleRect = new Rectangle(Left, Top, Width, Height);
+            }
+
+            ZoomScaleRectChanged?.Invoke(this, ZoomScaleRect);
+        }
+
+        public event OnZoomScaleRectChanged ZoomScaleRectChanged;
+
+        [DefaultValue(typeof(Size), "0, 0")]
+        [Description("设计界面大小"), Category("SunnyUI")]
+        public Size ZoomScaleSize
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 控件缩放前在其容器里的位置
+        /// </summary>
+        [Browsable(false), DefaultValue(typeof(Rectangle), "0, 0, 0, 0")]
+        public Rectangle ZoomScaleRect { get; set; }
+
+        /// <summary>
+        /// 设置控件缩放比例
+        /// </summary>
+        /// <param name="scale">缩放比例</param>
+        private void SetZoomScale()
+        {
+            if (ZoomScaleDisabled) return;
+            if (!UIStyles.DPIScale || !UIStyles.ZoomScale) return;
+            if (ZoomScaleRect.Width == 0 || ZoomScaleRect.Height == 0) return;
+            if (Width == 0 || Height == 0) return;
+            float scale = Math.Min(Width * 1.0f / ZoomScaleRect.Width, Height * 1.0f / ZoomScaleRect.Height);
+            if (scale.EqualsFloat(0)) return;
+            foreach (Control control in this.GetAllZoomScaleControls())
+            {
+                if (control is IZoomScale ctrl)
+                {
+                    UIZoomScale.SetZoomScale(control, scale);
+                }
+            }
+
+            ZoomScaleChanged?.Invoke(this, scale);
+        }
+
+        public event OnZoomScaleChanged ZoomScaleChanged;
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            SetZoomScaleRect();
         }
 
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
