@@ -58,7 +58,7 @@
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
  * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
  * 2024-06-08: V3.6.6 防止图标转换错误
- * 2024-07-20: V3.6.8 最大化时，鼠标拖拽标题超过一定范围后再恢复Normal显示
+ * 2024-07-20: V3.6.8 修改为初始化最大化后恢复时界面尺寸大小正常
 ******************************************************************************/
 
 using System;
@@ -255,16 +255,6 @@ namespace Sunny.UI
 
         public event EventHandler ExtendBoxClick;
 
-        /// <summary>
-        /// 窗体最大化前的大小
-        /// </summary>
-        private Size size;
-
-        /// <summary>
-        /// 窗体最大化前所处的位置
-        /// </summary>
-        private Point location;
-
         private void ShowMaximize(bool IsOnMoving = false)
         {
             Screen screen = Screen.FromPoint(MousePosition);
@@ -276,32 +266,12 @@ namespace Sunny.UI
 
             if (WindowState == FormWindowState.Normal)
             {
-                size = Size;
-                // 若窗体从正常模式->最大化模式，该操作是由移动窗体至顶部触发的，记录的是移动前的窗体位置
-                location = IsOnMoving ? FormLocation : Location;
                 FormEx.SetFormRoundRectRegion(this, 0);
                 DoWindowStateChanged(FormWindowState.Maximized);
                 WindowState = FormWindowState.Maximized;
             }
             else if (WindowState == FormWindowState.Maximized)
             {
-                if (size.Width == 0 || size.Height == 0)
-                {
-                    int w = 800;
-                    if (MinimumSize.Width > 0) w = MinimumSize.Width;
-                    int h = 600;
-                    if (MinimumSize.Height > 0) h = MinimumSize.Height;
-                    size = new Size(w, h);
-                }
-
-                Size = size;
-                if (location.X == 0 && location.Y == 0)
-                {
-                    location = new Point(screen.Bounds.Left + screen.Bounds.Width / 2 - size.Width / 2,
-                      screen.Bounds.Top + screen.Bounds.Height / 2 - size.Height / 2);
-                }
-
-                Location = location;
                 FormEx.SetFormRoundRectRegion(this, ShowRadius ? 5 : 0);
                 DoWindowStateChanged(FormWindowState.Normal);
                 WindowState = FormWindowState.Normal;
