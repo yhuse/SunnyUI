@@ -11,6 +11,12 @@ namespace Sunny.UI.Demo
         {
             InitializeComponent();
 
+            //关联窗体承载多页面框架的容器UITabControl
+            //窗体上如果只有一个UITabControl，也会自动关联，超过一个需要手动关联
+            this.MainTabControl = uiTabControl1;
+            uiNavBar1.TabControl = uiTabControl1;
+
+            //设置初始页面索引（关联页面，唯一不重复即可）
             int pageIndex = 1000;
 
             //uiNavBar1设置节点，也可以在Nodes属性里配置
