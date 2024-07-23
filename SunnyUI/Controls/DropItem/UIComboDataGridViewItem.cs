@@ -19,6 +19,7 @@
  * 2023-03-29: V3.3.3 增加多语翻译
  * 2024-05-28: V3.6.6 增加可过滤未显示列
  * 2024-05-28: V3.6.6 FilterColumnName增加“;”分隔，支持多列过滤
+ * 2024-07-23: V3.6.8 过滤字符串可以包含'*','[',']','%'字符
 ******************************************************************************/
 
 using System;
@@ -381,6 +382,24 @@ namespace Sunny.UI
             }
             else
             {
+                char[] chars = filterText.ToCharArray();
+                List<char> chars2 = new List<char>();
+                foreach (char c in chars)
+                {
+                    if (c.Equals('*') || c.Equals('[') || c.Equals(']') || c.Equals('%'))
+                    {
+                        chars2.Add('[');
+                        chars2.Add(c);
+                        chars2.Add(']');
+                    }
+                    else
+                    {
+                        chars2.Add(c);
+                    }
+                }
+
+                filterText = new string(chars2.ToArray());
+
                 if (FilterColumnName.IsValid())
                 {
                     if (FilterColumnName.Contains(";"))
@@ -418,7 +437,6 @@ namespace Sunny.UI
                 }
             }
 
-            filter = filter.Replace("*", "[*]");
             if (dataGridView.DataSource is DataTable table)
             {
                 try
