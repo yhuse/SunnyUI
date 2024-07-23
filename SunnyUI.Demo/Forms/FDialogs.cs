@@ -4,11 +4,17 @@ using System.Threading;
 
 namespace Sunny.UI.Demo
 {
-    public partial class FDialogs : UIPage
+    public partial class FDialogs : UIPage, ITranslate
     {
         public FDialogs()
         {
             InitializeComponent();
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            btnCH.PerformClick();
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -140,16 +146,6 @@ namespace Sunny.UI.Demo
             this.ShowErrorNotifier("Error");
         }
 
-        private void btnCH_Click(object sender, EventArgs e)
-        {
-            UILocalizeHelper.SetCH();
-        }
-
-        private void btnEN_Click(object sender, EventArgs e)
-        {
-            UILocalizeHelper.SetEN();
-        }
-
         private void uiSymbolButton9_Click(object sender, EventArgs e)
         {
             this.ShowSuccessTip("轻便消息提示框 - 成功");
@@ -233,6 +229,33 @@ namespace Sunny.UI.Demo
             this.ShowProcessForm(200);
             Thread.Sleep(2000);
             this.HideProcessForm();
+        }
+
+        private void btnCH_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetCH();
+            LoginText = "登录";
+            UIStyles.Translate();
+        }
+
+        private void btnEN_Click(object sender, EventArgs e)
+        {
+            UILocalizeHelper.SetEN();
+            LoginText = "Login";
+            UIStyles.Translate();
+        }
+
+        private string LoginText = "登录";
+
+        public void Translate()
+        {
+            uiSymbolButton6.Text = btnSuccess.Text = uiSymbolButton9.Text = UILocalize.SuccessTitle;
+            uiSymbolButton5.Text = btnWarn.Text = uiSymbolButton8.Text = UILocalize.WarningTitle;
+            uiSymbolButton4.Text = btnError.Text = uiSymbolButton7.Text = UILocalize.ErrorTitle;
+            uiSymbolButton2.Text = btnInfo.Text = UILocalize.InfoTitle;
+            btnAsk.Text = UILocalize.AskTitle;
+
+            uiSymbolButton3.Text = uiSymbolButton10.Text = LoginText;
         }
     }
 }

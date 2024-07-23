@@ -64,6 +64,7 @@
             this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
             this.uiLine11 = new Sunny.UI.UILine();
             this.uiSymbolButton12 = new Sunny.UI.UISymbolButton();
+            this.uiPagination1 = new Sunny.UI.UIPagination();
             this.SuspendLayout();
             // 
             // btnError
@@ -326,7 +327,7 @@
             this.uiLine5.Location = new System.Drawing.Point(30, 292);
             this.uiLine5.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine5.Name = "uiLine5";
-            this.uiLine5.Size = new System.Drawing.Size(670, 20);
+            this.uiLine5.Size = new System.Drawing.Size(442, 20);
             this.uiLine5.TabIndex = 58;
             this.uiLine5.Text = "UINotifier";
             this.uiLine5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -434,9 +435,9 @@
             this.uiLine6.Location = new System.Drawing.Point(30, 450);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
-            this.uiLine6.Size = new System.Drawing.Size(328, 20);
+            this.uiLine6.Size = new System.Drawing.Size(668, 20);
             this.uiLine6.TabIndex = 59;
-            this.uiLine6.Text = "ULocalize";
+            this.uiLine6.Text = "国际化";
             this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnEN
@@ -450,7 +451,7 @@
             this.btnEN.Size = new System.Drawing.Size(100, 35);
             this.btnEN.Symbol = 57571;
             this.btnEN.TabIndex = 61;
-            this.btnEN.Text = "EN";
+            this.btnEN.Text = "English";
             this.btnEN.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEN.Click += new System.EventHandler(this.btnEN_Click);
             // 
@@ -466,7 +467,7 @@
             this.btnCH.StyleCustomMode = true;
             this.btnCH.Symbol = 57571;
             this.btnCH.TabIndex = 60;
-            this.btnCH.Text = "CH";
+            this.btnCH.Text = "中文";
             this.btnCH.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCH.Click += new System.EventHandler(this.btnCH_Click);
             // 
@@ -637,10 +638,10 @@
             this.uiLine10.BackColor = System.Drawing.Color.Transparent;
             this.uiLine10.Font = new System.Drawing.Font("宋体", 12F);
             this.uiLine10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.uiLine10.Location = new System.Drawing.Point(372, 450);
+            this.uiLine10.Location = new System.Drawing.Point(486, 292);
             this.uiLine10.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine10.Name = "uiLine10";
-            this.uiLine10.Size = new System.Drawing.Size(328, 20);
+            this.uiLine10.Size = new System.Drawing.Size(214, 20);
             this.uiLine10.TabIndex = 74;
             this.uiLine10.Text = "选择文件夹";
             this.uiLine10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -649,7 +650,7 @@
             // 
             this.uiSymbolButton13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton13.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiSymbolButton13.Location = new System.Drawing.Point(372, 482);
+            this.uiSymbolButton13.Location = new System.Drawing.Point(484, 324);
             this.uiSymbolButton13.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton13.Name = "uiSymbolButton13";
             this.uiSymbolButton13.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
@@ -688,11 +689,32 @@
             this.uiSymbolButton12.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton12.Click += new System.EventHandler(this.uiSymbolButton12_Click);
             // 
+            // uiPagination1
+            // 
+            this.uiPagination1.ButtonFillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiPagination1.ButtonStyleInherited = false;
+            this.uiPagination1.CausesValidation = false;
+            this.uiPagination1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiPagination1.Location = new System.Drawing.Point(258, 482);
+            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPagination1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPagination1.Name = "uiPagination1";
+            this.uiPagination1.PagerCount = 11;
+            this.uiPagination1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiPagination1.ShowText = false;
+            this.uiPagination1.Size = new System.Drawing.Size(442, 35);
+            this.uiPagination1.TabIndex = 79;
+            this.uiPagination1.Text = "uiDataGridPage1";
+            this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiPagination1.TotalCount = 40;
+            // 
             // FDialogs
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 549);
+            this.ClientSize = new System.Drawing.Size(800, 590);
+            this.Controls.Add(this.uiPagination1);
             this.Controls.Add(this.uiLine11);
             this.Controls.Add(this.uiSymbolButton12);
             this.Controls.Add(this.uiLine1);
@@ -776,5 +798,6 @@
         private UISymbolButton uiSymbolButton13;
         private UILine uiLine11;
         private UISymbolButton uiSymbolButton12;
+        private UIPagination uiPagination1;
     }
 }

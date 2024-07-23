@@ -266,7 +266,7 @@ namespace Sunny.UI
             UILocalize.Saturday = "SAT";
             UILocalize.Sunday = "SUN";
 
-            UILocalize.Prev = "Previous";
+            UILocalize.Prev = "Prev";
             UILocalize.Next = "Next";
             UILocalize.SelectPageLeft = "Page";
             UILocalize.SelectPageRight = "";
