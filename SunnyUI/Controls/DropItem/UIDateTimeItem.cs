@@ -21,6 +21,7 @@
  * 2020-07-08: V2.2.6 重写下拉窗体，缩短创建时间
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2024-07-14: V3.6.7 修改时间界面水平分割线颜色和位置
+ * 2024-07-25: V3.6.8 修改单击选择日期后立即刷新，双击可选择并关闭下拉框
 ******************************************************************************/
 
 using System;
@@ -333,6 +334,7 @@ namespace Sunny.UI
             p3.MouseClick += p3_MouseClick;
             p3.MouseLeave += p3_MouseLeave;
             p3.MouseMove += p3_MouseMove;
+            p3.MouseDoubleClick += P3_MouseDoubleClick;
             // 
             // sb
             // 
@@ -1352,7 +1354,31 @@ namespace Sunny.UI
 
             date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
             DoValueChanged(this, Date);
+            p3.Invalidate();
             //CloseParent();
+        }
+
+        private void P3_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Location.Y <= 30) return;
+            int width = p3.Width / 7;
+            int height = (p3.Height - 30) / 6;
+            int x = e.Location.X / width;
+            int y = (e.Location.Y - 30) / height;
+            int id = x + y * 7;
+            if (id < 0 || id >= 42) return;
+            date = days[id].Date;
+            if (ShowToday && e.Location.Y > p3.Height - height && e.Location.X > p3.Width - width * 4)
+            {
+                date = DateTime.Now.Date;
+                DoValueChanged(this, Date);
+                Close();
+            }
+
+            date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
+            DoValueChanged(this, Date);
+            p3.Invalidate();
+            Close();
         }
 
         private void p1_MouseLeave(object sender, EventArgs e)
