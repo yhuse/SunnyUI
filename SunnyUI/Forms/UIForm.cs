@@ -59,6 +59,7 @@
  * 2024-05-16: V3.6.6 Resizable替代ShowDragStretch，显示边框可拖拽调整窗体大小
  * 2024-06-08: V3.6.6 防止图标转换错误
  * 2024-07-20: V3.6.8 修改为初始化最大化后恢复时界面尺寸大小正常
+ * 2024-07-26: V3.6.8 修复鼠标点击事件
 ******************************************************************************/
 
 using System;
@@ -253,6 +254,8 @@ namespace Sunny.UI
                     }
                 }
             }
+
+            base.OnMouseClick(e);
         }
 
         public event EventHandler ExtendBoxClick;
