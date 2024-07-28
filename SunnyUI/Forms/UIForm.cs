@@ -60,6 +60,7 @@
  * 2024-06-08: V3.6.6 防止图标转换错误
  * 2024-07-20: V3.6.8 修改为初始化最大化后恢复时界面尺寸大小正常
  * 2024-07-26: V3.6.8 修复鼠标点击事件
+ * 2024-07-28: V3.6.8 最大化后，鼠标点击标题栏最上方，不恢复正常大小
 ******************************************************************************/
 
 using System;
@@ -260,7 +261,7 @@ namespace Sunny.UI
 
         public event EventHandler ExtendBoxClick;
 
-        private void ShowMaximize(bool IsOnMoving = false)
+        private void ShowMaximize()
         {
             Screen screen = Screen.FromPoint(MousePosition);
             base.MaximumSize = ShowFullScreen ? screen.Bounds.Size : screen.WorkingArea.Size;
@@ -325,6 +326,7 @@ namespace Sunny.UI
             if (InControlBox || InMaxBox || InMinBox || InExtendBox) return;
             if (!ShowTitle) return;
             if (e.Y > Padding.Top) return;
+            if (e.Y == 0) return;
 
             ShowMaximize();
         }
@@ -364,9 +366,9 @@ namespace Sunny.UI
             {
                 //int screenIndex = GetMouseInScreen(PointToScreen(e.Location));
                 Screen screen = Screen.FromPoint(MousePosition);
-                if (MousePosition.Y == screen.WorkingArea.Top && MaximizeBox)
+                if (MousePosition.Y == screen.WorkingArea.Top && MaximizeBox && WindowState == FormWindowState.Normal)
                 {
-                    ShowMaximize(true);
+                    ShowMaximize();
                 }
 
                 // 防止窗体上移时标题栏超出容器，导致后续无法移动
