@@ -40,7 +40,9 @@ namespace Sunny.UI
         Switch,
         ComboTreeView,
         ComboCheckedListBox,
-        ComboDataGridView
+        ComboDataGridView,
+        FileSelect,
+        DirSelect
     }
 
     public class ComboCheckedListBoxItem
@@ -112,6 +114,47 @@ namespace Sunny.UI
                 Value = value,
                 CheckEmpty = checkEmpty,
                 Enabled = enabled
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddFileSelect(string dataPropertyName, string text, string filename, bool checkEmpty, string filter = "", string defaultExt = "", bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.FileSelect,
+                Text = text,
+                Value = filename,
+                CheckEmpty = checkEmpty,
+                Enabled = enabled,
+                DisplayMember = filter,
+                ValueMember = defaultExt
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddDirSelect(string dataPropertyName, string text, string dirname, bool checkEmpty, string desc = "请选择文件夹", bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.DirSelect,
+                Text = text,
+                Value = dirname,
+                CheckEmpty = checkEmpty,
+                Enabled = enabled,
+                DisplayMember = desc,
             };
 
             Infos.Add(info);

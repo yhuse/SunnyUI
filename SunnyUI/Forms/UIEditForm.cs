@@ -25,6 +25,7 @@
  * 2023-04-23: V3.3.5 代码生成增加，Double类型增加小数点位数
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-31: V3.5.2 代码生成增加ComboDataGridView类型
+ * 2024-08-02: V3.6.8 代码生成增加文件选择和文件夹选择功能
 ******************************************************************************/
 
 using System;
@@ -92,6 +93,31 @@ namespace Sunny.UI
                     var edit = (UITextBox)ctrl;
                     edit.Text = info.Value?.ToString();
                     edit.EnterAsTab = true;
+                }
+
+                if (info.EditType == EditType.FileSelect)
+                {
+                    ctrl = new UITextBox();
+                    var edit = (UITextBox)ctrl;
+                    edit.ShowButton = true;
+                    edit.ButtonSymbol = 261788;
+                    edit.ButtonSymbolSize = 22;
+                    edit.ButtonSymbolOffset = new Point(1, 1);
+                    edit.Text = info.Value?.ToString();
+                    edit.EnterAsTab = true;
+                    edit.ButtonClick += Edit_FileButtonClick;
+                }
+
+                if (info.EditType == EditType.DirSelect)
+                {
+                    ctrl = new UITextBox();
+                    var edit = (UITextBox)ctrl;
+                    edit.ShowButton = true;
+                    edit.ButtonSymbol = 61717;
+                    edit.ButtonSymbolOffset = new Point(2, 0);
+                    edit.Text = info.Value?.ToString();
+                    edit.EnterAsTab = true;
+                    edit.ButtonClick += Dir_FileButtonClick;
                 }
 
                 if (info.EditType == EditType.Password)
@@ -271,6 +297,28 @@ namespace Sunny.UI
             btnOK.ShowFocusLine = btnCancel.ShowFocusLine = true;
         }
 
+        private void Edit_FileButtonClick(object sender, EventArgs e)
+        {
+            UITextBox edit = (UITextBox)sender;
+            string filename = edit.Text;
+            var info = Option.Dictionary[edit.Name.Replace("Edit_", "")];
+            if (FileEx.OpenDialog(ref filename, info.DisplayMember, info.ValueMember))
+            {
+                edit.Text = filename;
+            }
+        }
+
+        private void Dir_FileButtonClick(object sender, EventArgs e)
+        {
+            UITextBox edit = (UITextBox)sender;
+            string dirname = edit.Text;
+            var info = Option.Dictionary[edit.Name.Replace("Edit_", "")];
+            if (DirEx.SelectDirEx(info.DisplayMember, ref dirname))
+            {
+                edit.Text = dirname;
+            }
+        }
+
         private void Edit_SelectIndexChange(object sender, int index)
         {
             UIComboDataGridView edit = (UIComboDataGridView)sender;
@@ -395,7 +443,8 @@ namespace Sunny.UI
             {
                 foreach (var info in Option.Infos)
                 {
-                    if (info.EditType == EditType.Text || info.EditType == EditType.Password)
+                    if (info.EditType == EditType.Text || info.EditType == EditType.Password ||
+                        info.EditType == EditType.FileSelect || info.EditType == EditType.DirSelect)
                     {
                         UITextBox edit = this.GetControl<UITextBox>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;
