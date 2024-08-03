@@ -65,7 +65,7 @@ namespace Sunny.UI
             FileName = fileName;
 
             FileInfo fi = new FileInfo(FileName);
-            DirEx.CreateDir(fi.DirectoryName);
+            Dir.CreateDir(fi.DirectoryName);
 
             if (!Directory.Exists(fi.DirectoryName))
             {

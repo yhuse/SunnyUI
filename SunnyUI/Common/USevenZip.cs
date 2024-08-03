@@ -169,7 +169,7 @@ namespace Sunny.UI
         {
             Process process = new Process();
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; //隐藏压缩窗口
-            process.StartInfo.FileName = DirEx.CurrentDir() + "7z.exe";
+            process.StartInfo.FileName = Dir.CurrentDir() + "7z.exe";
             process.StartInfo.CreateNoWindow = false;
             process.StartInfo.Arguments = arguments;
             process.Start();

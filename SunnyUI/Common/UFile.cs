@@ -54,15 +54,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 调用WINAPI删除文件
-        /// </summary>
-        /// <param name="lpFileName">文件</param>
-        public static int DeleteFile(string lpFileName)
-        {
-            return Win32.Kernel.DeleteFile(lpFileName);
-        }
-
-        /// <summary>
         /// 打开文件夹对话框
         /// </summary>
         /// <param name="filename">返回True时，获取文件名</param>

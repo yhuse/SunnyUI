@@ -90,7 +90,7 @@ namespace Sunny.UI
         {
             if (filename.IsNullOrWhiteSpace())
             {
-                filename = DirEx.CurrentDir() + ConfigFile;
+                filename = Dir.CurrentDir() + ConfigFile;
             }
 
             if (filename.IsNullOrWhiteSpace())
@@ -148,7 +148,7 @@ namespace Sunny.UI
         {
             if (filename.IsNullOrWhiteSpace())
             {
-                filename = DirEx.CurrentDir() + ConfigFile;
+                filename = Dir.CurrentDir() + ConfigFile;
             }
 
             if (filename.IsNullOrWhiteSpace())
@@ -217,7 +217,7 @@ namespace Sunny.UI
             }
 
             listidents.Clear();
-            DirEx.CreateDir(Path.GetDirectoryName(filename));
+            Dir.CreateDir(Path.GetDirectoryName(filename));
             string filetmp = filename + "." + RandomEx.RandomPureChar(3);
             File.Delete(filetmp);
             StreamWriter sw = new StreamWriter(filetmp, false, IniEncoding);
@@ -283,7 +283,7 @@ namespace Sunny.UI
         {
             if (filename.IsNullOrWhiteSpace())
             {
-                filename = DirEx.CurrentDir() + ConfigFile;
+                filename = Dir.CurrentDir() + ConfigFile;
             }
 
             if (filename.IsNullOrWhiteSpace())
@@ -341,7 +341,7 @@ namespace Sunny.UI
         {
             if (filename.IsNullOrWhiteSpace())
             {
-                filename = DirEx.CurrentDir() + ConfigFile;
+                filename = Dir.CurrentDir() + ConfigFile;
             }
 
             if (filename.IsNullOrWhiteSpace())
@@ -410,7 +410,7 @@ namespace Sunny.UI
             }
 
             listidents.Clear();
-            DirEx.CreateDir(Path.GetDirectoryName(filename));
+            Dir.CreateDir(Path.GetDirectoryName(filename));
             string filetmp = filename + "." + RandomEx.RandomPureChar(3);
             File.Delete(filetmp);
             StreamWriter sw = new StreamWriter(filetmp, false, Encoding.UTF8);

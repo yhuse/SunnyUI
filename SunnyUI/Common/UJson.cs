@@ -97,8 +97,10 @@ namespace Sunny.UI
             string jsonStr = Serialize(obj);
             try
             {
-                DirEx.CreateDir(Path.GetDirectoryName(filename));
-                File.WriteAllText(filename, jsonStr, encoding);
+                StreamWriter streamWriter = new StreamWriter(filename, false, encoding);
+                streamWriter.Write(jsonStr);
+                streamWriter.Flush();
+                streamWriter.Close();
             }
             catch (Exception e)
             {
