@@ -19,6 +19,7 @@
  * 2020-05-31: V2.2.5 增加文件
  * 2021-03-13: V3.0.2 增加单击事件以选中颜色
  * 2022-03-10: V3.1.1 修复选中颜色不显示
+ * 2024-08-05: V3.6.8 增加ShowDropDown()函数
  ******************************************************************************
  * 文件名称: UIColorPicker.cs
  * 文件说明: Color picker with color wheel and eye dropper
@@ -95,6 +96,11 @@ namespace Sunny.UI
             InitializeComponent();
             Value = UIColor.Blue;
             CreateInstance();
+        }
+
+        public void ShowDropDown()
+        {
+            UIColorPicker_ButtonClick(this, EventArgs.Empty);
         }
 
         private void UIColorPicker_ButtonClick(object sender, EventArgs e)
