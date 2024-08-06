@@ -38,6 +38,7 @@
  * 2024-01-01: V3.6.2 增加可修改滚动条颜色
  * 2024-01-20: V3.6.3 自定义行颜色，可通过代码给颜色值，SetNodePainter，增加选中颜色
  * 2024-05-27: V3.6.6 防止控件闪烁
+ * 2024-08-06: V3.6.8 不显示连线时，重绘节点前展开与收缩的图标
 ******************************************************************************/
 
 using System;
@@ -1345,11 +1346,31 @@ namespace Sunny.UI
                         //绘制左侧+号
                         if (ShowPlusMinus && e.Node.Nodes.Count > 0)
                         {
-                            e.Graphics.FillRectangle(Color.White, new Rectangle(lineX - 4, lineY - 4, 8, 8));
-                            e.Graphics.DrawRectangle(UIFontColor.Primary, new Rectangle(lineX - 4, lineY - 4, 8, 8));
-                            e.Graphics.DrawLine(UIFontColor.Primary, lineX - 2, lineY, lineX + 2, lineY);
-                            if (!e.Node.IsExpanded)
-                                e.Graphics.DrawLine(UIFontColor.Primary, lineX, lineY - 2, lineX, lineY + 2);
+                            if (ShowLines)
+                            {
+                                e.Graphics.FillRectangle(Color.White, new Rectangle(lineX - 4, lineY - 4, 8, 8));
+                                e.Graphics.DrawRectangle(UIFontColor.Primary, new Rectangle(lineX - 4, lineY - 4, 8, 8));
+                                e.Graphics.DrawLine(UIFontColor.Primary, lineX - 2, lineY, lineX + 2, lineY);
+                                if (!e.Node.IsExpanded)
+                                    e.Graphics.DrawLine(UIFontColor.Primary, lineX, lineY - 2, lineX, lineY + 2);
+                            }
+                            else
+                            {
+                                Color fcf = ForeColor;
+                                if (e.Node == SelectedNode) fcf = SelectedForeColor;
+                                if (Painter.ContainsKey(e.Node)) fcf = Painter[e.Node].ForeColor;
+
+                                if (e.Node.IsExpanded)
+                                {
+                                    e.Graphics.DrawFontImage(61703, 24, fcf,
+                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), -1, 1);
+                                }
+                                else
+                                {
+                                    e.Graphics.DrawFontImage(61701, 24, fcf,
+                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), -2, 1);
+                                }
+                            }
                         }
                     }
                 }
