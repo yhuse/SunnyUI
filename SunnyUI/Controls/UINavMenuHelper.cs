@@ -20,6 +20,7 @@
  * 2022-04-14: V3.1.3 重构扩展函数
  * 2022-11-29: V3.3.0 重构RemovePage方法
  * 2023-10-26: V3.5.1 字体图标增加旋转角度参数SymbolRotate
+ * 2024-08-07: V3.6.8 窗体移除时调用Close()
 ******************************************************************************/
 
 using System;
@@ -494,6 +495,7 @@ namespace Sunny.UI
                     {
                         TabPage tabpage = page.TabPage;
                         page.Final();
+                        page.Close();
                         page.Dispose();
                         page = null;
 
