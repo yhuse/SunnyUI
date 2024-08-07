@@ -164,7 +164,7 @@ namespace Sunny.UI
             //frm.StartPosition = FormStartPosition.CenterScreen;
             frm.StartPosition = FormStartPosition.Manual;
 
-            if (!centerParent || showMask)
+            if (!centerParent || showMask || form == null)
             {
                 frm.Left = screen.Left + screen.Width / 2 - frm.Width / 2;
                 frm.Top = screen.Top + screen.Height / 2 - frm.Height / 2;
@@ -206,7 +206,7 @@ namespace Sunny.UI
             using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
             if (frm != null) frm.Owner = form;
             frm.StartPosition = FormStartPosition.Manual;
-            if (!centerParent || showMask)
+            if (!centerParent || showMask || form == null)
             {
                 frm.Left = screen.Left + screen.Width / 2 - frm.Width / 2;
                 frm.Top = screen.Top + screen.Height / 2 - frm.Height / 2;

@@ -1363,12 +1363,12 @@ namespace Sunny.UI
                                 if (e.Node.IsExpanded)
                                 {
                                     e.Graphics.DrawFontImage(61703, 24, fcf,
-                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), -1, 1);
+                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), 1, 1);
                                 }
                                 else
                                 {
                                     e.Graphics.DrawFontImage(61701, 24, fcf,
-                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), -2, 1);
+                                        new RectangleF(lineX - 12, lineY - 12, 24, 24), 0, 1);
                                 }
                             }
                         }
