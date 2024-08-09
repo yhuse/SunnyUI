@@ -24,7 +24,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public partial class UIMessageForm2 : UIForm2
+    public partial class UIMessageForm2 : UIForm
     {
         public UIMessageForm2(string title, string message, UINotifierType noteType, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
         {

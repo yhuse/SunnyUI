@@ -31,6 +31,7 @@
  * 2024-05-08: V3.6.6 默认弹窗的ShowMask都设置为false
  * 2024-05-30: V3.6.6 修复弹窗标题显示错误
  * 2024-07-30: V3.6.8 弹窗默认修改为以当前窗体居中，showMask=true或者centerParent=false时以屏幕居中
+ * 2024-08-09: V3.6.8 重构弹窗，窗体扩展打开默认以窗体居中，取消TopMost参数，默认为true
 ******************************************************************************/
 
 using System;
@@ -88,39 +89,39 @@ namespace Sunny.UI
 
     public static class UIMessageBox
     {
-        public static void Show(string text, bool showMask = false, int delay = 0)
+        public static void Show(string message, bool showMask = false, int delay = 0)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, true, delay);
+            Show(message, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, delay);
         }
 
-        public static void ShowInfo(string text, bool showMask = false, int delay = 0)
+        public static void ShowInfo(string message, bool showMask = false, int delay = 0)
         {
-            Show(text, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, true, delay);
+            Show(message, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, delay);
         }
 
-        public static void ShowSuccess(string text, bool showMask = false, int delay = 0)
+        public static void ShowSuccess(string message, bool showMask = false, int delay = 0)
         {
-            Show(text, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, true, delay);
+            Show(message, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, delay);
         }
 
-        public static void ShowWarning(string text, bool showMask = false, int delay = 0)
+        public static void ShowWarning(string message, bool showMask = false, int delay = 0)
         {
-            Show(text, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, true, delay);
+            Show(message, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, delay);
         }
 
-        public static void ShowError(string text, bool showMask = false, int delay = 0)
+        public static void ShowError(string message, bool showMask = false, int delay = 0)
         {
-            Show(text, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, true, delay);
+            Show(message, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, delay);
         }
 
-        public static bool ShowAsk(string text, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        public static bool ShowAsk(string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return ShowMessageDialog(text, UILocalize.AskTitle, true, UIStyle.Blue, showMask, true, defaultButton);
+            return ShowMessageDialog(message, UILocalize.AskTitle, true, UIStyle.Blue, showMask, defaultButton);
         }
 
-        public static bool Show(string text, string caption, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = false, bool topMost = true, int delay = 0)
+        public static bool Show(string message, string title, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = false, int delay = 0)
         {
-            return ShowMessageDialog(text, caption, buttons == UIMessageBoxButtons.OKCancel, style, showMask, topMost, UIMessageDialogButtons.Ok, delay);
+            return ShowMessageDialog(message, title, buttons == UIMessageBoxButtons.OKCancel, style, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
@@ -131,14 +132,27 @@ namespace Sunny.UI
         /// <param name="showCancelButton">显示取消按钮</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        /// <param name="topMost">置顶</param>
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
         public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style,
-            bool showMask = false, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
+            bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
-            return ShowMessageDialog(null, message, title, showCancelButton, style, showMask, topMost, defaultButton, delay);
+            return ShowMessageDialog(null, message, title, showCancelButton, style, showMask, defaultButton, delay);
+        }
+
+        internal static Point GetLocation(this Size size, Form owner, bool screenCenter)
+        {
+            Rectangle screen = Screen.GetBounds(SystemEx.GetCursorPos());
+            if (screenCenter)
+            {
+                return new Point(screen.Left + screen.Width / 2 - size.Width / 2, screen.Top + screen.Height / 2 - size.Height / 2);
+            }
+            else
+            {
+                if (owner is UIPage) owner = owner.ParentForm;
+                return new Point(owner.Left + owner.Width / 2 - size.Width / 2, owner.Top + owner.Height / 2 - size.Height / 2);
+            }
         }
 
         /// <summary>
@@ -146,48 +160,21 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="message">信息</param>
-        /// <param name="showCancelButton">显示取消按钮</param>
+        /// <param name="showCancel">显示取消按钮</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        /// <param name="topMost">置顶</param>
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(Form form, string message, string title, bool showCancelButton,
-            UIStyle style, bool showMask = false, bool topMost = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0, bool centerParent = true)
+        public static bool ShowMessageDialog(Form owner, string message, string title, bool showCancel,
+            UIStyle style, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
-            Point pt = SystemEx.GetCursorPos();
-            Rectangle screen = Screen.GetBounds(pt);
             using UIMessageForm frm = new UIMessageForm();
-            if (frm != null) frm.Owner = form;
-            frm.DefaultButton = showCancelButton ? defaultButton : UIMessageDialogButtons.Ok;
-            //frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.StartPosition = FormStartPosition.Manual;
-
-            if (!centerParent || showMask || form == null)
-            {
-                frm.Left = screen.Left + screen.Width / 2 - frm.Width / 2;
-                frm.Top = screen.Top + screen.Height / 2 - frm.Height / 2;
-            }
-            else
-            {
-                if (form is UIPage) form = form.ParentForm;
-                frm.Left = form.Left + form.Width / 2 - frm.Width / 2;
-                frm.Top = form.Top + form.Height / 2 - frm.Height / 2;
-            }
-
-            frm.ShowMessage(message, title, showCancelButton, style);
-            frm.ShowInTaskbar = false;
-            frm.TopMost = topMost;
+            frm.ShowMessage(message, title, showCancel, style);
+            frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
             frm.Delay = delay;
-            frm.Render();
 
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            return frm.IsOK;
+            return frm.ShowForm(owner, showMask || owner == null, showMask);
         }
 
         /// <summary>
@@ -199,32 +186,270 @@ namespace Sunny.UI
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog2(Form form, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0, bool centerParent = true)
+        public static bool ShowMessageDialog2(Form owner, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
         {
-            Point pt = SystemEx.GetCursorPos();
-            Rectangle screen = Screen.GetBounds(pt);
             using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
-            if (frm != null) frm.Owner = form;
-            frm.StartPosition = FormStartPosition.Manual;
-            if (!centerParent || showMask || form == null)
-            {
-                frm.Left = screen.Left + screen.Width / 2 - frm.Width / 2;
-                frm.Top = screen.Top + screen.Height / 2 - frm.Height / 2;
-            }
-            else
-            {
-                if (form is UIPage) form = form.ParentForm;
-                frm.Left = form.Left + form.Width / 2 - frm.Width / 2;
-                frm.Top = form.Top + form.Height / 2 - frm.Height / 2;
-            }
+            frm.Delay = delay;
 
+            return frm.ShowForm(owner, showMask || owner == null, showMask);
+        }
+
+        internal static bool ShowForm(this UIForm frm, Form owner, bool screenCenter, bool showMask)
+        {
+            frm.Owner = owner;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Location = frm.Size.GetLocation(owner, screenCenter);
             frm.ShowInTaskbar = false;
             frm.TopMost = true;
-            frm.Delay = delay;
+            frm.Render();
+
             if (showMask)
                 return frm.ShowDialogWithMask() == DialogResult.OK;
             else
                 return frm.ShowDialog() == DialogResult.OK;
+        }
+    }
+
+    public static class UIInputDialog
+    {
+        private static UIInputForm CreateInputForm(bool checkEmpty, string desc)
+        {
+            UIInputForm frm = new UIInputForm();
+            frm.Text = UILocalize.InputTitle;
+            frm.Label.Text = desc;
+            frm.CheckInputEmpty = checkEmpty;
+            return frm;
+        }
+
+        public static bool ShowInputStringDialog(ref string value, UIStyle style, bool checkEmpty = true, string desc = "请输入字符串：", bool showMask = false, int maxLength = 1000)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Text = value;
+            frm.Editor.MaxLength = maxLength;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.Text;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputStringDialog(this Form owner, ref string value, bool checkEmpty = true, string desc = "请输入字符串：", bool showMask = false, int maxLength = 1000)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Text = value;
+            frm.Editor.MaxLength = maxLength;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.Text;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputPasswordDialog(ref string value, UIStyle style, bool checkEmpty = true, string desc = "请输入密码：", bool showMask = false, int maxLength = 1000)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.PasswordChar = '*';
+            frm.Editor.MaxLength = maxLength;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.Text;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputPasswordDialog(this Form owner, ref string value, bool checkEmpty = true, string desc = "请输入密码：", bool showMask = false, int maxLength = 1000)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.PasswordChar = '*';
+            frm.Editor.MaxLength = maxLength;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.Text;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputIntegerDialog(ref int value, UIStyle style, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Integer;
+            frm.Editor.IntValue = value;
+            frm.Editor.MaxLength = 11;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.IntValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputIntegerDialog(ref int value, UIStyle style, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Integer;
+            frm.Editor.IntValue = value;
+            frm.Editor.MaxLength = 11;
+            frm.Editor.Minimum = minimum;
+            frm.Editor.Maximum = maximum;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.IntValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputIntegerDialog(this Form owner, ref int value, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Integer;
+            frm.Editor.IntValue = value;
+            frm.Editor.MaxLength = 11;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.IntValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputIntegerDialog(this Form owner, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Integer;
+            frm.Editor.IntValue = value;
+            frm.Editor.MaxLength = 11;
+            frm.Editor.Minimum = minimum;
+            frm.Editor.Maximum = maximum;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.IntValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputDoubleDialog(ref double value, UIStyle style, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Double;
+            frm.Editor.DecimalPlaces = decimals;
+            frm.Editor.DoubleValue = value;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.DoubleValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputDoubleDialog(ref double value, UIStyle style, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Double;
+            frm.Editor.DecimalPlaces = decimals;
+            frm.Editor.DoubleValue = value;
+            frm.Editor.Minimum = minimum;
+            frm.Editor.Maximum = maximum;
+
+            frm.Style = style;
+            frm.ShowForm(null, true, showMask);
+
+            if (frm.IsOK) value = frm.Editor.DoubleValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputDoubleDialog(this Form owner, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Double;
+            frm.Editor.DecimalPlaces = decimals;
+            frm.Editor.DoubleValue = value;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.DoubleValue;
+            return frm.IsOK;
+        }
+
+        public static bool ShowInputDoubleDialog(this Form owner, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
+        {
+            using var frm = CreateInputForm(checkEmpty, desc);
+
+            frm.Editor.Type = UITextBox.UIEditType.Double;
+            frm.Editor.DecimalPlaces = decimals;
+            frm.Editor.DoubleValue = value;
+            frm.Editor.Minimum = minimum;
+            frm.Editor.Maximum = maximum;
+
+            frm.Style = UIStyles.Style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) value = frm.Editor.DoubleValue;
+            return frm.IsOK;
+        }
+    }
+
+    public static class UISelectDialog
+    {
+        public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, string title, string description, UIStyle style, bool showMask = false)
+        {
+            using UISelectForm frm = new UISelectForm();
+
+            frm.SetItems(items);
+            frm.SelectedIndex = selectIndex;
+            if (title.IsValid()) frm.Title = title;
+            if (description.IsValid()) frm.Description = description;
+
+            frm.Style = style;
+            frm.ShowForm(owner, showMask || owner == null, showMask);
+
+            if (frm.IsOK) selectIndex = frm.SelectedIndex;
+            return frm.IsOK;
+        }
+
+        public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, string title, string description, bool showMask = false)
+        {
+            return owner.ShowSelectDialog(ref selectIndex, items, title, description, UIStyles.Style, showMask);
+        }
+
+        public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, UIStyle style, bool showMask = false)
+        {
+            return owner.ShowSelectDialog(ref selectIndex, items, UILocalize.SelectTitle, "", style, showMask);
+        }
+
+        public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, bool showMask = false)
+        {
+            return owner.ShowSelectDialog(ref selectIndex, items, UIStyles.Style, showMask);
+        }
+    }
+
+    public static class UINotifierHelper
+    {
+        public static void ShowNotifier(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier", bool isDialog = false, int timeout = 0, Form inApp = null)
+        {
+            UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
+        }
+
+        public static void ShowNotifier(string desc, EventHandler clickEvent, UINotifierType type = UINotifierType.INFO, string title = "Notifier", int timeout = 0)
+        {
+            UINotifier.Show(desc, type, title, false, timeout, null, clickEvent);
         }
     }
 
@@ -252,213 +477,6 @@ namespace Sunny.UI
         /// 确定、取消
         /// </summary>
         OKCancel = 1
-    }
-
-    public static class UIInputDialog
-    {
-        public static bool ShowInputStringDialog(ref string value, UIStyle style, bool checkEmpty = true, string desc = "请输入字符串：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Editor.Text = value;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.Text;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputStringDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入字符串：", bool showMask = false)
-        {
-            return ShowInputStringDialog(ref value, UIStyles.Style, checkEmpty, desc, true, showMask);
-        }
-
-        public static bool ShowInputPasswordDialog(ref string value, UIStyle style, bool checkEmpty = true, string desc = "请输入密码：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.Editor.PasswordChar = '*';
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.Text;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputPasswordDialog(this Form form, ref string value, bool checkEmpty = true, string desc = "请输入密码：", bool showMask = false)
-        {
-            return ShowInputPasswordDialog(ref value, UIStyles.Style, checkEmpty, desc, true, showMask);
-        }
-
-        public static bool ShowInputIntegerDialog(ref int value, UIStyle style, bool checkEmpty = true, string desc = "请输入数字：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Editor.Type = UITextBox.UIEditType.Integer;
-            frm.Editor.IntValue = value;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.IntValue;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputIntegerDialog(ref int value, UIStyle style, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Editor.Type = UITextBox.UIEditType.Integer;
-            frm.Editor.IntValue = value;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Editor.MaxLength = 11;
-            frm.Editor.Minimum = minimum;
-            frm.Editor.Maximum = maximum;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.IntValue;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputIntegerDialog(this Form form, ref int value, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
-        {
-            return ShowInputIntegerDialog(ref value, UIStyles.Style, checkEmpty, desc, true, showMask);
-        }
-
-        public static bool ShowInputIntegerDialog(this Form form, ref int value, int minimum, int maximum, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
-        {
-            return ShowInputIntegerDialog(ref value, UIStyles.Style, minimum, maximum, checkEmpty, desc, true, showMask);
-        }
-
-        public static bool ShowInputDoubleDialog(ref double value, UIStyle style, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Editor.Type = UITextBox.UIEditType.Double;
-            frm.Editor.DecimalPlaces = decimals;
-            frm.Editor.DoubleValue = value;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.DoubleValue;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputDoubleDialog(ref double value, UIStyle style, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool topMost = true, bool showMask = false)
-        {
-            using UIInputForm frm = new UIInputForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.Editor.Type = UITextBox.UIEditType.Double;
-            frm.Editor.DecimalPlaces = decimals;
-            frm.Editor.DoubleValue = value;
-            frm.Text = UILocalize.InputTitle;
-            frm.Label.Text = desc;
-            frm.CheckInputEmpty = checkEmpty;
-            frm.Editor.Minimum = minimum;
-            frm.Editor.Maximum = maximum;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-
-            if (frm.IsOK) value = frm.Editor.DoubleValue;
-            return frm.IsOK;
-        }
-
-        public static bool ShowInputDoubleDialog(this Form form, ref double value, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
-        {
-            return ShowInputDoubleDialog(ref value, UIStyles.Style, decimals, checkEmpty, desc, true, showMask);
-        }
-
-        public static bool ShowInputDoubleDialog(this Form form, ref double value, double minimum, double maximum, int decimals = 2, bool checkEmpty = true, string desc = "请输入数字：", bool showMask = false)
-        {
-            return ShowInputDoubleDialog(ref value, UIStyles.Style, minimum, maximum, decimals, checkEmpty, desc, true, showMask);
-        }
-    }
-
-    public static class UISelectDialog
-    {
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, string title, string description, UIStyle style, bool topMost = true, bool showMask = false)
-        {
-            using UISelectForm frm = new UISelectForm();
-            frm.TopMost = topMost;
-            frm.Style = style;
-            frm.SetItems(items);
-            frm.SelectedIndex = selectIndex;
-            if (title.IsValid()) frm.Title = title;
-            if (description.IsValid()) frm.Description = description;
-            frm.Render();
-            if (showMask)
-                frm.ShowDialogWithMask();
-            else
-                frm.ShowDialog();
-            if (frm.IsOK) selectIndex = frm.SelectedIndex;
-            return frm.IsOK;
-        }
-
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, string title, string description, bool showMask = false)
-        {
-            return ShowSelectDialog(form, ref selectIndex, items, title, description, UIStyles.Style, true, showMask);
-        }
-
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, UIStyle style, bool showMask = false)
-        {
-            return ShowSelectDialog(form, ref selectIndex, items, UILocalize.SelectTitle, "", style, true, showMask);
-        }
-
-        public static bool ShowSelectDialog(this Form form, ref int selectIndex, IList items, bool showMask = false)
-        {
-            return form.ShowSelectDialog(ref selectIndex, items, UIStyles.Style, showMask);
-        }
-    }
-
-    public static class UINotifierHelper
-    {
-        public static void ShowNotifier(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier", bool isDialog = false, int timeout = 0, Form inApp = null)
-        {
-            UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
-        }
-
-        public static void ShowNotifier(string desc, EventHandler clickEvent, UINotifierType type = UINotifierType.INFO, string title = "Notifier", int timeout = 0)
-        {
-            UINotifier.Show(desc, type, title, false, timeout, null, clickEvent);
-        }
     }
 
     public static class FormEx
@@ -554,113 +572,113 @@ namespace Sunny.UI
         /// <summary>
         /// 正确信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowSuccessDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowSuccessDialog(UILocalize.SuccessTitle, msg, UIStyle.Green, showMask, centerParent, delay);
+            owner.ShowSuccessDialog(UILocalize.SuccessTitle, message, UIStyle.Green, showMask, delay);
         }
 
         /// <summary>
         /// 正确信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Green, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowSuccessDialog(this Form owner, string title, string message, UIStyle style = UIStyle.Green, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(form, msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog(owner, message, title, false, style, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowInfoDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowInfoDialog(UILocalize.InfoTitle, msg, UIStyles.Style, showMask, centerParent, delay);
+            owner.ShowInfoDialog(UILocalize.InfoTitle, message, UIStyles.Style, showMask, delay);
         }
 
         /// <summary>
         /// 信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Gray, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowInfoDialog(this Form owner, string title, string message, UIStyle style = UIStyle.Gray, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(form, msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog(owner, message, title, false, style, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 警告信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowWarningDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowWarningDialog(UILocalize.WarningTitle, msg, UIStyle.Orange, showMask, centerParent, delay);
+            owner.ShowWarningDialog(UILocalize.WarningTitle, message, UIStyle.Orange, showMask, delay);
         }
 
         /// <summary>
         /// 警告信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Orange, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowWarningDialog(this Form owner, string title, string message, UIStyle style = UIStyle.Orange, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(form, msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog(owner, message, title, false, style, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 错误信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowErrorDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowErrorDialog(UILocalize.ErrorTitle, msg, UIStyle.Red, showMask, centerParent, delay);
+            owner.ShowErrorDialog(UILocalize.ErrorTitle, message, UIStyle.Red, showMask, delay);
         }
 
         /// <summary>
         /// 错误信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Red, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowErrorDialog(this Form owner, string title, string message, UIStyle style = UIStyle.Red, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog(form, msg, title, false, style, showMask, true, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog(owner, message, title, false, style, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 确认信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string msg, bool showMask = false, bool centerParent = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        public static bool ShowAskDialog(this Form owner, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return UIMessageBox.ShowMessageDialog(form, msg, UILocalize.AskTitle, true, UIStyles.Style, showMask, true, defaultButton, 0, centerParent);
+            return UIMessageBox.ShowMessageDialog(owner, message, UILocalize.AskTitle, true, UIStyles.Style, showMask, defaultButton);
         }
 
         /// <summary>
         /// 确认信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog(this Form form, string title, string msg, UIStyle style = UIStyle.Blue, bool showMask = false, bool centerParent = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        public static bool ShowAskDialog(this Form owner, string title, string message, UIStyle style = UIStyle.Blue, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return UIMessageBox.ShowMessageDialog(form, msg, title, true, style, showMask, true, defaultButton, 0, centerParent);
+            return UIMessageBox.ShowMessageDialog(owner, message, title, true, style, showMask, defaultButton);
         }
 
         //---------------
@@ -668,113 +686,113 @@ namespace Sunny.UI
         /// <summary>
         /// 正确信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog2(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowSuccessDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowSuccessDialog2(UILocalize.SuccessTitle, msg, showMask, centerParent, delay);
+            owner.ShowSuccessDialog2(UILocalize.SuccessTitle, message, showMask, delay);
         }
 
         /// <summary>
         /// 正确信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowSuccessDialog2(this Form form, string title, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowSuccessDialog2(this Form owner, string title, string message, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog2(form, title, msg, UINotifierType.OK, showMask, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.OK, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog2(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowInfoDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowInfoDialog2(UILocalize.InfoTitle, msg, showMask, centerParent, delay);
+            owner.ShowInfoDialog2(UILocalize.InfoTitle, message, showMask, delay);
         }
 
         /// <summary>
         /// 信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowInfoDialog2(this Form form, string title, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowInfoDialog2(this Form owner, string title, string message, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog2(form, title, msg, UINotifierType.INFO, showMask, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.INFO, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 警告信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog2(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowWarningDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowWarningDialog2(UILocalize.WarningTitle, msg, showMask, centerParent, delay);
+            owner.ShowWarningDialog2(UILocalize.WarningTitle, message, showMask, delay);
         }
 
         /// <summary>
         /// 警告信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowWarningDialog2(this Form form, string title, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowWarningDialog2(this Form owner, string title, string message, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog2(form, title, msg, UINotifierType.WARNING, showMask, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.WARNING, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 错误信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog2(this Form form, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowErrorDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            form.ShowErrorDialog2(UILocalize.ErrorTitle, msg, showMask, centerParent, delay);
+            owner.ShowErrorDialog2(UILocalize.ErrorTitle, message, showMask, delay);
         }
 
         /// <summary>
         /// 错误信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
-        public static void ShowErrorDialog2(this Form form, string title, string msg, bool showMask = false, bool centerParent = true, int delay = 0)
+        public static void ShowErrorDialog2(this Form owner, string title, string message, bool showMask = false, int delay = 0)
         {
-            UIMessageBox.ShowMessageDialog2(form, title, msg, UINotifierType.ERROR, showMask, UIMessageDialogButtons.Ok, delay, centerParent);
+            UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.ERROR, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         /// <summary>
         /// 确认信息提示框
         /// </summary>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog2(this Form form, string msg, bool showMask = false, bool centerParent = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
+        public static bool ShowAskDialog2(this Form owner, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
         {
-            return UIMessageBox.ShowMessageDialog2(form, UILocalize.AskTitle, msg, UINotifierType.Ask, showMask, defaultButton, 0, centerParent);
+            return UIMessageBox.ShowMessageDialog2(owner, UILocalize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
         }
 
         /// <summary>
         /// 确认信息提示框
         /// </summary>
         /// <param name="title">标题</param>
-        /// <param name="msg">信息</param>
+        /// <param name="message">信息</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <returns>结果</returns>
-        public static bool ShowAskDialog2(this Form form, string title, string msg, bool showMask = false, bool centerParent = true, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
+        public static bool ShowAskDialog2(this Form owner, string title, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
         {
-            return UIMessageBox.ShowMessageDialog2(form, title, msg, UINotifierType.Ask, showMask, defaultButton, 0, centerParent);
+            return UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.Ask, showMask, defaultButton);
         }
         //---------------
 
