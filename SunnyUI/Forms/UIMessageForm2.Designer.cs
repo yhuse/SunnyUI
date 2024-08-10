@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             btnCancel = new UISymbolButton();
             btnOK = new UISymbolButton();
-            label1 = new System.Windows.Forms.Label();
             timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
@@ -42,7 +41,7 @@
             btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             btnCancel.Font = new System.Drawing.Font("宋体", 12F);
-            btnCancel.Location = new System.Drawing.Point(378, 124);
+            btnCancel.Location = new System.Drawing.Point(378, 164);
             btnCancel.Margin = new System.Windows.Forms.Padding(0);
             btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             btnCancel.Name = "btnCancel";
@@ -62,7 +61,7 @@
             btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             btnOK.Font = new System.Drawing.Font("宋体", 12F);
-            btnOK.Location = new System.Drawing.Point(263, 124);
+            btnOK.Location = new System.Drawing.Point(263, 164);
             btnOK.Margin = new System.Windows.Forms.Padding(0);
             btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             btnOK.Name = "btnOK";
@@ -74,16 +73,6 @@
             btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnOK.TipsText = null;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(119, 67);
-            label1.MaximumSize = new System.Drawing.Size(360, 0);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(359, 32);
-            label1.TabIndex = 12;
-            label1.Text = "提示消息提示消息提示消息提示消息提示消息提示消息提示消息";
-            // 
             // timer1
             // 
             timer1.Interval = 1000;
@@ -92,12 +81,10 @@
             // UIMessageForm2
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            ClientSize = new System.Drawing.Size(500, 180);
-            Controls.Add(label1);
+            ClientSize = new System.Drawing.Size(516, 220);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
             EscClose = true;
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIMessageForm2";
@@ -105,17 +92,16 @@
             ShowInTaskbar = false;
             StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             Text = "UIMessageForm2";
+            ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 500, 180);
             FormClosed += UIMessageForm2_FormClosed;
             Shown += UIMessageForm2_Shown;
             Paint += UIMessageForm2_Paint;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         protected UISymbolButton btnCancel;
         protected UISymbolButton btnOK;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
     }
 }

@@ -18,9 +18,11 @@
  *
  * 2024-05-16: V3.6.6 增加文件说明
  * 2024-06-08: V3.6.6 统一配色
+ * 2024-08-10: V3.6.8 重构文字显示位置，重绘
 ******************************************************************************/
 
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -30,12 +32,11 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Text = title;
-            label1.Text = message;
+            Message = message;
             btnOK.Text = UILocalize.OK;
             btnCancel.Text = UILocalize.Cancel;
 
             foreColor = Color.Black;
-
 
             if (noteType != UINotifierType.Ask)
             {
@@ -100,10 +101,36 @@ namespace Sunny.UI
                 foreColor = Color.White;
             }
 
-            int height = (190 - 48 + TitleHeight) + label1.Height;
-            if (height > 210) Height = height;
+            SizeF sf = e.Graphics.MeasureString(Message, font: Font, 360);
+            if (sf.Height > 60)
+            {
+                int height = (int)sf.Height - 60;
+                Height = 220 + height;
+
+                if (Owner != null)
+                {
+                    int t = Owner.Top;
+                    int h = Owner.Height;
+                    if (Owner is UIPage)
+                    {
+                        Form form = Owner.ParentForm;
+                        t = form.Top;
+                        h = form.Height;
+                    }
+
+                    Top = t + (h - Height) / 2;
+                }
+            }
+
+            float top = Height - TitleHeight - 76;
+            top = top / 2.0f - sf.Height / 2.0f;
+            PointF pt = new PointF(120, top + TitleHeight);
+
+            using SolidBrush br = new SolidBrush(ForeColor);
+            e.Graphics.DrawString(Message, Font, br, new RectangleF(pt.X, pt.Y, sf.Width, sf.Height));
+
             e.Graphics.FillRectangle(Color, new RectangleF(0, Height - 76, Width, 76));
-            e.Graphics.DrawFontImage(Symbol, 72, SymbolColor, new RectangleF(28, 64, 64, 64));
+            e.Graphics.DrawFontImage(Symbol, 72, SymbolColor, new RectangleF(28, 62, 64, 64));
         }
 
         private void timer1_Tick(object sender, System.EventArgs e)
