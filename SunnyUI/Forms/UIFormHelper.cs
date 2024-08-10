@@ -169,12 +169,25 @@ namespace Sunny.UI
         public static bool ShowMessageDialog(Form owner, string message, string title, bool showCancel,
             UIStyle style, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
-            using UIMessageForm frm = new UIMessageForm();
-            frm.ShowMessage(message, title, showCancel, style);
-            frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
-            frm.Delay = delay;
-
-            return frm.ShowForm(owner, showMask || owner == null, showMask);
+            if (owner == null)
+            {
+                using UIMessageForm frm = new UIMessageForm();
+                frm.ShowMessage(message, title, showCancel, style);
+                frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
+                frm.Delay = delay;
+                return frm.ShowForm(owner, showMask || owner == null, showMask);
+            }
+            else
+            {
+                return owner.ThreadSafeCall<bool>(() =>
+                {
+                    using UIMessageForm frm = new UIMessageForm();
+                    frm.ShowMessage(message, title, showCancel, style);
+                    frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
+                    frm.Delay = delay;
+                    return frm.ShowForm(owner, showMask || owner == null, showMask);
+                });
+            }
         }
 
         /// <summary>
@@ -188,10 +201,21 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowMessageDialog2(Form owner, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
         {
-            using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
-            frm.Delay = delay;
-
-            return frm.ShowForm(owner, showMask || owner == null, showMask);
+            if (owner == null)
+            {
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
+                frm.Delay = delay;
+                return frm.ShowForm(owner, showMask || owner == null, showMask);
+            }
+            else
+            {
+                return owner.ThreadSafeCall<bool>(() =>
+                {
+                    using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
+                    frm.Delay = delay;
+                    return frm.ShowForm(owner, showMask || owner == null, showMask);
+                });
+            }
         }
 
         internal static bool ShowForm(this UIForm frm, Form owner, bool screenCenter, bool showMask)

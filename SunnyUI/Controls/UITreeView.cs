@@ -1346,7 +1346,7 @@ namespace Sunny.UI
                         //绘制左侧+号
                         if (ShowPlusMinus && e.Node.Nodes.Count > 0)
                         {
-                            if (ShowLines)
+                            if (ShowLinesEx)
                             {
                                 e.Graphics.FillRectangle(Color.White, new Rectangle(lineX - 4, lineY - 4, 8, 8));
                                 e.Graphics.DrawRectangle(UIFontColor.Primary, new Rectangle(lineX - 4, lineY - 4, 8, 8));
