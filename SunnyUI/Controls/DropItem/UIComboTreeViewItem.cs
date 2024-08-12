@@ -78,7 +78,6 @@ namespace Sunny.UI
             treeView.MinimumSize = new System.Drawing.Size(1, 1);
             treeView.Name = "treeView";
             treeView.RadiusSides = UICornerRadiusSides.None;
-            treeView.ScrollBarStyleInherited = false;
             treeView.ShowText = false;
             treeView.Size = new System.Drawing.Size(250, 176);
             treeView.TabIndex = 0;
