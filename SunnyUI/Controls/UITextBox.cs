@@ -60,6 +60,7 @@
  * 2023-12-25: V3.6.2 增加Text的属性编辑器
  * 2024-01-13: V3.6.3 调整Radius时，自动调整文本框的位置
  * 2024-06-11: V3.6.6 调整为可继承
+ * 2024-08-12: V3.6.8 解决原生控件字体在微软雅黑时，显示不完整的问题
 ******************************************************************************/
 
 using System;
@@ -115,6 +116,7 @@ namespace Sunny.UI
             edit.MouseClick += Edit_MouseClick;
             edit.MouseDoubleClick += Edit_MouseDoubleClick;
             edit.SizeChanged += Edit_SizeChanged;
+            edit.FontChanged += Edit_FontChanged;
 
             btn.Parent = this;
             btn.Visible = false;
@@ -145,6 +147,18 @@ namespace Sunny.UI
 
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private void Edit_FontChanged(object sender, EventArgs e)
+        {
+            if (!edit.Multiline)
+            {
+                edit.AutoSize = true;
+                int height = edit.Height;
+                edit.AutoSize = false;
+                edit.Height = height + 1;
+                SizeChange();
+            }
         }
 
         int lastEditHeight = -1;
@@ -682,11 +696,7 @@ namespace Sunny.UI
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-
-            //if (!NoNeedChange)
-            //{
             SizeChange();
-            //}
         }
 
         public void SetScrollInfo()
