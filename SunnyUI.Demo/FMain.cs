@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
+    /// <summary>
+    /// Windows10、Windows11 建议用UIForm2，更接近原生窗体使用体验，用UIForm也可以
+    /// WindowsXP、Windows7 建议使用UIForm
+    /// </summary>
     public partial class FMain : UIForm2
     {
         public FMain()

@@ -58,10 +58,6 @@ namespace Sunny.UI.Demo
 
             uiComboBox1.SetTipsText(uiToolTip1, "Hello World.");
 
-            //日期选择框文本设置为空
-            uiDatePicker3.CanEmpty = true;
-            uiDatePicker3.Text = "";
-
             uiDatePicker4.Value = uiDatePicker1.Value = uiDatePicker2.Value = uiDatePicker3.Value = DateTime.Now.Date;
             uiDatetimePicker2.Value = uiDatetimePicker1.Value = DateTime.Now;
             uiTimePicker1.Value = uiTimePicker2.Value = DateTime.Now;
@@ -168,6 +164,13 @@ namespace Sunny.UI.Demo
         private void uiComboBox1_TipsClick(object sender, EventArgs e)
         {
             this.ShowInfoTip("Hello world.");
+        }
+
+        private void FCombobox_Shown(object sender, EventArgs e)
+        {
+            //日期选择框文本设置为空
+            uiDatePicker5.CanEmpty = true;
+            uiDatePicker5.Text = "";
         }
     }
 }

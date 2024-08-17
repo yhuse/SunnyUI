@@ -300,34 +300,6 @@ namespace Sunny.UI
     public class IniFile : IniBase
     {
         /// <summary>
-        /// 写结构
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        /// <typeparam name="T">T</typeparam>
-        public void WriteStruct<T>(string section, string key, T value) where T : struct
-        {
-            Write(section, key, value.ToBytes());
-        }
-
-        /// <summary>
-        /// 读结构
-        /// </summary>
-        /// <typeparam name="T">T</typeparam>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public T ReadStruct<T>(string section, string key, T Default) where T : struct
-        {
-            //得到结构体的大小
-            int size = Default.Size();
-            byte[] bytes = Read(section, key, "").ToHexBytes();
-            return size > bytes.Length ? Default : bytes.ToStruct<T>();
-        }
-
-        /// <summary>
         /// 写Byte数组
         /// </summary>
         /// <param name="section">section</param>

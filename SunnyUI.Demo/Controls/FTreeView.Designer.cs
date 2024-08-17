@@ -67,7 +67,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -75,7 +77,6 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 21;
             this.uiLine1.Text = "UITreeView";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiTreeView1
             // 
@@ -138,13 +139,12 @@ namespace Sunny.UI.Demo
             treeNode15,
             treeNode16,
             treeNode20});
-            this.uiTreeView1.ShowLines = true;
+            this.uiTreeView1.ScrollBarStyleInherited = false;
             this.uiTreeView1.ShowText = false;
             this.uiTreeView1.Size = new System.Drawing.Size(266, 313);
             this.uiTreeView1.TabIndex = 20;
             this.uiTreeView1.Text = null;
             this.uiTreeView1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiTreeView1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FTreeView
             // 
