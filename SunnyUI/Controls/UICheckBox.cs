@@ -24,6 +24,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-11-07: V3.5.2 增加修改图标大小
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
+ * 2024-08-26: V3.6.9 修复AutoSize在文字改变时未自动显示的问题，#IAKYX4
 ******************************************************************************/
 
 using System;
@@ -67,8 +68,8 @@ namespace Sunny.UI
             if (AutoSize && Dock == DockStyle.None)
             {
                 Size sf = TextRenderer.MeasureText(Text, Font);
-                int w = sf.Width + CheckBoxSize + 3;
-                int h = Math.Max(CheckBoxSize, sf.Height) + 2;
+                int w = sf.Width + CheckBoxSize + 7;
+                int h = Math.Max(CheckBoxSize, sf.Height) + 5;
                 if (Width != w) Width = w;
                 if (Height != h) Height = h;
             }
@@ -252,6 +253,12 @@ namespace Sunny.UI
         {
             get => fillColor;
             set => SetFillColor(value);
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            Invalidate();
         }
     }
 }
