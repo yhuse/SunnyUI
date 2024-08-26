@@ -96,7 +96,7 @@ namespace Sunny.UI
 
         public static void ShowInfo(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.InfoTitle, UIStyle.Gray, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UILocalize.InfoTitle, UIStyles.Style, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static void ShowSuccess(string message, bool showMask = false, int delay = 0)
@@ -135,10 +135,41 @@ namespace Sunny.UI
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
         /// <returns>结果</returns>
-        public static bool ShowMessageDialog(string message, string title, bool showCancelButton, UIStyle style,
+        public static bool ShowMessageDialog(string message, string title, bool showCancel, UIStyle style,
             bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
-            return ShowMessageDialog(null, message, title, showCancelButton, style, showMask, defaultButton, delay);
+            return ShowMessageDialog(null, message, title, showCancel, style, showMask, defaultButton, delay);
+        }
+
+        public static void ShowInfo2(string message, bool showMask = false, int delay = 0)
+        {
+            ShowMessageDialog2(UILocalize.InfoTitle, message, UINotifierType.INFO, showMask, UIMessageDialogButtons.Ok, delay);
+        }
+
+        public static void ShowSuccess2(string message, bool showMask = false, int delay = 0)
+        {
+            ShowMessageDialog2(UILocalize.SuccessTitle, message, UINotifierType.OK, showMask, UIMessageDialogButtons.Ok, delay);
+        }
+
+        public static void ShowWarning2(string message, bool showMask = false, int delay = 0)
+        {
+            ShowMessageDialog2(UILocalize.WarningTitle, message, UINotifierType.WARNING, showMask, UIMessageDialogButtons.Ok, delay);
+        }
+
+        public static void ShowError2(string message, bool showMask = false, int delay = 0)
+        {
+            ShowMessageDialog2(UILocalize.ErrorTitle, message, UINotifierType.ERROR, showMask, UIMessageDialogButtons.Ok, delay);
+        }
+
+        public static bool ShowAsk2(string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
+        {
+            return ShowMessageDialog2(UILocalize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
+        }
+
+        public static bool ShowMessageDialog2(string title, string message, UINotifierType noteType, bool showMask = false,
+            UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
+        {
+            return ShowMessageDialog2(null, title, message, noteType, showMask, defaultButton, delay);
         }
 
         /// <summary>
