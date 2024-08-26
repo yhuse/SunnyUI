@@ -61,6 +61,7 @@
  * 2024-01-13: V3.6.3 调整Radius时，自动调整文本框的位置
  * 2024-06-11: V3.6.6 调整为可继承
  * 2024-08-12: V3.6.8 解决原生控件字体在微软雅黑时，显示不完整的问题
+ * 2024-08-26: V3.6.9 修复微软雅黑字体显示不完整的问题
 ******************************************************************************/
 
 using System;
@@ -153,10 +154,9 @@ namespace Sunny.UI
         {
             if (!edit.Multiline)
             {
-                edit.AutoSize = true;
-                int height = edit.Height;
+                int height = edit.Font.Height;
                 edit.AutoSize = false;
-                edit.Height = height + 1;
+                edit.Height = height + 2;
                 SizeChange();
             }
         }
