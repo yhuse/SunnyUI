@@ -101,6 +101,11 @@ namespace Sunny.UI
 
         public int ValueWidth { get; set; } = 320;
 
+        public bool ExistsDataPropertyName(string dataPropertyName)
+        {
+            return Dictionary.ContainsKey(dataPropertyName);
+        }
+
         public void AddText(string dataPropertyName, string text, string value, bool checkEmpty, bool enabled = true)
         {
             if (Dictionary.ContainsKey(dataPropertyName))

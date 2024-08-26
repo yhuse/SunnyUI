@@ -141,20 +141,6 @@ namespace Sunny.UI
             return ShowMessageDialog(null, message, title, showCancelButton, style, showMask, defaultButton, delay);
         }
 
-        internal static Point GetLocation(this Size size, Form owner, bool screenCenter)
-        {
-            Rectangle screen = Screen.GetBounds(SystemEx.GetCursorPos());
-            if (screenCenter)
-            {
-                return new Point(screen.Left + screen.Width / 2 - size.Width / 2, screen.Top + screen.Height / 2 - size.Height / 2);
-            }
-            else
-            {
-                if (owner is UIPage) owner = owner.ParentForm;
-                return new Point(owner.Left + owner.Width / 2 - size.Width / 2, owner.Top + owner.Height / 2 - size.Height / 2);
-            }
-        }
-
         /// <summary>
         /// 确认信息提示框
         /// </summary>
@@ -169,13 +155,14 @@ namespace Sunny.UI
         public static bool ShowMessageDialog(Form owner, string message, string title, bool showCancel,
             UIStyle style, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
+            bool screenCenter = GetShowOnScreenCenter(showMask, owner);
             if (owner == null)
             {
                 using UIMessageForm frm = new UIMessageForm();
                 frm.ShowMessage(message, title, showCancel, style);
                 frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
                 frm.Delay = delay;
-                return frm.ShowForm(owner, showMask || owner == null, showMask);
+                return frm.ShowForm(owner, screenCenter, showMask);
             }
             else
             {
@@ -185,7 +172,7 @@ namespace Sunny.UI
                     frm.ShowMessage(message, title, showCancel, style);
                     frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
                     frm.Delay = delay;
-                    return frm.ShowForm(owner, showMask || owner == null, showMask);
+                    return frm.ShowForm(owner, screenCenter, showMask);
                 });
             }
         }
@@ -201,11 +188,12 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowMessageDialog2(Form owner, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
         {
+            bool screenCenter = GetShowOnScreenCenter(showMask, owner);
             if (owner == null)
             {
                 using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
                 frm.Delay = delay;
-                return frm.ShowForm(owner, showMask || owner == null, showMask);
+                return frm.ShowForm(owner, screenCenter, showMask);
             }
             else
             {
@@ -213,9 +201,18 @@ namespace Sunny.UI
                 {
                     using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
                     frm.Delay = delay;
-                    return frm.ShowForm(owner, showMask || owner == null, showMask);
+                    return frm.ShowForm(owner, screenCenter, showMask);
                 });
             }
+        }
+
+        private static bool GetShowOnScreenCenter(bool showMask, Form owner)
+        {
+            if (showMask) return true;
+            if (owner == null) return true;
+            if (owner.TopLevel) return false;
+            if (owner.ParentForm == null) return true;
+            return false;
         }
 
         internal static bool ShowForm(this UIForm frm, Form owner, bool screenCenter, bool showMask)
@@ -231,6 +228,23 @@ namespace Sunny.UI
                 return frm.ShowDialogWithMask() == DialogResult.OK;
             else
                 return frm.ShowDialog() == DialogResult.OK;
+        }
+
+        private static Point GetLocation(this Size size, Form owner, bool screenCenter)
+        {
+            Rectangle screen = Screen.GetBounds(SystemEx.GetCursorPos());
+            if (screenCenter || owner == null)
+            {
+                return new Point(screen.Left + screen.Width / 2 - size.Width / 2, screen.Top + screen.Height / 2 - size.Height / 2);
+            }
+            else
+            {
+                Form form = owner.TopLevel ? owner : owner.ParentForm;
+                if (form == null)
+                    return new Point(screen.Left + screen.Width / 2 - size.Width / 2, screen.Top + screen.Height / 2 - size.Height / 2);
+                else
+                    return new Point(form.Left + form.Width / 2 - size.Width / 2, form.Top + form.Height / 2 - size.Height / 2);
+            }
         }
     }
 

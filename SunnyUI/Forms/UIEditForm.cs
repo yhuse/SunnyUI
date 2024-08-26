@@ -339,6 +339,8 @@ namespace Sunny.UI
             InitEditor();
         }
 
+        public bool ExistsDataPropertyName(string dataPropertyName) => Option != null && Option.ExistsDataPropertyName(dataPropertyName);
+
         public object this[string dataPropertyName]
         {
             get
