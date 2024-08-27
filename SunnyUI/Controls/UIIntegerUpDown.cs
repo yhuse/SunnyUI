@@ -30,6 +30,7 @@
  * 2023-03-24: V3.3.3 删除ForbidInput属性，使用Inputable属性
  * 2023-12-28: V3.6.2 修复设置Style时按钮颜色不一致
  * 2024-08-27: V3.6.9 修改编辑框字体与显示字体一致
+ * 2024-08-27: V3.7.0 增加加按钮字体图标的偏移位置
 ******************************************************************************/
 
 using System;
@@ -320,5 +321,27 @@ namespace Sunny.UI
             }
         }
         public override Color ForeColor { get => pnlValue.ForeColor; set => pnlValue.ForeColor = value; }
+
+        /// <summary>
+        /// 加按钮字体图标的偏移位置
+        /// </summary>
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("加按钮字体图标的偏移位置"), Category("SunnyUI")]
+        public Point AddSymbolOffset
+        {
+            get => btnAdd.SymbolOffset;
+            set => btnAdd.SymbolOffset = value;
+        }
+
+        /// <summary>
+        /// 减按钮字体图标的偏移位置
+        /// </summary>
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("减按钮字体图标的偏移位置"), Category("SunnyUI")]
+        public Point DecSymbolOffset
+        {
+            get => btnDec.SymbolOffset;
+            set => btnDec.SymbolOffset = value;
+        }
     }
 }
