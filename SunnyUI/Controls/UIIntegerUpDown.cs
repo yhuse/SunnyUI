@@ -29,6 +29,7 @@
  * 2023-01-28: V3.3.1 修改文本框数据输入数据变更事件为MouseLeave
  * 2023-03-24: V3.3.3 删除ForbidInput属性，使用Inputable属性
  * 2023-12-28: V3.6.2 修复设置Style时按钮颜色不一致
+ * 2024-08-27: V3.6.9 修改编辑框字体与显示字体一致
 ******************************************************************************/
 
 using System;
@@ -187,6 +188,7 @@ namespace Sunny.UI
             if (!Inputable) return;
 
             edit.Left = 1;
+            edit.Font = pnlValue.Font;
             edit.Top = (pnlValue.Height - edit.Height) / 2;
             edit.Width = pnlValue.Width - 2;
             pnlColor = pnlValue.FillColor;

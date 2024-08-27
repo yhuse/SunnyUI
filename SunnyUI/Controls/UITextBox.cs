@@ -62,6 +62,7 @@
  * 2024-06-11: V3.6.6 调整为可继承
  * 2024-08-12: V3.6.8 解决原生控件字体在微软雅黑时，显示不完整的问题
  * 2024-08-26: V3.6.9 修复微软雅黑字体显示不完整的问题
+ * 2024-08-27: V3.6.9 AutoSize时根据字体自动调整控件高度
 ******************************************************************************/
 
 using System;
@@ -90,7 +91,7 @@ namespace Sunny.UI
             ShowText = false;
             MinimumSize = new Size(1, 16);
 
-            edit.AutoSize = true;
+            edit.AutoSize = false;
             edit.Top = (Height - edit.Height) / 2;
             edit.Left = 4;
             edit.Width = Width - 8;
@@ -186,6 +187,17 @@ namespace Sunny.UI
         {
             get => edit.TouchPressClick;
             set => edit.TouchPressClick = value;
+        }
+
+        private bool _autoSize = false;
+        public new bool AutoSize
+        {
+            get => _autoSize;
+            set
+            {
+                _autoSize = value;
+                SizeChange();
+            }
         }
 
         private UIButton tipsBtn;
@@ -732,14 +744,16 @@ namespace Sunny.UI
 
             if (!multiline)
             {
-                //if (Height < edit.Height + RectSize * 2 + 2)
-                //{
-                //    NoNeedChange = true;
-                //    Height = edit.Height + RectSize * 2 + 2;
-                //    edit.Top = (Height - edit.Height) / 2;
-                //    NoNeedChange = false;
-                //}
+                //单行显示
 
+                //AutoSize自动设置高度
+                if (Dock == DockStyle.None && AutoSize)
+                {
+                    if (Height != edit.Height + 5)
+                        Height = edit.Height + 5;
+                }
+
+                //根据字体大小编辑框垂直居中
                 if (edit.Top != (Height - edit.Height) / 2 + 1)
                 {
                     edit.Top = (Height - edit.Height) / 2 + 1;
