@@ -48,6 +48,7 @@
  * 2023-07-12: V3.4.0 修复了有冻结行时垂直滚动条点击时出错的问题
  * 2023-11-05: V3.5.2 重构主题
  * 2024-06-19: V3.6.7 增加AddDateTimeColumn，解决默认时间列不显示秒数的问题
+ * 2024-08-27: V3.7.0 增加属性AutoScrollToBottom，数据更新时是否自动滚动到最后一行
 ******************************************************************************/
 
 using System;
@@ -1039,6 +1040,26 @@ namespace Sunny.UI
                     scrollBarRectColor = VBar.RectColor = UIStyles.Blue.RectColor;
                 }
 
+            }
+        }
+
+        [DefaultValue(false), Category("SunnyUI"), Description("指示当有新数据添加到DataGridView时，是否自动滚动到最后一行")]
+        public bool AutoScrollToBottom { get; set; }
+
+        protected override void OnDataBindingComplete(DataGridViewBindingCompleteEventArgs e)
+        {
+            base.OnDataBindingComplete(e);
+            //是否自动滚动到最后一行
+            if (AutoScrollToBottom && this.RowCount > 0)
+            {
+                //不选中单元格或行
+                this.CurrentCell = null;
+                //选中最后一行
+                this.Rows[this.RowCount - 1].Selected = true;
+                //滚动到最后一行
+                this.FirstDisplayedScrollingRowIndex = this.RowCount - 1;
+                //如果需要滚动到底部（右侧），使用下面的代码
+                //this.FirstDisplayedCell = this.Rows[this.RowCount - 1].Cells[this.Columns.Count - 1];
             }
         }
     }
