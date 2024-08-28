@@ -23,11 +23,13 @@
  * 2021-04-15: V3.0.3 增加ShowToday显示今日属性
  * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
  * 2024-07-13: V3.6.7 修改选择日期在下拉框中显示方式
+ * 2024-08-28: V3.7.0 修复格式化字符串包含/时显示错误
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -105,7 +107,7 @@ namespace Sunny.UI
 
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
-            if (Text.Length == MaxLength)
+            if (Text.Length == MaxLength && !DropSetted)
             {
                 try
                 {
@@ -163,6 +165,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        private bool DropSetted = false;
         [Description("选中日期时间"), Category("SunnyUI")]
         public DateTime Value
         {
@@ -171,7 +174,10 @@ namespace Sunny.UI
             {
                 if (value < new DateTime(1900, 1, 1))
                     value = new DateTime(1900, 1, 1);
-                Text = value.ToString(dateFormat);
+
+                DropSetted = true;
+                Text = value.ToString(dateFormat, CultureInfo.InvariantCulture);
+                DropSetted = false;
 
                 if (item.Date != value)
                 {
@@ -188,11 +194,6 @@ namespace Sunny.UI
 
         private void UIDatetimePicker_ButtonClick(object sender, EventArgs e)
         {
-            if (DateTime.TryParse(Text, out DateTime dt))
-                Value = dt;
-            else
-                Value = DateTime.Now;
-
             item.Date = Value;
             item.ShowToday = ShowToday;
             item.PrimaryColor = RectColor;

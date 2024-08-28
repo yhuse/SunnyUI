@@ -25,6 +25,7 @@
  * 2023-05-14: V3.3.6 修复文字格式化显示问题
  * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
  * 2024-07-13: V3.6.7 修改选择日期在下拉框中显示方式
+ * 2024-08-28: V3.7.0 修复格式化字符串包含/时显示错误
 ******************************************************************************/
 
 using System;
@@ -235,7 +236,7 @@ namespace Sunny.UI
 
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
-            if (Text.Length == MaxLength)
+            if (Text.Length == MaxLength && !DropSetted)
             {
                 try
                 {
@@ -316,6 +317,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
+        private bool DropSetted = false;
         [Description("选中日期"), Category("SunnyUI")]
         public DateTime Value
         {
@@ -325,18 +327,21 @@ namespace Sunny.UI
                 if (value < new DateTime(1900, 1, 1))
                     value = new DateTime(1900, 1, 1);
 
+                DropSetted = true;
                 switch (ShowType)
                 {
                     case UIDateType.YearMonthDay:
-                        Text = value.ToString(dateFormat);
+                        Text = value.ToString(dateFormat, CultureInfo.InvariantCulture);
                         break;
                     case UIDateType.YearMonth:
-                        Text = value.ToString(dateYearMonthFormat);
+                        Text = value.ToString(dateYearMonthFormat, CultureInfo.InvariantCulture);
                         break;
                     case UIDateType.Year:
-                        Text = value.ToString(dateYearFormat);
+                        Text = value.ToString(dateYearFormat, CultureInfo.InvariantCulture);
                         break;
                 }
+
+                DropSetted = false;
 
                 if (item.Date != value)
                 {
