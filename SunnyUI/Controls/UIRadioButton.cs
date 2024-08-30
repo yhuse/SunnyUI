@@ -26,6 +26,7 @@
  * 2023-11-07: V3.5.2 增加修改图标大小
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
  * 2024-08-26: V3.6.9 修复AutoSize在文字改变时未自动显示的问题，#IAKYX4
+ * 2024-08-30: V3.7.0 修改AutoSize属性可以保存在Design.cs文件里面，#IAKYX4
 ******************************************************************************/
 
 using System;
@@ -76,16 +77,19 @@ namespace Sunny.UI
             }
         }
 
-        private bool autoSize;
-
+        /// <inheritdoc/>
         [Browsable(true)]
-        [Description("自动大小"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Localizable(true)]
+        [RefreshProperties(RefreshProperties.All)]
         public override bool AutoSize
         {
-            get => autoSize;
+            get => base.AutoSize;
             set
             {
-                autoSize = value;
+                base.AutoSize = value;
                 Invalidate();
             }
         }
