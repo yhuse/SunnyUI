@@ -20,6 +20,7 @@
  * 2023-03-26: V3.3.3 增加默认事件ValueChanged，下键盘Enter事件相应此事件
  * 2023-03-26: V3.3.4 增加了最大值、最小值等属性
  * 2023-06-11: V3.6.6 下拉框可选放大倍数为2
+ * 2024-09-03: V3.7.0 增加ShowDropDown()弹窗方法
 ******************************************************************************/
 
 using System;
@@ -212,6 +213,11 @@ namespace Sunny.UI
             Invalidate();
         }
 
+        public void ShowDropDown()
+        {
+            UIKeyBoardTextBox_ButtonClick(this, EventArgs.Empty);
+        }
+
         private void UIKeyBoardTextBox_ButtonClick(object sender, System.EventArgs e)
         {
             if (NumPadForm.Visible)
@@ -220,11 +226,11 @@ namespace Sunny.UI
             }
             else
             {
-                ShowDropDown();
+                ShowDropDownEx();
             }
         }
 
-        private void ShowDropDown()
+        private void ShowDropDownEx()
         {
             NumPadForm.AutoClose = false;
             item.NumPadType = NumPadType;
