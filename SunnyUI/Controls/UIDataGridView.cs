@@ -49,6 +49,7 @@
  * 2023-11-05: V3.5.2 重构主题
  * 2024-06-19: V3.6.7 增加AddDateTimeColumn，解决默认时间列不显示秒数的问题
  * 2024-08-27: V3.7.0 增加属性AutoScrollToBottom，数据更新时是否自动滚动到最后一行
+ * 2024-09-04: V3.7.0 解决有隐藏行时，滚动条滚动时出错的问题
 ******************************************************************************/
 
 using System;
@@ -386,18 +387,49 @@ namespace Sunny.UI
             if (idx < 0) idx = 0;
             if (idx >= RowCount) idx = RowCount - 1;
 
+            SetFirstDisplayedScrollingRowIndex(idx);
+        }
+
+        private void SetFirstDisplayedScrollingRowIndex(int idx)
+        {
             int lastFrozen = GetFrozenBottomIndex();
+            int showidx = idx;
             if (Rows[0].Frozen)
             {
                 if (RowCount > lastFrozen + 1)
                 {
                     lastFrozen += 1;
-                    FirstDisplayedScrollingRowIndex = Math.Max(idx, lastFrozen);
+                    showidx = Math.Max(idx, lastFrozen);
                 }
             }
-            else
+
+            bool isSet = false;
+            for (int i = showidx; i < RowCount; i++)
             {
-                FirstDisplayedScrollingRowIndex = idx;
+                if (Rows[i].Visible)
+                {
+                    showidx = i;
+                    isSet = true;
+                    break;
+                }
+            }
+
+            if (!isSet)
+            {
+                for (int i = showidx; i > 0; i--)
+                {
+                    if (Rows[i].Visible && i > lastFrozen)
+                    {
+                        showidx = i;
+                        isSet = true;
+                        break;
+                    }
+                }
+            }
+
+            if (isSet)
+            {
+                FirstDisplayedScrollingRowIndex = showidx;
             }
         }
 
@@ -793,19 +825,7 @@ namespace Sunny.UI
 
                     Rows[value].Selected = true;
 
-                    int lastFrozen = GetFrozenBottomIndex();
-                    if (Rows[0].Frozen)
-                    {
-                        if (RowCount > lastFrozen + 1)
-                        {
-                            lastFrozen += 1;
-                            FirstDisplayedScrollingRowIndex = Math.Max(value, lastFrozen);
-                        }
-                    }
-                    else
-                    {
-                        FirstDisplayedScrollingRowIndex = value;
-                    }
+                    SetFirstDisplayedScrollingRowIndex(value);
 
                     if (selectedIndex >= 0 && selectedIndex <= Rows.Count)
                         jumpIndex = selectedIndex;
@@ -1057,7 +1077,7 @@ namespace Sunny.UI
                 //选中最后一行
                 this.Rows[this.RowCount - 1].Selected = true;
                 //滚动到最后一行
-                this.FirstDisplayedScrollingRowIndex = this.RowCount - 1;
+                SetRowHeight(this.RowCount - 1);
                 //如果需要滚动到底部（右侧），使用下面的代码
                 //this.FirstDisplayedCell = this.Rows[this.RowCount - 1].Cells[this.Columns.Count - 1];
             }
