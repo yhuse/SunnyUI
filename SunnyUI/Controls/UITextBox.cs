@@ -443,7 +443,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public TextBox TextBox => edit;
+        public UIEdit TextBox => edit;
 
         private void Edit_Leave(object sender, EventArgs e)
         {

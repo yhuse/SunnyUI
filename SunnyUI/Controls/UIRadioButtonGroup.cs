@@ -25,6 +25,7 @@
  * 2023-06-27: V3.3.9 内置条目关联值由Tag改为TagString
  * 2023-11-09: V3.5.2 重写UIRadioButtonGroup
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
+ * 2024-09-09: V3.7.0 更改计算节点位置的方法，解决问题：#IAPY94
 ******************************************************************************/
 
 using System;
@@ -84,6 +85,7 @@ namespace Sunny.UI
 
         private void Items_CountChange(object sender, EventArgs e)
         {
+            InitRects();
             Invalidate();
         }
 
@@ -103,6 +105,25 @@ namespace Sunny.UI
         public UIObjectCollection Items => items;
 
         private readonly UIObjectCollection items = new UIObjectCollection();
+
+        private void InitRects()
+        {
+            int startX = StartPos.X;
+            int startY = TitleTop + StartPos.Y;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                string text = Items[i].ToString();
+                int rowIndex = i / ColumnCount;
+                int columnIndex = i % ColumnCount;
+                int left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
+                int top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
+                Rectangle rect = new Rectangle(left, top, ItemSize.Width, ItemSize.Height);
+                if (CheckBoxRects.NotContainsKey(i))
+                    CheckBoxRects.Add(i, rect);
+                else
+                    CheckBoxRects[i] = rect;
+            }
+        }
 
         /// <summary>
         /// 重载绘图
@@ -130,11 +151,6 @@ namespace Sunny.UI
                 int left = startX + ItemSize.Width * columnIndex + ColumnInterval * columnIndex;
                 int top = startY + ItemSize.Height * rowIndex + RowInterval * rowIndex;
                 Rectangle rect = new Rectangle(left, top, ItemSize.Width, ItemSize.Height);
-                if (CheckBoxRects.NotContainsKey(i))
-                    CheckBoxRects.Add(i, rect);
-                else
-                    CheckBoxRects[i] = rect;
-
                 int ImageSize = RadioButtonSize;
 
                 //图标
@@ -267,6 +283,7 @@ namespace Sunny.UI
             set
             {
                 columnCount = value;
+                InitRects();
                 Invalidate();
             }
         }
@@ -281,6 +298,7 @@ namespace Sunny.UI
             set
             {
                 itemSize = value;
+                InitRects();
                 Invalidate();
             }
         }
@@ -295,6 +313,7 @@ namespace Sunny.UI
             set
             {
                 startPos = value;
+                InitRects();
                 Invalidate();
             }
         }
@@ -309,6 +328,7 @@ namespace Sunny.UI
             set
             {
                 columnInterval = value;
+                InitRects();
                 Invalidate();
             }
         }
@@ -323,6 +343,7 @@ namespace Sunny.UI
             set
             {
                 rowInterval = value;
+                InitRects();
                 Invalidate();
             }
         }
