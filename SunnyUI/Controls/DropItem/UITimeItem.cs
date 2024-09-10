@@ -403,8 +403,8 @@ namespace Sunny.UI
 
         public void Translate()
         {
-            btnOK.Text = UILocalize.OK;
-            btnCancel.Text = UILocalize.Cancel;
+            btnOK.Text = UIStyles.Localize.OK;
+            btnCancel.Text = UIStyles.Localize.Cancel;
         }
 
         public override void SetDPIScale()

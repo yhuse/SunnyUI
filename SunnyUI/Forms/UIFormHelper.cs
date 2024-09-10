@@ -92,32 +92,32 @@ namespace Sunny.UI
     {
         public static void Show(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UIStyles.Localize.InfoTitle, UIStyle.Blue, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static void ShowInfo(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.InfoTitle, UIStyles.Style, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UIStyles.Localize.InfoTitle, UIStyles.Style, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static void ShowSuccess(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UIStyles.Localize.SuccessTitle, UIStyle.Green, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static void ShowWarning(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UIStyles.Localize.WarningTitle, UIStyle.Orange, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static void ShowError(string message, bool showMask = false, int delay = 0)
         {
-            Show(message, UILocalize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, delay);
+            Show(message, UIStyles.Localize.ErrorTitle, UIStyle.Red, UIMessageBoxButtons.OK, showMask, delay);
         }
 
         public static bool ShowAsk(string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return ShowMessageDialog(message, UILocalize.AskTitle, true, UIStyle.Blue, showMask, defaultButton);
+            return ShowMessageDialog(message, UIStyles.Localize.AskTitle, true, UIStyle.Blue, showMask, defaultButton);
         }
 
         public static bool Show(string message, string title, UIStyle style = UIStyle.Blue, UIMessageBoxButtons buttons = UIMessageBoxButtons.OK, bool showMask = false, int delay = 0)
@@ -144,27 +144,27 @@ namespace Sunny.UI
 
         public static void ShowInfo2(string message, bool showMask = false, int delay = 0)
         {
-            ShowMessageDialog2(UILocalize.InfoTitle, message, UINotifierType.INFO, showMask, UIMessageDialogButtons.Ok, delay);
+            ShowMessageDialog2(UIStyles.Localize.InfoTitle, message, UINotifierType.INFO, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         public static void ShowSuccess2(string message, bool showMask = false, int delay = 0)
         {
-            ShowMessageDialog2(UILocalize.SuccessTitle, message, UINotifierType.OK, showMask, UIMessageDialogButtons.Ok, delay);
+            ShowMessageDialog2(UIStyles.Localize.SuccessTitle, message, UINotifierType.OK, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         public static void ShowWarning2(string message, bool showMask = false, int delay = 0)
         {
-            ShowMessageDialog2(UILocalize.WarningTitle, message, UINotifierType.WARNING, showMask, UIMessageDialogButtons.Ok, delay);
+            ShowMessageDialog2(UIStyles.Localize.WarningTitle, message, UINotifierType.WARNING, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         public static void ShowError2(string message, bool showMask = false, int delay = 0)
         {
-            ShowMessageDialog2(UILocalize.ErrorTitle, message, UINotifierType.ERROR, showMask, UIMessageDialogButtons.Ok, delay);
+            ShowMessageDialog2(UIStyles.Localize.ErrorTitle, message, UINotifierType.ERROR, showMask, UIMessageDialogButtons.Ok, delay);
         }
 
         public static bool ShowAsk2(string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return ShowMessageDialog2(UILocalize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
+            return ShowMessageDialog2(UIStyles.Localize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
         }
 
         public static bool ShowMessageDialog2(string title, string message, UINotifierType noteType, bool showMask = false,
@@ -285,7 +285,7 @@ namespace Sunny.UI
         private static UIInputForm CreateInputForm(bool checkEmpty, string desc)
         {
             UIInputForm frm = new UIInputForm();
-            frm.Text = UILocalize.InputTitle;
+            frm.Text = UIStyles.Localize.InputTitle;
             frm.Label.Text = desc;
             frm.CheckInputEmpty = checkEmpty;
             return frm;
@@ -501,7 +501,7 @@ namespace Sunny.UI
 
         public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, UIStyle style, bool showMask = false)
         {
-            return owner.ShowSelectDialog(ref selectIndex, items, UILocalize.SelectTitle, "", style, showMask);
+            return owner.ShowSelectDialog(ref selectIndex, items, UIStyles.Localize.SelectTitle, "", style, showMask);
         }
 
         public static bool ShowSelectDialog(this Form owner, ref int selectIndex, IList items, bool showMask = false)
@@ -646,7 +646,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowSuccessDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowSuccessDialog(UILocalize.SuccessTitle, message, UIStyle.Green, showMask, delay);
+            owner.ShowSuccessDialog(UIStyles.Localize.SuccessTitle, message, UIStyle.Green, showMask, delay);
         }
 
         /// <summary>
@@ -668,7 +668,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowInfoDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowInfoDialog(UILocalize.InfoTitle, message, UIStyles.Style, showMask, delay);
+            owner.ShowInfoDialog(UIStyles.Localize.InfoTitle, message, UIStyles.Style, showMask, delay);
         }
 
         /// <summary>
@@ -690,7 +690,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowWarningDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowWarningDialog(UILocalize.WarningTitle, message, UIStyle.Orange, showMask, delay);
+            owner.ShowWarningDialog(UIStyles.Localize.WarningTitle, message, UIStyle.Orange, showMask, delay);
         }
 
         /// <summary>
@@ -712,7 +712,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowErrorDialog(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowErrorDialog(UILocalize.ErrorTitle, message, UIStyle.Red, showMask, delay);
+            owner.ShowErrorDialog(UIStyles.Localize.ErrorTitle, message, UIStyle.Red, showMask, delay);
         }
 
         /// <summary>
@@ -735,7 +735,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog(this Form owner, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok)
         {
-            return UIMessageBox.ShowMessageDialog(owner, message, UILocalize.AskTitle, true, UIStyles.Style, showMask, defaultButton);
+            return UIMessageBox.ShowMessageDialog(owner, message, UIStyles.Localize.AskTitle, true, UIStyles.Style, showMask, defaultButton);
         }
 
         /// <summary>
@@ -760,7 +760,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowSuccessDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowSuccessDialog2(UILocalize.SuccessTitle, message, showMask, delay);
+            owner.ShowSuccessDialog2(UIStyles.Localize.SuccessTitle, message, showMask, delay);
         }
 
         /// <summary>
@@ -782,7 +782,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowInfoDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowInfoDialog2(UILocalize.InfoTitle, message, showMask, delay);
+            owner.ShowInfoDialog2(UIStyles.Localize.InfoTitle, message, showMask, delay);
         }
 
         /// <summary>
@@ -804,7 +804,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowWarningDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowWarningDialog2(UILocalize.WarningTitle, message, showMask, delay);
+            owner.ShowWarningDialog2(UIStyles.Localize.WarningTitle, message, showMask, delay);
         }
 
         /// <summary>
@@ -826,7 +826,7 @@ namespace Sunny.UI
         /// <param name="showMask">显示遮罩层</param>
         public static void ShowErrorDialog2(this Form owner, string message, bool showMask = false, int delay = 0)
         {
-            owner.ShowErrorDialog2(UILocalize.ErrorTitle, message, showMask, delay);
+            owner.ShowErrorDialog2(UIStyles.Localize.ErrorTitle, message, showMask, delay);
         }
 
         /// <summary>
@@ -849,7 +849,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool ShowAskDialog2(this Form owner, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
         {
-            return UIMessageBox.ShowMessageDialog2(owner, UILocalize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
+            return UIMessageBox.ShowMessageDialog2(owner, UIStyles.Localize.AskTitle, message, UINotifierType.Ask, showMask, defaultButton);
         }
 
         /// <summary>
@@ -944,42 +944,42 @@ namespace Sunny.UI
 
         public static void ShowInfoNotifier(this Form form, string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UILocalize.InfoTitle, isDialog, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.INFO, UIStyles.Localize.InfoTitle, isDialog, timeout);
         }
 
         public static void ShowSuccessNotifier(this Form form, string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UILocalize.SuccessTitle, isDialog, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.OK, UIStyles.Localize.SuccessTitle, isDialog, timeout);
         }
 
         public static void ShowWarningNotifier(this Form form, string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UILocalize.WarningTitle, isDialog, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.WARNING, UIStyles.Localize.WarningTitle, isDialog, timeout);
         }
 
         public static void ShowErrorNotifier(this Form form, string desc, bool isDialog = false, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UILocalize.ErrorTitle, isDialog, timeout);
+            UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UIStyles.Localize.ErrorTitle, isDialog, timeout);
         }
 
         public static void ShowInfoNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.INFO, UILocalize.InfoTitle, timeout);
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.INFO, UIStyles.Localize.InfoTitle, timeout);
         }
 
         public static void ShowSuccessNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.OK, UILocalize.SuccessTitle, timeout);
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.OK, UIStyles.Localize.SuccessTitle, timeout);
         }
 
         public static void ShowWarningNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.WARNING, UILocalize.WarningTitle, timeout);
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.WARNING, UIStyles.Localize.WarningTitle, timeout);
         }
 
         public static void ShowErrorNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
         {
-            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.ERROR, UILocalize.ErrorTitle, timeout);
+            UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.ERROR, UIStyles.Localize.ErrorTitle, timeout);
         }
 
         #endregion 一些辅助窗口

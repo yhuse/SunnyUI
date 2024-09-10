@@ -84,10 +84,10 @@ namespace Sunny.UI
 
         public void Translate()
         {
-            btnOK.Text = UILocalize.OK;
-            btnCancel.Text = UILocalize.Cancel;
-            btnClear.Text = UILocalize.Clear;
-            btnSearch.Text = UILocalize.Search;
+            btnOK.Text = UIStyles.Localize.OK;
+            btnCancel.Text = UIStyles.Localize.Cancel;
+            btnClear.Text = UIStyles.Localize.Clear;
+            btnSearch.Text = UIStyles.Localize.Search;
         }
 
         public bool ShowButtons

@@ -259,7 +259,7 @@ namespace Sunny.UI
                 {
                     if (!(value is DataTable || value is IList))
                     {
-                        throw new Exception(UILocalize.GridDataSourceException);
+                        throw new Exception(UIStyles.Localize.GridDataSourceException);
                     }
                 }
 

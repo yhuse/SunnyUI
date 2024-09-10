@@ -696,7 +696,7 @@ namespace Sunny.UI
             }
         }
 
-        public void Translate()
+        public virtual void Translate()
         {
             List<Control> controls = this.GetInterfaceControls("ITranslate");
             foreach (var control in controls)

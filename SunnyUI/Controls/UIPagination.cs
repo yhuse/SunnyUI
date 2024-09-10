@@ -170,9 +170,9 @@ namespace Sunny.UI
 
             try
             {
-                b0.Text = UILocalize.Prev;
-                b16.Text = UILocalize.Next;
-                btnSelect.Text = UILocalize.SelectTitle;
+                b0.Text = UIStyles.Localize.Prev;
+                b16.Text = UIStyles.Localize.Next;
+                btnSelect.Text = UIStyles.Localize.SelectTitle;
 
                 Size sf = TextRenderer.MeasureText(b0.Text, b0.Font);
                 b0.Width = b0.SymbolSize + sf.Width + 10;
@@ -182,8 +182,8 @@ namespace Sunny.UI
 
                 btnSelect.Width = TextRenderer.MeasureText(btnSelect.Text, btnSelect.Font).Width + 16;
 
-                uiLabel1.Text = UILocalize.SelectPageLeft;
-                uiLabel2.Text = UILocalize.SelectPageRight;
+                uiLabel1.Text = UIStyles.Localize.SelectPageLeft;
+                uiLabel2.Text = UIStyles.Localize.SelectPageRight;
                 edtPage.Left = uiLabel1.Right + 3;
                 uiLabel2.Left = edtPage.Right + 3;
                 btnSelect.Left = uiLabel2.Right + 3;
@@ -309,7 +309,7 @@ namespace Sunny.UI
                 {
                     if (!(value is DataTable || value is IList))
                     {
-                        throw new Exception(UILocalize.GridDataSourceException);
+                        throw new Exception(UIStyles.Localize.GridDataSourceException);
                     }
                 }
 

@@ -30,6 +30,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Drawing.FontConverter;
@@ -236,6 +237,11 @@ namespace Sunny.UI
             MenuColors.TryAdd(UIMenuStyle.Custom, new UIMenuCustomColor());
             MenuColors.TryAdd(UIMenuStyle.Black, new UIMenuBlackColor());
             MenuColors.TryAdd(UIMenuStyle.White, new UIMenuWhiteColor());
+
+            UILocalize lch = new UILocalize_ZH_CN();
+            UILocalize len = new UILocalize_EN_US();
+            Localizes.TryAdd(lch.CultureInfo.LCID, lch);
+            Localizes.TryAdd(len.CultureInfo.LCID, len);
         }
 
         /// <summary>
@@ -389,5 +395,31 @@ namespace Sunny.UI
                 form.Translate();
             }
         }
+
+        private static CultureInfo _CultureInfo = CultureInfos.SimplifiedChinese;
+        public static CultureInfo CultureInfo
+        {
+            get => _CultureInfo;
+            set
+            {
+                if (value.LCID != _CultureInfo.LCID)
+                {
+                    if (Localizes.TryGetValue(value.LCID, out var cultureInfo))
+                    {
+                        _CultureInfo = cultureInfo.CultureInfo;
+                    }
+                    else
+                    {
+                        _CultureInfo = CultureInfos.SimplifiedChinese;
+                    }
+
+                    UIStyles.Translate();
+                }
+            }
+        }
+
+        public static ConcurrentDictionary<int, UILocalize> Localizes = new();
+        public static UILocalize Localize => Localizes[CultureInfo.LCID];
+        public static int LCID => Localize.CultureInfo.LCID;
     }
 }

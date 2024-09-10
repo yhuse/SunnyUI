@@ -62,7 +62,7 @@ namespace Sunny.UI
         /// <returns>打开是否成功</returns>
         public static bool OpenDialog(ref string filename, string filter = "", string defaultExt = "")
         {
-            using OpenFileDialog od = new OpenFileDialog { Title = UILocalize.Open };
+            using OpenFileDialog od = new OpenFileDialog { Title = UIStyles.Localize.Open };
 
             try
             {
@@ -89,7 +89,7 @@ namespace Sunny.UI
         /// <returns>保存是否成功</returns>
         public static bool SaveDialog(ref string filename, string filter = "", string defaultExt = "")
         {
-            using SaveFileDialog od = new SaveFileDialog { Title = UILocalize.Save };
+            using SaveFileDialog od = new SaveFileDialog { Title = UIStyles.Localize.Save };
             try
             {
                 od.FileName = filename;

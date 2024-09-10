@@ -55,7 +55,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("Initialize")]
-    public partial class UIPage : Form, IStyleInterface, ISymbol, IZoomScale
+    public partial class UIPage : Form, IStyleInterface, ISymbol, IZoomScale, ITranslate
     {
         public UIPage()
         {
@@ -1120,6 +1120,11 @@ namespace Sunny.UI
         internal void DealReceiveParams(UIPageParamsArgs e)
         {
             ReceiveParams?.Invoke(this, e);
+        }
+
+        public virtual void Translate()
+        {
+
         }
 
         public event OnReceiveParams ReceiveParams;

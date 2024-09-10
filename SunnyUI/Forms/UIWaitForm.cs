@@ -26,14 +26,14 @@ namespace Sunny.UI
         public UIWaitForm()
         {
             InitializeComponent();
-            base.Text = UILocalize.InfoTitle;
-            SetDescription(UILocalize.SystemProcessing);
+            base.Text = UIStyles.Localize.InfoTitle;
+            SetDescription(UIStyles.Localize.SystemProcessing);
         }
 
         public UIWaitForm(string desc)
         {
             InitializeComponent();
-            base.Text = UILocalize.InfoTitle;
+            base.Text = UIStyles.Localize.InfoTitle;
             SetDescription(desc);
         }
 

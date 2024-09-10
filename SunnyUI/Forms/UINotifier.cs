@@ -223,7 +223,7 @@ namespace Sunny.UI
                                                Size.Height + 50);
                 ok_button.Size = new Size(120, 40);
                 ok_button.Location = new Point(noteContent.Right - ok_button.Width, Size.Height - 55);
-                ok_button.Text = UILocalize.OK;
+                ok_button.Text = UIStyles.Localize.OK;
                 ok_button.Click += onOkButtonClick;
                 Controls.Add(ok_button);
 
@@ -706,7 +706,7 @@ namespace Sunny.UI
 
         private void UINotifier_Shown(object sender, EventArgs e)
         {
-            closeAllToolStripMenuItem.Text = UILocalize.CloseAll;
+            closeAllToolStripMenuItem.Text = UIStyles.Localize.CloseAll;
         }
 
         private void noteContent_Click(object sender, EventArgs e)

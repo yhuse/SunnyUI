@@ -33,8 +33,8 @@ namespace Sunny.UI
             InitializeComponent();
             Text = title;
             Message = message;
-            btnOK.Text = UILocalize.OK;
-            btnCancel.Text = UILocalize.Cancel;
+            btnOK.Text = UIStyles.Localize.OK;
+            btnCancel.Text = UIStyles.Localize.Cancel;
 
             foreColor = Color.Black;
 

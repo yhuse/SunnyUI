@@ -313,18 +313,18 @@ namespace Sunny.UI
         public void Translate()
         {
             months.Clear();
-            months.Add(UILocalize.January);
-            months.Add(UILocalize.February);
-            months.Add(UILocalize.March);
-            months.Add(UILocalize.April);
-            months.Add(UILocalize.May);
-            months.Add(UILocalize.June);
-            months.Add(UILocalize.July);
-            months.Add(UILocalize.August);
-            months.Add(UILocalize.September);
-            months.Add(UILocalize.October);
-            months.Add(UILocalize.November);
-            months.Add(UILocalize.December);
+            months.Add(UIStyles.Localize.January);
+            months.Add(UIStyles.Localize.February);
+            months.Add(UIStyles.Localize.March);
+            months.Add(UIStyles.Localize.April);
+            months.Add(UIStyles.Localize.May);
+            months.Add(UIStyles.Localize.June);
+            months.Add(UIStyles.Localize.July);
+            months.Add(UIStyles.Localize.August);
+            months.Add(UIStyles.Localize.September);
+            months.Add(UIStyles.Localize.October);
+            months.Add(UIStyles.Localize.November);
+            months.Add(UIStyles.Localize.December);
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
@@ -677,7 +677,7 @@ namespace Sunny.UI
         {
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
-            string[] weeks = { UILocalize.Sunday, UILocalize.Monday, UILocalize.Tuesday, UILocalize.Wednesday, UILocalize.Thursday, UILocalize.Friday, UILocalize.Saturday };
+            string[] weeks = { UIStyles.Localize.Sunday, UIStyles.Localize.Monday, UIStyles.Localize.Tuesday, UIStyles.Localize.Wednesday, UIStyles.Localize.Thursday, UIStyles.Localize.Friday, UIStyles.Localize.Saturday };
             for (int i = 0; i < weeks.Length; i++)
             {
                 e.Graphics.DrawString(weeks[i], Font, ForeColor, new Rectangle(width * i, 4, width, 19), ContentAlignment.MiddleCenter);
