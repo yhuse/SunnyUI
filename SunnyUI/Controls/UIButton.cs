@@ -83,6 +83,9 @@ namespace Sunny.UI
             UseMnemonic = true;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         [DefaultValue(true)]
         [Description("如果为true，&符号后面的第一次字符将做按钮的助记键"), Category("SunnyUI")]
         public bool UseMnemonic { get; set; }

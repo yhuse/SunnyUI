@@ -46,6 +46,8 @@ namespace Sunny.UI
 
         public static bool GlobalRectangle { get; set; } = false;
 
+        public static bool MultiLanguageSupport { get; set; } = false;
+
         public static bool DPIScale { get; set; }
 
         public static bool ZoomScale { get; set; }
@@ -238,10 +240,10 @@ namespace Sunny.UI
             MenuColors.TryAdd(UIMenuStyle.Black, new UIMenuBlackColor());
             MenuColors.TryAdd(UIMenuStyle.White, new UIMenuWhiteColor());
 
-            UILocalize lch = new UILocalize_ZH_CN();
-            UILocalize len = new UILocalize_EN_US();
-            Localizes.TryAdd(lch.CultureInfo.LCID, lch);
-            Localizes.TryAdd(len.CultureInfo.LCID, len);
+            UIBuiltInResources lcn = new zh_CN_Resources();
+            UIBuiltInResources len = new en_US_Resources();
+            BuiltInResources.TryAdd(lcn.CultureInfo.LCID, lcn);
+            BuiltInResources.TryAdd(len.CultureInfo.LCID, len);
         }
 
         /// <summary>
@@ -396,21 +398,23 @@ namespace Sunny.UI
             }
         }
 
-        private static CultureInfo _CultureInfo = CultureInfos.SimplifiedChinese;
+        private static CultureInfo _cultureInfo = CultureInfos.zh_CN;
         public static CultureInfo CultureInfo
         {
-            get => _CultureInfo;
+            get => _cultureInfo;
             set
             {
-                if (value.LCID != _CultureInfo.LCID)
+                if (value == null) return;
+
+                if (value.LCID != _cultureInfo.LCID)
                 {
-                    if (Localizes.TryGetValue(value.LCID, out var cultureInfo))
+                    if (BuiltInResources.TryGetValue(value.LCID, out var cultureInfo))
                     {
-                        _CultureInfo = cultureInfo.CultureInfo;
+                        _cultureInfo = cultureInfo.CultureInfo;
                     }
                     else
                     {
-                        _CultureInfo = CultureInfos.SimplifiedChinese;
+                        _cultureInfo = CultureInfos.zh_CN;
                     }
 
                     UIStyles.Translate();
@@ -418,8 +422,7 @@ namespace Sunny.UI
             }
         }
 
-        public static ConcurrentDictionary<int, UILocalize> Localizes = new();
-        public static UILocalize Localize => Localizes[CultureInfo.LCID];
-        public static int LCID => Localize.CultureInfo.LCID;
+        public static readonly ConcurrentDictionary<int, UIBuiltInResources> BuiltInResources = new();
+        public static UIBuiltInResources CurrentResources => BuiltInResources[CultureInfo.LCID];
     }
 }

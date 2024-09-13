@@ -40,7 +40,7 @@ namespace Sunny.UI
     /// 控件基类
     /// </summary>
     [ToolboxItem(false)]
-    public class UIControl : Control, IStyleInterface, IZoomScale
+    public class UIControl : Control, IStyleInterface, IZoomScale, IFormTranslator
     {
         /// <summary>
         /// 构造函数
@@ -52,6 +52,14 @@ namespace Sunny.UI
             Size = new Size(100, 35);
             base.MinimumSize = new Size(1, 1);
         }
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public virtual string[] FormTranslatorProperties { get; }
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
 
         [Browsable(false)]
         public bool Disabled => !Enabled;

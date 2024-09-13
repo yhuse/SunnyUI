@@ -382,18 +382,18 @@ namespace Sunny.UI
         public void Translate()
         {
             months.Clear();
-            months.Add(UIStyles.Localize.January);
-            months.Add(UIStyles.Localize.February);
-            months.Add(UIStyles.Localize.March);
-            months.Add(UIStyles.Localize.April);
-            months.Add(UIStyles.Localize.May);
-            months.Add(UIStyles.Localize.June);
-            months.Add(UIStyles.Localize.July);
-            months.Add(UIStyles.Localize.August);
-            months.Add(UIStyles.Localize.September);
-            months.Add(UIStyles.Localize.October);
-            months.Add(UIStyles.Localize.November);
-            months.Add(UIStyles.Localize.December);
+            months.Add(UIStyles.CurrentResources.January);
+            months.Add(UIStyles.CurrentResources.February);
+            months.Add(UIStyles.CurrentResources.March);
+            months.Add(UIStyles.CurrentResources.April);
+            months.Add(UIStyles.CurrentResources.May);
+            months.Add(UIStyles.CurrentResources.June);
+            months.Add(UIStyles.CurrentResources.July);
+            months.Add(UIStyles.CurrentResources.August);
+            months.Add(UIStyles.CurrentResources.September);
+            months.Add(UIStyles.CurrentResources.October);
+            months.Add(UIStyles.CurrentResources.November);
+            months.Add(UIStyles.CurrentResources.December);
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
@@ -788,7 +788,7 @@ namespace Sunny.UI
             int width = p3.Width / 7;
             int height = (p3.Height - 30 * SizeMultiple) / 6;
             using Font font = SizeMultiple == 1 ? this.Font : new Font(this.Font.FontFamily, this.Font.Size * 1.5f);
-            string[] weeks = { UIStyles.Localize.Sunday, UIStyles.Localize.Monday, UIStyles.Localize.Tuesday, UIStyles.Localize.Wednesday, UIStyles.Localize.Thursday, UIStyles.Localize.Friday, UIStyles.Localize.Saturday };
+            string[] weeks = { UIStyles.CurrentResources.Sunday, UIStyles.CurrentResources.Monday, UIStyles.CurrentResources.Tuesday, UIStyles.CurrentResources.Wednesday, UIStyles.CurrentResources.Thursday, UIStyles.CurrentResources.Friday, UIStyles.CurrentResources.Saturday };
             for (int i = 0; i < weeks.Length; i++)
             {
                 e.Graphics.DrawString(weeks[i], font, ForeColor, new Rectangle(width * i, 4 * SizeMultiple, width, 19 * SizeMultiple), ContentAlignment.MiddleCenter);
@@ -826,8 +826,8 @@ namespace Sunny.UI
             {
                 using Font SubFont = this.Font.DPIScaleFont(SizeMultiple == 1 ? 10.5f : 15.75f);
                 e.Graphics.FillRectangle(p3.FillColor, p3.Width - width * 4 + 1, p3.Height - height + 1, width * 4 - 2, height - 2);
-                e.Graphics.DrawString(UIStyles.Localize.Today + "  " + DateTime.Now.DateString(), SubFont, isToday ? b3.SymbolColor : Color.DarkGray, new Rectangle(p3.Width - width * 4, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
-                SizeF sf = TextRenderer.MeasureText(UIStyles.Localize.Today, SubFont);
+                e.Graphics.DrawString(UIStyles.CurrentResources.Today + "  " + DateTime.Now.DateString(), SubFont, isToday ? b3.SymbolColor : Color.DarkGray, new Rectangle(p3.Width - width * 4, p3.Height - height - 1, Width, height), ContentAlignment.MiddleLeft);
+                SizeF sf = TextRenderer.MeasureText(UIStyles.CurrentResources.Today, SubFont);
                 e.Graphics.DrawRectangle(b3.SymbolColor, new Rectangle(p3.Width - width * 4 + 1, p3.Height - height + 1, (int)sf.Width - 2, height - 4));
             }
         }

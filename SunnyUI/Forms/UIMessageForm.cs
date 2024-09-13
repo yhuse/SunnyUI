@@ -36,8 +36,8 @@ namespace Sunny.UI
         {
             InitializeComponent();
 
-            btnOK.Text = UIStyles.Localize.OK;
-            btnCancel.Text = UIStyles.Localize.Cancel;
+            btnOK.Text = UIStyles.CurrentResources.OK;
+            btnCancel.Text = UIStyles.CurrentResources.Cancel;
         }
 
         /// <summary>

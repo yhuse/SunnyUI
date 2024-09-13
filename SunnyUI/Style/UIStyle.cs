@@ -500,25 +500,5 @@ namespace Sunny.UI
 
             return values;
         }
-
-        public static List<Control> GetInterfaceControls(this Control ctrl, string interfaceName)
-        {
-            List<Control> values = new List<Control>();
-
-            foreach (Control obj in ctrl.Controls)
-            {
-                if (obj.GetType().GetInterface(interfaceName) != null)
-                {
-                    values.Add(obj);
-                }
-
-                if (obj.Controls.Count > 0)
-                {
-                    values.AddRange(obj.GetInterfaceControls(interfaceName));
-                }
-            }
-
-            return values;
-        }
     }
 }

@@ -28,15 +28,15 @@ namespace Sunny.UI
         public UIStatusForm()
         {
             InitializeComponent();
-            Text = UIStyles.Localize.InfoTitle;
-            Description = UIStyles.Localize.SystemProcessing;
+            Text = UIStyles.CurrentResources.InfoTitle;
+            Description = UIStyles.CurrentResources.SystemProcessing;
             timer1.Start();
         }
 
         public UIStatusForm(int max, string desc, int decimalPlaces = 1)
         {
             InitializeComponent();
-            Text = UIStyles.Localize.InfoTitle;
+            Text = UIStyles.CurrentResources.InfoTitle;
             Maximum = max;
             Description = desc;
             Value = 0;

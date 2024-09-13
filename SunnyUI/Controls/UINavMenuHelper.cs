@@ -375,6 +375,7 @@ namespace Sunny.UI
             {
                 bool isCancel = pages[0].OnPageDeselecting();
                 if (isCancel) return false;
+                pages[0].Translate();
             }
 
             foreach (var item in PageItems)
@@ -405,6 +406,7 @@ namespace Sunny.UI
             {
                 bool isCancel = pages[0].OnPageDeselecting();
                 if (isCancel) return false;
+                pages[0].Translate();
             }
 
             foreach (var item in PageItems)

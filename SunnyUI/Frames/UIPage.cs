@@ -1124,7 +1124,13 @@ namespace Sunny.UI
 
         public virtual void Translate()
         {
+            var controls = this.GetInterfaceControls<ITranslate>(true);
+            foreach (var control in controls)
+            {
+                control.Translate();
+            }
 
+            this.TranslateOther();
         }
 
         public event OnReceiveParams ReceiveParams;

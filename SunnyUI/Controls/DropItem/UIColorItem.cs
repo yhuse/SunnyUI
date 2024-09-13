@@ -27,8 +27,8 @@ namespace Sunny.UI
 
         public void Translate()
         {
-            btnOK.Text = UIStyles.Localize.OK;
-            btnCancel.Text = UIStyles.Localize.Cancel;
+            btnOK.Text = UIStyles.CurrentResources.OK;
+            btnCancel.Text = UIStyles.CurrentResources.Cancel;
         }
 
         private LabelRotate m_colorSample;

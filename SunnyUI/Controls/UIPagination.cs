@@ -114,6 +114,7 @@ namespace Sunny.UI
                 buttons[i].MouseEnter += UIDataGridPage_MouseEnter;
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
+                buttons[i].ShowBuiltInResources = true;
             }
 
             buttonTags.TryAdd(b0, -1);
@@ -170,9 +171,9 @@ namespace Sunny.UI
 
             try
             {
-                b0.Text = UIStyles.Localize.Prev;
-                b16.Text = UIStyles.Localize.Next;
-                btnSelect.Text = UIStyles.Localize.SelectTitle;
+                b0.Text = UIStyles.CurrentResources.Prev;
+                b16.Text = UIStyles.CurrentResources.Next;
+                btnSelect.Text = UIStyles.CurrentResources.SelectTitle;
 
                 Size sf = TextRenderer.MeasureText(b0.Text, b0.Font);
                 b0.Width = b0.SymbolSize + sf.Width + 10;
@@ -182,8 +183,8 @@ namespace Sunny.UI
 
                 btnSelect.Width = TextRenderer.MeasureText(btnSelect.Text, btnSelect.Font).Width + 16;
 
-                uiLabel1.Text = UIStyles.Localize.SelectPageLeft;
-                uiLabel2.Text = UIStyles.Localize.SelectPageRight;
+                uiLabel1.Text = UIStyles.CurrentResources.SelectPageLeft;
+                uiLabel2.Text = UIStyles.CurrentResources.SelectPageRight;
                 edtPage.Left = uiLabel1.Right + 3;
                 uiLabel2.Left = edtPage.Right + 3;
                 btnSelect.Left = uiLabel2.Right + 3;
@@ -309,7 +310,7 @@ namespace Sunny.UI
                 {
                     if (!(value is DataTable || value is IList))
                     {
-                        throw new Exception(UIStyles.Localize.GridDataSourceException);
+                        throw new Exception(UIStyles.CurrentResources.GridDataSourceException);
                     }
                 }
 
@@ -390,7 +391,7 @@ namespace Sunny.UI
             // b0
             // 
             b0.Cursor = Cursors.Hand;
-            b0.Font = new Font("宋体", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            b0.Font = new Font("宋体", 10.5F);
             b0.ImageAlign = ContentAlignment.MiddleLeft;
             b0.Location = new Point(3, 3);
             b0.MinimumSize = new Size(1, 1);
@@ -403,11 +404,12 @@ namespace Sunny.UI
             b0.TagString = "<";
             b0.Text = "上一页";
             b0.TextAlign = ContentAlignment.MiddleRight;
+            b0.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b1
             // 
             b1.Cursor = Cursors.Hand;
-            b1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b1.Font = new Font("宋体", 12F);
             b1.Location = new Point(81, 3);
             b1.MinimumSize = new Size(1, 1);
             b1.Name = "b1";
@@ -416,11 +418,12 @@ namespace Sunny.UI
             b1.Symbol = 0;
             b1.TabIndex = 1;
             b1.Text = "0";
+            b1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b3
             // 
             b3.Cursor = Cursors.Hand;
-            b3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b3.Font = new Font("宋体", 12F);
             b3.Location = new Point(145, 3);
             b3.MinimumSize = new Size(1, 1);
             b3.Name = "b3";
@@ -429,11 +432,12 @@ namespace Sunny.UI
             b3.Symbol = 0;
             b3.TabIndex = 3;
             b3.Text = "0";
+            b3.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b2
             // 
             b2.Cursor = Cursors.Hand;
-            b2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b2.Font = new Font("宋体", 12F);
             b2.Location = new Point(113, 3);
             b2.MinimumSize = new Size(1, 1);
             b2.Name = "b2";
@@ -442,11 +446,12 @@ namespace Sunny.UI
             b2.Symbol = 0;
             b2.TabIndex = 2;
             b2.Text = "0";
+            b2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b7
             // 
             b7.Cursor = Cursors.Hand;
-            b7.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b7.Font = new Font("宋体", 12F);
             b7.Location = new Point(273, 3);
             b7.MinimumSize = new Size(1, 1);
             b7.Name = "b7";
@@ -455,11 +460,12 @@ namespace Sunny.UI
             b7.Symbol = 0;
             b7.TabIndex = 7;
             b7.Text = "0";
+            b7.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b6
             // 
             b6.Cursor = Cursors.Hand;
-            b6.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b6.Font = new Font("宋体", 12F);
             b6.Location = new Point(241, 3);
             b6.MinimumSize = new Size(1, 1);
             b6.Name = "b6";
@@ -468,11 +474,12 @@ namespace Sunny.UI
             b6.Symbol = 0;
             b6.TabIndex = 6;
             b6.Text = "0";
+            b6.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b5
             // 
             b5.Cursor = Cursors.Hand;
-            b5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b5.Font = new Font("宋体", 12F);
             b5.Location = new Point(209, 3);
             b5.MinimumSize = new Size(1, 1);
             b5.Name = "b5";
@@ -481,11 +488,12 @@ namespace Sunny.UI
             b5.Symbol = 0;
             b5.TabIndex = 5;
             b5.Text = "0";
+            b5.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b4
             // 
             b4.Cursor = Cursors.Hand;
-            b4.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b4.Font = new Font("宋体", 12F);
             b4.Location = new Point(177, 3);
             b4.MinimumSize = new Size(1, 1);
             b4.Name = "b4";
@@ -494,11 +502,12 @@ namespace Sunny.UI
             b4.Symbol = 0;
             b4.TabIndex = 4;
             b4.Text = "0";
+            b4.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b15
             // 
             b15.Cursor = Cursors.Hand;
-            b15.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b15.Font = new Font("宋体", 12F);
             b15.Location = new Point(529, 3);
             b15.MinimumSize = new Size(1, 1);
             b15.Name = "b15";
@@ -507,11 +516,12 @@ namespace Sunny.UI
             b15.Symbol = 0;
             b15.TabIndex = 15;
             b15.Text = "0";
+            b15.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b14
             // 
             b14.Cursor = Cursors.Hand;
-            b14.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b14.Font = new Font("宋体", 12F);
             b14.Location = new Point(497, 3);
             b14.MinimumSize = new Size(1, 1);
             b14.Name = "b14";
@@ -520,11 +530,12 @@ namespace Sunny.UI
             b14.Symbol = 0;
             b14.TabIndex = 14;
             b14.Text = "0";
+            b14.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b13
             // 
             b13.Cursor = Cursors.Hand;
-            b13.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b13.Font = new Font("宋体", 12F);
             b13.Location = new Point(465, 3);
             b13.MinimumSize = new Size(1, 1);
             b13.Name = "b13";
@@ -533,11 +544,12 @@ namespace Sunny.UI
             b13.Symbol = 0;
             b13.TabIndex = 13;
             b13.Text = "0";
+            b13.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b12
             // 
             b12.Cursor = Cursors.Hand;
-            b12.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b12.Font = new Font("宋体", 12F);
             b12.Location = new Point(433, 3);
             b12.MinimumSize = new Size(1, 1);
             b12.Name = "b12";
@@ -546,11 +558,12 @@ namespace Sunny.UI
             b12.Symbol = 0;
             b12.TabIndex = 12;
             b12.Text = "0";
+            b12.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b11
             // 
             b11.Cursor = Cursors.Hand;
-            b11.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b11.Font = new Font("宋体", 12F);
             b11.Location = new Point(401, 3);
             b11.MinimumSize = new Size(1, 1);
             b11.Name = "b11";
@@ -559,11 +572,12 @@ namespace Sunny.UI
             b11.Symbol = 0;
             b11.TabIndex = 11;
             b11.Text = "0";
+            b11.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b10
             // 
             b10.Cursor = Cursors.Hand;
-            b10.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b10.Font = new Font("宋体", 12F);
             b10.Location = new Point(369, 3);
             b10.MinimumSize = new Size(1, 1);
             b10.Name = "b10";
@@ -572,11 +586,12 @@ namespace Sunny.UI
             b10.Symbol = 0;
             b10.TabIndex = 10;
             b10.Text = "0";
+            b10.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b9
             // 
             b9.Cursor = Cursors.Hand;
-            b9.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b9.Font = new Font("宋体", 12F);
             b9.Location = new Point(337, 3);
             b9.MinimumSize = new Size(1, 1);
             b9.Name = "b9";
@@ -585,11 +600,12 @@ namespace Sunny.UI
             b9.Symbol = 0;
             b9.TabIndex = 9;
             b9.Text = "0";
+            b9.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b8
             // 
             b8.Cursor = Cursors.Hand;
-            b8.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            b8.Font = new Font("宋体", 12F);
             b8.Location = new Point(305, 3);
             b8.MinimumSize = new Size(1, 1);
             b8.Name = "b8";
@@ -598,11 +614,12 @@ namespace Sunny.UI
             b8.Symbol = 0;
             b8.TabIndex = 8;
             b8.Text = "0";
+            b8.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b16
             // 
             b16.Cursor = Cursors.Hand;
-            b16.Font = new Font("宋体", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            b16.Font = new Font("宋体", 10.5F);
             b16.ImageAlign = ContentAlignment.MiddleRight;
             b16.Location = new Point(561, 3);
             b16.MinimumSize = new Size(1, 1);
@@ -615,13 +632,14 @@ namespace Sunny.UI
             b16.TagString = ">";
             b16.Text = "下一页";
             b16.TextAlign = ContentAlignment.MiddleLeft;
+            b16.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             b16.LocationChanged += b16_LocationChanged;
             // 
             // edtPage
             // 
             edtPage.Cursor = Cursors.IBeam;
             edtPage.DoubleValue = 10D;
-            edtPage.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            edtPage.Font = new Font("宋体", 12F);
             edtPage.IntValue = 10;
             edtPage.Location = new Point(673, 3);
             edtPage.Margin = new Padding(4, 5, 4, 5);
@@ -640,21 +658,23 @@ namespace Sunny.UI
             // btnSelect
             // 
             btnSelect.Cursor = Cursors.Hand;
-            btnSelect.Font = new Font("宋体", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSelect.Font = new Font("宋体", 10.5F);
             btnSelect.Location = new Point(756, 3);
             btnSelect.MinimumSize = new Size(1, 1);
             btnSelect.Name = "btnSelect";
+            btnSelect.ShowBuiltInResources = true;
             btnSelect.Size = new Size(61, 29);
             btnSelect.Symbol = 0;
             btnSelect.TabIndex = 3;
             btnSelect.Text = "确定";
+            btnSelect.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnSelect.Click += btnSelect_Click;
             // 
             // uiLabel2
             // 
             uiLabel2.AutoSize = true;
             uiLabel2.BackColor = Color.Transparent;
-            uiLabel2.Font = new Font("宋体", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            uiLabel2.Font = new Font("宋体", 10.5F);
             uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel2.Location = new Point(726, 10);
             uiLabel2.Name = "uiLabel2";
@@ -667,7 +687,7 @@ namespace Sunny.UI
             // 
             uiLabel1.AutoSize = true;
             uiLabel1.BackColor = Color.Transparent;
-            uiLabel1.Font = new Font("宋体", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            uiLabel1.Font = new Font("宋体", 10.5F);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel1.Location = new Point(650, 10);
             uiLabel1.Name = "uiLabel1";

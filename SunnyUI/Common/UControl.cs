@@ -372,14 +372,11 @@ namespace Sunny.UI
 
         internal static void HideComboDropDown(this Control ctrl)
         {
-            var ctrls = ctrl?.FindForm()?.GetInterfaceControls("IHideDropDown", true);
+            var ctrls = ctrl?.FindForm()?.GetInterfaceControls<IHideDropDown>(true);
             if (ctrls == null) return;
             foreach (var control in ctrls)
             {
-                if (control is IHideDropDown item)
-                {
-                    item.HideDropDown();
-                }
+                control.HideDropDown();
             }
         }
 
@@ -390,21 +387,22 @@ namespace Sunny.UI
         /// <param name="interfaceName">接口名称</param>
         /// <param name="includeChild"></param>
         /// <returns>控件列表</returns>
-        public static List<Control> GetInterfaceControls(this Control ctrl, string interfaceName, bool includeChild = false)
+        public static List<T> GetInterfaceControls<T>(this Control ctrl, bool includeChild = false, bool includeUIPage = true)
         {
-            List<Control> values = new List<Control>();
+            List<T> values = new();
             if (ctrl.IsNull()) return values;
 
             foreach (Control obj in ctrl.Controls)
             {
-                if (obj.GetType().GetInterface(interfaceName) != null)
+                if (obj is T it && it != null)
                 {
-                    values.Add(obj);
+                    values.Add(it);
                 }
 
                 if (includeChild && obj.Controls.Count > 0)
                 {
-                    values.AddRange(obj.GetInterfaceControls(interfaceName, true));
+                    if (obj is not UIPage || includeUIPage)
+                        values.AddRange(obj.GetInterfaceControls<T>(includeChild, includeUIPage));
                 }
             }
 

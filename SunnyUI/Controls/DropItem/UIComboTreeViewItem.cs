@@ -52,9 +52,9 @@ namespace Sunny.UI
 
         public void Translate()
         {
-            btnOK.Text = UIStyles.Localize.OK;
-            btnCancel.Text = UIStyles.Localize.Cancel;
-            uiCheckBox1.Text = UIStyles.Localize.All;
+            btnOK.Text = UIStyles.CurrentResources.OK;
+            btnCancel.Text = UIStyles.CurrentResources.Cancel;
+            uiCheckBox1.Text = UIStyles.CurrentResources.All;
         }
 
         private void InitializeComponent()

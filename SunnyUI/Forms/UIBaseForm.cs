@@ -696,18 +696,6 @@ namespace Sunny.UI
             }
         }
 
-        public virtual void Translate()
-        {
-            List<Control> controls = this.GetInterfaceControls("ITranslate");
-            foreach (var control in controls)
-            {
-                if (control is ITranslate item)
-                {
-                    item.Translate();
-                }
-            }
-        }
-
         public readonly Guid Guid = Guid.NewGuid();
 
         protected FormWindowState lastWindowState = FormWindowState.Normal;
@@ -1071,5 +1059,23 @@ namespace Sunny.UI
         }
 
         #endregion IFrame实现
+
+        public virtual void Translate()
+        {
+            var controls = this.GetInterfaceControls<ITranslate>(true);
+            foreach (var control in controls)
+            {
+                if (control is not UIPage)
+                    control.Translate();
+            }
+
+            SelectedPage?.Translate();
+            this.TranslateOther();
+        }
+
+        public class CodeTranslator : BaseCodeTranslator
+        {
+            public string ButtonInfo { get; set; }
+        }
     }
 }

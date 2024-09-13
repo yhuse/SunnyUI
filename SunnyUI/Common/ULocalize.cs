@@ -59,42 +59,42 @@ namespace Sunny.UI
         /// <summary>
         /// 2052 简体中文
         /// </summary>
-        public const int LCID_ZH_CN = 2052;
+        public const int LCID_zh_CN = 2052;
 
         /// <summary>
         /// 1028 繁体中文
         /// </summary>
-        public const int LCID_ZH_TW = 1028;
+        public const int LCID_zh_TW = 1028;
 
         /// <summary>
         /// 1033 英语
         /// </summary>
-        public const int LCID_EN_US = 1033;
+        public const int LCID_en_US = 1033;
 
         /// <summary>
         /// 2052 简体中文
         /// </summary>
-        public static CultureInfo SimplifiedChinese = CultureInfo.GetCultureInfo(LCID_ZH_CN);
+        public static readonly CultureInfo zh_CN = CultureInfo.GetCultureInfo(LCID_zh_CN);
 
         /// <summary>
         /// 1028 繁体中文
         /// </summary>
-        public static CultureInfo TraditionalChinese = CultureInfo.GetCultureInfo(LCID_ZH_TW);
+        public static readonly CultureInfo zh_TW = CultureInfo.GetCultureInfo(LCID_zh_TW);
 
         /// <summary>
         /// 1033 英语
         /// </summary>
-        public static CultureInfo English = CultureInfo.GetCultureInfo(LCID_EN_US);
+        public static readonly CultureInfo en_US = CultureInfo.GetCultureInfo(LCID_en_US);
     }
 
-    public class UILocalize_ZH_CN : UILocalize
+    public class zh_CN_Resources : UIBuiltInResources
     {
-        public override CultureInfo CultureInfo => CultureInfos.SimplifiedChinese;
+        public override CultureInfo CultureInfo => CultureInfos.zh_CN;
     }
 
-    public class UILocalize_EN_US : UILocalize
+    public class en_US_Resources : UIBuiltInResources
     {
-        public override CultureInfo CultureInfo => CultureInfos.English;
+        public override CultureInfo CultureInfo => CultureInfos.en_US;
         public override string InfoTitle { get; set; } = "Info";
         public override string SuccessTitle { get; set; } = "Success";
         public override string WarningTitle { get; set; } = "Warning";
@@ -143,7 +143,7 @@ namespace Sunny.UI
     /// <summary>
     /// 多语言字符串定义
     /// </summary>
-    public abstract class UILocalize
+    public abstract class UIBuiltInResources
     {
         public abstract CultureInfo CultureInfo { get; }
 

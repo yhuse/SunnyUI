@@ -313,18 +313,18 @@ namespace Sunny.UI
         public void Translate()
         {
             months.Clear();
-            months.Add(UIStyles.Localize.January);
-            months.Add(UIStyles.Localize.February);
-            months.Add(UIStyles.Localize.March);
-            months.Add(UIStyles.Localize.April);
-            months.Add(UIStyles.Localize.May);
-            months.Add(UIStyles.Localize.June);
-            months.Add(UIStyles.Localize.July);
-            months.Add(UIStyles.Localize.August);
-            months.Add(UIStyles.Localize.September);
-            months.Add(UIStyles.Localize.October);
-            months.Add(UIStyles.Localize.November);
-            months.Add(UIStyles.Localize.December);
+            months.Add(UIStyles.CurrentResources.January);
+            months.Add(UIStyles.CurrentResources.February);
+            months.Add(UIStyles.CurrentResources.March);
+            months.Add(UIStyles.CurrentResources.April);
+            months.Add(UIStyles.CurrentResources.May);
+            months.Add(UIStyles.CurrentResources.June);
+            months.Add(UIStyles.CurrentResources.July);
+            months.Add(UIStyles.CurrentResources.August);
+            months.Add(UIStyles.CurrentResources.September);
+            months.Add(UIStyles.CurrentResources.October);
+            months.Add(UIStyles.CurrentResources.November);
+            months.Add(UIStyles.CurrentResources.December);
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
@@ -677,7 +677,7 @@ namespace Sunny.UI
         {
             int width = p3.Width / 7;
             int height = (p3.Height - 30) / 6;
-            string[] weeks = { UIStyles.Localize.Sunday, UIStyles.Localize.Monday, UIStyles.Localize.Tuesday, UIStyles.Localize.Wednesday, UIStyles.Localize.Thursday, UIStyles.Localize.Friday, UIStyles.Localize.Saturday };
+            string[] weeks = { UIStyles.CurrentResources.Sunday, UIStyles.CurrentResources.Monday, UIStyles.CurrentResources.Tuesday, UIStyles.CurrentResources.Wednesday, UIStyles.CurrentResources.Thursday, UIStyles.CurrentResources.Friday, UIStyles.CurrentResources.Saturday };
             for (int i = 0; i < weeks.Length; i++)
             {
                 e.Graphics.DrawString(weeks[i], Font, ForeColor, new Rectangle(width * i, 4, width, 19), ContentAlignment.MiddleCenter);
