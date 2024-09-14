@@ -46,6 +46,9 @@ namespace Sunny.UI
 
         public static bool GlobalRectangle { get; set; } = false;
 
+        /// <summary>
+        /// 多语言支持
+        /// </summary>
         public static bool MultiLanguageSupport { get; set; } = false;
 
         public static bool DPIScale { get; set; }

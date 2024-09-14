@@ -101,6 +101,14 @@ namespace Sunny.UI
             set => UIStyles.GlobalRectangle = value;
         }
 
+        [DefaultValue(false)]
+        [Description("多语言支持"), Category("SunnyUI")]
+        public bool MultiLanguageSupport
+        {
+            get => UIStyles.MultiLanguageSupport;
+            set => UIStyles.MultiLanguageSupport = value;
+        }
+
         /// <summary>
         /// 版本
         /// </summary>

@@ -59,6 +59,9 @@ namespace Sunny.UI
             fillColor = UIStyles.Blue.CheckBoxColor;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         /// <summary>
         /// 重载绘图
         /// </summary>

@@ -303,6 +303,8 @@ namespace Sunny.UI
             {
                 SetInheritedStyle(UIStyles.Style);
             }
+
+            Translate();
         }
 
         private int _symbolSize = 24;
