@@ -33,7 +33,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UISmoothLabel : Label, IStyleInterface, IZoomScale
+    public sealed class UISmoothLabel : Label, IStyleInterface, IZoomScale, IFormTranslator
     {
         private PointF point;
         private SizeF drawSize;
@@ -54,6 +54,14 @@ namespace Sunny.UI
             forecolorBrush = new SolidBrush(ForeColor);
             Size = new Size(300, 60);
         }
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public string[] FormTranslatorProperties => ["Text"];
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
 
         protected override void Dispose(bool disposing)
         {

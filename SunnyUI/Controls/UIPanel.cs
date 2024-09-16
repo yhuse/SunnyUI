@@ -45,6 +45,9 @@ namespace Sunny.UI
             SetStyleFlags(true, false, true);
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         /// <summary>
         /// 字体颜色
         /// </summary>

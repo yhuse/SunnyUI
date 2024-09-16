@@ -34,7 +34,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public class UILabel : Label, IStyleInterface, IZoomScale
+    public class UILabel : Label, IStyleInterface, IZoomScale, IFormTranslator
     {
         public UILabel()
         {
@@ -42,6 +42,14 @@ namespace Sunny.UI
             Version = UIGlobal.Version;
             ForeColor = UIStyles.Blue.LabelForeColor;
         }
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public string[] FormTranslatorProperties => ["Text"];
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
 
         /// <summary>
         /// 禁止控件跟随窗体缩放
@@ -160,7 +168,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
-    public sealed class UILinkLabel : LinkLabel, IStyleInterface, IZoomScale
+    public sealed class UILinkLabel : LinkLabel, IStyleInterface, IZoomScale, IFormTranslator
     {
         public UILinkLabel()
         {
@@ -173,6 +181,14 @@ namespace Sunny.UI
 
             base.LinkColor = linkColor = ForeColor = UIStyles.Blue.LabelForeColor;
         }
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public string[] FormTranslatorProperties => ["Text"];
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
 
         /// <summary>
         /// 禁止控件跟随窗体缩放

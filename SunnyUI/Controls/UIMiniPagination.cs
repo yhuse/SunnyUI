@@ -109,6 +109,7 @@ namespace Sunny.UI
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
                 buttons[i].Size = new System.Drawing.Size(32, 32);
+                buttons[i].ShowBuiltInResources = true;
             }
 
             buttonTags.TryAdd(b0, -1);

@@ -678,6 +678,7 @@ namespace Sunny.UI
             uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel2.Location = new Point(726, 10);
             uiLabel2.Name = "uiLabel2";
+            uiLabel2.ShowBuiltInResources = true;
             uiLabel2.Size = new Size(21, 14);
             uiLabel2.TabIndex = 2;
             uiLabel2.Text = "页";
@@ -691,6 +692,7 @@ namespace Sunny.UI
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel1.Location = new Point(650, 10);
             uiLabel1.Name = "uiLabel1";
+            uiLabel1.ShowBuiltInResources = true;
             uiLabel1.Size = new Size(21, 14);
             uiLabel1.TabIndex = 0;
             uiLabel1.Text = "第";

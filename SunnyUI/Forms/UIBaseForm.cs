@@ -149,8 +149,6 @@ namespace Sunny.UI
             {
                 SetInheritedStyle(UIStyles.Style);
             }
-
-            Translate();
         }
 
         public virtual void SetInheritedStyle(UIStyle style)

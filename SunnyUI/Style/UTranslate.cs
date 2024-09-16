@@ -90,7 +90,7 @@ namespace Sunny.UI
                     string key = ctrl.Name + "." + propertyName;
 
                     string langStr = ini.Read(section, key, "");
-                    string ctrlStr = pt.GetValue(ctrl, null).ToString();
+                    string ctrlStr = pt.GetValue(ctrl, null)?.ToString();
 
                     if (langStr.IsNullOrEmpty())
                     {

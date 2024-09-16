@@ -44,6 +44,9 @@ namespace Sunny.UI
             SetStyleFlags(true, false);
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         private void UIGroupBox_TextAlignmentChange(object sender, ContentAlignment alignment)
         {
             Invalidate();

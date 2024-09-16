@@ -35,7 +35,7 @@ namespace Sunny.UI
 {
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner))]
     [DefaultEvent("Click"), DefaultProperty("Text")]
-    public partial class UIUserControl : UserControl, IStyleInterface, IZoomScale
+    public partial class UIUserControl : UserControl, IStyleInterface, IZoomScale, IFormTranslator
     {
         private int radius = 5;
         protected Color rectColor = UIStyles.Blue.PanelRectColor;
@@ -53,6 +53,14 @@ namespace Sunny.UI
             base.MinimumSize = new System.Drawing.Size(1, 1);
             SetStyleFlags(true, false);
         }
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public virtual string[] FormTranslatorProperties { get; }
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
 
         protected override void OnClick(EventArgs e)
         {

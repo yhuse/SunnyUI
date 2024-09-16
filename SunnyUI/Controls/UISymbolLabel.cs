@@ -53,6 +53,9 @@ namespace Sunny.UI
             Height = 35;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         private bool autoSize;
 
         [Browsable(true)]

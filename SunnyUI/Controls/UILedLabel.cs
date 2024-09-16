@@ -39,6 +39,9 @@ namespace Sunny.UI
             foreColor = UIStyles.Blue.LedLabelForeColor;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         /// <summary>
         /// 重载绘图
         /// </summary>

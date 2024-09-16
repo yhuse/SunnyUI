@@ -52,6 +52,9 @@ namespace Sunny.UI
             Square
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["ActiveText", "InActiveText"];
+
         public UISwitch()
         {
             SetStyleFlags();

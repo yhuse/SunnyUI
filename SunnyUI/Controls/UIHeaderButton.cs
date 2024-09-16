@@ -71,6 +71,9 @@ namespace Sunny.UI
             rectDisableColor = UIStyles.Blue.RectDisableColor;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         /// <summary>
         /// 设置控件缩放比例
         /// </summary>

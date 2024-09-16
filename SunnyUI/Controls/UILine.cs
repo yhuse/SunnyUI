@@ -48,6 +48,9 @@ namespace Sunny.UI
             rectColor = UIStyles.Blue.LineRectColor;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         public enum LineDirection
         {
             /// <summary>

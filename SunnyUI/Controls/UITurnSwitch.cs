@@ -49,6 +49,9 @@ namespace Sunny.UI
             ShowRect = false;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["ActiveText", "InActiveText"];
+
         [DefaultValue(false)]
         [Description("是否只读"), Category("SunnyUI")]
         public bool ReadOnly { get; set; }
