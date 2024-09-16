@@ -41,14 +41,6 @@ namespace Sunny.UI
             MainContainer.AfterRemoveTabPage += MainContainer_AfterRemoveTabPage;
         }
 
-        [DefaultValue(false)]
-        [Description("多页面框架时，包含UIPage，在点击Tab页关闭时关闭UIPage"), Category("SunnyUI")]
-        public bool AutoClosePage
-        {
-            get => MainContainer.AutoClosePage;
-            set => MainContainer.AutoClosePage = value;
-        }
-
         private void MainContainer_AfterRemoveTabPage(object sender, int index)
         {
             AfterRemoveTabPage?.Invoke(this, index);

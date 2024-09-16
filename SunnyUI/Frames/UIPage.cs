@@ -1124,6 +1124,20 @@ namespace Sunny.UI
             ReceiveParams?.Invoke(this, e);
         }
 
+        protected bool IsDesignMode
+        {
+            get
+            {
+                bool ReturnFlag = DesignMode;
+                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                    ReturnFlag = true;
+                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+                    ReturnFlag = true;
+
+                return ReturnFlag;
+            }
+        }
+
         public virtual void Translate()
         {
             var controls = this.GetInterfaceControls<ITranslate>(true);
@@ -1132,6 +1146,7 @@ namespace Sunny.UI
                 control.Translate();
             }
 
+            if (IsDesignMode) return;
             this.TranslateOther();
         }
 

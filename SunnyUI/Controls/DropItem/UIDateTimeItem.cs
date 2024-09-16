@@ -834,7 +834,6 @@ namespace Sunny.UI
             set
             {
                 date = value;
-                TabControl.SelectPage(2);
                 Year = date.Year;
                 Month = date.Month;
                 SetYearMonth(Year, Month);

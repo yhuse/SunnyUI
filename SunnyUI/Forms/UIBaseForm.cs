@@ -625,7 +625,7 @@ namespace Sunny.UI
         {
             get
             {
-                bool ReturnFlag = false;
+                bool ReturnFlag = DesignMode;
                 if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                     ReturnFlag = true;
                 else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
@@ -872,8 +872,7 @@ namespace Sunny.UI
 
         private void MainTabControl_TabPageAndUIPageChanged(object sender, TabPageAndUIPageArgs e)
         {
-            List<UIPage> pages = e.TabPage.GetControls<UIPage>();
-            SelectedPage = pages.Count == 1 ? pages[0] : null;
+            SelectedPage = e.UIPage;
         }
 
         private void MainTabControl_Deselected(object sender, TabControlEventArgs e)
@@ -920,6 +919,11 @@ namespace Sunny.UI
         public UIPage AddPage(UIPage page)
         {
             SetDefaultTabControl();
+
+            if (page == null)
+            {
+                throw new ArgumentNullException(nameof(page));
+            }
 
             if (MainTabControl == null)
             {
@@ -1072,6 +1076,8 @@ namespace Sunny.UI
             }
 
             SelectedPage?.Translate();
+
+            if (IsDesignMode) return;
             this.TranslateOther();
         }
 

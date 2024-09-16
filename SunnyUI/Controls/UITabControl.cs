@@ -73,9 +73,6 @@ namespace Sunny.UI
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
 
-            DisposeTabPageAfterRemove = true;
-            AutoClosePage = true;
-
             tabSelectedForeColor = UIStyles.Blue.TabControlTabSelectedColor;
             tabSelectedHighColor = UIStyles.Blue.TabControlTabSelectedColor;
             _fillColor = UIStyles.Blue.TabControlBackColor;
@@ -86,13 +83,10 @@ namespace Sunny.UI
             TabPageAndUIPageChanged?.Invoke(this, e);
         }
 
-        public event TabPageAndUIPageEventHandler TabPageAndUIPageChanged;
+        public event EventHandler<TabPageAndUIPageArgs> TabPageAndUIPageChanged;
 
         [Browsable(false), DefaultValue(null)]
-        public IFrame Frame
-        {
-            get; set;
-        }
+        public IFrame Frame { get; set; }
 
         /// <summary>
         /// 禁止控件跟随窗体缩放
@@ -251,17 +245,17 @@ namespace Sunny.UI
 
         public bool RemovePage(int pageIndex) => Helper.RemovePage(pageIndex);
 
-        public bool RemovePage(Guid guid) => Helper.RemovePage(guid);
+        public bool RemovePage(Guid pageGuid) => Helper.RemovePage(pageGuid);
 
         public void RemoveAllPages(bool keepMainPage = true) => Helper.RemoveAllPages(keepMainPage);
 
         public UIPage GetPage(int pageIndex) => Helper.GetPage(pageIndex);
 
-        public UIPage GetPage(Guid guid) => Helper.GetPage(guid);
+        public UIPage GetPage(Guid pageGuid) => Helper.GetPage(pageGuid);
 
         public void SetTipsText(int pageIndex, string tipsText) => Helper.SetTipsText(pageIndex, tipsText);
 
-        public void SetTipsText(Guid guid, string tipsText) => Helper.SetTipsText(guid, tipsText);
+        public void SetTipsText(Guid pageGuid, string tipsText) => Helper.SetTipsText(pageGuid, tipsText);
 
         public void AddPages(params UIPage[] pages)
         {
@@ -276,14 +270,6 @@ namespace Sunny.UI
 
         internal event OnUIPageChanged PageAdded;
         internal event OnUIPageChanged PageRemoved;
-
-        public void AddPage(int pageIndex, UITabControl page) => Helper.AddPage(pageIndex, page);
-
-        public void AddPage(int pageIndex, UITabControlMenu page) => Helper.AddPage(pageIndex, page);
-
-        public void AddPage(Guid guid, UITabControl page) => Helper.AddPage(guid, page);
-
-        public void AddPage(Guid guid, UITabControlMenu page) => Helper.AddPage(guid, page);
 
         public T GetPage<T>() where T : UIPage => Helper.GetPage<T>();
 
@@ -672,9 +658,10 @@ namespace Sunny.UI
                 e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
                     new Rectangle(TabRect.Left + textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
 
-                var menuItem = Helper[index];
-                bool show1 = TabPages[index].Text != MainPage;
-                bool show2 = menuItem == null || !menuItem.AlwaysOpen;
+                TabPage tabPage = TabPages[index];
+                UIPage uiPage = Helper.GetPage(tabPage);
+                bool show1 = tabPage.Text != MainPage;
+                bool show2 = uiPage == null || !uiPage.AlwaysOpen;
                 bool showButton = show1 && show2;
 
                 if (showButton)
@@ -768,9 +755,10 @@ namespace Sunny.UI
                 return;
             }
 
-            var menuItem = Helper[removeIndex];
-            bool show1 = TabPages[removeIndex].Text != MainPage;
-            bool show2 = menuItem == null || !menuItem.AlwaysOpen;
+            TabPage tabPage = TabPages[removeIndex];
+            UIPage uiPage = Helper.GetPage(tabPage);
+            bool show1 = tabPage.Text != MainPage;
+            bool show2 = uiPage == null || !uiPage.AlwaysOpen;
             bool showButton = show1 && show2;
             if (showButton)
             {
@@ -802,20 +790,6 @@ namespace Sunny.UI
 
         public event OnAfterRemoveTabPage AfterRemoveTabPage;
 
-        [DefaultValue(true)]
-        [Description("多页面框架时，包含UIPage，在点击Tab页关闭时关闭UIPage"), Category("SunnyUI")]
-        public bool AutoClosePage
-        {
-            get; set;
-        }
-
-        [DefaultValue(true)]
-        [Description("移除TabPage后，是否自动销毁TabPage"), Category("SunnyUI")]
-        public bool DisposeTabPageAfterRemove
-        {
-            get; set;
-        }
-
         internal void RemoveTabPage(int index)
         {
             if (index < 0 || index >= TabCount)
@@ -824,44 +798,24 @@ namespace Sunny.UI
             }
 
             TabPage tabPage = TabPages[index];
-            var pages = tabPage.GetControls<UIPage>();
-            for (int i = 0; i < pages.Count; i++)
+            UIPage uiPage = Helper.GetPage(tabPage);
+            if (uiPage != null)
             {
-                if (AutoClosePage)
-                {
-                    PageRemoved?.Invoke(this, new UIPageEventArgs(pages[i]));
-
-                    try
-                    {
-                        pages[i].Final();
-                        pages[i].Close();
-                        pages[i].Dispose();
-                        pages[i] = null;
-                    }
-                    catch
-                    { }
-                }
-                else
-                {
-                    pages[i].Parent = null;
-                }
+                PageRemoved?.Invoke(this, new UIPageEventArgs(uiPage));
+                Helper.RemovePage(uiPage);
+                AfterRemoveTabPage?.Invoke(this, index);
+            }
+            else
+            {
+                tabPage.Parent = null;
+                tabPage.Dispose();
+                tabPage = null;
             }
 
             if (TabCount > 1 && index > 0)
             {
                 SelectedTab = TabPages[index - 1];
             }
-
-            TabPages.Remove(tabPage);
-            AfterRemoveTabPage?.Invoke(this, index);
-
-            //if (TabCount > 0)
-            //{
-            //    if (index == 0) SelectedIndex = 0;
-            //    if (index > 0) SelectedIndex = index - 1;
-            //}
-
-            if (DisposeTabPageAfterRemove) tabPage.Dispose();
         }
 
         public enum UITabPosition
@@ -900,8 +854,6 @@ namespace Sunny.UI
             base.OnVisibleChanged(e);
             timer?.Start();
         }
-
-        //private int LastIndex;
 
         public void Init()
         {
