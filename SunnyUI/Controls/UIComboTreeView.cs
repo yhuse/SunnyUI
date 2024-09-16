@@ -85,6 +85,9 @@ namespace Sunny.UI
             base.Dispose(disposing);
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         [DefaultValue(false)]
         [Description("显示清除按钮"), Category("SunnyUI")]
         public bool ShowClearButton

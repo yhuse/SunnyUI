@@ -43,6 +43,9 @@ namespace Sunny.UI
             fullControlSelect = true;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         public delegate void OnValueChanged(object sender, string value);
         public event OnValueChanged ValueChanged;
         private NumPadType numPadType = NumPadType.Text;

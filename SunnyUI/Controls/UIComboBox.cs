@@ -82,6 +82,9 @@ namespace Sunny.UI
             CreateInstance();
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
         public int ScrollBarWidth
         {

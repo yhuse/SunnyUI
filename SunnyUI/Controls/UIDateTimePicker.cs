@@ -55,6 +55,9 @@ namespace Sunny.UI
 
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         /// <summary> 
         /// 必需的设计器变量。
         /// </summary>

@@ -78,6 +78,9 @@ namespace Sunny.UI
             base.Dispose(disposing);
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         [DefaultValue(true), Description("过滤框输入逐一过滤"), Category("SunnyUI")]
         public bool Filter1by1 { get; set; } = true;
 

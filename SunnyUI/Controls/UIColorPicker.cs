@@ -76,6 +76,9 @@ namespace Sunny.UI
             base.Dispose(disposing);
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         /// <summary>
         /// 颜色改变事件
         /// </summary>

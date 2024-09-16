@@ -57,6 +57,9 @@ namespace Sunny.UI
         private DateTime max = DateTime.MaxValue;
         private DateTime min = DateTime.MinValue;
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         static internal DateTime EffectiveMaxDate(DateTime maxDate)
         {
             DateTime maxSupportedDate = DateTimePicker.MaximumDateTime;
