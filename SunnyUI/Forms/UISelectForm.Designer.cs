@@ -42,12 +42,10 @@
             // btnCancel
             // 
             btnCancel.Location = new System.Drawing.Point(343, 4);
-            btnCancel.Symbol = 361453;
             // 
             // btnOK
             // 
             btnOK.Location = new System.Drawing.Point(228, 4);
-            btnOK.Symbol = 361452;
             // 
             // label
             // 
@@ -89,6 +87,7 @@
             Controls.Add(ComboBox);
             Name = "UISelectForm";
             Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
+            ShowBuiltInResources = true;
             Text = "选择";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
             Controls.SetChildIndex(ComboBox, 0);

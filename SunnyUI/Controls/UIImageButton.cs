@@ -32,7 +32,7 @@ namespace Sunny.UI
     /// <summary>
     /// 图像按钮
     /// </summary>
-    public sealed class UIImageButton : PictureBox, IStyleInterface, IZoomScale
+    public sealed class UIImageButton : PictureBox, IStyleInterface, IZoomScale, IFormTranslator
     {
         private bool IsPress;
         private bool IsHover;
@@ -47,6 +47,15 @@ namespace Sunny.UI
         private Color foreColor = UIFontColor.Primary;
 
         private bool isClick;
+
+        [Browsable(false)]
+        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
+        public string[] FormTranslatorProperties => ["Text"];
+
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
+
 
         /// <summary>
         /// 调用点击事件

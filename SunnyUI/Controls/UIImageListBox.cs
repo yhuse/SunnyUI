@@ -79,10 +79,18 @@ namespace Sunny.UI
             listbox.DrawItem += Listbox_DrawItem;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         public override void SetDPIScale()
         {
             base.SetDPIScale();
             listbox.SetDPIScale();
+        }
+
+        private void InitializeComponent()
+        {
+
         }
 
         protected override void Dispose(bool disposing)

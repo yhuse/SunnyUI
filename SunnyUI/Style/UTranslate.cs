@@ -68,12 +68,18 @@ namespace Sunny.UI
 
             string thisFullName = form.GetType().FullName;
             string section = "Info";
+            const string warning = "注意：请先关闭应用程序，然后再修改此文档。否则修改可能会应用程序生成代码覆盖。";
             var formControls = form.GetInterfaceControls<IFormTranslator>(true, false).Where(p => p.FormTranslatorProperties != null);
+            Dir.CreateDir(Dir.CurrentDir() + "Language");
             IniFile ini = new IniFile(Dir.CurrentDir() + "Language\\" + thisFullName + ".ini", System.Text.Encoding.UTF8);
-            ini.Write(section, "Warning", "注意：请先关闭应用程序，然后再修改此文档。否则修改可能会应用程序生成代码覆盖。");
-            ini.Write(section, "Information", "提示：此节为代码自动生成，无需修改。");
-            ini.Write(section, UIStyles.CultureInfo.LCID.ToString() + ".DisplayName", UIStyles.CultureInfo.DisplayName);
-            ini.Write(section, UIStyles.CultureInfo.LCID.ToString() + ".EnglishName", UIStyles.CultureInfo.EnglishName);
+            if (ini.Read(section, "Warning", "") != warning)
+                ini.Write(section, "Warning", warning);
+            string key = UIStyles.CultureInfo.LCID.ToString() + ".DisplayName";
+            if (ini.Read(section, key, "") != UIStyles.CultureInfo.DisplayName)
+                ini.Write(section, key, UIStyles.CultureInfo.DisplayName);
+            key = UIStyles.CultureInfo.LCID.ToString() + ".EnglishName";
+            if (ini.Read(section, key, "") != UIStyles.CultureInfo.EnglishName)
+                ini.Write(section, UIStyles.CultureInfo.LCID.ToString() + ".EnglishName", UIStyles.CultureInfo.EnglishName);
 
             section = UIStyles.CultureInfo.LCID + ".Form";
             foreach (var control in formControls)
@@ -87,8 +93,7 @@ namespace Sunny.UI
                     PropertyInfo pt = ctrl.GetType().GetProperty(propertyName);
                     if (pt == null || !pt.CanWrite) continue;
 
-                    string key = ctrl.Name + "." + propertyName;
-
+                    key = ctrl.Name + "." + propertyName;
                     string langStr = ini.Read(section, key, "");
                     string ctrlStr = pt.GetValue(ctrl, null)?.ToString();
 

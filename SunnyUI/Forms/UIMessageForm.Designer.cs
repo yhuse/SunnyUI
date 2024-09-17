@@ -39,7 +39,7 @@
             // 
             btnCancel.BackColor = System.Drawing.Color.Transparent;
             btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnCancel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnCancel.Font = new System.Drawing.Font("宋体", 12F);
             btnCancel.Location = new System.Drawing.Point(224, 220);
             btnCancel.Margin = new System.Windows.Forms.Padding(0);
             btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
@@ -48,6 +48,7 @@
             btnCancel.Style = UIStyle.Custom;
             btnCancel.TabIndex = 6;
             btnCancel.Text = "取消";
+            btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnCancel.TipsText = null;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -55,7 +56,7 @@
             // 
             btnOK.BackColor = System.Drawing.Color.Transparent;
             btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnOK.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnOK.Font = new System.Drawing.Font("宋体", 12F);
             btnOK.Location = new System.Drawing.Point(2, 220);
             btnOK.Margin = new System.Windows.Forms.Padding(0);
             btnOK.MinimumSize = new System.Drawing.Size(1, 1);
@@ -64,6 +65,7 @@
             btnOK.Style = UIStyle.Custom;
             btnOK.TabIndex = 5;
             btnOK.Text = "确定";
+            btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnOK.TipsText = null;
             btnOK.Click += btnOK_Click;
             // 
@@ -71,7 +73,7 @@
             // 
             lbMsg.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
             lbMsg.FillColor = System.Drawing.Color.White;
-            lbMsg.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lbMsg.Font = new System.Drawing.Font("宋体", 12F);
             lbMsg.Location = new System.Drawing.Point(14, 50);
             lbMsg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             lbMsg.MinimumSize = new System.Drawing.Size(1, 1);
@@ -80,7 +82,6 @@
             lbMsg.RadiusSides = UICornerRadiusSides.None;
             lbMsg.ReadOnly = true;
             lbMsg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            lbMsg.ScrollBarStyleInherited = false;
             lbMsg.ShowText = false;
             lbMsg.Size = new System.Drawing.Size(422, 158);
             lbMsg.Style = UIStyle.Custom;
@@ -103,6 +104,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIMessageForm";
+            ShowBuiltInResources = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             Text = "UIMsgBox";

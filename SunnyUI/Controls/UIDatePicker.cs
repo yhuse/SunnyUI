@@ -58,7 +58,7 @@ namespace Sunny.UI
         private DateTime min = DateTime.MinValue;
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => ["DateYearFormat", "DateYearMonthFormat", "DateFormat"];
 
         static internal DateTime EffectiveMaxDate(DateTime maxDate)
         {

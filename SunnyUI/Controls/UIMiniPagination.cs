@@ -315,294 +315,294 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.b0 = new Sunny.UI.UISymbolButton();
-            this.b1 = new Sunny.UI.UISymbolButton();
-            this.b3 = new Sunny.UI.UISymbolButton();
-            this.b2 = new Sunny.UI.UISymbolButton();
-            this.b7 = new Sunny.UI.UISymbolButton();
-            this.b6 = new Sunny.UI.UISymbolButton();
-            this.b5 = new Sunny.UI.UISymbolButton();
-            this.b4 = new Sunny.UI.UISymbolButton();
-            this.b15 = new Sunny.UI.UISymbolButton();
-            this.b14 = new Sunny.UI.UISymbolButton();
-            this.b13 = new Sunny.UI.UISymbolButton();
-            this.b12 = new Sunny.UI.UISymbolButton();
-            this.b11 = new Sunny.UI.UISymbolButton();
-            this.b10 = new Sunny.UI.UISymbolButton();
-            this.b9 = new Sunny.UI.UISymbolButton();
-            this.b8 = new Sunny.UI.UISymbolButton();
-            this.b16 = new Sunny.UI.UISymbolButton();
-            this.SuspendLayout();
+            b0 = new UISymbolButton();
+            b1 = new UISymbolButton();
+            b3 = new UISymbolButton();
+            b2 = new UISymbolButton();
+            b7 = new UISymbolButton();
+            b6 = new UISymbolButton();
+            b5 = new UISymbolButton();
+            b4 = new UISymbolButton();
+            b15 = new UISymbolButton();
+            b14 = new UISymbolButton();
+            b13 = new UISymbolButton();
+            b12 = new UISymbolButton();
+            b11 = new UISymbolButton();
+            b10 = new UISymbolButton();
+            b9 = new UISymbolButton();
+            b8 = new UISymbolButton();
+            b16 = new UISymbolButton();
+            SuspendLayout();
             // 
             // b0
             // 
-            this.b0.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b0.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b0.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.b0.Location = new System.Drawing.Point(3, 4);
-            this.b0.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b0.Name = "b0";
-            this.b0.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.b0.Radius = 2;
-            this.b0.Size = new System.Drawing.Size(32, 32);
-            this.b0.Symbol = 61700;
-            this.b0.TabIndex = 0;
-            this.b0.TagString = "<";
-            this.b0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.b0.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b0.Cursor = Cursors.Hand;
+            b0.Font = new Font("宋体", 10.5F);
+            b0.ImageAlign = ContentAlignment.MiddleLeft;
+            b0.Location = new Point(3, 4);
+            b0.MinimumSize = new Size(1, 1);
+            b0.Name = "b0";
+            b0.Padding = new Padding(5, 0, 5, 0);
+            b0.Radius = 2;
+            b0.Size = new Size(32, 32);
+            b0.Symbol = 61700;
+            b0.TabIndex = 0;
+            b0.TagString = "<";
+            b0.TextAlign = ContentAlignment.MiddleRight;
+            b0.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b1
             // 
-            this.b1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b1.Location = new System.Drawing.Point(81, 4);
-            this.b1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b1.Name = "b1";
-            this.b1.Radius = 2;
-            this.b1.Size = new System.Drawing.Size(29, 29);
-            this.b1.Symbol = 0;
-            this.b1.TabIndex = 1;
-            this.b1.Text = "0";
-            this.b1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b1.Cursor = Cursors.Hand;
+            b1.Font = new Font("宋体", 12F);
+            b1.Location = new Point(81, 4);
+            b1.MinimumSize = new Size(1, 1);
+            b1.Name = "b1";
+            b1.Radius = 2;
+            b1.Size = new Size(29, 29);
+            b1.Symbol = 0;
+            b1.TabIndex = 1;
+            b1.Text = "0";
+            b1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b3
             // 
-            this.b3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b3.Location = new System.Drawing.Point(145, 4);
-            this.b3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b3.Name = "b3";
-            this.b3.Radius = 2;
-            this.b3.Size = new System.Drawing.Size(29, 29);
-            this.b3.Symbol = 0;
-            this.b3.TabIndex = 3;
-            this.b3.Text = "0";
-            this.b3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b3.Cursor = Cursors.Hand;
+            b3.Font = new Font("宋体", 12F);
+            b3.Location = new Point(145, 4);
+            b3.MinimumSize = new Size(1, 1);
+            b3.Name = "b3";
+            b3.Radius = 2;
+            b3.Size = new Size(29, 29);
+            b3.Symbol = 0;
+            b3.TabIndex = 3;
+            b3.Text = "0";
+            b3.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b2
             // 
-            this.b2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b2.Location = new System.Drawing.Point(113, 4);
-            this.b2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b2.Name = "b2";
-            this.b2.Radius = 2;
-            this.b2.Size = new System.Drawing.Size(29, 29);
-            this.b2.Symbol = 0;
-            this.b2.TabIndex = 2;
-            this.b2.Text = "0";
-            this.b2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b2.Cursor = Cursors.Hand;
+            b2.Font = new Font("宋体", 12F);
+            b2.Location = new Point(113, 4);
+            b2.MinimumSize = new Size(1, 1);
+            b2.Name = "b2";
+            b2.Radius = 2;
+            b2.Size = new Size(29, 29);
+            b2.Symbol = 0;
+            b2.TabIndex = 2;
+            b2.Text = "0";
+            b2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b7
             // 
-            this.b7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b7.Location = new System.Drawing.Point(273, 4);
-            this.b7.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b7.Name = "b7";
-            this.b7.Radius = 2;
-            this.b7.Size = new System.Drawing.Size(29, 29);
-            this.b7.Symbol = 0;
-            this.b7.TabIndex = 7;
-            this.b7.Text = "0";
-            this.b7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b7.Cursor = Cursors.Hand;
+            b7.Font = new Font("宋体", 12F);
+            b7.Location = new Point(273, 4);
+            b7.MinimumSize = new Size(1, 1);
+            b7.Name = "b7";
+            b7.Radius = 2;
+            b7.Size = new Size(29, 29);
+            b7.Symbol = 0;
+            b7.TabIndex = 7;
+            b7.Text = "0";
+            b7.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b6
             // 
-            this.b6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b6.Location = new System.Drawing.Point(241, 4);
-            this.b6.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b6.Name = "b6";
-            this.b6.Radius = 2;
-            this.b6.Size = new System.Drawing.Size(29, 29);
-            this.b6.Symbol = 0;
-            this.b6.TabIndex = 6;
-            this.b6.Text = "0";
-            this.b6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b6.Cursor = Cursors.Hand;
+            b6.Font = new Font("宋体", 12F);
+            b6.Location = new Point(241, 4);
+            b6.MinimumSize = new Size(1, 1);
+            b6.Name = "b6";
+            b6.Radius = 2;
+            b6.Size = new Size(29, 29);
+            b6.Symbol = 0;
+            b6.TabIndex = 6;
+            b6.Text = "0";
+            b6.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b5
             // 
-            this.b5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b5.Location = new System.Drawing.Point(209, 4);
-            this.b5.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b5.Name = "b5";
-            this.b5.Radius = 2;
-            this.b5.Size = new System.Drawing.Size(29, 29);
-            this.b5.Symbol = 0;
-            this.b5.TabIndex = 5;
-            this.b5.Text = "0";
-            this.b5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b5.Cursor = Cursors.Hand;
+            b5.Font = new Font("宋体", 12F);
+            b5.Location = new Point(209, 4);
+            b5.MinimumSize = new Size(1, 1);
+            b5.Name = "b5";
+            b5.Radius = 2;
+            b5.Size = new Size(29, 29);
+            b5.Symbol = 0;
+            b5.TabIndex = 5;
+            b5.Text = "0";
+            b5.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b4
             // 
-            this.b4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b4.Location = new System.Drawing.Point(177, 4);
-            this.b4.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b4.Name = "b4";
-            this.b4.Radius = 2;
-            this.b4.Size = new System.Drawing.Size(29, 29);
-            this.b4.Symbol = 0;
-            this.b4.TabIndex = 4;
-            this.b4.Text = "0";
-            this.b4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b4.Cursor = Cursors.Hand;
+            b4.Font = new Font("宋体", 12F);
+            b4.Location = new Point(177, 4);
+            b4.MinimumSize = new Size(1, 1);
+            b4.Name = "b4";
+            b4.Radius = 2;
+            b4.Size = new Size(29, 29);
+            b4.Symbol = 0;
+            b4.TabIndex = 4;
+            b4.Text = "0";
+            b4.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b15
             // 
-            this.b15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b15.Location = new System.Drawing.Point(529, 4);
-            this.b15.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b15.Name = "b15";
-            this.b15.Radius = 2;
-            this.b15.Size = new System.Drawing.Size(29, 29);
-            this.b15.Symbol = 0;
-            this.b15.TabIndex = 15;
-            this.b15.Text = "0";
-            this.b15.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b15.Cursor = Cursors.Hand;
+            b15.Font = new Font("宋体", 12F);
+            b15.Location = new Point(529, 4);
+            b15.MinimumSize = new Size(1, 1);
+            b15.Name = "b15";
+            b15.Radius = 2;
+            b15.Size = new Size(29, 29);
+            b15.Symbol = 0;
+            b15.TabIndex = 15;
+            b15.Text = "0";
+            b15.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b14
             // 
-            this.b14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b14.Location = new System.Drawing.Point(497, 4);
-            this.b14.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b14.Name = "b14";
-            this.b14.Radius = 2;
-            this.b14.Size = new System.Drawing.Size(29, 29);
-            this.b14.Symbol = 0;
-            this.b14.TabIndex = 14;
-            this.b14.Text = "0";
-            this.b14.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b14.Cursor = Cursors.Hand;
+            b14.Font = new Font("宋体", 12F);
+            b14.Location = new Point(497, 4);
+            b14.MinimumSize = new Size(1, 1);
+            b14.Name = "b14";
+            b14.Radius = 2;
+            b14.Size = new Size(29, 29);
+            b14.Symbol = 0;
+            b14.TabIndex = 14;
+            b14.Text = "0";
+            b14.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b13
             // 
-            this.b13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b13.Location = new System.Drawing.Point(465, 4);
-            this.b13.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b13.Name = "b13";
-            this.b13.Radius = 2;
-            this.b13.Size = new System.Drawing.Size(29, 29);
-            this.b13.Symbol = 0;
-            this.b13.TabIndex = 13;
-            this.b13.Text = "0";
-            this.b13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b13.Cursor = Cursors.Hand;
+            b13.Font = new Font("宋体", 12F);
+            b13.Location = new Point(465, 4);
+            b13.MinimumSize = new Size(1, 1);
+            b13.Name = "b13";
+            b13.Radius = 2;
+            b13.Size = new Size(29, 29);
+            b13.Symbol = 0;
+            b13.TabIndex = 13;
+            b13.Text = "0";
+            b13.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b12
             // 
-            this.b12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b12.Location = new System.Drawing.Point(433, 4);
-            this.b12.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b12.Name = "b12";
-            this.b12.Radius = 2;
-            this.b12.Size = new System.Drawing.Size(29, 29);
-            this.b12.Symbol = 0;
-            this.b12.TabIndex = 12;
-            this.b12.Text = "0";
-            this.b12.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b12.Cursor = Cursors.Hand;
+            b12.Font = new Font("宋体", 12F);
+            b12.Location = new Point(433, 4);
+            b12.MinimumSize = new Size(1, 1);
+            b12.Name = "b12";
+            b12.Radius = 2;
+            b12.Size = new Size(29, 29);
+            b12.Symbol = 0;
+            b12.TabIndex = 12;
+            b12.Text = "0";
+            b12.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b11
             // 
-            this.b11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b11.Location = new System.Drawing.Point(401, 4);
-            this.b11.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b11.Name = "b11";
-            this.b11.Radius = 2;
-            this.b11.Size = new System.Drawing.Size(29, 29);
-            this.b11.Symbol = 0;
-            this.b11.TabIndex = 11;
-            this.b11.Text = "0";
-            this.b11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b11.Cursor = Cursors.Hand;
+            b11.Font = new Font("宋体", 12F);
+            b11.Location = new Point(401, 4);
+            b11.MinimumSize = new Size(1, 1);
+            b11.Name = "b11";
+            b11.Radius = 2;
+            b11.Size = new Size(29, 29);
+            b11.Symbol = 0;
+            b11.TabIndex = 11;
+            b11.Text = "0";
+            b11.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b10
             // 
-            this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b10.Location = new System.Drawing.Point(369, 4);
-            this.b10.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b10.Name = "b10";
-            this.b10.Radius = 2;
-            this.b10.Size = new System.Drawing.Size(29, 29);
-            this.b10.Symbol = 0;
-            this.b10.TabIndex = 10;
-            this.b10.Text = "0";
-            this.b10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b10.Cursor = Cursors.Hand;
+            b10.Font = new Font("宋体", 12F);
+            b10.Location = new Point(369, 4);
+            b10.MinimumSize = new Size(1, 1);
+            b10.Name = "b10";
+            b10.Radius = 2;
+            b10.Size = new Size(29, 29);
+            b10.Symbol = 0;
+            b10.TabIndex = 10;
+            b10.Text = "0";
+            b10.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b9
             // 
-            this.b9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b9.Location = new System.Drawing.Point(337, 4);
-            this.b9.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b9.Name = "b9";
-            this.b9.Radius = 2;
-            this.b9.Size = new System.Drawing.Size(29, 29);
-            this.b9.Symbol = 0;
-            this.b9.TabIndex = 9;
-            this.b9.Text = "0";
-            this.b9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b9.Cursor = Cursors.Hand;
+            b9.Font = new Font("宋体", 12F);
+            b9.Location = new Point(337, 4);
+            b9.MinimumSize = new Size(1, 1);
+            b9.Name = "b9";
+            b9.Radius = 2;
+            b9.Size = new Size(29, 29);
+            b9.Symbol = 0;
+            b9.TabIndex = 9;
+            b9.Text = "0";
+            b9.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b8
             // 
-            this.b8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b8.Location = new System.Drawing.Point(305, 4);
-            this.b8.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b8.Name = "b8";
-            this.b8.Radius = 2;
-            this.b8.Size = new System.Drawing.Size(29, 29);
-            this.b8.Symbol = 0;
-            this.b8.TabIndex = 8;
-            this.b8.Text = "0";
-            this.b8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b8.Cursor = Cursors.Hand;
+            b8.Font = new Font("宋体", 12F);
+            b8.Location = new Point(305, 4);
+            b8.MinimumSize = new Size(1, 1);
+            b8.Name = "b8";
+            b8.Radius = 2;
+            b8.Size = new Size(29, 29);
+            b8.Symbol = 0;
+            b8.TabIndex = 8;
+            b8.Text = "0";
+            b8.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // b16
             // 
-            this.b16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.b16.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.b16.Location = new System.Drawing.Point(561, 4);
-            this.b16.MinimumSize = new System.Drawing.Size(1, 1);
-            this.b16.Name = "b16";
-            this.b16.Padding = new System.Windows.Forms.Padding(6, 0, 5, 0);
-            this.b16.Radius = 2;
-            this.b16.Size = new System.Drawing.Size(32, 32);
-            this.b16.Symbol = 61701;
-            this.b16.TabIndex = 16;
-            this.b16.TagString = ">";
-            this.b16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.b16.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            b16.Cursor = Cursors.Hand;
+            b16.Font = new Font("宋体", 10.5F);
+            b16.ImageAlign = ContentAlignment.MiddleRight;
+            b16.Location = new Point(561, 4);
+            b16.MinimumSize = new Size(1, 1);
+            b16.Name = "b16";
+            b16.Padding = new Padding(6, 0, 5, 0);
+            b16.Radius = 2;
+            b16.Size = new Size(32, 32);
+            b16.Symbol = 61701;
+            b16.TabIndex = 16;
+            b16.TagString = ">";
+            b16.TextAlign = ContentAlignment.MiddleLeft;
+            b16.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // UIMiniPagination
             // 
-            this.Controls.Add(this.b16);
-            this.Controls.Add(this.b15);
-            this.Controls.Add(this.b14);
-            this.Controls.Add(this.b13);
-            this.Controls.Add(this.b12);
-            this.Controls.Add(this.b11);
-            this.Controls.Add(this.b10);
-            this.Controls.Add(this.b9);
-            this.Controls.Add(this.b8);
-            this.Controls.Add(this.b7);
-            this.Controls.Add(this.b6);
-            this.Controls.Add(this.b5);
-            this.Controls.Add(this.b4);
-            this.Controls.Add(this.b3);
-            this.Controls.Add(this.b2);
-            this.Controls.Add(this.b1);
-            this.Controls.Add(this.b0);
-            this.Name = "UIMiniPagination";
-            this.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.Size = new System.Drawing.Size(641, 40);
-            this.ResumeLayout(false);
-
+            Controls.Add(b16);
+            Controls.Add(b15);
+            Controls.Add(b14);
+            Controls.Add(b13);
+            Controls.Add(b12);
+            Controls.Add(b11);
+            Controls.Add(b10);
+            Controls.Add(b9);
+            Controls.Add(b8);
+            Controls.Add(b7);
+            Controls.Add(b6);
+            Controls.Add(b5);
+            Controls.Add(b4);
+            Controls.Add(b3);
+            Controls.Add(b2);
+            Controls.Add(b1);
+            Controls.Add(b0);
+            Name = "UIMiniPagination";
+            RadiusSides = UICornerRadiusSides.None;
+            RectSides = ToolStripStatusLabelBorderSides.None;
+            ShowBuiltInResources = true;
+            Size = new Size(641, 40);
+            ResumeLayout(false);
         }
 
         #endregion InitializeComponent

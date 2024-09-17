@@ -62,6 +62,9 @@ namespace Sunny.UI
             btnDec.Style = UIStyle.Custom;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         /// <summary>
         /// 需要额外设置ToolTip的控件
         /// </summary>

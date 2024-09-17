@@ -73,6 +73,9 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         public void Render()
         {
             if (Panel == null) return;
@@ -514,63 +517,57 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.flowLayoutPanel = new FlowLayoutPanel();
-            this.VBar = new UIVerScrollBarEx();
-            this.HBar = new UIHorScrollBarEx();
-            this.SuspendLayout();
+            flowLayoutPanel = new FlowLayoutPanel();
+            VBar = new UIVerScrollBarEx();
+            HBar = new UIHorScrollBarEx();
+            SuspendLayout();
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.BackColor = Color.FromArgb(235, 243, 255);
-            this.flowLayoutPanel.Dock = DockStyle.Fill;
-            this.flowLayoutPanel.Location = new Point(2, 2);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new Size(429, 383);
-            this.flowLayoutPanel.TabIndex = 0;
-            this.flowLayoutPanel.Tag = "69605093-6397-AD32-9F69-3C29F642F87E";
+            flowLayoutPanel.BackColor = Color.FromArgb(235, 243, 255);
+            flowLayoutPanel.Dock = DockStyle.Fill;
+            flowLayoutPanel.Location = new Point(2, 2);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Size = new Size(429, 383);
+            flowLayoutPanel.TabIndex = 0;
+            flowLayoutPanel.Tag = "69605093-6397-AD32-9F69-3C29F642F87E";
             // 
             // VBar
             // 
-            this.VBar.BoundsHeight = 10;
-            this.VBar.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.VBar.LargeChange = 10;
-            this.VBar.Location = new Point(410, 5);
-            this.VBar.Maximum = 100;
-            this.VBar.MinimumSize = new Size(1, 1);
-            this.VBar.Name = "VBar";
-            this.VBar.Size = new Size(18, 377);
-            this.VBar.TabIndex = 1;
-            this.VBar.TagString = "63FD1249-41D3-E08A-F8F5-CC41CC30FD03";
-            this.VBar.Text = "uiVerScrollBarEx1";
-            this.VBar.Value = 0;
-            this.VBar.Visible = false;
+            VBar.Font = new Font("宋体", 12F);
+            VBar.Location = new Point(410, 5);
+            VBar.MinimumSize = new Size(1, 1);
+            VBar.Name = "VBar";
+            VBar.ShowBuiltInResources = true;
+            VBar.Size = new Size(18, 377);
+            VBar.TabIndex = 1;
+            VBar.TagString = "63FD1249-41D3-E08A-F8F5-CC41CC30FD03";
+            VBar.Text = "uiVerScrollBarEx1";
+            VBar.Visible = false;
             // 
             // HBar
             // 
-            this.HBar.BoundsWidth = 10;
-            this.HBar.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.HBar.LargeChange = 10;
-            this.HBar.Location = new Point(5, 364);
-            this.HBar.Maximum = 100;
-            this.HBar.MinimumSize = new Size(1, 1);
-            this.HBar.Name = "HBar";
-            this.HBar.Size = new Size(399, 18);
-            this.HBar.TabIndex = 2;
-            this.HBar.TagString = "79E1E7DD-3E4D-916B-C8F1-F45B579C290C";
-            this.HBar.Text = "uiHorScrollBarEx1";
-            this.HBar.Value = 0;
-            this.HBar.Visible = false;
+            HBar.Font = new Font("宋体", 12F);
+            HBar.Location = new Point(5, 364);
+            HBar.MinimumSize = new Size(1, 1);
+            HBar.Name = "HBar";
+            HBar.ShowBuiltInResources = true;
+            HBar.Size = new Size(399, 18);
+            HBar.TabIndex = 2;
+            HBar.TagString = "79E1E7DD-3E4D-916B-C8F1-F45B579C290C";
+            HBar.Text = "uiHorScrollBarEx1";
+            HBar.Visible = false;
             // 
             // UIFlowLayoutPanel
             // 
-            this.Controls.Add(this.HBar);
-            this.Controls.Add(this.VBar);
-            this.Controls.Add(this.flowLayoutPanel);
-            this.Name = "UIFlowLayoutPanel";
-            this.Padding = new Padding(2);
-            this.Size = new Size(433, 387);
-            this.ResumeLayout(false);
-
+            Controls.Add(HBar);
+            Controls.Add(VBar);
+            Controls.Add(flowLayoutPanel);
+            Name = "UIFlowLayoutPanel";
+            Padding = new Padding(2);
+            ShowBuiltInResources = true;
+            Size = new Size(433, 387);
+            ResumeLayout(false);
         }
 
         /// <summary>

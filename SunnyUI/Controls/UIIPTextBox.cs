@@ -62,6 +62,9 @@ namespace Sunny.UI
             fillColor = UIStyles.Blue.EditorBackColor;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         public event EventHandler ValueChanged;
 
         private void Txt_Leave(object sender, EventArgs e)
@@ -363,7 +366,7 @@ namespace Sunny.UI
             txt1.Margin = new Padding(3, 3, 10, 3);
             txt1.MaxLength = 3;
             txt1.Name = "txt1";
-            txt1.Size = new Size(40, 22);
+            txt1.Size = new Size(40, 19);
             txt1.TabIndex = 0;
             txt1.TextAlign = HorizontalAlignment.Center;
             // 
@@ -376,7 +379,7 @@ namespace Sunny.UI
             txt2.Margin = new Padding(3, 3, 10, 3);
             txt2.MaxLength = 3;
             txt2.Name = "txt2";
-            txt2.Size = new Size(40, 22);
+            txt2.Size = new Size(40, 19);
             txt2.TabIndex = 0;
             txt2.TabStop = false;
             txt2.TextAlign = HorizontalAlignment.Center;
@@ -390,7 +393,7 @@ namespace Sunny.UI
             txt3.Margin = new Padding(3, 3, 10, 3);
             txt3.MaxLength = 3;
             txt3.Name = "txt3";
-            txt3.Size = new Size(40, 22);
+            txt3.Size = new Size(40, 19);
             txt3.TabIndex = 0;
             txt3.TabStop = false;
             txt3.TextAlign = HorizontalAlignment.Center;
@@ -404,7 +407,7 @@ namespace Sunny.UI
             txt4.Margin = new Padding(3, 3, 10, 3);
             txt4.MaxLength = 3;
             txt4.Name = "txt4";
-            txt4.Size = new Size(40, 22);
+            txt4.Size = new Size(40, 19);
             txt4.TabIndex = 0;
             txt4.TabStop = false;
             txt4.TextAlign = HorizontalAlignment.Center;
@@ -419,6 +422,7 @@ namespace Sunny.UI
             FillColor2 = Color.FromArgb(235, 243, 255);
             Name = "UIIPTextBox";
             Padding = new Padding(1);
+            ShowBuiltInResources = true;
             Size = new Size(219, 29);
             SizeChanged += UIIPTextBox_SizeChanged;
             ResumeLayout(false);

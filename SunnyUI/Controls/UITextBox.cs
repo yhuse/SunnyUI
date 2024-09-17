@@ -131,6 +131,7 @@ namespace Sunny.UI
             btn.Click += Btn_Click;
             btn.Radius = 3;
             btn.SymbolOffset = new Point(-1, 1);
+            btn.ShowBuiltInResources = true;
 
             edit.Invalidate();
             Controls.Add(edit);
@@ -141,6 +142,7 @@ namespace Sunny.UI
             bar.Visible = false;
             bar.ValueChanged += Bar_ValueChanged;
             bar.MouseEnter += Bar_MouseEnter;
+            bar.ShowBuiltInResources = true;
             TextAlignment = ContentAlignment.MiddleLeft;
 
             lastEditHeight = edit.Height;
@@ -150,6 +152,9 @@ namespace Sunny.UI
             editCursor = Cursor;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
         }
+
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
 
         private void Edit_FontChanged(object sender, EventArgs e)
         {

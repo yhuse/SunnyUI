@@ -29,6 +29,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -136,16 +137,9 @@ namespace Sunny.UI
         {
             get
             {
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                {
-                    return true;
-                }
-
-                if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-                {
-                    return true;
-                }
-
+                if (DesignMode) return true;
+                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return true;
+                if (Process.GetCurrentProcess().ProcessName == "devenv") return true;
                 return false;
             }
         }

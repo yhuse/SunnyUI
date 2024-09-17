@@ -30,19 +30,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // UIDatePicker
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Name = "UIDatePicker";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 30, 0);
-            this.SymbolDropDown = 61555;
-            this.SymbolNormal = 61555;
-            this.ButtonClick += new System.EventHandler(this.UIDatetimePicker_ButtonClick);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            Name = "UIDatePicker";
+            ShowBuiltInResources = true;
+            SymbolDropDown = 61555;
+            SymbolNormal = 61555;
+            ButtonClick += UIDatetimePicker_ButtonClick;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

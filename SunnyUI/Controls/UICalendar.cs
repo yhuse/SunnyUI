@@ -98,6 +98,7 @@ namespace Sunny.UI
             TopPanel.Name = "TopPanel";
             TopPanel.RadiusSides = UICornerRadiusSides.None;
             TopPanel.RectSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
+            TopPanel.ShowBuiltInResources = true;
             TopPanel.Size = new Size(461, 31);
             TopPanel.TabIndex = 0;
             TopPanel.Text = "2020-05-05";
@@ -222,6 +223,7 @@ namespace Sunny.UI
             p1.MinimumSize = new Size(1, 1);
             p1.Name = "p1";
             p1.RadiusSides = UICornerRadiusSides.None;
+            p1.ShowBuiltInResources = true;
             p1.Size = new Size(461, 277);
             p1.TabIndex = 0;
             p1.Text = null;
@@ -236,7 +238,7 @@ namespace Sunny.UI
             tabPage2.Controls.Add(p2);
             tabPage2.Location = new Point(0, 40);
             tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(200, 60);
+            tabPage2.Size = new Size(461, 277);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -251,7 +253,8 @@ namespace Sunny.UI
             p2.MinimumSize = new Size(1, 1);
             p2.Name = "p2";
             p2.RadiusSides = UICornerRadiusSides.None;
-            p2.Size = new Size(200, 60);
+            p2.ShowBuiltInResources = true;
+            p2.Size = new Size(461, 277);
             p2.TabIndex = 1;
             p2.Text = null;
             p2.TextAlignment = ContentAlignment.MiddleCenter;
@@ -265,7 +268,7 @@ namespace Sunny.UI
             tabPage3.Controls.Add(p3);
             tabPage3.Location = new Point(0, 40);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(200, 60);
+            tabPage3.Size = new Size(461, 277);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -280,7 +283,8 @@ namespace Sunny.UI
             p3.MinimumSize = new Size(1, 1);
             p3.Name = "p3";
             p3.RadiusSides = UICornerRadiusSides.None;
-            p3.Size = new Size(200, 60);
+            p3.ShowBuiltInResources = true;
+            p3.Size = new Size(461, 277);
             p3.TabIndex = 2;
             p3.Text = null;
             p3.TextAlignment = ContentAlignment.MiddleCenter;
@@ -295,6 +299,7 @@ namespace Sunny.UI
             Controls.Add(TopPanel);
             FillColor = Color.White;
             Name = "UICalendar";
+            ShowBuiltInResources = true;
             Size = new Size(461, 348);
             TopPanel.ResumeLayout(false);
             TabControl.ResumeLayout(false);

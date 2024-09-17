@@ -43,6 +43,7 @@
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Name = "UIComboBox";
+            ShowBuiltInResources = true;
             KeyDown += UIComboBox_KeyDown;
             ButtonClick += UIComboBox_ButtonClick;
             FontChanged += UIComboBox_FontChanged;

@@ -31,7 +31,7 @@ namespace Sunny.UI
     /// LED显示屏
     /// </summary>
     [DefaultProperty("Text")]
-    public class UILedDisplay : Control, IFormTranslator
+    public class UILedDisplay : Control
     {
         #region 组件设计器生成的代码
 
@@ -84,14 +84,6 @@ namespace Sunny.UI
             CalcSize();
             Version = UIGlobal.Version;
         }
-
-        [Browsable(false)]
-        [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
-        public string[] FormTranslatorProperties => ["Text"];
-
-        [DefaultValue(false)]
-        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
-        public bool ShowBuiltInResources { get; set; } = false;
 
         public string Version { get; }
 

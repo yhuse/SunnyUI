@@ -97,6 +97,9 @@ namespace Sunny.UI
             timer.Start();
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties { get; }
+
         public override void SetDPIScale()
         {
             base.SetDPIScale();
@@ -736,6 +739,11 @@ namespace Sunny.UI
         {
             if (index < 0 || index >= Items.Count) return string.Empty;
             return GetItemText(Items[index]);
+        }
+
+        private void InitializeComponent()
+        {
+
         }
     }
 }

@@ -28,73 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDec = new Sunny.UI.UISymbolButton();
-            this.btnAdd = new Sunny.UI.UISymbolButton();
-            this.pnlValue = new Sunny.UI.UIPanel();
-            this.SuspendLayout();
+            btnDec = new UISymbolButton();
+            btnAdd = new UISymbolButton();
+            pnlValue = new UIPanel();
+            SuspendLayout();
             // 
             // btnDec
             // 
-            this.btnDec.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDec.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnDec.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnDec.ImageInterval = 1;
-            this.btnDec.Location = new System.Drawing.Point(0, 0);
-            this.btnDec.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDec.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnDec.Name = "btnDec";
-            this.btnDec.Padding = new System.Windows.Forms.Padding(26, 4, 0, 0);
-            this.btnDec.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
-            this.btnDec.Size = new System.Drawing.Size(29, 29);
-            this.btnDec.Symbol = 61544;
-            this.btnDec.TabIndex = 0;
-            this.btnDec.TipsText = null;
-            this.btnDec.Click += new System.EventHandler(this.btnDec_Click);
+            btnDec.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnDec.Dock = System.Windows.Forms.DockStyle.Left;
+            btnDec.Font = new System.Drawing.Font("宋体", 12F);
+            btnDec.ImageInterval = 1;
+            btnDec.Location = new System.Drawing.Point(0, 0);
+            btnDec.Margin = new System.Windows.Forms.Padding(0);
+            btnDec.MinimumSize = new System.Drawing.Size(1, 1);
+            btnDec.Name = "btnDec";
+            btnDec.Padding = new System.Windows.Forms.Padding(26, 4, 0, 0);
+            btnDec.RadiusSides = UICornerRadiusSides.LeftTop | UICornerRadiusSides.LeftBottom;
+            btnDec.ShowBuiltInResources = true;
+            btnDec.Size = new System.Drawing.Size(29, 29);
+            btnDec.Symbol = 61544;
+            btnDec.TabIndex = 0;
+            btnDec.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnDec.TipsText = null;
+            btnDec.Click += btnDec_Click;
             // 
             // btnAdd
             // 
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnAdd.ImageInterval = 1;
-            this.btnAdd.Location = new System.Drawing.Point(87, 0);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(26, 3, 0, 0);
-            this.btnAdd.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
-            this.btnAdd.Size = new System.Drawing.Size(29, 29);
-            this.btnAdd.Symbol = 61543;
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.TipsText = null;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnAdd.Dock = System.Windows.Forms.DockStyle.Right;
+            btnAdd.Font = new System.Drawing.Font("宋体", 12F);
+            btnAdd.ImageInterval = 1;
+            btnAdd.Location = new System.Drawing.Point(87, 0);
+            btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Padding = new System.Windows.Forms.Padding(26, 3, 0, 0);
+            btnAdd.RadiusSides = UICornerRadiusSides.RightTop | UICornerRadiusSides.RightBottom;
+            btnAdd.ShowBuiltInResources = true;
+            btnAdd.Size = new System.Drawing.Size(29, 29);
+            btnAdd.Symbol = 61543;
+            btnAdd.TabIndex = 1;
+            btnAdd.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnAdd.TipsText = null;
+            btnAdd.Click += btnAdd_Click;
             // 
             // pnlValue
             // 
-            this.pnlValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlValue.Location = new System.Drawing.Point(29, 0);
-            this.pnlValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlValue.MinimumSize = new System.Drawing.Size(1, 1);
-            this.pnlValue.Name = "pnlValue";
-            this.pnlValue.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.pnlValue.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.pnlValue.Size = new System.Drawing.Size(58, 29);
-            this.pnlValue.TabIndex = 2;
-            this.pnlValue.Text = "0";
-            this.pnlValue.Click += new System.EventHandler(this.pnlValue_DoubleClick);
+            pnlValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            pnlValue.Font = new System.Drawing.Font("宋体", 12F);
+            pnlValue.Location = new System.Drawing.Point(29, 0);
+            pnlValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            pnlValue.MinimumSize = new System.Drawing.Size(1, 1);
+            pnlValue.Name = "pnlValue";
+            pnlValue.RadiusSides = UICornerRadiusSides.None;
+            pnlValue.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
+            pnlValue.ShowBuiltInResources = true;
+            pnlValue.Size = new System.Drawing.Size(58, 29);
+            pnlValue.TabIndex = 2;
+            pnlValue.Text = "0";
+            pnlValue.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            pnlValue.Click += pnlValue_DoubleClick;
             // 
             // UIDoubleUpDown
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.pnlValue);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnDec);
-            this.MinimumSize = new System.Drawing.Size(100, 0);
-            this.Name = "UIDoubleUpDown";
-            this.Size = new System.Drawing.Size(116, 29);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            Controls.Add(pnlValue);
+            Controls.Add(btnAdd);
+            Controls.Add(btnDec);
+            MinimumSize = new System.Drawing.Size(100, 0);
+            Name = "UIDoubleUpDown";
+            ShowBuiltInResources = true;
+            Size = new System.Drawing.Size(116, 29);
+            ResumeLayout(false);
         }
 
         #endregion

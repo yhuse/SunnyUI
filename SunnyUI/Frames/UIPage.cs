@@ -48,6 +48,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
@@ -299,12 +300,13 @@ namespace Sunny.UI
 
         public void Render()
         {
-            if (!DesignMode && UIStyles.Style.IsValid())
-            {
-                SetInheritedStyle(UIStyles.Style);
-            }
+            if (DesignMode) return;
 
-            Translate();
+            if (UIStyles.Style.IsValid())
+                SetInheritedStyle(UIStyles.Style);
+
+            if (!ShowBuiltInResources)
+                Translate();
         }
 
         private int _symbolSize = 24;
@@ -1128,28 +1130,30 @@ namespace Sunny.UI
         {
             get
             {
-                bool ReturnFlag = DesignMode;
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                    ReturnFlag = true;
-                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-                    ReturnFlag = true;
-
-                return ReturnFlag;
+                if (DesignMode) return true;
+                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return true;
+                if (Process.GetCurrentProcess().ProcessName == "devenv") return true;
+                return false;
             }
         }
 
+        public event OnReceiveParams ReceiveParams;
+
         public virtual void Translate()
         {
+            if (IsDesignMode) return;
+
             var controls = this.GetInterfaceControls<ITranslate>(true);
             foreach (var control in controls)
             {
                 control.Translate();
             }
 
-            if (IsDesignMode) return;
             this.TranslateOther();
         }
 
-        public event OnReceiveParams ReceiveParams;
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
     }
 }

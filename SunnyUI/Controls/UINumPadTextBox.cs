@@ -267,9 +267,10 @@ namespace Sunny.UI
             // 
             edit.Leave += edit_Leave;
             // 
-            // UIKeyBoardTextBox
+            // UINumPadTextBox
             // 
-            Name = "UIKeyBoardTextBox";
+            Name = "UINumPadTextBox";
+            ShowBuiltInResources = true;
             ButtonClick += UIKeyBoardTextBox_ButtonClick;
             ResumeLayout(false);
             PerformLayout();

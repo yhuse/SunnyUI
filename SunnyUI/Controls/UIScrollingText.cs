@@ -52,6 +52,9 @@ namespace Sunny.UI
             timer.Tick += Timer_Tick;
         }
 
+        [Browsable(false)]
+        public override string[] FormTranslatorProperties => ["Text"];
+
         [DefaultValue(false), Description("是否滚动"), Category("SunnyUI")]
         public bool Active
         {

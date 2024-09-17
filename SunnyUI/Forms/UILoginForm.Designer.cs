@@ -113,7 +113,6 @@
             btnLogin.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             btnLogin.ShowFocusColor = true;
             btnLogin.Size = new System.Drawing.Size(86, 29);
-            btnLogin.Symbol = 361452;
             btnLogin.TabIndex = 2;
             btnLogin.Text = "登录";
             btnLogin.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -210,6 +209,7 @@
             MinimumSize = new System.Drawing.Size(750, 450);
             Name = "UILoginForm";
             Padding = new System.Windows.Forms.Padding(0);
+            ShowBuiltInResources = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             ShowTitle = false;

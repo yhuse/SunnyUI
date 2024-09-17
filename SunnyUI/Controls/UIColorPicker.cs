@@ -44,16 +44,16 @@ namespace Sunny.UI
     {
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            //
+            SuspendLayout();
+            // 
             // UIColorPicker
-            //
-            this.DropDownStyle = UIDropDownStyle.DropDownList;
-            this.Name = "UIColorPicker";
-            this.Padding = new Padding(0, 0, 30, 0);
-            this.ButtonClick += this.UIColorPicker_ButtonClick;
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            DropDownStyle = UIDropDownStyle.DropDownList;
+            Name = "UIColorPicker";
+            ShowBuiltInResources = true;
+            ButtonClick += UIColorPicker_ButtonClick;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         /// <summary> 

@@ -24,9 +24,11 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -145,10 +147,13 @@ namespace Sunny.UI
 
         public void Render()
         {
-            if (!DesignMode && UIStyles.Style.IsValid())
-            {
+            if (DesignMode) return;
+
+            if (UIStyles.Style.IsValid())
                 SetInheritedStyle(UIStyles.Style);
-            }
+
+            if (!ShowBuiltInResources)
+                Translate();
         }
 
         public virtual void SetInheritedStyle(UIStyle style)
@@ -623,13 +628,10 @@ namespace Sunny.UI
         {
             get
             {
-                bool ReturnFlag = DesignMode;
-                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                    ReturnFlag = true;
-                else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-                    ReturnFlag = true;
-
-                return ReturnFlag;
+                if (DesignMode) return true;
+                if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return true;
+                if (Process.GetCurrentProcess().ProcessName == "devenv") return true;
+                return false;
             }
         }
 
@@ -1064,18 +1066,21 @@ namespace Sunny.UI
 
         #endregion IFrame实现
 
+        [DefaultValue(false)]
+        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
+        public bool ShowBuiltInResources { get; set; } = false;
+
         public virtual void Translate()
         {
-            var controls = this.GetInterfaceControls<ITranslate>(true);
+            if (IsDesignMode) return;
+
+            var controls = this.GetInterfaceControls<ITranslate>(true).Where(p => p is not UIPage);
             foreach (var control in controls)
             {
-                if (control is not UIPage)
-                    control.Translate();
+                control.Translate();
             }
 
             SelectedPage?.Translate();
-
-            if (IsDesignMode) return;
             this.TranslateOther();
         }
 

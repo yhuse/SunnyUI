@@ -647,6 +647,7 @@ namespace Sunny.UI
             edtPage.MinimumSize = new Size(1, 1);
             edtPage.Name = "edtPage";
             edtPage.Padding = new Padding(5);
+            edtPage.ShowBuiltInResources = true;
             edtPage.ShowText = false;
             edtPage.Size = new Size(53, 29);
             edtPage.TabIndex = 1;
@@ -723,6 +724,7 @@ namespace Sunny.UI
             Controls.Add(b0);
             Name = "UIPagination";
             RectSides = ToolStripStatusLabelBorderSides.None;
+            ShowBuiltInResources = true;
             Size = new Size(1139, 35);
             ResumeLayout(false);
             PerformLayout();

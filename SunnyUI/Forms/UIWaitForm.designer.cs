@@ -36,7 +36,7 @@
             // 
             labelDescription.AutoSize = true;
             labelDescription.BackColor = System.Drawing.Color.Transparent;
-            labelDescription.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelDescription.Font = new System.Drawing.Font("宋体", 12F);
             labelDescription.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             labelDescription.Location = new System.Drawing.Point(32, 55);
             labelDescription.Name = "labelDescription";
@@ -48,7 +48,7 @@
             // Bar
             // 
             Bar.FillColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            Bar.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Bar.Font = new System.Drawing.Font("宋体", 12F);
             Bar.ForeColor = System.Drawing.Color.FromArgb(80, 160, 255);
             Bar.Location = new System.Drawing.Point(32, 91);
             Bar.MinimumSize = new System.Drawing.Size(70, 23);
@@ -69,6 +69,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIWaitForm";
+            ShowBuiltInResources = true;
             ShowIcon = false;
             Text = "提示";
             TopMost = true;

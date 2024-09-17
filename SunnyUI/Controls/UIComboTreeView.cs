@@ -53,16 +53,16 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // UIComboTreeView
             // 
-            this.DropDownStyle = UIDropDownStyle.DropDownList;
-            this.Name = "UIComboTreeView";
-            this.Padding = new Padding(0, 0, 30, 0);
-            this.ButtonClick += this.UIComboTreeView_ButtonClick;
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            DropDownStyle = UIDropDownStyle.DropDownList;
+            Name = "UIComboTreeView";
+            ShowBuiltInResources = true;
+            ButtonClick += UIComboTreeView_ButtonClick;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         /// <summary> 

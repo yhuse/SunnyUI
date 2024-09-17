@@ -160,23 +160,6 @@ namespace Sunny.UI
             }
         }
 
-        //protected bool IsDesignMode
-        //{
-        //    get
-        //    {
-        //        if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-        //        {
-        //            return true;
-        //        }
-        //        else if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
-        //        {
-        //            return true;
-        //        }
-        //
-        //        return false;
-        //    }
-        //}
-
         private ToolStripStatusLabelBorderSides _rectSides = ToolStripStatusLabelBorderSides.All;
 
         [DefaultValue(ToolStripStatusLabelBorderSides.All), Description("边框显示位置"), Category("SunnyUI")]

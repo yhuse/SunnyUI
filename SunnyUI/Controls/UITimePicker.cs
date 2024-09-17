@@ -36,21 +36,21 @@ namespace Sunny.UI
     {
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            //
+            SuspendLayout();
+            // 
             // UITimePicker
-            //
-            this.Name = "UITimePicker";
-            this.Padding = new Padding(0, 0, 30, 0);
-            this.SymbolDropDown = 61555;
-            this.SymbolNormal = 61555;
-            this.ButtonClick += this.UITimePicker_ButtonClick;
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            Name = "UITimePicker";
+            ShowBuiltInResources = true;
+            SymbolDropDown = 61555;
+            SymbolNormal = 61555;
+            ButtonClick += UITimePicker_ButtonClick;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => ["TimeFormat"];
 
         /// <summary> 
         /// 必需的设计器变量。

@@ -928,40 +928,49 @@ namespace Sunny.UI
             Bar = new UIScrollBar();
             HBar = new UIHorScrollBar();
             SuspendLayout();
-            //
+            // 
             // view
-            //
+            // 
             view.BackColor = Color.White;
             view.BorderStyle = BorderStyle.None;
             view.DrawMode = TreeViewDrawMode.OwnerDrawAll;
+            view.FillColor = Color.White;
             view.ForeColor = Color.FromArgb(48, 48, 48);
             view.FullRowSelect = true;
             view.ItemHeight = 28;
             view.Location = new Point(2, 2);
             view.Name = "view";
+            view.NodeClickChangeCheckBoxes = false;
+            view.SelectedColor = Color.FromArgb(80, 160, 255);
+            view.SelectedForeColor = Color.White;
             view.ShowLines = false;
+            view.ShowLinesEx = false;
             view.Size = new Size(266, 176);
             view.TabIndex = 0;
+            view.TreeNodeStateSync = true;
             view.AfterCollapse += view_AfterCollapse;
             view.AfterExpand += view_AfterExpand;
             view.DrawNode += view_DrawNode;
-            //
+            // 
             // Bar
-            //
+            // 
             Bar.Font = new Font("宋体", 12F);
             Bar.Location = new Point(247, 3);
+            Bar.MinimumSize = new Size(1, 1);
             Bar.Name = "Bar";
+            Bar.ShowBuiltInResources = true;
             Bar.Size = new Size(19, 173);
             Bar.Style = UIStyle.Custom;
             Bar.StyleCustomMode = true;
             Bar.TabIndex = 2;
             Bar.Visible = false;
             Bar.ValueChanged += Bar_ValueChanged;
-            //
+            // 
             // HBar
-            //
+            // 
             HBar.Font = new Font("宋体", 12F);
             HBar.Location = new Point(247, 3);
+            HBar.MinimumSize = new Size(1, 1);
             HBar.Name = "HBar";
             HBar.Size = new Size(173, 19);
             HBar.Style = UIStyle.Custom;
@@ -969,13 +978,15 @@ namespace Sunny.UI
             HBar.TabIndex = 3;
             HBar.Visible = false;
             HBar.ValueChanged += HBar_ValueChanged;
-            //
-            // UITreeViewEx
-            //
+            // 
+            // UITreeView
+            // 
             Controls.Add(Bar);
             Controls.Add(HBar);
             Controls.Add(view);
             FillColor = Color.White;
+            Name = "UITreeView";
+            ShowBuiltInResources = true;
             ResumeLayout(false);
         }
 
