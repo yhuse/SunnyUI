@@ -351,3 +351,9 @@ healthchecksdb
 /SunnyUI.Demo/Bin/SunnyUI.Demo.exe
 /SunnyUI.Demo/Bin/SunnyUI.Demo.exe.config
 /SunnyUI.Demo/Bin/SunnyUI.dll
+/docs/.vitepress/cache/deps
+/run.bat
+/package.json
+/package-lock.json
+/docs/markdown-examples.md
+/docs/api-examples.md
