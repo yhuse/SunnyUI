@@ -12,13 +12,14 @@ export default defineConfig({
       { text: '源码', link: 'https://gitee.com/yhuse/SunnyUI'}
     ],
 
-    sidebar: [
+   sidebar: [
       {
         text: '简介',
         collapsed: false,
         items: [
           { text: '项目说明', link: '/introduction' },
           { text: '更新日志', link: '/updates' },
+          { text: '升级指南', link: '/updatesi' },
           { text: '常见问题', link: '/faq' },
           { text: '安装', link: '/install' },
           { text: '主题', link: '/theme' },
@@ -28,15 +29,40 @@ export default defineConfig({
       },
       {
         text: '多页面框架',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: '快速开始', link: '/started' },
           { text: 'DPI缩放自适应方案', link: '/dpi' },
           { text: '全局字体设置', link: '/globalfont' }
         ]
+      },
+      {
+        text: '窗体',
+        collapsed: true,
+        items: [
+          { text: 'UIForm', link: '/UIForm' },
+          { text: 'UILoginForm', link: '/UILoginForm' }
+        ]
+      },
+      {
+        text: '控件',
+        collapsed: true,
+        items: [
+          { text: 'UIForm', link: '/UIForm' },
+          { text: 'UILoginForm', link: '/UILoginForm' }
+        ]
+      },
+      {
+        text: '工具类库',
+        collapsed: true,
+        items: [
+          { text: 'IniFile -  Ini文件读写类', link: '/IniFile' },
+          { text: 'IniConfig - ini配置文件类', link: '/IniConfig' },
+          { text: 'Json - 简易的Json静态类', link: '/Json' }
+        ]
       }
     ],
-
+    
     socialLinks: [
       { icon: 'github', link: 'https://gitee.com/yhuse/SunnyUI' },
       { icon: 'github', link: 'https://github.com/yhuse/SunnyUI' }
@@ -47,9 +73,9 @@ export default defineConfig({
       copyright: `版权所有 © 2012-${new Date().getFullYear()} SunnyUI.Net`
     },
     
-        editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
-      text: '在 GitHub 上编辑此页面'
+    editLink: {
+      pattern: 'https://gitee.com/yhuse/SunnyUI/tree/master/docs/:path',
+      text: '在 Gitee 上编辑此页面'
     },
 
     docFooter: {

@@ -156,6 +156,7 @@
 \* UIRadioButton: 增加属性可修改图标大小    
 \* UIRadioButtonGroup: 增加属性可修改图标大小    
     
+
 ## 2023\-11\-28 V3.6.1    
 \+ UISymbolPanel：增加图标编辑器面板    
 \* UIFontImages: 重写字体图标编辑器，优化打开速度    
@@ -166,7 +167,7 @@
 ## 2023\-11\-21 V3.6.0    
  **注意：大版本更新，重构主题**     
 建议新项目使用此版本，如果3.6.0以下版本需要升级参照文档比较差异：   
-[升级指南/3.5.2-->3.6.0](https://gitee.com/yhuse/SunnyUI/wikis/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/3.5.2--%3E3.6.0)    
+[升级指南/3.5.2-->3.6.0](/updatesi)    
 \+ 增加.Net8支持    
 \- UIKnobControl: 删除UIKnobControl，源码见：[UIKnobControl.cs](https://gitee.com/yhuse/SunnyUI/blob/V3.5.2/SunnyUI/Controls/UIKnobControl.cs)    
 \* 重构主题     
@@ -179,8 +180,9 @@
 \* 修改几个进度弹窗的关闭标志    
 \* 重构GDI一些方法    
     
+
 ## 2023\-10\-27 V3.5.2    
-\+  **字体图标增加旋转角度参数SymbolRotate** 
+\+  **字体图标增加旋转角度参数SymbolRotate**     
 \* UINavBar: 修正下拉菜单文字显示垂直居中    
 \* UINavBar: ImageList为空时，下拉菜单增加Symbol绘制    
 \* UIContextMenuStrip: 修正文字显示垂直居中    
@@ -194,6 +196,7 @@
 \* UIDropControl: 修复在高DPI下，文字垂直不居中的问题    
 \* UIDropControl: 修复在某些字体不显示下划线的问题    
     
+
 ## 2023\-10\-16 V3.5.1    
 \+ 增加.Net8支持        
 \+ 增加MaterialIcons字体图标    
@@ -208,7 +211,7 @@
 ## 2023\-09\-19 V3.5.0   
  **注意：大版本更新，SunnyUI字体改为系统默认字体（中文Windows常见字体为宋体）**     
 建议新项目使用此版本，如果3.5.0以下版本需要升级参照文档设置全局字体：    
-[https://gitee.com/yhuse/SunnyUI/wikis/多页面框架/全局字体设置](https://gitee.com/yhuse/SunnyUI/wikis/%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6/%E5%85%A8%E5%B1%80%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE)   
+[全局字体设置](/globalfont)   
 
 \+ 重构全局字体设置逻辑，可以在运行时设置全局字体    
 \+ 增加全局矩形设计，忽略圆角，UIStyleManager的GlobalRectangle属性    
