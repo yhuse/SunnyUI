@@ -48,7 +48,7 @@ export default defineConfig({
         text: '控件',
         collapsed: true,
         items: [
-          { text: 'UIForm', link: '/UIForm' },
+          { text: 'UIAvatar', link: '/UIAvatar' },
           { text: 'UILoginForm', link: '/UILoginForm' }
         ]
       },

@@ -1,4 +1,4 @@
-#  Json - 简易的Json静态类
+#  简易的Json静态类
 ---
 -  **Json** 
   简易的Json静态类库，可以在不引用NewtonJson即可简单处理Json对象。  

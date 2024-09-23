@@ -76,7 +76,7 @@
 
 ## **4、Font字体** 
   默认字体为Windows默认字体，中文Windows常见默认字体未宋体，默认字体大小为12。
-  全局字体修改见文档: [https://gitee.com/yhuse/SunnyUI/wikis/多页面框架/全局字体设置](https://gitee.com/yhuse/SunnyUI/wikis/%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6/%E5%85%A8%E5%B1%80%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE)
+  全局字体修改见文档: [全局字体设置](/globalfont)
   **注：界面引用字体，请注意字体版权，常见的免费字体有：思源黑体，阿里巴巴普惠体，小米MiSans，鸿蒙HarmonyOS字体等。** 
   **注：微软雅黑为Windows操作系统字体，SunnyUI不包含微软雅黑字体。微软雅黑字体也仅限于屏幕显示，此项功能微软已经取得授权，用户其他操作与SunnyUI无关。如需制作宣传页、视频、广告等请自行取得微软雅黑授权。** 
 
@@ -150,8 +150,7 @@
 
   
 
-  更新了V3.5.0+版本后，可以文档设置全局字体：
-  [https://gitee.com/yhuse/SunnyUI/wikis/多页面框架/全局字体设置](https://gitee.com/yhuse/SunnyUI/wikis/%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6/%E5%85%A8%E5%B1%80%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE)
+  更新了V3.5.0+版本后，可以设置全局字体：[全局字体设置](/globalfont)
   ![输入图片说明](./assets/8357f821_416720.png)
 
   

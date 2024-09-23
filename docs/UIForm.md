@@ -43,7 +43,7 @@
 | TagString | 获取或设置包含有关控件的数据的对象字符串   | string | -   | 
 
 - 主题风格
-  主题 https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=3739705&doc_id=1022550<br/>
+  [主题](/theme)
 
 - 主题设置
   设置Style属性调用系统自带主题，如果需要自定义颜色，就是更改颜色属性后，把控件的Style设置为Custom，StyleCustomMode设置为True
@@ -51,8 +51,9 @@
 
 - 创建窗体  
   项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。
-  详见安装：https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=3742036&doc_id=1022550  
-  新建窗体：  
+  详见[安装](/install)     
+  
+- 新建窗体：  
   ![输入图片说明](./assets/225716_b52454e1_416720.png)
   
   修改：把Form修改成UIForm，并且 using Sunny.UI;  

@@ -26,7 +26,7 @@
   OnLogin：登录事件。ButtonLoginClick为空时才执行此时间，返回值为IsLogin。  
 
 - 主题风格
-  主题 https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=3739705&doc_id=1022550<br/>
+  [主题](/theme)
 
 - 主题设置
   设置Style属性调用系统自带主题，如果需要自定义颜色，就是更改颜色属性后，把控件的Style设置为Custom，StyleCustomMode设置为True
@@ -34,8 +34,8 @@
 
 - 创建窗体
   项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。
-  详见安装：https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=3742036&doc_id=1022550  
-  创建窗体：参考UIForm创建窗体 https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=4098716&doc_id=1022550  
+  详见[安装](/install)  
+  创建窗体：参考[UIForm](/UIForm)创建窗体  
   切记把窗体的AutoScaleMode从Font设置为None，否则可能出现因为屏幕分辨率而导致的窗体变形。
 
 - 为什么继承的窗体，上面有小锁，能解开吗，还有就是继承的窗体，有些控件属性都设置不了，怎么办？

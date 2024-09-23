@@ -19,7 +19,8 @@
   **动态库应用环境：**
   **VS2010及以上**，应用开发时直接引用Dll，.Net Framework 4.0及以上（不包括.Net Framework 4 Client Profile）都可以。    
   未识别TargetFramework值“net5.0-windows”，就是因为VS版本低了，.Net5只有VS2019 16.8+以上才能运行    
-  ![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/234550_c1e8282f_416720.png "屏幕截图.png")<br/>
+  ![输入图片说明](./assets/234550_c1e8282f_416720.png)
+
   未识别TargetFramework值“net6.0-windows”，就是因为VS版本低了，.Net6只有VS2022 17.0+以上才能运行    
 
 ##  打开源码，显示依赖项都是感叹号    
@@ -86,7 +87,7 @@
   </application>
    ~~~
   3. 上述两步能解决窗体或者控件的缩放，但是DPI缩放时，字体在有些操作系统下并未跟随缩放。 **在保证编译时DPI缩放为100%** ，参照Demo的FMain，将StyleManager的DPIScale设置为True。
-  4. 详细操作步骤见：[https://gitee.com/yhuse/SunnyUI/wikis/多页面框架/DPI缩放自适应方案](https://gitee.com/yhuse/SunnyUI/wikis/%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%A1%86%E6%9E%B6/DPI%E7%BC%A9%E6%94%BE%E8%87%AA%E9%80%82%E5%BA%94%E6%96%B9%E6%A1%88)
+  4. 详细操作步骤见：[DPI缩放自适应方案](/dpi)
 
 ##  工具箱找不到UILogo控件，怎么用？
   UILogo是为SunnyUI定制的，未加入工具箱，有需要的在其位置放置一张图片即可。
