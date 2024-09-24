@@ -42,38 +42,39 @@
 | Version | 版本  | string  |  -     |
 | TagString | 获取或设置包含有关控件的数据的对象字符串   | string | -   | 
 
-- 主题风格
-  [主题](/theme)
 
-- 主题设置
-  设置Style属性调用系统自带主题，如果需要自定义颜色，就是更改颜色属性后，把控件的Style设置为Custom，StyleCustomMode设置为True
-  StyleCustomMode就是接受用户自定义颜色的意思。
 
 - 创建窗体  
-  项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。
-  详见[安装](/install)     
+  项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。   
+  详见[安装](/install)        
+
   
+
 - 新建窗体：  
   ![输入图片说明](./assets/225716_b52454e1_416720.png)
-  
+
   修改：把Form修改成UIForm，并且 using Sunny.UI;  
   ![输入图片说明](./assets/225813_5afb8ba9_416720.png)
-  
+
   这时切换到窗体，窗体已经变为UIForm：  
   ![输入图片说明](./assets/28063ee9_416720.png)
-  
+
   **下一步的操作非常重要：**   
   把窗体的AutoScaleMode从Font设置为None，否则可能出现因为屏幕分辨率而导致的窗体变形。  
   ![输入图片说明](./assets/230113_bf629fd4_416720.png)
-  
+
     
-  
+
 - 拖拽调整窗体大小  
-  ShowDragStretch 设置为true，显示边框可拖拽调整窗体大小。  
+  ShowDragStretch 设置为true，显示边框可拖拽调整窗体大小。     
+
+  
 
 - 显示任务栏图标  
   设置Icon，将ShowIcon设置为true，再打开ShowTitleIcon可显示窗体标题栏图标。  
 
-- 显示标题栏扩展按钮
+  
+
+- 显示标题栏扩展按钮    
   ExtendBox设置为true，可在标题栏现有按钮最小化按钮的左边显示一个扩展按钮。   
   扩展按钮的图标设置ExtendSymbol。ExtendMenu为扩展按钮点击的下拉菜单。  

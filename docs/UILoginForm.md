@@ -20,23 +20,21 @@
 | Version | 版本  | string  |  -     |
 | TagString | 获取或设置包含有关控件的数据的对象字符串   | string | -   | 
 
+
+
 - 事件  
   ButtonLoginClick：确定按钮点击事件，有此事件时不执行OnLogin。需要手动给IsLogin赋值。  
   ButtonCancelClick：取消按钮点击事件。  
   OnLogin：登录事件。ButtonLoginClick为空时才执行此时间，返回值为IsLogin。  
 
-- 主题风格
-  [主题](/theme)
+  
 
-- 主题设置
-  设置Style属性调用系统自带主题，如果需要自定义颜色，就是更改颜色属性后，把控件的Style设置为Custom，StyleCustomMode设置为True
-  StyleCustomMode就是接受用户自定义颜色的意思。
-
-- 创建窗体
-  项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。
-  详见[安装](/install)  
+- 创建窗体    
+  项目引用SunnyUI.dll和SunnyUI.Common.dll，或者从Nuget引用SunnyUI。详见[安装](/install)  
   创建窗体：参考[UIForm](/UIForm)创建窗体  
   切记把窗体的AutoScaleMode从Font设置为None，否则可能出现因为屏幕分辨率而导致的窗体变形。
+
+  
 
 - 为什么继承的窗体，上面有小锁，能解开吗，还有就是继承的窗体，有些控件属性都设置不了，怎么办？
   首先得了解窗体继承的概念，和类的继承是差不多的，窗体上有小锁的其实就是类似于类继承中父类的某个Private属性
@@ -44,15 +42,18 @@
   在使用时，父窗体一般都将其所用的控件的属性和事件进行了封装，可以正常使用。
   举例：
     ![输入图片说明](./assets/011a9a81_416720.png)
+
   
+
 - 继承的登录窗体的登录按钮有锁，但其点击事件已封装到父类的事件。
   需要选中窗体，查看其事件：
   ![输入图片说明](./assets/105850_f7800c4b_416720.png)
+
   
-  
-  
+
 - 通过代码创建
   也可以不用创建窗体，直接通过代码创建，来实现登录过程
+
 ```c#
     UILoginForm frm = new UILoginForm();
     frm.ShowInTaskbar = true;

@@ -49,7 +49,25 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: 'UIAvatar', link: '/UIAvatar' },
-          { text: 'UILoginForm', link: '/UILoginForm' }
+          { text: 'UIBattery', link: '/UIBattery' },
+          { text: 'UIBreadcrumb', link: '/UIBreadcrumb' },
+          { text: 'UIButton', link: '/UIButton' },
+          { text: 'UICheckBox', link: '/UICheckBox' },
+          { text: 'UICheckBoxGroup', link: '/UICheckBoxGroup' },
+          { text: 'UIGroupBox', link: '/UIGroupBox' },
+          { text: 'UILabel', link: '/UILabel' },
+          { text: 'UILedDisplay', link: '/UILedDisplay' },
+          { text: 'UILedLabel', link: '/UILedLabel' },
+          { text: 'UILedStopwatch', link: '/UILedStopwatch' },
+          { text: 'UILinkLabel', link: '/UILinkLabel' },
+          { text: 'UIMarkLabel', link: '/UIMarkLabel' },
+          { text: 'UIPanel', link: '/UIPanel' },
+          { text: 'UIRadioButton', link: '/UIRadioButton' },
+          { text: 'UIRadioButtonGroup', link: '/UIRadioButtonGroup' },
+          { text: 'UISwitch', link: '/UISwitch' },
+          { text: 'UISymbolButton', link: '/UISymbolButton' },
+          { text: 'UISymbolLabel', link: '/UISymbolLabel' },
+          { text: 'UITitlePanel', link: '/UITitlePanel' }
         ]
       },
       {

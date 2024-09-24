@@ -1,3 +1,5 @@
+# UIAvatar
+---
 -  **UIAvatar** 
 头像
 
@@ -24,29 +26,32 @@
 | TagString | 获取或设置包含有关控件的数据的对象字符串   | string | -   | 
 | Version | 版本  | string  |  -     |
 
-- 字体图标
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/232533_5e3bba9d_416720.png "屏幕截图.png")
- 设置Symbol属性
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0127/213545_4603d7c9_416720.png "11.png")
-点击Symbol右侧的按钮：
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0127/213636_ee4259fe_416720.png "12.png")
- [[原创][开源] SunnyUI.Net 字体图标 ](https://www.cnblogs.com/yhuse/p/SunnyUI_FontImage.html)https://www.cnblogs.com/yhuse/p/SunnyUI_FontImage.html<br/>
+- 字体图标   
+  ![输入图片说明](./assets/232533_5e3bba9d_416720.png)
 
-- 主题风格
- **主题**  https://gitee.com/yhuse/SunnyUI/wikis/pages?sort_id=3739705&doc_id=1022550<br/>
+  
+  
+-  Symbol：字体图标（int）   
+  SymbolSize：字体图标的大小（int）   
+  ![enter image description here](./assets/164128_b3ef97c6_416720.png)
+  
+  点击Symbol右侧的按钮：   
+  ![输入图片说明](./assets/04b7d3ee_416720.png)
+  
+  鼠标移到图标上，显示的数字为Symbol字符，点击图标即可设置图标。    
+  
+  
+  
+- 显示方式   
+  设置Icon属性   
+  显示方式：图片（Image）、字体图标（Symbol）、文字（Text）   
+  ![输入图片说明](./assets/232638_fd30df5f_416720.png)
 
-- 主题设置
-  设置Style属性调用系统自带主题，如果需要自定义颜色，就是更改颜色属性后，把控件的Style设置为Custom，StyleCustomMode设置为True
-  StyleCustomMode就是接受用户自定义颜色的意思。
-
-- 显示方式
-  设置Icon属性
-  显示方式：图片（Image）、字体图标（Symbol）、文字（Text）
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/232638_fd30df5f_416720.png "屏幕截图.png")
-
-- 显示形状
-  设置Shape属性
-  圆形（Circle）：
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/232755_71dc172b_416720.png "屏幕截图.png")
-  方形（Square）：
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0416/232813_0ae7f901_416720.png "屏幕截图.png")
+  
+  
+- 显示形状  
+  设置Shape属性   
+  圆形（Circle）：   
+  ![输入图片说明](./assets/232755_71dc172b_416720.png)
+  方形（Square）：   
+  ![输入图片说明](./assets/232813_0ae7f901_416720.png)
