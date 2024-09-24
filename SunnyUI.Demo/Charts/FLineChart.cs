@@ -18,6 +18,13 @@ namespace Sunny.UI.Demo
             DateTime dt = new DateTime(2020, 10, 4);
 
             UILineOption option = new UILineOption();
+
+            //设置图表边框空白部分尺寸
+            option.Grid.Left = 60;
+            option.Grid.Right = 60;
+            option.Grid.Top = 60;
+            option.Grid.Bottom = 60;
+
             option.ToolTip.Visible = true;
             option.Title = new UITitle();
             option.Title.Text = "SunnyUI";
@@ -40,6 +47,7 @@ namespace Sunny.UI.Demo
             //数据点显示小数位数
             series.YAxisDecimalPlaces = 2;
 
+            //增加曲线时，可以设置曲线颜色，例如Color.Lime
             series = option.AddSeries(new UILineSeries("Line2", Color.Lime));
             series.Add(dt.AddHours(3), 3.3);
             series.Add(dt.AddHours(4), 2.3);
@@ -115,6 +123,9 @@ namespace Sunny.UI.Demo
 
             //设置曲线显示最大点数，超过后自动清理
             series.SetMaxCount(50);
+
+            //设置曲线平滑
+            series.Smooth = true;
 
             //坐标轴显示小数位数
             option.XAxis.AxisLabel.DecimalPlaces = 1;
