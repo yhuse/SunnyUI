@@ -387,7 +387,7 @@ namespace Sunny.UI
         /// <param name="interfaceName">接口名称</param>
         /// <param name="includeChild"></param>
         /// <returns>控件列表</returns>
-        public static List<T> GetInterfaceControls<T>(this Control ctrl, bool includeChild = false, bool includeUIPage = true)
+        public static List<T> GetInterfaceControls<T>(this Control ctrl, bool includeChild = false)
         {
             List<T> values = new();
             if (ctrl.IsNull()) return values;
@@ -401,8 +401,29 @@ namespace Sunny.UI
 
                 if (includeChild && obj.Controls.Count > 0)
                 {
-                    if (obj is not UIPage || includeUIPage)
-                        values.AddRange(obj.GetInterfaceControls<T>(includeChild, includeUIPage));
+                    values.AddRange(obj.GetInterfaceControls<T>(includeChild));
+                }
+            }
+
+            return values;
+        }
+
+        internal static List<T> GetTranslateControls<T>(this Control ctrl)
+        {
+            List<T> values = new();
+            if (ctrl.IsNull()) return values;
+
+            foreach (Control obj in ctrl.Controls)
+            {
+                if (obj is T it && it != null)
+                {
+                    values.Add(it);
+                }
+
+                if (obj.Controls.Count > 0)
+                {
+                    if (obj is UIPage) continue;
+                    values.AddRange(obj.GetTranslateControls<T>());
                 }
             }
 
