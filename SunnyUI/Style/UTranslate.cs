@@ -19,10 +19,13 @@
  * 2021-07-23: V3.0.5 增加文件说明
 ******************************************************************************/
 
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -47,19 +50,6 @@ namespace Sunny.UI
         string[] FormTranslatorProperties { get; }
 
         bool ShowBuiltInResources { get; set; }
-    }
-
-    public interface ICodeTranslator
-    {
-        void Load(IniFile ini);
-    }
-
-    public abstract class BaseCodeTranslator : ICodeTranslator
-    {
-        public void Load(IniFile ini)
-        {
-
-        }
     }
 
     public static class TranslateHelper
@@ -210,7 +200,7 @@ namespace Sunny.UI
                 ini.Write(section, key, UIStyles.CultureInfo.DisplayName);
             key = UIStyles.CultureInfo.LCID.ToString() + ".EnglishName";
             if (ini.Read(section, key, "") != UIStyles.CultureInfo.EnglishName)
-                ini.Write(section, UIStyles.CultureInfo.LCID.ToString() + ".EnglishName", UIStyles.CultureInfo.EnglishName);
+                ini.Write(section, key, UIStyles.CultureInfo.EnglishName);
 
             Dictionary<string, CtrlInfo> Ctrls2 = new Dictionary<string, CtrlInfo>();
             Dictionary<string, CtrlInfo> Ctrls3 = new Dictionary<string, CtrlInfo>();
@@ -231,7 +221,7 @@ namespace Sunny.UI
             }
 
             var formControls = form.GetTranslateControls<IFormTranslator>().Where(p => p.FormTranslatorProperties != null); ;
-            section = UIStyles.CultureInfo.LCID + ".Form";
+            section = UIStyles.CultureInfo.LCID + ".FormResources";
             foreach (var control in formControls)
             {
                 if (control.ShowBuiltInResources) continue;
@@ -261,7 +251,161 @@ namespace Sunny.UI
                 }
             }
 
+            ini.UpdateFile();
             ini.Dispose();
+        }
+    }
+
+    public class IniCodeTranslator<TConfig> where TConfig : IniCodeTranslator<TConfig>, new()
+    {
+        /// <summary>
+        /// 当前实例。通过置空可以使其重新加载。
+        /// </summary>
+        public static TConfig Current
+        {
+            get
+            {
+                if (current != null) return current;
+                current = new TConfig();
+                current.SetDefault();
+                return current;
+            }
+        }
+
+        /// <summary>
+        /// 设置默认值
+        /// </summary>
+        public virtual void SetDefault()
+        {
+        }
+
+        /// <summary>
+        /// 实体对象
+        /// </summary>
+        private static TConfig current;
+
+        public void Load(Form form)
+        {
+            if (!UIStyles.MultiLanguageSupport) return;
+            if (!(form is UIBaseForm || form is UIPage)) return;
+            Dir.CreateDir(Dir.CurrentDir() + "Language");
+
+            string thisFullName = form.GetType().FullName;
+
+            string filename = Dir.CurrentDir() + "Language\\" + thisFullName + ".ini";
+            bool exists = File.Exists(filename);
+
+            try
+            {
+                IniFile ini = new IniFile(filename, Encoding.UTF8);
+                string section = "Info";
+                if (!exists)
+                {
+                    const string warning = "注意：请先关闭应用程序，然后再修改此文档。否则修改可能会应用程序生成代码覆盖。";
+                    ini.Write(section, "Warning", warning);
+                }
+
+                string key = UIStyles.CultureInfo.LCID.ToString() + ".DisplayName";
+                if (ini.Read(section, key, "") != UIStyles.CultureInfo.DisplayName)
+                    ini.Write(section, key, UIStyles.CultureInfo.DisplayName);
+                key = UIStyles.CultureInfo.LCID.ToString() + ".EnglishName";
+                if (ini.Read(section, key, "") != UIStyles.CultureInfo.EnglishName)
+                    ini.Write(section, key, UIStyles.CultureInfo.EnglishName);
+
+                ConcurrentDictionary<string, Ident> idents = InitIdents(current);
+
+                foreach (var ident in idents.Values)
+                {
+                    ident.Section = UIStyles.CultureInfo.LCID + ".CodeResources";
+
+                    if (ini.KeyExists(ident.Section, ident.Key))
+                    {
+                        ident.Value = ini.Read(ident.Section, ident.Key, "");
+                        ident.Show = true;
+                    }
+                    else
+                    {
+                        ini.Write(ident.Section, ident.Key, ident.Value);
+                        ident.Show = false;
+                    }
+                }
+
+                ini.UpdateFile();
+                LoadConfigValue(current, idents);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static ConcurrentDictionary<string, Ident> InitIdents<T>(T config)
+        {
+            ConcurrentDictionary<string, Ident> concurrentDictionary = new ConcurrentDictionary<string, Ident>();
+            foreach (PropertyInfo needProperty in config.GetType().GetNeedProperties())
+            {
+                Ident ident = new Ident
+                {
+                    Key = needProperty.Name,
+                    Show = true,
+                    Description = needProperty.Description(),
+                    IsList = needProperty.PropertyType.IsList(),
+                    Value = needProperty.GetValue(config, null).ToString()
+                };
+
+                ConfigSectionAttribute customAttribute = needProperty.GetCustomAttribute<ConfigSectionAttribute>();
+                ident.Section = ((customAttribute != null) ? customAttribute.Section : "");
+                ConfigPropertyAttribute customAttribute2 = needProperty.GetCustomAttribute<ConfigPropertyAttribute>();
+                ident.Caption = ((customAttribute2 != null) ? customAttribute2.Caption : "");
+                ident.Unit = ((customAttribute2 != null) ? customAttribute2.Unit : "");
+                ident.Description = ((customAttribute2 != null) ? customAttribute2.Description : "");
+                ConfigIndexAttribute customAttribute3 = needProperty.GetCustomAttribute<ConfigIndexAttribute>();
+                ident.Index = customAttribute3?.Index ?? (32767 + concurrentDictionary.Count);
+                ident.Show = customAttribute3?.Show ?? true;
+                if (ident.Description.IsNullOrEmpty())
+                {
+                    ident.Description = needProperty.DisplayName() ?? needProperty.Description();
+                }
+
+                if (ident.Description.IsNullOrEmpty())
+                {
+                    ident.Description = "";
+                }
+
+                if (!concurrentDictionary.ContainsKey(ident.Key))
+                {
+                    concurrentDictionary.TryAdd(ident.Key, ident);
+                }
+            }
+
+            return concurrentDictionary;
+        }
+
+        private static void LoadConfigValue<T>(T config, ConcurrentDictionary<string, Ident> idents)
+        {
+            foreach (PropertyInfo needProperty in config.GetType().GetNeedProperties())
+            {
+                object value = needProperty.GetValue(config, null);
+                if (idents.TryGetValue(needProperty.Name, out Ident ident) && ident.Show)
+                {
+                    Type propertyType = needProperty.PropertyType;
+                    if (propertyType == typeof(string))
+                    {
+                        object value2 = idents[needProperty.Name].Value;
+                        needProperty.SetValue(config, Convert.ChangeType((value2 == null) ? value : value2, propertyType), null);
+                        continue;
+                    }
+
+                    if (ConvertEx.CanConvent(propertyType))
+                    {
+                        object value3 = ConvertEx.StringToObject(idents[needProperty.Name].Value, propertyType, value);
+                        needProperty.SetValue(config, Convert.ChangeType(value3, propertyType), null);
+                        continue;
+                    }
+
+                    throw new ApplicationException("不支持此类型: " + propertyType.FullName);
+                }
+            }
         }
     }
 }

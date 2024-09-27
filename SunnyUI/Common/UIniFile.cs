@@ -149,7 +149,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public string Read(string section, string key, string Default)
         {
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[4096 * 16];
             if (Default == null)
             {
                 Default = "";

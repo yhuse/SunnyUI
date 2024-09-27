@@ -1083,10 +1083,5 @@ namespace Sunny.UI
             SelectedPage?.Translate();
             this.TranslateOther();
         }
-
-        public class CodeTranslator : BaseCodeTranslator
-        {
-            public string ButtonInfo { get; set; }
-        }
     }
 }
