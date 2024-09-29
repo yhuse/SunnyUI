@@ -54,16 +54,74 @@ namespace Sunny.UI
 
     public static class TranslateHelper
     {
-        private static List<string> Ingores =
+        private static List<string> Ignores =
             [
             "UIContextMenuStrip",
             "UIStyleManager",
             "UILogo",
             "UIPagination",
-            "UIMiniPagination"
+            "UIMiniPagination",
+            "UIAnalogMeter",
+            "UIBattery",
+            "UICalendar",
+            "UIColorPicker",
+            "UIComboBox",
+            "UIComboDataGridView",
+            "UIComboTreeView",
+            "UIDataGridViewFooter",
+            "UIDatePicker",
+            "UIDateTimePicker",
+            "UIDigitalLabel",
+            "UIDoubleUpDown",
+            "UIEdit",
+            "UIFlowLayoutPanel",
+            "UIGifAvatar",
+            "UIHorScrollBar",
+            "UIHorScrollBarEx",
+            "UIImageListBox",
+            "UIIntegerUpDown",
+            "UIIPTextBox",
+            "UILedBulb",
+            "UILedStopwatch",
+            "UILight",
+            "UIListBox",
+            "UIListBoxEx",
+            "UIMillisecondTimer",
+            "UINavMenu",
+            "UINumPadTextBox",
+            "UIPipe",
+            "UIProgressIndicator",
+            "UIProcessBar",
+            "UIRichTextBox",
+            "UIRoundMeter",
+            "UIRoundProcess",
+            "UIRuler",
+            "UIScrollBar",
+            "UISignal",
+            "UISplitContainer",
+            "UITabControl",
+            "UITabControlMenu",
+            "UITableLayoutPanel",
+            "UITextBox",
+            "UIThermometer",
+            "UITimePicker",
+            "UIToolTip",
+            "UITrackBar",
+            "UITransfer",
+            "UITransparentPanel",
+            "UITreeView",
+            "UIValve",
+            "UIVerificationCode",
+            "UIVerScrollBarEx",
+            "UIWaitingBar",
+            "UIBarChart",
+            "UIChart",
+            "UIDoughnutChart",
+            "UILineChart",
+            "UIPieChart"
             ];
 
-        private static List<string> Needs =
+        private static List<string> Includes =
             [
             "System.Windows.Forms.ToolStripMenuItem"
             ];
@@ -134,9 +192,9 @@ namespace Sunny.UI
                         string name = items[2].Replace(";", "");
                         string classname = items[1];
 
-                        if (Ingores.Contains(classname)) continue;
+                        if (Ignores.Contains(classname)) continue;
 
-                        if (classname.SplitLast(".").StartsWith("UI") || Needs.Contains(classname))
+                        if (classname.SplitLast(".").StartsWith("UI") || Includes.Contains(classname))
                         {
                             ctrladds.TryGetValue("this." + name, out string parent);
                             if (parent.IsValid())
@@ -279,12 +337,14 @@ namespace Sunny.UI
         {
         }
 
+        public static void Load(Form form) => Current.LoadResources(form);
+
         /// <summary>
         /// 实体对象
         /// </summary>
         private static TConfig current;
 
-        public void Load(Form form)
+        private void LoadResources(Form form)
         {
             if (!UIStyles.MultiLanguageSupport) return;
             if (!(form is UIBaseForm || form is UIPage)) return;
@@ -339,7 +399,7 @@ namespace Sunny.UI
             }
         }
 
-        private static ConcurrentDictionary<string, Ident> InitIdents<T>(T config)
+        private ConcurrentDictionary<string, Ident> InitIdents<T>(T config)
         {
             ConcurrentDictionary<string, Ident> concurrentDictionary = new ConcurrentDictionary<string, Ident>();
             foreach (PropertyInfo needProperty in config.GetType().GetNeedProperties())
@@ -381,7 +441,7 @@ namespace Sunny.UI
             return concurrentDictionary;
         }
 
-        private static void LoadConfigValue<T>(T config, ConcurrentDictionary<string, Ident> idents)
+        private void LoadConfigValue<T>(T config, ConcurrentDictionary<string, Ident> idents)
         {
             foreach (PropertyInfo needProperty in config.GetType().GetNeedProperties())
             {
