@@ -88,7 +88,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIMessageForm2";
-            ShowBuiltInResources = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = System.Windows.Forms.FormStartPosition.Manual;

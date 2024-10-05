@@ -562,9 +562,16 @@ namespace Sunny.UI
             {
                 try
                 {
-                    using (Image image = IconToImage(Icon))
+                    if (IconImage != null)
                     {
-                        e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
+                        e.Graphics.DrawImage(IconImage, new Rectangle(6, (TitleHeight - 24) / 2 + 1, 24, 24), new Rectangle(0, 0, IconImage.Width, IconImage.Height), GraphicsUnit.Pixel);
+                    }
+                    else
+                    {
+                        using (Image image = IconToImage(Icon))
+                        {
+                            e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
+                        }
                     }
                 }
                 catch

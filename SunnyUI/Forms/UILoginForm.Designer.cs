@@ -209,7 +209,6 @@
             MinimumSize = new System.Drawing.Size(750, 450);
             Name = "UILoginForm";
             Padding = new System.Windows.Forms.Padding(0);
-            ShowBuiltInResources = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             ShowTitle = false;

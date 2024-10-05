@@ -530,7 +530,6 @@ namespace Sunny.UI
             bar.Location = new Point(247, 4);
             bar.MinimumSize = new Size(1, 1);
             bar.Name = "bar";
-            bar.ShowBuiltInResources = true;
             bar.Size = new Size(19, 173);
             bar.TabIndex = 2;
             bar.Text = "uiScrollBar1";
@@ -542,7 +541,6 @@ namespace Sunny.UI
             FillColor = Color.White;
             Name = "UIRichTextBox";
             Padding = new Padding(2);
-            ShowBuiltInResources = true;
             FontChanged += UIRichTextBox_FontChanged;
             SizeChanged += UIRichTextBox_SizeChanged;
             ResumeLayout(false);

@@ -305,7 +305,7 @@ namespace Sunny.UI
             if (UIStyles.Style.IsValid())
                 SetInheritedStyle(UIStyles.Style);
 
-            if (!ShowBuiltInResources)
+            if (UIStyles.MultiLanguageSupport)
                 Translate();
         }
 
@@ -1152,8 +1152,8 @@ namespace Sunny.UI
             this.TranslateOther();
         }
 
-        [DefaultValue(false)]
-        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
-        public bool ShowBuiltInResources { get; set; } = false;
+        [DefaultValue(true)]
+        [Description("控件在界面显示时需要多语翻译"), Category("SunnyUI")]
+        public bool MultiLanguageSupport { get; set; } = true;
     }
 }

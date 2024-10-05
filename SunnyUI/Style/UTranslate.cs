@@ -49,7 +49,7 @@ namespace Sunny.UI
     {
         string[] FormTranslatorProperties { get; }
 
-        bool ShowBuiltInResources { get; set; }
+        bool MultiLanguageSupport { get; set; }
     }
 
     public static class TranslateHelper
@@ -77,10 +77,10 @@ namespace Sunny.UI
             "UISymbolLabel",
             "UITimePicker",
             "UITurnSwitch",
-            "UITitlePanel"//,
+            "UITitlePanel",
             //Native Controls
             //"Button",
-            //"ToolStripMenuItem",
+            "ToolStripMenuItem"//,
             //"CheckBox",
             //"RadioButton",
             //"GroupBox",
@@ -184,8 +184,14 @@ namespace Sunny.UI
                     const string warning = "注意：请先关闭应用程序，然后再修改此文档。否则修改可能会应用程序生成代码覆盖。";
                     if (ini.Read(section, "Warning", "") != warning)
                         ini.Write(section, "Warning", warning);
-                    ini.Write(section, "Controls", string.Join(";", names.ToArray()));
                     ini.UpdateFile();
+
+                    ini.EraseSection("Controls");
+                    ini.Write("Controls", "Count", names.Count);
+                    for (int i = 0; i < names.Count; i++)
+                    {
+                        ini.Write("Controls", "Control" + i, names[i]);
+                    }
                 }
             }
         }
@@ -208,8 +214,8 @@ namespace Sunny.UI
             string inifile = Dir.CurrentDir() + "Language\\" + thisFullName + ".ini";
             if (!File.Exists(inifile)) return;
             IniFile ini = new IniFile(Dir.CurrentDir() + "Language\\" + thisFullName + ".ini", System.Text.Encoding.UTF8);
-            string controls = ini.Read(section, "Controls", "");
-            if (controls.IsNullOrEmpty()) return;
+            int count = ini.ReadInt("Controls", "Count", 0);
+            if (count == 0) return;
 
             string key = UIStyles.CultureInfo.LCID.ToString() + ".DisplayName";
             if (ini.Read(section, key, "") != UIStyles.CultureInfo.DisplayName)
@@ -220,8 +226,10 @@ namespace Sunny.UI
 
             Dictionary<string, CtrlInfo> Ctrls2 = new Dictionary<string, CtrlInfo>();
             Dictionary<string, CtrlInfo> Ctrls3 = new Dictionary<string, CtrlInfo>();
-            foreach (var item in controls.Split(';'))
+            for (int i = 0; i < count; i++)
             {
+                string item = ini.Read("Controls", "Control" + i, "");
+                if (item.IsNullOrEmpty()) continue;
                 string[] strs = item.Split(",");
                 if (strs.Length == 0) continue;
 
@@ -240,7 +248,7 @@ namespace Sunny.UI
             section = UIStyles.CultureInfo.LCID + ".FormResources";
             foreach (var control in formControls)
             {
-                if (control.ShowBuiltInResources) continue;
+                if (!control.MultiLanguageSupport) continue;
                 Control ctrl = (Control)control;
                 if (ctrl.Name.IsNullOrEmpty()) continue;
                 if (Ctrls3.NotContainsKey(ctrl.Name)) continue;

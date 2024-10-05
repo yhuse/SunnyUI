@@ -958,7 +958,6 @@ namespace Sunny.UI
             Bar.Location = new Point(247, 3);
             Bar.MinimumSize = new Size(1, 1);
             Bar.Name = "Bar";
-            Bar.ShowBuiltInResources = true;
             Bar.Size = new Size(19, 173);
             Bar.Style = UIStyle.Custom;
             Bar.StyleCustomMode = true;
@@ -986,7 +985,6 @@ namespace Sunny.UI
             Controls.Add(view);
             FillColor = Color.White;
             Name = "UITreeView";
-            ShowBuiltInResources = true;
             ResumeLayout(false);
         }
 

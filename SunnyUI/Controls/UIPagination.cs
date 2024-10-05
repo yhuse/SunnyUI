@@ -114,7 +114,6 @@ namespace Sunny.UI
                 buttons[i].MouseEnter += UIDataGridPage_MouseEnter;
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
-                buttons[i].ShowBuiltInResources = true;
             }
 
             buttonTags.TryAdd(b0, -1);
@@ -647,7 +646,6 @@ namespace Sunny.UI
             edtPage.MinimumSize = new Size(1, 1);
             edtPage.Name = "edtPage";
             edtPage.Padding = new Padding(5);
-            edtPage.ShowBuiltInResources = true;
             edtPage.ShowText = false;
             edtPage.Size = new Size(53, 29);
             edtPage.TabIndex = 1;
@@ -663,7 +661,6 @@ namespace Sunny.UI
             btnSelect.Location = new Point(756, 3);
             btnSelect.MinimumSize = new Size(1, 1);
             btnSelect.Name = "btnSelect";
-            btnSelect.ShowBuiltInResources = true;
             btnSelect.Size = new Size(61, 29);
             btnSelect.Symbol = 0;
             btnSelect.TabIndex = 3;
@@ -679,7 +676,6 @@ namespace Sunny.UI
             uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel2.Location = new Point(726, 10);
             uiLabel2.Name = "uiLabel2";
-            uiLabel2.ShowBuiltInResources = true;
             uiLabel2.Size = new Size(21, 14);
             uiLabel2.TabIndex = 2;
             uiLabel2.Text = "页";
@@ -693,7 +689,6 @@ namespace Sunny.UI
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
             uiLabel1.Location = new Point(650, 10);
             uiLabel1.Name = "uiLabel1";
-            uiLabel1.ShowBuiltInResources = true;
             uiLabel1.Size = new Size(21, 14);
             uiLabel1.TabIndex = 0;
             uiLabel1.Text = "第";
@@ -724,7 +719,6 @@ namespace Sunny.UI
             Controls.Add(b0);
             Name = "UIPagination";
             RectSides = ToolStripStatusLabelBorderSides.None;
-            ShowBuiltInResources = true;
             Size = new Size(1139, 35);
             ResumeLayout(false);
             PerformLayout();

@@ -48,7 +48,6 @@ namespace Sunny.UI
             b1.MinimumSize = new System.Drawing.Size(1, 1);
             b1.Name = "b1";
             b1.Padding = new Padding(28, 0, 0, 0);
-            b1.ShowBuiltInResources = true;
             b1.Size = new System.Drawing.Size(44, 32);
             b1.Symbol = 61697;
             b1.TabIndex = 3;
@@ -66,7 +65,6 @@ namespace Sunny.UI
             b2.MinimumSize = new System.Drawing.Size(1, 1);
             b2.Name = "b2";
             b2.Padding = new Padding(28, 0, 0, 0);
-            b2.ShowBuiltInResources = true;
             b2.Size = new System.Drawing.Size(44, 32);
             b2.Symbol = 61701;
             b2.TabIndex = 4;
@@ -84,7 +82,6 @@ namespace Sunny.UI
             b3.MinimumSize = new System.Drawing.Size(1, 1);
             b3.Name = "b3";
             b3.Padding = new Padding(28, 0, 0, 0);
-            b3.ShowBuiltInResources = true;
             b3.Size = new System.Drawing.Size(44, 32);
             b3.Symbol = 61700;
             b3.TabIndex = 5;
@@ -102,7 +99,6 @@ namespace Sunny.UI
             b4.MinimumSize = new System.Drawing.Size(1, 1);
             b4.Name = "b4";
             b4.Padding = new Padding(28, 0, 0, 0);
-            b4.ShowBuiltInResources = true;
             b4.Size = new System.Drawing.Size(44, 32);
             b4.Symbol = 61696;
             b4.TabIndex = 6;
@@ -124,7 +120,6 @@ namespace Sunny.UI
             l1.Name = "l1";
             l1.Padding = new Padding(2);
             l1.SelectionMode = SelectionMode.MultiExtended;
-            l1.ShowBuiltInResources = true;
             l1.ShowText = false;
             l1.Size = new System.Drawing.Size(210, 348);
             l1.TabIndex = 7;
@@ -146,7 +141,6 @@ namespace Sunny.UI
             l2.Name = "l2";
             l2.Padding = new Padding(2);
             l2.SelectionMode = SelectionMode.MultiExtended;
-            l2.ShowBuiltInResources = true;
             l2.ShowText = false;
             l2.Size = new System.Drawing.Size(210, 348);
             l2.TabIndex = 8;
@@ -168,7 +162,6 @@ namespace Sunny.UI
             Padding = new Padding(1);
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
-            ShowBuiltInResources = true;
             Size = new System.Drawing.Size(500, 350);
             ResumeLayout(false);
         }

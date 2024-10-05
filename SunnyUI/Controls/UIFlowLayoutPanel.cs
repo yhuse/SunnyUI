@@ -538,7 +538,6 @@ namespace Sunny.UI
             VBar.Location = new Point(410, 5);
             VBar.MinimumSize = new Size(1, 1);
             VBar.Name = "VBar";
-            VBar.ShowBuiltInResources = true;
             VBar.Size = new Size(18, 377);
             VBar.TabIndex = 1;
             VBar.TagString = "63FD1249-41D3-E08A-F8F5-CC41CC30FD03";
@@ -551,7 +550,6 @@ namespace Sunny.UI
             HBar.Location = new Point(5, 364);
             HBar.MinimumSize = new Size(1, 1);
             HBar.Name = "HBar";
-            HBar.ShowBuiltInResources = true;
             HBar.Size = new Size(399, 18);
             HBar.TabIndex = 2;
             HBar.TagString = "79E1E7DD-3E4D-916B-C8F1-F45B579C290C";
@@ -565,7 +563,6 @@ namespace Sunny.UI
             Controls.Add(flowLayoutPanel);
             Name = "UIFlowLayoutPanel";
             Padding = new Padding(2);
-            ShowBuiltInResources = true;
             Size = new Size(433, 387);
             ResumeLayout(false);
         }

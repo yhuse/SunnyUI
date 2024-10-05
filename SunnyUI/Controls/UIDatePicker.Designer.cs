@@ -36,7 +36,6 @@
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Name = "UIDatePicker";
-            ShowBuiltInResources = true;
             SymbolDropDown = 61555;
             SymbolNormal = 61555;
             ButtonClick += UIDatetimePicker_ButtonClick;

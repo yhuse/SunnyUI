@@ -41,7 +41,6 @@
             Cursor = System.Windows.Forms.Cursors.IBeam;
             Name = "UITextBox";
             Padding = new System.Windows.Forms.Padding(5);
-            ShowBuiltInResources = true;
             Size = new System.Drawing.Size(250, 29);
             ResumeLayout(false);
         }

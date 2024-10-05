@@ -47,9 +47,9 @@ namespace Sunny.UI
         [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
         public string[] FormTranslatorProperties => ["Text"];
 
-        [DefaultValue(false)]
-        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
-        public bool ShowBuiltInResources { get; set; } = false;
+        [DefaultValue(true)]
+        [Description("控件在界面显示时需要多语翻译"), Category("SunnyUI")]
+        public bool MultiLanguageSupport { get; set; } = true;
 
         /// <summary>
         /// 禁止控件跟随窗体缩放
@@ -186,9 +186,9 @@ namespace Sunny.UI
         [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
         public string[] FormTranslatorProperties => ["Text"];
 
-        [DefaultValue(false)]
-        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
-        public bool ShowBuiltInResources { get; set; } = false;
+        [DefaultValue(true)]
+        [Description("控件在界面显示时需要多语翻译"), Category("SunnyUI")]
+        public bool MultiLanguageSupport { get; set; } = true;
 
         /// <summary>
         /// 禁止控件跟随窗体缩放

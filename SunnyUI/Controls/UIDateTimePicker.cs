@@ -46,7 +46,6 @@ namespace Sunny.UI
             // UIDatetimePicker
             // 
             Name = "UIDatetimePicker";
-            ShowBuiltInResources = true;
             SymbolDropDown = 61555;
             SymbolNormal = 61555;
             ButtonClick += UIDatetimePicker_ButtonClick;

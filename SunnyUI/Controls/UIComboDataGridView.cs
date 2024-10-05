@@ -52,7 +52,6 @@ namespace Sunny.UI
             // 
             DropDownStyle = UIDropDownStyle.DropDownList;
             Name = "UIComboDataGridView";
-            ShowBuiltInResources = true;
             ButtonClick += UIComboDataGridView_ButtonClick;
             ResumeLayout(false);
             PerformLayout();

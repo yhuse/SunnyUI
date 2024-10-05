@@ -109,7 +109,6 @@ namespace Sunny.UI
                 buttons[i].MouseLeave += UIDataGridPage_MouseLeave;
                 buttons[i].Click += UIDataGridPage_Click;
                 buttons[i].Size = new System.Drawing.Size(32, 32);
-                buttons[i].ShowBuiltInResources = true;
             }
 
             buttonTags.TryAdd(b0, -1);
@@ -600,7 +599,6 @@ namespace Sunny.UI
             Name = "UIMiniPagination";
             RadiusSides = UICornerRadiusSides.None;
             RectSides = ToolStripStatusLabelBorderSides.None;
-            ShowBuiltInResources = true;
             Size = new Size(641, 40);
             ResumeLayout(false);
         }

@@ -50,7 +50,6 @@ namespace Sunny.UI
             // 
             DropDownStyle = UIDropDownStyle.DropDownList;
             Name = "UIColorPicker";
-            ShowBuiltInResources = true;
             ButtonClick += UIColorPicker_ButtonClick;
             ResumeLayout(false);
             PerformLayout();

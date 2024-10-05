@@ -62,7 +62,6 @@
             btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            btnCancel.ShowBuiltInResources = true;
             btnCancel.ShowFocusColor = true;
             btnCancel.Size = new System.Drawing.Size(100, 35);
             btnCancel.Symbol = 361453;
@@ -82,7 +81,6 @@
             btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             btnOK.Name = "btnOK";
             btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            btnOK.ShowBuiltInResources = true;
             btnOK.ShowFocusColor = true;
             btnOK.Size = new System.Drawing.Size(100, 35);
             btnOK.TabIndex = 0;

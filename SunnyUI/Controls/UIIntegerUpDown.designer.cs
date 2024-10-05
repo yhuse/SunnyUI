@@ -45,7 +45,6 @@
             btnDec.Name = "btnDec";
             btnDec.Padding = new System.Windows.Forms.Padding(26, 4, 0, 0);
             btnDec.RadiusSides = UICornerRadiusSides.LeftTop | UICornerRadiusSides.LeftBottom;
-            btnDec.ShowBuiltInResources = true;
             btnDec.Size = new System.Drawing.Size(29, 29);
             btnDec.Symbol = 61544;
             btnDec.TabIndex = 0;
@@ -65,7 +64,6 @@
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new System.Windows.Forms.Padding(26, 3, 0, 0);
             btnAdd.RadiusSides = UICornerRadiusSides.RightTop | UICornerRadiusSides.RightBottom;
-            btnAdd.ShowBuiltInResources = true;
             btnAdd.Size = new System.Drawing.Size(29, 29);
             btnAdd.Symbol = 61543;
             btnAdd.TabIndex = 1;
@@ -83,7 +81,6 @@
             pnlValue.Name = "pnlValue";
             pnlValue.RadiusSides = UICornerRadiusSides.None;
             pnlValue.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
-            pnlValue.ShowBuiltInResources = true;
             pnlValue.Size = new System.Drawing.Size(58, 29);
             pnlValue.TabIndex = 2;
             pnlValue.Text = "0";
@@ -98,7 +95,6 @@
             Controls.Add(btnDec);
             MinimumSize = new System.Drawing.Size(100, 0);
             Name = "UIIntegerUpDown";
-            ShowBuiltInResources = true;
             Size = new System.Drawing.Size(116, 29);
             ResumeLayout(false);
         }

@@ -98,7 +98,6 @@ namespace Sunny.UI
             TopPanel.Name = "TopPanel";
             TopPanel.RadiusSides = UICornerRadiusSides.None;
             TopPanel.RectSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right;
-            TopPanel.ShowBuiltInResources = true;
             TopPanel.Size = new Size(461, 31);
             TopPanel.TabIndex = 0;
             TopPanel.Text = "2020-05-05";
@@ -117,7 +116,6 @@ namespace Sunny.UI
             b4.Padding = new Padding(24, 0, 0, 0);
             b4.RadiusSides = UICornerRadiusSides.None;
             b4.RectSides = ToolStripStatusLabelBorderSides.None;
-            b4.ShowBuiltInResources = true;
             b4.Size = new Size(30, 24);
             b4.Style = UIStyle.Custom;
             b4.Symbol = 61697;
@@ -137,7 +135,6 @@ namespace Sunny.UI
             b3.Padding = new Padding(24, 0, 0, 0);
             b3.RadiusSides = UICornerRadiusSides.None;
             b3.RectSides = ToolStripStatusLabelBorderSides.None;
-            b3.ShowBuiltInResources = true;
             b3.Size = new Size(30, 24);
             b3.Style = UIStyle.Custom;
             b3.Symbol = 61701;
@@ -156,7 +153,6 @@ namespace Sunny.UI
             b2.Padding = new Padding(24, 0, 0, 0);
             b2.RadiusSides = UICornerRadiusSides.None;
             b2.RectSides = ToolStripStatusLabelBorderSides.None;
-            b2.ShowBuiltInResources = true;
             b2.Size = new Size(30, 24);
             b2.Style = UIStyle.Custom;
             b2.Symbol = 61700;
@@ -175,7 +171,6 @@ namespace Sunny.UI
             b1.Padding = new Padding(24, 0, 0, 0);
             b1.RadiusSides = UICornerRadiusSides.None;
             b1.RectSides = ToolStripStatusLabelBorderSides.None;
-            b1.ShowBuiltInResources = true;
             b1.Size = new Size(30, 24);
             b1.Style = UIStyle.Custom;
             b1.Symbol = 61696;
@@ -223,7 +218,6 @@ namespace Sunny.UI
             p1.MinimumSize = new Size(1, 1);
             p1.Name = "p1";
             p1.RadiusSides = UICornerRadiusSides.None;
-            p1.ShowBuiltInResources = true;
             p1.Size = new Size(461, 277);
             p1.TabIndex = 0;
             p1.Text = null;
@@ -253,7 +247,6 @@ namespace Sunny.UI
             p2.MinimumSize = new Size(1, 1);
             p2.Name = "p2";
             p2.RadiusSides = UICornerRadiusSides.None;
-            p2.ShowBuiltInResources = true;
             p2.Size = new Size(461, 277);
             p2.TabIndex = 1;
             p2.Text = null;
@@ -283,7 +276,6 @@ namespace Sunny.UI
             p3.MinimumSize = new Size(1, 1);
             p3.Name = "p3";
             p3.RadiusSides = UICornerRadiusSides.None;
-            p3.ShowBuiltInResources = true;
             p3.Size = new Size(461, 277);
             p3.TabIndex = 2;
             p3.Text = null;
@@ -299,7 +291,6 @@ namespace Sunny.UI
             Controls.Add(TopPanel);
             FillColor = Color.White;
             Name = "UICalendar";
-            ShowBuiltInResources = true;
             Size = new Size(461, 348);
             TopPanel.ResumeLayout(false);
             TabControl.ResumeLayout(false);

@@ -41,7 +41,6 @@ namespace Sunny.UI
             // UITimePicker
             // 
             Name = "UITimePicker";
-            ShowBuiltInResources = true;
             SymbolDropDown = 61555;
             SymbolNormal = 61555;
             ButtonClick += UITimePicker_ButtonClick;

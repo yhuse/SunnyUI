@@ -104,7 +104,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIMessageForm";
-            ShowBuiltInResources = true;
             ShowIcon = false;
             ShowInTaskbar = false;
             Text = "UIMsgBox";

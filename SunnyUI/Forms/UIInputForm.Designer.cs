@@ -90,7 +90,6 @@
             Controls.Add(label);
             Name = "UIInputForm";
             Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
-            ShowBuiltInResources = true;
             Style = UIStyle.Custom;
             Text = "输入";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);

@@ -87,7 +87,6 @@
             Controls.Add(ComboBox);
             Name = "UISelectForm";
             Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
-            ShowBuiltInResources = true;
             Text = "选择";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 182);
             Controls.SetChildIndex(ComboBox, 0);

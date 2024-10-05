@@ -422,7 +422,6 @@ namespace Sunny.UI
             FillColor2 = Color.FromArgb(235, 243, 255);
             Name = "UIIPTextBox";
             Padding = new Padding(1);
-            ShowBuiltInResources = true;
             Size = new Size(219, 29);
             SizeChanged += UIIPTextBox_SizeChanged;
             ResumeLayout(false);

@@ -270,7 +270,6 @@ namespace Sunny.UI
             // UINumPadTextBox
             // 
             Name = "UINumPadTextBox";
-            ShowBuiltInResources = true;
             ButtonClick += UIKeyBoardTextBox_ButtonClick;
             ResumeLayout(false);
             PerformLayout();

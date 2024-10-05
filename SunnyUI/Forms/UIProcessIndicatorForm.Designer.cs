@@ -53,7 +53,6 @@
             Controls.Add(uiProgressIndicator1);
             Name = "UIProcessIndicatorForm";
             Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            ShowBuiltInResources = true;
             ShowTitle = false;
             Text = "UIProcessIndicatorForm";
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);

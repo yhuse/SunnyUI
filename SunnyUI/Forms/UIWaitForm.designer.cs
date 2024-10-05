@@ -69,7 +69,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIWaitForm";
-            ShowBuiltInResources = true;
             ShowIcon = false;
             Text = "提示";
             TopMost = true;

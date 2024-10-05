@@ -75,7 +75,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UIStatusForm";
-            ShowBuiltInResources = true;
             ShowIcon = false;
             Text = "提示";
             TopMost = true;

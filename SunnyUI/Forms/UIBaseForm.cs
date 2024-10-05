@@ -18,6 +18,7 @@
  *
  * 2024-04-29: V3.6.5 增加文件说明
  * 2024-04-29: V3.6.5 删除ShowTitleIcon，默认使用ShowIcon
+ * 2024-10-05: V3.7.0 增加属性IconImage，以改善Icon转Image显示不佳，状态栏显示仍然用Icon属性
 ******************************************************************************/
 
 using System;
@@ -152,7 +153,7 @@ namespace Sunny.UI
             if (UIStyles.Style.IsValid())
                 SetInheritedStyle(UIStyles.Style);
 
-            if (!ShowBuiltInResources)
+            if (UIStyles.MultiLanguageSupport)
                 Translate();
         }
 
@@ -201,6 +202,10 @@ namespace Sunny.UI
             Image image = Image.FromStream(mStream);
             return image;
         }
+
+        [Description("标题栏图标图片，状态栏显示仍然用Icon属性"), Category("SunnyUI")]
+        [DefaultValue(null)]
+        public Image IconImage { get; set; }
 
         private StringAlignment textAlignment = StringAlignment.Near;
 
@@ -1066,9 +1071,9 @@ namespace Sunny.UI
 
         #endregion IFrame实现
 
-        [DefaultValue(false)]
-        [Description("控件是否显示多语内置资源"), Category("SunnyUI")]
-        public bool ShowBuiltInResources { get; set; } = false;
+        [DefaultValue(true)]
+        [Description("控件在界面显示时需要多语翻译"), Category("SunnyUI")]
+        public bool MultiLanguageSupport { get; set; } = true;
 
         public virtual void Translate()
         {

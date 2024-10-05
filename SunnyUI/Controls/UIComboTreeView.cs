@@ -59,7 +59,6 @@ namespace Sunny.UI
             // 
             DropDownStyle = UIDropDownStyle.DropDownList;
             Name = "UIComboTreeView";
-            ShowBuiltInResources = true;
             ButtonClick += UIComboTreeView_ButtonClick;
             ResumeLayout(false);
             PerformLayout();
