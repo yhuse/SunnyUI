@@ -54,77 +54,50 @@ namespace Sunny.UI
 
     public static class TranslateHelper
     {
-        private static List<string> Ignores =
-            [
-            "UIContextMenuStrip",
-            "UIStyleManager",
-            "UILogo",
-            "UIPagination",
-            "UIMiniPagination",
-            "UIAnalogMeter",
-            "UIBattery",
-            "UICalendar",
-            "UIColorPicker",
-            "UIComboBox",
-            "UIComboDataGridView",
-            "UIComboTreeView",
-            "UIDataGridViewFooter",
+        private static List<string> Includes = [
+            //SunnyUI Controls
+            "UIButton",
+            "UISymbolButton",
+            "UIGroupBox",
+            "UICheckBox",
             "UIDatePicker",
             "UIDateTimePicker",
-            "UIDigitalLabel",
-            "UIDoubleUpDown",
-            "UIEdit",
-            "UIFlowLayoutPanel",
-            "UIGifAvatar",
-            "UIHorScrollBar",
-            "UIHorScrollBarEx",
-            "UIImageListBox",
-            "UIIntegerUpDown",
-            "UIIPTextBox",
-            "UILedBulb",
-            "UILedStopwatch",
-            "UILight",
-            "UIListBox",
-            "UIListBoxEx",
-            "UIMillisecondTimer",
-            "UINavMenu",
-            "UINumPadTextBox",
-            "UIPipe",
-            "UIProgressIndicator",
-            "UIProcessBar",
-            "UIRichTextBox",
-            "UIRoundMeter",
-            "UIRoundProcess",
-            "UIRuler",
-            "UIScrollBar",
-            "UISignal",
-            "UISplitContainer",
-            "UITabControl",
-            "UITabControlMenu",
-            "UITableLayoutPanel",
-            "UITextBox",
-            "UIThermometer",
+            "UIHeaderButton",
+            "UIImageButton",
+            "UILabel",
+            "UILinkLabel",
+            "UICheckBoxGroup",
+            "UIRadioButtonGroup",
+            "UILine",
+            "UIPanel",
+            "UIRadioButton",
+            "UIScrollingText",
+            "UISmoothLabel",
+            "UISwitch",
+            "UISymbolLabel",
             "UITimePicker",
-            "UIToolTip",
-            "UITrackBar",
-            "UITransfer",
-            "UITransparentPanel",
-            "UITreeView",
-            "UIValve",
-            "UIVerificationCode",
-            "UIVerScrollBarEx",
-            "UIWaitingBar",
-            "UIBarChart",
-            "UIChart",
-            "UIDoughnutChart",
-            "UILineChart",
-            "UIPieChart"
+            "UITurnSwitch",
+            "UITitlePanel"//,
+            //Native Controls
+            //"Button",
+            //"ToolStripMenuItem",
+            //"CheckBox",
+            //"RadioButton",
+            //"GroupBox",
+            //"Label",
+            //"LinkLabel"
             ];
 
-        private static List<string> Includes =
-            [
-            "System.Windows.Forms.ToolStripMenuItem"
-            ];
+        private static Dictionary<string, string> NativeControlsProperty = new Dictionary<string, string>()
+        {
+            ["Button"] = "Text",
+            ["ToolStripMenuItem"] = "Text",
+            ["CheckBox"] = "Text",
+            ["RadioButton"] = "Text",
+            ["GroupBox"] = "Text",
+            ["Label"] = "Text",
+            ["LinkLabel"] = "Text"
+        };
 
         public static void LoadCsproj(string csprojFile)
         {
@@ -164,57 +137,42 @@ namespace Sunny.UI
                 ctrladds.Clear();
                 bool isStart = false;
                 string inifile = "";
+                string strnamespace = "";
                 foreach (var line in lines)
                 {
                     if (line.Trim().StartsWith("namespace"))
                     {
-                        inifile = line.Trim().Replace("namespace", "").Trim() + ".";
+                        strnamespace = inifile = line.Trim().Replace("namespace", "").Trim();
                     }
 
                     if (line.Trim().Contains("partial class"))
                     {
-                        inifile += line.Trim().Replace("partial class", "").Trim();
+                        inifile += "." + line.Trim().Replace("partial class", "").Trim();
                     }
 
                     if (line.Contains("private void InitializeComponent()")) isStart = true;
 
-                    if (isStart)
+                    if (!isStart) continue;
+
+                    if (line.Contains(".Controls.Add"))
                     {
-                        if (line.Contains(".Controls.Add"))
-                            ctrladds.Add(
-                                line.Between("(", ")"),
-                                line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
+                        ctrladds.Add(line.Between("(", ")"),
+                            line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
                     }
 
-                    if (isStart && line.Trim().StartsWith("private") && line.Trim().EndsWith(";"))
+                    if (line.Trim().StartsWith("private") && line.Trim().EndsWith(";"))
                     {
                         string[] items = line.Trim().Split(" ");
                         string name = items[2].Replace(";", "");
                         string classname = items[1];
 
-                        if (Ignores.Contains(classname)) continue;
+                        if (!Includes.Contains(classname.SplitLast("."))) continue;
 
-                        if (classname.SplitLast(".").StartsWith("UI") || Includes.Contains(classname))
-                        {
-                            ctrladds.TryGetValue("this." + name, out string parent);
-                            if (parent.IsValid())
-                                names.Add($"{parent},{classname},{name}");
-                            else
-                                names.Add($"{classname},{name}");
-                        }
-                    }
-                }
-
-                foreach (var line in lines)
-                {
-                    for (int i = 0; i < names.Count; i++)
-                    {
-                        if (names[i].SplitSeparatorCount(",") >= 1) continue;
-                        string add = $".Controls.Add(this.{names[i]});";
-                        if (line.Contains(add))
-                        {
-                            names[i] = line.Replace(add, "").Replace("this.", "").Trim() + "," + names[i];
-                        }
+                        ctrladds.TryGetValue("this." + name, out string parent);
+                        if (parent.IsValid())
+                            names.Add($"{parent},{classname},{name}");
+                        else
+                            names.Add($"{classname},{name}");
                     }
                 }
 
@@ -304,6 +262,32 @@ namespace Sunny.UI
                         else
                         {
                             pt.SetValue(ctrl, langStr, null);
+                        }
+                    }
+                }
+            }
+
+            FieldInfo[] fieldInfo = form.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var info in fieldInfo)
+            {
+                if (info.FieldType.Name == "UIContextMenuStrip" || info.FieldType.Name == "ContextMenuStrip")
+                {
+                    ContextMenuStrip context = (ContextMenuStrip)info.GetValue(form);
+                    foreach (var item in context.Items)
+                    {
+                        if (item is ToolStripMenuItem tsmi && Ctrls2.Keys.Contains(tsmi.Name))
+                        {
+                            key = tsmi.Name + ".Text";
+                            string langStr = ini.Read(section, key, "");
+                            string ctrlStr = tsmi.Text;
+                            if (langStr.IsNullOrEmpty())
+                            {
+                                if (ctrlStr.IsValid()) ini.Write(section, key, ctrlStr);
+                            }
+                            else
+                            {
+                                tsmi.Text = langStr;
+                            }
                         }
                     }
                 }
