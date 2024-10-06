@@ -195,5 +195,56 @@ namespace Sunny.UI.Demo
         {
             uiPanel3.Text = DateTime.Now.DateTimeString();
         }
+
+        private void NZhCN_Click(object sender, EventArgs e)
+        {
+            UIStyles.CultureInfo = CultureInfos.zh_CN;
+        }
+
+        private void NZhTW_Click(object sender, EventArgs e)
+        {
+            UIStyles.CultureInfo = CultureInfos.zh_TW;
+        }
+
+        private void NEnUS_Click(object sender, EventArgs e)
+        {
+            UIStyles.CultureInfo = CultureInfos.en_US;
+        }
+
+        /// <summary>
+        /// 重载多语翻译
+        /// </summary>
+        public override void Translate()
+        {
+            //必须保留
+            base.Translate();
+            //读取翻译代码中的多语资源
+            CodeTranslator.Load(this);
+
+            //设置多语资源
+            this.CloseAskString = CodeTranslator.Current.CloseAskString;
+            this.uiNavMenu1.Nodes[0].Text = this.uiNavBar1.Nodes[0].Text = CodeTranslator.Current.Controls;
+            this.uiNavMenu1.Nodes[1].Text = this.uiNavBar1.Nodes[1].Text = CodeTranslator.Current.Forms;
+            this.uiNavMenu1.Nodes[2].Text = this.uiNavBar1.Nodes[2].Text = CodeTranslator.Current.Charts;
+            this.uiNavMenu1.Nodes[3].Text = this.uiNavBar1.Nodes[3].Text = CodeTranslator.Current.Industrial;
+            this.uiNavBar1.Nodes[4].Text = CodeTranslator.Current.Theme;
+            this.uiNavMenu1.Nodes[4].Text = CodeTranslator.Current.Colorful;
+            this.uiNavMenu1.Nodes[5].Text = CodeTranslator.Current.Symbols;
+
+            this.uiNavBar1.Invalidate();
+            this.uiNavMenu1.Invalidate();
+        }
+
+        private class CodeTranslator : IniCodeTranslator<CodeTranslator>
+        {
+            public string CloseAskString { get; set; } = "您确认要退出程序吗？";
+            public string Controls { get; set; } = "控件";
+            public string Forms { get; set; } = "窗体";
+            public string Charts { get; set; } = "图表";
+            public string Industrial { get; set; } = "工控";
+            public string Theme { get; set; } = "主题";
+            public string Symbols { get; set; } = "字体图标";
+            public string Colorful { get; set; } = "多彩主题";
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace Sunny.UI
     {
         //语言文件对应ID网址
         //https://docs.microsoft.com/en-us/previous-versions/windows/embedded/ms912047(v=winembedded.10)?redirectedfrom=MSDN
+        //https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c
         //ID语言 ID语言
         //1025 阿拉伯语
         //1041 日语
@@ -32,7 +33,6 @@ namespace Sunny.UI
         //1038 匈牙利语
         //2070 葡萄牙语
         //1040 意大利语
-        //3076 汉语 - 香港
 
         /// <summary>
         /// 2052 简体中文

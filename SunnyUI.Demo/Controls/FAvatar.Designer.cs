@@ -196,7 +196,7 @@ namespace Sunny.UI.Demo
             this.uiAvatar2.AvatarSize = 55;
             this.uiAvatar2.Font = new System.Drawing.Font("宋体", 12F);
             this.uiAvatar2.Icon = Sunny.UI.UIAvatar.UIIcon.Image;
-            this.uiAvatar2.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyUISmall;
+            this.uiAvatar2.Image = global::Sunny.UI.Demo.Properties.Resources.SunnyUI72;
             this.uiAvatar2.Location = new System.Drawing.Point(30, 85);
             this.uiAvatar2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiAvatar2.Name = "uiAvatar2";

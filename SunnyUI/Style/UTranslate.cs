@@ -91,7 +91,6 @@ namespace Sunny.UI
         private static Dictionary<string, string> NativeControlsProperty = new Dictionary<string, string>()
         {
             ["Button"] = "Text",
-            ["ToolStripMenuItem"] = "Text",
             ["CheckBox"] = "Text",
             ["RadioButton"] = "Text",
             ["GroupBox"] = "Text",
@@ -217,12 +216,9 @@ namespace Sunny.UI
             int count = ini.ReadInt("Controls", "Count", 0);
             if (count == 0) return;
 
-            string key = UIStyles.CultureInfo.LCID.ToString() + ".DisplayName";
-            if (ini.Read(section, key, "") != UIStyles.CultureInfo.DisplayName)
-                ini.Write(section, key, UIStyles.CultureInfo.DisplayName);
-            key = UIStyles.CultureInfo.LCID.ToString() + ".EnglishName";
-            if (ini.Read(section, key, "") != UIStyles.CultureInfo.EnglishName)
-                ini.Write(section, key, UIStyles.CultureInfo.EnglishName);
+            string key = UIStyles.CultureInfo.LCID.ToString() + ".Name";
+            if (ini.Read(section, key, "") != UIStyles.CultureInfo.Name)
+                ini.Write(section, key, UIStyles.CultureInfo.Name);
 
             Dictionary<string, CtrlInfo> Ctrls2 = new Dictionary<string, CtrlInfo>();
             Dictionary<string, CtrlInfo> Ctrls3 = new Dictionary<string, CtrlInfo>();
@@ -357,12 +353,9 @@ namespace Sunny.UI
                     ini.Write(section, "Warning", warning);
                 }
 
-                string key = UIStyles.CultureInfo.LCID.ToString() + ".DisplayName";
-                if (ini.Read(section, key, "") != UIStyles.CultureInfo.DisplayName)
-                    ini.Write(section, key, UIStyles.CultureInfo.DisplayName);
-                key = UIStyles.CultureInfo.LCID.ToString() + ".EnglishName";
-                if (ini.Read(section, key, "") != UIStyles.CultureInfo.EnglishName)
-                    ini.Write(section, key, UIStyles.CultureInfo.EnglishName);
+                string key = UIStyles.CultureInfo.LCID.ToString() + ".Name";
+                if (ini.Read(section, key, "") != UIStyles.CultureInfo.Name)
+                    ini.Write(section, key, UIStyles.CultureInfo.Name);
 
                 ConcurrentDictionary<string, Ident> idents = InitIdents(current);
 

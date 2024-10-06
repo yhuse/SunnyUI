@@ -64,7 +64,6 @@
             this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
             this.uiLine11 = new Sunny.UI.UILine();
             this.uiSymbolButton12 = new Sunny.UI.UISymbolButton();
-            this.uiPagination1 = new Sunny.UI.UIPagination();
             this.SuspendLayout();
             // 
             // btnError
@@ -89,7 +88,7 @@
             this.btnError.StyleCustomMode = true;
             this.btnError.Symbol = 61532;
             this.btnError.TabIndex = 29;
-            this.btnError.Text = "Error";
+            this.btnError.Text = "错误";
             this.btnError.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnError.Click += new System.EventHandler(this.btnError_Click);
             // 
@@ -115,7 +114,7 @@
             this.btnWarn.StyleCustomMode = true;
             this.btnWarn.Symbol = 61553;
             this.btnWarn.TabIndex = 28;
-            this.btnWarn.Text = "Warn";
+            this.btnWarn.Text = "警告";
             this.btnWarn.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnWarn.Click += new System.EventHandler(this.btnWarn_Click);
             // 
@@ -141,7 +140,7 @@
             this.btnSuccess.StyleCustomMode = true;
             this.btnSuccess.Symbol = 61528;
             this.btnSuccess.TabIndex = 27;
-            this.btnSuccess.Text = "Success";
+            this.btnSuccess.Text = "成功";
             this.btnSuccess.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSuccess.Click += new System.EventHandler(this.btnSuccess_Click);
             // 
@@ -157,7 +156,7 @@
             this.btnAsk.StyleCustomMode = true;
             this.btnAsk.Symbol = 61529;
             this.btnAsk.TabIndex = 26;
-            this.btnAsk.Text = "Query";
+            this.btnAsk.Text = "确认";
             this.btnAsk.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAsk.Click += new System.EventHandler(this.btnAsk_Click);
             // 
@@ -188,7 +187,7 @@
             this.btnInfo.StyleCustomMode = true;
             this.btnInfo.Symbol = 61530;
             this.btnInfo.TabIndex = 37;
-            this.btnInfo.Text = "Info";
+            this.btnInfo.Text = "提示";
             this.btnInfo.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
@@ -345,7 +344,7 @@
             this.uiSymbolButton2.StyleCustomMode = true;
             this.uiSymbolButton2.Symbol = 61530;
             this.uiSymbolButton2.TabIndex = 57;
-            this.uiSymbolButton2.Text = "Info";
+            this.uiSymbolButton2.Text = "提示";
             this.uiSymbolButton2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click);
             // 
@@ -371,7 +370,7 @@
             this.uiSymbolButton4.StyleCustomMode = true;
             this.uiSymbolButton4.Symbol = 61532;
             this.uiSymbolButton4.TabIndex = 55;
-            this.uiSymbolButton4.Text = "Error";
+            this.uiSymbolButton4.Text = "错误";
             this.uiSymbolButton4.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton4.Click += new System.EventHandler(this.uiSymbolButton4_Click);
             // 
@@ -397,7 +396,7 @@
             this.uiSymbolButton5.StyleCustomMode = true;
             this.uiSymbolButton5.Symbol = 61553;
             this.uiSymbolButton5.TabIndex = 54;
-            this.uiSymbolButton5.Text = "Warn";
+            this.uiSymbolButton5.Text = "警告";
             this.uiSymbolButton5.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton5.Click += new System.EventHandler(this.uiSymbolButton5_Click);
             // 
@@ -423,7 +422,7 @@
             this.uiSymbolButton6.StyleCustomMode = true;
             this.uiSymbolButton6.Symbol = 61528;
             this.uiSymbolButton6.TabIndex = 53;
-            this.uiSymbolButton6.Text = "Success";
+            this.uiSymbolButton6.Text = "成功";
             this.uiSymbolButton6.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton6.Click += new System.EventHandler(this.uiSymbolButton6_Click);
             // 
@@ -506,7 +505,7 @@
             this.uiSymbolButton7.StyleCustomMode = true;
             this.uiSymbolButton7.Symbol = 61532;
             this.uiSymbolButton7.TabIndex = 64;
-            this.uiSymbolButton7.Text = "Error";
+            this.uiSymbolButton7.Text = "错误";
             this.uiSymbolButton7.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton7.Click += new System.EventHandler(this.uiSymbolButton7_Click);
             // 
@@ -532,7 +531,7 @@
             this.uiSymbolButton8.StyleCustomMode = true;
             this.uiSymbolButton8.Symbol = 61553;
             this.uiSymbolButton8.TabIndex = 63;
-            this.uiSymbolButton8.Text = "Warn";
+            this.uiSymbolButton8.Text = "警告";
             this.uiSymbolButton8.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton8.Click += new System.EventHandler(this.uiSymbolButton8_Click);
             // 
@@ -558,7 +557,7 @@
             this.uiSymbolButton9.StyleCustomMode = true;
             this.uiSymbolButton9.Symbol = 61528;
             this.uiSymbolButton9.TabIndex = 62;
-            this.uiSymbolButton9.Text = "Success";
+            this.uiSymbolButton9.Text = "成功";
             this.uiSymbolButton9.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton9.Click += new System.EventHandler(this.uiSymbolButton9_Click);
             // 
@@ -586,7 +585,7 @@
             this.uiSymbolButton3.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton3.Symbol = 62144;
             this.uiSymbolButton3.TabIndex = 68;
-            this.uiSymbolButton3.Text = "Login";
+            this.uiSymbolButton3.Text = "登录";
             this.uiSymbolButton3.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton3.Click += new System.EventHandler(this.uiSymbolButton3_Click);
             // 
@@ -601,7 +600,7 @@
             this.uiSymbolButton10.Size = new System.Drawing.Size(100, 35);
             this.uiSymbolButton10.Symbol = 61447;
             this.uiSymbolButton10.TabIndex = 67;
-            this.uiSymbolButton10.Text = "Login";
+            this.uiSymbolButton10.Text = "登录";
             this.uiSymbolButton10.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton10.Click += new System.EventHandler(this.uiSymbolButton10_Click);
             // 
@@ -689,32 +688,11 @@
             this.uiSymbolButton12.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton12.Click += new System.EventHandler(this.uiSymbolButton12_Click);
             // 
-            // uiPagination1
-            // 
-            this.uiPagination1.ButtonFillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
-            this.uiPagination1.ButtonStyleInherited = false;
-            this.uiPagination1.CausesValidation = false;
-            this.uiPagination1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiPagination1.Location = new System.Drawing.Point(258, 482);
-            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPagination1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiPagination1.Name = "uiPagination1";
-            this.uiPagination1.PagerCount = 11;
-            this.uiPagination1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.uiPagination1.ShowText = false;
-            this.uiPagination1.Size = new System.Drawing.Size(442, 35);
-            this.uiPagination1.TabIndex = 79;
-            this.uiPagination1.Text = "uiDataGridPage1";
-            this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiPagination1.TotalCount = 40;
-            // 
             // FDialogs
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 590);
-            this.Controls.Add(this.uiPagination1);
             this.Controls.Add(this.uiLine11);
             this.Controls.Add(this.uiSymbolButton12);
             this.Controls.Add(this.uiLine1);
@@ -798,6 +776,5 @@
         private UISymbolButton uiSymbolButton13;
         private UILine uiLine11;
         private UISymbolButton uiSymbolButton12;
-        private UIPagination uiPagination1;
     }
 }

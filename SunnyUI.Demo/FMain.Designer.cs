@@ -31,8 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.NHome = new System.Windows.Forms.ToolStripMenuItem();
+            this.NAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.NZhCN = new System.Windows.Forms.ToolStripMenuItem();
+            this.NZhTW = new System.Windows.Forms.ToolStripMenuItem();
+            this.NEnUS = new System.Windows.Forms.ToolStripMenuItem();
             this.StyleManager = new Sunny.UI.UIStyleManager(this.components);
             this.uiNavBar1 = new Sunny.UI.UINavBar();
             this.uiAvatar1 = new Sunny.UI.UIAvatar();
@@ -52,32 +56,63 @@
             // uiContextMenuStrip1
             // 
             this.uiContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.uiContextMenuStrip1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("Tahoma", 12F);
             this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.关于ToolStripMenuItem,
-            this.关于ToolStripMenuItem1});
+            this.NHome,
+            this.NAbout,
+            this.toolStripMenuItem1,
+            this.NZhCN,
+            this.NZhTW,
+            this.NEnUS});
             this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(107, 48);
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(143, 130);
             // 
-            // 关于ToolStripMenuItem
+            // NHome
             // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.关于ToolStripMenuItem.Text = "主页";
-            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
+            this.NHome.Name = "NHome";
+            this.NHome.Size = new System.Drawing.Size(142, 24);
+            this.NHome.Text = "主页";
+            this.NHome.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
-            // 关于ToolStripMenuItem1
+            // NAbout
             // 
-            this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
-            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(106, 22);
-            this.关于ToolStripMenuItem1.Text = "关于";
-            this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
+            this.NAbout.Name = "NAbout";
+            this.NAbout.Size = new System.Drawing.Size(142, 24);
+            this.NAbout.Text = "关于";
+            this.NAbout.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 6);
+            // 
+            // NZhCN
+            // 
+            this.NZhCN.Name = "NZhCN";
+            this.NZhCN.Size = new System.Drawing.Size(142, 24);
+            this.NZhCN.Text = "简体中文";
+            this.NZhCN.Click += new System.EventHandler(this.NZhCN_Click);
+            // 
+            // NZhTW
+            // 
+            this.NZhTW.Name = "NZhTW";
+            this.NZhTW.Size = new System.Drawing.Size(142, 24);
+            this.NZhTW.Text = "繁体中文";
+            this.NZhTW.Click += new System.EventHandler(this.NZhTW_Click);
+            // 
+            // NEnUS
+            // 
+            this.NEnUS.Name = "NEnUS";
+            this.NEnUS.Size = new System.Drawing.Size(142, 24);
+            this.NEnUS.Text = "English";
+            this.NEnUS.Click += new System.EventHandler(this.NEnUS_Click);
             // 
             // StyleManager
             // 
             this.StyleManager.DPIScale = true;
             this.StyleManager.GlobalFont = true;
             this.StyleManager.GlobalFontName = "Tahoma";
+            this.StyleManager.MultiLanguageSupport = true;
             // 
             // uiNavBar1
             // 
@@ -160,6 +195,7 @@
             this.uiPanel3.Location = new System.Drawing.Point(842, 0);
             this.uiPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel3.MultiLanguageSupport = false;
             this.uiPanel3.Name = "uiPanel3";
             this.uiPanel3.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiPanel3.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)));
@@ -175,6 +211,7 @@
             this.uiPanel2.Location = new System.Drawing.Point(0, 0);
             this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel2.MultiLanguageSupport = false;
             this.uiPanel2.Name = "uiPanel2";
             this.uiPanel2.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             this.uiPanel2.RectSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Top | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
@@ -190,11 +227,14 @@
             this.uiNavMenu1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.uiNavMenu1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiNavMenu1.FullRowSelect = true;
+            this.uiNavMenu1.HotTracking = true;
             this.uiNavMenu1.ItemHeight = 35;
             this.uiNavMenu1.Location = new System.Drawing.Point(2, 162);
             this.uiNavMenu1.Name = "uiNavMenu1";
             this.uiNavMenu1.ShowLines = false;
             this.uiNavMenu1.ShowOneNode = true;
+            this.uiNavMenu1.ShowPlusMinus = false;
+            this.uiNavMenu1.ShowRootLines = false;
             this.uiNavMenu1.Size = new System.Drawing.Size(286, 650);
             this.uiNavMenu1.TabIndex = 4;
             this.uiNavMenu1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -224,6 +264,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1132, 846);
+            this.CloseAskString = "您确认要退出程序吗？";
             this.Controls.Add(this.uiTabControl1);
             this.Controls.Add(this.uiNavMenu1);
             this.Controls.Add(this.uiPanel1);
@@ -231,11 +272,14 @@
             this.ExtendBox = true;
             this.ExtendMenu = this.uiContextMenuStrip1;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconImage = global::Sunny.UI.Demo.Properties.Resources.Sunny24;
             this.MainTabControl = this.uiTabControl1;
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 36, 2, 2);
+            this.Resizable = true;
             this.ShowDragStretch = true;
             this.Text = "Form1";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1132, 846);
             this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.Form1_HotKeyEventHandler);
             this.PageSelected += new Sunny.UI.OnUIPageChanged(this.Form1_PageSelected);
             this.ReceiveParams += new Sunny.UI.OnReceiveParams(this.Form1_ReceiveParams);
@@ -249,8 +293,8 @@
         #endregion
 
         private UIContextMenuStrip uiContextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem NHome;
+        private System.Windows.Forms.ToolStripMenuItem NAbout;
         private UIStyleManager StyleManager;
         private UINavBar uiNavBar1;
         private UIPanel uiPanel1;
@@ -262,5 +306,9 @@
         private UIPanel uiPanel3;
         private System.Windows.Forms.Timer timer1;
         private UIPanel uiPanel4;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem NZhCN;
+        private System.Windows.Forms.ToolStripMenuItem NZhTW;
+        private System.Windows.Forms.ToolStripMenuItem NEnUS;
     }
 }

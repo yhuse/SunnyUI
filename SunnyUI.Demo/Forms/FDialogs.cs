@@ -19,56 +19,56 @@ namespace Sunny.UI.Demo
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            this.ShowInfoDialog2("默认信息提示框");
-            this.ShowInfoDialog("默认信息提示框");
+            this.ShowInfoDialog2(CodeTranslator.Current.Default);
+            this.ShowInfoDialog(CodeTranslator.Current.Default);
         }
 
         private void btnAsk_Click(object sender, EventArgs e)
         {
-            if (this.ShowAskDialog2("确认信息提示框", true))
+            if (this.ShowAskDialog2(CodeTranslator.Current.Confirm, true))
             {
-                this.ShowSuccessTip("您点击了确定按钮");
+                this.ShowSuccessTip(CodeTranslator.Current.PressedOK);
             }
             else
             {
-                this.ShowErrorTip("您点击了取消按钮");
+                this.ShowErrorTip(CodeTranslator.Current.PressedCancel);
             }
 
-            if (this.ShowAskDialog("确认信息提示框"))
+            if (this.ShowAskDialog(CodeTranslator.Current.Confirm))
             {
-                this.ShowSuccessTip("您点击了确定按钮");
+                this.ShowSuccessTip(CodeTranslator.Current.PressedOK);
             }
             else
             {
-                this.ShowErrorTip("您点击了取消按钮");
+                this.ShowErrorTip(CodeTranslator.Current.PressedCancel);
             }
         }
 
         private void btnSuccess_Click(object sender, EventArgs e)
         {
-            this.ShowSuccessDialog2("正确信息提示框", false, 3000);
-            this.ShowSuccessDialog("正确信息提示框", false, 3000);
+            this.ShowSuccessDialog2(CodeTranslator.Current.Success, false, 3000);
+            this.ShowSuccessDialog(CodeTranslator.Current.Success, false, 3000);
         }
 
         private void btnWarn_Click(object sender, EventArgs e)
         {
-            this.ShowWarningDialog2("警告信息提示框");
-            this.ShowWarningDialog("警告信息提示框");
+            this.ShowWarningDialog2(CodeTranslator.Current.Warning);
+            this.ShowWarningDialog(CodeTranslator.Current.Warning);
         }
 
         private void btnError_Click(object sender, EventArgs e)
         {
-            this.ShowErrorDialog2("错误信息提示框");
-            this.ShowErrorDialog("错误信息提示框");
+            this.ShowErrorDialog2(CodeTranslator.Current.Error);
+            this.ShowErrorDialog(CodeTranslator.Current.Error);
         }
 
         private void btnStatus2_Click(object sender, EventArgs e)
         {
-            this.ShowStatusForm(100, "数据加载中......", 0);
+            this.ShowStatusForm(100, CodeTranslator.Current.Loading + "......", 0);
             for (int i = 0; i < 88; i++)
             {
                 SystemEx.Delay(50);
-                this.SetStatusFormDescription("数据加载中(" + i + "%)......");
+                this.SetStatusFormDescription(CodeTranslator.Current.Loading + "(" + i + "%)......");
                 this.SetStatusFormStepIt();
             }
 
@@ -77,8 +77,8 @@ namespace Sunny.UI.Demo
 
         private void btnStringInput_Click(object sender, EventArgs e)
         {
-            string value = "请输入字符串";
-            if (this.ShowInputStringDialog(ref value, true, "请输入字符串：", true))
+            string value = CodeTranslator.Current.InputString;
+            if (this.ShowInputStringDialog(ref value, true, CodeTranslator.Current.InputString, true))
             {
                 this.ShowInfoDialog(value);
             }
@@ -128,7 +128,7 @@ namespace Sunny.UI.Demo
 
         private void InfoNotifierClick(object sender, EventArgs e)
         {
-            this.ShowInfoTip("嗨，你点击了右下角的弹窗消息");
+            this.ShowInfoTip(CodeTranslator.Current.PressedNotifier);
         }
 
         private void uiSymbolButton6_Click(object sender, EventArgs e)
@@ -148,17 +148,17 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton9_Click(object sender, EventArgs e)
         {
-            this.ShowSuccessTip("轻便消息提示框 - 成功");
+            this.ShowSuccessTip(CodeTranslator.Current.Success);
         }
 
         private void uiSymbolButton8_Click(object sender, EventArgs e)
         {
-            this.ShowWarningTip("轻便消息提示框 - 警告");
+            this.ShowWarningTip(CodeTranslator.Current.Warning);
         }
 
         private void uiSymbolButton7_Click(object sender, EventArgs e)
         {
-            this.ShowErrorTip("轻便消息提示框 - 错误");
+            this.ShowErrorTip(CodeTranslator.Current.Error);
         }
 
         private void uiSymbolButton10_Click(object sender, EventArgs e)
@@ -167,7 +167,7 @@ namespace Sunny.UI.Demo
             frm.ShowDialog();
             if (frm.IsLogin)
             {
-                UIMessageTip.ShowOk("登录成功");
+                UIMessageTip.ShowOk(CodeTranslator.Current.LoginSuccess);
             }
 
             frm.Dispose();
@@ -188,7 +188,7 @@ namespace Sunny.UI.Demo
             frm.ShowDialog();
             if (frm.IsLogin)
             {
-                UIMessageTip.ShowOk("登录成功");
+                UIMessageTip.ShowOk(CodeTranslator.Current.LoginSuccess);
             }
 
             frm.Dispose();
@@ -201,24 +201,24 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton11_Click(object sender, EventArgs e)
         {
-            this.ShowWaitForm("准备开始...");
+            this.ShowWaitForm(CodeTranslator.Current.Prepare);
             Thread.Sleep(1000);
-            this.SetWaitFormDescription(UILocalize.SystemProcessing + "20%");
+            this.SetWaitFormDescription(UIStyles.CurrentResources.SystemProcessing + "20%");
             Thread.Sleep(1000);
-            this.SetWaitFormDescription(UILocalize.SystemProcessing + "40%");
+            this.SetWaitFormDescription(UIStyles.CurrentResources.SystemProcessing + "40%");
             Thread.Sleep(1000);
-            this.SetWaitFormDescription(UILocalize.SystemProcessing + "60%");
+            this.SetWaitFormDescription(UIStyles.CurrentResources.SystemProcessing + "60%");
             Thread.Sleep(1000);
-            this.SetWaitFormDescription(UILocalize.SystemProcessing + "80%");
+            this.SetWaitFormDescription(UIStyles.CurrentResources.SystemProcessing + "80%");
             Thread.Sleep(1000);
-            this.SetWaitFormDescription(UILocalize.SystemProcessing + "100%");
+            this.SetWaitFormDescription(UIStyles.CurrentResources.SystemProcessing + "100%");
             this.HideWaitForm();
         }
 
         private void uiSymbolButton13_Click(object sender, EventArgs e)
         {
             string dir = "";
-            if (DirEx.SelectDirEx("扩展打开文件夹", ref dir))
+            if (DirEx.SelectDirEx(CodeTranslator.Current.OpenDir, ref dir))
             {
                 UIMessageTip.ShowOk(dir);
             }
@@ -233,29 +233,40 @@ namespace Sunny.UI.Demo
 
         private void btnCH_Click(object sender, EventArgs e)
         {
-            UILocalizeHelper.SetCH();
-            LoginText = "登录";
-            UIStyles.Translate();
+            UIStyles.CultureInfo = CultureInfos.zh_CN;
         }
 
         private void btnEN_Click(object sender, EventArgs e)
         {
-            UILocalizeHelper.SetEN();
-            LoginText = "Login";
-            UIStyles.Translate();
+            UIStyles.CultureInfo = CultureInfos.en_US;
         }
 
-        private string LoginText = "登录";
-
-        public void Translate()
+        /// <summary>
+        /// 重载多语翻译
+        /// </summary>
+        public override void Translate()
         {
-            uiSymbolButton6.Text = btnSuccess.Text = uiSymbolButton9.Text = UILocalize.SuccessTitle;
-            uiSymbolButton5.Text = btnWarn.Text = uiSymbolButton8.Text = UILocalize.WarningTitle;
-            uiSymbolButton4.Text = btnError.Text = uiSymbolButton7.Text = UILocalize.ErrorTitle;
-            uiSymbolButton2.Text = btnInfo.Text = UILocalize.InfoTitle;
-            btnAsk.Text = UILocalize.AskTitle;
+            //必须保留
+            base.Translate();
+            //读取翻译代码中的多语资源
+            CodeTranslator.Load(this);
+        }
 
-            uiSymbolButton3.Text = uiSymbolButton10.Text = LoginText;
+        private class CodeTranslator : IniCodeTranslator<CodeTranslator>
+        {
+            public string Default { get; set; } = "默认信息提示框";
+            public string Confirm { get; set; } = "确认信息提示框";
+            public string PressedOK { get; set; } = "您点击了确定按钮";
+            public string PressedCancel { get; set; } = "您点击了取消按钮";
+            public string Success { get; set; } = "正确信息提示框";
+            public string Warning { get; set; } = "警告信息提示框";
+            public string Error { get; set; } = "错误信息提示框";
+            public string Loading { get; set; } = "数据加载中";
+            public string InputString { get; set; } = "请输入字符串";
+            public string PressedNotifier { get; set; } = "嗨，你点击了右下角的弹窗消息";
+            public string LoginSuccess { get; set; } = "登录成功";
+            public string Prepare { get; set; } = "准备开始";
+            public string OpenDir { get; set; } = "打开文件夹";
         }
     }
 }

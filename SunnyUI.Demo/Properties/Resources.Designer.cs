@@ -603,6 +603,16 @@ namespace Sunny.UI.Demo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Sunny24 {
+            get {
+                object obj = ResourceManager.GetObject("Sunny24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap SunnyLogin {
             get {
                 object obj = ResourceManager.GetObject("SunnyLogin", resourceCulture);
@@ -623,9 +633,9 @@ namespace Sunny.UI.Demo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap SunnyUISmall {
+        internal static System.Drawing.Bitmap SunnyUI72 {
             get {
-                object obj = ResourceManager.GetObject("SunnyUISmall", resourceCulture);
+                object obj = ResourceManager.GetObject("SunnyUI72", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
