@@ -18,6 +18,7 @@
  *
  * 2023-12-01: V3.6.1 增加文件说明
  * 2024-01-23: V3.6.3 更新绘制
+ * 2024-10-22: V3.7.2 增加DPI支持
 ******************************************************************************/
 
 /******************************************************************************
@@ -102,7 +103,7 @@ namespace Sunny.UI
         /// <param name="e">绘图参数</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            using Font font = DigitalFont.Instance.GetFont(DigitalSize);
+            using Font font = DigitalFont.Instance.GetFont(UIStyles.DPIScale ? DigitalSize / UIDPIScale.SystemDPIScale : DigitalSize);
             using Brush br = new SolidBrush(ForeColor);
 
             string text = Value.ToString("F" + DecimalPlaces);

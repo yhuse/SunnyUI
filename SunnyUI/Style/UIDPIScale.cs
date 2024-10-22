@@ -31,7 +31,7 @@ namespace Sunny.UI
 
         public static float DPIScale => UIStyles.GlobalFont ? SystemDPIScale * 100.0f / UIStyles.GlobalFontScale : SystemDPIScale;
 
-        private static float SystemDPIScale
+        public static float SystemDPIScale
         {
             get
             {
