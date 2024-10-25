@@ -31,7 +31,8 @@
  * 2023-05-13: V3.3.6 Option.BarInterval,设置Bar之间间隔，默认-1，自动计算间隔
  * 2023-05-14: V3.3.6 重构DrawString函数
  * 2023-06-06: V3.3.7 修复Y轴文字居中
- * 2025-06-08: V3.6.6 修复X轴文字带角度显示时居中
+ * 2024-06-08: V3.6.6 修复X轴文字带角度显示时居中
+ * 2024-10-25: V3.7.2 增加了一个快捷的显示数据函数ShowData
 ******************************************************************************/
 
 using System;
@@ -645,6 +646,24 @@ namespace Sunny.UI
             public bool Top { get; set; }
 
             public UIBarSeries Series { get; set; }
+        }
+
+        public void ShowData(string[] labels, double[] values, string title = "")
+        {
+            int len = Math.Min(labels.Length, values.Length);
+            if (len == 0) return;
+
+            UIBarOption option = new UIBarOption();
+            option.Title.Text = title;
+            var series = new UIBarSeries();
+            for (int i = 0; i < len; i++)
+            {
+                option.XAxis.Data.Add(labels[i]);
+                series.AddData(values[i]);
+            }
+
+            option.Series.Add(series);
+            SetOption(option);
         }
     }
 }
