@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox = new Sunny.UI.UIListBox();
-            this.SuspendLayout();
+            listBox = new UIListBox();
+            SuspendLayout();
             // 
             // listBox
             // 
-            this.listBox.BackColor = System.Drawing.Color.Transparent;
-            this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox.FillColor = System.Drawing.Color.White;
-            this.listBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBox.FormatString = "";
-            this.listBox.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.listBox.Location = new System.Drawing.Point(0, 0);
-            this.listBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBox.MinimumSize = new System.Drawing.Size(1, 1);
-            this.listBox.Name = "listBox";
-            this.listBox.Padding = new System.Windows.Forms.Padding(2);
-            this.listBox.Radius = 0;
-            this.listBox.Size = new System.Drawing.Size(184, 210);
-            this.listBox.TabIndex = 3;
-            this.listBox.Text = null;
-            this.listBox.Click += new System.EventHandler(this.ListBox_Click);
-            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
-            this.listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_KeyDown);
+            listBox.BackColor = System.Drawing.Color.Transparent;
+            listBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            listBox.FillColor = System.Drawing.Color.White;
+            listBox.Font = new System.Drawing.Font("宋体", 12F);
+            listBox.HoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
+            listBox.ItemSelectForeColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            listBox.Location = new System.Drawing.Point(0, 0);
+            listBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            listBox.MinimumSize = new System.Drawing.Size(1, 1);
+            listBox.Name = "listBox";
+            listBox.Padding = new System.Windows.Forms.Padding(2);
+            listBox.Radius = 0;
+            listBox.ShowText = false;
+            listBox.Size = new System.Drawing.Size(184, 210);
+            listBox.TabIndex = 3;
+            listBox.Text = null;
+            listBox.KeyDown += listBox_KeyDown;
+            listBox.Click += ListBox_Click;
+            listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
             // 
             // UIComboBoxItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.listBox);
-            this.Name = "UIComboBoxItem";
-            this.Size = new System.Drawing.Size(184, 210);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            Controls.Add(listBox);
+            Name = "UIComboBoxItem";
+            Size = new System.Drawing.Size(184, 210);
+            ResumeLayout(false);
         }
 
         #endregion

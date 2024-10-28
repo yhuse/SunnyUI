@@ -40,6 +40,7 @@
  * 2023-08-11: V3.4.1 Items.Clear后，DropDownStyle为DropDown时，不清空Text
  * 2023-12-26: V3.6.2 增加下拉界面的滚动条设置
  * 2024-01-27: V3.6.3 修复在窗体构造函数设置SelectedIndex报错
+ * 2024-10-28: V3.7.2 增加了SelectionChangeCommitted事件，下拉框显示鼠标点击条目时响应
 ******************************************************************************/
 
 using System;
@@ -71,6 +72,7 @@ namespace Sunny.UI
             ListBox.SelectedValueChanged += ListBox_SelectedValueChanged;
             ListBox.ItemsClear += ListBox_ItemsClear;
             ListBox.ItemsRemove += ListBox_ItemsRemove;
+            ListBox.MouseClick += ListBox_MouseClick;
 
             filterForm.BeforeListClick += ListBox_Click;
 
@@ -81,6 +83,19 @@ namespace Sunny.UI
 
             CreateInstance();
         }
+
+        private void ListBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            //SelectionChangeCommitted
+            UIListBox listBox = (UIListBox)sender;
+            int index = listBox.IndexFromPoint(e.X, e.Y);
+            if (index != -1)
+            {
+                SelectionChangeCommitted?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public event EventHandler SelectionChangeCommitted;
 
         [Browsable(false)]
         public override string[] FormTranslatorProperties { get; }
