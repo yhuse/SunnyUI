@@ -27,7 +27,7 @@ namespace Sunny.UI
     /// <summary>
     /// 组合框弹出窗体
     /// </summary>
-    public partial class UIComboBoxItem : UIDropDownItem
+    internal partial class UIComboBoxItem : UIDropDownItem
     {
         /// <summary>
         /// 构造函数

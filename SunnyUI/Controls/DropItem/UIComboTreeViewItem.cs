@@ -2,7 +2,7 @@
 
 namespace Sunny.UI
 {
-    public class UIComboTreeViewItem : UIDropDownItem, ITranslate
+    internal class UIComboTreeViewItem : UIDropDownItem, ITranslate
     {
         private UIPanel panel;
         private UISymbolButton btnCancel;

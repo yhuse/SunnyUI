@@ -30,7 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UIComboDataGridViewItem : UIDropDownItem, ITranslate
+    internal class UIComboDataGridViewItem : UIDropDownItem, ITranslate
     {
         private UIPanel panel;
         private UISymbolButton btnCancel;

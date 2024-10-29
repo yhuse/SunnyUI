@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public sealed class UIColorItem : UIDropDownItem, ITranslate
+    internal sealed class UIColorItem : UIDropDownItem, ITranslate
     {
         public UIColorItem()
         {

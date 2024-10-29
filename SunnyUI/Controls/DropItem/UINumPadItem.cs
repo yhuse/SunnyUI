@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Sunny.UI
 {
-    public sealed class UINumPadItem : UIDropDownItem
+    internal sealed class UINumPadItem : UIDropDownItem
     {
         public UINumPadItem()
         {

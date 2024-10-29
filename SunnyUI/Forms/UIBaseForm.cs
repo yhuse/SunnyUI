@@ -19,6 +19,7 @@
  * 2024-04-29: V3.6.5 增加文件说明
  * 2024-04-29: V3.6.5 删除ShowTitleIcon，默认使用ShowIcon
  * 2024-10-05: V3.7.0 增加属性IconImage，以改善Icon转Image显示不佳，状态栏显示仍然用Icon属性
+ * 2024-10-29: V3.7.2 IconImage增加IconImageSize属性，可调整大小
 ******************************************************************************/
 
 using System;
@@ -203,9 +204,34 @@ namespace Sunny.UI
             return image;
         }
 
+        private Image iconImage = null;
+
         [Description("标题栏图标图片，状态栏显示仍然用Icon属性"), Category("SunnyUI")]
         [DefaultValue(null)]
-        public Image IconImage { get; set; }
+        public Image IconImage
+        {
+            get => iconImage;
+            set
+            {
+                iconImage = value;
+                Invalidate();
+            }
+        }
+
+        private int iconImageSize = 24;
+
+        [Description("标题栏图标图片大小"), Category("SunnyUI")]
+        [DefaultValue(24)]
+        public int IconImageSize
+        {
+            get => iconImageSize;
+            set
+            {
+                iconImageSize = Math.Max(16, value);
+                iconImageSize = Math.Min(titleHeight - 2, iconImageSize);
+                Invalidate();
+            }
+        }
 
         private StringAlignment textAlignment = StringAlignment.Near;
 

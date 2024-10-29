@@ -558,13 +558,15 @@ namespace Sunny.UI
                 return;
             }
 
+            int titleLeft = 6;
             if (ShowIcon && Icon != null)
             {
                 try
                 {
                     if (IconImage != null)
                     {
-                        e.Graphics.DrawImage(IconImage, new Rectangle(6, (TitleHeight - 24) / 2 + 1, 24, 24), new Rectangle(0, 0, IconImage.Width, IconImage.Height), GraphicsUnit.Pixel);
+                        e.Graphics.DrawImage(IconImage, new Rectangle(6, (TitleHeight - IconImageSize) / 2 + 1, IconImageSize, IconImageSize), new Rectangle(0, 0, IconImage.Width, IconImage.Height), GraphicsUnit.Pixel);
+                        titleLeft = 6 + IconImageSize + 2;
                     }
                     else
                     {
@@ -572,6 +574,8 @@ namespace Sunny.UI
                         {
                             e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
                         }
+
+                        titleLeft = 6 + 24 + 2;
                     }
                 }
                 catch
@@ -586,7 +590,7 @@ namespace Sunny.UI
             }
             else
             {
-                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(6 + (ShowIcon && Icon != null ? 26 : 0), 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
+                e.Graphics.DrawString(Text, TitleFont, titleForeColor, new Rectangle(titleLeft, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
             }
 
             if (ControlBoxLeft != Width)

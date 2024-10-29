@@ -26,7 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public sealed class UITimeItem : UIDropDownItem, ITranslate
+    internal sealed class UITimeItem : UIDropDownItem, ITranslate
     {
 
         #region InitializeComponent
