@@ -44,6 +44,7 @@
  * 2023-12-04: V3.6.1 修复修改Style后，BackColor未保存的问题
  * 2023-12-20: V3.6.2 调整AfterShow事件位置及逻辑
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
+ * 2024-10-30: V3.7.2 增加标题栏图片属性IconImage，优先于Symbol
 ******************************************************************************/
 
 using System;
@@ -87,6 +88,35 @@ namespace Sunny.UI
             base.ShowInTaskbar = false;
             base.StartPosition = FormStartPosition.Manual;
             base.SizeGripStyle = SizeGripStyle.Hide;
+        }
+
+        private Image iconImage = null;
+
+        [Description("标题栏图标图片，状态栏显示仍然用Icon属性"), Category("SunnyUI")]
+        [DefaultValue(null)]
+        public Image IconImage
+        {
+            get => iconImage;
+            set
+            {
+                iconImage = value;
+                Invalidate();
+            }
+        }
+
+        private int iconImageSize = 24;
+
+        [Description("标题栏图标图片大小"), Category("SunnyUI")]
+        [DefaultValue(24)]
+        public int IconImageSize
+        {
+            get => iconImageSize;
+            set
+            {
+                iconImageSize = Math.Max(16, value);
+                iconImageSize = Math.Min(titleHeight - 2, iconImageSize);
+                Invalidate();
+            }
         }
 
         public readonly Guid Guid = Guid.NewGuid();
@@ -663,12 +693,20 @@ namespace Sunny.UI
             }
 
             if (!AllowShowTitle) return;
-            if (Symbol > 0)
+
+            int titleLeft = ImageInterval;
+            if (IconImage != null)
+            {
+                e.Graphics.DrawImage(IconImage, new Rectangle(6, (TitleHeight - IconImageSize) / 2 + 1, IconImageSize, IconImageSize), new Rectangle(0, 0, IconImage.Width, IconImage.Height), GraphicsUnit.Pixel);
+                titleLeft = ImageInterval + IconImageSize + 2;
+            }
+            else if (Symbol > 0)
             {
                 e.Graphics.DrawFontImage(Symbol, SymbolSize, TitleForeColor, new Rectangle(ImageInterval, 0, SymbolSize, TitleHeight), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
+                titleLeft = ImageInterval + SymbolSize + 2;
             }
 
-            e.Graphics.DrawString(Text, TitleFont, TitleForeColor, new Rectangle(Symbol > 0 ? ImageInterval * 2 + SymbolSize : ImageInterval, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
+            e.Graphics.DrawString(Text, TitleFont, TitleForeColor, new Rectangle(titleLeft, 0, Width, TitleHeight), ContentAlignment.MiddleLeft);
 
             e.Graphics.SetHighQuality();
             if (ControlBox)
