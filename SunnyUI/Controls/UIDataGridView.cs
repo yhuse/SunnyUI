@@ -477,29 +477,35 @@ namespace Sunny.UI
                 return;
             }
 
-            if (RowCount > DisplayedRowCount(false))
+            VBar.ThreadSafeCall(() =>
             {
-                VBar.Maximum = RowCount - DisplayedRowCount(false);
-                VBar.Value = FirstDisplayedScrollingRowIndex;
-                VBar.Visible = ScrollBars == ScrollBars.Vertical || ScrollBars == ScrollBars.Both;
-            }
-            else
-            {
-                VBar.Visible = false;
-            }
+                if (RowCount > DisplayedRowCount(false))
+                {
+                    VBar.Maximum = RowCount - DisplayedRowCount(false);
+                    VBar.Value = FirstDisplayedScrollingRowIndex;
+                    VBar.Visible = ScrollBars == ScrollBars.Vertical || ScrollBars == ScrollBars.Both;
+                }
+                else
+                {
+                    VBar.Visible = false;
+                }
+            });
 
-            if (HorizontalScrollBar.Visible)
+            HBar.ThreadSafeCall(() =>
             {
-                HBar.Maximum = HorizontalScrollBar.Maximum;
-                HBar.Value = HorizontalScrollBar.Value;
-                HBar.BoundsWidth = HorizontalScrollBar.LargeChange;
-                HBar.LargeChange = HorizontalScrollBar.LargeChange;//.Maximum / VisibleColumnCount();
-                HBar.Visible = ScrollBars == ScrollBars.Horizontal || ScrollBars == ScrollBars.Both;
-            }
-            else
-            {
-                HBar.Visible = false;
-            }
+                if (HorizontalScrollBar.Visible)
+                {
+                    HBar.Maximum = HorizontalScrollBar.Maximum;
+                    HBar.Value = HorizontalScrollBar.Value;
+                    HBar.BoundsWidth = HorizontalScrollBar.LargeChange;
+                    HBar.LargeChange = HorizontalScrollBar.LargeChange;//.Maximum / VisibleColumnCount();
+                    HBar.Visible = ScrollBars == ScrollBars.Horizontal || ScrollBars == ScrollBars.Both;
+                }
+                else
+                {
+                    HBar.Visible = false;
+                }
+            });
 
             SetBarPosition();
         }
@@ -607,31 +613,43 @@ namespace Sunny.UI
 
             if (BorderStyle == BorderStyle.FixedSingle)
             {
-                VBar.Left = Width - barWidth - 2;
-                VBar.Top = 1;
-                VBar.Width = barWidth + 1;
-                VBar.Height = Height - 2;
-                VBar.BringToFront();
+                VBar.ThreadSafeCall(() =>
+                {
+                    VBar.Left = Width - barWidth - 2;
+                    VBar.Top = 1;
+                    VBar.Width = barWidth + 1;
+                    VBar.Height = Height - 2;
+                    VBar.BringToFront();
+                });
 
-                HBar.Left = 1;
-                HBar.Height = barHeight + 1;
-                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
-                HBar.Top = Height - HBar.Height - 1;
-                HBar.BringToFront();
+                HBar.ThreadSafeCall(() =>
+                {
+                    HBar.Left = 1;
+                    HBar.Height = barHeight + 1;
+                    HBar.Width = Width - (VBar.Visible ? VBar.Width : 0) - 2;
+                    HBar.Top = Height - HBar.Height - 1;
+                    HBar.BringToFront();
+                });
             }
             else
             {
-                VBar.Left = Width - barWidth - 1;
-                VBar.Top = 0;
-                VBar.Width = barWidth + 1;
-                VBar.Height = Height;
-                VBar.BringToFront();
+                VBar.ThreadSafeCall(() =>
+                {
+                    VBar.Left = Width - barWidth - 1;
+                    VBar.Top = 0;
+                    VBar.Width = barWidth + 1;
+                    VBar.Height = Height;
+                    VBar.BringToFront();
+                });
 
-                HBar.Left = 0;
-                HBar.Height = barHeight + 1;
-                HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
-                HBar.Top = Height - HBar.Height;
-                HBar.BringToFront();
+                HBar.ThreadSafeCall(() =>
+                {
+                    HBar.Left = 0;
+                    HBar.Height = barHeight + 1;
+                    HBar.Width = Width - (VBar.Visible ? VBar.Width : 0);
+                    HBar.Top = Height - HBar.Height;
+                    HBar.BringToFront();
+                });
             }
         }
 

@@ -685,7 +685,7 @@ namespace Sunny.UI
         {
             if (IsDisposed) return;
             TextChanged?.Invoke(this, e);
-            SetScrollInfo();
+            if (Multiline) SetScrollInfo();
         }
 
         /// <summary>
@@ -722,15 +722,18 @@ namespace Sunny.UI
             }
 
             var si = ScrollBarInfo.GetInfo(edit.Handle);
-            if (si.ScrollMax > 0)
+            bar.ThreadSafeCall(() =>
             {
-                bar.Maximum = si.ScrollMax;
-                bar.Value = si.nPos;
-            }
-            else
-            {
-                bar.Maximum = si.ScrollMax;
-            }
+                if (si.ScrollMax > 0)
+                {
+                    bar.Maximum = si.ScrollMax;
+                    bar.Value = si.nPos;
+                }
+                else
+                {
+                    bar.Maximum = si.ScrollMax;
+                }
+            });
         }
 
         protected override void OnRadiusChanged(int value)

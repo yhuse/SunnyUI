@@ -61,10 +61,17 @@ namespace Sunny.UI
             {
                 waterMarkContainer = new PanelEx();
                 waterMarkContainer.Paint += new PaintEventHandler(waterMarkContainer_Paint);
-                waterMarkContainer.Invalidate();
                 waterMarkContainer.Click += new EventHandler(waterMarkContainer_Click);
                 waterMarkContainer.DoubleClick += WaterMarkContainer_DoubleClick;
-                this.Controls.Add(waterMarkContainer);
+                this.ThreadSafeCall(() =>
+                {
+                    this.Controls.Add(waterMarkContainer);
+                });
+
+                waterMarkContainer.ThreadSafeCall(() =>
+                {
+                    waterMarkContainer.Invalidate();
+                });
             }
         }
 
@@ -93,7 +100,11 @@ namespace Sunny.UI
         {
             if (waterMarkContainer != null)
             {
-                Controls.Remove(waterMarkContainer);
+                this.ThreadSafeCall(() =>
+                {
+                    Controls.Remove(waterMarkContainer);
+                });
+
                 waterMarkContainer = null;
             }
         }
