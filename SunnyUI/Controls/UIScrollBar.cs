@@ -20,6 +20,7 @@
  * 2020-04-25: V2.2.4 更新主题配置类
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
+ * 2024-11-04: V3.7.2 修复了一些重载事件
 ******************************************************************************/
 
 using System;
@@ -327,6 +328,8 @@ namespace Sunny.UI
         /// <param name="e">鼠标参数</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
+
             if (e.Button != MouseButtons.Left)
             {
                 return;
@@ -400,6 +403,7 @@ namespace Sunny.UI
             dragMove = false;
             StopScroll();
             Invalidate();
+            base.OnMouseUp(e);
         }
 
         private int MousePos;
@@ -439,6 +443,8 @@ namespace Sunny.UI
             {
                 Invalidate();
             }
+
+            base.OnMouseMove(e);
         }
 
         /// <summary>
