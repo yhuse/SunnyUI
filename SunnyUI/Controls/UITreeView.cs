@@ -1416,7 +1416,7 @@ namespace Sunny.UI
                 base.WndProc(ref m);
             }
 
-            private Dictionary<int, bool> DicNodeStatus = new Dictionary<int, bool>();
+            internal Dictionary<int, bool> DicNodeStatus = new Dictionary<int, bool>();
 
             protected override void OnAfterCheck(TreeViewEventArgs e)
             {

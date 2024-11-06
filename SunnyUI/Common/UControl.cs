@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2023-04-02: V3.3.4 修复关闭弹窗null的Bug
+ * 2024-11-06: V3.7.2 UITreeView增加了一个刷新节点状态的扩展函数
 ******************************************************************************/
 
 using System;
@@ -530,32 +531,38 @@ namespace Sunny.UI
         /// <returns>全选状态(Checked),半选状态(Indeterminate),未选状态(Unchecked)</returns>
         public static CheckState CheckState(this TreeNode node)
         {
-            if (GetChildNodeCheckedState(node))
+            if (node.Nodes.Count > 0)
             {
-                return System.Windows.Forms.CheckState.Indeterminate;
+                var count = node.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
+                if (count == 0)
+                {
+                    return System.Windows.Forms.CheckState.Unchecked;
+                }
+                else if (count == node.Nodes.Count)
+                {
+                    return System.Windows.Forms.CheckState.Checked;
+                }
+                else
+                {
+                    return System.Windows.Forms.CheckState.Indeterminate;
+                }
             }
 
             return node.Checked ? System.Windows.Forms.CheckState.Checked : System.Windows.Forms.CheckState.Unchecked;
         }
 
-        private static bool GetChildNodeCheckedState(TreeNode node)
+        public static void RefreshCheckState(this TreeNode node)
         {
+            if (node.TreeView is not UITreeView.TreeViewEx tv) return;
+            System.Windows.Forms.CheckState state = node.CheckState();
             if (node.Nodes.Count > 0)
             {
-                var count = node.Nodes.Cast<TreeNode>().Where(n => n.Checked).ToList().Count;
-                if (count > 0 && count < node.Nodes.Count)
-                {
-                    return true;
-                }
-                else
-                {
-                    foreach (TreeNode nd in node.Nodes)
-                    {
-                        return GetChildNodeCheckedState(nd);
-                    }
-                }
+                if (state == System.Windows.Forms.CheckState.Checked && !node.Checked) node.Checked = true;
+                if (state == System.Windows.Forms.CheckState.Unchecked && node.Checked) node.Checked = false;
             }
-            return false;
+
+            tv.DicNodeStatus[node.GetHashCode()] = state == System.Windows.Forms.CheckState.Indeterminate;
+            tv.Invalidate();
         }
 
         public static void Disabled(this Control ctrl)
