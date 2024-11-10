@@ -30,6 +30,7 @@
  * 2023-07-25: V3.4.1 过滤输入后，按键盘下键切换至DataGridView，选中数据后按回车可快捷选中数据
  * 2023-09-25: V3.5.0 增加ClearFilter，可以清除弹窗的搜索栏文字
  * 2024-03-22: V3.6.5 增加ShowDropDown()
+ * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
 ******************************************************************************/
 
 using System;
@@ -107,6 +108,7 @@ namespace Sunny.UI
             item.SetDPIScale();
             item.Translate();
             item.Filter1by1 = Filter1by1;
+            if (StyleDropDown != UIStyle.Inherited) item.Style = StyleDropDown;
             //ItemForm.Show(this);
             ItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, DropDownHeight));
             item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;

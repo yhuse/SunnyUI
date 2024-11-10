@@ -27,6 +27,7 @@
  * 2023-06-12: V3.3.8 修复使用清空按钮后，再次打开下拉框，上次的选择内容还是存在
  * 2024-03-22: V3.6.5 增加ShowDropDown()
  * 2024-07-13: V3.6.7 修改下拉框全选按钮跟随主题，修改一处内置国际化翻译
+ * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
 ******************************************************************************/
 
 using System;
@@ -260,6 +261,7 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             //ItemForm.Show(this);
+            if (StyleDropDown != UIStyle.Inherited) item.Style = StyleDropDown;
             int width = DropDownWidth < Width ? Width : DropDownWidth;
             width = Math.Max(250, width);
             item.ShowSelectedAllCheckBox = ShowSelectedAllCheckBox;

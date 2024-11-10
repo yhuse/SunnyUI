@@ -21,6 +21,7 @@
  * 2023-03-26: V3.3.4 增加了最大值、最小值等属性
  * 2023-06-11: V3.6.6 下拉框可选放大倍数为2
  * 2024-09-03: V3.7.0 增加ShowDropDown()弹窗方法
+ * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
 ******************************************************************************/
 
 using System;
@@ -239,6 +240,7 @@ namespace Sunny.UI
             item.NumPadType = NumPadType;
             item.SetDPIScale();
             item.SetStyleColor(UIStyles.ActiveStyleColor);
+            if (StyleDropDown != UIStyle.Inherited) item.Style = StyleDropDown;
 
             if (numPadType == NumPadType.IDNumber)
             {

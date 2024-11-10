@@ -41,6 +41,8 @@
  * 2023-12-26: V3.6.2 增加下拉界面的滚动条设置
  * 2024-01-27: V3.6.3 修复在窗体构造函数设置SelectedIndex报错
  * 2024-10-28: V3.7.2 增加了SelectionChangeCommitted事件，下拉框显示鼠标点击条目时响应
+ * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
+ * 2024-11-10: V3.7.2 删除ScrollBarColor、ScrollBarBackColor、ScrollBarStyleInherited属性
 ******************************************************************************/
 
 using System;
@@ -114,38 +116,6 @@ namespace Sunny.UI
             set => ListBox.ScrollBarHandleWidth = value;
         }
 
-        /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
-        /// </summary>
-        [Description("滚动条填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "80, 160, 255")]
-        public Color ScrollBarColor
-        {
-            get => ListBox.ScrollBarColor;
-            set => ListBox.ScrollBarColor = value;
-        }
-
-        /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
-        /// </summary>
-        [Description("滚动条背景颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "243, 249, 255")]
-        public Color ScrollBarBackColor
-        {
-            get => ListBox.ScrollBarBackColor;
-            set => ListBox.ScrollBarBackColor = value;
-        }
-
-        /// <summary>
-        /// 滚动条主题样式
-        /// </summary>
-        [DefaultValue(true), Description("滚动条主题样式"), Category("SunnyUI")]
-        public bool ScrollBarStyleInherited
-        {
-            get => ListBox.ScrollBarStyleInherited;
-            set => ListBox.ScrollBarStyleInherited = value;
-        }
-
         [DefaultValue(false)]
         [Description("显示清除按钮"), Category("SunnyUI")]
         public bool ShowClearButton
@@ -186,6 +156,8 @@ namespace Sunny.UI
             FilterItemForm.AutoClose = false;
             if (!FilterItemForm.Visible)
             {
+                filterForm.Style = StyleDropDown;
+                if (StyleDropDown != UIStyle.Inherited) filterForm.Style = StyleDropDown;
                 FilterItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
                 edit.Focus();
             }
@@ -757,6 +729,7 @@ namespace Sunny.UI
                         dropWidth = Math.Max(DropDownWidth, dropWidth);
                     }
 
+                    if (StyleDropDown != UIStyle.Inherited) dropForm.Style = StyleDropDown;
                     ItemForm.Show(this, new Size(dropWidth, CalcItemFormHeight()));
                 }
             }

@@ -89,6 +89,12 @@ namespace Sunny.UI
             }
         }
 
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Inherited), Description("下拉框主题样式"), Category("SunnyUI")]
+        public UIStyle StyleDropDown { get; set; } = UIStyle.Inherited;
+
         public override void SetDPIScale()
         {
             base.SetDPIScale();

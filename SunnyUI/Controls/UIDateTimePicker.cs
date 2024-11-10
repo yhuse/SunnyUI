@@ -24,6 +24,7 @@
  * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
  * 2024-07-13: V3.6.7 修改选择日期在下拉框中显示方式
  * 2024-08-28: V3.7.0 修复格式化字符串包含/时显示错误
+ * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
 ******************************************************************************/
 
 using System;
@@ -201,6 +202,7 @@ namespace Sunny.UI
             item.Translate();
             item.SetDPIScale();
             item.SetStyleColor(UIStyles.ActiveStyleColor);
+            if (StyleDropDown != UIStyle.Inherited) item.Style = StyleDropDown;
             Size size = SizeMultiple == 1 ? new Size(452, 200) : new Size(904, 400);
             ItemForm.Show(this, size);
         }

@@ -20,7 +20,6 @@
 ******************************************************************************/
 
 using System;
-using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -53,24 +52,6 @@ namespace Sunny.UI
 
         public event EventHandler BeforeListClick;
 
-        /// <summary>
-        /// 设置边框颜色
-        /// </summary>
-        /// <param name="color">颜色</param>
-        public override void SetRectColor(Color color)
-        {
-            //listBox.ItemSelectBackColor = color;
-        }
-
-        /// <summary>
-        /// 设置填充颜色
-        /// </summary>
-        /// <param name="color">颜色</param>
-        public override void SetFillColor(Color color)
-        {
-            //ListBox.ItemSelectForeColor = color;
-        }
-
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DoValueChanged(this, ListBox.SelectedValue);
@@ -82,6 +63,12 @@ namespace Sunny.UI
             {
                 Close();
             }
+        }
+
+        public override void SetStyleColor(UIBaseStyle uiColor)
+        {
+            base.SetStyleColor(uiColor);
+            listBox.SetStyleColor(uiColor);
         }
     }
 }
