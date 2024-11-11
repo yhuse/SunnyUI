@@ -30,6 +30,7 @@
  * 2023-10-17: V3.5.1 修正下拉菜单文字显示垂直居中
  * 2023-10-17: V3.5.1 ImageList为空时，下拉菜单增加Symbol绘制
  * 2023-11-16: V3.5.2 重构主题
+ * 2024-11-11: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
 ******************************************************************************/
 
 using System;
@@ -624,6 +625,12 @@ namespace Sunny.UI
             return NodeX + index * NodeSize.Width;
         }
 
+        /// <summary>
+        /// 主题样式
+        /// </summary>
+        [DefaultValue(UIStyle.Inherited), Description("下拉框主题样式"), Category("SunnyUI")]
+        public UIStyle StyleDropDown { get; set; } = UIStyle.Inherited;
+
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -638,7 +645,7 @@ namespace Sunny.UI
                 return;
             }
 
-            NavBarMenu.Style = UIStyles.Style;
+            NavBarMenu.Style = StyleDropDown != UIStyle.Inherited ? StyleDropDown : UIStyles.Style;
             NavBarMenu.Items.Clear();
             NavBarMenu.ImageList = ImageList;
             NavBarMenu.Font = DropMenuFont;
