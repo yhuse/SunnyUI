@@ -31,6 +31,7 @@
  * 2023-09-25: V3.5.0 增加ClearFilter，可以清除弹窗的搜索栏文字
  * 2024-03-22: V3.6.5 增加ShowDropDown()
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
+ * 2024-11-12: V3.7.2 增加下拉框滚动条宽度调整属性
 ******************************************************************************/
 
 using System;
@@ -114,6 +115,20 @@ namespace Sunny.UI
             item.ComboDataGridViewFilterChanged += Item_ComboDataGridViewFilterChanged;
         }
 
+        [DefaultValue(0), Category("SunnyUI"), Description("垂直滚动条宽度，最小为原生滚动条宽度")]
+        public int ScrollBarWidth
+        {
+            get => DataGridView.ScrollBarWidth;
+            set => DataGridView.ScrollBarWidth = value;
+        }
+
+        [DefaultValue(6), Category("SunnyUI"), Description("垂直滚动条滑块宽度，最小为原生滚动条宽度")]
+        public int ScrollBarHandleWidth
+        {
+            get => DataGridView.ScrollBarHandleWidth;
+            set => DataGridView.ScrollBarHandleWidth = value;
+        }
+
         public void ShowDropDown()
         {
             UIComboDataGridView_ButtonClick(this, EventArgs.Empty);
@@ -156,8 +171,12 @@ namespace Sunny.UI
             return edit;
         }
 
-        [DefaultValue(false)]
-        public bool ShowFilter { get; set; }
+        [DefaultValue(true), Description("下拉框显示过滤编辑框"), Category("SunnyUI")]
+        public bool ShowFilter
+        {
+            get => item.ShowFilter;
+            set => item.ShowFilter = value;
+        }
 
         private readonly UIComboDataGridViewItem item = new UIComboDataGridViewItem();
 
