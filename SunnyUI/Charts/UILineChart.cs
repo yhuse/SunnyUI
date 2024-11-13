@@ -53,6 +53,7 @@
  * 2023-10-20: V3.5.1 增加了绘制线的DashStyle样式
  * 2023-11-22: V3.6.0 增加了区域选择范围相等时不执行事件
  * 2024-07-01: V3.6.7 增加了Y轴自定义坐标显示
+ * 2024-11-13: V3.7.2 增加了鼠标移上绘制十字线样式
 ******************************************************************************/
 
 using System;
@@ -70,6 +71,10 @@ namespace Sunny.UI
     public class UILineChart : UIChart
     {
         protected bool NeedDraw;
+
+        [DefaultValue(MouseLineType.None)]
+        [Description("鼠标移上绘制十字线样式"), Category("SunnyUI")]
+        public MouseLineType MouseLine { get; set; }
 
         /// <summary>
         /// 重载控件尺寸变更
@@ -98,7 +103,7 @@ namespace Sunny.UI
             NeedDraw = false;
             if (Option?.Series == null || Option.Series.Count == 0) return;
             if (DrawSize.Width <= 0 || DrawSize.Height <= 0) return;
-            CalcAxises();
+            CalcAxes();
 
             foreach (var series in Option.Series.Values)
             {
@@ -137,7 +142,7 @@ namespace Sunny.UI
         protected UIScale YScale;
         protected UIScale Y2Scale;
 
-        protected void CalcAxises()
+        protected void CalcAxes()
         {
             if (Option.XAxisType == UIAxisType.DateTime)
                 XScale = new UIDateScale();
@@ -289,6 +294,23 @@ namespace Sunny.UI
             DrawAxisScales(g);
             DrawPointSymbols(g);
             DrawOther(g);
+
+            if (MousePoint.InRect(DrawRect))
+            {
+                switch (MouseLine)
+                {
+                    case MouseLineType.Horizontal:
+                        g.DrawLine(Pens.Red, DrawRect.Left, MousePoint.Y, DrawRect.Right, MousePoint.Y);
+                        break;
+                    case MouseLineType.Vertical:
+                        g.DrawLine(Pens.Red, MousePoint.X, DrawRect.Top, MousePoint.X, DrawRect.Bottom);
+                        break;
+                    case MouseLineType.Cross:
+                        g.DrawLine(Pens.Red, DrawRect.Left, MousePoint.Y, DrawRect.Right, MousePoint.Y);
+                        g.DrawLine(Pens.Red, MousePoint.X, DrawRect.Top, MousePoint.X, DrawRect.Bottom);
+                        break;
+                }
+            }
         }
 
         private void DrawAxis(Graphics g)
@@ -848,6 +870,7 @@ namespace Sunny.UI
         private readonly List<UILineSelectPoint> selectPoints = new List<UILineSelectPoint>();
         private readonly List<UILineSelectPoint> selectPointsTemp = new List<UILineSelectPoint>();
 
+        public Point MousePoint;
         /// <summary>
         /// 重载鼠标移动事件
         /// </summary>
@@ -1014,6 +1037,9 @@ namespace Sunny.UI
                 }
 
             }
+
+            MousePoint = e.Location;
+            if (MouseLine != MouseLineType.None) Invalidate();
         }
 
         public delegate void OnPointValue(object sender, UILineSelectPoint[] points);

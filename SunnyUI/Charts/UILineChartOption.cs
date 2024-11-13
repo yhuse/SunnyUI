@@ -33,6 +33,14 @@ using System.Linq;
 
 namespace Sunny.UI
 {
+    public enum MouseLineType
+    {
+        None,
+        Horizontal,
+        Vertical,
+        Cross
+    }
+
     public enum UISeriesDataOrder
     {
         X,
