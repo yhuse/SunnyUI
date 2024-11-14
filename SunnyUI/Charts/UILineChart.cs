@@ -54,16 +54,14 @@
  * 2023-11-22: V3.6.0 增加了区域选择范围相等时不执行事件
  * 2024-07-01: V3.6.7 增加了Y轴自定义坐标显示
  * 2024-11-13: V3.7.2 增加了鼠标移上绘制十字线样式
+ * 2024-11-14: V3.7.2 增加了鼠标移上绘制十字线颜色
 ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -75,6 +73,10 @@ namespace Sunny.UI
         [DefaultValue(MouseLineType.None)]
         [Description("鼠标移上绘制十字线样式"), Category("SunnyUI")]
         public MouseLineType MouseLine { get; set; }
+
+        [DefaultValue(typeof(Color), "Red")]
+        [Description("鼠标移上绘制十字线颜色"), Category("SunnyUI")]
+        public Color MouseLineColor { get; set; } = Color.Red;
 
         /// <summary>
         /// 重载控件尺寸变更
@@ -300,14 +302,14 @@ namespace Sunny.UI
                 switch (MouseLine)
                 {
                     case MouseLineType.Horizontal:
-                        g.DrawLine(Pens.Red, DrawRect.Left, MousePoint.Y, DrawRect.Right, MousePoint.Y);
+                        g.DrawLine(MouseLineColor, DrawRect.Left + 1, MousePoint.Y, DrawRect.Right - 1, MousePoint.Y);
                         break;
                     case MouseLineType.Vertical:
-                        g.DrawLine(Pens.Red, MousePoint.X, DrawRect.Top, MousePoint.X, DrawRect.Bottom);
+                        g.DrawLine(MouseLineColor, MousePoint.X, DrawRect.Top + 1, MousePoint.X, DrawRect.Bottom - 1);
                         break;
                     case MouseLineType.Cross:
-                        g.DrawLine(Pens.Red, DrawRect.Left, MousePoint.Y, DrawRect.Right, MousePoint.Y);
-                        g.DrawLine(Pens.Red, MousePoint.X, DrawRect.Top, MousePoint.X, DrawRect.Bottom);
+                        g.DrawLine(MouseLineColor, DrawRect.Left + 1, MousePoint.Y, DrawRect.Right - 1, MousePoint.Y);
+                        g.DrawLine(MouseLineColor, MousePoint.X, DrawRect.Top + 1, MousePoint.X, DrawRect.Bottom - 1);
                         break;
                 }
             }
