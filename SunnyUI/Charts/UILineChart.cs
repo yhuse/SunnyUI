@@ -983,7 +983,7 @@ namespace Sunny.UI
                             using Graphics g = this.CreateGraphics();
                             using var TempFont = Font.DPIScaleFont(UIStyles.DefaultSubFontSize);
                             Size sf = TextRenderer.MeasureText(sb.ToString(), TempFont);
-                            tip.Size = new Size(sf.Width + 4, sf.Height + 4);
+                            tip.Size = new Size(sf.Width + 4, sf.Height + 10);
 
                             int x = e.Location.X + 15;
                             int y = e.Location.Y + 20;

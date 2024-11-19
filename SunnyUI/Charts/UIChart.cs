@@ -73,7 +73,7 @@ namespace Sunny.UI
             tip.Visible = false;
         }
 
-        protected readonly UITransparentPanel tip = new UITransparentPanel();
+        internal readonly UITransparentPanel tip = new UITransparentPanel();
         private UIChartStyleType chartStyleType = UIChartStyleType.Plain;
 
         [DefaultValue(UIChartStyleType.Plain)]
