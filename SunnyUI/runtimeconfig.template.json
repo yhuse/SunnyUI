@@ -1,0 +1,3 @@
+﻿{
+    "configProperties": { "System.Windows.Forms.DataGridViewUIAStartRowCountAtZero": true }
+}

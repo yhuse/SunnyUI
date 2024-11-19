@@ -31,7 +31,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    internal sealed class UIDateTimeItem : UIDropDownItem, ITranslate
+    public sealed class UIDateTimeItem : UIDropDownItem, ITranslate
     {
         #region InitializeComponent
 
