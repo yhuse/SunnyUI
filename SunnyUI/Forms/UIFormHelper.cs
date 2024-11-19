@@ -517,7 +517,7 @@ namespace Sunny.UI
             UINotifier.Show(desc, type, title, isDialog, timeout, inApp);
         }
 
-        public static void ShowNotifier(string desc, EventHandler clickEvent, UINotifierType type = UINotifierType.INFO, string title = "Notifier", int timeout = 0)
+        public static void ShowNotifier(string desc, EventHandler<DescriptionEventArgs> clickEvent, UINotifierType type = UINotifierType.INFO, string title = "Notifier", int timeout = 0)
         {
             UINotifier.Show(desc, type, title, false, timeout, null, clickEvent);
         }
@@ -962,22 +962,22 @@ namespace Sunny.UI
             UINotifierHelper.ShowNotifier(desc, UINotifierType.ERROR, UIStyles.CurrentResources.ErrorTitle, isDialog, timeout);
         }
 
-        public static void ShowInfoNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
+        public static void ShowInfoNotifier(this Form form, string desc, EventHandler<DescriptionEventArgs> clickEvent, int timeout = 2000)
         {
             UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.INFO, UIStyles.CurrentResources.InfoTitle, timeout);
         }
 
-        public static void ShowSuccessNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
+        public static void ShowSuccessNotifier(this Form form, string desc, EventHandler<DescriptionEventArgs> clickEvent, int timeout = 2000)
         {
             UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.OK, UIStyles.CurrentResources.SuccessTitle, timeout);
         }
 
-        public static void ShowWarningNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
+        public static void ShowWarningNotifier(this Form form, string desc, EventHandler<DescriptionEventArgs> clickEvent, int timeout = 2000)
         {
             UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.WARNING, UIStyles.CurrentResources.WarningTitle, timeout);
         }
 
-        public static void ShowErrorNotifier(this Form form, string desc, EventHandler clickEvent, int timeout = 2000)
+        public static void ShowErrorNotifier(this Form form, string desc, EventHandler<DescriptionEventArgs> clickEvent, int timeout = 2000)
         {
             UINotifierHelper.ShowNotifier(desc, clickEvent, UINotifierType.ERROR, UIStyles.CurrentResources.ErrorTitle, timeout);
         }

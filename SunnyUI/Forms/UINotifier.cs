@@ -442,7 +442,7 @@ namespace Sunny.UI
         // Show the note: it is the startup of the creation process of the note
         //-------------------------------------------------------------------------------------------------------------------------------
         public static short Show(string desc, UINotifierType type = UINotifierType.INFO, string title = "Notifier",
-                                 bool isDialog = false, int timeout = 0, Form inApp = null, EventHandler clickevent = null)
+                                 bool isDialog = false, int timeout = 0, Form inApp = null, EventHandler<DescriptionEventArgs> clickevent = null)
         {
             if (NotifierAlreadyPresent(desc, type, title, isDialog, out var updated_note_id, out var updated_note_occurence))
             {
@@ -713,13 +713,18 @@ namespace Sunny.UI
         {
             if (ItemClick != null)
             {
-                ItemClick.Invoke(this, e);
+                ItemClick.Invoke(this, new DescriptionEventArgs(Description));
                 closeMe();
             }
         }
 
-        public event EventHandler ItemClick;
+        public event EventHandler<DescriptionEventArgs> ItemClick;
     }   // Close Class
+
+    public class DescriptionEventArgs(string message) : EventArgs
+    {
+        public string Description { get; set; } = message;
+    }
 
     /// <summary>
     /// 窗体背景风格
