@@ -27,10 +27,12 @@
  * 2022-02-16: V3.1.1 基类增加只读颜色设置
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-06-10: V3.1.9 尺寸改变时重绘
+ * 2024-11-19: V3.7.2 增加透明度
 ******************************************************************************/
 
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Sunny.UI
 {
@@ -40,7 +42,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             base.Font = UIStyles.Font();
-            base.MinimumSize = new System.Drawing.Size(1, 1);
+            base.MinimumSize = new Size(1, 1);
             showText = true;
             SetStyleFlags(true, false, true);
         }
@@ -97,6 +99,38 @@ namespace Sunny.UI
             foreReadOnlyColor = color;
             AfterSetForeReadOnlyColor(color);
             Invalidate();
+        }
+
+        private byte _opacity = 255;
+        [Description("透明度"), Category("SunnyUI")]
+        [DefaultValue(typeof(byte), "255")]
+        public byte Opacity
+        {
+            get => _opacity;
+            set
+            {
+                if (_opacity != value)
+                {
+                    _opacity = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        protected override void OnPaintFill(Graphics g, GraphicsPath path)
+        {
+            if (_opacity == 255)
+            {
+                base.OnPaintFill(g, path);
+            }
+            else
+            {
+                var color = GetFillColor().Alpha(_opacity);
+                if (RadiusSides == UICornerRadiusSides.None || Radius == 0)
+                    g.Clear(color);
+                else
+                    g.FillPath(color, path);
+            }
         }
     }
 }
