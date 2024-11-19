@@ -123,12 +123,12 @@ namespace Sunny.UI.Demo
 
         private void uiSymbolButton2_Click(object sender, EventArgs e)
         {
-            this.ShowInfoNotifier("Info", InfoNotifierClick);
+            this.ShowInfoNotifier("Hello SunnyUI!", InfoNotifierClick);
         }
 
-        private void InfoNotifierClick(object sender, EventArgs e)
+        private void InfoNotifierClick(object sender, DescriptionEventArgs e)
         {
-            this.ShowInfoTip(CodeTranslator.Current.PressedNotifier);
+            this.ShowInfoTip(e.Description);
         }
 
         private void uiSymbolButton6_Click(object sender, EventArgs e)
