@@ -12,14 +12,15 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UFontAwesomeV6.cs
- * 文件说明: 字体图片定义类：FontAweSome，V6.4.0
- * 当前版本: V3.1
+ * 文件说明: 字体图片定义类：FontAweSome，V6.7.1
+ * 当前版本: V3.8.0
  * 创建日期: 2023-04-23
  *
  * 2023-04-23: V3.3.5 增加文件说明
  * 2024-06-26: V3.6.7 更新为Font Awesome version: 6.5.2
  * 2024-06-27: V3.6.7 减小文件大小
  * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
+ * 2024-11-27: V3.8.0 更新为Font Awesome version: 6.7.1
 ******************************************************************************/
 
 /******************************************************************************
@@ -61,7 +62,7 @@ learn about Font Awesome.
 namespace Sunny.UI;
 
 ///<summary>
-///Font Awesome version: 6.6.0
+///Font Awesome version: 6.7.1
 ///fa-regular-400.ttf
 ///Symbol count: 163
 ///</summary>
@@ -233,9 +234,9 @@ public static class FontAweSomeV6Regular
 }
 
 ///<summary>
-///Font Awesome version: 6.6.0
+///Font Awesome version: 6.7.1
 ///fa-brands-400.ttf
-///Symbol count: 492
+///Symbol count: 495
 ///</summary>
 public static class FontAweSomeV6Brands
 {
@@ -335,6 +336,7 @@ public static class FontAweSomeV6Brands
     public const int fa_creative_commons_zero = 0xf4f3;
     public const int fa_creative_commons = 0xf25e;
     public const int fa_critical_role = 0xf6c9;
+    public const int fa_css = 0xe6a2;
     public const int fa_css3_alt = 0xf38b;
     public const int fa_css3 = 0xf13c;
     public const int fa_cuttlefish = 0xf38c;
@@ -384,6 +386,7 @@ public static class FontAweSomeV6Brands
     public const int fa_fedex = 0xf797;
     public const int fa_fedora = 0xf798;
     public const int fa_figma = 0xf799;
+    public const int fa_files_pinwheel = 0xe69f;
     public const int fa_firefox_browser = 0xe007;
     public const int fa_firefox = 0xf269;
     public const int fa_first_order_alt = 0xf50a;
@@ -606,6 +609,7 @@ public static class FontAweSomeV6Brands
     public const int fa_speaker_deck = 0xf83c;
     public const int fa_spotify = 0xf1bc;
     public const int fa_square_behance = 0xf1b5;
+    public const int fa_square_bluesky = 0xe6a3;
     public const int fa_square_dribbble = 0xf397;
     public const int fa_square_facebook = 0xf082;
     public const int fa_square_font_awesome_stroke = 0xf35c;
@@ -734,9 +738,9 @@ public static class FontAweSomeV6Brands
 }
 
 ///<summary>
-///Font Awesome version: 6.6.0
+///Font Awesome version: 6.7.1
 ///fa-solid-900.ttf
-///Symbol count: 1395
+///Symbol count: 1402
 ///</summary>
 public static class FontAweSomeV6Solid
 {
@@ -998,6 +1002,7 @@ public static class FontAweSomeV6Solid
     public const int fa_chart_area = 0xf1fe;
     public const int fa_chart_bar = 0xf080;
     public const int fa_chart_column = 0xe0e3;
+    public const int fa_chart_diagram = 0xe695;
     public const int fa_chart_gantt = 0xe0e4;
     public const int fa_chart_line = 0xf201;
     public const int fa_chart_pie = 0xf200;
@@ -1091,6 +1096,7 @@ public static class FontAweSomeV6Solid
     public const int fa_comment_dollar = 0xf651;
     public const int fa_comment_dots = 0xf4ad;
     public const int fa_comment_medical = 0xf7f5;
+    public const int fa_comment_nodes = 0xe696;
     public const int fa_comment_slash = 0xf4b3;
     public const int fa_comment_sms = 0xf7cd;
     public const int fa_comment = 0xf075;
@@ -1253,6 +1259,8 @@ public static class FontAweSomeV6Solid
     public const int fa_file_csv = 0xf6dd;
     public const int fa_file_excel = 0xf1c3;
     public const int fa_file_export = 0xf56e;
+    public const int fa_file_fragment = 0xe697;
+    public const int fa_file_half_dashed = 0xe698;
     public const int fa_file_image = 0xf1c5;
     public const int fa_file_import = 0xf56f;
     public const int fa_file_invoice_dollar = 0xf571;
@@ -1404,6 +1412,8 @@ public static class FontAweSomeV6Solid
     public const int fa_helicopter = 0xf533;
     public const int fa_helmet_safety = 0xf807;
     public const int fa_helmet_un = 0xe503;
+    public const int fa_hexagon_nodes_bolt = 0xe69a;
+    public const int fa_hexagon_nodes = 0xe699;
     public const int fa_highlighter = 0xf591;
     public const int fa_hill_avalanche = 0xe507;
     public const int fa_hill_rockslide = 0xe508;
@@ -1868,6 +1878,7 @@ public static class FontAweSomeV6Solid
     public const int fa_spray_can_sparkles = 0xf5d0;
     public const int fa_spray_can = 0xf5bd;
     public const int fa_square_arrow_up_right = 0xf14c;
+    public const int fa_square_binary = 0xe69b;
     public const int fa_square_caret_down = 0xf150;
     public const int fa_square_caret_left = 0xf191;
     public const int fa_square_caret_right = 0xf152;

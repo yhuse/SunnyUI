@@ -191,7 +191,7 @@ namespace Sunny.UI
         {
             string path = @"D:\Temp\Font-Awesome-6.x\";
             string scss = path + @"scss\_variables.scss";
-            string version = "Font Awesome version: 6.6.0";
+            string version = "Font Awesome version: 6.7.1";
 
             string[] lines = File.ReadAllLines(scss);
 
@@ -210,14 +210,15 @@ namespace Sunny.UI
                  * 如果您使用此代码，请保留此说明。
                  ******************************************************************************
                  * 文件名称: UFontAwesomeV6.cs
-                 * 文件说明: 字体图片定义类：FontAweSome，V6.4.0
-                 * 当前版本: V3.1
+                 * 文件说明: 字体图片定义类：FontAweSome，V6.7.1
+                 * 当前版本: V3.8.0
                  * 创建日期: 2023-04-23
                  *
                  * 2023-04-23: V3.3.5 增加文件说明
                  * 2024-06-26: V3.6.7 更新为Font Awesome version: 6.5.2
                  * 2024-06-27: V3.6.7 减小文件大小
                  * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
+                 * 2024-11-27: V3.8.0 更新为Font Awesome version: 6.7.1
                 ******************************************************************************/
 
                 /******************************************************************************
