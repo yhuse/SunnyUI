@@ -235,6 +235,7 @@ namespace Sunny.UI.Demo
             // uiLabel1
             // 
             this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel1.Location = new System.Drawing.Point(30, 288);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(698, 23);
@@ -263,6 +264,7 @@ namespace Sunny.UI.Demo
             // uiLabel2
             // 
             this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel2.Location = new System.Drawing.Point(176, 383);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(172, 23);
@@ -272,7 +274,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 430);
             this.uiLine1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiLine1.Name = "uiLine1";
@@ -283,7 +287,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 55);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -298,12 +304,15 @@ namespace Sunny.UI.Demo
             this.cbFont.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cbFont.FillColor = System.Drawing.Color.White;
             this.cbFont.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbFont.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cbFont.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cbFont.Location = new System.Drawing.Point(101, 473);
             this.cbFont.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbFont.MinimumSize = new System.Drawing.Size(63, 0);
             this.cbFont.Name = "cbFont";
             this.cbFont.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cbFont.Size = new System.Drawing.Size(469, 29);
+            this.cbFont.SymbolSize = 24;
             this.cbFont.TabIndex = 79;
             this.cbFont.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cbFont.Watermark = "";
@@ -311,6 +320,7 @@ namespace Sunny.UI.Demo
             // uiLabel3
             // 
             this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel3.Location = new System.Drawing.Point(30, 524);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(172, 23);
@@ -321,6 +331,7 @@ namespace Sunny.UI.Demo
             // uiLabel4
             // 
             this.uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel4.Location = new System.Drawing.Point(30, 476);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(85, 23);
@@ -359,6 +370,7 @@ namespace Sunny.UI.Demo
             // uiLabel5
             // 
             this.uiLabel5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel5.Location = new System.Drawing.Point(511, 524);
             this.uiLabel5.Name = "uiLabel5";
             this.uiLabel5.Size = new System.Drawing.Size(59, 23);
@@ -396,7 +408,7 @@ namespace Sunny.UI.Demo
             this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.PageIndex = 999;
             this.ShowTitle = true;
-            this.Symbol = 262210;
+            this.Symbol = 558295;
             this.Text = "多彩主题";
             this.ResumeLayout(false);
 

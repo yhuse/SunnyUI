@@ -105,11 +105,10 @@ namespace Sunny.UI.Demo
             node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "多彩主题", UIStyle.Colorful.Value());
             uiNavBar1.SetNodeSymbol(node, 558295);
             //左侧导航主节点关联页面
-            uiNavMenu1.CreateNode(AddPage(new FSymbols()));
-            uiNavMenu1.CreateNode(AddPage(new FColorful()));
+            uiNavMenu1.CreateNode(AddPage(new FSymbols(), 99999));
+            uiNavMenu1.CreateNode(AddPage(new FColorful(), UIStyle.Colorful.Value()));
 
             //直接增加一个页面，不在左侧列表显示
-            //AddPage(new FColorful());
             AddPage(new FCommon());
 
             //选中第一个节点
@@ -228,8 +227,8 @@ namespace Sunny.UI.Demo
             this.uiNavMenu1.Nodes[2].Text = this.uiNavBar1.Nodes[2].Text = CodeTranslator.Current.Charts;
             this.uiNavMenu1.Nodes[3].Text = this.uiNavBar1.Nodes[3].Text = CodeTranslator.Current.Industrial;
             this.uiNavBar1.Nodes[4].Text = CodeTranslator.Current.Theme;
-            this.uiNavMenu1.Nodes[4].Text = CodeTranslator.Current.Colorful;
-            this.uiNavMenu1.Nodes[5].Text = CodeTranslator.Current.Symbols;
+            this.uiNavMenu1.Nodes[4].Text = CodeTranslator.Current.Symbols;
+            this.uiNavMenu1.Nodes[5].Text = CodeTranslator.Current.Colorful;
 
             this.uiNavBar1.Invalidate();
             this.uiNavMenu1.Invalidate();
