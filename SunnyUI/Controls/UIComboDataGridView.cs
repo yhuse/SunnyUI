@@ -32,6 +32,7 @@
  * 2024-03-22: V3.6.5 增加ShowDropDown()
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2024-11-12: V3.7.2 增加下拉框滚动条宽度调整属性
+ * 2024-11-28: V3.8.0 解决下拉框显示过滤编辑框不能一直显示 #IB7AFB
 ******************************************************************************/
 
 using System;
@@ -172,11 +173,7 @@ namespace Sunny.UI
         }
 
         [DefaultValue(true), Description("下拉框显示过滤编辑框"), Category("SunnyUI")]
-        public bool ShowFilter
-        {
-            get => item.ShowFilter;
-            set => item.ShowFilter = value;
-        }
+        public bool ShowFilter { get; set; } = true;
 
         private readonly UIComboDataGridViewItem item = new UIComboDataGridViewItem();
 
