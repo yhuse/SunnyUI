@@ -33,9 +33,9 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-11-06: V3.5.2 重构主题
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
+ * 2024-11-29: V3.8.0 修复了SelectedIndex=-1时的报错
 ******************************************************************************/
 
-using Sunny.UI.Win32;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -43,6 +43,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {

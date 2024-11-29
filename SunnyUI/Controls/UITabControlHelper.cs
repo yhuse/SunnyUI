@@ -100,7 +100,7 @@ namespace Sunny.UI
         {
             if (pageIndex < 0) return false;
 
-            if (PageItems.TryGetValue(tabControl.SelectedTab, out var fromPage))
+            if (tabControl.SelectedTab != null && PageItems.TryGetValue(tabControl.SelectedTab, out var fromPage))
             {
                 bool isCancel = fromPage.OnPageDeselecting();
                 if (isCancel) return false;
@@ -122,7 +122,7 @@ namespace Sunny.UI
         {
             if (pageGuid == Guid.Empty) return false;
 
-            if (PageItems.TryGetValue(tabControl.SelectedTab, out var fromPage))
+            if (tabControl.SelectedTab != null && PageItems.TryGetValue(tabControl.SelectedTab, out var fromPage))
             {
                 bool isCancel = fromPage.OnPageDeselecting();
                 if (isCancel) return false;
@@ -142,7 +142,7 @@ namespace Sunny.UI
 
         public UIPage GetPage(TabPage tabPage)
         {
-            if (PageItems.TryGetValue(tabControl.SelectedTab, out var uiPage))
+            if (tabControl.SelectedTab != null && PageItems.TryGetValue(tabControl.SelectedTab, out var uiPage))
                 return uiPage;
             return null;
         }
