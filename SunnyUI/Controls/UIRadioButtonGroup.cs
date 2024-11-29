@@ -26,6 +26,7 @@
  * 2023-11-09: V3.5.2 重写UIRadioButtonGroup
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
  * 2024-09-09: V3.7.0 更改计算节点位置的方法，解决问题：#IAPY94
+ * 2024-11-29: V3.8.0 修复TitleTop为0时，条目显示错位的问题 #IB7STO
 ******************************************************************************/
 
 using System;
@@ -132,12 +133,13 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
+            if (TitleTop == 0 && Text.IsValid()) Text = "";
             if (Items.Count == 0) return;
+            InitRects();
 
-            if (activeIndex >= 0 && CheckBoxRects.ContainsKey(activeIndex))
+            if (activeIndex >= 0 && CheckBoxRects.TryGetValue(activeIndex, out Rectangle boxRect))
             {
-                e.Graphics.FillRectangle(hoverColor, CheckBoxRects[activeIndex]);
+                e.Graphics.FillRectangle(hoverColor, boxRect);
             }
 
             int startX = StartPos.X;
