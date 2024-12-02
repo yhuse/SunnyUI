@@ -19,6 +19,7 @@
  * 2022-06-28: V3.2.0 增加文件说明
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-11-13: V3.5.2 重构主题
+ * 2024-12-02: V3.8.0 切换语言实时刷新
 ******************************************************************************/
 
 using System;
@@ -29,7 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    public class UICalendar : UIUserControl
+    public class UICalendar : UIUserControl, ITranslate
     {
         public UICalendar()
         {
@@ -330,6 +331,10 @@ namespace Sunny.UI
             months.Add(UIStyles.CurrentResources.October);
             months.Add(UIStyles.CurrentResources.November);
             months.Add(UIStyles.CurrentResources.December);
+
+            p1.Invalidate();
+            p2.Invalidate();
+            p3.Invalidate();
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
