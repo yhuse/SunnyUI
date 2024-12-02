@@ -21,6 +21,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-02-23: V3.3.2 重写滚动逻辑
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2024-12-02: V3.8.0 停止滚动时，可以设置默认显示位置
 ******************************************************************************/
 
 using System;
@@ -153,41 +154,48 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            Size sf = TextRenderer.MeasureText(Text, Font);
-            if (TextWidth != sf.Width)
+            if (Active)
             {
-                XPos = 0;
-                TextWidth = sf.Width;
+                Size sf = TextRenderer.MeasureText(Text, Font);
+                if (TextWidth != sf.Width)
+                {
+                    XPos = 0;
+                    TextWidth = sf.Width;
+                }
+
+                if (ScrollingType == UIScrollingType.LeftToRight)
+                {
+                    if (XPos + TextWidth > Width && TextWidth < Width - offset)
+                    {
+                        XPos1 = XPos - Width + offset;
+                        g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
+                    }
+                    else
+                    {
+                        XPos1 = -TextWidth + offset;
+                    }
+
+                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
+                }
+
+                if (ScrollingType == UIScrollingType.RightToLeft)
+                {
+                    if (XPos < 0 && TextWidth < Width - offset)
+                    {
+                        XPos1 = Width + XPos - offset;
+                        g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
+                    }
+                    else
+                    {
+                        XPos1 = Width - offset;
+                    }
+
+                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
+                }
             }
-
-            if (ScrollingType == UIScrollingType.LeftToRight)
+            else
             {
-                if (XPos + TextWidth > Width && TextWidth < Width - offset)
-                {
-                    XPos1 = XPos - Width + offset;
-                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
-                }
-                else
-                {
-                    XPos1 = -TextWidth + offset;
-                }
-
-                g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
-            }
-
-            if (ScrollingType == UIScrollingType.RightToLeft)
-            {
-                if (XPos < 0 && TextWidth < Width - offset)
-                {
-                    XPos1 = Width + XPos - offset;
-                    g.DrawString(Text, Font, ForeColor, new Rectangle(XPos1, 0, Width, Height), ContentAlignment.MiddleLeft);
-                }
-                else
-                {
-                    XPos1 = Width - offset;
-                }
-
-                g.DrawString(Text, Font, ForeColor, new Rectangle(XPos, 0, Width, Height), ContentAlignment.MiddleLeft);
+                base.OnPaintFore(g, path);
             }
         }
 
