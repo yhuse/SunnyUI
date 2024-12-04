@@ -33,6 +33,7 @@
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2024-11-12: V3.7.2 增加下拉框滚动条宽度调整属性
  * 2024-11-28: V3.8.0 解决下拉框显示过滤编辑框不能一直显示 #IB7AFB
+ * 2024-12-04: V3.8.0 修复一个报错 #IB8YK9
 ******************************************************************************/
 
 using System;
@@ -208,7 +209,7 @@ namespace Sunny.UI
                 if (ShowFilter)
                     ValueChanged?.Invoke(this, value);
                 else
-                    SelectIndexChange(this, value.ToString().ToInt());
+                    SelectIndexChange?.Invoke(this, value.ToString().ToInt());
             }
         }
 
