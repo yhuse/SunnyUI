@@ -63,7 +63,7 @@ namespace Sunny.UI
             TabStop = true;
             Width = 100;
             Height = 35;
-            Cursor = Cursors.Hand;
+            base.Cursor = Cursors.Hand;
 
             plainColor = UIStyles.Blue.PlainColor;
 

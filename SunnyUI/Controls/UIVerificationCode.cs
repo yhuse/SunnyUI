@@ -19,6 +19,7 @@
  * 2022-06-11: V3.1.9 增加文件说明
  * 2023-05-16: V3.3.6 重构DrawString函数
  * 2022-05-28: V3.3.7 修改字体缩放时显示
+ * 2024-12-12: V3.8.0 可以自定义颜色 #IBABW1
 ******************************************************************************/
 
 using System;
@@ -38,6 +39,7 @@ namespace Sunny.UI
         {
             SetStyleFlags();
             fillColor = UIStyles.Blue.PlainColor;
+            foreColor = UIStyles.Blue.RectColor;
             Width = 100;
             Height = 35;
         }
@@ -50,6 +52,7 @@ namespace Sunny.UI
         {
             base.SetStyleColor(uiColor);
             fillColor = uiColor.PlainColor;
+            foreColor = uiColor.RectColor;
         }
 
         /// <summary>
@@ -60,6 +63,28 @@ namespace Sunny.UI
         {
             base.OnClick(e);
             Invalidate();
+        }
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("边框颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public Color RectColor
+        {
+            get => rectColor;
+            set => SetRectColor(value);
+        }
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        [Description("字体颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "80, 160, 255")]
+        public override Color ForeColor
+        {
+            get => foreColor;
+            set => SetForeColor(value);
         }
 
         /// <summary>
@@ -137,7 +162,7 @@ namespace Sunny.UI
                 image.SetPixel(x, y, Color.FromArgb(random.Next()));
             }
 
-            using Brush br = new SolidBrush(rectColor);
+            using Brush br = new SolidBrush(foreColor);
             g.DrawString(code, fontex, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
             return TwistImage(image, true, 3, 5);
         }
