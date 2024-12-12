@@ -35,6 +35,7 @@
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
  * 2024-11-29: V3.8.0 修复了SelectedIndex=-1时的报错
  * 2024-12-12: V3.8.0 修复标签文字越界显示 #IB8571
+ * 2024-12-12: V3.8.0 增加未选页签颜色 #IB7U69
 ******************************************************************************/
 
 using System;
@@ -398,6 +399,27 @@ namespace Sunny.UI
             }
         }
 
+        private Color tabUnSelectedColor = Color.FromArgb(56, 56, 56);
+
+        /// <summary>
+        /// 边框颜色
+        /// </summary>
+        [Description("选中Tab页背景色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "56, 56, 56")]
+        public Color TabUnSelectedColor
+        {
+            get => tabUnSelectedColor;
+            set
+            {
+                if (tabUnSelectedColor != value)
+                {
+                    tabUnSelectedColor = value;
+                    _menuStyle = UIMenuStyle.Custom;
+                    Invalidate();
+                }
+            }
+        }
+
         private Color tabSelectedForeColor = UIColor.Blue;
 
         /// <summary>
@@ -567,6 +589,7 @@ namespace Sunny.UI
         {
             tabBackColor = uiColor.BackColor;
             tabSelectedColor = uiColor.SelectedColor;
+            tabUnSelectedColor = uiColor.BackColor;
             tabUnSelectedForeColor = uiColor.UnSelectedForeColor;
             Invalidate();
         }
@@ -653,21 +676,17 @@ namespace Sunny.UI
                 }
 
                 Size sf = TextRenderer.MeasureText(TabPages[index].Text, Font);
-                int textLeft = ImageList?.ImageSize.Width ?? 0;
-                if (ImageList != null) textLeft += 4 + 4 + 6;
-                if (TextAlignment == HorizontalAlignment.Right)
-                    textLeft = (int)(TabRect.Width - 4 - sf.Width);
-                if (TextAlignment == HorizontalAlignment.Center)
-                    textLeft = textLeft + (int)((TabRect.Width - textLeft - sf.Width) / 2.0f);
-
                 // 绘制标题
                 e.Graphics.FillRectangle(tabBackColor, TabRect);
-                if (index == SelectedIndex)
+
+                // 绘制背景
+                e.Graphics.FillRectangle(index == SelectedIndex ? TabSelectedColor : TabUnSelectedColor, TabRect);
+                if (TabSelectedHighColorSize > 0 && index == SelectedIndex)
+                    e.Graphics.FillRectangle(TabSelectedHighColor, TabRect.Left, TabRect.Height - TabSelectedHighColorSize, TabRect.Width, TabSelectedHighColorSize);
+
+                if (index <= TabCount - 2)
                 {
-                    var path = TabRect.CreateRoundedRectanglePath(5, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
-                    e.Graphics.FillPath(TabSelectedColor, path, true);
-                    if (TabSelectedHighColorSize > 0)
-                        e.Graphics.FillRectangle(TabSelectedHighColor, TabRect.Left, TabRect.Height - TabSelectedHighColorSize, TabRect.Width, TabSelectedHighColorSize);
+                    e.Graphics.DrawLine(tabUnSelectedForeColor.Alpha(100), TabRect.Right - 1, TabRect.Center().Y - sf.Height / 2.0f, TabRect.Right - 1, sf.Height + sf.Height / 2.0f);
                 }
 
                 //e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
