@@ -33,6 +33,70 @@ namespace Sunny.UI
     /// </summary>
     public static class GraphicsEx
     {
+        public static string TruncateText(Graphics graphics, string text, Font font, float maxWidth)
+        {
+            // If the text is empty or null, return it as-is.
+            if (string.IsNullOrEmpty(text)) return text;
+
+            // Measure the original string.
+            SizeF size = graphics.MeasureString(text, font);
+
+            // If the original string fits within the width, return it as-is.
+            if (size.Width <= maxWidth) return text;
+
+            // Otherwise, truncate the string until it fits.
+            string truncatedText = text;
+            for (int i = text.Length; i > 0; i--)
+            {
+                truncatedText = text.Left(i) + "...";
+                size = graphics.MeasureString(truncatedText, font);
+                if (size.Width <= maxWidth)
+                    break;
+            }
+
+            return truncatedText;
+        }
+
+        public static void DrawTruncateString(this Graphics g, string text, Font font, Color color, Rectangle rect, float maxWidth, HorizontalAlignment alignment)
+        {
+            text = TruncateText(g, text, font, maxWidth);
+            g.DrawString(text, font, color, rect, alignment.ToContentAlignment());
+        }
+
+        internal static ContentAlignment ToContentAlignment(this HorizontalAlignment alignment)
+        {
+            switch (alignment)
+            {
+                case HorizontalAlignment.Left: return ContentAlignment.MiddleLeft;
+                case HorizontalAlignment.Center: return ContentAlignment.MiddleCenter;
+                case HorizontalAlignment.Right: return ContentAlignment.MiddleRight;
+            }
+
+            return ContentAlignment.MiddleLeft;
+        }
+
+        internal static HorizontalAlignment ToHorizontalAlignment(this ContentAlignment alignment)
+        {
+            switch (alignment)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.BottomLeft:
+                    return HorizontalAlignment.Left;
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.BottomCenter:
+                    return HorizontalAlignment.Center;
+                case ContentAlignment.TopRight:
+                case ContentAlignment.MiddleRight:
+                case ContentAlignment.BottomRight:
+                    return HorizontalAlignment.Right;
+            }
+
+            return HorizontalAlignment.Left;
+        }
+
+
         public static void DrawString(this Graphics g, string text, Font font, Color color, Rectangle rect, ContentAlignment alignment, int offsetX = 0, int offsetY = 0)
         {
             if (text.IsNullOrEmpty()) return;

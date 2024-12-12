@@ -34,6 +34,7 @@
  * 2023-11-06: V3.5.2 重构主题
  * 2023-12-13: V3.6.2 优化UIPage的Init和Final加载逻辑
  * 2024-11-29: V3.8.0 修复了SelectedIndex=-1时的报错
+ * 2024-12-12: V3.8.0 修复标签文字越界显示 #IB8571
 ******************************************************************************/
 
 using System;
@@ -639,6 +640,18 @@ namespace Sunny.UI
                     TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y + 2, ItemSize.Width, ItemSize.Height);
                 }
 
+                Rectangle textRect = new Rectangle(TabRect.Left + 4, TabRect.Top, TabRect.Width - 8, TabRect.Height);
+                if (ImageList != null)
+                {
+                    textRect = new Rectangle(textRect.Left + ImageList.ImageSize.Width, textRect.Top,
+                        textRect.Width - ImageList.ImageSize.Width, textRect.Height);
+                }
+
+                if (ShowCloseButton || ShowActiveCloseButton)
+                {
+                    textRect = new Rectangle(textRect.Left, textRect.Top, textRect.Width - 24, textRect.Height);
+                }
+
                 Size sf = TextRenderer.MeasureText(TabPages[index].Text, Font);
                 int textLeft = ImageList?.ImageSize.Width ?? 0;
                 if (ImageList != null) textLeft += 4 + 4 + 6;
@@ -651,13 +664,17 @@ namespace Sunny.UI
                 e.Graphics.FillRectangle(tabBackColor, TabRect);
                 if (index == SelectedIndex)
                 {
-                    e.Graphics.FillRectangle(TabSelectedColor, TabRect);
+                    var path = TabRect.CreateRoundedRectanglePath(5, UICornerRadiusSides.LeftTop | UICornerRadiusSides.RightTop);
+                    e.Graphics.FillPath(TabSelectedColor, path, true);
                     if (TabSelectedHighColorSize > 0)
                         e.Graphics.FillRectangle(TabSelectedHighColor, TabRect.Left, TabRect.Height - TabSelectedHighColorSize, TabRect.Width, TabSelectedHighColorSize);
                 }
 
-                e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
-                    new Rectangle(TabRect.Left + textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
+                //e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
+                //    new Rectangle(TabRect.Left + textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
+
+                e.Graphics.DrawTruncateString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
+                    textRect, textRect.Width, TabPageTextAlignment);
 
                 TabPage tabPage = TabPages[index];
                 UIPage uiPage = Helper.GetPage(tabPage);
@@ -701,6 +718,18 @@ namespace Sunny.UI
                     e.Graphics.FillEllipse(TipsColor, TabRect.Left + x - 1, y, sfMax, sfMax);
                     e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, new Rectangle(TabRect.Left + x, y, sfMax, sfMax), ContentAlignment.MiddleCenter);
                 }
+            }
+        }
+
+        private HorizontalAlignment _tabPageTextAlignment = HorizontalAlignment.Left;
+        [DefaultValue(HorizontalAlignment.Left)]
+        public HorizontalAlignment TabPageTextAlignment
+        {
+            get => _tabPageTextAlignment;
+            set
+            {
+                _tabPageTextAlignment = value;
+                Invalidate();
             }
         }
 
