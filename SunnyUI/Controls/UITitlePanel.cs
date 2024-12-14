@@ -27,6 +27,7 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-07-12: V3.4.0 删除Padding设置
  * 2023-08-07: V3.4.1 增加OnCollapsed事件
+ * 2024-12-14: V3.8.0 增加Padding设置 #IBB1UF
 ******************************************************************************/
 
 using System;
@@ -53,6 +54,7 @@ namespace Sunny.UI
                 {
                     _titleHeight = Math.Max(19, value);
                     CalcSystemBoxPos();
+                    Padding = new Padding(1, _titleHeight, 1, 1);
                     Invalidate();
                 }
             }
@@ -67,6 +69,8 @@ namespace Sunny.UI
 
             titleColor = UIStyles.Blue.PanelTitleColor;
             titleForeColor = UIStyles.Blue.PanelTitleForeColor;
+
+            Padding = new Padding(1, 35, 1, 1);
         }
 
         /// <summary>

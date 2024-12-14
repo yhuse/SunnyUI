@@ -33,6 +33,7 @@
             // UITitlePanel
             // 
             Name = "UITitlePanel";
+            Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
             VisibleChanged += UITitlePanel_VisibleChanged;
             ResumeLayout(false);
         }
