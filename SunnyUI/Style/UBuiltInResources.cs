@@ -18,6 +18,7 @@
  *
  * 2020-04-19: V2.2.0 增加文件说明
  * 2021-07-24: V3.0.5 内置字符串已经处理完国际化
+ * 2024-12-11: v3.1   增加多语言翻译 联合国语言、繁体中文和日语
 ******************************************************************************/
 
 using System.Globalization;
@@ -76,7 +77,277 @@ namespace Sunny.UI
         public override string Save { get; set; } = "Save";
         public override string All { get; set; } = "All";
     }
-
+    /// <summary>
+    /// 繁体中文
+    /// </summary>
+    public class zh_TW_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.zh_TW;
+        public override string SuccessTitle { get; set; } = "正確";
+        public override string ErrorTitle { get; set; } = "錯誤";
+        public override string InputTitle { get; set; } = "輸入";
+        public override string SelectTitle { get; set; } = "選擇";
+        public override string CloseAll { get; set; } = "全部關閉";
+        public override string OK { get; set; } = "確定";
+        public override string GridNoData { get; set; } = "[ 無數據 ]";
+        public override string GridDataLoading { get; set; } = "數據加載中，請稍候...";
+        public override string GridDataSourceException { get; set; } = "數據源必須爲DataTable或者List";
+        public override string SystemProcessing { get; set; } = "系統正在處理中，請稍候...";
+        public override string Prev { get; set; } = "上一頁";
+        public override string Next { get; set; } = "下一頁";
+        public override string SelectPageRight { get; set; } = "頁";
+        public override string Open { get; set; } = "打開";
+    }
+    /// <summary>
+    /// 西班牙语
+    /// </summary>
+    public class es_ES_tradnl_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.es_ES_tradnl;
+        public override string InfoTitle { get; set; } = "Info";
+        public override string SuccessTitle { get; set; } = "éxito";
+        public override string WarningTitle { get; set; } = "Aviso";
+        public override string ErrorTitle { get; set; } = "Error";
+        public override string AskTitle { get; set; } = "Pregunta";
+        public override string InputTitle { get; set; } = "Entrada";
+        public override string SelectTitle { get; set; } = "Selección";
+        public override string CloseAll { get; set; } = "Todos cerrados";
+        public override string OK { get; set; } = "Vale";
+        public override string Cancel { get; set; } = "Cancelar";
+        public override string GridNoData { get; set; } = "[ sin datos ]";
+        public override string GridDataLoading { get; set; } = "Cargando datos, por favor Espere...";
+        public override string GridDataSourceException { get; set; } = "La fuente de datos debe ser datatable o List";
+        public override string SystemProcessing { get; set; } = "El sistema está en proceso, por favor Espere...";
+        public override string Monday { get; set; } = "Lun";
+        public override string Tuesday { get; set; } = "Mar";
+        public override string Wednesday { get; set; } = "Mié";
+        public override string Thursday { get; set; } = "Jue";
+        public override string Friday { get; set; } = "Vie";
+        public override string Saturday { get; set; } = "Sáb";
+        public override string Sunday { get; set; } = "Dom";
+        public override string Prev { get; set; } = "Anterior";
+        public override string Next { get; set; } = "Siguiente";
+        public override string SelectPageLeft { get; set; } = "Página";
+        public override string SelectPageRight { get; set; } = "";
+        public override string January { get; set; } = "Eno.";
+        public override string February { get; set; } = "Fbro.";
+        public override string March { get; set; } = "Mzo.";
+        public override string April { get; set; } = "Ab.";
+        public override string May { get; set; } = "Mayo";
+        public override string June { get; set; } = "Jun.";
+        public override string July { get; set; } = "Jul.";
+        public override string August { get; set; } = "Agto.";
+        public override string September { get; set; } = "Sbre.";
+        public override string October { get; set; } = "Obre.";
+        public override string November { get; set; } = "Nbre.";
+        public override string December { get; set; } = "Dbre.";
+        public override string Today { get; set; } = "Hoy.";
+        public override string Search { get; set; } = "Buscar";
+        public override string Clear { get; set; } = "Eliminar";
+        public override string Open { get; set; } = "Abrir";
+        public override string Save { get; set; } = "Guardar";
+        public override string All { get; set; } = "Todo";
+    }
+    /// <summary>
+    /// 法语
+    /// </summary>
+    public class fr_FR_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.fr_FR;
+        public override string InfoTitle { get; set; } = "Info";
+        public override string SuccessTitle { get; set; } = "Succès";
+        public override string WarningTitle { get; set; } = "Avertissement";
+        public override string ErrorTitle { get; set; } = "Erreur";
+        public override string AskTitle { get; set; } = "Enquête";
+        public override string InputTitle { get; set; } = "Entrée";
+        public override string SelectTitle { get; set; } = "Sélection";
+        public override string CloseAll { get; set; } = "Tous fermés";
+        public override string OK { get; set; } = "Bon";
+        public override string Cancel { get; set; } = "Annuler‌";
+        public override string GridNoData { get; set; } = "[ pas de données ]";
+        public override string GridDataLoading { get; set; } = "Chargement des données, veuillez patienter...";
+        public override string GridDataSourceException { get; set; } = "La source de données doit être datatable ou List";
+        public override string SystemProcessing { get; set; } = "Le système est en cours de traitement, veuillez patienter...";
+        public override string Monday { get; set; } = "Lun";
+        public override string Tuesday { get; set; } = "Mar";
+        public override string Wednesday { get; set; } = "Mer";
+        public override string Thursday { get; set; } = "Jeu";
+        public override string Friday { get; set; } = "Ven";
+        public override string Saturday { get; set; } = "Sam";
+        public override string Sunday { get; set; } = "Dim";
+        public override string Prev { get; set; } = "Précédent";
+        public override string Next { get; set; } = "Suivant";
+        public override string SelectPageLeft { get; set; } = "Page";
+        public override string SelectPageRight { get; set; } = "";
+        public override string January { get; set; } = "Jan.";
+        public override string February { get; set; } = "Fév.";
+        public override string March { get; set; } = "Mar.";
+        public override string April { get; set; } = "Avr.";
+        public override string May { get; set; } = "May";
+        public override string June { get; set; } = "Jun.";
+        public override string July { get; set; } = "Jul.";
+        public override string August { get; set; } = "Aug.";
+        public override string September { get; set; } = "Sep.";
+        public override string October { get; set; } = "Oct.";
+        public override string November { get; set; } = "Nov.";
+        public override string December { get; set; } = "Dec.";
+        public override string Today { get; set; } = "Aujourd'hui";
+        public override string Search { get; set; } = "Rechercher";
+        public override string Clear { get; set; } = "Effacer";
+        public override string Open { get; set; } = "Ouvrir";
+        public override string Save { get; set; } = "Sauvegarder";
+        public override string All { get; set; } = "Tous";
+    }
+    /// <summary>
+    /// 俄语
+    /// </summary>
+    public class ru_RU_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.ru_RU;
+        public override string InfoTitle { get; set; } = "Информация";
+        public override string SuccessTitle { get; set; } = "Успех";
+        public override string WarningTitle { get; set; } = "предупреждение";
+        public override string ErrorTitle { get; set; } = "Ошибка";
+        public override string AskTitle { get; set; } = "Запрос";
+        public override string InputTitle { get; set; } = "Ввод";
+        public override string SelectTitle { get; set; } = "Выбор";
+        public override string CloseAll { get; set; } = "Закрыть все";
+        public override string OK { get; set; } = "Ладно";
+        public override string Cancel { get; set; } = "Отменить";
+        public override string GridNoData { get; set; } = "[ Данные отсутствуют ]";
+        public override string GridDataLoading { get; set; } = "Загружаются данные, пожалуйста, подождите немного...";
+        public override string GridDataSourceException { get; set; } = "Источник данных должен быть DataTable или List";
+        public override string SystemProcessing { get; set; } = "Система находится в процессе обработки, пожалуйста, подождите...";
+        public override string Monday { get; set; } = "Пн";
+        public override string Tuesday { get; set; } = "Вт";
+        public override string Wednesday { get; set; } = "Ср";
+        public override string Thursday { get; set; } = "Чт";
+        public override string Friday { get; set; } = "Пт";
+        public override string Saturday { get; set; } = "Сб";
+        public override string Sunday { get; set; } = "Вс";
+        public override string Prev { get; set; } = "Предыдущий";
+        public override string Next { get; set; } = "Следующий";
+        public override string SelectPageLeft { get; set; } = "Страница";
+        public override string SelectPageRight { get; set; } = "";
+        public override string January { get; set; } = "Янв";
+        public override string February { get; set; } = "Фев";
+        public override string March { get; set; } = "Мар";
+        public override string April { get; set; } = "Апр";
+        public override string May { get; set; } = "Май";
+        public override string June { get; set; } = "Июн";
+        public override string July { get; set; } = "Июл";
+        public override string August { get; set; } = "Авг";
+        public override string September { get; set; } = "Сен";
+        public override string October { get; set; } = "Окт";
+        public override string November { get; set; } = "Ноя";
+        public override string December { get; set; } = "Дек";
+        public override string Today { get; set; } = "Сегодня";
+        public override string Search { get; set; } = "Поиск";
+        public override string Clear { get; set; } = "Очистить";
+        public override string Open { get; set; } = "Открыть";
+        public override string Save { get; set; } = "Сохранить";
+        public override string All { get; set; } = "Все";
+    }
+    /// <summary>
+    /// 阿拉伯语
+    /// </summary>
+    public class ar_SA_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.ar_SA;
+        public override string InfoTitle { get; set; } = "معلومات";
+        public override string SuccessTitle { get; set; } = "النجاح";
+        public override string WarningTitle { get; set; } = "حذر";
+        public override string ErrorTitle { get; set; } = "خطأ";
+        public override string AskTitle { get; set; } = "استعلم عن";
+        public override string InputTitle { get; set; } = "المدخلات";
+        public override string SelectTitle { get; set; } = "مختار";
+        public override string CloseAll { get; set; } = "إغلاق جميع";
+        public override string OK { get; set; } = "حَسَناً";
+        public override string Cancel { get; set; } = "ألغى";
+        public override string GridNoData { get; set; } = "[ لا توجد بيانات ]";
+        public override string GridDataLoading { get; set; } = "تحميل البيانات ، الرجاء الانتظار ...";
+        public override string GridDataSourceException { get; set; } = "مصدر البيانات يجب أن تكون دیتاتیبل أو قائمة";
+        public override string SystemProcessing { get; set; } = "الرجاء الانتظار بينما النظام في العملية ...";
+        public override string Monday { get; set; } = "الأحد";
+        public override string Tuesday { get; set; } = "السبت";
+        public override string Wednesday { get; set; } = "الجمعة";
+        public override string Thursday { get; set; } = "الخميس";
+        public override string Friday { get; set; } = "الأربعاء";
+        public override string Saturday { get; set; } = "الثلاثاء";
+        public override string Sunday { get; set; } = "الاثنين";
+        public override string Prev { get; set; } = "آخر";
+        public override string Next { get; set; } = "التالي";
+        public override string SelectPageLeft { get; set; } = "الصفحة";
+        public override string SelectPageRight { get; set; } = "";
+        public override string January { get; set; } = "يناير";
+        public override string February { get; set; } = "فبراير";
+        public override string March { get; set; } = "مارس";
+        public override string April { get; set; } = "ابريل";
+        public override string May { get; set; } = "مايو";
+        public override string June { get; set; } = "يونيو";
+        public override string July { get; set; } = "يوليو";
+        public override string August { get; set; } = "اغسطس";
+        public override string September { get; set; } = "سبتمبر";
+        public override string October { get; set; } = "اكتوبر";
+        public override string November { get; set; } = "نوفمبر";
+        public override string December { get; set; } = "ديسمبر";
+        public override string Today { get; set; } = "اليوم";
+        public override string Search { get; set; } = "بحث";
+        public override string Clear { get; set; } = "مسح";
+        public override string Open { get; set; } = "فتح";
+        public override string Save { get; set; } = "حفظ";
+        public override string All { get; set; } = "كامل";
+    }
+    /// <summary>
+    /// 日语
+    /// </summary>
+    public class ja_JP_Resources : UIBuiltInResources
+    {
+        public override CultureInfo CultureInfo => CultureInfos.ja_JP;
+        public override string InfoTitle { get; set; } = "メッセージ";
+        public override string SuccessTitle { get; set; } = "正しい";
+        public override string WarningTitle { get; set; } = "警告";
+        public override string ErrorTitle { get; set; } = "エラー";
+        public override string AskTitle { get; set; } = "ヒント";
+        public override string InputTitle { get; set; } = "インプット";
+        public override string SelectTitle { get; set; } = "せんたく";
+        public override string CloseAll { get; set; } = "すべて閉じる";
+        public override string OK { get; set; } = "確認";
+        public override string Cancel { get; set; } = "キャンセル";
+        public override string GridNoData { get; set; } = "[ データなし ]";
+        public override string GridDataLoading { get; set; } = "データ・ロード中、お待ちください...";
+        public override string GridDataSourceException { get; set; } = "データソースはDataTableまたはListでなければなりません";
+        public override string SystemProcessing { get; set; } = "システムは処理中です。お待ちください…";
+        public override string Monday { get; set; } = "月";
+        public override string Tuesday { get; set; } = "火";
+        public override string Wednesday { get; set; } = "水";
+        public override string Thursday { get; set; } = "木";
+        public override string Friday { get; set; } = "金";
+        public override string Saturday { get; set; } = "土";
+        public override string Sunday { get; set; } = "日";
+        public override string Prev { get; set; } = "前のページ";
+        public override string Next { get; set; } = "次のページ";
+        public override string SelectPageLeft { get; set; } = "";
+        public override string SelectPageRight { get; set; } = "ページ";
+        public override string January { get; set; } = "むつ";
+        public override string February { get; set; } = "さらぎ";
+        public override string March { get; set; } = "やよい";
+        public override string April { get; set; } = "うづ";
+        public override string May { get; set; } = "さつ";
+        public override string June { get; set; } = "みなづ";
+        public override string July { get; set; } = "ふみづ";
+        public override string August { get; set; } = "はづ";
+        public override string September { get; set; } = "ながつ";
+        public override string October { get; set; } = "かんなづ";
+        public override string November { get; set; } = "しもつ";
+        public override string December { get; set; } = "しわす";
+        public override string Today { get; set; } = "今日";
+        public override string Search { get; set; } = "検索";
+        public override string Clear { get; set; } = "パージ";
+        public override string Open { get; set; } = "開く";
+        public override string Save { get; set; } = "保存";
+        public override string All { get; set; } = "すべて";
+    }
     /// <summary>
     /// 多语言字符串定义
     /// </summary>
@@ -85,9 +356,9 @@ namespace Sunny.UI
         public abstract CultureInfo CultureInfo { get; }
 
         /// <summary>
-        /// 提示
+        /// 消息
         /// </summary>
-        public virtual string InfoTitle { get; set; } = "提示";
+        public virtual string InfoTitle { get; set; } = "消息";
 
         /// <summary>
         /// 正确
