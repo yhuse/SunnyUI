@@ -51,7 +51,7 @@ namespace Sunny.UI
             if (CheckInputEmpty)
             {
                 bool result = edit.Text.IsValid();
-                if (!result) this.ShowWarningDialog("编辑框内容不能为空。");
+                if (!result) this.ShowWarningDialog(UIStyles.CurrentResources.EditorCantEmpty);
                 return result;
             }
 

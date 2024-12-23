@@ -75,6 +75,7 @@ namespace Sunny.UI
         public override string Open { get; set; } = "Open";
         public override string Save { get; set; } = "Save";
         public override string All { get; set; } = "All";
+        public override string EditorCantEmpty { get; set; } = "The editor content cannot be empty.";
     }
 
     /// <summary>
@@ -288,5 +289,7 @@ namespace Sunny.UI
         public virtual string Save { get; set; } = "保存";
 
         public virtual string All { get; set; } = "全部";
+
+        public virtual string EditorCantEmpty { get; set; } = "编辑框内容不能为空。";
     }
 }

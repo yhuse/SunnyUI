@@ -453,7 +453,7 @@ namespace Sunny.UI
 
                         if (info.CheckEmpty && edit.Text.IsNullOrEmpty())
                         {
-                            this.ShowWarningTip(edit, info.Text + "不能为空");
+                            this.ShowWarningTip(edit, info.Text + Environment.NewLine + UIStyles.CurrentResources.EditorCantEmpty);
                             edit.Focus();
                             return false;
                         }
