@@ -35,7 +35,10 @@ namespace Sunny.UI
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            Menu?.Show(this, 0, Height);
+            if (e.Button == MouseButtons.Left)
+            {
+                Menu?.Show(this, 0, Height);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
