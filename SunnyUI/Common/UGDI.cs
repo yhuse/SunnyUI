@@ -382,7 +382,6 @@ namespace Sunny.UI
         /// <summary>
         /// 创建圆角路径
         /// </summary>
-        /// <param name="g">绘图图面</param>
         /// <param name="rect">区域</param>
         /// <param name="radius">圆角大小</param>
         /// <param name="cornerLeftTop">左上角</param>
