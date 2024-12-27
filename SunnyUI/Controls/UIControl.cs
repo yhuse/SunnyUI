@@ -56,7 +56,7 @@ namespace Sunny.UI
 
         [Browsable(false)]
         [Description("控件在界面显示时需要多语翻译的属性名称数组"), Category("SunnyUI")]
-        public virtual string[] FormTranslatorProperties { get; }
+        public virtual string[] FormTranslatorProperties => null;
 
         [DefaultValue(true)]
         [Description("控件在界面显示时需要多语翻译"), Category("SunnyUI")]

@@ -77,7 +77,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => null;
 
         /// <summary>
         /// 颜色改变事件

@@ -152,7 +152,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => null;
 
         private void Edit_FontChanged(object sender, EventArgs e)
         {

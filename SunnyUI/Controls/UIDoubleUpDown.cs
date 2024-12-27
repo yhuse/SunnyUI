@@ -66,7 +66,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => null;
 
         /// <summary>
         /// 需要额外设置ToolTip的控件

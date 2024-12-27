@@ -63,7 +63,7 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties { get; }
+        public override string[] FormTranslatorProperties => null;
 
         public event EventHandler ValueChanged;
 
