@@ -57,10 +57,14 @@ namespace Sunny.UI
             BackgroundLoop
         }
 
-        private static SoundPlayer _SoundPlayer;
+        private static SoundPlayer _soundPlayer;
 
         #region Methods
 
+        /// <summary>
+        /// 停止播放声音。
+        /// </summary>
+        /// <param name="sound">SoundPlayer 对象。</param>
         private static void InternalStop(SoundPlayer sound)
         {
             new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Assert();
@@ -74,60 +78,66 @@ namespace Sunny.UI
             }
         }
 
-        /// <summary>播放。wav声音文件。</summary>
-        /// <param name="location">String，包含声音文件的名称 </param>
-        /// <PermissionSet><IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" /><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" /><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlThread" /><IPermission class="System.Net.WebPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" /></PermissionSet>
+        /// <summary>
+        /// 播放 .wav 声音文件。
+        /// </summary>
+        /// <param name="location">包含声音文件的名称的字符串。</param>
         public static void Play(string location)
         {
             Play(location, AudioPlayMode.Background);
         }
 
         /// <summary>
-        /// 播放。wav声音文件.
+        /// 播放 .wav 声音文件。
         /// </summary>
-        /// <param name="location">AudioPlayMode枚举模式播放声音。默认情况下，AudioPlayMode.Background。</param>
-        /// <param name="playMode">String，包含声音文件的名称</param>
+        /// <param name="location">包含声音文件的名称的字符串。</param>
+        /// <param name="playMode">AudioPlayMode 枚举，指示播放模式。</param>
         public static void Play(string location, AudioPlayMode playMode)
         {
-            ValidateAudioPlayModeEnum(playMode, "playMode");
-            string text1 = ValidateFilename(location);
-            SoundPlayer player1 = new SoundPlayer(text1);
-            Play(player1, playMode);
+            ValidateAudioPlayModeEnum(playMode, nameof(playMode));
+            var validatedLocation = ValidateFilename(location);
+            SoundPlayer player = new SoundPlayer(validatedLocation);
+            Play(player, playMode);
         }
 
+        /// <summary>
+        /// 根据播放模式播放声音。
+        /// </summary>
+        /// <param name="sound">SoundPlayer 对象。</param>
+        /// <param name="mode">AudioPlayMode 枚举，指示播放模式。</param>
         private static void Play(SoundPlayer sound, AudioPlayMode mode)
         {
-            if (_SoundPlayer != null)
+            if (_soundPlayer != null)
             {
-                InternalStop(_SoundPlayer);
+                InternalStop(_soundPlayer);
             }
 
-            _SoundPlayer = sound;
+            _soundPlayer = sound;
             switch (mode)
             {
                 case AudioPlayMode.WaitToComplete:
-                    _SoundPlayer.PlaySync();
-                    return;
+                    _soundPlayer.PlaySync();
+                    break;
 
                 case AudioPlayMode.Background:
-                    _SoundPlayer.Play();
-                    return;
+                    _soundPlayer.Play();
+                    break;
 
                 case AudioPlayMode.BackgroundLoop:
-                    _SoundPlayer.PlayLooping();
-                    return;
+                    _soundPlayer.PlayLooping();
+                    break;
             }
         }
 
         /// <summary>
         /// 播放系统声音。
         /// </summary>
-        /// <param name="systemSound">对象代表系统播放声音。</param>
+        /// <param name="systemSound">SystemSound 对象，代表系统播放声音。</param>
         public static void PlaySystemSound(SystemSound systemSound)
         {
             if (systemSound == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(systemSound));
             }
 
             systemSound.Play();
@@ -136,26 +146,35 @@ namespace Sunny.UI
         /// <summary>
         /// 停止在后台播放声音。
         /// </summary>
-        /// <filterpriority>1</filterpriority>
         public static void Stop()
         {
-            SoundPlayer player1 = new SoundPlayer();
-            InternalStop(player1);
+            SoundPlayer player = new SoundPlayer();
+            InternalStop(player);
         }
 
+        /// <summary>
+        /// 验证 AudioPlayMode 枚举值。
+        /// </summary>
+        /// <param name="value">AudioPlayMode 枚举值。</param>
+        /// <param name="paramName">参数名称。</param>
         private static void ValidateAudioPlayModeEnum(AudioPlayMode value, string paramName)
         {
-            if ((value < AudioPlayMode.WaitToComplete) || (value > AudioPlayMode.BackgroundLoop))
+            if (!Enum.IsDefined(typeof(AudioPlayMode), value))
             {
                 throw new InvalidEnumArgumentException(paramName, (int)value, typeof(AudioPlayMode));
             }
         }
 
+        /// <summary>
+        /// 验证文件名。
+        /// </summary>
+        /// <param name="location">文件名字符串。</param>
+        /// <returns>验证后的文件名。</returns>
         private static string ValidateFilename(string location)
         {
             if (string.IsNullOrEmpty(location))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(location));
             }
 
             return location;
@@ -170,18 +189,18 @@ namespace Sunny.UI
     public static class Mp3Player
     {
         /// <summary>
-        /// 播放
+        /// 播放 MP3 文件。
         /// </summary>
-        /// <param name="MP3_FileName">文件名</param>
-        /// <param name="Repeat">重复</param>
-        public static void Play(string MP3_FileName, bool Repeat)
+        /// <param name="mp3FileName">文件名。</param>
+        /// <param name="repeat">是否重复播放。</param>
+        public static void Play(string mp3FileName, bool repeat)
         {
-            Win32.WinMM.mciSendString("open \"" + MP3_FileName + "\" type mpegvideo alias MediaFile", null, 0, IntPtr.Zero);
-            Win32.WinMM.mciSendString("play MediaFile" + (Repeat ? " repeat" : string.Empty), null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString($"open \"{mp3FileName}\" type mpegvideo alias MediaFile", null, 0, IntPtr.Zero);
+            Win32.WinMM.mciSendString($"play MediaFile{(repeat ? " repeat" : string.Empty)}", null, 0, IntPtr.Zero);
         }
 
         /// <summary>
-        /// 暂停
+        /// 暂停播放。
         /// </summary>
         public static void Pause()
         {
@@ -189,7 +208,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 停止
+        /// 停止播放。
         /// </summary>
         public static void Stop()
         {

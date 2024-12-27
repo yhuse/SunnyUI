@@ -153,20 +153,16 @@ namespace Sunny.UI
     /// </summary>
     public class BmpFile
     {
-        BmpHead head;
-
-        byte[] data;
-
         /// <summary>
         /// 慢于 bitmap.Save(XX,ImageFormat.Bmp)，只是为了解释BMP文件数据格式
         /// </summary>
         /// <param name="bitmap"></param>
         public BmpFile(Bitmap bitmap)
         {
-            head = new BmpHead();
+            var head = new BmpHead();
             head.Init(bitmap);
-            data = new byte[head.FileSize];
-            Array.Copy(head.ToBytes(), 0, data, 0, (int)head.BitmapDataOffset);
+            Data = new byte[head.FileSize];
+            Array.Copy(head.ToBytes(), 0, Data, 0, (int)head.BitmapDataOffset);
 
             var sourceArea = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             var bitmapData = bitmap.LockBits(sourceArea, ImageLockMode.ReadOnly, PixelFormat.Format32bppPArgb);
@@ -200,10 +196,10 @@ namespace Sunny.UI
         /// <param name="bmpData">数据，从左上角开始，为每个点的B、G、R循环</param>
         public BmpFile(int width, int height, byte[] bmpData)
         {
-            head = new BmpHead();
+            var head = new BmpHead();
             head.Init(width, height);
-            data = new byte[head.FileSize];
-            Array.Copy(head.ToBytes(), 0, data, 0, (int)head.BitmapDataOffset);
+            Data = new byte[head.FileSize];
+            Array.Copy(head.ToBytes(), 0, Data, 0, (int)head.BitmapDataOffset);
             if (bmpData.Length != width * height * 3) return;
 
             //BMP文件的数据从左下角开始，每行向上。System.Drawing.Bitmap数据是从左上角开始，每行向下
@@ -212,7 +208,7 @@ namespace Sunny.UI
             {
                 int offset = height - 1 - i;
                 offset *= width * 3;
-                Array.Copy(bmpData, offset, data, idx, width * 3);
+                Array.Copy(bmpData, offset, Data, idx, width * 3);
                 idx += width * 3;
             }
         }
@@ -220,7 +216,7 @@ namespace Sunny.UI
         /// <summary>
         /// 二进制数据
         /// </summary>
-        public byte[] Data => data;
+        public byte[] Data { get; }
 
         /// <summary>
         /// 保存文件
@@ -228,7 +224,7 @@ namespace Sunny.UI
         /// <param name="fileName">文件名</param>
         public void SaveToFile(string fileName)
         {
-            File.WriteAllBytes(fileName, data);
+            File.WriteAllBytes(fileName, Data);
         }
 
         /// <summary>
@@ -237,7 +233,7 @@ namespace Sunny.UI
         /// <returns>图片</returns>
         public Bitmap Bitmap()
         {
-            MemoryStream ms = new MemoryStream(data);
+            var ms = new MemoryStream(Data);
             ms.Position = 0;
             return new Bitmap(ms);
         }
