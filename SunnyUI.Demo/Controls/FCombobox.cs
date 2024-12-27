@@ -40,8 +40,6 @@ namespace Sunny.UI.Demo
             uiComboDataGridView1.DataGridView.AddColumn("数据列2", "Column2");
             uiComboDataGridView1.DataGridView.AddColumn("数据列3", "Column3");
             uiComboDataGridView1.DataGridView.ReadOnly = true;
-            uiComboDataGridView1.SelectIndexChange += UiComboDataGridView1_SelectIndexChange;
-            uiComboDataGridView1.ShowFilter = true;
             uiComboDataGridView1.DataGridView.DataSource = dt;//用DataTable做数据源过滤，用List不行
             uiComboDataGridView1.FilterColumnName = "Column1;Column3"; //不设置则全部列过滤，可加分号过滤多列
 
@@ -52,7 +50,6 @@ namespace Sunny.UI.Demo
             uiComboDataGridView2.DataGridView.AddColumn("数据列2", "Column2");
             uiComboDataGridView2.DataGridView.AddColumn("数据列3", "Column3");
             uiComboDataGridView2.DataGridView.ReadOnly = true;
-            uiComboDataGridView2.ShowFilter = true;
             uiComboDataGridView2.DataGridView.DataSource = dt;
             uiComboDataGridView2.FilterColumnName = "Column1"; //不设置则全部列过滤
 
@@ -152,7 +149,7 @@ namespace Sunny.UI.Demo
             if (value != null && value is DataGridViewSelectedRowCollection)
             {
                 DataGridViewSelectedRowCollection collection = (DataGridViewSelectedRowCollection)value;
-                foreach (var item in collection)
+                foreach (object item in collection)
                 {
                     DataGridViewRow row = (DataGridViewRow)item;
                     uiComboDataGridView2.Text += row.Cells[0].Value.ToString();//通过索引显示值
