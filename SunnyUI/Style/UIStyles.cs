@@ -243,10 +243,27 @@ namespace Sunny.UI
             MenuColors.TryAdd(UIMenuStyle.Black, new UIMenuBlackColor());
             MenuColors.TryAdd(UIMenuStyle.White, new UIMenuWhiteColor());
 
+            UIBuiltInResources ljp = new ja_JP_Resources(); //日语
+            BuiltInResources.TryAdd(ljp.CultureInfo.LCID, ljp);
+
+            UIBuiltInResources les = new es_ES_tradnl_Resources(); //西班牙语
+            UIBuiltInResources lfr = new fr_FR_Resources();        //法语
+            UIBuiltInResources lru = new ru_RU_Resources();        //俄语
+            UIBuiltInResources lsa = new ar_SA_Resources();        //阿拉伯语
+            BuiltInResources.TryAdd(les.CultureInfo.LCID, les);
+            BuiltInResources.TryAdd(lfr.CultureInfo.LCID, lfr);
+            BuiltInResources.TryAdd(lru.CultureInfo.LCID, lru);
+            BuiltInResources.TryAdd(lsa.CultureInfo.LCID, lsa);
+
             UIBuiltInResources lcn = new zh_CN_Resources();
             UIBuiltInResources len = new en_US_Resources();
+            UIBuiltInResources ltw = new zh_TW_Resources();
             BuiltInResources.TryAdd(lcn.CultureInfo.LCID, lcn);
             BuiltInResources.TryAdd(len.CultureInfo.LCID, len);
+            BuiltInResources.TryAdd(ltw.CultureInfo.LCID, ltw);
+
+            CultureInfosOfLanguage lInfo_cn = new CultureInfos_zh_CN();
+            CultureInfosOfLanguage.TryAdd(lInfo_cn.CultureInfo.LCID, lInfo_cn);
         }
 
         /// <summary>
@@ -424,7 +441,8 @@ namespace Sunny.UI
                 }
             }
         }
-
+        
+        public static readonly ConcurrentDictionary<int, CultureInfosOfLanguage> CultureInfosOfLanguage = new();
         public static readonly ConcurrentDictionary<int, UIBuiltInResources> BuiltInResources = new();
         public static UIBuiltInResources CurrentResources => BuiltInResources[CultureInfo.LCID];
     }
