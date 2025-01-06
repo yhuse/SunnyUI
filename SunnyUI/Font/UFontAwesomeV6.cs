@@ -12,8 +12,8 @@
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
  * 文件名称: UFontAwesomeV6.cs
- * 文件说明: 字体图片定义类：FontAweSome，V6.7.1
- * 当前版本: V3.8.0
+ * 文件说明: 字体图片定义类：FontAweSome，V6.7.2
+ * 当前版本: V3.8.1
  * 创建日期: 2023-04-23
  *
  * 2023-04-23: V3.3.5 增加文件说明
@@ -21,6 +21,7 @@
  * 2024-06-27: V3.6.7 减小文件大小
  * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
  * 2024-11-27: V3.8.0 更新为Font Awesome version: 6.7.1
+ * 2025-01-06: V3.8.1 更新为Font Awesome version: 6.7.2
 ******************************************************************************/
 
 /******************************************************************************
@@ -62,7 +63,7 @@ learn about Font Awesome.
 namespace Sunny.UI;
 
 ///<summary>
-///Font Awesome version: 6.7.1
+///Font Awesome version: 6.7.2
 ///fa-regular-400.ttf
 ///Symbol count: 163
 ///</summary>
@@ -234,7 +235,7 @@ public static class FontAweSomeV6Regular
 }
 
 ///<summary>
-///Font Awesome version: 6.7.1
+///Font Awesome version: 6.7.2
 ///fa-brands-400.ttf
 ///Symbol count: 495
 ///</summary>
@@ -738,7 +739,7 @@ public static class FontAweSomeV6Brands
 }
 
 ///<summary>
-///Font Awesome version: 6.7.1
+///Font Awesome version: 6.7.2
 ///fa-solid-900.ttf
 ///Symbol count: 1402
 ///</summary>

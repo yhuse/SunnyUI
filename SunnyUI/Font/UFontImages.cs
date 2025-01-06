@@ -96,8 +96,8 @@ namespace Sunny.UI
             int item = GetFontSize(iconText, imageSize);
             if (Fonts.ContainsKey(item + offset))
                 return Fonts[item + offset];
-            else if (Fonts.ContainsKey(item))
-                return Fonts[item];
+            else if (Fonts.TryGetValue(item, out Font font))
+                return font;
             else
                 return null;
         }
@@ -191,7 +191,7 @@ namespace Sunny.UI
         {
             string path = @"D:\Temp\Font-Awesome-6.x\";
             string scss = path + @"scss\_variables.scss";
-            string version = "Font Awesome version: 6.7.1";
+            string version = "Font Awesome version: 6.7.2";
 
             string[] lines = File.ReadAllLines(scss);
 
@@ -210,8 +210,8 @@ namespace Sunny.UI
                  * 如果您使用此代码，请保留此说明。
                  ******************************************************************************
                  * 文件名称: UFontAwesomeV6.cs
-                 * 文件说明: 字体图片定义类：FontAweSome，V6.7.1
-                 * 当前版本: V3.8.0
+                 * 文件说明: 字体图片定义类：FontAweSome，V6.7.2
+                 * 当前版本: V3.8.1
                  * 创建日期: 2023-04-23
                  *
                  * 2023-04-23: V3.3.5 增加文件说明
@@ -219,6 +219,7 @@ namespace Sunny.UI
                  * 2024-06-27: V3.6.7 减小文件大小
                  * 2024-07-21: V3.6.8 更新为Font Awesome version: 6.6.0
                  * 2024-11-27: V3.8.0 更新为Font Awesome version: 6.7.1
+                 * 2025-01-06: V3.8.1 更新为Font Awesome version: 6.7.2
                 ******************************************************************************/
 
                 /******************************************************************************
