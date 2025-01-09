@@ -61,6 +61,7 @@
  * 2024-07-20: V3.6.8 修改为初始化最大化后恢复时界面尺寸大小正常
  * 2024-07-26: V3.6.8 修复鼠标点击事件
  * 2024-07-28: V3.6.8 最大化后，鼠标点击标题栏最上方，不恢复正常大小
+ * 2025-01-09: V3.8.1 修复窗体边框显示不全 #IBGJBS
 ******************************************************************************/
 
 using System;
@@ -595,7 +596,7 @@ namespace Sunny.UI
 
             if (ControlBoxLeft != Width)
             {
-                e.Graphics.FillRectangle(TitleColor, new Rectangle(ControlBoxLeft, 1, Width, TitleHeight - 2));
+                e.Graphics.FillRectangle(TitleColor, new Rectangle(ControlBoxLeft, 1, Width - ControlBoxLeft - 1, TitleHeight - 2));
             }
 
             e.Graphics.SetHighQuality();
