@@ -17,6 +17,7 @@
  * 创建日期: 2024-12-16
  *
  * 2024-12-16: V3.8.0 增加文件说明
+ * 2025-01-15: V3.8.1 更改属性描述
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -30,6 +31,8 @@ namespace Sunny.UI
     public class UIMenuButton : UISymbolButton
     {
         private bool _showDropArrow = true;
+
+        [Description("当用户左键点击按钮时，显示的快捷菜单"), Category("SunnyUI")]
         public UIContextMenuStrip Menu { get; set; }
 
         protected override void OnMouseClick(MouseEventArgs e)
