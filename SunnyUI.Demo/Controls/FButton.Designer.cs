@@ -84,10 +84,17 @@ namespace Sunny.UI.Demo
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
             this.uiSwitch5 = new Sunny.UI.UISwitch();
             this.uiSwitch6 = new Sunny.UI.UISwitch();
+            this.uiMenuButton1 = new Sunny.UI.UIMenuButton();
+            this.uiLine6 = new Sunny.UI.UILine();
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
+            this.菜单一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.菜单二ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.菜单三ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).BeginInit();
+            this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiSwitch3
@@ -1004,11 +1011,69 @@ namespace Sunny.UI.Demo
             this.uiSwitch6.TabIndex = 117;
             this.uiSwitch6.Text = "uiSwitch6";
             // 
+            // uiMenuButton1
+            // 
+            this.uiMenuButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiMenuButton1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiMenuButton1.Location = new System.Drawing.Point(30, 554);
+            this.uiMenuButton1.Menu = this.uiContextMenuStrip1;
+            this.uiMenuButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiMenuButton1.Name = "uiMenuButton1";
+            this.uiMenuButton1.Size = new System.Drawing.Size(180, 35);
+            this.uiMenuButton1.Symbol = 361642;
+            this.uiMenuButton1.TabIndex = 118;
+            this.uiMenuButton1.Text = "下拉菜单按钮";
+            this.uiMenuButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // uiLine6
+            // 
+            this.uiLine6.BackColor = System.Drawing.Color.Transparent;
+            this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine6.Location = new System.Drawing.Point(30, 516);
+            this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine6.Name = "uiLine6";
+            this.uiLine6.Size = new System.Drawing.Size(312, 20);
+            this.uiLine6.TabIndex = 119;
+            this.uiLine6.Text = "UIMenuButton";
+            this.uiLine6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiContextMenuStrip1
+            // 
+            this.uiContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.uiContextMenuStrip1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.菜单一ToolStripMenuItem,
+            this.菜单二ToolStripMenuItem,
+            this.菜单三ToolStripMenuItem});
+            this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(123, 70);
+            // 
+            // 菜单一ToolStripMenuItem
+            // 
+            this.菜单一ToolStripMenuItem.Name = "菜单一ToolStripMenuItem";
+            this.菜单一ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.菜单一ToolStripMenuItem.Text = "菜单一";
+            // 
+            // 菜单二ToolStripMenuItem
+            // 
+            this.菜单二ToolStripMenuItem.Name = "菜单二ToolStripMenuItem";
+            this.菜单二ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.菜单二ToolStripMenuItem.Text = "菜单二";
+            // 
+            // 菜单三ToolStripMenuItem
+            // 
+            this.菜单三ToolStripMenuItem.Name = "菜单三ToolStripMenuItem";
+            this.菜单三ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.菜单三ToolStripMenuItem.Text = "菜单三";
+            // 
             // FButton
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 614);
+            this.Controls.Add(this.uiLine6);
+            this.Controls.Add(this.uiMenuButton1);
             this.Controls.Add(this.uiSymbolButton24);
             this.Controls.Add(this.uiSwitch6);
             this.Controls.Add(this.uiSwitch5);
@@ -1072,6 +1137,7 @@ namespace Sunny.UI.Demo
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiImageButton1)).EndInit();
+            this.uiContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1132,5 +1198,11 @@ namespace Sunny.UI.Demo
         private UIToolTip uiToolTip1;
         private UISwitch uiSwitch5;
         private UISwitch uiSwitch6;
+        private UIMenuButton uiMenuButton1;
+        private UILine uiLine6;
+        private UIContextMenuStrip uiContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 菜单一ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 菜单二ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 菜单三ToolStripMenuItem;
     }
 }
