@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
  * 2022-08-11: V3.0.2 重写ItemSize，将宽、高调整为正常显示
  * 2023-05-12: V3.3.6 重构DrawString函数
+ * 2025-02-07: V3.8.1 修复切换主题色时，TabPage未设置背景色，#IBKDR7
 ******************************************************************************/
 
 using System;
@@ -303,6 +304,11 @@ namespace Sunny.UI
             tabSelectedForeColor = uiColor.TabControlTabSelectedColor;
             tabSelectedHighColor = uiColor.TabControlTabSelectedColor;
             _fillColor = uiColor.TabControlBackColor;
+
+            foreach (TabPage page in TabPages)
+            {
+                page.BackColor = _fillColor;
+            }
         }
 
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;
