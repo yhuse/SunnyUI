@@ -36,6 +36,7 @@
  * 2024-11-29: V3.8.0 修复了SelectedIndex=-1时的报错
  * 2024-12-12: V3.8.0 修复标签文字越界显示 #IB8571
  * 2024-12-12: V3.8.0 增加未选页签颜色 #IB7U69
+ * 2025-02-07: V3.8.1 修复切换主题色时，TabPage未设置背景色，#IBKDR7
 ******************************************************************************/
 
 using System;
@@ -565,6 +566,11 @@ namespace Sunny.UI
             tabSelectedForeColor = uiColor.TabControlTabSelectedColor;
             tabSelectedHighColor = uiColor.TabControlTabSelectedColor;
             _fillColor = uiColor.TabControlBackColor;
+
+            foreach (TabPage page in TabPages)
+            {
+                page.BackColor = _fillColor;
+            }
         }
 
         private UIMenuStyle _menuStyle = UIMenuStyle.Black;

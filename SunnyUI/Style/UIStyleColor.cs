@@ -548,7 +548,7 @@ namespace Sunny.UI
 
             PanelForeColor = ForeColor;
             PanelRectColor = RectColor;
-            PanelFillColor = PlainColor;
+            TabControlBackColor = PanelFillColor = PlainColor;
             PanelFillColor2 = PlainColor;
             PanelTitleColor = FormTitleColor;
             PanelTitleForeColor = ForeColor;
@@ -668,7 +668,7 @@ namespace Sunny.UI
 
             PanelForeColor = ForeColor;
             PanelRectColor = RectColor;
-            PanelFillColor = PlainColor;
+            TabControlBackColor = PanelFillColor = PlainColor;
             PanelFillColor2 = PlainColor;
             PanelTitleColor = FormTitleColor;
             PanelTitleForeColor = ForeColor;
