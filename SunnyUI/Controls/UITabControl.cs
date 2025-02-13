@@ -37,6 +37,7 @@
  * 2024-12-12: V3.8.0 修复标签文字越界显示 #IB8571
  * 2024-12-12: V3.8.0 增加未选页签颜色 #IB7U69
  * 2025-02-07: V3.8.1 修复切换主题色时，TabPage未设置背景色，#IBKDR7
+ * 2025-02-13: V3.8.1 增加标签页分割线属性ShowTabDivider，#IBLERL
 ******************************************************************************/
 
 using System;
@@ -103,6 +104,20 @@ namespace Sunny.UI
         /// </summary>
         [Browsable(false), DefaultValue(typeof(Rectangle), "0, 0, 0, 0")]
         public Rectangle ZoomScaleRect { get; set; }
+
+        private bool _showTabDivider = true;
+
+        [Description("显示标签页分割线"), Category("SunnyUI")]
+        [DefaultValue(true)]
+        public bool ShowTabDivider
+        {
+            get => _showTabDivider;
+            set
+            {
+                _showTabDivider = value;
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// 设置控件缩放比例
@@ -661,6 +676,16 @@ namespace Sunny.UI
                 return;
             }
 
+            int tabIdx = -1;
+            for (int i = 0; i < TabCount; i++)
+            {
+                if (SelectedTab == TabPages[i])
+                {
+                    tabIdx = i;
+                    break;
+                }
+            }
+
             for (int index = 0; index <= TabCount - 1; index++)
             {
                 Rectangle TabRect = new Rectangle(GetTabRect(index).Location.X - 2, GetTabRect(index).Location.Y - 2, ItemSize.Width, ItemSize.Height);
@@ -689,11 +714,6 @@ namespace Sunny.UI
                 e.Graphics.FillRectangle(index == SelectedIndex ? TabSelectedColor : TabUnSelectedColor, TabRect);
                 if (TabSelectedHighColorSize > 0 && index == SelectedIndex)
                     e.Graphics.FillRectangle(TabSelectedHighColor, TabRect.Left, TabRect.Height - TabSelectedHighColorSize, TabRect.Width, TabSelectedHighColorSize);
-
-                if (index <= TabCount - 2)
-                {
-                    e.Graphics.DrawLine(tabUnSelectedForeColor.Alpha(100), TabRect.Right - 1, TabRect.Center().Y - sf.Height / 2.0f, TabRect.Right - 1, sf.Height + sf.Height / 2.0f);
-                }
 
                 //e.Graphics.DrawString(TabPages[index].Text, Font, index == SelectedIndex ? tabSelectedForeColor : TabUnSelectedForeColor,
                 //    new Rectangle(TabRect.Left + textLeft, TabRect.Top, TabRect.Width, TabRect.Height), ContentAlignment.MiddleLeft);
@@ -742,6 +762,12 @@ namespace Sunny.UI
                     int y = 1 + 1;
                     e.Graphics.FillEllipse(TipsColor, TabRect.Left + x - 1, y, sfMax, sfMax);
                     e.Graphics.DrawString(TipsText, TempFont, TipsForeColor, new Rectangle(TabRect.Left + x, y, sfMax, sfMax), ContentAlignment.MiddleCenter);
+                }
+
+                if (index <= TabCount - 2 && ShowTabDivider)
+                {
+                    if (index != tabIdx)
+                        e.Graphics.DrawLine(tabUnSelectedForeColor.Alpha(100), TabRect.Right - 1, TabRect.Center().Y - TabRect.Height / 4.0f, TabRect.Right - 1, TabRect.Center().Y + TabRect.Height / 4.0f);
                 }
             }
         }
@@ -898,7 +924,7 @@ namespace Sunny.UI
             base.OnSelectedIndexChanged(e);
             CloseRects.Clear();
             Init();
-            if (ShowActiveCloseButton && !ShowCloseButton)
+            if ((ShowActiveCloseButton && !ShowCloseButton) || ShowTabDivider)
             {
                 timer.Start();
             }
