@@ -20,6 +20,7 @@
  * 2021-06-18: V3.0.4 修改可自定义背景色
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-11-16: V3.5.2 重构主题
+ * 2025-03-04: V3.8.1 增加图标旋转角度，增加图标偏移位置，调整图标最大值
 ******************************************************************************/
 
 using System;
@@ -85,7 +86,44 @@ namespace Sunny.UI
             set
             {
                 symbolSize = Math.Max(value, 16);
-                symbolSize = Math.Min(value, 128);
+                symbolSize = Math.Min(value, 256);
+                Invalidate();
+            }
+        }
+
+        private int _symbolRotate = 0;
+
+        /// <summary>
+        /// 字体图标旋转角度
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("字体图标旋转角度"), Category("SunnyUI")]
+        public int SymbolRotate
+        {
+            get => _symbolRotate;
+            set
+            {
+                if (_symbolRotate != value)
+                {
+                    _symbolRotate = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        private Point symbolOffset = new Point(0, 0);
+
+        /// <summary>
+        /// 字体图标的偏移位置
+        /// </summary>
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("字体图标的偏移位置"), Category("SunnyUI")]
+        public Point SymbolOffset
+        {
+            get => symbolOffset;
+            set
+            {
+                symbolOffset = value;
                 Invalidate();
             }
         }
@@ -219,7 +257,7 @@ namespace Sunny.UI
                 if (multiColor) color = ColorEmpty;
             }
 
-            g.DrawFontImage(ShowSymbol, SymbolSize, color, new Rectangle(0, 0, Width, Height));
+            g.DrawFontImage(ShowSymbol, SymbolSize, color, new Rectangle(0, 0, Width, Height), SymbolOffset.X, SymbolOffset.Y, SymbolRotate);
         }
     }
 }
