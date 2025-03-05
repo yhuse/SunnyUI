@@ -33,6 +33,7 @@
  * 2023-06-06: V3.3.7 修复Y轴文字居中
  * 2024-06-08: V3.6.6 修复X轴文字带角度显示时居中
  * 2024-10-25: V3.7.2 增加了一个快捷的显示数据函数ShowData
+ * 2025-03-05: V3.8.1 增加Y轴零度线偏移量，Option.ZeroLineOffset
 ******************************************************************************/
 
 using System;
@@ -210,7 +211,7 @@ namespace Sunny.UI
                         float ww = Math.Min(x2, series.MaxWidth);
                         xx -= ww / 2.0f;
 
-                        float YZeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
+                        float YZeroPos = YScale.CalcYPixel(Option.ZeroLineOffset, DrawOrigin.Y, DrawSize.Height);
                         float VPos = YScale.CalcYPixel(series.Data[j], DrawOrigin.Y, DrawSize.Height);
 
                         if (VPos <= YZeroPos)
@@ -256,7 +257,7 @@ namespace Sunny.UI
                         float ww = Math.Min(x2, series.MaxWidth);
                         float xl = (DrawBarWidth - Option.SeriesCount * ww - (Option.SeriesCount - 1) * Option.BarInterval) / 2.0f;
                         float xx = barX + xl + i * ww + i * Option.BarInterval;
-                        float YZeroPos = YScale.CalcYPixel(0, DrawOrigin.Y, DrawSize.Height);
+                        float YZeroPos = YScale.CalcYPixel(Option.ZeroLineOffset, DrawOrigin.Y, DrawSize.Height);
                         float VPos = YScale.CalcYPixel(series.Data[j], DrawOrigin.Y, DrawSize.Height);
 
                         if (VPos <= YZeroPos)
@@ -537,6 +538,11 @@ namespace Sunny.UI
             double[] YLabels = YScale.CalcLabels();
             float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
             float wmax = 0;
+
+            using Pen pn = new Pen(ForeColor);
+            pn.DashStyle = DashStyle.Dash;
+            pn.DashPattern = new float[] { 3, 3 };
+
             for (int i = 0; i < labels.Length; i++)
             {
                 if (labels[i] > DrawOrigin.Y) continue;
@@ -547,17 +553,16 @@ namespace Sunny.UI
 
                     if (YLabels[i].IsNanOrInfinity()) continue;
                     if (!Option.YAxis.ShowGridLine) continue;
-                    if (!YLabels[i].EqualsDouble(0))
-                    {
-                        using Pen pn = new Pen(ForeColor);
-                        pn.DashStyle = DashStyle.Dash;
-                        pn.DashPattern = new float[] { 3, 3 };
-                        g.DrawLine(pn, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
-                    }
-                    else
-                    {
-                        g.DrawLine(ForeColor, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
-                    }
+                    //if (!YLabels[i].EqualsDouble(Option.ZeroLineOffset))
+                    //{
+
+                    g.DrawLine(pn, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
+
+                    //}
+                    //else
+                    //{
+                    //    g.DrawLine(ForeColor, DrawOrigin.X, labels[i], Width - Option.Grid.Right, labels[i]);
+                    //}
                 }
 
                 if (Option.YAxis.AxisLabel.Show)
@@ -576,6 +581,9 @@ namespace Sunny.UI
                 float yy = Option.Grid.Top + DrawSize.Height / 2.0f;
                 g.DrawRotateString(Option.YAxis.Name, TempFont, ForeColor, new PointF(xx, yy), 270);
             }
+
+            float YZeroPos = YScale.CalcYPixel(Option.ZeroLineOffset, DrawOrigin.Y, DrawSize.Height);
+            g.DrawLine(ForeColor, DrawOrigin.X, YZeroPos, Width - Option.Grid.Right, YZeroPos);
         }
 
         private void DrawAxisScales(Graphics g)

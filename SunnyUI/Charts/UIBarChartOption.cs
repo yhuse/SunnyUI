@@ -87,6 +87,11 @@ namespace Sunny.UI
 
         public int BarInterval { get; set; } = -1;
 
+        /// <summary>
+        /// Y轴零度线偏移
+        /// </summary>
+        public double ZeroLineOffset { get; set; } = 0;
+
         public void AddSeries(UIBarSeries series)
         {
             if (series == null)
