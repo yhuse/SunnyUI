@@ -56,6 +56,7 @@ namespace Sunny.UI.Demo
             this.uiDigitalLabel2 = new Sunny.UI.UIDigitalLabel();
             this.uiDigitalLabel1 = new Sunny.UI.UIDigitalLabel();
             this.uiLine4 = new Sunny.UI.UILine();
+            this.uiBattery7 = new Sunny.UI.UIBattery();
             this.SuspendLayout();
             // 
             // uiBattery6
@@ -170,7 +171,7 @@ namespace Sunny.UI.Demo
             this.uiLedStopwatch1.Name = "uiLedStopwatch1";
             this.uiLedStopwatch1.Size = new System.Drawing.Size(190, 34);
             this.uiLedStopwatch1.TabIndex = 61;
-            this.uiLedStopwatch1.Text = "12:50";
+            this.uiLedStopwatch1.Text = "01:05";
             // 
             // uiLedDisplay1
             // 
@@ -359,11 +360,25 @@ namespace Sunny.UI.Demo
             this.uiLine4.Text = "UIDigitalLabel";
             this.uiLine4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiBattery7
+            // 
+            this.uiBattery7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiBattery7.Location = new System.Drawing.Point(42, 410);
+            this.uiBattery7.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiBattery7.Name = "uiBattery7";
+            this.uiBattery7.Size = new System.Drawing.Size(73, 105);
+            this.uiBattery7.SymbolOffset = new System.Drawing.Point(1, 3);
+            this.uiBattery7.SymbolRotate = 270;
+            this.uiBattery7.SymbolSize = 100;
+            this.uiBattery7.TabIndex = 110;
+            this.uiBattery7.Text = "uiBattery7";
+            // 
             // FLed
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 555);
+            this.Controls.Add(this.uiBattery7);
             this.Controls.Add(this.uiLine4);
             this.Controls.Add(this.uiDigitalLabel2);
             this.Controls.Add(this.uiDigitalLabel1);
@@ -426,5 +441,6 @@ namespace Sunny.UI.Demo
         private UIDigitalLabel uiDigitalLabel2;
         private UIDigitalLabel uiDigitalLabel1;
         private UILine uiLine4;
+        private UIBattery uiBattery7;
     }
 }

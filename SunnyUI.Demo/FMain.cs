@@ -6,10 +6,10 @@ using System.Windows.Forms;
 namespace Sunny.UI.Demo
 {
     /// <summary>
-    /// Windows10、Windows11 建议用UIForm2，更接近原生窗体使用体验，用UIForm也可以
-    /// WindowsXP、Windows7 建议使用UIForm
+    /// WindowsXP、Windows7、Windows10、Windows11 建议使用 UIForm
+    /// Windows10、Windows11 可尝试使用 UIForm2，更接近原生窗体使用体验，用 UIForm 也可以 
     /// </summary>
-    public partial class FMain : UIForm2
+    public partial class FMain : UIForm
     {
         public FMain()
         {
@@ -115,6 +115,7 @@ namespace Sunny.UI.Demo
             uiNavMenu1.SelectPage(1002);
 
             uiPanel2.Text = Text = Version;
+            //设置全局热键
             RegisterHotKey(UI.ModifierKeys.Shift, Keys.F8);
 
             //根据页面类型获取页面
@@ -176,6 +177,11 @@ namespace Sunny.UI.Demo
             Process.Start("https://gitee.com/yhuse/SunnyUI");
         }
 
+        /// <summary>
+        /// 全局热键事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_HotKeyEventHandler(object sender, HotKeyEventArgs e)
         {
             if (e.hotKey.ModifierKey == UI.ModifierKeys.Shift && e.hotKey.Key == Keys.F8)

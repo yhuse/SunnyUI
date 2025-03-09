@@ -775,6 +775,9 @@
     <None Include="Resources\Tom.gif" />
     <None Include="Resources\Sunny24.png" />
     <None Include="Resources\SunnyUI72.png" />
+    <None Include="Resources\led_g.png" />
+    <None Include="Resources\led_r.png" />
+    <None Include="Resources\led_y.png" />
     <Content Include="SunnyUI.ico" />
   </ItemGroup>
   <ItemGroup />

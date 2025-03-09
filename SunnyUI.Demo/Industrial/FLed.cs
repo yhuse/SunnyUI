@@ -19,7 +19,7 @@
         private void timer1_Tick(object sender, System.EventArgs e)
         {
             value++;
-            uiBattery1.Power = value;
+            uiBattery7.Power = uiBattery1.Power = value;
             uiLedDisplay1.Text = value + " Ω";
             uiDigitalLabel2.Value += 0.1;
         }
