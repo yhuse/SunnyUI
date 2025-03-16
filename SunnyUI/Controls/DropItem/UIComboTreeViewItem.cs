@@ -78,6 +78,7 @@ namespace Sunny.UI
             treeView.MinimumSize = new System.Drawing.Size(1, 1);
             treeView.Name = "treeView";
             treeView.RadiusSides = UICornerRadiusSides.None;
+            treeView.ScrollBarStyleInherited = false;
             treeView.ShowText = false;
             treeView.Size = new System.Drawing.Size(250, 176);
             treeView.TabIndex = 0;
@@ -129,6 +130,7 @@ namespace Sunny.UI
             btnCancel.Size = new System.Drawing.Size(80, 29);
             btnCancel.StyleCustomMode = true;
             btnCancel.Symbol = 361453;
+            btnCancel.SymbolOffset = new System.Drawing.Point(0, 1);
             btnCancel.SymbolSize = 22;
             btnCancel.TabIndex = 1;
             btnCancel.Text = "取消";
@@ -144,6 +146,7 @@ namespace Sunny.UI
             btnOK.MinimumSize = new System.Drawing.Size(1, 1);
             btnOK.Name = "btnOK";
             btnOK.Size = new System.Drawing.Size(80, 29);
+            btnOK.SymbolOffset = new System.Drawing.Point(0, 1);
             btnOK.SymbolSize = 22;
             btnOK.TabIndex = 0;
             btnOK.Text = "确定";

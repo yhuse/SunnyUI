@@ -270,7 +270,7 @@ namespace Sunny.UI
             tabPage3.Controls.Add(p3);
             tabPage3.Location = new Point(0, 40);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(461, 277);
+            tabPage3.Size = new Size(200, 60);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@ namespace Sunny.UI
             p3.MinimumSize = new Size(1, 1);
             p3.Name = "p3";
             p3.RadiusSides = UICornerRadiusSides.None;
-            p3.Size = new Size(461, 277);
+            p3.Size = new Size(200, 60);
             p3.Style = UIStyle.Custom;
             p3.TabIndex = 2;
             p3.Text = null;
