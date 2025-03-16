@@ -46,7 +46,7 @@
             btnDec.Padding = new System.Windows.Forms.Padding(26, 4, 0, 0);
             btnDec.RadiusSides = UICornerRadiusSides.LeftTop | UICornerRadiusSides.LeftBottom;
             btnDec.Size = new System.Drawing.Size(29, 29);
-            btnDec.Symbol = 61544;
+            btnDec.Symbol = 361544;
             btnDec.TabIndex = 0;
             btnDec.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnDec.TipsText = null;
@@ -65,7 +65,7 @@
             btnAdd.Padding = new System.Windows.Forms.Padding(26, 3, 0, 0);
             btnAdd.RadiusSides = UICornerRadiusSides.RightTop | UICornerRadiusSides.RightBottom;
             btnAdd.Size = new System.Drawing.Size(29, 29);
-            btnAdd.Symbol = 61543;
+            btnAdd.Symbol = 361543;
             btnAdd.TabIndex = 1;
             btnAdd.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnAdd.TipsText = null;

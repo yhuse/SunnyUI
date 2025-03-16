@@ -30,7 +30,8 @@
  * 2023-03-24: V3.3.3 删除ForbidInput属性，使用Inputable属性
  * 2023-12-28: V3.6.2 修复设置Style时按钮颜色不一致
  * 2024-08-27: V3.6.9 修改编辑框字体与显示字体一致
- * 2024-08-27: V3.7.0 增加加按钮字体图标的偏移位置
+ * 2024-08-27: V3.7.0 增加按钮字体图标的偏移位置
+ * 2025-03-16: V3.8.2 增加按钮字体图标的大小属性
 ******************************************************************************/
 
 using System;
@@ -162,6 +163,14 @@ namespace Sunny.UI
                 edit.Visible = false;
                 pnlValue.FillColor = pnlColor;
             }
+        }
+
+        [DefaultValue(24)]
+        [Description("按钮字体图标大小"), Category("SunnyUI")]
+        public int ButtonSymbolSize
+        {
+            get => btnDec.SymbolSize;
+            set => btnDec.SymbolSize = btnAdd.SymbolSize = value;
         }
 
         [Description("最大值"), Category("SunnyUI")]
