@@ -19,15 +19,16 @@
  * 2021-08-15: V3.0.6 增加文件说明
 ******************************************************************************/
 
-using Sunny.UI.Win32;
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {
     [DefaultEvent("Tick")]
     [DefaultProperty("Interval")]
+    [Description("毫秒定时器控件")]
     public class UIMillisecondTimer : Component
     {
         public event EventHandler Tick;

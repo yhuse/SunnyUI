@@ -40,6 +40,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
+    [Description("日期选择框控件")]
     public sealed partial class UIDatePicker : UIDropControl, IToolTip
     {
         public delegate void OnDateTimeChanged(object sender, DateTime value);

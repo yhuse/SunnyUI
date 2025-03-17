@@ -40,6 +40,7 @@ namespace Sunny.UI
     }
 
     [ToolboxItem(true)]
+    [Description("提示灯控件")]
     public sealed class UILight : UIControl
     {
         private Timer timer;

@@ -31,6 +31,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("上下文菜单")]
     public sealed class UIContextMenuStrip : ContextMenuStrip, IStyleInterface, IZoomScale
     {
         private ContextMenuColorTable ColorTable = new ContextMenuColorTable();

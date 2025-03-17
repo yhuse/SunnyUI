@@ -32,6 +32,7 @@ namespace Sunny.UI
     /// <summary>
     /// 图像按钮
     /// </summary>
+    [Description("图像按钮控件")]
     public sealed class UIImageButton : PictureBox, IStyleInterface, IZoomScale, IFormTranslator
     {
         private bool IsPress;

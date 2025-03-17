@@ -30,6 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("日历控件")]
     public class UICalendar : UIUserControl, ITranslate
     {
         public UICalendar()

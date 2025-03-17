@@ -46,6 +46,7 @@ namespace Sunny.UI
 {
     [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
+    [Description("表格列表框控件")]
     public class UIComboDataGridView : UIDropControl, IToolTip
     {
         private void InitializeComponent()

@@ -42,6 +42,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("滚动容器控件")]
     public class UIFlowLayoutPanel : UIPanel, IToolTip
     {
         private UIVerScrollBarEx VBar;

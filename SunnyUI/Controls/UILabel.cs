@@ -34,6 +34,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("标签控件")]
     public class UILabel : Label, IStyleInterface, IZoomScale, IFormTranslator
     {
         public UILabel()

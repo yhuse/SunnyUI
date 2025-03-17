@@ -28,6 +28,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("下拉菜单按钮控件")]
     public class UIMenuButton : UISymbolButton
     {
         private bool _showDropArrow = true;

@@ -31,6 +31,7 @@ namespace Sunny.UI
     /// LED显示屏
     /// </summary>
     [DefaultProperty("Text")]
+    [Description("LED显示屏控件")]
     public class UILedDisplay : Control
     {
         #region 组件设计器生成的代码

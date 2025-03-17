@@ -36,6 +36,7 @@ using System.Drawing.Drawing2D;
 
 namespace Sunny.UI
 {
+    [Description("面板控件")]
     public partial class UIPanel : UIUserControl
     {
         public UIPanel()

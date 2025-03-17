@@ -36,6 +36,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("分页控件")]
     public class UIPagination : UIPanel, ITranslate
     {
         public delegate void OnPageChangeEventHandler(object sender, object pagingSource, int pageIndex, int count);

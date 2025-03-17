@@ -29,6 +29,7 @@ namespace Sunny.UI
     /// </summary>
     [DefaultEvent("TimerTick")]
     [DefaultProperty("Text")]
+    [Description("LED计时器控件")]
     public sealed class UILedStopwatch : UILedDisplay
     {
         private readonly System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();

@@ -35,6 +35,7 @@ namespace Sunny.UI
     /// </summary>
     [DefaultProperty("Power")]
     [ToolboxItem(true)]
+    [Description("电池电量控件")]
     public sealed class UIBattery : UIControl
     {
         private Color colorDanger = UIColor.Orange;

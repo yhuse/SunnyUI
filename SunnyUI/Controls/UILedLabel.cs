@@ -30,6 +30,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("LED标签控件")]
     public class UILedLabel : UIControl
     {
         public UILedLabel()

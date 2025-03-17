@@ -40,6 +40,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
     [ToolboxItem(true)]
+    [Description("冷液晶显示LCD标签控件")]
     public class UIDigitalLabel : UIControl
     {
         public UIDigitalLabel()

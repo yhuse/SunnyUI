@@ -1,7 +1,7 @@
-/******************************************************************************
- * SunnyUI ¿ªÔ´¿Ø¼ş¿â¡¢¹¤¾ßÀà¿â¡¢À©Õ¹Àà¿â¡¢¶àÒ³Ãæ¿ª·¢¿ò¼Ü¡£
- * CopyRight (C) 2012-2025 ShenYongHua(ÉòÓÀ»ª).
- * QQÈº£º56829229 QQ£º17612584 EMail£ºSunnyUI@QQ.Com
+ï»¿/******************************************************************************
+ * SunnyUI å¼€æºæ§ä»¶åº“ã€å·¥å…·ç±»åº“ã€æ‰©å±•ç±»åº“ã€å¤šé¡µé¢å¼€å‘æ¡†æ¶ã€‚
+ * CopyRight (C) 2012-2025 ShenYongHua(æ²ˆæ°¸å).
+ * QQç¾¤ï¼š56829229 QQï¼š17612584 EMailï¼šSunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
  * Gitee:  https://gitee.com/yhuse/SunnyUI
@@ -9,13 +9,13 @@
  *
  * SunnyUI can be used for free under the GPL-3.0 license.
  * If you use this code, please keep this note.
- * Èç¹ûÄúÊ¹ÓÃ´Ë´úÂë£¬Çë±£Áô´ËËµÃ÷¡£
+ * å¦‚æœæ‚¨ä½¿ç”¨æ­¤ä»£ç ï¼Œè¯·ä¿ç•™æ­¤è¯´æ˜ã€‚
  ******************************************************************************
- * ÎÄ¼şÃû³Æ: UIAnalogMeter.cs
- * ÎÄ¼şËµÃ÷: ÒÇ±í
- * ÎÄ¼ş×÷Õß: Luca Bonotto
- * ¿ªÔ´Ğ­Òé: CPOL
- * ÒıÓÃµØÖ·: https://www.codeproject.com/Articles/24945/Analog-Meter
+ * æ–‡ä»¶åç§°: UIAnalogMeter.cs
+ * æ–‡ä»¶è¯´æ˜: ä»ªè¡¨
+ * æ–‡ä»¶ä½œè€…: Luca Bonotto
+ * å¼€æºåè®®: CPOL
+ * å¼•ç”¨åœ°å€: https://www.codeproject.com/Articles/24945/Analog-Meter
 ******************************************************************************/
 
 /*
@@ -42,6 +42,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
+    [Description("ä»ªè¡¨æ§ä»¶")]
     public class UIAnalogMeter : UIControl
     {
         #region Enumerator
@@ -320,9 +321,9 @@ namespace Sunny.UI
         #region Events delegates
 
         /// <summary>
-        /// ÖØÔØ¿Ø¼ş³ß´ç±ä¸ü
+        /// é‡è½½æ§ä»¶å°ºå¯¸å˜æ›´
         /// </summary>
-        /// <param name="e">²ÎÊı</param>
+        /// <param name="e">å‚æ•°</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -333,9 +334,9 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// ÖØÔØ»æÍ¼
+        /// é‡è½½ç»˜å›¾
         /// </summary>
-        /// <param name="e">»æÍ¼²ÎÊı</param>
+        /// <param name="e">ç»˜å›¾å‚æ•°</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             if (Width <= 0 || Height <= 0) return;

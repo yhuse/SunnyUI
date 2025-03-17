@@ -41,6 +41,7 @@ namespace Sunny.UI
     [DefaultEvent("NodeSelected")]
     [DefaultProperty("Nodes")]
     [ToolboxItem(true)]
+    [Description("树形列表框控件")]
     public class UIComboTreeView : UIDropControl, IToolTip
     {
         public UIComboTreeView()

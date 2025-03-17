@@ -35,6 +35,7 @@ namespace Sunny.UI
 {
     [DefaultProperty("Text")]
     [DefaultEvent("ValueChanged")]
+    [Description("IP地址输入框控件")]
     public sealed partial class UIIPTextBox : UIPanel
     {
         private IPAddress _value;

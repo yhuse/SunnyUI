@@ -42,6 +42,7 @@ namespace Sunny.UI
     [DefaultEvent("CheckedChanged")]
     [DefaultProperty("Checked")]
     [ToolboxItem(true)]
+    [Description("复选框控件")]
     public class UICheckBox : UIControl
     {
         /// <summary>

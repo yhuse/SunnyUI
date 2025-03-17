@@ -41,6 +41,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("ItemIndexChanged")]
     [DefaultProperty("ItemIndex")]
+    [Description("面包屑导航条控件")]
     public class UIBreadcrumb : UIControl
     {
         /// <summary>

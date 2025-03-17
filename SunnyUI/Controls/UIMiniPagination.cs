@@ -34,6 +34,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("迷你分页控件")]
     public class UIMiniPagination : UIPanel
     {
         public delegate void OnPageChangeEventHandler(object sender, object pagingSource, int pageIndex, int count);

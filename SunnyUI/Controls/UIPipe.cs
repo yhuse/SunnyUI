@@ -30,6 +30,7 @@ using System.Drawing.Drawing2D;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("管道控件")]
     public class UIPipe : UIControl
     {
         public UIPipe()

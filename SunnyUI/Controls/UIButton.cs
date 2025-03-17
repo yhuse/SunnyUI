@@ -52,6 +52,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
     [ToolboxItem(true)]
+    [Description("按钮控件")]
     public class UIButton : UIControl, IButtonControl
     {
         /// <summary>

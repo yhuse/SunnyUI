@@ -38,6 +38,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
+    [Description("图片列表框控件")]
     public sealed partial class UIImageListBox : UIPanel, IToolTip
     {
         private readonly ImageListBox listbox = new ImageListBox();

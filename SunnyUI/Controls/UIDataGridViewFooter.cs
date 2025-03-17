@@ -33,6 +33,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("表格页脚控件")]
     public sealed class UIDataGridViewFooter : UIControl
     {
         public UIDataGridViewFooter()

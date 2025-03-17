@@ -34,6 +34,7 @@ namespace Sunny.UI
 {
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]
+    [Description("模拟数字键盘输入框控件")]
     public class UINumPadTextBox : UIDropControl, IToolTip, IHideDropDown
     {
         public UINumPadTextBox()

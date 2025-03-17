@@ -34,6 +34,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("分割线控件")]
     public sealed class UILine : UIControl
     {
         public UILine()

@@ -44,6 +44,7 @@ namespace Sunny.UI
     /// </summary>
     [DefaultProperty("Items")]
     [DefaultEvent("ValueChanged")]
+    [Description("多选框组控件")]
     public class UICheckBoxGroup : UIGroupBox
     {
         /// <summary>

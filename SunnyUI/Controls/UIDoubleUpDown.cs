@@ -44,6 +44,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
+    [Description("数字上下选择框控件")]
     public sealed partial class UIDoubleUpDown : UIPanel, IToolTip
     {
         public delegate void OnValueChanged(object sender, double value);

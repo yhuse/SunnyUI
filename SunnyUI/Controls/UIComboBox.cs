@@ -60,6 +60,7 @@ namespace Sunny.UI
     [DefaultProperty("Items")]
     [DefaultEvent("SelectedIndexChanged")]
     [ToolboxItem(true)]
+    [Description("组合框控件")]
     [LookupBindingProperties("DataSource", "DisplayMember", "ValueMember", "SelectedValue")]
     public sealed partial class UIComboBox : UIDropControl, IToolTip, IHideDropDown
     {

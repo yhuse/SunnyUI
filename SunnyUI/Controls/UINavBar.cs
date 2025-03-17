@@ -42,6 +42,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
+    [Description("导航栏控件")]
     public sealed partial class UINavBar : ScrollableControl, IStyleInterface, IZoomScale
     {
         public readonly TreeView Menu = new TreeView();

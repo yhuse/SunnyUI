@@ -32,6 +32,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("Gif动态头像控件")]
     public class UIGifAvatar : UIControl, IZoomScale
     {
         private Image image;

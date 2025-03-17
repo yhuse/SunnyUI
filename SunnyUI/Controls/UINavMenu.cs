@@ -52,6 +52,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("MenuItemClick")]
     [DefaultProperty("Nodes")]
+    [Description("导航菜单控件")]
     public sealed class UINavMenu : TreeView, IStyleInterface, IZoomScale
     {
         public delegate void OnMenuItemClick(TreeNode node, NavMenuItem item, int pageIndex);

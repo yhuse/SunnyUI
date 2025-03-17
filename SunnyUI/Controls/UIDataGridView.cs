@@ -60,6 +60,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("表格控件")]
     public class UIDataGridView : DataGridView, IStyleInterface, IZoomScale
     {
         private readonly UIScrollBar VBar = new UIScrollBar();

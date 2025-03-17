@@ -34,6 +34,7 @@ namespace Sunny.UI
     /// provide a sleek looking representation of an LED light that is sizable,
     /// has a transparent background and can be set to different colors.
     /// </summary>
+    [Description("LED灯控件")]
     public class UILedBulb : Control, IZoomScale
     {
         #region Public and Private Members

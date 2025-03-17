@@ -38,6 +38,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
+    [Description("进度条控件")]
     public sealed class UIProcessBar : UIControl
     {
         private int maximum = 100;

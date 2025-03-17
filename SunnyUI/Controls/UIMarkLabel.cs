@@ -29,6 +29,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("带颜色标签控件")]
     public sealed class UIMarkLabel : UILabel
     {
         public UIMarkLabel()

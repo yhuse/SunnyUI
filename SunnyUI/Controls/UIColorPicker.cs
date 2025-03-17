@@ -41,6 +41,7 @@ namespace Sunny.UI
     /// </summary>
     [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
+    [Description("颜色选择框控件")]
     public sealed class UIColorPicker : UIDropControl
     {
         private void InitializeComponent()

@@ -45,6 +45,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("ItemClick")]
     [DefaultProperty("Items")]
+    [Description("列表框控件")]
     public sealed class UIListBox : UIPanel, IToolTip
     {
         private readonly ListBoxEx listbox = new ListBoxEx();
