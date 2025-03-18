@@ -40,6 +40,7 @@ namespace Sunny.UI
 {
     [DefaultProperty("Items")]
     [DefaultEvent("ValueChanged")]
+    [Description("单选框组控件")]
     public class UIRadioButtonGroup : UIGroupBox
     {
         public delegate void OnValueChanged(object sender, int index, string text);

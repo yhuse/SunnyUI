@@ -33,6 +33,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
+    [Description("时间选择框控件")]
     public sealed class UITimePicker : UIDropControl, IToolTip
     {
         private void InitializeComponent()

@@ -29,6 +29,7 @@ namespace Sunny.UI
     /// <summary>
     /// 主题样式管理类
     /// </summary>
+    [Description("主题样式管理控件")]
     public class UIStyleManager : Component
     {
         /// <summary>

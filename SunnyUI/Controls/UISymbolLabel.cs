@@ -36,6 +36,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("带字体图标的标签控件")]
     public sealed class UISymbolLabel : UIControl, ISymbol
     {
         private int _symbolSize = 24;

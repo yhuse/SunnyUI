@@ -51,6 +51,7 @@ using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {
+    [Description("标签控件")]
     public sealed class UITabControl : TabControl, IStyleInterface, IZoomScale
     {
         private readonly UITabControlHelper Helper;

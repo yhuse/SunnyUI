@@ -29,6 +29,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
     [ToolboxItem(true)]
+    [Description("温度计控件")]
     public class UIThermometer : UIControl
     {
         public event EventHandler ValueChanged;

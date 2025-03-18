@@ -25,6 +25,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("根据状态显示图片控件")]
     public class UIStatusBox : PictureBox
     {
         /// <summary>

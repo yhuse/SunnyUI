@@ -31,6 +31,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Active")]
     [ToolboxItem(true)]
+    [Description("旋转开关控件")]
     public class UITurnSwitch : UIControl
     {
         /// <summary>

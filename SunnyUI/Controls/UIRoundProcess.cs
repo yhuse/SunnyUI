@@ -37,6 +37,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
+    [Description("圆形进度条控件")]
     public class UIRoundProcess : UIControl
     {
         public UIRoundProcess()

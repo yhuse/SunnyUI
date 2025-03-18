@@ -39,6 +39,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [DefaultEvent("Click"), DefaultProperty("Text")]
+    [Description("带标题面板控件")]
     public partial class UITitlePanel : UIPanel
     {
         private int _titleHeight = 35;

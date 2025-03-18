@@ -33,6 +33,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("滚动文字控件")]
     public class UIScrollingText : UIControl
     {
         private readonly Timer timer;

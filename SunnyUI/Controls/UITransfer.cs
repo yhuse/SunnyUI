@@ -36,6 +36,7 @@ namespace Sunny.UI
     /// 穿梭框
     /// </summary>
     [DefaultProperty("ItemsLeft")]
+    [Description("穿梭框控件")]
     public sealed partial class UITransfer : UIPanel
     {
         /// <summary>

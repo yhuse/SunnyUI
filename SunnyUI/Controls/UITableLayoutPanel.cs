@@ -26,6 +26,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("动态布局面板控件")]
     public sealed class UITableLayoutPanel : TableLayoutPanel, IStyleInterface
     {
         public UITableLayoutPanel()

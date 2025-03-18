@@ -32,7 +32,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
-    [ToolboxItem(true), Description("甜甜圈图")]
+    [ToolboxItem(true), Description("甜甜圈图控件")]
     public sealed class UIDoughnutChart : UIChart
     {
         /// <summary>

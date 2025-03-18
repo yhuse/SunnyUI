@@ -33,6 +33,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
     [ToolboxItem(true)]
+    [Description("验证码控件")]
     public class UIVerificationCode : UIControl
     {
         public UIVerificationCode()

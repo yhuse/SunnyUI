@@ -30,6 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("标签菜单控件")]
     public sealed class UITabControlMenu : TabControl, IStyleInterface, IZoomScale
     {
         public UITabControlMenu()

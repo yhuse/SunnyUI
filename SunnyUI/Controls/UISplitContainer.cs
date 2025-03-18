@@ -30,6 +30,7 @@ using System.Windows.Forms;
 
 namespace Sunny.UI
 {
+    [Description("分割容器控件")]
     public sealed class UISplitContainer : SplitContainer, IStyleInterface, IZoomScale
     {
         private enum UIMouseType

@@ -38,6 +38,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
+    [Description("富文本输入框控件")]
     public sealed class UIRichTextBox : UIPanel, IToolTip
     {
         private UIScrollBar bar;

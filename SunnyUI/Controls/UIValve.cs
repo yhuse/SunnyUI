@@ -31,6 +31,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultProperty("Active")]
     [DefaultEvent("ActiveChanged")]
+    [Description("阀门控件")]
     public sealed class UIValve : Control, IZoomScale
     {
         public UIValve()

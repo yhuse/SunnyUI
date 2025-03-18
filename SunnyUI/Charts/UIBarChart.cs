@@ -50,6 +50,7 @@ namespace Sunny.UI
     /// 柱状图
     /// </summary>
     [ToolboxItem(true)]
+    [Description("柱状图控件")]
     public class UIBarChart : UIChart
     {
         private bool NeedDraw;

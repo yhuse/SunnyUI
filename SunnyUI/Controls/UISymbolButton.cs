@@ -36,6 +36,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("字体图标按钮控件")]
     public class UISymbolButton : UIButton, ISymbol
     {
         private int _symbolSize = 24;

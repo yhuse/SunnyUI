@@ -19,10 +19,10 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-using Sunny.UI.Properties;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Sunny.UI.Properties;
 
 namespace Sunny.UI
 {
@@ -31,6 +31,7 @@ namespace Sunny.UI
     /// </summary>
     [ToolboxItem(true)]
     [DefaultProperty("Angle")]
+    [Description("圆形图表控件")]
     public sealed class UIRoundMeter : UIControl
     {
         /// <summary>

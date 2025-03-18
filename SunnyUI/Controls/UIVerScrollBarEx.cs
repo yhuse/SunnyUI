@@ -30,6 +30,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("垂直滚动条控件")]
     public class UIVerScrollBarEx : UIControl
     {
         public UIVerScrollBarEx()

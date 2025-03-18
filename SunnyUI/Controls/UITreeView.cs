@@ -56,6 +56,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("AfterSelect")]
     [DefaultProperty("Nodes")]
+    [Description("树形列表控件")]
     public sealed class UITreeView : UIPanel, IToolTip
     {
         private UIScrollBar Bar;

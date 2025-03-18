@@ -33,6 +33,7 @@ namespace Sunny.UI
     [ToolboxItem(true)]
     [DefaultEvent("Click")]
     [DefaultProperty("Text")]
+    [Description("平滑文字带边框的标签控件")]
     public sealed class UISmoothLabel : Label, IStyleInterface, IZoomScale, IFormTranslator
     {
         private PointF point;

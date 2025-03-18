@@ -32,6 +32,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
     [ToolboxItem(true)]
+    [Description("水平滚动条控件")]
     public sealed class UIHorScrollBar : UIControl
     {
         public UIHorScrollBar()

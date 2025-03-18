@@ -76,6 +76,7 @@ namespace Sunny.UI
 {
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
+    [Description("输入框控件")]
     public partial class UITextBox : UIPanel, ISymbol, IToolTip
     {
         private readonly UIEdit edit = new UIEdit();

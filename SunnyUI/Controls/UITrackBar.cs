@@ -33,6 +33,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]
     [ToolboxItem(true)]
+    [Description("进度指示条控件")]
     public sealed class UITrackBar : UIControl
     {
         public event EventHandler ValueChanged;

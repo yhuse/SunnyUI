@@ -31,6 +31,7 @@ namespace Sunny.UI
     [DefaultEvent("Click")]
     [DefaultProperty("Level")]
     [ToolboxItem(true)]
+    [Description("信号强度显示控件")]
     public class UISignal : UIControl
     {
         public UISignal()

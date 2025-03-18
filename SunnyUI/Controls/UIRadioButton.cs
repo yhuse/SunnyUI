@@ -41,6 +41,7 @@ namespace Sunny.UI
     [DefaultEvent("CheckedChanged")]
     [DefaultProperty("Checked")]
     [ToolboxItem(true)]
+    [Description("单选框控件")]
     public sealed class UIRadioButton : UIControl
     {
         public delegate void OnValueChanged(object sender, bool value);

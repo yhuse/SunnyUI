@@ -27,6 +27,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("刻度尺控件")]
     public class UIRuler : UIControl
     {
         private UITrackBar.BarDirection direction = UITrackBar.BarDirection.Horizontal;

@@ -31,6 +31,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("进度指示器控件")]
     public sealed class UIProgressIndicator : UIControl
     {
         private readonly Timer timer;

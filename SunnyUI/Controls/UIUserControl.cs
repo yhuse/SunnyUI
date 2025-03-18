@@ -35,6 +35,7 @@ namespace Sunny.UI
 {
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner))]
     [DefaultEvent("Click"), DefaultProperty("Text")]
+    [Description("用户控件")]
     public partial class UIUserControl : UserControl, IStyleInterface, IZoomScale, IFormTranslator
     {
         private int radius = 5;

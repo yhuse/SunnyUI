@@ -35,6 +35,7 @@ namespace Sunny.UI
     [ProvideProperty("ToolTip", typeof(Control))]
     [DefaultEvent("Popup")]
     [ToolboxItemFilter("System.Windows.Forms")]
+    [Description("提示控件")]
     public class UIToolTip : ToolTip
     {
         private readonly ConcurrentDictionary<Control, ToolTipControl> ToolTipControls =

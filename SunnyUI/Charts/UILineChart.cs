@@ -69,6 +69,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("曲线图控件")]
     public class UILineChart : UIChart
     {
         protected bool NeedDraw;

@@ -37,6 +37,7 @@ namespace Sunny.UI
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Active")]
     [ToolboxItem(true)]
+    [Description("开关控件")]
     public sealed class UISwitch : UIControl
     {
         /// <summary>

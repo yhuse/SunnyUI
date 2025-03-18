@@ -32,6 +32,7 @@ using System.Windows.Forms;
 namespace Sunny.UI
 {
     [ToolboxItem(true)]
+    [Description("饼状图控件")]
     public sealed class UIPieChart : UIChart
     {
         /// <summary>
