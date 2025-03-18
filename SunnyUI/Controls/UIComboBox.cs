@@ -43,6 +43,7 @@
  * 2024-10-28: V3.7.2 增加了SelectionChangeCommitted事件，下拉框显示鼠标点击条目时响应
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2024-11-10: V3.7.2 删除ScrollBarColor、ScrollBarBackColor、ScrollBarStyleInherited属性
+ * 2025-03-18: V3.8.2 修复过滤下拉框跟随主题配色
 ******************************************************************************/
 
 using System;
@@ -158,7 +159,10 @@ namespace Sunny.UI
             if (!FilterItemForm.Visible)
             {
                 filterForm.Style = StyleDropDown;
-                if (StyleDropDown != UIStyle.Inherited) filterForm.Style = StyleDropDown;
+                if (StyleDropDown != UIStyle.Inherited)
+                    filterForm.Style = StyleDropDown;
+                else
+                    filterForm.Style = UIStyles.Style;
                 FilterItemForm.Show(this, new Size(DropDownWidth < Width ? Width : DropDownWidth, CalcItemFormHeight()));
                 edit.Focus();
             }
@@ -736,6 +740,7 @@ namespace Sunny.UI
             }
             else
             {
+                if (StyleDropDown != UIStyle.Inherited) filterForm.Style = StyleDropDown;
                 if (FilterItemForm.Visible)
                 {
                     FilterItemForm.Close();
@@ -957,7 +962,7 @@ namespace Sunny.UI
         public Color ItemRectColor
         {
             get => ListBox.RectColor;
-            set => ListBox.RectColor = value;
+            set => FilterListBox.RectColor = ListBox.RectColor = value;
         }
     }
 }
