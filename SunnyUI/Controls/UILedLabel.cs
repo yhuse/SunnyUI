@@ -18,6 +18,7 @@
  *
  * 2021-04-11: V3.0.2 增加文件说明
  * 2022-03-19: V3.1.1 重构主题配色
+ * 2025-03-31: V3.8.2 重构显示位置，并增加Padding属性关联显示
 ******************************************************************************/
 
 using System.Collections;
@@ -48,8 +49,7 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            int width = CharCount * IntervalOn * 5 +
-                        CharCount * IntervalIn * 4 + (CharCount + 1) * IntervalOn + CharCount * IntervalIn;
+            int width = (IntervalOn + IntervalIn) * 6 * CharCount;
             int height = IntervalOn * 7 + IntervalIn * 6;
 
             float left = 0;
@@ -57,22 +57,22 @@ namespace Sunny.UI
             switch (TextAlign)
             {
                 case ContentAlignment.TopLeft:
-                    left = 0;
-                    top = 0;
+                    left = IntervalOn + IntervalIn + Padding.Left;
+                    top = IntervalOn + IntervalIn + Padding.Top;
                     break;
 
                 case ContentAlignment.TopCenter:
                     left = (Width - width) / 2.0f;
-                    top = 0;
+                    top = IntervalOn + IntervalIn + Padding.Top;
                     break;
 
                 case ContentAlignment.TopRight:
-                    left = Width - width;
-                    top = 0;
+                    left = Width - width - Padding.Right;
+                    top = IntervalOn + IntervalIn + Padding.Top;
                     break;
 
                 case ContentAlignment.MiddleLeft:
-                    left = 0;
+                    left = IntervalOn + IntervalIn + Padding.Left;
                     top = (Height - height) / 2.0f;
                     break;
 
@@ -82,23 +82,23 @@ namespace Sunny.UI
                     break;
 
                 case ContentAlignment.MiddleRight:
-                    left = Width - width;
+                    left = Width - width - Padding.Right;
                     top = (Height - height) / 2.0f;
                     break;
 
                 case ContentAlignment.BottomLeft:
-                    left = 0;
-                    top = Height - height;
+                    left = IntervalOn + IntervalIn + Padding.Left;
+                    top = Height - height - (IntervalOn + IntervalIn) - Padding.Bottom;
                     break;
 
                 case ContentAlignment.BottomCenter:
                     left = (Width - width) / 2.0f;
-                    top = Height - height;
+                    top = Height - height - (IntervalOn + IntervalIn) - Padding.Bottom;
                     break;
 
                 case ContentAlignment.BottomRight:
-                    left = Width - width;
-                    top = Height - height;
+                    left = Width - width - Padding.Right;
+                    top = Height - height - (IntervalOn + IntervalIn) - Padding.Bottom;
                     break;
             }
 
@@ -106,7 +106,8 @@ namespace Sunny.UI
             foreach (char c in Text)
             {
                 float charStart = left + (IntervalOn + IntervalIn) * 6 * idx;
-                byte[] bts = UILedChars.Chars.ContainsKey(c) ? UILedChars.Chars[c] : UILedChars.Chars[' '];
+                byte[] bts = UILedChars.Chars[' '];
+                if (UILedChars.Chars.TryGetValue(c, out var bytes)) bts = bytes;
                 for (int i = 0; i < 5; i++)
                 {
                     byte bt = bts[i];
@@ -117,12 +118,7 @@ namespace Sunny.UI
                         bool bon = array[7 - j];
                         if (bon)
                         {
-                            e.Graphics.FillRectangle(
-                                ForeColor,
-                                btStart,
-                                 top + (IntervalOn + IntervalIn) * j,
-                                IntervalOn,
-                                IntervalOn);
+                            e.Graphics.FillRectangle(ForeColor, btStart, top + (IntervalOn + IntervalIn) * j, IntervalOn, IntervalOn);
                         }
                     }
                 }
