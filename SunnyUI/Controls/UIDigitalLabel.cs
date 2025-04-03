@@ -19,6 +19,7 @@
  * 2023-12-01: V3.6.1 增加文件说明
  * 2024-01-23: V3.6.3 更新绘制
  * 2024-10-22: V3.7.2 增加DPI支持
+ * 2025-04-08: V3.8.2 增加ShowText属性，可以显示文字 #IBY64V
 ******************************************************************************/
 
 /******************************************************************************
@@ -51,6 +52,22 @@ namespace Sunny.UI
             ShowText = ShowRect = ShowFill = false;
             ForeColor = Color.Lime;
             BackColor = Color.Black;
+        }
+
+        private bool _showText = false;
+
+        [Description("是否显示文字"), Category("SunnyUI"), DefaultValue(false)]
+        public new bool ShowText
+        {
+            get => _showText;
+            set
+            {
+                if (_showText != value)
+                {
+                    _showText = value;
+                    Invalidate();
+                }
+            }
         }
 
         private double digitalValue;
@@ -107,7 +124,8 @@ namespace Sunny.UI
             using Font font = DigitalFont.Instance.GetFont(UIStyles.DPIScale ? DigitalSize / UIDPIScale.SystemDPIScale : DigitalSize);
             using Brush br = new SolidBrush(ForeColor);
 
-            string text = Value.ToString("F" + DecimalPlaces);
+            string text = ShowText ? Text : Value.ToString("F" + DecimalPlaces);
+
             SizeF sf = e.Graphics.MeasureString(text, font);
             float y = (Height - sf.Height) / 2.0f + 1 + Padding.Top;
             float x = Padding.Left;
