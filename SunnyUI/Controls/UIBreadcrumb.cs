@@ -22,6 +22,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-09-17: V3.4.2 增加Readonly，禁用鼠标点击，可通过代码设置ItemIndex
+ * 2025-04-03: V3.8.2 增加SetItemColor，设置单个节点颜色，可以用RemoveItemColor移除
 ******************************************************************************/
 
 using System;
@@ -111,6 +112,20 @@ namespace Sunny.UI
         private readonly UIObjectCollection items = new UIObjectCollection();
 
         private readonly ConcurrentDictionary<int, Point[]> ClickArea = new ConcurrentDictionary<int, Point[]>();
+
+        private readonly ConcurrentDictionary<int, Color> ItemsColor = new();
+
+        public void SetItemColor(int index, Color color)
+        {
+            ItemsColor[index] = color;
+            Invalidate();
+        }
+
+        public void RemoveItemColor(int index)
+        {
+            ItemsColor.TryRemove(index, out _);
+            Invalidate();
+        }
 
         /// <summary>
         /// 步骤个数
@@ -231,7 +246,9 @@ namespace Sunny.UI
                         ClickArea[index] = pts;
                     }
 
-                    using Brush br = new SolidBrush(index <= ItemIndex ? SelectedColor : UnSelectedColor);
+                    Color color = index <= ItemIndex ? SelectedColor : UnSelectedColor;
+                    if (ItemsColor.TryGetValue(index, out var cc)) color = cc;
+                    using Brush br = new SolidBrush(color);
                     g.FillPolygon(br, points.ToArray());
 
                     g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor,
