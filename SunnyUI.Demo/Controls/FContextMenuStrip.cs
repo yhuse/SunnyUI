@@ -12,7 +12,7 @@ namespace Sunny.UI.Demo
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {
-                ToolStripMenuItem item = new ToolStripMenuItem(style.DisplayText()) { Tag = style };
+                ToolStripMenuItem item = new ToolStripMenuItem(style.Description()) { Tag = style };
                 item.Click += Item_Click;
                 uiContextMenuStrip1.Items.Add(item);
             }

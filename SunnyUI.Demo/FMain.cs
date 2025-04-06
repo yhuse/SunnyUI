@@ -97,7 +97,7 @@ namespace Sunny.UI.Demo
             var styles = UIStyles.PopularStyles();
             foreach (UIStyle style in styles)
             {
-                uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], style.DisplayText(), style.Value());
+                uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], style.Description(), style.Value());
             }
 
             var node = uiNavBar1.CreateChildNode(uiNavBar1.Nodes[4], "字体图标", 99999);
