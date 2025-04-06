@@ -19,6 +19,7 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
+using System.ComponentModel;
 using System.Drawing;
 
 namespace Sunny.UI
@@ -31,19 +32,19 @@ namespace Sunny.UI
         /// <summary>
         /// 自定义
         /// </summary>
-        [DisplayText("Custom")]
+        [Description("Custom")]
         Custom,
 
         /// <summary>
         /// 黑
         /// </summary>
-        [DisplayText("Black")]
+        [Description("Black")]
         Black,
 
         /// <summary>
         /// 白
         /// </summary>
-        [DisplayText("White")]
+        [Description("White")]
         White
     }
 
@@ -59,7 +60,7 @@ namespace Sunny.UI
 
         public override string ToString()
         {
-            return Style.DisplayText();
+            return Style.Description();
         }
     }
 

@@ -97,8 +97,37 @@ namespace Sunny.UI
         {
             base.OnPaintFill(g, path);
 
-            using var bmp = CreateImage(RandomEx.RandomChars(CodeLength));
+            using var bmp = CreateImage(RandomChars(CodeLength));
             g.DrawImage(bmp, Width / 2 - bmp.Width / 2, 1);
+        }
+
+        private const string CHARS_62 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        /// <summary>
+        /// 生成字母和数字的随机字符串
+        /// </summary>
+        /// <param name="length">长度</param>
+        /// <returns>结果</returns>
+        private static string RandomChars(int length = 10)
+        {
+            return RandomBase(CHARS_62.ToCharArray(), length);
+        }
+
+        private static string RandomBase(char[] pattern, int length)
+        {
+            if (pattern.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException();
+            }
+
+            string result = "";
+            for (int i = 0; i < length; i++)
+            {
+                Random random = new Random(DateTime.Now.Millisecond);
+                result += pattern[random.Next(0, pattern.Length)];
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -25,6 +25,7 @@
 ******************************************************************************/
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -55,85 +56,85 @@ namespace Sunny.UI
         /// <summary>
         /// 继承的全局主题
         /// </summary>
-        [DisplayText("继承的全局主题")]
+        [Description("继承的全局主题")]
         Inherited = -1,
 
         /// <summary>
         /// 自定义
         /// </summary>
-        [DisplayText("Custom")]
+        [Description("Custom")]
         Custom = 0,
 
         /// <summary>
         /// 蓝
         /// </summary>
-        [DisplayText("Blue")]
+        [Description("Blue")]
         Blue = 1,
 
         /// <summary>
         /// 绿
         /// </summary>
-        [DisplayText("Green")]
+        [Description("Green")]
         Green = 2,
 
         /// <summary>
         /// 橙
         /// </summary>
-        [DisplayText("Orange")]
+        [Description("Orange")]
         Orange = 3,
 
         /// <summary>
         /// 红
         /// </summary>
-        [DisplayText("Red")]
+        [Description("Red")]
         Red = 4,
 
         /// <summary>
         /// 灰
         /// </summary>
-        [DisplayText("Gray")]
+        [Description("Gray")]
         Gray = 5,
 
         /// <summary>
         /// 紫
         /// </summary>
-        [DisplayText("Purple")]
+        [Description("Purple")]
         Purple = 6,
 
         /// <summary>
         /// LayuiGreen
         /// </summary>
-        [DisplayText("LayuiGreen")]
+        [Description("LayuiGreen")]
         LayuiGreen = 7,
 
         /// <summary>
         /// LayuiRed
         /// </summary>
-        [DisplayText("LayuiRed")]
+        [Description("LayuiRed")]
         LayuiRed = 8,
 
         /// <summary>
         /// LayuiOrange
         /// </summary>
-        [DisplayText("LayuiOrange")]
+        [Description("LayuiOrange")]
         LayuiOrange = 9,
 
         /// <summary>
         /// 深蓝
         /// </summary>
-        [DisplayText("DarkBlue")]
+        [Description("DarkBlue")]
         DarkBlue = 101,
 
         /// <summary>
         /// 黑
         /// </summary>
-        [DisplayText("Black")]
+        [Description("Black")]
         Black = 102,
 
         /// <summary>
         /// 多彩的
         /// </summary>
-        [DisplayText("Colorful")]
+        [Description("Colorful")]
         Colorful = 999
     }
 

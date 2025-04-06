@@ -20,7 +20,6 @@
  * 2023-04-19: V3.3.5 增加可选择显示时激活的控件
 ******************************************************************************/
 
-using Sunny.UI.Properties;
 using System;
 using System.ComponentModel;
 
@@ -96,12 +95,12 @@ namespace Sunny.UI
                 {
                     loginImage = value;
 
-                    if (loginImage == UILoginImage.Login1) BackgroundImage = Resources.Login1;
-                    if (loginImage == UILoginImage.Login2) BackgroundImage = Resources.Login2;
-                    if (loginImage == UILoginImage.Login3) BackgroundImage = Resources.Login3;
-                    if (loginImage == UILoginImage.Login4) BackgroundImage = Resources.Login4;
-                    if (loginImage == UILoginImage.Login5) BackgroundImage = Resources.Login5;
-                    if (loginImage == UILoginImage.Login6) BackgroundImage = Resources.Login6;
+                    if (loginImage == UILoginImage.Login1) BackgroundImage = Sunny.UI.Properties.Resources.Login1;
+                    if (loginImage == UILoginImage.Login2) BackgroundImage = Sunny.UI.Properties.Resources.Login2;
+                    if (loginImage == UILoginImage.Login3) BackgroundImage = Sunny.UI.Properties.Resources.Login3;
+                    if (loginImage == UILoginImage.Login4) BackgroundImage = Sunny.UI.Properties.Resources.Login4;
+                    if (loginImage == UILoginImage.Login5) BackgroundImage = Sunny.UI.Properties.Resources.Login5;
+                    if (loginImage == UILoginImage.Login6) BackgroundImage = Sunny.UI.Properties.Resources.Login6;
                 }
             }
         }

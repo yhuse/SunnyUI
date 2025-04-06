@@ -249,9 +249,9 @@ namespace Sunny.UI
                 {
                     Angle angle = Angles[pieIndex][azIndex];
                     PointF pf = angle.Center;
-                    if (Drawing.CalcDistance(e.Location, pf) > angle.Outer) continue;
-                    if (Drawing.CalcDistance(e.Location, pf) < angle.Inner) continue;
-                    double az = Drawing.CalcAngle(e.Location, pf);
+                    if (e.Location.CalcDistance(pf) > angle.Outer) continue;
+                    if (e.Location.CalcDistance(pf) < angle.Inner) continue;
+                    double az = e.Location.CalcAngle(pf);
                     if (az >= angle.Start && az <= angle.Start + angle.Sweep)
                     {
                         SetPieAndAzIndex(pieIndex, azIndex);

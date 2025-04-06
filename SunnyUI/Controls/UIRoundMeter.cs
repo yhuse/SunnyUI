@@ -22,7 +22,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Sunny.UI.Properties;
 
 namespace Sunny.UI
 {
@@ -45,7 +44,7 @@ namespace Sunny.UI
             Custom,
 
             /// <summary>
-            /// The GPS
+            /// The Gps
             /// </summary>
             Gps,
 
@@ -133,14 +132,14 @@ namespace Sunny.UI
 
                 if (value == TMeterType.Gps)
                 {
-                    BackgroundImage = Resources.gps1;
-                    AngleImage = Resources.gps_postion;
+                    BackgroundImage = Sunny.UI.Properties.Resources.gps1;
+                    AngleImage = Sunny.UI.Properties.Resources.gps_postion;
                 }
 
                 if (value == TMeterType.Wind)
                 {
-                    BackgroundImage = Resources.wind;
-                    AngleImage = Resources.wind_postion;
+                    BackgroundImage = Sunny.UI.Properties.Resources.wind;
+                    AngleImage = Sunny.UI.Properties.Resources.wind_postion;
                 }
 
                 Invalidate();

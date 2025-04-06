@@ -210,10 +210,11 @@ namespace Sunny.UI
 
             string thisFullName = form.GetType().FullName;
             string section = "Info";
-            string inifile = Dir.CurrentDir() + "Language\\" + thisFullName + ".ini";
-            if (!File.Exists(inifile)) return;
+            string fullName = Dir.CurrentDir() + "Language\\" + thisFullName + ".ini";
+            if (!File.Exists(fullName)) return;
             IniFile ini = new IniFile(Dir.CurrentDir() + "Language\\" + thisFullName + ".ini", System.Text.Encoding.UTF8);
-            int count = ini.ReadInt("Controls", "Count", 0);
+            string readString = ini.ReadString("Controls", "Count", "");
+            if (!int.TryParse(readString, out int count)) return;
             if (count == 0) return;
 
             string key = UIStyles.CultureInfo.LCID.ToString() + ".Name";

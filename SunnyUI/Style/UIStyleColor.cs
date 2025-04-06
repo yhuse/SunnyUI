@@ -419,7 +419,7 @@ namespace Sunny.UI
 
         public override string ToString()
         {
-            return Name.DisplayText();
+            return Name.Description();
         }
 
         public virtual bool BuiltIn => true;

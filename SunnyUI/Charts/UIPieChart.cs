@@ -274,9 +274,9 @@ namespace Sunny.UI
                 if (!e.Location.InRect(rect)) continue;
 
                 PointF pf = new PointF(rect.Left + rect.Width / 2.0f, rect.Top + rect.Height / 2.0f);
-                if (Drawing.CalcDistance(e.Location, pf) * 2 > rect.Width) continue;
+                if (e.Location.CalcDistance(pf) * 2 > rect.Width) continue;
 
-                double az = Drawing.CalcAngle(e.Location, pf);
+                double az = e.Location.CalcAngle(pf);
                 for (int azIndex = 0; azIndex < Option.Series[pieIndex].Data.Count; azIndex++)
                 {
                     Angle angle = Angles[pieIndex][azIndex];

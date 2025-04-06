@@ -22,9 +22,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 #pragma warning disable 1591
 
@@ -32,7 +32,7 @@ namespace Sunny.UI
 {
     public class Thunder : IDisposable
     {
-        private readonly Timer timer;
+        private readonly System.Windows.Forms.Timer timer;
         private bool Exit;
 
         public delegate void OnTaskInfoChange(object sender, ThunderTask task);
@@ -52,7 +52,7 @@ namespace Sunny.UI
         public Thunder()
         {
             InitSuccess = ThunderDll.Init();
-            timer = new Timer();
+            timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -512,7 +512,7 @@ namespace Sunny.UI
 
             public override string ToString()
             {
-                return Status.DisplayText() + "，已完成：" + (Percent * 100.0f).ToString("F2") + "%，速度：" + Speed + "KB/s";
+                return Status.Description() + "，已完成：" + (Percent * 100.0f).ToString("F2") + "%，速度：" + Speed + "KB/s";
             }
         }
 
@@ -524,43 +524,43 @@ namespace Sunny.UI
             /// <summary>
             /// 无
             /// </summary>
-            [DisplayText("无")]
+            [Description("无")]
             NOITEM = 0,
 
             /// <summary>
             /// 错误
             /// </summary>
-            [DisplayText("错误")]
+            [Description("错误")]
             TSC_ERROR,
 
             /// <summary>
             /// 暂停
             /// </summary>
-            [DisplayText("暂停")]
+            [Description("暂停")]
             TSC_PAUSE,
 
             /// <summary>
             /// 下载
             /// </summary>
-            [DisplayText("下载中")]
+            [Description("下载中")]
             TSC_DOWNLOAD,
 
             /// <summary>
             /// 完成
             /// </summary>
-            [DisplayText("完成")]
+            [Description("完成")]
             TSC_COMPLETE,
 
             /// <summary>
             /// 停止开始
             /// </summary>
-            [DisplayText("已开始")]
+            [Description("已开始")]
             TSC_STARTENDING,
 
             /// <summary>
             /// 停止完成
             /// </summary>
-            [DisplayText("已停止")]
+            [Description("已停止")]
             TSC_STOPENDING
         }
 

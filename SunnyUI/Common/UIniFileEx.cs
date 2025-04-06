@@ -1,6 +1,6 @@
 ﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
- * CopyRight (C) 2012-2025 ShenYongHua(沈永华).
+ * CopyRight (C) 2012-2023 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
  *
  * Blog:   https://www.cnblogs.com/yhuse
@@ -11,223 +11,206 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIniFile.cs
- * 文件说明: INI 文件读取类
+ * 文件名称: UIniFileEx.cs
+ * 文件说明: INI 文件读取类（不用WinAPI）
  * 当前版本: V3.1
- * 创建日期: 2020-01-01
+ * 创建日期: 2021-10-27
  *
- * 2020-01-01: V2.2.0 增加文件说明
- * 2022-11-01: V3.2.6 增加读取字符串长度到4096，增加文件编码
- * 2023-07-07: V3.3.9 将文件版本和文件编码写入文件头部
- * 2023-08-11: v3.4.1 增加了文件绝对路径判断和文件夹是否存在判断
+ * 2021-10-27: V2.2.0 增加文件说明
 ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using Sunny.UI.Win32;
+using System.Text.RegularExpressions;
 
 namespace Sunny.UI
 {
-    /// <summary>
-    /// INI 文件读取基类
-    /// </summary>
-    public abstract class IniBase : IDisposable
+    public class IniFileEx
     {
+        private readonly Dictionary<string, NameValueCollection> data = new Dictionary<string, NameValueCollection>();
+
+        private static readonly Regex regRemoveEmptyLines =
+            new Regex
+            (
+                @"(\s*;[\d\D]*?\r?\n)+|\r?\n(\s*\r?\n)*",
+                RegexOptions.Multiline | RegexOptions.Compiled
+            );
+
+        private static readonly Regex regParseIniData =
+            new Regex
+            (
+                @"
+                (?<IsSection>
+                    ^\s*\[(?<SectionName>[^\]]+)?\]\s*$
+                )
+                |
+                (?<IsKeyValue>
+                    ^\s*(?<Key>[^(\s*\=\s*)]+)?\s*\=\s*(?<Value>[\d\D]*)$
+                )",
+                RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace
+            );
+
+        public IniFileEx(string fileName) : this(fileName, Encoding.Default) { }
+
+        public IniFileEx(string fileName, Encoding encoding)
+        {
+            FileName = fileName;
+            Encoding = encoding;
+            using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            ReadIniData(fs, encoding);
+        }
+
         /// <summary>
         /// 文件名
         /// </summary>
         [Description("文件名")]
         public string FileName { get; set; } //INI文件名
 
-        /// <summary>
-        /// Ini文件编码格式
-        /// </summary>
-        public Encoding IniEncoding { get; set; } = Encoding.Default;
+        public Encoding Encoding { get; set; }
 
-        /// <summary>
-        /// 类的构造函数，文件名必须是完全路径，不能是相对路径
-        /// </summary>
-        /// <param name="fileName">文件名</param>
-        public IniBase(string fileName)
+        private void ReadIniData(Stream stream, Encoding encoding)
         {
-            if (!fileName.Contains(":"))
+            string lastSection = string.Empty;
+            data.Add(lastSection, new NameValueCollection());
+            if (stream != null && encoding != null)
             {
-                throw new ArgumentException("The file name must be an absolute path.");
-            }
+                using StreamReader reader = new StreamReader(stream, encoding);
+                string iniData = reader.ReadToEnd();
 
-            //必须是完全路径，不能是相对路径
-            FileName = fileName;
+                iniData = regRemoveEmptyLines.Replace(iniData, "\n");
+                string[] lines = iniData.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-            FileInfo fi = new FileInfo(FileName);
-            Dir.CreateDir(fi.DirectoryName);
-
-            if (!Directory.Exists(fi.DirectoryName))
-            {
-                throw new ArgumentException("Folder does not exist: " + fi.DirectoryName);
-            }
-
-            // 判断文件是否存在
-            if (!File.Exists(fileName))
-            {
-                //文件不存在，建立文件
-                using (StreamWriter sw = new StreamWriter(fileName, false, IniEncoding))
+                foreach (string s in lines)
                 {
-                    sw.WriteLine(";<?Ini Version=\"" + UIGlobal.Version + "\" Encoding=\"" + Encoding.UTF8.BodyName + "\"?>");
-                    sw.WriteLine("");
+                    Match m = regParseIniData.Match(s);
+                    if (m.Success)
+                    {
+                        if (m.Groups["IsSection"].Length > 0)
+                        {
+                            string sName = m.Groups["SectionName"].Value.ToLowerInvariant();
+                            if (lastSection != sName)
+                            {
+                                lastSection = sName;
+                                if (!data.ContainsKey(sName))
+                                {
+                                    data.Add(sName, new NameValueCollection());
+                                }
+                            }
+                        }
+                        else if (m.Groups["IsKeyValue"].Length > 0)
+                        {
+                            data[lastSection].Add(m.Groups["Key"].Value, m.Groups["Value"].Value);
+                        }
+                    }
                 }
             }
         }
 
-        public IniBase(string fileName, Encoding encoding) : this(fileName)
-        {
-            IniEncoding = encoding;
-        }
-
-        /// <summary>
-        /// 确保资源的释放
-        /// </summary>
-        ~IniBase()
-        {
-            ReleaseUnmanagedResources();
-        }
-
-        private void ReleaseUnmanagedResources()
-        {
-            UpdateFile();
-        }
-
-        /// <summary>
-        /// 析构函数
-        /// </summary>
-        public void Dispose()
-        {
-            ReleaseUnmanagedResources();
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// 写字符串
-        /// </summary>
-        /// <param name="section">The section.</param>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        /// <returns>结果</returns>
-        public bool Write(string section, string key, string value)
-        {
-            if (value == null)
-            {
-                value = "";
-            }
-
-            return Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(value), FileName);
-        }
-
-        /// <summary>
-        /// 读取字符串
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public string ReadString(string section, string key, string Default)
-        {
-            return Read(section, key, Default);
-        }
-
-        /// <summary>
-        /// 读取字符串
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public string Read(string section, string key, string Default)
-        {
-            byte[] buffer = new byte[4096 * 16];
-            if (Default == null)
-            {
-                Default = "";
-            }
-
-            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), IniEncoding.GetBytes(Default), buffer, buffer.Length, FileName);
-            //必须设定0（系统默认的代码页）的编码方式，否则无法支持中文
-            return IniEncoding.GetString(buffer, 0, bufLen).Trim();
-        }
-
-        /// <summary>
-        /// 获取指定的Section名称中的所有Key
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <returns>结果</returns>
-        public string[] GetKeys(string section)
-        {
-            StringCollection keyList = new StringCollection();
-            GetKeys(section, keyList);
-            return keyList.Cast<string>().ToArray();
-        }
-
-        /// <summary>
-        /// 从Ini文件中，读取所有的Sections的名称
-        /// </summary>
-        public string[] Sections
+        public NameValueCollection this[string section]
         {
             get
             {
-                StringCollection keyList = new StringCollection();
-                GetSections(keyList);
-                return keyList.Cast<string>().ToArray();
+                section = section.ToLowerInvariant();
+                if (!data.ContainsKey(section))
+                    data.Add(section, new NameValueCollection());
+                return data[section];
             }
         }
 
-        /// <summary>
-        /// 从Ini文件中，将指定的Section名称中的所有Key添加到列表中
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="keys">keys</param>
-        private void GetKeys(string section, StringCollection keys)
+        public string this[string section, string key]
         {
-            byte[] buffer = new byte[65535];
-            int bufLen = Kernel.GetPrivateProfileString(IniEncoding.GetBytes(section), null, null, buffer, 65535, FileName);
-            //对Section进行解析
-            GetStringsFromBuffer(buffer, bufLen, keys);
+            get => this[section][key];
+            set => this[section][key] = value;
         }
 
-        private void GetStringsFromBuffer(byte[] buffer, int bufLen, StringCollection strings)
+        public object this[string section, string key, Type t]
         {
-            strings.Clear();
-            if (bufLen == 0)
+            get
             {
-                return;
+                if (t == null || t == (Type)Type.Missing)
+                    return this[section][key];
+                return GetValue(section, key, null, t);
             }
-
-            int start = 0;
-            for (int i = 0; i < bufLen; i++)
+            set
             {
-                if ((buffer[i] == 0) && ((i - start) > 0))
+                if (t == null || t == (Type)Type.Missing)
+                    this[section][key] = string.Empty;
+                else
+                    SetValue(section, key, value);
+            }
+        }
+
+        public string[] KeyNames(string section)
+        {
+            return this[section].AllKeys;
+        }
+
+        public string[] SectionValues(string section)
+        {
+            return this[section].GetValues(0);
+        }
+
+        private object GetValue(string section, string key, object defaultValue, Type t)
+        {
+            section = section.ToLowerInvariant();
+            key = key.ToLowerInvariant();
+            if (!data.ContainsKey(section)) return defaultValue;
+            string v = data[section][key];
+            if (string.IsNullOrEmpty(v)) return defaultValue;
+            TypeConverter conv = TypeDescriptor.GetConverter(t);
+            if (!conv.CanConvertFrom(typeof(string))) return defaultValue;
+
+            try
+            {
+                return conv.ConvertFrom(v);
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        private T GetValue<T>(string section, string key, T defaultValue)
+        {
+            return (T)GetValue(section, key, defaultValue, typeof(T));
+        }
+
+        private void SetValue(string section, string key, object value)
+        {
+            if (value == null)
+            {
+                this[section][key] = string.Empty;
+            }
+            else
+            {
+                TypeConverter conv = TypeDescriptor.GetConverter(value);
+                if (!conv.CanConvertTo(typeof(string)))
                 {
-                    string s = IniEncoding.GetString(buffer, start, i - start);
-                    strings.Add(s);
-                    start = i + 1;
+                    this[section][key] = value.ToString();
+                }
+                else
+                {
+                    this[section][key] = (string)conv.ConvertTo(value, typeof(string));
                 }
             }
+
+            UpdateFile();
         }
 
-        /// <summary>
-        /// 从Ini文件中，读取所有的Sections的名称
-        /// </summary>
-        /// <param name="sectionList">sectionList</param>
-        private void GetSections(StringCollection sectionList)
+        public void Write(string section, string key, string value)
         {
-            //Note:必须得用Bytes来实现，StringBuilder只能取到第一个Section
-            byte[] buffer = new byte[65535];
-            int bufLen = Kernel.GetPrivateProfileString(null, null, null, buffer, buffer.GetUpperBound(0), FileName);
-            GetStringsFromBuffer(buffer, bufLen, sectionList);
+            SetValue(section, key, value);
+        }
+
+        public string Read(string section, string key, string Default)
+        {
+            return GetValue(section, key, Default);
         }
 
         /// <summary>
@@ -236,69 +219,113 @@ namespace Sunny.UI
         /// <param name="section">section</param>
         public NameValueCollection GetSectionValues(string section)
         {
-            NameValueCollection values = new NameValueCollection();
-            StringCollection keyList = new StringCollection();
-            GetKeys(section, keyList);
-            values.Clear();
-            foreach (string key in keyList)
-            {
-                values.Add(key, Read(section, key, ""));
-            }
-
-            return values;
+            return this[section];
         }
 
-        /// <summary>
-        /// 清除某个Section
-        /// </summary>
-        /// <param name="section">section</param>
-        public void EraseSection(string section)
-        {
-            if (!Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), null, null, FileName))
-            {
-                throw (new ApplicationException("无法清除Ini文件中的Section"));
-            }
-        }
-
-        /// <summary>
-        /// 删除某个Section下的键
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        public void DeleteKey(string section, string key)
-        {
-            Kernel.WritePrivateProfileString(IniEncoding.GetBytes(section), IniEncoding.GetBytes(key), null, FileName);
-        }
-
-        /// <summary>
-        /// Note:对于Win9X，来说需要实现UpdateFile方法将缓冲中的数据写入文件
-        /// 在Win NT, 2000和XP上，都是直接写文件，没有缓冲，所以，无须实现UpdateFile
-        /// 执行完对Ini文件的修改之后，应该调用本方法更新缓冲区。
-        /// </summary>
         public void UpdateFile()
         {
-            Kernel.WritePrivateProfileString(null, null, null, FileName);
+            Save();
+        }
+
+        public void Save()
+        {
+            Save(FileName, Encoding);
+        }
+
+        public void Save(string fileName, Encoding encoding)
+        {
+            using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            Save(fs, encoding);
+        }
+
+        private void Save(Stream stream, Encoding encoding)
+        {
+            using StreamWriter sw = new StreamWriter(stream, encoding);
+            foreach (var cur in data)
+            {
+                if (!string.IsNullOrEmpty(cur.Key))
+                {
+                    sw.WriteLine("[{0}]", cur.Key);
+                }
+
+                NameValueCollection col = cur.Value;
+                foreach (string key in col.Keys)
+                {
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        string value = col[key];
+                        if (!string.IsNullOrEmpty(value))
+                            sw.WriteLine("{0}={1}", key, value);
+                    }
+                }
+            }
+
+            sw.Flush();
+        }
+
+        public bool HasSection(string section)
+        {
+            return data.ContainsKey(section.ToLowerInvariant());
+        }
+
+        public bool HasKey(string section, string key)
+        {
+            return
+                data.ContainsKey(section) &&
+                !string.IsNullOrEmpty(data[section][key]);
         }
 
         /// <summary>
-        /// 检查某个Section下的某个键值是否存在
+        /// 写结构
         /// </summary>
         /// <param name="section">section</param>
         /// <param name="key">key</param>
-        /// <returns>结果</returns>
-        public bool KeyExists(string section, string key)
+        /// <param name="value">value</param>
+        /// <typeparam name="T">T</typeparam>
+        public void WriteStruct<T>(string section, string key, T value) where T : struct
         {
-            StringCollection keys = new StringCollection();
-            GetKeys(section, keys);
-            return keys.IndexOf(key) > -1;
+            Write(section, key, value.ToBytes());
         }
-    }
 
-    /// <summary>
-    /// IniFile的类
-    /// </summary>
-    public class IniFile : IniBase
-    {
+        /// <summary>
+        /// 读结构
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="section">section</param>
+        /// <param name="key">key</param>
+        /// <param name="Default">Normal</param>
+        /// <returns>结果</returns>
+        public T ReadStruct<T>(string section, string key, T Default) where T : struct
+        {
+            //得到结构体的大小
+            int size = StructEx.Size(Default);
+            byte[] bytes = Read(section, key, "").ToHexBytes();
+            return size > bytes.Length ? Default : bytes.ToStruct<T>();
+        }
+
+        /// <summary>
+        /// 写Byte数组
+        /// </summary>
+        /// <param name="section">section</param>
+        /// <param name="key">key</param>
+        /// <param name="value">value</param>
+        public void Write(string section, string key, byte[] value)
+        {
+            Write(section, key, value.ToHexString());
+        }
+
+        /// <summary>
+        /// 读Byte数组
+        /// </summary>
+        /// <param name="section">section</param>
+        /// <param name="key">key</param>
+        /// <param name="Default">Normal</param>
+        /// <returns>结果</returns>
+        public byte[] ReadBytes(string section, string key, byte[] Default)
+        {
+            return Read(section, key, Default.ToHexString()).ToHexBytes();
+        }
+
         /// <summary>
         /// 写Char
         /// </summary>
@@ -758,24 +785,6 @@ namespace Sunny.UI
         {
             string str = Read(section, key, "");
             return (Color)ConvertEx.StringToObject(str, typeof(Color), Default);
-        }
-
-        /// <summary>
-        /// 类的构造函数，文件名必须是完全路径，不能是相对路径
-        /// </summary>
-        /// <param name="fileName">文件名</param>
-        public IniFile(string fileName) : base(fileName)
-        {
-        }
-
-        /// <summary>
-        /// 类的构造函数，文件名必须是完全路径，不能是相对路径
-        /// </summary>
-        /// <param name="fileName">文件名</param>
-        /// <param name="encoding">文件编码</param>
-        public IniFile(string fileName, Encoding encoding) : base(fileName, encoding)
-        {
-
         }
     }
 }
