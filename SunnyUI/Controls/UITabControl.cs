@@ -38,6 +38,7 @@
  * 2024-12-12: V3.8.0 增加未选页签颜色 #IB7U69
  * 2025-02-07: V3.8.1 修复切换主题色时，TabPage 未设置背景色，#IBKDR7
  * 2025-02-13: V3.8.1 增加标签页分割线属性 ShowTabDivider，#IBLERL
+ * 2025-04-17: V3.8.3 修复不可关闭的主页被关闭了 #IC1XIU
 ******************************************************************************/
 
 using System;
@@ -819,7 +820,6 @@ namespace Sunny.UI
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
             int removeIndex = -1;
             for (int index = 0; index <= TabCount - 1; index++)
             {
@@ -838,27 +838,26 @@ namespace Sunny.UI
             }
 
             TabPage tabPage = TabPages[removeIndex];
+            if (tabPage.Text == MainPage) return;
             UIPage uiPage = Helper.GetPage(tabPage);
-            bool show1 = tabPage.Text != MainPage;
-            bool show2 = uiPage == null || !uiPage.AlwaysOpen;
-            bool showButton = show1 && show2;
-            if (showButton)
+            if (uiPage == null) return;
+            if (uiPage.Text == MainPage) return;
+            if (uiPage.AlwaysOpen) return;
+
+            if (ShowCloseButton)
             {
-                if (ShowCloseButton)
+                if (BeforeRemoveTabPage == null || BeforeRemoveTabPage.Invoke(this, removeIndex))
+                {
+                    RemoveTabPage(removeIndex);
+                }
+            }
+            else if (ShowActiveCloseButton && removeIndex == SelectedIndex)
+            {
+                if (DrawedIndex == removeIndex)
                 {
                     if (BeforeRemoveTabPage == null || BeforeRemoveTabPage.Invoke(this, removeIndex))
                     {
                         RemoveTabPage(removeIndex);
-                    }
-                }
-                else if (ShowActiveCloseButton && removeIndex == SelectedIndex)
-                {
-                    if (DrawedIndex == removeIndex)
-                    {
-                        if (BeforeRemoveTabPage == null || BeforeRemoveTabPage.Invoke(this, removeIndex))
-                        {
-                            RemoveTabPage(removeIndex);
-                        }
                     }
                 }
             }
