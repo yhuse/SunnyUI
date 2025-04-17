@@ -39,6 +39,7 @@
 * 2023-11-16: V3.5.2 重构主题
 * 2024-04-13: V3.6.5 修复通过代码设置背景色无效的问题
 * 2024-05-17: V3.6.6 防止控件闪烁
+* 2025-04-17: V3.8.2 增加节点文字居中的属性
 ******************************************************************************/
 
 using System;
@@ -104,6 +105,22 @@ namespace Sunny.UI
 
             selectedForeColor = UIStyles.Blue.NavMenuMenuSelectedColor;
             selectedHighColor = UIStyles.Blue.NavMenuMenuSelectedColor;
+        }
+
+        private NodeTextAlign _nodeTextAlign = NodeTextAlign.Left;
+
+        [DefaultValue(NodeTextAlign.Left), Category("SunnyUI"), Description("节点文字显示位置")]
+        public NodeTextAlign NodeTextAlign
+        {
+            get => _nodeTextAlign;
+            set
+            {
+                if (_nodeTextAlign != value)
+                {
+                    _nodeTextAlign = value;
+                    Invalidate();
+                }
+            }
         }
 
         protected override void OnHandleCreated(EventArgs e)
@@ -697,13 +714,25 @@ namespace Sunny.UI
                         e.Graphics.FillRectangle(SelectedColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
                     }
 
-                    e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    if (NodeTextAlign == NodeTextAlign.Left)
+                        e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    if (NodeTextAlign == NodeTextAlign.TextAreaCenter)
+                        e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleCenter);
+                    if (NodeTextAlign == NodeTextAlign.Center)
+                        e.Graphics.DrawString(e.Node.Text, Font, SelectedForeColor, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, ItemHeight), ContentAlignment.MiddleCenter);
+
                     e.Graphics.FillRectangle(SelectedHighColor, new Rectangle(0, e.Bounds.Y, 4, e.Bounds.Height));
                 }
                 else if (e.Node == CurrentNode && (e.State & TreeNodeStates.Hot) != 0)
                 {
                     e.Graphics.FillRectangle(HoverColor, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+
+                    if (NodeTextAlign == NodeTextAlign.Left)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    if (NodeTextAlign == NodeTextAlign.TextAreaCenter)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleCenter);
+                    if (NodeTextAlign == NodeTextAlign.Center)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, ItemHeight), ContentAlignment.MiddleCenter);
                 }
                 else
                 {
@@ -714,7 +743,13 @@ namespace Sunny.UI
                     }
 
                     e.Graphics.FillRectangle(color, new Rectangle(new Point(0, e.Node.Bounds.Y), new Size(Width, e.Node.Bounds.Height)));
-                    e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+
+                    if (NodeTextAlign == NodeTextAlign.Left)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleLeft);
+                    if (NodeTextAlign == NodeTextAlign.TextAreaCenter)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(drawLeft, e.Bounds.Y, e.Bounds.Width - drawLeft, ItemHeight), ContentAlignment.MiddleCenter);
+                    if (NodeTextAlign == NodeTextAlign.Center)
+                        e.Graphics.DrawString(e.Node.Text, Font, ForeColor, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, ItemHeight), ContentAlignment.MiddleCenter);
                 }
 
                 //画右侧图标

@@ -205,6 +205,13 @@ namespace Sunny.UI
         }
     }
 
+    public enum NodeTextAlign
+    {
+        Left,
+        Center,
+        TextAreaCenter
+    }
+
     public class NavMenuItem : ISymbol
     {
         public string Text { get; set; }
