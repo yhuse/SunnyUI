@@ -50,6 +50,7 @@
  * 2024-06-19: V3.6.7 增加AddDateTimeColumn，解决默认时间列不显示秒数的问题
  * 2024-08-27: V3.7.0 增加属性AutoScrollToBottom，数据更新时是否自动滚动到最后一行
  * 2024-09-04: V3.7.0 解决有隐藏行时，滚动条滚动时出错的问题
+ * 2025-04-21: V3.8.3 修复数据更新时是否自动滚动到最后一行
 ******************************************************************************/
 
 using System;
@@ -1096,7 +1097,7 @@ namespace Sunny.UI
                 //选中最后一行
                 this.Rows[this.RowCount - 1].Selected = true;
                 //滚动到最后一行
-                SetRowHeight(this.RowCount - 1);
+                this.FirstDisplayedScrollingRowIndex = this.RowCount - 1;
                 //如果需要滚动到底部（右侧），使用下面的代码
                 //this.FirstDisplayedCell = this.Rows[this.RowCount - 1].Cells[this.Columns.Count - 1];
             }
