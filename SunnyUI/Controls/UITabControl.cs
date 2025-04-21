@@ -39,6 +39,7 @@
  * 2025-02-07: V3.8.1 修复切换主题色时，TabPage 未设置背景色，#IBKDR7
  * 2025-02-13: V3.8.1 增加标签页分割线属性 ShowTabDivider，#IBLERL
  * 2025-04-17: V3.8.3 修复不可关闭的主页被关闭了 #IC1XIU
+ * 2025-04-21: V3.8.3 更新部分注释
 ******************************************************************************/
 
 using System;
@@ -378,9 +379,9 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 边框颜色
+        /// 标签页默认背景颜色
         /// </summary>
-        [Description("边框颜色"), Category("SunnyUI")]
+        [Description("标签页默认背景颜色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color TabBackColor
         {
@@ -399,7 +400,7 @@ namespace Sunny.UI
         private Color tabSelectedColor = Color.FromArgb(36, 36, 36);
 
         /// <summary>
-        /// 边框颜色
+        /// 选中Tab页背景色
         /// </summary>
         [Description("选中Tab页背景色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "36, 36, 36")]
@@ -420,9 +421,9 @@ namespace Sunny.UI
         private Color tabUnSelectedColor = Color.FromArgb(56, 56, 56);
 
         /// <summary>
-        /// 边框颜色
+        /// 未选中Tab页背景色
         /// </summary>
-        [Description("选中Tab页背景色"), Category("SunnyUI")]
+        [Description("未选中Tab页背景色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "56, 56, 56")]
         public Color TabUnSelectedColor
         {
@@ -441,7 +442,7 @@ namespace Sunny.UI
         private Color tabSelectedForeColor = UIColor.Blue;
 
         /// <summary>
-        /// 边框颜色
+        /// 选中Tab页字体色
         /// </summary>
         [Description("选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
@@ -461,7 +462,7 @@ namespace Sunny.UI
         private Color tabUnSelectedForeColor = Color.FromArgb(240, 240, 240);
 
         /// <summary>
-        /// 边框颜色
+        /// 未选中Tab页字体色
         /// </summary>
         [Description("未选中Tab页字体色"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "240, 240, 240")]
@@ -482,7 +483,7 @@ namespace Sunny.UI
         private Color tabSelectedHighColor = UIColor.Blue;
 
         /// <summary>
-        /// 边框颜色
+        /// 选中Tab页高亮
         /// </summary>
         [Description("选中Tab页高亮"), Category("SunnyUI")]
         [DefaultValue(typeof(Color), "80, 160, 255")]
