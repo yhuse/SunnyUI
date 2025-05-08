@@ -5,7 +5,6 @@
         public UIProcessIndicatorForm()
         {
             InitializeComponent();
-            timer1.Start();
             uiProgressIndicator1.Active = true;
         }
 

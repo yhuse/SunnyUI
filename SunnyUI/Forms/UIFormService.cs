@@ -27,11 +27,16 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="size"></param>
-        public static void ShowProcessForm(this Form owner, int size = 200, bool showrect = true)
+        /// <param name="showRect"></param>
+        /// <param name="centerScreen"></param>
+        public static void ShowProcessForm(this Form owner, int size = 200, bool showRect = true, bool centerScreen = true)
         {
             if (ProcessFormService.IsRun) return;
             ProcessFormServiceClose = false;
-            ProcessFormService.CreateForm(size, showrect);
+            if (centerScreen)
+                ProcessFormService.CreateForm(size, showRect);
+            else
+                ProcessFormService.CreateForm(owner, size, showRect);
         }
 
         internal static bool ProcessFormServiceClose;
@@ -47,12 +52,17 @@ namespace Sunny.UI
         /// <summary>
         /// 显示等待提示窗
         /// </summary>
+        /// <param name="owner"></param>
         /// <param name="desc">描述文字</param>
-        public static void ShowWaitForm(this Form owner, string desc = "系统正在处理中，请稍候...")
+        /// <param name="centerScreen"></param>
+        public static void ShowWaitForm(this Form owner, string desc = "系统正在处理中，请稍候...", bool centerScreen = true)
         {
             if (WaitFormService.IsRun) return;
             WaitFormServiceClose = false;
-            WaitFormService.CreateForm(desc);
+            if (centerScreen)
+                WaitFormService.CreateForm(desc);
+            else
+                WaitFormService.CreateForm(owner, desc);
         }
 
         internal static bool WaitFormServiceClose;
@@ -81,11 +91,14 @@ namespace Sunny.UI
         /// <param name="desc">描述文字</param>
         /// <param name="maximum">最大进度值</param>
         /// <param name="decimalCount">显示进度条小数个数</param>
-        public static void ShowStatusForm(this Form owner, int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1)
+        public static void ShowStatusForm(this Form owner, int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1, bool centerScreen = true)
         {
             if (StatusFormService.IsRun) return;
             StatusFormServiceClose = false;
-            StatusFormService.CreateForm(maximum, desc, decimalCount);
+            if (centerScreen)
+                StatusFormService.CreateForm(maximum, desc, decimalCount);
+            else
+                StatusFormService.CreateForm(owner, maximum, desc, decimalCount);
         }
 
         internal static bool StatusFormServiceClose;
@@ -136,6 +149,29 @@ namespace Sunny.UI
             thread.Start();
         }
 
+        public void CreateForm(Form owner, string desc)
+        {
+            thread = new Thread(delegate ()
+            {
+                form = new UIWaitForm(desc);
+                form.ShowInTaskbar = false;
+                form.TopMost = true;
+
+                if (owner != null)
+                {
+                    form.StartPosition = FormStartPosition.Manual;
+                    Form parent = owner.ParentForm ?? owner;
+                    form.Left = parent.Left + (parent.Width - form.Width) / 2;
+                    form.Top = parent.Top + (parent.Height - form.Height) / 2;
+                }
+
+                form.Render();
+                if (IsRun) Application.Run(form);
+            });
+
+            thread.Start();
+        }
+
         public void SetDescription(string desc)
         {
             try
@@ -167,6 +203,31 @@ namespace Sunny.UI
 
             thread.Start();
         }
+
+        public void CreateForm(Form owner, int size = 200, bool showRect = true)
+        {
+            thread = new Thread(delegate ()
+            {
+                form = new UIProcessIndicatorForm();
+                form.ShowRect = showRect;
+                form.Size = new System.Drawing.Size(size, size);
+                form.ShowInTaskbar = false;
+                form.TopMost = true;
+
+                if (owner != null)
+                {
+                    form.StartPosition = FormStartPosition.Manual;
+                    Form parent = owner.ParentForm ?? owner;
+                    form.Left = parent.Left + (parent.Width - form.Width) / 2;
+                    form.Top = parent.Top + (parent.Height - form.Height) / 2;
+                }
+
+                form.Render();
+                Application.Run(form);
+            });
+
+            thread.Start();
+        }
     }
 
     public class UIStatusFormService : UIFormService
@@ -180,6 +241,29 @@ namespace Sunny.UI
                 form = new UIStatusForm(max, desc, decimalCount);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
+                form.Render();
+                Application.Run(form);
+            });
+
+            thread.Start();
+        }
+
+        public void CreateForm(Form owner, int max, string desc, int decimalCount = 1)
+        {
+            thread = new Thread(delegate ()
+            {
+                form = new UIStatusForm(max, desc, decimalCount);
+                form.ShowInTaskbar = false;
+                form.TopMost = true;
+
+                if (owner != null)
+                {
+                    form.StartPosition = FormStartPosition.Manual;
+                    Form parent = owner.ParentForm ?? owner;
+                    form.Left = parent.Left + (parent.Width - form.Width) / 2;
+                    form.Top = parent.Top + (parent.Height - form.Height) / 2;
+                }
+
                 form.Render();
                 Application.Run(form);
             });

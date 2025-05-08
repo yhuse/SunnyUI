@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             uiProgressIndicator1 = new UIProgressIndicator();
-            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // uiProgressIndicator1
@@ -62,6 +60,5 @@
         #endregion
 
         private UIProgressIndicator uiProgressIndicator1;
-        private System.Windows.Forms.Timer timer1;
     }
 }
