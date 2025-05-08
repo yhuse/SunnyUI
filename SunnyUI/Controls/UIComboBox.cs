@@ -28,7 +28,7 @@
  * 2022-04-16: V3.1.3 过滤下拉控跟随主题配色
  * 2022-04-20: V3.1.5 过滤文字为空时，下拉框显示所有数据列表
  * 2022-05-04: V3.1.8 过滤时修复ValueMember绑定值的显示
- * 2022-05-24: V3.1.9 Selceted=-1，清除文本
+ * 2022-05-24: V3.1.9 Selected = -1，清除文本
  * 2022-08-25: V3.2.3 下拉框边框可设置颜色
  * 2022-11-03: V3.2.6 过滤时删除字符串前面、后面的空格
  * 2022-11-13: V3.2.8 增加不显示过滤可以自动调整下拉框宽度
@@ -156,7 +156,7 @@ namespace Sunny.UI
             SelectTextChange = true;
             filterSelectedItem = filterList[(int)sender];
             filterSelectedValue = GetItemValue(filterSelectedItem);
-            Text = GetItemText(filterSelectedItem).ToString();
+            Text = GetItemText(filterSelectedItem);
             edit.SelectionStart = Text.Length;
             SelectedValueChanged?.Invoke(this, EventArgs.Empty);
             SelectTextChange = false;
@@ -222,7 +222,7 @@ namespace Sunny.UI
                             SelectTextChange = true;
                             filterSelectedItem = filterList[idx];
                             filterSelectedValue = GetItemValue(filterSelectedItem);
-                            Text = GetItemText(filterSelectedItem).ToString();
+                            Text = GetItemText(filterSelectedItem);
                             edit.SelectionStart = Text.Length;
                             SelectedValueChanged?.Invoke(this, EventArgs.Empty);
                             SelectTextChange = false;
@@ -448,7 +448,7 @@ namespace Sunny.UI
                             {
                                 if (FilterIgnoreCase)
                                 {
-                                    if (GetItemText(dataManager.List[i]).ToString().ToUpper().Contains(filterText.ToUpper()))
+                                    if (GetItemText(dataManager.List[i]).ToUpper().Contains(filterText.ToUpper()))
                                     {
                                         filterList.Add(dataManager.List[i]);
                                         if (filterList.Count > FilterMaxCount) break;
@@ -456,7 +456,7 @@ namespace Sunny.UI
                                 }
                                 else
                                 {
-                                    if (GetItemText(dataManager.List[i]).ToString().Contains(filterText))
+                                    if (GetItemText(dataManager.List[i]).Contains(filterText))
                                     {
                                         filterList.Add(dataManager.List[i]);
                                         if (filterList.Count > FilterMaxCount) break;
@@ -531,13 +531,13 @@ namespace Sunny.UI
             ValueMemberChanged?.Invoke(this, e);
         }
 
-        private void Box_DisplayMemberChanged(object sender, EventArgs e)
+        private void Box_DisplayMemberChanged(object _, EventArgs e)
         {
             DisplayMemberChanged?.Invoke(this, e);
             SetDataConnection();
         }
 
-        private void Box_DataSourceChanged(object sender, EventArgs e)
+        private void Box_DataSourceChanged(object _, EventArgs e)
         {
             DataSourceChanged?.Invoke(this, e);
             SetDataConnection();
@@ -687,6 +687,7 @@ namespace Sunny.UI
             }
             catch
             {
+                //ignore
             }
         }
 
@@ -729,7 +730,7 @@ namespace Sunny.UI
                             for (int i = 0; i < Items.Count; i++)
                             {
                                 Size sf = TextRenderer.MeasureText(Items[i].ToString(), Font);
-                                dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
+                                dropWidth = Math.Max(sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
                             }
                         }
                         else
@@ -737,7 +738,7 @@ namespace Sunny.UI
                             for (int i = 0; i < Items.Count; i++)
                             {
                                 Size sf = TextRenderer.MeasureText(dropForm.ListBox.GetItemText(Items[i]), Font);
-                                dropWidth = Math.Max((int)sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
+                                dropWidth = Math.Max(sf.Width + ScrollBarInfo.VerticalScrollBarWidth() + 6, dropWidth);
                             }
                         }
                     }
