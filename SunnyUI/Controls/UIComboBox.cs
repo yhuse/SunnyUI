@@ -44,6 +44,7 @@
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2024-11-10: V3.7.2 删除ScrollBarColor、ScrollBarBackColor、ScrollBarStyleInherited属性
  * 2025-03-18: V3.8.2 修复过滤下拉框跟随主题配色
+ * 2025-05-08: V3.8.3 非过滤且显示为列表时，增加通过鼠标滚轮选择上下行
 ******************************************************************************/
 
 using System;
@@ -85,7 +86,18 @@ namespace Sunny.UI
             DropDownWidth = 150;
             fullControlSelect = true;
 
+            this.MouseWheel += UIComboBox_MouseWheel;
+
             CreateInstance();
+        }
+
+        private void UIComboBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (!ShowFilter && DropDownStyle == UIDropDownStyle.DropDownList)
+            {
+                if (e.Delta <= -100 && SelectedIndex < Items.Count) SelectedIndex++;
+                if (e.Delta >= 100 && SelectedIndex > 0) SelectedIndex--;
+            }
         }
 
         private void ListBox_MouseClick(object sender, MouseEventArgs e)
