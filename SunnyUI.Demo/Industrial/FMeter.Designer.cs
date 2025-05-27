@@ -30,7 +30,7 @@ namespace Sunny.UI.Demo
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMeter));
-            this.uiAnalogMeter1 = new Sunny.UI.UIAnalogMeter();
+            this.uiMeter2 = new Sunny.UI.UIMeter();
             this.uiLine9 = new Sunny.UI.UILine();
             this.uiRoundMeter2 = new Sunny.UI.UIRoundMeter();
             this.uiLine6 = new Sunny.UI.UILine();
@@ -40,22 +40,48 @@ namespace Sunny.UI.Demo
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiRuler1 = new Sunny.UI.UIRuler();
             this.uiThermometer2 = new Sunny.UI.UIThermometer();
+            this.uiMeter1 = new Sunny.UI.UIMeter();
             this.SuspendLayout();
             // 
-            // uiAnalogMeter1
+            // uiMeter2
             // 
-            this.uiAnalogMeter1.BackColor = System.Drawing.Color.Transparent;
-            this.uiAnalogMeter1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiAnalogMeter1.Location = new System.Drawing.Point(381, 96);
-            this.uiAnalogMeter1.MaxValue = 100D;
-            this.uiAnalogMeter1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiAnalogMeter1.MinValue = 0D;
-            this.uiAnalogMeter1.Name = "uiAnalogMeter1";
-            this.uiAnalogMeter1.Renderer = null;
-            this.uiAnalogMeter1.Size = new System.Drawing.Size(140, 140);
-            this.uiAnalogMeter1.TabIndex = 73;
-            this.uiAnalogMeter1.Text = "uiAnalogMeter1";
-            this.uiAnalogMeter1.Value = 0D;
+            this.uiMeter2.ArcColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiMeter2.BackColor = System.Drawing.Color.Transparent;
+            this.uiMeter2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiMeter2.InnerSize = 65;
+            this.uiMeter2.Location = new System.Drawing.Point(381, 96);
+            this.uiMeter2.MaxValue = 100F;
+            this.uiMeter2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiMeter2.MinValue = 0F;
+            this.uiMeter2.Name = "uiMeter2";
+            this.uiMeter2.NeedleColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiMeter2.NeedleInner = 4;
+            this.uiMeter2.NeedleLength = 30;
+            this.uiMeter2.NeedleOuter = 10;
+            this.uiMeter2.OuterSize = 70;
+            this.uiMeter2.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiMeter2.ScaleDecimalPlaces = 0;
+            this.uiMeter2.ScaleDivisions = 10;
+            this.uiMeter2.ScaleFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiMeter2.ScaleInterval = 3;
+            this.uiMeter2.ScaleLength = 5;
+            this.uiMeter2.ScaleSubDivisions = 5;
+            this.uiMeter2.ScaleSubLength = 3;
+            this.uiMeter2.ScaleSubWidth = 1;
+            this.uiMeter2.ScaleTextInterval = 22;
+            this.uiMeter2.ScaleWidth = 2;
+            this.uiMeter2.ShowValue = true;
+            this.uiMeter2.Size = new System.Drawing.Size(140, 140);
+            this.uiMeter2.StartAngle = 225;
+            this.uiMeter2.StartPos = new System.Drawing.Point(0, 0);
+            this.uiMeter2.StopAngle = 135;
+            this.uiMeter2.TabIndex = 73;
+            this.uiMeter2.Text = "uiAnalogMeter1";
+            this.uiMeter2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiMeter2.Unit = "";
+            this.uiMeter2.Value = 0F;
+            this.uiMeter2.ValueDecimalPlaces = 2;
+            this.uiMeter2.ValueOffset = new System.Drawing.Point(0, 0);
             // 
             // uiLine9
             // 
@@ -67,7 +93,7 @@ namespace Sunny.UI.Demo
             this.uiLine9.Name = "uiLine9";
             this.uiLine9.Size = new System.Drawing.Size(319, 20);
             this.uiLine9.TabIndex = 72;
-            this.uiLine9.Text = "UIAnalogMeter";
+            this.uiLine9.Text = "UIMeter";
             this.uiLine9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiRoundMeter2
@@ -177,17 +203,58 @@ namespace Sunny.UI.Demo
             this.uiThermometer2.Text = "uiThermometer2";
             this.uiThermometer2.Value = 30;
             // 
+            // uiMeter1
+            // 
+            this.uiMeter1.ArcColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiMeter1.BackColor = System.Drawing.Color.Transparent;
+            this.uiMeter1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiMeter1.InnerSize = 130;
+            this.uiMeter1.Location = new System.Drawing.Point(381, 242);
+            this.uiMeter1.MaxValue = 100F;
+            this.uiMeter1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiMeter1.MinValue = 0F;
+            this.uiMeter1.Name = "uiMeter1";
+            this.uiMeter1.NeedleColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.uiMeter1.NeedleInner = 8;
+            this.uiMeter1.NeedleLength = 80;
+            this.uiMeter1.NeedleOuter = 20;
+            this.uiMeter1.OuterSize = 140;
+            this.uiMeter1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiMeter1.ScaleDecimalPlaces = 0;
+            this.uiMeter1.ScaleDivisions = 10;
+            this.uiMeter1.ScaleFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiMeter1.ScaleInterval = 3;
+            this.uiMeter1.ScaleLength = 5;
+            this.uiMeter1.ScaleSubDivisions = 5;
+            this.uiMeter1.ScaleSubLength = 3;
+            this.uiMeter1.ScaleSubWidth = 1;
+            this.uiMeter1.ScaleTextInterval = 22;
+            this.uiMeter1.ScaleWidth = 2;
+            this.uiMeter1.ShowValue = true;
+            this.uiMeter1.Size = new System.Drawing.Size(280, 280);
+            this.uiMeter1.StartAngle = 225;
+            this.uiMeter1.StartPos = new System.Drawing.Point(0, 0);
+            this.uiMeter1.StopAngle = 135;
+            this.uiMeter1.TabIndex = 116;
+            this.uiMeter1.Text = "uiMeter1";
+            this.uiMeter1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiMeter1.Unit = "";
+            this.uiMeter1.Value = 0F;
+            this.uiMeter1.ValueDecimalPlaces = 2;
+            this.uiMeter1.ValueOffset = new System.Drawing.Point(0, 0);
+            // 
             // FMeter
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 539);
+            this.Controls.Add(this.uiMeter1);
             this.Controls.Add(this.uiRuler1);
             this.Controls.Add(this.uiThermometer2);
             this.Controls.Add(this.uiRuler3);
             this.Controls.Add(this.uiThermometer1);
             this.Controls.Add(this.uiLine1);
-            this.Controls.Add(this.uiAnalogMeter1);
+            this.Controls.Add(this.uiMeter2);
             this.Controls.Add(this.uiLine9);
             this.Controls.Add(this.uiLine6);
             this.Controls.Add(this.uiRoundMeter2);
@@ -202,7 +269,7 @@ namespace Sunny.UI.Demo
         }
 
         #endregion
-        private UIAnalogMeter uiAnalogMeter1;
+        private UIMeter uiMeter2;
         private UILine uiLine9;
         private UIRoundMeter uiRoundMeter2;
         private UILine uiLine6;
@@ -212,5 +279,6 @@ namespace Sunny.UI.Demo
         private UILine uiLine1;
         private UIRuler uiRuler1;
         private UIThermometer uiThermometer2;
+        private UIMeter uiMeter1;
     }
 }

@@ -15,13 +15,15 @@ namespace Sunny.UI.Demo
             value++;
             uiRoundMeter1.Angle = value * 10;
             uiRoundMeter2.Angle = value * 10;
-            uiAnalogMeter1.Value = value;
+            uiMeter2.Value = value;
 
             uiThermometer1.Value = value;
             uiThermometer2.Value = value;
+
+            uiMeter1.Value = uiMeter2.Value = value;
         }
 
-        Timer timer = new Timer();
+        private Timer timer = new Timer();
         private int value;
 
         public override void Init()
