@@ -102,11 +102,11 @@ namespace Sunny.UI
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panel = new UIPanel();
             btnCancel = new UISymbolButton();
             btnOK = new UISymbolButton();
@@ -161,6 +161,7 @@ namespace Sunny.UI
             btnCancel.StyleCustomMode = true;
             btnCancel.Symbol = 361453;
             btnCancel.SymbolOffset = new System.Drawing.Point(0, 1);
+            btnCancel.SymbolSize = 22;
             btnCancel.TabIndex = 1;
             btnCancel.Text = "取消";
             btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -176,6 +177,7 @@ namespace Sunny.UI
             btnOK.Name = "btnOK";
             btnOK.Size = new System.Drawing.Size(80, 29);
             btnOK.SymbolOffset = new System.Drawing.Point(0, 1);
+            btnOK.SymbolSize = 22;
             btnOK.TabIndex = 0;
             btnOK.Text = "确定";
             btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -183,27 +185,27 @@ namespace Sunny.UI
             // 
             // dataGridView
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(243, 249, 255);
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(220, 236, 255);
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(220, 236, 255);
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EnableHeadersVisualStyles = false;
             dataGridView.Font = new System.Drawing.Font("宋体", 12F);
@@ -211,19 +213,19 @@ namespace Sunny.UI
             dataGridView.Location = new System.Drawing.Point(0, 44);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(220, 236, 255);
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(220, 236, 255);
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView.SelectedIndex = -1;
             dataGridView.Size = new System.Drawing.Size(569, 245);
             dataGridView.TabIndex = 3;
@@ -275,6 +277,7 @@ namespace Sunny.UI
             btnSearch.Size = new System.Drawing.Size(80, 29);
             btnSearch.Symbol = 361442;
             btnSearch.SymbolOffset = new System.Drawing.Point(0, 1);
+            btnSearch.SymbolSize = 22;
             btnSearch.TabIndex = 1;
             btnSearch.Text = "搜索";
             btnSearch.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);

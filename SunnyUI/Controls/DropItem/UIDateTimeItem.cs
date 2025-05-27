@@ -332,9 +332,9 @@ namespace Sunny.UI
             p3.TextAlignment = ContentAlignment.MiddleCenter;
             p3.Paint += p3_Paint;
             p3.MouseClick += p3_MouseClick;
+            p3.MouseDoubleClick += P3_MouseDoubleClick;
             p3.MouseLeave += p3_MouseLeave;
             p3.MouseMove += p3_MouseMove;
-            p3.MouseDoubleClick += P3_MouseDoubleClick;
             // 
             // sb
             // 
@@ -466,7 +466,8 @@ namespace Sunny.UI
             btnCancel.Padding = new Padding(28, 0, 0, 0);
             btnCancel.Size = new Size(74, 27);
             btnCancel.Style = UIStyle.Custom;
-            btnCancel.Symbol = 0;
+            btnCancel.Symbol = 361453;
+            btnCancel.SymbolSize = 22;
             btnCancel.TabIndex = 30;
             btnCancel.Text = "取消";
             btnCancel.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
@@ -482,7 +483,7 @@ namespace Sunny.UI
             btnOK.Padding = new Padding(28, 0, 0, 0);
             btnOK.Size = new Size(74, 27);
             btnOK.Style = UIStyle.Custom;
-            btnOK.Symbol = 0;
+            btnOK.SymbolSize = 22;
             btnOK.TabIndex = 29;
             btnOK.Text = "确定";
             btnOK.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);

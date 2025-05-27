@@ -457,6 +457,7 @@ namespace Sunny.UI
             btnOK.Size = new Size(95, 26);
             btnOK.Style = UIStyle.Custom;
             btnOK.SymbolOffset = new Point(0, 1);
+            btnOK.SymbolSize = 22;
             btnOK.TabIndex = 12;
             btnOK.Text = "确定";
             btnOK.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
@@ -474,6 +475,7 @@ namespace Sunny.UI
             btnCancel.Style = UIStyle.Custom;
             btnCancel.Symbol = 361453;
             btnCancel.SymbolOffset = new Point(0, 1);
+            btnCancel.SymbolSize = 22;
             btnCancel.TabIndex = 13;
             btnCancel.Text = "取消";
             btnCancel.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
