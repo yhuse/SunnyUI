@@ -102,4 +102,16 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
+      <PackageReference Include="NETool">
+        <Version>1.6.4</Version>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+      <PackageReference Include="NETool">
+        <Version>1.6.4</Version>
+      </PackageReference>
+    </ItemGroup>
+
 </Project>
