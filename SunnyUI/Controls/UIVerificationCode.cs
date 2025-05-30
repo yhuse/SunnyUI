@@ -20,6 +20,7 @@
  * 2023-05-16: V3.3.6 重构DrawString函数
  * 2022-05-28: V3.3.7 修改字体缩放时显示
  * 2024-12-12: V3.8.0 可以自定义颜色 #IBABW1
+ * 2025-05-30: V3.8.4 修复验证码字符相同 #ICBL2X
 ******************************************************************************/
 
 using System;
@@ -121,9 +122,9 @@ namespace Sunny.UI
             }
 
             string result = "";
+            Random random = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < length; i++)
             {
-                Random random = new Random(DateTime.Now.Millisecond);
                 result += pattern[random.Next(0, pattern.Length)];
             }
 
