@@ -22,6 +22,7 @@
  * 2022-11-25: V3.2.2 重构对象
  * 2023-05-06: V3.3.6 增加了UpdateYData函数，按序号更新Y轴值
  * 2023-08-13: V3.4.1 增加了GetDataPoint，可获取曲线上的数据值
+ * 2025-06-04: V3.8.4 增加了鼠标漫游时按所有点查找数据点的方式，数据点多时慎用
 ******************************************************************************/
 
 using System;
@@ -43,8 +44,20 @@ namespace Sunny.UI
 
     public enum UISeriesDataOrder
     {
+        /// <summary>
+        /// 查找数据点时，按X轴顺序查找
+        /// </summary>
         X,
-        Y
+
+        /// <summary>
+        /// 查找数据点时，按Y轴顺序查找
+        /// </summary>
+        Y,
+
+        /// <summary>
+        /// 查找数据点时，按X轴和Y轴都查找，数据点多时慎用
+        /// </summary>
+        All
     }
 
     public enum UIYDataOrder
@@ -600,6 +613,21 @@ namespace Sunny.UI
                 index = BinarySearchNearIndex(PointsX, p.X);
             if (Order == UISeriesDataOrder.Y)
                 index = BinarySearchNearIndex(PointsY, p.Y);
+            if (Order == UISeriesDataOrder.All)
+            {
+                for (int i = 0; i < PointsX.Count; i++)
+                {
+                    if (p.X >= PointsX[i] - offset && p.X <= PointsX[i] + offset &&
+                        p.Y >= PointsY[i] - offset && p.Y <= PointsY[i] + offset)
+                    {
+                        x = XData[i];
+                        y = YData[i];
+                        index = i;
+                        return true;
+                    }
+                }
+            }
+
             if (index == -1) return false;
 
             if (p.X >= PointsX[index] - offset && p.X <= PointsX[index] + offset &&
