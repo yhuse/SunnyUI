@@ -22,6 +22,7 @@
  * 2023-04-19: V3.3.5 修复了最大值最小值范围判断的问题
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-06-14: V3.3.8 修复输入范围判断的问题
+ * 2025-06-10: V3.8.4 多行时水印文字在左上角显示
 ******************************************************************************/
 
 using System;
@@ -84,16 +85,16 @@ namespace Sunny.UI
         private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
         {
             waterMarkContainer.Visible = Watermark.IsValid();
-            waterMarkContainer.Location = new Point(4, 0);
+            waterMarkContainer.Location = new Point(6, 0);
             waterMarkContainer.Height = this.Height;
-            waterMarkContainer.Width = this.Width - 4;
+            waterMarkContainer.Width = this.Width - 8;
             waterMarkContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
             Color color = _waterMarkColor;
             if (ContainsFocus) color = _waterMarkActiveColor;
 
-            Graphics g = e.Graphics;
-            g.DrawString(this._waterMarkText, Font, color, waterMarkContainer.ClientRectangle, ContentAlignment.MiddleLeft, -2);//Take a look at that point
+            Graphics g = waterMarkContainer.CreateGraphics();
+            g.DrawString(this._waterMarkText, Font, color, waterMarkContainer.ClientRectangle, Multiline ? ContentAlignment.TopLeft : ContentAlignment.MiddleLeft, 0);//Take a look at that point
         }
 
         private void RemoveWaterMark()
