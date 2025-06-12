@@ -76,6 +76,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Update="Controls\UIDoubleUpDown.cs" />
+        <Compile Update="Controls\UIIntegerUpDown.cs" />
         <Compile Update="Properties\Resources.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>

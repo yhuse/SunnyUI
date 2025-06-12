@@ -775,5 +775,17 @@ namespace Sunny.UI
 
         [Browsable(false)]
         public new bool AutoScroll { get; set; } = false;
+
+        /// <summary>
+        /// 是否鼠标移上
+        /// </summary>
+        [Browsable(false)]
+        public bool IsHover;
+
+        /// <summary>
+        /// 是否鼠标按下
+        /// </summary>
+        [Browsable(false)]
+        public bool IsPress;
     }
 }
