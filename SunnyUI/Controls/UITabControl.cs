@@ -40,6 +40,7 @@
  * 2025-02-13: V3.8.1 增加标签页分割线属性 ShowTabDivider，#IBLERL
  * 2025-04-17: V3.8.3 修复不可关闭的主页被关闭了 #IC1XIU
  * 2025-04-21: V3.8.3 更新部分注释
+ * 2025-06-12: V3.8.4 修复Close按钮点击无法关闭标签 #ICEIHR
 ******************************************************************************/
 
 using System;
@@ -841,9 +842,8 @@ namespace Sunny.UI
             TabPage tabPage = TabPages[removeIndex];
             if (tabPage.Text == MainPage) return;
             UIPage uiPage = Helper.GetPage(tabPage);
-            if (uiPage == null) return;
-            if (uiPage.Text == MainPage) return;
-            if (uiPage.AlwaysOpen) return;
+            if (uiPage != null && uiPage.Text == MainPage) return;
+            if (uiPage != null && uiPage.AlwaysOpen) return;
 
             if (ShowCloseButton)
             {
