@@ -182,8 +182,6 @@ namespace Sunny.UI
                 Value -= Step;
             }
 
-            _edit.SelectionStart = _edit.Text.Length;
-            _edit.SelectionLength = 0; // 清除任何文本选中状态
             KeyDown?.Invoke(this, e);
         }
 
