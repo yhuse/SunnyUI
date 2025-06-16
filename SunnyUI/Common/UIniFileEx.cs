@@ -20,771 +20,578 @@
 ******************************************************************************/
 
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace Sunny.UI
+namespace Sunny.UI;
+
+#if NET8_0_OR_GREATER
+/// <summary>
+/// INI文件读写类
+/// </summary>
+public sealed class IniFileEx : IDisposable
 {
-    public class IniFileEx
+    /// <summary>
+    /// INI文件版本
+    /// </summary>
+    public const string Version = "NETool IniFile V1.0";
+
+    /// <summary>
+    /// 键分隔符
+    /// </summary>
+    public static readonly string KeyDelimiter = ":";
+
+    private ConcurrentDictionary<string, string> _values;
+
+    public void Dispose()
     {
-        private readonly Dictionary<string, NameValueCollection> data = new Dictionary<string, NameValueCollection>();
+        UpdateFile();
+    }
 
-        private static readonly Regex regRemoveEmptyLines =
-            new Regex
-            (
-                @"(\s*;[\d\D]*?\r?\n)+|\r?\n(\s*\r?\n)*",
-                RegexOptions.Multiline | RegexOptions.Compiled
-            );
+    /// <summary>
+    /// 更新INI文件
+    /// </summary>
+    public void UpdateFile()
+    {
+        Save();
+    }
 
-        private static readonly Regex regParseIniData =
-            new Regex
-            (
-                @"
-                (?<IsSection>
-                    ^\s*\[(?<SectionName>[^\]]+)?\]\s*$
-                )
-                |
-                (?<IsKeyValue>
-                    ^\s*(?<Key>[^(\s*\=\s*)]+)?\s*\=\s*(?<Value>[\d\D]*)$
-                )",
-                RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace
-            );
+    /// <summary>
+    /// 获取配置文件名
+    /// </summary>
+    public string FileName { get; }
 
-        public IniFileEx(string fileName) : this(fileName, Encoding.Default) { }
+    /// <summary>
+    /// 获取配置文件编码
+    /// </summary>
+    public Encoding Encoding { get; }
 
-        public IniFileEx(string fileName, Encoding encoding)
+    /// <summary>
+    /// 创建一个新的INI文件读写类
+    /// </summary>
+    /// <param name="fileName">文件名</param>
+    public IniFileEx(string fileName) : this(fileName, Encoding.UTF8)
+    {
+    }
+
+    /// <summary>
+    /// 创建一个新的INI文件读写类
+    /// </summary>
+    /// <param name="fileName">文件名</param>
+    /// <param name="encoding">文件编码</param>
+    public IniFileEx(string fileName, Encoding encoding)
+    {
+        FileName = fileName;
+        Encoding = encoding;
+        Load();
+    }
+
+    /// <summary>
+    /// 加载INI文件内容到字典中
+    /// </summary>
+    public void Load()
+    {
+        var lines = File.Exists(FileName) ? File.ReadAllLines(FileName, Encoding) : [];
+        _values = ReadString(lines);
+    }
+
+    /// <summary>
+    /// 异步加载INI文件内容到字典中
+    /// </summary>
+    /// <returns>Task</returns>
+    public async Task LoadAsync()
+    {
+        string[] lines = [];
+        if (File.Exists(FileName))
         {
-            FileName = fileName;
-            Encoding = encoding;
-            using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            ReadIniData(fs, encoding);
+            lines = await File.ReadAllLinesAsync(FileName, Encoding).ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// 文件名
-        /// </summary>
-        [Description("文件名")]
-        public string FileName { get; set; } //INI文件名
+        _values = ReadString(lines);
+    }
 
-        public Encoding Encoding { get; set; }
+    /// <summary>
+    /// 保存当前内容到文件
+    /// </summary>
+    public void Save() => SaveAs(FileName);
 
-        private void ReadIniData(Stream stream, Encoding encoding)
+    /// <summary>
+    /// 异步保存当前内容到文件
+    /// </summary>
+    public Task SaveAsync() => SaveAsAsync(FileName);
+
+    /// <summary>
+    /// 将当前内容保存到指定文件
+    /// </summary>
+    /// <param name="fileName">文件名</param>
+    public bool SaveAs(string fileName) => SaveToFile(IniString(), fileName, Encoding);
+
+    /// <summary>
+    /// 保存字符串到文件
+    /// </summary>
+    /// <param name="this">字符串</param>
+    /// <param name="fileName">文件名</param>
+    /// <param name="encoding">文件编码，最好用Encoding.UTF8</param>
+    /// <returns>是否保存成功</returns>
+    private bool SaveToFile(string @this, string fileName, Encoding encoding)
+    {
+        if (fileName.IsNullOrEmpty()) return false;
+        using var sw = new StreamWriter(fileName, false, encoding);
+        sw.WriteLine(@this);
+        sw.Flush();
+        sw.Close();
+        return File.Exists(fileName);
+    }
+
+    /// <summary>
+    /// 将当前内容保存到指定文件
+    /// </summary>
+    /// <param name="fileName">文件名</param>
+    public Task SaveAsAsync(string fileName) => File.WriteAllTextAsync(fileName, IniString(), Encoding);
+
+    private string IniString()
+    {
+        var sb = new StringBuilder(1024);
+        sb.AppendLine($";<?Ini Version=\"{Version}\" Encoding=\"{Encoding.UTF8.BodyName}\" CreateTime=\"{DateTimeOffset.Now}\"?>");
+        var sections = Sections();
+        foreach (string section in sections)
         {
-            string lastSection = string.Empty;
-            data.Add(lastSection, new NameValueCollection());
-            if (stream != null && encoding != null)
+            sb.AppendLine("");
+            sb.AppendLine($"[{section}]");
+            var keys = GetKeys(section);
+            foreach (string key in keys)
             {
-                using StreamReader reader = new StreamReader(stream, encoding);
-                string iniData = reader.ReadToEnd();
-
-                iniData = regRemoveEmptyLines.Replace(iniData, "\n");
-                string[] lines = iniData.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (string s in lines)
+                if (TryGetValue(section, key, out var value))
                 {
-                    Match m = regParseIniData.Match(s);
-                    if (m.Success)
-                    {
-                        if (m.Groups["IsSection"].Length > 0)
-                        {
-                            string sName = m.Groups["SectionName"].Value.ToLowerInvariant();
-                            if (lastSection != sName)
-                            {
-                                lastSection = sName;
-                                if (!data.ContainsKey(sName))
-                                {
-                                    data.Add(sName, new NameValueCollection());
-                                }
-                            }
-                        }
-                        else if (m.Groups["IsKeyValue"].Length > 0)
-                        {
-                            data[lastSection].Add(m.Groups["Key"].Value, m.Groups["Value"].Value);
-                        }
-                    }
+                    sb.AppendLine($"{key}={value}");
                 }
             }
         }
 
-        public NameValueCollection this[string section]
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// 读取INI文件内容到字典中
+    /// </summary>
+    /// <param name="lines">INI文件的行内容</param>
+    /// <returns>包含键值对的字典</returns>
+    private static ConcurrentDictionary<string, string> ReadString(string[] lines)
+    {
+        var data = new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var sectionPrefix = string.Empty;
+
+        foreach (var rawLine in lines)
         {
-            get
+            var line = rawLine.Trim();
+
+            // 忽略空行
+            if (string.IsNullOrWhiteSpace(line))
             {
-                section = section.ToLowerInvariant();
-                if (!data.ContainsKey(section))
-                    data.Add(section, new NameValueCollection());
-                return data[section];
+                continue;
+            }
+
+            // 忽略注释
+            if (line[0] is ';' or '#' or '/')
+            {
+                continue;
+            }
+
+            // [Section:header]
+            if (line[0] == '[' && line[^1] == ']')
+            {
+                // 移除方括号
+                sectionPrefix = string.Concat(line.AsSpan(1, line.Length - 2).Trim(), KeyDelimiter);
+                continue;
+            }
+
+            // key = value 或 "value"
+            var separator = line.IndexOf('=');
+            if (separator < 0)
+            {
+                throw new FormatException("Error_UnrecognizedLineFormat");
+            }
+
+            var key = sectionPrefix + line[..separator].Trim();
+            var value = line[(separator + 1)..].Trim();
+
+            // 移除引号
+            if (value.Length > 1 && value[0] == '"' && value[^1] == '"')
+            {
+                value = value.Substring(1, value.Length - 2);
+            }
+
+            if (!data.TryAdd(key, value))
+            {
+                throw new FormatException("Error_KeyIsDuplicated");
             }
         }
 
-        public string this[string section, string key]
+        return data;
+    }
+
+    /// <summary>
+    /// 写入键值对到指定节
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="value">值</param>
+    public void Write(string section, string key, string value)
+    {
+        if (section.IsNullOrEmpty()) throw new ArgumentNullException(nameof(section), @"Section cannot be null or empty.");
+        if (key.IsNullOrEmpty()) throw new ArgumentNullException(nameof(key), @"Key cannot be null or empty.");
+        _values[$"{section}:{key}"] = value;
+    }
+
+    /// <summary>
+    /// 从指定节读取键值对
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="defaultString">默认值</param>
+    /// <returns>读取到的值</returns>
+    public string ReadString(string section, string key, string defaultString = "")
+    {
+        if (section.IsNullOrEmpty()) throw new ArgumentNullException(nameof(section), @"Section cannot be null or empty.");
+        if (key.IsNullOrEmpty()) throw new ArgumentNullException(nameof(key), @"Key cannot be null or empty.");
+        return _values.GetValueOrDefault($"{section}:{key}", defaultString);
+    }
+
+    /// <summary>
+    /// 获取指定节的所有键
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <returns>键集合</returns>
+    public ICollection GetKeys(string section)
+    {
+        if (section.IsNullOrEmpty()) throw new ArgumentNullException(nameof(section), @"Section cannot be null or empty.");
+        var dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var sectionAndKey in _values.Keys)
         {
-            get => this[section][key];
-            set => this[section][key] = value;
+            var parts = sectionAndKey.Split(':');
+            if (!parts[0].Equals(section, StringComparison.OrdinalIgnoreCase)) continue;
+            dictionary[parts[1]] = parts[1];
         }
 
-        public object this[string section, string key, Type t]
+        return dictionary.Keys;
+    }
+
+    /// <summary>
+    /// 获取指定节的所有键值对
+    /// </summary>
+    /// <param name="section">节</param>
+    /// <returns>键值对</returns>
+    public NameValueCollection GetSectionValues(string section)
+    {
+        var values = new NameValueCollection();
+        var keys = GetKeys(section);
+        foreach (string key in keys)
         {
-            get
+            values.Add(key, Read(section, key, ""));
+        }
+
+        return values;
+    }
+
+    /// <summary>
+    /// 获取所有节
+    /// </summary>
+    /// <returns>节集合</returns>
+    public ICollection Sections()
+    {
+        var dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var sectionAndKey in _values.Keys)
+        {
+            var section = sectionAndKey.Split(':')[0];
+            dictionary[section] = section;
+        }
+
+        return dictionary.Keys;
+    }
+
+    /// <summary>
+    /// 删除指定节
+    /// </summary>
+    /// <param name="section">节名称</param>
+    public void EraseSection(string section)
+    {
+        if (section.IsNullOrEmpty()) return;
+        foreach (var key in _values.Keys)
+        {
+            if (key.StartsWith(section, StringComparison.OrdinalIgnoreCase))
             {
-                if (t == null || t == (Type)Type.Missing)
-                    return this[section][key];
-                return GetValue(section, key, null, t);
+                _values.TryRemove(key, out _);
             }
-            set
-            {
-                if (t == null || t == (Type)Type.Missing)
-                    this[section][key] = string.Empty;
-                else
-                    SetValue(section, key, value);
-            }
-        }
-
-        public string[] KeyNames(string section)
-        {
-            return this[section].AllKeys;
-        }
-
-        public string[] SectionValues(string section)
-        {
-            return this[section].GetValues(0);
-        }
-
-        private object GetValue(string section, string key, object defaultValue, Type t)
-        {
-            section = section.ToLowerInvariant();
-            key = key.ToLowerInvariant();
-            if (!data.ContainsKey(section)) return defaultValue;
-            string v = data[section][key];
-            if (string.IsNullOrEmpty(v)) return defaultValue;
-            TypeConverter conv = TypeDescriptor.GetConverter(t);
-            if (!conv.CanConvertFrom(typeof(string))) return defaultValue;
-
-            try
-            {
-                return conv.ConvertFrom(v);
-            }
-            catch
-            {
-                return defaultValue;
-            }
-        }
-
-        private T GetValue<T>(string section, string key, T defaultValue)
-        {
-            return (T)GetValue(section, key, defaultValue, typeof(T));
-        }
-
-        private void SetValue(string section, string key, object value)
-        {
-            if (value == null)
-            {
-                this[section][key] = string.Empty;
-            }
-            else
-            {
-                TypeConverter conv = TypeDescriptor.GetConverter(value);
-                if (!conv.CanConvertTo(typeof(string)))
-                {
-                    this[section][key] = value.ToString();
-                }
-                else
-                {
-                    this[section][key] = (string)conv.ConvertTo(value, typeof(string));
-                }
-            }
-
-            UpdateFile();
-        }
-
-        public void Write(string section, string key, string value)
-        {
-            SetValue(section, key, value);
-        }
-
-        public string Read(string section, string key, string Default)
-        {
-            return GetValue(section, key, Default);
-        }
-
-        /// <summary>
-        /// 读取指定的Section的所有Value到列表中
-        /// </summary>
-        /// <param name="section">section</param>
-        public NameValueCollection GetSectionValues(string section)
-        {
-            return this[section];
-        }
-
-        public void UpdateFile()
-        {
-            Save();
-        }
-
-        public void Save()
-        {
-            Save(FileName, Encoding);
-        }
-
-        public void Save(string fileName, Encoding encoding)
-        {
-            using FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            Save(fs, encoding);
-        }
-
-        private void Save(Stream stream, Encoding encoding)
-        {
-            using StreamWriter sw = new StreamWriter(stream, encoding);
-            foreach (var cur in data)
-            {
-                if (!string.IsNullOrEmpty(cur.Key))
-                {
-                    sw.WriteLine("[{0}]", cur.Key);
-                }
-
-                NameValueCollection col = cur.Value;
-                foreach (string key in col.Keys)
-                {
-                    if (!string.IsNullOrEmpty(key))
-                    {
-                        string value = col[key];
-                        if (!string.IsNullOrEmpty(value))
-                            sw.WriteLine("{0}={1}", key, value);
-                    }
-                }
-            }
-
-            sw.Flush();
-        }
-
-        public bool HasSection(string section)
-        {
-            return data.ContainsKey(section.ToLowerInvariant());
-        }
-
-        public bool HasKey(string section, string key)
-        {
-            return
-                data.ContainsKey(section) &&
-                !string.IsNullOrEmpty(data[section][key]);
-        }
-
-        /// <summary>
-        /// 写结构
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        /// <typeparam name="T">T</typeparam>
-        public void WriteStruct<T>(string section, string key, T value) where T : struct
-        {
-            Write(section, key, value.ToBytes());
-        }
-
-        /// <summary>
-        /// 读结构
-        /// </summary>
-        /// <typeparam name="T">T</typeparam>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public T ReadStruct<T>(string section, string key, T Default) where T : struct
-        {
-            //得到结构体的大小
-            int size = StructEx.Size(Default);
-            byte[] bytes = Read(section, key, "").ToHexBytes();
-            return size > bytes.Length ? Default : bytes.ToStruct<T>();
-        }
-
-        /// <summary>
-        /// 写Byte数组
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, byte[] value)
-        {
-            Write(section, key, value.ToHexString());
-        }
-
-        /// <summary>
-        /// 读Byte数组
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public byte[] ReadBytes(string section, string key, byte[] Default)
-        {
-            return Read(section, key, Default.ToHexString()).ToHexBytes();
-        }
-
-        /// <summary>
-        /// 写Char
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, char value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读Char
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public char ReadChar(string section, string key, char Default = ' ')
-        {
-            return Read(section, key, Default.ToString()).ToChar(Default);
-        }
-
-        /// <summary>
-        /// 写Decimal
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, decimal value)
-        {
-            Write(section, key, value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// 读Decimal
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public decimal ReadDecimal(string section, string key, decimal Default = 0)
-        {
-            return Read(section, key, Default.ToString(CultureInfo.InvariantCulture)).ToDecimal(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, short value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public short ReadShort(string section, string key, short Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToShort(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, ushort value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public ushort ReadUShort(string section, string key, ushort Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToUShort(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, int value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public int ReadInt(string section, string key, int Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToInt(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, uint value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public uint ReadUInt(string section, string key, uint Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToUInt(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, ulong value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public ulong ReadULong(string section, string key, ulong Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToULong(Default);
-        }
-
-        /// <summary>
-        /// 写整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, long value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读整数
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public long ReadLong(string section, string key, long Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToLong(Default);
-        }
-
-        /// <summary>
-        /// 写布尔
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, bool value)
-        {
-            Write(section, key, value ? bool.TrueString : bool.FalseString);
-        }
-
-        /// <summary>
-        /// 读布尔
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public bool ReadBool(string section, string key, bool Default = false)
-        {
-            string str = Read(section, key, Default.ToString());
-            if (string.Equals(str, bool.TrueString, StringComparison.CurrentCultureIgnoreCase))
-            {
-                return true;
-            }
-
-            if (string.Equals(str, bool.FalseString, StringComparison.CurrentCultureIgnoreCase))
-            {
-                return false;
-            }
-
-            return Default;
-        }
-
-        /// <summary>
-        /// 写Double
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, double value)
-        {
-            Write(section, key, value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// 读Double
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public double ReadDouble(string section, string key, double Default = 0)
-        {
-            return Read(section, key, Default.ToString(CultureInfo.InvariantCulture)).ToDouble(Default);
-        }
-
-        /// <summary>
-        /// 写Float
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, float value)
-        {
-            Write(section, key, value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// 读Float
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public float ReadFloat(string section, string key, float Default = 0)
-        {
-            return Read(section, key, Default.ToString(CultureInfo.InvariantCulture)).ToFloat(Default);
-        }
-
-        /// <summary>
-        /// 写Byte
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, byte value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读Byte
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public byte ReadByte(string section, string key, byte Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToByte(Default);
-        }
-
-        /// <summary>
-        /// 写SByte
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, sbyte value)
-        {
-            Write(section, key, value.ToString());
-        }
-
-        /// <summary>
-        /// 读Byte
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public sbyte ReadSByte(string section, string key, sbyte Default = 0)
-        {
-            return Read(section, key, Default.ToString()).ToSByte(Default);
-        }
-
-        /// <summary>
-        /// 写DateTime
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, DateTime value)
-        {
-            Write(section, key, value.ToString(DateTimeEx.DateTimeFormat));
-        }
-
-        /// <summary>
-        /// 读DateTime
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public DateTime ReadDateTime(string section, string key, DateTime Default)
-        {
-            string str = Read(section, key, Default.ToString(CultureInfo.InvariantCulture));
-            try
-            {
-                return str.ToDateTime(DateTimeEx.DateTimeFormat);
-            }
-            catch (Exception)
-            {
-                return Default;
-            }
-        }
-
-        /// <summary>
-        /// 写Point
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, Point value)
-        {
-            Write(section, key, ConvertEx.ObjectToString(value, typeof(Point)));
-        }
-
-        /// <summary>
-        /// 读Point
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public Point ReadPoint(string section, string key, Point Default)
-        {
-            string str = Read(section, key, "");
-            return (Point)ConvertEx.StringToObject(str, typeof(Point), Default);
-        }
-
-        /// <summary>
-        /// 写PointF
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, PointF value)
-        {
-            Write(section, key, ConvertEx.ObjectToString(value, typeof(PointF)));
-        }
-
-        /// <summary>
-        /// 读PointF
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public PointF ReadPointF(string section, string key, PointF Default)
-        {
-            string str = Read(section, key, "");
-            return (PointF)ConvertEx.StringToObject(str, typeof(PointF), Default);
-        }
-
-        /// <summary>
-        /// 写Size
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, Size value)
-        {
-            Write(section, key, ConvertEx.ObjectToString(value, typeof(Size)));
-        }
-
-        /// <summary>
-        /// 读Size
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public Size ReadSize(string section, string key, Size Default)
-        {
-            string str = Read(section, key, "");
-            return (Size)ConvertEx.StringToObject(str, typeof(Size), Default);
-        }
-
-        /// <summary>
-        /// 写SizeF
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, SizeF value)
-        {
-            Write(section, key, ConvertEx.ObjectToString(value, typeof(SizeF)));
-        }
-
-        /// <summary>
-        /// 读SizeF
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public SizeF ReadSizeF(string section, string key, SizeF Default)
-        {
-            string str = Read(section, key, "");
-            return (SizeF)ConvertEx.StringToObject(str, typeof(SizeF), Default);
-        }
-
-        /// <summary>
-        /// 写Color
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
-        public void Write(string section, string key, Color value)
-        {
-            Write(section, key, ConvertEx.ObjectToString(value, typeof(Color)));
-        }
-
-        /// <summary>
-        /// 读Color
-        /// </summary>
-        /// <param name="section">section</param>
-        /// <param name="key">key</param>
-        /// <param name="Default">Normal</param>
-        /// <returns>结果</returns>
-        public Color ReadColor(string section, string key, Color Default)
-        {
-            string str = Read(section, key, "");
-            return (Color)ConvertEx.StringToObject(str, typeof(Color), Default);
         }
     }
+
+    /// <summary>
+    /// 删除指定节中的键
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <returns>是否成功删除</returns>
+    public bool DeleteKey(string section, string key)
+    {
+        if (section.IsNullOrEmpty()) return false;
+        if (key.IsNullOrEmpty()) return false;
+        return _values.TryRemove($"{section}:{key}", out _);
+    }
+
+    /// <summary>
+    /// 检查指定节中是否包含键
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <returns>是否包含键</returns>
+    public bool ContainsKey(string section, string key)
+    {
+        if (section.IsNullOrEmpty()) return false;
+        if (key.IsNullOrEmpty()) return false;
+        return _values.ContainsKey($"{section}:{key}");
+    }
+
+    /// <summary>
+    /// 检查指定节中是否包含键
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <returns>是否包含键</returns>
+    public bool KeyExists(string section, string key)
+    {
+        if (section.IsNullOrEmpty()) return false;
+        if (key.IsNullOrEmpty()) return false;
+        return _values.ContainsKey($"{section}:{key}");
+    }
+
+    /// <summary>
+    /// 尝试获取指定节中的键值对
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="value">输出值</param>
+    /// <returns>是否成功获取</returns>
+    public bool TryGetValue(string section, string key, out string value)
+    {
+        value = null;
+        if (section.IsNullOrEmpty()) return false;
+        if (key.IsNullOrEmpty()) return false;
+        return _values.TryGetValue($"{section}:{key}", out value);
+    }
+
+    /// <summary>
+    /// 写入对象，所支持的类型见 <see cref="StrAndObjConverter"/>
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="value">值</param>
+    /// <param name="format">格式化字符串</param>
+    public void Write(string section, string key, object value, string format = "")
+    {
+        Write(section, key, StrAndObjConverter.ObjectToString(value, format));
+    }
+
+    /// <summary>
+    /// 读取对象，所支持的类型见 <see cref="StrAndObjConverter"/>
+    /// </summary>
+    /// <typeparam name="T">类型</typeparam>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="format">格式化字符串</param>
+    /// <returns>对象</returns>
+    public T Read<T>(string section, string key, T defaultValue = default, string format = "")
+    {
+        return StrAndObjConverter.StringToObject<T>(ReadString(section, key), defaultValue, format);
+    }
+
+    /// <summary>
+    /// 读取字符串
+    /// </summary>
+    /// <param name="section">节名称</param>
+    /// <param name="key">键名称</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <returns></returns>
+    public string Read(string section, string key, string defaultValue)
+    {
+        return ReadString(section, key, defaultValue);
+    }
 }
+
+/// <summary>
+/// 对象与字符串转换器
+/// </summary>
+internal static class StrAndObjConverter
+{
+    /// <summary>
+    /// 字符串转换器
+    /// </summary>
+    public static Dictionary<Type, Func<object, string, string>> StringConverters { get; }
+
+    /// <summary>
+    /// 对象转换器
+    /// </summary>
+    public static Dictionary<Type, Func<string, string, object, object>> ObjectConverters { get; }
+
+    /// <summary>
+    /// 静态构造函数
+    /// </summary>
+    static StrAndObjConverter()
+    {
+        StringConverters = [];
+        StringConverters[typeof(char)] = (value, _) => value.ToString();
+        StringConverters[typeof(sbyte)] = (value, _) => value.ToString();
+        StringConverters[typeof(byte)] = (value, _) => value.ToString();
+        StringConverters[typeof(short)] = (value, _) => value.ToString();
+        StringConverters[typeof(ushort)] = (value, _) => value.ToString();
+        StringConverters[typeof(int)] = (value, _) => value.ToString();
+        StringConverters[typeof(uint)] = (value, _) => value.ToString();
+        StringConverters[typeof(long)] = (value, _) => value.ToString();
+        StringConverters[typeof(ulong)] = (value, _) => value.ToString();
+        StringConverters[typeof(float)] = (value, format) => ((float)value).ToString(format, CultureInfo.InvariantCulture);
+        StringConverters[typeof(double)] = (value, format) => ((double)value).ToString(format, CultureInfo.InvariantCulture);
+        StringConverters[typeof(decimal)] = (value, _) => value.ToString();
+        StringConverters[typeof(bool)] = (value, _) => (bool)value ? bool.TrueString : bool.FalseString;
+        StringConverters[typeof(DateTime)] = (value, format) => ((DateTime)value).ToString(format);
+        StringConverters[typeof(Point)] = (value, _) => $"{((Point)value).X},{((Point)value).Y}";
+        StringConverters[typeof(PointF)] = (value, format) => $"{((PointF)value).X.ToString(format, CultureInfo.InvariantCulture)},{((PointF)value).Y.ToString(format, CultureInfo.InvariantCulture)}";
+        StringConverters[typeof(Size)] = (value, _) => $"{((Size)value).Width},{((Size)value).Height}";
+        StringConverters[typeof(SizeF)] = (value, format) => $"{((SizeF)value).Width.ToString(format, CultureInfo.InvariantCulture)},{((SizeF)value).Height.ToString(format, CultureInfo.InvariantCulture)}";
+        StringConverters[typeof(Color)] = (value, _) => $"{((Color)value).A},{((Color)value).R},{((Color)value).G},{((Color)value).B}";
+        StringConverters[typeof(byte[])] = (value, _) => ((byte[])value).ToHexString();
+        StringConverters[typeof(Rectangle)] = (value, _) => $"{((Rectangle)value).X},{((Rectangle)value).Y},{((Rectangle)value).Width},{((Rectangle)value).Height}";
+        StringConverters[typeof(RectangleF)] = (value, format) => $"{((RectangleF)value).X.ToString(format, CultureInfo.InvariantCulture)},{((RectangleF)value).Y.ToString(format, CultureInfo.InvariantCulture)},{((RectangleF)value).Width.ToString(format, CultureInfo.InvariantCulture)},{((RectangleF)value).Height.ToString(format, CultureInfo.InvariantCulture)}";
+        StringConverters[typeof(Guid)] = (value, _) => value.ToString();
+        StringConverters[typeof(TimeSpan)] = (value, _) => ((TimeSpan)value).Ticks.ToString();
+
+        ObjectConverters = [];
+        ObjectConverters[typeof(char)] = (value, _, obj) => value.ToChar((char)obj);
+        ObjectConverters[typeof(sbyte)] = (value, _, obj) => value.ToSByte((sbyte)obj);
+        ObjectConverters[typeof(byte)] = (value, _, obj) => value.ToByte((byte)obj);
+        ObjectConverters[typeof(short)] = (value, _, obj) => value.ToShort((short)obj);
+        ObjectConverters[typeof(ushort)] = (value, _, obj) => value.ToUShort((ushort)obj);
+        ObjectConverters[typeof(int)] = (value, _, obj) => value.ToInt((int)obj);
+        ObjectConverters[typeof(uint)] = (value, _, obj) => value.ToUInt((uint)obj);
+        ObjectConverters[typeof(long)] = (value, _, obj) => value.ToLong((long)obj);
+        ObjectConverters[typeof(ulong)] = (value, _, obj) => value.ToULong((ulong)obj);
+        ObjectConverters[typeof(float)] = (value, _, obj) => value.ToFloat((float)obj);
+        ObjectConverters[typeof(double)] = (value, _, obj) => value.ToDouble((double)obj);
+        ObjectConverters[typeof(decimal)] = (value, _, obj) => value.ToDecimal((decimal)obj);
+        ObjectConverters[typeof(bool)] = (value, _, obj) =>
+        {
+            if (string.Equals(value, bool.TrueString, StringComparison.OrdinalIgnoreCase)) return true;
+            if (string.Equals(value, bool.FalseString, StringComparison.OrdinalIgnoreCase)) return false;
+            return (bool)obj;
+        };
+        ObjectConverters[typeof(DateTime)] = (value, format, obj) =>
+        {
+            try
+            {
+                return value.ToDateTime(format);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+                return (DateTime)obj;
+            }
+        };
+        ObjectConverters[typeof(Point)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 2 && int.TryParse(parts[0].Trim(), out var x) && int.TryParse(parts[1].Trim(), out var y)
+                ? new Point(x, y) : (Point)obj;
+        };
+        ObjectConverters[typeof(PointF)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 2 && float.TryParse(parts[0].Trim(), out var x) && float.TryParse(parts[1].Trim(), out var y)
+                ? new PointF(x, y) : (PointF)obj;
+        };
+        ObjectConverters[typeof(Size)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 2 && int.TryParse(parts[0].Trim(), out var width) && int.TryParse(parts[1].Trim(), out var height)
+                ? new Size(width, height) : (Size)obj;
+        };
+        ObjectConverters[typeof(SizeF)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 2 && float.TryParse(parts[0].Trim(), out var width) && float.TryParse(parts[1].Trim(), out var height)
+                ? new SizeF(width, height) : (SizeF)obj;
+        };
+        ObjectConverters[typeof(Color)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 4 && byte.TryParse(parts[0].Trim(), out var a) && byte.TryParse(parts[1].Trim(), out var r) &&
+                   byte.TryParse(parts[2].Trim(), out var g) && byte.TryParse(parts[3].Trim(), out var b)
+                ? Color.FromArgb(a, r, g, b) : (Color)obj;
+        };
+        ObjectConverters[typeof(byte[])] = (value, _, obj) =>
+        {
+            try
+            {
+                return value.ToHexBytes();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return (byte[])obj;
+            }
+        };
+        ObjectConverters[typeof(Rectangle)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 4 && int.TryParse(parts[0].Trim(), out var x) && int.TryParse(parts[1].Trim(), out var y) &&
+                   int.TryParse(parts[2].Trim(), out var width) && int.TryParse(parts[3].Trim(), out var height)
+                ? new Rectangle(x, y, width, height) : (Rectangle)obj;
+        };
+        ObjectConverters[typeof(RectangleF)] = (value, _, obj) =>
+        {
+            var parts = value.Split(',');
+            return parts.Length == 4 && float.TryParse(parts[0].Trim(), out var x) && float.TryParse(parts[1].Trim(), out var y) &&
+                   float.TryParse(parts[2].Trim(), out var width) && float.TryParse(parts[3].Trim(), out var height)
+                ? new RectangleF(x, y, width, height) : (RectangleF)obj;
+        };
+        ObjectConverters[typeof(Guid)] = (value, _, obj) => Guid.TryParse(value, out var result) ? result : (Guid)obj;
+        ObjectConverters[typeof(TimeSpan)] = (value, _, obj) => long.TryParse(value, out var ticks) ? TimeSpan.FromTicks(ticks) : (TimeSpan)obj;
+    }
+
+    /// <summary>
+    /// 将对象转换为字符串
+    /// </summary>
+    /// <param name="value">对象</param>
+    /// <param name="format">格式</param>
+    /// <returns>字符串</returns>
+    public static string ObjectToString(object value, string format = "")
+    {
+        if (StringConverters.TryGetValue(value.GetType(), out var func))
+            return func(value, format);
+        else
+            throw new NotSupportedException(nameof(value));
+    }
+
+    /// <summary>
+    /// 将字符串转换为对象
+    /// </summary>
+    /// <typeparam name="T">对象类型</typeparam>
+    /// <param name="value">字符串</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="format">格式</param>
+    /// <returns>对象</returns>
+    public static T StringToObject<T>(string value, object defaultValue, string format = "")
+    {
+        if (ObjectConverters.TryGetValue(typeof(T), out var func))
+            return (T)func(value, format, defaultValue);
+        else
+            throw new NotSupportedException(nameof(value));
+    }
+}
+
+#endif

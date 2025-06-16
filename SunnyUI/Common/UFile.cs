@@ -19,7 +19,6 @@
  * 2020-01-01: V2.2.0 增加文件说明
 ******************************************************************************/
 
-using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -28,6 +27,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace Sunny.UI
 {
@@ -493,14 +493,40 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 尝试删除文件
+        /// 尝试删除指定的文件。
         /// </summary>
-        /// <param name="file">文件名</param>
-        /// <returns>结果</returns>
-        public static bool TryDelete(string file)
+        /// <param name="fileName">要删除的文件路径。</param>
+        /// <returns>如果文件不存在或成功删除，返回 true；否则返回 false。</returns>
+        public static bool TryDelete(string fileName)
         {
-            FileInfo info = FileInfo(file);
-            return info == null ? false : info.TryDelete();
+            // 如果文件不存在，直接返回 true
+            if (!File.Exists(fileName)) return true;
+
+            try
+            {
+                // 尝试删除文件
+                File.Delete(fileName);
+                // 检查文件是否已被删除
+                return true;
+            }
+            catch (IOException ioEx)
+            {
+                // 捕获IO异常并输出错误信息
+                Console.WriteLine($@"{fileName}: IO Exception - {ioEx.Message}");
+            }
+            catch (UnauthorizedAccessException uaEx)
+            {
+                // 捕获未授权访问异常并输出错误信息
+                Console.WriteLine($@"{fileName}: Unauthorized Access - {uaEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                // 捕获其他异常并输出错误信息
+                Console.WriteLine($@"{fileName}: {ex.Message}");
+            }
+
+            // 如果捕获到异常，返回 false
+            return false;
         }
 
         /// <summary>
@@ -510,16 +536,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         public static bool TryDelete(this FileInfo fi)
         {
-            try
-            {
-                File.Delete(fi.FullName);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
+            return TryDelete(fi.FullName);
         }
 
         /// <summary>
