@@ -90,7 +90,7 @@ namespace Sunny.UI
         /// <exception cref="Exception">报错消息</exception>
         public MMFile(string mapName, int capacity = 4096)
         {
-            if (!FileEx.IsValidFileName(mapName))
+            if (!IsValidFileName(mapName))
             {
                 throw new Exception("MapName is not valid.");
             }
@@ -105,6 +105,30 @@ namespace Sunny.UI
                 var value = accessor.ReadBoolean(0);
                 if (!value) accessor.Write(0, false);
             }
+        }
+
+        /// <summary>
+        /// 文件名是否有效
+        /// </summary>
+        /// <param name="name">文件名</param>
+        /// <returns>是否有效</returns>
+        private bool IsValidFileName(string name)
+        {
+            if (name.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            string[] errorStr = { "/", "\\", ":", ",", "*", "?", "\"", "<", ">", "|" };
+            foreach (var str in errorStr)
+            {
+                if (name.Contains(str))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>

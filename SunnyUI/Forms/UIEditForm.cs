@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
  * CopyRight (C) 2012-2025 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
@@ -302,7 +302,7 @@ namespace Sunny.UI
             UITextBox edit = (UITextBox)sender;
             string filename = edit.Text;
             var info = Option.Dictionary[edit.Name.Replace("Edit_", "")];
-            if (FileEx.OpenDialog(ref filename, info.DisplayMember, info.ValueMember))
+            if (Dialogs.OpenFileDialog(ref filename, info.DisplayMember, info.ValueMember))
             {
                 edit.Text = filename;
             }
@@ -313,7 +313,7 @@ namespace Sunny.UI
             UITextBox edit = (UITextBox)sender;
             string dirname = edit.Text;
             var info = Option.Dictionary[edit.Name.Replace("Edit_", "")];
-            if (DirEx.SelectDirEx(info.DisplayMember, ref dirname))
+            if (Dialogs.SelectDirEx(info.DisplayMember, ref dirname))
             {
                 edit.Text = dirname;
             }
