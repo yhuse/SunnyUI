@@ -28,6 +28,7 @@
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
  * 2024-09-09: V3.7.0 更改计算节点位置的方法，解决问题：#IAPY94
  * 2024-11-29: V3.8.0 修复TitleTop为0时，条目显示错位的问题 #IB7STO
+ * 2025-06-16: V3.8.5 修复索引赋值为空时出错的问题
 ******************************************************************************/
 
 using System;
@@ -90,6 +91,7 @@ namespace Sunny.UI
             get => GetItemCheckState(index);
             set
             {
+                if (index < 0 || index >= Items.Count) return;
                 SetItemCheckState(index, value);
                 ValueChanged?.Invoke(this, new CheckBoxGroupEventArgs(index, Items[index].ToString(), this[index], SelectedIndexes.ToArray()));
                 Invalidate();
@@ -329,11 +331,14 @@ namespace Sunny.UI
                     SetItemCheckState(i, false);
                 }
 
-                foreach (int i in value)
+                if (value is { Count: > 0 })
                 {
-                    if (i >= 0 && i < Items.Count)
+                    foreach (int i in value)
                     {
-                        SetItemCheckState(i, true);
+                        if (i >= 0 && i < Items.Count)
+                        {
+                            SetItemCheckState(i, true);
+                        }
                     }
                 }
 
