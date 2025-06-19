@@ -33,6 +33,7 @@
  * 2024-08-27: V3.7.0 增加按钮字体图标的偏移位置
  * 2025-03-16: V3.8.2 增加按钮字体图标的大小属性
  * 2025-06-12: V3.8.4 重写控件
+ * 2025-06-19: V3.8.5 增加两侧按钮长按快速增加或减少值
 ******************************************************************************/
 
 using System;
@@ -51,6 +52,7 @@ namespace Sunny.UI
     {
         public delegate void OnValueChanged(object sender, int value);
         private readonly UIEdit _edit = new();
+        private readonly Timer _timer = new();
 
         public UIIntegerUpDown()
         {
@@ -107,6 +109,30 @@ namespace Sunny.UI
 
             _rectHoverColor = UIStyles.Blue.ButtonRectHoverColor;
             _rectPressColor = UIStyles.Blue.ButtonRectPressColor;
+
+            _timer.Interval = 1500;
+            _timer.Tick += _timer_Tick;
+        }
+
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            if (!IsPress)
+            {
+                _timer.Stop();
+                _timer.Interval = 1500;
+                return;
+            }
+
+            _timer.Interval = 100;
+            if (_inUp)
+            {
+                Value += Step;
+            }
+
+            if (_inDown)
+            {
+                Value -= Step;
+            }
         }
 
         public event OnValueChanged ValueChanged;
@@ -806,6 +832,11 @@ namespace Sunny.UI
         {
             ActiveControl = _edit;
             IsPress = true;
+            if (_inUp || _inDown)
+            {
+                _timer.Start();
+            }
+
             Invalidate();
             base.OnMouseDown(e);
         }

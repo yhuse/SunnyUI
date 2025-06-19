@@ -18,6 +18,7 @@
                 components.Dispose();
             }
 
+            _timer?.Dispose();
             _edit?.Dispose();
             base.Dispose(disposing);
         }
