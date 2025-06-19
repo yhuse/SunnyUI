@@ -27,6 +27,7 @@
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
  * 2024-09-09: V3.7.0 更改计算节点位置的方法，解决问题：#IAPY94
  * 2024-11-29: V3.8.0 修复TitleTop为0时，条目显示错位的问题 #IB7STO
+ * 2025-06-19: V3.8.5 增加鼠标滑过填充颜色 #ICFYK4
 ******************************************************************************/
 
 using System;
@@ -81,6 +82,21 @@ namespace Sunny.UI
             set
             {
                 checkBoxColor = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// 鼠标滑过填充颜色
+        /// </summary>
+        [Description("鼠标滑过填充颜色"), Category("SunnyUI")]
+        [DefaultValue(typeof(Color), "220, 236, 255")]
+        public Color HoverColor
+        {
+            get => hoverColor;
+            set
+            {
+                hoverColor = value;
                 Invalidate();
             }
         }

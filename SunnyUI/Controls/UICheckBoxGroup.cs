@@ -155,10 +155,10 @@ namespace Sunny.UI
         private Color hoverColor;
 
         /// <summary>
-        /// 填充颜色，当值为背景色或透明色或空值则不填充
+        /// 鼠标滑过填充颜色
         /// </summary>
         [Description("鼠标滑过填充颜色"), Category("SunnyUI")]
-        [DefaultValue(typeof(Color), "155, 200, 255")]
+        [DefaultValue(typeof(Color), "220, 236, 255")]
         public Color HoverColor
         {
             get => hoverColor;
