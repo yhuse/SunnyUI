@@ -350,6 +350,18 @@ namespace Sunny.UI
             get => _dropDownStyle;
             set
             {
+                if (!DropDownStyleUsed)
+                {
+                    if (_dropDownStyle != UIDropDownStyle.DropDown)
+                    {
+                        _dropDownStyle = UIDropDownStyle.DropDown;
+                        edit.Visible = true;
+                        Invalidate();
+                    }
+
+                    return;
+                }
+
                 if (_dropDownStyle != value)
                 {
                     _dropDownStyle = value;
@@ -359,6 +371,8 @@ namespace Sunny.UI
                 }
             }
         }
+
+        protected bool DropDownStyleUsed = true;
 
         protected virtual void DropDownStyleChanged()
         {

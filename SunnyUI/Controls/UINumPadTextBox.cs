@@ -24,6 +24,7 @@
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-06-25: V3.8.5 增加弹窗长按删除按钮，清空文本框
  * 2025-06-25: V3.8.5 增加文本对齐方式
+ * 2025-06-25: V3.8.5 无需设置DropDownStyle属性
 ******************************************************************************/
 
 using System;
@@ -46,6 +47,7 @@ namespace Sunny.UI
             edit.CanEmpty = true;
             fullControlSelect = true;
             TextAlignmentChange += UITextBox_TextAlignmentChange;
+            base.DropDownStyleUsed = false;
         }
 
         private void UITextBox_TextAlignmentChange(object sender, ContentAlignment alignment)
