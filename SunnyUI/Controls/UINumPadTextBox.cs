@@ -23,6 +23,7 @@
  * 2024-09-03: V3.7.0 增加ShowDropDown()弹窗方法
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-06-25: V3.8.5 增加弹窗长按删除按钮，清空文本框
+ * 2025-06-25: V3.8.5 增加文本对齐方式
 ******************************************************************************/
 
 using System;
@@ -44,6 +45,23 @@ namespace Sunny.UI
             edit.KeyDown += Edit_KeyDown;
             edit.CanEmpty = true;
             fullControlSelect = true;
+            TextAlignmentChange += UITextBox_TextAlignmentChange;
+        }
+
+        private void UITextBox_TextAlignmentChange(object sender, ContentAlignment alignment)
+        {
+            if (edit == null) return;
+            if (alignment == ContentAlignment.TopLeft || alignment == ContentAlignment.MiddleLeft ||
+                alignment == ContentAlignment.BottomLeft)
+                edit.TextAlign = HorizontalAlignment.Left;
+
+            if (alignment == ContentAlignment.TopCenter || alignment == ContentAlignment.MiddleCenter ||
+                alignment == ContentAlignment.BottomCenter)
+                edit.TextAlign = HorizontalAlignment.Center;
+
+            if (alignment == ContentAlignment.TopRight || alignment == ContentAlignment.MiddleRight ||
+                alignment == ContentAlignment.BottomRight)
+                edit.TextAlign = HorizontalAlignment.Right;
         }
 
         [Browsable(false)]
