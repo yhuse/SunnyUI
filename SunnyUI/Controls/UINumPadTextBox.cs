@@ -22,6 +22,7 @@
  * 2023-06-11: V3.6.6 下拉框可选放大倍数为2
  * 2024-09-03: V3.7.0 增加ShowDropDown()弹窗方法
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
+ * 2025-06-25: V3.8.5 增加弹窗长按删除按钮，清空文本框
 ******************************************************************************/
 
 using System;
@@ -149,6 +150,9 @@ namespace Sunny.UI
             int start = edit.SelectionStart;
             switch ((int)value)
             {
+                case int.MaxValue:
+                    edit.Clear();
+                    break;
                 case 88:
                     if (Text.Length == 17)
                     {

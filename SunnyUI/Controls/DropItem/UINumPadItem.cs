@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sunny.UI
 {
@@ -8,7 +10,26 @@ namespace Sunny.UI
         public UINumPadItem()
         {
             InitializeComponent();
+
+            _timer.Interval = 1000;
+            _timer.Tick += _timer_Tick;
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _timer?.Dispose();
+            _timer = null;
+            base.Dispose(disposing);
+        }
+
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            _timer.Stop();
+            if (!IsPress) return;
+            DoValueChanged(this, int.MaxValue);
+        }
+
+        private Timer _timer = new();
         private NumPadType numPadType = NumPadType.Text;
 
         [DefaultValue(NumPadType.Text)]
@@ -79,6 +100,8 @@ namespace Sunny.UI
             uiSymbolButton1.Tag = "8";
             uiSymbolButton1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiSymbolButton1.Click += uiSymbolButton16_Click;
+            uiSymbolButton1.MouseDown += uiSymbolButton1_MouseDown;
+            uiSymbolButton1.MouseUp += uiSymbolButton1_MouseUp;
             // 
             // uiSymbolButton2
             // 
@@ -372,6 +395,19 @@ namespace Sunny.UI
 
         internal bool SizeMultipled = false;
         private int sizeMultiple = 1;
+
+        private void uiSymbolButton1_MouseDown(object sender, MouseEventArgs e)
+        {
+            IsPress = true;
+            _timer.Start();
+        }
+
+        private void uiSymbolButton1_MouseUp(object sender, MouseEventArgs e)
+        {
+            _timer.Stop();
+            IsPress = false;
+        }
+
         public int SizeMultiple
         {
             get => sizeMultiple;
