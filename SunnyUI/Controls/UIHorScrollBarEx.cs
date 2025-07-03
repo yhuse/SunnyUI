@@ -66,7 +66,7 @@ namespace Sunny.UI
             get => maximum;
             set
             {
-                maximum = value.GetLowerLimit(2);
+                maximum = Math.Max(value, 2);
                 Invalidate();
             }
         }
@@ -82,8 +82,8 @@ namespace Sunny.UI
             get => thisValue;
             set
             {
-                thisValue = value.GetLowerLimit(0);
-                thisValue = value.GetUpperLimit(Maximum - BoundsWidth);
+                thisValue = Math.Max(value, 0);
+                thisValue = Math.Min(thisValue, Maximum - BoundsWidth);
                 Invalidate();
             }
         }
@@ -95,7 +95,7 @@ namespace Sunny.UI
             get => boundsWidth;
             set
             {
-                boundsWidth = value.GetLowerLimit(1);
+                boundsWidth = Math.Max(value, 1);
                 Invalidate();
             }
         }
@@ -159,24 +159,24 @@ namespace Sunny.UI
 
             if (inLeftArea)
             {
-                int value = (Value - LargeChange).GetLimit(0, Maximum - BoundsWidth);
-                Value = value;
+                int v = Math.Max(Value - LargeChange, 0);
+                Value = Math.Min(v, Maximum - BoundsWidth);
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
 
             if (inRightArea)
             {
-                int value = (Value + LargeChange).GetLimit(0, Maximum - BoundsWidth);
-                Value = value;
+                int v = Math.Max(Value + LargeChange, 0);
+                Value = Math.Min(v, Maximum - BoundsWidth);
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
 
             if (inCenterArea)
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
-                int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.GetLimit(0, Maximum - BoundsWidth);
-                Value = value;
+                int v = (e.Location.X - x / 2) * maximum / (Width - 32);
+                v = Math.Max(v, 0);
+                Value = Math.Min(v, Maximum - BoundsWidth);
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -215,15 +215,15 @@ namespace Sunny.UI
 
         private void DrawUpDownArrow(Graphics g, bool isUp)
         {
-            Color clr_arrow = foreColor;
+            Color clrArrow = foreColor;
             if ((inLeftArea || inRightArea) && IsPress)
             {
-                clr_arrow = fillPressColor;
+                clrArrow = fillPressColor;
             }
 
             g.FillRectangle(fillColor, isUp ? GetUpRect() : GetDownRect());
             g.SetHighQuality();
-            using var pen = new Pen(clr_arrow, 2);
+            using var pen = new Pen(clrArrow, 2);
             Point pt1, pt2, pt3;
             if (!isUp)
             {
@@ -258,9 +258,9 @@ namespace Sunny.UI
             if (inCenterArea && IsPress)
             {
                 int x = BoundsWidth * (Width - 32) / Maximum;
-                int value = (e.Location.X - x / 2) * maximum / (Width - 32);
-                value = value.GetLimit(0, Maximum - BoundsWidth);
-                Value = value;
+                int v = (e.Location.X - x / 2) * maximum / (Width - 32);
+                v = Math.Max(v, 0);
+                Value = Math.Min(v, Maximum - BoundsWidth);
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
