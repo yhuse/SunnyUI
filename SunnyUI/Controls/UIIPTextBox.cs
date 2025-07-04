@@ -22,7 +22,7 @@
  * 2023-05-10: V3.3.6 修复Enabled切换时背景色不一致的问题
  * 2023-05-13: V3.3.6 重构DrawString函数
  * 2023-11-13: V3.5.2 重构主题
-******************************************************************************/
+ ******************************************************************************/
 
 using System;
 using System.ComponentModel;
@@ -72,8 +72,8 @@ namespace Sunny.UI
         {
             TextBox t = (TextBox)sender;
             if (t.Text.IsNullOrEmpty()) return;
-            if (t.Text.ToInt() > 255) t.Text = "255";
-            if (t.Text.ToInt() < 0) t.Text = "0";
+            if (t.Text.ToInt32() > 255) t.Text = "255";
+            if (t.Text.ToInt32() < 0) t.Text = "0";
         }
 
         private void Txt_KeyPress(object sender, KeyPressEventArgs e)
@@ -85,13 +85,13 @@ namespace Sunny.UI
                 return;
             }
 
-            if (t.SelectionStart == 2 && t.Text.Length == 2 && t.Text.ToInt() >= 26 && e.KeyChar != 8)
+            if (t.SelectionStart == 2 && t.Text.Length == 2 && t.Text.ToInt32() >= 26 && e.KeyChar != 8)
             {
                 e.Handled = true;
                 return;
             }
 
-            if (t.SelectionStart == 2 && t.Text.Length == 2 && t.Text.ToInt() == 25 && e.KeyChar != 8)
+            if (t.SelectionStart == 2 && t.Text.Length == 2 && t.Text.ToInt32() == 25 && e.KeyChar != 8)
             {
                 if (e.KeyChar > '5')
                 {
@@ -200,8 +200,8 @@ namespace Sunny.UI
         {
             TextBox t = (TextBox)sender;
             if (t.Text.IsNullOrEmpty()) return;
-            if (t.Text.ToInt() > 255) t.Text = "255";
-            if (t.Text.ToInt() < 0) t.Text = "0";
+            if (t.Text.ToInt32() > 255) t.Text = "255";
+            if (t.Text.ToInt32() < 0) t.Text = "0";
 
             string strIp = $"{txt1.Text}.{txt2.Text}.{txt3.Text}.{txt4.Text}";
 

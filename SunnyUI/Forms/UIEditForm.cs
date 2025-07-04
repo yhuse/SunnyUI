@@ -18,7 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2021-04-26: V3.0.3 代码生成增加Switch类型，代码生成增加Combobox类型
- * 2021-05-19: V3.0.3 动态生成表单，增加校验方法 
+ * 2021-05-19: V3.0.3 动态生成表单，增加校验方法
  * 2021-10-26: V3.0.8 代码生成增加ComboTreeView类型
  * 2021-10-28: V3.0.8 代码生成增加ComboCheckedListBox类型
  * 2022-04-18: V3.1.5 修改一处Show引起的无法获取控件值的问题
@@ -26,7 +26,7 @@
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-31: V3.5.2 代码生成增加ComboDataGridView类型
  * 2024-08-02: V3.6.8 代码生成增加文件选择和文件夹选择功能
-******************************************************************************/
+ ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -134,7 +134,7 @@ namespace Sunny.UI
                     ctrl = new UITextBox();
                     var edit = (UITextBox)ctrl;
                     edit.Type = UITextBox.UIEditType.Integer;
-                    edit.IntValue = info.Value.ToString().ToInt();
+                    edit.IntValue = info.Value.ToString().ToInt32();
                     edit.EnterAsTab = true;
                 }
 
@@ -193,7 +193,7 @@ namespace Sunny.UI
                         if (items != null)
                         {
                             edit.Items.AddRange(items);
-                            int index = info.Value.ToString().ToInt();
+                            int index = info.Value.ToString().ToInt32();
                             if (index < items.Length)
                                 edit.SelectedIndex = index;
                         }

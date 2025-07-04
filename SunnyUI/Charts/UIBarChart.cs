@@ -34,7 +34,7 @@
  * 2024-06-08: V3.6.6 修复X轴文字带角度显示时居中
  * 2024-10-25: V3.7.2 增加了一个快捷的显示数据函数ShowData
  * 2025-03-05: V3.8.1 增加Y轴零度线偏移量，Option.ZeroLineOffset
-******************************************************************************/
+ ******************************************************************************/
 
 using System;
 using System.Collections.Concurrent;
@@ -190,7 +190,7 @@ namespace Sunny.UI
             YAxisInterval = YScale.Step;
             double[] YLabels = YScale.CalcLabels();
             float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height);
-            YAxisDecimalCount = YScale.Format.Replace("F", "").ToInt();
+            YAxisDecimalCount = YScale.Format.Replace("F", "").ToInt32();
 
             float x1 = DrawBarWidth / (Option.SeriesCount * 2 + Option.SeriesCount + 1);
             float x2 = x1 * 2;

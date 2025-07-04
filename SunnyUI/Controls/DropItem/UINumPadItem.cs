@@ -341,14 +341,14 @@ namespace Sunny.UI
         private void uiSymbolButton4_Click(object sender, System.EventArgs e)
         {
             UISymbolButton btn = (UISymbolButton)sender;
-            DoValueChanged(this, btn.Tag.ToString().ToInt());
+            DoValueChanged(this, btn.Tag.ToString().ToInt32());
             Close();
         }
 
         private void uiSymbolButton16_Click(object sender, System.EventArgs e)
         {
             UISymbolButton btn = (UISymbolButton)sender;
-            DoValueChanged(this, btn.Tag.ToString().ToInt());
+            DoValueChanged(this, btn.Tag.ToString().ToInt32());
         }
 
         /// <summary>

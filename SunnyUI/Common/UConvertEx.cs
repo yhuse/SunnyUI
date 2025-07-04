@@ -17,7 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-11-20: V3.0.0 增加文件说明
-******************************************************************************/
+ ******************************************************************************/
 
 using System;
 using System.Drawing;
@@ -111,31 +111,31 @@ namespace Sunny.UI
                     break;
 
                 case TypeCode.Int16:
-                    obj = str.ToShort((short)defaultobj);
+                    obj = str.ToInt16((short)defaultobj);
                     break;
 
                 case TypeCode.UInt16:
-                    obj = str.ToUShort((ushort)defaultobj);
+                    obj = str.ToUInt16((ushort)defaultobj);
                     break;
 
                 case TypeCode.Int32:
-                    obj = str.ToInt((int)defaultobj);
+                    obj = str.ToInt32((int)defaultobj);
                     break;
 
                 case TypeCode.UInt32:
-                    obj = str.ToUInt((uint)defaultobj);
+                    obj = str.ToUInt32((uint)defaultobj);
                     break;
 
                 case TypeCode.Int64:
-                    obj = str.ToLong((long)defaultobj);
+                    obj = str.ToInt64((long)defaultobj);
                     break;
 
                 case TypeCode.UInt64:
-                    obj = str.ToULong((ulong)defaultobj);
+                    obj = str.ToUInt64((ulong)defaultobj);
                     break;
 
                 case TypeCode.Single:
-                    obj = str.ToFloat((float)defaultobj);
+                    obj = str.ToSingle((float)defaultobj);
                     break;
 
                 case TypeCode.Double:
