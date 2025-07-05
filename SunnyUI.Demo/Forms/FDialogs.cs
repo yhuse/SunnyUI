@@ -218,7 +218,7 @@ namespace Sunny.UI.Demo
         private void uiSymbolButton13_Click(object sender, EventArgs e)
         {
             string dir = "";
-            if (DirEx.SelectDirEx(CodeTranslator.Current.OpenDir, ref dir))
+            if (Dialogs.SelectDirEx(CodeTranslator.Current.OpenDir, ref dir))
             {
                 UIMessageTip.ShowOk(dir);
             }
