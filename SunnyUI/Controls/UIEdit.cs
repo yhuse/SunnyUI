@@ -416,7 +416,7 @@ namespace Sunny.UI
 
                     case UITextBox.UIEditType.Integer:
                         if (!CanEmpty)
-                            if (!Text.IsInt())
+                            if (!Text.IsInt32())
                                 Text = @"0";
                         break;
 
@@ -760,7 +760,7 @@ namespace Sunny.UI
                 if (Text == "")
                     Text = "0";
 
-                if (!Text.IsInt())
+                if (!Text.IsInt32())
                     Text = "0";
             }
 

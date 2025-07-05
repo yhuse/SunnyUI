@@ -319,7 +319,7 @@ namespace Sunny.UI
         {
             base.OnPaint(e);
 
-            if (!Text.IsInt()) Text = Value.ToString();
+            if (!Text.IsInt32()) Text = Value.ToString();
 
             Rectangle rect1 = new(0, 0, Height, Height - 1);
             using GraphicsPath path1 = rect1.CreateRoundedRectanglePath(Radius, UICornerRadiusSides.LeftTop | UICornerRadiusSides.LeftBottom, RectSize);
