@@ -17,6 +17,7 @@
  * 创建日期: 2021-10-27
  *
  * 2021-10-27: V2.2.0 增加文件说明
+ * 2025-07-06: V3.8.6 增加对 .NetFramework 的支持
 ******************************************************************************/
 
 using System;
@@ -28,11 +29,9 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sunny.UI;
 
-#if NET8_0_OR_GREATER
 /// <summary>
 /// INI文件读写类
 /// </summary>
@@ -103,29 +102,9 @@ public sealed class IniFileEx : IDisposable
     }
 
     /// <summary>
-    /// 异步加载INI文件内容到字典中
-    /// </summary>
-    /// <returns>Task</returns>
-    public async Task LoadAsync()
-    {
-        string[] lines = [];
-        if (File.Exists(FileName))
-        {
-            lines = await File.ReadAllLinesAsync(FileName, Encoding).ConfigureAwait(false);
-        }
-
-        _values = ReadString(lines);
-    }
-
-    /// <summary>
     /// 保存当前内容到文件
     /// </summary>
     public void Save() => SaveAs(FileName);
-
-    /// <summary>
-    /// 异步保存当前内容到文件
-    /// </summary>
-    public Task SaveAsync() => SaveAsAsync(FileName);
 
     /// <summary>
     /// 将当前内容保存到指定文件
@@ -149,12 +128,6 @@ public sealed class IniFileEx : IDisposable
         sw.Close();
         return File.Exists(fileName);
     }
-
-    /// <summary>
-    /// 将当前内容保存到指定文件
-    /// </summary>
-    /// <param name="fileName">文件名</param>
-    public Task SaveAsAsync(string fileName) => File.WriteAllTextAsync(fileName, IniString(), Encoding);
 
     private string IniString()
     {
@@ -205,10 +178,10 @@ public sealed class IniFileEx : IDisposable
             }
 
             // [Section:header]
-            if (line[0] == '[' && line[^1] == ']')
+            if (line[0] == '[' && line[line.Length - 1] == ']')
             {
                 // 移除方括号
-                sectionPrefix = string.Concat(line.AsSpan(1, line.Length - 2).Trim(), KeyDelimiter);
+                sectionPrefix = string.Concat(line.TrimStart('[').TrimEnd(']'), KeyDelimiter);
                 continue;
             }
 
@@ -219,11 +192,11 @@ public sealed class IniFileEx : IDisposable
                 throw new FormatException("Error_UnrecognizedLineFormat");
             }
 
-            var key = sectionPrefix + line[..separator].Trim();
-            var value = line[(separator + 1)..].Trim();
+            var key = sectionPrefix + line.Left(separator).Trim();
+            var value = line.Middle(separator + 1, line.Length).Trim();
 
             // 移除引号
-            if (value.Length > 1 && value[0] == '"' && value[^1] == '"')
+            if (value.Length > 1 && value[0] == '"' && value[line.Length - 1] == '"')
             {
                 value = value.Substring(1, value.Length - 2);
             }
@@ -261,7 +234,7 @@ public sealed class IniFileEx : IDisposable
     {
         if (section.IsNullOrEmpty()) throw new ArgumentNullException(nameof(section), @"Section cannot be null or empty.");
         if (key.IsNullOrEmpty()) throw new ArgumentNullException(nameof(key), @"Key cannot be null or empty.");
-        return _values.GetValueOrDefault($"{section}:{key}", defaultString);
+        return _values.TryGetValue($"{section}:{key}", out var result) ? result : defaultString;
     }
 
     /// <summary>
@@ -593,5 +566,3 @@ internal static class StrAndObjConverter
             throw new NotSupportedException(nameof(value));
     }
 }
-
-#endif
