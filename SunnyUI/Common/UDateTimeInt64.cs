@@ -86,7 +86,7 @@ namespace Sunny.UI
 
         public DateTimeInt64(double doubleTicks)
         {
-            doubleTicks = MakeValidDate((long)(doubleTicks * MillisecondsPerDay));
+            doubleTicks = MakeValidDate((long)(doubleTicks * MillisecondsPerDay + 0.5));
             Value = (long)doubleTicks;
         }
 
