@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
  * SunnyUI 开源控件库、工具类库、扩展类库、多页面开发框架。
  * CopyRight (C) 2012-2025 ShenYongHua(沈永华).
  * QQ群：56829229 QQ：17612584 EMail：SunnyUI@QQ.Com
@@ -62,6 +62,7 @@
  * 2024-07-26: V3.6.8 修复鼠标点击事件
  * 2024-07-28: V3.6.8 最大化后，鼠标点击标题栏最上方，不恢复正常大小
  * 2025-01-09: V3.8.1 修复窗体边框显示不全 #IBGJBS
+ * 2025-07-11: V3.8.6 调整标题栏 ExtendMenu 显示位置
 ******************************************************************************/
 
 using System;
@@ -248,7 +249,7 @@ namespace Sunny.UI
                     InExtendBox = false;
                     if (ExtendMenu != null)
                     {
-                        this.ShowContextMenuStrip(ExtendMenu, ExtendBoxRect.Left, TitleHeight - 1);
+                        this.ShowContextMenuStrip(ExtendMenu, Math.Min(ExtendBoxRect.Left, Width - ExtendMenu.Width - 2), TitleHeight);
                     }
                     else
                     {

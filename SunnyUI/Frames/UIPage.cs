@@ -45,6 +45,7 @@
  * 2023-12-20: V3.6.2 调整AfterShow事件位置及逻辑
  * 2024-04-28: V3.6.5 增加WindowStateChanged事件
  * 2024-10-30: V3.7.2 增加标题栏图片属性IconImage，优先于Symbol
+ * 2025-07-11: V3.8.6 调整标题栏 ExtendMenu 显示位置，#ICL933
 ******************************************************************************/
 
 using System;
@@ -855,7 +856,7 @@ namespace Sunny.UI
                     InExtendBox = false;
                     if (ExtendMenu != null)
                     {
-                        this.ShowContextMenuStrip(ExtendMenu, ExtendBoxRect.Left, TitleHeight - 1);
+                        this.ShowContextMenuStrip(ExtendMenu, Math.Min(ExtendBoxRect.Left, Width - ExtendMenu.Width - 2), TitleHeight);
                     }
                     else
                     {

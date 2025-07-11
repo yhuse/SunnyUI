@@ -25,6 +25,7 @@
  * 2024-07-20: V3.6.8 修改最大化时按钮位置
  * 2024-07-21: V3.6.8 修改属性与UIForm兼容
  * 2024-07-26: V3.6.8 修复鼠标点击事件
+ * 2025-07-11: V3.8.6 调整标题栏 ExtendMenu 显示位置
 ******************************************************************************/
 
 using System;
@@ -356,7 +357,7 @@ namespace Sunny.UI
                     InExtendBox = false;
                     if (ExtendMenu != null)
                     {
-                        this.ShowContextMenuStrip(ExtendMenu, ExtendBoxRect.Left, TitleHeight - 1);
+                        this.ShowContextMenuStrip(ExtendMenu, Math.Min(ExtendBoxRect.Left, Width - ExtendMenu.Width - 2), TitleHeight);
                     }
                     else
                     {
