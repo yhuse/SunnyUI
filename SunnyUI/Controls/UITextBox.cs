@@ -63,6 +63,7 @@
  * 2024-08-12: V3.6.8 解决原生控件字体在微软雅黑时，显示不完整的问题
  * 2024-08-26: V3.6.9 修复微软雅黑字体显示不完整的问题
  * 2024-08-27: V3.6.9 AutoSize时根据字体自动调整控件高度
+ * 2025-07-16: V3.8.6 调整编辑框显示文字位置
 ******************************************************************************/
 
 using System;
@@ -770,8 +771,8 @@ namespace Sunny.UI
 
                 if (icon == null && Symbol == 0)
                 {
-                    edit.Left = 4;
-                    edit.Width = Width - 8;
+                    edit.Left = 4 + 2;
+                    edit.Width = Width - 8 - 4;
                     edit.Left = edit.Left + added;
                     edit.Width = edit.Width - added * 2;
                 }
@@ -779,13 +780,13 @@ namespace Sunny.UI
                 {
                     if (icon != null)
                     {
-                        edit.Left = 4 + iconSize;
-                        edit.Width = Width - 8 - iconSize - added;
+                        edit.Left = 4 + iconSize + 2;
+                        edit.Width = Width - 8 - iconSize - added - 4;
                     }
                     else if (Symbol > 0)
                     {
-                        edit.Left = 4 + SymbolSize;
-                        edit.Width = Width - 8 - SymbolSize - added;
+                        edit.Left = 4 + SymbolSize + 2;
+                        edit.Width = Width - 8 - SymbolSize - added - 4;
                     }
                 }
 
