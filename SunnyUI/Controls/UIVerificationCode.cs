@@ -21,6 +21,7 @@
  * 2022-05-28: V3.3.7 修改字体缩放时显示
  * 2024-12-12: V3.8.0 可以自定义颜色 #IBABW1
  * 2025-05-30: V3.8.4 修复验证码字符相同 #ICBL2X
+ * 2025-07-23: V3.8.6 双击修改验证码，验证码采用Base32字母表，更容易识别
 ******************************************************************************/
 
 using System;
@@ -46,6 +47,17 @@ namespace Sunny.UI
             Height = 35;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _bmp?.Dispose();
+                _bmp = null;
+            }
+
+            base.Dispose(disposing);
+        }
+
         /// <summary>
         /// 设置主题样式
         /// </summary>
@@ -58,12 +70,16 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 点击事件
+        /// 双击更新验证码
         /// </summary>
         /// <param name="e">参数</param>
-        protected override void OnClick(EventArgs e)
+        protected override void OnDoubleClick(EventArgs e)
         {
-            base.OnClick(e);
+            base.OnDoubleClick(e);
+
+            _bmp?.Dispose();
+            _bmp = null;
+
             Invalidate();
         }
 
@@ -98,11 +114,17 @@ namespace Sunny.UI
         {
             base.OnPaintFill(g, path);
 
-            using var bmp = CreateImage(RandomChars(CodeLength));
-            g.DrawImage(bmp, Width / 2 - bmp.Width / 2, 1);
+            _bmp ??= CreateImage(RandomChars(CodeLength));
+            g.DrawImage(_bmp, Width / 2 - _bmp.Width / 2, 1);
         }
 
-        private const string CHARS_62 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        private Bitmap _bmp;
+
+        /// <summary>
+        /// Base32字母表：该字母表排除了I、 L、O、U字母，目的是避免混淆和滥用，ULID规范的字符表
+        /// https://www.crockford.com/base32.html
+        /// </summary>
+        private const string Base32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 
         /// <summary>
         /// 生成字母和数字的随机字符串
@@ -111,7 +133,7 @@ namespace Sunny.UI
         /// <returns>结果</returns>
         private static string RandomChars(int length = 10)
         {
-            return RandomBase(CHARS_62.ToCharArray(), length);
+            return RandomBase(Base32.ToCharArray(), length);
         }
 
         private static string RandomBase(char[] pattern, int length)
@@ -139,7 +161,6 @@ namespace Sunny.UI
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
             if (Text != "") Text = "";
-            //base.OnPaintFore(g, path);
         }
 
         [DefaultValue(4)]
