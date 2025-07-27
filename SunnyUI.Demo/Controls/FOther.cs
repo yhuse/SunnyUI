@@ -14,5 +14,15 @@
         {
             this.ShowInfoTip(uiCalendar1.Date.DateString());
         }
+
+        private void FOther_Initialize(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void uiScratchCode2_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

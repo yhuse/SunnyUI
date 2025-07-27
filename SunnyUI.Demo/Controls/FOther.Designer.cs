@@ -43,15 +43,19 @@ namespace Sunny.UI.Demo
             this.uiVerificationCode2 = new Sunny.UI.UIVerificationCode();
             this.uiCalendar1 = new Sunny.UI.UICalendar();
             this.uiLine2 = new Sunny.UI.UILine();
+            this.uiScratchCode1 = new Sunny.UI.UIScratchCode();
+            this.uiLine3 = new Sunny.UI.UILine();
+            this.uiScratchCode2 = new Sunny.UI.UIScratchCode();
             this.SuspendLayout();
             // 
             // uiLabel3
             // 
             this.uiLabel3.AutoSize = true;
             this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel3.Location = new System.Drawing.Point(31, 136);
             this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel3.Size = new System.Drawing.Size(135, 16);
             this.uiLabel3.TabIndex = 79;
             this.uiLabel3.Text = "鼠标移过来看提示";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -60,9 +64,10 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel2.Location = new System.Drawing.Point(211, 95);
             this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel2.Size = new System.Drawing.Size(135, 16);
             this.uiLabel2.TabIndex = 78;
             this.uiLabel2.Text = "鼠标移过来看提示";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -71,9 +76,10 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel1.Location = new System.Drawing.Point(31, 95);
             this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(138, 21);
+            this.uiLabel1.Size = new System.Drawing.Size(135, 16);
             this.uiLabel1.TabIndex = 77;
             this.uiLabel1.Text = "鼠标移过来看提示";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,7 +87,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine7
             // 
+            this.uiLine7.BackColor = System.Drawing.Color.Transparent;
             this.uiLine7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine7.Location = new System.Drawing.Point(30, 55);
             this.uiLine7.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine7.Name = "uiLine7";
@@ -119,7 +127,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine6
             // 
+            this.uiLine6.BackColor = System.Drawing.Color.Transparent;
             this.uiLine6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine6.Location = new System.Drawing.Point(381, 55);
             this.uiLine6.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine6.Name = "uiLine6";
@@ -138,7 +148,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(381, 187);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -183,7 +195,9 @@ namespace Sunny.UI.Demo
             // 
             // uiLine2
             // 
+            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
             this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine2.Location = new System.Drawing.Point(30, 187);
             this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine2.Name = "uiLine2";
@@ -192,11 +206,47 @@ namespace Sunny.UI.Demo
             this.uiLine2.Text = "UICalendar";
             this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiScratchCode1
+            // 
+            this.uiScratchCode1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiScratchCode1.Location = new System.Drawing.Point(381, 327);
+            this.uiScratchCode1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiScratchCode1.Name = "uiScratchCode1";
+            this.uiScratchCode1.Size = new System.Drawing.Size(100, 35);
+            this.uiScratchCode1.TabIndex = 85;
+            // 
+            // uiLine3
+            // 
+            this.uiLine3.BackColor = System.Drawing.Color.Transparent;
+            this.uiLine3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLine3.Location = new System.Drawing.Point(381, 288);
+            this.uiLine3.MinimumSize = new System.Drawing.Size(16, 16);
+            this.uiLine3.Name = "uiLine3";
+            this.uiLine3.Size = new System.Drawing.Size(319, 20);
+            this.uiLine3.TabIndex = 86;
+            this.uiLine3.Text = "UIScratchCode";
+            this.uiLine3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiScratchCode2
+            // 
+            this.uiScratchCode2.CodeLength = 6;
+            this.uiScratchCode2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiScratchCode2.Location = new System.Drawing.Point(499, 327);
+            this.uiScratchCode2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiScratchCode2.Name = "uiScratchCode2";
+            this.uiScratchCode2.Size = new System.Drawing.Size(140, 35);
+            this.uiScratchCode2.TabIndex = 87;
+            this.uiScratchCode2.Click += new System.EventHandler(this.uiScratchCode2_Click);
+            // 
             // FOther
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.Controls.Add(this.uiScratchCode2);
+            this.Controls.Add(this.uiLine3);
+            this.Controls.Add(this.uiScratchCode1);
             this.Controls.Add(this.uiLine2);
             this.Controls.Add(this.uiCalendar1);
             this.Controls.Add(this.uiVerificationCode2);
@@ -214,6 +264,7 @@ namespace Sunny.UI.Demo
             this.ShowTitle = true;
             this.Symbol = 62173;
             this.Text = "Other";
+            this.Initialize += new System.EventHandler(this.FOther_Initialize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,5 +284,8 @@ namespace Sunny.UI.Demo
         private UIVerificationCode uiVerificationCode2;
         private UICalendar uiCalendar1;
         private UILine uiLine2;
+        private UIScratchCode uiScratchCode1;
+        private UILine uiLine3;
+        private UIScratchCode uiScratchCode2;
     }
 }
