@@ -128,6 +128,8 @@ namespace Sunny.UI
 
             if (ExistsSeries(series.Name)) return series;
 
+            series.XAxisType = XAxisType;
+
             int idx = 0;
             foreach (var item in Series.Values)
             {
@@ -458,6 +460,8 @@ namespace Sunny.UI
             IsY2 = isY2;
         }
 
+        public UIAxisType XAxisType { get; set; } = UIAxisType.Value;
+
         public double YOffset { get; set; } = 0;
 
         public void SetValueFormat(int xAxisDecimalPlaces, int yAxisDecimalPlaces)
@@ -550,6 +554,8 @@ namespace Sunny.UI
 
         internal readonly List<double> XData = new List<double>();
 
+        internal readonly List<string> XLabels = new List<string>();
+
         internal readonly List<double> YData = new List<double>();
 
         internal readonly List<PointF> Points = new List<PointF>();
@@ -586,6 +592,8 @@ namespace Sunny.UI
             {
                 XData.RemoveRange(0, count);
                 YData.RemoveRange(0, count);
+
+                if (XAxisType == UIAxisType.Category) XLabels.RemoveRange(0, count);
             }
 
             return this;
@@ -694,6 +702,7 @@ namespace Sunny.UI
 
             XData.Clear();
             YData.Clear();
+            XLabels.Clear();
             ClearPoints();
         }
 
@@ -756,6 +765,7 @@ namespace Sunny.UI
         {
             int cnt = XData.Count;
             XData.Add(cnt);
+            if (XAxisType == UIAxisType.Category) XLabels.Add(x);
             if (y.IsInfinity()) y = double.NaN;
             if (y.IsNan()) ContainsNan = true;
             YData.Add(y + YOffset);

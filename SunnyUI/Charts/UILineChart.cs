@@ -56,6 +56,7 @@
  * 2024-11-13: V3.7.2 增加了鼠标移上绘制十字线样式
  * 2024-11-14: V3.7.2 增加了鼠标移上绘制十字线颜色
  * 2025-08-11: V3.8.7 修改自定义X轴显示时，鼠标移上显示数据点标签
+ * 2025-08-11: V3.8.7 修改了X轴显示为文字时，鼠标移上显示数据点标签
 ******************************************************************************/
 
 using System;
@@ -971,7 +972,9 @@ namespace Sunny.UI
 
                             if (customlabel.IsNullOrEmpty())
                             {
-                                if (Option.XAxisType == UIAxisType.DateTime)
+                                if (Option.XAxisType == UIAxisType.Category)
+                                    sb.Append(point.Series.XLabels[(int)point.Index]);
+                                else if (Option.XAxisType == UIAxisType.DateTime)
                                     sb.Append(new DateTimeInt64(point.X).ToString(point.Series.XAxisDateTimeFormat.IsValid() ? point.Series.XAxisDateTimeFormat : XScale.Format));
                                 else
                                     sb.Append(point.X.ToString(point.Series.XAxisDecimalPlaces >= 0 ? "F" + point.Series.XAxisDecimalPlaces : XScale.Format));
