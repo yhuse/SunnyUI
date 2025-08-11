@@ -55,6 +55,7 @@
  * 2024-07-01: V3.6.7 增加了Y轴自定义坐标显示
  * 2024-11-13: V3.7.2 增加了鼠标移上绘制十字线样式
  * 2024-11-14: V3.7.2 增加了鼠标移上绘制十字线颜色
+ * 2025-08-11: V3.8.7 修改自定义X轴显示时，鼠标移上显示数据点标签
 ******************************************************************************/
 
 using System;
@@ -954,6 +955,20 @@ namespace Sunny.UI
                             sb.Append(Option.XAxis.Name + ": ");
 
                             string customlabel = "";
+                            if (Option.XAxis.HaveCustomLabels)
+                            {
+                                var customValues = Option.XAxis.CustomLabels.LabelValues();
+                                for (int ci = 0; ci < customValues.Length; ci++)
+                                {
+                                    if (customValues[ci].EqualsDouble(point.X))
+                                    {
+                                        customlabel = Option.XAxis.CustomLabels.GetLabel(ci);
+                                        sb.Append(customlabel);
+                                        break;
+                                    }
+                                }
+                            }
+
                             if (customlabel.IsNullOrEmpty())
                             {
                                 if (Option.XAxisType == UIAxisType.DateTime)
