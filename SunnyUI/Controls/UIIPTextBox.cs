@@ -82,12 +82,19 @@ namespace Sunny.UI
                     e.Handled = true;
                 }
 
-                if (clipboardText.IsIP4())
+                if (IsIP4(clipboardText))
                 {
                     this.Value = IPAddress.Parse(clipboardText);
                     e.Handled = true;
                 }
             }
+        }
+
+        private bool IsIP4(string ip)
+        {
+            if (string.IsNullOrEmpty(ip)) return false;
+            var parts = ip.Split('.');
+            return parts.Length == 4 && parts[0].IsByte() && parts[1].IsByte() && parts[2].IsByte() && parts[3].IsByte();
         }
 
         [Browsable(false)]
