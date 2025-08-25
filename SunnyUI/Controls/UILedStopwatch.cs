@@ -68,6 +68,7 @@ namespace Sunny.UI
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            if (DesignMode) return;
             TimeSpan = DateTime.Now - StartTime;
             string text = "";
             switch (ShowType)
