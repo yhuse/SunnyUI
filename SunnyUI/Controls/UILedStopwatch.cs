@@ -17,6 +17,7 @@
  * 创建日期: 2020-01-01
  *
  * 2020-01-01: V2.2.0 增加文件说明
+ * 2025-08-25: V3.8.7 修改小时显示，可超过24小时显示
 ******************************************************************************/
 
 using System;
@@ -80,7 +81,7 @@ namespace Sunny.UI
                     break;
 
                 case TimeShowType.hhmmss:
-                    text = TimeSpan.Hours.ToString("D2") + ":" + TimeSpan.Minutes.ToString("D2") + ":" + TimeSpan.Seconds.ToString("D2");
+                    text = ((int)TimeSpan.TotalHours).ToString("D2") + ":" + TimeSpan.Minutes.ToString("D2") + ":" + TimeSpan.Seconds.ToString("D2");
                     break;
             }
 
