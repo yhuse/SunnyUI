@@ -17,11 +17,12 @@
  * 创建日期: 2022-01-29
  *
  * 2022-01-29: V3.1.0 增加文件说明
- * 2022-11-02: V3.2.6 增加TextChanged事件
- * 2022-12-02: V3.3.0 删除TextChanged事件，增加ValueChanged事件
- * 2023-05-10: V3.3.6 修复Enabled切换时背景色不一致的问题
- * 2023-05-13: V3.3.6 重构DrawString函数
+ * 2022-11-02: V3.2.6 增加 TextChanged 事件
+ * 2022-12-02: V3.3.0 删除 TextChanged 事件，增加 ValueChanged 事件
+ * 2023-05-10: V3.3.6 修复 Enabled 切换时背景色不一致的问题
+ * 2023-05-13: V3.3.6 重构 DrawString 函数
  * 2023-11-13: V3.5.2 重构主题
+ * 2025-08-25: V3.8.7 增加快捷键 CTRL+CV 复制和粘贴IP地址
  ******************************************************************************/
 
 using System;
@@ -57,10 +58,36 @@ namespace Sunny.UI
                 txt.PreviewKeyDown += Txt_PreviewKeyDown;
                 txt.KeyPress += Txt_KeyPress;
                 txt.TextChanged += Txt_TextChanged;
+                txt.KeyDown += Txt_KeyDown;
                 txt.Leave += Txt_Leave;
             }
 
             fillColor = UIStyles.Blue.EditorBackColor;
+        }
+
+        private void Txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.C && Value != null) // Ctrl+C
+            {
+                Clipboard.SetText(this.Value.ToString());
+                e.Handled = true;
+            }
+            else if (e.Control && e.KeyCode == Keys.V) // Ctrl+V
+            {
+                string clipboardText = Clipboard.GetText();
+                TextBox tb = (TextBox)sender;
+                if (clipboardText.IsByte())
+                {
+                    tb.Text = clipboardText;
+                    e.Handled = true;
+                }
+
+                if (clipboardText.IsIP4())
+                {
+                    this.Value = IPAddress.Parse(clipboardText);
+                    e.Handled = true;
+                }
+            }
         }
 
         [Browsable(false)]
