@@ -19,6 +19,7 @@
  * 2024-05-16: V3.6.6 增加文件说明
  * 2024-06-08: V3.6.6 统一配色
  * 2024-08-10: V3.6.8 重构文字显示位置，重绘
+ * 2025-09-05: V3.8.7 使用TextRenderer绘制文本（避免削顶问题）
 ******************************************************************************/
 
 using System.Drawing;
@@ -101,33 +102,18 @@ namespace Sunny.UI
                 foreColor = Color.White;
             }
 
-            SizeF sf = e.Graphics.MeasureString(Message, font: Font, 360);
-            if (sf.Height > 60)
-            {
-                int height = (int)sf.Height - 60;
-                Height = 220 + height;
-
-                if (Owner != null)
-                {
-                    int t = Owner.Top;
-                    int h = Owner.Height;
-                    if (Owner is UIPage)
-                    {
-                        Form form = Owner.ParentForm;
-                        t = form.Top;
-                        h = form.Height;
-                    }
-
-                    Top = t + (h - Height) / 2;
-                }
-            }
+            // 使用TextRenderer测量文本
+            Size sf = TextRenderer.MeasureText(Message, Font, new Size(360, int.MaxValue),
+                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl);
 
             float top = Height - TitleHeight - 76;
             top = top / 2.0f - sf.Height / 2.0f;
             PointF pt = new PointF(120, top + TitleHeight);
 
-            using SolidBrush br = new SolidBrush(ForeColor);
-            e.Graphics.DrawString(Message, Font, br, new RectangleF(pt.X, pt.Y, sf.Width, sf.Height));
+            // 使用TextRenderer绘制文本（避免削顶问题）
+            Rectangle textRect = new Rectangle((int)pt.X, (int)pt.Y, 360, sf.Height);
+            TextRenderer.DrawText(e.Graphics, Message, Font, textRect, ForeColor,
+                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl);
 
             e.Graphics.FillRectangle(Color, new RectangleF(0, Height - 76, Width, 76));
             e.Graphics.DrawFontImage(Symbol, 72, SymbolColor, new RectangleF(28, 62, 64, 64));
