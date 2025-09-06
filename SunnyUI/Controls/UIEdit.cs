@@ -24,6 +24,7 @@
  * 2023-06-14: V3.3.8 修复输入范围判断的问题
  * 2025-06-10: V3.8.4 多行时水印文字在左上角显示
  * 2025-07-16: V3.8.6 重写水印文字的绘制逻辑
+ * 2025-09-06: V3.8.7 修复了自定义控件时，水印文字不显示的问题
  ******************************************************************************/
 
 using System;
@@ -50,12 +51,6 @@ namespace Sunny.UI
             base.MaxLength = 32767;
             this.Leave += new EventHandler(ThisWasLeaved);
             SetUserPaintStyle(false);
-        }
-
-        private void WaterMarkContainer_DoubleClick(object sender, EventArgs e)
-        {
-            this.Focus();
-            base.OnDoubleClick(EventArgs.Empty);
         }
 
         protected override void OnEnabledChanged(EventArgs e)
@@ -105,12 +100,6 @@ namespace Sunny.UI
             return (Text.IsNullOrEmpty() && Watermark.IsValid()) || (Text.IsValid() && !Enabled);
         }
 
-        private void waterMarkContainer_Click(object sender, EventArgs e)
-        {
-            this.Focus();
-            base.OnClick(EventArgs.Empty);
-        }
-
         /// <summary>
         /// 重载绘图
         /// </summary>
@@ -155,9 +144,12 @@ namespace Sunny.UI
             get => _waterMarkText;
             set
             {
-                _waterMarkText = value;
-                //SetUserPaintStyle(NeedUserPaint());
-                Invalidate();
+                if (_waterMarkText != value)
+                {
+                    _waterMarkText = value;
+                    SetUserPaintStyle(NeedUserPaint());
+                    Invalidate();
+                }
             }
         }
 
