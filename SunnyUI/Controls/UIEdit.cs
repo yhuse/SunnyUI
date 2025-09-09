@@ -23,13 +23,12 @@
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-06-14: V3.3.8 修复输入范围判断的问题
  * 2025-06-10: V3.8.4 多行时水印文字在左上角显示
- * 2025-07-16: V3.8.6 重写水印文字的绘制逻辑
- * 2025-09-06: V3.8.7 修复了自定义控件时，水印文字不显示的问题
  ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -49,29 +48,102 @@ namespace Sunny.UI
             base.ForeColor = UIFontColor.Primary;
             Width = 150;
             base.MaxLength = 32767;
+            waterMarkContainer = null;
+
+            DrawWaterMark();
+            this.Enter += new EventHandler(ThisHasFocus);
             this.Leave += new EventHandler(ThisWasLeaved);
-            SetUserPaintStyle(false);
+            this.TextChanged += new EventHandler(ThisTextChanged);
         }
 
-        protected override void OnEnabledChanged(EventArgs e)
+        private void DrawWaterMark()
         {
-            base.OnEnabledChanged(e);
-            SetUserPaintStyle(NeedUserPaint());
+            if (this.waterMarkContainer == null && this.TextLength <= 0)
+            {
+                waterMarkContainer = new PanelEx();
+                waterMarkContainer.Paint += new PaintEventHandler(waterMarkContainer_Paint);
+                waterMarkContainer.Click += new EventHandler(waterMarkContainer_Click);
+                waterMarkContainer.DoubleClick += WaterMarkContainer_DoubleClick;
+                this.ThreadSafeCall(() =>
+                {
+                    this.Controls.Add(waterMarkContainer);
+                });
+
+                waterMarkContainer.ThreadSafeCall(() =>
+                {
+                    waterMarkContainer.Invalidate();
+                });
+            }
+        }
+
+        private void WaterMarkContainer_DoubleClick(object sender, EventArgs e)
+        {
+            this.Focus();
+            base.OnDoubleClick(EventArgs.Empty);
+        }
+
+        private void waterMarkContainer_Paint(object sender, PaintEventArgs e)
+        {
+            waterMarkContainer.Visible = Watermark.IsValid();
+            waterMarkContainer.Location = new Point(6, 0);
+            waterMarkContainer.Height = this.Height;
+            waterMarkContainer.Width = this.Width - 8;
+            waterMarkContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+            Color color = _waterMarkColor;
+            if (ContainsFocus) color = _waterMarkActiveColor;
+
+            Graphics g = waterMarkContainer.CreateGraphics();
+            g.DrawString(this._waterMarkText, Font, color, waterMarkContainer.ClientRectangle, Multiline ? ContentAlignment.TopLeft : ContentAlignment.MiddleLeft, 0);//Take a look at that point
+        }
+
+        private void RemoveWaterMark()
+        {
+            if (waterMarkContainer != null)
+            {
+                this.ThreadSafeCall(() =>
+                {
+                    Controls.Remove(waterMarkContainer);
+                });
+
+                waterMarkContainer = null;
+            }
+        }
+
+        private void ThisHasFocus(object sender, EventArgs e)
+        {
+            if (this.TextLength <= 0)
+            {
+                RemoveWaterMark();
+                DrawWaterMark();
+            }
         }
 
         private void ThisWasLeaved(object sender, EventArgs e)
         {
+            if (this.TextLength > 0)
+            {
+                RemoveWaterMark();
+            }
+            else
+            {
+                Invalidate();
+            }
+
             CheckMaxMin();
         }
 
-        public bool TouchPressClick { get; set; } = false;
-
         private int textLength = 0;
-
-        protected override void OnTextChanged(EventArgs e)
+        private void ThisTextChanged(object sender, EventArgs e)
         {
-            base.OnTextChanged(e);
-            SetUserPaintStyle(NeedUserPaint());
+            if (this.TextLength > 0)
+            {
+                RemoveWaterMark();
+            }
+            else
+            {
+                DrawWaterMark();
+            }
 
             if (Text.IsValid())
             {
@@ -84,20 +156,10 @@ namespace Sunny.UI
             textLength = Text.Length;
         }
 
-        private bool _userPaint = true;
-        private void SetUserPaintStyle(bool needPaint)
+        private void waterMarkContainer_Click(object sender, EventArgs e)
         {
-            if (needPaint != _userPaint)
-            {
-                _userPaint = needPaint;
-                SetStyle(ControlStyles.UserPaint, needPaint);
-                Invalidate();
-            }
-        }
-
-        public bool NeedUserPaint()
-        {
-            return (Text.IsNullOrEmpty() && Watermark.IsValid()) || (Text.IsValid() && !Enabled);
+            this.Focus();
+            base.OnClick(EventArgs.Empty);
         }
 
         /// <summary>
@@ -107,25 +169,21 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            if (Text.IsNullOrEmpty() && Watermark.IsValid())
-            {
-                e.Graphics.DrawString(Watermark, Font, WaterMarkColor, this.ClientRectangle, ContentAlignment.TopLeft);
-            }
-
-            if ((Text.IsValid() && !Enabled))
-            {
-                e.Graphics.DrawString(Text, Font, ForeDisableColor, this.ClientRectangle, ContentAlignment.TopLeft);
-            }
-        }
-
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            base.OnVisibleChanged(e);
-            SetUserPaintStyle(NeedUserPaint());
+            DrawWaterMark();
         }
 
         public virtual Color ForeDisableColor { get; set; } = Color.FromArgb(109, 109, 103);
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            base.OnInvalidated(e);
+
+            if (waterMarkContainer != null)
+            {
+                waterMarkContainer.Visible = Watermark.IsValid();
+                waterMarkContainer.Invalidate();
+            }
+        }
 
         private float DefaultFontSize = -1;
 
@@ -136,6 +194,80 @@ namespace Sunny.UI
             Font = UIDPIScale.DPIScaleFont(Font, DefaultFontSize);
         }
 
+        [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+        [DefaultValue(false)]
+        public bool TouchPressClick
+        {
+            get
+            {
+                if (waterMarkContainer != null)
+                    return waterMarkContainer.TouchPressClick;
+                return false;
+            }
+            set
+            {
+                if (waterMarkContainer != null)
+                    waterMarkContainer.TouchPressClick = value;
+            }
+        }
+
+        internal class PanelEx : Panel
+        {
+            [Description("开启后可响应某些触屏的点击事件"), Category("SunnyUI")]
+            [DefaultValue(false)]
+            public bool TouchPressClick { get; set; } = false;
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////  WndProc窗口程序：
+            //////  当按压屏幕时，产生一个WM_POINTERDOWN消息时，我们通过API函数 PostMessage 投送出一个WM_LBUTTONDOWN消息
+            //////  WM_LBUTTONDOWN消息会产生一个相对应的鼠标按下左键的事件，于是我们只要在mouse_down事件里写下处理过程即可
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            #region WndProc 窗口程序
+
+            [DllImport("user32.dll")]
+            public static extern int PostMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+            const int WM_POINTERDOWN = 0x0246;
+            const int WM_POINTERUP = 0x0247;
+            const int WM_LBUTTONDOWN = 0x0201;
+            const int WM_LBUTTONUP = 0x0202;
+
+            protected override void WndProc(ref Message m)
+            {
+                if (TouchPressClick)
+                {
+                    switch (m.Msg)
+                    {
+                        case WM_POINTERDOWN:
+                            break;
+                        case WM_POINTERUP:
+                            break;
+                        default:
+                            base.WndProc(ref m);
+                            return;
+                    }
+
+                    switch (m.Msg)
+                    {
+                        case WM_POINTERDOWN:
+                            PostMessage(m.HWnd, WM_LBUTTONDOWN, (int)m.WParam, (int)m.LParam);
+                            break;
+                        case WM_POINTERUP:
+                            PostMessage(m.HWnd, WM_LBUTTONUP, (int)m.WParam, (int)m.LParam);
+                            break;
+                    }
+                }
+                else
+                {
+                    base.WndProc(ref m);
+                }
+            }
+
+            #endregion
+        }
+
+        private PanelEx waterMarkContainer;
         private string _waterMarkText = "";
 
         [DefaultValue(null)]
@@ -144,12 +276,8 @@ namespace Sunny.UI
             get => _waterMarkText;
             set
             {
-                if (_waterMarkText != value)
-                {
-                    _waterMarkText = value;
-                    SetUserPaintStyle(NeedUserPaint());
-                    Invalidate();
-                }
+                _waterMarkText = value;
+                Invalidate();
             }
         }
 
