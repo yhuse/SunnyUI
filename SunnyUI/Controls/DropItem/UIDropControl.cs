@@ -33,6 +33,7 @@
  * 2023-12-18: V3.6.2 修复高度不随字体改变
  * 2024-01-19: V3.6.3 下拉按钮可修改大小及位置
  * 2024-01-27: V3.6.3 修改按钮大小调整时，清除按钮的位置
+ * 2025-09-15: V3.8.8 修复设置设置圆弧形时，右侧显示有问题 #I95DY6
 ******************************************************************************/
 
 using System;
@@ -465,7 +466,7 @@ namespace Sunny.UI
                     g.DrawString(Watermark, Font, WatermarkColor, ClientRectangle, TextAlignment, 5);
             }
 
-            g.FillRectangle(GetFillColor(), new Rectangle(Width - Padding.Right, 2, Padding.Right - 1, Height - 4));
+            g.FillEllipse(GetFillColor(), new Rectangle(Width - Padding.Right - 1, 2, Padding.Right - 1, Height - 4));
             Color color = GetRectColor();
             int symbol = dropSymbol;
             if (NeedDrawClearButton)
