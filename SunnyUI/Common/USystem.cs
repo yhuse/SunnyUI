@@ -27,7 +27,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -172,25 +171,6 @@ namespace Sunny.UI
         {
             User.GetCursorPos(out POINT pos);
             return new Point(pos.X, pos.Y);
-        }
-
-        /// <summary>
-        /// Delays the specified ms.
-        /// </summary>
-        /// <param name="ms">The ms.</param>
-        public static void Delay(int ms)
-        {
-            var sw = Stopwatch.StartNew();
-            var sleepMs = ms - 16;
-            if (sleepMs > 0)
-            {
-                Thread.Sleep(sleepMs);
-            }
-
-            while (sw.ElapsedMilliseconds < ms)
-            {
-                Thread.Sleep(0);
-            }
         }
 
         /// <summary>

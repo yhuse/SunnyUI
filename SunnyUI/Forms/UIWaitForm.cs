@@ -17,6 +17,7 @@
  * 创建日期: 2020-10-13
  *
  * 2020-10-13: V3.0.0 增加文件说明
+ * 2025-09-15: V3.8.8 等待提示框增加取消功能。#IA5Q0Z
 ******************************************************************************/
 
 namespace Sunny.UI
@@ -54,11 +55,16 @@ namespace Sunny.UI
 
         private void Bar_Tick(object sender, System.EventArgs e)
         {
-            if (UIFormServiceHelper.WaitFormServiceClose)
+            if (!UIFormServiceHelper.WaitFormServiceShow)
             {
-                UIFormServiceHelper.WaitFormServiceClose = false;
                 Close();
             }
+        }
+
+        private void UIWaitForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            Bar.Stop();
+            UIFormServiceHelper.WaitFormServiceShow = false;
         }
     }
 }

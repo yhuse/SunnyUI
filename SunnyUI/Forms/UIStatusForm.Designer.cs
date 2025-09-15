@@ -79,6 +79,7 @@
             Text = "提示";
             TopMost = true;
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 153);
+            FormClosing += UIStatusForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

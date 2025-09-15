@@ -62,7 +62,6 @@
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ClientSize = new System.Drawing.Size(473, 153);
-            ControlBox = false;
             Controls.Add(labelDescription);
             Controls.Add(Bar);
             IsForbidAltF4 = true;
@@ -73,6 +72,7 @@
             Text = "提示";
             TopMost = true;
             ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 473, 153);
+            FormClosing += UIWaitForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

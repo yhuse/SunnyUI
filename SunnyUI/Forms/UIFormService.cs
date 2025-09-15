@@ -54,26 +54,34 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="desc">描述文字</param>
-        /// <param name="centerScreen"></param>
-        public static void ShowWaitForm(this Form owner, string desc = "系统正在处理中，请稍候...", bool centerScreen = true)
+        /// <param name="centerScreen">居中</param>
+        /// <param name="closeable">可关闭的</param>
+        public static void ShowWaitForm(this Form owner, string desc = "系统正在处理中，请稍候...", bool centerScreen = true, bool closeable = false)
         {
             if (WaitFormService.IsRun) return;
-            WaitFormServiceClose = false;
+            WaitFormServiceShow = true;
             if (centerScreen)
-                WaitFormService.CreateForm(desc);
+                WaitFormService.CreateForm(desc, closeable);
             else
-                WaitFormService.CreateForm(owner, desc);
+                WaitFormService.CreateForm(owner, desc, closeable);
         }
 
-        internal static bool WaitFormServiceClose;
+        internal static bool WaitFormServiceShow;
 
         /// <summary>
         /// 隐藏等待提示窗
         /// </summary>
         public static void HideWaitForm(this Form owner)
         {
-            WaitFormServiceClose = true;
+            WaitFormServiceShow = false;
         }
+
+        /// <summary>
+        /// 等待提示窗是否显示
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        public static bool WaitFormIsShow(this Form owner) => WaitFormServiceShow;
 
         /// <summary>
         /// 设置等待提示窗描述文字
@@ -91,25 +99,34 @@ namespace Sunny.UI
         /// <param name="desc">描述文字</param>
         /// <param name="maximum">最大进度值</param>
         /// <param name="decimalCount">显示进度条小数个数</param>
-        public static void ShowStatusForm(this Form owner, int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1, bool centerScreen = true)
+        /// <param name="centerScreen">居中</param>
+        /// <param name="closeable">可关闭的</param>
+        public static void ShowStatusForm(this Form owner, int maximum = 100, string desc = "系统正在处理中，请稍候...", int decimalCount = 1, bool centerScreen = true, bool closeable = false)
         {
             if (StatusFormService.IsRun) return;
-            StatusFormServiceClose = false;
+            StatusFormServiceShow = true;
             if (centerScreen)
-                StatusFormService.CreateForm(maximum, desc, decimalCount);
+                StatusFormService.CreateForm(maximum, desc, decimalCount, closeable);
             else
-                StatusFormService.CreateForm(owner, maximum, desc, decimalCount);
+                StatusFormService.CreateForm(owner, maximum, desc, decimalCount, closeable);
         }
 
-        internal static bool StatusFormServiceClose;
+        internal static bool StatusFormServiceShow;
 
         /// <summary>
         /// 隐藏进度提示窗
         /// </summary>
         public static void HideStatusForm(this Form owner)
         {
-            StatusFormServiceClose = true;
+            StatusFormServiceShow = false;
         }
+
+        /// <summary>
+        /// 等待提示窗是否显示
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        public static bool StatusFormIsShow(this Form owner) => StatusFormServiceShow;
 
         /// <summary>
         /// 设置进度提示窗步进值加1
@@ -135,13 +152,14 @@ namespace Sunny.UI
     {
         private UIWaitForm form;
 
-        public void CreateForm(string desc)
+        public void CreateForm(string desc, bool closeable)
         {
             thread = new Thread(delegate ()
             {
                 form = new UIWaitForm(desc);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
+                form.ControlBox = closeable;
                 form.Render();
                 if (IsRun) Application.Run(form);
             });
@@ -149,13 +167,14 @@ namespace Sunny.UI
             thread.Start();
         }
 
-        public void CreateForm(Form owner, string desc)
+        public void CreateForm(Form owner, string desc, bool closeable)
         {
             thread = new Thread(delegate ()
             {
                 form = new UIWaitForm(desc);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
+                form.ControlBox = closeable;
 
                 if (owner != null)
                 {
@@ -234,13 +253,14 @@ namespace Sunny.UI
     {
         private UIStatusForm form;
 
-        public void CreateForm(int max, string desc, int decimalCount = 1)
+        public void CreateForm(int max, string desc, int decimalCount = 1, bool closeable = false)
         {
             thread = new Thread(delegate ()
             {
                 form = new UIStatusForm(max, desc, decimalCount);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
+                form.ControlBox = closeable;
                 form.Render();
                 Application.Run(form);
             });
@@ -248,13 +268,14 @@ namespace Sunny.UI
             thread.Start();
         }
 
-        public void CreateForm(Form owner, int max, string desc, int decimalCount = 1)
+        public void CreateForm(Form owner, int max, string desc, int decimalCount = 1, bool closeable = false)
         {
             thread = new Thread(delegate ()
             {
                 form = new UIStatusForm(max, desc, decimalCount);
                 form.ShowInTaskbar = false;
                 form.TopMost = true;
+                form.ControlBox = closeable;
 
                 if (owner != null)
                 {

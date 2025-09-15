@@ -17,6 +17,7 @@
  * 创建日期: 2020-05-05
  *
  * 2020-05-05: V2.2.5 增加文件
+ * 2025-09-15: V3.8.8 进度提示框增加取消功能。#IA5Q0Z
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -139,12 +140,17 @@ namespace Sunny.UI
 
         private void timer1_Tick(object sender, System.EventArgs e)
         {
-            if (UIFormServiceHelper.StatusFormServiceClose)
+            if (!UIFormServiceHelper.StatusFormServiceShow)
             {
                 timer1.Stop();
-                UIFormServiceHelper.StatusFormServiceClose = false;
                 Close();
             }
+        }
+
+        private void UIStatusForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            timer1.Stop();
+            UIFormServiceHelper.StatusFormServiceShow = false;
         }
     }
 }
