@@ -42,7 +42,8 @@ namespace Sunny.UI
         ComboCheckedListBox,
         ComboDataGridView,
         FileSelect,
-        DirSelect
+        DirSelect,
+        MultilineText
     }
 
     public class ComboCheckedListBoxItem
@@ -119,6 +120,26 @@ namespace Sunny.UI
                 Value = value,
                 CheckEmpty = checkEmpty,
                 Enabled = enabled
+            };
+
+            Infos.Add(info);
+            Dictionary.TryAdd(info.DataPropertyName, info);
+        }
+
+        public void AddMultilineText(string dataPropertyName, string text, string value, int height = 29 * 3, bool checkEmpty = false, bool enabled = true)
+        {
+            if (Dictionary.ContainsKey(dataPropertyName))
+                throw new DuplicateNameException(dataPropertyName + ": 已经存在");
+
+            EditInfo info = new EditInfo()
+            {
+                DataPropertyName = dataPropertyName,
+                EditType = EditType.MultilineText,
+                Text = text,
+                Value = value,
+                CheckEmpty = checkEmpty,
+                Enabled = enabled,
+                DecimalPlaces = height
             };
 
             Infos.Add(info);

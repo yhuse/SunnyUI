@@ -26,6 +26,7 @@
  * 2023-07-27: V3.4.1 默认提示弹窗TopMost为true
  * 2023-10-31: V3.5.2 代码生成增加ComboDataGridView类型
  * 2024-08-02: V3.6.8 代码生成增加文件选择和文件夹选择功能
+ * 2025-09-16: V3.8.8 代码生成增加多行文本功能 #IB7C0O
  ******************************************************************************/
 
 using System;
@@ -86,11 +87,22 @@ namespace Sunny.UI
                 label.Parent = this;
 
                 Control ctrl = null;
-
+                int oneHeight = 29;
                 if (info.EditType == EditType.Text)
                 {
                     ctrl = new UITextBox();
                     var edit = (UITextBox)ctrl;
+                    edit.Text = info.Value?.ToString();
+                    edit.EnterAsTab = true;
+                }
+
+                if (info.EditType == EditType.MultilineText)
+                {
+                    ctrl = new UITextBox();
+                    var edit = (UITextBox)ctrl;
+                    edit.Multiline = true;
+                    edit.ShowScrollBar = true;
+                    oneHeight = edit.Height = info.DecimalPlaces;
                     edit.Text = info.Value?.ToString();
                     edit.EnterAsTab = true;
                 }
@@ -276,7 +288,7 @@ namespace Sunny.UI
                     ctrls.Add(ctrl);
                 }
 
-                top += 29 + 10;
+                top += oneHeight + 10;
             }
 
             pnlBtm.BringToFront();
@@ -446,7 +458,7 @@ namespace Sunny.UI
                 foreach (var info in Option.Infos)
                 {
                     if (info.EditType == EditType.Text || info.EditType == EditType.Password ||
-                        info.EditType == EditType.FileSelect || info.EditType == EditType.DirSelect)
+                        info.EditType == EditType.FileSelect || info.EditType == EditType.DirSelect || info.EditType == EditType.MultilineText)
                     {
                         UITextBox edit = this.GetControl<UITextBox>("Edit_" + info.DataPropertyName);
                         if (edit == null) continue;
