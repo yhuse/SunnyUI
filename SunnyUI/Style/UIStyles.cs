@@ -23,6 +23,7 @@
  * 2021-10-16: V3.0.8 增加系统DPI缩放自适应
  * 2023-08-28: V3.4.2 修改全局字体为系统默认字体
  * 2023-11-05: V3.5.2 重构主题
+ * 2025-09-16: V3.8.8 修复一个复杂情况下切换主题时的异常 #IC24XE
 ******************************************************************************/
 
 using System;
@@ -369,6 +370,7 @@ namespace Sunny.UI
 
             foreach (var page in Pages.Values)
             {
+                page.Style = style;
                 page.SetInheritedStyle(style);
             }
         }
