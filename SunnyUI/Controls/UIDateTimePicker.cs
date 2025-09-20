@@ -169,7 +169,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
-        private bool DropSetted = false;
+        private bool DropSetted;
         [Description("选中日期时间"), Category("SunnyUI")]
         public DateTime Value
         {
