@@ -17,6 +17,7 @@
  * 创建日期: 2021-07-23
  *
  * 2021-07-23: V3.0.5 增加文件说明
+ * 2025-09-21: V3.8.8 多语言支持 .NET8 窗体项目
 ******************************************************************************/
 
 using System;
@@ -100,6 +101,10 @@ namespace Sunny.UI
 
         public static void LoadCsproj(string csprojFile)
         {
+#if NET8_0_OR_GREATER
+            csprojFile += ".user";
+#endif
+
             List<string> files = new List<string>();
             XmlDocument xml = new XmlDocument();
             xml.Load(csprojFile);
@@ -109,14 +114,23 @@ namespace Sunny.UI
             {
                 if (group.Name != "ItemGroup") continue;
 
+
                 foreach (XmlNode node in group.ChildNodes)
                 {
                     if (node.Name != "Compile") continue;
                     if (node.Attributes == null) continue;
-                    if (node.Attributes["Include"] == null) continue;
+
+#if NETFRAMEWORK
+                    string att = "Include";
+#else
+                    string att = "Update";
+#endif
+
+                    if (node.Attributes[att] == null) continue;
+
                     if (node.ChildNodes.Count == 1 && node.ChildNodes[0].Name == "SubType" && node.ChildNodes[0].InnerText == "Form")
                     {
-                        string fileName = Path.Combine(Path.GetDirectoryName(csprojFile) ?? string.Empty, node.Attributes["Include"].InnerText);
+                        string fileName = Path.Combine(Path.GetDirectoryName(csprojFile) ?? string.Empty, node.Attributes[att].InnerText);
                         string path = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + ".Designer.cs");
                         if (File.Exists(path))
                         {
@@ -153,11 +167,23 @@ namespace Sunny.UI
 
                     if (!isStart) continue;
 
+#if NETFRAMEWORK
                     if (line.Contains(".Controls.Add"))
                     {
                         ctrladds.Add(line.Between("(", ")"),
                             line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
                     }
+#else
+                    if (line.Trim().StartsWith("Controls.Add"))
+                    {
+                        ctrladds.Add(line.Between("(", ")"), "this");
+                    }
+                    else if (line.Contains(".Controls.Add"))
+                    {
+                        ctrladds.Add(line.Between("(", ")"),
+                            line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
+                    }
+#endif
 
                     if (line.Trim().StartsWith("private") && line.Trim().EndsWith(";"))
                     {
@@ -167,7 +193,12 @@ namespace Sunny.UI
 
                         if (!Includes.Contains(classname.SplitLast("."))) continue;
 
+#if NETFRAMEWORK
                         ctrladds.TryGetValue("this." + name, out string parent);
+#else
+                        ctrladds.TryGetValue(name, out string parent);
+#endif
+
                         if (parent.IsValid())
                             names.Add($"{parent},{classname},{name}");
                         else
