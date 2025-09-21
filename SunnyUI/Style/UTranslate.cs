@@ -167,13 +167,6 @@ namespace Sunny.UI
 
                     if (!isStart) continue;
 
-#if NETFRAMEWORK
-                    if (line.Contains(".Controls.Add"))
-                    {
-                        ctrladds.Add(line.Between("(", ")"),
-                            line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
-                    }
-#else
                     if (line.Trim().StartsWith("Controls.Add"))
                     {
                         ctrladds.Add(line.Between("(", ")"), "this");
@@ -183,7 +176,6 @@ namespace Sunny.UI
                         ctrladds.Add(line.Between("(", ")"),
                             line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
                     }
-#endif
 
                     if (line.Trim().StartsWith("private") && line.Trim().EndsWith(";"))
                     {
@@ -193,16 +185,10 @@ namespace Sunny.UI
 
                         if (!Includes.Contains(classname.SplitLast("."))) continue;
 
-#if NETFRAMEWORK
                         ctrladds.TryGetValue("this." + name, out string parent);
-#else
-                        ctrladds.TryGetValue(name, out string parent);
-#endif
+                        if (parent.IsNullOrEmpty()) ctrladds.TryGetValue(name, out parent);
 
-                        if (parent.IsValid())
-                            names.Add($"{parent},{classname},{name}");
-                        else
-                            names.Add($"{classname},{name}");
+                        names.Add(parent.IsValid() ? $"{parent},{classname},{name}" : $"{classname},{name}");
                     }
                 }
 
