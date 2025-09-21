@@ -43,6 +43,55 @@ namespace Sunny.UI
             LoadColorBounds();
         }
 
+        public static Color NextColor()
+        {
+            var color = GetColor(ColorScheme.Random, Luminosity.Bright);
+            HsvColor hsv = RgbToHsv(color);
+            while (hsv.S < 0.7 || hsv.V < 0.7)
+            {
+                color = GetColor(ColorScheme.Random, Luminosity.Bright);
+                hsv = RgbToHsv(color);
+            }
+
+            return color;
+        }
+
+        public struct HsvColor
+        {
+            public double H; // 0-360
+            public double S; // 0-1
+            public double V; // 0-1
+
+        }
+
+        // RGB转HSV
+        public static HsvColor RgbToHsv(Color color)
+        {
+            double r = color.R / 255.0;
+            double g = color.G / 255.0;
+            double b = color.B / 255.0;
+
+            double max = Math.Max(r, Math.Max(g, b));
+            double min = Math.Min(r, Math.Min(g, b));
+            double delta = max - min;
+
+            double h = 0;
+            double s = max == 0 ? 0 : delta / max;
+            double v = max;
+
+            if (delta != 0)
+            {
+                if (max == r) h = (g - b) / delta + (g < b ? 6 : 0);
+                else if (max == g) h = (b - r) / delta + 2;
+                else h = (r - g) / delta + 4;
+
+                h *= 60;
+            }
+
+            return new HsvColor { H = h, S = s, V = v };
+        }
+
+
         /// <summary>
         /// Gets a new random color.
         /// </summary>
