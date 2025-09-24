@@ -85,6 +85,48 @@ namespace Sunny.UI
             }
         }
 
+        public UIMessageForm2(string title, string message, UIMessageDialogButtons2 defaultButton = UIMessageDialogButtons2.Cancel)
+        {
+            InitializeComponent();
+            Text = title;
+            Message = message;
+            btnOK.Text = UIStyles.CurrentResources.Yes;
+            btnNo.Text = UIStyles.CurrentResources.No;
+            btnCancel.Text = UIStyles.CurrentResources.Cancel;
+
+            foreColor = Color.Black;
+            btnOK.Left = 148;
+            btnNo.Left = 263;
+            btnNo.Visible = true;
+
+            if (defaultButton == UIMessageDialogButtons2.Cancel)
+            {
+                btnCancel.TabIndex = 0;
+                btnOK.TabIndex = 1;
+                btnNo.TabIndex = 2;
+            }
+            if (defaultButton == UIMessageDialogButtons2.Yes)
+            {
+                btnOK.TabIndex = 0;
+                btnNo.TabIndex = 1;
+                btnCancel.TabIndex = 2;
+            }
+            if (defaultButton == UIMessageDialogButtons2.No)
+            {
+                btnNo.TabIndex = 0;
+                btnCancel.TabIndex = 1;
+                btnOK.TabIndex = 2;
+            }
+
+            btnOK.DialogResult = DialogResult.Yes;
+            btnNo.DialogResult = DialogResult.No;
+            btnCancel.DialogResult = DialogResult.Cancel;
+            btnCancel.Symbol = 361534;
+
+            Symbol = 361529;
+            SymbolColor = UIStyles.ActiveStyleColor.ButtonFillColor;
+        }
+
         int Symbol = 361528;
         Color SymbolColor = UIStyles.Green.ButtonFillColor;
         private Color Color;
@@ -127,7 +169,7 @@ namespace Sunny.UI
             if (delay <= 0) Close();
         }
 
-        int delay = 0;
+        int delay;
 
         public int Delay
         {

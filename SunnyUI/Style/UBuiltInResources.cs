@@ -42,6 +42,8 @@ namespace Sunny.UI
         public override string CloseAll { get; set; } = "Close all";
         public override string OK { get; set; } = "OK";
         public override string Cancel { get; set; } = "Cancel";
+        public override string Yes { get; set; } = "Yes";
+        public override string No { get; set; } = "No";
         public override string GridNoData { get; set; } = "[ No data ]";
         public override string GridDataLoading { get; set; } = "Data loading, please wait...";
         public override string GridDataSourceException { get; set; } = "The data source must be DataTable or List";
@@ -134,6 +136,9 @@ namespace Sunny.UI
         /// 取消
         /// </summary>
         public virtual string Cancel { get; set; } = "取消";
+
+        public virtual string Yes { get; set; } = "是";
+        public virtual string No { get; set; } = "否";
 
         /// <summary>
         /// [ 无数据 ]

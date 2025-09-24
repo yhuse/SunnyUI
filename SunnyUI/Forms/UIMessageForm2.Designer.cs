@@ -32,6 +32,7 @@
             btnCancel = new UISymbolButton();
             btnOK = new UISymbolButton();
             timer1 = new System.Windows.Forms.Timer(components);
+            btnNo = new UISymbolButton();
             SuspendLayout();
             // 
             // btnCancel
@@ -49,6 +50,7 @@
             btnCancel.ShowFocusLine = true;
             btnCancel.Size = new System.Drawing.Size(100, 35);
             btnCancel.Symbol = 361453;
+            btnCancel.SymbolOffset = new System.Drawing.Point(0, 1);
             btnCancel.TabIndex = 10;
             btnCancel.Text = "取消";
             btnCancel.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -68,6 +70,7 @@
             btnOK.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
             btnOK.ShowFocusLine = true;
             btnOK.Size = new System.Drawing.Size(100, 35);
+            btnOK.SymbolOffset = new System.Drawing.Point(0, 1);
             btnOK.TabIndex = 9;
             btnOK.Text = "确定";
             btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -78,10 +81,33 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // btnNo
+            // 
+            btnNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btnNo.BackColor = System.Drawing.Color.Transparent;
+            btnNo.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnNo.DialogResult = System.Windows.Forms.DialogResult.No;
+            btnNo.Font = new System.Drawing.Font("宋体", 12F);
+            btnNo.Location = new System.Drawing.Point(148, 164);
+            btnNo.Margin = new System.Windows.Forms.Padding(0);
+            btnNo.MinimumSize = new System.Drawing.Size(1, 1);
+            btnNo.Name = "btnNo";
+            btnNo.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            btnNo.ShowFocusLine = true;
+            btnNo.Size = new System.Drawing.Size(100, 35);
+            btnNo.Symbol = 361453;
+            btnNo.SymbolOffset = new System.Drawing.Point(0, 1);
+            btnNo.TabIndex = 11;
+            btnNo.Text = "否";
+            btnNo.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnNo.TipsText = null;
+            btnNo.Visible = false;
+            // 
             // UIMessageForm2
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ClientSize = new System.Drawing.Size(516, 220);
+            Controls.Add(btnNo);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
             EscClose = true;
@@ -103,5 +129,6 @@
         protected UISymbolButton btnCancel;
         protected UISymbolButton btnOK;
         private System.Windows.Forms.Timer timer1;
+        protected UISymbolButton btnNo;
     }
 }

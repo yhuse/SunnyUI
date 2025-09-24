@@ -130,7 +130,7 @@ namespace Sunny.UI
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="message">信息</param>
-        /// <param name="showCancelButton">显示取消按钮</param>
+        /// <param name="showCancel">显示取消按钮</param>
         /// <param name="style">主题</param>
         /// <param name="showMask">显示遮罩层</param>
         /// <param name="defaultButton">默认按钮</param>
@@ -177,6 +177,7 @@ namespace Sunny.UI
         /// 确认信息提示框
         /// </summary>
         /// <param name="title">标题</param>
+        /// <param name="owner">所有者</param>
         /// <param name="message">信息</param>
         /// <param name="showCancel">显示取消按钮</param>
         /// <param name="style">主题</param>
@@ -194,11 +195,11 @@ namespace Sunny.UI
                 frm.ShowMessage(message, title, showCancel, style);
                 frm.DefaultButton = showCancel ? defaultButton : UIMessageDialogButtons.Ok;
                 frm.Delay = delay;
-                return frm.ShowForm(owner, screenCenter, showMask);
+                return frm.ShowForm(null, screenCenter, showMask);
             }
             else
             {
-                return owner.ThreadSafeCall<bool>(() =>
+                return owner.ThreadSafeCall(() =>
                 {
                     using UIMessageForm frm = new UIMessageForm();
                     frm.ShowMessage(message, title, showCancel, style);
@@ -212,11 +213,13 @@ namespace Sunny.UI
         /// <summary>
         /// 确认信息提示框
         /// </summary>
+        /// <param name="owner">所有者</param>
         /// <param name="title">标题</param>
         /// <param name="message">信息</param>
-        /// <param name="defaultButton">默认按钮</param>
+        /// <param name="showMask">显示询问</param>
         /// <param name="defaultButton">默认按钮</param>
         /// <param name="delay">消息停留时长(ms)。默认1秒</param>
+        /// <param name="noteType">消息类型</param>
         /// <returns>结果</returns>
         public static bool ShowMessageDialog2(Form owner, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
         {
@@ -225,17 +228,15 @@ namespace Sunny.UI
             {
                 using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
                 frm.Delay = delay;
-                return frm.ShowForm(owner, screenCenter, showMask);
+                return frm.ShowForm(null, screenCenter, showMask);
             }
-            else
+
+            return owner.ThreadSafeCall(() =>
             {
-                return owner.ThreadSafeCall<bool>(() =>
-                {
-                    using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
-                    frm.Delay = delay;
-                    return frm.ShowForm(owner, screenCenter, showMask);
-                });
-            }
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
+                frm.Delay = delay;
+                return frm.ShowForm(owner, screenCenter, showMask);
+            });
         }
 
         private static bool GetShowOnScreenCenter(bool showMask, Form owner)
@@ -260,6 +261,18 @@ namespace Sunny.UI
                 return frm.ShowDialogWithMask() == DialogResult.OK;
             else
                 return frm.ShowDialog() == DialogResult.OK;
+        }
+
+        internal static DialogResult ShowFormWithResult(this UIForm frm, Form owner, bool screenCenter, bool showMask)
+        {
+            frm.Owner = owner;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Location = frm.Size.GetLocation(owner, screenCenter);
+            frm.ShowInTaskbar = false;
+            frm.TopMost = true;
+            frm.Render();
+
+            return showMask ? frm.ShowDialogWithMask() : frm.ShowDialog();
         }
 
         private static Point GetLocation(this Size size, Form owner, bool screenCenter)
@@ -536,6 +549,24 @@ namespace Sunny.UI
         Cancel
     }
 
+    public enum UIMessageDialogButtons2
+    {
+        /// <summary>
+        /// 是
+        /// </summary>
+        Yes,
+
+        /// <summary>
+        /// 否
+        /// </summary>
+        No,
+
+        /// <summary>
+        /// 取消
+        /// </summary>
+        Cancel
+    }
+
     public enum UIMessageBoxButtons
     {
         /// <summary>
@@ -546,7 +577,12 @@ namespace Sunny.UI
         /// <summary>
         /// 确定、取消
         /// </summary>
-        OKCancel = 1
+        OKCancel = 1,
+
+        /// <summary>
+        /// 是、否、取消
+        /// </summary>
+        YesNoCancel = 2
     }
 
     public static class FormEx
@@ -558,7 +594,7 @@ namespace Sunny.UI
                 this.SuspendLayout();
                 this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                this.BackColor = Color.Black;
+                base.BackColor = Color.Black;
                 this.ClientSize = new System.Drawing.Size(800, 450);
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 this.Name = "FMask";
@@ -864,6 +900,54 @@ namespace Sunny.UI
         {
             return UIMessageBox.ShowMessageDialog2(owner, title, message, UINotifierType.Ask, showMask, defaultButton);
         }
+
+        private static bool GetShowOnScreenCenter(bool showMask, Form owner)
+        {
+            if (showMask) return true;
+            if (owner == null) return true;
+            if (owner.TopLevel) return false;
+            if (owner.ParentForm == null) return true;
+            return false;
+        }
+
+        public static DialogResult ShowOkCancelDialog(this Form owner, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
+            => ShowOkCancelDialog(owner, UIStyles.CurrentResources.AskTitle, message, showMask, defaultButton);
+
+        public static DialogResult ShowOkCancelDialog(this Form owner, string title, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
+        {
+            var screenCenter = GetShowOnScreenCenter(showMask, owner);
+            if (owner == null)
+            {
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, UINotifierType.Ask, defaultButton);
+                return frm.ShowFormWithResult(null, screenCenter, showMask);
+            }
+
+            return owner.ThreadSafeCall(() =>
+            {
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, UINotifierType.Ask, defaultButton);
+                return frm.ShowFormWithResult(owner, screenCenter, showMask);
+            });
+        }
+
+        public static DialogResult ShowYesNoCancelDialog(this Form owner, string message, bool showMask = false, UIMessageDialogButtons2 defaultButton = UIMessageDialogButtons2.Cancel)
+            => ShowYesNoCancelDialog(owner, UIStyles.CurrentResources.AskTitle, message, showMask, defaultButton);
+
+        public static DialogResult ShowYesNoCancelDialog(this Form owner, string title, string message, bool showMask = false, UIMessageDialogButtons2 defaultButton = UIMessageDialogButtons2.Cancel)
+        {
+            var screenCenter = GetShowOnScreenCenter(showMask, owner);
+            if (owner == null)
+            {
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, defaultButton);
+                return frm.ShowFormWithResult(null, screenCenter, showMask);
+            }
+
+            return owner.ThreadSafeCall(() =>
+            {
+                using UIMessageForm2 frm = new UIMessageForm2(title, message, defaultButton);
+                return frm.ShowFormWithResult(owner, screenCenter, showMask);
+            });
+        }
+
         //---------------
 
         /// <summary>
