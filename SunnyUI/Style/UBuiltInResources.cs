@@ -36,7 +36,7 @@ namespace Sunny.UI
         public override string SuccessTitle { get; set; } = "Success";
         public override string WarningTitle { get; set; } = "Warning";
         public override string ErrorTitle { get; set; } = "Error";
-        public override string AskTitle { get; set; } = "Query";
+        public override string AskTitle { get; set; } = "Confirm";
         public override string InputTitle { get; set; } = "Input";
         public override string SelectTitle { get; set; } = "Select";
         public override string CloseAll { get; set; } = "Close all";
@@ -110,7 +110,7 @@ namespace Sunny.UI
         /// <summary>
         /// 提示
         /// </summary>
-        public virtual string AskTitle { get; set; } = "提示";
+        public virtual string AskTitle { get; set; } = "确认";
 
         /// <summary>
         /// 输入
