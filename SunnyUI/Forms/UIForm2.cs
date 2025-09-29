@@ -174,10 +174,11 @@ namespace Sunny.UI
                     }
                     else
                     {
-                        using (Image image = IconToImage(Icon))
-                        {
-                            e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
-                        }
+                        e.Graphics.DrawIcon(Icon, new Rectangle(6, (TitleHeight - 24) / 2 + 1, 24, 24));
+                        //using (Image image = IconToImage(Icon))
+                        //{
+                        //    e.Graphics.DrawImage(image, 6, (TitleHeight - 24) / 2 + 1, 24, 24);
+                        //}
 
                         titleLeft = 6 + 24 + 2;
                     }
