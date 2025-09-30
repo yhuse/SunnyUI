@@ -20,8 +20,12 @@
 ![感谢您的支持](https://images.gitee.com/uploads/images/2021/0409/201558_9a0993a3_416720.png "SupportSunnyUI.png")
 - 感谢老板打赏，来杯咖啡提提神，写代码更有劲头！~
 
-#### 感谢码云
+#### 感谢码云对开源项目的支持
 ![GVP](https://images.gitee.com/uploads/images/2021/0526/214138_85647268_416720.png "QQ图片20210526213958.png")  
+
+#### 感谢 JetBrains 对开源项目的支持
+![JetBrains ](docs/assets/image.png)
+[https://www.jetbrains.com](https://www.jetbrains.com)
     
 #### 特别声明
 SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
