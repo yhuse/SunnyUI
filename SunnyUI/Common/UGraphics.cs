@@ -1804,10 +1804,10 @@ namespace Sunny.UI
             RectangleF rect1 = pf1.CreateRectangleF(pf2);
             if (!rect1.IsOverlap(rect)) return;
 
-            double x1 = Drawing.CalcX(pf1, pf2, rect.Top);
-            double x2 = Drawing.CalcX(pf1, pf2, rect.Bottom);
-            double y1 = Drawing.CalcY(pf1, pf2, rect.Left);
-            double y2 = Drawing.CalcY(pf1, pf2, rect.Right);
+            double x1 = pf1.CalcX(pf2, rect.Top);
+            double x2 = pf1.CalcX(pf2, rect.Bottom);
+            double y1 = pf1.CalcY(pf2, rect.Left);
+            double y2 = pf1.CalcY(pf2, rect.Right);
 
             //判断线段是否和区域有交点
             bool isExist = x1.InRange(rect.Left, rect.Right) || x2.InRange(rect.Left, rect.Right) || y1.InRange(rect.Top, rect.Bottom) || y2.InRange(rect.Top, rect.Bottom);
