@@ -67,7 +67,7 @@ namespace Sunny.UI.Demo
             this.ShowStatusForm(100, CodeTranslator.Current.Loading + "......", 0);
             for (int i = 0; i < 88; i++)
             {
-                SystemEx.Delay(50);
+                Thread.Sleep(50);
                 this.SetStatusFormDescription(CodeTranslator.Current.Loading + "(" + i + "%)......");
                 this.SetStatusFormStepIt();
             }
