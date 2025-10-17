@@ -81,6 +81,62 @@ public static class Dialogs
     }
 
     /// <summary>
+    /// 打开文件夹对话框，单选，取消返回空字符串
+    /// </summary>
+    /// <param name="filename">返回True时，获取文件名</param>
+    /// <param name="filter">过滤器</param>
+    /// <param name="defaultExt">默认文件扩展名</param>
+    /// <returns>打开是否成功</returns>
+    public static string SelectFile(ref string filename, string filter = "", string defaultExt = "")
+    {
+        using OpenFileDialog od = new OpenFileDialog();
+        od.Title = UIStyles.CurrentResources.Open;
+
+        try
+        {
+            od.FileName = filename;
+            od.Filter = filter;
+        }
+        catch
+        {
+            od.Filter = "";
+        }
+
+        od.DefaultExt = defaultExt;
+        bool isOk = od.ShowDialog() == DialogResult.OK;
+        filename = isOk ? od.FileName : string.Empty;
+        return filename;
+    }
+
+    /// <summary>
+    /// 打开文件夹对话框，可多选，取消返回空数组
+    /// </summary>
+    /// <param name="filename">返回True时，获取文件名</param>
+    /// <param name="filter">过滤器</param>
+    /// <param name="defaultExt">默认文件扩展名</param>
+    /// <returns>打开是否成功</returns>
+    public static string[] SelectFiles(ref string filename, string filter = "", string defaultExt = "")
+    {
+        using OpenFileDialog od = new OpenFileDialog();
+        od.Title = UIStyles.CurrentResources.Open;
+        od.Multiselect = true;
+
+        try
+        {
+            od.FileName = filename;
+            od.Filter = filter;
+        }
+        catch
+        {
+            od.Filter = "";
+        }
+
+        od.DefaultExt = defaultExt;
+        bool isOk = od.ShowDialog() == DialogResult.OK;
+        return isOk ? od.FileNames : [];
+    }
+
+    /// <summary>
     /// 打开文件夹对话框
     /// </summary>
     /// <param name="filename">返回True时，获取文件名</param>
