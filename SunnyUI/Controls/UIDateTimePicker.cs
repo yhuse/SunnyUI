@@ -26,6 +26,7 @@
  * 2024-08-28: V3.7.0 修复格式化字符串包含/时显示错误
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-09-20: V3.8.8 添加MaxDate与MinDate属性
+ * 2025-10-21: V3.8.9 优化加载速度 #ID2PNR
 ******************************************************************************/
 
 using System;
@@ -106,7 +107,7 @@ namespace Sunny.UI
             TextChanged += UIDatePicker_TextChanged;
             MaxLength = 19;
 
-            CreateInstance();
+            //CreateInstance();
         }
 
         private void UIDatePicker_TextChanged(object sender, EventArgs e)

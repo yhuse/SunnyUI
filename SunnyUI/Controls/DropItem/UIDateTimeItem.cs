@@ -332,7 +332,6 @@ namespace Sunny.UI
             p3.TextAlignment = ContentAlignment.MiddleCenter;
             p3.Paint += p3_Paint;
             p3.MouseClick += p3_MouseClick;
-            p3.MouseDoubleClick += P3_MouseDoubleClick;
             p3.MouseLeave += p3_MouseLeave;
             p3.MouseMove += p3_MouseMove;
             // 
@@ -1423,53 +1422,16 @@ namespace Sunny.UI
                 date = DateTime.Now.Date;
                 DoValueChanged(this, Date);
                 Close();
-            }
-            else
-            {
-                if (days[id].Date < min) return;
-                if (days[id].Date > max) return;
-
-                date = days[id].Date;
+                return;
             }
 
-            date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
+            if (days[id].Date < min) return;
+            if (days[id].Date > max) return;
+
+            date = new DateTime(days[id].Date.Year, days[id].Date.Month, days[id].Date.Day, Hour, Minute, Second);
             DoValueChanged(this, Date);
             p3.Invalidate();
             //CloseParent();
-        }
-
-        private void P3_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Location.Y <= 30) return;
-            int width = p3.Width / 7;
-            int height = (p3.Height - 30) / 6;
-            int x = e.Location.X / width;
-            int y = (e.Location.Y - 30) / height;
-            int id = x + y * 7;
-            if (id < 0 || id >= 42) return;
-
-            if (ShowToday && e.Location.Y > p3.Height - height && e.Location.X > p3.Width - width * 4)
-            {
-                if (DateTime.Now.Date < min) return;
-                if (DateTime.Now.Date > max) return;
-
-                date = DateTime.Now.Date;
-                DoValueChanged(this, Date);
-                Close();
-            }
-            else
-            {
-                if (days[id].Date < min) return;
-                if (days[id].Date > max) return;
-
-                date = days[id].Date;
-            }
-
-            date = new DateTime(date.Year, date.Month, date.Day, Hour, Minute, Second);
-            DoValueChanged(this, Date);
-            p3.Invalidate();
-
-            Close();
         }
 
         private void p1_MouseLeave(object sender, EventArgs e)

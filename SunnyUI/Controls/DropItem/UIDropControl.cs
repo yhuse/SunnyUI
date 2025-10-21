@@ -259,13 +259,6 @@ namespace Sunny.UI
                 if (itemForm == null)
                 {
                     CreateInstance();
-
-                    if (itemForm != null)
-                    {
-                        itemForm.ValueChanged += ItemForm_ValueChanged;
-                        itemForm.VisibleChanged += ItemForm_VisibleChanged;
-                        itemForm.Closed += ItemForm_Closed;
-                    }
                 }
 
                 return itemForm;
