@@ -41,8 +41,9 @@
  * 2025-04-17: V3.8.3 修复不可关闭的主页被关闭了 #IC1XIU
  * 2025-04-21: V3.8.3 更新部分注释
  * 2025-06-12: V3.8.4 修复Close按钮点击无法关闭标签 #ICEIHR
-******************************************************************************/
+ ******************************************************************************/
 
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -50,7 +51,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Sunny.UI.Win32;
 
 namespace Sunny.UI
 {
@@ -770,8 +770,10 @@ namespace Sunny.UI
 
                 if (index <= TabCount - 2 && ShowTabDivider)
                 {
+                    var color = Color.FromArgb(100, tabUnSelectedForeColor.R, tabUnSelectedForeColor.G,
+                        tabUnSelectedForeColor.B);
                     if (index != tabIdx)
-                        e.Graphics.DrawLine(tabUnSelectedForeColor.Alpha(100), TabRect.Right - 1, TabRect.Center().Y - TabRect.Height / 4.0f, TabRect.Right - 1, TabRect.Center().Y + TabRect.Height / 4.0f);
+                        e.Graphics.DrawLine(color, TabRect.Right - 1, TabRect.Center().Y - TabRect.Height / 4.0f, TabRect.Right - 1, TabRect.Center().Y + TabRect.Height / 4.0f);
                 }
             }
         }

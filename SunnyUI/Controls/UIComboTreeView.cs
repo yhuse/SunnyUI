@@ -28,6 +28,7 @@
  * 2024-03-22: V3.6.5 增加ShowDropDown()
  * 2024-07-13: V3.6.7 修改下拉框全选按钮跟随主题，修改一处内置国际化翻译
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
+ * 2025-10-21: V3.8.9 优化加载速度
 ******************************************************************************/
 
 using System;
@@ -48,7 +49,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             fullControlSelect = true;
-            CreateInstance();
+            //CreateInstance();
             DropDownWidth = 250;
             DropDownHeight = 220;
         }

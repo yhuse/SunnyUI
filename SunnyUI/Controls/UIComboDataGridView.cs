@@ -34,6 +34,7 @@
  * 2024-11-12: V3.7.2 增加下拉框滚动条宽度调整属性
  * 2024-11-28: V3.8.0 解决下拉框显示过滤编辑框不能一直显示 #IB7AFB
  * 2024-12-04: V3.8.0 修复一个报错 #IB8YK9
+ * 2025-10-21: V3.8.9 优化加载速度
  ******************************************************************************/
 
 using System;
@@ -160,7 +161,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             fullControlSelect = true;
-            CreateInstance();
+            //CreateInstance();
             DropDownWidth = 500;
             DropDownHeight = 300;
         }

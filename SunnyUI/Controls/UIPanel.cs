@@ -28,7 +28,7 @@
  * 2022-03-19: V3.1.1 重构主题配色
  * 2022-06-10: V3.1.9 尺寸改变时重绘
  * 2024-11-19: V3.7.2 增加透明度
-******************************************************************************/
+ ******************************************************************************/
 
 using System.ComponentModel;
 using System.Drawing;
@@ -126,7 +126,8 @@ namespace Sunny.UI
             }
             else
             {
-                var color = GetFillColor().Alpha(_opacity);
+                var color = GetFillColor();
+                color = Color.FromArgb(_opacity, color.R, color.G, color.B);
                 if (RadiusSides == UICornerRadiusSides.None || Radius == 0)
                     g.Clear(color);
                 else

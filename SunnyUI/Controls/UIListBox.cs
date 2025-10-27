@@ -32,7 +32,7 @@
  * 2022-09-05: V3.2.3 修复Click，DoubleClick事件
  * 2022-11-03: V3.2.6 增加了可设置垂直滚动条宽度的属性
  * 2023-11-16: V3.5.2 重构主题
-******************************************************************************/
+ ******************************************************************************/
 
 using System;
 using System.ComponentModel;
@@ -464,7 +464,7 @@ namespace Sunny.UI
             bar.Left = Width - barWidth - 3;
         }
 
-        private void Listbox_BeforeDrawItem(object sender, ObjectCollection items, DrawItemEventArgs e)
+        private void Listbox_BeforeDrawItem(object sender, ListBox.ObjectCollection items, DrawItemEventArgs e)
         {
             if (Items.Count != LastCount)
             {
@@ -589,7 +589,7 @@ namespace Sunny.UI
         [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor", typeof(UITypeEditor))]
         [MergableProperty(false)]
         [Description("列表项"), Category("SunnyUI")]
-        public ObjectCollection Items => listbox.Items;
+        public ListBox.ObjectCollection Items => listbox.Items;
 
         [Browsable(false)]
         public int Count => Items.Count;

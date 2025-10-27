@@ -21,6 +21,7 @@
  * 2020-09-16: V2.2.7 更改滚轮选择时间的方向
  * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
+ * 2025-10-21: V3.8.9 优化加载速度
 ******************************************************************************/
 
 using System;
@@ -91,7 +92,7 @@ namespace Sunny.UI
             TextChanged += UIDatePicker_TextChanged;
             MaxLength = 8;
 
-            CreateInstance();
+            //CreateInstance();
         }
 
         [DefaultValue(false)]
