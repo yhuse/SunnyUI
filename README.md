@@ -1,7 +1,7 @@
 ﻿![SunnyUI](https://images.gitee.com/uploads/images/2021/0324/213615_54240ba9_416720.png "SunnyUI.png")
     
 [SunnyUI 正在参加 Gitee 2025 最受欢迎的开源软件投票活动，快来给我投票吧](https://gitee.com/activity/2025opensource?ident=ISEZ44)    
-[![输入图片说明](docs/tp2025.png)](https://gitee.com/activity/2025opensource?ident=ISEZ44)       
+[![输入图片说明](docs/assets/tp2025.png)](https://gitee.com/activity/2025opensource?ident=ISEZ44)       
     
 [![star](https://gitee.com/yhuse/SunnyUI/badge/star.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/stargazers)
 [![fork](https://gitee.com/yhuse/SunnyUI/badge/fork.svg?theme=gvp)](https://gitee.com/yhuse/SunnyUI/members)    
