@@ -27,6 +27,7 @@
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-09-20: V3.8.8 添加MaxDate与MinDate属性
  * 2025-10-21: V3.8.9 优化加载速度 #ID2PNR
+ * 2025-11-02: V3.8.9 优化日期转换方法，增加区域信息
 ******************************************************************************/
 
 using System;
@@ -55,6 +56,8 @@ namespace Sunny.UI
             ButtonClick += UIDatetimePicker_ButtonClick;
             ResumeLayout(false);
             PerformLayout();
+
+            DateCultureInfo = CultureInfo.InstalledUICulture;
         }
 
         [Browsable(false)]
@@ -101,7 +104,7 @@ namespace Sunny.UI
         {
             InitializeComponent();
             Value = DateTime.Now;
-            Text = Value.ToString(DateFormat);
+            Text = Value.ToString(dateFormat, DateCultureInfo);
             Width = 200;
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
@@ -181,7 +184,7 @@ namespace Sunny.UI
                     value = new DateTime(1900, 1, 1);
 
                 DropSetted = true;
-                Text = value.ToString(dateFormat, CultureInfo.InvariantCulture);
+                Text = value.ToString(dateFormat, DateCultureInfo);
                 DropSetted = false;
 
                 if (item.Date != value)
@@ -190,6 +193,17 @@ namespace Sunny.UI
                 }
 
                 ValueChanged?.Invoke(this, Value);
+            }
+        }
+
+        [Description("日期区域信息"), Category("SunnyUI")]
+        public CultureInfo DateCultureInfo
+        {
+            get;
+            set
+            {
+                field = value;
+                Text = Value.ToString(dateFormat, field ?? CultureInfo.InvariantCulture);
             }
         }
 
@@ -222,7 +236,7 @@ namespace Sunny.UI
             set
             {
                 dateFormat = value;
-                Text = Value.ToString(dateFormat);
+                Text = Value.ToString(dateFormat, DateCultureInfo);
                 MaxLength = dateFormat.Length;
             }
         }

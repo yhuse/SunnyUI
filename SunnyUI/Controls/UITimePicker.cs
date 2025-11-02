@@ -22,11 +22,13 @@
  * 2024-06-09: V3.6.6 下拉框可选放大倍数为2
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-10-21: V3.8.9 优化加载速度
+ * 2025-11-02: V3.8.9 优化日期转换方法，增加区域信息
 ******************************************************************************/
 
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Sunny.UI
@@ -49,6 +51,8 @@ namespace Sunny.UI
             ButtonClick += UITimePicker_ButtonClick;
             ResumeLayout(false);
             PerformLayout();
+
+            TimeCultureInfo = CultureInfo.CurrentCulture;
         }
 
         [Browsable(false)]
@@ -168,7 +172,7 @@ namespace Sunny.UI
             get => item.Time;
             set
             {
-                Text = value.ToString(timeFormat);
+                Text = value.ToString(timeFormat, TimeCultureInfo);
                 if (item.Time != value)
                 {
                     item.Time = value;
@@ -188,8 +192,19 @@ namespace Sunny.UI
             set
             {
                 timeFormat = value;
-                Text = Value.ToString(timeFormat);
+                Text = Value.ToString(timeFormat, TimeCultureInfo);
                 MaxLength = timeFormat.Length;
+            }
+        }
+
+        [Description("日期区域信息"), Category("SunnyUI")]
+        public CultureInfo TimeCultureInfo
+        {
+            get;
+            set
+            {
+                field = value;
+                Text = Value.ToString(timeFormat, field ?? CultureInfo.InvariantCulture);
             }
         }
 

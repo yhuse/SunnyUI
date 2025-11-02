@@ -28,6 +28,7 @@
  * 2024-08-28: V3.7.0 修复格式化字符串包含/时显示错误
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-10-21: V3.8.9 优化加载速度
+ * 2025-11-02: V3.8.9 优化日期转换方法，增加区域信息
 ******************************************************************************/
 
 using System;
@@ -49,11 +50,12 @@ namespace Sunny.UI
         public UIDatePicker()
         {
             InitializeComponent();
+            DropIsSet = false;
             Value = DateTime.Now;
             MaxLength = 10;
             EditorLostFocus += UIDatePicker_LostFocus;
             TextChanged += UIDatePicker_TextChanged;
-
+            DateCultureInfo = CultureInfo.InvariantCulture;
             //CreateInstance();
         }
 
@@ -207,19 +209,19 @@ namespace Sunny.UI
                 {
                     case UIDateType.YearMonthDay:
                         MaxLength = dateFormat.Length;
-                        Text = Value.ToString(dateFormat);
+                        Text = Value.ToString(dateFormat, DateCultureInfo);
                         break;
                     case UIDateType.YearMonth:
                         MaxLength = dateYearMonthFormat.Length;
-                        Text = Value.ToString(dateYearMonthFormat);
+                        Text = Value.ToString(dateYearMonthFormat, DateCultureInfo);
                         break;
                     case UIDateType.Year:
                         MaxLength = dateYearFormat.Length;
-                        Text = Value.ToString(dateYearFormat);
+                        Text = Value.ToString(dateYearFormat, DateCultureInfo);
                         break;
                     default:
                         MaxLength = dateFormat.Length;
-                        Text = Value.ToString(dateFormat);
+                        Text = Value.ToString(dateFormat, DateCultureInfo);
                         break;
                 }
 
@@ -242,7 +244,7 @@ namespace Sunny.UI
 
         private void UIDatePicker_TextChanged(object sender, EventArgs e)
         {
-            if (Text.Length == MaxLength && !DropSetted)
+            if (Text.Length == MaxLength && !DropIsSet)
             {
                 try
                 {
@@ -323,7 +325,7 @@ namespace Sunny.UI
             ItemForm = new UIDropDown(item);
         }
 
-        private bool DropSetted = false;
+        private bool DropIsSet;
         [Description("选中日期"), Category("SunnyUI")]
         public DateTime Value
         {
@@ -333,21 +335,21 @@ namespace Sunny.UI
                 if (value < new DateTime(1900, 1, 1))
                     value = new DateTime(1900, 1, 1);
 
-                DropSetted = true;
+                DropIsSet = true;
                 switch (ShowType)
                 {
                     case UIDateType.YearMonthDay:
-                        Text = value.ToString(dateFormat, CultureInfo.InvariantCulture);
+                        Text = value.ToString(dateFormat, DateCultureInfo);
                         break;
                     case UIDateType.YearMonth:
-                        Text = value.ToString(dateYearMonthFormat, CultureInfo.InvariantCulture);
+                        Text = value.ToString(dateYearMonthFormat, DateCultureInfo);
                         break;
                     case UIDateType.Year:
-                        Text = value.ToString(dateYearFormat, CultureInfo.InvariantCulture);
+                        Text = value.ToString(dateYearFormat, DateCultureInfo);
                         break;
                 }
 
-                DropSetted = false;
+                DropIsSet = false;
 
                 if (item.Date != value)
                 {
@@ -379,6 +381,17 @@ namespace Sunny.UI
             ItemForm.Show(this, size);
         }
 
+        [Description("日期区域信息"), Category("SunnyUI")]
+        public CultureInfo DateCultureInfo
+        {
+            get;
+            set
+            {
+                field = value;
+                Text = Value.ToString(dateFormat, field ?? CultureInfo.InvariantCulture);
+            }
+        }
+
         private string dateFormat = "yyyy-MM-dd";
 
         [Description("日期格式化掩码"), Category("SunnyUI")]
@@ -393,7 +406,7 @@ namespace Sunny.UI
                 if (ShowType == UIDateType.YearMonthDay)
                 {
                     MaxLength = dateFormat.Length;
-                    Text = Value.ToString(dateFormat);
+                    Text = Value.ToString(dateFormat, DateCultureInfo);
                 }
             }
         }
@@ -412,7 +425,7 @@ namespace Sunny.UI
                 if (ShowType == UIDateType.YearMonth)
                 {
                     MaxLength = dateYearMonthFormat.Length;
-                    Text = Value.ToString(dateYearMonthFormat);
+                    Text = Value.ToString(dateYearMonthFormat, DateCultureInfo);
                 }
             }
         }
@@ -431,7 +444,7 @@ namespace Sunny.UI
                 if (ShowType == UIDateType.Year)
                 {
                     MaxLength = dateYearFormat.Length;
-                    Text = Value.ToString(dateYearFormat);
+                    Text = Value.ToString(dateYearFormat, DateCultureInfo);
                 }
             }
         }
