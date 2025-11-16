@@ -611,7 +611,7 @@ namespace Sunny.UI
         {
             this.SuspendLayout();
 
-            if (!style.IsCustom())
+            if (!style.IsCustom() && !_style.IsCustom())
             {
                 SetStyleColor(style.Colors());
                 Invalidate();
