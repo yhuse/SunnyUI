@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SunnyUI.Demo/SunnyUI.Demo.csproj">
+    <BuildDependency Project="SunnyUI/SunnyUI.csproj" />
+  </Project>
+  <Project Path="SunnyUI/SunnyUI.csproj" />
+</Solution>
