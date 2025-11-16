@@ -31,15 +31,15 @@
 ![JetBrains ](docs/assets/image.png)    
         
 #### 特别声明
-SunnyUI.Net项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
+SunnyUI.Net 项目已加入[dotNET China](https://gitee.com/dotnetchina) 组织。<br/>
 ![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
 
 #### 软件介绍
-- SunnyUI.NET 是基于.Net Framework4.0+、.Net8、.Net9 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。    
+- SunnyUI.NET 是基于.Net Framework4.0+、.Net8、.Net10 框架的 C# WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。    
 - 源码编译环境：    
-  1. **VS2022**，安装.NetFramework4.0目标包的方法见：https://www.cnblogs.com/yhuse/p/15536393.html    
-  2. 编译源码，.Net9需要VS2022 17.14+版本，或者修改SunnyUI.csproj文件的TargetFrameworks属性以适应VS环境    
-- 动态库应用环境： **VS2010**及以上均可，支持.Net Framework4.0+、.Net8、.Net9    
+  1. **VS2026**    
+  2. 编译源码，.Net10 需要 VS2026 版本，或者修改 SunnyUI.csproj 文件的 TargetFrameworks 属性以适应VS环境    
+- 动态库应用环境： **VS2010** 及以上均可，支持.Net Framework4.0+、.Net8、.Net10    
   1. 推荐通过Nuget安装：Install-Package SunnyUI，或者通过Nuget搜索SunnyUI安装。    
   2. 不支持（.Net Framework 4 **Client Profile**）。     
     
