@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="SunnyUI.Demo/SunnyUI.Demo.csproj">
+  <Project Path="SunnyUI.Demo/SunnyUI.Demo.csproj" Id="6ae19b87-c2aa-4c56-bc26-1c343f30ff58">
     <BuildDependency Project="SunnyUI/SunnyUI.csproj" />
   </Project>
   <Project Path="SunnyUI/SunnyUI.csproj" />
