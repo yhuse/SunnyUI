@@ -25,7 +25,6 @@ x86/
 bld/
 [Oo]bj/
 [Ll]og/
-[Bb]in/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -357,3 +356,16 @@ healthchecksdb
 /package-lock.json
 /docs/markdown-examples.md
 /docs/api-examples.md
+/Bin
+/SunnyUI.Demo/Bin/SunnyUI.COM.dll
+/SunnyUI.Demo/Bin/SunnyUI.COM.xml
+/SunnyUI.Demo/Bin/SunnyUI.FrameDecoder.dll
+/SunnyUI.Demo/Bin/SunnyUI.FrameDecoder.xml
+/SunnyUI.Demo/Bin/System.Buffers.dll
+/SunnyUI.Demo/Bin/System.Buffers.xml
+/SunnyUI.Demo/Bin/System.Memory.dll
+/SunnyUI.Demo/Bin/System.Memory.xml
+/SunnyUI.Demo/Bin/System.Numerics.Vectors.dll
+/SunnyUI.Demo/Bin/System.Numerics.Vectors.xml
+/SunnyUI.Demo/Bin/System.Runtime.CompilerServices.Unsafe.dll
+/SunnyUI.Demo/Bin/System.Runtime.CompilerServices.Unsafe.xml
