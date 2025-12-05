@@ -51,6 +51,7 @@
  * 2024-08-27: V3.7.0 增加属性AutoScrollToBottom，数据更新时是否自动滚动到最后一行
  * 2024-09-04: V3.7.0 解决有隐藏行时，滚动条滚动时出错的问题
  * 2025-04-21: V3.8.3 修复数据更新时是否自动滚动到最后一行
+ * 2025-12-05: V3.9.0 修改行头部颜色
 ******************************************************************************/
 
 using System;
@@ -102,6 +103,7 @@ namespace Sunny.UI
             ColumnHeadersDefaultCellStyle.Font = UIStyles.Font();
 
             //行头部颜色
+            RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             RowHeadersDefaultCellStyle.BackColor = UIColor.LightBlue;
             RowHeadersDefaultCellStyle.ForeColor = UIFontColor.Primary;
             RowHeadersDefaultCellStyle.SelectionBackColor = UIColor.Blue;
