@@ -585,7 +585,7 @@ namespace Sunny.UI
 
         public virtual void Final()
         {
-            Finalize?.Invoke(this, new EventArgs());
+            Finalize?.Invoke(this, EventArgs.Empty);
         }
 
         public virtual void SetInheritedStyle(UIStyle style)
@@ -602,7 +602,7 @@ namespace Sunny.UI
                     _style = UIStyle.Inherited;
                 }
 
-                UIStyleChanged?.Invoke(this, new EventArgs());
+                UIStyleChanged?.Invoke(this, EventArgs.Empty);
                 this.ResumeLayout();
             }
         }
@@ -611,14 +611,14 @@ namespace Sunny.UI
         {
             this.SuspendLayout();
 
-            if (!style.IsCustom() && !_style.IsCustom())
+            if (!style.IsCustom())
             {
                 SetStyleColor(style.Colors());
                 Invalidate();
             }
 
             _style = style == UIStyle.Inherited ? UIStyle.Inherited : UIStyle.Custom;
-            UIStyleChanged?.Invoke(this, new EventArgs());
+            UIStyleChanged?.Invoke(this, EventArgs.Empty);
             this.ResumeLayout();
         }
 
@@ -666,6 +666,10 @@ namespace Sunny.UI
         {
         }
 
+
+
+        public event EventHandler<ColorEventArgs> TitlePainting;
+
         /// <summary>
         /// 重载绘图
         /// </summary>
@@ -678,7 +682,16 @@ namespace Sunny.UI
 
             if (AllowShowTitle)
             {
-                e.Graphics.FillRectangle(TitleFillColor, 0, 0, Width, TitleHeight);
+                if (TitlePainting != null)
+                {
+                    ColorEventArgs ce = new ColorEventArgs(TitleFillColor);
+                    TitlePainting.Invoke(this, ce);
+                    e.Graphics.FillRectangle(ce.Color, 0, 0, Width, TitleHeight);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(TitleFillColor, 0, 0, Width, TitleHeight);
+                }
             }
 
             if (RectSides != ToolStripStatusLabelBorderSides.None)

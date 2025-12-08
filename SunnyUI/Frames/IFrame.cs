@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Sunny.UI
 {
@@ -87,4 +88,14 @@ namespace Sunny.UI
     }
 
     public delegate void OnReceiveParams(object sender, UIPageParamsArgs e);
+
+    public class ColorEventArgs : EventArgs
+    {
+        public Color Color;
+
+        public ColorEventArgs(Color color)
+        {
+            Color = color;
+        }
+    }
 }
