@@ -63,6 +63,7 @@
  * 2024-07-28: V3.6.8 最大化后，鼠标点击标题栏最上方，不恢复正常大小
  * 2025-01-09: V3.8.1 修复窗体边框显示不全 #IBGJBS
  * 2025-07-11: V3.8.6 调整标题栏 ExtendMenu 显示位置
+ * 2025-12-10: V3.9.0 修改无边框窗体默认最大化的方式
 ******************************************************************************/
 
 using System;
@@ -76,7 +77,6 @@ namespace Sunny.UI
     {
         public UIForm()
         {
-            base.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;//设置最大化尺寸
             InitializeComponent();
 
             SetStyle(ControlStyles.UserPaint |
@@ -910,21 +910,33 @@ namespace Sunny.UI
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
         public bool Resizable
         {
-            get => showDragStretch;
-            set => showDragStretch = value;
-        }
-
-        [Browsable(false)]
-        [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
-        public bool ShowDragStretch
-        {
-            get => showDragStretch;
+            get;
             set
             {
-                showDragStretch = value;
+                if (field == value) return;
+                field = value;
                 ShowRect = value;
                 if (value) ShowRadius = false;
                 SetPadding();
+            }
+        }
+
+        [Description("确定窗口的初始可视状态"), Category("SunnyUI")]
+        [DefaultValue(FormWindowState.Normal)]
+        public new FormWindowState WindowState
+        {
+            get => base.WindowState;
+            set
+            {
+                if (FormBorderStyle == FormBorderStyle.None && value == FormWindowState.Maximized)
+                {
+                    // 获取当前屏幕的工作区（不包含任务栏）
+                    var workingArea = Screen.FromControl(this).WorkingArea;
+                    Location = workingArea.Location;
+                    if (!ShowFullScreen) MaximumSize = workingArea.Size;
+                }
+
+                base.WindowState = value;
             }
         }
 
@@ -969,7 +981,7 @@ namespace Sunny.UI
 
             base.WndProc(ref m);
 
-            if (m.Msg == Win32.User.WM_NCHITTEST && ShowDragStretch && WindowState == FormWindowState.Normal)
+            if (m.Msg == Win32.User.WM_NCHITTEST && Resizable && WindowState == FormWindowState.Normal)
             {
                 //Point vPoint = new Point((int)m.LParam & 0xFFFF, (int)m.LParam >> 16 & 0xFFFF);
                 Point vPoint = new Point(MousePosition.X, MousePosition.Y);//修正有分屏后，调整窗体大小时鼠标显示左右箭头问题
