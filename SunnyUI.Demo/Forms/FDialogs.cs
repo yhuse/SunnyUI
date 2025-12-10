@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Sunny.UI.Demo
 {
@@ -20,7 +21,6 @@ namespace Sunny.UI.Demo
         private void btnInfo_Click(object sender, EventArgs e)
         {
             this.ShowInfoDialog2(CodeTranslator.Current.Default);
-            this.ShowInfoDialog(CodeTranslator.Current.Default);
         }
 
         private void btnAsk_Click(object sender, EventArgs e)
@@ -33,33 +33,21 @@ namespace Sunny.UI.Demo
             {
                 this.ShowErrorTip(CodeTranslator.Current.PressedCancel);
             }
-
-            if (this.ShowAskDialog(CodeTranslator.Current.Confirm))
-            {
-                this.ShowSuccessTip(CodeTranslator.Current.PressedOK);
-            }
-            else
-            {
-                this.ShowErrorTip(CodeTranslator.Current.PressedCancel);
-            }
         }
 
         private void btnSuccess_Click(object sender, EventArgs e)
         {
             this.ShowSuccessDialog2(CodeTranslator.Current.Success, false, 3000);
-            this.ShowSuccessDialog(CodeTranslator.Current.Success, false, 3000);
         }
 
         private void btnWarn_Click(object sender, EventArgs e)
         {
             this.ShowWarningDialog2(CodeTranslator.Current.Warning);
-            this.ShowWarningDialog(CodeTranslator.Current.Warning);
         }
 
         private void btnError_Click(object sender, EventArgs e)
         {
             this.ShowErrorDialog2(CodeTranslator.Current.Error);
-            this.ShowErrorDialog(CodeTranslator.Current.Error);
         }
 
         private void btnStatus2_Click(object sender, EventArgs e)
@@ -267,6 +255,18 @@ namespace Sunny.UI.Demo
             public string LoginSuccess { get; set; } = "登录成功";
             public string Prepare { get; set; } = "准备开始";
             public string OpenDir { get; set; } = "打开文件夹";
+        }
+
+        private void uiSymbolButton14_Click(object sender, EventArgs e)
+        {
+            if (this.ShowYesNoCancelDialog(CodeTranslator.Current.Confirm) == DialogResult.Yes)
+            {
+                this.ShowSuccessTip(CodeTranslator.Current.PressedOK);
+            }
+            else
+            {
+                this.ShowErrorTip(CodeTranslator.Current.PressedCancel);
+            }
         }
     }
 }

@@ -64,6 +64,7 @@
             this.uiSymbolButton13 = new Sunny.UI.UISymbolButton();
             this.uiLine11 = new Sunny.UI.UILine();
             this.uiSymbolButton12 = new Sunny.UI.UISymbolButton();
+            this.uiSymbolButton14 = new Sunny.UI.UISymbolButton();
             this.SuspendLayout();
             // 
             // btnError
@@ -688,11 +689,28 @@
             this.uiSymbolButton12.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton12.Click += new System.EventHandler(this.uiSymbolButton12_Click);
             // 
+            // uiSymbolButton14
+            // 
+            this.uiSymbolButton14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton14.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiSymbolButton14.Location = new System.Drawing.Point(256, 88);
+            this.uiSymbolButton14.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton14.Name = "uiSymbolButton14";
+            this.uiSymbolButton14.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.uiSymbolButton14.Size = new System.Drawing.Size(100, 35);
+            this.uiSymbolButton14.StyleCustomMode = true;
+            this.uiSymbolButton14.Symbol = 61529;
+            this.uiSymbolButton14.TabIndex = 79;
+            this.uiSymbolButton14.Text = "是否";
+            this.uiSymbolButton14.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolButton14.Click += new System.EventHandler(this.uiSymbolButton14_Click);
+            // 
             // FDialogs
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 590);
+            this.Controls.Add(this.uiSymbolButton14);
             this.Controls.Add(this.uiLine11);
             this.Controls.Add(this.uiSymbolButton12);
             this.Controls.Add(this.uiLine1);
@@ -776,5 +794,6 @@
         private UISymbolButton uiSymbolButton13;
         private UILine uiLine11;
         private UISymbolButton uiSymbolButton12;
+        private UISymbolButton uiSymbolButton14;
     }
 }
