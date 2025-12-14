@@ -43,7 +43,7 @@ namespace Sunny.UI
     [DefaultProperty("Nodes")]
     [ToolboxItem(true)]
     [Description("树形列表框控件")]
-    public class UIComboTreeView : UIDropControl, IToolTip
+    public class UIComboTreeView : UIDropControl, IToolTip, IHideDropDown
     {
         public UIComboTreeView()
         {
@@ -65,6 +65,19 @@ namespace Sunny.UI
             ButtonClick += UIComboTreeView_ButtonClick;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        public void HideDropDown()
+        {
+            try
+            {
+                if (ItemForm is { Visible: true })
+                    ItemForm.Close();
+            }
+            catch
+            {
+                //
+            }
         }
 
         /// <summary> 

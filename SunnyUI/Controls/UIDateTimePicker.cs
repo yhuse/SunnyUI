@@ -42,7 +42,7 @@ namespace Sunny.UI
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
     [Description("日期时间选择框控件")]
-    public sealed class UIDatetimePicker : UIDropControl, IToolTip
+    public sealed class UIDatetimePicker : UIDropControl, IToolTip, IHideDropDown
     {
         private void InitializeComponent()
         {
@@ -58,6 +58,19 @@ namespace Sunny.UI
             PerformLayout();
 
             DateCultureInfo = CultureInfo.InstalledUICulture;
+        }
+
+        public void HideDropDown()
+        {
+            try
+            {
+                if (ItemForm is { Visible: true })
+                    ItemForm.Close();
+            }
+            catch
+            {
+                //
+            }
         }
 
         [Browsable(false)]

@@ -676,12 +676,12 @@ namespace Sunny.UI
             {
                 if (!ShowFilter)
                 {
-                    if (ItemForm != null && ItemForm.Visible)
+                    if (ItemForm is { Visible: true })
                         ItemForm.Close();
                 }
                 else
                 {
-                    if (FilterItemForm != null && FilterItemForm.Visible)
+                    if (FilterItemForm is { Visible: true })
                         FilterItemForm.Close();
                 }
             }

@@ -332,11 +332,12 @@ namespace Sunny.UI
         {
             try
             {
-                if (NumPadForm != null && NumPadForm.Visible)
+                if (NumPadForm is { Visible: true })
                     NumPadForm.Close();
             }
             catch
             {
+                //
             }
         }
 

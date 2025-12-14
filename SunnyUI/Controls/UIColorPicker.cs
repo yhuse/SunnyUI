@@ -43,7 +43,7 @@ namespace Sunny.UI
     [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
     [Description("颜色选择框控件")]
-    public sealed class UIColorPicker : UIDropControl
+    public sealed class UIColorPicker : UIDropControl, IHideDropDown
     {
         private void InitializeComponent()
         {
@@ -76,6 +76,19 @@ namespace Sunny.UI
 
             item?.Dispose();
             base.Dispose(disposing);
+        }
+
+        public void HideDropDown()
+        {
+            try
+            {
+                if (ItemForm is { Visible: true })
+                    ItemForm.Close();
+            }
+            catch
+            {
+                //
+            }
         }
 
         [Browsable(false)]

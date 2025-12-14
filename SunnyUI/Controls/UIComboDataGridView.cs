@@ -48,7 +48,7 @@ namespace Sunny.UI
     [DefaultProperty("ValueChanged")]
     [ToolboxItem(true)]
     [Description("表格列表框控件")]
-    public class UIComboDataGridView : UIDropControl, IToolTip
+    public class UIComboDataGridView : UIDropControl, IToolTip, IHideDropDown
     {
         private void InitializeComponent()
         {
@@ -81,6 +81,19 @@ namespace Sunny.UI
 
             item?.Dispose();
             base.Dispose(disposing);
+        }
+
+        public void HideDropDown()
+        {
+            try
+            {
+                if (ItemForm is { Visible: true })
+                    ItemForm.Close();
+            }
+            catch
+            {
+                //
+            }
         }
 
         [Browsable(false)]

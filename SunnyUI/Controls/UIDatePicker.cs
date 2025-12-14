@@ -43,7 +43,7 @@ namespace Sunny.UI
     [DefaultProperty("Value")]
     [DefaultEvent("ValueChanged")]
     [Description("日期选择框控件")]
-    public sealed partial class UIDatePicker : UIDropControl, IToolTip
+    public sealed partial class UIDatePicker : UIDropControl, IToolTip, IHideDropDown
     {
         public delegate void OnDateTimeChanged(object sender, DateTime value);
 
@@ -57,6 +57,19 @@ namespace Sunny.UI
             TextChanged += UIDatePicker_TextChanged;
             DateCultureInfo = CultureInfo.InvariantCulture;
             //CreateInstance();
+        }
+
+        public void HideDropDown()
+        {
+            try
+            {
+                if (ItemForm is { Visible: true })
+                    ItemForm.Close();
+            }
+            catch
+            {
+                //
+            }
         }
 
         private DateTime max = DateTime.MaxValue;
