@@ -265,6 +265,9 @@ namespace Sunny.UI
 
         private void ShowMaximize()
         {
+            if (_initMaximized && WindowState == FormWindowState.Maximized) Location = _initLocation;
+            _initMaximized = false;
+
             Screen screen = Screen.FromPoint(MousePosition);
             base.MaximumSize = ShowFullScreen ? screen.Bounds.Size : screen.WorkingArea.Size;
             if (screen.Primary)
@@ -932,13 +935,22 @@ namespace Sunny.UI
                 {
                     // 获取当前屏幕的工作区（不包含任务栏）
                     var workingArea = Screen.FromControl(this).WorkingArea;
-                    Location = workingArea.Location;
+
+                    if (_initMaximized)
+                    {
+                        _initLocation = Location;
+                        Location = workingArea.Location;
+                    }
+
                     if (!ShowFullScreen) MaximumSize = workingArea.Size;
                 }
 
                 base.WindowState = value;
             }
         }
+
+        private Point _initLocation = Point.Empty;
+        private bool _initMaximized = true;
 
         #region 拉拽调整窗体大小
 
