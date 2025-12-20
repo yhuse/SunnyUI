@@ -18,6 +18,7 @@
  *
  * 2020-01-01: V2.2.0 增加文件说明
  * 2023-04-19: V3.3.5 增加可选择显示时激活的控件
+ * 2025-12-20: V3.9.0 增加可自定义背景图片
 ******************************************************************************/
 
 using System;
@@ -112,7 +113,8 @@ namespace Sunny.UI
             Login3,
             Login4,
             Login5,
-            Login6
+            Login6,
+            Custom
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
