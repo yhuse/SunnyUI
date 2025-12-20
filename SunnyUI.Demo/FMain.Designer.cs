@@ -277,7 +277,6 @@
             this.Name = "FMain";
             this.Padding = new System.Windows.Forms.Padding(2, 36, 2, 2);
             this.Resizable = true;
-            this.ShowDragStretch = true;
             this.Text = "Form1";
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1132, 846);
             this.HotKeyEventHandler += new Sunny.UI.HotKeyEventHandler(this.Form1_HotKeyEventHandler);
