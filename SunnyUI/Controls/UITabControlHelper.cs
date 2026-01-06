@@ -179,19 +179,17 @@ namespace Sunny.UI
         public bool RemovePage(UIPage uiPage)
         {
             if (uiPage == null) return false;
+            Win32.User.SendMessage(uiPage.Handle, 16, 0, 0); // WM_CLOSE
             TabPage tabPage = uiPage.TabPage;
             PageItems.TryRemove(tabPage, out _);
             if (tabPage != null)
             {
                 tabPage.Parent = null;
                 tabPage.Dispose();
-                tabPage = null;
             }
 
             uiPage.Final();
-            uiPage.Close();
             uiPage.Dispose();
-            uiPage = null;
 
             return true;
         }
