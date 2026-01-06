@@ -913,11 +913,10 @@ namespace Sunny.UI
         [Description("显示边框可拖拽调整窗体大小"), Category("SunnyUI"), DefaultValue(false)]
         public bool Resizable
         {
-            get;
+            get => showDragStretch;
             set
             {
-                if (field == value) return;
-                field = value;
+                showDragStretch = value;
                 ShowRect = value;
                 if (value) ShowRadius = false;
                 SetPadding();
