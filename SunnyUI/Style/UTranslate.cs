@@ -173,7 +173,7 @@ namespace Sunny.UI
                     }
                     else if (line.Contains(".Controls.Add"))
                     {
-                        ctrladds.Add(line.Between("(", ")"),
+                        ctrladds.Add(line.Between("(", ")").SplitFirst(","),
                             line.SplitBeforeLast(".Controls.Add").Replace("this.", "").Trim());
                     }
 
