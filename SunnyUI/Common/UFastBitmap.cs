@@ -21,27 +21,27 @@
 /*
     FastBitmapLib
 
-    The MIT License (MIT)
+   The MIT License (MIT)
 
-    Copyright (c) 2014 Luiz Fernando
+   Copyright (c) 2014 Luiz Fernando
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
 
     
 
@@ -135,37 +135,7 @@ namespace Sunny.UI
         /// </summary>
         public bool Locked { get; private set; }
 
-        /// <summary>
-        /// Gets an array of 32-bit color pixel values that represent this FastBitmap
-        /// </summary>
-        /// <exception cref="Exception">The locking operation required to extract the values off from the underlying bitmap failed</exception>
-        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
-        public int[] DataArray
-        {
-            get
-            {
-                bool unlockAfter = false;
-                if (!Locked)
-                {
-                    Lock();
-                    unlockAfter = true;
-                }
 
-                // Declare an array to hold the bytes of the bitmap
-                int bytes = Math.Abs(_bitmapData.Stride) * _bitmap.Height;
-                int[] argbValues = new int[bytes / BytesPerPixel];
-
-                // Copy the RGB values into the array
-                Marshal.Copy(_bitmapData.Scan0, argbValues, 0, bytes / BytesPerPixel);
-
-                if (unlockAfter)
-                {
-                    Unlock();
-                }
-
-                return argbValues;
-            }
-        }
 
         /// <summary>
         /// Creates a new instance of the FastBitmap class with a specified Bitmap.
@@ -187,7 +157,8 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 析构函数
+        /// Disposes of this fast bitmap object and releases any pending resources.
+        /// The underlying bitmap is not disposes, and is unlocked, if currently locked
         /// </summary>
         public void Dispose()
         {
@@ -291,7 +262,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehands,
+        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehand,
         /// an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to set</param>
@@ -305,7 +276,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehands,
+        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehand,
         /// an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to set</param>
@@ -319,7 +290,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehands,
+        /// Sets the pixel color at the given coordinates. If the bitmap was not locked beforehand,
         /// an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to set</param>
@@ -347,7 +318,30 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// Gets the pixel color at the given coordinates. If the bitmap was not locked beforehands,
+        /// Sets the pixel color at the given index. If the bitmap was not locked beforehand,
+        /// an exception is thrown
+        /// </summary>
+        /// <param name="index">An index into the underlying bitmap data, between <c>0 &lt;= index &lt; Height * Stride</c></param>
+        /// <param name="color">The new color of the pixel to set</param>
+        /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The provided index is out of bounds of the bitmap</exception>
+        public void SetPixel(int index, uint color)
+        {
+            if (!Locked)
+            {
+                throw new InvalidOperationException("The FastBitmap must be locked before any pixel operations are made");
+            }
+
+            if (index < 0 || index >= Height * Stride)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), $@"The index must be >= 0 and < {nameof(Height)} * {nameof(Stride)}");
+            }
+
+            *(uint*)(_scan0 + index) = color;
+        }
+
+        /// <summary>
+        /// Gets the pixel color at the given coordinates. If the bitmap was not locked beforehand,
         /// an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to get</param>
@@ -361,7 +355,7 @@ namespace Sunny.UI
 
         /// <summary>
         /// Gets the pixel color at the given coordinates as an integer value. If the bitmap
-        /// was not locked beforehands, an exception is thrown
+        /// was not locked beforehand, an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to get</param>
         /// <param name="y">The Y coordinate of the pixel to get</param>
@@ -388,7 +382,7 @@ namespace Sunny.UI
 
         /// <summary>
         /// Gets the pixel color at the given coordinates as an unsigned integer value.
-        /// If the bitmap was not locked beforehands, an exception is thrown
+        /// If the bitmap was not locked beforehand, an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to get</param>
         /// <param name="y">The Y coordinate of the pixel to get</param>
@@ -414,6 +408,30 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// Gets the pixel color at a given absolute index on the underlying bitmap data as
+        /// an unsigned integer value.
+        ///
+        /// If the bitmap was not locked beforehand, an exception is thrown
+        /// </summary>
+        /// <param name="index">An index into the underlying bitmap data, between <c>0 &lt;= index &lt; Height * Stride</c></param>
+        /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The provided index is out of bounds of the bitmap data</exception>
+        public uint GetPixelUInt(int index)
+        {
+            if (!Locked)
+            {
+                throw new InvalidOperationException("The FastBitmap must be locked before any pixel operations are made");
+            }
+
+            if (index < 0 || index >= Height * Stride)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), $@"The index must be >= 0 and < {nameof(Height)} * {nameof(Stride)}");
+            }
+
+            return *((uint*)_scan0 + index);
+        }
+
+        /// <summary>
         /// Copies the contents of the given array of colors into this FastBitmap.
         /// Throws an ArgumentException if the count of colors on the array mismatches the pixel count from this FastBitmap
         /// </summary>
@@ -427,10 +445,12 @@ namespace Sunny.UI
             }
 
             // Simply copy the argb values array
+            // ReSharper disable once InconsistentNaming
             int* s0t = _scan0;
 
             fixed (int* source = colors)
             {
+                // ReSharper disable once InconsistentNaming
                 int* s0s = source;
 
                 int count = Width * Height;
@@ -470,6 +490,35 @@ namespace Sunny.UI
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets an array of 32-bit color pixel values that represent this FastBitmap.
+        /// </summary>
+        /// <exception cref="Exception">The locking operation required to extract the values off from the underlying bitmap failed</exception>
+        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
+        public int[] GetDataAsArray()
+        {
+            bool unlockAfter = false;
+            if (!Locked)
+            {
+                Lock();
+                unlockAfter = true;
+            }
+
+            // Declare an array to hold the bytes of the bitmap
+            int bytes = Math.Abs(_bitmapData.Stride) * _bitmap.Height;
+            int[] argbValues = new int[bytes / BytesPerPixel];
+
+            // Copy the RGB values into the array
+            Marshal.Copy(_bitmapData.Scan0, argbValues, 0, bytes / BytesPerPixel);
+
+            if (unlockAfter)
+            {
+                Unlock();
+            }
+
+            return argbValues;
         }
 
         /// <summary>
@@ -845,7 +894,7 @@ namespace Sunny.UI
         /// <summary>
         /// Represents a disposable structure that is returned during Lock() calls, and unlocks the bitmap on Dispose calls
         /// </summary>
-        public struct FastBitmapLocker : IDisposable
+        public readonly struct FastBitmapLocker : IDisposable
         {
             /// <summary>
             /// Gets the fast bitmap instance attached to this locker
@@ -863,7 +912,7 @@ namespace Sunny.UI
             }
 
             /// <summary>
-            /// 析构函数
+            /// Disposes of this FastBitmapLocker, essentially unlocking the underlying fast bitmap
             /// </summary>
             public void Dispose()
             {
