@@ -20,6 +20,7 @@
  * 2021-04-11: V3.0.2 增加垂直显示方式
  * 2022-03-19: V3.1.1 重构主题配色
  * 2023-11-28: V3.6.1 增加一种从上到下的进度显示方式
+ * 2026-05-05: V3.9.6 增加进度条显示方式（从起点到终点、从终点到起点、从中间到边缘、不显示）
 ******************************************************************************/
 
 using System;
@@ -167,19 +168,44 @@ namespace Sunny.UI
             {
                 g.FillRoundRectangle(rectDisableColor,
                     new Rectangle(5, Height / 2 - 3, Width - 1 - 10, 6), 6);
+                int pos = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
 
-                int len = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
-                if (len > 0)
+                if (TrackBarStyle == TrackBarStyle.StartToEnd)
                 {
-                    g.FillRoundRectangle(foreColor, new Rectangle(5, Height / 2 - 3, len, 6), 6);
+                    int len = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
+                    if (len > 0)
+                    {
+                        g.FillRoundRectangle(foreColor, new Rectangle(5, Height / 2 - 3, len, 6), 6);
+                    }
                 }
 
-                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White,
-                    new Rectangle(len, (Height - BarSize) / 2, 10, BarSize), 5);
+                if (TrackBarStyle == TrackBarStyle.EndToStart)
+                {
+                    int len = (int)((Value - Minimum) * 1.0 * (Width - 1 - 10) / (Maximum - Minimum));
+                    if (len > 0)
+                    {
+                        g.FillRoundRectangle(foreColor, new Rectangle(5 + len, Height / 2 - 3, Width - 10 - len, 6), 6);
+                    }
+                }
+
+                if (TrackBarStyle == TrackBarStyle.CenterToBorder)
+                {
+                    int len = (int)(((Maximum - Minimum) / 2.0 - Value) * (Width - 1 - 10) / (Maximum - Minimum));
+                    if (len > 0)
+                    {
+                        g.FillRoundRectangle(foreColor, new Rectangle((int)this.ClientRectangle.Center().X - len, Height / 2 - 3, len, 6), 6);
+                    }
+                    else if (len < 0)
+                    {
+                        g.FillRoundRectangle(foreColor, new Rectangle((int)this.ClientRectangle.Center().X, Height / 2 - 3, -len, 6), 6);
+                    }
+                }
+
+                g.FillRoundRectangle(fillColor.IsValid() ? fillColor : Color.White, new Rectangle(pos, (Height - BarSize) / 2, 10, BarSize), 5);
 
                 using Pen pen = new Pen(rectColor, 2);
                 g.SetHighQuality();
-                g.DrawRoundRectangle(pen, new Rectangle(len + 1, (Height - BarSize) / 2 + 1, 8, BarSize - 2), 5);
+                g.DrawRoundRectangle(pen, new Rectangle(pos + 1, (Height - BarSize) / 2 + 1, 8, BarSize - 2), 5);
                 g.SetDefaultQuality();
             }
 
@@ -356,5 +382,25 @@ namespace Sunny.UI
             get => rectDisableColor;
             set => SetRectDisableColor(value);
         }
+
+        [DefaultValue(TrackBarStyle.StartToEnd)]
+        public TrackBarStyle TrackBarStyle
+        {
+            get;
+            set
+            {
+                if (field == value) return;
+                field = value;
+                Invalidate();
+            }
+        } = TrackBarStyle.StartToEnd;
     }
+}
+
+public enum TrackBarStyle
+{
+    StartToEnd,
+    EndToStart,
+    CenterToBorder,
+    None
 }
