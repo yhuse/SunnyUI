@@ -33,6 +33,7 @@
  * 2024-07-30: V3.6.8 弹窗默认修改为以当前窗体居中，showMask=true或者centerParent=false时以屏幕居中
  * 2024-08-09: V3.6.8 重构弹窗，窗体扩展打开默认以窗体居中，取消TopMost参数，默认为true
  * 2024-08-26: V3.6.9 修复一处ShowAskDialog2报错 #IAMA5A
+ * 2026-05-06: V3.9.6 修复窗体最小化时，弹窗报错 #IJL13C
 ******************************************************************************/
 
 using System;
@@ -189,7 +190,7 @@ namespace Sunny.UI
             UIStyle style, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Ok, int delay = 0)
         {
             bool screenCenter = GetShowOnScreenCenter(showMask, owner);
-            if (owner == null)
+            if (owner == null || owner.WindowState == FormWindowState.Minimized)
             {
                 using UIMessageForm frm = new UIMessageForm();
                 frm.ShowMessage(message, title, showCancel, style);
@@ -224,7 +225,7 @@ namespace Sunny.UI
         public static bool ShowMessageDialog2(Form owner, string title, string message, UINotifierType noteType, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel, int delay = 0)
         {
             bool screenCenter = GetShowOnScreenCenter(showMask, owner);
-            if (owner == null)
+            if (owner == null || owner.WindowState == FormWindowState.Minimized)
             {
                 using UIMessageForm2 frm = new UIMessageForm2(title, message, noteType, defaultButton);
                 frm.Delay = delay;
@@ -916,7 +917,7 @@ namespace Sunny.UI
         public static DialogResult ShowOkCancelDialog(this Form owner, string title, string message, bool showMask = false, UIMessageDialogButtons defaultButton = UIMessageDialogButtons.Cancel)
         {
             var screenCenter = GetShowOnScreenCenter(showMask, owner);
-            if (owner == null)
+            if (owner == null || owner.WindowState == FormWindowState.Minimized)
             {
                 using UIMessageForm2 frm = new UIMessageForm2(title, message, UINotifierType.Ask, defaultButton);
                 return frm.ShowFormWithResult(null, screenCenter, showMask);
@@ -935,7 +936,7 @@ namespace Sunny.UI
         public static DialogResult ShowYesNoCancelDialog(this Form owner, string title, string message, bool showMask = false, UIMessageDialogButtons2 defaultButton = UIMessageDialogButtons2.Cancel)
         {
             var screenCenter = GetShowOnScreenCenter(showMask, owner);
-            if (owner == null)
+            if (owner == null || owner.WindowState == FormWindowState.Minimized)
             {
                 using UIMessageForm2 frm = new UIMessageForm2(title, message, defaultButton);
                 return frm.ShowFormWithResult(null, screenCenter, showMask);
