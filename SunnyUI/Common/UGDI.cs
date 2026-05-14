@@ -477,27 +477,6 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 画刷
-        /// </summary>
-        /// <param name="color">颜色</param>
-        /// <returns>画刷</returns>
-        public static SolidBrush Brush(this Color color)
-        {
-            return new SolidBrush(color);
-        }
-
-        /// <summary>
-        /// 画笔
-        /// </summary>
-        /// <param name="color">颜色</param>
-        /// <param name="size">线宽</param>
-        /// <returns>画笔</returns>
-        public static Pen Pen(this Color color, float size = 1)
-        {
-            return new Pen(color, size);
-        }
-
-        /// <summary>
         /// HTML颜色生成画刷
         /// </summary>
         /// <param name="htmlColor">HTML颜色</param>

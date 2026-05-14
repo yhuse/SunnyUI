@@ -435,17 +435,17 @@ namespace Sunny.UI
                 bool ShowRectBottom = RectSides.GetValue(ToolStripStatusLabelBorderSides.Bottom);
 
                 if (ShowRectLeft)
-                    g.DrawLine(GetRectColor(), RectSize - 1, 0, RectSize - 1, Height, false, RectSize);
+                    g.DrawLine(GetRectColor(), RectSize - 1, 0, RectSize - 1, Height, false);
                 if (ShowRectTop)
-                    g.DrawLine(GetRectColor(), 0, RectSize - 1, Width, RectSize - 1, false, RectSize);
+                    g.DrawLine(GetRectColor(), 0, RectSize - 1, Width, RectSize - 1, false);
                 if (ShowRectRight)
-                    g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height, false, RectSize);
+                    g.DrawLine(GetRectColor(), Width - 1, 0, Width - 1, Height, false);
                 if (ShowRectBottom)
-                    g.DrawLine(GetRectColor(), 0, Height - 1, Width, Height - 1, false, RectSize);
+                    g.DrawLine(GetRectColor(), 0, Height - 1, Width, Height - 1, false);
             }
             else
             {
-                g.DrawPath(GetRectColor(), path, true, RectSize);
+                g.DrawPath(GetRectColor(), path, true);
                 PaintRectDisableSides(g);
             }
         }
@@ -475,22 +475,22 @@ namespace Sunny.UI
 
             if (!ShowRectLeft && !RadiusLeftBottom && !RadiusLeftTop)
             {
-                g.DrawLine(GetFillColor(), RectSize - 1, 0, RectSize - 1, Height, false, RectSize);
+                g.DrawLine(GetFillColor(), RectSize - 1, 0, RectSize - 1, Height, false);
             }
 
             if (!ShowRectTop && !RadiusRightTop && !RadiusLeftTop)
             {
-                g.DrawLine(GetFillColor(), 0, RectSize - 1, Width, RectSize - 1, false, RectSize);
+                g.DrawLine(GetFillColor(), 0, RectSize - 1, Width, RectSize - 1, false);
             }
 
             if (!ShowRectRight && !RadiusRightTop && !RadiusRightBottom)
             {
-                g.DrawLine(GetFillColor(), Width - 1, 0, Width - 1, Height, false, RectSize);
+                g.DrawLine(GetFillColor(), Width - 1, 0, Width - 1, Height, false);
             }
 
             if (!ShowRectBottom && !RadiusLeftBottom && !RadiusRightBottom)
             {
-                g.DrawLine(GetFillColor(), 0, Height - 1, Width, Height - 1, false, RectSize);
+                g.DrawLine(GetFillColor(), 0, Height - 1, Width, Height - 1, false);
             }
         }
 
@@ -750,28 +750,12 @@ namespace Sunny.UI
 
         public event OnTextAlignmentChange TextAlignmentChange;
 
-        private int rectSize = 1;
-
         /// <summary>
         /// 边框颜色
         /// </summary>
         [Description("边框宽度"), Category("SunnyUI")]
         [DefaultValue(1)]
-        public int RectSize
-        {
-            get => rectSize;
-            set
-            {
-                int v = value;
-                if (v > 2) v = 2;
-                if (v < 1) v = 1;
-                if (rectSize != v)
-                {
-                    rectSize = v;
-                    Invalidate();
-                }
-            }
-        }
+        public const int RectSize = 1;
 
         [Browsable(false)]
         public new bool AutoScroll { get; set; } = false;

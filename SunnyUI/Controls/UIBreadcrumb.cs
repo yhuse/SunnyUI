@@ -180,8 +180,7 @@ namespace Sunny.UI
                 points.Add(new PointF(3 + Height / 2.0f, Height / 2.0f));
                 points.Add(new PointF(3, 0));
 
-                using Brush br = new SolidBrush(SelectedColor);
-                g.FillPolygon(br, points.ToArray());
+                g.FillPolygon(GraphicsEx.GetBrush(SelectedColor), points.ToArray());
                 g.DrawString(Text, Font, ForeColor, ClientRectangle, ContentAlignment.MiddleCenter);
             }
             else
@@ -247,9 +246,7 @@ namespace Sunny.UI
 
                     Color color = index <= ItemIndex ? SelectedColor : UnSelectedColor;
                     if (ItemsColor.TryGetValue(index, out var cc)) color = cc;
-                    using Brush br = new SolidBrush(color);
-                    g.FillPolygon(br, points.ToArray());
-
+                    g.FillPolygon(GraphicsEx.GetBrush(color), points.ToArray());
                     g.DrawString(item.ToString(), Font, index <= ItemIndex ? ForeColor : UnSelectedForeColor,
                         new Rectangle(begin, 0, itemWidth, Height), ContentAlignment.MiddleCenter);
                     begin = begin + itemWidth - 3 - Height / 2 + Interval;

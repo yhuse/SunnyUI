@@ -52,7 +52,6 @@ namespace Sunny.UI
 
             drawPath = new GraphicsPath();
             drawPen = new Pen(rectColor, rectSize);
-            forecolorBrush = new SolidBrush(ForeColor);
             Size = new Size(300, 60);
         }
 

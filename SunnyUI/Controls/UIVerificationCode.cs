@@ -214,8 +214,7 @@ namespace Sunny.UI
                 image.SetPixel(x, y, Color.FromArgb(random.Next()));
             }
 
-            using Brush br = new SolidBrush(foreColor);
-            g.DrawString(code, fontex, br, image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
+            g.DrawString(code, fontex, GraphicsEx.GetBrush(foreColor), image.Width / 2 - sf.Width / 2, image.Height / 2 - sf.Height / 2);
             return TwistImage(image, true, 3, 5);
         }
 
@@ -233,8 +232,7 @@ namespace Sunny.UI
 
             // 将位图背景填充为白色
             using Graphics graph = Graphics.FromImage(destBmp);
-            using SolidBrush br = new SolidBrush(fillColor);
-            graph.FillRectangle(br, 0, 0, destBmp.Width, destBmp.Height);
+            graph.FillRectangle(GraphicsEx.GetBrush(fillColor), 0, 0, destBmp.Width, destBmp.Height);
             double dBaseAxisLen = bXDir ? (double)destBmp.Height : (double)destBmp.Width;
             for (int i = 0; i < destBmp.Width; i++)
             {

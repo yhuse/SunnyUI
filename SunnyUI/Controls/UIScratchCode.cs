@@ -362,8 +362,7 @@ public partial class UIScratchCode : UIControl
             image.SetPixel(x, y, Color.FromArgb(random.Next()));
         }
 
-        using Brush br = new SolidBrush(foreColor);
-        g.DrawString(code, fontex, br, image.Width / 2.0f - sf.Width / 2.0f, image.Height / 2.0f - sf.Height / 2.0f);
+        g.DrawString(code, fontex, GraphicsEx.GetBrush(foreColor), image.Width / 2.0f - sf.Width / 2.0f, image.Height / 2.0f - sf.Height / 2.0f);
         return image;
     }
 }

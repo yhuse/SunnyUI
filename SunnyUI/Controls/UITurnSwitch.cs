@@ -35,7 +35,7 @@ namespace Sunny.UI
     public class UITurnSwitch : UIControl
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender">对象</param>
         /// <param name="value">开关值</param>
@@ -297,7 +297,7 @@ namespace Sunny.UI
             g.FillEllipse(FillColor, new Rectangle(center.X - backInnerSize / 2, center.Y - backInnerSize / 2, backInnerSize, backInnerSize));
 
             int size2 = 6;
-            using Pen pn = rectColor.Pen(2);
+            using Pen pn = new Pen(rectColor, 2);
             PointF pt;
             if (Active)
             {

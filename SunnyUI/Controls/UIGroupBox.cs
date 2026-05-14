@@ -78,13 +78,13 @@ namespace Sunny.UI
             var rect = new Rectangle(0, TitleTop, Width - 1, Height - _titleTop - 1);
             if (Text.IsValid())
             {
-                using var path1 = rect.CreateRoundedRectanglePathWithoutTop(Radius, RadiusSides, RectSize);
-                g.DrawPath(GetRectColor(), path1, true, RectSize);
+                using var path1 = rect.CreateRoundedRectanglePathWithoutTop(Radius, RadiusSides);
+                g.DrawPath(GetRectColor(), path1, true);
             }
             else
             {
-                using var path1 = rect.CreateRoundedRectanglePath(Radius, RadiusSides, RectSize);
-                g.DrawPath(GetRectColor(), path1, true, RectSize);
+                using var path1 = rect.CreateRoundedRectanglePath(Radius, RadiusSides);
+                g.DrawPath(GetRectColor(), path1, true);
             }
         }
 
@@ -117,20 +117,20 @@ namespace Sunny.UI
             {
                 if (RadiusSides.GetValue(UICornerRadiusSides.LeftTop) && !UIStyles.GlobalRectangle)
                 {
-                    g.DrawLine(GetRectColor(), Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), Radius / 2 * RectSize, TitleTop, textLeft, TitleTop, true);
                 }
                 else
                 {
-                    g.DrawLine(GetRectColor(), 0, TitleTop, textLeft, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), 0, TitleTop, textLeft, TitleTop, true);
                 }
 
                 if (RadiusSides.GetValue(UICornerRadiusSides.RightTop) && !UIStyles.GlobalRectangle)
                 {
-                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width - Radius / 2 * RectSize, TitleTop, true);
                 }
                 else
                 {
-                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width, TitleTop, true, RectSize);
+                    g.DrawLine(GetRectColor(), textLeft + size.Width, TitleTop, Width, TitleTop, true);
                 }
             }
         }

@@ -252,7 +252,7 @@ namespace Sunny.UI
                 }
                 else
                 {
-                    using Pen pn = new Pen(color, 1);
+                    Pen pn = GraphicsEx.GetPen(color);
                     e.Graphics.DrawRoundRectangle(pn, new Rectangle((int)left + 1, (int)top + 1, ImageSize - 2, ImageSize - 2), 1);
                     e.Graphics.DrawRectangle(pn, new Rectangle((int)left + 2, (int)top + 2, ImageSize - 4, ImageSize - 4));
                 }

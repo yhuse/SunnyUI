@@ -362,7 +362,6 @@ namespace Sunny.UI
 
             Graphics g = null;
             Brush backBrush = null;
-            Brush textBrush = null;
             try
             {
                 g = Graphics.FromImage(bmp);
@@ -386,11 +385,10 @@ namespace Sunny.UI
                 }
                 if (text.Length != 0)
                 {
-                    textBrush = new SolidBrush(style.TextColor);
                     //DEBUG: g.DrawRectangle(new Border(Color.Red){ Width=1, Direction= Direction.Inner}.Pen, textBounds);
                     DefStringFormat.Alignment = StringAlignment.Near;
                     DefStringFormat.LineAlignment = StringAlignment.Near;
-                    g.DrawString(text, tmpFont, textBrush, textBounds.Location, DefStringFormat);
+                    g.DrawString(text, tmpFont, GraphicsEx.GetBrush(style.TextColor), textBounds.Location, DefStringFormat);
                 }
 
                 g.Flush(FlushIntention.Sync);
@@ -400,7 +398,6 @@ namespace Sunny.UI
             {
                 g?.Dispose();
                 backBrush?.Dispose();
-                textBrush?.Dispose();
             }
         }
 
@@ -767,7 +764,6 @@ namespace Sunny.UI
                 }
                 Graphics g = null;
                 Pen pen = null;
-                Brush brush = null;
                 Bitmap bmp = null;
                 try
                 {
@@ -779,9 +775,7 @@ namespace Sunny.UI
                     var color = Colors[index, 0];
                     if (index == 0) //i
                     {
-                        brush = new SolidBrush(Color.FromArgb(103, 148, 186));
-                        g.FillEllipse(brush, 3, 3, 18, 18);
-
+                        g.FillEllipse(GraphicsEx.GetBrush(Color.FromArgb(103, 148, 186)), 3, 3, 18, 18);
                         pen = new Pen(Colors[index, 1], 2);
                         g.DrawLine(pen, new Point(12, 6), new Point(12, 8));
                         g.DrawLine(pen, new Point(12, 10), new Point(12, 18));
@@ -796,10 +790,7 @@ namespace Sunny.UI
                         var points = new[] { new Point(12, 3), new Point(3, 20), new Point(21, 20) };
                         pen = new Pen(color, 2) { LineJoin = LineJoin.Bevel };
                         g.DrawPolygon(pen, points);
-
-                        brush = new SolidBrush(color);
-                        g.FillPolygon(brush, points);
-
+                        g.FillPolygon(GraphicsEx.GetBrush(color), points);
                         pen.Color = Colors[index, 1];
                         g.DrawLine(pen, new Point(12, 8), new Point(12, 15));
                         g.DrawLine(pen, new Point(12, 17), new Point(12, 19));
@@ -820,7 +811,6 @@ namespace Sunny.UI
                 finally
                 {
                     pen?.Dispose();
-                    brush?.Dispose();
                     g?.Dispose();
                 }
             }

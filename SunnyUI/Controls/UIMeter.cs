@@ -262,17 +262,15 @@ public class UIMeter : UIUserControl
 
         string str = Value.ToString("F" + decimalPlaces) + Unit;
         SizeF sf = e.Graphics.MeasureString(str, Font);
-        using var vbr = new SolidBrush(ForeColor);
 
         //绘制数值
         if (ShowValue)
         {
-            e.Graphics.DrawString(str, Font, vbr, pt1.X + (pt2.X - pt1.X - sf.Width) / 2 + ValueOffset.X, pt1.Y - sf.Height + ValueOffset.Y);
+            e.Graphics.DrawString(str, Font, GraphicsEx.GetBrush(ForeColor), pt1.X + (pt2.X - pt1.X - sf.Width) / 2 + ValueOffset.X, pt1.Y - sf.Height + ValueOffset.Y);
         }
 
         using var pen1 = new Pen(ForeColor, ScaleWidth);
         using var pen2 = new Pen(ForeColor, ScaleSubWidth);
-        using var sbr = new SolidBrush(ForeColor);
 
         if (ScaleDecimalPlaces >= 0)
         {
@@ -301,7 +299,7 @@ public class UIMeter : UIUserControl
             pt1 = center.CalcAzRangePoint(InnerSize - ScaleTextInterval, ag);
             str = va.ToString("F" + decimalPlaces);
             sf = e.Graphics.MeasureString(str, ScaleFont);
-            e.Graphics.DrawString(str, ScaleFont, sbr, pt1.X - sf.Width / 2, pt1.Y - sf.Height / 2);
+            e.Graphics.DrawString(str, ScaleFont, GraphicsEx.GetBrush(ForeColor), pt1.X - sf.Width / 2, pt1.Y - sf.Height / 2);
 
             if (i == _scaleDivisions) break;
             for (int j = 1; j < _scaleSubDivisions; j++)
@@ -320,14 +318,11 @@ public class UIMeter : UIUserControl
         pt1 = center.CalcAzRangePoint(_needleOuter, valueAngle - 25);
         pt2 = center.CalcAzRangePoint(_needleOuter, valueAngle + 25);
         PointF pt3 = center.CalcAzRangePoint(_needleLength, valueAngle);
-        using var nbr = new SolidBrush(NeedleColor);
-        e.Graphics.SetHighQuality();
-        e.Graphics.FillClosedCurve(nbr, [pt1, pt2, pt3]);
 
-        using var bbr = new SolidBrush(BackColor);
         e.Graphics.SetHighQuality();
-        e.Graphics.FillEllipse(bbr, new Rectangle(center.X - _needleInner, center.Y - _needleInner, _needleInner * 2, _needleInner * 2));
-
+        e.Graphics.FillClosedCurve(GraphicsEx.GetBrush(NeedleColor), [pt1, pt2, pt3]);
+        e.Graphics.SetHighQuality();
+        e.Graphics.FillEllipse(GraphicsEx.GetBrush(BackColor), new Rectangle(center.X - _needleInner, center.Y - _needleInner, _needleInner * 2, _needleInner * 2));
         e.Graphics.SetDefaultQuality();
     }
 }

@@ -391,7 +391,7 @@ namespace Sunny.UI
                 }
             }
 
-            //X Tick           
+            //X Tick
             {
                 double[] XLabels = Option.XAxis.HaveCustomLabels ? Option.XAxis.CustomLabels.LabelValues() : XScale.CalcLabels();
                 float[] labels = XScale.CalcXPixels(XLabels, DrawOrigin.X, DrawSize.Width);
@@ -460,7 +460,7 @@ namespace Sunny.UI
                 g.DrawString(Option.XAxis.Name, TempFont, ForeColor, new Rectangle(DrawOrigin.X, 0, DrawSize.Width, Height - 16), ContentAlignment.BottomCenter);
             }
 
-            //Y Tick            
+            //Y Tick
             {
                 double[] YLabels = Option.YAxis.HaveCustomLabels ? Option.YAxis.CustomLabels.LabelValues() : YScale.CalcLabels();
                 float[] labels = YScale.CalcYPixels(YLabels, DrawOrigin.Y, DrawSize.Height, Option.YDataOrder);
@@ -721,8 +721,8 @@ namespace Sunny.UI
 
                 if (series.Symbol != UILinePointSymbol.None)
                 {
-                    using Brush br = new SolidBrush(FillColor);
-                    using Brush br1 = new SolidBrush(color);
+                    Brush br = GraphicsEx.GetBrush(FillColor);
+                    Brush br1 = GraphicsEx.GetBrush(color);
                     using Pen pn = new Pen(color, series.SymbolLineWidth);
 
                     foreach (var p in series.Points)

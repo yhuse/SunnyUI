@@ -217,7 +217,7 @@ namespace Sunny.UI
         {
             if (str.IsNullOrEmpty()) return;
             Size sf = TextRenderer.MeasureText(str, font);
-            using Brush br = color.Brush();
+            Brush br = GraphicsEx.GetBrush(color);
             switch (align)
             {
                 case ContentAlignment.MiddleCenter:

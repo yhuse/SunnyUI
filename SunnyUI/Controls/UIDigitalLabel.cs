@@ -122,8 +122,6 @@ namespace Sunny.UI
         protected override void OnPaint(PaintEventArgs e)
         {
             using Font font = DigitalFont.Instance.GetFont(UIStyles.DPIScale ? DigitalSize / UIDPIScale.SystemDPIScale : DigitalSize);
-            using Brush br = new SolidBrush(ForeColor);
-
             string text = ShowText ? Text : Value.ToString("F" + DecimalPlaces);
 
             SizeF sf = e.Graphics.MeasureString(text, font);
@@ -139,7 +137,7 @@ namespace Sunny.UI
                     break;
             }
 
-            e.Graphics.DrawString(text, font, br, x, y);
+            e.Graphics.DrawString(text, font, GraphicsEx.GetBrush(ForeColor), x, y);
         }
 
         private HorizontalAlignment textAlign = HorizontalAlignment.Right;

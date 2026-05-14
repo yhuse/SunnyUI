@@ -630,7 +630,7 @@ namespace Sunny.UI
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="g"></param>
         /// <param name="rect"></param>
@@ -639,19 +639,18 @@ namespace Sunny.UI
         /// <param name="strokeThickness"></param>
         public static void DrawStrokedRectangle(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
-            using var bodyBrush = new SolidBrush(bodyColor);
             var x = strokeThickness == 1 ? 0 : strokeThickness;
             var y = strokeThickness == 1 ? 0 : strokeThickness;
             var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
             var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
             var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
             using var strokePen = new Pen(strokeColor, strokeThickness);
-            g.FillRectangle(bodyBrush, newRect);
+            g.FillRectangle(GraphicsEx.GetBrush(bodyColor), newRect);
             g.DrawRectangle(strokePen, newRect);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="g"></param>
         /// <param name="rect"></param>
@@ -660,14 +659,13 @@ namespace Sunny.UI
         /// <param name="strokeThickness"></param>
         public static void DrawStrokedEllipse(this Graphics g, Rectangle rect, Color bodyColor, Color strokeColor, int strokeThickness = 1)
         {
-            using var bodyBrush = new SolidBrush(bodyColor);
             var x = strokeThickness == 1 ? 0 : strokeThickness;
             var y = strokeThickness == 1 ? 0 : strokeThickness;
             var h = strokeThickness == 1 ? 1 : strokeThickness + 1;
             var w = strokeThickness == 1 ? 1 : strokeThickness + 1;
             var newRect = new Rectangle(rect.X + x, rect.Y + y, rect.Width - w, rect.Height - h);
             using var strokePen = new Pen(strokeColor, strokeThickness);
-            g.FillEllipse(bodyBrush, newRect);
+            g.FillEllipse(GraphicsEx.GetBrush(bodyColor), newRect);
             g.DrawEllipse(strokePen, newRect);
         }
 
