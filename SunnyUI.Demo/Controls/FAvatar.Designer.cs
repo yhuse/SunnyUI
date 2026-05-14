@@ -29,6 +29,7 @@ namespace Sunny.UI.Demo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.uiLabel5 = new Sunny.UI.UILabel();
             this.uiLabel6 = new Sunny.UI.UILabel();
             this.uiAvatar5 = new Sunny.UI.UIAvatar();
@@ -42,13 +43,11 @@ namespace Sunny.UI.Demo
             this.uiAvatar3 = new Sunny.UI.UIAvatar();
             this.uiAvatar2 = new Sunny.UI.UIAvatar();
             this.uiAvatar1 = new Sunny.UI.UIAvatar();
-            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
+            this.uiContextMenuStrip1 = new Sunny.UI.UIContextMenuStrip(this.components);
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.更改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiLine2 = new Sunny.UI.UILine();
-            this.uiGifAvatar1 = new Sunny.UI.UIGifAvatar();
             this.uiContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,25 +55,25 @@ namespace Sunny.UI.Demo
             // 
             this.uiLabel5.AutoSize = true;
             this.uiLabel5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel5.Location = new System.Drawing.Point(181, 257);
             this.uiLabel5.Name = "uiLabel5";
-            this.uiLabel5.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel5.Size = new System.Drawing.Size(39, 16);
             this.uiLabel5.TabIndex = 36;
             this.uiLabel5.Text = "文字";
             this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel6
             // 
             this.uiLabel6.AutoSize = true;
             this.uiLabel6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel6.Location = new System.Drawing.Point(109, 257);
             this.uiLabel6.Name = "uiLabel6";
-            this.uiLabel6.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel6.Size = new System.Drawing.Size(39, 16);
             this.uiLabel6.TabIndex = 35;
             this.uiLabel6.Text = "图标";
             this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAvatar5
             // 
@@ -88,7 +87,6 @@ namespace Sunny.UI.Demo
             this.uiAvatar5.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar5.TabIndex = 34;
             this.uiAvatar5.Text = "Avatar";
-            this.uiAvatar5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAvatar6
             // 
@@ -102,11 +100,12 @@ namespace Sunny.UI.Demo
             this.uiAvatar6.SymbolSize = 48;
             this.uiAvatar6.TabIndex = 33;
             this.uiAvatar6.Text = "uiAvatar6";
-            this.uiAvatar6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLine1
             // 
+            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
             this.uiLine1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLine1.Location = new System.Drawing.Point(30, 55);
             this.uiLine1.MinimumSize = new System.Drawing.Size(16, 16);
             this.uiLine1.Name = "uiLine1";
@@ -114,55 +113,54 @@ namespace Sunny.UI.Demo
             this.uiLine1.TabIndex = 32;
             this.uiLine1.Text = "UIAvatar";
             this.uiLine1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel4
             // 
             this.uiLabel4.AutoSize = true;
             this.uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel4.Location = new System.Drawing.Point(355, 152);
             this.uiLabel4.Name = "uiLabel4";
-            this.uiLabel4.Size = new System.Drawing.Size(74, 21);
+            this.uiLabel4.Size = new System.Drawing.Size(71, 16);
             this.uiLabel4.TabIndex = 31;
             this.uiLabel4.Text = "左键菜单";
             this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel3
             // 
             this.uiLabel3.AutoSize = true;
             this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel3.Location = new System.Drawing.Point(183, 152);
             this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel3.Size = new System.Drawing.Size(39, 16);
             this.uiLabel3.TabIndex = 30;
             this.uiLabel3.Text = "文字";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel2
             // 
             this.uiLabel2.AutoSize = true;
             this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel2.Location = new System.Drawing.Point(111, 152);
             this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel2.Size = new System.Drawing.Size(39, 16);
             this.uiLabel2.TabIndex = 29;
             this.uiLabel2.Text = "图标";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiLabel1
             // 
             this.uiLabel1.AutoSize = true;
             this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.uiLabel1.Location = new System.Drawing.Point(39, 152);
             this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(42, 21);
+            this.uiLabel1.Size = new System.Drawing.Size(39, 16);
             this.uiLabel1.TabIndex = 28;
             this.uiLabel1.Text = "图片";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAvatar4
             // 
@@ -175,7 +173,6 @@ namespace Sunny.UI.Demo
             this.uiAvatar4.Symbol = 61715;
             this.uiAvatar4.TabIndex = 27;
             this.uiAvatar4.Text = "uiAvatar4";
-            this.uiAvatar4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiAvatar4.Click += new System.EventHandler(this.uiAvatar4_Click);
             // 
             // uiAvatar3
@@ -189,7 +186,6 @@ namespace Sunny.UI.Demo
             this.uiAvatar3.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar3.TabIndex = 26;
             this.uiAvatar3.Text = "Avatar";
-            this.uiAvatar3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAvatar2
             // 
@@ -203,7 +199,6 @@ namespace Sunny.UI.Demo
             this.uiAvatar2.Size = new System.Drawing.Size(60, 60);
             this.uiAvatar2.TabIndex = 25;
             this.uiAvatar2.Text = "uiAvatar2";
-            this.uiAvatar2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiAvatar1
             // 
@@ -216,7 +211,6 @@ namespace Sunny.UI.Demo
             this.uiAvatar1.SymbolSize = 48;
             this.uiAvatar1.TabIndex = 24;
             this.uiAvatar1.Text = "uiAvatar1";
-            this.uiAvatar1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // uiContextMenuStrip1
             // 
@@ -228,63 +222,36 @@ namespace Sunny.UI.Demo
             this.toolStripMenuItem1,
             this.退出ToolStripMenuItem});
             this.uiContextMenuStrip1.Name = "uiContextMenuStrip1";
-            this.uiContextMenuStrip1.Size = new System.Drawing.Size(113, 88);
-            this.uiContextMenuStrip1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.uiContextMenuStrip1.Size = new System.Drawing.Size(107, 76);
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 更改密码ToolStripMenuItem
             // 
             this.更改密码ToolStripMenuItem.Name = "更改密码ToolStripMenuItem";
-            this.更改密码ToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
+            this.更改密码ToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.更改密码ToolStripMenuItem.Text = "密码";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(109, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(103, 6);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.退出ToolStripMenuItem.Text = "退出";
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiLine2.Location = new System.Drawing.Point(30, 307);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(16, 16);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(670, 20);
-            this.uiLine2.TabIndex = 37;
-            this.uiLine2.Text = "UIGifAvatar";
-            this.uiLine2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLine2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // uiGifAvatar1
-            // 
-            this.uiGifAvatar1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiGifAvatar1.Image = global::Sunny.UI.Demo.Properties.Resources.Tom;
-            this.uiGifAvatar1.Location = new System.Drawing.Point(30, 340);
-            this.uiGifAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiGifAvatar1.Name = "uiGifAvatar1";
-            this.uiGifAvatar1.Size = new System.Drawing.Size(128, 128);
-            this.uiGifAvatar1.TabIndex = 38;
-            this.uiGifAvatar1.Text = "uiGifAvatar1";
-            this.uiGifAvatar1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // FAvatar
             // 
             this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 489);
-            this.Controls.Add(this.uiGifAvatar1);
-            this.Controls.Add(this.uiLine2);
             this.Controls.Add(this.uiLabel5);
             this.Controls.Add(this.uiLabel6);
             this.Controls.Add(this.uiAvatar5);
@@ -330,7 +297,5 @@ namespace Sunny.UI.Demo
         private System.Windows.Forms.ToolStripMenuItem 更改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
-        private UILine uiLine2;
-        private UIGifAvatar uiGifAvatar1;
     }
 }
