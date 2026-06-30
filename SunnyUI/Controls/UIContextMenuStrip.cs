@@ -23,6 +23,7 @@
  * 2023-10-17: V3.5.1 当右键菜单未绑定ImageList，并且ImageIndex>0时，将ImageIndex绑定为Symbol绘制
  * 2024-02-21: V3.6.3 修复显示快捷键文本位置
  * 2024-02-22: V3.6.3 节点AutoSize时不重绘，重绘时考虑Enabled为False时颜色显示
+ * 2026-06-30: V3.9.8 修复暗黑主题下菜单项图像背景白色，二级菜单主题无效
 ******************************************************************************/
 
 using System.ComponentModel;
@@ -88,12 +89,6 @@ namespace Sunny.UI
             this.SetDPIScaleFont(DefaultFontSize);
         }
 
-        protected override void OnOpening(CancelEventArgs e)
-        {
-            base.OnOpening(e);
-            SetDPIScale();
-        }
-
         /// <summary>
         /// 自定义主题风格
         /// </summary>
@@ -134,6 +129,36 @@ namespace Sunny.UI
             ColorTable.SetStyleColor(uiColor);
             BackColor = uiColor.ContextMenuColor;
             ForeColor = uiColor.ContextMenuForeColor;
+
+            ApplyDropDownStyle(Items);
+            Invalidate();
+        }
+
+        protected override void OnOpening(CancelEventArgs e)
+        {
+            base.OnOpening(e);
+            SetDPIScale();
+            ApplyDropDownStyle(Items);
+        }
+
+        private void ApplyDropDownStyle(ToolStripItemCollection items)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                item.BackColor = BackColor;
+                item.ForeColor = ForeColor;
+
+                if (item is ToolStripDropDownItem dropDownItem)
+                {
+                    if (dropDownItem.HasDropDownItems)
+                    {
+                        dropDownItem.DropDown.BackColor = BackColor;
+                        dropDownItem.DropDown.ForeColor = ForeColor;
+                        dropDownItem.DropDown.Renderer = Renderer;
+                        ApplyDropDownStyle(dropDownItem.DropDownItems);
+                    }
+                }
+            }
         }
 
         public string Version { get; }
