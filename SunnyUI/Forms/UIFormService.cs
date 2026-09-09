@@ -195,6 +195,13 @@ namespace Sunny.UI
         {
             try
             {
+                // ShowWaitForm 后立即调用时，后台线程可能尚未创建窗体（form 为 null），
+                // 描述文字会被静默丢弃；此处有界等待窗体创建完成（issue #104）。
+                for (int i = 0; i < 100 && form == null; i++)
+                {
+                    Thread.Sleep(20);
+                }
+
                 form?.SetDescription(desc);
             }
             catch
