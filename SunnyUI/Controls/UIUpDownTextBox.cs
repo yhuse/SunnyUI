@@ -75,7 +75,7 @@ namespace Sunny.UI
             _edit.SizeChanged += Edit_SizeChanged;
             _edit.FontChanged += Edit_FontChanged;
             _edit.Enter += Edit_Enter;
-            _edit.Type = UITextBox.UIEditType.Integer;
+            Type = UITextBox.UIEditType.Integer;
 
             _edit.Invalidate();
             Controls.Add(_edit);
@@ -861,11 +861,16 @@ namespace Sunny.UI
         }
 
         [Description("输入类型"), Category("SunnyUI")]
-        [DefaultValue(UITextBox.UIEditType.Double)]
+        [DefaultValue(UITextBox.UIEditType.Integer)]
         public UITextBox.UIEditType Type
         {
-            get => _edit.Type;
-            set => _edit.Type = value;
+            get;
+            set
+            {
+                if (value == UITextBox.UIEditType.String) value = UITextBox.UIEditType.Integer;
+                field = value;
+                _edit.Type = value;
+            }
         }
 
         /// <summary>
