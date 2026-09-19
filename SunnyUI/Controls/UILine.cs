@@ -23,6 +23,7 @@
  * 2022-11-26: V3.2.9 水平方向文字不居中时，可设置线条渐变色
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-11-16: V3.5.2 重构主题
+ * 2026-09-19: V3.9.8 修复 Cap 选择Diamond和Triangle不起作用
 ******************************************************************************/
 
 using System;
@@ -263,8 +264,29 @@ namespace Sunny.UI
                         g.FillRectangle(rectColor, new RectangleF(0, top, LineCapSize * 2, LineCapSize * 2));
                         break;
                     case UILineCap.Diamond:
+                        {
+                            float cy = Height / 2f;
+                            var pts = new PointF[]
+                            {
+                                new PointF(0,                cy),                 // 左顶点（朝外）
+                                new PointF(LineCapSize,      cy - LineCapSize),   // 上顶点
+                                new PointF(LineCapSize * 2,  cy),                 // 右顶点（朝线体）
+                                new PointF(LineCapSize,      cy + LineCapSize),   // 下顶点
+                            };
+                            g.FillPolygon(rectColor, pts);
+                        }
                         break;
                     case UILineCap.Triangle:
+                        {
+                            float cy = Height / 2f;
+                            var pts = new PointF[]
+                            {
+                                new PointF(0,                cy),                          // 尖端朝外
+                                new PointF(LineCapSize * 2,  cy - LineCapSize - 1),        // 底边左上
+                                new PointF(LineCapSize * 2,  cy + LineCapSize),            // 底边左下
+                            };
+                            g.FillPolygon(rectColor, pts);
+                        }
                         break;
                     case UILineCap.Circle:
                         top = Height / 2 - LineCapSize - 1;
@@ -277,15 +299,36 @@ namespace Sunny.UI
                     case UILineCap.Square:
                         top = Height / 2 - LineCapSize;
                         if (lineSize.Mod(2) == 1) top -= 1;
-                        g.FillRectangle(rectColor, new RectangleF(Width - lineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
+                        g.FillRectangle(rectColor, new RectangleF(Width - LineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
                         break;
                     case UILineCap.Diamond:
+                        {
+                            float cy = Height / 2f;
+                            var pts = new PointF[]
+                            {
+                                new PointF(Width - LineCapSize * 2 - 1, cy),                       // 左顶点（朝线体）
+                                new PointF(Width - LineCapSize - 1,     cy - LineCapSize - 1),     // 上顶点
+                                new PointF(Width - 1,                   cy),                       // 右顶点（朝外）
+                                new PointF(Width - LineCapSize - 1,     cy + LineCapSize),         // 下顶点
+                            };
+                            g.FillPolygon(rectColor, pts);
+                        }
                         break;
                     case UILineCap.Triangle:
+                        {
+                            float cy = Height / 2f;
+                            var pts = new PointF[]
+                            {
+                                new PointF(Width - 1,                       cy),                          // 尖端朝外
+                                new PointF(Width - LineCapSize * 2 - 1,     cy - LineCapSize - 1),        // 底边右上
+                                new PointF(Width - LineCapSize * 2 - 1,     cy + LineCapSize),            // 底边右下
+                            };
+                            g.FillPolygon(rectColor, pts);
+                        }
                         break;
                     case UILineCap.Circle:
                         top = Height / 2 - LineCapSize - 1;
-                        g.FillEllipse(rectColor, new RectangleF(Width - lineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
+                        g.FillEllipse(rectColor, new RectangleF(Width - LineCapSize * 2 - 1, top, LineCapSize * 2, LineCapSize * 2));
                         break;
                 }
             }
