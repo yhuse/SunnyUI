@@ -251,7 +251,7 @@ namespace Sunny.UI
 
         internal static bool ShowForm(this UIForm frm, Form owner, bool screenCenter, bool showMask)
         {
-            frm.Owner = owner;
+            //frm.Owner = owner;
             frm.StartPosition = FormStartPosition.Manual;
             frm.Location = frm.Size.GetLocation(owner, screenCenter);
             frm.ShowInTaskbar = false;
@@ -261,7 +261,7 @@ namespace Sunny.UI
             if (showMask)
                 return frm.ShowDialogWithMask() == DialogResult.OK;
             else
-                return frm.ShowDialog() == DialogResult.OK;
+                return frm.ShowDialog(owner) == DialogResult.OK;
         }
 
         internal static DialogResult ShowFormWithResult(this UIForm frm, Form owner, bool screenCenter, bool showMask)
