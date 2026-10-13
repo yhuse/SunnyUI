@@ -64,6 +64,7 @@
  * 2024-08-26: V3.6.9 修复微软雅黑字体显示不完整的问题
  * 2024-08-27: V3.6.9 AutoSize时根据字体自动调整控件高度
  * 2025-07-16: V3.8.6 调整编辑框显示文字位置
+ * 2026-10-13: V3.9.8 修复 ImeMode 属性
 ******************************************************************************/
 
 using System;
@@ -444,6 +445,13 @@ namespace Sunny.UI
         {
             base.Focus();
             edit.Focus();
+        }
+
+        [DefaultValue(typeof(ImeMode), "NoControl")]
+        public new ImeMode ImeMode
+        {
+            get => edit.ImeMode;
+            set => edit.ImeMode = value;
         }
 
         [Browsable(false)]
