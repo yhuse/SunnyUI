@@ -463,7 +463,7 @@ namespace Sunny.UI.Win32
 
     public delegate int WNDPROC(IntPtr hWnd, int msg, int wParam, int lParam);
 
-    //public struct WNDCLASS 
+    //public struct WNDCLASS
     //{
     //    public int style;
     //    public int lpfnwndproc;
@@ -519,7 +519,7 @@ namespace Sunny.UI.Win32
             return nw;
         }
     }
-    //public struct WNDCLASSEX 
+    //public struct WNDCLASSEX
     //{
     //    public int cbSize;
     //    public int style;
@@ -2472,6 +2472,9 @@ namespace Sunny.UI.Win32
         public const int WS_SIZEBOX = WS_THICKFRAME;
         public const int WS_SYSMENU = 0x80000;
         public const int WS_TABSTOP = 0x10000;
+        // TreeView 样式位。TVS_NOHSCROLL 用来单独禁用 SysTreeView32 的水平滚动条（Comctl32 5.80+）。
+        public const int TVS_NOHSCROLL = 0x8000;
+        public const int TVS_NOSCROLL = 0x2000;
         public const int WS_THICKFRAME = 0x40000;
         public const int WS_TILED = WS_OVERLAPPED;
         public const int WS_TILEDWINDOW = WS_OVERLAPPEDWINDOW;
