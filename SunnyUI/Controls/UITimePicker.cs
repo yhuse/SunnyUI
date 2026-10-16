@@ -11,7 +11,7 @@
  * If you use this code, please keep this note.
  * 如果您使用此代码，请保留此说明。
  ******************************************************************************
- * 文件名称: UIDatePicker.cs
+ * 文件名称: UITimePicker.cs
  * 文件说明: 时间选择框
  * 当前版本: V3.1
  * 创建日期: 2020-05-29
@@ -23,6 +23,7 @@
  * 2024-11-10: V3.7.2 增加StyleDropDown属性，手动修改Style时设置此属性以修改下拉框主题
  * 2025-10-21: V3.8.9 优化加载速度
  * 2025-11-02: V3.8.9 优化日期转换方法，增加区域信息
+ * 2026-10-16: V3.9.9 TimeFormat 重命名为 Format，依赖 designer 字母序列化顺序解决 Text 初始化异常
 ******************************************************************************/
 
 using System;
@@ -42,9 +43,9 @@ namespace Sunny.UI
         private void InitializeComponent()
         {
             SuspendLayout();
-            // 
+            //
             // UITimePicker
-            // 
+            //
             Name = "UITimePicker";
             SymbolDropDown = 61555;
             SymbolNormal = 61555;
@@ -69,14 +70,14 @@ namespace Sunny.UI
         }
 
         [Browsable(false)]
-        public override string[] FormTranslatorProperties => ["TimeFormat"];
+        public override string[] FormTranslatorProperties => ["Format"];
 
-        /// <summary> 
+        /// <summary>
         /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
@@ -122,7 +123,7 @@ namespace Sunny.UI
             {
                 try
                 {
-                    DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
+                    DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + format);
                     if (Value != dt) Value = dt;
                 }
                 catch
@@ -141,7 +142,7 @@ namespace Sunny.UI
 
             try
             {
-                DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + timeFormat);
+                DateTime dt = (DateTime.Now.DateString() + " " + Text).ToDateTime(DateTimeEx.DateFormat + " " + format);
                 if (Value != dt) Value = dt;
             }
             catch
@@ -185,7 +186,7 @@ namespace Sunny.UI
             get => item.Time;
             set
             {
-                Text = value.ToString(timeFormat, TimeCultureInfo);
+                Text = value.ToString(format, TimeCultureInfo);
                 if (item.Time != value)
                 {
                     item.Time = value;
@@ -195,18 +196,18 @@ namespace Sunny.UI
             }
         }
 
-        private string timeFormat = "HH:mm:ss";
+        private string format = "HH:mm:ss";
 
         [Description("时间格式化掩码"), Category("SunnyUI")]
         [DefaultValue("HH:mm:ss")]
-        public string TimeFormat
+        public string Format
         {
-            get => timeFormat;
+            get => format;
             set
             {
-                timeFormat = value;
-                Text = Value.ToString(timeFormat, TimeCultureInfo);
-                MaxLength = timeFormat.Length;
+                format = value;
+                Text = Value.ToString(format, TimeCultureInfo);
+                MaxLength = format.Length;
             }
         }
 
@@ -217,7 +218,7 @@ namespace Sunny.UI
             set
             {
                 field = value;
-                Text = Value.ToString(timeFormat, field ?? CultureInfo.InvariantCulture);
+                Text = Value.ToString(format, field ?? CultureInfo.InvariantCulture);
             }
         }
 
