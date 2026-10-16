@@ -41,8 +41,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SunnyUI, Version=3.9.8.0, Culture=neutral, PublicKeyToken=3f4ebed4237db5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SunnyUI.3.9.8\lib\net472\SunnyUI.dll</HintPath>
+    <Reference Include="SunnyUI, Version=3.9.9.0, Culture=neutral, PublicKeyToken=3f4ebed4237db5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SunnyUI.3.9.9\lib\net472\SunnyUI.dll</HintPath>
     </Reference>
     <Reference Include="SunnyUI.COM, Version=9.0.10.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\SunnyUI.COM.9.0.10\lib\net472\SunnyUI.COM.dll</HintPath>
