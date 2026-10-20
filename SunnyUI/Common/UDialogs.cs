@@ -165,6 +165,65 @@ public static class Dialogs
     }
 
     /// <summary>
+    /// 打开文件夹对话框
+    /// </summary>
+    /// <param name="filename">返回True时，获取文件名</param>
+    /// <param name="initialDirectory">初始化目录</param>
+    /// <param name="filter">过滤器</param>
+    /// <param name="defaultExt">默认文件扩展名</param>
+    /// <returns>打开是否成功</returns>
+    public static bool OpenFileDialog(string initialDirectory, ref string filename, string filter = "", string defaultExt = "")
+    {
+        using OpenFileDialog od = new OpenFileDialog();
+        od.Title = UIStyles.CurrentResources.Open;
+
+        try
+        {
+            od.InitialDirectory = initialDirectory.DealPath();
+            od.FileName = filename;
+            od.Filter = filter;
+        }
+        catch
+        {
+            od.Filter = "";
+        }
+
+        od.DefaultExt = defaultExt;
+        bool isOk = od.ShowDialog() == DialogResult.OK;
+        if (isOk) filename = od.FileName;
+        return isOk;
+    }
+
+    /// <summary>
+    /// 保存文件对话框
+    /// </summary>
+    /// <param name="initialDirectory">初始化目录</param>
+    /// <param name="filename">返回True时，获取文件名</param>
+    /// <param name="filter">过滤器</param>
+    /// <param name="defaultExt">默认文件扩展名</param>
+    /// <returns>保存是否成功</returns>
+    public static bool SaveFileDialog(string initialDirectory, ref string filename, string filter = "", string defaultExt = "")
+    {
+        using SaveFileDialog od = new SaveFileDialog();
+        od.Title = UIStyles.CurrentResources.Save;
+        try
+        {
+            od.InitialDirectory = initialDirectory.DealPath();
+            od.FileName = filename;
+            od.Filter = filter;
+        }
+        catch
+        {
+            od.Filter = "";
+        }
+
+        od.DefaultExt = defaultExt;
+        bool isOk = od.ShowDialog() == DialogResult.OK;
+        if (isOk) filename = od.FileName;
+        return isOk;
+    }
+
+    /// <summary>
     /// 保存文件对话框
     /// </summary>
     /// <param name="filename">返回True时，获取文件名</param>
