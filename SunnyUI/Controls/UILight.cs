@@ -22,6 +22,7 @@
  * 2022-05-15: V3.1.8 增加文字显示
  * 2023-05-12: V3.3.6 重构DrawString函数
  * 2023-08-28: V3.4.2 恢复全局矩形设计时圆形灯光效果
+ * 2026-10-23: V3.9.9 文本绘制增加 Padding 位置控制
 ******************************************************************************/
 
 using System;
@@ -53,24 +54,22 @@ namespace Sunny.UI
             Radius = Width = Height = 35;
         }
 
-        private UIShape sharpType = UIShape.Circle;
-
         /// <summary>
         /// 显示形状：圆形，正方形
         /// </summary>
         [DefaultValue(UIShape.Circle), Description("显示形状：圆形，正方形"), Category("SunnyUI")]
         public UIShape Shape
         {
-            get => sharpType;
+            get;
             set
             {
-                if (sharpType != value)
+                if (field != value)
                 {
-                    sharpType = value;
+                    field = value;
                     Invalidate();
                 }
             }
-        }
+        } = UIShape.Circle;
 
         private int interval = 500;
 
@@ -92,7 +91,8 @@ namespace Sunny.UI
         /// <param name="path">绘图路径</param>
         protected override void OnPaintFore(Graphics g, GraphicsPath path)
         {
-            g.DrawString(Text, Font, ForeColor, ClientRectangle, TextAlign);
+            var rect = new Rectangle(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom);
+            g.DrawString(Text, Font, ForeColor, rect, TextAlign);
         }
 
         [DefaultValue(500), Description("显示间隔"), Category("SunnyUI")]
