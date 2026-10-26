@@ -33,6 +33,7 @@
  * 2023-12-06: V3.6.2 修复LightStyle的背景颜色
  * 2024-02-22: V3.6.3 增加按钮的&字符的Alt快捷键功能
  * 2024-02-23: V3.6.3 增加Text的属性编辑器
+ * 2026-10-26: V3.9.9 失去焦点时刷新，修复失去焦点时不刷新问题
 ******************************************************************************/
 
 using System;
@@ -736,6 +737,12 @@ namespace Sunny.UI
         /// <param name="value"></param>
         public void NotifyDefault(bool value)
         {
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            Invalidate();
         }
 
         /// <summary>
