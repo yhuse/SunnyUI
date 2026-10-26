@@ -26,6 +26,7 @@
  * 2023-12-04: V3.6.1 增加属性可修改图标大小
  * 2024-08-26: V3.6.9 修复AutoSize在文字改变时未自动显示的问题，#IAKYX4
  * 2024-08-30: V3.7.0 修改AutoSize属性可以保存在Design.cs文件里面，#IAKYX4
+ * 2026-10-26: V3.9.9 增加焦点功能，ShowFocusLine为true时显示焦点线
 ******************************************************************************/
 
 using System;
@@ -77,6 +78,15 @@ namespace Sunny.UI
                 int h = Math.Max(CheckBoxSize, sf.Height) + 5;
                 if (Width != w) Width = w;
                 if (Height != h) Height = h;
+            }
+
+            if (Focused && ShowFocusLine)
+            {
+                Rectangle rect = new Rectangle(2, 2, Width - 5, Height - 5);
+                using var path = rect.CreateRoundedRectanglePath(Radius);
+                using Pen pn = new Pen(ForeColor);
+                pn.DashStyle = DashStyle.Dot;
+                e.Graphics.DrawPath(pn, path);
             }
         }
 
@@ -225,6 +235,16 @@ namespace Sunny.UI
         }
 
         /// <summary>
+        /// 鼠标按下事件
+        /// </summary>
+        /// <param name="e">鼠标参数</param>
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            Focus();
+        }
+
+        /// <summary>
         /// 点击事件
         /// </summary>
         /// <param name="e">参数</param>
@@ -264,6 +284,59 @@ namespace Sunny.UI
         {
             base.OnTextChanged(e);
             Invalidate();
+        }
+
+        /// <summary>
+        /// 显示激活时边框线
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("显示激活时边框线"), Category("SunnyUI")]
+        public bool ShowFocusLine { get; set; }
+
+        /// <summary>
+        /// 获得焦点
+        /// </summary>
+        /// <param name="e">参数</param>
+        protected override void OnGotFocus(EventArgs e)
+        {
+            base.OnGotFocus(e);
+            Invalidate();
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            Invalidate();
+        }
+
+        /// <summary>
+        /// 键盘按下事件
+        /// </summary>
+        /// <param name="e">按键参数</param>
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (Focused && e.KeyCode == Keys.Space)
+            {
+                PerformClick();
+            }
+
+            base.OnKeyDown(e);
+        }
+
+        private bool isClick;
+
+        /// <summary>
+        /// 调用点击事件
+        /// </summary>
+        public void PerformClick()
+        {
+            if (isClick) return;
+            if (CanSelect && Enabled)
+            {
+                isClick = true;
+                OnClick(EventArgs.Empty);
+                isClick = false;
+            }
         }
     }
 }

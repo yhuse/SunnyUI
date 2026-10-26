@@ -17,6 +17,7 @@
 | ImageSize|图标大小 | int| 16   | 
 | ImageInterval|图标与文字之间间隔| int| 3  | 
 | ReadOnly|是否只读| bool| false   | 
+| ShowFocusLine|显示激活时边框线 | bool| false   | 
 | ForeColor | 字体颜色   | Color  | -   |
 | CheckBoxColor| 填充颜色  | Color  | -   |
 | TagString | 获取或设置包含有关控件的数据的对象字符串   | string | -   | 
